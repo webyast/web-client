@@ -2,6 +2,9 @@
 <script language="javascript"
 src="/javascripts/nogray_time_picker_min.js"></script>
 
+<h1>Systemtime</h1>
+<br>
+
 <% if @systemtime.error_id != 0 %>
 <p>
    Error: <%= @systemtime.error_string -%>
@@ -10,31 +13,46 @@ src="/javascripts/nogray_time_picker_min.js"></script>
 
 <% if @systemtime.error_id == 0 or @systemtime.error_id != 1 %>
 
-
- <% form_tag '/system_time/commit_time' do %>
-  <br>
-   <p><label for="timezoneee">Timezone</label>
-   <%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone) %><p>
-  <br>
-  <input type="checkbox" name="utc" value="true" <%= @is_utc %>>UTC<br><br>
-  <br>
-  Day:    <%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true %><br/>
-  <br>
-  Month:  <%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true %><br/>
-  <br>
-  Year:   <%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true %><br/>
-  <br>
-  Time:  <%= text_field_tag "currenttime", @timeString  %>
-  <div id="time2_picker" class="time_picker_div"></div>
-  <script>var tp = new TimePicker('time2_picker', 'currenttime', 'time2_toggler',
-    {visible:false, format24:true, imagesPath:"/images"});</script> 
-  <br><br>
-  <%= submit_tag "Save" %>
- <% end %>
-<br>
-<%= link_to 'Back', :controller => 'main' %>
+<% form_tag '/system_time/commit_time' do %>
+  <div class="table">
+    <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+    <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+    <table class="listing form" cellpadding="0" cellspacing="0">
+       <tr>
+ 	  <th class="full" colspan="2">Settings</th>
+       </tr>
+       <tr>
+	  <td class="first" width="120"><strong>Timezone</strong></td>
+  	  <td class="last"><%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone) %></td>
+       </tr>
+       <tr class="bg">
+	  <td class="first"><strong>UTC (Universal Time Coordinated)</strong></td>
+	  <td class="last"><input type="checkbox" name="utc" value="true" <%= @is_utc %>></td>
+       </tr>
+       <tr>
+	  <td class="first"><strong>Day</strong></td>
+	  <td class="last"><%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true %></td>
+       </tr>
+       <tr class="bg">
+	  <td class="first"><strong>Month</strong></td>
+	  <td class="last"><%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true %></td>
+       </tr>
+       <tr>
+	  <td class="first"><strong>Year</strong></td>
+	  <td class="last"><%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true %></td>
+       </tr>
+       <tr class="bg">
+	  <td class="first"><strong>Time</strong></td>
+	  <td class="last"><%= text_field_tag "currenttime", @timeString  %></td>
+            <div id="time2_picker" class="time_picker_div"></div>
+            <script>var tp = new TimePicker('time2_picker', 'currenttime', 'time2_toggler',
+            {visible:false, format24:true, imagesPath:"/images"});</script> 
+       </tr>
+    </table>
+    <p><%= submit_tag "Save" -%></p>
+  </div>
 <% end %>
-
+<% end %>
 
 
 
