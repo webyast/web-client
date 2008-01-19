@@ -1,3 +1,6 @@
+<h1>Language</h1>
+<br>
+
 <% if @language.error_id != 0 %>
 <p>
    Error: <%= @language.error_string -%>
@@ -6,21 +9,33 @@
 
 <% if @language.error_id == 0 or @language.error_id != 1 %>
  <% form_tag '/language/commit_language' do %>
-  <br>
-   <p><label for="firstLanguage">First Language</label>
-   <%= select_tag "firstLanguage", options_for_select(@valid, @language.firstLanguage) %></p>
-  <br>
-  <hr>
-  <p><label for="secondLanguage">Second Languages</label></p>
-  <br>
-  <% @secondLanguages.each do |name,checked| %>
-     <input type="checkbox" name=<%=h name%> value="LanguageSet" <%= checked %>><%=h name%><br>
-  <% end %>
-  <br><br>
-  <%= submit_tag "Save" %>
+  <div class="table">
+    <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+    <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+    <table class="listing form" cellpadding="0" cellspacing="0">
+       <tr>
+ 	  <th class="full" colspan="2">Settings</th>
+       </tr>
+       <tr>
+	  <td class="first" width="120"><strong>First Language</strong></td>
+  	  <td class="last"><%= select_tag "firstLanguage", options_for_select(@valid, @language.firstLanguage) %></td>
+       </tr>
+       <% first = true %>
+       <% @secondLanguages.each do |name,checked| %>
+          <tr class="bg">
+             <% if first==true %>
+                <% first=false %>
+                <td class="first"><strong>Second Languages</strong></td>
+             <% else %>
+                <td class="first"><strong> </strong></td>
+             <% end %>
+             <td class="last"><input type="checkbox" name=<%=h name%> value="LanguageSet" <%= checked %>><%=h name%></td>
+          </tr>
+       <% end %>
+    </table>
+    <p><%= submit_tag "Save" -%></p>
+  </div>
  <% end %>
-<br>
-<%= link_to 'Back', :controller => 'main' %>
 <% end %>
 
 
