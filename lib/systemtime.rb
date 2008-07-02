@@ -1,6 +1,8 @@
 require 'activeresource'
 
 class SystemTime < ActiveResource::Base
-    self.site = "http://192.168.1.84:3000/system/time/system_time"
+    self.site = "http://localhost:3001"
+    #self.element_name = 'system-time'
 end
+
 
