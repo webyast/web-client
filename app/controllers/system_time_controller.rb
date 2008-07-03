@@ -14,13 +14,13 @@ class SystemTimeController < ApplicationController
   end
 
   def commit_time
-#    t = SystemTime.find(:one, :from => '/system/time', :element_name =>
-#    'system-time')
- render :text =>  request.path_parameters.to_s
-#    t.systemtime = params[systemtime]
-#    t.timezone = params[timezone]
+    t = SystemTime.find(:one, :from => '/system/time', :element_name =>
+    'system-time')
+#render :xml => params
+    t.systemtime = params[:systemtime]
+    t.timezone = params[:timezone]
 #    t.save
-#    redirect_to :action => :index
+    redirect_to :action => :index
   end
 
 end
