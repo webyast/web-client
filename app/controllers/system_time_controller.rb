@@ -6,7 +6,7 @@ class SystemTimeController < ApplicationController
     #t = SystemTime.find(:all, :from => '/system/time', :element_name => 'system-time')
     #render :xml => t.to_xml
 
-    servers = Services::Ntp::Config::Server.find(:all)
+    #servers = Services::Ntp::Config::Server.find(:all)
 
   end
 
