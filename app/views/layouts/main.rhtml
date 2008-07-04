@@ -2,38 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Untitled Document</title>
-<style type="text/css">
-
-    .email {
-        background: #99CCFF;
-        height: 1.2em;
-    }
-    
-    .date {
-        background: #FFFFCC;
-        float: right;
-    }
-    
-    .people {
-        background: #99CCCC;
-        float: left;
-    }
-    
-    .message {
-        background: #FFCCFF;
-        float: left;
-    }
-    
-</style>
-
-<%= stylesheet_link_tag "../javascripts/ext/resources/css/ext-all.css" %>
-<%= javascript_include_tag "ext/adapter/prototype/prototype.js" %>
-<%= javascript_include_tag "ext/adapter/prototype/scriptaculous.js" %>
-<%= javascript_include_tag "ext/adapter/prototype/effects.js" %>
-<%= javascript_include_tag "ext/adapter/prototype/ext-prototype-adapter.js" %>
-<%= javascript_include_tag "ext/ext-all-debug.js" %>
-
+<title>YaST 3</title>
 
 </head>
 
@@ -41,19 +10,8 @@
 
 <img src="/images/Yast_crystal_logo_gray.png"/>
 <img src="/images/n-geeko.png"/>
-    <div class="email">
-        <div class="people">
-            John, Rob, Jennifer
-        </div>
-        <div class="message">
-            This message is supposed to shrink with the browser.
-        </div>
-        <div class="date">
-            4:15 pm 12/05/07
-        </div>
-    </div>
 
-    <%= @content_for_layout %>
+<%= @content_for_layout %>
 
 </body>
 </html>  

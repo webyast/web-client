@@ -1,11 +1,13 @@
-<html>
-<head></head>
-<body><title>Services</title>
-<ul>
+
+<div class="title">Services Configuration</div>
+
+<hr/>
+
+<table style="border: solid; border-width: 1px;">
 <% 
 @services.each do | s |
 %>
-<li><%= s.name %></li>
+<tr><td><%= s.name %></td></tr>
 <% end %>
-</body>
-</html>
+</table>
+
