@@ -1,9 +1,7 @@
-require 'systemtime'
-
 class SystemTimeController < ApplicationController
   layout 'main'
   def index
-    t = SystemTime.find(:one, :from => '/system/systemtime', :element_name => 'system-time')
+    t = SystemTime.find(:one, :from => '/system/systemtime')
     @systemtime = t.time
     @timezone = t.timezone
     if t.isUTC=="true"
@@ -14,8 +12,7 @@ class SystemTimeController < ApplicationController
   end
 
   def commit_time
-    t = SystemTime.find(:one, :from => '/system/systemtime', :element_name =>
-    'system-time')
+    t = SystemTime.find(:one, :from => '/system/systemtime')
 #render :xml => params
     t.time = params[:systemtime]
     t.timezone = params[:timezone]
@@ -24,7 +21,7 @@ class SystemTimeController < ApplicationController
     else
        t.isUTC = false
     end
-#    t.save
+    t.save
     redirect_to :action => :index
   end
 

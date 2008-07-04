@@ -1,6 +1,4 @@
 class SystemTime < ActiveResource::Base
     self.site = "http://localhost:3001"
-    #self.element_name = 'system-time'
+    self.collection_name = "system"
 end
-
-
