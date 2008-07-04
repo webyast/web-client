@@ -2,9 +2,9 @@ class SystemTimeController < ApplicationController
   layout 'main'
   def index
     t = SystemTime.find(:one, :from => '/system/systemtime')
-    @systemtime = t.time
+    @systemtime = t.systemtime
     @timezone = t.timezone
-    if t.isUTC=="true"
+    if t.is_utc == "true"
       @is_utc = "checked" 
     else 
       @is_utc = ""
@@ -13,13 +13,13 @@ class SystemTimeController < ApplicationController
 
   def commit_time
     t = SystemTime.find(:one, :from => '/system/systemtime')
-#render :xml => params
-    t.time = params[:systemtime]
+    t.id = "systemtime"
+    t.systemtime = params[:systemtime]
     t.timezone = params[:timezone]
     if params[:utc] == "true"
-       t.isUTC = true
+       t.is_utc = true
     else
-       t.isUTC = false
+       t.is_utc = false
     end
     t.save
     redirect_to :action => :index
