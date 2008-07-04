@@ -1,20 +1,18 @@
-
 <script language="javascript" src="/javascripts/mootools.v1.11.js"></script>
 <script language="javascript"
 src="/javascripts/nogray_time_picker_min.js"></script>
+
 <% form_tag '/system_time/commit_time' do %>
-<br>
-Timezone:    <%= text_field_tag "timezone", @timezone %><br/>
-<br>
-<input type="checkbox" name="utc" value="true" <%= @is_utc %>> is utc<br><br>
-<br>
-Systemtime:  <%= text_field_tag "systemtime", @systemtime %>
-<a href="#" id="time2_toggler">Open time picker</a>
-<div id="time2_picker" class="time_picker_div"></div>
-<script>var tp = new TimePicker('time2_picker', 'systemtime', 'time2_toggler',
-  {visible:true, imagesPath:"/images"});</script> 
-<br><br>
-<%= submit_tag "Create" %>
+  <br>
+  Timezone:    <%= text_field_tag "timezone", @timezone %><br/>
+  <br>
+  <input type="checkbox" name="utc" value="true" <%= @is_utc %>> is utc<br><br>
+  <br>
+  Systemtime:  <%= text_field_tag "systemtime", @systemtime %>
+  <a href="#" id="time2_toggler">Open time picker</a>
+  <div id="time2_picker" class="time_picker_div"></div>
+  <script>var tp = new TimePicker('time2_picker', 'systemtime', 'time2_toggler',
+    {visible:true, imagesPath:"/images"});</script> 
+  <br><br>
+  <%= submit_tag "Save" %>
 <% end %>
-
-
