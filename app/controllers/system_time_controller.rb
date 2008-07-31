@@ -4,7 +4,7 @@ class SystemTimeController < ApplicationController
     t = SystemTime.find(:one, :from => '/system/systemtime')
     @systemtime = t.systemtime
     @timezone = t.timezone
-    if t.is_utc == "true"
+    if t.is_utc == true
       @is_utc = "checked" 
     else 
       @is_utc = ""
