@@ -1,7 +1,8 @@
 class SystemTimeController < ApplicationController
+  before_filter :login_required
   layout 'main'
   def index
-    t = SystemTime.find(:one, :from => '/system/systemtime')
+    t = SystemTime.find(:one, :from => '/systemtime.xml')
     @systemtime = t.systemtime
     @timezone = t.timezone
     if t.is_utc == true
@@ -12,7 +13,7 @@ class SystemTimeController < ApplicationController
   end
 
   def commit_time
-    t = SystemTime.find(:one, :from => '/system/systemtime')
+    t = SystemTime.find(:one, :from => '/systemtime.xml')
     t.id = "systemtime"
     t.systemtime = params[:systemtime]
     t.timezone = params[:timezone]

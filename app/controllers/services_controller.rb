@@ -1,6 +1,7 @@
 require 'service'
 
 class ServicesController < ApplicationController
+  before_filter :login_required
   layout 'main'
 
   def index
