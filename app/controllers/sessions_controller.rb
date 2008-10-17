@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    self.current_account, auth_token = Account.authenticate(params[:login], params[:password])
+    webservice = params[:webservice]
+    self.current_account, auth_token = Account.authenticate(params[:login], params[:password],
+                                                            webservice[:name])
     if logged_in?
       session[:auth_token] = auth_token
       if params[:remember_me] == "1"

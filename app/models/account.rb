@@ -17,9 +17,9 @@ class Account < ActiveRecord::Base
   attr_accessible :login, :password
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, passwd)
+  def self.authenticate(login, passwd, service)
      l = Login.new()
-     l.initServiceUrl("http://localhost:3001")
+     l.initServiceUrl(service)
      ret = Login.create(:login => login, :password =>passwd, :remember_me => "1")
      if (ret and ret.attributes["login"] == "granted")
         @password = passwd

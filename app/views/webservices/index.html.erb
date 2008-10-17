@@ -1,0 +1,22 @@
+<h1>Listing webservices</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Desc</th>
+  </tr>
+
+<% for webservice in @webservices %>
+  <tr>
+    <td><%=h webservice.name %></td>
+    <td><%=h webservice.desc %></td>
+    <td><%= link_to 'Show', webservice %></td>
+    <td><%= link_to 'Edit', edit_webservice_path(webservice) %></td>
+    <td><%= link_to 'Destroy', webservice, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New webservice', new_webservice_path %>

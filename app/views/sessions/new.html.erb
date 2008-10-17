@@ -5,6 +5,11 @@
 <p><label for="password">Password</label><br/>
 <%= password_field_tag 'password' %></p>
 
+<p><label for="webservice_category">YaST-Web-Service</label><br/>
+<%= select 'webservice', 'name', 
+    Webservice.find(:all).collect {|c| [c.name, c.name]}, 
+    :prompt => "Select a YaST-Web-Service" %>
+
 <p><label for="remember_me">Remember me:</label>
 <%= check_box_tag 'remember_me' %></p>
 

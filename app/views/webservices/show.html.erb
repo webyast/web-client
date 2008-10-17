@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @webservice.name %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%=h @webservice.desc %>
+</p>
+
+
+<%= link_to 'Edit', edit_webservice_path(@webservice) %> |
+<%= link_to 'Back', webservices_path %>

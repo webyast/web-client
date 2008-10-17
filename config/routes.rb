@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :webservices
+
   map.resources :services
 
   map.resource :session
