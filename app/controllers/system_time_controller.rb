@@ -3,7 +3,7 @@ class SystemTimeController < ApplicationController
   layout 'main'
   def index
     t = SystemTime.find(:one, :from => '/systemtime.xml')
-    @systemtime = t.systemtime
+    @systemtime = t.currenttime
     @timezone = t.timezone
     if t.is_utc == true
       @is_utc = "checked" 
