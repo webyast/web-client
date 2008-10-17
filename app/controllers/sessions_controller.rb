@@ -8,8 +8,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    self.current_account = Account.authenticate(params[:login], params[:password])
+    self.current_account, auth_token = Account.authenticate(params[:login], params[:password])
     if logged_in?
+      session[:auth_token] = auth_token
       if params[:remember_me] == "1"
         current_account.remember_me unless current_account.remember_token?
         cookies[:auth_token] = { :value => self.current_account.remember_token , :expires => self.current_account.remember_token_expires_at }
@@ -22,10 +23,20 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    self.current_account.forget_me if logged_in?
-    cookies.delete :auth_token
-    reset_session
-    flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
+     if logged_in?
+        ret = Logout.create()
+        if (ret and ret.attributes["logout"])
+           puts "Logout: #{ret.attributes["logout"]}"
+        else
+           puts "Logout: Error"
+        end
+        self.current_account.forget_me 
+        session[:auth_token] = nil
+     end
+     
+     cookies.delete :auth_token
+     reset_session
+     flash[:notice] = "You have been logged out."
+     redirect_back_or_default('/')
   end
 end

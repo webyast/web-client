@@ -18,8 +18,10 @@ class Account < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, passwd)
-#     if authpam(login,passwd) == true
-     if true == true
+     l = Login.new()
+     l.initServiceUrl("http://localhost:3001")
+     ret = Login.create(:login => login, :password =>passwd, :remember_me => "1")
+     if (ret and ret.attributes["login"] == "granted")
         @password = passwd
 	acc = find_by_login(login)
 	if !acc
@@ -29,11 +31,13 @@ class Account < ActiveRecord::Base
         @password = passwd
         acc.password = passwd
         acc.save
-	puts "Authenticate Successful"
-        return acc
+	puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
+        l.setWebServiceAuth(ret.attributes["auth_token"].attributes["value"])
+        return acc, ret.attributes["auth_token"].attributes["value"]
      else
   	puts "Authenticate Failure"
-        return nil
+        l.setWebServiceAuth("")
+        return nil, nil
      end
   end
 
@@ -70,6 +74,7 @@ class Account < ActiveRecord::Base
   def forget_me
     self.remember_token_expires_at = nil
     self.remember_token            = nil
+
     save(false)
   end
 
@@ -83,6 +88,5 @@ class Account < ActiveRecord::Base
     def password_required?
       !password.blank?
     end
-    
-    
+
 end
