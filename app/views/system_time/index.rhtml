@@ -2,17 +2,38 @@
 <script language="javascript"
 src="/javascripts/nogray_time_picker_min.js"></script>
 
-<% form_tag '/system_time/commit_time' do %>
+<% if @systemtime.error_id != 0 %>
+<p>
+   Error: <%= @systemtime.error_string -%>
+</p>
+<% end %>
+
+<% if @systemtime.error_id == 0 or @systemtime.error_id != 1 %>
+
+
+ <% form_tag '/system_time/commit_time' do %>
   <br>
-  Timezone:    <%= text_field_tag "timezone", @timezone %><br/>
+  Timezone:    <%= text_field_tag "timezone", @systemtime.timezone %><br/>
   <br>
-  <input type="checkbox" name="utc" value="true" <%= @is_utc %>> is utc<br><br>
+  <input type="checkbox" name="utc" value="true" <%= @is_utc %>>UTC<br><br>
   <br>
-  Systemtime:  <%= text_field_tag "systemtime", @systemtime %>
-  <a href="#" id="time2_toggler">Open time picker</a>
+  Day:    <%= text_field_tag "day", @systemtime.currenttime.day %><br/>
+  <br>
+  Month:    <%= text_field_tag "month", @systemtime.currenttime.month %><br/>
+  <br>
+  Year:    <%= text_field_tag "year", @systemtime.currenttime.year %><br/>
+  <br>
+  Time:  <%= text_field_tag "currenttime", @timeString  %>
   <div id="time2_picker" class="time_picker_div"></div>
-  <script>var tp = new TimePicker('time2_picker', 'systemtime', 'time2_toggler',
-    {visible:true, imagesPath:"/images"});</script> 
+  <script>var tp = new TimePicker('time2_picker', 'currenttime', 'time2_toggler',
+    {visible:false, format24:true, imagesPath:"/images"});</script> 
   <br><br>
   <%= submit_tag "Save" %>
+ <% end %>
+<br>
+<%= link_to 'Back', :controller => 'main' %>
 <% end %>
+
+
+
+
