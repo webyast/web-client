@@ -35,6 +35,7 @@ class SystemTimeController < ApplicationController
     timeArray = params[:currenttime].split ":"
     t.currenttime = DateTime.civil(params[:year].to_i, params[:month].to_i, 
                                    params[:day].to_i, timeArray[0].to_i, timeArray[1].to_i)
+    t.validtimezones = "" #not needed anymore
     t.save
     if t.error_id != 0
        redirect_to :action => :index, :last_error_string =>t.error_string, :last_error =>t.error_id 

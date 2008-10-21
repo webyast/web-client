@@ -18,11 +18,11 @@ src="/javascripts/nogray_time_picker_min.js"></script>
   <br>
   <input type="checkbox" name="utc" value="true" <%= @is_utc %>>UTC<br><br>
   <br>
-  Day:    <%= text_field_tag "day", @systemtime.currenttime.day %><br/>
+  Day:    <%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true %><br/>
   <br>
-  Month:    <%= text_field_tag "month", @systemtime.currenttime.month %><br/>
+  Month:  <%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true %><br/>
   <br>
-  Year:    <%= text_field_tag "year", @systemtime.currenttime.year %><br/>
+  Year:   <%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true %><br/>
   <br>
   Time:  <%= text_field_tag "currenttime", @timeString  %>
   <div id="time2_picker" class="time_picker_div"></div>
