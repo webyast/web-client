@@ -13,7 +13,8 @@ src="/javascripts/nogray_time_picker_min.js"></script>
 
  <% form_tag '/system_time/commit_time' do %>
   <br>
-  Timezone:    <%= text_field_tag "timezone", @systemtime.timezone %><br/>
+   <p><label for="timezoneee">Timezone</label>
+   <%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone) %><p>
   <br>
   <input type="checkbox" name="utc" value="true" <%= @is_utc %>>UTC<br><br>
   <br>

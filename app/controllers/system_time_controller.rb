@@ -17,6 +17,11 @@ class SystemTimeController < ApplicationController
     @timeString = @systemtime.currenttime.hour.to_s
     @timeString << ":" 
     @timeString << @systemtime.currenttime.min.to_s
+    @valid = []
+    @validStrings = @systemtime.validtimezones.split(" ")
+    @validStrings::each do |s|   
+       @valid << s
+    end
   end
 
   def commit_time
