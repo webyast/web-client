@@ -7,4 +7,9 @@ class ServicesController < ApplicationController
   def index
     @services = Service.find(:all, :from => '/services.xml')
   end
+
+  def show
+    @serviceId = params[:id]
+    render
+  end
 end
