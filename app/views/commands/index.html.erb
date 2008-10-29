@@ -1,0 +1,16 @@
+<% name = @service.link -%>
+<h3> <%= name -%> with <%= @commands.size -%> commands</h3>
+<% @commands.each do |f| -%>
+<%= link_to "#{f}", service_command_path(name,f), :method =>:put %><br/>
+<% end -%>
+<BR/>
+<% if @service.error_id != 0 %>
+ Error ID: <%= @service.error_id -%>
+ <BR/>
+ Error: <%= @service.error_string -%>
+<% end %>
+<BR/>
+<BR/>
+<%= link_to 'Back', :controller => 'services' %>
+
+
