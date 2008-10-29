@@ -1,0 +1,27 @@
+<br>
+<h3>NTP Server Configuration</h3>
+<br>
+<% if @ntp.error_id != 0 %>
+<p>
+   Error: <%= @ntp.error_string -%>
+</p>
+<% end %>
+
+<% if @ntp.error_id == 0 or @ntp.error_id != 1 %>
+ <% form_tag 'config' do %>
+  <input type="checkbox" name="enabled" value="true" <%= @is_enabled %>>Enabled
+  <br><br>
+  <input type="checkbox" name="use_random_server" value="true" <%= @is_use_random_server %>>Use random server
+  <br><br>
+  Manual Servers:  <%= text_field_tag "manual_server", @ntp.manual_server  %>
+  <br>
+  <br><br>
+  <%= submit_tag "Save" %>
+ <% end %>
+<br>
+<%= link_to 'Back', :controller => 'services' %>
+<% end %>
+
+
+
+
