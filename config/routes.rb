@@ -54,6 +54,10 @@ ActionController::Routing::Routes.draw do |map|
      service.resources :commands
   end
 
+  map.resources :users, :member => { :exportssh => :get }
+  map.resources :users, :controller => 'users'
+  map.connect "/users/:users_id/exportssh", :controller => 'users', :action => 'exportssh'
+
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
