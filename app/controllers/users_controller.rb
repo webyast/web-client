@@ -39,7 +39,6 @@ class UsersController < ApplicationController
                       :uid=>nil,
                       :sshkey=>nil, 
                       :newUid=>nil, 
-                      :ldapPassword=>nil, 
                       :loginShell=>"/bin/bash", 
                       :error_string=>nil, 
                       :password=>nil)
@@ -73,7 +72,7 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     dummy = User.new(params[:user])
-    @user = User.new(:noHome=>dummy.noHome, 
+    @user = User.new(:noHome=>params[:nohome],
                       :error_id =>0, 
                       :defaultGroup=>dummy.defaultGroup, 
                       :newLoginName=>nil, 
@@ -84,7 +83,6 @@ class UsersController < ApplicationController
                       :uid=>dummy.uid,
                       :sshkey=>nil, 
                       :newUid=>nil, 
-                      :ldapPassword=>dummy.ldapPassword, 
                       :loginShell=>dummy.loginShell, 
                       :error_string=>nil, 
                       :password=>dummy.password)
@@ -121,7 +119,6 @@ class UsersController < ApplicationController
        end
        @user.homeDirectory = params["user"]["homeDirectory"]
        @user.fullName = params["user"]["fullName"]
-       @user.type = params["user"]["type"]
        if @user.uid != params["user"]["uid"]
           @user.newUid = params["user"]["uid"]
        end

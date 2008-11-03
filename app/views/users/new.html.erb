@@ -24,13 +24,10 @@
     <%= f.label :defaultGroup %><br />
     <%= f.text_field :defaultGroup %>
   </p>
+  <input type="checkbox" name="nohome" value="true" >do NOT create home directory
   <p>
-    <%= f.label :homeDirectory %><br />
+    <%= f.label :Homedirectory %><br />
     <%= f.text_field :homeDirectory %>
-  </p>
-  <p>
-    <%= f.label :noHome %> (true,false)<br />
-    <%= f.text_field :noHome %>
   </p>
   <p>
     <%= f.label :loginShell %><br />
@@ -47,14 +44,6 @@
   <p>
     <%= f.label :password %><br />
     <%= f.text_field :password %>
-  </p>
-  <p>
-    <%= f.label :ldapPassword %><br />
-    <%= f.text_field :ldapPassword %>
-  </p>
-  <p>
-    <%= f.label :type %> (local, system, nis, ldap)<br />
-    <%= f.text_field :type %>
   </p>
   <p>
     <%= submit_tag "Create" %>
