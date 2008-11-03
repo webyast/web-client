@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_filter :login_required
-
+  layout 'main'
 
   # GET /users
   # GET /users.xml

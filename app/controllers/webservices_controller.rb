@@ -1,4 +1,7 @@
 class WebservicesController < ApplicationController
+
+  layout 'main'
+
   # GET /webservices
   # GET /webservices.xml
   def index
