@@ -10,14 +10,13 @@
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
-
   <p>
-    <%= f.label :homeDirectory %><br />
-    <%= f.text_field :homeDirectory %>
+    <b>Homedirectory:</b>
+    <%=h @user.homeDirectory %>
   </p>
   <p>
-    <%= f.label :loginName %><br />
-    <%= f.text_field :loginName %>
+    <b>Loginname:</b>
+    <%=h @user.loginName %>
   </p>
   <p>
     <%= f.label :sshkey %> <br />

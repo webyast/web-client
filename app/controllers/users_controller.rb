@@ -50,6 +50,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1/exportssh
+  def exportssh
+    @user = User.find(params[:id])
+    @user.type = ""
+    @user.id = @user.loginName
+    logger.debug "exportssh: #{@user.inspect}"
+    respond_to do |format|
+      format.html # exportssh.html.erb
+      format.xml  { render :xml => @user, :location => "none" }
+    end
+  end
+
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
@@ -98,21 +110,26 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.id = @user.loginName
-    @user.defaultGroup = params["user"]["defaultGroup"]
-    @user.groups = params["user"]["groups"]
-    if @user.loginName != params["user"]["loginName"]
-       @user.newLoginName = params["user"]["loginName"]
-    end
-    @user.homeDirectory = params["user"]["homeDirectory"]
-    @user.fullName = params["user"]["fullName"]
-    @user.type = params["user"]["type"]
-    if @user.uid != params["user"]["uid"]
-       @user.newUid = params["user"]["uid"]
-    end
-    @user.loginShell = params["user"]["loginShell"]
-    @user.password = params["user"]["password"]
+    if params["commit"] == "Export SSH-Key"
+       @user.sshkey = params["user"]["sshkey"]
+       response = @user.put(:sshkey, {}, @user.to_xml)
+    else
+       @user.defaultGroup = params["user"]["defaultGroup"]
+       @user.groups = params["user"]["groups"]
+       if @user.loginName != params["user"]["loginName"]
+          @user.newLoginName = params["user"]["loginName"]
+       end
+       @user.homeDirectory = params["user"]["homeDirectory"]
+       @user.fullName = params["user"]["fullName"]
+       @user.type = params["user"]["type"]
+       if @user.uid != params["user"]["uid"]
+          @user.newUid = params["user"]["uid"]
+       end
+       @user.loginShell = params["user"]["loginShell"]
+       @user.password = params["user"]["password"]
 
-    response = @user.put(:update, {}, @user.to_xml)
+       response = @user.put(:update, {}, @user.to_xml)
+    end
     retUser = Hash.from_xml(response.body)    
     respond_to do |format|
       if retUser["user"]["error_id"] == 0
