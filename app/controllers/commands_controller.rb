@@ -3,6 +3,7 @@ include ApplicationHelper
 class CommandsController < ApplicationController
 
   before_filter :login_required
+  layout 'main'
 
   public
 
