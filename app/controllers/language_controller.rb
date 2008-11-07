@@ -11,7 +11,10 @@ class LanguageController < ApplicationController
     end
     @valid = []
     @secondLanguages = {}
-    splitSecondLanguages = @language.secondLanguages.split(",")
+    splitSecondLanguages = []
+    if @language.secondLanguages
+       splitSecondLanguages = @language.secondLanguages.split(",")
+    end
     @valid = @language.available.split("\n")
     @valid::each do |l|   
        dummy = l.split(" ")
