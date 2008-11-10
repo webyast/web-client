@@ -1,0 +1,3 @@
+class PatchUpdate < MyActiveResource
+
+end

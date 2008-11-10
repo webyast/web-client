@@ -54,6 +54,9 @@ ActionController::Routing::Routes.draw do |map|
      service.resources :commands
   end
 
+  map.resources :patch_updates
+  map.connect "/patch_updates/:id", :controller => 'patch_updates', :action => 'install'
+
   map.resources :users, :member => { :exportssh => :get }
   map.resources :users, :controller => 'users'
   map.connect "/users/:users_id/exportssh", :controller => 'users', :action => 'exportssh'
