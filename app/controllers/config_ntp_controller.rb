@@ -39,7 +39,7 @@ class ConfigNtpController < ApplicationController
        @ntp.use_random_server = false
     end
     @ntp.id = "ntp"
-    response = @ntp.put(:config)
+    response = @ntp.put(:config, {}, @ntp.to_xml)
     retNtp = Hash.from_xml(response.body)    
     if retNtp["config_ntp"]["error_id"] != 0
        redirect_to :action => :show, :last_error_string =>retNtp["config_ntp"]["error_string"], :last_error =>retNtp["config_ntp"]["error_id"]
