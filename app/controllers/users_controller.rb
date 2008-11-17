@@ -41,7 +41,8 @@ class UsersController < ApplicationController
                       :newUid=>nil, 
                       :loginShell=>"/bin/bash", 
                       :error_string=>nil, 
-                      :password=>nil)
+                      :password=>nil,
+                      :type=>"local")
     @user.id=nil
     respond_to do |format|
       format.html # new.html.erb
@@ -85,10 +86,19 @@ class UsersController < ApplicationController
                       :newUid=>nil, 
                       :loginShell=>dummy.loginShell, 
                       :error_string=>nil, 
-                      :password=>dummy.password)
+                      :password=>dummy.password,
+                      :type=>"local")
 
-    response = @user.post(:create, {}, @user.to_xml)
-    retUser = Hash.from_xml(response.body)    
+    retUser = {}
+    #Only UID greater than 1000 are allowed for local user
+    if @user.uid.to_i < 1000    
+       retUser["user"] = {}
+       retUser["user"]["error_string"] = "UID: value >= 1000 is valid for local user only"
+       retUser["user"]["error_id"] = 2
+    else
+       response = @user.post(:create, {}, @user.to_xml)
+       retUser = Hash.from_xml(response.body)    
+    end
     respond_to do |format|
       if retUser["user"]["error_id"] == 0
         flash[:notice] = 'User was successfully created.'
@@ -124,7 +134,7 @@ class UsersController < ApplicationController
        end
        @user.loginShell = params["user"]["loginShell"]
        @user.password = params["user"]["password"]
-
+       @user.type = "local"
        response = @user.put(:update, {}, @user.to_xml)
     end
     retUser = Hash.from_xml(response.body)    
@@ -147,6 +157,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.id = @user.loginName
+    @user.type = "local"
     @user.destroy
 
     respond_to do |format|
