@@ -22,6 +22,7 @@ Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-devel
+BuildArch:      noarch  
 
 
 %description
@@ -52,8 +53,6 @@ install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%pre
-
 %post
 #
 # create database 
@@ -62,14 +61,6 @@ cd /srv/www/yast
 rake db:migrate
 chgrp lighttpd db db/*.sqlite*
 chown lighttpd db db/*.sqlite*
-
-%preun
-%stop_on_removal %{pkg_user}
-
-%postun
-%restart_on_update %{pkg_user}
-%{insserv_cleanup}
-
 
 %files 
 %defattr(-,root,root)
@@ -89,3 +80,7 @@ chown lighttpd db db/*.sqlite*
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp  
 %config /etc/lighttpd/cleanurl-v5.lua  
+
+# %changelog  
+# * Tue Nov 27 2008 schubi@suse.de  
+# - initial  
