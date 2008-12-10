@@ -20,9 +20,14 @@ Release:        1
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
+Source2:        yastwebc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-devel
 BuildArch:      noarch  
+
+#
+%define service_name yastwebc
+#
 
 
 %description
@@ -46,6 +51,17 @@ mkdir -p $RPM_BUILD_ROOT/srv/www/yast
 cp -a * $RPM_BUILD_ROOT/srv/www/yast
 rm $RPM_BUILD_ROOT/srv/www/yast/log/*
 
+#
+# init script
+#
+%{__install} -d -m 0755                            \
+    %{buildroot}%{_sbindir}
+
+%{__install} -D -m 0755 %SOURCE2 \
+    %{buildroot}%{_sysconfdir}/init.d/%{service_name}
+%{__ln_s} -f %{_sysconfdir}/init.d/%{service_name} %{buildroot}%{_sbindir}/rc%{service_name}
+#
+
 # configure lighttpd web service
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd
 install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
@@ -55,12 +71,33 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 #
+#installing lighttpd server init scripts
+#
+test -r /usr/sbin/yastwebc || { echo "Creating link /usr/sbin/yastwebc";
+        ln -s /usr/sbin/lighttpd /usr/sbin/yastwebc; }
+%fillup_and_insserv %{service_name}
+
+#
 # create database 
 #
 cd /srv/www/yast
 rake db:migrate
 chgrp lighttpd db db/*.sqlite*
 chown lighttpd db db/*.sqlite*
+
+%preun
+%stop_on_removal %{service_name}
+
+%postun
+%restart_on_update %{service_name}
+%{insserv_cleanup}
+#remove link
+if test -r /usr/sbin/yastwebc ; then
+  echo "/usr/sbin/yastwebc already removed"
+else
+  echo "Removing link /usr/sbin/yastwebc";
+  rm /usr/sbin/yastwebc
+fi
 
 %files 
 %defattr(-,root,root)
@@ -80,6 +117,8 @@ chown lighttpd db db/*.sqlite*
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp  
 %config /etc/lighttpd/cleanurl-v5.lua  
+%config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
+%{_sbindir}/rc%{service_name}
 
 # %changelog  
 # * Tue Nov 27 2008 schubi@suse.de  
