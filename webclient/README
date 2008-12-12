@@ -11,3 +11,37 @@ You can connect to the local server which can be started with the command:
 rcyastwebd start
 
 (package yast2-webservice)
+
+
+HTTPS Protocol
+================
+
+SSL
+-----
+
+Before we start configuring lighttpd for the YaST-webclient, we’ve got to get an SSL certificate. If you’re creating your own, 
+you can follow the instructions from the lighttpd web site:
+
+openssl req -new -x509 -keyout host.pem -out host.pem -days 365 -nodes
+
+If you already have a certificate that’s a .crt and a .key file, you have to make them snuggle up into a single .pem file:
+
+cat host.key host.crt > host.pem
+
+Both of these methods result in a single .pem file, usually named ΄host.pem‘ where ΄host‘ is the name of the server you’re using 
+the certificate for. This file can be stored anywhere you want on your system, since the lighttpd configuration takes an explicit path to it.
+Normally certificates are stored in /etc/ssl/certs.
+
+Configure lighttpd
+--------------------
+
+Add these two entries to /srv/www/yast/config/lighttpd.conf
+
+ssl.engine         = "enable"
+ssl.pemfile        = "/etc/ssl/certs/host.pem"
+
+and restart the server with
+
+rcyastwebc restart
+
+Now you can login with HTTPS protocol.
