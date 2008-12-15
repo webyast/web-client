@@ -20,13 +20,13 @@ Release:        1
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
-Source2:        yastwebc
+Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-devel
 BuildArch:      noarch  
 
 #
-%define service_name yastwebc
+%define service_name yastwc
 #
 
 
@@ -73,8 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 #
 #installing lighttpd server init scripts
 #
-test -r /usr/sbin/yastwebc || { echo "Creating link /usr/sbin/yastwebc";
-        ln -s /usr/sbin/lighttpd /usr/sbin/yastwebc; }
+test -r /usr/sbin/yastwc || { echo "Creating link /usr/sbin/yastwc";
+        ln -s /usr/sbin/lighttpd /usr/sbin/yastwc; }
 %fillup_and_insserv %{service_name}
 
 #
@@ -92,11 +92,11 @@ chown lighttpd db db/*.sqlite*
 %restart_on_update %{service_name}
 %{insserv_cleanup}
 #remove link
-if test -r /usr/sbin/yastwebc ; then
-  echo "/usr/sbin/yastwebc already removed"
+if test -r /usr/sbin/yastwc ; then
+  echo "/usr/sbin/yastwc already removed"
 else
-  echo "Removing link /usr/sbin/yastwebc";
-  rm /usr/sbin/yastwebc
+  echo "Removing link /usr/sbin/yastwc";
+  rm /usr/sbin/yastwc
 fi
 
 %files 
