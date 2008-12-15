@@ -126,7 +126,7 @@ test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG not existing";
 	else exit 6; fi; }
 
 PID_FILE=/var/run/yastwebc.pid
-IGNORE_FILE=/var/run/yastwebd.pid
+IGNORE_FILE=/var/run/yastwebs.pid
 
 #only for beeing sure....
 if ps -C yastwebc >/dev/null; then
@@ -148,13 +148,13 @@ else
      rm $PID_FILE
    fi
 fi
-if ps -C yastwebd >/dev/null; then
-   ps -C yastwebd|grep yastwebd|cut -c -6 >$IGNORE_FILE
+if ps -C yastwebs >/dev/null; then
+   ps -C yastwebs|grep yastwebs|cut -c -6 >$IGNORE_FILE
    IGNORE_FILE_SIZE="$(stat -c "%s" $IGNORE_FILE)"
    IGNORE_FILE_ENTRIES="$(wc -l $IGNORE_FILE|cut -c -1)"
    while [ $IGNORE_FILE_ENTRIES -gt 1 ]; do
        # only one entry is valid
-       ps -C yastwebd|grep yastwebd|cut -c -6 >$IGNORE_FILE
+       ps -C yastwebs|grep yastwebs|cut -c -6 >$IGNORE_FILE
        IGNORE_FILE_SIZE="$(stat -c "%s" $IGNORE_FILE)"
        IGNORE_FILE_ENTRIES="$(wc -l $IGNORE_FILE|cut -c -1)"
    done
