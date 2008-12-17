@@ -1,17 +1,85 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag 'admin' %>
+
 <title>YaST</title>
 
 </head>
 
 <body>
-
-<img src="/images/Yast_crystal_logo_gray.png"/>
-<img src="/images/n-geeko.png"/>
-
-<%= @content_for_layout %>
-
+<div id="main">
+  <div id="header">
+    <div id="logo-line">
+      <a href="/" style="float: left;">
+        <img src="/images/Yast_crystal_logo_gray.png" width="160" height="55" alt="logo" />
+      </a>
+      <span style="color: #FF9600; font-size: 38pt; font-weight:bold;">&nbsp;<i>Web</i>-UI</span>
+    </div>
+    <ul id="top-navigation">
+      <% @controllers.each do |c|
+	active = (controller.controller_name == c) -%>
+        <li <%= "class='active'" if active -%> >
+	  <span><span>
+	    <%= "<a href=\"/#{c}\">" unless active -%>
+	      <%= c.capitalize -%>
+	    <%= "</a>" unless active -%>
+	  </span></span>
+	</li>
+      <% end -%>
+    </ul>
+  </div>
+  <div id="middle">
+    <div id="left-column">
+      <h3>Session</h3>
+      <div class="box">
+      <% host = session[:host]
+         if host -%>
+        Host: <%= host -%>
+      <% end -%>
+      <%= link_to "Choose (other) host", { :controller => "hosts", :action => "list" }, { :class => "link" } -%>
+      </div>
+      <div class="box">
+        User:
+      <% user = session[:user]
+         if user -%>
+        <%= user -%>
+        <%= link_to "Logout", { :controller => "sessions", :action => "new" }, { :class => "link" } -%>
+      <% else -%>
+        <%= link_to "Login", { :controller => "sessions", :action => "new" }, { :class => "link" } -%>
+      <% end -%>
+      </div>
+      
+    </div>
+    <div id="center-column">
+      <div class="top-bar">
+        <%= @content_for_layout %>
+      </div>
+    </div>
+    <div id="right-column">
+      <strong class="h">INFO</strong>
+      <div class="box">This is a sample web-UI for YaST-as-a-webservice.</div>
+      <img src="/images/n-geeko.png"/>
+      <br/>
+      <span class="h">Authors</span>
+      <div class="box">
+       <ul class="nav">
+        <li><a href="mailto:schubi@suse.de">Stefan Schubert</a></li>
+	<li><a href="mailto:kkaempf@suse.de">Klaus K&auml;mpf</a></li>
+	<li class="last"><a href="mailto:yast-devel@opensuse.org">Others</a></li>
+       </ul>
+      </div>
+      <span class="h">Links</span>
+      <div class="box">
+       <ul class="nav">
+        <li><a href="http://en.opensuse.org/YaST">About YaST</a></li>
+        <li><a href="http://www.rubyonrails.org">About Rails</a></li>
+        <li class="last"><a href="http://www.freedesktop.org">About PolicyKit</a></li>
+       </ul>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>  
