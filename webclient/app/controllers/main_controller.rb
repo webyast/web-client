@@ -1,3 +1,5 @@
 class MainController < ApplicationController
-  before_filter :login_required
+  def index
+    redirect_to :controller => "hosts", :action => "list"
+  end
 end
