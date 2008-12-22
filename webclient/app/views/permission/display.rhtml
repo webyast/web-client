@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>YUI Tester: <%= controller.action_name %></title>
+  <title><%= controller.action_name %></title>
   <%= javascript_include_tag "yui/yahoo",
                              "yui/dom",
                              "yui/event",
@@ -12,12 +12,16 @@
     <%= stylesheet_link_tag 'permission'%>
 
  </head>
+<h1>User Permissions</h1>
+<br>
+<% form_tag '/permission/search' do %>
+  <p><label for="user">User</label>
+  <input type="text" name="user" size=25>
+  <%= submit_tag "Search" %>
+<% end %>
 
-<body>
-    <div id="mytree"></div>
 
-
-<% test_data="var test_data = \n"+
+<% revoke_data="var revoke_data = \n"+
 	     "[0, { label: \"Cat 1\", href:\"http://www.yahoo.com\" },\n"+
 	     " 1, { label: \"Cat 1.1\", href:\"http://www.yahoo.com\" },\n"+
              " 1, { label: \"Cat 1.2\", href:\"http://www.yahoo.com\" },\n"+
@@ -26,42 +30,113 @@
 	     " 1, { label: \"Cat 1.3\", href:\"http://www.yahoo.com\" },\n"+
 	     " 0, { label: \"Cat 2\", href:\"http://www.yahoo.com\" }];" %>
 
-<script type="text/javascript">
-//<![CDATA[
-   <%= "#{test_data}" %>
-//]]>
+<% grant_data="var grant_data = \n"+
+	     "[0, { label: \"Cat 1\", href:\"http://www.yahoo.com\" },\n"+
+	     " 1, { label: \"Cat 1.1\", href:\"http://www.yahoo.com\" },\n"+
+             " 1, { label: \"Cat 1.2\", href:\"http://www.yahoo.com\" },\n"+
+	     " 2, { label: \"Cat 1.2.1\", href:\"http://www.yahoo.com\" },\n"+
+	     " 2, { label: \"Cat 1.2.2\", href:\"http://www.yahoo.com\" },\n"+
+	     " 1, { label: \"Cat 1.3\", href:\"http://www.yahoo.com\" },\n"+
+	     " 0, { label: \"Cat 2\", href:\"http://www.yahoo.com\" }];" %>
 
-//<![CDATA[
 
-function addChildrenNodes(currLevel, nodeIndex, parent) {
-  var lastNode;
-  var level = currLevel;
 
-  while (nodeIndex < test_data.length) {
-    var level = test_data[nodeIndex];
-    if (level == currLevel) {
-       nodeIndex++;
-       lastNode = new YAHOO.widget.TextNode(test_data[nodeIndex++], parent, false);
-    } else if (level < currLevel) {
-       return nodeIndex;
-    } else {
-       nodeIndex = addChildrenNodes(level, nodeIndex, lastNode);
+<table border="1" align="left" hspace=1 vspace=1>
+<colgroup>
+<col width="200" span="2">
+<col>
+</colgroup>
+<tr>
+<th>Revoked Permissions</th>
+<th>Granted Permissions</th>
+</tr>
+<tr>
+<td valign="top">
+<body>
+    <div id="revoketree"></div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+       <%= "#{revoke_data}" %>
+    //]]>
+
+    //<![CDATA[
+
+    function addChildrenNodes(currLevel, nodeIndex, parent) {
+      var lastNode;
+      var level = currLevel;
+
+      while (nodeIndex < revoke_data.length) {
+        var level = revoke_data[nodeIndex];
+        if (level == currLevel) {
+           nodeIndex++;
+           lastNode = new YAHOO.widget.TextNode(revoke_data[nodeIndex++], parent, false);
+        } else if (level < currLevel) {
+           return nodeIndex;
+        } else {
+           nodeIndex = addChildrenNodes(level, nodeIndex, lastNode);
+        }
+      }
+      return nodeIndex;
     }
-  }
-  return nodeIndex;
-}
 
-function mytree_Init() {
-  var tree = new YAHOO.widget.TreeView("mytree");
-  addChildrenNodes(0, 0, tree.getRoot());
-  tree.draw();
-}
+    function revoketree_Init() {
+      var tree = new YAHOO.widget.TreeView("revoketree");
+      addChildrenNodes(0, 0, tree.getRoot());
+      tree.draw();
+    }
 
-YAHOO.util.Event.addListener(window, "load", mytree_Init);
+    YAHOO.util.Event.addListener(window, "load", revoketree_Init);
 
-//]]>
+    //]]>
 
-</script>
-
+    </script>
 </body>
+</td>
+<td valign="top">
+<body>
+    <div id="granttree"></div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+       <%= "#{grant_data}" %>
+    //]]>
+    
+    //<![CDATA[
+    
+    function addChildrenNodes(currLevel, nodeIndex, parent) {
+      var lastNode;
+      var level = currLevel;
+  
+      while (nodeIndex < grant_data.length) {
+        var level = grant_data[nodeIndex];
+        if (level == currLevel) {
+           nodeIndex++;
+           lastNode = new YAHOO.widget.TextNode(grant_data[nodeIndex++], parent, false);
+        } else if (level < currLevel) {
+           return nodeIndex;
+        } else {
+           nodeIndex = addChildrenNodes(level, nodeIndex, lastNode);
+        }
+      }
+      return nodeIndex;
+    }
+
+    function granttree_Init() {
+      var tree = new YAHOO.widget.TreeView("granttree");
+      addChildrenNodes(0, 0, tree.getRoot());
+      tree.draw();
+    }
+
+    YAHOO.util.Event.addListener(window, "load", granttree_Init);
+
+    //]]>
+
+    </script>
+</body>
+</td>
+</tr>
+</table>
+
+
 </html>
