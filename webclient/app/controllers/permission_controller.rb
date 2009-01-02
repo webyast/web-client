@@ -1,10 +1,17 @@
 class PermissionController < ApplicationController
   layout "main"
-  require 'pp'
-  def display
-    if request.post?
-      pp params
-#      flash[:notice] = params[:thing_name]
-    end
+
+  def constructPermissions ( pattern, level, granted, output)
+     
+  end
+
+  def search
+    path = "/users/#{params[:user].rstrip}/permissions.xml"
+    @permissions = Permission.find(:all, :from => path)
+    logger.debug "permissions of user #{params[:user].rstrip}: #{@permissions.inspect}"
+    render :action => "index" 
+  end
+
+  def index
   end
 end
