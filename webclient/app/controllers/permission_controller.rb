@@ -36,10 +36,10 @@ class PermissionController < ApplicationController
   end
 
   def buildJavaVariable( tree, level, grant, takeAll, user, javaString )
-     if (findGrant(tree, grant) || #there is at least one item set to "grant"
-         takeAll)                   #or the rest should be simply taken
-        tree.each do |key, branch|
-           if branch.is_a? Hash
+     tree.each do |key, branch|
+        if branch.is_a? Hash
+           if (findGrant(branch, grant) || #there is at least one item set to "grant"
+               takeAll)                   #or the rest should be simply taken
               javaString += "#{level}, { label: \"#{key}\", href:\""
               if branch.has_key?(:path)
                 javaString += url_for(:controller => controller_name(),
@@ -53,10 +53,10 @@ class PermissionController < ApplicationController
               if (branch.has_key?(:grant) &&
                   grant &&
                   branch[:grant] == true)
-                  takeAll = true
-                  logger.debug "#{key} is granted. So all other subtrees are granted"
+                  nextTakeAll = true
+                  logger.debug "#{branch[:path]} is granted. So all other subtrees are granted"
               end
-              javaString = buildJavaVariable( branch, level+1, grant, takeAll, user, javaString )
+              javaString = buildJavaVariable( branch, level+1, grant, nextTakeAll, user, javaString )
            end
         end
      end
