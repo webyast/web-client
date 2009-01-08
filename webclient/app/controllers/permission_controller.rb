@@ -1,92 +1,84 @@
 class PermissionController < ApplicationController
   layout "main"
 
-  def keyFind (tree, findKey)
+
+  # Checks the tree if there is a node which is set to the value of "grant"
+  def findGrant (tree, grant)
      return false if !tree
      found = false
      tree.each do |key, branches|
-	if key == findKey
+	if (key == :grant &&
+           branches == grant )
            found = true
            break
         else
-           found = keyFind( branches, findKey )
-           if found == true
-              break
+           if branches.is_a? Hash
+              found = findGrant( branches, grant )
+              if found == true
+                 break
+              end
            end
         end
      end
      return found
   end
-
-  def constructPermissions ( pattern, level, granted)
-     hash = {}
+  
+  def constructPermissionTree()
      @permissions.each do |permission|
-        if permission.attributes["grant"] == granted 
-           if ( pattern.size == 0 || #begin
-                pattern == permission.attributes["name"] || #pattern fits completely with the name
-                permission.attributes["name"].index(pattern+"-") == 0) #pattern fits
+        sub = @permissionTree
+        permissionSplit = permission.attributes["name"].split("-")
+        permissionSplit.each do |dir|
+           sub = sub[dir] 
+        end
+        sub[:grant] = permission.attributes["grant"]
+        sub[:path] = permission.attributes["name"]
+     end
+  end
 
-               #evaluate key
-               if pattern != permission.attributes["name"]
-                  permissionSplit = permission.attributes["name"].split("-")
-                  for i in 0..level
-                     if i == 0 
-                        key = permissionSplit[i]
-                     else
-                        key = key + "-" + permissionSplit[i]
-                     end
-                  end
-               else
-                  key = pattern
-               end
-
-               if !keyFind (hash, key)
-                 if pattern == permission.attributes["name"]
-                    #last branch
-                    hash[permission.attributes["name"]] = {}
-                 else
-                    #construct subtrees
-
-		    if (hash.has_key?(pattern) ||
-                       (pattern.size == 0 && hash.size > 0 ))
-                       #merging of the already existing hash
-                       newHash = constructPermissions( key, level+1, granted)
-                       if (pattern.size == 0)
-                          # we are root
-                          hash = hash.merge(newHash)
-                       else
-                          hash[pattern] = hash[pattern].merge(newHash)
-                       end
-                    else
-                       if (pattern.size == 0)
-                          # we are root
-                          hash = constructPermissions( key, level+1, granted)
-                       else
-                          hash[pattern] = constructPermissions( key, level+1, granted)
-                       end
-                    end
-                 end
+  def buildJavaVariable( tree, level, grant, takeAll, user, javaString )
+     if (findGrant(tree, grant) || #there is at least one item set to "grant"
+         takeAll)                   #or the rest should be simply taken
+        tree.each do |key, branch|
+           if branch.is_a? Hash
+              javaString += "#{level}, { label: \"#{key}\", href:\""
+              if branch.has_key?(:path)
+                javaString += url_for(:controller => controller_name(),
+                                      :action => grant ? "revoke" : "grant",
+                                      :id => branch[:path],
+                                      :user => user,
+                                      :only_path => true)
               end
+              javaString += "\" },\n"
+              #taking the subtrees too
+              if (branch.has_key?(:grant) &&
+                  grant &&
+                  branch[:grant] == true)
+                  takeAll = true
+                  logger.debug "#{key} is granted. So all other subtrees are granted"
+              end
+              javaString = buildJavaVariable( branch, level+1, grant, takeAll, user, javaString )
            end
         end
      end
-     return hash
+     return javaString
   end
 
   def search
     path = "/users/#{params[:user].rstrip}/permissions.xml"
     @permissions = Permission.find(:all, :from => path)
-#    logger.debug "permissions of user #{params[:user].rstrip}: #{@permissions.inspect}"
+    logger.debug "permissions of user #{params[:user].rstrip}: #{@permissions.inspect}"
+    @permissionTree = Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
+    constructPermissionTree()
+    logger.debug "Complete Tree: #{@permissionTree.to_xml}"
 
-    @grant_tree = constructPermissions( "", 0, true)
-#    logger.debug "grant tree #{@grant_tree.inspect}"
-    @revoke_tree = constructPermissions ( "", 0, false)
-#    logger.debug "revoke tree #{@revoke_tree.inspect}"
 
-    @grant_data = "var grant_data = \n ["
+    @grant_data = buildJavaVariable( @permissionTree, 0, true, false, params[:user].rstrip, "var grant_data = \n [" )    
     @grant_data += "];"
-    @revoke_data = "var revoke_data = \n ["
+    logger.debug "Grant Tree: #{@grant_data}"
+
+    @revoke_data = buildJavaVariable( @permissionTree, 0, false, false, params[:user].rstrip, "var revoke_data = \n [" )    
     @revoke_data += "];"
+    logger.debug "Revoke Tree: #{@revoke_data}"
 
     render :action => "index" 
   end
