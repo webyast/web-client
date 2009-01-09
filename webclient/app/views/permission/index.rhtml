@@ -16,7 +16,7 @@
 <br>
 <% form_tag '/permission/search' do %>
   <p><label for="user">User</label>
-  <input type="text" name="user" size=25>
+  <input type="text" name="user" size=25 value=<%= "#{@currentUser}" %> >
   <%= submit_tag "Search" %>
 <% end %>
 

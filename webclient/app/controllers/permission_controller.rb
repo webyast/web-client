@@ -18,7 +18,7 @@ class PermissionController < ApplicationController
            end
            if (tree.size <= 2 &&
                branches == grant)
-              #last branch reached, so take that result
+              #last branch reached, so take this result
               show = true
               break
            end
@@ -78,20 +78,22 @@ class PermissionController < ApplicationController
   end
 
   def search
-    path = "/users/#{params[:user].rstrip}/permissions.xml"
+    @currentUser = params[:user].rstrip
+    path = "/users/#{@currentUser}/permissions.xml"
     @permissions = Permission.find(:all, :from => path)
-#    logger.debug "permissions of user #{params[:user].rstrip}: #{@permissions.inspect}"
+#    logger.debug "permissions of user #{@currentUser}: #{@permissions.inspect}"
     @permissionTree = Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
     constructPermissionTree()
     logger.debug "Complete Tree: #{@permissionTree.to_xml}"
 
-    @grant_data = buildJavaVariable( @permissionTree, 0, true, false, params[:user].rstrip, "var grant_data = \n [" )    
+    @grant_data = buildJavaVariable( @permissionTree, 0, true, false, @currentUser, "var grant_data = \n [" )    
     @grant_data += "];"
 #    logger.debug "Grant Tree: #{@grant_data}"
 
-    @revoke_data = buildJavaVariable( @permissionTree, 0, false, false, params[:user].rstrip, "var revoke_data = \n [" )    
+    @revoke_data = buildJavaVariable( @permissionTree, 0, false, false, @currentUser, "var revoke_data = \n [" )    
     @revoke_data += "];"
 #    logger.debug "Revoke Tree: #{@revoke_data}"
+
 
     render :action => "index" 
   end
