@@ -34,7 +34,7 @@
      <div id="left-column">
       <h3>Session</h3>
       <ul class="nav">
-	<li><a href="/sessions">Choose host</a></li>
+	<li><a href="/session">Choose host</a></li>
         <% user = session[:user]
            if user -%>
   	   <li><a href="/logout">Logout</a></li>
@@ -42,7 +42,7 @@
       </ul>
 
       <% host = session[:host]
-         if host!=""  -%>
+         if host!=nil && host!=""  -%>
         <% user = session[:user] -%>
         <strong class="h">Current Host</strong>
         <div class="box">

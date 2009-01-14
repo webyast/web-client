@@ -7,10 +7,10 @@
  %>
 <%= link_to "configure", :controller => 'webservices' -%><p/>
 <p><label for="login">Login</label><br/>
-<%= text_field_tag 'login' %></p>
+<%= text_field_tag 'login', @user %></p>
 
 <p><label for="password">Password</label><br/>
-<%= password_field_tag 'password' %></p>
+<%= password_field_tag 'password', @password %></p>
 <br>
 <p><%= submit_tag 'Connect' %></p>
 <% end -%>

@@ -42,6 +42,8 @@ class SessionsController < ApplicationController
   def show
     @webservices = Webservice.find(:all)
     scan #via avahi
+    @user = session[:user] 
+    @password = session[:password]
   end
 
   def create
@@ -50,14 +52,28 @@ class SessionsController < ApplicationController
                                                             webservice[:name])
     if logged_in?
       session[:auth_token] = auth_token
+      session[:user] = params[:login]
+      session[:password] = params[:password]
+      host = webservice[:name]
+      if host.index("://") != nil
+         session[:host] = host[host.index("://")+3, host.length-1] #extract "http(s)://"
+      else
+         session[:host] = host
+      end
       redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
     else
-      render :action => 'new'
+      session[:user] = nil
+      session[:password] = nil
+      session[:host] = nil
+      show # getting hosts again
+      render :action => 'show'
     end
   end
 
   def destroy
+     session[:user] = nil
+     session[:password] = nil
+     session[:host] = nil
      if logged_in?
         ret = Logout.create()
         if (ret and ret.attributes["logout"])
