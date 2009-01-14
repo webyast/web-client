@@ -1,16 +1,40 @@
 <% form_tag session_path do -%>
 
-<p><label for="webservice_category">YaST-Web-Service</label><br/>
-<%= select 'webservice', 'name', 
-    @webservices.collect {|c| [c.name, c.name]},
-    {:selected=> @host}, { :size => 10 }
- %>
-<%= link_to "configure", :controller => 'webservices' -%><p/>
-<p><label for="login">Login</label><br/>
-<%= text_field_tag 'login', @user %></p>
 
-<p><label for="password">Password</label><br/>
-<%= password_field_tag 'password', @password %></p>
-<br>
-<p><%= submit_tag 'Connect' %></p>
+<div class="table">
+   <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+   <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+   <table class="listing form" cellpadding="0" cellspacing="0">
+   <tr>
+	<th class="full" colspan="1">YaST-Web-Services</th>
+   </tr>
+   <tr>
+	<td class="first" width="120"><%= select 'webservice', 'name', 
+         @webservices.collect {|c| [c.name, c.name]},
+         {:selected=> @host}, { :size => 10 } %></td>
+   </tr>
+   </table>
+   <div class="select">
+       <%= link_to "<strong>[Configure]</strong>", :controller => 'webservices' -%><p/>
+    </div>
+</div>
+
+<div class="table">
+   <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+   <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+   <table class="listing form" cellpadding="0" cellspacing="0">
+   <tr>
+	<th class="full" colspan="2">User</th>
+   </tr>
+   <tr>
+	<td class="first" width="120"><strong>Login</strong></td>
+	<td class="last"><%= text_field_tag 'login', @user %></td>
+   </tr>
+   <tr class="bg">
+	<td class="first"><strong>Password</strong></td>
+	<td class="last"><%= password_field_tag 'password', @password %></td>
+   </tr>
+   </table>
+</div>
+<%= submit_tag 'Connect' %>
 <% end -%>
