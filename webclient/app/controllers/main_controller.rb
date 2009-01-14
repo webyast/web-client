@@ -1,5 +1,5 @@
 class MainController < ApplicationController
   def index
-    redirect_to :controller => "hosts", :action => "list"
+    redirect_to :controller => "session", :action => "index"
   end
 end

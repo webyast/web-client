@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.session '/session', :controller => 'sessions', :action => 'show'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"

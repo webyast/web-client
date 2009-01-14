@@ -31,26 +31,25 @@
     </ul>
   </div>
   <div id="middle">
-    <div id="left-column">
+     <div id="left-column">
       <h3>Session</h3>
-      <div class="box">
+      <ul class="nav">
+	<li><a href="/sessions">Choose host</a></li>
+        <% user = session[:user]
+           if user -%>
+  	   <li><a href="/logout">Logout</a></li>
+        <% end -%>
+      </ul>
+
       <% host = session[:host]
-         if host -%>
-        Host: <%= host -%>
+         if host!=""  -%>
+        <% user = session[:user] -%>
+        <strong class="h">Current Host</strong>
+        <div class="box">
+          <p>Name: <%= host -%> <p>
+          User: <%= user -%>
+        </div>
       <% end -%>
-      <%= link_to "Choose (other) host", { :controller => "hosts", :action => "list" }, { :class => "link" } -%>
-      </div>
-      <div class="box">
-        User:
-      <% user = session[:user]
-         if user -%>
-        <%= user -%>
-        <%= link_to "Logout", { :controller => "sessions", :action => "new" }, { :class => "link" } -%>
-      <% else -%>
-        <%= link_to "Login", { :controller => "sessions", :action => "new" }, { :class => "link" } -%>
-      <% end -%>
-      </div>
-      
     </div>
     <div id="center-column">
       <div class="top-bar">
