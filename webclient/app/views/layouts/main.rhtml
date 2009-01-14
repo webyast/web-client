@@ -18,12 +18,17 @@
       <span style="color: #FF9600; font-size: 38pt; font-weight:bold;">&nbsp;<i>Web</i>-UI</span>
     </div>
     <ul id="top-navigation">
-      <% @controllers.each do |c|
+      <% if session[:controllers]!= nil
+            @controllers = session[:controllers] 
+         else
+            @controllers = { "session" => "session" }
+         end
+        @controllers.each do |c, name|
 	active = (controller.controller_name == c) -%>
         <li <%= "class='active'" if active -%> >
 	  <span><span>
 	    <%= "<a href=\"/#{c}\">" unless active -%>
-	      <%= c.capitalize -%>
+	      <%= name.capitalize -%>
 	    <%= "</a>" unless active -%>
 	  </span></span>
 	</li>

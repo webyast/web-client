@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   
   def initialize
-    @controllers = [ "hosts", "sessions", "users", "commands", "services" ]
     super
   end
 

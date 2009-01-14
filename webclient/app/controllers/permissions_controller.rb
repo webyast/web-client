@@ -1,4 +1,4 @@
-class PermissionController < ApplicationController
+class PermissionsController < ApplicationController
   layout "main"
 
   # Checks the tree if there is a node which is set to the value of "grant"

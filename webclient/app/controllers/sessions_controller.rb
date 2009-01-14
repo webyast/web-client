@@ -60,11 +60,35 @@ class SessionsController < ApplicationController
       else
          session[:host] = host
       end
+      
+      #evaluate available modules
+      @modules = Yast.find(:all)      
+      moduleHash = {}
+      @modules.each do |modHash|
+        mo = modHash.attributes["path"]
+        case mo
+         when "services", "language"
+            moduleHash[mo] = mo
+         when "systemtime"
+            moduleHash["system_time"] = mo
+         when "users"
+            moduleHash[mo] = mo
+            moduleHash["permissions"] = "permissions"
+         when "patch_updates"
+            moduleHash["patch_updates"] = "patches"
+         else
+            logger.debug "module #{mo} will not be shown"
+        end
+      end
+      logger.debug "Available modules: #{moduleHash.inspect}"
+      session[:controllers] = moduleHash
+
       redirect_back_or_default('/')
     else
       session[:user] = nil
       session[:password] = nil
       session[:host] = nil
+      session[:controllers] = nil
       show # getting hosts again
       render :action => 'show'
     end
@@ -74,6 +98,7 @@ class SessionsController < ApplicationController
      session[:user] = nil
      session[:password] = nil
      session[:host] = nil
+     session[:controllers] = nil
      if logged_in?
         ret = Logout.create()
         if (ret and ret.attributes["logout"])
