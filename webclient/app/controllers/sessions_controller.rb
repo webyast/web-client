@@ -44,6 +44,12 @@ class SessionsController < ApplicationController
     scan #via avahi
     @user = session[:user] 
     @password = session[:password]
+    @host = session[:host]
+    if (@host == nil &&
+        @webservices.size > 0)
+       #take first
+       @host = @webservices[0].name
+    end
   end
 
   def create
@@ -54,12 +60,7 @@ class SessionsController < ApplicationController
       session[:auth_token] = auth_token
       session[:user] = params[:login]
       session[:password] = params[:password]
-      host = webservice[:name]
-      if host.index("://") != nil
-         session[:host] = host[host.index("://")+3, host.length-1] #extract "http(s)://"
-      else
-         session[:host] = host
-      end
+      session[:host] = webservice[:name]
       
       #evaluate available modules
       @modules = Yast.find(:all)      

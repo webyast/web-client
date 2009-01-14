@@ -1,4 +1,5 @@
 class PermissionsController < ApplicationController
+  before_filter :login_required
   layout "main"
 
   # Checks the tree if there is a node which is set to the value of "grant"

@@ -23,12 +23,12 @@
          else
             @controllers = { "session" => "session" }
          end
-        @controllers.each do |c, name|
-	active = (controller.controller_name == c) -%>
+        @controllers.sort.each do |c|
+	active = (controller.controller_name == c[0]) -%>
         <li <%= "class='active'" if active -%> >
 	  <span><span>
-	    <%= "<a href=\"/#{c}\">" unless active -%>
-	      <%= name.capitalize -%>
+	    <%= "<a href=\"/#{c[0]}\">" unless active -%>
+	      <%= c[1].capitalize -%>
 	    <%= "</a>" unless active -%>
 	  </span></span>
 	</li>
@@ -47,14 +47,17 @@
       </ul>
 
       <% host = session[:host]
-         if host!=nil && host!=""  -%>
-        <% user = session[:user] -%>
-        <strong class="h">Current Host</strong>
-        <div class="box">
-          <p>Name: <%= host -%> <p>
-          User: <%= user -%>
-        </div>
-      <% end -%>
+         if host!=nil && host!=""  
+           if host.index("://") != nil
+             host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
+           end -%>
+           <% user = session[:user] -%>
+           <strong class="h">Connected Host</strong>
+           <div class="box">
+             <p>Name: <%= host -%> <p>
+             User: <%= user -%>
+           </div>
+         <% end -%>
     </div>
     <div id="center-column">
       <div class="top-bar">

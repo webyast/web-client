@@ -3,7 +3,7 @@
 <p><label for="webservice_category">YaST-Web-Service</label><br/>
 <%= select 'webservice', 'name', 
     @webservices.collect {|c| [c.name, c.name]},
-    {}, { :size => 10 }
+    {:selected=> @host}, { :size => 10 }
  %>
 <%= link_to "configure", :controller => 'webservices' -%><p/>
 <p><label for="login">Login</label><br/>
