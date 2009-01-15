@@ -13,16 +13,6 @@ class WebservicesController < ApplicationController
     end
   end
 
-  # GET /webservices/1
-  # GET /webservices/1.xml
-  def show
-    @webservice = Webservice.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @webservice }
-    end
-  end
 
   # GET /webservices/new
   # GET /webservices/new.xml
@@ -48,7 +38,7 @@ class WebservicesController < ApplicationController
     respond_to do |format|
       if @webservice.save
         flash[:notice] = 'Webservice was successfully created.'
-        format.html { redirect_to(@webservice) }
+        format.html { redirect_to(webservices_url) }
         format.xml  { render :xml => @webservice, :status => :created, :location => @webservice }
       else
         format.html { render :action => "new" }
@@ -65,7 +55,7 @@ class WebservicesController < ApplicationController
     respond_to do |format|
       if @webservice.update_attributes(params[:webservice])
         flash[:notice] = 'Webservice was successfully updated.'
-        format.html { redirect_to(@webservice) }
+        format.html { redirect_to(webservices_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

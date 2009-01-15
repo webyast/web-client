@@ -52,8 +52,9 @@
              host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
            end -%>
            <% user = session[:user] -%>
-           <strong class="h">Connected Host</strong>
+           <br><br>
            <div class="box">
+             <p>Connected Host</p>
              <p>Name: <%= host -%> <p>
              User: <%= user -%>
            </div>
