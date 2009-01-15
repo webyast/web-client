@@ -10,23 +10,28 @@
 
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
-  <p>
-    <b>Homedirectory:</b>
-    <%=h @user.homeDirectory %>
-  </p>
-  <p>
-    <b>Loginname:</b>
-    <%=h @user.loginName %>
-  </p>
-  <p>
-    <%= f.label :sshkey %> <br />
-    <%= f.text_field :sshkey %>
-  </p>
-  <p>
-    <%= f.submit "Export SSH-Key" %>
-  </p>
-<% end %>
-<% end %>
 
-<%= link_to 'Show', user_path(@user.loginName) %> |
-<%= link_to 'Back', users_path %>
+  <div class="table">
+    <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+    <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+    <table class="listing form" cellpadding="0" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2">User</th>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong>Login Name</strong></td>
+	<td class="last"><%=h @user.loginName %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong>Home Directory</strong></td>
+	<td class="last"><%=h @user.homeDirectory %></td>
+    </tr>
+    <tr>
+	<td class="first"><strong>SHH Key</strong></td>
+	<td class="last"><%= f.text_field :sshkey %></td>
+    </tr>
+    </table>
+    <p><%= f.submit "Export SSH-Key" %><%= link_to 'Back', users_path, :class => "button" %></p>
+  </div>
+<% end %>
+<% end %>

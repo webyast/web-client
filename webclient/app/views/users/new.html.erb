@@ -1,4 +1,4 @@
-<h1>New user</h1>
+<h1>New User</h1>
 
 <% if @user.error_id != 0 %>
 <p>
@@ -9,46 +9,56 @@
 
 <% if @user.error_id == 0 or @user.error_id != 1 %>
 
-<% form_for(:user, @user, :url => users_path ) do |f| %>
+<% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :fullName %><br />
-    <%= f.text_field :fullName %>
-  </p>
-  <p>
-    <%= f.label :groups %><br />
-    <%= f.text_field :groups %>
-  </p>
-  <p>
-    <%= f.label :defaultGroup %><br />
-    <%= f.text_field :defaultGroup %>
-  </p>
-  <input type="checkbox" name="nohome" value="true" >do NOT create home directory
-  <p>
-    <%= f.label :Homedirectory %><br />
-    <%= f.text_field :homeDirectory %>
-  </p>
-  <p>
-    <%= f.label :loginShell %><br />
-    <%= f.text_field :loginShell %>
-  </p>
-  <p>
-    <%= f.label :loginName %><br />
-    <%= f.text_field :loginName %>
-  </p>
-  <p>
-    <%= f.label :uid %><br />
-    <%= f.text_field :uid %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </p>
-  <p>
-    <%= submit_tag "Create" %>
-  </p>
-<% end %>
-<% end %>
+  <div class="table">
+    <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+    <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+    <table class="listing form" cellpadding="0" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2">User</th>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong>Full Name</strong></td>
+	<td class="last"><%= f.text_field :fullName %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong>Groups</strong></td>
+	<td class="last"><%= f.text_field :groups %></td>
+    </tr>
+    <tr>
+	<td class="first"><strong>Default Group</strong></td>
+	<td class="last"><%= f.text_field :defaultGroup %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong>Home Directory</strong></td>
+	<td class="last"><%= f.text_field :homeDirectory %></td>
+    </tr>
+    <tr>
+	<td class="first"><strong>do NOT create home directory</strong></td>
+	<td class="last"><input type="checkbox" name="nohome" value="true" ></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong>Login Shell </strong></td>
+	<td class="last"><%= f.text_field :loginShell %></td>
+    </tr>
+    <tr>
+	<td class="first"><strong>Login Name </strong></td>
+	<td class="last"><%= f.text_field :loginName %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong>UID</strong></td>
+	<td class="last"><%= f.text_field :uid %></td>
+    </tr>
+    <tr>
+	<td class="first"><strong>Password</strong></td>
+	<td class="last"><%= f.text_field :password %></td>
+    </tr>
+    </table>
+    <p><%= f.submit "Create" %><%= link_to 'Back', users_path, :class => "button" %></p>
+  </div>
 
-<%= link_to 'Back', users_path %>
+
+<% end %>
+<% end %>

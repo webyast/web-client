@@ -1,30 +1,33 @@
-<h1>Listing users</h1>
+<h1>Local User</h1>
 
-<table>
-  <tr>
-    <th>Loginname</th>
-  </tr>
 
-<% for user in @users %>
-  <% if user.error_id != 0 %>
-    <tr>
-     <td>Error ID: <%= user.error_id -%> Error: <%= user.error_string -%></td>
-    </tr>
-  <% else %>
-    <tr>
-    <td><%=h user.loginName %></td>
-    <td><%= link_to 'Show', user_path(user.loginName) %></td>
-    <td><%= link_to 'Edit', edit_user_path(user.loginName) %></td>
-    <td><%= link_to 'Destroy', user_path(user.loginName), :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to 'export SSH-key', exportssh_user_path(user.loginName) %></td>
-    </tr>
-  <% end %>
-<% end %>
-</table>
-
-<br />
-<%= link_to 'New user', new_user_path %>
-<br />
-<br>
-<%= link_to 'Back', :controller => 'main' %>
-
+<div class="table">
+   <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+   <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+   <table class="listing" cellpadding="0" cellspacing="0">
+      <tr>
+	<th class="first" width=150>Login</th>
+	<th width=8%>Edit</th>
+	<th width=8%>SSH-Key</th>
+	<th class="last" width=8%>Delete</th>
+      </tr>
+      <% for user in @users %>
+         <% if user.error_id != 0 %>
+           <tr>
+              <td>Error ID: <%= user.error_id -%> Error: <%= user.error_string -%></td>
+           </tr>
+         <% else %>
+           <tr>
+              <td><strong><%=h user.loginName %></strong></td>
+              <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_user_path(user.loginName) %></td>
+              <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(user.loginName) %></td>
+              <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
+                              user_path(user.loginName), :confirm => 'Are you sure?', :method => :delete %></td>
+           </tr>
+         <% end %>
+      <% end %>
+   </table>
+   <div class="select">
+       <%= link_to "<strong>[New User]</strong>", new_user_path -%><p/>
+    </div>
+</div>
