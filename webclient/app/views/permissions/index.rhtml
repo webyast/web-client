@@ -19,103 +19,105 @@
   <input type="text" name="user" size=25 value=<%= "#{@currentUser}" %> >
   <%= submit_tag "Search" %>
 <% end %>
+<br>
+<br>
+<% if @currentUser != nil && @currentUser.size>0 %>
+   <table border="1" align="left" hspace=1 vspace=1>
+   <colgroup>
+   <col width="200" span="2">
+   <col>
+   </colgroup>
+   <tr>
+   <th>Revoked Permissions</th>
+   <th>Granted Permissions</th>
+   </tr>
+   <tr>
+   <td valign="top">
+   <body>
+       <div id="revoketree"></div>
 
-<table border="1" align="left" hspace=1 vspace=1>
-<colgroup>
-<col width="200" span="2">
-<col>
-</colgroup>
-<tr>
-<th>Revoked Permissions</th>
-<th>Granted Permissions</th>
-</tr>
-<tr>
-<td valign="top">
-<body>
-    <div id="revoketree"></div>
+       <script type="text/javascript">
+       //<![CDATA[
+          <%= "#{@revoke_data}" %>
+       //]]>
 
-    <script type="text/javascript">
-    //<![CDATA[
-       <%= "#{@revoke_data}" %>
-    //]]>
+       //<![CDATA[
 
-    //<![CDATA[
+       function revokeAddChildrenNodes(currLevel, nodeIndex, parent) {
+         var lastNode;
+         var level = currLevel;
 
-    function revokeAddChildrenNodes(currLevel, nodeIndex, parent) {
-      var lastNode;
-      var level = currLevel;
+         while (nodeIndex < revoke_data.length) {
+           var level = revoke_data[nodeIndex];
+           if (level == currLevel) {
+              nodeIndex++;
+              lastNode = new YAHOO.widget.TextNode(revoke_data[nodeIndex++], parent, false);
+           } else if (level < currLevel) {
+              return nodeIndex;
+           } else {
+              nodeIndex = revokeAddChildrenNodes(level, nodeIndex, lastNode);
+           }
+         }
+         return nodeIndex;
+       }
 
-      while (nodeIndex < revoke_data.length) {
-        var level = revoke_data[nodeIndex];
-        if (level == currLevel) {
-           nodeIndex++;
-           lastNode = new YAHOO.widget.TextNode(revoke_data[nodeIndex++], parent, false);
-        } else if (level < currLevel) {
-           return nodeIndex;
-        } else {
-           nodeIndex = revokeAddChildrenNodes(level, nodeIndex, lastNode);
-        }
-      }
-      return nodeIndex;
-    }
+       function revoketree_Init() {
+         var tree = new YAHOO.widget.TreeView("revoketree");
+         revokeAddChildrenNodes(0, 0, tree.getRoot());
+         tree.draw();
+       }
 
-    function revoketree_Init() {
-      var tree = new YAHOO.widget.TreeView("revoketree");
-      revokeAddChildrenNodes(0, 0, tree.getRoot());
-      tree.draw();
-    }
+       YAHOO.util.Event.addListener(window, "load", revoketree_Init);
+   
+       //]]>
 
-    YAHOO.util.Event.addListener(window, "load", revoketree_Init);
-
-    //]]>
-
-    </script>
-</body>
-</td>
-<td valign="top">
-<body>
-    <div id="granttree"></div>
-
-    <script type="text/javascript">
-    //<![CDATA[
-       <%= "#{@grant_data}" %>
-    //]]>
-    
-    //<![CDATA[
-    
-    function grantAddChildrenNodes(currLevel, nodeIndex, parent) {
-      var lastNode;
-      var level = currLevel;
+       </script>
+   </body>
+   </td>
+   <td valign="top">
+   <body>
+       <div id="granttree"></div>
+   
+       <script type="text/javascript">
+       //<![CDATA[
+          <%= "#{@grant_data}" %>
+       //]]>
+       
+       //<![CDATA[
+       
+       function grantAddChildrenNodes(currLevel, nodeIndex, parent) {
+         var lastNode;
+         var level = currLevel;
+     
+         while (nodeIndex < grant_data.length) {
+           var level = grant_data[nodeIndex];
+           if (level == currLevel) {
+              nodeIndex++;
+              lastNode = new YAHOO.widget.TextNode(grant_data[nodeIndex++], parent, false);
+           } else if (level < currLevel) {
+              return nodeIndex;
+           } else {
+              nodeIndex = grantAddChildrenNodes(level, nodeIndex, lastNode);
+           }
+         }
+         return nodeIndex;
+       }
   
-      while (nodeIndex < grant_data.length) {
-        var level = grant_data[nodeIndex];
-        if (level == currLevel) {
-           nodeIndex++;
-           lastNode = new YAHOO.widget.TextNode(grant_data[nodeIndex++], parent, false);
-        } else if (level < currLevel) {
-           return nodeIndex;
-        } else {
-           nodeIndex = grantAddChildrenNodes(level, nodeIndex, lastNode);
-        }
-      }
-      return nodeIndex;
-    }
+       function granttree_Init() {
+         var tree = new YAHOO.widget.TreeView("granttree");
+         grantAddChildrenNodes(0, 0, tree.getRoot());
+         tree.draw();
+       }
+  
+       YAHOO.util.Event.addListener(window, "load", granttree_Init);
+   
+       //]]>
 
-    function granttree_Init() {
-      var tree = new YAHOO.widget.TreeView("granttree");
-      grantAddChildrenNodes(0, 0, tree.getRoot());
-      tree.draw();
-    }
-
-    YAHOO.util.Event.addListener(window, "load", granttree_Init);
-
-    //]]>
-
-    </script>
-</body>
-</td>
-</tr>
-</table>
-
+       </script>
+   </body>
+   </td>
+   </tr>
+   </table>
+<% end %>
 
 </html>
