@@ -1,8 +1,0 @@
-<% name = @serviceId -%>
-<h3><%= @serviceId %></h3>
-<%= link_to "commands", :action => @serviceId, :id => "commands" %><br/>
-<% if @serviceId == "ntp" %>
-   <%= link_to "config", :action => @serviceId, :id => "config" %><br/>
-<% end %>
-<BR/>
-<%= link_to 'Back', :controller => 'services' %>

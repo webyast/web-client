@@ -42,12 +42,12 @@ class PermissionsController < ApplicationController
   def constructPermissionTree()
      @permissions.each do |permission|
         sub = @permissionTree
-        permissionSplit = permission.attributes["name"].split("-")
+        permissionSplit = permission.name.split("-")
         permissionSplit.each do |dir|
            sub = sub[dir] 
         end
-        sub[:grant] = permission.attributes["grant"]
-        sub[:path] = permission.attributes["name"]
+        sub[:grant] = permission.grant
+        sub[:path] = permission.name
      end
   end
 
@@ -105,8 +105,8 @@ class PermissionsController < ApplicationController
     getPermissions(params[:user].rstrip, true)
     error = false
     for i in 0..@permissions.size-1 do
-       if  @permissions[i].attributes["name"] == params[:id]
-          if @permissions[i].attributes["grant"] != grant
+       if  @permissions[i].name == params[:id]
+          if @permissions[i].grant != grant
              perm = Permission.new()
              perm.id = @currentUser
              perm.grant = grant
@@ -119,7 +119,7 @@ class PermissionsController < ApplicationController
              retPerm = Hash.from_xml(response.body) 
              logger.debug "Granting returns: #{retPerm.inspect}"
              if retPerm["permissions"][0]["error_id"] == 0
-                @permissions[i].attributes["grant"] = grant
+                @permissions[i].grant = grant
              else
                 error = true
              end
@@ -128,21 +128,21 @@ class PermissionsController < ApplicationController
           end
        end
        # reset the rest of the subtree
-       if (@permissions[i].attributes["name"].index(params[:id]+"-") == 0 &&
-           @permissions[i].attributes["grant"] == true)
+       if (@permissions[i].name.index(params[:id]+"-") == 0 &&
+           @permissions[i].grant == true)
           perm = Permission.new()
           perm.id = @currentUser
           perm.grant = false
           perm.error_id = 0
           perm.error_string = ""     
-          perm.name = @permissions[i].attributes["name"]
+          perm.name = @permissions[i].name
 
           path = "permissions/#{perm.name}"
           response = perm.put(path, {}, perm.to_xml)
           retPerm = Hash.from_xml(response.body) 
           logger.debug "Granting returns: #{retPerm.inspect}"
           if retPerm["permissions"][0]["error_id"] == 0
-             @permissions[i].attributes["grant"] = false
+             @permissions[i].grant = false
           else
              error = true
           end
