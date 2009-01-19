@@ -24,6 +24,8 @@ class ServicesController < ApplicationController
                c = {:name=>comm, :icon=>"/images/reload.png" }
             when "status"
                c = {:name=>comm, :icon=>"/images/status.png" }
+            when "probe"
+               c = {:name=>comm, :icon=>"/images/probe.png" }
             else
                c = {:name=>comm, :icon=>"/images/empty.png" }
           end
