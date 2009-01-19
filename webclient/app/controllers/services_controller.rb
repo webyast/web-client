@@ -39,7 +39,7 @@ class ServicesController < ApplicationController
        if @services[counter-1].commandList.size > maxColumn
           maxColumn = @services[counter-1].commandList.size
        end
-       if tableCounter.to_int.lcm(4) == counter #next table have to begin
+       if tableCounter * 4 == counter #next table have to begin
           @table << maxColumn
           tableCounter +=1
           maxColumn = 0
