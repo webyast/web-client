@@ -11,11 +11,33 @@ class ServicesController < ApplicationController
     maxColumn = 0
     tableCounter = 1
     @services.each do | s |
-       @services[counter-1].commandList = s.commands.split(",")
+       @services[counter-1].commandList = []
+       s.commands.split(",").each do | comm |
+          case comm
+            when "start", "run"
+               c = {:name=>comm, :icon=>"/images/start.png" }
+            when "stop"
+               c = {:name=>comm, :icon=>"/images/stop.png" }
+            when "restart", "try-restart"
+               c = {:name=>comm, :icon=>"/images/restart.png" }
+            when "reload", "force-reload"
+               c = {:name=>comm, :icon=>"/images/reload.png" }
+            when "status"
+               c = {:name=>comm, :icon=>"/images/status.png" }
+            else
+               c = {:name=>comm, :icon=>"/images/empty.png" }
+          end
+          @services[counter-1].commandList << c
+       end
+       if s.link == "ntp"
+          #add configuration module
+          c = {:name=>"configure", :icon=>"/images/configure.png" }
+          @services[counter-1].commandList << c
+       end
        if @services[counter-1].commandList.size > maxColumn
           maxColumn = @services[counter-1].commandList.size
        end
-       if tableCounter.to_int.lcm(6) == counter #next table have to begin
+       if tableCounter.to_int.lcm(4) == counter #next table have to begin
           @table << maxColumn
           tableCounter +=1
           maxColumn = 0
