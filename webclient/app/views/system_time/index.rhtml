@@ -23,33 +23,33 @@ src="/javascripts/nogray_time_picker_min.js"></script>
        </tr>
        <tr>
 	  <td class="first" width="120"><strong>Timezone</strong></td>
-  	  <td class="last"><%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone) %></td>
+  	  <td class="last"><%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone), :disabled=>@writePermission %></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>UTC (Universal Time Coordinated)</strong></td>
-	  <td class="last"><input type="checkbox" name="utc" value="true" <%= @is_utc %>></td>
+	  <td class="last"><input type="checkbox" name="utc" value="true" <%= @is_utc %> <%= "disabled=\"disabled\"" if @writePermission=="disabled" %> ></td>
        </tr>
        <tr>
 	  <td class="first"><strong>Day</strong></td>
-	  <td class="last"><%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true %></td>
+	  <td class="last"><%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true, :disabled=>@writePermission %></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>Month</strong></td>
-	  <td class="last"><%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true %></td>
+	  <td class="last"><%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true, :disabled=>@writePermission %></td>
        </tr>
        <tr>
 	  <td class="first"><strong>Year</strong></td>
-	  <td class="last"><%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true %></td>
+	  <td class="last"><%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true, :disabled=>@writePermission %></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>Time</strong></td>
-	  <td class="last"><%= text_field_tag "currenttime", @timeString  %></td>
+	  <td class="last"><%= text_field_tag "currenttime", @timeString, :disabled=>@writePermission  %></td>
             <div id="time2_picker" class="time_picker_div"></div>
             <script>var tp = new TimePicker('time2_picker', 'currenttime', 'time2_toggler',
             {visible:false, format24:true, imagesPath:"/images"});</script> 
        </tr>
     </table>
-    <p><%= submit_tag "Save" -%></p>
+    <p><%= submit_tag "Save", :disabled=>@writePermission -%></p>
   </div>
 <% end %>
 <% end %>

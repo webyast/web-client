@@ -22,38 +22,38 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong>Full Name</strong></td>
-	<td class="last"><%= f.text_field :fullName %></td>
+	<td class="last"><%= f.text_field :fullName, :disabled=>@writePermission %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong>Groups</strong></td>
-	<td class="last"><%= f.text_field :groups %></td>
+	<td class="last"><%= f.text_field :groups, :disabled=>@writePermission %></td>
     </tr>
     <tr>
 	<td class="first"><strong>Default Group</strong></td>
-	<td class="last"><%= f.text_field :defaultGroup %></td>
+	<td class="last"><%= f.text_field :defaultGroup, :disabled=>@writePermission %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong>Home Directory</strong></td>
-	<td class="last"><%= f.text_field :homeDirectory %></td>
+	<td class="last"><%= f.text_field :homeDirectory, :disabled=>@writePermission %></td>
     </tr>
     <tr>
 	<td class="first"><strong>Login Shell </strong></td>
-	<td class="last"><%= f.text_field :loginShell %></td>
+	<td class="last"><%= f.text_field :loginShell, :disabled=>@writePermission %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong>Login Name </strong></td>
-	<td class="last"><%= f.text_field :loginName %></td>
+	<td class="last"><%= f.text_field :loginName, :disabled=>@writePermission %></td>
     </tr>
     <tr>
 	<td class="first"><strong>UID</strong></td>
-	<td class="last"><%= f.text_field :uid %></td>
+	<td class="last"><%= f.text_field :uid, :disabled=>@writePermission %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong>Password</strong></td>
-	<td class="last"><%= f.text_field :password %></td>
+	<td class="last"><%= f.text_field :password, :disabled=>@writePermission %></td>
     </tr>
     </table>
-    <p><%= f.submit "Update" %><%= link_to 'Back', users_path, :class => "button" %></p>
+    <p><%= f.submit "Update", :disabled=>@writePermission %><%= link_to 'Back', users_path, :class => "button"%></p>
   </div>
 
 

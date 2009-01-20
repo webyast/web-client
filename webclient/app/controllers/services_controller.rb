@@ -5,6 +5,8 @@ class ServicesController < ApplicationController
   layout 'main'
 
   def index
+    setPermissions(controller_name)
+
     @services = Service.find(:all, :from => '/services.xml')
     @table = []
     counter = 1

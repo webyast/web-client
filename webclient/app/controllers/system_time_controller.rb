@@ -2,6 +2,8 @@ class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
   def index
+    setPermissions(controller_name)
+
     @systemtime = SystemTime.find(:one, :from => '/systemtime.xml')
     if params[:last_error] && params[:last_error] != 0
        @systemtime.error_id = params[:last_error]

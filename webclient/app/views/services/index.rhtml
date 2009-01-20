@@ -37,14 +37,18 @@
                                                      :id=>"config",
                                                      :action =>@services[tableCounter*4+columnCounter].link %>
                                <strong><%= link_to "#{commandList[lineCounter][:name]}",  :id=>"config",
-                                                     :action =>@services[tableCounter*4+columnCounter].link %>
+                                                     :action =>@services[tableCounter*4+columnCounter].link %></strong>
                             <% else %>
-                               <%= link_to image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon"), 
-                                                     :id=> commandList[lineCounter][:name],
-                                                     :action =>"execute", :service_id=> @services[tableCounter*4+columnCounter].link %>
-                               <strong><%= link_to "#{commandList[lineCounter][:name]}",  :id=> commandList[lineCounter][:name],
-                                                     :action =>"execute", :service_id=> @services[tableCounter*4+columnCounter].link %>
-
+                               <% if @executePermission == nil %>
+                                  <%= link_to image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon"), 
+                                                        :id=> commandList[lineCounter][:name],
+                                                        :action =>"execute", :service_id=> @services[tableCounter*4+columnCounter].link %>
+                                  <strong><%= link_to "#{commandList[lineCounter][:name]}",  :id=> commandList[lineCounter][:name],
+                                                        :action =>"execute", :service_id=> @services[tableCounter*4+columnCounter].link %></strong>
+                               <% else %>
+                                  <%= image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon") %>
+                                  <strong><span style="color: #BDBDBD"><%="#{commandList[lineCounter][:name]}" -%></span></strong>
+                               <% end %> 
                             <% end %> 
                         </td>
                      <% else %> 

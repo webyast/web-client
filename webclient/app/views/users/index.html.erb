@@ -8,8 +8,12 @@
       <tr>
 	<th class="first" width=150>Login</th>
 	<th width=8%>Edit</th>
-	<th width=8%>SSH-Key</th>
-	<th class="last" width=8%>Delete</th>
+        <% if @deletePermission == nil %>
+           <th width=8%>SSH-Key</th>
+           <th class="last" width=8%>Delete</th>
+        <% else %>
+           <th class="last" width=8%>SSH-Key</th>
+        <% end %>
       </tr>
       <% for user in @users %>
          <% if user.error_id != 0 %>
@@ -21,13 +25,17 @@
               <td><strong><%=h user.loginName %></strong></td>
               <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_user_path(user.loginName) %></td>
               <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(user.loginName) %></td>
-              <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
+              <% if @deletePermission == nil %>
+                 <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
                               user_path(user.loginName), :confirm => 'Are you sure?', :method => :delete %></td>
+              <% end %>
            </tr>
          <% end %>
       <% end %>
    </table>
-   <div class="select">
-       <%= link_to "<strong>[New User]</strong>", new_user_path -%><p/>
-    </div>
+   <% if @newPermission == nil %>
+      <div class="select">
+          <%= link_to "<strong>[New User]</strong>", new_user_path -%><p/>
+      </div>
+   <% end %>
 </div>
