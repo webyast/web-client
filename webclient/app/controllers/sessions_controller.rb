@@ -50,6 +50,30 @@ class SessionsController < ApplicationController
        #take first
        @host = @webservices[0].name
     end
+    createSessionTable = true
+    if session[:controllers]!=nil && session[:controllers].size > 0
+       #is at least one controller visible?
+       session[:controllers].each do |key,controller|
+          if controller.read_permission
+             createSessionTable = false
+             break
+          end
+       end 
+    end
+    if createSessionTable
+       #insert at least a session controller
+       modHash = Yast.new ( )
+       modHash.install_permission=false
+       modHash.read_permission=true
+       modHash.delete_permission=false
+       modHash.new_permission=false
+       modHash.write_permission=true
+       modHash.description=""
+       modHash.execute_permission=false
+       modHash.path="session"
+       modHash.visibleName="session"
+       session[:controllers] = { "session"=>modHash }
+    end
   end
 
   def create
@@ -66,17 +90,17 @@ class SessionsController < ApplicationController
       @modules = Yast.find(:all)      
       moduleHash = {}
       @modules.each do |modHash|
-        mo = modHash.attributes["path"]
+        mo = modHash.path
         case mo
-         when "services", "language"
-            moduleHash[mo] = mo
+         when "services", "language", "users", "permissions"
+            modHash.visibleName = mo
+            moduleHash[mo] = modHash
          when "systemtime"
-            moduleHash["system_time"] = mo
-         when "users"
-            moduleHash[mo] = mo
-            moduleHash["permissions"] = "permissions"
+            modHash.visibleName = mo
+            moduleHash["system_time"] = modHash
          when "patch_updates"
-            moduleHash["patch_updates"] = "patches"
+            modHash.visibleName = "patches"
+            moduleHash[mo] = modHash
          else
             logger.debug "module #{mo} will not be shown"
         end

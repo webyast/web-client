@@ -18,20 +18,18 @@
       <span style="color: #FF9600; font-size: 38pt; font-weight:bold;">&nbsp;<i>Web</i>-UI</span>
     </div>
     <ul id="top-navigation">
-      <% if session[:controllers]!= nil
-            @controllers = session[:controllers] 
-         else
-            @controllers = { "session" => "session" }
-         end
+      <% @controllers = session[:controllers] 
         @controllers.sort.each do |c|
-	active = (controller.controller_name == c[0]) -%>
-        <li <%= "class='active'" if active -%> >
-	  <span><span>
+	active = (controller.controller_name == c[0]) 
+        if @controllers[c[0]].read_permission -%>
+           <li <%= "class='active'" if active -%> >
+           <span><span>
 	    <%= "<a href=\"/#{c[0]}\">" unless active -%>
-	      <%= c[1].capitalize -%>
+	      <%= @controllers[c[0]].visibleName.capitalize -%>
 	    <%= "</a>" unless active -%>
 	  </span></span>
-	</li>
+	  </li>
+        <% end -%>
       <% end -%>
     </ul>
   </div>
