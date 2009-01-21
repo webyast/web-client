@@ -8,6 +8,8 @@ class PatchUpdatesController < ApplicationController
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
+    setPermissions(controller_name)
+
     @patch_updates = PatchUpdate.find(:all)
     if params[:last_error] && params[:last_error] != 0
        update = PatchUpdate.new( :error_id =>params[:last_error], 

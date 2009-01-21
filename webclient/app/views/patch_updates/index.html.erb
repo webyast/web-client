@@ -9,8 +9,12 @@
 	<th class="first" width=8%>Kind</th>
 	<th width=15%>Name</th>
 	<th width="100">Summary</th>
-	<th width=15%>Source</th>
-	<th class="last" width=5%>Install</th>
+        <% if @installPermission == nil %>
+           <th width=15%>Source</th>
+           <th class="last" width=5%>Install</th>
+        <% else %>
+           <th class="last" width=15%>Source</th>
+        <% end %>
       </tr>
       <% for patch_update in @patch_updates %>
          <% if patch_update.error_id != 0 %>
@@ -27,8 +31,10 @@
               <td><%=h patch_update.name %></td>
               <td><%=h patch_update.summary %></td>
               <td><%=h patch_update.repo %></td>
-              <td><%= link_to image_tag("/images/add-icon.gif", :alt =>  "install"), 
-                      patch_update_path(patch_update.resolvableId), :confirm => 'Are you sure?', :method => :post, :action => "install" %></td>
+              <% if @installPermission == nil %>
+                 <td><%= link_to image_tag("/images/add-icon.gif", :alt =>  "install"), 
+                         patch_update_path(patch_update.resolvableId), :confirm => 'Are you sure?', :method => :post, :action => "install" %></td>
+              <% end %>
            </tr>
          <% end %>
       <% end %>

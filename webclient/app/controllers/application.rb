@@ -40,12 +40,18 @@ class ApplicationController < ActionController::Base
        else
           @executePermission = "disabled"
        end 
+       if session[:controllers][controllerName].install_permission
+          @installPermission = nil
+       else
+          @installPermission = "disabled"
+       end 
     else
        @executePermission = "disabled"
        @newPermission = "disabled"
        @deletePermission = "disabled"
        @readPermission = "disabled"
        @writePermission = "disabled"
+       @installPermission = "disabled"
     end
   end
 
