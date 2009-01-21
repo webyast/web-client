@@ -57,7 +57,7 @@ class PermissionsController < ApplicationController
            if (showSubtree(branch, grant) || #there is at least one item set to "grant"
                takeAll)                   #or the rest should be simply taken
               javaString += "#{level}, { label: \"#{key}\", href:\""
-              if branch.has_key?(:path)
+              if branch.has_key?(:path) && @writePermission==nil
                 javaString += url_for(:controller => controller_name(),
                                       :action => grant ? "revoke" : "grant",
                                       :id => branch[:path],
@@ -167,6 +167,8 @@ class PermissionsController < ApplicationController
   end
 
   def search
+    setPermissions(controller_name)
+
     getPermissions(params[:user].rstrip, true)
     render :action => "index" 
   end

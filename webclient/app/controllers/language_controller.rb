@@ -2,6 +2,8 @@ class LanguageController < ApplicationController
   before_filter :login_required
   layout 'main'
   def index
+    setPermissions(controller_name)
+
     @language = Language.find(:one, :from => '/language.xml')
     if params[:last_error] && params[:last_error] != 0
        @language.error_id = params[:last_error]
