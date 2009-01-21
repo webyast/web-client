@@ -34,7 +34,7 @@ class ServicesController < ApplicationController
           @services[counter-1].commandList << c
        end
        if s.link == "ntp"
-          #add configuration module
+          #add configuration module if there is a read permission
           c = {:name=>"configure", :icon=>"/images/configure.png" }
           @services[counter-1].commandList << c
        end

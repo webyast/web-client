@@ -19,18 +19,18 @@
        </tr>
        <tr>
 	  <td class="first" width="120"><strong>Enabled</strong></td>
-  	  <td class="last"><input type="checkbox" name="enabled" value="true" <%= @is_enabled %>></td>
+  	  <td class="last"><input type="checkbox" name="enabled" value="true" <%= @is_enabled %> <%= "disabled=\"disabled\"" if @writePermission=="disabled" %>></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>Use random server</strong></td>
-	  <td class="last"><input type="checkbox" name="use_random_server" value="true" <%= @is_use_random_server %>></td>
+	  <td class="last"><input type="checkbox" name="use_random_server" value="true" <%= @is_use_random_server %> <%= "disabled=\"disabled\"" if @writePermission=="disabled" %>></td>
        </tr>
        <tr>
 	  <td class="first"><strong>Manual Servers</strong></td>
-	  <td class="last"><%= text_field_tag "manual_server", @ntp.manual_server %></td>
+	  <td class="last"><%= text_field_tag "manual_server", @ntp.manual_server , :disabled=>@writePermission%></td>
        </tr>
     </table>
-    <p><%= submit_tag "Save" -%><%= link_to 'Back', {:controller => 'services'}, :class => "button" %></p>
+    <p><%= submit_tag "Save", :disabled=>@writePermission -%><%= link_to 'Back', {:controller => 'services'}, :class => "button" %></p>
   </div>
  <% end %>
 <% end %>

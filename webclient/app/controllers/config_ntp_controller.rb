@@ -3,6 +3,25 @@ class ConfigNtpController < ApplicationController
   layout 'main'
 
   def show
+
+    @writePermission = "disabled"
+    if (session[:controllers] &&
+        session[:controllers]["services"] &&
+        session[:controllers]["services"].write_permission)
+       @writePermission = nil
+    else
+       #no write-config permission -> check write-services-config-ntp
+       perm = Checkpermission.find("write-services-config")
+       if perm.permission == "granted"
+          @writePermission = nil
+       else
+          perm = Checkpermission.find("write-services-config-ntp")
+          if perm.permission == "granted"
+             @writePermission = nil
+          end
+       end
+    end 
+
     @ntp = ConfigNtp.find(:one, :from => '/services/ntp/config.xml')
     logger.debug "ConfigNtp: #{@ntp.inspect}"
     if params[:last_error] && params[:last_error] != 0
