@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
       url = name.split(" ").pop || name
 
       if Webservice.find(:first, :conditions => "name = '#{url}'") == nil
-         host = Webservice.new({"name"=>url, "desc"=>"via avahi scan"})
+         host = Webservice.new({"name"=>url, "desc"=>"via notwork scan"})
          @webservices << host
       end
     end
@@ -45,11 +45,7 @@ class SessionsController < ApplicationController
     @user = session[:user] 
     @password = session[:password]
     @host = session[:host]
-    if (@host == nil &&
-        @webservices.size > 0)
-       #take first
-       @host = @webservices[0].name
-    end
+
     createSessionTable = true
     if session[:controllers]!=nil && session[:controllers].size > 0
        #is at least one controller visible?

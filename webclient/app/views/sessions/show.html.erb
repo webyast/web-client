@@ -64,19 +64,35 @@
    <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
    <table class="listing form" cellpadding="0" cellspacing="0">
    <tr>
-	<th class="full" colspan="1">YaST-Web-Services</th>
+	<th class="full" colspan="2">YaST-Web-Services</th>
    </tr>
-   <tr class="bg">
-     <td>
-        <% for webservice in @webservices %>
-           <div>
-              <%= link_to( image_tag("/images/computer.png", :size => "64x64", :alt =>  "edit" ), "#", :onclick => "showLoginDialog(\"#{webservice.name}\")" ) %>
-              <strong><%= link_to( webservice.name, "#" , :onclick => "showLoginDialog(\"#{webservice.name}\");" ) %></strong>
-              <%=h webservice.desc %>
-           </div>
-        <% end %>
-     </td>
-   </tr>
+   <% counter = 1
+      for webservice in @webservices %>
+        <% if counter == 1 %>
+           <tr class="bg">
+        <% end %>         
+        <td>
+           <% if @host == webservice.name %>
+              <%= link_to( image_tag("/images/computer_connected.png", :size => "64x64", :alt =>  "edit" ), "#", 
+                           :onclick => "showLoginDialog(\"#{webservice.name}\")" ) %>
+           <% else %>
+              <%= link_to( image_tag("/images/computer.png", :size => "64x64", :alt =>  "edit" ), "#", 
+                           :onclick => "showLoginDialog(\"#{webservice.name}\")" ) %>
+           <% end %>         
+           <strong><%= link_to( webservice.name, "#" , :onclick => "showLoginDialog(\"#{webservice.name}\");" ) %></strong>
+           <%=h webservice.desc %>
+        </td>
+        <% if counter == 2 %>
+           </tr>
+           <% counter = 1 %>         
+        <% else %>                 
+           <% counter += 1 %>         
+        <% end %>         
+      <% end %>
+      <% if counter == 2 &&  @webservices.size > 0 %>
+           <td> </td>
+           </tr>
+      <% end %>         
    </table>
    <div class="select">
        <%= link_to "<strong>[Configure]</strong>", :controller => 'webservices' -%><p/>
