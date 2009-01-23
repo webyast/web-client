@@ -1,5 +1,63 @@
-<% form_tag session_path do -%>
+<html>
 
+
+<script language="javascript">
+ 
+  YAHOO.namespace('yuilogin');
+
+  function initLoginDialog() {
+    var handleCancel = function() {
+    this.cancel();
+  }
+
+  YAHOO.yuilogin.loginDialog = new YAHOO.widget.Dialog("logindlg", {
+    width: "625px",
+    modal: true, 
+    visible: false,
+    fixedcenter: true, 
+    constraintoviewport: true, 
+    draggable: true });
+
+    YAHOO.yuilogin.loginDialog.render();
+
+  }
+
+  function showLoginDialog(hostname) {
+    document.forms["loginDialogForm"].hostname.value = hostname;
+    YAHOO.yuilogin.loginDialog.show();
+  }
+
+  YAHOO.util.Event.addListener(window, "load", initLoginDialog);
+</script>
+
+
+
+<% form_tag(session_path, :name=>"loginDialogForm")  do -%>
+
+<!-- begin: dialog box -->
+<div id="logindlg">
+   <div class="box">
+   <input type="hidden" id="hostname" name="hostname" size="40" type="text" />
+   <div class="table">
+      <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
+      <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
+      <table class="listing form" cellpadding="0" cellspacing="0">
+      <tr>
+	  <th class="full" colspan="2">User</th>
+      </tr>
+      <tr>
+	  <td class="first" ><strong>Login</strong></td>
+	  <td class="last" ><%= text_field_tag 'login', @user %></td>
+      </tr>
+      <tr class="bg">
+	  <td class="first"><strong>Password</strong></td>
+          <td class="last"><%= password_field_tag 'password', @password %></td>
+      </tr>
+      </table>
+      <p><%= submit_tag 'Connect' %><%= link_to 'Back', session_path, :class => "button"%></p>
+   </div>
+   </div>
+</div>
 
 <div class="table">
    <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
@@ -8,33 +66,21 @@
    <tr>
 	<th class="full" colspan="1">YaST-Web-Services</th>
    </tr>
-   <tr>
-	<td class="first" width="120"><%= select 'webservice', 'name', 
-         @webservices.collect {|c| [c.name, c.name]},
-         {:selected=> @host}, { :size => 10 } %></td>
+   <tr class="bg">
+     <td>
+        <% for webservice in @webservices %>
+           <div>
+              <%= link_to( image_tag("/images/computer.png", :size => "64x64", :alt =>  "edit" ), "#", :onclick => "showLoginDialog(\"#{webservice.name}\")" ) %>
+              <strong><%= link_to( webservice.name, "#" , :onclick => "showLoginDialog(\"#{webservice.name}\");" ) %></strong>
+              <%=h webservice.desc %>
+           </div>
+        <% end %>
+     </td>
    </tr>
    </table>
    <div class="select">
        <%= link_to "<strong>[Configure]</strong>", :controller => 'webservices' -%><p/>
     </div>
 </div>
-
-<div class="table">
-   <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
-   <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
-   <table class="listing form" cellpadding="0" cellspacing="0">
-   <tr>
-	<th class="full" colspan="2">User</th>
-   </tr>
-   <tr>
-	<td class="first" width="120"><strong>Login</strong></td>
-	<td class="last"><%= text_field_tag 'login', @user %></td>
-   </tr>
-   <tr class="bg">
-	<td class="first"><strong>Password</strong></td>
-	<td class="last"><%= password_field_tag 'password', @password %></td>
-   </tr>
-   </table>
-</div>
-<%= submit_tag 'Connect' %>
 <% end -%>
+</html>

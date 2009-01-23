@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
     end
     if createSessionTable
        #insert at least a session controller
-       modHash = Yast.new ( )
+       modHash = Yast.new( )
        modHash.install_permission=false
        modHash.read_permission=true
        modHash.delete_permission=false
@@ -77,14 +77,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    webservice = params[:webservice]
     self.current_account, auth_token = Account.authenticate(params[:login], params[:password],
-                                                            webservice[:name])
+                                                            params[:hostname])
     if logged_in?
       session[:auth_token] = auth_token
       session[:user] = params[:login]
       session[:password] = params[:password]
-      session[:host] = webservice[:name]
+      session[:host] = params[:hostname]
       
       #evaluate available modules
       @modules = Yast.find(:all)      
