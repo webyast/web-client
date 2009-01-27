@@ -1,3 +1,45 @@
+<html>
+  <head>
+    <title>services</title>
+    <%= javascript_include_tag "prototype" %>
+  </head>
+
+
+<script language="javascript">
+ 
+  YAHOO.namespace('yuiresult');
+
+  function initResultDialog() {
+    var handleCancel = function() {
+      this.cancel();
+    }
+
+    YAHOO.yuiresult.resultDialog = new YAHOO.widget.Dialog("resultdlg", {
+       width: "625px",
+       modal: true, 
+       visible: false,
+       fixedcenter: true, 
+       constraintoviewport: true, 
+       draggable: true });
+
+    YAHOO.yuiresult.resultDialog.render();
+  }
+
+  function showResultDialog() {
+    YAHOO.yuiresult.resultDialog.show();
+  }
+
+  YAHOO.util.Event.addListener(window, "load", initResultDialog);
+</script>
+
+
+<!-- begin: dialog box -->
+<div id="resultdlg">
+</div>
+<!-- end: dialog box -->
+
+<body>
+
 <h1>Services</h1>
 <br>
 
@@ -40,11 +82,21 @@
                                                      :action =>@services[tableCounter*4+columnCounter].link %></strong>
                             <% else %>
                                <% if @executePermission == nil %>
-                                  <%= link_to image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon"), 
-                                                        :id=> commandList[lineCounter][:name],
-                                                        :action =>"execute", :service_id=> @services[tableCounter*4+columnCounter].link %>
-                                  <strong><%= link_to "#{commandList[lineCounter][:name]}",  :id=> commandList[lineCounter][:name],
-                                                        :action =>"execute", :service_id=> @services[tableCounter*4+columnCounter].link %></strong>
+                                  <%= link_to_remote image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon"), 
+                                                   :update => "resultdlg",
+						   :url=>{ :id=> commandList[lineCounter][:name], 
+                                                           :action => "execute", 
+                                                           :service_id=> @services[tableCounter*4+columnCounter].link },
+						   :loading => "Element.show('progress');",
+						   :complete => "Element.hide('progress'); showResultDialog();" %>
+                                  <strong><%= link_to_remote "#{commandList[lineCounter][:name]}",
+                                                   :update => "resultdlg",
+						   :url=>{ :id=> commandList[lineCounter][:name], 
+                                                           :action => "execute", 
+                                                           :service_id=> @services[tableCounter*4+columnCounter].link },
+						   :loading => "Element.show('progress');",
+						   :complete => "Element.hide('progress'); showResultDialog();"
+                                          %></strong>
                                <% else %>
                                   <%= image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon") %>
                                   <strong><span style="color: #BDBDBD"><%="#{commandList[lineCounter][:name]}" -%></span></strong>
@@ -67,24 +119,5 @@
       </table>
    </div>
 <% end %>
-
-<% if @lastResultString != "" || @lastResult != 0 %>
-   <div class="table">
-      <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
-      <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
-      <table class="listing form" cellpadding="0" cellspacing="0">
-      <tr>
-          <th class="full" colspan="2">Service Call Result</th>
-      </tr>
-      <tr>
-          <td class="first" width="120"><strong>Result</strong></td>
-          <td class="last"><%= @lastResult==0 ? "success" : "failed" %></td>
-      </tr>
-      <tr class="bg">
-          <td class="first"><strong>Description</strong></td>
-          <td class="last"><%= @lastResultString %></td>
-      </tr>
-      </table>
-   </div>
-<% end %>
-
+<body>
+</html>

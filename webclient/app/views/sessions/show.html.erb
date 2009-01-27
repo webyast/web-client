@@ -1,25 +1,23 @@
 <html>
 
-
 <script language="javascript">
  
   YAHOO.namespace('yuilogin');
 
   function initLoginDialog() {
     var handleCancel = function() {
-    this.cancel();
-  }
+      this.cancel();
+    }
 
-  YAHOO.yuilogin.loginDialog = new YAHOO.widget.Dialog("logindlg", {
-    width: "625px",
-    modal: true, 
-    visible: false,
-    fixedcenter: true, 
-    constraintoviewport: true, 
-    draggable: true });
+    YAHOO.yuilogin.loginDialog = new YAHOO.widget.Dialog("logindlg", {
+       width: "625px",
+       modal: true, 
+       visible: false,
+       fixedcenter: true, 
+       constraintoviewport: true, 
+       draggable: true });
 
     YAHOO.yuilogin.loginDialog.render();
-
   }
 
   function showLoginDialog(hostname) {

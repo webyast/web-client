@@ -71,8 +71,35 @@ class ServicesController < ApplicationController
     logger.debug "calling #{commandId} with service #{@service.inspect}"
     response = @service.put(commandId)
     retService = Hash.from_xml(response.body)
-    logger.debug "returns #{retService["service"].inspect}"  
-    redirect_to :action=> :index , :last_error_string =>retService["service"]["error_string"], :last_error =>retService["service"]["error_id"]
+    logger.debug "returns #{retService["service"].inspect}"
+    @lastResult = retService["service"]["error_id"]
+    @lastResultString = retService["service"]["error_string"]
+    errorstring = "failed"
+    if @lastResult==0 
+       errorstring = "success"
+    end
+
+    render :text=>"
+   <div class=\"box\">
+   <div class=\"table\">
+      <img src=\"images/bg-th-left.gif\" width=\"8\" height=\"7\" alt=\"\" class=\"left\" />
+      <img src=\"images/bg-th-right.gif\" width=\"7\" height=\"7\" alt=\"\" class=\"right\" />
+      <table class=\"listing form\" cellpadding=\"0\" cellspacing=\"0\">
+      <tr>
+          <th class=\"full\" colspan=\"2\">Service Call Result</th>
+      </tr>
+      <tr>
+          <td class=\"first\" width=\"120\"><strong>Result</strong></td>
+          <td class=\"last\">#{errorstring}</td>
+      </tr>
+      <tr class=\"bg\">
+          <td class=\"first\"><strong>Description</strong></td>
+          <td class=\"last\">#{@lastResultString}</td>
+      </tr>
+      </table>
+      <p><a href=\"services\" class=\"button\">Back</a></p>
+   </div>
+   </div>"
   end
 
 end
