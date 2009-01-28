@@ -22,19 +22,21 @@
       <span style="color: #FF9600; font-size: 38pt; font-weight:bold;">&nbsp;<i>Web</i>-UI</span>
     </div>
     <ul id="top-navigation">
-      <% @controllers = session[:controllers] 
-        @controllers.sort.each do |c|
-	active = (controller.controller_name == c[0]) 
-        if @controllers[c[0]].read_permission -%>
-           <li <%= "class='active'" if active -%> >
-           <span><span>
-	    <%= "<a href=\"/#{c[0]}\">" unless active -%>
-	      <%= @controllers[c[0]].visibleName.capitalize -%>
-	    <%= "</a>" unless active -%>
-	  </span></span>
-	  </li>
-        <% end -%>
-      <% end -%>
+      <div id="tabmenue">
+         <% @controllers = session[:controllers] 
+          @controllers.sort.each do |c|
+  	  active = (controller.controller_name == c[0]) 
+          if @controllers[c[0]].read_permission -%>
+             <li <%= "class='active'" if active -%> >
+             <span><span>
+	      <%= "<a href=\"/#{c[0]}\">" unless active -%>
+  	        <%= @controllers[c[0]].visibleName.capitalize -%>
+	      <%= "</a>" unless active -%>
+	    </span></span>
+	    </li>
+          <% end -%>
+         <% end -%>
+      </div>
     </ul>
   </div>
   <div id="middle">
@@ -42,25 +44,28 @@
       <h3>Session</h3>
       <ul class="nav">
 	<li><a href="/session">Choose host</a></li>
-        <% user = session[:user]
-           if user -%>
-  	   <li><a href="/logout">Logout</a></li>
-        <% end -%>
+        <div id="logout">
+           <% user = session[:user]
+              if user -%>
+    	      <li><a href="/logout">Logout</a></li>
+           <% end -%>
+        </div>
       </ul>
-
-      <% host = session[:host]
-         if host!=nil && host!=""  
-           if host.index("://") != nil
-             host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
-           end -%>
-           <% user = session[:user] -%>
-           <br><br>
-           <div class="box">
-             <p>Connected Host</p>
-             <p>Name: <%= host -%> <p>
-             User: <%= user -%>
-           </div>
-         <% end -%>
+      <br><br>
+      <div id="connectedHost">
+        <% host = session[:host]
+           if host!=nil && host!=""  
+             if host.index("://") != nil
+               host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
+             end -%>
+             <% user = session[:user] -%>
+             <div class="box">
+               <p>Connected Host</p>
+               <p>Name: <%= host -%> <p>
+               User: <%= user -%>
+             </div>
+           <% end -%>
+      </div>
     </div>
     <div id="center-column">
       <div class="top-bar">
