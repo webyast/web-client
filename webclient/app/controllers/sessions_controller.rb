@@ -103,15 +103,53 @@ class SessionsController < ApplicationController
       logger.debug "Available modules: #{moduleHash.inspect}"
       session[:controllers] = moduleHash
 
-      redirect_back_or_default('/')
+      shortHostName = session[:host]
+      if shortHostName.index("://") != nil
+         shortHostName = shortHostName[shortHostName.index("://")+3, shortHostName.length-1] #extract "http(s)://"
+      end
+
+      render :text =>"<div class=\"box\">
+               <p>Connected Host</p>
+               <p>Name: #{shortHostName} <p>
+               User: #{session[:user]}
+             </div>"
     else
       session[:user] = nil
       session[:password] = nil
       session[:host] = nil
       session[:controllers] = nil
       show # getting hosts again
-      render :action => 'show'
+      render :text =>"<div class=\"box\">
+               <p><strong>Login Failed</strong></p>
+               </div>"
     end
+  end
+
+
+  def updateMenu
+      htmlString = ""
+      controllers = session[:controllers] 
+      controllers.sort.each do |c|
+         if controllers[c[0]].read_permission
+            htmlString += "<li "
+            htmlString += " >"
+            htmlString += "<span><span>"
+	    htmlString += "<a href=\"/#{c[0]}\">"
+  	    htmlString += controllers[c[0]].visibleName.capitalize 
+	    htmlString += "</a>"
+	    htmlString += "</span></span>"
+	    htmlString += "</li>"
+         end
+      end
+      render :text =>htmlString
+  end
+
+  def updateLogout
+      htmlString = ""
+      if session[:user]
+    	 htmlString = "<li><a href='/logout'>Logout</a></li>"
+      end
+      render :text =>htmlString
   end
 
   def destroy
@@ -122,9 +160,9 @@ class SessionsController < ApplicationController
      if logged_in?
         ret = Logout.create()
         if (ret and ret.attributes["logout"])
-           puts "Logout: #{ret.attributes["logout"]}"
+           logger.debug "Logout: #{ret.attributes["logout"]}"
         else
-           puts "Logout: Error"
+           logger.debug "Logout: Error"
         end
         self.current_account.forget_me 
         session[:auth_token] = nil
