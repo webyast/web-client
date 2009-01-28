@@ -110,6 +110,7 @@ fi
 /srv/www/yast/Rakefile  
 /srv/www/yast/README*  
 /srv/www/yast/COPYING  
+/srv/www/yast/INSTALL
 /srv/www/yast/script  
 /srv/www/yast/test  
 /srv/www/yast/config  
