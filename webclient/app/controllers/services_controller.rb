@@ -74,7 +74,7 @@ class ServicesController < ApplicationController
     logger.debug "returns #{retService["service"].inspect}"
     @resultString = retService["service"]["error_string"]
     @errorString = "failed"
-    if retService["service"]["error_id"]==0 
+    if retService["service"]["error_id"]=="0"
        @errorString = "success"
     end
     render (:partial =>'result')

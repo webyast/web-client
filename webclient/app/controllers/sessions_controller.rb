@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
       url = name.split(" ").pop || name
 
       if Webservice.find(:first, :conditions => "name = '#{url}'") == nil
-         host = Webservice.new({"name"=>url, "desc"=>"via notwork scan"})
+         host = Webservice.new({"name"=>url, "desc"=>"via network scan"})
          @webservices << host
       end
     end
