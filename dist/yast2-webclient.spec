@@ -48,8 +48,9 @@ Authors:
 # Install all web and frontend parts.
 #
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
 cp -a * $RPM_BUILD_ROOT/srv/www/yast
-rm $RPM_BUILD_ROOT/srv/www/yast/log/*
+rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
 
 #
 # init script
@@ -110,6 +111,7 @@ fi
 /srv/www/yast/Rakefile  
 /srv/www/yast/README*  
 /srv/www/yast/COPYING  
+/srv/www/yast/INSTALL
 /srv/www/yast/script  
 /srv/www/yast/test  
 /srv/www/yast/config  
