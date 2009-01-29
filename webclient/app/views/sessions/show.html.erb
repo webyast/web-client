@@ -36,14 +36,14 @@
 <% form_remote_tag( :html => {:name=>"loginDialogForm"},
                     :update => "connectedHost",
 		    :url=>{ :action => "create" },
-  		    :loading => "Element.show('progress');",
+  		    :loading => "Element.show('progress'); hideLoginDialog();",
 		    :complete => remote_function(
                         :url => { :action => "updateMenu"},
                         :update => "tabmenue",
                         :complete => remote_function(
                                         :url => { :action => "updateLogout"},
                                         :update => "logout",
-                                        :complete => "Element.hide('progress'); hideLoginDialog(); new Effect.Highlight('connectedHost');")
+                                        :complete => "Element.hide('progress');  new Effect.Highlight('connectedHost');")
                         )
                   ) do -%>
 
