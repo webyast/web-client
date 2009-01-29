@@ -16,7 +16,7 @@ License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        1.0.0
-Release:        1
+Release:        3
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
