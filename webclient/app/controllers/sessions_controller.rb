@@ -113,20 +113,14 @@ class SessionsController < ApplicationController
          shortHostName = shortHostName[shortHostName.index("://")+3, shortHostName.length-1] #extract "http(s)://"
       end
 
-      render :text =>"<div class=\"box\">
-               <p>Connected Host</p>
-               <p>Name: #{shortHostName} <p>
-               User: #{session[:user]}
-             </div>"
+      render :partial =>"login_succeeded"
     else
       session[:user] = nil
       session[:password] = nil
       session[:host] = nil
       session[:controllers] = nil
       show # getting hosts again
-      render :text =>"<div class=\"box\">
-               <p><strong>Login Failed</strong></p>
-               </div>"
+      render :partial =>"login_failed"
     end
   end
 
