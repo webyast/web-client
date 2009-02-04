@@ -73,8 +73,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    self.current_account, auth_token = Account.authenticate(params[:login], params[:password],
+    begin
+      self.current_account, auth_token = Account.authenticate(params[:login], params[:password],
                                                             params[:hostname])
+    rescue
+      
+    end
+    
     if logged_in?
       session[:auth_token] = auth_token
       session[:user] = params[:login]
