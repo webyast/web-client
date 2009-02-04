@@ -126,29 +126,15 @@ class SessionsController < ApplicationController
 
 
   def updateMenu
-      htmlString = ""
-      controllers = session[:controllers] 
-      controllers.sort.each do |c|
-         if controllers[c[0]].read_permission
-            htmlString += "<li "
-            htmlString += " >"
-            htmlString += "<span><span>"
-	    htmlString += "<a href=\"/#{c[0]}\">"
-  	    htmlString += controllers[c[0]].visibleName.capitalize 
-	    htmlString += "</a>"
-	    htmlString += "</span></span>"
-	    htmlString += "</li>"
-         end
-      end
-      render :text =>htmlString
+      render :partial => "controllers"
   end
 
   def updateLogout
-      htmlString = ""
       if session[:user]
-    	 htmlString = "<li><a href='/logout'>Logout</a></li>"
+    	 render :partial => "logout"
+      else
+    	 render :nothing => true
       end
-      render :text =>htmlString
   end
 
   def destroy
