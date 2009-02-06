@@ -1,0 +1,13 @@
+<%
+controllers = session[:controllers] 
+controllers.sort.each do |c|
+ if controllers[c[0]].read_permission -%>
+   <li>
+    <span>
+      <span>
+        <a href="/<%=c[0]-%>"><%=controllers[c[0]].visibleName.capitalize -%></a>
+      </span>
+    </span>
+   </li>
+<% end -%>
+<% end -%>
