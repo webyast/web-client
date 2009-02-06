@@ -16,13 +16,20 @@
            <th class="last" width=15%>Source</th>
         <% end %>
       </tr>
+      <% counter=0 %>
       <% for patch_update in @patch_updates %>
          <% if patch_update.error_id != 0 %>
             <tr>
                <td>Error ID: <%= patch_update.error_id -%> Error: <%= patch_update.error_string -%></td>
             </tr>
          <% else %>
-            <tr>
+            <% if counter==0 %>
+             <tr>
+             <% counter += 1 %>
+            <% else %>
+             <tr class="bg">
+             <% counter = 0 %>
+            <% end %>
               <% if patch_update.kind == "important" || patch_update.kind == "security" %>
                  <td class="first style1"><%=h patch_update.kind %></td>
               <% else %>

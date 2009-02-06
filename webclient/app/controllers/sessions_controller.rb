@@ -108,9 +108,9 @@ class SessionsController < ApplicationController
       logger.debug "Available modules: #{moduleHash.inspect}"
       session[:controllers] = moduleHash
 
-      shortHostName = session[:host]
-      if shortHostName.index("://") != nil
-         shortHostName = shortHostName[shortHostName.index("://")+3, shortHostName.length-1] #extract "http(s)://"
+      @shortHostName = session[:host]
+      if @shortHostName.index("://") != nil
+         @shortHostName = @shortHostName[@shortHostName.index("://")+3, @shortHostName.length-1] #extract "http(s)://"
       end
 
       render :partial =>"login_succeeded"
