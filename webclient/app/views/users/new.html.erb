@@ -1,14 +1,5 @@
 <h1>New User</h1>
 <br>
-<% if @user.error_id != 0 %>
-<p>
-   Error ID: <%= @user.error_id -%>
-   Error: <%= @user.error_string -%>
-</p>
-<% end %>
-
-<% if @user.error_id == 0 or @user.error_id != 1 %>
-
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
 
@@ -58,7 +49,4 @@
     </table>
     <p><%= f.submit "Create" %><%= link_to 'Back', users_path, :class => "button" %></p>
   </div>
-
-
-<% end %>
 <% end %>

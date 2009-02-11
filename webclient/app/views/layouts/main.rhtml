@@ -69,6 +69,32 @@
     </div>
     <div id="center-column">
       <div class="top-bar">
+        <table border="0" width="100%">
+          <colgroup>
+            <col width="10%">
+            <col width="90%">
+          </colgroup>
+          <tr>
+          <td height=15> </td>
+          <td> 
+             <div align="right">
+               <% if flash[:notice] %>
+                  <div id="notice-column">
+                     <notice><%= flash[:notice] %></notice>
+                  </div>
+                  <script>new Effect.Fade('notice-column', { duration:10.0, from:1.0, to:0.0 });</script>
+               <% end %>
+               <% if flash[:error] %>
+                  <div id="error-column">
+                     <error><%= flash[:error] %></error>
+                  </div>
+                  <script>Element.hide('error-column');</script>
+                  <script>new Effect.Appear('error-column');</script>
+               <% end %>
+            </div>
+          </td>
+          </tr>
+        </table>
         <%= @content_for_layout %>
       </div>
     </div>

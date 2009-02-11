@@ -101,6 +101,7 @@ class UsersController < ApplicationController
       else
         @user.error_string = retUser["user"]["error_string"]
         @user.error_id = retUser["user"]["error_id"]
+        flash[:error] = @user.error_string
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -111,6 +112,8 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+    @user.newLoginName = nil
+    @user.newUid = nil
     @user.id = @user.loginName
     if params["commit"] == "Export SSH-Key"
        @user.sshkey = params["user"]["sshkey"]
@@ -140,6 +143,7 @@ class UsersController < ApplicationController
       else
         @user.error_string = retUser["user"]["error_string"]
         @user.error_id = retUser["user"]["error_id"]
+        flash[:error] = @user.error_string
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
