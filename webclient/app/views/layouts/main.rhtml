@@ -29,7 +29,7 @@
           if @controllers[c[0]].read_permission -%>
              <li <%= "class='active'" if active -%> >
              <span><span>
-	      <%= "<a href=\"/#{c[0]}\">" unless active -%>
+	      <%= "<a href=\"/#{c[0]}\" onclick=\"Element.show('progress')\">" unless active -%>
   	        <%= @controllers[c[0]].visibleName.capitalize -%>
 	      <%= "</a>" unless active -%>
 	    </span></span>
