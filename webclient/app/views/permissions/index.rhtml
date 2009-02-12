@@ -15,7 +15,7 @@
 <% form_tag '/permissions/search' do %>
   <p><label for="user">User</label>
   <input type="text" name="user" size=25 value=<%= "#{@currentUser}" %> >
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", :onclick=>"Element.show('progress')"%>
 <% end %>
 <br>
 <br>

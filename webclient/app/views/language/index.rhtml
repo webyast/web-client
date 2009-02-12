@@ -1,14 +1,7 @@
 <h1>Language</h1>
 <br>
 
-<% if @language.error_id != 0 %>
-<p>
-   Error: <%= @language.error_string -%>
-</p>
-<% end %>
-
-<% if @language.error_id == 0 or @language.error_id != 1 %>
- <% form_tag '/language/commit_language' do %>
+<% form_tag '/language/commit_language' do %>
   <div class="table">
     <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
     <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
@@ -35,7 +28,6 @@
     </table>
     <p><%= submit_tag "Save", :confirm => 'This operation can take a while.', :disabled=>@writePermission -%></p>
   </div>
- <% end %>
 <% end %>
 
 

@@ -77,7 +77,6 @@ class SessionsController < ApplicationController
       self.current_account, auth_token = Account.authenticate(params[:login], params[:password],
                                                             params[:hostname])
     rescue
-      
     end
     
     if logged_in?

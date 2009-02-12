@@ -5,12 +5,6 @@ class LanguageController < ApplicationController
     setPermissions(controller_name)
 
     @language = Language.find(:one, :from => '/language.xml')
-    if params[:last_error] && params[:last_error] != 0
-       @language.error_id = params[:last_error]
-       if params[:last_error_string]
-          @language.error_string = params[:last_error_string]
-       end
-    end
     @valid = []
     @secondLanguages = {}
     splitSecondLanguages = []
@@ -52,10 +46,11 @@ class LanguageController < ApplicationController
     end
     lang.save
     if lang.error_id != 0
-       redirect_to :action => :index, :last_error_string =>lang.error_string, :last_error =>lang.error_id 
+       flash[:error] = lang.error_string
     else
-       redirect_to :action => :index 
-    end
+       flash[:notice] = "Settings have been written."
+    end       
+    redirect_to :action => :index 
   end
 
 end

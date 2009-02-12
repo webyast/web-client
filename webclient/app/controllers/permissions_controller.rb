@@ -81,11 +81,15 @@ class PermissionsController < ApplicationController
   end
 
   def getPermissions(user, getPermFromServer)
-    @currentUser = user
+    @currentUser = nil
     if getPermFromServer
-       path = "/users/#{@currentUser}/permissions.xml"
+       path = "/users/#{user}/permissions.xml"
        @permissions = Permission.find(:all, :from => path)
+       if @permissions[0].error_id != 0
+          return @permissions[0].error_string
+       end
     end
+    @currentUser = user
 #    logger.debug "permissions of user #{@currentUser}: #{@permissions.inspect}"
     @permissionTree = Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
     constructPermissionTree()
@@ -99,11 +103,12 @@ class PermissionsController < ApplicationController
     @revoke_data = buildJavaVariable( @permissionTree, 0, false, false, @currentUser, "var revoke_data = \n [" )    
     @revoke_data += "];"
 #    logger.debug "Revoke Tree: #{@revoke_data}"
+    return "" # no error
   end
 
   def setPermission(user, grant)
     getPermissions(params[:user].rstrip, true)
-    error = false
+    error = ""
     for i in 0..@permissions.size-1 do
        if  @permissions[i].name == params[:id]
           if @permissions[i].grant != grant
@@ -117,18 +122,23 @@ class PermissionsController < ApplicationController
              path = "permissions/#{params[:id]}"
              response = perm.put(path, {}, perm.to_xml)
              retPerm = Hash.from_xml(response.body) 
-             logger.debug "Granting returns: #{retPerm.inspect}"
+             if grant
+                logger.debug "Granting returns: #{retPerm.inspect}"
+             else
+                logger.debug "Revoking returns: #{retPerm.inspect}"
+             end
              if retPerm["permissions"][0]["error_id"] == 0
                 @permissions[i].grant = grant
              else
-                error = true
+                error = retPerm["permissions"][0]["error_string"]
              end
           else
              logger.debug "Permission already set"
           end
        end
        # reset the rest of the subtree
-       if (@permissions[i].name.index(params[:id]+"-") == 0 &&
+       if (error == "" &&
+           @permissions[i].name.index(params[:id]+"-") == 0 &&
            @permissions[i].grant == true)
           perm = Permission.new()
           perm.id = @currentUser
@@ -144,32 +154,42 @@ class PermissionsController < ApplicationController
           if retPerm["permissions"][0]["error_id"] == 0
              @permissions[i].grant = false
           else
-             error = true
+             error = retPerm["permissions"][0]["error_string"]
           end
        end
     end
-    if error
+    if error != ""
        #build completely new
        getPermissions(params[:user].rstrip,true)
     else
        getPermissions(params[:user].rstrip,false)
     end
+    return error
   end
 
   def grant
-    setPermission(params[:user].rstrip, true)
+    error = setPermission(params[:user].rstrip, true)
+    if error == ""
+       flash[:notice] = "Permission has been granted."
+    else
+       flash[:error] = error
+    end
     render :action => "index" 
   end
 
   def revoke
-    setPermission(params[:user].rstrip, false)
+    error = setPermission(params[:user].rstrip, false)
+    if error == ""
+       flash[:notice] = "Permission has been revoked."
+    else
+       flash[:error] = error
+    end
     render :action => "index" 
   end
 
   def search
     setPermissions(controller_name)
-
-    getPermissions(params[:user].rstrip, true)
+    flash[:error] = getPermissions(params[:user].rstrip, true)
     render :action => "index" 
   end
 

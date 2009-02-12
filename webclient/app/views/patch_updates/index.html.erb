@@ -18,11 +18,6 @@
       </tr>
       <% counter=0 %>
       <% for patch_update in @patch_updates %>
-         <% if patch_update.error_id != 0 %>
-            <tr>
-               <td>Error ID: <%= patch_update.error_id -%> Error: <%= patch_update.error_string -%></td>
-            </tr>
-         <% else %>
             <% if counter==0 %>
              <tr>
              <% counter += 1 %>
@@ -40,10 +35,9 @@
               <td><%=h patch_update.repo %></td>
               <% if @installPermission == nil %>
                  <td><%= link_to image_tag("/images/add-icon.gif", :alt =>  "install"), 
-                         patch_update_path(patch_update.resolvableId), :confirm => 'Are you sure?', :method => :post, :action => "install" %></td>
+                         patch_update_path(patch_update.resolvableId), :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
               <% end %>
            </tr>
-         <% end %>
       <% end %>
    </table>
 </div>

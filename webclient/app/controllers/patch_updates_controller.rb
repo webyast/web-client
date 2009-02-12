@@ -11,11 +11,6 @@ class PatchUpdatesController < ApplicationController
     setPermissions(controller_name)
 
     @patch_updates = PatchUpdate.find(:all)
-    if params[:last_error] && params[:last_error] != 0
-       update = PatchUpdate.new( :error_id =>params[:last_error], 
-                                 :error_string=>params[:last_error_string] )
-       @patch_updates << update
-    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @patch_updates }
@@ -32,12 +27,11 @@ class PatchUpdatesController < ApplicationController
     response = @update.post(params[:id], {}, @update.to_xml)
     retUpdate = Hash.from_xml(response.body)    
     if retUpdate["patch_update"]["error_id"] != 0
-       redirect_to(patch_updates_url, 
-                   :last_error_string =>retUpdate["patch_update"]["error_string"], 
-                   :last_error =>retUpdate["patch_update"]["error_id"])
+       flash[:error] = retUpdate["patch_update"]["error_string"]
     else
-       redirect_to(patch_updates_url)
-    end
+       flash[:notice] = "Patch has been installed."
+    end       
+    redirect_to(patch_updates_url)
   end
 
 end

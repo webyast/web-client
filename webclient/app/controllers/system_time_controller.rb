@@ -37,7 +37,7 @@ class SystemTimeController < ApplicationController
        flash[:error] = t.error_string
        redirect_to :action => :index, :last_error_string =>t.error_string, :last_error =>t.error_id 
     else
-       flash[:notice] = 'Setting have been written.'
+       flash[:notice] = 'Settings have been written.'
        redirect_to :action => :index 
     end
   end
