@@ -2,14 +2,6 @@
 <h1>Systemtime</h1>
 <br>
 
-<% if @systemtime.error_id != 0 %>
-<p>
-   Error: <%= @systemtime.error_string -%>
-</p>
-<% end %>
-
-<% if @systemtime.error_id == 0 or @systemtime.error_id != 1 %>
-
 <% form_tag '/system_time/commit_time' do %>
   <div class="table">
     <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
@@ -43,9 +35,8 @@
 	  <td class="last"><%= text_field_tag "currenttime", @timeString, :disabled=>@writePermission  %></td>
        </tr>
     </table>
-    <p><%= submit_tag "Save", :disabled=>@writePermission -%></p>
+    <p><%= submit_tag "Save", :onclick=>"Element.show('progress')", :disabled=>@writePermission -%></p>
   </div>
-<% end %>
 <% end %>
 
 

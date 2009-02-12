@@ -47,6 +47,6 @@
 	<td class="last"><%= f.text_field :password %></td>
     </tr>
     </table>
-    <p><%= f.submit "Create" %><%= link_to 'Back', users_path, :class => "button" %></p>
+    <p><%= f.submit "Create", :onclick=>"Element.show('progress')" %><%= link_to 'Back', users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
   </div>
 <% end %>

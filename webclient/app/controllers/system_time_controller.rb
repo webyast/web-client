@@ -5,12 +5,6 @@ class SystemTimeController < ApplicationController
     setPermissions(controller_name)
 
     @systemtime = SystemTime.find(:one, :from => '/systemtime.xml')
-    if params[:last_error] && params[:last_error] != 0
-       @systemtime.error_id = params[:last_error]
-       if params[:last_error_string]
-          @systemtime.error_string = params[:last_error_string]
-       end
-    end
     if @systemtime.is_utc == true
       @is_utc = "checked" 
     else 
@@ -40,8 +34,10 @@ class SystemTimeController < ApplicationController
     t.validtimezones = "" #not needed anymore
     t.save
     if t.error_id != 0
+       flash[:error] = t.error_string
        redirect_to :action => :index, :last_error_string =>t.error_string, :last_error =>t.error_id 
     else
+       flash[:notice] = 'Setting have been written.'
        redirect_to :action => :index 
     end
   end

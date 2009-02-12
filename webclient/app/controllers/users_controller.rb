@@ -137,7 +137,11 @@ class UsersController < ApplicationController
     retUser = Hash.from_xml(response.body)    
     respond_to do |format|
       if retUser["user"]["error_id"] == 0
-        flash[:notice] = 'User was successfully updated.'
+        if params["commit"] == "Export SSH-Key"
+           flash[:notice] = 'SSH-Key was successfully exported.'
+        else
+           flash[:notice] = 'User was successfully updated.'
+        end
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
