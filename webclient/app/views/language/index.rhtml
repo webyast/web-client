@@ -11,10 +11,10 @@
        </tr>
        <tr>
 	  <td class="first" width="120"><strong>First Language</strong></td>
-  	  <td class="last"><%= select_tag "firstLanguage", options_for_select(@valid, @language.firstLanguage), :disabled=>@writePermission %></td>
+  	  <td class="last"><%= select_tag "first_language", options_for_select(@valid, @language.first_language), :disabled=>@writePermission %></td>
        </tr>
        <% first = true %>
-       <% @secondLanguages.each do |name,checked| %>
+       <% @second_languages.each do |name,checked| %>
           <tr class="bg">
              <% if first==true %>
                 <% first=false %>

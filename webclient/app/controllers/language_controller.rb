@@ -6,16 +6,16 @@ class LanguageController < ApplicationController
 
     @language = Language.find(:one, :from => '/language.xml')
     @valid = []
-    @secondLanguages = {}
+    @second_languages = {}
     splitSecondLanguages = []
-    if @language.secondLanguages
-       splitSecondLanguages = @language.secondLanguages.split(",")
+    if @language.second_languages
+       splitSecondLanguages = @language.second_languages.split(",")
     end
     @valid = @language.available.split("\n")
     @valid::each do |l|   
        dummy = l.split(" ")
-       if dummy.size>0 && dummy[0]==@language.firstLanguage
-          @language.firstLanguage = l
+       if dummy.size>0 && dummy[0]==@language.first_language
+          @language.first_language = l
        end
        checked = ""
        splitSecondLanguages::each do |s|
@@ -23,23 +23,23 @@ class LanguageController < ApplicationController
              checked = "checked"
           end
        end
-       @secondLanguages[l] = checked
+       @second_languages[l] = checked
     end
   end
 
   def commit_language
     lang = Language.find(:one, :from => '/language.xml')
-    dummy = params[:firstLanguage].split(" ")
-    lang.firstLanguage = dummy[0] #take index only
+    dummy = params[:first_language].split(" ")
+    lang.first_language = dummy[0] #take index only
     lang.available = "" #not needed anymore
-    lang.secondLanguages = ""
+    lang.second_languages = ""
     counter = 0
     params::each do |name,value|   
        if value=="LanguageSet"
           if counter==0
-             lang.secondLanguages = name
+             lang.second_languages = name
           else
-             lang.secondLanguages = lang.secondLanguages + "," + name
+             lang.second_languages = lang.second_languages + "," + name
           end
           counter = counter+1
        end
