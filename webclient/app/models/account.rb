@@ -20,7 +20,7 @@ class Account < ActiveRecord::Base
   def self.authenticate(login, passwd, service)
      l = Login.new()
      l.initServiceUrl(service)
-     ret = Login.create(:login => login, :password =>passwd, :remember_me => "1")
+     ret = Login.create(:login => login, :password =>passwd, :remember_me => true)
      if (ret and ret.attributes["login"] == "granted")
         @password = passwd
 	acc = find_by_login(login)
