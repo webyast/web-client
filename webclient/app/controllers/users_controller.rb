@@ -20,18 +20,18 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     setPermissions(controller_name)
-    @user = User.new(:noHome=>nil, 
+    @user = User.new(:no_home=>nil, 
                       :error_id =>0, 
-                      :defaultGroup=>nil, 
-                      :newLoginName=>nil, 
-                      :loginName=>nil, 
+                      :default_group=>nil, 
+                      :new_login_name=>nil, 
+                      :login_name=>nil, 
                       :groups=>nil,
-                      :homeDirectory=>nil,
-                      :fullName=>nil, 
+                      :home_directory=>nil,
+                      :full_name=>nil, 
                       :uid=>nil,
                       :sshkey=>nil, 
-                      :newUid=>nil, 
-                      :loginShell=>"/bin/bash", 
+                      :new_uid=>nil, 
+                      :login_shell=>"/bin/bash", 
                       :error_string=>nil, 
                       :password=>nil,
                       :type=>"local")
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     setPermissions(controller_name)
     @user = User.find(params[:id])
     @user.type = ""
-    @user.id = @user.loginName
+    @user.id = @user.login_name
     logger.debug "exportssh: #{@user.inspect}"
     respond_to do |format|
       format.html # exportssh.html.erb
@@ -60,25 +60,25 @@ class UsersController < ApplicationController
     setPermissions(controller_name)
     @user = User.find(params[:id])
     @user.type = ""
-    @user.id = @user.loginName
+    @user.id = @user.login_name
   end
 
   # POST /users
   # POST /users.xml
   def create
     dummy = User.new(params[:user])
-    @user = User.new(:noHome=>params[:nohome],
+    @user = User.new(:no_home=>params[:nohome],
                       :error_id =>0, 
-                      :defaultGroup=>dummy.defaultGroup, 
-                      :newLoginName=>nil, 
-                      :loginName=>dummy.loginName, 
+                      :default_group=>dummy.default_group, 
+                      :new_login_name=>nil, 
+                      :login_name=>dummy.login_name, 
                       :groups=>dummy.groups,
-                      :homeDirectory=>dummy.homeDirectory,
-                      :fullName=>dummy.fullName, 
+                      :home_directory=>dummy.home_directory,
+                      :full_name=>dummy.full_name, 
                       :uid=>dummy.uid,
                       :sshkey=>nil, 
-                      :newUid=>nil, 
-                      :loginShell=>dummy.loginShell, 
+                      :new_uid=>nil, 
+                      :login_shell=>dummy.login_shell, 
                       :error_string=>nil, 
                       :password=>dummy.password,
                       :type=>"local")
@@ -112,24 +112,24 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-    @user.newLoginName = nil
-    @user.newUid = nil
-    @user.id = @user.loginName
+    @user.new_login_name = nil
+    @user.new_uid = nil
+    @user.id = @user.login_name
     if params["commit"] == "Export SSH-Key"
        @user.sshkey = params["user"]["sshkey"]
        response = @user.put(:sshkey, {}, @user.to_xml)
     else
-       @user.defaultGroup = params["user"]["defaultGroup"]
+       @user.default_group = params["user"]["default_group"]
        @user.groups = params["user"]["groups"]
-       if @user.loginName != params["user"]["loginName"]
-          @user.newLoginName = params["user"]["loginName"]
+       if @user.login_name != params["user"]["login_name"]
+          @user.new_login_name = params["user"]["login_name"]
        end
-       @user.homeDirectory = params["user"]["homeDirectory"]
-       @user.fullName = params["user"]["fullName"]
+       @user.home_directory = params["user"]["home_directory"]
+       @user.full_name = params["user"]["full_name"]
        if @user.uid != params["user"]["uid"]
-          @user.newUid = params["user"]["uid"]
+          @user.new_uid = params["user"]["uid"]
        end
-       @user.loginShell = params["user"]["loginShell"]
+       @user.login_shell = params["user"]["login_shell"]
        @user.password = params["user"]["password"]
        @user.type = "local"
        response = @user.put(:update, {}, @user.to_xml)
@@ -148,8 +148,12 @@ class UsersController < ApplicationController
         @user.error_string = retUser["user"]["error_string"]
         @user.error_id = retUser["user"]["error_id"]
         flash[:error] = @user.error_string
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        if params["commit"] == "Export SSH-Key"
+           format.html { render :action => "exportssh" }
+        else
+           format.html { render :action => "edit" }
+        end
+	format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -158,7 +162,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.id = @user.loginName
+    @user.id = @user.login_name
     @user.type = "local"
     @user.destroy
 
