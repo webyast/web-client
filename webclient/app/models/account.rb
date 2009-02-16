@@ -32,11 +32,11 @@ class Account < ActiveRecord::Base
         acc.password = passwd
         acc.save
 	puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
-        l.setWebServiceAuth(ret.attributes["auth_token"].attributes["value"])
+        l.set_web_service_auth(ret.attributes["auth_token"].attributes["value"])
         return acc, ret.attributes["auth_token"].attributes["value"]
      else
   	puts "Authenticate Failure"
-        l.setWebServiceAuth("")
+        l.set_web_service_auth("")
         return nil, nil
      end
   end

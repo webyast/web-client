@@ -4,20 +4,20 @@ class ConfigNtpController < ApplicationController
 
   def show
 
-    @writePermission = "disabled"
+    @write_permission = "disabled"
     if (session[:controllers] &&
         session[:controllers]["services"] &&
         session[:controllers]["services"].write_permission)
-       @writePermission = nil
+       @write_permission = nil
     else
        #no write-config permission -> check write-services-config-ntp
        perm = Checkpermission.find("write-services-config")
        if perm.permission == "granted"
-          @writePermission = nil
+          @write_permission = nil
        else
           perm = Checkpermission.find("write-services-config-ntp")
           if perm.permission == "granted"
-             @writePermission = nil
+             @write_permission = nil
           end
        end
     end 

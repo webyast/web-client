@@ -14,12 +14,12 @@
 <br>
 <% form_tag '/permissions/search' do %>
   <p><label for="user">User</label>
-  <input type="text" name="user" size=25 value=<%= "#{@currentUser}" %> >
+  <input type="text" name="user" size=25 value=<%= "#{@current_user}" %> >
   <%= submit_tag "Search", :onclick=>"Element.show('progress')"%>
 <% end %>
 <br>
 <br>
-<% if @currentUser != nil && @currentUser.size>0 %>
+<% if @current_user != nil && @current_user.size>0 %>
    <table border="1" align="left" hspace=1 vspace=1>
    <colgroup>
    <col width="200" span="2">

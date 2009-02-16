@@ -2,7 +2,7 @@ class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
   def index
-    setPermissions(controller_name)
+    set_permissions(controller_name)
 
     @systemtime = SystemTime.find(:one, :from => '/systemtime.xml')
     if @systemtime.is_utc == true
@@ -10,12 +10,12 @@ class SystemTimeController < ApplicationController
     else 
       @is_utc = ""
     end
-    @timeString = @systemtime.currenttime.hour.to_s
-    @timeString << ":" 
-    @timeString << @systemtime.currenttime.min.to_s
+    @time_string = @systemtime.currenttime.hour.to_s
+    @time_string << ":" 
+    @time_string << @systemtime.currenttime.min.to_s
     @valid = []
-    @validStrings = @systemtime.validtimezones.split(" ")
-    @validStrings::each do |s|   
+    @valid_strings = @systemtime.validtimezones.split(" ")
+    @valid_strings::each do |s|   
        @valid << s
     end
   end
@@ -28,14 +28,14 @@ class SystemTimeController < ApplicationController
     else
        t.is_utc = false
     end
-    timeArray = params[:currenttime].split ":"
+    time_array = params[:currenttime].split ":"
     t.currenttime = DateTime.civil(params[:year].to_i, params[:month].to_i, 
-                                   params[:day].to_i, timeArray[0].to_i, timeArray[1].to_i)
+                                   params[:day].to_i, time_array[0].to_i, time_array[1].to_i)
     t.validtimezones = "" #not needed anymore
     t.save
     if t.error_id != 0
        flash[:error] = t.error_string
-       redirect_to :action => :index, :last_error_string =>t.error_string, :last_error =>t.error_id 
+       redirect_to :action => :index 
     else
        flash[:notice] = 'Settings have been written.'
        redirect_to :action => :index 

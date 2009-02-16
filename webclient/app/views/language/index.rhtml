@@ -11,7 +11,7 @@
        </tr>
        <tr>
 	  <td class="first" width="120"><strong>First Language</strong></td>
-  	  <td class="last"><%= select_tag "first_language", options_for_select(@valid, @language.first_language), :disabled=>@writePermission %></td>
+  	  <td class="last"><%= select_tag "first_language", options_for_select(@valid, @language.first_language), :disabled=>@write_permission %></td>
        </tr>
        <% first = true %>
        <% @second_languages.each do |name,checked| %>
@@ -22,11 +22,11 @@
              <% else %>
                 <td class="first"><strong> </strong></td>
              <% end %>
-             <td class="last"><input type="checkbox" name=<%=h name%> value="LanguageSet" <%= checked %> <%= "disabled=\"disabled\"" if @writePermission=="disabled" %>><%=h name%></td>
+             <td class="last"><input type="checkbox" name=<%=h name%> value="LanguageSet" <%= checked %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %>><%=h name%></td>
           </tr>
        <% end %>
     </table>
-    <p><%= submit_tag "Save", :confirm => 'This operation can take a while.', :disabled=>@writePermission -%></p>
+    <p><%= submit_tag "Save", :confirm => 'This operation can take a while.', :disabled=>@write_permission -%></p>
   </div>
 <% end %>
 

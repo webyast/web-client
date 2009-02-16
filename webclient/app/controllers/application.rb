@@ -12,46 +12,46 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  def setPermissions(controllerName)
+  def set_permissions(controller_name)
     if (session[:controllers] &&
-        session[:controllers][controllerName])
-       if session[:controllers][controllerName].write_permission
-          @writePermission = nil
+        session[:controllers][controller_name])
+       if session[:controllers][controller_name].write_permission
+          @write_permission = nil
        else
-          @writePermission = "disabled"
+          @write_permission = "disabled"
        end 
-       if session[:controllers][controllerName].read_permission
-          @readPermission = nil
+       if session[:controllers][controller_name].read_permission
+          @read_permission = nil
        else
-          @readPermission = "disabled"
+          @read_permission = "disabled"
        end 
-       if session[:controllers][controllerName].delete_permission
-          @deletePermission = nil
+       if session[:controllers][controller_name].delete_permission
+          @delete_permission = nil
        else
-          @deletePermission = "disabled"
+          @delete_permission = "disabled"
        end 
-       if session[:controllers][controllerName].new_permission
-          @newPermission = nil
+       if session[:controllers][controller_name].new_permission
+          @new_permission = nil
        else
-          @newPermission = "disabled"
+          @new_permission = "disabled"
        end 
-       if session[:controllers][controllerName].execute_permission
-          @executePermission = nil
+       if session[:controllers][controller_name].execute_permission
+          @execute_permission = nil
        else
-          @executePermission = "disabled"
+          @execute_permission = "disabled"
        end 
-       if session[:controllers][controllerName].install_permission
-          @installPermission = nil
+       if session[:controllers][controller_name].install_permission
+          @install_permission = nil
        else
-          @installPermission = "disabled"
+          @install_permission = "disabled"
        end 
     else
-       @executePermission = "disabled"
-       @newPermission = "disabled"
-       @deletePermission = "disabled"
-       @readPermission = "disabled"
-       @writePermission = "disabled"
-       @installPermission = "disabled"
+       @execute_permission = "disabled"
+       @new_permission = "disabled"
+       @delete_permission = "disabled"
+       @read_permission = "disabled"
+       @write_permission = "disabled"
+       @install_permission = "disabled"
     end
   end
 

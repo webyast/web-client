@@ -30,7 +30,7 @@
              <li <%= "class='active'" if active -%> >
              <span><span>
 	      <%= "<a href=\"/#{c[0]}\" onclick=\"Element.show('progress')\">" unless active -%>
-  	        <%= @controllers[c[0]].visibleName.capitalize -%>
+  	        <%= @controllers[c[0]].visible_name.capitalize -%>
 	      <%= "</a>" unless active -%>
 	    </span></span>
 	    </li>

@@ -6,7 +6,7 @@ class Login < MyActiveResource
        ActiveResource::Base.site = url
     end
 
-    def setWebServiceAuth (auth_token)
+    def set_web_service_auth (auth_token)
        ActiveResource::Base.password = auth_token
        ActiveResource::Base.user = ""
     end

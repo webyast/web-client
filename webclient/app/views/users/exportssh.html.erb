@@ -20,9 +20,9 @@
     </tr>
     <tr>
 	<td class="first"><strong>SHH Key</strong></td>
-	<td class="last"><%= f.text_field :sshkey, :disabled=>@writePermission %></td>
+	<td class="last"><%= f.text_field :sshkey, :disabled=>@write_permission %></td>
     </tr>
     </table>
-    <p><%= f.submit "Export SSH-Key", :onclick=>"Element.show('progress')", :disabled=>@writePermission %><%= link_to 'Back', users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
+    <p><%= f.submit "Export SSH-Key", :onclick=>"Element.show('progress')", :disabled=>@write_permission %><%= link_to 'Back', users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
   </div>
 <% end %>

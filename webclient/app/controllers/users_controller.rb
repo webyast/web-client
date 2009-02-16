@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    setPermissions(controller_name)
+    set_permissions(controller_name)
     @users = User.find(:all)
 
     respond_to do |format|
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    setPermissions(controller_name)
+    set_permissions(controller_name)
     @user = User.new(:no_home=>nil, 
                       :error_id =>0, 
                       :default_group=>nil, 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/exportssh
   def exportssh
-    setPermissions(controller_name)
+    set_permissions(controller_name)
     @user = User.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    setPermissions(controller_name)
+    set_permissions(controller_name)
     @user = User.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name

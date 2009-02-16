@@ -2,14 +2,14 @@ class LanguageController < ApplicationController
   before_filter :login_required
   layout 'main'
   def index
-    setPermissions(controller_name)
+    set_permissions(controller_name)
 
     @language = Language.find(:one, :from => '/language.xml')
     @valid = []
     @second_languages = {}
-    splitSecondLanguages = []
+    split_second_languages = []
     if @language.second_languages
-       splitSecondLanguages = @language.second_languages.split(",")
+       split_second_languages = @language.second_languages.split(",")
     end
     @valid = @language.available.split("\n")
     @valid::each do |l|   
@@ -18,7 +18,7 @@ class LanguageController < ApplicationController
           @language.first_language = l
        end
        checked = ""
-       splitSecondLanguages::each do |s|
+       split_second_languages::each do |s|
           if dummy.size>0 && dummy[0]==s
              checked = "checked"
           end

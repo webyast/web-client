@@ -46,35 +46,36 @@ class SessionsController < ApplicationController
     @password = session[:password]
     @host = session[:host]
 
-    createSessionTable = true
+    create_session_table = true
     if session[:controllers]!=nil && session[:controllers].size > 0
        #is at least one controller visible?
        session[:controllers].each do |key,controller|
           if controller.read_permission
-             createSessionTable = false
+             create_session_table = false
              break
           end
        end 
     end
-    if createSessionTable
+    if create_session_table
        #insert at least a session controller
-       modHash = Yast.new( )
-       modHash.install_permission=false
-       modHash.read_permission=true
-       modHash.delete_permission=false
-       modHash.new_permission=false
-       modHash.write_permission=true
-       modHash.description=""
-       modHash.execute_permission=false
-       modHash.path="session"
-       modHash.visibleName="session"
-       session[:controllers] = { "session"=>modHash }
+       mod_hash = Yast.new( )
+       mod_hash.install_permission=false
+       mod_hash.read_permission=true
+       mod_hash.delete_permission=false
+       mod_hash.new_permission=false
+       mod_hash.write_permission=true
+       mod_hash.description=""
+       mod_hash.execute_permission=false
+       mod_hash.path="session"
+       mod_hash.visible_name="session"
+       session[:controllers] = { "session"=>mod_hash }
     end
   end
 
   def create
     begin
-      self.current_account, auth_token = Account.authenticate(params[:login], params[:password],
+      self.current_account, auth_token = Account.authenticate(params[:login], 
+                                                            params[:password],
                                                             params[:hostname])
     rescue
     end
@@ -87,29 +88,29 @@ class SessionsController < ApplicationController
       
       #evaluate available modules
       @modules = Yast.find(:all)      
-      moduleHash = {}
-      @modules.each do |modHash|
-        mo = modHash.path
+      module_hash = {}
+      @modules.each do |mod_hash|
+        mo = mod_hash.path
         case mo
          when "services", "language", "users", "permissions"
-            modHash.visibleName = mo
-            moduleHash[mo] = modHash
+            mod_hash.visible_name = mo
+            module_hash[mo] = mod_hash
          when "systemtime"
-            modHash.visibleName = mo
-            moduleHash["system_time"] = modHash
+            mod_hash.visible_name = mo
+            module_hash["system_time"] = mod_hash
          when "patch_updates"
-            modHash.visibleName = "patches"
-            moduleHash[mo] = modHash
+            mod_hash.visible_name = "patches"
+            module_hash[mo] = mod_hash
          else
             logger.debug "module #{mo} will not be shown"
         end
       end
-      logger.debug "Available modules: #{moduleHash.inspect}"
-      session[:controllers] = moduleHash
+      logger.debug "Available modules: #{module_hash.inspect}"
+      session[:controllers] = module_hash
 
-      @shortHostName = session[:host]
-      if @shortHostName.index("://") != nil
-         @shortHostName = @shortHostName[@shortHostName.index("://")+3, @shortHostName.length-1] #extract "http(s)://"
+      @short_host_name = session[:host]
+      if @short_host_name.index("://") != nil
+         @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
       end
 
       render :partial =>"login_succeeded"

@@ -9,7 +9,7 @@
 	<th class="first" width=8%>Kind</th>
 	<th width=15%>Name</th>
 	<th width="100">Summary</th>
-        <% if @installPermission == nil %>
+        <% if @install_permission == nil %>
            <th width=15%>Source</th>
            <th class="last" width=5%>Install</th>
         <% else %>
@@ -33,7 +33,7 @@
               <td><%=h patch_update.name %></td>
               <td><%=h patch_update.summary %></td>
               <td><%=h patch_update.repo %></td>
-              <% if @installPermission == nil %>
+              <% if @install_permission == nil %>
                  <td><%= link_to image_tag("/images/add-icon.gif", :alt =>  "install"), 
                          patch_update_path(patch_update.resolvable_id), :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
               <% end %>

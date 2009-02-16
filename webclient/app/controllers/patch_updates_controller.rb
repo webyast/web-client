@@ -8,7 +8,7 @@ class PatchUpdatesController < ApplicationController
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
-    setPermissions(controller_name)
+    set_permissions(controller_name)
 
     @patch_updates = PatchUpdate.find(:all)
     respond_to do |format|
@@ -25,9 +25,9 @@ class PatchUpdatesController < ApplicationController
                                :error_id =>0, 
                                :error_string=>nil )
     response = @update.post(params[:id], {}, @update.to_xml)
-    retUpdate = Hash.from_xml(response.body)    
-    if retUpdate["patch_update"]["error_id"] != 0
-       flash[:error] = retUpdate["patch_update"]["error_string"]
+    ret_update = Hash.from_xml(response.body)    
+    if ret_update["patch_update"]["error_id"] != 0
+       flash[:error] = ret_update["patch_update"]["error_string"]
     else
        flash[:notice] = "Patch has been installed."
     end       

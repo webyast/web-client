@@ -12,30 +12,30 @@
        </tr>
        <tr>
 	  <td class="first" width="120"><strong>Timezone</strong></td>
-  	  <td class="last"><%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone), :disabled=>@writePermission %></td>
+  	  <td class="last"><%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone), :disabled=>@write_permission %></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>UTC (Universal Time Coordinated)</strong></td>
-	  <td class="last"><input type="checkbox" name="utc" value="true" <%= @is_utc %> <%= "disabled=\"disabled\"" if @writePermission=="disabled" %> ></td>
+	  <td class="last"><input type="checkbox" name="utc" value="true" <%= @is_utc %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %> ></td>
        </tr>
        <tr>
 	  <td class="first"><strong>Day</strong></td>
-	  <td class="last"><%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true, :disabled=>@writePermission %></td>
+	  <td class="last"><%= select_day @systemtime.currenttime.day, :prefix =>"day", :discard_type =>true, :disabled=>@write_permission %></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>Month</strong></td>
-	  <td class="last"><%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true, :disabled=>@writePermission %></td>
+	  <td class="last"><%= select_month @systemtime.currenttime.month, :prefix =>"month", :discard_type =>true, :disabled=>@write_permission %></td>
        </tr>
        <tr>
 	  <td class="first"><strong>Year</strong></td>
-	  <td class="last"><%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true, :disabled=>@writePermission %></td>
+	  <td class="last"><%= select_year @systemtime.currenttime.year, :prefix =>"year", :discard_type =>true, :disabled=>@write_permission %></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong>Time</strong></td>
-	  <td class="last"><%= text_field_tag "currenttime", @timeString, :disabled=>@writePermission  %></td>
+	  <td class="last"><%= text_field_tag "currenttime", @time_string, :disabled=>@write_permission  %></td>
        </tr>
     </table>
-    <p><%= submit_tag "Save", :onclick=>"Element.show('progress')", :disabled=>@writePermission -%></p>
+    <p><%= submit_tag "Save", :onclick=>"Element.show('progress')", :disabled=>@write_permission -%></p>
   </div>
 <% end %>
 

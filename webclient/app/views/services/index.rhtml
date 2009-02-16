@@ -38,23 +38,23 @@
 <h1>Services</h1>
 <br>
 
-<% for tableCounter in 0..@table.size-1 do %>
+<% for table_counter in 0..@table.size-1 do %>
    <div class="table">
       <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
       <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
       <table class="listing" cellpadding="0" cellspacing="0">
          <tr>
-           <% for columnCounter in 0..3 do %>
-              <% if @services.size > tableCounter*4+columnCounter %>
-                 <% if columnCounter == 0 %>
-    	            <th class="first" width=17%><%=h @services[tableCounter*4+columnCounter].link %></th>
-                 <% elsif columnCounter == 3 %>
-    	            <th class="last" width=17%><%=h @services[tableCounter*4+columnCounter].link %></th>
+           <% for column_counter in 0..3 do %>
+              <% if @services.size > table_counter*4+column_counter %>
+                 <% if column_counter == 0 %>
+    	            <th class="first" width=17%><%=h @services[table_counter*4+column_counter].link %></th>
+                 <% elsif column_counter == 3 %>
+    	            <th class="last" width=17%><%=h @services[table_counter*4+column_counter].link %></th>
                  <% else %>
-    	            <th width=17%><%=h @services[tableCounter*4+columnCounter].link %></th>
+    	            <th width=17%><%=h @services[table_counter*4+column_counter].link %></th>
                  <% end %>
               <% else %>
-                 <% if columnCounter == 3 %>
+                 <% if column_counter == 3 %>
     	            <th class="last" width=17%></th>
                  <% else %>
     	            <th width=17%></th>
@@ -62,39 +62,39 @@
               <% end %>
            <% end %>
          </tr>
-         <% for lineCounter in 0..@table[tableCounter]-1 do %>         
+         <% for line_counter in 0..@table[table_counter]-1 do %>         
             <tr>
-               <% for columnCounter in 0..3 do %>
-                  <% if @services.size > tableCounter*4+columnCounter %>
-                     <% commandList = @services[tableCounter*4+columnCounter].commandList %>
-                     <% if lineCounter < commandList.size %>
+               <% for column_counter in 0..3 do %>
+                  <% if @services.size > table_counter*4+column_counter %>
+                     <% command_list = @services[table_counter*4+column_counter].command_list %>
+                     <% if line_counter < command_list.size %>
                         <td>
-                            <% if commandList[lineCounter][:name] == "configure" %>
-                               <%= link_to image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon"), 
+                            <% if command_list[line_counter][:name] == "configure" %>
+                               <%= link_to image_tag("#{command_list[line_counter][:icon]}", :alt =>  "icon"), 
                                                      :id=>"config",
-                                                     :action =>@services[tableCounter*4+columnCounter].link %>
-                               <strong><%= link_to "#{commandList[lineCounter][:name]}",  :id=>"config",
-                                                     :action =>@services[tableCounter*4+columnCounter].link %></strong>
+                                                     :action =>@services[table_counter*4+column_counter].link %>
+                               <strong><%= link_to "#{command_list[line_counter][:name]}",  :id=>"config",
+                                                     :action =>@services[table_counter*4+column_counter].link %></strong>
                             <% else %>
-                               <% if @executePermission == nil %>
-                                  <%= link_to_remote image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon"), 
+                               <% if @execute_permission == nil %>
+                                  <%= link_to_remote image_tag("#{command_list[line_counter][:icon]}", :alt =>  "icon"), 
                                                    :update => "resultdlg",
-						   :url=>{ :id=> commandList[lineCounter][:name], 
+						   :url=>{ :id=> command_list[line_counter][:name], 
                                                            :action => "execute", 
-                                                           :service_id=> @services[tableCounter*4+columnCounter].link },
+                                                           :service_id=> @services[table_counter*4+column_counter].link },
 						   :loading => "Element.show('progress');",
 						   :complete => "Element.hide('progress'); showResultDialog();" %>
-                                  <strong><%= link_to_remote "#{commandList[lineCounter][:name]}",
+                                  <strong><%= link_to_remote "#{command_list[line_counter][:name]}",
                                                    :update => "resultdlg",
-						   :url=>{ :id=> commandList[lineCounter][:name], 
+						   :url=>{ :id=> command_list[line_counter][:name], 
                                                            :action => "execute", 
-                                                           :service_id=> @services[tableCounter*4+columnCounter].link },
+                                                           :service_id=> @services[table_counter*4+column_counter].link },
 						   :loading => "Element.show('progress');",
 						   :complete => "Element.hide('progress'); showResultDialog();"
                                           %></strong>
                                <% else %>
-                                  <%= image_tag("#{commandList[lineCounter][:icon]}", :alt =>  "icon") %>
-                                  <strong><span style="color: #BDBDBD"><%="#{commandList[lineCounter][:name]}" -%></span></strong>
+                                  <%= image_tag("#{command_list[line_counter][:icon]}", :alt =>  "icon") %>
+                                  <strong><span style="color: #BDBDBD"><%="#{command_list[line_counter][:name]}" -%></span></strong>
                                <% end %> 
                             <% end %> 
                         </td>
@@ -102,7 +102,7 @@
                         <td> </td>
                      <% end %> 
                   <% else %>
-                     <% if columnCounter == 3 %>
+                     <% if column_counter == 3 %>
     	                <td class="last" width=17%></td>
                      <% else %>
       	                <td width=17%></td>
