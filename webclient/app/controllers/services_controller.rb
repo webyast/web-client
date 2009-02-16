@@ -14,22 +14,22 @@ class ServicesController < ApplicationController
     table_counter = 1
     @services.each do | s |
        @services[counter-1].command_list = []
-       s.commands.split(",").each do | comm |
-          case comm
+       s.commands.each do | comm |
+          case comm.name
             when "start", "run"
-               c = {:name=>comm, :icon=>"/images/start.png" }
+               c = {:name=>comm.name, :icon=>"/images/start.png" }
             when "stop"
-               c = {:name=>comm, :icon=>"/images/stop.png" }
+               c = {:name=>comm.name, :icon=>"/images/stop.png" }
             when "restart", "try-restart"
-               c = {:name=>comm, :icon=>"/images/restart.png" }
+               c = {:name=>comm.name, :icon=>"/images/restart.png" }
             when "reload", "force-reload"
-               c = {:name=>comm, :icon=>"/images/reload.png" }
+               c = {:name=>comm.name, :icon=>"/images/reload.png" }
             when "status"
-               c = {:name=>comm, :icon=>"/images/status.png" }
+               c = {:name=>comm.name, :icon=>"/images/status.png" }
             when "probe"
-               c = {:name=>comm, :icon=>"/images/probe.png" }
+               c = {:name=>comm.name, :icon=>"/images/probe.png" }
             else
-               c = {:name=>comm, :icon=>"/images/empty.png" }
+               c = {:name=>comm.name, :icon=>"/images/empty.png" }
           end
           @services[counter-1].command_list << c
        end
