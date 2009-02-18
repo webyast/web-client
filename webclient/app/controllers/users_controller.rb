@@ -25,7 +25,8 @@ class UsersController < ApplicationController
                       :default_group=>nil, 
                       :new_login_name=>nil, 
                       :login_name=>nil, 
-                      :groups=>nil,
+                      :groups=>[],
+                      :grp_string=>nil,
                       :home_directory=>nil,
                       :full_name=>nil, 
                       :uid=>nil,
@@ -34,8 +35,9 @@ class UsersController < ApplicationController
                       :login_shell=>"/bin/bash", 
                       :error_string=>nil, 
                       :password=>nil,
-                      :type=>"local")
-    @user.id=nil
+                      :type=>"local", 
+                      :id=>nil)
+   @user.id = nil
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -61,18 +63,34 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
+    @user.grp_string = ""
+    counter = 0
+    @user.grp_string = ""
+    @user.groups.each do |group|
+       if counter == 0
+          @user.grp_string = group.id
+       else
+          @user.grp_string += ",#{group.id}"
+       end
+       counter += 1
+    end
   end
 
   # POST /users
   # POST /users.xml
   def create
     dummy = User.new(params[:user])
+    dummy.groups = []
+    dummy.grp_string.split(",").each do |group|
+       dummy.groups << User::Group.new( :id=>group.strip)
+    end
     @user = User.new(:no_home=>params[:nohome],
                       :error_id =>0, 
                       :default_group=>dummy.default_group, 
                       :new_login_name=>nil, 
                       :login_name=>dummy.login_name, 
                       :groups=>dummy.groups,
+                      :grp_string=>dummy.groups,
                       :home_directory=>dummy.home_directory,
                       :full_name=>dummy.full_name, 
                       :uid=>dummy.uid,
@@ -120,7 +138,10 @@ class UsersController < ApplicationController
        response = @user.put(:sshkey, {}, @user.to_xml)
     else
        @user.default_group = params["user"]["default_group"]
-       @user.groups = params["user"]["groups"]
+       @user.groups = []
+       params["user"]["grp_string"].split(",").each do |group|
+          @user.groups << User::Group.new( :id=>group.strip )
+       end
        if @user.login_name != params["user"]["login_name"]
           @user.new_login_name = params["user"]["login_name"]
        end

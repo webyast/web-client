@@ -14,9 +14,8 @@ class SystemTimeController < ApplicationController
     @time_string << ":" 
     @time_string << @systemtime.currenttime.min.to_s
     @valid = []
-    @valid_strings = @systemtime.validtimezones.split(" ")
-    @valid_strings::each do |s|   
-       @valid << s
+    @systemtime.validtimezones::each do |s|   
+       @valid << s.id
     end
   end
 
@@ -31,7 +30,7 @@ class SystemTimeController < ApplicationController
     time_array = params[:currenttime].split ":"
     t.currenttime = DateTime.civil(params[:year].to_i, params[:month].to_i, 
                                    params[:day].to_i, time_array[0].to_i, time_array[1].to_i)
-    t.validtimezones = "" #not needed anymore
+    t.validtimezones = [] #not needed anymore
     t.save
     if t.error_id != 0
        flash[:error] = t.error_string

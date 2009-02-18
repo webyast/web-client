@@ -90,7 +90,7 @@ class PermissionsController < ApplicationController
        end
     end
     @current_user = user
-#    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
+    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
     @permission_tree = Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
     construct_permission_tree()
 #    logger.debug "Complete Tree: #{@permission_tree.to_xml}"
