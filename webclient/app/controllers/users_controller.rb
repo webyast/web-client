@@ -37,7 +37,7 @@ class UsersController < ApplicationController
                       :password=>nil,
                       :type=>"local", 
                       :id=>nil)
-   @user.id = nil
+    @user.id = nil
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -80,9 +80,13 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     dummy = User.new(params[:user])
+    dummy.grp_string = params[:user][:grp_string] #do not know, why this will not be assigned in the constructor
+
     dummy.groups = []
-    dummy.grp_string.split(",").each do |group|
-       dummy.groups << User::Group.new( :id=>group.strip)
+    if dummy.grp_string != nil
+       dummy.grp_string.split(",").each do |group|
+          dummy.groups << { :id=>group.strip }
+       end
     end
     @user = User.new(:no_home=>params[:nohome],
                       :error_id =>0, 
@@ -90,7 +94,7 @@ class UsersController < ApplicationController
                       :new_login_name=>nil, 
                       :login_name=>dummy.login_name, 
                       :groups=>dummy.groups,
-                      :grp_string=>dummy.groups,
+                      :grp_string=>dummy.grp_string,
                       :home_directory=>dummy.home_directory,
                       :full_name=>dummy.full_name, 
                       :uid=>dummy.uid,
@@ -100,7 +104,6 @@ class UsersController < ApplicationController
                       :error_string=>nil, 
                       :password=>dummy.password,
                       :type=>"local")
-
     retUser = {}
     #Only UID greater than 1000 are allowed for local user
     if @user.uid.to_i < 1000    
@@ -139,8 +142,10 @@ class UsersController < ApplicationController
     else
        @user.default_group = params["user"]["default_group"]
        @user.groups = []
-       params["user"]["grp_string"].split(",").each do |group|
-          @user.groups << User::Group.new( :id=>group.strip )
+       if params["user"]["grp_string"] != nil
+          params["user"]["grp_string"].split(",").each do |group|
+             @user.groups << User::Group.new( :id=>group.strip )
+          end
        end
        if @user.login_name != params["user"]["login_name"]
           @user.new_login_name = params["user"]["login_name"]
