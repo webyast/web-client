@@ -24,12 +24,7 @@ class ConfigNtpController < ApplicationController
 
     @ntp = ConfigNtp.find(:one, :from => '/services/ntp/config.xml')
     logger.debug "ConfigNtp: #{@ntp.inspect}"
-    if params[:last_error] && params[:last_error] != 0
-       @ntp.error_id = params[:last_error]
-       if params[:last_error_string]
-          @ntp.error_string = params[:last_error_string]
-       end
-    end
+
     if @ntp.enabled == true
       @is_enabled = "checked" 
     else 
@@ -61,10 +56,11 @@ class ConfigNtpController < ApplicationController
     response = @ntp.put(:config, {}, @ntp.to_xml)
     retNtp = Hash.from_xml(response.body)    
     if retNtp["config_ntp"]["error_id"] != 0
-       redirect_to :action => :show, :last_error_string =>retNtp["config_ntp"]["error_string"], :last_error =>retNtp["config_ntp"]["error_id"]
+       flash[:error] = retNtp["config_ntp"]["error_string"]
     else
-       redirect_to :action => :show
+        flash[:notice] = _("Settings have been written.")
     end
+    redirect_to :action => :show
   end
 
 end

@@ -116,7 +116,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if retUser["user"]["error_id"] == 0
-        flash[:notice] = 'User was successfully created.'
+        flash[:notice] = _('User was successfully created.')
         format.html { redirect_to(users_url) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -164,9 +164,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if retUser["user"]["error_id"] == 0
         if params["commit"] == "Export SSH-Key"
-           flash[:notice] = 'SSH-Key was successfully exported.'
+           flash[:notice] = _('SSH-Key was successfully exported.')
         else
-           flash[:notice] = 'User was successfully updated.'
+           flash[:notice] = _('User was successfully updated.')
         end
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }

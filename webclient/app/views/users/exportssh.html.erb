@@ -1,4 +1,4 @@
-<h1>Export SSH-Key</h1>
+<h1><%=_("Export SSH-Key")%></h1>
 <br>
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
@@ -8,21 +8,21 @@
     <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
     <table class="listing form" cellpadding="0" cellspacing="0">
     <tr>
- 	<th class="full" colspan="2">User</th>
+ 	<th class="full" colspan="2"><%=_("User")%></th>
     </tr>
     <tr>
-	<td class="first" width="120"><strong>Login Name</strong></td>
+	<td class="first" width="120"><strong><%=_("Login Name")%></strong></td>
 	<td class="last"><%=h @user.login_name %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong>Home Directory</strong></td>
+	<td class="first"><strong><%=_("Home Directory")%></strong></td>
 	<td class="last"><%=h @user.home_directory %></td>
     </tr>
     <tr>
-	<td class="first"><strong>SHH Key</strong></td>
+	<td class="first"><strong><%=_("SHH Key")%></strong></td>
 	<td class="last"><%= f.text_field :sshkey, :disabled=>@write_permission %></td>
     </tr>
     </table>
-    <p><%= f.submit "Export SSH-Key", :onclick=>"Element.show('progress')", :disabled=>@write_permission %><%= link_to 'Back', users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
+    <p><%= f.submit _("Export SSH-Key"), :commit=>"Export SSH-Key", :onclick=>"Element.show('progress')", :disabled=>@write_permission %><%= link_to _('Back'), users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
   </div>
 <% end %>

@@ -67,7 +67,6 @@ class SessionsController < ApplicationController
        mod_hash.description=""
        mod_hash.execute_permission=false
        mod_hash.path="session"
-       mod_hash.visible_name="session"
        session[:controllers] = { "session"=>mod_hash }
     end
   end
@@ -85,22 +84,17 @@ class SessionsController < ApplicationController
       session[:user] = params[:login]
       session[:password] = params[:password]
       session[:host] = params[:hostname]
-      
+
       #evaluate available modules
       @modules = Yast.find(:all)      
       module_hash = {}
       @modules.each do |mod_hash|
         mo = mod_hash.path
         case mo
-         when "services", "language", "users", "permissions"
-            mod_hash.visible_name = mo
+         when "services", "language", "users", "permissions", "patch_updates"
             module_hash[mo] = mod_hash
          when "systemtime"
-            mod_hash.visible_name = mo
             module_hash["system_time"] = mod_hash
-         when "patch_updates"
-            mod_hash.visible_name = "patches"
-            module_hash[mo] = mod_hash
          else
             logger.debug "module #{mo} will not be shown"
         end
@@ -155,7 +149,7 @@ class SessionsController < ApplicationController
      
      cookies.delete :auth_token
      reset_session
-     flash[:notice] = "You have been logged out."
+     flash[:notice] = _("You have been logged out.")
      redirect_back_or_default('/')
   end
 end

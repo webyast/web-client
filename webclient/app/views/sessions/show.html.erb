@@ -56,19 +56,19 @@
       <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
       <table class="listing form" cellpadding="0" cellspacing="0">
       <tr>
-	  <th class="full" colspan="2">User</th>
+	  <th class="full" colspan="2"><%=_("User")%></th>
       </tr>
       <tr>
-	  <td class="first" ><strong>Login</strong></td>
+	  <td class="first" ><strong><%=_("Login")%></strong></td>
 	  <td class="last" ><%= text_field_tag 'login', @user %></td>
       </tr>
       <tr class="bg">
-	  <td class="first"><strong>Password</strong></td>
+	  <td class="first"><strong><%=_("Password")%></strong></td>
           <td class="last"><%= password_field_tag 'password', @password %></td>
       </tr>
       </table>
 
-      <p><%= submit_tag 'Connect' %><%= link_to 'Back', session_path, :class => "button"%></p>
+      <p><%= submit_tag _('Connect') %><%= link_to _('Back'), session_path, :class => "button"%></p>
    </div>
    </div>
 </div>
@@ -79,7 +79,7 @@
    <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
    <table class="listing form" cellpadding="0" cellspacing="0">
    <tr>
-	<th class="full" colspan="2">YaST-Web-Services</th>
+	<th class="full" colspan="2"><%=_("YaST-Web-Services")%></th>
    </tr>
    <% counter = 1
       for webservice in @webservices %>
@@ -110,7 +110,7 @@
       <% end %>         
    </table>
    <div class="select">
-       <%= link_to "<strong>[Configure]</strong>", :controller => 'webservices' -%><p/>
+       <%= link_to _("<strong>[Configure]</strong>"), :controller => 'webservices' -%><p/>
     </div>
 </div>
 <% end -%>

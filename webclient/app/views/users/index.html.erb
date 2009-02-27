@@ -1,4 +1,4 @@
-<h1>Local User</h1>
+<h1><%=_("Local User")%></h1>
 <br>
 
 <div class="table">
@@ -6,13 +6,13 @@
    <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
    <table class="listing" cellpadding="0" cellspacing="0">
       <tr>
-	<th class="first" width=150>Login</th>
-	<th width=8%>Edit</th>
+	<th class="first" width=150><%=_("Login")%></th>
+	<th width=8%><%=_("Edit")%></th>
         <% if @delete_permission == nil %>
-           <th width=8%>SSH-Key</th>
-           <th class="last" width=8%>Delete</th>
+           <th width=8%><%=_("SSH-Key")%></th>
+           <th class="last" width=8%><%=_("Delete")%></th>
         <% else %>
-           <th class="last" width=8%>SSH-Key</th>
+           <th class="last" width=8%><%=_("SSH-Key")%></th>
         <% end %>
       </tr>
       <% for user in @users %>
@@ -27,7 +27,7 @@
               <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(user.login_name), :onclick=>"Element.show('progress')" %></td>
               <% if @delete_permission == nil %>
                  <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
-                              user_path(user.login_name), :confirm => 'Are you sure?', :method => :delete %></td>
+                              user_path(user.login_name), :confirm => _('Are you sure?'), :method => :delete %></td>
               <% end %>
            </tr>
          <% end %>
@@ -35,7 +35,7 @@
    </table>
    <% if @new_permission == nil %>
       <div class="select">
-          <%= link_to "<strong>[New User]</strong>", new_user_path, :onclick=>"Element.show('progress')" -%><p/>
+          <%= link_to _("<strong>[New User]</strong>"), new_user_path, :onclick=>"Element.show('progress')" -%><p/>
       </div>
    <% end %>
 </div>

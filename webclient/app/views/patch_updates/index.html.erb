@@ -1,4 +1,4 @@
-<h1>Available Patches</h1>
+<h1><%=_("Available Patches")%></h1>
 <br>
 
 <div class="table">
@@ -6,14 +6,14 @@
    <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
    <table class="listing" cellpadding="0" cellspacing="0">
       <tr>
-	<th class="first" width=8%>Kind</th>
-	<th width=15%>Name</th>
-	<th width="100">Summary</th>
+	<th class="first" width=8%><%=_("Kind")%></th>
+	<th width=15%><%=_("Name")%></th>
+	<th width="100"><%=_("Summary")%></th>
         <% if @install_permission == nil %>
-           <th width=15%>Source</th>
-           <th class="last" width=5%>Install</th>
+           <th width=15%><%=_("Source")%></th>
+           <th class="last" width=5%><%=_("Install")%></th>
         <% else %>
-           <th class="last" width=15%>Source</th>
+           <th class="last" width=15%><%=_("Source")%></th>
         <% end %>
       </tr>
       <% counter=0 %>

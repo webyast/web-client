@@ -73,9 +73,9 @@ class ServicesController < ApplicationController
     ret_service = Hash.from_xml(response.body)
     logger.debug "returns #{ret_service["service"].inspect}"
     @result_string = ret_service["service"]["error_string"]
-    @error_string = "failed"
+    @error_string = _("failed")
     if ret_service["service"]["error_id"]=="0"
-       @error_string = "success"
+       @error_string = _("success")
     end
     render (:partial =>'result')
   end

@@ -1,4 +1,4 @@
-<h1>YaST-Web-Services</h1>
+<h1><%=_("YaST-Web-Services")%></h1>
 
 <div class="table">
    <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
@@ -6,9 +6,9 @@
    <table class="listing" cellpadding="0" cellspacing="0">
       <tr>
 	<th class="first" width=25%>URL</th>
-	<th width="100">Description</th>
-	<th width=8%>Edit</th>
-	<th class="last" width=8%>Delete</th>
+	<th width="100"><%=_("Description")%></th>
+	<th width=8%><%=_("Edit")%></th>
+	<th class="last" width=8%><%=_("Delete")%></th>
       </tr>
       <% for webservice in @webservices %>
          <tr>
@@ -16,13 +16,13 @@
             <td><%=h webservice.desc %></td>
             <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_webservice_path(webservice) %></td>
             <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
-                              webservice, :confirm => 'Are you sure?', :method => :delete %></td>
+                              webservice, :confirm => _('Are you sure?'), :method => :delete %></td>
         </tr>
       <% end %>
    </table>
    <div class="select">
-       <%= link_to "<strong>[New YaST-Web-Service]</strong>", new_webservice_path -%><p/>
+       <%= link_to _("<strong>[New YaST-Web-Service]</strong>"), new_webservice_path -%><p/>
     </div>
 </div>
-<a href="/" class="button">Back</a>
+<a href="/" class="button"><%=_("Back")%></a>
 

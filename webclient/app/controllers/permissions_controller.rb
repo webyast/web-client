@@ -90,7 +90,7 @@ class PermissionsController < ApplicationController
        end
     end
     @current_user = user
-    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
+#    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
     @permission_tree = Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
     construct_permission_tree()
 #    logger.debug "Complete Tree: #{@permission_tree.to_xml}"
@@ -170,7 +170,7 @@ class PermissionsController < ApplicationController
   def grant
     error = set_permission(params[:user].rstrip, true)
     if error == ""
-       flash[:notice] = "Permission has been granted."
+       flash[:notice] = _("Permission has been granted.")
     else
        flash[:error] = error
     end
@@ -180,7 +180,7 @@ class PermissionsController < ApplicationController
   def revoke
     error = set_permission(params[:user].rstrip, false)
     if error == ""
-       flash[:notice] = "Permission has been revoked."
+       flash[:notice] = _("Permission has been revoked.")
     else
        flash[:error] = error
     end

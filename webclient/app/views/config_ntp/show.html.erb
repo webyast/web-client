@@ -1,39 +1,31 @@
-<h1>NTP Server</h1>
+<h1><%=_("NTP Server")%></h1>
 <br>
 
-<% if @ntp.error_id != 0 %>
-<p>
-   Error: <%= @ntp.error_string -%>
-</p>
-<% end %>
-
-<% if @ntp.error_id == 0 or @ntp.error_id != 1 %>
-
- <% form_tag 'config' do %>
+<% form_tag 'config' do %>
   <div class="table">
     <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
     <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
     <table class="listing form" cellpadding="0" cellspacing="0">
        <tr>
- 	  <th class="full" colspan="2">Settings</th>
+ 	  <th class="full" colspan="2"><%=_("Settings")%></th>
        </tr>
        <tr>
-	  <td class="first" width="120"><strong>Enabled</strong></td>
+	  <td class="first" width="120"><strong><%=_("Enabled")%></strong></td>
   	  <td class="last"><input type="checkbox" name="enabled" value="true" <%= @is_enabled %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %>></td>
        </tr>
        <tr class="bg">
-	  <td class="first"><strong>Use random server</strong></td>
+	  <td class="first"><strong><%=_("Use random server")%></strong></td>
 	  <td class="last"><input type="checkbox" name="use_random_server" value="true" <%= @is_use_random_server %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %>></td>
        </tr>
        <tr>
-	  <td class="first"><strong>Manual Servers</strong></td>
+	  <td class="first"><strong><%=_("Manual Servers")%></strong></td>
 	  <td class="last"><%= text_field_tag "manual_server", @ntp.manual_server , :disabled=>@write_permission%></td>
        </tr>
     </table>
-    <p><%= submit_tag "Save", :disabled=>@write_permission -%><%= link_to 'Back', {:controller => 'services'}, :class => "button" %></p>
+    <p><%= submit_tag _("Save"), :disabled=>@write_permission -%><%= link_to _('Back'), {:controller => 'services'}, :class => "button" %></p>
   </div>
- <% end %>
 <% end %>
+
 
 
 

@@ -23,31 +23,19 @@
     </div>
     <ul id="top-navigation">
       <div id="tabmenue">
-         <% @controllers = session[:controllers] 
-          @controllers.sort.each do |c|
-  	  active = (controller.controller_name == c[0]) 
-          if @controllers[c[0]].read_permission -%>
-             <li <%= "class='active'" if active -%> >
-             <span><span>
-	      <%= "<a href=\"/#{c[0]}\" onclick=\"Element.show('progress')\">" unless active -%>
-  	        <%= @controllers[c[0]].visible_name.capitalize -%>
-	      <%= "</a>" unless active -%>
-	    </span></span>
-	    </li>
-          <% end -%>
-         <% end -%>
+         <%= render(:partial => "sessions/controllers")%>
       </div>
     </ul>
   </div>
   <div id="middle">
      <div id="left-column">
-      <h3>Session</h3>
+      <h3><%=_("Session")%></h3>
       <ul class="nav">
-	<li><a href="/session">Choose host</a></li>
+	<li><a href="/session"><%=_("Choose host")%></a></li>
         <div id="logout">
            <% user = session[:user]
               if user -%>
-    	      <li><a href="/logout">Logout</a></li>
+    	      <li><a href="/logout"><%=_("Logout")%></a></li>
            <% end -%>
         </div>
       </ul>
@@ -60,12 +48,13 @@
              end -%>
              <% user = session[:user] -%>
              <div class="box">
-               <p>Connected Host</p>
-               <p>Name: <%= host -%> <p>
-               User: <%= user -%>
+               <p><%=_("Connected Host")%></p>
+               <p><%=_("Name:")%> <%= host -%> <p>
+               <%=_("User:")%> <%= user -%>
              </div>
            <% end -%>
       </div>
+      <%= show_language %>
     </div>
     <div id="center-column">
       <div class="top-bar">
@@ -99,27 +88,27 @@
       </div>
     </div>
     <div id="right-column">
-      <strong class="h">INFO</strong>
-      <div class="box">This is a sample web-UI for YaST-as-a-webservice.</div>
+      <strong class="h"><%=_("INFO")%></strong>
+      <div class="box"><%=_("This is a sample web-UI for YaST-as-a-webservice.")%></div>
       <img src="/images/n-geeko.png"/>
       <br/>
-      <span class="h">Authors</span>
+      <span class="h"><%=_("Authors")%></span>
       <div class="box">
        <ul class="nav">
         <li><a href="mailto:schubi@suse.de">Stefan Schubert</a></li>
 	<li><a href="mailto:kkaempf@suse.de">Klaus K&auml;mpf</a></li>
 	<li><a href="mailto:dmacvicar@suse.de">D. Mac-Vicar Prett</a></li>
-	<li class="last"><a href="mailto:yast-devel@opensuse.org">Others</a></li>
+	<li class="last"><a href="mailto:yast-devel@opensuse.org"><%=_("Others")%></a></li>
        </ul>
       </div>
-      <span class="h">Links</span>
+      <span class="h"><%=_("Links")%></span>
       <div class="box">
        <ul class="nav">
-        <li><a href="http://en.opensuse.org/YaST">About YaST</a></li>
-        <li><a href="http://www.rubyonrails.org">About Rails</a></li>
-        <li><a href="http://www.webresourcesdepot.com/free-admin-template-for-web-applications">About used CSS</a></li>
-        <li><a href="http://www.famfamfam.com/">About used icons</a></li>
-        <li class="last"><a href="http://www.freedesktop.org">About PolicyKit</a></li>
+        <li><a href="http://en.opensuse.org/YaST"><%=_("About YaST")%></a></li>
+        <li><a href="http://www.rubyonrails.org"><%=_("About Rails")%></a></li>
+        <li><a href="http://www.webresourcesdepot.com/free-admin-template-for-web-applications"><%=_("About used CSS")%></a></li>
+        <li><a href="http://www.famfamfam.com/"><%=_("About used icons")%></a></li>
+        <li class="last"><a href="http://www.freedesktop.org"><%=_("About PolicyKit")%></a></li>
        </ul>
       </div>
       <br/>
@@ -150,7 +139,7 @@
       <br/>
       <br/>
       <div id="progress" style="display:none;">
-	<%= image_tag("/images/working.gif") %>...Wait...
+	<%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
       </div>
     </div>
   </div>

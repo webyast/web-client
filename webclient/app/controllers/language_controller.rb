@@ -43,7 +43,7 @@ class LanguageController < ApplicationController
      if lang.error_id != 0
         flash[:error] = lang.error_string
      else
-        flash[:notice] = "Settings have been written."
+        flash[:notice] = _("Settings have been written.")
      end       
      redirect_to :action => :index 
   end

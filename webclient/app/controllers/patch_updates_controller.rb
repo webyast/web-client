@@ -29,7 +29,7 @@ class PatchUpdatesController < ApplicationController
     if ret_update["patch_update"]["error_id"] != 0
        flash[:error] = ret_update["patch_update"]["error_string"]
     else
-       flash[:notice] = "Patch has been installed."
+       flash[:notice] = _("Patch has been installed.")
     end       
     redirect_to(patch_updates_url)
   end
