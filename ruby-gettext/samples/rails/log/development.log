@@ -1,0 +1,290 @@
+# Logfile created on Wed Feb 25 14:31:16 +0100 2009DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: schema_migrations: SELECT version FROM schema_migrations[0m
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: schema_migrations: SELECT version FROM schema_migrations[0m
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: schema_migrations: SELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000380)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000268)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.017189)[0m   [0mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;36;1mSQL (0.007980)[0m   [0;1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;35;1mSQL (0.000482)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000588)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateArticles (1)
+  [4;35;1mSQL (0.000147)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.010796)[0m   [0;1mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT '' NOT NULL, "description" text DEFAULT '' NOT NULL, "lastupdate" date DEFAULT NULL NULL, "created_at" datetime DEFAULT NULL NULL, "updated_at" datetime DEFAULT NULL NULL) [0m
+  [4;35;1mSQL (0.127384)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('1')[0m
+  [4;36;1mSQL (0.000358)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.000373)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.000121)[0m   [0;1mPRAGMA index_list("articles")[0m
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+  [4;36;1mSQL (0.000856)[0m   [0;1mSELECT version FROM schema_migrations[0m
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:41:39) [GET]
+  Session ID: 5c9adc4c9e6fe6e05d1a9a3a535218bc
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mArticle Load (0.000820)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.06543 (15 reqs/sec) | Rendering: 0.03362 (51%) | DB: 0.00168 (2%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#new (for 127.0.0.1 at 2009-02-25 14:41:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--dc44d3a7f3648b8899c54c0084761ada08eb9875
+  Parameters: {"action"=>"new", "controller"=>"articles"}
+Rendering template within layouts/articles
+Rendering articles/new
+  [4;35;1mArticle Load (0.000294)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.04155 (24 reqs/sec) | Rendering: 0.02457 (59%) | DB: 0.00029 (0%) | 200 OK [http://localhost/articles/new]
+
+
+Processing ArticlesController#cookie_locale (for 127.0.0.1 at 2009-02-25 14:41:53) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7AAY6CkB1c2VkewA=--681d432cc5babd345e6f5ddf9858881e3ff25d2d
+  Parameters: {"action"=>"cookie_locale", "id"=>"bg", "controller"=>"articles"}
+Cookie set: lang=bg; path=/
+Redirected to http://localhost:3000/articles
+Filter chain halted as [#<Proc:0xb6ea5194@/usr/local/src/rails/ruby-gettext-package-1.93.0/samples/rails/vendor/plugins/gettext/init.rb:12>] rendered_or_redirected.
+Completed in 0.00667 (149 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/articles/cookie_locale/bg]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:41:53) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIjXQkdC40YHQutCy0LjRgtC60LAgKGNvb2tpZSkgJnF1
+b3Q7bGFuZyZxdW90OzogYmcGOgpAdXNlZHsGOwdG--7763a859c2255f7aea5a67505f6a47950bf19078
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000649)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.02098 (47 reqs/sec) | Rendering: 0.00841 (40%) | DB: 0.00065 (3%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#cookie_locale (for 127.0.0.1 at 2009-02-25 14:41:57) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIjXQkdC40YHQutCy0LjRgtC60LAgKGNvb2tpZSkgJnF1
+b3Q7bGFuZyZxdW90OzogYmcGOgpAdXNlZHsGOwdU--ed28610feb3b158a50e58bcecfcb8b1b7c5ffd3c
+  Parameters: {"action"=>"cookie_locale", "id"=>"ja", "controller"=>"articles"}
+Cookie set: lang=ja; path=/
+Redirected to http://localhost:3000/articles
+Filter chain halted as [#<Proc:0xb6ea5194@/usr/local/src/rails/ruby-gettext-package-1.93.0/samples/rails/vendor/plugins/gettext/init.rb:12>] rendered_or_redirected.
+Completed in 0.00555 (180 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/articles/cookie_locale/ja]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:41:57) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIknjgq/jg4Pjgq3jg7zjga4mcXVvdDtsYW5nJnF1b3Q7
+44GrIGphIOOBjOOCu+ODg+ODiOOBleOCjOOBvuOBl+OBn+OAggY6CkB1c2Vk
+ewY7B0Y=--c147262952aca82f9aec216c1f1820b6a841109c
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000835)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.02609 (38 reqs/sec) | Rendering: 0.01189 (45%) | DB: 0.00083 (3%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#cookie_locale (for 127.0.0.1 at 2009-02-25 14:42:03) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIknjgq/jg4Pjgq3jg7zjga4mcXVvdDtsYW5nJnF1b3Q7
+44GrIGphIOOBjOOCu+ODg+ODiOOBleOCjOOBvuOBl+OBn+OAggY6CkB1c2Vk
+ewY7B1Q=--7e52d0aaedb78ca4a6dee007d3e87482cdad31c1
+  Parameters: {"action"=>"cookie_locale", "id"=>"de", "controller"=>"articles"}
+Cookie set: lang=de; path=/
+Redirected to http://localhost:3000/articles
+Filter chain halted as [#<Proc:0xb6ea5194@/usr/local/src/rails/ruby-gettext-package-1.93.0/samples/rails/vendor/plugins/gettext/init.rb:12>] rendered_or_redirected.
+Completed in 0.00581 (172 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/articles/cookie_locale/de]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:42:03) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIihEYXMgQ29va2llIMK7bGFuZ8KrIGlzdCBnZXNldHp0
+OiBkZQY6CkB1c2VkewY7B0Y=--912dbb71ec82a64e4117c26cafa200e160a081cd
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000683)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.02098 (47 reqs/sec) | Rendering: 0.00794 (37%) | DB: 0.00068 (3%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#cookie_locale (for 127.0.0.1 at 2009-02-25 14:43:58) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIihEYXMgQ29va2llIMK7bGFuZ8KrIGlzdCBnZXNldHp0
+OiBkZQY6CkB1c2VkewY7B1Q=--ff500cdc335ac082c9b013d18467107184b3b49c
+  Parameters: {"action"=>"cookie_locale", "id"=>"fr", "controller"=>"articles"}
+Cookie set: lang=fr; path=/
+Redirected to http://localhost:3000/articles
+Filter chain halted as [#<Proc:0xb6ea5194@/usr/local/src/rails/ruby-gettext-package-1.93.0/samples/rails/vendor/plugins/gettext/init.rb:12>] rendered_or_redirected.
+Completed in 0.00548 (182 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/articles/cookie_locale/fr]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:43:58) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIi1MZSBjb29raWUgJnF1b3Q7bGFuZyZxdW90OyBlc3Qg
+YWN0aWY6IGZyBjoKQHVzZWR7BjsHRg==--5c934d23b7ac00248d82fd48fe6194f11ecd9150
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000637)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.02317 (43 reqs/sec) | Rendering: 0.00856 (36%) | DB: 0.00064 (2%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#cookie_locale (for 127.0.0.1 at 2009-02-25 14:44:02) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIi1MZSBjb29raWUgJnF1b3Q7bGFuZyZxdW90OyBlc3Qg
+YWN0aWY6IGZyBjoKQHVzZWR7BjsHVA==--2629de19633cc2e12e1e69ea0aed8eda8ed3a69f
+  Parameters: {"action"=>"cookie_locale", "id"=>"en", "controller"=>"articles"}
+Cookie set: lang=en; path=/
+Redirected to http://localhost:3000/articles
+Filter chain halted as [#<Proc:0xb6ea5194@/usr/local/src/rails/ruby-gettext-package-1.93.0/samples/rails/vendor/plugins/gettext/init.rb:12>] rendered_or_redirected.
+Completed in 0.00451 (221 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/articles/cookie_locale/en]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:44:02) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIidDb29raWUgJnF1b3Q7bGFuZyZxdW90OyBpcyBzZXQ6
+IGVuBjoKQHVzZWR7BjsHRg==--e9cbc991730d78db34271a86b114866d0b22e566
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000618)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.13123 (7 reqs/sec) | Rendering: 0.00899 (6%) | DB: 0.00062 (0%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#cookie_locale (for 127.0.0.1 at 2009-02-25 14:44:08) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIidDb29raWUgJnF1b3Q7bGFuZyZxdW90OyBpcyBzZXQ6
+IGVuBjoKQHVzZWR7BjsHVA==--e037b26660454eb3358a211146ba60c6db3d97b5
+  Parameters: {"action"=>"cookie_locale", "id"=>"de", "controller"=>"articles"}
+Cookie set: lang=de; path=/
+Redirected to http://localhost:3000/articles
+Filter chain halted as [#<Proc:0xb6ea5194@/usr/local/src/rails/ruby-gettext-package-1.93.0/samples/rails/vendor/plugins/gettext/init.rb:12>] rendered_or_redirected.
+Completed in 0.00609 (164 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/articles/cookie_locale/de]
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-25 14:44:08) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYTQ0MGY1NjExMjhhYzU5MmQxODI4MjVmMzhkZWRj
+YWUiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIihEYXMgQ29va2llIMK7bGFuZ8KrIGlzdCBnZXNldHp0
+OiBkZQY6CkB1c2VkewY7B0Y=--912dbb71ec82a64e4117c26cafa200e160a081cd
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000578)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.02333 (42 reqs/sec) | Rendering: 0.00873 (37%) | DB: 0.00058 (2%) | 200 OK [http://localhost/articles]
+DEPRECATION WARNING: config.action_view.cache_template_extensions option has been deprecated and has no affect. Please remove it from your config files.  See http://www.rubyonrails.org/deprecation for details. (called from send at /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:455)
+  [4;36;1mSQL (0.001126)[0m   [0;1mSELECT version FROM schema_migrations[0m
+
+
+Processing ArticlesController#index (for 127.0.0.1 at 2009-02-26 09:22:45) [GET]
+  Session ID: 0a37d94bf548586c03dd5b493dca881b
+  Parameters: {"action"=>"index", "controller"=>"articles"}
+  [4;35;1mArticle Load (0.000401)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Rendering template within layouts/articles
+Rendering articles/index
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.11350 (8 reqs/sec) | Rendering: 0.01918 (16%) | DB: 0.00153 (1%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#new (for 127.0.0.1 at 2009-02-26 09:22:57) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--dc44d3a7f3648b8899c54c0084761ada08eb9875
+  Parameters: {"action"=>"new", "controller"=>"articles"}
+Rendering template within layouts/articles
+Rendering articles/new
+  [4;35;1mArticle Load (0.000295)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.04081 (24 reqs/sec) | Rendering: 0.02141 (52%) | DB: 0.00029 (0%) | 200 OK [http://localhost/articles/new]
+
+
+Processing ArticlesController#create (for 127.0.0.1 at 2009-02-26 09:32:50) [POST]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYWRiYTYzNWM0M2YwZjE5ZDE2N2E2MGU1ZTRiYTdl
+YmEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7AAY6CkB1c2VkewA=--ecf1f5791761902e4e02b02aeb6477782e45be42
+  Parameters: {"article"=>{"lastupdate(1i)"=>"2009", "lastupdate(2i)"=>"2", "title"=>"test", "lastupdate(3i)"=>"26", "description"=>"test"}, "commit"=>"Erstellen", "authenticity_token"=>"bfa4ab9b878de2093cedd8bd91bc81c00e65b933", "action"=>"create", "controller"=>"articles"}
+Rendering template within layouts/articles
+Rendering articles/new
+  [4;36;1mArticle Load (0.000403)[0m   [0;1mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.27275 (3 reqs/sec) | Rendering: 0.25177 (92%) | DB: 0.00040 (0%) | 200 OK [http://localhost/articles]
+
+
+Processing ArticlesController#create (for 127.0.0.1 at 2009-02-26 09:33:08) [POST]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYWRiYTYzNWM0M2YwZjE5ZDE2N2E2MGU1ZTRiYTdl
+YmEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7AAY6CkB1c2VkewA=--ecf1f5791761902e4e02b02aeb6477782e45be42
+  Parameters: {"article"=>{"lastupdate(1i)"=>"2009", "lastupdate(2i)"=>"2", "title"=>"test", "lastupdate(3i)"=>"26", "description"=>"test ist nich mehr als 10 ZUeicnen"}, "commit"=>"Erstellen", "authenticity_token"=>"bfa4ab9b878de2093cedd8bd91bc81c00e65b933", "action"=>"create", "controller"=>"articles"}
+  [4;35;1mArticle Create (0.006029)[0m   [0mINSERT INTO "articles" ("updated_at", "title", "description", "lastupdate", "created_at") VALUES('2009-02-26 09:33:08', 'test', 'test ist nich mehr als 10 ZUeicnen', '2009-02-26', '2009-02-26 09:33:08')[0m
+Redirected to http://localhost:3000/articles/1
+Completed in 0.03968 (25 reqs/sec) | DB: 0.00603 (15%) | 302 Found [http://localhost/articles]
+
+
+Processing ArticlesController#show (for 127.0.0.1 at 2009-02-26 09:33:08) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYWRiYTYzNWM0M2YwZjE5ZDE2N2E2MGU1ZTRiYTdl
+YmEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIixEZXIgQXJ0aWtlbCB3dXJkZSBlcmZvbGdyZWljaCBl
+cnN0ZWxsdC4GOgpAdXNlZHsGOwdG--febac0751b2e377b55b516dd82def73220735847
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000454)[0m   [0;1mSELECT * FROM "articles" WHERE ("articles"."id" = 1) [0m
+Rendering template within layouts/articles
+Rendering articles/show
+  [4;35;1mArticle Load (0.000704)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.03073 (32 reqs/sec) | Rendering: 0.01498 (48%) | DB: 0.00116 (3%) | 200 OK [http://localhost/articles/1]
+
+
+Processing ArticlesController#show (for 127.0.0.1 at 2009-02-26 09:33:11) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYWRiYTYzNWM0M2YwZjE5ZDE2N2E2MGU1ZTRiYTdl
+YmEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7BjoLbm90aWNlIixEZXIgQXJ0aWtlbCB3dXJkZSBlcmZvbGdyZWljaCBl
+cnN0ZWxsdC4GOgpAdXNlZHsGOwdU--8eb90973225f69ffd6a19817e94696e4a9eed0c5
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000529)[0m   [0;1mSELECT * FROM "articles" WHERE ("articles"."id" = 1) [0m
+Rendering template within layouts/articles
+Rendering articles/show
+  [4;35;1mArticle Load (0.000555)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.02982 (33 reqs/sec) | Rendering: 0.01331 (44%) | DB: 0.00108 (3%) | 200 OK [http://localhost/articles/1]
+
+
+Processing ArticlesController#edit (for 127.0.0.1 at 2009-02-26 09:33:14) [GET]
+  Session ID: BAh7BzoMY3NyZl9pZCIlYWRiYTYzNWM0M2YwZjE5ZDE2N2E2MGU1ZTRiYTdl
+YmEiCmZsYXNoSUM6J0FjdGlvbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhh
+c2h7AAY6CkB1c2VkewA=--ecf1f5791761902e4e02b02aeb6477782e45be42
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"articles"}
+  [4;36;1mArticle Load (0.000767)[0m   [0;1mSELECT * FROM "articles" WHERE ("articles"."id" = 1) [0m
+Rendering template within layouts/articles
+Rendering articles/edit
+  [4;35;1mArticle Load (0.000580)[0m   [0mSELECT * FROM "articles" ORDER BY lastupdate desc, id desc[0m
+Completed in 0.04113 (24 reqs/sec) | Rendering: 0.02435 (59%) | DB: 0.00135 (3%) | 200 OK [http://localhost/articles/1/edit]
