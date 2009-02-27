@@ -15,7 +15,8 @@ module LangHelper
     langs = available_locales.sort
     ret = "<h4>" + _("Select locale") + "</h4>"
     langs.each_with_index do |lang, i|
-      ret << link_to("[#{lang}]", :action => "cookie_locale", :id => lang)
+      ret << link_to( image_tag("/images/flags/#{lang}.png", :size => "16x11", :alt => "[#{lang}]" ), 
+                     :action => "cookie_locale", :id => lang)
       if ((i + 1) % 6 == 0)
 	ret << "<br/>"
       end
@@ -26,7 +27,7 @@ module LangHelper
   def cookie_locale
     cookies["lang"] = params["id"]
     set_locale params["id"]
-    flash[:notice] = _('Cookie &quot;lang&quot; is set: %s') % params["id"]
+#    flash[:notice] = _('Cookie &quot;lang&quot; is set: %s') % params["id"]
     redirect_to :action => 'index'
   end
 end

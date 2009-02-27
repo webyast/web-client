@@ -71,6 +71,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def index
+    show
+    render :template=>"sessions/show"
+  end
+
   def create
     begin
       self.current_account, auth_token = Account.authenticate(params[:login], 
