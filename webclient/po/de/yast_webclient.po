@@ -5,8 +5,8 @@
 # Schubert Stefan <schubi@suse.de>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2009-02-26 18:06+0100\n"
+"Project-Id-Version: yast-webclient 1.0.0\n"
+"POT-Creation-Date: 2009-02-27 17:10+0100\n"
 "PO-Revision-Date: 2009-02-27 09:24+0100\n"
 "Last-Translator: Schubert Stefan <schubi@suse.de>\n"
 "Language-Team:  <de@li.org>\n"
@@ -54,36 +54,7 @@ msgstr "SSH-Schlüssel wurde exportiert."
 msgid "User was successfully updated."
 msgstr "Benutzereinstellungen wurde verändert."
 
-#: app/controllers/sessions_controller.rb:70 app/views/layouts/main.rhtml:44
-msgid "Session"
-msgstr "Sitzung"
-
-#: app/controllers/sessions_controller.rb:89 app/views/services/index.rhtml:38
-msgid "Services"
-msgstr "Systemdienste"
-
-#: app/controllers/sessions_controller.rb:90 app/views/language/index.rhtml:1
-msgid "Language"
-msgstr "Sprache"
-
-#: app/controllers/sessions_controller.rb:91
-msgid "Users"
-msgstr "Benutzer"
-
-#: app/controllers/sessions_controller.rb:92
-msgid "Permissions"
-msgstr "Zugriffsrechte"
-
-#: app/controllers/sessions_controller.rb:93
-msgid "Patches"
-msgstr "Update"
-
-#: app/controllers/sessions_controller.rb:94
-#: app/views/system_time/index.rhtml:2
-msgid "Systemtime"
-msgstr "Systemzeit"
-
-#: app/controllers/sessions_controller.rb:163
+#: app/controllers/sessions_controller.rb:157
 msgid "You have been logged out."
 msgstr "Sie haben sich abgemeldet."
 
@@ -319,6 +290,7 @@ msgid "Manual Servers"
 msgstr "Feste Server"
 
 #: app/views/config_ntp/show.html.erb:25 app/views/system_time/index.rhtml:38
+#: app/views/language/index.rhtml:29
 msgid "Save"
 msgstr "Speichern"
 
@@ -335,69 +307,100 @@ msgid "<strong>[Configure]</strong>"
 msgstr "<strong>[konfigurieren]</strong>"
 
 #: app/views/sessions/_login_succeeded.html.erb:2
-#: app/views/layouts/main.rhtml:63
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "aktueller Rechner"
 
 #: app/views/sessions/_login_succeeded.html.erb:3
-#: app/views/layouts/main.rhtml:64
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Name:"
 
 #: app/views/sessions/_login_succeeded.html.erb:4
-#: app/views/layouts/main.rhtml:65
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Benutzer:"
 
-#: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:50
+#: app/views/sessions/_controllers.html.erb:2
+#: app/views/services/index.rhtml:38
+msgid "Services"
+msgstr "Systemdienste"
+
+#: app/views/sessions/_controllers.html.erb:3 app/views/language/index.rhtml:1
+msgid "Language"
+msgstr "Sprache"
+
+#: app/views/sessions/_controllers.html.erb:4
+msgid "Users"
+msgstr "Benutzer"
+
+#: app/views/sessions/_controllers.html.erb:5
+msgid "Permissions"
+msgstr "Zugriffsrechte"
+
+#: app/views/sessions/_controllers.html.erb:6
+msgid "Patches"
+msgstr "Update"
+
+#: app/views/sessions/_controllers.html.erb:7
+#: app/views/system_time/index.rhtml:2
+msgid "Systemtime"
+msgstr "Systemzeit"
+
+#: app/views/sessions/_controllers.html.erb:8 app/views/layouts/main.rhtml:32
+msgid "Session"
+msgstr "Sitzung"
+
+#: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:38
 msgid "Logout"
 msgstr "Sitzung beenden"
 
-#: app/views/layouts/main.rhtml:46
+#: app/views/layouts/main.rhtml:34
 msgid "Choose host"
 msgstr "Rechner auswählen"
 
-#: app/views/layouts/main.rhtml:103
+#: app/views/layouts/main.rhtml:91
 msgid "INFO"
 msgstr "INFO"
 
-#: app/views/layouts/main.rhtml:104
+#: app/views/layouts/main.rhtml:92
 msgid "This is a sample web-UI for YaST-as-a-webservice."
-msgstr "Dies ist ein Beispielprogramm zur Demonstration der YaST-REST-Schnittstelle"
+msgstr ""
+"Dies ist ein Beispielprogramm zur Demonstration der YaST-REST-Schnittstelle"
 
-#: app/views/layouts/main.rhtml:107
+#: app/views/layouts/main.rhtml:95
 msgid "Authors"
 msgstr "Autoren"
 
-#: app/views/layouts/main.rhtml:113
+#: app/views/layouts/main.rhtml:101
 msgid "Others"
 msgstr "Andere"
 
-#: app/views/layouts/main.rhtml:116
+#: app/views/layouts/main.rhtml:104
 msgid "Links"
 msgstr "Links"
 
-#: app/views/layouts/main.rhtml:119
+#: app/views/layouts/main.rhtml:107
 msgid "About YaST"
 msgstr "Über YaST"
 
-#: app/views/layouts/main.rhtml:120
+#: app/views/layouts/main.rhtml:108
 msgid "About Rails"
 msgstr "Über Rails"
 
-#: app/views/layouts/main.rhtml:121
+#: app/views/layouts/main.rhtml:109
 msgid "About used CSS"
 msgstr "Benutztes CSS"
 
-#: app/views/layouts/main.rhtml:122
+#: app/views/layouts/main.rhtml:110
 msgid "About used icons"
 msgstr "Benutzte Icons"
 
-#: app/views/layouts/main.rhtml:123
+#: app/views/layouts/main.rhtml:111
 msgid "About PolicyKit"
 msgstr "Über PolicyKit"
 
-#: app/views/layouts/main.rhtml:154
+#: app/views/layouts/main.rhtml:142
 msgid "...Wait..."
 msgstr "...Bitte warten..."
 
@@ -460,4 +463,3 @@ msgstr "zusätzliche Sprachen"
 #: app/views/language/index.rhtml:29
 msgid "This operation can take a while."
 msgstr "Dies kann ein wenig dauern...."
-

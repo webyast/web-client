@@ -1,6 +1,14 @@
 all:
+	(cd webclient; rake db:migrate; rake makemo)
+
+pot:
+	(cd webclient; rake updatepo)
+
+distclean: 
 	rm -rf package; \
         find . -name "*.bak" -exec rm {} \; ;\
+
+dist: distclean
 	mkdir package; \
 	cp dist/* package; \
         cp -R webclient www; \
