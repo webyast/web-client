@@ -11,12 +11,12 @@
 
 Name:           yast2-webclient
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, avahi-utils
-PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails
+PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails, ruby-gettext
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        1.0.0
-Release:        3
+Version:        1.0.1
+Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
@@ -36,6 +36,7 @@ YaST2 - Webclient - Web client for REST based YaST interface.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
+    Klaus Kaempf <kkaempf@opensuse.org>
 
 %prep
 %setup -q -n www
@@ -102,7 +103,10 @@ fi
 
 %files 
 %defattr(-,root,root)
-%dir /srv/www/yast  
+%dir /srv/www/yast 
+/srv/www/yast/locale
+/srv/www/yast/po
+/srv/www/yast/vendor
 /srv/www/yast/app  
 /srv/www/yast/db  
 /srv/www/yast/doc  
@@ -115,6 +119,7 @@ fi
 /srv/www/yast/script  
 /srv/www/yast/test  
 /srv/www/yast/config  
+/srv/www/yast/start.sh
 %doc README* COPYING  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp  
