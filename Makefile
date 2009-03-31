@@ -5,6 +5,7 @@ pot:
 	(cd webclient; rake updatepo)
 
 distclean: 
+	rm po/yast_webclient.pot; \
 	rm -rf package; \
         find . -name "*.bak" -exec rm {} \; ;\
 
