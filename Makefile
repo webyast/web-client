@@ -17,6 +17,10 @@ dist: distclean
         find www -name ".gitignore" -exec rm {} \;; \
         rm -f www/db/*.sqlite3; \
         rm -f www/log/development.log; \
+        mkdir -p www/tmp/sockets; \
+        mkdir -p www/tmp/sessions; \
+        mkdir -p www/tmp/pids; \
+        mkdir -p www/tmp/cache; \
 	tar cvfj package/www.tar.bz2 www; \
         chmod 644 package/www.tar.bz2; \
         rm -rf www
