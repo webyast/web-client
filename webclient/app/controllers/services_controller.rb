@@ -77,7 +77,7 @@ class ServicesController < ApplicationController
     if ret_service["service"]["error_id"]=="0"
        @error_string = _("success")
     end
-    render (:partial =>'result')
+    render(:partial =>'result')
   end
 
 end
