@@ -72,4 +72,8 @@ Rails::Initializer.run do |config|
   config.gem "gettext_activerecord"
   config.gem "gettext_rails"
 
+  # In order to prevent unloading of AuthenticatedSystem
+  config.load_once_paths += %W( #{RAILS_ROOT}/lib )
+
+
 end
