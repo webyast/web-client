@@ -11,7 +11,7 @@
 
 Name:           yast2-webclient
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, avahi-utils
-PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_1, ruby-gettext >= 1.93
+PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_3, rubygem-gettext_rails
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
