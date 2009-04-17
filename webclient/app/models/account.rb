@@ -19,7 +19,7 @@ class Account < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, passwd, service)
      l = Login.new()
-     l.initServiceUrl(service)
+     l.init_service_url(service)
      ret = Login.create(:login => login, :password =>passwd, :remember_me => true)
      if (ret and ret.attributes["login"] == "granted")
         @password = passwd

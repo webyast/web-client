@@ -2,7 +2,7 @@ class Login < MyActiveResource
     self.collection_name = "login"
     self.element_name = "hash"
 
-    def initServiceUrl (url)
+    def init_service_url(url)
        ActiveResource::Base.site = url
     end
 
