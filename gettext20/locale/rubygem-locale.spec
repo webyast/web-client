@@ -26,7 +26,6 @@ License:        GPLv2+ or Ruby
 #
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  rubygems_with_buildroot_patch
-BuildArch:      noarch
 Requires:       rubygems >= 1.2.0
 Provides:       ruby-gettext:%{_libdir}/ruby/vendor_ruby/1.8/gettext/active_record.rb
 #
