@@ -5,6 +5,9 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
 
+  def login
+  end
+  
   # scan for hosts via slp
   def scan
     @hosts = []
@@ -76,12 +79,23 @@ class SessionsController < ApplicationController
     render :template=>"sessions/show"
   end
 
+  # just display a login form, thus requires the hostname to
+  # be set forehands.
+  def login
+    if not params[:hostname]
+      flash[:notice] = _("Please select a host to connect to.")
+      redirect_to :controller => 'session'
+    end
+    @hostname = params[:hostname]
+  end
+  
   def create
     begin
       self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
                                                             params[:hostname])
-    rescue
+    rescue RuntimeError => e
+      logger.debug e.to_s
     end
     
     if logged_in?
@@ -112,14 +126,18 @@ class SessionsController < ApplicationController
          @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
       end
 
-      render :partial =>"login_succeeded"
+      # success, go to the main menu
+      redirect_to "/"
+      #render :partial =>"login_succeeded"
     else
       session[:user] = nil
       session[:password] = nil
       session[:host] = nil
       session[:controllers] = nil
       show # getting hosts again
-      render :partial =>"login_failed"
+      flash[:warning] = _("Login incorrect")
+      redirect_to :action => "login"
+      #render :partial =>"login_failed"
     end
   end
 
@@ -155,6 +173,7 @@ class SessionsController < ApplicationController
      cookies.delete :auth_token
      reset_session
      flash[:notice] = _("You have been logged out.")
-     redirect_back_or_default('/')
+     redirect_to :login
+     #redirect_back_or_default('/')
   end
 end

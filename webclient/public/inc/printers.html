@@ -1,35 +1,50 @@
+<div id="notifications">
+</div>
 
-<div class="services-list">
-      <label for="#services-list">Systems list</label>
-      <table id="services-list" class="list">
+<form class="container" method="post" action="">
+  <div class="hbox">
+    <div class="printers-list">
+      <label for="#printer-list">Configured printers</label>
+      <table id="printer-list" class="list printers">
         <tbody>
-          <% for webservice in @webservices %>
-          <tr class="service-item highlighted">
-            <td class="icon"><div class="container"><img src="/icons/yast-service-22.png"></div></td>
-            <td><div class="title"><%= link_to(webservice.name, :action => :login, :hostname => webservice.name ) %></div><td>
-            <!--<div class="label"><%=h webservice.desc %></div>-->
-          </tr>
-          <% end %>
-        </tbody>
 
-      </table>
-      <!-- we dont need those here, FIXME may be merge the login dialog with the
-           saved web services list/editing
+        </tbody>
+      </table>  
       <input class="button jqModal" type="submit" value="Add" id="add-printer" />
       <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  
       <input class="button disabled" disabled="true" type="submit" value="Edit" id="edit-printer"/>        
-      -->
-</div><!-- printers-list -->
+    </div><!-- printers-list -->
+    <div class="printer-info">
+      <h3 class="title" id="printer-name">Printer Name</h3>
+      <div><span class="label">Type:</span><span id="printer-type" class="property">Remote</span></div>
+      <div><span class="label">Location:</span><span id="printer-location" class="property">ipp://</span></div>
+      <div><span class="label">Status:</span><span id="printer-status" class="property">Ready</span></div>
+      <label id="printer-shared" class="checkbox"><input type="checkbox"> Share this printer</label>
+    </div>
+  </div>
 
-<%= link_to(_("Configure"), {:controller => 'webservices'}, :class => 'button') -%>
+  <div class="hbox">
+    <div>
+      <label><span>Default Printer:</span> 
+        <select name="default-printer" size="1" id="default-printer">
 
-<!-- login dialog still does not work :-) -->
+        </select>      
+      </label>
+    </div><div>
+      <label><span>Default Paper Size:</span> 
+        <select name="default" size="1">
+          <option>A4</option>
+          <option>US Letter</option>
+        </select>      
+      </label>
+    </div>    
+  </div>
+</form>
 
-<div class="jqmWindow" id="loginDialog">
-<form method="post" action="" id="service-login-form">
+<div class="jqmWindow" id="addPrinterDialog">
+<form method="post" action="" id="printer-add-form">
   <a href="#" class="closebutton jqmClose">Close</a>
-  <h2>Login</h2>
-
+  <h2>Add Printer</h2>
   
   <div id="printer-types" class="notebook">
     <ul>
@@ -38,7 +53,6 @@
       <li><a href="#printers-bluetooth"><span>Bluetooth</span></a></li>
     </ul>
       <div id="printers-autodetected">
-
         <label for="#autodetected-printers"><span>Detected Printers:</span></label>
         <table id="autodetected-printers" class="list printers">
           <tbody>
@@ -49,7 +63,6 @@
         <div class="hbox">
           <div>
             <label><span>Name:</span>
-
               <input class="" type="text" value="HP USB Printer" id="printer-auto-name" />
             </label>
           </div><div>
@@ -59,7 +72,6 @@
               </select>    
             </label>
           </div>
-
         </div>
       </div>
    
@@ -70,7 +82,6 @@
             <td><label for="#printer-net-protocol">Protocol:</label></td>
             <td>
               <select name="printer-net-protocol" size="1" id="printer-net-protocol">
-
                 <option value="protocol-lpd">Unix Printing (LPD)</option>
                 <option value="protocol-ipp">Internet Printing Protocol (IPP)</option>
                 <option value="protocol-jetdirect">HP JetDirect (Socket)</option>
@@ -78,7 +89,6 @@
             </td>
           </tr>
           <tr>
-
             <td><label for="#printer-net-address">Address:</label></td>
             <td><input type="text" id="printer-net-address" name="printer-net-address" value="" /></td>
           </tr>
@@ -87,7 +97,6 @@
             <td><input type="text" id="printer-net-queue" name="printer-net-queue" value="" /></td>
           </tr>
           <tr>
-
             <td><label for="#printer-net-name">Name:</label></td>
             <td><input type="text" id="printer-net-name" name="printer-net-name" value="" /></td>
           </tr>
@@ -106,5 +115,3 @@
   </div>
 </form>
 </div>
-
-

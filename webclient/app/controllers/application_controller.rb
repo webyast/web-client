@@ -3,9 +3,9 @@
 
 class ApplicationController < ActionController::Base
   layout 'main'
-
+  
   include AuthenticatedSystem
-
+  
   begin
     require 'gettext'
   rescue Exception => e
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def initialize
     super
   end
-
+  
   # Initialize GetText and Content-Type.
   # You need to call this once a request from WWW browser.
   # You can select the scope of the textdomain.

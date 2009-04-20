@@ -1,0 +1,20 @@
+
+<p>Connect to <%= @hostname %></p>
+
+
+<% form_tag( :action => 'create', :hostname => @hostname  ) do  %>
+  <div class="vbox">
+    <div class="hbox">
+      <label for="login"><%= _("Username") %></label>
+      <%= text_field_tag 'login', @user %>
+      <label for="password"><%= _("Password") %></label>
+      <%= password_field_tag 'password', @password %>
+    </div>
+    <%= submit_tag(_('Connect'), :class => "button") %>
+  </div>
+</form>
+<% end %>
+
+<div class="container">
+<%= link_to _('Back'), session_path, :class => "button"%>
+</div>

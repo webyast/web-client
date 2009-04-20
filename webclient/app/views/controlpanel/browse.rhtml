@@ -1,0 +1,65 @@
+
+<div id="groups">
+  <span>Filter:</span>
+  <div class="togglebuttons">
+    <span class="filter" id="all">All</span>
+    <span class="filter" id="hardware">Hardware</span>
+    <span class="filter" id="network">Network</span>
+    <span class="filter" id="services">Services</span>
+    <span class="filter" id="security">Security</span>
+    <span class="filter" id="software">Software</span>
+    <!-- <span class="filter" id="virtualization">Virtualization</span>-->
+  </div>
+</div>
+<div class="container" id="browse">
+
+</div>
+
+<div class="container">
+  <a href="controlcenter">Search for a module</a>
+</div>
+
+<script language="javascript">
+function browseInit() {
+
+  $.getJSON("controlpanel/modules.json", function (Data) {  
+  var $container = $("#browse");
+    $.each(Data, function (i,launcher) {
+      //FIXME - again, all this DOM assembly is expensive
+      var $launcher = $("<div>");
+      $launcher.addClass('launcher').addClass('tile')
+        .click(function () { window.location=launcher.url; })
+        .append('<img src="'+launcher.icon+'">')
+        .append('<div>').children('div').addClass('title').text(launcher.title).end()
+        .append('<div>').children('div:last').addClass('description').text(launcher.description).end()
+        .append('<div>').children('div:last').addClass('groups').text(launcher.groups.join(' '));
+      $container.append($launcher);
+      $('#all').addClass('active');
+    });
+    
+    //group filtering
+    $('#groups .togglebuttons>span').click(function () {
+      filterGroup($(this));
+    });
+    
+    function filterGroup($button) {
+      var group = $button.attr('id');
+      var $launchers = $('#browse');
+      var $buttons = $('#groups .togglebuttons>span');
+      //select togglebutton
+      $buttons.removeClass('active');
+      $button.addClass('active');
+      //filter
+      if (group==='all') {
+        $launchers.find('div.launcher').show();
+      } else {
+        $launchers.find('div.launcher').hide().end()
+          .find('div>.groups:contains("'+group+'")').parent().show();
+      }
+    }
+  });
+}
+
+browseInit();
+
+</script>

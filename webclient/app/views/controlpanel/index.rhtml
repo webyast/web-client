@@ -1,0 +1,170 @@
+
+
+<form id="searchbox" method="post">
+  <input autocomplete="off" name="query" id="query" value="What do you want to configure?" />
+  <div id="loupe-icon"></div>
+</form>
+
+<div id="results"></div>
+<div id="favorites">
+
+</div>
+<div class="container">
+  <a href="controlpanel/browse">Browse all config modules</a>
+</div>
+
+
+<script language="javascript">
+
+function filter() { //filters launcher data for the result menu
+
+  /* filter results */
+  var $resContainer = $('#results');
+  var findWhat = $query.val();
+  
+  findWhat = findWhat.toLowerCase().split(' ');
+  if (typeof findWhat ==='string') {
+    findWhat = [findWhat];
+  }
+  if (findWhat[0].length<2) {
+    $resContainer.hide();
+  } else {
+    $result.children('li').hide();
+    // FIXME this actually does OR, and I'd like to have the words queried with AND'
+    // possible solution is to iterate launchers, and doing && using arr.include() from prototify.js
+    
+      $.each(findWhat,function (i,term) {
+        if (term !== '') {
+          $('li',$result).find('.tags>span:contains("'+term+'")').parent().parent().show();
+        }
+        if($('li:visible',$result).length && $('li.selected',$result).length===0) {
+          $('li:visible:first',$result).addClass('selected');
+        }
+      });
+    $resContainer.fadeIn(200);   
+  }
+}
+
+function googleInit() {
+  var $query = $('#query');
+  //get fake launcher data
+  $.getJSON("controlpanel/modules.json",function (Data) { 
+    //populate favorites
+    var $fav = $('#favorites');
+    var $allLaunchers = $('<ul>');
+    var $result = $('#results').append($allLaunchers).children('ul');
+
+    $.each(Data,function (i,launcher) {
+      // * result list
+      // FIXME - according to http://www.learningjquery.com/2009/03/43439-reasons-to-use-append-correctly
+      // this is really slow. Will need to do oldschool string assembly in the actual code.
+      var $menuitem = $('<li>');
+      $menuitem.click(function(){ window.location=launcher.url; })
+        .addClass(launcher.favorite ? 'favorite' : '')
+        .append('<div>').children('div').addClass('icon').append('<img>').children('img').attr('src',launcher.icon).end().end()
+        .append('<div>').children('div:last').addClass('title').html(launcher.title).end()
+        .append('<div>').children('div:last').addClass('description').html(launcher.description).end()
+        .append('<div>').children('div:last').addClass('tags')
+          .html("<span>"+launcher.tags.join('</span><span>').toLowerCase()+"</span>");
+      $allLaunchers.append($menuitem);
+
+    //console.info($allLaunchers);
+
+    // * favs
+    if (launcher.favorite) {
+      var $launcher = $("<div>");
+      $launcher.addClass('launcher')
+        .click(function () { window.location=launcher.url; })
+        .append('<img src="'+launcher.icon+'">')
+        .append('<div>').children('div').addClass('label').text(launcher.title);
+      $fav.append($launcher);
+    }
+    });
+
+    //query inputbox coloring & results appearing
+    $query.focus(function () {
+      var $i = $(this);
+      $i.css('color','#000');
+      if ($i.val() === 'What do you want to configure?') {
+        $i.val('');
+      }
+      filter();
+      kbdListener();
+      
+    }).blur(function () {
+      if (this.value === '') {
+        this.value = 'What do you want to configure?';
+        $(this).css('color', '#aaa');
+      }
+
+    });
+
+    $('#searchbox').submit(function () {
+      var $selectedLauncher = $('#results li.selected');
+      if ($selectedLauncher.length) {
+        $selectedLauncher.click();
+      }
+      return false; //prevent form from being submitted
+    });
+    $('#query').focus(); //get ready to search on load
+    $('body').click(function(e){ // hide the results if clicked everywhere ourside the search widget
+      var isInResults = $(e.target).parents('#results').attr('id');
+      if (e.target.id!='query' && !isInResults){
+        $('#results').fadeOut(200).find('li').removeClass('selected');
+      }
+      //$('#results').hide();
+    });
+
+    $query.keyup(filter);
+    
+    
+
+    
+    function kbdListener() {
+      //clear query on Escape
+      shortcut.add("Esc",function () {
+        $('#query').val('');
+        $('#results li').removeClass('selected');
+      }, {'target': 'query'});
+      
+      //navigate results on Up/Down
+      shortcut.add("Down", function (key) {
+        selectResult(key);
+      }, {'target': 'query'});
+      shortcut.add("Up", function (key) {
+        selectResult(key);
+      }, {'target': 'query'});      
+      
+      function selectResult(key) {
+        var $results = $('#results>ul');
+        var $all = $('li',$results);
+        var $selected = $('li.selected:visible',$results);
+        switch (key.keyCode) {
+          case 38: //up
+            if ($selected.length===0) { //none selected
+              $all.removeClass('selected').end()
+                .find('li:visible:first').addClass('selected');
+            } else { //select the previous visible item
+              $last = $selected.removeClass('selected');
+              $last.prevAll().filter(':visible:first').addClass('selected'); //they are actually sorted in reverse
+            }
+            break;
+          case 40: //down
+            if ($selected.length===0) { //none selected
+              $all.removeClass('selected').end()
+                .find('li:visible:first').addClass('selected');
+            } else { //select the next visible item
+              $last = $selected.removeClass('selected');
+              $last.nextAll().filter(':visible:first').addClass('selected'); 
+            }
+            break;
+        }
+      }
+    }
+  });
+}
+
+
+googleInit();
+</script>
+

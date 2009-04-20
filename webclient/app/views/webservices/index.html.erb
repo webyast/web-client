@@ -1,28 +1,40 @@
-<h1><%=_("YaST-Web-Services")%></h1>
 
-<div class="table">
-   <img src="images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
-   <img src="images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
-   <table class="listing" cellpadding="0" cellspacing="0">
-      <tr>
-	<th class="first" width=25%>URL</th>
-	<th width="100"><%=_("Description")%></th>
-	<th width=8%><%=_("Edit")%></th>
-	<th class="last" width=8%><%=_("Delete")%></th>
-      </tr>
-      <% for webservice in @webservices %>
-         <tr>
-            <td class="first"><strong><%=h webservice.name %></strong></td>
-            <td><%=h webservice.desc %></td>
-            <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_webservice_path(webservice) %></td>
-            <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
-                              webservice, :confirm => _('Are you sure?'), :method => :delete %></td>
-        </tr>
-      <% end %>
-   </table>
-   <div class="select">
-       <%= link_to _("<strong>[New YaST-Web-Service]</strong>"), new_webservice_path -%><p/>
-    </div>
+
+<div class="services-list">
+      <label for="#services-list">Systems list</label>
+      <table id="services-list" class="list">
+        <tbody>
+          <% for webservice in @webservices %>
+          <tr class="service-item">
+            <td class="icon"><div class="container"><img src="/icons/yast-service-22.png"></div></td>
+            <td><div class="title"><%= webservice.name %></div><td>
+            <td><div class="label"><%=h webservice.desc %></div></td>
+            <td class="icon">
+              <div class="container">
+                <%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), 
+                    edit_webservice_path(webservice) %>
+              </div>
+            </td>
+            <td class="icon">
+              <div class="container">
+                <%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
+                    webservice, :confirm => _('Are you sure?'), :method => :delete %>
+              </div>
+            </td>
+
+          </tr>
+          <% end %>
+        </tbody>
+
+      </table>  
+      <input class="button jqModal" type="submit" value="Add" id="add-webservice" />
+      <!--
+       FIXME may be add remove and edit buttons and get rid of the icons above
+      <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  
+      <input class="button disabled" disabled="true" type="submit" value="Edit" id="edit-printer"/>        
+      -->
 </div>
+<!-- webservices list -->
+
 <a href="/" class="button"><%=_("Back")%></a>
 

@@ -35,14 +35,21 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
+  # map.root :controller => "main"
 
-  map.root :controller => "main"
+  map.root :controller => "controlpanel"
 
   # See how all your routes lay out with "rake routes"
 
   map.session '/session', :controller => 'sessions', :action => 'show'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+
+  # control panel module list
+  map.connect "/controlpanel/modules.json", :controller => 'controlpanel', :action => 'modules', :format =>'json'
+  map.connect "/controlpanel/modules.xml", :controller => 'controlpanel', :action => 'modules', :format =>'xml'
+
+  
+  map.connect "/playground", :controller => 'playground', :action => 'index'
 
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
