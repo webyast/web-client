@@ -19,7 +19,6 @@ Version:        1.0.0
 Release:        0
 Summary:        YaST2 - Webclient - SystemTime
 Source:         www.tar.bz2
-Source1:        org.opensuse.yast.systemtime.policy
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
@@ -65,7 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-%config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test

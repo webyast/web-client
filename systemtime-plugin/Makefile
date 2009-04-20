@@ -12,7 +12,6 @@ distclean:
 
 dist: distclean
 	mkdir package; \
-	cp org.opensuse.yast.systemtime.policy package; \
 	cp yast2-webclient-systemtime.* package; \
         cp -R src www; \
         find www -name "*.auto" -exec rm {} \;; \
