@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-systemtime (Version 0.1)
+# spec file for package yast2-webclient-language (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,27 +9,27 @@
 #
 
 
-Name:           yast2-webclient-systemtime
+Name:           yast2-webclient-language
 PreReq:         yast2-webclient
-Provides:       yast2-webclient:/srv/www/yast/app/controllers/system_time_controller.rb
+Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controller.rb
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        1.0.0
 Release:        0
-Summary:        YaST2 - Webclient - SystemTime
+Summary:        YaST2 - Webclient - Language
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
 #
 %define pkg_user yast
-%define plugin_name systemtime
+%define plugin_name language
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
+YaST2 - Webclient - UI for YaST-webservice in order to handle language settings.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
