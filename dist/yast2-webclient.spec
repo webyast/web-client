@@ -42,7 +42,7 @@ Authors:
 %setup -q -n www
 
 %build
-(cd webclient; rake makemo)
+(rake makemo)
 
 %install
 
