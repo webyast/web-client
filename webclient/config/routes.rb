@@ -49,11 +49,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect "/controlpanel/modules.json", :controller => 'controlpanel', :action => 'modules', :format =>'json'
   map.connect "/controlpanel/modules.xml", :controller => 'controlpanel', :action => 'modules', :format =>'xml'
 
-  
-  map.connect "/playground", :controller => 'playground', :action => 'index'
-  map.connect "/systemtime", :controller => 'systemtime', :action => 'index'
-  map.connect "/languages", :controller => 'language', :action => 'index'
-  
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
   map.resources :patch_updates
