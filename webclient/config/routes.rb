@@ -1,8 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :webservices
-
-  map.resource :session
-
+  map.resources :sessions
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -41,7 +40,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  map.session '/session', :controller => 'sessions', :action => 'show'
+  #login_url :controller => 'sessions', :action => 'create'
+  
+  map.session '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   # control panel module list
@@ -50,7 +51,9 @@ ActionController::Routing::Routes.draw do |map|
 
   
   map.connect "/playground", :controller => 'playground', :action => 'index'
-
+  map.connect "/systemtime", :controller => 'systemtime', :action => 'index'
+  map.connect "/languages", :controller => 'language', :action => 'index'
+  
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
   map.resources :patch_updates

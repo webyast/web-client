@@ -7,7 +7,7 @@
           <% for webservice in @webservices %>
           <tr class="service-item">
             <td class="icon"><div class="container"><img src="/icons/yast-service-22.png"></div></td>
-            <td><div class="title"><%= webservice.name %></div><td>
+            <td><div class="title"><%= link_to webservice.name, new_session_path(:hostname => webservice.name)  %></div><td>
             <td><div class="label"><%=h webservice.desc %></div></td>
             <td class="icon">
               <div class="container">

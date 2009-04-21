@@ -41,8 +41,21 @@ class SessionsController < ApplicationController
   end
 
 
-  # render show.rhtml
+  def index
+    # only used to display the flash message
+  end
+
+  # shows the current session
+  # for that we reuse the _currentsession
+  # partial
   def show
+    render :partial => 'current_session'
+  end
+
+  # this was originally used to cache the list
+  # of "controllers in the server"
+  # but we will figure other way to to this
+  def show_FIXME
     @webservices = Webservice.find(:all)
     scan #via avahi
     @user = session[:user] 
@@ -74,82 +87,100 @@ class SessionsController < ApplicationController
     end
   end
 
-  def index
-    show
-    render :template=>"sessions/show"
-  end
-
-  # just display a login form, thus requires the hostname to
-  # be set forehands.
-  def login
-    if not params[:hostname]
-      flash[:notice] = _("Please select a host to connect to.")
-      redirect_to :controller => 'session'
-    end
+  def new
     @hostname = params[:hostname]
+    
+    # we can't create session if we are logged in
+    if logged_in?
+      redirect_to sessions_path
+    end
+
+    # if the hostname is not set, go to the webservices controller
+    # to pickup a service
+    if not params.has_key?(:hostname)
+      flash[:notice] = _("Please select a host to connect to.")
+      redirect_to :controller => 'webservices'
+      return
+    end
   end
   
+  # if the create action is called without the hostname
+  # it will show the login form
   def create
-    begin
-      self.current_account, auth_token = Account.authenticate(params[:login], 
+    # if the user or password is not there, then render the login form
+    if not params.has_key?(:hostname) or params[:hostname].empty?
+      flash[:warning] = _("You need to specify the hostname")
+      redirect_to new_session_path(:hostname => params[:hostname])
+      return
+    elsif not params.has_key?(:password) or params[:password].empty?
+      flash[:warning] = _("No password specified")
+      redirect_to new_session_path(:hostname => params[:hostname])
+      return
+    else
+      # otherwise, we have all the data, try to login
+      begin
+        self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
                                                             params[:hostname])
-    # error handling when loggin in to the service is pretty
-    # important to get meanful error messages to the user
-    rescue Errno::ECONNREFUSED => e
-      flash[:warning] = _("Can't connect to host at #{params[:hostname]}, make sure the host is up and that the YaST web service is running.")
-      redirect_to :action => :login, :hostname => params[:hostname]
-      return
-    rescue Exception => e
-      flash[:warning] = _("Error when trying to login: #{e.to_s}")
-      redirect_to :action => :login, :hostname => params[:hostname]
-      return
-    end
+        # error handling when loggin in to the service is pretty
+        # important to get meanful error messages to the user
+      rescue Errno::ECONNREFUSED => e
+        flash[:warning] = _("Can't connect to host at #{params[:hostname]}, make sure the host is up and that the YaST web service is running.")
+        #redirect_to :action => :login, :hostname => params[:hostname]
+        redirect_to new_session_path(:hostname => params[:hostname])
+        return
+      rescue Exception => e
+        flash[:warning] = _("Error when trying to login: #{e.to_s}")
+        redirect_to new_session_path(:hostname => params[:hostname])
+        #redirect_to :action => :login, :hostname => params[:hostname]
+        return
+      end
     
-    if logged_in?
-      session[:auth_token] = auth_token
-      session[:user] = params[:login]
-      session[:password] = params[:password]
-      session[:host] = params[:hostname]
+      if logged_in?
+        session[:auth_token] = auth_token
+        session[:user] = params[:login]
+        session[:password] = params[:password]
+        session[:host] = params[:hostname]
 
-      #evaluate available modules
-      @modules = Yast.find(:all)
-      module_hash = {}
-      @modules.each do |mod_hash|
-        mo = mod_hash.path
-        case mo
-         when "services", "language", "users", "permissions", "patch_updates"
+        #evaluate available modules
+        @modules = Yast.find(:all)
+        module_hash = {}
+        @modules.each do |mod_hash|
+          mo = mod_hash.path
+          case mo
+          when "services", "language", "users", "permissions", "patch_updates"
             module_hash[mo] = mod_hash
-         when "systemtime"
+          when "systemtime"
             module_hash["system_time"] = mod_hash
-         else
+          else
             logger.debug "module #{mo} will not be shown"
+          end
         end
-      end
-      logger.debug "Available modules: #{module_hash.inspect}"
-      session[:controllers] = module_hash
+        logger.debug "Available modules: #{module_hash.inspect}"
+        session[:controllers] = module_hash
 
-      @short_host_name = session[:host]
-      if @short_host_name.index("://") != nil
-         @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
-      end
+        @short_host_name = session[:host]
+        if @short_host_name.index("://") != nil
+          @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
+        end
 
-      # success, go to the main menu
-      logger.info "Login success. #{session[:controllers].size} service resources"
-      redirect_to "/"
-      return
-      #render :partial =>"login_succeeded"
-    else
-      session[:user] = nil
-      session[:password] = nil
-      session[:host] = nil
-      session[:controllers] = nil
-      show # getting hosts again
-      flash[:warning] = _("Login incorrect. Check your username and password.")
-      redirect_to :action => :login, :hostname => params[:hostname]
+        # success, go to the main menu
+        logger.info "Login success. #{session[:controllers].size} service resources"
+        redirect_to "/"
+        return
+        #render :partial =>"login_succeeded"
+      else
+        session[:user] = nil
+        session[:password] = nil
+        session[:host] = nil
+        session[:controllers] = nil
+        #show # getting hosts again
+        flash[:warning] = _("Login incorrect. Check your username and password.")
+        redirect_to new_session_path(:hostname => params[:hostname])
+        return
+      end
     end
   end
-
 
   def updateMenu
       render :partial => "controllers"
@@ -182,7 +213,7 @@ class SessionsController < ApplicationController
      cookies.delete :auth_token
      reset_session
      flash[:notice] = _("You have been logged out.")
-     redirect_to :login
+     redirect_to :create
      return
      #redirect_back_or_default('/')
   end

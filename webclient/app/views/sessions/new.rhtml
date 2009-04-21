@@ -1,11 +1,11 @@
 
 <p>Connect to <%= @hostname %></p>
 
-
-<% form_tag( :action => 'create', :hostname => @hostname  ) do  %>
+<% form_tag( :action => 'create' ) do  %>
   <div class="vbox">
     <div class="hbox">
       <label for="login"><%= _("Username") %></label>
+      <%= hidden_field_tag'hostname', @hostname %>
       <%= text_field_tag 'login', @user %>
       <label for="password"><%= _("Password") %></label>
       <%= password_field_tag 'password', @password %>
@@ -16,5 +16,5 @@
 <% end %>
 
 <div class="container">
-<%= link_to _('Back'), session_path, :class => "button"%>
+<%= link_to _('Back'), sessions_path, :class => "button"%>
 </div>
