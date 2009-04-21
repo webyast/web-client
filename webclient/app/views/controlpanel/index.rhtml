@@ -6,9 +6,20 @@
 </form>
 
 <div id="results"></div>
-<div id="favorites">
 
+<div id="favorites">
+<% @modules.each do |modname, mod| %>
+   <div class="launcher">
+     <img src="<%= mod[:icon] %>"/>
+     <div>
+     <div class="label">
+     <%= mod[:title] %>
+     </div>
+     </div>
+   </div>
+<% end %>
 </div>
+
 <div class="container">
   <a href="controlpanel/browse">Browse all config modules</a>
 </div>
@@ -167,4 +178,8 @@ function googleInit() {
 
 googleInit();
 </script>
+
+<div class="container">
+</div>
+
 

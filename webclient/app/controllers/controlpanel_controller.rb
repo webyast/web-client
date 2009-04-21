@@ -5,6 +5,8 @@ class ControlpanelController < ApplicationController
     if not logged_in?
       redirect_to :controller => :sessions, :action => :login
     end
+    # retrieve the modle list
+    @modules = modules
   end
 
   # this action generates the data for the available
@@ -23,8 +25,25 @@ class ControlpanelController < ApplicationController
     
     # we save the data here, that is how jimmac's template
     # expect the data (like fake-data.js)
-    modules = Hash.new
+    modules = map_modules
 
+    respond_to do |format|
+      format.html { } 
+      format.xml  do
+        render :xml => modules.to_xml, :location => "none"
+        return
+      end
+      format.json do
+        render :json => (params[:fake] == "1" ? self.fake_modules : modules.to_json), :location => "none"
+        return
+      end
+    end
+    # if no special format, just return modules
+    modules
+  end
+
+  def map_modules
+    modules = Hash.new
     if session.has_key?(:controllers)
       session[:controllers].each do |key, controller|
         mod = Hash.new
@@ -50,24 +69,22 @@ class ControlpanelController < ApplicationController
             mod[:icon] = 'icons/yast-ntp-client.png'
           else
             mod[:icon] = 'icons/yast-misc.png'
-          end
-          # TODO add the tags from the REST service that kkaempf
-          # mentioned
-          mod[:tags] = ['IP', 'network', 'IPv4', 'device', 'eth', 'wi-fi', 'ethernet', 'cable', 'card']
-          # we dont have groups yet ups?
-          mod[:groups] = ['network']
-          mod[:url] = key
-          mod[:favorite] = true
-
-          modules[key] = mod
         end
-      end
-      respond_to do |format|
-        format.html { render } 
-        format.xml  { render :xml => modules.to_xml, :location => "none" }
-        format.json { render :json => (params[:fake] == "1" ? self.fake_modules : modules.to_json), :location => "none" }
-      end
-    end
+        # TODO add the tags from the REST service that kkaempf
+        # mentioned
+        mod[:tags] = ['IP', 'network', 'IPv4', 'device', 'eth', 'wi-fi', 'ethernet', 'cable', 'card']
+        # we dont have groups yet ups?
+        mod[:groups] = ['network']
+        mod[:url] = key
+        mod[:favorite] = true
+
+        modules[key] = mod
+      end #each
+    else
+      logger.warn("No controllers in session")
+    end #if controllers key
+    modules
+  end
 
   def fake_modules
     "({ 'network': {

@@ -94,8 +94,16 @@ class SessionsController < ApplicationController
       self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
                                                             params[:hostname])
-    rescue RuntimeError => e
-      logger.debug e.to_s
+    # error handling when loggin in to the service is pretty
+    # important to get meanful error messages to the user
+    rescue Errno::ECONNREFUSED => e
+      flash[:warning] = _("Can't connect to host at #{params[:hostname]}, make sure the host is up and that the YaST web service is running.")
+      redirect_to :action => :login, :hostname => params[:hostname]
+      return
+    rescue Exception => e
+      flash[:warning] = _("Error when trying to login: #{e.to_s}")
+      redirect_to :action => :login, :hostname => params[:hostname]
+      return
     end
     
     if logged_in?
@@ -105,7 +113,7 @@ class SessionsController < ApplicationController
       session[:host] = params[:hostname]
 
       #evaluate available modules
-      @modules = Yast.find(:all)      
+      @modules = Yast.find(:all)
       module_hash = {}
       @modules.each do |mod_hash|
         mo = mod_hash.path
@@ -127,7 +135,9 @@ class SessionsController < ApplicationController
       end
 
       # success, go to the main menu
+      logger.info "Login success. #{session[:controllers].size} service resources"
       redirect_to "/"
+      return
       #render :partial =>"login_succeeded"
     else
       session[:user] = nil
@@ -135,9 +145,8 @@ class SessionsController < ApplicationController
       session[:host] = nil
       session[:controllers] = nil
       show # getting hosts again
-      flash[:warning] = _("Login incorrect")
-      redirect_to :action => "login"
-      #render :partial =>"login_failed"
+      flash[:warning] = _("Login incorrect. Check your username and password.")
+      redirect_to :action => :login, :hostname => params[:hostname]
     end
   end
 
@@ -174,6 +183,7 @@ class SessionsController < ApplicationController
      reset_session
      flash[:notice] = _("You have been logged out.")
      redirect_to :login
+     return
      #redirect_back_or_default('/')
   end
 end
