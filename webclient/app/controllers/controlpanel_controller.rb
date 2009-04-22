@@ -2,112 +2,59 @@
 require 'yaml'
 
 class ControlpanelController < ApplicationController
+
+  # this action allows to retrieve the shortcuts
+  # as a resource
+  def shortcuts
+    respond_to do |format|
+      format.html { } 
+      format.xml  { render :xml => shortcuts_data.to_xml, :location => "none" }
+      format.json { render :json => shortcuts_data.to_json, :location => "none" }
+    end
+  end
   
   def index
     # no control panel for unlogged users
     if not logged_in?
-      redirect_to '/login'
+      redirect_to :controller => :sessions, :action => :new
+      return
+    else
+      logger.debug "We are logged in"
     end
 
-    # go over all modules
-    # @config = YAML::load(File.open("#{RAILS_ROOT}/config/config.yml"))    
-    #File.join(RAILS_ROOT, 'config', 'config.yml')
-    
-    # do we allow erb templating? :-)
-    # @config = YAML::load(ERB.new(IO.read(File.join(RAILS_ROOT, 'config', 'config.yml'))).result)[RAILS_ENV]
-
-    @modules = fake_modules
-    logger.debug @modules.inspect
+    @shortcuts = shortcuts_data
   end
 
-  # this action generates the data for the available
-  # modules based on the data of the service
-  # which is available on session[controllers]
-  # (bad name?)
-  #
-  # once we know which servces are there,
-  # we match them with the available client
-  # controllers
-  def modules
-    # the service -> client module matching can be made
-    # mucho more intelligent later, for now, match
-    # the modules we know about.
-    client = []
+  protected
+
+  # reads the shortcuts and returns the
+  # hash with the data
+  def shortcuts_data
+    # save shortcuts in the Hash
+    # each shortcuts file has each plugin shortcut named
+    # by a key, we return the same key but namespaced with the plugin
+    # name like pluginname:shortcutkey
     
-    # we save the data here, that is how jimmac's template
-    # expect the data (like fake-data.js)
-    modules = Hash.new
-
-    if session.has_key?(:controllers)
-      session[:controllers].each do |key, controller|
-        mod = Hash.new
-
-        mod[:title] = controller.description
-        mod[:description] = controller.description
-        mod[:title] = controller.description
-
-        next if key.nil?
+    s = {}
+    
+    # read shortcuts from plugins
+    Dir.entries(File.join(RAILS_ROOT, 'vendor', 'plugins')).each do |entry|
+      # skip . and ..
+      next if entry =~ /^\./
       
-        case key
-          when "services"
-            mod[:icon] = 'icons/yast-online_update.png'
-          when "language"
-            mod[:icon] = 'icons/yast-language.png'
-          when "users"
-            mod[:icon] = 'icons/yast-users.png'
-          when "permissions"
-            mod[:icon] = 'icons/yast-security.png'
-          when "patch_updates"
-            mod[:icon] = 'icons/yast-package-manager.png'
-          when "systemtime"
-            mod[:icon] = 'icons/yast-ntp-client.png'
-          else
-            mod[:icon] = 'icons/yast-misc.png'
-          end
-          # TODO add the tags from the REST service that kkaempf
-          # mentioned
-          mod[:tags] = ['IP', 'network', 'IPv4', 'device', 'eth', 'wi-fi', 'ethernet', 'cable', 'card']
-          # we dont have groups yet ups?
-          mod[:groups] = ['network']
-          mod[:url] = key
-          mod[:favorite] = true
-
-          modules[key] = mod
+      plugindir = File.join(RAILS_ROOT, 'vendor', 'plugins', entry)
+      shortcuts = File.join(plugindir, 'shortcuts.yml')
+      if File.exists?(shortcuts)
+        shortcutsdata = YAML::load(File.open(shortcuts))
+        # now go over each shortcut and add it to the modules
+        shortcutsdata.each do |k,v|
+          # use the plugin name and the shortcut key as
+          # the new key
+          s["#{entry}:#{k}"] = v
         end
       end
-      respond_to do |format|
-        format.html { render  } 
-        format.xml  { render :xml => modules.to_xml, :location => "none" }
-        format.json { render :json => (params[:fake] == "1" ? self.fake_modules : modules.to_json), :location => "none" }
-      end
     end
-
-  def fake_modules
-    { :services=> {
-    :title => 'Configure services',
-    :description=> 'Unix services',
-    :icon => 'icons/yast-online_update.png',
-    :tags => ['IP', 'network', 'IPv4', 'device', 'eth', 'wi-fi', 'ethernet', 'cable', 'card'],
-    :groups => ['network'],
-    :url =>  'services',
-    :favorite =>  true
-    } ,:language => {
-    :title => 'Languages',
-    :description => 'Configure languages',
-    :icon => 'icons/yast-language.png',
-    :tags => ['locale', 'country', 'language', 'idiom'],
-    :groups => ['Regional'],
-    :url =>  'languages',
-    :favorite => true
-      },:systemtime => {
-    :title => 'Time',
-    :description => 'Configure time',
-    :icon => 'icons/yast-ntp-client.png',
-    :url =>  'systemtime',
-    :tags => ['clock', 'time', 'ntp'],
-    :groups => ['services','network'],
-      }
-    }
+    return s
   end
   
 end

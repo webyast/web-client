@@ -16,50 +16,7 @@
 </div>
 
 <div class="container">
-  <a href="controlcenter">Search for a module</a>
+  <%= link_to _("Search for a module"), :controller => :controlpanel %>
+  <a href="controlcenter"></a>
 </div>
 
-<script language="javascript">
-function browseInit() {
-
-  $.getJSON("controlpanel/modules.json", function (Data) {  
-  var $container = $("#browse");
-    $.each(Data, function (i,launcher) {
-      //FIXME - again, all this DOM assembly is expensive
-      var $launcher = $("<div>");
-      $launcher.addClass('launcher').addClass('tile')
-        .click(function () { window.location=launcher.url; })
-        .append('<img src="'+launcher.icon+'">')
-        .append('<div>').children('div').addClass('title').text(launcher.title).end()
-        .append('<div>').children('div:last').addClass('description').text(launcher.description).end()
-        .append('<div>').children('div:last').addClass('groups').text(launcher.groups.join(' '));
-      $container.append($launcher);
-      $('#all').addClass('active');
-    });
-    
-    //group filtering
-    $('#groups .togglebuttons>span').click(function () {
-      filterGroup($(this));
-    });
-    
-    function filterGroup($button) {
-      var group = $button.attr('id');
-      var $launchers = $('#browse');
-      var $buttons = $('#groups .togglebuttons>span');
-      //select togglebutton
-      $buttons.removeClass('active');
-      $button.addClass('active');
-      //filter
-      if (group==='all') {
-        $launchers.find('div.launcher').show();
-      } else {
-        $launchers.find('div.launcher').hide().end()
-          .find('div>.groups:contains("'+group+'")').parent().show();
-      }
-    }
-  });
-}
-
-browseInit();
-
-</script>

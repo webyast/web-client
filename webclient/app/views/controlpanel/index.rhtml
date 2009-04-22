@@ -8,13 +8,13 @@
 <div id="results"></div>
 
 <div id="favorites">
-<% @modules.each do |modname, moddata| %>
+<% @shortcuts.each do |name, data| %>
    <div class="launcher">
-     <% logger.debug moddata.inspect %>
-     <img src="<%= moddata[:icon] %>"/>
+     <% logger.debug data.inspect %>
+     <img src="<%= data['icon'] %>"/>
      <div>
      <div class="label">
-     <%= link_to moddata[:title], moddata[:url] %>
+     <%= link_to data['title'], data['url'] %>
      </div>
      </div>
    </div>

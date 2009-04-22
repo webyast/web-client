@@ -46,8 +46,8 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   # control panel module list
-  map.connect "/controlpanel/modules.json", :controller => 'controlpanel', :action => 'modules', :format =>'json'
-  map.connect "/controlpanel/modules.xml", :controller => 'controlpanel', :action => 'modules', :format =>'xml'
+  map.connect "/controlpanel/shortcuts.json", :controller => 'controlpanel', :action => 'shortcuts', :format =>'json'
+  map.connect "/controlpanel/shortcuts.xml", :controller => 'controlpanel', :action => 'shortcuts', :format =>'xml'
 
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
