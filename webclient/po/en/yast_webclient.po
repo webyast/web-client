@@ -6,8 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yast-webclient 1.0.0\n"
-"POT-Creation-Date: 2009-02-27 17:10+0100\n"
+"Project-Id-Version: yast_webclient 1.0.0\n"
+"POT-Creation-Date: 2009-04-22 09:25+0200\n"
 "PO-Revision-Date: 2009-02-26 13:48+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,12 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: app/controllers/config_ntp_controller.rb:61
-#: app/controllers/system_time_controller.rb:39
-#: app/controllers/language_controller.rb:46
-msgid "Settings have been written."
-msgstr ""
 
 #: app/controllers/permissions_controller.rb:173
 msgid "Permission has been granted."
@@ -32,26 +26,6 @@ msgstr ""
 
 #: app/controllers/patch_updates_controller.rb:32
 msgid "Patch has been installed."
-msgstr ""
-
-#: app/controllers/services_controller.rb:76
-msgid "failed"
-msgstr ""
-
-#: app/controllers/services_controller.rb:78
-msgid "success"
-msgstr ""
-
-#: app/controllers/users_controller.rb:119
-msgid "User was successfully created."
-msgstr ""
-
-#: app/controllers/users_controller.rb:167
-msgid "SSH-Key was successfully exported."
-msgstr ""
-
-#: app/controllers/users_controller.rb:169
-msgid "User was successfully updated."
 msgstr ""
 
 #: app/controllers/sessions_controller.rb:157
@@ -131,123 +105,36 @@ msgstr ""
 msgid "Install"
 msgstr ""
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr ""
-
-#: app/views/users/index.html.erb:9 app/views/sessions/show.html.erb:62
-msgid "Login"
-msgstr ""
-
-#: app/views/users/index.html.erb:10 app/views/webservices/index.html.erb:10
-msgid "Edit"
-msgstr ""
-
-#: app/views/users/index.html.erb:12 app/views/users/index.html.erb:15
-msgid "SSH-Key"
-msgstr ""
-
-#: app/views/users/index.html.erb:13 app/views/webservices/index.html.erb:11
-msgid "Delete"
-msgstr ""
-
-#: app/views/users/index.html.erb:30 app/views/webservices/index.html.erb:19
-msgid "Are you sure?"
-msgstr ""
-
-#: app/views/users/index.html.erb:38
-msgid "<strong>[New User]</strong>"
-msgstr ""
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit User"
-msgstr ""
-
-#: app/views/users/edit.html.erb:11 app/views/users/exportssh.html.erb:11
-#: app/views/sessions/show.html.erb:59 app/views/permissions/index.rhtml:16
-msgid "User"
-msgstr ""
-
-#: app/views/users/edit.html.erb:14 app/views/users/new.html.erb:14
-msgid "Full Name"
-msgstr ""
-
-#: app/views/users/edit.html.erb:18 app/views/users/new.html.erb:18
-msgid "Groups"
-msgstr ""
-
-#: app/views/users/edit.html.erb:22 app/views/users/new.html.erb:22
-msgid "Default Group"
-msgstr ""
-
-#: app/views/users/edit.html.erb:26 app/views/users/new.html.erb:26
-#: app/views/users/exportssh.html.erb:18
-msgid "Home Directory"
-msgstr ""
-
-#: app/views/users/edit.html.erb:30 app/views/users/new.html.erb:34
-msgid "Login Shell"
-msgstr ""
-
-#: app/views/users/edit.html.erb:34 app/views/users/new.html.erb:38
-#: app/views/users/exportssh.html.erb:14
-msgid "Login Name"
-msgstr ""
-
-#: app/views/users/edit.html.erb:38 app/views/users/new.html.erb:42
-msgid "UID"
-msgstr ""
-
-#: app/views/users/edit.html.erb:42 app/views/users/new.html.erb:46
-#: app/views/sessions/show.html.erb:66
-msgid "Password"
-msgstr ""
-
-#: app/views/users/edit.html.erb:46 app/views/webservices/edit.html.erb:22
-msgid "Update"
-msgstr ""
-
-#: app/views/users/edit.html.erb:46 app/views/users/new.html.erb:50
-#: app/views/users/exportssh.html.erb:26
-#: app/views/webservices/index.html.erb:27
-#: app/views/webservices/edit.html.erb:22
-#: app/views/webservices/new.html.erb:22 app/views/config_ntp/show.html.erb:25
-#: app/views/sessions/show.html.erb:71 app/views/services/_result.rhtml:18
-msgid "Back"
-msgstr ""
-
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr ""
-
-#: app/views/users/new.html.erb:30
-msgid "do NOT create home directory"
-msgstr ""
-
-#: app/views/users/new.html.erb:50 app/views/webservices/new.html.erb:22
-msgid "Create"
-msgstr ""
-
-#: app/views/users/exportssh.html.erb:1 app/views/users/exportssh.html.erb:26
-msgid "Export SSH-Key"
-msgstr ""
-
-#: app/views/users/exportssh.html.erb:22
-msgid "SHH Key"
-msgstr ""
-
 #: app/views/webservices/index.html.erb:1 app/views/sessions/show.html.erb:82
 msgid "YaST-Web-Services"
 msgstr ""
 
 #: app/views/webservices/index.html.erb:9
 #: app/views/webservices/edit.html.erb:18
-#: app/views/webservices/new.html.erb:18 app/views/services/_result.rhtml:14
+#: app/views/webservices/new.html.erb:18
 msgid "Description"
+msgstr ""
+
+#: app/views/webservices/index.html.erb:10
+msgid "Edit"
+msgstr ""
+
+#: app/views/webservices/index.html.erb:11
+msgid "Delete"
+msgstr ""
+
+#: app/views/webservices/index.html.erb:19
+msgid "Are you sure?"
 msgstr ""
 
 #: app/views/webservices/index.html.erb:24
 msgid "<strong>[New YaST-Web-Service]</strong>"
+msgstr ""
+
+#: app/views/webservices/index.html.erb:27
+#: app/views/webservices/edit.html.erb:22
+#: app/views/webservices/new.html.erb:22 app/views/sessions/show.html.erb:71
+msgid "Back"
 msgstr ""
 
 #: app/views/webservices/edit.html.erb:1
@@ -264,38 +151,32 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
+#: app/views/webservices/edit.html.erb:22
+msgid "Update"
+msgstr ""
+
 #: app/views/webservices/new.html.erb:1
 msgid "New YaST-Web-Service"
 msgstr ""
 
-#: app/views/config_ntp/show.html.erb:1
-msgid "NTP Server"
-msgstr ""
-
-#: app/views/config_ntp/show.html.erb:10 app/views/system_time/index.rhtml:11
-#: app/views/language/index.rhtml:10
-msgid "Settings"
-msgstr ""
-
-#: app/views/config_ntp/show.html.erb:13
-msgid "Enabled"
-msgstr ""
-
-#: app/views/config_ntp/show.html.erb:17
-msgid "Use random server"
-msgstr ""
-
-#: app/views/config_ntp/show.html.erb:21
-msgid "Manual Servers"
-msgstr ""
-
-#: app/views/config_ntp/show.html.erb:25 app/views/system_time/index.rhtml:38
-#: app/views/language/index.rhtml:29
-msgid "Save"
+#: app/views/webservices/new.html.erb:22
+msgid "Create"
 msgstr ""
 
 #: app/views/sessions/_login_failed.html.erb:2
 msgid "Login Failed"
+msgstr ""
+
+#: app/views/sessions/show.html.erb:59 app/views/permissions/index.rhtml:16
+msgid "User"
+msgstr ""
+
+#: app/views/sessions/show.html.erb:62
+msgid "Login"
+msgstr ""
+
+#: app/views/sessions/show.html.erb:66
+msgid "Password"
 msgstr ""
 
 #: app/views/sessions/show.html.erb:71
@@ -322,11 +203,10 @@ msgid "User:"
 msgstr ""
 
 #: app/views/sessions/_controllers.html.erb:2
-#: app/views/services/index.rhtml:38
 msgid "Services"
 msgstr ""
 
-#: app/views/sessions/_controllers.html.erb:3 app/views/language/index.rhtml:1
+#: app/views/sessions/_controllers.html.erb:3
 msgid "Language"
 msgstr ""
 
@@ -343,7 +223,6 @@ msgid "Patches"
 msgstr ""
 
 #: app/views/sessions/_controllers.html.erb:7
-#: app/views/system_time/index.rhtml:2
 msgid "Systemtime"
 msgstr ""
 
@@ -417,48 +296,4 @@ msgstr ""
 
 #: app/views/permissions/index.rhtml:30
 msgid "Granted Permissions"
-msgstr ""
-
-#: app/views/services/_result.rhtml:7
-msgid "Service Call Result"
-msgstr ""
-
-#: app/views/services/_result.rhtml:10
-msgid "Result"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:14
-msgid "Timezone"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:18
-msgid "UTC (Universal Time Coordinated)"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:22
-msgid "Day"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:26
-msgid "Month"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:30
-msgid "Year"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:34
-msgid "Time"
-msgstr ""
-
-#: app/views/language/index.rhtml:13
-msgid "First Language"
-msgstr ""
-
-#: app/views/language/index.rhtml:21
-msgid "Second Languages"
-msgstr ""
-
-#: app/views/language/index.rhtml:29
-msgid "This operation can take a while."
 msgstr ""
