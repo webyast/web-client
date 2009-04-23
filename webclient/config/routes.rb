@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :webservices
-  map.resources :sessions
+  map.resource :session
   
   # The priority is based upon order of creation: first created -> highest priority.
 

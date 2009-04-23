@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   layout 'main'
-  
+
   include AuthenticatedSystem
   
   begin

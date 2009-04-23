@@ -1,5 +1,7 @@
 
 require 'digest/sha1'
+require 'yast/service_resource'
+
 class Account < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
@@ -18,27 +20,29 @@ class Account < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, passwd, service)
-     l = Login.new()
-     l.init_service_url(service)
-     ret = Login.create(:login => login, :password =>passwd, :remember_me => true)
-     if (ret and ret.attributes["login"] == "granted")
-        @password = passwd
-	acc = find_by_login(login)
-	if !acc
-          acc = Account.new
-          acc.login = login
-        end
-        @password = passwd
-        acc.password = passwd
-        acc.save
-	puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
-        l.set_web_service_auth(ret.attributes["auth_token"].attributes["value"])
-        return acc, ret.attributes["auth_token"].attributes["value"]
-     else
-  	puts "Authenticate Failure"
-        l.set_web_service_auth("")
-        return nil, nil
-     end
+    # set default site url for all YaST service based resources
+     YaST::ServiceResource.site = service
+    
+    ret = Session.create(:login => login, :password =>passwd, :remember_me => true)
+    logger.debug ret.inspect
+    if (ret and ret.attributes["login"] == "granted")
+      @password = passwd
+      acc = find_by_login(login)
+      if !acc
+        acc = Account.new
+        acc.login = login
+      end
+      @password = passwd
+      acc.password = passwd
+      acc.save
+      puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
+      YaST::ServiceResource.password = ret.attributes["auth_token"].attributes["value"]
+      return acc, ret.attributes["auth_token"].attributes["value"]
+    else
+      puts "Authenticate Failure"
+      YaST::ServiceResource.password = ""
+      return nil, nil
+    end
   end
 
   # Encrypts some data with the salt.

@@ -1,10 +1,10 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
-   layout 'main'
+  layout 'main'
 
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-
+  
   def login
   end
   
@@ -74,16 +74,16 @@ class SessionsController < ApplicationController
     end
     if create_session_table
        #insert at least a session controller
-       mod_hash = Yast.new( )
-       mod_hash.install_permission=false
-       mod_hash.read_permission=true
-       mod_hash.delete_permission=false
-       mod_hash.new_permission=false
-       mod_hash.write_permission=true
-       mod_hash.description=""
-       mod_hash.execute_permission=false
-       mod_hash.path="session"
-       session[:controllers] = { "session"=>mod_hash }
+       #mod_hash = Yast.new( )
+       #mod_hash.install_permission=false
+       #mod_hash.read_permission=true
+       #mod_hash.delete_permission=false
+       #mod_hash.new_permission=false
+       #mod_hash.write_permission=true
+       #mod_hash.description=""
+       #mod_hash.execute_permission=false
+       #mod_hash.path="session"
+       #session[:controllers] = { "session"=>mod_hash }
     end
   end
 
@@ -92,7 +92,7 @@ class SessionsController < ApplicationController
     
     # we can't create session if we are logged in
     if logged_in?
-      redirect_to sessions_path
+      redirect_to session_path
     end
 
     # if the hostname is not set, go to the webservices controller
@@ -142,23 +142,9 @@ class SessionsController < ApplicationController
         session[:password] = params[:password]
         session[:host] = params[:hostname]
 
-        #evaluate available modules
-        @modules = Yast.find(:all)
-        module_hash = {}
-        @modules.each do |mod_hash|
-          mo = mod_hash.path
-          case mo
-          when "services", "language", "users", "permissions", "patch_updates"
-            module_hash[mo] = mod_hash
-          when "systemtime"
-            module_hash["system_time"] = mod_hash
-          else
-            logger.debug "module #{mo} will not be shown"
-          end
-        end
-        logger.debug "Available modules: #{module_hash.inspect}"
-        session[:controllers] = module_hash
-
+        # evaluate available service resources here or not?
+        # @modules = Yast.find(:all)
+  
         @short_host_name = session[:host]
         if @short_host_name.index("://") != nil
           @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
