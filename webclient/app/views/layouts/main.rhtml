@@ -34,7 +34,7 @@
       <!-- show the flash messages -->
       <% for name in [:notice, :warning, :message] %>
         <% if flash[name] %>
-          <%= "<div id=\"#{name}\">#{flash[name]}</div>" %>
+          <%= "<div id=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
         <% end %>
       <% end %>
 
@@ -51,10 +51,10 @@
       <div class="copy">&copy; 2009 Novell, Inc.</div>
 
       <div id="logout">
-        <% user = session[:user]
-           if user -%>
-        <a href="/logout"><%=_("Logout")%></a>
-        <% end -%>
+        <% user = session[:user] %>
+        <% if user %>
+          <%= link_to _("Logout"), '/logout' %>
+        <% end %>
       </div>
 
       <div id="connectedHost">

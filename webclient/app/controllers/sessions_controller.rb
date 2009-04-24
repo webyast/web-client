@@ -1,14 +1,20 @@
-# This controller handles the login/logout function of the site.  
+require 'yast/service_resource/login'
+require 'yast/service_resource/logout'
+
+# This controller handles the login/logout function of the site.
 class SessionsController < ApplicationController
   layout 'main'
 
+  # make sure logout only happens if we are logged in
+  # and the inverse
+  #before_filter :ensure_login, :only => :destroy
+  #before_filter :ensure_logout, :only => [:new, :create]
+  
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-  def login
-  end
-  
-  # scan for hosts via slp
+  # helper scan for hosts via slp
+  # may be move out?
   def scan
     @hosts = []
     # make output parseable + terminate 
@@ -39,7 +45,6 @@ class SessionsController < ApplicationController
       end
     end
   end
-
 
   def index
     # only used to display the flash message
@@ -151,7 +156,8 @@ class SessionsController < ApplicationController
         end
 
         # success, go to the main menu
-        logger.info "Login success. #{session[:controllers].size} service resources"
+        #logger.info "Login success. #{session[:controllers].size} service resources"
+        logger.info "Login success."
         redirect_to "/"
         return
         #render :partial =>"login_succeeded"
@@ -181,26 +187,26 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-     session[:user] = nil
-     session[:password] = nil
-     session[:host] = nil
-     session[:controllers] = nil
+    # remove session data
+    [:user, :password, :host, :controllers].each do |k|
+      session[k] = nil
+    end
+
      if logged_in?
-        ret = Logout.create()
-        if (ret and ret.attributes["logout"])
-           logger.debug "Logout: #{ret.attributes["logout"]}"
-        else
-           logger.debug "Logout: Error"
-        end
-        self.current_account.forget_me 
-        session[:auth_token] = nil
+       ret = YaST::ServiceResource::Logout.create
+       if (ret and ret.attributes["logout"])
+         logger.debug "Logout: #{ret.attributes["logout"]}"
+       else
+         logger.debug "Logout: Error"
+       end
+       self.current_account.forget_me 
+       session[:auth_token] = nil
      end
      
      cookies.delete :auth_token
      reset_session
      flash[:notice] = _("You have been logged out.")
-     redirect_to :create
+     redirect_to new_session_path
      return
-     #redirect_back_or_default('/')
   end
 end

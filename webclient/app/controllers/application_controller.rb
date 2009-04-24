@@ -18,6 +18,20 @@ class ApplicationController < ActionController::Base
   def initialize
     super
   end
+
+  def ensure_login
+    unless logged_in?
+      flash[:notice] = "Please login to continue"
+      redirect_to(new_session_path)
+    end
+  end
+ 
+  def ensure_logout
+    if not logged_in?
+      flash[:notice] = "You must logout before you can login"
+      redirect_to(root_url)
+    end
+  end
   
   # Initialize GetText and Content-Type.
   # You need to call this once a request from WWW browser.

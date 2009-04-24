@@ -1,6 +1,6 @@
 
 require 'digest/sha1'
-require 'yast/service_resource'
+require 'yast/service_resource/base.rb'
 
 class Account < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
@@ -21,9 +21,9 @@ class Account < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, passwd, service)
     # set default site url for all YaST service based resources
-     YaST::ServiceResource.site = service
-    
-    ret = Session.create(:login => login, :password =>passwd, :remember_me => true)
+    YaST::ServiceResource::Base.site = service
+    # create a login resource
+    ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
     logger.debug ret.inspect
     if (ret and ret.attributes["login"] == "granted")
       @password = passwd
@@ -36,11 +36,11 @@ class Account < ActiveRecord::Base
       acc.password = passwd
       acc.save
       puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
-      YaST::ServiceResource.password = ret.attributes["auth_token"].attributes["value"]
+      YaST::ServiceResource::Base.password = ret.attributes["auth_token"].attributes["value"]
       return acc, ret.attributes["auth_token"].attributes["value"]
     else
       puts "Authenticate Failure"
-      YaST::ServiceResource.password = ""
+      YaST::ServiceResource::Base.password = ""
       return nil, nil
     end
   end

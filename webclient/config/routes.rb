@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
 
   #login_url :controller => 'sessions', :action => 'create'
   
-  map.session '/login', :controller => 'sessions', :action => 'new'
+  map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   # control panel module list
