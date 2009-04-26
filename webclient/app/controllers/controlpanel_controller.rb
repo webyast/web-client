@@ -34,27 +34,32 @@ class ControlpanelController < ApplicationController
     # each shortcuts file has each plugin shortcut named
     # by a key, we return the same key but namespaced with the plugin
     # name like pluginname:shortcutkey
-    
     s = {}
-    
     # read shortcuts from plugins
-    Dir.entries(File.join(RAILS_ROOT, 'vendor', 'plugins')).each do |entry|
-      # skip . and ..
-      next if entry =~ /^\./
-      
-      plugindir = File.join(RAILS_ROOT, 'vendor', 'plugins', entry)
-      shortcuts = File.join(plugindir, 'shortcuts.yml')
-      if File.exists?(shortcuts)
-        shortcutsdata = YAML::load(File.open(shortcuts))
-        # now go over each shortcut and add it to the modules
-        shortcutsdata.each do |k,v|
-          # use the plugin name and the shortcut key as
-          # the new key
-          s["#{entry}:#{k}"] = v
-        end
-      end
+    #logger.debug Rails::Plugin::Loader.all_plugins.inspect
+    #logger.debug Rails.configuration.load_paths
+    YaST::LOADED_PLUGINS.each do |plugin|
+      logger.debug "looking into #{plugin.directory}"
+      s.merge!(plugin_shortcuts(plugin))
     end
+    logger.debug s.inspect
     return s
   end
   
+  # reads shortcuts of a specific plugin directory
+  def plugin_shortcuts(plugin)
+    s = {}
+    shortcuts = File.join(plugin.directory, 'shortcuts.yml')
+    if File.exists?(shortcuts)
+      logger.debug "Shortcuts at #{plugin.directory}"
+      shortcutsdata = YAML::load(File.open(shortcuts))
+      # now go over each shortcut and add it to the modules
+      shortcutsdata.each do |k,v|
+        # use the plugin name and the shortcut key as
+        # the new key
+        s["#{plugin.name}:#{k}"] = v
+      end
+    end
+    s
+  end
 end

@@ -10,7 +10,7 @@
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-Rails::Initializer.run do |config|
+init = Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -74,6 +74,13 @@ Rails::Initializer.run do |config|
 
   # In order to prevent unloading of AuthenticatedSystem
   config.load_once_paths += %W( #{RAILS_ROOT}/lib )
-
-
+  # allows to find plugin in development tree locations
+  # avoiding installing plugins to see them
+  config.plugin_paths << File.join(RAILS_ROOT, '..', 'plugins')
 end
+
+# save loaded plugins, which are used to scan shortcuts laters
+module YaST
+end
+YaST::LOADED_PLUGINS = init.loaded_plugins
+

@@ -8,6 +8,11 @@ module YaST
     # using the url of the service in the current session
     #
     class Base < ActiveResource::Base
+
+      def self.default_prefix
+        "/yast"
+      end
+      
       # This method is called by Account after a session is
       # created to use the connected service as default
       def self.init_service_url(url)
