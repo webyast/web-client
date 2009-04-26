@@ -1,0 +1,17 @@
+<label for="#patches-list"><%=_("Available patches")%></label>
+<div id="patch-list" class="patches-list">
+</div>
+
+<div id="check-updates-button" class="button">Check for updates</div>
+
+<% javascript_tag do -%>
+$(document).ready( function() {
+  $('#patch-list').load('/patch_updates/patch_list')
+  //$('div#check-updates-button').click(
+  //  function() { $('#patch-list').load('/patch_updates?load=1') }
+  //);
+});
+//$('div#check-updates-button').hide();
+<% end -%>
+
+<a href="/" class="button"><%=_("Back")%></a>

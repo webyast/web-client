@@ -51,8 +51,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
-  map.resources :patch_updates
-  map.connect "/patch_updates/:id", :controller => 'patch_updates', :action => 'install'
 
   map.resources :users, :member => { :exportssh => :get }
   map.resources :users, :controller => 'users'

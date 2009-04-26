@@ -36,8 +36,8 @@
               <td class="label"><%=h patch_update.summary %></td>
               <td><%=h patch_update.repo %></td>
               <% if @install_permission.nil? %>
-                 <td><%= link_to image_tag("/images/add-icon.gif", :alt =>  "install"), 
-                         patch_update_path(patch_update.resolvable_id), :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
+                 <td><%= link_to image_tag("/icons/system-software-install.png", :alt =>  "install", :class=>"icon", :border => "0"), 
+                         "foo", :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
               <% end %>
            </tr>
       <% end %>

@@ -4,21 +4,17 @@ class PatchUpdatesController < ApplicationController
    before_filter :login_required
    layout 'main'
 
-
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
     set_permissions(controller_name)
-
-    render :action => patch_list
   end
 
-  # this was moved out of index to make it async
-  # later
-  def patch_list
+  def list
     @patch_updates = PatchUpdate.find(:all)
     respond_to do |format|
-      format.html { render :partial => 'patchlist' }
+      format.html { render :partial => 'patches' }
+      format.js { render :partial => 'patches' }
       format.xml  { render :xml => @patch_updates }
       format.json { render :json => @patch_updates.to_json }
     end
