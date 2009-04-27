@@ -10,9 +10,9 @@ class SystemTimeController < ApplicationController
     else 
       @is_utc = ""
     end
-    @time_string = @systemtime.currenttime.hour.to_s
-    @time_string << ":" 
-    @time_string << @systemtime.currenttime.min.to_s
+    @time_string = @systemtime.currenttime.strftime("%H:%M")
+    @date_string = @systemtime.currenttime.strftime("%d/%m/%Y")
+    
     @valid = []
     @systemtime.validtimezones::each do |s|   
        @valid << s.id
@@ -27,9 +27,9 @@ class SystemTimeController < ApplicationController
     else
        t.is_utc = false
     end
-    time_array = params[:currenttime].split ":"
-    t.currenttime = DateTime.civil(params[:year].to_i, params[:month].to_i, 
-                                   params[:day].to_i, time_array[0].to_i, time_array[1].to_i)
+
+    t.currenttime = DateTime.parse("#{params[:currentdate]} #{:currenttime}", "%d/%m/%Y %H:%M")
+    
     t.validtimezones = [] #not needed anymore
     t.save
     if t.error_id != 0
