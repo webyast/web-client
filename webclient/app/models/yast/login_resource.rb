@@ -1,7 +1,7 @@
-require 'yast/service_resource/base'
+require 'yast/service_resource'
 
 module YaST
-  module ServiceResource
+  class  ServiceResource
     # proxy for the service login
     class LoginResource < YaST::ServiceResource::Base
     end

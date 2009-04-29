@@ -1,9 +1,10 @@
+require 'yast/service_resource'
 
 class PatchUpdatesController < ApplicationController
 
-   before_filter :login_required
-   layout 'main'
-
+  before_filter :login_required
+  layout 'main'
+  
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
@@ -11,7 +12,8 @@ class PatchUpdatesController < ApplicationController
   end
 
   def list
-    @patch_updates = PatchUpdate.find(:all)
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patch_updates')
+    @patch_updates = proxy.find(:all)
     respond_to do |format|
       format.html { render :partial => 'patches' }
       format.js { render :partial => 'patches' }
@@ -23,9 +25,10 @@ class PatchUpdatesController < ApplicationController
   # POST /patch_updates/1
   # POST /patch_updates/1.xml
   def install
-    @update = PatchUpdate.new( :id => "install",
-                               :error_id =>0, 
-                               :error_string=>nil )
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patch_updates')
+    @update = proxy.new( :id => "install",
+                         :error_id =>0, 
+                         :error_string=>nil )
     response = @update.post(params[:id], {}, @update.to_xml)
     ret_update = Hash.from_xml(response.body)    
     if ret_update["patch_update"]["error_id"] != 0

@@ -1,5 +1,4 @@
 class WebservicesController < ApplicationController
-
   layout 'main'
 
   # GET /webservices
@@ -13,6 +12,11 @@ class WebservicesController < ApplicationController
     end
   end
 
+  # GET /webservices/show/1
+  # GET /webservices/show/1.xml
+  def show
+    @webservice = Webservice.find(params[:id])
+  end
 
   # GET /webservices/new
   # GET /webservices/new.xml

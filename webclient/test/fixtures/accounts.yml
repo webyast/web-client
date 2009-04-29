@@ -1,0 +1,4 @@
+quentin:
+  login: "quentin"
+  salt: <%= Digest::SHA1.hexdigest("--#{Time.now.to_s}--") %>
+

@@ -1,4 +1,4 @@
-require 'yast/service_resource/base'
+require 'yast/service_resource'
 
 class Checkpermission < YaST::ServiceResource::Base
     self.collection_name = "checkpermission"

@@ -1,6 +1,6 @@
 
 require 'digest/sha1'
-require 'yast/service_resource/base.rb'
+require 'yast/service_resource'
 
 class Account < ActiveRecord::Base
   # Virtual attribute for the unencrypted password

@@ -1,10 +1,13 @@
+require 'yast/service_resource'
+
 class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
   def index
     set_permissions(controller_name)
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
 
-    @systemtime = SystemTime.find(:one, :from => '/systemtime.xml')
+    @systemtime = proxy.find(:one, :from => '/systemtime.xml')
     if @systemtime.is_utc == true
       @is_utc = "checked" 
     else 
@@ -20,7 +23,8 @@ class SystemTimeController < ApplicationController
   end
 
   def commit_time
-    t = SystemTime.find(:one, :from => '/systemtime.xml')
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
+    t = proxy.find(:one, :from => '/systemtime.xml')
     t.timezone = params[:timezone]
     if params[:utc] == "true"
        t.is_utc = true

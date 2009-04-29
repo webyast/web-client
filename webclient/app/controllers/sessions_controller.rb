@@ -174,18 +174,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def updateMenu
-      render :partial => "controllers"
-  end
-
-  def updateLogout
-      if session[:user]
-    	 render :partial => "logout"
-      else
-    	 render :nothing => true
-      end
-  end
-
   def destroy
     # remove session data
     [:user, :password, :host, :controllers].each do |k|
