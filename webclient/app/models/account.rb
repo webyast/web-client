@@ -21,6 +21,8 @@ class Account < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, passwd, service)
     # set default site url for all YaST service based resources
+    YaST::ServiceResource::Session.site = service
+    # the above will obsolete this
     YaST::ServiceResource::Base.site = service
     # create a login resource
     ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
