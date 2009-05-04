@@ -2,6 +2,9 @@ class ConfigNtpController < ApplicationController
   before_filter :login_required
   layout 'main'
 
+  # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_services"  # textdomain, options(:charset, :content_type)
+
   def show
 
     @write_permission = "disabled"

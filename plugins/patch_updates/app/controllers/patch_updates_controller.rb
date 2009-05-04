@@ -4,6 +4,10 @@ class PatchUpdatesController < ApplicationController
    before_filter :login_required
    layout 'main'
 
+  # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_patch_updates"  # textdomain, options(:charset, :content_type)
+
+
   # GET /patch_updates
   # GET /patch_updates.xml
   def index

@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+require 'rake/packagetask'
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -20,4 +21,25 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+desc 'Generate tarball package'
+Rake::PackageTask.new('www', :noversion) do |p|
+  p.need_tar_bz2 = true
+  p.package_dir = 'package'
+  p.package_files.include('**/*')
+  p.package_files.exclude('package')
+end
+
+desc "Create mo-files for L10n"
+task :makemo do
+  require 'gettext_rails/tools'
+  GetText.create_mofiles
+end
+
+desc "Update pot/po files to match new version."
+task :updatepo do
+  require 'gettext_rails/tools'
+  GetText.update_pofiles("yast_webclient_services", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"),
+                         "yast_webclient services 1.0.0")
 end

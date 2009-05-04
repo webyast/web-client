@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_filter :login_required
   layout 'main'
 
+  # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_users"  # textdomain, options(:charset, :content_type)
+
 
   # GET /users
   # GET /users.xml
