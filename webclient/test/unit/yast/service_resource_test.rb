@@ -11,6 +11,9 @@ class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
     @resources_with_prefix_response = "<resources type=\"array\"><resource><interface>org.yast.foo</interface><href>/someprefix/foos</href></resource></resources>"
     @foos_response = "<foos type=\"array\"><foo><bar>Hello</bar></foo><foo><bar>Goodbye</bar></foo></foos>"
     @foo_response = "<foo><bar>Bye</bar></foo>"
+    # simulate that we are logged to a service
+    YaST::ServiceResource::Session.site = "http://localhost:8080"
+    
   end
   
   def test_proxy_works
@@ -19,6 +22,7 @@ class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
       mock.get "/foos.xml", {}, @foos_response
       mock.get "/foos/1.xml", {}, @foo_response
     end
+    
     @proxy = YaST::ServiceResource.proxy_for("org.yast.foo")
     # the proxy is an anonymous class
     assert_equal "Class", @proxy.class.to_s

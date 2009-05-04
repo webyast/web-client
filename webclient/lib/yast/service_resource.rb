@@ -48,6 +48,7 @@ module YaST
       #class_name = name.to_s
       rsrc = Class.new(ActiveResource::Base) do
         name = File.basename(path)
+        base_path = File.dirname(path)
 
         # use options site if available, otherwise
         # the ServiceResource site
@@ -55,7 +56,7 @@ module YaST
                           Session.site.nil? ?
                           ActiveResource::Base.site : Session.site)
 
-        self.site = "#{site}#{File.dirname(path)}"
+        self.site = "#{site}#{base_path}"
         self.element_name = name.to_s
         # do not export the class to namespace
         #Object.const_set("#{class_name}#{Time.now.to_i}".intern, rsrc)
