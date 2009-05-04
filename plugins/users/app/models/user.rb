@@ -1,4 +1,4 @@
-require 'yast/service_resource/base'
+require 'yast/service_resource'
 
 class User < YaST::ServiceResource::Base
   attr_accessor :type,
