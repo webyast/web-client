@@ -17,7 +17,8 @@ class WebservicesControllerTest < ActionController::TestCase
       post :create, :webservice => { }
     end
 
-    assert_redirected_to webservice_path(assigns(:webservice))
+    # after creating we redirect to the full list
+    assert_redirected_to webservices_path
   end
 
   def test_should_show_webservice
@@ -32,7 +33,8 @@ class WebservicesControllerTest < ActionController::TestCase
 
   def test_should_update_webservice
     put :update, :id => webservices(:one).id, :webservice => { }
-    assert_redirected_to webservice_path(assigns(:webservice))
+    # after creating we redirect to the full list
+    assert_redirected_to webservices_path
   end
 
   def test_should_destroy_webservice
