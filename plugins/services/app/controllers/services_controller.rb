@@ -1,5 +1,9 @@
 require 'service'
 
+# Initialize GetText and Content-Type.
+init_gettext "yast_webclient_services"  # textdomain, options(:charset, :content_type)
+
+
 class ServicesController < ApplicationController
   before_filter :login_required
   layout 'main'

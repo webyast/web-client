@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient 1.0.0\n"
-"POT-Creation-Date: 2009-04-22 09:25+0200\n"
+"POT-Creation-Date: 2009-05-04 12:19+0200\n"
 "PO-Revision-Date: 2009-02-26 13:48+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,19 +16,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/controllers/permissions_controller.rb:173
-msgid "Permission has been granted."
+#: app/controllers/sessions_controller.rb:106
+msgid "Please select a host to connect to."
 msgstr ""
 
-#: app/controllers/permissions_controller.rb:183
-msgid "Permission has been revoked."
+#: app/controllers/sessions_controller.rb:117
+msgid "You need to specify the hostname"
 msgstr ""
 
-#: app/controllers/patch_updates_controller.rb:32
-msgid "Patch has been installed."
+#: app/controllers/sessions_controller.rb:121
+msgid "No password specified"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:157
+#: app/controllers/sessions_controller.rb:170
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:208
 msgid "You have been logged out."
 msgstr ""
 
@@ -80,63 +84,6 @@ msgstr ""
 msgid "Webservice|Updated at"
 msgstr ""
 
-#: app/views/patch_updates/index.html.erb:1
-msgid "Available Patches"
-msgstr ""
-
-#: app/views/patch_updates/index.html.erb:9
-msgid "Kind"
-msgstr ""
-
-#: app/views/patch_updates/index.html.erb:10
-msgid "Name"
-msgstr ""
-
-#: app/views/patch_updates/index.html.erb:11
-msgid "Summary"
-msgstr ""
-
-#: app/views/patch_updates/index.html.erb:13
-#: app/views/patch_updates/index.html.erb:16
-msgid "Source"
-msgstr ""
-
-#: app/views/patch_updates/index.html.erb:14
-msgid "Install"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:1 app/views/sessions/show.html.erb:82
-msgid "YaST-Web-Services"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:9
-#: app/views/webservices/edit.html.erb:18
-#: app/views/webservices/new.html.erb:18
-msgid "Description"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:10
-msgid "Edit"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:11
-msgid "Delete"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:19
-msgid "Are you sure?"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:24
-msgid "<strong>[New YaST-Web-Service]</strong>"
-msgstr ""
-
-#: app/views/webservices/index.html.erb:27
-#: app/views/webservices/edit.html.erb:22
-#: app/views/webservices/new.html.erb:22 app/views/sessions/show.html.erb:71
-msgid "Back"
-msgstr ""
-
 #: app/views/webservices/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -151,8 +98,19 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
+#: app/views/webservices/edit.html.erb:18
+#: app/views/webservices/new.html.erb:18
+msgid "Description"
+msgstr ""
+
 #: app/views/webservices/edit.html.erb:22
 msgid "Update"
+msgstr ""
+
+#: app/views/webservices/edit.html.erb:22
+#: app/views/webservices/new.html.erb:22 app/views/webservices/index.rhtml:39
+#: app/views/sessions/new.rhtml:19
+msgid "Back"
 msgstr ""
 
 #: app/views/webservices/new.html.erb:1
@@ -167,38 +125,19 @@ msgstr ""
 msgid "Login Failed"
 msgstr ""
 
-#: app/views/sessions/show.html.erb:59 app/views/permissions/index.rhtml:16
-msgid "User"
-msgstr ""
-
-#: app/views/sessions/show.html.erb:62
-msgid "Login"
-msgstr ""
-
-#: app/views/sessions/show.html.erb:66
-msgid "Password"
-msgstr ""
-
-#: app/views/sessions/show.html.erb:71
-msgid "Connect"
-msgstr ""
-
-#: app/views/sessions/show.html.erb:113
-msgid "<strong>[Configure]</strong>"
-msgstr ""
-
 #: app/views/sessions/_login_succeeded.html.erb:2
-#: app/views/layouts/main.rhtml:51
+#: app/views/layouts/main.rhtml:76 app/views/sessions/_current_session.rhtml:8
 msgid "Connected Host"
 msgstr ""
 
 #: app/views/sessions/_login_succeeded.html.erb:3
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:77 app/views/sessions/_current_session.rhtml:9
 msgid "Name:"
 msgstr ""
 
 #: app/views/sessions/_login_succeeded.html.erb:4
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:78
+#: app/views/sessions/_current_session.rhtml:10
 msgid "User:"
 msgstr ""
 
@@ -226,74 +165,34 @@ msgstr ""
 msgid "Systemtime"
 msgstr ""
 
-#: app/views/sessions/_controllers.html.erb:8 app/views/layouts/main.rhtml:32
+#: app/views/sessions/_controllers.html.erb:8
 msgid "Session"
 msgstr ""
 
-#: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:38
+#: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:64
 msgid "Logout"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
-msgid "Choose host"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:91
-msgid "INFO"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:92
-msgid "This is a sample web-UI for YaST-as-a-webservice."
-msgstr ""
-
-#: app/views/layouts/main.rhtml:95
-msgid "Authors"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:101
-msgid "Others"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:104
-msgid "Links"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:107
-msgid "About YaST"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:108
-msgid "About Rails"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:109
-msgid "About used CSS"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:110
-msgid "About used icons"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:111
-msgid "About PolicyKit"
-msgstr ""
-
-#: app/views/layouts/main.rhtml:142
+#: app/views/layouts/main.rhtml:50
 msgid "...Wait..."
 msgstr ""
 
-#: app/views/permissions/index.rhtml:13
-msgid "User Permissions"
+#: app/views/webservices/index.rhtml:21
+msgid "Are you sure?"
 msgstr ""
 
-#: app/views/permissions/index.rhtml:18
-msgid "Search"
+#: app/views/sessions/new.rhtml:7
+msgid "Username"
 msgstr ""
 
-#: app/views/permissions/index.rhtml:29
-msgid "Revoked Permissions"
+#: app/views/sessions/new.rhtml:10
+msgid "Password"
 msgstr ""
 
-#: app/views/permissions/index.rhtml:30
-msgid "Granted Permissions"
+#: app/views/sessions/new.rhtml:13
+msgid "Connect"
+msgstr ""
+
+#: app/views/controlpanel/browse.rhtml:19
+msgid "Search for a module"
 msgstr ""

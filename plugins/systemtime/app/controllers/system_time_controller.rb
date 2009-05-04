@@ -3,6 +3,10 @@ require 'yast/service_resource'
 class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
+
+  # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
+
   def index
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')

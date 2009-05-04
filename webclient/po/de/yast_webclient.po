@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient 1.0.0\n"
-"POT-Creation-Date: 2009-04-22 09:25+0200\n"
+"POT-Creation-Date: 2009-05-04 12:19+0200\n"
 "PO-Revision-Date: 2009-02-27 09:24+0100\n"
 "Last-Translator: Schubert Stefan <schubi@suse.de>\n"
 "Language-Team:  <de@li.org>\n"
@@ -16,19 +16,23 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: app/controllers/permissions_controller.rb:173
-msgid "Permission has been granted."
-msgstr "Das Recht wurde gegeben."
+#: app/controllers/sessions_controller.rb:106
+msgid "Please select a host to connect to."
+msgstr ""
 
-#: app/controllers/permissions_controller.rb:183
-msgid "Permission has been revoked."
-msgstr "Das Recht wurde entzogen."
+#: app/controllers/sessions_controller.rb:117
+msgid "You need to specify the hostname"
+msgstr ""
 
-#: app/controllers/patch_updates_controller.rb:32
-msgid "Patch has been installed."
-msgstr "Patch wurde installiert."
+#: app/controllers/sessions_controller.rb:121
+msgid "No password specified"
+msgstr ""
 
-#: app/controllers/sessions_controller.rb:157
+#: app/controllers/sessions_controller.rb:170
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:208
 msgid "You have been logged out."
 msgstr "Sie haben sich abgemeldet."
 
@@ -80,63 +84,6 @@ msgstr ""
 msgid "Webservice|Updated at"
 msgstr ""
 
-#: app/views/patch_updates/index.html.erb:1
-msgid "Available Patches"
-msgstr "Verfügbare Update"
-
-#: app/views/patch_updates/index.html.erb:9
-msgid "Kind"
-msgstr "Typ"
-
-#: app/views/patch_updates/index.html.erb:10
-msgid "Name"
-msgstr "Name"
-
-#: app/views/patch_updates/index.html.erb:11
-msgid "Summary"
-msgstr "Zusammenfassung"
-
-#: app/views/patch_updates/index.html.erb:13
-#: app/views/patch_updates/index.html.erb:16
-msgid "Source"
-msgstr "Quelle"
-
-#: app/views/patch_updates/index.html.erb:14
-msgid "Install"
-msgstr "Installiere"
-
-#: app/views/webservices/index.html.erb:1 app/views/sessions/show.html.erb:82
-msgid "YaST-Web-Services"
-msgstr "YaST-Web-Services"
-
-#: app/views/webservices/index.html.erb:9
-#: app/views/webservices/edit.html.erb:18
-#: app/views/webservices/new.html.erb:18
-msgid "Description"
-msgstr "Beschreibung"
-
-#: app/views/webservices/index.html.erb:10
-msgid "Edit"
-msgstr "Editieren"
-
-#: app/views/webservices/index.html.erb:11
-msgid "Delete"
-msgstr "Löschen"
-
-#: app/views/webservices/index.html.erb:19
-msgid "Are you sure?"
-msgstr "Sind Sie sicher ?"
-
-#: app/views/webservices/index.html.erb:24
-msgid "<strong>[New YaST-Web-Service]</strong>"
-msgstr "<strong>[Neuer YaST-Web-Service]</strong>"
-
-#: app/views/webservices/index.html.erb:27
-#: app/views/webservices/edit.html.erb:22
-#: app/views/webservices/new.html.erb:22 app/views/sessions/show.html.erb:71
-msgid "Back"
-msgstr "Zurück"
-
 #: app/views/webservices/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "YaST-Web-Service ändern"
@@ -151,9 +98,20 @@ msgstr "YaST-Web-Service"
 msgid "URL"
 msgstr "URL"
 
+#: app/views/webservices/edit.html.erb:18
+#: app/views/webservices/new.html.erb:18
+msgid "Description"
+msgstr "Beschreibung"
+
 #: app/views/webservices/edit.html.erb:22
 msgid "Update"
 msgstr "Speichern"
+
+#: app/views/webservices/edit.html.erb:22
+#: app/views/webservices/new.html.erb:22 app/views/webservices/index.rhtml:39
+#: app/views/sessions/new.rhtml:19
+msgid "Back"
+msgstr "Zurück"
 
 #: app/views/webservices/new.html.erb:1
 msgid "New YaST-Web-Service"
@@ -167,38 +125,19 @@ msgstr "Erzeuge"
 msgid "Login Failed"
 msgstr "Anmeldung fehlgeschlagen"
 
-#: app/views/sessions/show.html.erb:59 app/views/permissions/index.rhtml:16
-msgid "User"
-msgstr "Benutzer"
-
-#: app/views/sessions/show.html.erb:62
-msgid "Login"
-msgstr "Login"
-
-#: app/views/sessions/show.html.erb:66
-msgid "Password"
-msgstr "Passwort"
-
-#: app/views/sessions/show.html.erb:71
-msgid "Connect"
-msgstr "Verbinden"
-
-#: app/views/sessions/show.html.erb:113
-msgid "<strong>[Configure]</strong>"
-msgstr "<strong>[konfigurieren]</strong>"
-
 #: app/views/sessions/_login_succeeded.html.erb:2
-#: app/views/layouts/main.rhtml:51
+#: app/views/layouts/main.rhtml:76 app/views/sessions/_current_session.rhtml:8
 msgid "Connected Host"
 msgstr "aktueller Rechner"
 
 #: app/views/sessions/_login_succeeded.html.erb:3
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:77 app/views/sessions/_current_session.rhtml:9
 msgid "Name:"
 msgstr "Name:"
 
 #: app/views/sessions/_login_succeeded.html.erb:4
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:78
+#: app/views/sessions/_current_session.rhtml:10
 msgid "User:"
 msgstr "Benutzer:"
 
@@ -226,78 +165,130 @@ msgstr "Update"
 msgid "Systemtime"
 msgstr "Systemzeit"
 
-#: app/views/sessions/_controllers.html.erb:8 app/views/layouts/main.rhtml:32
+#: app/views/sessions/_controllers.html.erb:8
 msgid "Session"
 msgstr "Sitzung"
 
-#: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:38
+#: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:64
 msgid "Logout"
 msgstr "Sitzung beenden"
 
-#: app/views/layouts/main.rhtml:34
-msgid "Choose host"
-msgstr "Rechner auswählen"
-
-#: app/views/layouts/main.rhtml:91
-msgid "INFO"
-msgstr "INFO"
-
-#: app/views/layouts/main.rhtml:92
-msgid "This is a sample web-UI for YaST-as-a-webservice."
-msgstr ""
-"Dies ist ein Beispielprogramm zur Demonstration der YaST-REST-Schnittstelle"
-
-#: app/views/layouts/main.rhtml:95
-msgid "Authors"
-msgstr "Autoren"
-
-#: app/views/layouts/main.rhtml:101
-msgid "Others"
-msgstr "Andere"
-
-#: app/views/layouts/main.rhtml:104
-msgid "Links"
-msgstr "Links"
-
-#: app/views/layouts/main.rhtml:107
-msgid "About YaST"
-msgstr "Über YaST"
-
-#: app/views/layouts/main.rhtml:108
-msgid "About Rails"
-msgstr "Über Rails"
-
-#: app/views/layouts/main.rhtml:109
-msgid "About used CSS"
-msgstr "Benutztes CSS"
-
-#: app/views/layouts/main.rhtml:110
-msgid "About used icons"
-msgstr "Benutzte Icons"
-
-#: app/views/layouts/main.rhtml:111
-msgid "About PolicyKit"
-msgstr "Über PolicyKit"
-
-#: app/views/layouts/main.rhtml:142
+#: app/views/layouts/main.rhtml:50
 msgid "...Wait..."
 msgstr "...Bitte warten..."
 
-#: app/views/permissions/index.rhtml:13
-msgid "User Permissions"
-msgstr "Zugriffsrechte"
+#: app/views/webservices/index.rhtml:21
+msgid "Are you sure?"
+msgstr "Sind Sie sicher ?"
 
-#: app/views/permissions/index.rhtml:18
-msgid "Search"
-msgstr "Suche"
+#: app/views/sessions/new.rhtml:7
+#, fuzzy
+msgid "Username"
+msgstr "Benutzer"
 
-#: app/views/permissions/index.rhtml:29
-msgid "Revoked Permissions"
-msgstr "Gesperrte Rechte"
+#: app/views/sessions/new.rhtml:10
+msgid "Password"
+msgstr "Passwort"
 
-#: app/views/permissions/index.rhtml:30
-msgid "Granted Permissions"
-msgstr "Zulässige Rechte"
+#: app/views/sessions/new.rhtml:13
+msgid "Connect"
+msgstr "Verbinden"
+
+#: app/views/controlpanel/browse.rhtml:19
+msgid "Search for a module"
+msgstr ""
+
+#~ msgid "Permission has been granted."
+#~ msgstr "Das Recht wurde gegeben."
+
+#~ msgid "Permission has been revoked."
+#~ msgstr "Das Recht wurde entzogen."
+
+#~ msgid "Patch has been installed."
+#~ msgstr "Patch wurde installiert."
+
+#~ msgid "Available Patches"
+#~ msgstr "Verfügbare Update"
+
+#~ msgid "Kind"
+#~ msgstr "Typ"
+
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#~ msgid "Summary"
+#~ msgstr "Zusammenfassung"
+
+#~ msgid "Source"
+#~ msgstr "Quelle"
+
+#~ msgid "Install"
+#~ msgstr "Installiere"
+
+#~ msgid "YaST-Web-Services"
+#~ msgstr "YaST-Web-Services"
+
+#~ msgid "Edit"
+#~ msgstr "Editieren"
+
+#~ msgid "Delete"
+#~ msgstr "Löschen"
+
+#~ msgid "<strong>[New YaST-Web-Service]</strong>"
+#~ msgstr "<strong>[Neuer YaST-Web-Service]</strong>"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "<strong>[Configure]</strong>"
+#~ msgstr "<strong>[konfigurieren]</strong>"
+
+#~ msgid "Choose host"
+#~ msgstr "Rechner auswählen"
+
+#~ msgid "INFO"
+#~ msgstr "INFO"
+
+#~ msgid "This is a sample web-UI for YaST-as-a-webservice."
+#~ msgstr ""
+#~ "Dies ist ein Beispielprogramm zur Demonstration der YaST-REST-"
+#~ "Schnittstelle"
+
+#~ msgid "Authors"
+#~ msgstr "Autoren"
+
+#~ msgid "Others"
+#~ msgstr "Andere"
+
+#~ msgid "Links"
+#~ msgstr "Links"
+
+#~ msgid "About YaST"
+#~ msgstr "Über YaST"
+
+#~ msgid "About Rails"
+#~ msgstr "Über Rails"
+
+#~ msgid "About used CSS"
+#~ msgstr "Benutztes CSS"
+
+#~ msgid "About used icons"
+#~ msgstr "Benutzte Icons"
+
+#~ msgid "About PolicyKit"
+#~ msgstr "Über PolicyKit"
+
+#~ msgid "User Permissions"
+#~ msgstr "Zugriffsrechte"
+
+#~ msgid "Search"
+#~ msgstr "Suche"
+
+#~ msgid "Revoked Permissions"
+#~ msgstr "Gesperrte Rechte"
+
+#~ msgid "Granted Permissions"
+#~ msgstr "Zulässige Rechte"
 
 #~ msgid "Settings have been written."
 #~ msgstr "Einstellungen wurden gespeichert."
