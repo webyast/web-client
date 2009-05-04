@@ -98,6 +98,7 @@ class SessionsController < ApplicationController
     # we can't create session if we are logged in
     if logged_in?
       redirect_to session_path
+      return
     end
 
     # if the hostname is not set, go to the webservices controller
