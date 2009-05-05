@@ -1,7 +1,20 @@
-#equire 'active_resource/struct'
 
 module YaST
-  #SERVICE_SITE = "http://localhost:8080"
+
+  # Provides utilities to interact with a YaST webservice
+  #
+  # Session module is used to hold the current session with
+  # a YaST web service
+  #
+  # proxy_for function allows to retrieve a proxy implementing
+  # a certain interface, using introspection to the webservice
+  # to find the resource url.
+  # The returned proxy is also able to handle singleton resources
+  # and to instrospect permissions for the current user.
+  #
+  # Base is a compatibility ActiveResource::Base like class
+  # for fixed url resources
+  #
   module ServiceResource    
     #
     # Creates a proxy for a given interface
