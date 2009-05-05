@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   
   begin
-    require 'gettext'
+    require 'gettext_rails'
   rescue Exception => e
-    $stderr.puts "rails-gettext not found!"
+    $stderr.puts "gettext_rails not found!"
     exit
   end
 
