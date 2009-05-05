@@ -10,6 +10,8 @@ module YaST
     #   p.find(:all)
     # end
     #
+    # For singleton resources you can use find(:one)
+    #
     # The path of the resource is asked to the server resource
     # registry
     #
@@ -23,12 +25,39 @@ module YaST
     # If YaST::ServiceResource::Session does not specify anything
     # and site not overriden, ActiveResource::Base.site is used.
     #
+    # ==Permissions==
+    #
+    # YaST::ServiceResource.proxy_for('org.iface.foo') do |p|
+    #   p.permissions
+    # end
+    #
+    # returns the permissions for the current interface
+    # on the server side.
+    #
+    # permissions returns a hash permission-name => granted
+    # example: { :read => true, :write => false }
+    #
+    # Options: :user => 'value' will retrieve the permissions
+    # for the specified user.
+    #
+    # If no user is specified, the current logged user will be
+    # retrieved from YaST::ServiceResource::Session and used
+    # instead.
+    #
+    # Note that if you manually specify an user, you should have
+    # permissions to read those user permissions.
+    #
     def self.proxy_for(interface_name, opts={})
       # not used yet
       # {:site => ActiveResource::Base::, :arg_two => 'two'}.merge!(opts)
       path = self.path_for_interface(interface_name)
-      return nil if path.nil?      
+      return nil if path.nil?
       proxy = self.class_for_resource(path, opts)
+      
+      # set the interface name of the proxy
+      # that is used when retrieving permissions
+      proxy.interface = interface_name
+      
       if block_given?
         yield proxy
       end
@@ -38,7 +67,10 @@ module YaST
     # place to hold data related to the
     # current connected web service
     module Session
+      # service we are logged in to
       mattr_accessor :site
+      # login used to access the site
+      mattr_accessor :login
     end
 
     # Creates a class for a resource based on
@@ -98,8 +130,51 @@ module YaST
               else return super(scope, options)
             end
           end
+
+          # dynamic implementation of permissions as described
+          # on proxy_for documentation
+          def permissions(opts={})
+            login = opts.has_key?(:user) ? opts[:user] : YaST::ServiceResource::Session.login
+            if login
+              proxy = YaST::ServiceResource.class_for_resource("/permissions")
+              if self.respond_to?(:interface) and self.interface
+                interface_name = self.interface
+                permissions = proxy.find(:all, :user_id => login, :filter => interface_name)
+                ret = Hash.new
+                permissions.each do |perm|
+                  # the permission name is an extension
+                  # of the interface name, if the
+                  # interface is not a subset of the permission
+                  # something wrong happened with the query
+                  # and we should ignore it
+                  next if not perm.name.include?(interface_name)
+                  perm_short_name = perm.name
+                  perm_short_name.slice!("#{interface_name}.")
+                  # to this point the short name must be something
+                  next if perm_short_name.blank?
+                  ret[perm_short_name.to_sym] = perm.grant
+                end
+                return ret
+              else
+                raise "Resource does not implement any interface. Can't retrieve permissions"
+              end
+        
+            else
+              raise "Can't retrieve permissions. No user specified and not logged in"
+            end
+          end
+
+          # Accessor for the interface we implement
+          def interface=(interface_name)
+            @interface = interface_name
+          end
+          
+          def interface
+            defined?(@interface) ? @interface : nil
+          end
           
         end
+
         
         # do not export the class to namespace
         #Object.const_set("#{class_name}#{Time.now.to_i}".intern, rsrc)
@@ -117,7 +192,7 @@ module YaST
       end
       return nil
     end
-
+  
     # Obsolete
     # Just for backward compatibility for resources
     # using YaST::ServiceResource::Base

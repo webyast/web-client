@@ -5,7 +5,9 @@ require 'active_resource/http_mock'
 
 class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
   def setup
+    # simulate we are loggedin
     YaST::ServiceResource::Session.site = "http://localhost:8080"
+    YaST::ServiceResource::Session.login = "linus"
     # first define the resources the server would return
     # we have a resource /foos and a singleton /master
     @resources_response = <<EOF
@@ -127,5 +129,40 @@ EOF
     # this has to work now
     assert_equal "Hello", @proxy.find(:all).first.bar
   end
+
+  def test_permissions
+    permissions_response = <<EOF
+      <permissions type=\"array\">
+        <permission>
+          <name>org.yast.foo.read</name>
+          <grant type=\"boolean\">true</grant>
+        </permission>
+        <permission>
+          <name>org.yast.foo.write</name>
+         <grant type=\"boolean\">false</grant>
+        </permission>
+      </permissions>
+EOF
+    ActiveResource::HttpMock.respond_to do |mock|
+      # the resources are returned prefixed from the server
+      mock.get "/resources.xml", {}, @resources_with_prefix_response
+      # however we respond to the prefixed ones
+      mock.get "/permissions.xml", {}, permissions_response
+      # ARGH httpmock does not support paramters
+      #mock.get "/permissions.xml?user_id=linus&filter=org.yast.foo", {}, permissions_response
+      mock.get "/someprefix/foos/1.xml", {}, @foo_response
+    end
+    @proxy = YaST::ServiceResource.proxy_for("org.yast.foo")
+
+    perms = @proxy.permissions
+    assert_not_nil perms
+    assert_equal Hash, perms.class
+    assert perms.has_key?(:read)
+    assert perms.has_key?(:write)
+    assert ! perms.has_key?(:other)
+    assert perms[:read]
+    assert ! perms[:write]
+  end
+
   
 end

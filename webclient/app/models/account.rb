@@ -22,6 +22,8 @@ class Account < ActiveRecord::Base
   def self.authenticate(login, passwd, service)
     # set default site url for all YaST service based resources
     YaST::ServiceResource::Session.site = service
+    YaST::ServiceResource::Session.login = login
+    
     # the above will obsolete this
     YaST::ServiceResource::Base.site = service
     # create a login resource
