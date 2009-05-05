@@ -44,8 +44,8 @@ module YaST
     # Creates a class for a resource based on
     # the interface name
     def self.class_for_resource(path, opts={})
-      class_name = name.to_s.camelize
-      #class_name = name.to_s
+      # dynamically create an anonymous class for
+      # this resource
       rsrc = Class.new(ActiveResource::Base) do
         name = File.basename(path)
         base_path = File.dirname(path)
@@ -56,8 +56,51 @@ module YaST
                           Session.site.nil? ?
                           ActiveResource::Base.site : Session.site)
 
-        self.site = "#{site}#{base_path}"
+        self.site = URI.join(site, base_path)
         self.element_name = name.to_s
+
+        # ActiveResource::Base class is broken with singleton resources
+        # therefore we add some to it
+        #
+        # See: https://rails.lighthouseapp.com/projects/8994/tickets/2608-activeresource-support-for-singleton-resources#ticket-2608-1
+        class << self
+
+          # this find_one, unlike ActiveResource one, works
+          # without :from for a singleton resource
+          def find_one(options)
+            if not options.has_key?(:from)
+              if not self.element_name == self.element_name.pluralize
+                # it is a singleton
+                # create the :from options from the resource
+                # path
+                # URI is sick.
+                # URI.join http://localhost/foo, bar -> http://localhost/bar
+                # URI.join http://localhost, foo/bar -> http://localhost/foo/bar
+                # so join the path before to avoid this sick behavior
+                resource_uri = URI.join(self.site.to_s, File.join(self.site.path,"#{self.element_name}.xml"))
+                return super(:from => resource_uri.path)
+              else
+                raise "Can't find :one in non singleton resource"
+              end
+            else
+              # delegate to ActiveResource
+              super(options)
+            end
+          end
+          
+          # wrapper for find, for the singleton case
+          def find(*arguments)
+            scope   = arguments.slice!(0)
+            options = arguments.slice!(0) || {}
+
+            case scope
+              when :one then return self.find_one(options)
+              else return super(scope, options)
+            end
+          end
+          
+        end
+        
         # do not export the class to namespace
         #Object.const_set("#{class_name}#{Time.now.to_i}".intern, rsrc)
       end
