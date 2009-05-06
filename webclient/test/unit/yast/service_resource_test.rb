@@ -3,6 +3,11 @@ require 'test_helper'
 require 'yast/service_resource'
 require 'active_resource/http_mock'
 
+class Item < ActiveResource::Base
+  self.site = "http:://localhost:8080"  
+end
+
+
 class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
   def setup
     # simulate we are loggedin
@@ -14,10 +19,12 @@ class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
       <resources type=\"array\">
         <resource>
           <interface>org.yast.foo</interface>
+          <singular type="boolean">false</singular>
           <href>/foos</href>
         </resource>
         <resource>
           <interface>org.yast.master</interface>
+          <singular type="boolean">true</singular>
           <href>/master</href>
         </resource>
       </resources>
@@ -26,10 +33,12 @@ EOF
       <resources type=\"array\">
         <resource>
           <interface>org.yast.foo</interface>
+          <singular type="boolean">false</singular>
           <href>/someprefix/foos</href>
         </resource>
         <resource>
           <interface>org.yast.master</interface>
+          <singular type="boolean">true</singular>
           <href>/someprefix/master</href>
         </resource>
       </resources>
@@ -54,6 +63,19 @@ EOF
   def teardown
     ActiveResource::HttpMock.reset!
   end
+
+  #def test_ar
+  #  item_response = "<item><name>He-Man</name></item>"
+  #  ActiveResource::HttpMock.respond_to do |mock|
+  #    mock.get "/item.xml", {}, item_response
+  #    mock.post "/item.xml", {}, item_response, 201
+  #    mock.delete "/item.xml", {}, item_response, 200
+  #  end
+#
+#    #m = Item.find(:one, :from => "/item.xml")
+#    m = Item.find(:all)
+#    assert_equal "dddddd", m.class 
+#  end
   
   def test_proxy_works
     ActiveResource::HttpMock.respond_to do |mock|
@@ -74,30 +96,43 @@ EOF
 
   def test_proxy_works_with_singleton
     ActiveResource::HttpMock.respond_to do |mock|
+      mock.put "/master.xml", {}, nil, 200
       mock.get "/resources.xml", {}, @resources_response
       mock.get "/master.xml", {}, @master_response
+      mock.post "/someprefix/master.xml", {}, @master_response, 201
+      mock.delete "/master.xml", {}, @master_response, 200
     end
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
     # the proxy is an anonymous class
-    c = @proxy.find(:one)
+    assert @proxy.singular?
+    c = @proxy.get    
     # only one
     assert_not_equal c.class, Array
     assert_equal c.name, "He-Man"
+    c.name = "Skeletor"
+    @proxy.save
+    @proxy.destroy
   end
 
   def test_proxy_works_with_singleton_and_prefix
     ActiveResource::HttpMock.respond_to do |mock|
       mock.get "/resources.xml", {}, @resources_with_prefix_response
       mock.get "/someprefix/master.xml", {}, @master_response
+      mock.post "/someprefix/master.xml", {}, @master_response, 201
+      mock.put "/someprefix/master.xml", {}, nil, 204
+      mock.delete "/someprefix/master.xml", {}, @master_response, 200
     end
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
-    # the proxy is an anonymous class
-    c = @proxy.find(:one)
+    assert @proxy.singular?
+    c = @proxy.get    
     # only one
     assert_not_equal c.class, Array
     assert_equal c.name, "He-Man"
+    c.name = "Skeletor"
+    @proxy.save
+    @proxy.destroy
   end
 
   
