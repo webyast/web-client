@@ -11,7 +11,7 @@ class SystemTimeController < ApplicationController
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
 
-    @systemtime = proxy.get
+    @systemtime = proxy.find
 
     # if time is not available
     if @systemtime.nil?

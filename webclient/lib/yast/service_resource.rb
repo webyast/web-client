@@ -24,7 +24,7 @@ module YaST
     #   p.find(:all)
     # end
     #
-    # For singleton resources you can use p.get, p.save, p.destroy
+    # For singleton resources you can use p.find with no arguments
     # 
     # The path of the resource is asked to the server resource
     # registry
@@ -70,21 +70,8 @@ module YaST
       
       # set the interface name of the proxy
       # that is used when retrieving permissions
-      proxy.interface = interface_name
-      if resource.singular?
-        class << proxy
-          def singular?
-            true
-          end
-        end
-      else
-        class << proxy
-          def singular?
-            false
-          end
-        end
-      end
-      #proxy.singular = resource.singular
+      proxy.instance_variable_set(:@interface, interface_name)
+      proxy.instance_variable_set(:@singular, resource.singular?)
       
       if block_given?
         yield proxy
@@ -105,62 +92,19 @@ module YaST
     # therefore we add some to it
     #
     # See: https://rails.lighthouseapp.com/projects/8994/tickets/2608-activeresource-support-for-singleton-resources#ticket-2608-1
-    # this methods replaces find_one, delete, create and update
     def self.fix_singleton_proxy(obj)
-      class << obj
-        # this find_one, unlike ActiveResource one, works
-        # without :from for a singleton resource
-        def find_one(options)
-          # we need to fix find_one only if the :from key is
-          # not given
-          if not options.has_key?(:from)
-            # it is a singleton
-            # create the :from options from the resource
-            # path
-            # URI is sick.
-            # URI.join http://localhost/foo, bar -> http://localhost/bar
-            # URI.join http://localhost, foo/bar -> http://localhost/foo/bar
-            # so join the path before to avoid this sick behavior
-            single_element = super(:from => resource_uri.path)
-            # Now we need to redefine the delete and save methods of
-            # the singleton element because of course ActiveResource can't
-            # handle it
+      obj.collection_name = obj.element_name.singularize
+      def obj.element_path(id, prefix_options = {}, query_options = nil)
+        prefix_options, query_options = split_options(prefix_options) if query_options.nil?
+        # original: "#{prefix(prefix_options)}#{collection_name}/#{id}.#{format.extension}#{query_string(query_options)}"
+        "#{prefix(prefix_options)}#{collection_name}.#{format.extension}#{query_string(query_options)}"
+      end
 
-            #class << single_element.class
-            #  def destroy
-            #    connection.delete(self.resource_uri.path, self.class.headers)
-            #  end
-            #  
-            #  def create
-            #    connection.post(resource_uri.path, encode, self.class.headers).tap do |response|
-            #      load_attributes_from_response(response)
-            #    end
-            #  end
-            # 
-            #  def update
-            #    connection.put(self.resource_uri, encode, self.class.headers).tap do |response|
-            #      load_attributes_from_response(response)
-            #    end
-            #  end
-                #######
-            #end
-            return single_element
-          else
-            # if :from is present, then
-            super(options)
-          end
-        end
-          
-        # wrapper for find, for the singleton case
-        def find(*arguments)
-          scope   = arguments.slice!(0)
-          options = arguments.slice!(0) || {}
-
-          case scope
-          when :one then return self.find_one(options)
-          else return super(scope, options)
-          end
-        end
+      # overriding the collection_path to omit the extension and make the collection_name singular
+      def obj.collection_path(prefix_options = {}, query_options = nil)
+        prefix_options, query_options = split_options(prefix_options) if query_options.nil?
+        # original: "#{prefix(prefix_options)}#{collection_name}.#{format.extension}#{query_string(query_options)}"
+          "#{prefix(prefix_options)}#{collection_name}.#{format.extension}#{query_string(query_options)}"
       end
     end
 
@@ -168,22 +112,6 @@ module YaST
     # like permissions and resource_uri
     def self.add_service_proxy_convenience_methods(obj)
       class << obj
-        def get(options={})
-          @single_element = find(:one, :from => resource_uri.path)
-        end
-
-        def destroy
-          connection.delete(self.resource_uri.path, @single_element.class.headers)
-        end
-        
-        def save
-          get if not defined?(@single_element)
-          connection.put(self.resource_uri.path, @single_element.encode, @single_element.class.headers).tap do |response|
-            if response['Content-Length'] != "0" && response.body.strip.size > 0
-              @single_element.load(@single_element.class.format.decode(response.body))
-            end
-          end
-        end
         
         def resource_uri
           URI.join(self.site.to_s, File.join(self.site.path,"#{self.element_name}.xml"))

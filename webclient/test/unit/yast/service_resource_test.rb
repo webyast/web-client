@@ -99,20 +99,20 @@ EOF
       mock.put "/master.xml", {}, nil, 200
       mock.get "/resources.xml", {}, @resources_response
       mock.get "/master.xml", {}, @master_response
-      mock.post "/someprefix/master.xml", {}, @master_response, 201
+      mock.post "/master.xml", {}, @master_response, 201
       mock.delete "/master.xml", {}, @master_response, 200
     end
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
     # the proxy is an anonymous class
     assert @proxy.singular?
-    c = @proxy.get    
+    c = @proxy.find
     # only one
     assert_not_equal c.class, Array
     assert_equal c.name, "He-Man"
     c.name = "Skeletor"
-    @proxy.save
-    @proxy.destroy
+    c.save
+    c.destroy
   end
 
   def test_proxy_works_with_singleton_and_prefix
@@ -126,13 +126,13 @@ EOF
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
     assert @proxy.singular?
-    c = @proxy.get    
+    c = @proxy.find   
     # only one
     assert_not_equal c.class, Array
     assert_equal c.name, "He-Man"
     c.name = "Skeletor"
-    @proxy.save
-    @proxy.destroy
+    c.save
+    c.destroy
   end
 
   
