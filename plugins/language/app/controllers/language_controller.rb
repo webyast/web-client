@@ -1,3 +1,5 @@
+require 'yast/service_resource'
+
 class LanguageController < ApplicationController
   before_filter :login_required
   layout 'main'
@@ -8,7 +10,11 @@ class LanguageController < ApplicationController
 
   def index
     set_permissions(controller_name)
-    @language = Language.find(:one, :from => '/language.xml')
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
+    @permissions = proxy.permissions
+    
+    @language = proxy.find
+
     @second_languages = {}
     @valid = []
 
@@ -28,6 +34,10 @@ class LanguageController < ApplicationController
   end
 
   def commit_language
+     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
+     @permissions = proxy.permissions
+     lang = proxy.find
+
      lang = Language.find(:one, :from => '/language.xml')
      hash_avail = {}
      lang.available.each do  |avail|
