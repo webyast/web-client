@@ -41,10 +41,12 @@ class Account < ActiveRecord::Base
       acc.save
       puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
       YaST::ServiceResource::Base.password = ret.attributes["auth_token"].attributes["value"]
+      YaST::ServiceResource::Session.auth_token = ret.attributes["auth_token"].attributes["value"]
       return acc, ret.attributes["auth_token"].attributes["value"]
     else
       puts "Authenticate Failure"
       YaST::ServiceResource::Base.password = ""
+      YaST::ServiceResource::Session.auth_token = ""
       return nil, nil
     end
   end

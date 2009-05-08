@@ -112,7 +112,7 @@ EOF
     assert_equal c.name, "He-Man"
     c.name = "Skeletor"
     c.save
-    c.destroy
+    c.destroy    
   end
 
   def test_proxy_works_with_singleton_and_prefix
@@ -197,6 +197,29 @@ EOF
     assert ! perms.has_key?(:other)
     assert perms[:read]
     assert ! perms[:write]
+  end
+  
+  def test_proxy_works_with_array_attrs
+    master_with_array_attr_response = <<FIN
+      <master>
+        <name>He-Man</name>
+        <cities type=\"array\">
+          <city>Santiago</city>
+          <city>Nuernberg</city>
+        </cities>
+      </master>
+FIN
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.put "/master.xml", {}, nil, 200
+      mock.get "/resources.xml", {}, @resources_response
+      mock.get "/master.xml", {}, master_with_array_attr_response
+      mock.post "/master.xml", {}, master_with_array_attr_response, 201
+      mock.delete "/master.xml", {}, master_with_array_attr_response, 200
+    end
+    
+    @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
+    assert @proxy.singular?
+    c = @proxy.find
   end
 
   

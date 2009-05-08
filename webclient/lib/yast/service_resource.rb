@@ -72,6 +72,8 @@ module YaST
       # that is used when retrieving permissions
       proxy.instance_variable_set(:@interface, interface_name)
       proxy.instance_variable_set(:@singular, resource.singular?)
+
+      proxy.password = Session.auth_token
       
       if block_given?
         yield proxy
@@ -86,6 +88,8 @@ module YaST
       mattr_accessor :site
       # login used to access the site
       mattr_accessor :login
+      # auth_token from session
+      mattr_accessor :auth_token
     end
 
     # ActiveResource::Base class is broken with singleton resources
@@ -94,6 +98,7 @@ module YaST
     # See: https://rails.lighthouseapp.com/projects/8994/tickets/2608-activeresource-support-for-singleton-resources#ticket-2608-1
     def self.fix_singleton_proxy(obj)
       obj.collection_name = obj.element_name.singularize
+      
       def obj.element_path(id, prefix_options = {}, query_options = nil)
         prefix_options, query_options = split_options(prefix_options) if query_options.nil?
         # original: "#{prefix(prefix_options)}#{collection_name}/#{id}.#{format.extension}#{query_string(query_options)}"
@@ -122,7 +127,7 @@ module YaST
         def permissions(opts={})
           login = opts.has_key?(:user) ? opts[:user] : YaST::ServiceResource::Session.login
           raise "Can't retrieve permissions. No user specified and not logged in" if not login
-          perm_resource = OpenStruct.new(:href => '/permissions', :singular => false)
+          perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
           proxy = YaST::ServiceResource.class_for_resource(perm_resource)
           raise "object does not implement any interface" if not (self.respond_to?(:interface) and self.interface)
           interface_name = self.interface
@@ -171,6 +176,7 @@ module YaST
       # dynamically create an anonymous class for
       # this resource
       path = resource.href
+
       rsrc = Class.new(ActiveResource::Base) do
         name = File.basename(path)
         base_path = File.dirname(path)
@@ -191,6 +197,18 @@ module YaST
       # if the resource is a singleton add the necessary
       # black magic
       self.fix_singleton_proxy(rsrc) if resource.singular?
+
+      # the interface contains dots, replace them with
+      # underscores and set the constant to ActiveResource
+      # otherwise
+      if resource.interface
+        klass_name = resource.interface.tr('.', '_').camelize.to_sym
+        begin
+          ActiveResource::Base.const_get(klass_name)
+        rescue NameError
+          ActiveResource::Base.const_set(klass_name, rsrc)
+        end
+      end
       return rsrc
     end
 
@@ -198,7 +216,7 @@ module YaST
     # querying the remote resource registry
     # (the resources resource)
     def self.resource_for_interface(interface_name)
-      res_resource = OpenStruct.new(:href => '/resources', :singular => false)
+      res_resource = OpenStruct.new(:href => '/resources', :singular => false, :interface => 'org.opensuse.yast.webservice.resources')
 
       proxy = self.class_for_resource(res_resource)
       resources = proxy.find(:all)
