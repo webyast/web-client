@@ -36,7 +36,7 @@ class SystemTimeController < ApplicationController
 
   def commit_time
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
-    @permissions.proxy.permissions
+    @permissions = proxy.permissions
     t = proxy.find
     t.timezone = params[:timezone]
     if params[:utc] == "true"
@@ -48,7 +48,7 @@ class SystemTimeController < ApplicationController
     t.currenttime = DateTime.parse("#{params[:currentdate]} #{:currenttime}", "%d/%m/%Y %H:%M")
     
     t.validtimezones = [] #not needed anymore
-    proxy.save
+    t.save
     if t.error_id != 0
        flash[:error] = t.error_string
        redirect_to :action => :index 
