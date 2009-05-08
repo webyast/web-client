@@ -12,7 +12,7 @@ class LanguageController < ApplicationController
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
     @permissions = proxy.permissions
-    
+
     @language = proxy.find
 
     @second_languages = {}
@@ -35,10 +35,10 @@ class LanguageController < ApplicationController
 
   def commit_language
      proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
+     proxy.timeout = 120
      @permissions = proxy.permissions
      lang = proxy.find
 
-     lang = Language.find(:one, :from => '/language.xml')
      hash_avail = {}
      lang.available.each do  |avail|
         hash_avail[avail.name.tr_s(" ", "_")] = avail.id
@@ -49,8 +49,7 @@ class LanguageController < ApplicationController
      lang.second_languages = []
      params::each do |name,value|   
        if value=="LanguageSet"
-          l = Language::SecondLanguage.new( :id => hash_avail[name] )
-          lang.second_languages << l
+          lang.second_languages << { :id => hash_avail[name] }
        end
      end
      lang.save

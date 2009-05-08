@@ -1,17 +1,14 @@
-<h1><%=_("Language")%></h1>
+<h2><%=_("Language")%></h1>
 <br>
 
 <% form_tag '/language/commit_language' do %>
-  <div class="table">
-    <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
-    <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
     <table class="listing form" cellpadding="0" cellspacing="0">
        <tr>
  	  <th class="full" colspan="2"><%=_("Settings")%></th>
        </tr>
        <tr>
 	  <td class="first" width="120"><strong><%=_("First Language")%></strong></td>
-  	  <td class="last"><%= select_tag :first_language, options_for_select(@valid, @language.first_language), :disabled=>@write_permission %></td>
+  	  <td class="last"><%= select_tag :first_language, options_for_select(@valid, @language.first_language), :disabled=>!@permissions[:write] %></td>
        </tr>
        <% first = true %>
        <% @second_languages.each do |name,checked| %>
@@ -22,12 +19,11 @@
              <% else %>
                 <td class="first"><strong> </strong></td>
              <% end %>
-             <td class="last"><input type="checkbox" name=<%=h name%> value="LanguageSet" <%= checked %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %>><%=h name%></td>
+             <td class="last"><input type="checkbox" name=<%=h name%> value="LanguageSet" <%= checked %> <%= "disabled=\"disabled\"" if ! @permissions[:write] %>><%=h name%></td>
           </tr>
        <% end %>
     </table>
-    <p><%= submit_tag _("Save"), :confirm => _('This operation can take a while.'), :disabled=>@write_permission -%></p>
-  </div>
+    <p><%= submit_tag _("Save"), :confirm => _('This operation can take a while.'), :disabled=>!@permissions[:write] -%></p>
 <% end %>
 
 
