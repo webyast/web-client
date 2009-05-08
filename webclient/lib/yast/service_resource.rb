@@ -68,13 +68,6 @@ module YaST
       return nil if resource.nil?
       proxy = self.class_for_resource(resource, opts)
       
-      # set the interface name of the proxy
-      # that is used when retrieving permissions
-      proxy.instance_variable_set(:@interface, interface_name)
-      proxy.instance_variable_set(:@singular, resource.singular?)
-
-      proxy.password = Session.auth_token
-      
       if block_given?
         yield proxy
       end
@@ -129,10 +122,12 @@ module YaST
           raise "Can't retrieve permissions. No user specified and not logged in" if not login
           perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
           proxy = YaST::ServiceResource.class_for_resource(perm_resource)
+          
           raise "object does not implement any interface" if not (self.respond_to?(:interface) and self.interface)
-          interface_name = self.interface
-          permissions = proxy.find(:all, :user_id => login, :filter => interface_name)
           ret = Hash.new
+          interface_name = self.interface
+          permissions = proxy.find(:all, :params => { :user_id => login, :filter => interface_name })
+          RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
           permissions.each do |perm|
             # the permission name is an extension
             # of the interface name, if the
@@ -173,33 +168,33 @@ module YaST
     # Creates a class for a resource based on
     # the interface name
     def self.class_for_resource(resource, opts={})
-      klass_name = resource.interface.tr('.', '_').camelize.to_sym
-      begin
-        obj = ActiveResource::Base.const_get(klass_name)
-        return obj
-      rescue NameError
-        # no class yet
+      rsrc = nil
+      if not resource.interface.blank?
+        klass_name = resource.interface.tr('.', '_').camelize.to_sym
+        begin
+          rsrc = ActiveResource::Base.const_get(klass_name)
+        rescue NameError
+          rsrc = Class.new(ActiveResource::Base)
+        end
+      else
+        rsrc = Class.new(ActiveResource::Base)
       end
-
+        
       # dynamically create an anonymous class for
       # this resource
       path = resource.href
 
-      rsrc = Class.new(ActiveResource::Base) do
-        name = File.basename(path)
-        base_path = File.dirname(path)
+      name = File.basename(path)
+      base_path = File.dirname(path)
 
-        # use options site if available, otherwise
-        # the ServiceResource site
-        site = opts.fetch(:site,
-                          Session.site.nil? ?
-                          ActiveResource::Base.site : Session.site)
+      # use options site if available, otherwise
+      # the ServiceResource site
+      site = opts.fetch(:site,
+                        Session.site.nil? ?
+                        ActiveResource::Base.site : Session.site)
 
-        self.site = URI.join(site, base_path)
-        self.element_name = name.to_s        
-        # do not export the class to namespace
-        #Object.const_set("#{class_name}#{Time.now.to_i}".intern, rsrc)
-      end
+      rsrc.site = URI.join(site, base_path)
+      rsrc.element_name = name.to_s
 
       # the interface contains dots, replace them with
       # underscores and set the constant to ActiveResource
@@ -221,6 +216,12 @@ module YaST
       # black magic
       self.fix_singleton_proxy(rsrc) if resource.singular?
 
+      # set the interface name of the proxy
+      # that is used when retrieving permissions
+      rsrc.instance_variable_set(:@interface, resource.interface)
+      rsrc.instance_variable_set(:@singular, resource.singular?)
+      rsrc.password = Session.auth_token if not Session.auth_token.blank?
+      
       return rsrc
     end
 
@@ -228,7 +229,7 @@ module YaST
     # querying the remote resource registry
     # (the resources resource)
     def self.resource_for_interface(interface_name)
-      res_resource = OpenStruct.new(:href => '/resources', :singular => false, :interface => 'org.opensuse.yast.webservice.resources')
+      res_resource = OpenStruct.new(:href => '/resources', :singular => false)
 
       proxy = self.class_for_resource(res_resource)
       resources = proxy.find(:all)

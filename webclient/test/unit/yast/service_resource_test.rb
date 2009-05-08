@@ -85,7 +85,6 @@ EOF
     end
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.foo")
-    # the proxy is an anonymous class
     assert_equal "Class", @proxy.class.to_s
     # the proxy should work returning collections
     c = @proxy.find(:all)
@@ -126,6 +125,9 @@ EOF
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
     assert @proxy.singular?
+
+    assert_equal "http://localhost:8080/someprefix", @proxy.site.to_s
+
     c = @proxy.find   
     # only one
     assert_not_equal c.class, Array

@@ -9,10 +9,11 @@ class SystemTimeController < ApplicationController
   def index
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
-
+    @permissions = proxy.permissions
+    
     @systemtime = proxy.find
-    # @permissions.proxy.permissions
-    @permissions = {}
+    
+    
     # if time is not available
     if @systemtime.nil?
       render :template => 'shared/error_404'
