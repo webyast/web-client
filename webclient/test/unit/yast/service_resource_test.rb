@@ -220,6 +220,7 @@ FIN
     @proxy = YaST::ServiceResource.proxy_for("org.yast.master")
     assert @proxy.singular?
     c = @proxy.find
+    assert Array, c.cities.class
   end
 
   

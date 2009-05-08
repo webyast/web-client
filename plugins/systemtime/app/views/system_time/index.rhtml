@@ -7,33 +7,34 @@
   });
 <% end -%>
 
+<%= disabled = ! @permissions[:write] %>
 
 <% form_tag '/system_time/commit_time', :class => 'container' do %>
 <span>
   <label>
     <span><%=_("Timezone:")%></span> 
-    <%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone), :disabled=>@write_permission %>
+    <%= select_tag "timezone", options_for_select(@valid, @systemtime.timezone), :disabled=> disabled %>
   </label>
 
   <label>
-    <input type="checkbox" name="utc" value="true" <%= @is_utc %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %> />
+    <input type="checkbox" name="utc" value="true" <%= @is_utc %> <%= "disabled=\"disabled\"" if disabled %> />
     <span><%=_("UTC (Universal Time Coordinated)")%></span>
   </label>
 
   <label>
     <span><%= _("Date") %></span>
     <!-- <% text_field "date", "", :class => :datepicker, :disabled => @write_permission.eql?('disabled') %>-->
-    <%= text_field "date", "", :class => :datepicker %>
+    <%= text_field "date", "", :class => :datepicker, :disabled=> disabled %>
   </label>
 
   <label>
     <span><%= _("Time") %></span>
-    <%= text_field_tag "currenttime", @time_string, :disabled=>@write_permission  %>
+    <%= text_field_tag "currenttime", @time_string, :disabled=> disabled %>
   </label>
 
   <span>
     <hbox>
-      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=>@write_permission, :class => 'button' -%>
+      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
       <a href="/" class="button"><%=_("Back")%></a>
     </hbox>
   </span>

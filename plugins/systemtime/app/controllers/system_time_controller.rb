@@ -5,14 +5,14 @@ class SystemTimeController < ApplicationController
   layout 'main'
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
-
+  init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)  
   def index
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
 
-    @systemtime = proxy.find(1)
-
+    @systemtime = proxy.find
+    # @permissions.proxy.permissions
+    @permissions = {}
     # if time is not available
     if @systemtime.nil?
       render :template => 'shared/error_404'
@@ -35,6 +35,7 @@ class SystemTimeController < ApplicationController
 
   def commit_time
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
+    @permissions.proxy.permissions
     t = proxy.find
     t.timezone = params[:timezone]
     if params[:utc] == "true"

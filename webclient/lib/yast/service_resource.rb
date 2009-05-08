@@ -173,6 +173,14 @@ module YaST
     # Creates a class for a resource based on
     # the interface name
     def self.class_for_resource(resource, opts={})
+      klass_name = resource.interface.tr('.', '_').camelize.to_sym
+      begin
+        obj = ActiveResource::Base.const_get(klass_name)
+        return obj
+      rescue NameError
+        # no class yet
+      end
+
       # dynamically create an anonymous class for
       # this resource
       path = resource.href
@@ -192,11 +200,6 @@ module YaST
         # do not export the class to namespace
         #Object.const_set("#{class_name}#{Time.now.to_i}".intern, rsrc)
       end
-      # add convenience method
-      self.add_service_proxy_convenience_methods(rsrc)
-      # if the resource is a singleton add the necessary
-      # black magic
-      self.fix_singleton_proxy(rsrc) if resource.singular?
 
       # the interface contains dots, replace them with
       # underscores and set the constant to ActiveResource
@@ -204,11 +207,20 @@ module YaST
       if resource.interface
         klass_name = resource.interface.tr('.', '_').camelize.to_sym
         begin
+          #Object.const_get(klass_name)
           ActiveResource::Base.const_get(klass_name)
         rescue NameError
           ActiveResource::Base.const_set(klass_name, rsrc)
+          #Object.const_set(klass_name, rsrc)
         end
       end
+
+      # add convenience method
+      self.add_service_proxy_convenience_methods(rsrc)
+      # if the resource is a singleton add the necessary
+      # black magic
+      self.fix_singleton_proxy(rsrc) if resource.singular?
+
       return rsrc
     end
 
