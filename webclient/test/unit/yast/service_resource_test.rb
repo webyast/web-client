@@ -186,7 +186,7 @@ EOF
       # however we respond to the prefixed ones
       mock.get "/permissions.xml", {}, permissions_response
       # ARGH httpmock does not support paramters
-      #mock.get "/permissions.xml?user_id=linus&filter=org.yast.foo", {}, permissions_response
+      mock.get "/permissions.xml?filter=org.yast.foo&user_id=linus", {}, permissions_response
       mock.get "/someprefix/foos/1.xml", {}, @foo_response
     end
     @proxy = YaST::ServiceResource.proxy_for("org.yast.foo")

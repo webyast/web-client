@@ -74,6 +74,10 @@ module YaST
       return proxy
     end
 
+    # all dynamic proxies are created under this module
+    module Proxies
+    end
+    
     # place to hold data related to the
     # current connected web service
     module Session
@@ -168,18 +172,6 @@ module YaST
     # Creates a class for a resource based on
     # the interface name
     def self.class_for_resource(resource, opts={})
-      rsrc = nil
-      if not resource.interface.blank?
-        klass_name = resource.interface.tr('.', '_').camelize.to_sym
-        begin
-          rsrc = ActiveResource::Base.const_get(klass_name)
-        rescue NameError
-          rsrc = Class.new(ActiveResource::Base)
-        end
-      else
-        rsrc = Class.new(ActiveResource::Base)
-      end
-        
       # dynamically create an anonymous class for
       # this resource
       path = resource.href
@@ -192,8 +184,24 @@ module YaST
       site = opts.fetch(:site,
                         Session.site.nil? ?
                         ActiveResource::Base.site : Session.site)
+      full_site = URI.join(site, base_path)
+      
+      rsrc = nil
+      if not resource.interface.blank?
+        klass_name = resource.interface.tr('.', '_').camelize.to_sym
+        begin
+          rsrc = YaST::ServiceResource::Proxies.const_get(klass_name)
+          # it may happen that for the same interface the default
+          # resource changed, in that case we want a new class
+          raise NameError if rsrc.site.to_s =! full_site.to_s
+        rescue NameError
+          rsrc = Class.new(ActiveResource::Base)
+        end
+      else
+        rsrc = Class.new(ActiveResource::Base)
+      end
 
-      rsrc.site = URI.join(site, base_path)
+      rsrc.site = full_site
       rsrc.element_name = name.to_s
 
       # the interface contains dots, replace them with
@@ -202,11 +210,11 @@ module YaST
       if resource.interface
         klass_name = resource.interface.tr('.', '_').camelize.to_sym
         begin
-          #Object.const_get(klass_name)
-          ActiveResource::Base.const_get(klass_name)
+          YaST::ServiceResource::Proxies.const_get(klass_name)
+          # force a reset of the class if the path changed
+          raise NameError if rsrc.site.to_s =! full_site.to_s
         rescue NameError
-          ActiveResource::Base.const_set(klass_name, rsrc)
-          #Object.const_set(klass_name, rsrc)
+          YaST::ServiceResource::Proxies.const_set(klass_name, rsrc)
         end
       end
 
