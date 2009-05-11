@@ -1,3 +1,5 @@
+require 'yast/service_resource'
+
 class UsersController < ApplicationController
 
   before_filter :login_required
@@ -5,13 +7,16 @@ class UsersController < ApplicationController
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_users"  # textdomain, options(:charset, :content_type)
-
-
+  
+  def initialize
+  end
+  
   # GET /users
   # GET /users.xml
   def index
-    set_permissions(controller_name)
-    @users = User.find(:all)
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    @users = @client.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -22,25 +27,27 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    set_permissions(controller_name)
-    @user = User.new(:no_home=>nil, 
-                      :error_id =>0, 
-                      :default_group=>nil, 
-                      :new_login_name=>nil, 
-                      :login_name=>nil, 
-                      :groups=>[],
-                      :grp_string=>nil,
-                      :home_directory=>nil,
-                      :full_name=>nil, 
-                      :uid=>nil,
-                      :sshkey=>nil, 
-                      :new_uid=>nil, 
-                      :login_shell=>"/bin/bash", 
-                      :error_string=>nil, 
-                      :password=>nil,
-                      :type=>"local", 
-                      :id=>nil)
-    @user.id = nil
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    @user = @client.new( :id => :nil,
+      :no_home=>nil, 
+      :error_id =>0, 
+      :default_group=>nil, 
+      :new_login_name=>nil, 
+      :login_name=>nil, 
+      :groups=>[],
+      :grp_string=>nil,
+      :home_directory=>nil,
+      :full_name=>nil, 
+      :uid=>nil,
+      :sshkey=>nil, 
+      :new_uid=>nil, 
+      :login_shell=>"/bin/bash", 
+      :error_string=>nil, 
+      :password=>nil,
+      :type=>"local", 
+      :id=>nil )
+    # @user.id = nil
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -49,8 +56,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/exportssh
   def exportssh
-    set_permissions(controller_name)
-    @user = User.find(params[:id])
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    @user = @client.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
     logger.debug "exportssh: #{@user.inspect}"
@@ -62,8 +70,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    set_permissions(controller_name)
-    @user = User.find(params[:id])
+    @user = @client.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
     @user.grp_string = ""
@@ -82,7 +89,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    dummy = User.new(params[:user])
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    dummy = @client.new(params[:user])
     dummy.grp_string = params[:user][:grp_string] #do not know, why this will not be assigned in the constructor
 
     dummy.groups = []
@@ -91,7 +100,7 @@ class UsersController < ApplicationController
           dummy.groups << { :id=>group.strip }
        end
     end
-    @user = User.new(:no_home=>params[:nohome],
+    @user = @client.new(:no_home=>params[:nohome],
                       :error_id =>0, 
                       :default_group=>dummy.default_group, 
                       :new_login_name=>nil, 
@@ -135,7 +144,9 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    @user = @client.find(params[:id])
     @user.new_login_name = nil
     @user.new_uid = nil
     @user.id = @user.login_name
@@ -190,7 +201,9 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    @user = @client.find(params[:id])
     @user.id = @user.login_name
     @user.type = "local"
     @user.destroy

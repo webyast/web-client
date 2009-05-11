@@ -1,4 +1,9 @@
-   <table class="list" cellpadding="0" cellspacing="0">
+<% if @patch_updates.empty? %>
+<p><%= _("Your system is up to date.") %></p>
+<% else %>
+<p><%= _("Updates available") %></p>
+<% end %>
+   <table class="list" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "">
       <tr>
 	<th class="first" width=8%><%=_("Kind")%></th>
 	<th width=15%><%=_("Name")%></th>

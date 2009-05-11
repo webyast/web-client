@@ -12,7 +12,7 @@ class PatchUpdatesController < ApplicationController
   end
 
   def list
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patch_updates')
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
     @patch_updates = proxy.find(:all)
     respond_to do |format|
       format.html { render :partial => 'patches' }

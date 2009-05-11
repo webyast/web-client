@@ -1,6 +1,6 @@
 <h1><%=_("Edit User")%></h1>
 <br>
-<% form_for(@user) do |f| %>
+<% form_for(:user, @user) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
