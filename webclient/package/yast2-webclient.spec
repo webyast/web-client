@@ -42,7 +42,7 @@ Authors:
 %setup -q -n www
 
 %build
-(rake makemo)
+#(rake makemo)
 
 %install
 
