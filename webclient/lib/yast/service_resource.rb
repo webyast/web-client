@@ -171,6 +171,19 @@ module YaST
 
     # Creates a class for a resource based on
     # the interface name
+    #
+    # This method creates a dynamic class based on
+    # ActiveResource::Base, and preconfigured
+    # with the path where the resource is on
+    # the server based on /resources.xml introspection.
+    #
+    # the dynamic class is defined in YaST::ServiceResource::Proxies
+    # and it is named after the interface:
+    # org.foo.bar -> OrgFooBar
+    # If the class exists, then if it is the same resource path, it
+    # is reused. If it is not the same resource path, then the name
+    # is modified until an unique name is found.
+    #
     def self.class_for_resource(resource, opts={})
       # dynamically create an anonymous class for
       # this resource
