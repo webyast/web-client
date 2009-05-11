@@ -1,11 +1,8 @@
 <h1><%=_("Export SSH-Key")%></h1>
-<br>
 <% form_for(:user, @user) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
-    <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
-    <img src="/images/bg-th-right.gif" width="7" height="7" alt="" class="right" />
     <table class="listing form" cellpadding="0" cellspacing="0">
     <tr>
  	<th class="full" colspan="2"><%=_("User")%></th>

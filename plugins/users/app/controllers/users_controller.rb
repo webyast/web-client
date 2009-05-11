@@ -70,6 +70,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @permissions = @client.permissions
+    
     @user = @client.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
