@@ -3,7 +3,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-<% form_for(:user, @user) do |f| %>
+<% form_for(:user, :url => { :controller => 'users', :method=>:put, :action => "update" } ) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">

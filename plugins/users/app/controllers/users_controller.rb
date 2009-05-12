@@ -119,25 +119,24 @@ class UsersController < ApplicationController
                       :error_string=>nil, 
                       :password=>dummy.password,
                       :type=>"local")
-    retUser = {}
     #Only UID greater than 1000 are allowed for local user
     if @user.uid.to_i < 1000    
-       retUser["user"] = {}
-       retUser["user"]["error_string"] = "UID: value >= 1000 is valid for local user only"
-       retUser["user"]["error_id"] = 2
+       response = false
     else
-       response = @user.post(:create, {}, @user.to_xml)
-       retUser = Hash.from_xml(response.body)    
+       response = @user.save
     end
     respond_to do |format|
-      if retUser["user"]["error_id"] == 0
+      if response
         flash[:notice] = _('User was successfully created.')
         format.html { redirect_to(users_url) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
-        @user.error_string = retUser["user"]["error_string"]
-        @user.error_id = retUser["user"]["error_id"]
-        flash[:error] = @user.error_string
+        if @user.uid.to_i < 1000    
+           #Only UID greater than 1000 are allowed for local user
+           flash[:error] = _("UID: value >= 1000 is valid for local user only")
+        else
+           flash[:error] = @user.errors.full_messages
+        end
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
