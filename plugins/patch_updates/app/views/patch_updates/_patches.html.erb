@@ -3,7 +3,7 @@
 <% else %>
 <p><%= _("Updates available") %></p>
 <% end %>
-   <table class="list" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "">
+   <table class="list" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %>>
       <tr>
 	<th class="first" width=8%><%=_("Kind")%></th>
 	<th width=15%><%=_("Name")%></th>
@@ -42,7 +42,8 @@
               <td><%=h patch_update.repo %></td>
               <% if @install_permission.nil? %>
                  <td><%= link_to image_tag("/icons/system-software-install.png", :alt =>  "install", :class=>"icon", :border => "0"), 
-                         "foo", :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
+                         :controller => 'patch_updates', :id => patch_update.resolvable_id,
+                         :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
               <% end %>
            </tr>
       <% end %>
