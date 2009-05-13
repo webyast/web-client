@@ -64,19 +64,6 @@ EOF
     ActiveResource::HttpMock.reset!
   end
 
-  #def test_ar
-  #  item_response = "<item><name>He-Man</name></item>"
-  #  ActiveResource::HttpMock.respond_to do |mock|
-  #    mock.get "/item.xml", {}, item_response
-  #    mock.post "/item.xml", {}, item_response, 201
-  #    mock.delete "/item.xml", {}, item_response, 200
-  #  end
-#
-#    #m = Item.find(:one, :from => "/item.xml")
-#    m = Item.find(:all)
-#    assert_equal "dddddd", m.class 
-#  end
-  
   def test_proxy_works
     ActiveResource::HttpMock.respond_to do |mock|
       mock.get "/resources.xml", {}, @resources_response
@@ -85,7 +72,7 @@ EOF
     end
     
     @proxy = YaST::ServiceResource.proxy_for("org.yast.foo")
-    assert_equal "Class", @proxy.class.to_s
+    assert_equal "YaST::ServiceResource::Proxies::Foo", @proxy.name.to_s
     # the proxy should work returning collections
     c = @proxy.find(:all)
     assert_equal c.class, Array
@@ -184,7 +171,7 @@ EOF
       # the resources are returned prefixed from the server
       mock.get "/resources.xml", {}, @resources_with_prefix_response
       # however we respond to the prefixed ones
-      mock.get "/permissions.xml", {}, permissions_response
+      #mock.get "/permissions.xml", {}, permissions_response
       # ARGH httpmock does not support paramters
       mock.get "/permissions.xml?filter=org.yast.foo&user_id=linus", {}, permissions_response
       mock.get "/someprefix/foos/1.xml", {}, @foo_response

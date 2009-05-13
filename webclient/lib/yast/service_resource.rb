@@ -200,18 +200,30 @@ module YaST
       full_site = URI.join(site, base_path)
       
       rsrc = nil
+      # the module where we store the proxy classes
+      proxy_mod = YaST::ServiceResource::Proxies
       if not resource.interface.blank?
         counter = 0
         while true
-          klass_name = "#{resource.interface.tr('.', '_').camelize}#{(counter < 1) ? "" : counter}".to_sym
-          if YaST::ServiceResource::Proxies.const_defined?(klass_name)
-            rsrc = YaST::ServiceResource::Proxies.const_get(klass_name)
+          klass_name = "#{resource.interface.split('.').last.camelize}".to_sym
+          #klass_name = "#{resource.interface.split('.').last.camelize}#{(counter < 1) ? "" : counter}".to_sym
+          
+          #klass_name = "#{resource.interface.tr('.', '_').camelize}#{(counter < 1) ? "" : counter}".to_sym
+          if proxy_mod.const_defined?(klass_name)
+            rsrc = proxy_mod.const_get(klass_name)
             # if the class has the same path, use it, otherwise, go to next
             # name
             if not "#{rsrc.site}" == "#{full_site}"
-              counter = counter + 1
+              # undefine it, we use send because remove_const is
+              # private, yes black magic
+              proxy_mod.send(:remove_const, klass_name)
+              # set it again
+              rsrc = Class.new(ActiveResource::Base)
+              proxy_mod.const_set(klass_name, rsrc)
+              break
+              #counter = counter + 1
               # get a new name
-              next
+              #next
             else
               # otherwise just use the old class
               break
@@ -219,7 +231,7 @@ module YaST
           else
             # the current name does not exist
             rsrc = Class.new(ActiveResource::Base)
-            YaST::ServiceResource::Proxies.const_set(klass_name, rsrc)
+            proxy_mod.const_set(klass_name, rsrc)
             break
           end
         end
