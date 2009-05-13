@@ -1,0 +1,29 @@
+<h2><%=_("Security")%></h2>
+
+<% form_tag '/security/update' do %>
+<span>
+
+  <label>
+    <input type="checkbox" name="firewall_after_startup" value="true" <%= @firewall_after_startup %> @write_permission />
+    <span><%=_("Enable Firewall Automatic Starting")%></span>
+  </label>
+
+  <label>
+    <input type="checkbox" name="firewall" value="true" <%= @firewall %> @write_permission />
+    <span><%=_("Current Firewall Status")%></span>
+  </label>
+
+ <label>
+    <input type="checkbox" name="ssh" value="true" <%= @ssh %> @write_permission />
+    <span><%=_("Current SSH Status")%></span>
+  </label>
+
+  <span>
+    <hbox>
+      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=>@write_permission.nil?, :class => 'button' -%>
+      <a href="/" class="button"><%=_("Back")%></a>
+    </hbox>
+  </span>
+</span>
+<% end %>
+
