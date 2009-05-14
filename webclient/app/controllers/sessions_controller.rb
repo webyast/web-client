@@ -104,7 +104,7 @@ class SessionsController < ApplicationController
     # if the hostname is not set, go to the webservices controller
     # to pickup a service
     if not params.has_key?(:hostname)
-      flash[:notice] = _("Please select a host to connect to.")
+      flash[:notice] = _("Please select a host to connect to.") unless flash[:notice]
       redirect_to :controller => 'webservices'
       return
     end
