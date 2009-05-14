@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def client_permissions
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
     unless @client
+      # FIXME: should reset the cookie and redirect_to the login screen
       render :text => "Invalid session", :status => 401 and return
     end
     @permissions = @client.permissions
