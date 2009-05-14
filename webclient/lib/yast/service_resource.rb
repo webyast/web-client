@@ -64,7 +64,7 @@ module YaST
     def self.proxy_for(interface_name, opts={})
       # not used yet
       # {:site => ActiveResource::Base::, :arg_two => 'two'}.merge!(opts)
-      resource = self.resource_for_interface(interface_name)
+      resource = self.resource_for_interface(interface_name) rescue nil
       return nil if resource.nil?
       proxy = self.class_for_resource(resource, opts)
       
@@ -133,6 +133,7 @@ module YaST
           permissions = proxy.find(:all, :params => { :user_id => login, :filter => interface_name })
           RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
           permissions.each do |perm|
+	    break if perm.name.nil? # no permissions
             # the permission name is an extension
             # of the interface name, if the
             # interface is not a subset of the permission
@@ -197,6 +198,7 @@ module YaST
       site = opts.fetch(:site,
                         Session.site.nil? ?
                         ActiveResource::Base.site : Session.site)
+      raise "Invalid site" if site.nil?
       full_site = URI.join(site, base_path)
       
       rsrc = nil
