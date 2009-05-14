@@ -44,9 +44,10 @@ end
 #
 
 begin
+  require 'gettext'
   include GetText
 rescue Exception => e
-  escape "GetText not found", "install ruby-gettext"
+  escape "GetText not found", "install rubygem-gettext_rails"
 end
 
 puts "All fine, webclient is ready to run"
