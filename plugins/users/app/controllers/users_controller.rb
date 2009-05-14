@@ -5,19 +5,28 @@ class UsersController < ApplicationController
   before_filter :login_required
   layout 'main'
 
+  private
+  def client_permissions
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    unless @client
+      render :text => "Invalid session", :status => 401 and return
+    end
+    @permissions = @client.permissions
+  end
+  
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_users"  # textdomain, options(:charset, :content_type)
   
+  public
   def initialize
   end
   
   # GET /users
   # GET /users.xml
   def index
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @users = @client.find(:all)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -27,8 +36,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.new( :id => :nil,
       :no_home=>nil, 
       :error_id =>0, 
@@ -56,8 +64,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/exportssh
   def exportssh
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
@@ -70,8 +77,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     
     @user = @client.find(params[:id])
     @user.type = ""
@@ -92,8 +98,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     dummy = @client.new(params[:user])
     dummy.grp_string = params[:user][:grp_string] #do not know, why this will not be assigned in the constructor
 
@@ -147,8 +152,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.find(params[:id])
     @user.new_login_name = nil
     @user.new_uid = nil
@@ -193,8 +197,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.find(params[:id])
     @user.id = @user.login_name
     @user.type = "local"
