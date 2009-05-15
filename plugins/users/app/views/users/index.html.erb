@@ -19,8 +19,8 @@
   <% else %>
   <tr>
     <td><strong><%=h user.login_name %></strong></td>
-    <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_user_path(user.login_name), :onclick=>"Element.show('progress')" %></td>
-    <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(user.login_name), :onclick=>"Element.show('progress')" %></td>
+    <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
+    <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
     <% if @delete_permission == nil %>
     <td class="last"><%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
       user_path(user.login_name), :confirm => _('Are you sure?'), :method => :delete %></td>

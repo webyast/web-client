@@ -99,6 +99,29 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1/sshexport
+  def sshexport
+    return unless client_permissions
+    
+    @user = @client.find(params[:users_id])
+    @user.id = @user.login_name
+    logger.debug "sshexportssh: #{@user.inspect}"
+    @user.sshkey = params["user"]["sshkey"]
+    response = @user.save
+    logger.debug "sshexportssh: #{response}"
+    respond_to do |format|
+      if response
+        flash[:notice] = _('SSH-Key was successfully exported.')
+        format.html { redirect_to(users_url) }
+      else
+        flash[:error] = _('Error occured')
+        format.html { render :action => "exportssh" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+
   # POST /users
   # POST /users.xml
   def create
@@ -161,39 +184,33 @@ class UsersController < ApplicationController
     @user.new_login_name = nil
     @user.new_uid = nil
     @user.id = @user.login_name
-    if params["commit"] == "Export SSH-Key"
-      @user.sshkey = params["user"]["sshkey"]
-      response = @user.put(:sshkey, {}, @user.to_xml)
-      # FIXME!!!!! ssh key broken
-    else
-      @user.default_group = params["user"]["default_group"]
-      @user.groups = []
-      if params["user"]["grp_string"] != nil
-        params["user"]["grp_string"].split(",").each do |group|
-          @user.groups << { :id=>group.strip }
-        end
+    @user.default_group = params["user"]["default_group"]
+    @user.groups = []
+    if params["user"]["grp_string"] != nil
+      params["user"]["grp_string"].split(",").each do |group|
+        @user.groups << { :id=>group.strip }
       end
-      if @user.login_name != params["user"]["login_name"]
-        @user.new_login_name = params["user"]["login_name"]
-      end
-      @user.home_directory = params["user"]["home_directory"]
-      @user.full_name = params["user"]["full_name"]
-      if @user.uid != params["user"]["uid"]
-        @user.new_uid = params["user"]["uid"]
-      end
-      @user.login_shell = params["user"]["login_shell"]
-      @user.password = params["user"]["password"]
-      @user.type = "local"
+    end
+    if @user.login_name != params["user"]["login_name"]
+      @user.new_login_name = params["user"]["login_name"]
+    end
+    @user.home_directory = params["user"]["home_directory"]
+    @user.full_name = params["user"]["full_name"]
+    if @user.uid != params["user"]["uid"]
+      @user.new_uid = params["user"]["uid"]
+    end
+    @user.login_shell = params["user"]["login_shell"]
+    @user.password = params["user"]["password"]
+    @user.type = "local"
 
-      respond_to do |format|
-        if  @user.save
-          format.html { redirect_to(users_url) }
-          format.xml  { head :ok }
-        else
-          flash[:error] = @user.error_string
-          format.html { render :action => "edit" }
-          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        end
+    respond_to do |format|
+      if  @user.save
+        format.html { redirect_to(users_url) }
+        format.xml  { head :ok }
+      else
+        flash[:error] = @user.error_string
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end

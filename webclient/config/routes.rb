@@ -51,11 +51,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
-
-  #map.resources :users
-  map.resources :users, :requirements => { :id => /[a-zA-Z]+/ }, :member => { :exportssh => :get }
-  #map.connect "/users/:users_id/exportssh", :controller => 'users', :action => 'exportssh'
-
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
