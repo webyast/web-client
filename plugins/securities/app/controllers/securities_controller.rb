@@ -10,11 +10,9 @@ class SecuritiesController < ApplicationController
   private
 
   def prepare
-    set_permissions(controller_name)
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.security')
     @permissions = @client.permissions
-
-    @write_permission = "disabled" unless @permissions[:write]
+    set_permissions(controller_name)
   end
 
   public
