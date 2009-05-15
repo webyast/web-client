@@ -26,16 +26,15 @@ class PatchUpdatesController < ApplicationController
   # POST /patch_updates/1.xml
   def install
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    @update = proxy.new( :id => params[:id],
-                         :error_id =>0, 
-                         :error_string=>nil )
-    response = @update.save
+    update = proxy.find(params[:id])
+
+    response = update.save
     if not response
        flash[:error] = @update.errors.full_messages 
     else
        flash[:notice] = _("Patch has been installed.")
     end       
-    redirect_to(patch_updates_url)
+    redirect_to({:controller=>"patch_updates", :action=>"index"})
   end
 
 end

@@ -59,7 +59,6 @@ class UsersController < ApplicationController
       :password=>nil,
       :type=>"local", 
       :id=>nil )
-    # @user.id = nil
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
