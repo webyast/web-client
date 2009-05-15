@@ -2,6 +2,10 @@ class PermissionsController < ApplicationController
   before_filter :login_required
   layout "main"
 
+ # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_permission"  # textdomain, options(:charset, :content_type)
+
+
   # Checks the tree if there is a node which is set to the value of "grant"
   # and check if the subtree has to be shown
   def show_subtree (tree, grant)

@@ -38,6 +38,7 @@ Authors:
 %setup -q -n www
 
 %build
+(rake makemo)
 
 %install
 
@@ -64,8 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-%config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 %config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
-
+%config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
+%config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+%config /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 
