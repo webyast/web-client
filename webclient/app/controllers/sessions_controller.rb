@@ -104,7 +104,7 @@ class SessionsController < ApplicationController
     # if the hostname is not set, go to the webservices controller
     # to pickup a service
     if not params.has_key?(:hostname)
-      flash[:notice] = _("Please select a host to connect to.")
+      flash[:notice] = _("Please select a host to connect to.") unless flash[:notice]
       redirect_to :controller => 'webservices'
       return
     end
@@ -182,7 +182,7 @@ class SessionsController < ApplicationController
     end
 
      if logged_in?
-       ret = YaST::ServiceResource::Logout.create
+       ret = YaST::ServiceResource::Logout.create rescue nil
        if (ret and ret.attributes["logout"])
          logger.debug "Logout: #{ret.attributes["logout"]}"
        else
@@ -194,7 +194,7 @@ class SessionsController < ApplicationController
      
      cookies.delete :auth_token
      reset_session
-     flash[:notice] = _("You have been logged out.")
+     flash[:notice] = _("You have been logged out.") unless flash[:notice]
      redirect_to new_session_path
      return
   end

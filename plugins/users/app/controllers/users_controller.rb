@@ -5,19 +5,32 @@ class UsersController < ApplicationController
   before_filter :login_required
   layout 'main'
 
+  private
+  def client_permissions
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    unless @client
+      # FIXME: should reset the cookie and redirect_to the login screen
+      flash[:notice] = _("Invalid session, please login again.")
+#      redirect_to( {:controller=>"sessions", :action=>"destroy", :method => :post} ) and return
+      redirect_to( logout_path ) and return
+#      render :text => "Invalid session", :status => 401 and return
+    end
+    @permissions = @client.permissions
+  end
+  
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_users"  # textdomain, options(:charset, :content_type)
   
+  public
   def initialize
   end
   
   # GET /users
   # GET /users.xml
   def index
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @users = @client.find(:all)
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -27,8 +40,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.new( :id => :nil,
       :no_home=>nil, 
       :error_id =>0, 
@@ -56,8 +68,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/exportssh
   def exportssh
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
@@ -70,8 +81,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     
     @user = @client.find(params[:id])
     @user.type = ""
@@ -89,11 +99,33 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1/sshexport
+  def sshexport
+    return unless client_permissions
+    
+    @user = @client.find(params[:users_id])
+    @user.id = @user.login_name
+    logger.debug "sshexportssh: #{@user.inspect}"
+    @user.sshkey = params["user"]["sshkey"]
+    response = @user.save
+    logger.debug "sshexportssh: #{response}"
+    respond_to do |format|
+      if response
+        flash[:notice] = _('SSH-Key was successfully exported.')
+        format.html { redirect_to(users_url) }
+      else
+        flash[:error] = _('Error occured')
+        format.html { render :action => "exportssh" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+
   # POST /users
   # POST /users.xml
   def create
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     dummy = @client.new(params[:user])
     dummy.grp_string = params[:user][:grp_string] #do not know, why this will not be assigned in the constructor
 
@@ -119,6 +151,7 @@ class UsersController < ApplicationController
                       :error_string=>nil, 
                       :password=>dummy.password,
                       :type=>"local")
+
     #Only UID greater than 1000 are allowed for local user
     if @user.uid.to_i < 1000    
        response = false
@@ -127,9 +160,9 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if response
+
         flash[:notice] = _('User was successfully created.')
         format.html { redirect_to(users_url) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         if @user.uid.to_i < 1000    
            #Only UID greater than 1000 are allowed for local user
@@ -146,56 +179,38 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.find(params[:id])
     @user.new_login_name = nil
     @user.new_uid = nil
     @user.id = @user.login_name
-    if params["commit"] == "Export SSH-Key"
-       @user.sshkey = params["user"]["sshkey"]
-       response = @user.put(:sshkey, {}, @user.to_xml)
-    else
-       @user.default_group = params["user"]["default_group"]
-       @user.groups = []
-       if params["user"]["grp_string"] != nil
-          params["user"]["grp_string"].split(",").each do |group|
-             @user.groups << User::Group.new( :id=>group.strip )
-          end
-       end
-       if @user.login_name != params["user"]["login_name"]
-          @user.new_login_name = params["user"]["login_name"]
-       end
-       @user.home_directory = params["user"]["home_directory"]
-       @user.full_name = params["user"]["full_name"]
-       if @user.uid != params["user"]["uid"]
-          @user.new_uid = params["user"]["uid"]
-       end
-       @user.login_shell = params["user"]["login_shell"]
-       @user.password = params["user"]["password"]
-       @user.type = "local"
-       response = @user.put(:update, {}, @user.to_xml)
+    @user.default_group = params["user"]["default_group"]
+    @user.groups = []
+    if params["user"]["grp_string"] != nil
+      params["user"]["grp_string"].split(",").each do |group|
+        @user.groups << { :id=>group.strip }
+      end
     end
-    retUser = Hash.from_xml(response.body)    
+    if @user.login_name != params["user"]["login_name"]
+      @user.new_login_name = params["user"]["login_name"]
+    end
+    @user.home_directory = params["user"]["home_directory"]
+    @user.full_name = params["user"]["full_name"]
+    if @user.uid != params["user"]["uid"]
+      @user.new_uid = params["user"]["uid"]
+    end
+    @user.login_shell = params["user"]["login_shell"]
+    @user.password = params["user"]["password"]
+    @user.type = "local"
+
     respond_to do |format|
-      if retUser["user"]["error_id"] == 0
-        if params["commit"] == "Export SSH-Key"
-           flash[:notice] = _('SSH-Key was successfully exported.')
-        else
-           flash[:notice] = _('User was successfully updated.')
-        end
+      if  @user.save
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
-        @user.error_string = retUser["user"]["error_string"]
-        @user.error_id = retUser["user"]["error_id"]
         flash[:error] = @user.error_string
-        if params["commit"] == "Export SSH-Key"
-           format.html { render :action => "exportssh" }
-        else
-           format.html { render :action => "edit" }
-        end
-	format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -203,8 +218,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
-    @permissions = @client.permissions
+    return unless client_permissions
     @user = @client.find(params[:id])
     @user.id = @user.login_name
     @user.type = "local"
