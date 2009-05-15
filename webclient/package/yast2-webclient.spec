@@ -15,8 +15,8 @@ PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_3, ruby
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        1.0.1
-Release:        1
+Version:        1.0.2
+Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
@@ -35,6 +35,8 @@ YaST2 - Webclient - Web client for REST based YaST interface.
 
 Authors:
 --------
+    Duncan Mac-Vicar Prett <dmacvicar@suse.de>
+    Bjoern Geuken <bgeuken@suse.de>
     Stefan Schubert <schubi@opensuse.org>
     Klaus Kaempf <kkaempf@opensuse.org>
 
