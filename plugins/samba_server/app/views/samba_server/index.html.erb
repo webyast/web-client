@@ -1,0 +1,17 @@
+<h1><%=_("Exported Samba Shares")%></h1>
+
+<table class="list">
+
+  <tr>
+    <th class="first" width=150><%=_("Share Name")%></th>
+  </tr>
+
+  <% @shares.each do |share| %>
+    <tr><td><%= share.name %><td></tr>
+  <% end %>
+</table>
+
+<br>
+
+  <%= button_to _("Add a new share"), {:action => "new"} , :disabled => !@permissions[:addshare] %>
+
