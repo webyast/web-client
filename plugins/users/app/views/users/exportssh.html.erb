@@ -1,5 +1,5 @@
 <h1><%=_("Export SSH-Key")%></h1>
-<% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put }) do |f| %>
+<% form_for(:user, @user, :url => { :action => "sshexport" }, :html => { :method => :post }) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
@@ -7,9 +7,9 @@
     <tr>
  	<th class="full" colspan="2"><%=_("User")%></th>
     </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Login Name")%></strong></td>
-	<td class="last"><%=h @user.login_name %></td>
+    <tr class="bg">
+        <td class="first"><strong><%=_("Login Name")%></strong></td>
+        <td class="last"><%= f.text_field :login_name, :disabled => false %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Home Directory")%></strong></td>

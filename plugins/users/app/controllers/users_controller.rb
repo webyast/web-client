@@ -9,17 +9,14 @@ class UsersController < ApplicationController
   def client_permissions
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
     unless @client
-      # FIXME: should reset the cookie and redirect_to the login screen
       flash[:notice] = _("Invalid session, please login again.")
-#      redirect_to( {:controller=>"sessions", :action=>"destroy", :method => :post} ) and return
       redirect_to( logout_path ) and return
-#      render :text => "Invalid session", :status => 401 and return
     end
     @permissions = @client.permissions
   end
   
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_users"  # textdomain, options(:charset, :content_type)
+  init_gettext "yast_webclient_users" 
   
   public
   def initialize
@@ -29,7 +26,12 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     return unless client_permissions
-    @users = @client.find(:all)
+    @users = []
+    begin
+      @users = @client.find(:all)
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +45,6 @@ class UsersController < ApplicationController
     return unless client_permissions
     @user = @client.new( :id => :nil,
       :no_home=>nil, 
-      :error_id =>0, 
       :default_group=>nil, 
       :new_login_name=>nil, 
       :login_name=>nil, 
@@ -55,7 +56,6 @@ class UsersController < ApplicationController
       :sshkey=>nil, 
       :new_uid=>nil, 
       :login_shell=>"/bin/bash", 
-      :error_string=>nil, 
       :password=>nil,
       :type=>"local", 
       :id=>nil )
@@ -102,18 +102,23 @@ class UsersController < ApplicationController
   def sshexport
     return unless client_permissions
     
-    @user = @client.find(params[:users_id])
+    @user = @client.find(params["user"]["login_name"])
     @user.id = @user.login_name
     logger.debug "sshexportssh: #{@user.inspect}"
     @user.sshkey = params["user"]["sshkey"]
-    response = @user.save
+    response = true
+    begin
+      response = @user.save
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        response = false
+    end
     logger.debug "sshexportssh: #{response}"
     respond_to do |format|
       if response
         flash[:notice] = _('SSH-Key was successfully exported.')
         format.html { redirect_to(users_url) }
       else
-        flash[:error] = _('Error occured')
         format.html { render :action => "exportssh" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -135,7 +140,6 @@ class UsersController < ApplicationController
        end
     end
     @user = @client.new(:no_home=>params[:nohome],
-                      :error_id =>0, 
                       :default_group=>dummy.default_group, 
                       :new_login_name=>nil, 
                       :login_name=>dummy.login_name, 
@@ -147,27 +151,29 @@ class UsersController < ApplicationController
                       :sshkey=>nil, 
                       :new_uid=>nil, 
                       :login_shell=>dummy.login_shell, 
-                      :error_string=>nil, 
                       :password=>dummy.password,
                       :type=>"local")
 
     #Only UID greater than 1000 are allowed for local user
+    response = true
     if @user.uid.to_i < 1000    
-       response = false
+      response = false
     else
-       response = @user.save
+      begin
+        response = @user.save
+        rescue ActiveResource::ClientError => e
+          flash[:error] = YaST::ServiceResource.error(e)
+          response = false
+      end
     end
     respond_to do |format|
       if response
-
         flash[:notice] = _('User was successfully created.')
         format.html { redirect_to(users_url) }
       else
         if @user.uid.to_i < 1000    
            #Only UID greater than 1000 are allowed for local user
            flash[:error] = _("UID: value >= 1000 is valid for local user only")
-        else
-           flash[:error] = @user.errors.full_messages
         end
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
@@ -203,11 +209,18 @@ class UsersController < ApplicationController
     @user.type = "local"
 
     respond_to do |format|
-      if  @user.save
+      response = true
+      begin
+        response = @user.save
+        rescue ActiveResource::ClientError => e
+          flash[:error] = YaST::ServiceResource.error(e)
+          response = false
+      end
+      if  response
+        flash[:notice] = _('User was successfully updated.')
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
-        flash[:error] = @user.error_string
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end

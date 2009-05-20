@@ -12,11 +12,6 @@
     <% end %>
   </tr>
   <% for user in @users %>
-  <% if user.error_id != 0 %>
-  <tr>
-    <td>Error ID: <%= user.error_id -%> Error: <%= user.error_string -%></td>
-  </tr>
-  <% else %>
   <tr>
     <td><strong><%=h user.login_name %></strong></td>
     <td><%= edit_link(user.id) %></td>
@@ -25,7 +20,6 @@
     <td class="last"><%= delete_link(user.login_name) %></td>
     <% end %>
   </tr>
-  <% end %>
   <% end %>
 </table>
 
