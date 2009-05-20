@@ -1,0 +1,3 @@
+<h1><%=_("Exported Samba Shares")%></h1>
+
+<%= simple_table([_("Samba Share")], @shares, [:name], {:add => @permissions[:addshare], :edit => @permissions[:editshare], :delete => @permissions[:deleteshare], :id => :name})%>

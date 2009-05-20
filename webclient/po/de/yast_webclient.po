@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient 1.0.0\n"
-"POT-Creation-Date: 2009-05-04 12:19+0200\n"
+"POT-Creation-Date: 2009-05-20 13:05+0200\n"
 "PO-Revision-Date: 2009-02-27 09:24+0100\n"
 "Last-Translator: Schubert Stefan <schubi@suse.de>\n"
 "Language-Team:  <de@li.org>\n"
@@ -15,26 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: KBabel 1.11.4\n"
-
-#: app/controllers/sessions_controller.rb:106
-msgid "Please select a host to connect to."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:117
-msgid "You need to specify the hostname"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:121
-msgid "No password specified"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:170
-msgid "Login incorrect. Check your username and password."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:208
-msgid "You have been logged out."
-msgstr "Sie haben sich abgemeldet."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -84,6 +64,49 @@ msgstr ""
 msgid "Webservice|Updated at"
 msgstr ""
 
+#: app/helpers/application_helper.rb:6
+msgid "Add"
+msgstr ""
+
+#: app/helpers/application_helper.rb:10
+msgid "Edit"
+msgstr "Editieren"
+
+#: app/helpers/application_helper.rb:14 app/helpers/application_helper.rb:75
+msgid "Delete"
+msgstr "Löschen"
+
+#: app/helpers/application_helper.rb:26 app/views/webservices/index.rhtml:21
+msgid "Are you sure?"
+msgstr "Sind Sie sicher ?"
+
+#: app/controllers/sessions_controller.rb:107
+msgid "Please select a host to connect to."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:118
+msgid "You need to specify the hostname"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:122
+msgid "No password specified"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:171
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:197
+msgid "You have been logged out."
+msgstr "Sie haben sich abgemeldet."
+
+#: app/views/webservices/show.html.erb:6
+#: app/views/webservices/edit.html.erb:22
+#: app/views/webservices/new.html.erb:22 app/views/webservices/index.rhtml:39
+#: app/views/sessions/new.rhtml:19
+msgid "Back"
+msgstr "Zurück"
+
 #: app/views/webservices/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "YaST-Web-Service ändern"
@@ -107,12 +130,6 @@ msgstr "Beschreibung"
 msgid "Update"
 msgstr "Speichern"
 
-#: app/views/webservices/edit.html.erb:22
-#: app/views/webservices/new.html.erb:22 app/views/webservices/index.rhtml:39
-#: app/views/sessions/new.rhtml:19
-msgid "Back"
-msgstr "Zurück"
-
 #: app/views/webservices/new.html.erb:1
 msgid "New YaST-Web-Service"
 msgstr "YaST-Web-Service anlegen"
@@ -120,26 +137,6 @@ msgstr "YaST-Web-Service anlegen"
 #: app/views/webservices/new.html.erb:22
 msgid "Create"
 msgstr "Erzeuge"
-
-#: app/views/sessions/_login_failed.html.erb:2
-msgid "Login Failed"
-msgstr "Anmeldung fehlgeschlagen"
-
-#: app/views/sessions/_login_succeeded.html.erb:2
-#: app/views/layouts/main.rhtml:76 app/views/sessions/_current_session.rhtml:8
-msgid "Connected Host"
-msgstr "aktueller Rechner"
-
-#: app/views/sessions/_login_succeeded.html.erb:3
-#: app/views/layouts/main.rhtml:77 app/views/sessions/_current_session.rhtml:9
-msgid "Name:"
-msgstr "Name:"
-
-#: app/views/sessions/_login_succeeded.html.erb:4
-#: app/views/layouts/main.rhtml:78
-#: app/views/sessions/_current_session.rhtml:10
-msgid "User:"
-msgstr "Benutzer:"
 
 #: app/views/sessions/_controllers.html.erb:2
 msgid "Services"
@@ -169,17 +166,33 @@ msgstr "Systemzeit"
 msgid "Session"
 msgstr "Sitzung"
 
+#: app/views/sessions/_login_succeeded.html.erb:2
+#: app/views/layouts/main.rhtml:76 app/views/sessions/_current_session.rhtml:8
+msgid "Connected Host"
+msgstr "aktueller Rechner"
+
+#: app/views/sessions/_login_succeeded.html.erb:3
+#: app/views/layouts/main.rhtml:77 app/views/sessions/_current_session.rhtml:9
+msgid "Name:"
+msgstr "Name:"
+
+#: app/views/sessions/_login_succeeded.html.erb:4
+#: app/views/layouts/main.rhtml:78
+#: app/views/sessions/_current_session.rhtml:10
+msgid "User:"
+msgstr "Benutzer:"
+
 #: app/views/sessions/_logout.html.erb:1 app/views/layouts/main.rhtml:64
 msgid "Logout"
 msgstr "Sitzung beenden"
 
+#: app/views/sessions/_login_failed.html.erb:2
+msgid "Login Failed"
+msgstr "Anmeldung fehlgeschlagen"
+
 #: app/views/layouts/main.rhtml:50
 msgid "...Wait..."
 msgstr "...Bitte warten..."
-
-#: app/views/webservices/index.rhtml:21
-msgid "Are you sure?"
-msgstr "Sind Sie sicher ?"
 
 #: app/views/sessions/new.rhtml:7
 #, fuzzy
@@ -227,12 +240,6 @@ msgstr ""
 
 #~ msgid "YaST-Web-Services"
 #~ msgstr "YaST-Web-Services"
-
-#~ msgid "Edit"
-#~ msgstr "Editieren"
-
-#~ msgid "Delete"
-#~ msgstr "Löschen"
 
 #~ msgid "<strong>[New YaST-Web-Service]</strong>"
 #~ msgstr "<strong>[Neuer YaST-Web-Service]</strong>"
