@@ -12,11 +12,6 @@
     <% end %>
   </tr>
   <% for user in @users %>
-  <% if user.error_id != 0 %>
-  <tr>
-    <td>Error ID: <%= user.error_id -%> Error: <%= user.error_string -%></td>
-  </tr>
-  <% else %>
   <tr>
     <td><strong><%=h user.login_name %></strong></td>
     <td><%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), edit_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
@@ -26,7 +21,6 @@
       user_path(user.login_name), :confirm => _('Are you sure?'), :method => :delete %></td>
     <% end %>
   </tr>
-  <% end %>
   <% end %>
 </table>
 

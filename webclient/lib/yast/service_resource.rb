@@ -74,6 +74,11 @@ module YaST
       return proxy
     end
 
+    # returns back the rest-service error message if the HTTP error 4** happens
+    def self.error(net_error)
+       Hash.from_xml(net_error.response.body)["error"]["message"]
+    end
+
     # all dynamic proxies are created under this module
     module Proxies
     end
