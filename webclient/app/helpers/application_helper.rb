@@ -22,7 +22,7 @@ module ApplicationHelper
 	:confirm => _('Are you sure?'), :method => :delete
     end
 
-    def create_table_content(items, properties = [], permissions = {}, proc_obj = nil)
+    def create_table_content(items, properties, permissions = {}, proc_obj = nil)
 	ret = ''
 	columns = properties.size
 
@@ -31,14 +31,12 @@ module ApplicationHelper
 	    columns.times { |col|
 		property = properties[col]
 
-
-		if !property.blank? && item.respond_to?(property)
+		if !property.nil? && item.respond_to?(property)
 		    cell = item.send(property)
 		else
 		    if proc_obj.nil?
 			cell = "ERROR: unknown method #{property}"
 		    else
-		debugger
 			cell = proc_obj.call(item, col)
 		    end
 		end
@@ -60,7 +58,28 @@ module ApplicationHelper
 	return ret
     end
 
-    def simple_table(labels, items, properties = [], permissions = {}, &block)
+    ##
+    # Create a simple HTML table
+    #
+    # Parameters:
+    # * labels - an array of strings - table headings
+    # * items - an array of objects - table content
+    # * properties - an array of strings - name of the method which will be called for the respective column.
+    #   The result will be displayed in the table.
+    # * permissions - a hash with permissions - used to display/hide Add, Edit, and Delete buttons.
+    #   The argument is optional, if missing no button will be displayed. Expected keys are :add, :edit, :delete.
+    #   If a key is missing or the value is false the relevant button is hidden.
+    # * optional block with two arguments: object and column number - this block is used
+    #   for computing table values for columns with property method set to nil. See the example.
+    #   Use the column block parameter to distinguish the columns if there are several columns with nil property.
+    #
+    # Examples:
+    #
+    # <tt>simple_table([_("First Name"), _("Surname")], @users, [:first_name, :surname], {:add => true, :edit => true, :delete => true, :id => :name})</tt>
+    #
+    # <tt>simple_table([_("Avg. Download Speed")], files, [nil]){|file, column| "#{file.size/file.download_time/1024} kB/s"}</tt>
+    #
+    def simple_table(labels, items, properties, permissions = {}, &block)
 	header = ''
 
 	labels.each { |l|
