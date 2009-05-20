@@ -9,11 +9,9 @@ class SambaServerController < ApplicationController
     # GET /samba_server
     # GET /samba_server.xml
     def index
-	set_permissions(controller_name)
 	@client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.sambashares')
-	@permissions = @client.permissions
 
-	# FIXME: this is a workaround, this module uses another rights internally
+	# TODO FIXME: this is a workaround, the REST API uses another rights internally
 	tmp_interface = @client.interface
 	@client.interface = 'org.opensuse.yast.modules.yapi.samba'
 	@permissions = @client.permissions
