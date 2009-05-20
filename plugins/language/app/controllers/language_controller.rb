@@ -12,24 +12,29 @@ class LanguageController < ApplicationController
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
     @permissions = proxy.permissions
-
-    @language = proxy.find
+    begin
+      @language = proxy.find
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+    end
 
     @second_languages = {}
     @valid = []
-
-    @language.available.each do  |avail|
-       @valid << avail.name
-       if avail.id.size>0 && avail.id==@language.first_language
+    
+    if @language
+      @language.available.each do  |avail|
+        @valid << avail.name
+        if avail.id.size>0 && avail.id==@language.first_language
           @language.first_language = avail.name
-       end
-       checked = ""
-       @language.second_languages::each do |s|
+        end
+        checked = ""
+        @language.second_languages::each do |s|
           if avail.id.size>0 && avail.id==s.id
              checked = "checked"
           end
-       end
-       @second_languages[avail.name.tr_s(" ", "_")] = checked
+        end
+        @second_languages[avail.name.tr_s(" ", "_")] = checked
+      end
     end
   end
 
@@ -37,27 +42,35 @@ class LanguageController < ApplicationController
      proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
      proxy.timeout = 120
      @permissions = proxy.permissions
-     lang = proxy.find
-
-     hash_avail = {}
-     lang.available.each do  |avail|
-        hash_avail[avail.name.tr_s(" ", "_")] = avail.id
+     begin
+       lang = proxy.find
+       rescue ActiveResource::ClientError => e
+         flash[:error] = YaST::ServiceResource.error(e)
      end
 
-     lang.first_language = hash_avail[params[:first_language].tr_s(" ", "_")]
-     lang.available = [] #not needed anymore
-     lang.second_languages = []
-     params::each do |name,value|   
-       if value=="LanguageSet"
-          lang.second_languages << { :id => hash_avail[name] }
+     if lang
+       hash_avail = {}
+       lang.available.each do  |avail|
+         hash_avail[avail.name.tr_s(" ", "_")] = avail.id
        end
+
+       lang.first_language = hash_avail[params[:first_language].tr_s(" ", "_")]
+       lang.available = [] #not needed anymore
+       lang.second_languages = []
+       params::each do |name,value|   
+         if value=="LanguageSet"
+           lang.second_languages << { :id => hash_avail[name] }
+         end
+       end
+       response = true
+       begin
+         response = lang.save
+         rescue ActiveResource::ClientError => e
+           flash[:error] = YaST::ServiceResource.error(e)
+           response = false
+       end
+       flash[:notice] = _("Settings have been written.") if response
      end
-     lang.save
-     if lang.error_id != 0
-        flash[:error] = lang.error_string
-     else
-        flash[:notice] = _("Settings have been written.")
-     end       
      redirect_to :action => :index 
   end
 
