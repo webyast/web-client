@@ -22,20 +22,24 @@ module ApplicationHelper
 	:confirm => _('Are you sure?'), :method => :delete
     end
 
-    def create_table_content(items, properties = [], permissions = {})
+    def create_table_content(items, properties = [], permissions = {}, proc_obj = nil)
 	ret = ''
 	columns = properties.size
 
 	items.each do |item|
 	    line = ''
 	    columns.times { |col|
-		if item.respond_to?(properties[col])
-		    cell = item.send(properties[col])
+		property = properties[col]
+
+
+		if !property.blank? && item.respond_to?(property)
+		    cell = item.send(property)
 		else
-		    if block_given?
-			cell = yield(item, col)
+		    if proc_obj.nil?
+			cell = "ERROR: unknown method #{property}"
 		    else
-			cell = "ERROR: unknown method #{properties[col]}"
+		debugger
+			cell = proc_obj.call(item, col)
 		    end
 		end
 
@@ -56,7 +60,7 @@ module ApplicationHelper
 	return ret
     end
 
-    def simple_table(labels, items, properties = [], permissions = {})
+    def simple_table(labels, items, properties = [], permissions = {}, &block)
 	header = ''
 
 	labels.each { |l|
@@ -71,7 +75,7 @@ module ApplicationHelper
 	    header += "<th class=\"first\" width=10%>#{h(delete)}</th>"
 	end
 
-	content = create_table_content(items, properties, permissions)
+	content = create_table_content(items, properties, permissions, block)
 
 	ret = "<table class=\"list\"><tr>#{header}</tr>#{content}</table>"
 
