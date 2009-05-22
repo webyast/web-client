@@ -87,11 +87,12 @@ class PermissionsController < ApplicationController
   def get_permissions(user, get_perm_from_server)
     @current_user = nil
     if get_perm_from_server
-       path = "/users/#{user}/permissions.xml"
-       @permissions = Permission.find(:all, :from => path)
-       if @permissions[0].error_id != 0
-          return @permissions[0].error_string
-       end
+      path = "/users/#{user}/permissions.xml"
+      begin
+        @permissions = Permission.find(:all, :from => path)
+        rescue ActiveResource::ClientError => e
+          return YaST::ServiceResource.error(e)
+      end
     end
     @current_user = user
 #    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
