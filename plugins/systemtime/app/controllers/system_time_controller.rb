@@ -11,8 +11,11 @@ class SystemTimeController < ApplicationController
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
     @permissions = proxy.permissions
     
-    @systemtime = proxy.find
-    
+    begin
+      @systemtime = proxy.find
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+    end
     
     # if time is not available
     if @systemtime.nil?
@@ -38,7 +41,13 @@ class SystemTimeController < ApplicationController
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
     @permissions = proxy.permissions
 
-    t = proxy.find
+    begin
+      t = proxy.find
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        redirect_to :action => :index 
+    end
+
     t.timezone = params[:timezone]
     if params[:utc] == "true"
        t.is_utc = true
@@ -50,9 +59,15 @@ class SystemTimeController < ApplicationController
     t.currenttime = DateTime.parse("#{currentdate} #{params[:currenttime]}")
 
     t.validtimezones = [] #not needed anymore
-    t.save
-    if t.error_id != 0
-       flash[:error] = t.error_string
+
+    response = true
+    begin
+      response = t.save
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        response = false
+    end
+    if !response
        redirect_to :action => :index 
     else
        flash[:notice] = _('Settings have been written.')
