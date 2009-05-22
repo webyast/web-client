@@ -13,7 +13,11 @@ class PatchUpdatesController < ApplicationController
 
   def list
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    @patch_updates = proxy.find(:all)
+    begin
+      @patch_updates = proxy.find(:all)
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+    end
     respond_to do |format|
       format.html { render :partial => 'patches' }
       format.js { render :partial => 'patches' }
@@ -26,14 +30,23 @@ class PatchUpdatesController < ApplicationController
   # POST /patch_updates/1.xml
   def install
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    update = proxy.find(params[:id])
+    ok = true
+    begin
+      update = proxy.find(params[:id])
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        ok = false
+    end
 
-    response = update.save
-    if not response
-       flash[:error] = @update.errors.full_messages 
-    else
-       flash[:notice] = _("Patch has been installed.")
-    end       
+    if ok
+      begin
+        ok = update.save
+        rescue ActiveResource::ClientError => e
+          flash[:error] = YaST::ServiceResource.error(e)
+          ok = false
+      end
+      flash[:notice] = _("Patch has been installed.") if ok
+    end
     redirect_to({:controller=>"patch_updates", :action=>"index"})
   end
 
