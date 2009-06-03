@@ -1,3 +1,5 @@
 <h1><%=_("Exported Samba Shares")%></h1>
 
+<% require 'view_helpers/html' %>
+
 <%= HTML.simple_table([_("Samba Shares")], @shares, [:name], {:add => @permissions[:addshare], :edit => @permissions[:editshare], :delete => @permissions[:deleteshare], :id => :name})%>
