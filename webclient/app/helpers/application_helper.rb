@@ -1,28 +1,36 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+end
 
-    def add
+module Label
+    include GetText
+
+    def Label.add
 	return _("Add")
     end
 
-    def edit
+    def Label.edit
 	return _("Edit")
     end
 
-    def delete
+    def Label.delete
 	return _("Delete")
     end
+end
 
-    def edit_link(id, action = :edit)
+
+module HTML
+
+    def HTML.edit_link(id, action = :edit)
 	return link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => action, :id => id}, :onclick=>"Element.show('progress')"
     end
 
-    def delete_link(id, action = :delete)
+    def HTML.delete_link(id, action = :delete)
 	return link_to image_tag("/images/delete.png", :alt => :delete), {:action => action, :id => id},
 	:confirm => _('Are you sure?'), :method => :delete
     end
 
-    def create_table_content(items, properties, permissions = {}, proc_obj = nil)
+    def HTML.create_table_content(items, properties, permissions = {}, proc_obj = nil)
 	ret = ''
 	columns = properties.size
 
@@ -41,7 +49,7 @@ module ApplicationHelper
 		    end
 		end
 
-		line += "<td>#{h(cell)}</td>"
+		line += "<td>#{ERB::Util::html_escape(cell)}</td>"
 	    }
 
 	    if permissions[:edit]
@@ -79,19 +87,19 @@ module ApplicationHelper
     #
     # <tt>simple_table([_("Avg. Download Speed")], files, [nil]){|file, column| "#{file.size/file.download_time/1024} kB/s"}</tt>
     #
-    def simple_table(labels, items, properties, permissions = {}, &block)
+    def HTML.simple_table(labels, items, properties, permissions = {}, &block)
 	header = ''
 
 	labels.each { |l|
-	    header += "<th class=\"first\">#{h(l)}</th>"
+	    header += "<th class=\"first\">#{ERB::Util::html_escape(l)}</th>"
 	}
 
 	if permissions[:edit]
-	    header += "<th class=\"first\" width=10%>#{h(edit)}</th>"
+	    header += "<th class=\"first\" width=10%>#{ERB::Util::html_escape(Label.edit)}</th>"
 	end
 
 	if permissions[:delete]
-	    header += "<th class=\"first\" width=10%>#{h(delete)}</th>"
+	    header += "<th class=\"first\" width=10%>#{ERB::Util::html_escape(Label.delete)}</th>"
 	end
 
 	content = create_table_content(items, properties, permissions, block)
