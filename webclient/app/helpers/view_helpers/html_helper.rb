@@ -1,17 +1,16 @@
 
+module ViewHelpers::HtmlHelper
 
-module HTML
-
-    def HTML.edit_link(id, action = :edit)
+    def html_edit_link(id, action = :edit)
 	return link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => action, :id => id}, :onclick=>"Element.show('progress')"
     end
 
-    def HTML.delete_link(id, action = :delete)
+    def html_delete_link(id, action = :delete)
 	return link_to image_tag("/images/delete.png", :alt => :delete), {:action => action, :id => id},
 	:confirm => _('Are you sure?'), :method => :delete
     end
 
-    def HTML.create_table_content(items, properties, permissions = {}, proc_obj = nil)
+    def html_create_table_content(items, properties, permissions = {}, proc_obj = nil)
 	ret = ''
 	columns = properties.size
 
@@ -30,15 +29,15 @@ module HTML
 		    end
 		end
 
-		line += "<td>#{ERB::Util::html_escape(cell)}</td>"
+		line += "<td>#{h(cell)}</td>"
 	    }
 
 	    if permissions[:edit]
-		line += "<td align=\"center\">#{edit_link(item.send(permissions[:id]))}</td>"
+		line += "<td align=\"center\">#{html_edit_link(item.send(permissions[:id]))}</td>"
 	    end
 
 	    if permissions[:delete]
-		line += "<td align=\"center\">#{delete_link(item.send(permissions[:id]))}</td>"
+		line += "<td align=\"center\">#{html_delete_link(item.send(permissions[:id]))}</td>"
 	    end
 
 	    ret += "<tr>#{line}</tr>"
@@ -68,29 +67,30 @@ module HTML
     #
     # <tt>simple_table([_("Avg. Download Speed")], files, [nil]){|file, column| "#{file.size/file.download_time/1024} kB/s"}</tt>
     #
-    def HTML.simple_table(labels, items, properties, permissions = {}, &block)
+    def html_simple_table(labels, items, properties, permissions = {}, &block)
 	header = ''
 
 	labels.each { |l|
-	    header += "<th class=\"first\">#{ERB::Util::html_escape(l)}</th>"
+	    header += "<th class=\"first\">#{h(l)}</th>"
 	}
 
 	if permissions[:edit]
-	    header += "<th class=\"first\" width=10%>#{ERB::Util::html_escape(Label.edit)}</th>"
+	    header += "<th class=\"first\" width=10%>#{h(label_edit)}</th>"
 	end
 
 	if permissions[:delete]
-	    header += "<th class=\"first\" width=10%>#{ERB::Util::html_escape(Label.delete)}</th>"
+	    header += "<th class=\"first\" width=10%>#{h(label_delete)}</th>"
 	end
 
-	content = create_table_content(items, properties, permissions, block)
+	content = html_create_table_content(items, properties, permissions, block)
 
 	ret = "<table class=\"list\"><tr>#{header}</tr>#{content}</table>"
 
-	ret += "<br>" + button_to(add, {:action => "new"}) if permissions[:add]
+	ret += "<br>" + button_to(label_add, {:action => "new"}) if permissions[:add]
 
 	return ret
     end
 
 end
 
+# vim: ft=ruby

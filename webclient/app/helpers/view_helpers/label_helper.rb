@@ -1,16 +1,16 @@
 
-module Label
+module ViewHelpers::LabelHelper
     include GetText
 
-    def Label.add
+    def label_add
 	return _("Add")
     end
 
-    def Label.edit
+    def label_edit
 	return _("Edit")
     end
 
-    def Label.delete
+    def label_delete
 	return _("Delete")
     end
 end
