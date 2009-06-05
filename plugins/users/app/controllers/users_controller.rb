@@ -192,6 +192,7 @@ class UsersController < ApplicationController
     @user.default_group = params["user"]["default_group"]
     @user.groups = []
     if params["user"]["grp_string"] != nil
+      @user.grp_string = params["user"]["grp_string"]
       params["user"]["grp_string"].split(",").each do |group|
         @user.groups << { :id=>group.strip }
       end
