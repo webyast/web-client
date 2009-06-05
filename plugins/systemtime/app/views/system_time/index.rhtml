@@ -24,7 +24,7 @@
   <label>
     <span><%= _("Date") %></span>
     <!-- <% text_field "date", "", :class => :datepicker, :disabled => @write_permission.eql?('disabled') %>-->
-    <%= text_field "date", "", :class => :datepicker, :disabled=> disabled %>
+    <%= text_field "date", "", :class => :datepicker, :disabled=> disabled, :value => @systemtime.date %>
   </label>
 
   <label>

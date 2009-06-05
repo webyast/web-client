@@ -22,7 +22,7 @@ class SystemTimeController < ApplicationController
       render :template => 'shared/error_404'
       return
     end
-
+logger.debug @systemtime.currenttime
     if @systemtime.is_utc == true
       @is_utc = "checked"
     else
@@ -54,7 +54,8 @@ class SystemTimeController < ApplicationController
     end
 
     t.currenttime = params[:currenttime]
-    t.date = params[:date][0]
+    arr = params[:date][0].split("/")
+    t.date = Time.parse("#{arr[1]}/#{arr[0]}/#{arr[2]}").strftime("%m/%d/%y")
     t.validtimezones = [] #not needed anymore
 
     response = true
