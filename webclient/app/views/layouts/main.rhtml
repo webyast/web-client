@@ -40,7 +40,7 @@
       <div class="container">
 
       <!-- show the flash messages -->
-      <% for name in [:notice, :warning, :message] %>
+      <% for name in [:notice, :warning, :message, :error] %>
         <% if flash[name] %>
           <%= "<div id=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
         <% end %>
