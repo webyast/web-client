@@ -3,7 +3,7 @@
 <% form_tag '/security/update' do %>
 <span>
   <label>
-    <input type="checkbox" name="firewall_after_startup" value="true" <%= @firewall_after_startup %> @write_permission />
+    <input type="checkbox" name="firewall_on_startup" value="true" <%= @firewall_on_startup %> @write_permission />
     <span><%=_("Enable Firewall Automatic Starting")%></span>
   </label>
 

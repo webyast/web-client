@@ -22,7 +22,7 @@ class SecuritiesController < ApplicationController
   def create
     @security = @client.find(:one, :from => '/security.xml')
 
-    @firewall_after_startup = "checked" if @security.firewall_after_startup
+    @firewall_on_startup = "checked" if @security.firewall_on_startup
     @firewall = "checked" if @security.firewall
     @ssh = "checked" if @security.ssh
   end
@@ -34,7 +34,7 @@ class SecuritiesController < ApplicationController
 
   def update
     s = @client.find()
-    s.firewall_after_startup = params[:firewall_after_startup].eql?("true")
+    s.firewall_on_startup = params[:firewall_on_startup].eql?("true")
     s.firewall = params[:firewall].eql?("true")
     s.ssh = params[:ssh].eql?("true")
 
@@ -46,12 +46,6 @@ class SecuritiesController < ApplicationController
         response = false
     end
     flash[:notice] = _("Settings have been written.") if response
-
-
-    # prepare for view
-    @firewall_after_startup = "checked" if s.firewall_after_startup
-    @firewall = "checked" if s.firewall
-    @ssh = "checked" if s.ssh
 
     redirect_to root_url
   end
