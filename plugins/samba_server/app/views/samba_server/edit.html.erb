@@ -3,7 +3,7 @@
 
 <% disabled = ! @permissions[:editshare] %>
 
-<% form_for(:share, @share, :url => { :action => "update", :id => @share.name }, :html => { :method => :put } ) do |f| %>
+<% form_for(:share, @share, :url => { :action => "update", :id => @share.id }, :html => { :method => :put } ) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
@@ -13,13 +13,13 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Share Name")%></strong></td>
-	<td class="last"><%= f.text_field :name, :disabled => disabled %></td>
+	<td class="last"><%= f.text_field :id, :disabled => disabled %></td>
     </tr>
 
     <% @share.attributes['parameters'].attributes['parameter'].each do |p| %>
     <tr>
 	<td class="first" width="120"><strong><%= p.attributes["name"]%></strong></td>
-	<td class="last"> <input type="text" id="share_parameters_<% p.attributes["name"] -%>" name="share_parameters[<% p.attributes["name"] -%>]" value="<%= p.attributes["value"] -%>"/> </td>
+	<td class="last"> <input type="text" id="share_parameters_<% p.attributes["id"] -%>" name="share_parameters[<% p.attributes["id"] -%>]" value="<%= p.attributes["value"] -%>"/> </td>
     </tr>
     <% end %>
 

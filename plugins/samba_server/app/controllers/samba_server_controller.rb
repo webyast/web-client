@@ -54,7 +54,7 @@ class SambaServerController < ApplicationController
 	get_permissions
 
 	if @permissions[:addshare]
-	    @share = @client.new(:name => nil, :path => nil)
+	    @share = @client.new(:id => nil, :path => nil)
 	else
 	    flash[:error] = _("Error: Permission denied")
 	end
@@ -77,14 +77,14 @@ class SambaServerController < ApplicationController
 		response = true
 
 		begin
-		    #response = @share.save
+		    response = @share.save
 		rescue ActiveResource::ClientError => e
 		    flash[:error] = YaST::ServiceResource.error(e)
 		    response = false
 		end
 
 		if response
-		    flash[:notice] = _("Share '#{@share.name}' has been successfully updated.")
+		    flash[:notice] = _("Share '#{@share.id}' has been successfully updated.")
 		    format.html { redirect_to :action => :index }
 		    format.xml  { head :ok }
 		else
@@ -105,7 +105,7 @@ class SambaServerController < ApplicationController
 
 	    begin
 		@share.destroy
-		flash[:notice] = _("Share '#{@share.name}' has been successfully deleted.")
+		flash[:notice] = _("Share '#{@share.id}' has been successfully deleted.")
 	    rescue ActiveResource::ClientError => e
 		msg = YaST::ServiceResource.error(e)
 
