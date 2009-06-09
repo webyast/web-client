@@ -16,10 +16,10 @@
 	<td class="last"><%= f.text_field :id, :disabled => disabled %></td>
     </tr>
 
-    <% @share.attributes['parameters'].attributes['parameter'].each do |p| %>
+    <% @share.parameters.each do |p| %>
     <tr>
-	<td class="first" width="120"><strong><%= p.attributes["name"]%></strong></td>
-	<td class="last"> <input type="text" id="share_parameters_<% p.attributes["id"] -%>" name="share_parameters[<% p.attributes["id"] -%>]" value="<%= p.attributes["value"] -%>"/> </td>
+	<td class="first" width="120"><strong><%= h p.name%></strong></td>
+	<td class="last"> <input type="text" id="parameters[<%= h p.name -%>]" name="parameters[<%= h p.name -%>]" value="<%= p.value -%>"/> </td>
     </tr>
     <% end %>
 

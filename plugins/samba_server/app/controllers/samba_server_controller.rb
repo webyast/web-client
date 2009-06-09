@@ -77,14 +77,32 @@ class SambaServerController < ApplicationController
 		response = true
 
 		begin
-		    response = @share.save
+		    do_updating = false
+
+		    @share.parameters.each do |p|
+			# update parameters
+			new_value = params[:parameters][p.name]
+
+			if new_value != p.value
+			    logger.debug "Share '#{@share.id}': updating #{p.name} from '#{p.value}' to '#{new_value}'"
+			    p.value = new_value
+			    do_updating = true
+			end
+		    end
+
+		    # save the new values
+		    if do_updating
+			response = @share.save
+		    end
+
 		rescue ActiveResource::ClientError => e
 		    flash[:error] = YaST::ServiceResource.error(e)
 		    response = false
 		end
 
 		if response
-		    flash[:notice] = _("Share '#{@share.id}' has been successfully updated.")
+		    flash[:notice] = do_updating ? _("Share '#{@share.id}' has been successfully updated.") : _("Share '#{@share.id}' has not been changed.")
+	
 		    format.html { redirect_to :action => :index }
 		    format.xml  { head :ok }
 		else
