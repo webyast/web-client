@@ -46,7 +46,7 @@ class PermissionsController < ApplicationController
   def construct_permission_tree()
      @permissions.each do |permission|
         sub = @permission_tree
-        permission_split = permission.name.split("-")
+        permission_split = permission.name.split(".")
         permission_split.each do |dir|
            sub = sub[dir] 
         end
