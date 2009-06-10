@@ -13,13 +13,13 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Share Name")%></strong></td>
-	<td class="last"><%= f.text_field :id, :disabled => disabled %></td>
+	<td class="last"><strong><%= @share.id %></strong></td>
     </tr>
 
     <% @share.parameters.each do |p| %>
     <tr>
 	<td class="first" width="120"><strong><%= h p.name%></strong></td>
-	<td class="last"> <input type="text" id="parameters[<%= h p.name -%>]" name="parameters[<%= h p.name -%>]" value="<%= p.value -%>"/> </td>
+	<td class="last"> <input type="text" id="parameters[<%= h p.name -%>]" name="parameters[<%= h p.name -%>]" value="<%= p .value -%>" <%= disabled ? 'disabled' : '' -%>/> </td>
     </tr>
     <% end %>
 
