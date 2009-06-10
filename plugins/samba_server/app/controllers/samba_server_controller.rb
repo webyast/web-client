@@ -54,7 +54,19 @@ class SambaServerController < ApplicationController
 	get_permissions
 
 	if @permissions[:addshare]
-	    @share = @client.new(:id => nil, :path => nil)
+	    @share = @client.new(:id => nil)
+
+	    # add empty default properties
+	    defaults = {:parameters =>
+		[
+		    {"name"=>"path", "value"=>""},
+		    {"name"=>"comment", "value"=>""},
+		    {"name"=>"read only", "value"=>"No"},
+		    {"name"=>"inherit acls", "value"=>"Yes"},
+		]
+	    }
+	    
+	    @share.load(defaults)
 	else
 	    flash[:error] = _("Error: Permission denied")
 	end
@@ -64,6 +76,47 @@ class SambaServerController < ApplicationController
 	    format.xml  { render :xml => @share }
 	end
     end
+
+    def create
+	get_permissions
+
+	if @permissions[:addshare]
+	    @share = @client.new
+	    debugger
+
+	    # set the values
+	    values = []
+
+	    params[:share][:parameters].each do |name, value|
+		values << { "name" => name, "value" => value }
+	    end
+
+	    # set the name
+	    values << { "name" => "name", "value" => params[:share][:id] }
+
+	    values = { "parameters" => values }
+
+	    @share.load(values)
+
+	    # save the new share
+	    @share.save
+
+	    flash[:notice] = _("Share '#{@share.id}' has been added.")
+	else
+	    flash[:error] = _("Error: Permission denied")
+
+	    respond_to do |format|
+	      format.html { redirect_to :action => :index }
+	      format.xml  { head :forbidden }
+	    end
+	end
+
+	respond_to do |format|
+	    format.html { redirect_to :action => :index }
+	    format.xml  { head :ok }
+	end
+    end
+
 
     # PUT /users/1
     # PUT /users/1.xml

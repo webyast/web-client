@@ -12,15 +12,15 @@
 	<td class="first" width="120"><strong><%=_("Share Name")%></strong></td>
 	<td class="last"><%= f.text_field :id %></td>
     </tr>
+
+    <% @share.parameters.each do |p| %>
     <tr>
-	<td class="first"><strong><%=_("Read only access")%></strong></td>
-	<td class="last"><input type="checkbox" name="read_only" value="<%= isSMBtrue?(@share.attributes["ReadOnly"]) -%>" ></td>
+	<td class="first" width="120"><strong><%= h p.name%></strong></td>
+	<td class="last"> <input type="text" id="share[parameters][<%= h p.name -%>]" name="share[parameters][<%= h p.name -%>]" value="<%= p .value -%>"/> </td>
     </tr>
-    <tr>
-	<td class="first"><strong><%=_("Path to the Share")%></strong></td>
-	<td class="last"><input type="text" name="share[path]" value="<%= @share.attributes["Path"] -%>" ></td>
-    </tr>
+    <% end %>
+
     </table>
-    <p><%= f.submit _("Create"), :onclick=>"Element.show('progress')" %><%= link_to _('Back'), users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
+    <p><%= f.submit _("Create"), :onclick=>"Element.show('progress')" %><%= link_to _('Back'), 'samba_server', :onclick=>"Element.show('progress')", :class => "button" %></p>
   </div>
 <% end %>
