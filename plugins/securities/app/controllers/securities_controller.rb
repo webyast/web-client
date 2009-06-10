@@ -38,22 +38,20 @@ class SecuritiesController < ApplicationController
     s.firewall = params[:firewall].eql?("true")
     s.ssh = params[:ssh].eql?("true")
 
-    response = true
+#    response = true
     begin
-      response = s.save # send to rest-service
+#      response = s.save # send to rest-service
+      s.save
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
-        response = false
+#        response = false
     end
-    flash[:notice] = _("Settings have been written.") if response
-
+#    flash[:notice] = _("Settings have been written.") if response
 
     # prepare for view
     @firewall_after_startup = "checked" if s.firewall_after_startup
     @firewall = "checked" if s.firewall
     @ssh = "checked" if s.ssh
-
-    redirect_to root_url
   end
 end
 
