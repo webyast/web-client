@@ -90,8 +90,12 @@ class PermissionsController < ApplicationController
       path = "/users/#{user}/permissions.xml"
       begin
         @permissions = Permission.find(:all, :from => path)
-        rescue ActiveResource::ClientError => e
-          return YaST::ServiceResource.error(e)
+      rescue ActiveResource::ClientError => e
+        return YaST::ServiceResource.error(e)
+      rescue Exception => e
+        es = "AIEEE, #{e}"
+        logger.debug es
+        return es
       end
     end
     @current_user = user
