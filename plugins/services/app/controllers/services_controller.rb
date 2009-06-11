@@ -8,7 +8,8 @@ class ServicesController < ApplicationController
   init_gettext "yast_webclient_services"  # textdomain, options(:charset, :content_type)
 
   def index
-    set_permissions(controller_name)
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.services')
+    @permissions = proxy.permissions
 
     @services = Service.find(:all, :from => '/services.xml')
     @table = []

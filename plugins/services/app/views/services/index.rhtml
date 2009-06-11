@@ -38,6 +38,10 @@
 <h1><%=_("Services")%></h1>
 <br>
 
+<% if ! @permissions[:execute] %>
+<!-- TODO generalize this to all views -->
+<p>You do not have permission to execute the services. The links are disabled.</p>
+<% end %>
 <% for table_counter in 0..@table.size-1 do %>
    <div class="table">
       <img src="/images/bg-th-left.gif" width="8" height="7" alt="" class="left" />
@@ -80,7 +84,7 @@
                                <strong><%= link_to "#{command_list[line_counter][:name]}",  :id=>"config",
                                                      :action =>link %></strong>
                             <% else %>
-                               <% if @execute_permission == nil %>
+                               <% if @permissions[:execute] %>
                                   <%= link_to_remote image_tag("#{command_list[line_counter][:icon]}", :alt =>  "icon"), 
                                                    :update => "resultdlg",
 						   :url=>{ :id=> command_list[line_counter][:name], 
