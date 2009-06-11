@@ -18,23 +18,18 @@ class LanguageController < ApplicationController
         flash[:error] = YaST::ServiceResource.error(e)
     end
 
-    @second_languages = {}
     @valid = []
     
     if @language
       @language.available.each do  |avail|
         @valid << avail.name
-        if avail.id.size>0 && avail.id==@language.first_language
-          @language.first_language = avail.name
-        end
-        checked = ""
-        @language.second_languages::each do |s|
-          if avail.id.size>0 && avail.id==s.id
-             checked = "checked"
-          end
-        end
-        @second_languages[avail.name.tr_s(" ", "_")] = checked
+        if avail.id.size>0 && avail.id == @language.current
+          @current = avail.name
+        end        
       end
+      logger.info("language is current :"+@current)
+      @rootlocale=@language.rootlocale
+      @utf8 = @language.utf8
     end
   end
 
@@ -49,19 +44,20 @@ class LanguageController < ApplicationController
      end
 
      if lang
-       hash_avail = {}
        lang.available.each do  |avail|
-         hash_avail[avail.name.tr_s(" ", "_")] = avail.id
-       end
-
-       lang.first_language = hash_avail[params[:first_language].tr_s(" ", "_")]
-       lang.available = [] #not needed anymore
-       lang.second_languages = []
-       params::each do |name,value|   
-         if value=="LanguageSet"
-           lang.second_languages << { :id => hash_avail[name] }
+         if params[:first_language]==avail.name
+           lang.current = avail.id
          end
        end
+
+       lang.available = [] #not needed anymore
+       if params[:utf8] && params[:utf8]=="true"
+        lang.utf8 = "true"
+       else
+        lang.utf8 = "false"
+       end
+       lang.rootlocale = params[:rootlocale]
+       
        response = true
        begin
          response = lang.save
