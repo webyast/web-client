@@ -45,13 +45,15 @@
       <table class="listing" cellpadding="0" cellspacing="0">
          <tr>
            <% for column_counter in 0..3 do %>
-              <% if @services.size > table_counter*4+column_counter %>
+	      <% i = table_counter*4+column_counter %>
+              <% if @services.size > i %>
+                 <% link = @services[i].link %>
                  <% if column_counter == 0 %>
-    	            <th class="first" width=17%><%=h @services[table_counter*4+column_counter].link %></th>
+    	            <th class="first" width=17%><%=h link %></th>
                  <% elsif column_counter == 3 %>
-    	            <th class="last" width=17%><%=h @services[table_counter*4+column_counter].link %></th>
+    	            <th class="last" width=17%><%=h link %></th>
                  <% else %>
-    	            <th width=17%><%=h @services[table_counter*4+column_counter].link %></th>
+    	            <th width=17%><%=h link %></th>
                  <% end %>
               <% else %>
                  <% if column_counter == 3 %>
@@ -65,30 +67,32 @@
          <% for line_counter in 0..@table[table_counter]-1 do %>         
             <tr>
                <% for column_counter in 0..3 do %>
-                  <% if @services.size > table_counter*4+column_counter %>
-                     <% command_list = @services[table_counter*4+column_counter].command_list %>
+	          <% i = table_counter*4+column_counter %>
+                  <% if @services.size > i %>
+                     <% command_list = @services[i].command_list %>
+                     <% link = @services[i].link %>
                      <% if line_counter < command_list.size %>
                         <td>
                             <% if command_list[line_counter][:name] == "configure" %>
                                <%= link_to image_tag("#{command_list[line_counter][:icon]}", :alt =>  "icon"), 
                                                      :id=>"config",
-                                                     :action =>@services[table_counter*4+column_counter].link %>
+                                                     :action =>link %>
                                <strong><%= link_to "#{command_list[line_counter][:name]}",  :id=>"config",
-                                                     :action =>@services[table_counter*4+column_counter].link %></strong>
+                                                     :action =>link %></strong>
                             <% else %>
                                <% if @execute_permission == nil %>
                                   <%= link_to_remote image_tag("#{command_list[line_counter][:icon]}", :alt =>  "icon"), 
                                                    :update => "resultdlg",
 						   :url=>{ :id=> command_list[line_counter][:name], 
                                                            :action => "execute", 
-                                                           :service_id=> @services[table_counter*4+column_counter].link },
+                                                           :service_id=> link },
 						   :loading => "Element.show('progress');",
 						   :complete => "Element.hide('progress'); showResultDialog();" %>
                                   <strong><%= link_to_remote "#{command_list[line_counter][:name]}",
                                                    :update => "resultdlg",
 						   :url=>{ :id=> command_list[line_counter][:name], 
                                                            :action => "execute", 
-                                                           :service_id=> @services[table_counter*4+column_counter].link },
+                                                           :service_id=> link },
 						   :loading => "Element.show('progress');",
 						   :complete => "Element.hide('progress'); showResultDialog();"
                                           %></strong>
