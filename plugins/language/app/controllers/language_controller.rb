@@ -27,7 +27,6 @@ class LanguageController < ApplicationController
           @current = avail.name
         end        
       end
-      logger.info("language is current :"+@current)
       @rootlocale=@language.rootlocale
       @utf8 = @language.utf8
     end
@@ -44,6 +43,11 @@ class LanguageController < ApplicationController
      end
 
      if lang
+       #clear lang to set only allowed elements
+       lang.current = ""
+       lang.utf8 = ""
+       lang.rootlocale = ""
+
        lang.available.each do  |avail|
          if params[:first_language]==avail.name
            lang.current = avail.id
