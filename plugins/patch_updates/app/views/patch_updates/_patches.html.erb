@@ -3,9 +3,11 @@
 <% else %>
 <p><%= _("Updates available") %></p>
 <% end %>
-   <table class="list" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %>>
+<% form_tag '/patch_updates/install' do %>
+   <table class="list" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
       <tr>
-	<th class="first" width=8%><%=_("Kind")%></th>
+ <th class="first" width=5%><%=_("Check")%></th>
+        <th width=8%><%=_("Kind")%></th>
 	<th width=15%><%=_("Name")%></th>
 	<th width="100"><%=_("Summary")%></th>
         <% if @install_permission == nil %>
@@ -17,13 +19,13 @@
       </tr>
       <% counter=0 %>
       <% for patch_update in @patch_updates %>
-            <% if counter==0 %>
+            <% if counter.modulo(2) == 0 %>
              <tr>
-             <% counter += 1 %>
             <% else %>
              <tr class="bg">
-             <% counter = 0 %>
             <% end %>
+            <% counter += 1 %>
+              <input type="checkbox" name=<%="patch_#{counter}"%> value=<%=patch_update.resolvable_id%> >
               <%
                  # this should go to a helper?
                  kinds = { "security" => '/icons/kupdateapplet_red.png',
@@ -41,10 +43,13 @@
               <td class="label"><%=h patch_update.summary %></td>
               <td><%=h patch_update.repo %></td>
               <% if @install_permission.nil? %>
-                 <td><%= link_to image_tag("/icons/system-software-install.png", :alt =>  "install", :class=>"icon", :border => "0"), 
-                         :controller => 'patch_updates', :id => patch_update.resolvable_id,
+                 <td><%= link_to image_tag("/icons/system-software-install.png"\
+                         , :alt =>  "install", :class=>"icon", :border => "0"),\
+                         :controller => 'patch_updates', :id => patch_update.resolvable_id,\
                          :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
               <% end %>
            </tr>
       <% end %>
    </table>
+  <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :class => 'button' -%>
+<%end%>
