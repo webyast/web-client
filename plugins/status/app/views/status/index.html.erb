@@ -1,9 +1,17 @@
 
-<h2>Status</h2>
+<h1>Status</h1>
 
-<%= graph("test_graph1", 400, 300, false) %>
+<% last = false %>
+<% @data_group.each do |key, map| %>
+  <h3><%= key.capitalize %></h3>
+  <br><br>
+  <% map.each do |graph_key, list_value| %>
+    <% graph_id = key + "_" + graph_key.tr('/','_') %>
+    <%= graph(graph_id, 400, 300, last) %>
+    <% last = !last %>
+  <% end %>
+<% end %>
 
-<%= graph("test_graph2", 400, 300, true) %>
 
 <script type="text/javascript">
 
@@ -24,18 +32,14 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
     });
 }
 
-
-
-  function getDataAndPlotLineGraph(graph_id, graph_title) {
-     $('#' + graph_id).html("");
-     plotLineGraph(graph_id, graph_title, [[[1, 2],[3,5.12],[5,13.1],[7,33.6],[9,85.9],[11,219.9]]]);
-  }
-
-
   $(function() {
-    getDataAndPlotLineGraph('test_graph1', 'testing graph' );
-    getDataAndPlotLineGraph('test_graph2', 'testing graph' );
-
+    <% @data_group.each do |key, map| %>
+      <% map.each do |graph_key, list_value| %>
+        <% graph_id = key + "_" + graph_key.tr('/','_') %>
+        $('#' + '<%= graph_id %>').html("");
+        plotLineGraph('<%= graph_id %>', '<%= graph_key %>', [<%= list_value.inspect %>]);
+      <% end %>
+    <% end %>
   });
 </script>
 
