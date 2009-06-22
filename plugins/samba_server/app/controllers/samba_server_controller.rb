@@ -4,6 +4,7 @@ class SambaServerController < ApplicationController
 
     before_filter :login_required
     layout 'main'
+    helper 'view_helpers/html'
  
  
     # GET /samba_server
