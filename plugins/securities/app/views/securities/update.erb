@@ -4,23 +4,26 @@
 <span>
 
   <label>
-    <input type="checkbox" name="firewall_after_startup" value="true" <%= @firewall_after_startup %> @write_permission />
+    <%= check_box_tag "firewall_after_startup", "true", @firewall_after_startup,
+                                          :disabled => !@write_permission.nil?%>
     <span><%=_("Enable Firewall Automatic Starting")%></span>
   </label>
 
   <label>
-    <input type="checkbox" name="firewall" value="true" <%= @firewall %> @write_permission />
+    <%= check_box_tag "firewall", "true", @firewall,
+                                         :disabled => !@write_permission.nil? %>
     <span><%=_("Firewall enabled")%></span>
   </label>
 
  <label>
-    <input type="checkbox" name="ssh" value="true" <%= @ssh %> @write_permission />
+    <%= check_box_tag "ssh", "true", @ssh, :disabled => !@write_permission.nil? %>
     <span><%=_("SSH login enabled")%></span>
   </label>
 
   <span>
     <hbox>
-      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=>@write_permission.nil?, :class => 'button' -%>
+      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')",
+                      :disabled=>!@write_permission.nil?, :class => 'button' -%>
       <a href="/" class="button"><%=_("Back")%></a>
     </hbox>
   </span>
