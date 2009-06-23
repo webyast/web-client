@@ -17,26 +17,25 @@ class ServicesController < ApplicationController
     max_column = 0
     table_counter = 1
     @services.each do | s |
-       @services[counter-1].command_list = []
-       s.commands.each do | comm |
-          case comm.name
-            when "start", "run"
-               c = {:name=>comm.name, :icon=>"/images/start.png" }
-            when "stop"
-               c = {:name=>comm.name, :icon=>"/images/stop.png" }
-            when "restart", "try-restart"
-               c = {:name=>comm.name, :icon=>"/images/restart.png" }
-            when "reload", "force-reload"
-               c = {:name=>comm.name, :icon=>"/images/reload.png" }
-            when "status"
-               c = {:name=>comm.name, :icon=>"/images/status.png" }
-            when "probe"
-               c = {:name=>comm.name, :icon=>"/images/probe.png" }
-            else
-               c = {:name=>comm.name, :icon=>"/images/empty.png" }
-          end
-          @services[counter-1].command_list << c
-       end
+      @services[counter-1].command_list = []
+      commands = %w{status start stop restart force-reload bogus} # FIXME s.commands is gone
+      commands.each do | comm |
+        cname = comm # FIXME comm.name is gone
+        iname = cname
+        case iname
+        when "run"
+          iname = "start"
+        when "try-restart"
+          iname = "restart"
+        when "force-reload"
+          iname = "reload"
+        else
+          iname = "empty"
+        end
+        c = {:name => cname, :icon => "/images/#{iname}.png" }
+        @services[counter-1].command_list << c
+      end
+
        if s.link == "ntp"
           #add configuration module if there is a read permission
           c = {:name=>"configure", :icon=>"/images/configure.png" }
@@ -65,20 +64,29 @@ class ServicesController < ApplicationController
     else
        @last_result_string = ""
     end
+
+    if params[:fancy] == "1"
+      render :fancy_index and return
+    end
   end
 
   def execute
     @service = Service.find(params[:service_id])
     @service.id = @service.link
-    command_id = "commands/"
-    command_id << params[:id]
+    command_id = "commands/" + params[:id]
     logger.debug "calling #{command_id} with service #{@service.inspect}"
     response = @service.put(command_id)
-    ret_service = Hash.from_xml(response.body)
-    logger.debug "returns #{ret_service["service"].inspect}"
-    @result_string = ret_service["service"]["error_string"]
-    @error_string = _("failed")
-    if ret_service["service"]["error_id"]=="0"
+
+    # we get a hash with exit, stderr, stdout
+    ret = Hash.from_xml(response.body)
+    ret = ret["hash"]
+    logger.debug "returns #{ret.inspect}"
+    
+    @result_string = ""
+    @result_string << ret["stdout"] if ret["stdout"]
+    @result_string << ret["stderr"] if ret["stderr"]
+    @error_string = ret["exit"].to_s # TODO translate exit codes (use YaST?)
+    if ret["exit"] == 0
        @error_string = _("success")
     end
     render(:partial =>'result')
