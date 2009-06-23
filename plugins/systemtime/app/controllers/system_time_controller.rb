@@ -4,11 +4,13 @@ class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
 
+  @@timezones = {}
+
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
   def index
     set_permissions(controller_name)
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
     @permissions = proxy.permissions
 
     begin
@@ -22,21 +24,27 @@ class SystemTimeController < ApplicationController
       render :template => 'shared/error_404'
       return
     end
-logger.debug @systemtime.currenttime
-    if @systemtime.is_utc == true
-      @is_utc = "checked"
-    else
-      @is_utc = ""
-    end
 
     @valid = []
-    @systemtime.validtimezones::each do |s|
-       @valid << s.id
+    #find current region
+    @@timezones = @systemtime.timezones
+    @@timezones.each do |region|
+      @valid.push(region.name)
+      region.entries.each do |entry|        
+        if entry.id == @systemtime.timezone
+          @region = region
+        end
+      end
     end
+    @time = @systemtime.time[@systemtime.time.index(" - ")+3,8]
+    @date = @systemtime.time[0..@systemtime.time.index(" - ")]
+    #convert date to format for datepicker
+    @date.sub!(/^(\d+)-(\d+)-(\d+)/,'\3/\2/\1')
+
   end
 
   def commit_time
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.time')
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
     @permissions = proxy.permissions
 
     begin
@@ -73,4 +81,16 @@ logger.debug @systemtime.currenttime
     end
   end
 
+
+  def timezones_for_region
+    region = ""
+    @@timezones.each do |r|
+      if r.name == params[:value]
+        region = r
+      end
+    end
+    render(:partial => 'timezones',
+               :locals => {:region => region, :default => region.central,
+               :disabled => ! params[:disabled]=="true"})
+  end
 end
