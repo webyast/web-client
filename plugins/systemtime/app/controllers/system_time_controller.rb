@@ -15,8 +15,8 @@ class SystemTimeController < ApplicationController
 
     begin
       @systemtime = proxy.find
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
     end
 
     # if time is not available
@@ -49,16 +49,16 @@ class SystemTimeController < ApplicationController
 
     begin
       t = proxy.find
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        redirect_to :action => :index
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      redirect_to :action => :index
     end
 
     t.timezone = params[:timezone]
     if params[:utc] == "true"
-       t.is_utc = true
+      t.is_utc = true
     else
-       t.is_utc = false
+      t.is_utc = false
     end
 
     t.currenttime = params[:currenttime]
@@ -69,18 +69,69 @@ class SystemTimeController < ApplicationController
     response = true
     begin
       response = t.save
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        response = false
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      response = false
     end
     if !response
-       redirect_to :action => :index
+      redirect_to :action => :index
     else
-       flash[:notice] = _('Settings have been written.')
-       redirect_to :action => :index
+      flash[:notice] = _('Settings have been written.')
+      redirect_to :action => :index
     end
   end
 
+  def commit_timezone
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
+    @permissions = proxy.permissions
+
+    begin
+      t = proxy.find
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      redirect_to :action => :index
+    end
+
+    region = {}
+    @@timezones.each do |reg|
+      if reg.name == params[:region]
+        region = reg
+        break
+      end
+    end
+
+    region.entries.each do |e|
+      if (e.name == params[:timezone])
+        t.timezone = e.id
+        break
+      end
+    end
+
+    if (t.utcstatus != "UTConly")
+      if params[:utc] == "true"
+        t.utcstatus = "UTC"
+      else
+        t.utcstatus = "localtime"
+      end
+    end
+    
+    t.time = ""
+    t.timezones = [] #not needed anymore
+
+    response = true
+    begin
+      response = t.save
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      response = false
+    end
+    if !response
+      redirect_to :action => :index
+    else
+      flash[:notice] = _('Settings have been written.')
+      redirect_to :action => :index
+    end
+  end
 
   def timezones_for_region
     region = ""
@@ -90,7 +141,7 @@ class SystemTimeController < ApplicationController
       end
     end
     render(:partial => 'timezones',
-               :locals => {:region => region, :default => region.central,
-               :disabled => ! params[:disabled]=="true"})
+      :locals => {:region => region, :default => region.central,
+        :disabled => ! params[:disabled]=="true"})
   end
 end

@@ -11,6 +11,10 @@ class LanguageController < ApplicationController
   def index
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.language')
+    if proxy.nil?
+      access_denied
+      return
+    end
     @permissions = proxy.permissions
     begin
       @language = proxy.find
