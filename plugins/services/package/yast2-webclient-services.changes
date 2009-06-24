@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Wed Jun 24 12:16:43 CEST 2009 - mvidner@suse.cz
+
+- Service index made simpler, use ?fancy=1 for the old one.
+- Webservice now doesn't tell the available commands at once,
+  so assume the LSB defaults (status start stop restart force-reload)
+- Fixed displaying the command result.
+- Updated licence (MIT->GPL)
+- 0.0.3
+
+-------------------------------------------------------------------
 Fri Jun 12 10:26:46 CEST 2009 - mvidner@suse.cz
 
 - Made it work again after the splitoff:
@@ -7,6 +17,7 @@ Fri Jun 12 10:26:46 CEST 2009 - mvidner@suse.cz
  - Ported permission check from set_permissions to proxy.permissions.
  - Include the Ajax javascript library.
 - 0.0.2
+
 -------------------------------------------------------------------
 Fri Apr 17 11:50:12 CEST 2009 - schubi@suse.de
 
