@@ -36,7 +36,6 @@ Authors:
 
 %prep
 %setup -q -n www
-rm -rf nbproject
 
 %build
 (rake makemo)
