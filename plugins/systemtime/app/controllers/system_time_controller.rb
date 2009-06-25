@@ -8,20 +8,27 @@ class SystemTimeController < ApplicationController
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
+  
   def index
     set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
+    unless proxy
+      redirect_to "/404"
+      return
+    end
     @permissions = proxy.permissions
 
     begin
       @systemtime = proxy.find
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
+    rescue Exception => e
+      flash[:error] = e
     end
 
     # if time is not available
-    if @systemtime.nil?
-      render :template => 'shared/error_404'
+    unless @systemtime
+      redirect_to "/404"
       return
     end
 
