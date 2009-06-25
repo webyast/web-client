@@ -14,20 +14,20 @@ class UsersController < ApplicationController
       # - no permission to connect to server
       # - server does not provide interface
       # - server does not respond (timeout, etc.)
-      # - invalid session					  
+      # - invalid session
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
     @permissions = @client.permissions
   end
-  
+
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_users" 
-  
+  init_gettext "yast_webclient_users"
+
   public
   def initialize
   end
-  
+
   # GET /users
   # GET /users.xml
   def index
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -50,20 +50,20 @@ class UsersController < ApplicationController
   def new
     return unless client_permissions
     @user = @client.new( :id => :nil,
-      :no_home=>nil, 
-      :default_group=>nil, 
-      :new_login_name=>nil, 
-      :login_name=>nil, 
+      :no_home=>nil,
+      :default_group=>nil,
+      :new_login_name=>nil,
+      :login_name=>nil,
       :groups=>[],
       :grp_string=>nil,
       :home_directory=>nil,
-      :full_name=>nil, 
+      :full_name=>nil,
       :uid=>nil,
-      :sshkey=>nil, 
-      :new_uid=>nil, 
-      :login_shell=>"/bin/bash", 
+      :sshkey=>nil,
+      :new_uid=>nil,
+      :login_shell=>"/bin/bash",
       :password=>nil,
-      :type=>"local", 
+      :type=>"local",
       :id=>nil )
     respond_to do |format|
       format.html # new.html.erb
@@ -87,7 +87,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     return unless client_permissions
-    
+
     @user = @client.find(params[:id])
     @user.type = ""
     @user.id = @user.login_name
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
   # POST /users/1/sshexport
   def sshexport
     return unless client_permissions
-    
+
     @user = @client.find(params["user"]["login_name"])
     @user.id = @user.login_name
     logger.debug "sshexportssh: #{@user.inspect}"
@@ -146,23 +146,23 @@ class UsersController < ApplicationController
        end
     end
     @user = @client.new(:no_home=>params[:nohome],
-                      :default_group=>dummy.default_group, 
-                      :new_login_name=>nil, 
-                      :login_name=>dummy.login_name, 
+                      :default_group=>dummy.default_group,
+                      :new_login_name=>nil,
+                      :login_name=>dummy.login_name,
                       :groups=>dummy.groups,
                       :grp_string=>dummy.grp_string,
                       :home_directory=>dummy.home_directory,
-                      :full_name=>dummy.full_name, 
+                      :full_name=>dummy.full_name,
                       :uid=>dummy.uid,
-                      :sshkey=>nil, 
-                      :new_uid=>nil, 
-                      :login_shell=>dummy.login_shell, 
+                      :sshkey=>nil,
+                      :new_uid=>nil,
+                      :login_shell=>dummy.login_shell,
                       :password=>dummy.password,
                       :type=>"local")
 
     #Only UID greater than 1000 are allowed for local user
     response = true
-    if @user.uid.to_i < 1000    
+    if @user.uid.to_i < 1000
       response = false
     else
       begin
@@ -177,7 +177,7 @@ class UsersController < ApplicationController
         flash[:notice] = _('User was successfully created.')
         format.html { redirect_to(users_url) }
       else
-        if @user.uid.to_i < 1000    
+        if @user.uid.to_i < 1000
            #Only UID greater than 1000 are allowed for local user
            flash[:error] = _("UID: value >= 1000 is valid for local user only")
         end
