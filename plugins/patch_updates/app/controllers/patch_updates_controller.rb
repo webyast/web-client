@@ -14,7 +14,7 @@ class PatchUpdatesController < ApplicationController
   def list
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
     begin
-      @patch_updates = proxy.find(:all)
+      @patch_updates = proxy.find(:all) || []
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
