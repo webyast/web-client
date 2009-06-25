@@ -6,36 +6,20 @@ class ConfigNtpController < ApplicationController
   init_gettext "yast_webclient_services"  # textdomain, options(:charset, :content_type)
 
   def show
-
-    @write_permission = "disabled"
-    if (session[:controllers] &&
-        session[:controllers]["services"] &&
-        session[:controllers]["services"].write_permission)
-       @write_permission = nil
-    else
-       #no write-config permission -> check write-services-config-ntp
-       perm = Checkpermission.find("write-services-config")
-       if perm.permission == "granted"
-          @write_permission = nil
-       else
-          perm = Checkpermission.find("write-services-config-ntp")
-          if perm.permission == "granted"
-             @write_permission = nil
-          end
-       end
-    end 
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.services')
+    @permissions = @client.permissions
 
     @ntp = ConfigNtp.find(:one, :from => '/services/ntp/config.xml')
     logger.debug "ConfigNtp: #{@ntp.inspect}"
 
     if @ntp.enabled == true
-      @is_enabled = "checked" 
-    else 
+      @is_enabled = "checked"
+    else
       @is_enabled = ""
     end
     if @ntp.use_random_server == true
-      @is_use_random_server = "checked" 
-    else 
+      @is_use_random_server = "checked"
+    else
       @is_use_random_server = ""
     end
   end
@@ -57,7 +41,7 @@ class ConfigNtpController < ApplicationController
     end
     @ntp.id = "ntp"
     response = @ntp.put(:config, {}, @ntp.to_xml)
-    retNtp = Hash.from_xml(response.body)    
+    retNtp = Hash.from_xml(response.body)
     if retNtp["config_ntp"]["error_id"] != 0
        flash[:error] = retNtp["config_ntp"]["error_string"]
     else

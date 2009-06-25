@@ -11,18 +11,18 @@
        </tr>
        <tr>
 	  <td class="first" width="120"><strong><%=_("Enabled")%></strong></td>
-  	  <td class="last"><input type="checkbox" name="enabled" value="true" <%= @is_enabled %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %>></td>
+  	  <td class="last"><input type="checkbox" name="enabled" value="true" <%= @is_enabled %> <%= "disabled=\"disabled\"" if !@permissions[:write] %>></td>
        </tr>
        <tr class="bg">
 	  <td class="first"><strong><%=_("Use random server")%></strong></td>
-	  <td class="last"><input type="checkbox" name="use_random_server" value="true" <%= @is_use_random_server %> <%= "disabled=\"disabled\"" if @write_permission=="disabled" %>></td>
+	  <td class="last"><input type="checkbox" name="use_random_server" value="true" <%= @is_use_random_server %> <%= "disabled=\"disabled\"" if !@permissions[:write] %>></td>
        </tr>
        <tr>
 	  <td class="first"><strong><%=_("Manual Servers")%></strong></td>
-	  <td class="last"><%= text_field_tag "manual_server", @ntp.manual_server , :disabled=>@write_permission%></td>
+	  <td class="last"><%= text_field_tag "manual_server", @ntp.manual_server , :disabled=>!@permissions[:write]%></td>
        </tr>
     </table>
-    <p><%= submit_tag _("Save"), :disabled=>@write_permission -%><%= link_to _('Back'), {:controller => 'services'}, :class => "button" %></p>
+    <p><%= submit_tag _("Save"), :disabled=> !@permissions[:write] -%><%= link_to _('Back'), {:controller => 'services'}, :class => "button" %></p>
   </div>
 <% end %>
 
