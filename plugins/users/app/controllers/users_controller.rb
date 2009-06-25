@@ -9,6 +9,12 @@ class UsersController < ApplicationController
   def client_permissions
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
     unless @client
+      # FIXME: check the reason why proxy_for failed, i.e.
+      # - no server known
+      # - no permission to connect to server
+      # - server does not provide interface
+      # - server does not respond (timeout, etc.)
+      # - invalid session					  
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
