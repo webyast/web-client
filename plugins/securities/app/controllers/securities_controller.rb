@@ -12,8 +12,6 @@ class SecuritiesController < ApplicationController
   def prepare
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.security')
     @permissions = @client.permissions
-    #set_permissions(controller_name)
-    ##Note: right now set_permissions will allways set permission variables to "disabled"
   end
 
   public

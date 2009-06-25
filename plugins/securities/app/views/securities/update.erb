@@ -2,28 +2,27 @@
 
 <% form_tag '/security/update' do %>
 <span>
-
   <label>
     <%= check_box_tag "firewall_after_startup", "true", @firewall_after_startup,
-                                          :disabled => !@write_permission.nil?%>
+                                          :disabled => !@client.permissions[:write] %>
     <span><%=_("Enable Firewall Automatic Starting")%></span>
   </label>
 
   <label>
     <%= check_box_tag "firewall", "true", @firewall,
-                                         :disabled => !@write_permission.nil? %>
+                                         :disabled => !@client.permissions[:write] %>
     <span><%=_("Firewall enabled")%></span>
   </label>
 
  <label>
-    <%= check_box_tag "ssh", "true", @ssh, :disabled => !@write_permission.nil? %>
+    <%= check_box_tag "ssh", "true", @ssh, :disabled => !@client.permissions[:write] %>
     <span><%=_("SSH login enabled")%></span>
   </label>
 
   <span>
     <hbox>
       <%= submit_tag _("Save"), :onclick=>"Element.show('progress')",
-                      :disabled=>!@write_permission.nil?, :class => 'button' -%>
+                      :disabled => !@client.permissions[:write], :class => 'button' -%>
       <a href="/" class="button"><%=_("Back")%></a>
     </hbox>
   </span>
