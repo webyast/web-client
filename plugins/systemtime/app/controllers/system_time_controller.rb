@@ -8,9 +8,8 @@ class SystemTimeController < ApplicationController
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
-  
+
   def index
-    set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
     unless proxy
       redirect_to "/404"
@@ -37,7 +36,7 @@ class SystemTimeController < ApplicationController
     @@timezones = @systemtime.timezones
     @@timezones.each do |region|
       @valid.push(region.name)
-      region.entries.each do |entry|        
+      region.entries.each do |entry|
         if entry.id == @systemtime.timezone
           @region = region
         end
@@ -121,7 +120,7 @@ class SystemTimeController < ApplicationController
         t.utcstatus = "localtime"
       end
     end
-    
+
     t.time = ""
     t.timezones = [] #not needed anymore
 
