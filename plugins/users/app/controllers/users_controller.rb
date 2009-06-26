@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     @user.grp_string = ""
     counter = 0
     @user.grp_string = ""
-    @user.groups.each do |group|
+    @user.grouplist.each do |group|
        if counter == 0
           @user.grp_string = group.id
        else
