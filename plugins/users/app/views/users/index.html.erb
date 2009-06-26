@@ -3,6 +3,7 @@
 <table class="list">
   <tr>
     <th class="first" width=150><%=_("Login")%></th>
+    <th><%=_("Full Name")%></th>
     <th width=8%><%= label_edit %></th>
     <% if @permissions[:delete] %>
     <th width=8%><%=_("SSH-Key")%></th>
@@ -14,6 +15,7 @@
   <% for user in @users %>
   <tr>
     <td><strong><%=h user.login_name %></strong></td>
+    <td><%=h user.full_name %></td>
     <td><%= html_edit_link(user.id) %></td>
     <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
     <% if @permissions[:delete] %>
