@@ -1,14 +1,48 @@
 <html>
 <head>
   <title><%= controller.action_name %></title>
-  <%= javascript_include_tag "yui/yahoo",
-                             "yui/dom",
-                             "yui/event",
-                             "yui/connection",
-                             "yui/dragdrop",
-                             "yui/treeview"%>
-    <%= stylesheet_link_tag  'yui/treeview'%>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.checktree.js"></script>
 
+  <script>
+  $(document).ready(function(){
+	$("ul.tree").checkTree({
+		/*
+		// You can add callbacks to the expand, collapse, check, uncheck, and  halfcheck
+		// events of the tree. The element you use as the argument is the LI element of
+		// the object that fired the event.
+		onExpand: function(el) {
+			console.log("expanded ", el.find("label:first").text());
+		},
+		onCollapse: function(el) {
+			console.log("collapsed ", el.find("label:first").text());
+		},
+		onCheck: function(el) {
+			console.log("checked ", el.find("label:first").text());
+		},
+		onUnCheck: function(el) {
+			console.log("un checked ", el.find("label:first").text());
+		},
+		onHalfCheck: function(el) {
+			console.log("half checked ", el.find("label:first").text());
+		}*/
+
+		// You can set the labelAction variable to either "check" or "expand" 
+		// to change what happens when you click on the label item.
+		// The default is expand, which expands the tree. Check will toggle
+		// the checked state of the items.
+		labelAction: "check"
+
+		/*
+		// You can also change what happens when you hover over a label (over and out)
+		onLabelHoverOver: function(el) { alert("You hovered over " + el.text()); },
+		onLabelHoverOut: function(el) { alert("You hovered out of " + el.text()); }
+		*/
+	});
+  });
+  </script>
+
+  <link rel="stylesheet" href="/inc/checktree/checktree.css" type="text/css" media="screen" title="default" charset="utf-8" />
  </head>
 <h1><%=_("User Permissions")%></h1>
 <br>
@@ -19,10 +53,11 @@
 <% end %>
 <br>
 <br>
-<% if @current_user != nil && @current_user.size>0 %>
+<% if !@current_user.blank? %>
+ <% form_tag ({:action => "set", :user => @current_user})  do %>
    <table border="1" align="left" hspace=1 vspace=1>
    <colgroup>
-   <col width="200" span="2">
+   <col width="300" span="2">
    <col>
    </colgroup>
    <tr>
@@ -33,89 +68,92 @@
    <td valign="top">
    <body>
        <div id="revoketree"></div>
-
-       <script type="text/javascript">
-       //<![CDATA[
-          <%= "#{@revoke_data}" %>
-       //]]>
-
-       //<![CDATA[
-
-       function revokeAddChildrenNodes(currLevel, nodeIndex, parent) {
-         var lastNode;
-         var level = currLevel;
-
-         while (nodeIndex < revoke_data.length) {
-           var level = revoke_data[nodeIndex];
-           if (level == currLevel) {
-              nodeIndex++;
-              lastNode = new YAHOO.widget.TextNode(revoke_data[nodeIndex++], parent, false);
-           } else if (level < currLevel) {
-              return nodeIndex;
-           } else {
-              nodeIndex = revokeAddChildrenNodes(level, nodeIndex, lastNode);
-           }
-         }
-         return nodeIndex;
-       }
-
-       function revoketree_Init() {
-         var tree = new YAHOO.widget.TreeView("revoketree");
-         revokeAddChildrenNodes(0, 0, tree.getRoot());
-         tree.draw();
-       }
-
-       YAHOO.util.Event.addListener(window, "load", revoketree_Init);
-   
-       //]]>
-
-       </script>
+       <ul class="tree" style="margin-left: 15px;">
+       <% last_level = 0 %>
+       <% for k in 0..@revoke_data.size-1 %>   
+          <% if last_level < @revoke_data[k][:level] %>
+            <% last_level = @revoke_data[k][:level] %>
+       <%= "  " * last_level %><ul>
+       <%= "  " * (last_level+1) %><li>
+		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant">
+		  <label><%= @revoke_data[k][:label] %></label>
+            <% if k < @revoke_data.size-1 && @revoke_data[k+1][:level] == @revoke_data[k][:level] %>
+       <%= "  " * (last_level+1) %></li>
+            <% end %>
+          <% elsif last_level > @revoke_data[k][:level] %>
+            <% for i in 1..last_level-@revoke_data[k][:level] %>
+       <%= "  " * last_level %></ul>
+       <%= "  " * (last_level+1) %></li>
+            <% end %>
+            <% last_level = @revoke_data[k][:level] %>
+       <%= "  " * last_level %><li>
+		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant">
+		  <label><%= @revoke_data[k][:label] %></label>
+          <% else %>
+       <%= "  " * (last_level+1) %><li>
+		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant">
+		  <label><%= @revoke_data[k][:label] %></label>
+       <%= "  " * (last_level+1) %></li>
+          <% end %>
+       <% end %>
+       <% for i in 1..last_level %>
+       <%= "  " * (last_level-i+1) %></ul>
+       <%if i < last_level %> 
+       <%= "  " * (last_level-i+1) %></li>
+       <% end %>
+       <% end %>
+       </ul>
    </body>
    </td>
    <td valign="top">
    <body>
        <div id="granttree"></div>
-   
-       <script type="text/javascript">
-       //<![CDATA[
-          <%= "#{@grant_data}" %>
-       //]]>
-       
-       //<![CDATA[
-       
-       function grantAddChildrenNodes(currLevel, nodeIndex, parent) {
-         var lastNode;
-         var level = currLevel;
-     
-         while (nodeIndex < grant_data.length) {
-           var level = grant_data[nodeIndex];
-           if (level == currLevel) {
-              nodeIndex++;
-              lastNode = new YAHOO.widget.TextNode(grant_data[nodeIndex++], parent, false);
-           } else if (level < currLevel) {
-              return nodeIndex;
-           } else {
-              nodeIndex = grantAddChildrenNodes(level, nodeIndex, lastNode);
-           }
-         }
-         return nodeIndex;
-       }
-  
-       function granttree_Init() {
-         var tree = new YAHOO.widget.TreeView("granttree");
-         grantAddChildrenNodes(0, 0, tree.getRoot());
-         tree.draw();
-       }
-  
-       YAHOO.util.Event.addListener(window, "load", granttree_Init);
-   
-       //]]>
-
-       </script>
+       <ul class="tree" style="margin-left: 15px;">
+       <% last_level = 0 %>
+       <% for k in 0..@grant_data.size-1 %>   
+          <% if last_level < @grant_data[k][:level] %>
+            <% last_level = @grant_data[k][:level] %>
+       <%= "  " * last_level %><ul>
+       <%= "  " * (last_level+1) %><li>
+		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke">
+		  <label><%= @grant_data[k][:label] %></label>
+            <% if k < @grant_data.size-1 && @grant_data[k+1][:level] == @grant_data[k][:level] %>
+       <%= "  " * (last_level+1) %></li>
+            <% end %>
+          <% elsif last_level > @grant_data[k][:level] %>
+            <% for i in 1..last_level-@grant_data[k][:level] %>
+       <%= "  " * last_level %></ul>
+       <%= "  " * (last_level+1) %></li>
+            <% end %>
+            <% last_level = @grant_data[k][:level] %>
+       <%= "  " * last_level %><li>
+		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke">
+		  <label><%= @grant_data[k][:label] %></label>
+          <% else %>
+       <%= "  " * (last_level+1) %><li>
+		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke">
+		  <label><%= @grant_data[k][:label] %></label>
+       <%= "  " * (last_level+1) %></li>
+          <% end %>
+       <% end %>
+       <% for i in 1..last_level %>
+       <%= "  " * (last_level-i+1) %></ul>
+       <%if i < last_level %> 
+       <%= "  " * (last_level-i+1) %></li>
+       <% end %>
+       <% end %>
+       </ul>
+   </body>
+   </td>
+   <td valign="top">
+   <body>
+       <div id="setpermission"></div>
+       <%= submit_tag _("Set"), :onclick=>"Element.show('progress')"%>
    </body>
    </td>
    </tr>
    </table>
+ <% end %>
 <% end %>
 
 </html>

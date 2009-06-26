@@ -44,31 +44,38 @@ class PermissionsController < ApplicationController
   end
   
   def construct_permission_tree()
+     @right_set_permissions = false
      @permissions.each do |permission|
         sub = @permission_tree
-        permission_split = permission.name.split(".")
+        #do not regard org.opensuse.yast. in the tree
+        if permission.name.starts_with? ("org.opensuse.yast.")
+          permission_name = permission.name["org.opensuse.yast.".size, permission.name.size-1]
+        else
+         permission_name = permission.name
+        end
+        permission_name = permission_name.tr("-", ".")
+        permission_split = permission_name.split(".")
         permission_split.each do |dir|
            sub = sub[dir] 
         end
         sub[:grant] = permission.grant
         sub[:path] = permission.name
+        if permission.name == "org.opensuse.yast.permissions.write" &&
+           permission.grant
+          @right_set_permissions
+        end
      end
   end
 
-  def build_java_variable( tree, level, grant, take_all, user, java_string )
+  def build_data( tree, level, grant, take_all, user, data_list )
      tree.each do |key, branch|
         if branch.is_a? Hash
            if (show_subtree(branch, grant) || #there is at least one item set to "grant"
                take_all)                   #or the rest should be simply taken
-              java_string += "#{level}, { label: \"#{key}\", href:\""
-              if branch.has_key?(:path) && @write_permission==nil
-                java_string += url_for(:controller => controller_name(),
-                                      :action => grant ? "revoke" : "grant",
-                                      :id => branch[:path],
-                                      :user => user,
-                                      :only_path => true)
-              end
-              java_string += "\" },\n"
+              node = Hash.new
+              node[:level] = level
+              node[:label] = key
+              node[:path] = branch[:path]
               #taking the subtrees too
               next_take_all = take_all
               if (branch.has_key?(:grant) &&
@@ -77,11 +84,12 @@ class PermissionsController < ApplicationController
                   next_take_all = true
                   #logger.debug "#{branch[:path]} is granted. So all other subtrees are granted"
               end
-              java_string = build_java_variable( branch, level+1, grant, next_take_all, user, java_string )
+              data_list << node
+              data_list = build_data( branch, level+1, grant, next_take_all, user, data_list )
            end
         end
      end
-     return java_string
+     return data_list
   end
 
   def get_permissions(user, get_perm_from_server)
@@ -99,36 +107,32 @@ class PermissionsController < ApplicationController
       end
     end
     @current_user = user
-#    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
+    logger.debug "permissions of user #{@current_user}: #{@permissions.inspect}"
     @permission_tree = Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
     construct_permission_tree()
-#    logger.debug "Complete Tree: #{@permission_tree.to_xml}"
+    logger.debug "Complete Tree: #{@permission_tree.to_xml}"
 
-    #@grant_data = "var grant_data = \n [];" 
-    @grant_data = build_java_variable( @permission_tree, 0, true, false, @current_user, "var grant_data = \n [" )    
-    @grant_data += "];"
-#    logger.debug "Grant Tree: #{@grant_data}"
+    @grant_data = build_data( @permission_tree, 1, true, false, @current_user, [] )    
+    logger.debug "Grant Tree: #{@grant_data.inspect}"
 
-    @revoke_data = build_java_variable( @permission_tree, 0, false, false, @current_user, "var revoke_data = \n [" )    
-    @revoke_data += "];"
-#    logger.debug "Revoke Tree: #{@revoke_data}"
+    @revoke_data = build_data( @permission_tree, 1, false, false, @current_user, [] )    
+    logger.debug "Revoke Tree: #{@revoke_data.inspect}"
     return "" # no error
   end
 
-  def set_permission(user, grant)
-    get_permissions(params[:user].rstrip, true)
+  def set_permission(permission, grant)
     error = ""
     for i in 0..@permissions.size-1 do
-       if  @permissions[i].name == params[:id]
+       if  @permissions[i].name == permission
           if @permissions[i].grant != grant
              perm = Permission.new()
              perm.id = @current_user
              perm.grant = grant
              perm.error_id = 0
              perm.error_string = ""     
-             perm.name = params[:id]     
+             perm.name = permission     
 
-             path = "permissions/#{params[:id]}"
+             path = "permissions/#{permission}"
              response = perm.put(path, {}, perm.to_xml)
              ret_perm = Hash.from_xml(response.body) 
              if grant
@@ -147,7 +151,7 @@ class PermissionsController < ApplicationController
        end
        # reset the rest of the subtree
        if (error == "" &&
-           @permissions[i].name.index(params[:id]+"-") == 0 &&
+           @permissions[i].name.index(permission+"-") == 0 &&
            @permissions[i].grant == true)
           perm = Permission.new()
           perm.id = @current_user
@@ -176,20 +180,24 @@ class PermissionsController < ApplicationController
     return error
   end
 
-  def grant
-    error = set_permission(params[:user].rstrip, true)
-    if error == ""
-       flash[:notice] = _("Permission has been granted.")
-    else
-       flash[:error] = error
+  def set
+    get_permissions(params[:user].rstrip, true)
+    ok = true
+    error = ""
+    params.each do |key, value|
+      if value == "grant"
+        error = set_permission(key, true)
+      elsif value == "revoke"
+        error = set_permission(key, false)
+      end
+      if !error.blank?
+        ok = false
+        break
+      end        
     end
-    render :action => "index" 
-  end
 
-  def revoke
-    error = set_permission(params[:user].rstrip, false)
-    if error == ""
-       flash[:notice] = _("Permission has been revoked.")
+    if ok
+       flash[:notice] = _("Permissions have been set.")
     else
        flash[:error] = error
     end
@@ -197,7 +205,6 @@ class PermissionsController < ApplicationController
   end
 
   def search
-    set_permissions(controller_name)
     flash[:error] = get_permissions(params[:user].rstrip, true)
     render :action => "index" 
   end
