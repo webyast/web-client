@@ -3,8 +3,9 @@
 <table class="list">
   <tr>
     <th class="first" width=150><%=_("Login")%></th>
+    <th><%=_("Full Name")%></th>
     <th width=8%><%= label_edit %></th>
-    <% if @delete_permission == nil %>
+    <% if @permissions[:delete] %>
     <th width=8%><%=_("SSH-Key")%></th>
     <th class="last" width=8%><%= label_delete %></th>
     <% else %>
@@ -14,9 +15,10 @@
   <% for user in @users %>
   <tr>
     <td><strong><%=h user.login_name %></strong></td>
+    <td><%=h user.full_name %></td>
     <td><%= html_edit_link(user.id) %></td>
     <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
-    <% if @delete_permission == nil %>
+    <% if @permissions[:delete] %>
     <td class="last"><%= html_delete_link(user.login_name) %></td>
     <% end %>
   </tr>

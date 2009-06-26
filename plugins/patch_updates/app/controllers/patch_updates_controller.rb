@@ -8,13 +8,12 @@ class PatchUpdatesController < ApplicationController
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
-    set_permissions(controller_name)
   end
 
   def list
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+    @proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
     begin
-      @patch_updates = proxy.find(:all)
+      @patch_updates = @proxy.find(:all) || []
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end

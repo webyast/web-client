@@ -15,7 +15,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controlle
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.2
+Version:        0.0.3
 Release:        0
 Summary:        YaST2 - Webclient - Services
 Source:         www.tar.bz2
@@ -58,7 +58,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/MIT-LICENSE
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb

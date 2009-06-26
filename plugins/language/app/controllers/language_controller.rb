@@ -10,7 +10,11 @@ class LanguageController < ApplicationController
 
   def index
     set_permissions(controller_name)
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.language')
+    if proxy.nil?
+      access_denied
+      return
+    end
     @permissions = proxy.permissions
     begin
       @language = proxy.find
@@ -33,7 +37,7 @@ class LanguageController < ApplicationController
   end
 
   def commit_language
-     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.language')
+     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.language')
      proxy.timeout = 120
      @permissions = proxy.permissions
      begin
@@ -43,14 +47,11 @@ class LanguageController < ApplicationController
      end
 
      if lang
-       #clear lang to set only allowed elements
-       lang.current = ""
-       lang.utf8 = ""
-       lang.rootlocale = ""
 
        lang.available.each do  |avail|
          if params[:first_language]==avail.name
            lang.current = avail.id
+           break
          end
        end
 
