@@ -145,88 +145,38 @@ class PermissionsController < ApplicationController
     return "" # no error
   end
 
-  def set_permission(permission, grant)
-    error = ""
-    for i in 0..@permissions.size-1 do
-       if  @permissions[i].name == permission
-          if @permissions[i].grant != grant
-             perm = Permission.new()
-             perm.id = @current_user
-             perm.grant = grant
-             perm.error_id = 0
-             perm.error_string = ""     
-             perm.name = permission     
-
-             path = "permissions/#{permission}"
-             response = perm.put(path, {}, perm.to_xml)
-             ret_perm = Hash.from_xml(response.body) 
-             if grant
-                logger.debug "Granting returns: #{ret_perm.inspect}"
-             else
-                logger.debug "Revoking returns: #{ret_perm.inspect}"
-             end
-             if ret_perm["permissions"][0]["error_id"] == 0
-                @permissions[i].grant = grant
-             else
-                error = ret_perm["permissions"][0]["error_string"]
-             end
-          else
-             logger.debug "Permission already set"
-          end
-       end
-       # reset the rest of the subtree
-       if (error == "" &&
-           @permissions[i].name.index(permission+"-") == 0 &&
-           @permissions[i].grant == true)
-          perm = Permission.new()
-          perm.id = @current_user
-          perm.grant = false
-          perm.error_id = 0
-          perm.error_string = ""     
-          perm.name = @permissions[i].name
-
-          path = "permissions/#{perm.name}"
-          response = perm.put(path, {}, perm.to_xml)
-          ret_perm = Hash.from_xml(response.body) 
-          logger.debug "Granting returns: #{ret_perm.inspect}"
-          if ret_perm["permissions"][0]["error_id"] == 0
-             @permissions[i].grant = false
-          else
-             error = ret_perm["permissions"][0]["error_string"]
-          end
-       end
-    end
-    if error != ""
-       #build completely new
-       get_permissions(params[:user].rstrip,true)
-    else
-       get_permissions(params[:user].rstrip,false)
-    end
-    return error
-  end
 
   def set
     return unless client_permissions
-    get_permissions(params[:user].rstrip, true)
-    ok = true
-    error = ""
+    error = get_permissions(params[:user].rstrip, true)
+    if !error.blank?
+      flash[:error] = error
+      render :action => "index" and return
+    end  
+    response = true
     params.each do |key, value|
-      if value == "grant"
-        error = set_permission(key, true)
-      elsif value == "revoke"
-        error = set_permission(key, false)
+      if value == "grant" || value == "revoke"
+        for i in 0..@permissions.size-1 do
+          if  @permissions[i].name == key
+            @permissions[i].grant = true if value == "grant"
+            @permissions[i].grant = false if value == "revoke"
+            begin
+              @permissions[i].id = params[:user].rstrip
+              response =  @permissions[i].save
+              logger.debug "writing permissions #{@permissions[i].inspect}: #{response}"
+              rescue ActiveResource::ClientError => e
+                flash[:error] = YaST::ServiceResource.error(e)
+                response = false
+                break
+            end
+          end
+        end        
       end
-      if !error.blank?
-        ok = false
-        break
-      end        
+      break unless response
     end
-
-    if ok
-       flash[:notice] = _("Permissions have been set.")
-    else
-       flash[:error] = error
-    end
+    flash[:notice] = _("Permissions have been set.") if response
+    error = get_permissions(params[:user].rstrip, true)
+    flash[:error] = error if !error.blank?
     render :action => "index" 
   end
 
