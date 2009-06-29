@@ -49,7 +49,7 @@
 <% form_tag '/permissions/search' do %>
   <p><label for="user"><%=_("User")%></label>
   <input type="text" name="user" size=25 value=<%= "#{@current_user}" %> >
-  <%= submit_tag _("Search"), :onclick=>"Element.show('progress')"%>
+  <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"Element.show('progress')"%>
 <% end %>
 <br>
 <br>
@@ -146,12 +146,12 @@
    </body>
    </td>
    <td valign="top">
-   <body>
+     <body>
        <div id="setpermission"></div>
-       <%= submit_tag _("Set"), :onclick=>"Element.show('progress')"%>
-   </body>
-   </td>
-   </tr>
+       <%= submit_tag _("Set"), :disabled=> !@right_set_permissions, :onclick=>"Element.show('progress')"%>
+     </body>
+    </td>
+    </tr>
    </table>
  <% end %>
 <% end %>
