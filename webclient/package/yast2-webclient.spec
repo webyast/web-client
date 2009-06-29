@@ -22,7 +22,7 @@ Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  ruby-devel
+BuildRequires:  ruby-devel, rubygem-relevance-rcov
 BuildArch:      noarch  
 
 #
