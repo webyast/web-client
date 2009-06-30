@@ -46,7 +46,6 @@ class LanguageController < ApplicationController
      end
 
      if lang
-
        lang.available.each do  |avail|
          if params[:first_language]==avail.name
            lang.current = avail.id
