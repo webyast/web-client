@@ -43,7 +43,7 @@ class SystemTimeController < ApplicationController
       end
     end
     @time = @systemtime.time[@systemtime.time.index(" - ")+3,8]
-    @date = @systemtime.time[0..@systemtime.time.index(" - ")]
+    @date = @systemtime.time[0..@systemtime.time.index(" - ")-1]
     #convert date to format for datepicker
     @date.sub!(/^(\d+)-(\d+)-(\d+)/,'\3/\2/\1')
 
@@ -59,18 +59,12 @@ class SystemTimeController < ApplicationController
       flash[:error] = YaST::ServiceResource.error(e)
       redirect_to :action => :index
     end
-
-    t.timezone = params[:timezone]
-    if params[:utc] == "true"
-      t.is_utc = true
-    else
-      t.is_utc = false
-    end
-
-    t.currenttime = params[:currenttime]
-    arr = params[:date][0].split("/")
-    t.date = Time.parse("#{arr[1]}/#{arr[0]}/#{arr[2]}").strftime("%m/%d/%y")
-    t.validtimezones = [] #not needed anymore
+    
+    arr = params[:date][:date].split("/")
+    t.time = "#{arr[2]}-#{arr[0]}-#{arr[1]} - "+params[:currenttime]
+    t.timezones = [] #not needed anymore
+    t.utcstatus = ""
+    t.timezone = ""
 
     response = true
     begin

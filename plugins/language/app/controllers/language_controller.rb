@@ -9,7 +9,6 @@ class LanguageController < ApplicationController
 
 
   def index
-    set_permissions(controller_name)
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.language')
     if proxy.nil?
       access_denied
@@ -47,7 +46,6 @@ class LanguageController < ApplicationController
      end
 
      if lang
-
        lang.available.each do  |avail|
          if params[:first_language]==avail.name
            lang.current = avail.id
