@@ -21,7 +21,7 @@
   <tr>
     <td class="rootlocale"><%=_("Set root locale")%></td>
     <td>
-      <%= select_tag :rootlocale, options_for_select(["yes","no","ctype"],
+      <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
         @rootlocale), :disabled=>!@permissions[:write] %>
     </td>
   </tr>
