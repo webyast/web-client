@@ -51,10 +51,7 @@ class SessionsController < ApplicationController
   end
 
   # shows the current session
-  # for that we reuse the _currentsession
-  # partial
   def show
-    render :partial => 'current_session'
   end
 
   # this was originally used to cache the list
@@ -161,7 +158,6 @@ class SessionsController < ApplicationController
         logger.info "Login success."
         redirect_to "/"
         return
-        #render :partial =>"login_succeeded"
       else
         session[:user] = nil
         session[:password] = nil
