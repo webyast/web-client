@@ -57,7 +57,7 @@ class LanguageControllerTest < ActionController::TestCase
     @proxy.result = @result
   end
   
-  def test_access_show        
+  def test_access_index
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.language').returns(@proxy)
     get :index
 
@@ -104,6 +104,67 @@ class LanguageControllerTest < ActionController::TestCase
       :parent => langs
 
   end
+
+  def test_access_without_write_permissions
+    @permissions[:write] = false
+    @result.utf8 = "false"
+    @result.rootlocale = "true"
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.language').returns(@proxy)
+
+    get :index
+
+    assert_response :success
+    assert assigns(:permissions)
+    assert assigns(:permissions)[:read]
+    assert !assigns(:permissions)[:write]
+    assert assigns(:language)
+    assert_equal assigns(:valid), ["cestina","English (US)"]
+    assert_equal assigns(:current), "cestina"
+    assert_equal assigns(:utf8), @result.utf8
+    assert_equal assigns(:rootlocale), @result.rootlocale
+
+    #test if options is correctly rendered
+    rootlocale = {:tag => "select",
+      :attributes => {
+        :name => "rootlocale",
+        :disabled => "disabled"
+      }}
+    assert_tag rootlocale
+    assert_tag :tag => "option",
+      :attributes => {
+        :value => "true",
+        :selected => "selected"
+      },
+      :parent => rootlocale
+    assert_tag :tag => "input",
+      :attributes => {
+        :name => "utf8",
+        :disabled => "disabled"
+      }
+    langs = {
+      :tag => "select",
+      :attributes => {
+        :name => "first_language",
+        :disabled => "disabled"
+      }
+    }
+    assert_tag langs
+    assert_tag :tag => "option",
+      :attributes => {
+        :value => "cestina",
+        :selected => "selected"
+      },
+      :parent => langs
+    assert_tag :tag => "input",
+      :attributes => {
+        :type => "submit",
+        :name => "commit",
+        :value => "Save",
+        :disabled => "disabled"
+      }
+
+  end
+
 
   def test_commit
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.language').returns(@proxy)
