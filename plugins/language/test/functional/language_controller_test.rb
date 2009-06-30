@@ -71,6 +71,38 @@ class LanguageControllerTest < ActionController::TestCase
     assert_equal assigns(:current), "cestina"
     assert_equal assigns(:utf8), @result.utf8
     assert_equal assigns(:rootlocale), @result.rootlocale
+
+    #test if options is correctly rendered
+    rootlocale = {:tag => "select",
+      :attributes => {
+        :name => "rootlocale"
+      }}
+    assert_tag rootlocale
+    assert_tag :tag => "option",
+      :attributes => {
+        :value => "false",
+        :selected => "selected"
+      },
+      :parent => rootlocale
+    assert_tag :tag => "input",
+      :attributes => {
+        :name => "utf8",
+        :checked => "checked"
+      }
+    langs = {
+      :tag => "select",
+      :attributes => {
+        :name => "first_language"
+      }
+    }
+    assert_tag langs
+    assert_tag :tag => "option",
+      :attributes => {
+        :value => "cestina",
+        :selected => "selected"
+      },
+      :parent => langs
+
   end
 
   def test_commit
