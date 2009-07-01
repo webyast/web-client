@@ -50,7 +50,6 @@
     });
   });
 </script>
-
 <style type="text/css">
 
   option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
@@ -60,11 +59,7 @@
 
 </style>
 
-<!label for="#patches-list"><%=_("Available patches")%><!/label>
 <div class="loading"></div>
-
-<!div id="patch-list" class="patches-list loading"><!/div>
-
 <% if @patch_updates.empty? %>
   <p><%=_("Your system is up to date.") %></p>
 <% else %>
@@ -81,9 +76,7 @@
    </select>
   <div id="patch-table"><%= render :partial => "patches"%></div>
 
-<!div id="patch-selector">
   <input type="checkbox" name="All" id="All">All</input>
-<!/div>
 
 <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
 <a href="/" class="button"><%=_("Back")%></a>
