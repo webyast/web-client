@@ -54,40 +54,6 @@ class SessionsController < ApplicationController
   def show
   end
 
-  # this was originally used to cache the list
-  # of "controllers in the server"
-  # but we will figure other way to to this
-  def show_FIXME
-    @webservices = Webservice.find(:all)
-    scan #via avahi
-    @user = session[:user] 
-    @password = session[:password]
-    @host = session[:host]
-
-    create_session_table = true
-    if session[:controllers]!=nil && session[:controllers].size > 0
-       #is at least one controller visible?
-       session[:controllers].each do |key,controller|
-          if controller.read_permission
-             create_session_table = false
-             break
-          end
-       end 
-    end
-    if create_session_table
-       #insert at least a session controller
-       #mod_hash = Yast.new( )
-       #mod_hash.install_permission=false
-       #mod_hash.read_permission=true
-       #mod_hash.delete_permission=false
-       #mod_hash.new_permission=false
-       #mod_hash.write_permission=true
-       #mod_hash.description=""
-       #mod_hash.execute_permission=false
-       #mod_hash.path="session"
-       #session[:controllers] = { "session"=>mod_hash }
-    end
-  end
 
   def new
     @hostname = params[:hostname]
@@ -142,7 +108,6 @@ class SessionsController < ApplicationController
       if logged_in?
         session[:auth_token] = auth_token
         session[:user] = params[:login]
-        session[:password] = params[:password]
         session[:host] = params[:hostname]
 
         # evaluate available service resources here or not?
@@ -154,15 +119,12 @@ class SessionsController < ApplicationController
         end
 
         # success, go to the main menu
-        #logger.info "Login success. #{session[:controllers].size} service resources"
         logger.info "Login success."
         redirect_to "/"
         return
       else
         session[:user] = nil
-        session[:password] = nil
         session[:host] = nil
-        session[:controllers] = nil
         #show # getting hosts again
         flash[:warning] = _("Login incorrect. Check your username and password.")
         redirect_to new_session_path(:hostname => params[:hostname])
@@ -173,7 +135,7 @@ class SessionsController < ApplicationController
 
   def destroy
     # remove session data
-    [:user, :password, :host, :controllers].each do |k|
+    [:user, :host].each do |k|
       session[k] = nil
     end
 
