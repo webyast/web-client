@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   private
   def client_permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.users')
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.users')
     unless @client
       # FIXME: check the reason why proxy_for failed, i.e.
       # - no server known
