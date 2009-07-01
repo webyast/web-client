@@ -1,13 +1,14 @@
+<div class="container">
+   <h3><img src="/images/monitoring.png" alt="" height="23" width="23" border="0"> Status</h3>
 
-
-<form id="searchbox" method="post">
-  <input autocomplete="off" name="query" id="query" value="What do you want to configure?" />
-  <div id="loupe-icon"></div>
-</form>
-
-<div id="results"></div>
+   <div id="status_patches_icon">
+     <img src= <%=@img%> alt="" height="32" width="32" border="0">
+     <a href="patch_updates"><%=@label%></a>
+   </div>
+</div>
 
 <div id="favorites">
+<h3>Configuration</h3>
 <% @shortcuts.each do |name, data| %>
    <div class="launcher">
      <% logger.debug data.inspect %>

@@ -23,9 +23,48 @@ class ControlpanelController < ApplicationController
     end
 
     @shortcuts = shortcuts_data
+    check_update
   end
 
   protected
+
+  # Check patches
+  def check_update
+    @proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+    begin
+      patch_updates = @proxy.find(:all) || []
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+    end
+    
+    @security = 0
+    @important = 0
+    @optional = 0
+    patch_updates.each do |patch|
+      case patch.kind
+        when "security"
+           @security += 1
+        when "important"
+           @important += 1
+        when "optional"
+           @optional += 1
+      end
+    end
+    @label = ""
+    @label += "Security Updates: #{@security} " if @security>0
+    @label += "Important Updates: #{@important} " if @important>0
+    @label += "Optional Updates: #{@optional} " if @optional>0
+
+    @label = _("Your system is up to date.") if @label.blank?
+    if @security>0 || @important>0
+      @img = "/images/button_critical.png"
+    elsif @optional>0
+      @img = "/images/button_warning.png"
+    else
+      @img = "/images/button_ok.png"
+    end
+    logger.debug "evaluated patches #{patch_updates.inspect} ==> security:#{@security}; important:#{@important}; optional:#{@optional}"
+  end
 
   # reads the shortcuts and returns the
   # hash with the data
