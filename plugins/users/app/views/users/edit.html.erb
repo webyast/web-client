@@ -1,7 +1,7 @@
-<h1><%=_("Edit User")%></h1>
+<h1><%=_("Edit User %s") %@user.login_name %></h1>
 <br>
 
-<% disabled = ! @permissions[:write] %>
+<% disabled = ! @permissions[:usermodify] %>
 
 <% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put } ) do |f| %>
   <%= f.error_messages %>
