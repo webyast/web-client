@@ -4,7 +4,12 @@
 #
 # This file is distributed under the same license as Ruby-GetText-Package.
 
+begin
 require 'lang_helper'
+rescue
+  $stderr.puts "**** Please install rubygem-gettext_rails"
+  exit
+end
 
 ActionController::Base.class_eval do
   include LangHelper
