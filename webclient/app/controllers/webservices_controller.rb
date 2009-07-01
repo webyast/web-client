@@ -4,12 +4,15 @@ class WebservicesController < ApplicationController
   # GET /webservices
   # GET /webservices.xml
   def index
-    @webservices = Webservice.find(:all)
-
+    begin
+      @webservices = Webservice.find(:all)
+    rescue
+      redirect_to "/migrate"
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @webservices }
-    end
+    end if @webservices
   end
 
   # GET /webservices/show/1
