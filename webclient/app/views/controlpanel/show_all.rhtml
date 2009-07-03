@@ -1,0 +1,34 @@
+<h2><img src="/images/yast-config.png" alt="" height="23" width="23" border="0"> Configuration</h2>
+
+<% @shortcut_groups.each do |name, shortcuts| %>
+      <% logger.debug "#{name} xxxxxxxxxxxxxxx #{shortcuts.inspect}" %>
+  <h3><%= name %></h3>
+  <% line_counter = 0 %>
+  <% shortcuts_counter = 0 %>
+  <div class="table">
+    <table class="listing" cellpadding="0" cellspacing="0">
+    <% shortcuts.each do |data| %>
+      <% logger.debug data.inspect %>
+      <% if line_counter*5 == shortcuts_counter %> 
+        <% if line_counter > 0 %>
+          </tr>
+        <% end %>
+        <% line_counter +=1 %>
+        <tr>
+      <% end %>
+      <td>
+        <img src="<%= data['icon'] %>"/>
+        <div>
+          <%= link_to data['title'], data['url'] %>
+        </div>
+      </td>
+      <% shortcuts_counter +=1 %>
+    <% end %>
+    <% if line_counter*5 != shortcuts_counter-1 %> 
+      </tr>
+    <% end %>
+    </table>
+  </div>
+<% end %>
+
+

@@ -26,6 +26,27 @@ class ControlpanelController < ApplicationController
     check_update
   end
 
+  def show_all
+    # no control panel for unlogged users
+    if not logged_in?
+      redirect_to :controller => :sessions, :action => :new
+      return
+    else
+      logger.debug "We are logged in"
+    end
+
+    @shortcut_groups = {}
+    shortcuts_data.each do |name, data|
+      data["groups"].each do |group|
+        if @shortcut_groups.has_key? (group)
+          @shortcut_groups[group] << data
+        else
+          @shortcut_groups[group] = [data]
+        end
+      end
+    end
+  end
+
   protected
 
   # Check patches
