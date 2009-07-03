@@ -99,6 +99,8 @@ class SessionsController < ApplicationController
         redirect_to new_session_path(:hostname => params[:hostname])
         return
       rescue Exception => e
+        logger.warn e.to_s
+        logger.info e.backtrace.join("\n")
         flash[:warning] = _("Error when trying to login: #{e.to_s}")
         redirect_to new_session_path(:hostname => params[:hostname])
         #redirect_to :action => :login, :hostname => params[:hostname]
