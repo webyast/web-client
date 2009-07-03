@@ -3,13 +3,7 @@
 <html>
 <head xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" href="/inc/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
-
-<link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
-<!--
-  <link rel="stylesheet" href="/inc/jqModal.css" type="text/css" media="screen" title="default" charset="utf-8" />
-<link rel="stylesheet" href="/inc/ui.tabs.css" type="text/css" media="screen" title="default" charset="utf-8" />
--->
+  <link rel="stylesheet" href="/stylesheets/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.query.js"></script>  
@@ -21,24 +15,39 @@
 <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>-->
 
-
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/shortcut.js"></script>  
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>  
-  <title>Yast Shell</title>
+  <title>WebYaST</title>
 </head>
-  <body id="shell" onload="">
-    <div class="centeredblock roundedbox" id="header">
-      <div class="valign">
-        <div style="background-image: url(<%= @module_icon.nil? ? '/images/suse-logo.png' : @module_icon %>);" class="icon"></div>
-        <h3 class="title">
-          <%= @module_title.nil? ? 'Configure System' : @module_title %>
-        </h3>
-      </div>
-    </div>
-    <div class="centeredblock roundedbox" id="content">
-      <div class="container">
+  <body id="shell" bgcolor="#ffffff" onload="">
+    <div id="appliance_logo">
+      <img src="/images/suse-logo.png" alt="" height="120" width="120" border="0">
+	<div id="appliance_title">My Appliance</div>
+        <div id="logout">
+          <div id="connectedHost">
+           <% host = session[:host]
+           if host!=nil && host!=""  
+             if host.index("://") != nil
+               host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
+             end -%>
+             <% user = session[:user] -%>
+             <div class="box">
+               <p><%=_("Connected Host")%></p>
+               <p><%=_("Name:")%> <%= host -%> <p>
+               <%=_("User:")%> <%= user -%>
+             </div>
+           <% end -%>
+          </div>
 
+          <% user = session[:user] %>
+          <% if user %>
+            <%= link_to _("Logout"), '/logout' %>
+          <% end %>
+        </div>
+    </div>
+
+   <div class="content">
       <!-- show the flash messages -->
       <% for name in [:notice, :warning, :message, :error] %>
         <% if flash[name] %>
@@ -51,35 +60,11 @@
       </div>
 
       <%= @content_for_layout %>
-      </div>
-    </div>
-
-
-    <div class="centeredblock" id="footer">
+   </div>
+   <br>
+   <br>
+   <div class="content">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
-
-      <div id="logout">
-        <% user = session[:user] %>
-        <% if user %>
-          <%= link_to _("Logout"), '/logout' %>
-        <% end %>
-      </div>
-
-      <div id="connectedHost">
-        <% host = session[:host]
-           if host!=nil && host!=""  
-             if host.index("://") != nil
-               host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
-             end -%>
-             <% user = session[:user] -%>
-             <div class="box">
-               <p><%=_("Connected Host")%></p>
-               <p><%=_("Name:")%> <%= host -%> <p>
-               <%=_("User:")%> <%= user -%>
-             </div>
-           <% end -%>
-      </div>
-
     </div>
-  </body>
+</body>
 </html>
