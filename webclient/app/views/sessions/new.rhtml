@@ -1,20 +1,19 @@
 
-<p>Connect to <%= @hostname %></p>
 
+<div class="content">
 <% form_tag( :action => 'create' ) do  %>
-  <div class="vbox">
-    <div class="hbox">
-      <label for="login"><%= _("Username") %></label>
-      <%= hidden_field_tag'hostname', @hostname %>
-      <%= text_field_tag 'login', @user %>
-      <label for="password"><%= _("Password") %></label>
-      <%= password_field_tag 'password', @password %>
-    </div>
-    <%= submit_tag(_('Connect'), :class => "button") %>
-  </div>
+<h2>Login</h2>
+<p><%= _("Use your administrator (root) account to login.") %></p>
+
+<p><label for="login"><%= _("Username:") %></label><br>
+<%= hidden_field_tag'hostname', @hostname %>
+<%= text_field_tag 'login', @user %></p>
+
+<p><label for="password"><%= _("Password:") %></label><br>
+<%= password_field_tag 'password', @password %></p>
+<%= hidden_field_tag'hostname', @hostname %>
+
+<%= submit_tag(_('Login'), :class => "button") %>
+</div>
 </form>
 <% end %>
-
-<div class="container">
-<a href="/" class="button"><%=_("Back")%></a>
-</div>
