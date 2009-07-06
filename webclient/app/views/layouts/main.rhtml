@@ -24,27 +24,32 @@
     <div id="appliance_logo">
       <img src="/images/suse-logo.png" alt="" height="120" width="120" border="0">
 	<div id="appliance_title">My Appliance</div>
-        <div id="logout">
+        <% host = session[:host]
+         if host != nil && !host.blank? %>  
+         <div id="logout_session">
           <div id="connectedHost">
-           <% host = session[:host]
-           if host!=nil && host!=""  
-             if host.index("://") != nil
+           <% if host.index("://") != nil
                host = host[host.index("://")+3, host.length-1] #extract "http(s)://"
              end -%>
-             <% user = session[:user] -%>
-             <div class="box">
+           <% user = session[:user] -%>
+           <div class="box">
                <p><%=_("Connected Host")%></p>
                <p><%=_("Name:")%> <%= host -%> <p>
                <%=_("User:")%> <%= user -%>
-             </div>
-           <% end -%>
+           </div>
           </div>
 
           <% user = session[:user] %>
           <% if user %>
             <%= link_to _("Logout"), '/logout' %>
           <% end %>
-        </div>
+         </div>
+        <% elsif  controller_name != "sessions" && controller_name != "webservices" -%>
+         <div id="login_session">
+           <%= link_to _("Login"), '/logout' %>
+         </div>
+        <% end -%>
+
     </div>
 
    <div class="content">
