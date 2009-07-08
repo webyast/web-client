@@ -54,6 +54,7 @@ EOF
         </foo>
       </foos>
 EOF
+    
     @foo_response = "<foo><bar>Bye</bar></foo>"
     @master_response = "<master><name>He-Man</name></master>"
     # simulate that we are logged to a service
@@ -212,5 +213,46 @@ FIN
     assert Array, c.cities.class
   end
 
-  
+  def test_proxy_works_with_status_page
+    @status_response = <<EOFA
+<status>
+  <memory>
+  <memoryused>
+    <value>
+      <T_1246965500>5.9948777472e+08</T_1246965500>
+      <T_1246964500>6.0554035200e+08</T_1246964500>
+      <T_1246965000>6.0168527872e+08</T_1246965000>
+    </value>
+    </memoryused>
+  </memory>
+</status>
+EOFA
+
+     @resources_status_response = <<EOFB
+      <resources type=\"array\">
+        <resource>
+          <interface>org.yast.status</interface>
+          <singular type="boolean">true</singular>
+          <href>/status</href>
+        </resource>
+      </resources>
+EOFB
+    
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.put "/status.xml", {}, nil, 200
+      mock.get "/status.xml", {}, @status_response
+      mock.get "/resources.xml", {}, @resources_status_response
+    end
+    
+    @proxy = YaST::ServiceResource.proxy_for("org.yast.status")
+    # the proxy is an anonymous class
+    assert @proxy.singular?
+    c = @proxy.find
+    # only one
+    assert_not_equal c.class, Array
+    assert_equal c.memory.memoryused.value.t_1246965000, "6.0168527872e+08"
+    #c.save
+    #c.destroy    
+  end
+
 end
