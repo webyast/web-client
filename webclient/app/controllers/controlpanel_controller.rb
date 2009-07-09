@@ -52,10 +52,15 @@ class ControlpanelController < ApplicationController
   # Check patches
   def check_update
     @proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+    # FIXME: check @proxy
     begin
       patch_updates = @proxy.find(:all) || []
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      return
+    rescue Exception => e
+      flash[:error] = e
+      return
     end
     
     @security = 0
