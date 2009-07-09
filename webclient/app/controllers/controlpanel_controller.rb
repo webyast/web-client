@@ -38,7 +38,7 @@ class ControlpanelController < ApplicationController
     @shortcut_groups = {}
     shortcuts_data.each do |name, data|
       data["groups"].each do |group|
-        if @shortcut_groups.has_key? (group)
+        if @shortcut_groups.has_key?(group)
           @shortcut_groups[group] << data
         else
           @shortcut_groups[group] = [data]
