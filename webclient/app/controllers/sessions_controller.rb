@@ -10,9 +10,6 @@ class SessionsController < ApplicationController
   #before_filter :ensure_login, :only => :destroy
   #before_filter :ensure_logout, :only => [:new, :create]
   
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
-  
   def index
     # only used to display the flash message
   end
@@ -21,7 +18,9 @@ class SessionsController < ApplicationController
   def show
   end
 
-
+  #
+  # Start new session
+  #
   def new
     @hostname = params[:hostname]
     
