@@ -37,7 +37,7 @@ def coverage_test dir = "."
   puts "*** No tests for #{dir}" unless task
   coverage.each do |file,percent|
     next if percent > 99.0
-    puts "  %6.2f %-35s" % [percent, file]
+    puts "  %6.2f%%  %-35s" % [percent, file]
   end
   Dir.chdir wd
   puts
