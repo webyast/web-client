@@ -14,7 +14,7 @@ class PatchUpdatesController < ApplicationController
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
-    logger.debug @patch_updates.nil?
+    logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
   # POST /patch_updates/1

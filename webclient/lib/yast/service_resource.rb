@@ -100,7 +100,9 @@ module YaST
     #
     # See: https://rails.lighthouseapp.com/projects/8994/tickets/2608-activeresource-support-for-singleton-resources#ticket-2608-1
     def self.fix_singleton_proxy(obj)
-      obj.collection_name = obj.element_name.singularize
+      # singularize only if the name is plural
+      obj.collection_name = obj.collection_name.singularize if ( obj.collection_name == obj.collection_name.pluralize)
+      #end
       
       def obj.element_path(id, prefix_options = {}, query_options = nil)
         prefix_options, query_options = split_options(prefix_options) if query_options.nil?

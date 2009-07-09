@@ -15,7 +15,7 @@ class ControlpanelController < ApplicationController
   
   def index
     # no control panel for unlogged users
-    if not logged_in?
+    unless logged_in?
       redirect_to :controller => :sessions, :action => :new
       return
     else
@@ -23,9 +23,74 @@ class ControlpanelController < ApplicationController
     end
 
     @shortcuts = shortcuts_data
+    check_update
+  end
+
+  def show_all
+    # no control panel for unlogged users
+    unless logged_in?
+      redirect_to :controller => :sessions, :action => :new
+      return
+    else
+      logger.debug "We are logged in"
+    end
+
+    @shortcut_groups = {}
+    shortcuts_data.each do |name, data|
+      data["groups"].each do |group|
+        if @shortcut_groups.has_key?(group)
+          @shortcut_groups[group] << data
+        else
+          @shortcut_groups[group] = [data]
+        end
+      end
+    end
   end
 
   protected
+
+  # Check patches
+  def check_update
+    @proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+    # FIXME: check @proxy
+    begin
+      patch_updates = @proxy.find(:all) || []
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      return
+    rescue Exception => e
+      flash[:error] = e
+      return
+    end
+    
+    @security = 0
+    @important = 0
+    @optional = 0
+    patch_updates.each do |patch|
+      case patch.kind
+        when "security"
+           @security += 1
+        when "important"
+           @important += 1
+        when "optional"
+           @optional += 1
+      end
+    end
+    @label = ""
+    @label += "Security Updates: #{@security} " if @security>0
+    @label += "Important Updates: #{@important} " if @important>0
+    @label += "Optional Updates: #{@optional} " if @optional>0
+
+    @label = _("Your system is up to date.") if @label.blank?
+    if @security>0 || @important>0
+      @img = "/images/button_critical.png"
+    elsif @optional>0
+      @img = "/images/button_warning.png"
+    else
+      @img = "/images/button_ok.png"
+    end
+    logger.debug "evaluated patches #{patch_updates.inspect} ==> security:#{@security}; important:#{@important}; optional:#{@optional}"
+  end
 
   # reads the shortcuts and returns the
   # hash with the data

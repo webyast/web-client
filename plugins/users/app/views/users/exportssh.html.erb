@@ -9,11 +9,11 @@
     </tr>
     <tr class="bg">
         <td class="first"><strong><%=_("Login Name")%></strong></td>
-        <td class="last"><%= f.text_field :login_name, :disabled => false %></td>
+        <td class="last"><%= f.text_field :uid, :disabled => false %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Home Directory")%></strong></td>
-	<td class="last"><%=h @user.home_directory %></td>
+	<td class="last"><%=h @user.homeDirectory %></td>
     </tr>
     <tr>
 	<td class="first"><strong><%=_("SHH Key")%></strong></td>

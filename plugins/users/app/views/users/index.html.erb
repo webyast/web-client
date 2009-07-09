@@ -14,12 +14,12 @@
   </tr>
   <% for user in @users %>
   <tr>
-    <td><strong><%=h user.login_name %></strong></td>
-    <td><%=h user.full_name %></td>
+    <td><strong><%=h user.uid %></strong></td>
+    <td><%=h user.cn %></td>
     <td><%= html_edit_link(user.id) %></td>
     <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
     <% if @permissions[:userdelete] %>
-    <td class="last"><%= html_delete_link(user.login_name) %></td>
+    <td class="last"><%= html_delete_link(user.uid) %></td>
     <% end %>
   </tr>
   <% end %>
