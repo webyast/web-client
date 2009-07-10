@@ -20,7 +20,9 @@
 <script type="text/javascript">
 
 
+
 function plotLineGraph(graph_id, graph_title, graph_data ) {
+
   $.jqplot(graph_id, graph_data, {
       title: graph_title,
       axes: {
@@ -28,7 +30,8 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
          showTicks: false
         },
         yaxis: {
-          showTicks: false
+          showTicks: true,
+          min: 0
         }        
       },
 
@@ -44,6 +47,8 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
         plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
       <% end %>
     <% end %>
+
+
   });
 </script>
 
