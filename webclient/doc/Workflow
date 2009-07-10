@@ -1,0 +1,14 @@
+Workflow / Routing of webclient
+===============================
+
+This document is about the workflow when connecting to webclient.
+
+'rake routes' on toplevel shows all the known routes, from there
+you'll see:
+
+ root  /  {:controller=>"main", :action=>"index"}
+
+
+MainController is just a redirector, either to Controlpanel (session
+established) or to Session.new (no session).
+
