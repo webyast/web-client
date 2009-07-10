@@ -52,13 +52,13 @@ class SystemTimeController < ApplicationController
   def commit_time
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
     @permissions = proxy.permissions
-
     begin
       t = proxy.find
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       redirect_to :action => :index
     end
+debugger
     
     arr = params[:date][:date].split("/")
     t.time = "#{arr[2]}-#{arr[0]}-#{arr[1]} - "+params[:currenttime]
