@@ -106,7 +106,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil flash[:warning]
     assert flash[:error]
     # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new
+    assert_redirected_to :controller => :sessions, :action => :new, :hostname => "exception"
   end
   
 
