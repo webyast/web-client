@@ -1,19 +1,19 @@
-
-
 <div class="content">
-<% form_tag( :action => 'create' ) do  %>
-<h2>Login</h2>
-<p><%= _("Use your administrator (root) account to login.") %></p>
+  <% form_tag( :action => 'create' ) do  %>
 
-<p><label for="login"><%= _("Username:") %></label><br>
-<%= hidden_field_tag'hostname', @hostname %>
-<%= text_field_tag 'login', @user %></p>
+    <span id="content_title">Login</span>
 
-<p><label for="password"><%= _("Password:") %></label><br>
-<%= password_field_tag 'password', @password %></p>
-<%= hidden_field_tag'hostname', @hostname %>
+    <p><%= _("Enter login credentials for host #{@hostname}.") %></p>
 
-<%= submit_tag(_('Login'), :class => "button") %>
+    <%= hidden_field_tag 'hostname', @hostname %>
+
+    <p><label for="login"><%= _("Username:") %></label><br>
+    <%= text_field_tag 'login', @user %></p>
+
+    <p><label for="password"><%= _("Password:") %></label><br>
+    <%= password_field_tag 'password', @password %></p>
+
+    <%= submit_tag(_('Login'), :class => "button", :id => "login_button") %>
+
+  <% end %>
 </div>
-</form>
-<% end %>
