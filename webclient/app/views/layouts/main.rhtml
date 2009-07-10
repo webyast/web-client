@@ -56,7 +56,7 @@
       <!-- show the flash messages -->
       <% for name in [:notice, :warning, :message, :error] %>
         <% if flash[name] %>
-          <%= "<div id=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
+          <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
         <% end %>
       <% end %>
 
