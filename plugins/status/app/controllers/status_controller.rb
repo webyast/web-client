@@ -73,13 +73,17 @@ class StatusController < ApplicationController
           end
         end
         graph_list = []
+        store_data = false #take only a list which has one value greater than 0 at least
         for i in 0..list_value.size-1
+          store_data = true if list_value[i] != 0
           value_list = [i]
           value_list << list_value[i]
           graph_list << value_list
         end
-        group_map[label_name] = graph_list
-        @data_group[key_split[1]] = group_map
+        if store_data
+          group_map[label_name] = graph_list
+          @data_group[key_split[1]] = group_map
+        end
       else
         logger.error "empty key: #{@key} #{list.inspect}"
       end
