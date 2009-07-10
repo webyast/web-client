@@ -3,8 +3,12 @@
 
 <% last = false %>
 <% @data_group.each do |key, map| %>
-  <h3><%= key.capitalize %></h3>
-  <br><br>
+  <% if last %>
+    <br style='clear: both'>
+    <% last = !last %>
+  <% end %>
+  <h3><%= key.tr('_',' ').capitalize %></h3>
+
   <% map.each do |graph_key, list_value| %>
     <% graph_id = key + "_" + graph_key.tr('/','_') %>
     <%= graph(graph_id, 400, 300, last) %>
@@ -37,7 +41,7 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
       <% map.each do |graph_key, list_value| %>
         <% graph_id = key + "_" + graph_key.tr('/','_') %>
         $('#' + '<%= graph_id %>').html("");
-        plotLineGraph('<%= graph_id %>', '<%= graph_key %>', [<%= list_value.inspect %>]);
+        plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
       <% end %>
     <% end %>
   });
