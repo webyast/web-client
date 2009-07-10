@@ -29,13 +29,11 @@ class WebservicesController < ApplicationController
   def create
     @webservice = Webservice.new(params[:webservice])
 
-    respond_to do |format|
-      if @webservice.save
-        flash[:notice] = 'Webservice was successfully created.'
-        redirect_to webservices_url
-      else
-        rendirect_to new_webservice_url
-      end
+    if @webservice.save
+      flash[:notice] = 'Webservice was successfully created.'
+      redirect_to webservices_url
+    else
+      redirect_to new_webservice_url
     end
   end
 
@@ -43,13 +41,11 @@ class WebservicesController < ApplicationController
   def update
     @webservice = Webservice.find(params[:id])
 
-    respond_to do |format|
-      if @webservice.update_attributes(params[:webservice])
-        flash[:notice] = 'Webservice was successfully updated.'
-        redirect_to webservices_url
-      else
-        redirect_to edit_webservice_url
-      end
+    if @webservice.update_attributes(params[:webservice])
+      flash[:notice] = 'Webservice was successfully updated.'
+      redirect_to webservices_url
+    else
+      redirect_to edit_webservice_url
     end
   end
 
