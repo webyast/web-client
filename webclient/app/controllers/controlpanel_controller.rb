@@ -15,7 +15,7 @@ class ControlpanelController < ApplicationController
   
   def index
     # no control panel for unlogged users
-    if not logged_in?
+    unless logged_in?
       redirect_to :controller => :sessions, :action => :new
       return
     else
@@ -28,7 +28,7 @@ class ControlpanelController < ApplicationController
 
   def show_all
     # no control panel for unlogged users
-    if not logged_in?
+    unless logged_in?
       redirect_to :controller => :sessions, :action => :new
       return
     else
@@ -38,7 +38,7 @@ class ControlpanelController < ApplicationController
     @shortcut_groups = {}
     shortcuts_data.each do |name, data|
       data["groups"].each do |group|
-        if @shortcut_groups.has_key? (group)
+        if @shortcut_groups.has_key?(group)
           @shortcut_groups[group] << data
         else
           @shortcut_groups[group] = [data]
