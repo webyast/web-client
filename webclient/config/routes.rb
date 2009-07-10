@@ -36,7 +36,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "main"
 
-  map.root :controller => "controlpanel"
+  map.root :controller => "main"
 
   # See how all your routes lay out with "rake routes"
 
@@ -44,12 +44,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-
-  # control panel module list
-  map.connect "/controlpanel/shortcuts.json", :controller => 'controlpanel', :action => 'shortcuts', :format =>'json'
-  map.connect "/controlpanel/shortcuts.xml", :controller => 'controlpanel', :action => 'shortcuts', :format =>'xml'
-
-  map.resource :config, :controller => 'config_ntp', :path_prefix => "/services/ntp"
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'
