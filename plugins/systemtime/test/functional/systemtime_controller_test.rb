@@ -68,18 +68,33 @@ class SystemTimeControllerTest < ActionController::TestCase
     @proxy.result = @result
   end
 
-def test_index
+  def test_index
  YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
 #debugger
- get :index
- assert_response :success
- assert assigns(:permissions)
- assert assigns(:permissions)[:read]
- assert assigns(:permissions)[:write]
- assert assigns(:time)
-# assert assigns(:timezone), "Europe/Prague"
-# assert assigns(:utcstatus)
+    get :index
+    assert_response :success
+    assert assigns(:permissions)
+    assert assigns(:permissions)[:read]
+    assert assigns(:permissions)[:write]
+    assert assigns(:time)
+   # assert assigns(:timezone), "Europe/Prague"
+   # assert assigns(:utcstatus)
+  end
 
-end
+  def test_access_without_write_permissions
+    @permissions[:write] = false
+#    @result.utf8 = "false"
+#    @result.rootlocale = "true"
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
+
+    get :index
+
+    assert_response :success
+    assert assigns(:permissions)
+    assert assigns(:permissions)[:read]
+    assert !assigns(:permissions)[:write]
+  end
+
+
 
 end
