@@ -1,7 +1,7 @@
 <div class="content">
   <% form_tag( :action => 'create' ) do  %>
 
-    <span id="title">Login</span>
+    <span id="content_title">Login</span>
 
     <p><%= _("Enter login credentials for host #{@hostname}.") %></p>
 
@@ -13,7 +13,7 @@
     <p><label for="password"><%= _("Password:") %></label><br>
     <%= password_field_tag 'password', @password %></p>
 
-    <%= submit_tag(_('Login'), :class => "button") %>
+    <%= submit_tag(_('Login'), :class => "button", :id => "login_button") %>
 
   <% end %>
 </div>

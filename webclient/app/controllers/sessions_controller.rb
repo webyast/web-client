@@ -52,32 +52,31 @@ class SessionsController < ApplicationController
     if params[:hostname].blank?
       flash[:warning] = _("You need to specify the hostname")
       redirect_to :action => "new"
-      return
     elsif params[:password].blank?
       flash[:warning] = _("No password specified")
       redirect_to :action => "new", :hostname => params[:hostname]
-      return
     else
       # otherwise, we have all the data, try to login
       begin
         self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
                                                             params[:hostname])
-        # error handling when loggin in to the service is pretty
-        # important to get meanful error messages to the user
+        # error handling when login to the service is pretty
+        # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
-        flash[:warning] = _("Can't connect to host at #{params[:hostname]}, make sure the host is up and that the YaST web service is running.")
-        #redirect_to :action => :login, :hostname => params[:hostname]
-        redirect_to new_session_path(:hostname => params[:hostname])
+        flash[:error] = _("Can't connect to host at #{params[:hostname]}, make sure the host is up and that the YaST web service is running.")
+        redirect_to :action => "new"
         return
       rescue Exception => e
         logger.warn e.to_s
         logger.info e.backtrace.join("\n")
-        flash[:warning] = _("Error when trying to login: #{e.to_s}")
-        redirect_to new_session_path(:hostname => params[:hostname])
+        flash[:error] = _("Error when trying to login: #{e.to_s}")
+        redirect_to :action => "new", :hostname => params[:hostname]
         #redirect_to :action => :login, :hostname => params[:hostname]
         return
       end
+      
+      # Now check if the authentication was successful
     
       if logged_in?
         session[:auth_token] = auth_token
@@ -92,42 +91,38 @@ class SessionsController < ApplicationController
           @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
         end
 
-        # success, go to the main menu
+        # success, go to the main controller
         logger.info "Login success."
         redirect_to "/"
-        return
       else
-        session[:user] = nil
-        session[:host] = nil
+        session[:user] = session[:host] = nil
         #show # getting hosts again
         flash[:warning] = _("Login incorrect. Check your username and password.")
-        redirect_to new_session_path(:hostname => params[:hostname])
-        return
+        redirect_to :action => "new", :hostname => params[:hostname]
       end
     end
   end
-
+  
   def destroy
     # remove session data
     [:user, :host].each do |k|
       session[k] = nil
     end
 
-     if logged_in?
-       ret = YaST::ServiceResource::Logout.create rescue nil
-       if (ret and ret.attributes["logout"])
-         logger.debug "Logout: #{ret.attributes["logout"]}"
-       else
-         logger.debug "Logout: Error"
-       end
-       self.current_account.forget_me 
-       session[:auth_token] = nil
-     end
-     
-     cookies.delete :auth_token
-     reset_session
-     flash[:notice] = _("You have been logged out.") unless flash[:notice]
-     redirect_to new_session_path
-     return
+    if logged_in?
+      ret = YaST::ServiceResource::Logout.create rescue nil
+      if (ret and ret.attributes["logout"])
+	logger.debug "Logout: #{ret.attributes["logout"]}"
+      else
+	logger.debug "Logout: Error"
+      end
+      self.current_account.forget_me 
+      session[:auth_token] = nil
+    end
+    
+    cookies.delete :auth_token
+    reset_session
+    flash[:notice] = _("You have been logged out.") unless flash[:notice]
+    redirect_to new_session_path
   end
 end
