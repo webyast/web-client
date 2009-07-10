@@ -1,9 +1,9 @@
-#require File.dirname(__FILE__) + '/../test_helper'
-require 'test_helper'
-require 'sessions_controller'
+require File.dirname(__FILE__) + '/../test_helper'
+
 require 'active_resource/http_mock'
 
 # Re-raise errors caught by the controller.
+require 'sessions_controller'
 class SessionsController; def rescue_action(e) raise e end; end
 
 # test the web client part of the login, which
@@ -15,13 +15,9 @@ class SessionsControllerTest < ActionController::TestCase
   # Then, you can remove it from this and the units test.
   include AuthenticatedTestHelper
 
-#  fixtures :accounts
+  fixtures :accounts
 
   def setup
-    @controller = SessionsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-
     @login_granted = "<hash><login>granted</login></hash>"
     @login_denied = "<hash><login>denied</login></hash>"
     @logout_granted = "<hash><logout>Goodbye!</logout></hash>"
@@ -29,6 +25,26 @@ class SessionsControllerTest < ActionController::TestCase
     @hostname = "http://localhost:8000"
     YaST::ServiceResource::Session.site = @hostname
     ActiveResource::Base.site = @hostname
+  end
+
+  # new without any parameters should redirect to webservices
+  def test_new
+    get :new
+    assert_redirected_to :controller => :webservices
+  end
+
+  # new with :hostname empty
+  def test_new_with_empty_hostname
+    get :new, :hostname => ""
+    assert_redirected_to :controller => :webservices
+    assert flash[:notice]
+  end
+
+  # new with hostname, must show login
+  def test_new_shows_login
+    get :new, :hostname => @hostname
+    assert_select "form input", 2
+    assert_select "title", "Login"
   end
 
   # without a service hostname to to login, we should

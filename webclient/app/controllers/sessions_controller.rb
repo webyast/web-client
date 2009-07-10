@@ -20,36 +20,42 @@ class SessionsController < ApplicationController
 
   #
   # Start new session
+  #  render login screen
   #
   def new
-    @hostname = params[:hostname]
-    
     # we can't create session if we are logged in
     if logged_in?
-      redirect_to session_path
+      redirect_to :action => "index"
       return
     end
 
     # if the hostname is not set, go to the webservices controller
     # to pickup a service
-    if not params.has_key?(:hostname)
+    if params[:hostname].blank?
       flash[:notice] = _("Please select a host to connect to.") unless flash[:notice]
       redirect_to :controller => 'webservices'
       return
     end
+    
+    @hostname = params[:hostname]
+
+    # render login screen, asking for username/password
   end
   
+  # create session
+  #  this is called from login form and expects to have username and password set
+  #
   # if the create action is called without the hostname
   # it will show the login form
   def create
     # if the user or password is not there, then render the login form
-    if not params.has_key?(:hostname) or params[:hostname].empty?
+    if params[:hostname].blank?
       flash[:warning] = _("You need to specify the hostname")
-      redirect_to new_session_path(:hostname => params[:hostname])
+      redirect_to :action => "new"
       return
-    elsif not params.has_key?(:password) or params[:password].empty?
+    elsif params[:password].blank?
       flash[:warning] = _("No password specified")
-      redirect_to new_session_path(:hostname => params[:hostname])
+      redirect_to :action => "new", :hostname => params[:hostname]
       return
     else
       # otherwise, we have all the data, try to login
