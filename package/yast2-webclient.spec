@@ -25,6 +25,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-devel
 BuildArch:      noarch  
 BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails
+BuildRequires:  tidy
 #
 %define service_name yastwc
 #

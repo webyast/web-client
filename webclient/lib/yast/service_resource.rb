@@ -76,7 +76,12 @@ module YaST
 
     # returns back the rest-service error message if the HTTP error 4** happens
     def self.error(net_error)
-       h = Hash.from_xml(net_error.response.body)["error"]
+       begin
+         h = Hash.from_xml(net_error.response.body)["error"]
+       rescue NoMethodError
+         h = { "message" => net_error.response.body }
+       end
+
        return h.nil? ? h : h["message"]
     end
 
