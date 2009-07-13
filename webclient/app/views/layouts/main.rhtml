@@ -57,7 +57,7 @@
 
    <div class="content">
       <!-- show the flash messages -->
-      <% for name in [:notice, :warning, :message, :error] %>
+      <% [:notice, :warning, :message, :error].each do |name| %>
         <% if flash[name] %>
           <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
         <% end %>
