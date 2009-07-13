@@ -1,11 +1,12 @@
 
 <h1>Status</h1>
 
-<% last = false %>
+<% column = 1 %>
 <% @data_group.each do |key, map| %>
-  <% if last %>
+  <% if column != 1 %>
     <br style='clear: both'>
-    <% last = !last %>
+    <br>
+    <% column = 1 %>
   <% end %>
   <% if key == "df" %>
     <h3><%= _("Disk usage") %></h3>
@@ -16,8 +17,13 @@
   <% map.each do |graph_key, list_value| %>
     <% if key != "df" || !graph_key.end_with? ("used")  %>
       <% graph_id = key + "_" + graph_key.tr('/','_') %>
-      <%= graph(graph_id, 400, 300, last) %>
-      <% last = !last %>
+      <%= graph(graph_id, 200, 150, column == 4?true:false) %>
+      <% if column == 4 %>
+        <br>
+        <% column = 1 %>         
+      <% else %>
+        <% column += 1 %>         
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
@@ -35,9 +41,11 @@ function plotPieGraph (graph_id, graph_title, graph_data ) {
       seriesDefaults: {
         renderer: $.jqplot.PieRenderer,
         rendererOptions: {
-            sliceMargin: 0
+            sliceMargin: 0,
+            diameter: 100
         }
       },
+
       cursor: {
         show: false
       },
@@ -57,8 +65,13 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
           min: 0
         }        
       },
+      series:[{color:'#5FAB78',
+               lineWidth: 1,
+               markerOptions: {
+                 size: 0
+               }
 
-  series:[{color:'#5FAB78'}]
+              }]
     });
 }
 
