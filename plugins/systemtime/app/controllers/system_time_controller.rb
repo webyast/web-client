@@ -88,8 +88,7 @@ class SystemTimeController < ApplicationController
     if response
       flash[:notice] = _('Settings have been written.')
       redirect_to :action => :index
-    else
-      
+    else  
       redirect_to :action => :index
     end
   end
