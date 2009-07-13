@@ -12,7 +12,8 @@ class ControlpanelController < ApplicationController
 
   def index
     @shortcuts = shortcuts_data
-    check_update
+    res = check_update
+    @update_label, @update_image = res if res.is_a? Array
   end
 
   def show_all
@@ -42,7 +43,10 @@ class ControlpanelController < ApplicationController
   # Check patches
   def check_update
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    # FIXME: check proxy
+    unless proxy
+      logger.warn "Couldn't find proxy for org.opensuse.yast.system.patches"
+      return
+    end
     begin
       patch_updates = proxy.find(:all) || []
     rescue ActiveResource::ClientError => e
@@ -51,6 +55,7 @@ class ControlpanelController < ApplicationController
     rescue Exception => e
       flash[:error] = "An exception was raised. Check the logs."
       logger.error e
+      logger.info e.backtrace.join("\n")
       return
     end
     
@@ -82,6 +87,7 @@ class ControlpanelController < ApplicationController
       img = "/images/button_ok.png"
     end
     logger.debug "evaluated patches #{patch_updates.inspect} ==> security:#{security}; important:#{important}; optional:#{optional}"
+    [ label, img ]
   end
 
   # reads the shortcuts and returns the
