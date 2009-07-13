@@ -69,7 +69,6 @@ class SystemTimeController < ApplicationController
       flash[:error] = YaST::ServiceResource.error(e)
       redirect_to :action => :index
     end
-debugger
     
     arr = params[:date][:date].split("/")
     t.time = "#{arr[2]}-#{arr[0]}-#{arr[1]} - "+params[:currenttime]
