@@ -16,22 +16,26 @@ class StatusController < ApplicationController
 
   def create_data ( tree, label)
     data_list = []
-    tree.attributes.each do |key, branch|
-      if key.start_with? ("t_") 
-        data_list << branch.to_f
-      else        
-        next_label = label
-        if key != "value"
-          next_label += "/" + key
-        end
-        data_list = create_data (branch, next_label) 
-        if data_list.size > 0
-           @data[next_label] = data_list
-           data_list = []
+    if !tree.is_a? String
+      tree.attributes.each do |key, branch|
+        if key.start_with? ("t_") 
+          data_list << branch.to_f
+        else        
+          next_label = label
+          if key != "value"
+            next_label += "/" + key
+          end
+          data_list = create_data (branch, next_label) 
+          if data_list.size > 0
+             @data[next_label] = data_list
+             data_list = []
+          end
         end
       end
+    else
+      logger.error "wrong result: #{tree.inspect}"
     end
-   return data_list
+    return data_list
   end
 
  # Initialize GetText and Content-Type.
