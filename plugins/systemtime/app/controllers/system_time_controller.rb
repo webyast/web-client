@@ -79,14 +79,17 @@ class SystemTimeController < ApplicationController
     response = true
     begin
       response = t.save
+    rescue Timeout::Error => e
+      #do nothing as if you move time to future it throws this exception
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       response = false
     end
-    if !response
+    if response
+      flash[:notice] = _('Settings have been written.')
       redirect_to :action => :index
     else
-      flash[:notice] = _('Settings have been written.')
+      
       redirect_to :action => :index
     end
   end
