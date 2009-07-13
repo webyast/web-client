@@ -77,7 +77,11 @@ class StatusController < ApplicationController
         for i in 0..list_value.size-1
           store_data = true if list_value[i] != 0
           value_list = [i]
-          value_list << list_value[i]
+          if key_split[1]=="memory" # take MByte for the value
+            value_list << list_value[i]/1024/1024
+          else
+            value_list << list_value[i]
+          end
           graph_list << value_list
         end
         if store_data
@@ -87,6 +91,7 @@ class StatusController < ApplicationController
       else
         logger.error "empty key: #{@key} #{list.inspect}"
       end
+      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
     end
 
     respond_to do |format|

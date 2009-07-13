@@ -11,56 +11,78 @@
 
 <h2><%=_("Configure timezone")%></h2>
 <% form_tag '/system_time/commit_timezone', :class => 'container' do %>
-  <label>
-    <span><%=_("Region:")%></span>
-    <%= select_tag "region", options_for_select(@valid, @region.name), :disabled=> disabled %>
-    <%= observe_field(:region,
-      :frequency => 0.25,
-      :update => :timezones,
-      :url => { :action => :timezones_for_region },
-      :with => "'disabled=' + "+ (disabled ? "true":"false")+" + '&value=' +value") %>
-  </label>
-  <label>
-    <span><%=_("Timezone:")%></span>
+<table>
+  <tr>
+    <label>
+      <td><%=_("Region:")%></td>
+      <td><%= select_tag "region", options_for_select(@valid, @region.name), :disabled=> disabled %></td>
+      <%= observe_field(:region,
+        :frequency => 0.25,
+        :update => :timezones,
+        :url => { :action => :timezones_for_region },
+        :with => "'disabled=' + "+ (disabled ? "true":"false")+" + '&value=' +value") %>
+    </label>
+  </tr>
+  <tr>
 
-    <span id="timezones">
-      <%= render(:partial => 'timezones',
-        :locals => {:region => @region, :default => @systemtime.timezone,
-          :disabled => disabled})  %>
-    </span>
-  </label>
+    <label>
+      <td><%=_("Timezone:")%></td>
+
+      <td id="timezones">
+        <%= render(:partial => 'timezones',
+          :locals => {:region => @region, :default => @systemtime.timezone,
+            :disabled => disabled})  %>
+      </td>
+    </label>
+  </tr>
 
   <% if @systemtime.utcstatus != "UTConly" %>
+    <tr>
+
+      <label>
+        <td><%=_("Hardware clock is set to UTC")%></td>
+        <td><input type="checkbox" name="utc" value="true"
+        <%= @systemtime.utcstatus == "UTC" ? "checked" : "" %>
+               <%= "disabled=\"disabled\"" if disabled %> /></td>
+        
+      </label>
+    </tr>
+
+  <% end %>
+  <tr>
+
     <label>
-      <input type="checkbox" name="utc" value="true"
-      <%= @systemtime.utcstatus == "UTC" ? "checked" : "" %>
-             <%= "disabled=\"disabled\"" if disabled %> />
-      <span><%=_("Hardware clock is set to UTC (Universal Time Coordinated)")%></span>
+      <td></td>
+      <td>
+        <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
+      </td>
     </label>
-  <% end %>
-  <label>
-    <span>
-      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
-    </span>
-  </label>
+  </tr>
+</table>
 <% end %>
-  <h2><%=_("Manually configure time")%></h2>
-  <% form_tag '/system_time/commit_time', :class => 'container' do %>
-    <span>
+<h2><%=_("Manually configure time")%></h2>
+<% form_tag '/system_time/commit_time', :class => 'container' do %>
+<table>
+    <tr>
       <label>
-        <span><%= _("Date") %></span>
-        <%= text_field "date", "date", :class => :datepicker, :disabled=> disabled, :value => @date %>
+        <td><%= _("Date") %></td>
+        <td><%= text_field "date", "date", :class => :datepicker, :disabled=> disabled, :value => @date %></td>
       </label>
+    </tr>
+    <tr>
 
       <label>
-        <span><%= _("Time") %></span>
-        <%= text_field_tag "currenttime", @time, :disabled=> disabled %>
+        <td><%= _("Time") %></td>
+        <td><%= text_field_tag "currenttime", @time, :disabled=> disabled %></td>
       </label>
+    </tr>
+    <tr >
+      <td></td>
+      <td>
 
-      <span>
-        <hbox>
           <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
-        </hbox>
-      </span>
-    </span>
-  <% end %>
+    
+      </td>
+    </tr>
+  </table>
+<% end %>
