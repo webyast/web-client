@@ -19,8 +19,8 @@ class ControlpanelController < ApplicationController
     @shortcut_groups = {}
     shortcuts_data.each do |name, data|
       data["groups"].each do |group|
-	@shortcut_groups[group] |= Array.new
-	@shortcut_groups[group] << data
+        @shortcut_groups[group] = Array.new unless @shortcut_groups.include?(group)
+        @shortcut_groups[group] << data
       end
     end
   end
