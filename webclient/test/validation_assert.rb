@@ -12,9 +12,7 @@ class ActionController::TestCase
     validate_temp.close
 
     system("tidy #{RAILS_ROOT}/tmp/validate.html 1>/dev/null 2>#{RAILS_ROOT}/tmp/validate.result")
-    result = `grep '^[0-9]\\+ warnings*, [0-9]\\+ errors*' #{RAILS_ROOT}/tmp/validate.result`
-    count = result.match(/(\d+)\D+(\d+)\D+/)
-    count = count[0]+count[1]
-    assert count == 0, "Find validation problems: "+`cat #{RAILS_ROOT}/tmp/validate.result`
+    result = `grep '^[0-9]\\+ warnings*, [0-9]\\+ errors*' #{RAILS_ROOT}/tmp/validate.result`    
+    assert result.empty?, "Find validation problems: "+`cat #{RAILS_ROOT}/tmp/validate.result`
   end
 end
