@@ -52,9 +52,12 @@ class SessionsController < ApplicationController
     if params[:hostname].blank?
       flash[:warning] = _("You need to specify the hostname")
       redirect_to :action => "new"
+    elsif params[:login].blank?
+      flash[:warning] = _("No login specified")
+      redirect_to :action => "new", :hostname => params[:hostname]
     elsif params[:password].blank?
       flash[:warning] = _("No password specified")
-      redirect_to :action => "new", :hostname => params[:hostname]
+      redirect_to :action => "new", :login => params[:login], :hostname => params[:hostname]
     else
       # otherwise, we have all the data, try to login
       begin
@@ -72,7 +75,6 @@ class SessionsController < ApplicationController
         logger.info e.backtrace.join("\n")
         flash[:error] = _("Error when trying to login: #{e.to_s}")
         redirect_to :action => "new", :hostname => params[:hostname]
-        #redirect_to :action => :login, :hostname => params[:hostname]
         return
       end
       
