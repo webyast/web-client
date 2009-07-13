@@ -1,5 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 require 'test/unit'
+require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 require 'rubygems'
 require 'mocha'
 
@@ -73,6 +74,7 @@ class SystemTimeControllerTest < ActionController::TestCase
 #debugger
     get :index
     assert_response :success
+    assert_valid_markup
     assert assigns(:permissions)
     assert assigns(:permissions)[:read]
     assert assigns(:permissions)[:write]
@@ -90,6 +92,7 @@ class SystemTimeControllerTest < ActionController::TestCase
     get :index
 
     assert_response :success
+    assert_valid_markup
     assert assigns(:permissions)
     assert assigns(:permissions)[:read]
     assert !assigns(:permissions)[:write]
