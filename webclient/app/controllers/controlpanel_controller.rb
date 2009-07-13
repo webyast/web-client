@@ -49,7 +49,8 @@ class ControlpanelController < ApplicationController
       flash[:error] = YaST::ServiceResource.error(e)
       return
     rescue Exception => e
-      flash[:error] = e
+      flash[:error] = "An exception was raised. Check the logs."
+      logger.error e
       return
     end
     

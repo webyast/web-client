@@ -48,8 +48,9 @@ class SessionsController < ApplicationController
   # if the create action is called without the hostname
   # it will show the login form
   def create
+    hostname = params[:hostname]
     # if the user or password is not there, then render the login form
-    if params[:hostname].blank?
+    if hostname.blank?
       flash[:warning] = _("You need to specify the hostname")
       redirect_to :action => "new"
     elsif params[:login].blank?
@@ -57,24 +58,24 @@ class SessionsController < ApplicationController
       redirect_to :action => "new", :hostname => params[:hostname]
     elsif params[:password].blank?
       flash[:warning] = _("No password specified")
-      redirect_to :action => "new", :login => params[:login], :hostname => params[:hostname]
+      redirect_to :action => "new", :login => params[:login], :hostname => hostname
     else
       # otherwise, we have all the data, try to login
       begin
         self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
-                                                            params[:hostname])
+                                                            hostname)
         # error handling when login to the service is pretty
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
-        flash[:error] = _("Can't connect to host at #{params[:hostname]}, make sure the host is up and that the YaST web service is running.")
+        flash[:error] = _("Can't connect to host at #{hostname}, make sure the host is up and that the YaST web service is running.")
         redirect_to :action => "new"
         return
       rescue Exception => e
         logger.warn e.to_s
         logger.info e.backtrace.join("\n")
-        flash[:error] = _("Error when trying to login: #{e.to_s}")
-        redirect_to :action => "new", :hostname => params[:hostname]
+        flash[:error] = _("Exception raised when trying to login to #{hostname}. Please try again")
+        redirect_to :action => "new", :hostname => hostname
         return
       end
       
