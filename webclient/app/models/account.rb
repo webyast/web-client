@@ -1,4 +1,5 @@
 
+require 'uri'
 require 'digest/sha1'
 require 'yast/service_resource'
 
@@ -18,14 +19,31 @@ class Account < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :password
 
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, passwd, service)
+  # Authenticates a user by their login name and unencrypted password to host.
+  # Returns pair of [ account, token ]
+  #
+  # Will raise unless uri is a valid uri
+  #
+  def self.authenticate(login, passwd, uri)
+    # Ensure that we really have a uri
+    #  else ActiveResource will raise an exception
+    uri = URI.parse(uri.to_s) rescue uri.to_s
+    unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+      # FIXME, should be https
+      uri = URI.parse "http://#{uri}"
+      raise "Invalid uri" unless uri.is_a? URI::HTTP
+    end
+
+
     # set default site url for all YaST service based resources
-    YaST::ServiceResource::Session.site = service
+    YaST::ServiceResource::Session.site = uri
     YaST::ServiceResource::Session.login = login
     
+    YaST::ServiceResource::Base.password = ""
+    YaST::ServiceResource::Session.auth_token = ""
+
     # the above will obsolete this
-    YaST::ServiceResource::Base.site = service
+    YaST::ServiceResource::Base.site = uri
     # create a login resource
     ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
     logger.debug ret.inspect
@@ -45,8 +63,6 @@ class Account < ActiveRecord::Base
       return acc, ret.attributes["auth_token"].attributes["value"]
     else
       puts "Authenticate Failure"
-      YaST::ServiceResource::Base.password = ""
-      YaST::ServiceResource::Session.auth_token = ""
       return nil, nil
     end
   end
