@@ -2,34 +2,22 @@ class WebservicesController < ApplicationController
   layout 'main'
 
   # GET /webservices
-  # GET /webservices.xml
   def index
     begin
       @webservices = Webservice.find(:all)
     rescue
       redirect_to "/migrate"
     end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @webservices }
-    end if @webservices
   end
 
   # GET /webservices/show/1
-  # GET /webservices/show/1.xml
   def show
     @webservice = Webservice.find(params[:id])
   end
 
   # GET /webservices/new
-  # GET /webservices/new.xml
   def new
     @webservice = Webservice.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @webservice }
-    end
   end
 
   # GET /webservices/1/edit
@@ -38,48 +26,34 @@ class WebservicesController < ApplicationController
   end
 
   # POST /webservices
-  # POST /webservices.xml
   def create
     @webservice = Webservice.new(params[:webservice])
 
-    respond_to do |format|
-      if @webservice.save
-        flash[:notice] = 'Webservice was successfully created.'
-        format.html { redirect_to(webservices_url) }
-        format.xml  { render :xml => @webservice, :status => :created, :location => @webservice }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @webservice.errors, :status => :unprocessable_entity }
-      end
+    if @webservice.save
+      flash[:notice] = 'Webservice was successfully created.'
+      redirect_to webservices_url
+    else
+      redirect_to new_webservice_url
     end
   end
 
   # PUT /webservices/1
-  # PUT /webservices/1.xml
   def update
     @webservice = Webservice.find(params[:id])
 
-    respond_to do |format|
-      if @webservice.update_attributes(params[:webservice])
-        flash[:notice] = 'Webservice was successfully updated.'
-        format.html { redirect_to(webservices_url) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @webservice.errors, :status => :unprocessable_entity }
-      end
+    if @webservice.update_attributes(params[:webservice])
+      flash[:notice] = 'Webservice was successfully updated.'
+      redirect_to webservices_url
+    else
+      redirect_to edit_webservice_url
     end
   end
 
   # DELETE /webservices/1
-  # DELETE /webservices/1.xml
   def destroy
     @webservice = Webservice.find(params[:id])
     @webservice.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(webservices_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to webservices_url
   end
 end

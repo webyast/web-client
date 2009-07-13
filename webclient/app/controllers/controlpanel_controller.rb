@@ -1,7 +1,29 @@
+#
+# Control panel
+#
+# This is the default controller for webclient
+#
 
 require 'yaml'
 
 class ControlpanelController < ApplicationController
+
+  before_filter :ensure_login
+
+  def index
+    @shortcuts = shortcuts_data
+    check_update
+  end
+
+  def show_all
+    @shortcut_groups = {}
+    shortcuts_data.each do |name, data|
+      data["groups"].each do |group|
+	@shortcut_groups[group] |= Array.new
+	@shortcut_groups[group] << data
+      end
+    end
+  end
 
   # this action allows to retrieve the shortcuts
   # as a resource
@@ -13,40 +35,6 @@ class ControlpanelController < ApplicationController
     end
   end
   
-  def index
-    # no control panel for unlogged users
-    if not logged_in?
-      redirect_to :controller => :sessions, :action => :new
-      return
-    else
-      logger.debug "We are logged in"
-    end
-
-    @shortcuts = shortcuts_data
-    check_update
-  end
-
-  def show_all
-    # no control panel for unlogged users
-    if not logged_in?
-      redirect_to :controller => :sessions, :action => :new
-      return
-    else
-      logger.debug "We are logged in"
-    end
-
-    @shortcut_groups = {}
-    shortcuts_data.each do |name, data|
-      data["groups"].each do |group|
-        if @shortcut_groups.has_key? (group)
-          @shortcut_groups[group] << data
-        else
-          @shortcut_groups[group] = [data]
-        end
-      end
-    end
-  end
-
   protected
 
   # Check patches

@@ -138,7 +138,12 @@ module YaST
           raise "object does not implement any interface" if not (self.respond_to?(:interface) and self.interface)
           ret = Hash.new
           interface_name = self.interface
-          permissions = proxy.find(:all, :params => { :user_id => login, :filter => interface_name })
+	  begin
+	    permissions = proxy.find(:all, :params => { :user_id => login, :filter => interface_name })
+	  rescue
+	    redirect_to "/bad_permissions"
+	    return
+	  end
           RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
           permissions.each do |perm|
 	    break if perm.name.nil? # no permissions
