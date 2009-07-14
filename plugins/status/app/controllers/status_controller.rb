@@ -20,6 +20,8 @@ class StatusController < ApplicationController
       tree.attributes.each do |key, branch|
         if key.start_with? ("t_") 
           data_list << branch.to_f
+        elsif key == "limit"
+          @limits[label] = branch.attributes
         else        
           next_label = label
           if key != "value"
@@ -49,6 +51,8 @@ class StatusController < ApplicationController
   def index
     return unless client_permissions
     @data = {}
+    @limits = {}
+    @limits_list = {}
     status = []
     begin
       till = Time.new
@@ -64,6 +68,14 @@ class StatusController < ApplicationController
     #grouping graphs to memory, cpu,...
     @data_group = {}
     @data.each do |key, list_value|
+      if @limits.has_key?(key)
+        graph_list = []
+        for i in 0..list_value.size-1 do
+           graph_list << [i,@limits[key]["value"]]
+        end
+        @limits_list[key] = graph_list
+      end
+
       key_split = key.split("/")
       if key_split.size > 1
         group_map = {}
@@ -95,8 +107,9 @@ class StatusController < ApplicationController
       else
         logger.error "empty key: #{@key} #{list.inspect}"
       end
-      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
+#      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
     end
+    logger.debug "Limits: #{@limits.inspect}"
 
     respond_to do |format|
       format.html # index.html.erb

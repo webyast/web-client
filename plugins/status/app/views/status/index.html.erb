@@ -70,7 +70,12 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
                markerOptions: {
                  size: 0
                }
-
+              },
+              {color:'#E89120',
+               lineWidth: 1,
+               markerOptions: {
+                 size: 0
+               }
               }]
     });
 }
@@ -81,7 +86,12 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
         <% graph_id = key + "_" + graph_key.tr('/','_') %>
         <% if key != "df" %>
           $('#' + '<%= graph_id %>').html("");
-          plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
+          <% limit_key = "/#{key}/#{graph_key}" %>
+          <% if  @limits_list.has_key?(limit_key)  %>
+            plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key].inspect %>]);
+          <% else %>        
+            plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
+          <% end %>        
         <% else %>        
            <% if graph_key.end_with? ("free")  %>
              $('#' + '<%= graph_id %>').html("");
