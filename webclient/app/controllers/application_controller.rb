@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def ensure_login
     unless logged_in?
       flash[:notice] = "Please login to continue"
-      redirect_to new_sessions_path
+      redirect_to new_session_path
     end
   end
 
