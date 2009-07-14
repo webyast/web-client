@@ -18,13 +18,20 @@ Session
 -------
 
 Session.new checks for params[:hostname]. If none is found, the user
-has to choose a host via Webservices.index first.
+has to choose a host via Host.index first.
 
 If a hostname is found, a login screen asks for username and password,
 and calls Session.create
 
 
-Webservices
------------
+Host
+----
 
 This is a 'host chooser' redirecting to Session.new afterwards
+
+
+Controlpanel
+------------
+
+This is the main 'landing' page, showing a quick status and offering
+some recently used modules to navigate to.

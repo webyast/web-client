@@ -35,16 +35,16 @@ class SessionControllerTest < ActionController::TestCase
     ActiveResource::Base.site = @hostname
   end
 
-  # new without any parameters should redirect to webservices
+  # new without any parameters should redirect to hosts
   def test_new
     get :new
-    assert_redirected_to :controller => :webservices
+    assert_redirected_to :controller => :hosts
   end
 
   # new with :hostname empty
   def test_new_with_empty_hostname
     get :new, :hostname => ""
-    assert_redirected_to :controller => :webservices
+    assert_redirected_to :controller => :hosts
     assert flash[:notice]
   end
 

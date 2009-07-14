@@ -29,11 +29,11 @@ class SessionController < ApplicationController
       return
     end
 
-    # if the hostname is not set, go to the webservices controller
+    # if the hostname is not set, go to the host controller
     # to pickup a service
     if params[:hostname].blank?
       flash[:notice] = _("Please select a host to connect to.") unless flash[:notice]
-      redirect_to :controller => 'webservices'
+      redirect_to :controller => 'hosts', :action => 'index'
       return
     end
     
@@ -89,6 +89,7 @@ class SessionController < ApplicationController
         # evaluate available service resources here or not?
         # @modules = Yast.find(:all)
   
+        # FIXME: use URI lib
         @short_host_name = session[:host]
         if @short_host_name.index("://") != nil
           @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"

@@ -1,6 +1,6 @@
 <h1><%=_("Editing YaST-Web-Service")%></h1>
 
-<% form_for(@webservice) do |f| %>
+<% form_for(@host) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
@@ -11,15 +11,18 @@
  	<th class="full" colspan="2"><%=_("YaST-Web-Service")%></th>
     </tr>
     <tr>
-	<td class="first" width="120"><strong><%=_("URL")%></strong></td>
+	<td class="first" width="20"><strong><%=_("Name")%></strong></td>
 	<td class="last"><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+	<td class="first" width="30"><strong><%=_("Url")%></strong></td>
+	<td class="last"><%= f.text_field :url %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Description")%></strong></td>
-	<td class="last"><%= f.text_field :desc %></td>
+	<td class="last"><%= f.text_field :description %></td>
     </tr>
     </table>
-    <p><%= f.submit _("Update") %><%= link_to _('Back'), webservices_path, :class => "button" %></p>
+    <p><%= f.submit _("Ok") %><%= link_to _('Cancel'), host_path, :class => "button" %></p>
   </div>
 <% end %>
-

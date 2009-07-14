@@ -1,7 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class WebserviceTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
+require 'mocha'
+
+class AccountTest < ActiveSupport::TestCase
+  
+  def setup
+    # stub Account so it doesn't need a real endpoint
+    Account.stubs(:authenticate).with("login", "passwd", "http://localhost:8080").returns(["account", "token"])
+    Account.stubs(:authenticate).with("login", "passwd", "localhost:8080").returns(["account", "token"])
+  end
+  
+  # create account
   test "account create" do
     account, token = Account.authenticate "login", "passwd", "http://localhost:8080"
     assert account
