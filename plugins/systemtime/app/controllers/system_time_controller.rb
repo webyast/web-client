@@ -1,4 +1,5 @@
 require 'yast/service_resource'
+require 'systemtime'
 
 class SystemTimeController < ApplicationController
   before_filter :login_required
@@ -29,6 +30,8 @@ class SystemTimeController < ApplicationController
     @date.sub!(/^(\d+)-(\d+)-(\d+)/,'\3/\2/\1')
   end
 
+
+
   public
   @@timezones = {}
 
@@ -56,22 +59,17 @@ class SystemTimeController < ApplicationController
       return false
     end
 
-    arr = params[:date][:date].split("/")
-    t.time = "#{arr[2]}-#{arr[0]}-#{arr[1]} - "+params[:currenttime]
-    t.timezones = [] #not needed anymore
-    t.utcstatus = ""
-    t.timezone = ""
+    fill_proxy_with_time t,params
 
-    response = true
     begin
       response = t.save
       flash[:notice] = _('Settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
+      log.debug "Time moved to future" 
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       log_exception e
-      response = false
     end    
 
     redirect_to :action => :index
@@ -84,45 +82,17 @@ class SystemTimeController < ApplicationController
       return false
     end
 
-    region = {}
-    @@timezones.each do |reg|
-      if reg.name == params[:region]
-        region = reg
-        break
-      end
-    end
-
-    region.entries.each do |e|
-      if (e.name == params[:timezone])
-        t.timezone = e.id
-        break
-      end
-    end
-
-    if (t.utcstatus != "UTConly")
-      if params[:utc] == "true"
-        t.utcstatus = "UTC"
-      else
-        t.utcstatus = "localtime"
-      end
-    end
-
-    t.time = ""
-    t.timezones = [] #not needed anymore
-
-    response = true
+    fill_proxy_with_time t,params,@@systemtime
+    
     begin
       response = t.save
+      flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      response = false
+      log_exception e
     end
-    if !response
-      redirect_to :action => :index
-    else
-      flash[:notice] = _('Settings have been written.')
-      redirect_to :action => :index
-    end
+
+    redirect_to :action => :index    
   end
 
   def timezones_for_region
