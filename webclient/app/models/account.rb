@@ -31,10 +31,10 @@ class Account < ActiveRecord::Base
     unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
       # FIXME, should be https
       uri = URI.parse "http://#{uri}"
-      raise "Invalid uri" unless uri.is_a? URI::HTTP
+      raise "Invalid uri" unless uri.is_a? URI::HTTP   
     end
 
-
+    uri = uri.to_s #URI.join expects only strings no URI reference
     # set default site url for all YaST service based resources
     YaST::ServiceResource::Session.site = uri
     YaST::ServiceResource::Session.login = login
