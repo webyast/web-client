@@ -1,84 +1,86 @@
-<%= javascript_include_tag 'jquery' %>
-<%= javascript_include_tag 'jquery-form' %>
-<%= javascript_include_tag 'application' %>
-<%= javascript_include_tag 'effects.core' %>
-<%= javascript_include_tag 'effects.highlight' %>
-<script type="text/javascript">
-  $(document).ready(function() {
+<% if @permissions and @patch_updates %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'jquery-form' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'effects.core' %>
+  <%= javascript_include_tag 'effects.highlight' %>
+  <script type="text/javascript">
+    $(document).ready(function() {
 
-    $('#All').click(function() {
-      var counter = document.getElementById("counter").value;
-      var mode = document.getElementById("All").checked;
-      for(var i = 0; i < counter; i++) {
-        try {
-          document.getElementById(i).checked = mode;
-          document.getElementById("Security").checked = mode;
-          document.getElementById("Important").checked = mode;
-          document.getElementById("Green").checked = mode;
-          document.getElementById("Optional").checked = mode;
-        } catch(err) {
-          //alert("error");
-        }
-      }
-    });
-
-    $('#selector').click(function(){
-      var match = document.getElementById("selector").value;
-      var counter = document.getElementById("counter").value;
-
-      if (match == "all") {
+      $('#All').click(function() {
+        var counter = document.getElementById("counter").value;
+        var mode = document.getElementById("All").checked;
         for(var i = 0; i < counter; i++) {
           try {
-            document.getElementById("row_" + i).style.display="";
+            document.getElementById(i).checked = mode;
+            document.getElementById("Security").checked = mode;
+            document.getElementById("Important").checked = mode;
+            document.getElementById("Green").checked = mode;
+            document.getElementById("Optional").checked = mode;
           } catch(err) {
-            alert("error");
+            //alert("error");
           }
         }
-      } else {
-        for(var i = 0; i < counter; i++) {
-          if ( !(document.getElementById(i).name == match + "_" + i) ) {
+      });
+
+      $('#selector').click(function(){
+        var match = document.getElementById("selector").value;
+        var counter = document.getElementById("counter").value;
+
+        if (match == "all") {
+          for(var i = 0; i < counter; i++) {
             try {
-              document.getElementById("row_" + i).style.display="none";
+              document.getElementById("row_" + i).style.display="";
             } catch(err) {
               alert("error");
             }
-          } else {
-            document.getElementById("row_" + i).style.display="";
+          }
+        } else {
+          for(var i = 0; i < counter; i++) {
+            if ( !(document.getElementById(i).name == match + "_" + i) ) {
+              try {
+                document.getElementById("row_" + i).style.display="none";
+              } catch(err) {
+                alert("error");
+              }
+            } else {
+              document.getElementById("row_" + i).style.display="";
+            }
           }
         }
-      }
+      });
     });
-  });
-</script>
-<style type="text/css">
+  </script>
+  <style type="text/css">
 
-  option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
-  option[value=important]:before { content:url('/icons/kupdateapplet_yellow.png'); }
-  option[value=green]:before { content:url('/icons/kupdateapplet_green.png'); }
-  option[value=optional]:before { content:url('/icons/kupdateapplet_optional.png'); }
+    option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
+    option[value=important]:before { content:url('/icons/kupdateapplet_yellow.png'); }
+    option[value=green]:before { content:url('/icons/kupdateapplet_green.png'); }
+    option[value=optional]:before { content:url('/icons/kupdateapplet_optional.png'); }
 
-</style>
+  </style>
 
-<div class="loading"></div>
-<% if @patch_updates.empty? %>
-  <p><%=_("Your system is up to date.") %></p>
-<% else %>
-  <p><%=_("Updates available") %></p>
+  <div class="loading"></div>
+  <% if @patch_updates.empty? %>
+    <p><%=_("Your system is up to date.") %></p>
+  <% else %>
+    <p><%=_("Updates available") %></p>
+  <% end %>
+
+  <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
+    <select name="selector" id="selector" size="1">
+      <option value="all">All</option>
+      <option value="security">Security</option>
+      <option value="important">Important</option>
+      <option value="green">Green</option>
+      <option value="optional">Optional</option>
+    </select>
+    <div id="patch-table"><%= render :partial => "patches"%></div>
+
+    <input type="checkbox" name="All" id="All">All</input>
+
+    <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
+    <a href="/" class="button"><%=_("Back")%></a>
+  <% end %>
+
 <% end %>
-
-<% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
-   <select name="selector" id="selector" size="1">
-     <option value="all">All</option>
-     <option value="security">Security</option>
-     <option value="important">Important</option>
-     <option value="green">Green</option>
-     <option value="optional">Optional</option>
-   </select>
-  <div id="patch-table"><%= render :partial => "patches"%></div>
-
-  <input type="checkbox" name="All" id="All">All</input>
-
-<%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
-<a href="/" class="button"><%=_("Back")%></a>
-<% end %>
-

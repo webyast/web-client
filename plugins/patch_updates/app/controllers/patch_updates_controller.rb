@@ -4,25 +4,18 @@ class PatchUpdatesController < ApplicationController
 
   before_filter :login_required
   layout 'main'
-
+  include ProxyLoader
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
-    @proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    begin
-      @patch_updates = @proxy.find(:all) || []
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-    end
+    @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
   # POST /patch_updates/1
   # POST /patch_updates/1.xml
 
-  def install
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    ok = true
+  def install    
     update_array = []
 
     #search for patches and collect the ids
@@ -31,25 +24,20 @@ class PatchUpdatesController < ApplicationController
         update_array << value
       end
     }
-    update_array.each { |patch_id|
-      begin
-        update = proxy.find(patch_id)
+    update_array.each do |patch_id|
+      update = load_proxy 'org.opensuse.yast.system.patches', patch_id
+      
+      if update
+        begin
+          update.save
+          logger.debug "updated #{patch_id}"
+          flash[:notice] = _("Patch has been installed.")
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
-          ok = false
+          ExceptionLogger.log_exception e
+        end        
       end
-
-      if ok
-        begin
-          ok = update.save
-          logger.debug "updated #{patch_id}"
-          rescue ActiveResource::ClientError => e
-            flash[:error] = YaST::ServiceResource.error(e)
-            ok = false
-        end
-        flash[:notice] = _("Patch has been installed.") if ok
-      end
-    }
+  end
     redirect_to({:controller=>"patch_updates", :action=>"index"})
   end
 end
