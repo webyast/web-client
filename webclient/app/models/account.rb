@@ -24,26 +24,26 @@ class Account < ActiveRecord::Base
   #
   # Will raise unless uri is a valid uri
   #
-  def self.authenticate(login, passwd, uri)
+  def self.authenticate(login, passwd, host)
     # Ensure that we really have a uri
     #  else ActiveResource will raise an exception
-    uri = URI.parse(uri.to_s) rescue uri.to_s
+    uri = URI.parse(host.to_s) rescue host.to_s
     unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
       # FIXME, should be https
       uri = URI.parse "http://#{uri}"
       raise "Invalid uri" unless uri.is_a? URI::HTTP   
     end
 
-    uri = uri.to_s #URI.join expects only strings no URI reference
+    host = uri.to_s #set fixed host
     # set default site url for all YaST service based resources
-    YaST::ServiceResource::Session.site = uri
+    YaST::ServiceResource::Session.site = host
     YaST::ServiceResource::Session.login = login
     
     YaST::ServiceResource::Base.password = ""
     YaST::ServiceResource::Session.auth_token = ""
 
     # the above will obsolete this
-    YaST::ServiceResource::Base.site = uri
+    YaST::ServiceResource::Base.site = host
     # create a login resource
     ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
     logger.debug ret.inspect
