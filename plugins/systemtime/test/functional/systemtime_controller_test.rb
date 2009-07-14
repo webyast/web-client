@@ -113,4 +113,16 @@ class SystemTimeControllerTest < ActionController::TestCase
     assert @result.saved
   end
 
+  def test_failing_permissions
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
+    def @proxy.permissions
+      raise "Cannot find permission"
+    end
+
+    get :index
+
+    assert_response :redirect
+    assert_redirected_to "/bad_permissions"
+  end
+
 end

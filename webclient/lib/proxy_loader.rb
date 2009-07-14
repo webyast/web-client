@@ -31,8 +31,14 @@ module ProxyLoader
       return nil
     end
 
-    @permissions = proxy.permissions
-
+    begin
+      @permissions = proxy.permissions
+    rescue Exception => e
+      ExceptionLogger.log_exception e
+      redirect_to "/bad_permissions"
+      return nil
+    end
+    
     ret = nil
     begin
       if find_arg
