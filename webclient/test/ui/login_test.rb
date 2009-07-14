@@ -29,15 +29,15 @@ class LoginTest < Test::Unit::TestCase
 
   # check if the service selection is displayed at the main page
   def test_host_selection
-    @selenium.open "/webservices"
+    @selenium.open "/hosts"
     # is there the service list table?
     assert @selenium.is_element_present("services-list")
   end
 
   # check if the login page is displayed after clicking on the localhost:8080 target 
   def test_login_page
-    @selenium.open "/webservices"
-    @selenium.click "link=exact:http://localhost:8080"
+    @selenium.open "/hosts"
+    @selenium.click "link=localhost"
     @selenium.wait_for_page_to_load "30000"
 
     # is there the login and password entry?
