@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :webservices
+  map.resources :hosts
   map.resource :session
 
   map.root :controller => "main"

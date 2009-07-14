@@ -4,7 +4,7 @@
         <th width=8%><%=_("Kind")%></th>
 	    <th width=15%><%=_("Name")%></th>
 	    <th width="100"><%=_("Summary")%></th>
-        <% if @install_permission == nil %>
+        <% if @permissions[:install] %>
            <th width=15%><%=_("Source")%></th>
            <th class="last" width=5%><%=_("Install")%></th>
         <% else %>
@@ -32,7 +32,7 @@
               <td class="label"><%=h patch_update.name %></td>
               <td class="label"><%=h patch_update.summary %></td>
               <td><%=h patch_update.repo %></td>
-              <% if @install_permission.nil? %>
+              <% if @permissions[:install] %>
                  <td><%= link_to image_tag("/icons/system-software-install.png"\
                          , :alt =>  "install", :class=>"icon", :border => "0"),\
                          :controller => 'patch_updates', :id => patch_update.resolvable_id,\

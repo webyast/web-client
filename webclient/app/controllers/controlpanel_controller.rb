@@ -12,15 +12,16 @@ class ControlpanelController < ApplicationController
 
   def index
     @shortcuts = shortcuts_data
-    check_update
+    res = check_update
+    @update_label, @update_image = res if res.is_a? Array
   end
 
   def show_all
     @shortcut_groups = {}
     shortcuts_data.each do |name, data|
       data["groups"].each do |group|
-	@shortcut_groups[group] |= Array.new
-	@shortcut_groups[group] << data
+        @shortcut_groups[group] ||= Array.new
+        @shortcut_groups[group] << data
       end
     end
   end
@@ -37,47 +38,56 @@ class ControlpanelController < ApplicationController
   
   protected
 
+  # FIXME: refactor out to updates_controller !
+  #
   # Check patches
   def check_update
-    @proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    # FIXME: check @proxy
+    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+    unless proxy
+      logger.warn "Couldn't find proxy for org.opensuse.yast.system.patches"
+      return
+    end
     begin
-      patch_updates = @proxy.find(:all) || []
+      patch_updates = proxy.find(:all) || []
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       return
     rescue Exception => e
-      flash[:error] = e
+      flash[:error] = "An exception was raised. Check the logs."
+      logger.error e
+      logger.info e.backtrace.join("\n")
       return
     end
     
-    @security = 0
-    @important = 0
-    @optional = 0
+    security = 0
+    important = 0
+    optional = 0
     patch_updates.each do |patch|
       case patch.kind
-        when "security"
-           @security += 1
-        when "important"
-           @important += 1
-        when "optional"
-           @optional += 1
+        when "security":  security += 1
+        when "important": important += 1
+        when "optional":  optional += 1
       end
     end
-    @label = ""
-    @label += "Security Updates: #{@security} " if @security>0
-    @label += "Important Updates: #{@important} " if @important>0
-    @label += "Optional Updates: #{@optional} " if @optional>0
+    # FIXME: Don't create label, create a partial view instead
+    # FIXME: translations !
+    label = ""
+    label += "Security Updates: #{security} " if security>0
+    label += "Important Updates: #{important} " if important>0
+    label += "Optional Updates: #{optional} " if optional>0
 
-    @label = _("Your system is up to date.") if @label.blank?
-    if @security>0 || @important>0
-      @img = "/images/button_critical.png"
-    elsif @optional>0
-      @img = "/images/button_warning.png"
+    label = _("Your system is up to date.") if label.blank?
+    
+    # FIMXE: Images are defined by CSS, don't hardcode them here
+    if security>0 || important>0
+      img = "/images/button_critical.png"
+    elsif optional>0
+      img = "/images/button_warning.png"
     else
-      @img = "/images/button_ok.png"
+      img = "/images/button_ok.png"
     end
-    logger.debug "evaluated patches #{patch_updates.inspect} ==> security:#{@security}; important:#{@important}; optional:#{@optional}"
+    logger.debug "evaluated patches #{patch_updates.inspect} ==> security:#{security}; important:#{important}; optional:#{optional}"
+    [ label, img ]
   end
 
   # reads the shortcuts and returns the
@@ -96,7 +106,7 @@ class ControlpanelController < ApplicationController
       s.merge!(plugin_shortcuts(plugin))
     end
     logger.debug s.inspect
-    return s
+    s
   end
   
   # reads shortcuts of a specific plugin directory
@@ -106,6 +116,7 @@ class ControlpanelController < ApplicationController
     if File.exists?(shortcuts)
       logger.debug "Shortcuts at #{plugin.directory}"
       shortcutsdata = YAML::load(File.open(shortcuts))
+      return nil unless shortcutsdata.is_a? Hash
       # now go over each shortcut and add it to the modules
       shortcutsdata.each do |k,v|
         # use the plugin name and the shortcut key as

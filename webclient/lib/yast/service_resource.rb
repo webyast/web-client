@@ -64,8 +64,15 @@ module YaST
     def self.proxy_for(interface_name, opts={})
       # not used yet
       # {:site => ActiveResource::Base::, :arg_two => 'two'}.merge!(opts)
-      resource = self.resource_for_interface(interface_name) rescue nil
-      return nil if resource.nil?
+      resource = nil
+      begin
+        resource = self.resource_for_interface(interface_name)
+        raise "null resource, should throw inside resource_for_interface" unless resource
+      rescue Exception => e
+        ExceptionLogger::log_exception e
+        return nil
+      end
+      
       proxy = self.class_for_resource(resource, opts)
       
       if block_given?
@@ -76,8 +83,13 @@ module YaST
 
     # returns back the rest-service error message if the HTTP error 4** happens
     def self.error(net_error)
-       h = Hash.from_xml(net_error.response.body)["error"]
-       return h.nil? ? h : h["message"]
+      begin
+        h = Hash.from_xml(net_error.response.body)["error"]
+      rescue NoMethodError
+        h = { "message" => net_error.response.body }
+      end
+
+      return h.nil? ? h : h["message"]
     end
 
     # all dynamic proxies are created under this module
@@ -114,7 +126,7 @@ module YaST
       def obj.collection_path(prefix_options = {}, query_options = nil)
         prefix_options, query_options = split_options(prefix_options) if query_options.nil?
         # original: "#{prefix(prefix_options)}#{collection_name}.#{format.extension}#{query_string(query_options)}"
-          "#{prefix(prefix_options)}#{collection_name}.#{format.extension}#{query_string(query_options)}"
+        "#{prefix(prefix_options)}#{collection_name}.#{format.extension}#{query_string(query_options)}"
       end
     end
 
@@ -138,15 +150,15 @@ module YaST
           raise "object does not implement any interface" if not (self.respond_to?(:interface) and self.interface)
           ret = Hash.new
           interface_name = self.interface
-	  begin
-	    permissions = proxy.find(:all, :params => { :user_id => login, :filter => interface_name })
-	  rescue
-	    redirect_to "/bad_permissions"
-	    return
-	  end
+          begin
+            permissions = proxy.find(:all, :params =>
+                { :user_id => login, :filter => interface_name })
+          rescue
+            raise "Cannot find permission for user #{login} and interface #{interface_name}"
+          end
           RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
           permissions.each do |perm|
-	    break if perm.name.nil? # no permissions
+            break if perm.name.nil? # no permissions
             # the permission name is an extension
             # of the interface name, if the
             # interface is not a subset of the permission
@@ -209,8 +221,8 @@ module YaST
       # use options site if available, otherwise
       # the ServiceResource site
       site = opts.fetch(:site,
-                        Session.site.nil? ?
-                        ActiveResource::Base.site : Session.site)
+        Session.site.nil? ?
+          ActiveResource::Base.site : Session.site)
       raise "Invalid site" if site.nil?
       full_site = URI.join(site, base_path)
       

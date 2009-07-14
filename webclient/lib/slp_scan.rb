@@ -1,7 +1,9 @@
 # helper scan for hosts via slp
 module Slp
+  require 'uri'
+  
   def scan
-    @hosts = []
+    hosts = []
     # make output parseable + terminate 
     services = `avahi-browse _yastws._tcp -t -p --no-db-lookup`
     
@@ -24,10 +26,13 @@ module Slp
       end
       url = name.split(" ").pop || name
 
-      if Webservice.find(:first, :conditions => "name = '#{url}'").nil?
-         host = Webservice.new({"name"=>url, "desc"=>"via network scan"})
-         @webservices << host
+      if Host.find(:first, :conditions => "url = '#{url}'").nil?
+         host = Host.new({"url"=>url, "description"=>"via network scan"})
+	 next unless host
+	 host.save
+         hosts << host
       end
     end
+    hosts
   end
 end
