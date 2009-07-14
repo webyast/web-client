@@ -50,21 +50,12 @@ class SystemTimeController < ApplicationController
   end
 
   def commit_time
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
+    t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    unless proxy
-      no_proxy
-      return
+    unless t
+      return false
     end
 
-    @permissions = proxy.permissions
-    begin
-      t = proxy.find
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      redirect_to :action => :index
-    end
-    
     arr = params[:date][:date].split("/")
     t.time = "#{arr[2]}-#{arr[0]}-#{arr[1]} - "+params[:currenttime]
     t.timezones = [] #not needed anymore
@@ -74,35 +65,23 @@ class SystemTimeController < ApplicationController
     response = true
     begin
       response = t.save
+      flash[:notice] = _('Settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
+      log_exception e
       response = false
-    end
-    if response
-      flash[:notice] = _('Settings have been written.')
-      redirect_to :action => :index
-    else  
-      redirect_to :action => :index
-    end
+    end    
+
+    redirect_to :action => :index
   end
 
   def commit_timezone
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
+    t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    unless proxy
-      no_proxy
-      return
-    end
-
-    @permissions = proxy.permissions
-
-    begin
-      t = proxy.find
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      redirect_to :action => :index
+    unless t
+      return false
     end
 
     region = {}
