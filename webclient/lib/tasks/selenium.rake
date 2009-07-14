@@ -2,11 +2,6 @@
 # try loading all selenium task definitions
 begin
     require 'selenium/rake/tasks'
-rescue LoadError => e
-    $stderr.puts "WARNING: 'selenium-client' gem is missing, UI testing task (test:ui) will be missing."
-    $stderr.puts "Install 'selenium-client' Ruby gem from 'rubygem-selenium-client' RPM package.\n"
-    return
-end
 
 # define selenium:rc:start task
 Selenium::Rake::RemoteControlStartTask.new do |rc|
@@ -38,6 +33,11 @@ namespace :test do
     # define test:ui task - start/shut down Selenium server component automatically
     desc 'Run UI tests using Selenium testing framework'
     task :ui => [:"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop"]
+end
+
+rescue LoadError => e
+    $stderr.puts "WARNING: 'selenium-client' gem is missing, UI testing task (test:ui)"
+    $stderr.puts "         will be missing. Install 'selenium-client' Ruby gem."
 end
 
 # vim: ft=ruby
