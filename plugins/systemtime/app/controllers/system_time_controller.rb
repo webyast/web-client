@@ -4,6 +4,7 @@ require 'systemtime'
 class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
+  include ProxyLoader
 
   #helpers
   private
