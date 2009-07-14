@@ -29,15 +29,14 @@ class SessionsController < ApplicationController
       return
     end
 
+    @host = Host.find(params[:target]) rescue nil
     # if the hostname is not set, go to the host controller
     # to pickup a service
-    if params[:hostname].blank?
+    unless @host
       flash[:notice] = _("Please select a host to connect to.") unless flash[:notice]
       redirect_to :controller => 'hosts', :action => 'index'
       return
     end
-    
-    @hostname = params[:hostname]
 
     # render login screen, asking for username/password
   end
@@ -48,34 +47,34 @@ class SessionsController < ApplicationController
   # if the create action is called without the hostname
   # it will show the login form
   def create
-    hostname = params[:hostname]
+    host = Host.find(params[:host]) rescue nil
     # if the user or password is not there, then render the login form
-    if hostname.blank?
-      flash[:warning] = _("You need to specify the hostname")
+    if host.nil?
+      flash[:warning] = _("You need to specify the host")
       redirect_to :action => "new"
     elsif params[:login].blank?
       flash[:warning] = _("No login specified")
-      redirect_to :action => "new", :hostname => params[:hostname]
+      redirect_to :action => "new", :host => host.id
     elsif params[:password].blank?
       flash[:warning] = _("No password specified")
-      redirect_to :action => "new", :login => params[:login], :hostname => hostname
+      redirect_to :action => "new", :login => params[:login], :host => host.id
     else
       # otherwise, we have all the data, try to login
       begin
         self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
-                                                            hostname)
+                                                            host.url)
         # error handling when login to the service is pretty
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
-        flash[:error] = _("Can't connect to host at #{hostname}, make sure the host is up and that the YaST web service is running.")
+        flash[:error] = _("Can't connect to host at #{host.name}, make sure the host is up and that the YaST web service is running.")
         redirect_to :action => "new"
         return
       rescue Exception => e
         logger.warn e.to_s
         logger.info e.backtrace.join("\n")
-        flash[:error] = _("Exception raised when trying to login to #{hostname}. Please try again")
-        redirect_to :action => "new", :hostname => hostname
+        flash[:error] = _("Exception raised when trying to login to #{host.name}. Please try again")
+        redirect_to :action => "new", :host => host.id
         return
       end
       
@@ -84,16 +83,12 @@ class SessionsController < ApplicationController
       if logged_in?
         session[:auth_token] = auth_token
         session[:user] = params[:login]
-        session[:host] = params[:hostname]
+        session[:host] = host.id
 
         # evaluate available service resources here or not?
         # @modules = Yast.find(:all)
   
-        # FIXME: use URI lib
-        @short_host_name = session[:host]
-        if @short_host_name.index("://") != nil
-          @short_host_name = @short_host_name[@short_host_name.index("://")+3, @short_host_name.length-1] #extract "http(s)://"
-        end
+        @short_host_name = host.name
 
         # success, go to the main controller
         logger.info "Login success."
@@ -102,7 +97,7 @@ class SessionsController < ApplicationController
         session[:user] = session[:host] = nil
         #show # getting hosts again
         flash[:warning] = _("Login incorrect. Check your username and password.")
-        redirect_to :action => "new", :hostname => params[:hostname]
+        redirect_to :action => "new", :host => host.id
       end
     end
   end

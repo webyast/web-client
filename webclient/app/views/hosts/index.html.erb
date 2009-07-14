@@ -7,7 +7,8 @@
           <% for host in @hosts %>
           <tr class="service-item">
             <td class="icon"><div class="container"><img src="/icons/yast-service-22.png"></div></td>
-            <td><div class="title"><%= link_to host.name, new_session_path(:hostname => host.name)  %></div><td>
+            <td><div class="title"><%= link_to host.name, new_session_path(:target => "#{host.id}") %></div></td>
+	                                                  <!-- uh, oh, cannot use :host here ?! -->
             <td><div class="label"><%=h host.url %></div></td>
             <td><div class="label"><%=h host.description %></div></td>
             <td class="icon">

@@ -3,9 +3,9 @@
 
     <span id="content_title">Login</span>
 
-    <p><%= _("Enter login credentials for host #{@hostname}.") %></p>
+    <p><%= _("Enter login credentials for host #{@host.name}.") %></p>
 
-    <%= hidden_field_tag 'hostname', @hostname %>
+    <%= hidden_field_tag 'host', @host.id %>
 
     <p><label for="login"><%= _("Username:") %></label><br>
     <%= text_field_tag 'login', @user %></p>
