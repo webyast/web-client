@@ -5,8 +5,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "main"
   
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.login '/login', :controller => 'session', :action => 'new'
+  map.logout '/logout', :controller => 'session', :action => 'destroy'
 
   # Install the default routes as the lowest priority.
   map.connect ':controller/:action/:id'

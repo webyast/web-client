@@ -2,7 +2,7 @@ require 'yast/service_resource/login'
 require 'yast/service_resource/logout'
 
 # This controller handles the login/logout function of the site.
-class SessionsController < ApplicationController
+class SessionController < ApplicationController
   layout 'main'
 
   # make sure logout only happens if we are logged in

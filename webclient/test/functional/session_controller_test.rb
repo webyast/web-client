@@ -5,13 +5,13 @@ require 'mocha'
 require 'active_resource/http_mock'
 
 # Re-raise errors caught by the controller.
-require 'sessions_controller'
-class SessionsController; def rescue_action(e) raise e end; end
+require 'session_controller'
+class SessionController; def rescue_action(e) raise e end; end
 
 # test the web client part of the login, which
 # talks to a remote rest service to get the authentication
 # token
-class SessionsControllerTest < ActionController::TestCase
+class SessionControllerTest < ActionController::TestCase
 
   # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
   # Then, you can remove it from this and the units test.
@@ -89,7 +89,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert flash[:warning]
     assert_nil flash[:error]
     # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new, :hostname => @hostname
+    assert_redirected_to :controller => :session, :action => :new, :hostname => @hostname
   end
   
   def test_create_with_connection_refused
@@ -98,7 +98,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil flash[:warning]
     assert flash[:error]
     # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new
+    assert_redirected_to :controller => :session, :action => :new
   end
   
   def test_create_with_exception_raised
@@ -106,7 +106,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil flash[:warning]
     assert flash[:error]
     # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new, :hostname => "exception"
+    assert_redirected_to :controller => :session, :action => :new, :hostname => "exception"
   end
   
 
