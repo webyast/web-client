@@ -35,22 +35,11 @@ class SystemTimeController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
 
-  def index
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
-    @permissions = proxy.permissions
+  def index    
+    @systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    begin
-      @systemtime = proxy.find
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-    rescue Exception => e
-      flash[:error] = e
-    end
-
-    # if time is not available
     unless @systemtime
-      redirect_to "/404"
-      return
+      return false
     end
 
     @valid = []    
@@ -62,6 +51,12 @@ class SystemTimeController < ApplicationController
 
   def commit_time
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
+
+    unless proxy
+      no_proxy
+      return
+    end
+
     @permissions = proxy.permissions
     begin
       t = proxy.find
@@ -95,6 +90,12 @@ class SystemTimeController < ApplicationController
 
   def commit_timezone
     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.time')
+
+    unless proxy
+      no_proxy
+      return
+    end
+
     @permissions = proxy.permissions
 
     begin

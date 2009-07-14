@@ -68,4 +68,35 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password").
   filter_parameter_logging :password
+
+  def load_proxy (name)
+    proxy = YaST::ServiceResource.proxy_for(name)
+
+    unless proxy
+      logger.warn "Couldn't find proxy for #{name}"
+      flash[:error] = "Cannot find service on target machine for #{name}."
+      @permissions = nil
+      return nil
+    end
+
+    @permissions = proxy.permissions
+
+    ret = nil
+    begin
+      ret = proxy.find
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
+      log_exception e
+    rescue Exception => e
+      flash[:error] = e.message
+      log_exception e
+    end
+
+    return ret
+  end
+
+  def log_exception
+    logger.warn e.message
+    logger.info e.backtrace.join("\n")
+  end
 end

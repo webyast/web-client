@@ -1,3 +1,4 @@
+<% if @permissions %>
 <%= javascript_include_tag "nogray_time_picker" %>
 <% javascript_tag do -%>
   $(document).ready( function() {
@@ -110,3 +111,4 @@
         :update => :timezones,
         :url => { :action => :timezones_for_region },
         :with => "'disabled=' + "+ (disabled ? "true":"false")+" + '&value=' +value") %>
+ <% end %>
