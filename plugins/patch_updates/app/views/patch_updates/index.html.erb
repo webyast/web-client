@@ -8,19 +8,7 @@
     $(document).ready(function() {
 
       $('#All').click(function() {
-        var counter = document.getElementById("counter").value;
-        var mode = document.getElementById("All").checked;
-        for(var i = 0; i < counter; i++) {
-          try {
-            document.getElementById(i).checked = mode;
-            document.getElementById("Security").checked = mode;
-            document.getElementById("Important").checked = mode;
-            document.getElementById("Green").checked = mode;
-            document.getElementById("Optional").checked = mode;
-          } catch(err) {
-            //alert("error");
-          }
-        }
+        $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));
       });
 
       $('#selector').click(function(){
