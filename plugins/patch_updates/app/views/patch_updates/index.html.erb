@@ -1,44 +1,12 @@
 <% if @permissions and @patch_updates %>
-  <%= javascript_include_tag 'jquery' %>
-  <%= javascript_include_tag 'jquery-form' %>
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag 'effects.core' %>
-  <%= javascript_include_tag 'effects.highlight' %>
-  <script type="text/javascript">
+  <%= javascript_include_tag :defaults %>
+  <% javascript_tag do -%>
     $(document).ready(function() {
-
       $('#All').click(function() {
         $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));
       });
-
-      $('#selector').click(function(){
-        var match = document.getElementById("selector").value;
-        var counter = document.getElementById("counter").value;
-
-        if (match == "all") {
-          for(var i = 0; i < counter; i++) {
-            try {
-              document.getElementById("row_" + i).style.display="";
-            } catch(err) {
-              alert("error");
-            }
-          }
-        } else {
-          for(var i = 0; i < counter; i++) {
-            if ( !(document.getElementById(i).name == match + "_" + i) ) {
-              try {
-                document.getElementById("row_" + i).style.display="none";
-              } catch(err) {
-                alert("error");
-              }
-            } else {
-              document.getElementById("row_" + i).style.display="";
-            }
-          }
-        }
-      });
     });
-  </script>
+  <% end %>
   <style type="text/css">
 
     option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
@@ -55,15 +23,16 @@
     <p><%=_("Updates available") %></p>
   <% end %>
 
+  <select name="selector" id="selector" size="1">
+    <option value="all">All</option>
+    <option value="security">Security</option>
+    <option value="important">Important</option>
+    <option value="green">Green</option>
+    <option value="optional">Optional</option>
+  </select>
   <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
-    <select name="selector" id="selector" size="1">
-      <option value="all">All</option>
-      <option value="security">Security</option>
-      <option value="important">Important</option>
-      <option value="green">Green</option>
-      <option value="optional">Optional</option>
-    </select>
-    <div id="patch-table"><%= render :partial => "patches"%></div>
+
+    <div id="patchesd"><%= render :partial => "patches"%></div>
 
     <input type="checkbox" name="All" id="All">All</input>
 
@@ -72,3 +41,11 @@
   <% end %>
 
 <% end %>
+
+<%= observe_field(:selector,
+  :frequency => 0.1,
+  :update => :patchesd,
+  :url => { :action => :load_filtered },
+  :with => "'value=' + value"
+)
+%>

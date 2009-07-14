@@ -12,6 +12,15 @@ class PatchUpdatesController < ApplicationController
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
+  def load_filtered
+    @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    kind = params[:value]
+    unless kind == "all"
+      @patch_updates = @patch_updates.find_all { |patch| patch.kind == kind }
+    end
+    render :partial => "patches"
+  end
+
   # POST /patch_updates/1
   # POST /patch_updates/1.xml
 
