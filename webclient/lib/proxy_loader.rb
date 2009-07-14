@@ -19,8 +19,9 @@ module ProxyLoader
    #Finds proxy and find its result.
    #_fields_:: set @+permissions+ field to permissions of proxy
    #name:: Name of proxy
+   #find_ard:: Argument for find call on proxy, nil is no argument (singleton resource)
    #+returns+:: Returns result of proxy.find or nil if something goes bad
-   def load_proxy (name)
+   def load_proxy (name,find_arg = nil)
     proxy = YaST::ServiceResource.proxy_for(name)
 
     unless proxy
@@ -34,7 +35,11 @@ module ProxyLoader
 
     ret = nil
     begin
-      ret = proxy.find
+      if find_arg
+        ret = proxy.find find_arg
+      else
+        ret = proxy.find
+      end
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       ExceptionLogger.log_exception e
