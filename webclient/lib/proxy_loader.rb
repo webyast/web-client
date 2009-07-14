@@ -16,7 +16,6 @@
 #
 
 module ProxyLoader
-  include ExceptionLogger
    #Finds proxy and find its result.
    #_fields_:: set @+permissions+ field to permissions of proxy
    #name:: Name of proxy
@@ -38,10 +37,10 @@ module ProxyLoader
       ret = proxy.find
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      log_exception e
+      ExceptionLogger.log_exception e
     rescue Exception => e
       flash[:error] = e.message
-      log_exception e
+      ExceptionLogger.log_exception e
     end
 
     return ret
