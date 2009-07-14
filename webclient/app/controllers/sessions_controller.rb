@@ -2,7 +2,7 @@ require 'yast/service_resource/login'
 require 'yast/service_resource/logout'
 
 # This controller handles the login/logout function of the site.
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
   layout 'main'
 
   # make sure logout only happens if we are logged in
@@ -127,6 +127,6 @@ class SessionController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = _("You have been logged out.") unless flash[:notice]
-    redirect_to new_session_path
+    redirect_to :controller => 'hosts', :action => 'index'
   end
 end
