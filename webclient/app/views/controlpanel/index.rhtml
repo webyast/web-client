@@ -32,10 +32,12 @@
       <tr>
     <% end %>
     <td>
-      <img src="<%= data['icon'] %>"/>
-      <div>
-        <%= link_to data['title'], data['url'] %>
-      </div>
+      <% link_to (data['url']) do %>
+        <img src="<%= data['icon'] %>"/>
+        <div>
+          <%= data['title'] %>
+        </div>
+      <% end %>
     </td>
     <% shortcuts_counter +=1 %>
   <% end %>
