@@ -224,6 +224,7 @@ module YaST
                         Session.site.nil? ?
                         ActiveResource::Base.site : Session.site)
       raise "Invalid site" if site.nil?
+      site = site.to_s.gsub(/\/$/,"")
       full_site = URI.join(site, base_path)
       
       rsrc = nil
