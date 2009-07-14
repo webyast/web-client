@@ -64,8 +64,16 @@ module YaST
     def self.proxy_for(interface_name, opts={})
       # not used yet
       # {:site => ActiveResource::Base::, :arg_two => 'two'}.merge!(opts)
-      resource = self.resource_for_interface(interface_name) rescue nil
-      return nil if resource.nil?
+      resource = nil
+      begin
+        resource = self.resource_for_interface(interface_name)
+        raise "null resource, should throw inside resource_for_interface" unless resource
+      rescue Exception => e
+        Rails.logger.warn e.message
+        Rails.logger.warn e.backtrace.join("\n")
+        return nil
+      end
+      
       proxy = self.class_for_resource(resource, opts)
       
       if block_given?
