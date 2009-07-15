@@ -1,9 +1,7 @@
 
 require 'selenium/test_case'
 
-class LoginTest < Test::Unit::TestCase
-
-  include Selenium::TestCase
+class LoginTest < Selenium::TestCase
 
   # check if the service selection is displayed at the main page
   def test_host_selection
