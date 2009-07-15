@@ -14,9 +14,9 @@ class StatusController < ApplicationController
     @permissions = @client.permissions
   end
 
-  def create_data ( tree, label)
+  def create_data_map ( tree, label)
     data_list = []
-    if !tree.is_a? String
+    if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
         if key.start_with? ("t_") 
           data_list << branch.to_f
@@ -27,7 +27,7 @@ class StatusController < ApplicationController
           if key != "value"
             next_label += "/" + key
           end
-          data_list = create_data (branch, next_label) 
+          data_list = create_data_map (branch, next_label) 
           if data_list.size > 0
              @data[next_label] = data_list
              data_list = []
@@ -40,16 +40,7 @@ class StatusController < ApplicationController
     return data_list
   end
 
- # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_status"  
-
-  public
-  def initialize
-  end
-
-
-  def index
-    return unless client_permissions
+  def create_data ()
     @data = {}
     @limits = {}
     @limits_list = {}
@@ -63,7 +54,7 @@ class StatusController < ApplicationController
         flash[:error] = YaST::ServiceResource.error(e)
     end
 
-    create_data ( status, "")
+    create_data_map ( status, "")
 
     #grouping graphs to memory, cpu,...
     @data_group = {}
@@ -110,11 +101,29 @@ class StatusController < ApplicationController
 #      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
     end
     logger.debug "Limits: #{@limits.inspect}"
+  end
+
+ # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_status"  
+
+  public
+  def initialize
+  end
+
+  def edit
+    return unless client_permissions
+    create_data ()
+  end
+
+  def index
+    return unless client_permissions
+    create_data ()
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
     end
-#    return unless client_status
   end
+
+
 end
