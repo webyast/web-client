@@ -224,7 +224,7 @@ module YaST
         Session.site.nil? ?
           ActiveResource::Base.site : Session.site)
       raise "Invalid site" if site.nil?
-      full_site = URI.join(site, base_path)
+      full_site = URI.join(site.to_s, base_path)
       
       rsrc = nil
       # the module where we store the proxy classes
