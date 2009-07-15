@@ -15,7 +15,7 @@ class LoginTest < Test::Unit::TestCase
   # check if the login page is displayed after clicking on the localhost:8080 target 
   def test_login_page
     @selenium.open "/hosts"
-    @selenium.click "link=localhost"
+    @selenium.click "link=http://localhost:8080"
     @selenium.wait_for_page_to_load "30000"
 
     # is there the login and password entry?
