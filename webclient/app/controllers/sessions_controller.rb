@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
       return
     end
 
-    @host = Host.find(params[:target]) rescue nil
+    @host = Host.find(params[:hostid]) rescue nil
     # if the hostname is not set, go to the host controller
     # to pickup a service
     unless @host
@@ -47,17 +47,17 @@ class SessionsController < ApplicationController
   # if the create action is called without the hostname
   # it will show the login form
   def create
-    host = Host.find(params[:host]) rescue nil
+    host = Host.find(params[:hostid]) rescue nil
     # if the user or password is not there, then render the login form
     if host.nil?
       flash[:warning] = _("You need to specify the host")
       redirect_to :action => "new"
     elsif params[:login].blank?
       flash[:warning] = _("No login specified")
-      redirect_to :action => "new", :host => host.id
+      redirect_to :action => "new", :hostid => host.id
     elsif params[:password].blank?
       flash[:warning] = _("No password specified")
-      redirect_to :action => "new", :login => params[:login], :host => host.id
+      redirect_to :action => "new", :login => params[:login], :hostid => host.id
     else
       # otherwise, we have all the data, try to login
       begin
@@ -74,7 +74,7 @@ class SessionsController < ApplicationController
         logger.warn e.to_s
         logger.info e.backtrace.join("\n")
         flash[:error] = _("Exception raised when trying to login to #{host.name}. Please try again")
-        redirect_to :action => "new", :host => host.id
+        redirect_to :action => "new", :hostid => host.id
         return
       end
       
@@ -97,7 +97,7 @@ class SessionsController < ApplicationController
         session[:user] = session[:host] = nil
         #show # getting hosts again
         flash[:warning] = _("Login incorrect. Check your username and password.")
-        redirect_to :action => "new", :host => host.id
+        redirect_to :action => "new", :hostid => host.id
       end
     end
   end

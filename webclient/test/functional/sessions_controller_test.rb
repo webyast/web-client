@@ -17,22 +17,22 @@ class SessionsControllerTest < ActionController::TestCase
   # Then, you can remove it from this and the units test.
   include AuthenticatedTestHelper
 
-  fixtures :accounts
+  fixtures :accounts, :hosts
 
   def setup
     @login_granted = "<hash><login>granted</login></hash>"
     @login_denied = "<hash><login>denied</login></hash>"
     @logout_granted = "<hash><logout>Goodbye!</logout></hash>"
 
-    @hostname = "http://localhost:8000"
+    @host = Host.find(1)
     current_account = Account.new
     auth_token = "abcdef"
-    Account.stubs(:authenticate).with("quentin","test",@hostname).returns([current_account, auth_token])
-    Account.stubs(:authenticate).with("quentin","bad password",@hostname).returns([nil,nil])
-    Account.stubs(:authenticate).with("quentin","exception","exception").raises(RuntimeError)
-    Account.stubs(:authenticate).with("quentin","bad host","bad").raises(Errno::ECONNREFUSED)
-    YaST::ServiceResource::Session.site = @hostname
-    ActiveResource::Base.site = @hostname
+    Account.stubs(:authenticate).with("quentin","test",@host.url).returns([current_account, auth_token])
+    Account.stubs(:authenticate).with("quentin","bad password",@host.url).returns([nil,nil])
+    Account.stubs(:authenticate).with("quentin","exception",@host.url).raises(RuntimeError)
+    Account.stubs(:authenticate).with("quentin","bad host",@host.url).raises(Errno::ECONNREFUSED)
+    YaST::ServiceResource::Session.site = @host.url
+    ActiveResource::Base.site = @host.url
   end
 
   # new without any parameters should redirect to hosts
@@ -42,21 +42,21 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   # new with :hostname empty
-  def test_new_with_empty_hostname
-    get :new, :hostname => ""
+  def test_new_with_empty_hostid
+    get :new, :hostid => nil
     assert_redirected_to :controller => :hosts
     assert flash[:notice]
   end
 
   # new with hostname, must show login
   def test_new_shows_login
-    get :new, :hostname => @hostname
-    assert_select "form input", 4  # hostname, username, password, submit
+    get :new, :hostid => @host.id
+    assert_select "form input", 4  # hostid, username, password, submit
   end
 
-  # without a service hostname to to login, we should
+  # without a service host to to login, we should
   # be redirected to web service choosing...
-  def test_create_should_redirect_to_select_hostname
+  def test_create_should_redirect_to_select_host
     post :create
     assert flash[:warning]
     assert_redirected_to :action => :new
@@ -64,16 +64,16 @@ class SessionsControllerTest < ActionController::TestCase
 
   # create with blank password
   def test_create_with_blank_password
-    post :create, :password => "", :hostname => @hostname
+    post :create, :password => "", :hostid => @host.id
     assert flash[:warning]
-    assert_redirected_to :action => :new, :hostname => @hostname
+    assert_redirected_to :action => :new, :hostid => @host.id
   end
 
   def test_create_successful_login
     ActiveResource::HttpMock.respond_to do |mock|
       mock.post "/login.xml", {}, @login_granted
     end
-    post :create, :hostname => @hostname,
+    post :create, :hostid => @host.id,
          :login => 'quentin', :password => 'test'
     assert_nil flash[:warning]
     assert_nil flash[:error]
@@ -84,16 +84,16 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   def test_create_with_authentication_failure
-    post :create, :login => 'quentin', :password => 'bad password', :hostname => @hostname
+    post :create, :login => 'quentin', :password => 'bad password', :hostid => @host.id
     assert_nil session[:account_id]
     assert flash[:warning]
     assert_nil flash[:error]
     # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new, :hostname => @hostname
+    assert_redirected_to :controller => :sessions, :action => :new, :hostid => @host.id
   end
   
   def test_create_with_connection_refused
-    post :create, :login => 'quentin', :password => 'bad host', :hostname => "bad"
+    post :create, :login => 'quentin', :password => 'bad host', :hostid => @host.id
     assert_nil session[:account_id]
     assert_nil flash[:warning]
     assert flash[:error]
@@ -102,11 +102,11 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   def test_create_with_exception_raised
-    post :create, :login => 'quentin', :password => 'exception', :hostname => "exception"
+    post :create, :login => 'quentin', :password => 'exception', :hostid => @host.id
     assert_nil flash[:warning]
     assert flash[:error]
     # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new, :hostname => "exception"
+    assert_redirected_to :controller => :sessions, :action => :new, :hostid => @host.id
   end
   
 
