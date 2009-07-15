@@ -52,6 +52,7 @@ class StatusController < ApplicationController
       status = @client.find(:dummy_param, :params => { :start => from.strftime("%H:%M,%m/%d/%Y"), :stop => till.strftime("%H:%M,%m/%d/%Y") })
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
+        return
     end
 
     create_data_map ( status, "")
@@ -125,5 +126,29 @@ class StatusController < ApplicationController
     end
   end
 
+
+  def save
+    return unless client_permissions
+    create_data ()
+
+    @new_limits = @client.new()
+
+    success = true
+
+    begin
+#      @new_limits.save
+      logger.debug "limits has been written"
+      flash[:notice] = _("Limits has been written.")
+    rescue ActiveResource::ClientError => e
+       flash[:error] = YaST::ServiceResource.error(e)
+       ExceptionLogger.log_exception e
+       success = false
+    end        
+    if success
+      redirect_to({:controller=>"status", :action=>"index"})
+    else
+      redirect_to ({:controller=>"status", :action=>"edit"})
+    end
+  end
 
 end
