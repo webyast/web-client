@@ -4,6 +4,8 @@
 class ApplicationController < ActionController::Base
   layout 'main'
 
+  rescue_from Exception, :with => :exception_trap
+  
   include AuthenticatedSystem
 
   begin
@@ -19,6 +21,13 @@ class ApplicationController < ActionController::Base
     super
   end
 
+  def exception_trap(e)
+    logger.error "***" + e.to_s
+    @error = e
+    #render :text => "I am sorry"
+    render :template => "shared/exception_trap"
+  end
+  
   def ensure_login
     unless logged_in?
       flash[:notice] = "Please login to continue"
