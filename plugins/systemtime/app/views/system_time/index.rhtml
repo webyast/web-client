@@ -23,7 +23,9 @@
           <%=_("Region:")%>
         </label>
       </td>
-      <td><%= select_tag "region", options_for_select(@valid, @region.name), :disabled=> disabled %></td>
+      <% name = @region.name rescue ""
+         @valid = Array.new unless @valid -%>
+      <td><%= select_tag "region", options_for_select(@valid, name), :disabled => disabled %></td>
       
     </tr>
     <tr>
