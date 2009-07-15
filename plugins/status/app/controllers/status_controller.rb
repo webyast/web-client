@@ -55,6 +55,8 @@ class StatusController < ApplicationController
         return
     end
 
+puts "xxxxxxxxxxxxxx #{status.methods.inspect}"
+
     create_data_map ( status, "")
 
     #grouping graphs to memory, cpu,...
@@ -136,9 +138,9 @@ class StatusController < ApplicationController
     success = true
 
     begin
-#      @new_limits.save
+      @new_limits.save
       logger.debug "limits has been written"
-      flash[:notice] = _("Limits has been written.")
+      flash[:notice] = _("Limits have been written.")
     rescue ActiveResource::ClientError => e
        flash[:error] = YaST::ServiceResource.error(e)
        ExceptionLogger.log_exception e
