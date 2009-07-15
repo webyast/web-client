@@ -63,7 +63,7 @@ class SessionsController < ApplicationController
       begin
         self.current_account, auth_token = Account.authenticate(params[:login], 
                                                             params[:password],
-                                                            host.url)
+                                                            host.uri)
         # error handling when login to the service is pretty
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
