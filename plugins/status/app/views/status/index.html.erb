@@ -27,6 +27,13 @@
     <% end %>
   <% end %>
 <% end %>
+<% if column != 1 %>
+  <br style='clear: both'>
+  <br>
+<% end %>
+<br>
+<br>
+<%= link_to  _("edit limits"),  :action => :edit, :class => "button" %>
 
 
 <script type="text/javascript">
