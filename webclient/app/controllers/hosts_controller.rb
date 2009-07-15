@@ -1,3 +1,5 @@
+require 'uri'
+
 class HostsController < ApplicationController
   layout 'main'
 
@@ -5,8 +7,10 @@ class HostsController < ApplicationController
   def index
     begin
       @hosts = Host.find(:all)
-    rescue
-      redirect_to "/migrate"
+    rescue Exception => e
+      logger.error e.to_s
+      # show nice error screen and remind to "rake db:migrate"
+      redirect_to "/migration_missing"
     end
   end
 
@@ -26,6 +30,8 @@ class HostsController < ApplicationController
   end
 
   # POST /hosts
+  # the :host parameter is a hash with all values
+  #  see the form in app/views/hosts/new.html.erb 
   def create
     @host = Host.new(params[:host])
 
@@ -57,5 +63,15 @@ class HostsController < ApplicationController
 	host.destroy
     end
     redirect_to :action => 'index'
+  end
+
+  def validate_uri
+    logger.error params[:host][:url]
+    uri = URI.parse(params[:host][:url]) rescue nil
+    unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+      render :text => 'false'
+      return
+    end
+    render :text => 'true'
   end
 end

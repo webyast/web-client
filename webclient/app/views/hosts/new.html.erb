@@ -1,5 +1,24 @@
 <h1><%=_("New WebYaST Host")%></h1>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#new_host").validate({
+    rules: {
+      "host[name]" : { required : true },
+      "host[url]": {
+        required: true,
+        remote: "/validate_uri"
+      }
+    },
+    // set this class to error-labels to indicate valid fields 
+    success: function(label) { 
+      // set   as text for IE 
+      label.html(" ").addClass("checked"); 
+    } 
+  });
+});
+</script>
+
 <% form_for(@host) do |f| %>
   <%= f.error_messages %>
 
@@ -13,7 +32,7 @@
     <!-- FIXME: move to a partial and share with 'edit' -->
     <tr>
 	<td class="first" width="20"><strong><%=_("Name")%></strong></td>
-	<td class="last"><%= f.text_field :name %></td>
+	<td class="last"><%= f.text_field :name, :class => "required" %></td>
     </tr>
     <tr>
 	<td class="first" width="30"><strong><%=_("Url")%></strong></td>
@@ -24,6 +43,7 @@
 	<td class="last"><%= f.text_field :description %></td>
     </tr>
     </table>
-  <p><%= f.submit _("Create") %><%= link_to _('Cancel'), hosts_path, :class => "button" %></p>
+  <p><%= f.submit _("Create") %></p>
   </div>
 <% end %>
+<%= button_to _('Cancel'), hosts_path, :class => "button" %>

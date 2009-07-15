@@ -3,55 +3,57 @@
 <html>
 <head xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
   <link rel="stylesheet" href="/stylesheets/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" title="default" charset="utf-8" />
   <link rel="stylesheet" href="/stylesheets/jquery.jqplot.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
-
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.query.js"></script>  
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.timers.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/javascripts/jquery.jqplot.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/javascripts/plugin/jqplot.pieRenderer.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
 
   <!--<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
-<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>-->
 
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/shortcut.js"></script>  
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/shortcut.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>  
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
+
   <title>WebYaST</title>
 </head>
   <body id="shell" bgcolor="#ffffff" onload="">
     <div id="appliance_logo">
       <img src="/images/suse-logo.png" alt="SUSE" height="120" width="120" border="0" />
-	<div id="appliance_title">My Appliance</div>
-	
+      <div id="appliance_title">My Appliance</div>
+  
         <% host = Host.find(session[:host]) rescue nil
            user = session[:user]
-	   if host.blank? || user.blank? -%>
-	   
-	   <div id="login_session">
-	     <%= link_to _("Login"), '/login' %>
-	   </div>
-	   
-	<% else -%>
-	   
-	   <div id="logout_session">
-	     <div id="connectedHost">
-	       <div class="box">
-	         <p><%=_("Connected Host")%></p>
-		 <p><%=_("Name:")%> <%= host.name -%> <p>
-		 <%=_("User:")%> <%= user -%>
-	       </div>
-	     </div>
-	     <%= link_to _("Logout"), '/logout' %>
-	   </div>
-	 
-        <% end -%>
-	 
-        </div>
+           if host.blank? || user.blank? -%>
+     
+     <div id="login_session">
+       <%= link_to _("Login"), '/login' %>
+     </div>
+     
+  <% else -%>
+     
+     <div id="logout_session">
+       <div id="connectedHost">
+         <div class="box">
+           <p><%=_("Connected Host")%></p>
+           <p><%=_("Name:")%> <%= host.name -%> <p>
+              <%=_("User:")%> <%= user -%>
+         </div>
+       </div>
+       <%= link_to _("Logout"), '/logout' %>
+     </div>
+  <% end -%>
+   
+  </div>
 
    <div class="content">
       <!-- show the flash messages -->

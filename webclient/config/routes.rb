@@ -1,6 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
 
+  
   map.resources :hosts
+  
+  map.connect '/validate_uri', :controller => 'hosts', :action => 'validate_uri'
+  
   map.resource :session
 
   map.root :controller => "main"
