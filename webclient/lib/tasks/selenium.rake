@@ -19,25 +19,31 @@ begin
 	rc.port = 4444
 	rc.timeout_in_seconds = 3 * 60
     end
+rescue LoadError => e
+    selenium_missing = true
+end
 
-    namespace :test do
-	# define test:ui:check task
-	Rake::TestTask.new(:"ui:check") do |t|
-	    t.libs << "test"
-	    t.pattern = 'test/ui/**/*_test.rb'
-	    t.verbose = true
-	end
-
-	Rake::Task['test:ui:check'].comment = "Note: Selenium Server must be running"
-
-	# define test:ui task - start/shut down Selenium server component automatically
-	desc 'Run UI tests using Selenium testing framework'
-	task :ui => [:"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop"]
+namespace :test do
+    # define test:ui:check task
+    Rake::TestTask.new(:"ui:check") do |t|
+	t.libs << "test"
+	t.pattern = 'test/ui/**/*_test.rb'
+	t.verbose = true
     end
 
-rescue LoadError => e
-    $stderr.puts "WARNING: 'selenium-client' gem is missing, UI testing task (test:ui)"
-    $stderr.puts "         will be missing. Install 'selenium-client' Ruby gem."
+    Rake::Task['test:ui:check'].comment = "Note: Selenium Server must be running"
+
+    # define test:ui task - start/shut down Selenium server component automatically
+    desc 'Run UI tests using Selenium testing framework'
+    if selenium_missing
+	task :ui do 
+	    $stderr.puts "ERROR: 'selenium-client' gem is missing, UI testing task (test:ui)"
+	    $stderr.puts "       cannot be started. Install 'selenium-client' Ruby gem first."
+	    exit 1
+	end
+    else
+	task :ui => [:"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop"]
+    end
 end
 
 # vim: ft=ruby
