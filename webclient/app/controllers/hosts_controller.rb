@@ -9,7 +9,8 @@ class HostsController < ApplicationController
       @hosts = Host.find(:all)
     rescue Exception => e
       logger.error e.to_s
-      redirect_to "/migrate"
+      # show nice error screen and remind to "rake db:migrate"
+      redirect_to "/migration_missing"
     end
   end
 
