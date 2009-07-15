@@ -1,5 +1,6 @@
 
 begin
+    require 'rubygems'
     # try loading all selenium task definitions
     require 'selenium/rake/tasks'
 
@@ -19,7 +20,7 @@ begin
 	rc.port = 4444
 	rc.timeout_in_seconds = 3 * 60
     end
-rescue LoadError => e
+rescue LoadError
     selenium_missing = true
 end
 
@@ -39,6 +40,12 @@ namespace :test do
 	task :ui do 
 	    $stderr.puts "ERROR: 'selenium-client' gem is missing, UI testing task (test:ui)"
 	    $stderr.puts "       cannot be started. Install 'selenium-client' Ruby gem first."
+	    exit 1
+	end
+    elsif !Gem.available? 'test-unit', '>=2.0.2'
+	task :ui do 
+	    $stderr.puts "ERROR: 'test-unit' gem is missing, UI testing task (test:ui)"
+	    $stderr.puts "       cannot be started. Install 'test-unit' Ruby gem first."
 	    exit 1
 	end
     else

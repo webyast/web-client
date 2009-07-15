@@ -9,7 +9,8 @@ class HostsController < ApplicationController
       @hosts = Host.find(:all)
     rescue Exception => e
       logger.error e.to_s
-      redirect_to "/migrate"
+      # show nice error screen and remind to "rake db:migrate"
+      redirect_to "/migration_missing"
     end
   end
 
@@ -29,6 +30,8 @@ class HostsController < ApplicationController
   end
 
   # POST /hosts
+  # the :host parameter is a hash with all values
+  #  see the form in app/views/hosts/new.html.erb 
   def create
     @host = Host.new(params[:host])
 

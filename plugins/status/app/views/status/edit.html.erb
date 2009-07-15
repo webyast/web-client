@@ -1,0 +1,45 @@
+<% disabled = ! @permissions[:write] %>
+<% disabled = false %>
+
+<h2><%=_("Configure Status Limits")%></h2>
+
+<% form_tag '/status/save' do %>
+<table class="list">
+  <tr>
+    <th width=350><%=_("Status Path")%></th>
+    <th width=100><%=_("Limit Value")%></th>
+    <th width=40><%=_("Maximum Reached") %></th>
+  </tr>
+
+  <% @data_group.each do |key, map| %>
+    <% map.each do |graph_key, list_value| %>
+      <tr>
+      <% limit_key = "/#{key}/#{graph_key}" %>
+      <td><%= limit_key %></td>
+
+      <% if  @limits_list.has_key?(limit_key)  %>
+        <td>
+        <input name=<%= limit_key+"/value" %> type="text" size="10" maxlength="15" value=<%= @limits[limit_key]["value"] %>>
+        </td>
+        <td>
+        <input type="checkbox" name= <%= limit_key+"/maximum" %> id=<%= limit_key+"/maximum" %> value="true"
+          <%= @limits[limit_key]["maximum"] ? "checked" : "" %>
+         <%= "disabled=\"disabled\"" if disabled %> />
+        </td>
+      <% else %>
+        <td>
+        <input name=<%= limit_key+"/value" %> type="text" size="10" maxlength="15" value=0>
+        </td>
+        <td>
+        <input type="checkbox" name= <%= limit_key+"/maximum" %> id=<%= limit_key+"/maximum" %> value="true"
+         <%= "disabled=\"disabled\"" if disabled %> />
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
+<% end -%>
+
+

@@ -13,10 +13,6 @@ class SessionsController; def rescue_action(e) raise e end; end
 # token
 class SessionsControllerTest < ActionController::TestCase
 
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
-  # Then, you can remove it from this and the units test.
-  include AuthenticatedTestHelper
-
   fixtures :accounts, :hosts
 
   def setup

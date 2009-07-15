@@ -14,11 +14,11 @@ class StatusController < ApplicationController
     @permissions = @client.permissions
   end
 
-  def create_data_map ( tree, label)
+  def create_data_map( tree, label = "")
     data_list = []
     if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
-        if key.start_with? ("t_") 
+        if key.start_with?("t_") 
           data_list << branch.to_f
         elsif key == "limit"
           @limits[label] = branch.attributes
@@ -27,7 +27,7 @@ class StatusController < ApplicationController
           if key != "value"
             next_label += "/" + key
           end
-          data_list = create_data_map (branch, next_label) 
+          data_list = create_data_map(branch, next_label) 
           if data_list.size > 0
              @data[next_label] = data_list
              data_list = []
@@ -40,10 +40,8 @@ class StatusController < ApplicationController
     return data_list
   end
 
-  def create_data ()
-    @data = {}
-    @limits = {}
-    @limits_list = {}
+  def create_data
+    @data = @limits = @limits_list = @data_group = Hash.new
     status = []
     begin
       till = Time.new
@@ -52,12 +50,12 @@ class StatusController < ApplicationController
       status = @client.find(:dummy_param, :params => { :start => from.strftime("%H:%M,%m/%d/%Y"), :stop => till.strftime("%H:%M,%m/%d/%Y") })
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
+        return false
     end
 
-    create_data_map ( status, "")
+    create_data_map status
 
     #grouping graphs to memory, cpu,...
-    @data_group = {}
     @data.each do |key, list_value|
       if @limits.has_key?(key)
         graph_list = []
@@ -70,7 +68,7 @@ class StatusController < ApplicationController
       key_split = key.split("/")
       if key_split.size > 1
         group_map = {}
-        group_map = @data_group[key_split[1]] if @data_group.has_key? (key_split[1])
+        group_map = @data_group[key_split[1]] if @data_group.has_key?(key_split[1])
         label_name = ""
         for i in 2..key_split.size-1 do
           if i==2 
@@ -101,6 +99,7 @@ class StatusController < ApplicationController
 #      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
     end
     logger.debug "Limits: #{@limits.inspect}"
+    true
   end
 
  # Initialize GetText and Content-Type.
@@ -112,12 +111,12 @@ class StatusController < ApplicationController
 
   def edit
     return unless client_permissions
-    create_data ()
+    create_data()
   end
 
   def index
     return unless client_permissions
-    create_data ()
+    create_data()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -125,5 +124,29 @@ class StatusController < ApplicationController
     end
   end
 
+
+  def save
+    return unless client_permissions
+    create_data()
+
+    @new_limits = @client.new()
+
+    success = true
+
+    begin
+      @new_limits.save
+      logger.debug "limits has been written"
+      flash[:notice] = _("Limits have been written.")
+    rescue ActiveResource::ClientError => e
+       flash[:error] = YaST::ServiceResource.error(e)
+       ExceptionLogger.log_exception e
+       success = false
+    end        
+    if success
+      redirect_to :controller=>"status", :action=>"index"
+    else
+      redirect_to :controller=>"status", :action=>"edit"
+    end
+  end
 
 end

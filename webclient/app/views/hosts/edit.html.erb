@@ -29,13 +29,14 @@ $(document).ready(function() {
     </tr>
     <tr>
 	<td class="first" width="30"><strong><%=_("Url")%></strong></td>
-	<td class="last"><%= f.text_field :uri, class=> "required" %></td>
+	<td class="last"><%= f.text_field :url, :class => "required" %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Description")%></strong></td>
 	<td class="last"><%= f.text_field :description %></td>
     </tr>
     </table>
-    <p><%= f.submit _("Ok") %><%= link_to _('Cancel'), host_path, :class => "button" %></p>
+    <p><%= f.submit _("Ok") %></p>
   </div>
 <% end %>
+<%= button_to _('Cancel'), host_path, :class => "button" %>

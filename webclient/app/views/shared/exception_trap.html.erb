@@ -1,0 +1,27 @@
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#details-link').click(function() { $('#backtrace').hide();$(this).next().show();return false; });
+});
+</script>
+
+<h1>This is embarrasing....</h1>
+
+<p>We are sorry, but WebYaST is still in alpha and there are some problems.</p>
+
+<h2>Error Message:</h2>
+
+<p><%= @error.to_s %></p>
+
+<p>Please <a href="https://bugzilla.novell.com/enter_bug.cgi?classification=7340&product=openSUSE+11.2&submit=Use+This+Product&component=WebYaST&format=guided">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
+
+<a href="#" id="details-link">Show details...</a>
+
+<pre id="backtrace" style="display: none">
+<%= @error.backtrace.join("\n") %>
+</pre>
+
+
+
+
+
