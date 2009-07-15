@@ -24,26 +24,30 @@ class Account < ActiveRecord::Base
   #
   # Will raise unless uri is a valid uri
   #
-  def self.authenticate(login, passwd, host)
-    # Ensure that we really have a uri
-    #  else ActiveResource will raise an exception
-    uri = URI.parse(host.to_s) rescue host.to_s
+  def self.authenticate(login, passwd, uri_s)
+    # host is just a hostname, and we want to set the
+    # HTTP client REST proxy URL to that host, so we need
+    # to add http
+    #
+    # in the future, if we use other protocols via a client
+    # proxy, we need to set the right url there too
+
+    # Ensure that we really have a http/https uri
+    uri = URI.parse(uri_s.to_s)
+    
     unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
-      # FIXME, should be https
-      uri = URI.parse "http://#{uri}"
-      raise "Invalid uri" unless uri.is_a? URI::HTTP   
+      raise "service should be a http or https URI"
     end
 
-    host = uri.to_s #set fixed host
     # set default site url for all YaST service based resources
-    YaST::ServiceResource::Session.site = host
+    YaST::ServiceResource::Session.site = uri
     YaST::ServiceResource::Session.login = login
     
     YaST::ServiceResource::Base.password = ""
     YaST::ServiceResource::Session.auth_token = ""
 
     # the above will obsolete this
-    YaST::ServiceResource::Base.site = host
+    YaST::ServiceResource::Base.site = uri
     # create a login resource
     ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
     logger.debug ret.inspect

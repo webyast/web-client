@@ -1,5 +1,18 @@
 <h1><%=_("Editing YaST-Web-Service")%></h1>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#edit_host").validate({
+    rules: {
+      uri: {
+        required: true,
+        url: true
+      }
+    }
+  });
+});
+</script>
+
 <% form_for(@host) do |f| %>
   <%= f.error_messages %>
 
@@ -16,7 +29,7 @@
     </tr>
     <tr>
 	<td class="first" width="30"><strong><%=_("Url")%></strong></td>
-	<td class="last"><%= f.text_field :url %></td>
+	<td class="last"><%= f.text_field :uri, class=> "required" %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Description")%></strong></td>
