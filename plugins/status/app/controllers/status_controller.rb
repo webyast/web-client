@@ -14,11 +14,11 @@ class StatusController < ApplicationController
     @permissions = @client.permissions
   end
 
-  def create_data_map ( tree, label)
+  def create_data_map( tree, label)
     data_list = []
     if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
-        if key.start_with? ("t_") 
+        if key.start_with?("t_") 
           data_list << branch.to_f
         elsif key == "limit"
           @limits[label] = branch.attributes
@@ -27,7 +27,7 @@ class StatusController < ApplicationController
           if key != "value"
             next_label += "/" + key
           end
-          data_list = create_data_map (branch, next_label) 
+          data_list = create_data_map(branch, next_label) 
           if data_list.size > 0
              @data[next_label] = data_list
              data_list = []
@@ -40,7 +40,7 @@ class StatusController < ApplicationController
     return data_list
   end
 
-  def create_data ()
+  def create_data()
     @data = {}
     @limits = {}
     @limits_list = {}
@@ -55,9 +55,7 @@ class StatusController < ApplicationController
         return
     end
 
-puts "xxxxxxxxxxxxxx #{status.methods.inspect}"
-
-    create_data_map ( status, "")
+    create_data_map( status, "")
 
     #grouping graphs to memory, cpu,...
     @data_group = {}
@@ -73,7 +71,7 @@ puts "xxxxxxxxxxxxxx #{status.methods.inspect}"
       key_split = key.split("/")
       if key_split.size > 1
         group_map = {}
-        group_map = @data_group[key_split[1]] if @data_group.has_key? (key_split[1])
+        group_map = @data_group[key_split[1]] if @data_group.has_key?(key_split[1])
         label_name = ""
         for i in 2..key_split.size-1 do
           if i==2 
@@ -115,12 +113,12 @@ puts "xxxxxxxxxxxxxx #{status.methods.inspect}"
 
   def edit
     return unless client_permissions
-    create_data ()
+    create_data()
   end
 
   def index
     return unless client_permissions
-    create_data ()
+    create_data()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -131,7 +129,7 @@ puts "xxxxxxxxxxxxxx #{status.methods.inspect}"
 
   def save
     return unless client_permissions
-    create_data ()
+    create_data()
 
     @new_limits = @client.new()
 
@@ -147,9 +145,9 @@ puts "xxxxxxxxxxxxxx #{status.methods.inspect}"
        success = false
     end        
     if success
-      redirect_to({:controller=>"status", :action=>"index"})
+      redirect_to :controller=>"status", :action=>"index"
     else
-      redirect_to ({:controller=>"status", :action=>"edit"})
+      redirect_to :controller=>"status", :action=>"edit"
     end
   end
 
