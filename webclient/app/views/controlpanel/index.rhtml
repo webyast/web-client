@@ -1,22 +1,22 @@
 
-<h3><img src="/images/monitoring.png" alt="" height="23" width="23" border="0"> <%= _("Status") %></h3>
+<h3><img src="/images/monitoring.png" height="23" width="23" border="0"> <%= _("Status") %></h3>
 
 <div id="status_patches_icon">
-   <img src= <%=@update_image%> alt="" height="32" width="32" border="0">
+   <img src= <%=@update_image%> height="32" width="32" border="0">
 </div>
 <div id="status_patches_msg">
    <a href="patch_updates"><%=@update_label%></a>
 </div>	
 <br>
 <div id="status_health_icon">
-   <img src="/images/button_ok.png" alt="" height="32" width="32" border="0">
+   <img src="/images/button_ok.png" height="32" width="32" border="0">
 </div>
 <div id="status_health_msg">
    <a href=""><%= _("Your system is healthy.") %></a>
 </div>	
 
 <div id="favorites">
-<h3><img src="/images/yast-config.png" alt="" height="23" width="23" border="0"> <%= _("Configuration") %></h3>
+<h3><img src="/images/yast-config.png" height="23" width="23" border="0"> <%= _("Configuration") %></h3>
 
 <% line_counter = 0 %>
 <% shortcuts_counter = 0 %>
