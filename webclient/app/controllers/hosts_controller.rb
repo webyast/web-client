@@ -30,6 +30,8 @@ class HostsController < ApplicationController
   end
 
   # POST /hosts
+  # the :host parameter is a hash with all values
+  #  see the form in app/views/hosts/new.html.erb 
   def create
     @host = Host.new(params[:host])
 
