@@ -29,6 +29,14 @@ class HostsControllerTest < ActionController::TestCase
     assert_redirected_to new_host_path
   end
 
+  def test_should_fail_uri_validation
+    post :create, :host => { :name => "bad uri", :url => "htx::/foo", :description => "Rails" }
+
+    # after creation failure, ask for re-entering the values
+    # FIXME
+#    assert_redirected_to new_host_path
+  end
+
   # re-create the first host of the fixture
   def test_host_uniqueness
     host = Host.find(:first)
@@ -49,9 +57,17 @@ class HostsControllerTest < ActionController::TestCase
   end
 
   def test_should_update_host
-    put :update, :id => hosts(:one).id, :host => { }
+    put :update, :id => hosts(:one).id, :host => { :name => "new host", :url => "http://www.rubyonrails.org", :description => "Rails" }
     # after creating we redirect to the full list
     assert_redirected_to hosts_path
+  end
+
+  def test_should_fail_update_host
+    host = hosts(:one)
+    # this should fail validation (name not unique)
+    put :update, :id => hosts(:two).id, :host => { :name => host.name, :url => "http://www.rubyonrails.org", :description => "Rails" }
+    # after creating we redirect to the edit dialog
+    assert_redirected_to edit_host_path
   end
 
   def test_should_destroy_host
@@ -60,5 +76,15 @@ class HostsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to hosts_path
+  end
+  
+  # check the validate_uri ajax helper
+  def test_validate_uri_true
+    get :validate_uri, :host => { :url => "http://www.opensuse.org" }
+    assert_equal @response.body, "true"
+  end
+  def test_validate_uri_false
+    get :validate_uri, :host => { :url => "htx:/foo" }
+    assert_equal @response.body, "false"
   end
 end
