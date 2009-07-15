@@ -1,3 +1,5 @@
+require 'uri'
+
 class HostsController < ApplicationController
   layout 'main'
 
@@ -5,7 +7,8 @@ class HostsController < ApplicationController
   def index
     begin
       @hosts = Host.find(:all)
-    rescue
+    rescue Exception => e
+      logger.error e.to_s
       redirect_to "/migrate"
     end
   end
@@ -57,5 +60,15 @@ class HostsController < ApplicationController
 	host.destroy
     end
     redirect_to :action => 'index'
+  end
+
+  def validate_uri
+    logger.error params[:host][:url]
+    uri = URI.parse(params[:host][:url]) rescue nil
+    unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+      render :text => 'false'
+      return
+    end
+    render :text => 'true'
   end
 end
