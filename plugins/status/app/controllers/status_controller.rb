@@ -14,7 +14,7 @@ class StatusController < ApplicationController
     @permissions = @client.permissions
   end
 
-  def create_data_map( tree, label)
+  def create_data_map( tree, label = "")
     data_list = []
     if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
@@ -40,10 +40,8 @@ class StatusController < ApplicationController
     return data_list
   end
 
-  def create_data()
-    @data = {}
-    @limits = {}
-    @limits_list = {}
+  def create_data
+    @data = @limits = @limits_list = @data_group = Hash.new
     status = []
     begin
       till = Time.new
@@ -52,13 +50,12 @@ class StatusController < ApplicationController
       status = @client.find(:dummy_param, :params => { :start => from.strftime("%H:%M,%m/%d/%Y"), :stop => till.strftime("%H:%M,%m/%d/%Y") })
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
-        return
+        return false
     end
 
-    create_data_map( status, "")
+    create_data_map status
 
     #grouping graphs to memory, cpu,...
-    @data_group = {}
     @data.each do |key, list_value|
       if @limits.has_key?(key)
         graph_list = []
@@ -102,6 +99,7 @@ class StatusController < ApplicationController
 #      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
     end
     logger.debug "Limits: #{@limits.inspect}"
+    true
   end
 
  # Initialize GetText and Content-Type.
