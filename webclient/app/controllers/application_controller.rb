@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_logout
-    if not logged_in?
+    if logged_in?
       flash[:notice] = "You must logout before you can login"
       redirect_to root_url
     end
