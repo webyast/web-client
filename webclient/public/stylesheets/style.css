@@ -1,11 +1,125 @@
+/* == Used Colours ===========================================================
+Title               Hex-Code    Used-for Examples
+------------------------------------------------------------------------------
+Medium Blue:        #06c
+Dark Grey:          #333        Font
+Medium Grey:        #666        Header Font
+Soft Light Grey:   #0072ba     Header BG
+BG Grey:            #fcfcfc     Body-BG
+=========================================================================== */
+
+/* == Basic setup  ======================================================== */
 html,
 body {
   background-color: #fcfcfc;
   color: #333;
-  font: 0.8em "lsLucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  width: 99%;
+  font: 1em "lsLucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  width: 100%;
   height: 99%;
   margin: 0;
   padding: 0;
 }
 
+div {
+  display: block;
+}
+
+h1 {
+  font-size: 1.3em;
+}
+h2 {
+  font-size: 1.2em;
+}
+h3 {
+  font-size: 1.1em;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 1em;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #06c;
+  text-decoration: underline;
+}
+img {
+  border: none;
+}
+/* == /Basic setup ======================================================== */
+
+/* == Basic Structure ===================================================== */
+
+/*#header,*/
+#content,
+#footer {
+  min-width: 450px;
+  width: auto;
+  max-width: 1000px;
+  overflow: hidden;
+  margin: 0 auto;
+  font-size: 0.8em;
+}
+
+#header {
+  width: 100%;
+  background: #0072ba url('images/bg-head-gradient-grey.png') repeat-x scroll 0 0;
+  border-bottom: 1px solid #39f;
+  border-bottom: 1px solid #06c;
+  height: 50px;
+}
+  #header h1,
+  #header img {
+    float: left;
+  }
+  #header h1 {
+    margin: 10px 1em;
+  }
+  #header img {
+    margin: 2px 1em 0;
+  }
+  #login-wrapper {
+    position: relative;
+    float: right;
+  }
+  
+#content {
+  min-height: 600px;
+  margin-top: 2em;
+}
+#footer {
+  
+}
+/* == /Basic Structure  =================================================== */
+
+/* == Basic Styles ======================================================== */
+#header * {
+  color: #666;
+}
+
+#login-wrapper ul {
+  list-style: none outside;
+  margin: 5px 0 0;
+  font-size: 0.7em;
+}
+#login-wrapper ul * {
+
+}
+#login-wrapper li {
+  float: left;
+  margin: 0 0.5em;
+}
+#login-wrapper ul em {
+  font-weight: bold;
+}
+#login-wrapper li a {
+  
+}
+#login-wrapper li a:hover {
+  color: #06c;
+}
+/* == /Basic Styles ======================================================== */

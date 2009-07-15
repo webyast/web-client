@@ -1,78 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
   <link rel="stylesheet" href="/stylesheets/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" title="default" charset="utf-8" />
   <link rel="stylesheet" href="/stylesheets/jquery.jqplot.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.timers.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/javascripts/jquery.jqplot.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/javascripts/plugin/jqplot.pieRenderer.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/inc/jquery.timers.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.jqplot.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/javascripts/plugin/jqplot.pieRenderer.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
 
   <!--<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>-->
 
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/shortcut.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/inc/shortcut.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
 
   <title>WebYaST</title>
 </head>
-  <body id="shell" bgcolor="#ffffff" onload="">
-    <div id="appliance_logo">
-      <img src="/images/suse-logo.png" alt="SUSE" height="120" width="120" border="0" />
-      <div id="appliance_title">My Appliance</div>
-  
-        <% host = Host.find(session[:host]) rescue nil
-           user = session[:user]
-           if host.blank? || user.blank? -%>
-     
-     <div id="login_session">
-       <%= link_to _("Login"), '/login' %>
-     </div>
-     
-  <% else -%>
-     
-     <div id="logout_session">
-       <div id="connectedHost">
-         <div class="box">
-           <p><%=_("Connected Host")%></p>
-           <p><%=_("Name:")%> <%= host.name -%> <p>
-              <%=_("User:")%> <%= user -%>
-         </div>
-       </div>
-       <%= link_to _("Logout"), '/logout' %>
-     </div>
-  <% end -%>
-   
-  </div>
+  <body id="shell" onload="">
+    
+    <div id="header">
+      
+      <img src="/images/geckohead-grey.png" alt="SUSE" />
+      
+      <h1>My Appliance</h1>
 
-   <div class="content">
+      <div id="login-wrapper">
+      <% host = Host.find(session[:host]) rescue nil
+         user = session[:user]
+         if host.blank? || user.blank? -%>
+      
+        <ul>
+          <li><%= link_to _("Login"), '/login' %></li>
+        </ul>
+
+      <% else -%>
+
+        <ul>
+          <li><strong><%=_("Connected Host")%></strong></li>
+          <li><strong><%=_("Name:")%></strong> <%= host.name -%></li>
+          <li><strong><%=_("User:")%></strong> <%= user -%></li>
+          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
+        </ul>
+
+      <% end -%>
+      </div>
+    </div>
+
+    <div id="content" class="content">
       <!-- show the flash messages -->
       <% [:notice, :warning, :message, :error].each do |name| %>
         <% if flash[name] %>
           <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <div id="progress" style="display:none;">
-        <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
-      </div>
+        <div id="progress" style="display:none;">
+          <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+        </div>
 
       <%= @content_for_layout %>
-   </div>
-   <br/>
-   <br/>
-   <div class="content">
+
+    </div>
+
+    <div id="footer" class="">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
     </div>
-</body>
+  </body>
 </html>

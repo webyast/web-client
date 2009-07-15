@@ -1,13 +1,13 @@
 
 
 <div class="services-list">
-      <label for="#services-list">Please choose a service:</label>
+      <label for="services-list">Please choose a service:</label>
       <table id="services-list" class="list">
         <tbody>
           <% for host in @hosts %>
           <tr class="host-item">
             <td class="icon">
-	      <div class="container"><img src="/icons/yast-service-22.png"></div>
+	      <div class="container"><img src="/icons/yast-service-22.png" alt="" /></div>
 	    </td>
             <td>
 	      <div class="title"><%= link_to host.name, new_session_path(:hostid => "#{host.id}") %></div>
