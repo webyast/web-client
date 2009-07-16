@@ -47,7 +47,11 @@ class SystemTimeController < ApplicationController
   def index    
     @systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    unless @systemtime
+    unless @systemtime      
+      return false
+    end
+
+    unless @permissions[:read]
       flash[:warning] = "No permissions for time module"
       redirect_to root_path
       return false
