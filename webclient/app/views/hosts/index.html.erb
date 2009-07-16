@@ -1,42 +1,38 @@
 
 
 <div class="services-list">
-      <label for="services-list">Please choose a service:</label>
-      <table id="services-list" class="list">
-        <tbody>
-          <% for host in @hosts %>
-          <tr class="host-item">
-            <td class="icon">
-	      <div class="container"><img src="/icons/yast-service-22.png" alt="" /></div>
-	    </td>
-            <td>
-	      <div class="title"><%= link_to host.name, new_session_path(:hostid => "#{host.id}") %></div>
-	    </td>
-            <td>
-	      <div class="label"><%=h host.url %></div>
-	    </td>
-            <td>
-	      <div class="label"><%=h host.description %></div>
-	    </td>
-            <td class="icon">
-              <div class="container">
-                <%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), 
-                    edit_host_path(host) %>
-              </div>
-            </td>
-            <td class="icon">
-              <div class="container">
-                <%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
-                    host, :confirm => _("Really delete host #{host.name} ?"), :method => :delete %>
-              </div>
-            </td>
+  
+  <label for="services-list">Please choose a service:</label>
+  <ul>
+    <% for host in @hosts %>
+    
+    <li>
+      <ul>
+        <li>
+          <%= link_to host.name, new_session_path(:hostid => "#{host.id}") %>
+        </li>
+        <li>
+          <%=h host.url %>
+        </li>
+        <li>
+          <%=h host.description %>
+        </li>
+        <li>
+          <%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"),
+                edit_host_path(host) %>
+        </li>
+        <li>
+          <%= link_to image_tag("/images/delete.png", :alt =>  "delete"),
+              host, :confirm => _("Really delete host #{host.name} ?"), :method => :delete %>
+        </li>
+      </ul>
+    </li>
+    
+    <% end %>
 
-          </tr>
-          <% end %>
-        </tbody>
-
-      </table>  
-      <%= button_to _('Add'), new_host_path, :class => "button" %>
+  </ul> 
+    
+    <%= link_to _('Add'), new_host_path, :class => "button" %>
       <!--
        FIXME may be add remove and edit buttons and get rid of the icons above
       <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  

@@ -38,22 +38,18 @@
 
       <div id="login-wrapper">
       <% host = Host.find(session[:host]) rescue nil
-         user = session[:user]
-         if host.blank? || user.blank? -%>
-      
+        user = session[:user]
+        if host.blank? || user.blank? -%>
         <ul>
           <li><%= link_to _("Login"), '/login' %></li>
         </ul>
-
       <% else -%>
-
         <ul>
           <li><strong><%=_("Connected Host")%></strong></li>
           <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
           <li><em><%= link_to _("Logout"), '/logout' %></em></li>
         </ul>
-
       <% end -%>
       </div>
     </div>

@@ -1,7 +1,8 @@
 /* == Used Colours ===========================================================
 Title               Hex-Code    Used-for Examples
 ------------------------------------------------------------------------------
-Medium Blue:        #06c
+Medium Blue:        #06c        Links Hover
+Medium Green:       #6c0
 Dark Grey:          #333        Font
 Medium Grey:        #666        Header Font
 Soft Light Grey:    #0072ba     Header BG
@@ -148,12 +149,15 @@ img {
 .list-row {
   border-bottom: 1px dotted #ccc;
 }
+.list-row.overview {
+  border-color: transparent;
+}
   .list-row.overview > div { /* get child of *.overview */
     overflow: hidden;
     padding: 1em 0;
     
   }
-  .list-row.overview > div:first-child {
+  .list-row.overview > div {
    border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
   }
     .list-row div a {
@@ -176,7 +180,17 @@ img {
   background-color: #f6f6f6;
 }
 
+a.button {
+  color: #444;
+  border: 1px solid #06c;
 
-
+  background: #0072ba url('images/bg-head-gradient-grey.png') repeat-x scroll top center;
+  padding: 0.5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+a.button:hover {
+  color: #06c;
+}
 
 
