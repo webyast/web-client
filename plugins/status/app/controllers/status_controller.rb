@@ -106,6 +106,26 @@ class StatusController < ApplicationController
     true
   end
 
+  #removing logging data and add limits which are defined in params
+  def create_save_data(status, params, label = "")
+    status.each do |key, value|
+     if key.start_with?("t_") 
+       status.delete(key)  
+     elsif
+       next_label = label+ "/" + key
+
+       create_save_data(value, params, next_label) if value.is_a? Hash
+     end
+    end
+    if params.has_key?(label+"/value")
+      limit = Hash.new
+      limit["value"] = params[label+"/value"]
+      limit["maximum"] = params[label+"/maximum"] == "true"?true:false
+      status["limit"] = limit
+    end
+    return status
+  end
+
  # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_status"  
 
@@ -133,22 +153,17 @@ class StatusController < ApplicationController
     return unless client_permissions
     create_data()
 
-    @new_limits = @client.find()
+    status = @client.find()
+    save_hash = create_save_data(Hash.from_xml(status.to_xml)["status"], params)
+    logger.debug "writing #{save_hash.inspect}"
 
-#puts "xxxxxxxxxxxxxxxx #{status.to_param.inspect}"
-#puts "xxxxxxxxxxxxxxxx #{status.to_xml}"
-#puts "yyyyxxxxxxxxxxxxxxxx #{Hash.from_xml(status.to_xml).inspect}"
-
-#test = @client.new()
-#test.load(Hash.from_xml(status.to_xml))
-
-#puts "sssssssssssssssss #{test.inspect}"
+    save_status = @client.new()
+    save_status.load(save_hash)
 
     success = true
-
     begin
-      @new_limits.save
-      logger.debug "limits has been written"
+      save_status.save
+      logger.debug "limits have been written"
       flash[:notice] = _("Limits have been written.")
     rescue ActiveResource::ClientError => e
        flash[:error] = YaST::ServiceResource.error(e)
