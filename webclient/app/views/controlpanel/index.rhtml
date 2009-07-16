@@ -1,16 +1,20 @@
 <%= javascript_include_tag :defaults %>
-
+<% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
 <% javascript_tag do -%>
   $(document).ready( function() {
   <%= remote_function(:update => "status_patches",
       :url => { :controller => :patch_updates, :action => :show_summary }) %>
   });
 <% end -%>
-
+<% end %>
 <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
 <div id="status_patches">
-  <img src="/images/working.gif" height="32" width="32" border="0" /> Loading information about patches
+  <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+  <img src="/images/working.gif" height="32" width="32" border="0" /> Loading informations about patches
+  <% else %>
+    Patch plugin is not installed.
+    <% end %>
 </div>
 <br />
 <div id="status_health_icon">

@@ -1,8 +1,8 @@
 # Systemtime
 
 def fill_proxy_with_time(proxy,params)
-  arr = params[:date][:date].split("/")
-    proxy.time = "#{arr[2]}-#{arr[0]}-#{arr[1]} - "+params[:currenttime]
+    proxy.date = params[:date][:date]
+    proxy.time = params[:currenttime]
     proxy.timezones = [] #not needed anymore
     proxy.utcstatus = ""
     proxy.timezone = ""
@@ -19,7 +19,7 @@ def fill_proxy_with_timezone(proxy,params,timezones)
 
     region.entries.each do |e|
       if (e.name == params[:timezone])
-        t.timezone = e.id
+        proxy.timezone = e.id
         break
       end
     end
@@ -33,5 +33,6 @@ def fill_proxy_with_timezone(proxy,params,timezones)
     end
 
     proxy.time = ""
+    proxy.date = ""
     proxy.timezones = [] #not needed anymore
 end
