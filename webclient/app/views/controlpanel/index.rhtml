@@ -1,20 +1,11 @@
-<%= javascript_include_tag :defaults %>
-<% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-<% javascript_tag do -%>
-  $(document).ready( function() {
-  <%= remote_function(:update => "status_patches",
-      :url => { :controller => :patch_updates, :action => :show_summary }) %>
-  });
-<% end -%>
-<% end %>
+
 <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
-<div id="status_patches">
-  <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-  <img src="/images/working.gif" height="32" width="32" border="0" /> Loading informations about patches
-  <% else %>
-    Patch plugin is not installed.
-    <% end %>
+<div id="status_patches_icon">
+  <img src= <%=@update_image%> height="32" width="32" border="0" />
+</div>
+<div id="status_patches_msg">
+  <a href="patch_updates"><%=@update_label%></a>
 </div>
 <br />
 <div id="status_health_icon">
@@ -29,32 +20,34 @@
 
 <% line_counter = 0 %>
 <% shortcuts_counter = 0 %>
-<div class="table">
-  <table class="listing" cellpadding="0" cellspacing="0">
-  <% @shortcuts.each do |name, data| %>
-    <% logger.debug data.inspect %>
-    <% if line_counter*5 == shortcuts_counter %> 
-      <% if line_counter > 0 %>
-      </tr>
+<div class="table">  
+  
+    <table class="listing" cellpadding="0" cellspacing="0">
+    <% @shortcuts.each do |name, data| %>
+      <% logger.debug data.inspect %>
+      <% if line_counter*5 == shortcuts_counter %> 
+        <% if line_counter > 0 %>
+        </tr>
+        <% end %>
+        <% line_counter +=1 %>
+        <tr>
       <% end %>
-      <% line_counter +=1 %>
-      <tr>
+      <td>
+        <% link_to (data['url']) do %>
+          <img src="<%= data['icon'] %>"/>
+          <div>
+            <%= data['title'] %>
+          </div>
+        <% end %>
+      </td>
+      <% shortcuts_counter +=1 %>
     <% end %>
-    <td>
-      <% link_to (data['url']) do %>
-        <img src="<%= data['icon'] %>"/>
-        <div>
-          <%= data['title'] %>
-        </div>
-      <% end %>
-    </td>
-    <% shortcuts_counter +=1 %>
-  <% end %>
-  <% if line_counter*5 != shortcuts_counter-1 %> 
-    </tr>
-  <% end %>
+    <% if line_counter*5 != shortcuts_counter-1 %> 
+      </tr>
+    <% end %>
 
-  </table>
+    </table>
+    
 </div>
 
 <div class="content">
@@ -62,5 +55,3 @@
 </div>
 
 </div>
-
-

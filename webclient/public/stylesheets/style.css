@@ -4,7 +4,7 @@ Title               Hex-Code    Used-for Examples
 Medium Blue:        #06c
 Dark Grey:          #333        Font
 Medium Grey:        #666        Header Font
-Soft Light Grey:   #0072ba     Header BG
+Soft Light Grey:    #0072ba     Header BG
 BG Grey:            #fcfcfc     Body-BG
 =========================================================================== */
 
@@ -50,7 +50,6 @@ a:hover {
 img {
   border: none;
 }
-/* == /Basic setup ======================================================== */
 
 /* == Basic Structure ===================================================== */
 
@@ -91,10 +90,13 @@ img {
   min-height: 600px;
   margin-top: 2em;
 }
+  #content h2 {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+  }
 #footer {
-  
+  padding: 1em 0 100px;
 }
-/* == /Basic Structure  =================================================== */
 
 /* == Basic Styles ======================================================== */
 #header * {
@@ -122,4 +124,38 @@ img {
 #login-wrapper li a:hover {
   color: #06c;
 }
-/* == /Basic Styles ======================================================== */
+
+/* == Lists and Tables ==================================================== */
+
+.list-row {
+  clear: left;
+  overflow: hidden;
+  padding: 1em 0;
+}
+
+.list-row h3 {
+  margin-top: 0;
+  text-indent: 10px;
+}
+.list-row div div {
+  float: left;
+  margin: 0 25px 0 0;
+  width: 75px;
+  
+  text-align: center;
+}
+
+.list-row {
+  border-bottom: 1px dotted #ccc;
+}
+
+/* == Helper Styles ======================================================= */
+
+.grey-bg {
+  background-color: #f6f6f6;
+}
+
+
+
+
+

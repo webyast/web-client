@@ -1,31 +1,64 @@
 <h2><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h2>
 
 <% @shortcut_groups.each do |name, shortcuts| %>
-  <h3><%= name %></h3>
+  <!-- <h3><%= name %></h3> -->
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
-  <div class="table">
-    <table class="listing" cellpadding="0" cellspacing="0">
+  <div class="list-row highlight-bg">
+    <h3><%= name %></h3>
+    <!-- <table class="listing" cellpadding="0" cellspacing="0"> -->
     <% shortcuts.each do |data| %>
       <% if line_counter*5 == shortcuts_counter %> 
         <% if line_counter > 0 %>
-          </tr>
+          <!-- </tr> -->
+          </div>
         <% end %>
         <% line_counter +=1 %>
-        <tr>
+        <!-- <tr> -->
+          <div>
       <% end %>
-      <td>
-        <img src="<%= data['icon'] %>"/>
+      <!-- <td> -->
         <div>
+        <img src="<%= data['icon'] %>"/>
+        <p>
           <%= link_to data['title'], data['url'] %>
+        </p>
         </div>
-      </td>
+      <!-- </td> -->
       <% shortcuts_counter +=1 %>
     <% end %>
     <% if line_counter*5 != shortcuts_counter-1 %> 
-      </tr>
+      <!-- </tr> -->
+    </div>
     <% end %>
-    </table>
+    <!-- </table> -->
+    
+    
+    <!-- 
+      
+      <table class="listing" cellpadding="0" cellspacing="0">
+      <% shortcuts.each do |data| %>
+        <% if line_counter*5 == shortcuts_counter %> 
+          <% if line_counter > 0 %>
+            </tr>
+          <% end %>
+          <% line_counter +=1 %>
+          <tr>
+        <% end %>
+        <td>
+          <img src="<%= data['icon'] %>"/>
+          <div>
+            <%= link_to data['title'], data['url'] %>
+          </div>
+        </td>
+        <% shortcuts_counter +=1 %>
+      <% end %>
+      <% if line_counter*5 != shortcuts_counter-1 %> 
+        </tr>
+      <% end %>
+      </table>
+      
+       -->
   </div>
 <% end %>
 
