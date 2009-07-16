@@ -51,6 +51,14 @@ a:hover {
 img {
   border: none;
 }
+input {
+  border: 1px solid #999;
+  padding: 3px;
+}
+input:focus {
+  border: 1px solid #69c;
+  color: #69c;
+}
 
 /* == Basic Structure ===================================================== */
 
@@ -126,6 +134,33 @@ img {
   color: #06c;
 }
 
+#login-dialogue {
+  width: 23em;
+  min-height: 17em; /* FIXME not working in IE6 */
+  background: #666;
+  margin: 0 auto;
+  overflow: hidden;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  
+}
+  #login-dialogue form {
+    display: block;
+    background: #fefefe;
+    
+    padding: 5px;
+    
+    margin: 7px;
+  }
+  #login-dialogue h2 {
+    margin: 0;
+  }
+  #login-dialogue label {
+    display: block;
+    width: 5.5em;
+    color: #666;
+  }
 /* == Lists and Tables ==================================================== */
 
 .list-row {
@@ -194,6 +229,10 @@ ul.list-2level-inline ul {
     .list-2level-inline + p {
       clear: left;
     }
+    .list-2level-inline ul li span {
+      color: #666;
+    }
+    
 /* == Helper Styles ======================================================= */
 
 .grey-bg {
@@ -203,7 +242,6 @@ ul.list-2level-inline ul {
 a.button {
   color: #444;
   border: 1px solid #06c;
-
   background: #0072ba url('images/bg-head-gradient-grey.png') repeat-x scroll top center;
   padding: 0.5em;
   -moz-border-radius: 5px;

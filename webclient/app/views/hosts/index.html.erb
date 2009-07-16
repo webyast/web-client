@@ -8,13 +8,13 @@
     <li>
       <ul>
         <li>
-          <%= link_to host.name, new_session_path(:hostid => "#{host.id}") %>
+          <strong><%= link_to host.name, new_session_path(:hostid => "#{host.id}") %></strong>
         </li>
         <li>
-          <%=h host.url %>
+          <span><%=h host.url %></span>
         </li>
         <li>
-          <%=h host.description %>
+          <span><%=h host.description %></span>
         </li>
         <li>
           <%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"),
