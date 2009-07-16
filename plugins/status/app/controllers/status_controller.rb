@@ -48,6 +48,7 @@ class StatusController < ApplicationController
       from = till - 300 #last 5 minutes
       
       status = @client.find(:dummy_param, :params => { :start => from.strftime("%H:%M,%m/%d/%Y"), :stop => till.strftime("%H:%M,%m/%d/%Y") })
+
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
         return false
@@ -129,7 +130,16 @@ class StatusController < ApplicationController
     return unless client_permissions
     create_data()
 
-    @new_limits = @client.new()
+    @new_limits = @client.find()
+
+#puts "xxxxxxxxxxxxxxxx #{status.to_param.inspect}"
+#puts "xxxxxxxxxxxxxxxx #{status.to_xml}"
+#puts "yyyyxxxxxxxxxxxxxxxx #{Hash.from_xml(status.to_xml).inspect}"
+
+#test = @client.new()
+#test.load(Hash.from_xml(status.to_xml))
+
+#puts "sssssssssssssssss #{test.inspect}"
 
     success = true
 
