@@ -31,14 +31,12 @@
         <% line_counter +=1 %>
         <div class="highlight-bg">
       <% end %>
-      <!-- <div> -->
         <% link_to (data['url']) do %>
           <img src="<%= data['icon'] %>"/>
           <p>
             <%= data['title'] %>
           </p>
         <% end %>
-      <!-- </div> -->
       <% shortcuts_counter +=1 %>
     <% end %>
     <% if line_counter*5 != shortcuts_counter-1 %> 

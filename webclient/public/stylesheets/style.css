@@ -137,8 +137,8 @@ img {
   margin-top: 0;
   text-indent: 10px;
 }
-.list-row.overview div a,
-.list-row div div {
+.list-row div div,
+.list-row div a {
   float: left;
   margin: 0 25px 0 0;
   width: 75px;
@@ -148,18 +148,18 @@ img {
 .list-row {
   border-bottom: 1px dotted #ccc;
 }
-  .list-row.overview > div {
+  .list-row.overview > div { /* get child of *.overview */
     overflow: hidden;
     padding: 1em 0;
   }
-    .list-row.overview div a {
+    .list-row div a {
       display: block;
-      padding: 1em 0 0;
-      margin: 0 10px;
+      padding: 1em 5px 0;
+      margin: 0 5px;
       border: 2px dashed transparent;
-      height: 9em;
+      height: 8em;
     }
-    .list-row.overview div a:hover {
+    .list-row div a:hover {
       border-color: #999;
       background: #eee;
       text-decoration: none;

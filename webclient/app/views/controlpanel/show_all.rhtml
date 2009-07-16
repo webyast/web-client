@@ -13,12 +13,14 @@
         <% line_counter +=1 %>
           <div>
       <% end %>
-        <div>
+      
+      <% link_to (data['url']) do %>
         <img src="<%= data['icon'] %>"/>
         <p>
-          <%= link_to data['title'], data['url'] %>
+          <%= data['title'] %>
         </p>
-        </div>
+      <% end %>
+      
       <% shortcuts_counter +=1 %>
     <% end %>
     <% if line_counter*5 != shortcuts_counter-1 %> 
