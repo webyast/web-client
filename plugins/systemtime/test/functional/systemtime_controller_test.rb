@@ -102,7 +102,7 @@ class SystemTimeControllerTest < ActionController::TestCase
 
   def test_commit
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
-    post :commit_time, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }
+    post :update_time, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }
 
     assert_response :redirect
     assert_redirected_to :action => "index"

@@ -12,6 +12,30 @@ class PatchUpdatesController < ApplicationController
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
+  def show_summary
+    patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+
+    unless patch_updates
+      flash.clear #no flash from load_proxy
+      render :partial => "patch_summary", :locals => { :patch => nil }
+      return false
+    end
+
+    patches = { :security => 0, :important => 0, :optional => 0}
+
+    patch_updates.each do |patch|
+      case patch.kind
+        when "security":  patches[:security] += 1
+        when "important": patches[:important] += 1
+        when "optional":  patches[:optional] += 1
+      else
+        logger.warn "unknown patch kind #{patch.kind}"
+      end
+    end
+
+    render :partial => "patch_summary", :locals => { :patch => patches }
+  end
+
   def load_filtered
     @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
     kind = params[:value]

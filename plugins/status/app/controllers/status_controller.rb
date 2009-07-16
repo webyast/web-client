@@ -41,7 +41,10 @@ class StatusController < ApplicationController
   end
 
   def create_data
-    @data = @limits = @limits_list = @data_group = Hash.new
+    @data = Hash.new
+    @limits = Hash.new
+    @limits_list = Hash.new
+    @data_group = Hash.new
     status = []
     begin
       till = Time.new
