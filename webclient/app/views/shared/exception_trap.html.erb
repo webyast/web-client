@@ -18,7 +18,7 @@ $(document).ready(function() {
 <a href="#" id="details-link">Show details...</a>
 
 <pre id="backtrace" style="display: none">
-<%= backtrace.blank? ? @error.backtrace.join("\n") : "No information available" %>
+<%= @error.backtrace.blank? ? @error.backtrace.join("\n") : "No information available" %>
 </pre>
 
 
