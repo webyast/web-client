@@ -151,6 +151,10 @@ img {
   .list-row.overview > div { /* get child of *.overview */
     overflow: hidden;
     padding: 1em 0;
+    
+  }
+  .list-row.overview > div:first-child {
+   border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
   }
     .list-row div a {
       display: block;
