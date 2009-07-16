@@ -12,8 +12,6 @@ class ControlpanelController < ApplicationController
 
   def index
     @shortcuts = shortcuts_data
-    res = check_update
-    @update_label, @update_image = res if res.is_a? Array
   end
 
   def show_all
@@ -37,58 +35,6 @@ class ControlpanelController < ApplicationController
   end
   
   protected
-
-  # FIXME: refactor out to updates_controller !
-  #
-  # Check patches
-  def check_update
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-    unless proxy
-      logger.warn "Couldn't find proxy for org.opensuse.yast.system.patches"
-      return
-    end
-    begin
-      patch_updates = proxy.find(:all) || []
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      return
-    rescue Exception => e
-      flash[:error] = "An exception was raised. Check the logs."
-      logger.error e
-      logger.info e.backtrace.join("\n")
-      return
-    end
-    
-    security = 0
-    important = 0
-    optional = 0
-    patch_updates.each do |patch|
-      case patch.kind
-        when "security":  security += 1
-        when "important": important += 1
-        when "optional":  optional += 1
-      end
-    end
-    # FIXME: Don't create label, create a partial view instead
-    # FIXME: translations !
-    label = ""
-    label += "Security Updates: #{security} " if security>0
-    label += "Important Updates: #{important} " if important>0
-    label += "Optional Updates: #{optional} " if optional>0
-
-    label = _("Your system is up to date.") if label.blank?
-    
-    # FIMXE: Images are defined by CSS, don't hardcode them here
-    if security>0 || important>0
-      img = "/images/button_critical.png"
-    elsif optional>0
-      img = "/images/button_warning.png"
-    else
-      img = "/images/button_ok.png"
-    end
-    logger.debug "evaluated patches #{patch_updates.inspect} ==> security:#{security}; important:#{important}; optional:#{optional}"
-    [ label, img ]
-  end
 
   # reads the shortcuts and returns the
   # hash with the data

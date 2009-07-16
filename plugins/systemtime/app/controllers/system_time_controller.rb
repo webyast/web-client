@@ -37,7 +37,8 @@ class SystemTimeController < ApplicationController
 
   public
   
-  # FIXME: should go to initialize()
+  # FIXME: should go to initialize(), even better move it to singleton which
+  #         holds informations about available timezones
   @@timezones = {}
 
   # FIXME: should go to initialize()
