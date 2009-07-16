@@ -3,9 +3,8 @@
 <div class="services-list">
   
   <label for="services-list">Please choose a service:</label>
-  <ul>
+  <ul class="list-2level-inline">
     <% for host in @hosts %>
-    
     <li>
       <ul>
         <li>
@@ -27,16 +26,15 @@
         </li>
       </ul>
     </li>
-    
     <% end %>
-
   </ul> 
-    
-    <%= link_to _('Add'), new_host_path, :class => "button" %>
-      <!--
-       FIXME may be add remove and edit buttons and get rid of the icons above
-      <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  
-      <input class="button disabled" disabled="true" type="submit" value="Edit" id="edit-printer"/>        
-      -->
+  <p>  
+  <%= link_to _('Add'), new_host_path, :class => "button" %>
+  </p>
+  <!--
+   FIXME may be add remove and edit buttons and get rid of the icons above
+  <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  
+  <input class="button disabled" disabled="true" type="submit" value="Edit" id="edit-printer"/>        
+  -->
 </div>
 <!--host list -->

@@ -174,6 +174,26 @@ img {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
     }
+    
+    
+ul.list-2level-inline,
+ul.list-2level-inline ul {
+  list-style: none outside;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+  .list-2level-inline ul {
+    
+  }
+    .list-2level-inline ul li {
+      float: left;
+      margin-right: 1em;
+    }
+    
+    .list-2level-inline + p {
+      clear: left;
+    }
 /* == Helper Styles ======================================================= */
 
 .grey-bg {
