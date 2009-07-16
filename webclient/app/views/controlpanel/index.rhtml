@@ -1,11 +1,21 @@
+<%= javascript_include_tag :defaults %>
+<% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+  <% javascript_tag do -%>
+    $(document).ready( function() {
+    <%= remote_function(:update => "status_patches",
+      :url => { :controller => :patch_updates, :action => :show_summary }) %>
+    });
+  <% end -%>
+<% end %>
 
 <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
-<div id="status_patches_icon">
-  <img src= <%=@update_image%> height="32" width="32" border="0" />
-</div>
-<div id="status_patches_msg">
-  <a href="patch_updates"><%=@update_label%></a>
+<div id="status_patches">
+  <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading informations about patches
+  <% else %>
+    Patch plugin is not installed.
+  <% end %>
 </div>
 <br />
 <div id="status_health_icon">
@@ -16,20 +26,20 @@
 </div>
 
 <div id="favorites">
-<h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
+  <h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
 
-<% line_counter = 0 %>
-<% shortcuts_counter = 0 %>
-<div class="list-row overview">
-  
+  <% line_counter = 0 %>
+  <% shortcuts_counter = 0 %>
+  <div class="list-row overview">
+
     <% @shortcuts.each do |name, data| %>
       <% logger.debug data.inspect %>
-      <% if line_counter*5 == shortcuts_counter %> 
+      <% if line_counter*5 == shortcuts_counter %>
         <% if line_counter > 0 %>
         </div>
-        <% end %>
-        <% line_counter +=1 %>
-        <div class="highlight-bg">
+      <% end %>
+      <% line_counter +=1 %>
+      <div class="highlight-bg">
       <% end %>
         <% link_to (data['url']) do %>
           <img src="<%= data['icon'] %>"/>
@@ -39,9 +49,9 @@
         <% end %>
       <% shortcuts_counter +=1 %>
     <% end %>
-    <% if line_counter*5 != shortcuts_counter-1 %> 
-      </div>
-    <% end %>
+    <% if line_counter*5 != shortcuts_counter-1 %>
+    </div>
+  <% end %>
 
 </div>
 
