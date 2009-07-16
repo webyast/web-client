@@ -14,7 +14,7 @@
 
 
 <h2><%=_("Configure timezone")%></h2>
-<% form_tag '/system_time/commit_timezone', :class => 'container' do %>
+<% form_tag '/system_time/update_timezone', :class => 'container' do %>
   <table summary="<%= _("Table for settings timezone for target machine.") %>">
     <tr>
 
@@ -72,7 +72,7 @@
   </table>
 <% end %>
 <h2><%=_("Manually configure time")%></h2>
-<% form_tag '/system_time/commit_time', :class => 'container' do %>
+<% form_tag '/system_time/update_time', :class => 'container' do %>
   <table summary="<%= _("Manual time configuration table, where user selects data and time for target machine") %>">
     <tr>
       <td>

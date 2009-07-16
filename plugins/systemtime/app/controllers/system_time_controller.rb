@@ -11,14 +11,15 @@ class SystemTimeController < ApplicationController
   #helpers
   private
   def fill_valid_timezones
-    @@timezones.each do |region|
+    @valid.clear
+    @timezones.each do |region|
       @valid.push(region.name)
     end
   end
 
   def fill_current_region
     # FIXME: @region can remain unset
-    @@timezones.each do |region|
+    @timezones.each do |region|
       region.entries.each do |entry|
         if entry.id == @systemtime.timezone
           @region = region
@@ -36,14 +37,15 @@ class SystemTimeController < ApplicationController
   end
 
   public
-  
-  # FIXME: should go to initialize(), even better move it to singleton which
-  #         holds informations about available timezones
-  @@timezones = {}
 
-  # FIXME: should go to initialize()
+  # cannot move to initialize, it is not finded - http://www.yotabanana.com/hiki/ruby-gettext-howto-rails.html#ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
+
+  def initialize
+    @timezones = {}
+    @valid = []    
+  end 
 
   def index    
     @systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
@@ -58,15 +60,14 @@ class SystemTimeController < ApplicationController
       return false
     end
 
-    @valid = []    
-    @@timezones = @systemtime.timezones
+        
+    @timezones = @systemtime.timezones
     fill_valid_timezones
     fill_current_region
     fill_date_and_time(@systemtime.time)
   end
 
-  # FIXME: rename to 'update' to match rails conventions
-  def commit_time
+  def update_time
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     # FIXME: add a 'redirect_to'
@@ -85,14 +86,15 @@ class SystemTimeController < ApplicationController
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       log_exception e
-    #FIXME: what about other exceptions ?
+    rescue Exception => e
+      flash[:error] = e.message
+      log_exception e
     end    
 
     redirect_to :action => :index
   end
 
-  # FIXME: rename to 'update' to match rails conventions
-  def commit_timezone
+  def update_timezone
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     # FIXME: add a 'redirect_to'
@@ -108,7 +110,9 @@ class SystemTimeController < ApplicationController
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       log_exception e
-    #FIXME: what about other exceptions ?
+    rescue Exception => e
+      flash[:error] = e.message
+      log_exception e
     end
 
     redirect_to :action => :index    
@@ -116,7 +120,7 @@ class SystemTimeController < ApplicationController
 
   def timezones_for_region
     region = ""
-    @@timezones.each do |r|
+    @timezones.each do |r|
       if r.name == params[:value]
         region = r
       end
