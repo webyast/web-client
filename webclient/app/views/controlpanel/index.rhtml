@@ -20,35 +20,34 @@
 
 <% line_counter = 0 %>
 <% shortcuts_counter = 0 %>
-<div class="table">  
+<div class="list-row overview">
   
-    <table class="listing" cellpadding="0" cellspacing="0">
     <% @shortcuts.each do |name, data| %>
       <% logger.debug data.inspect %>
       <% if line_counter*5 == shortcuts_counter %> 
         <% if line_counter > 0 %>
-        </tr>
+        </div>
         <% end %>
         <% line_counter +=1 %>
-        <tr>
+        <div class="highlight-bg">
       <% end %>
-      <td>
+      <!-- <div> -->
         <% link_to (data['url']) do %>
           <img src="<%= data['icon'] %>"/>
-          <div>
+          <p>
             <%= data['title'] %>
-          </div>
+          </p>
         <% end %>
-      </td>
+      <!-- </div> -->
       <% shortcuts_counter +=1 %>
     <% end %>
     <% if line_counter*5 != shortcuts_counter-1 %> 
-      </tr>
+      </div>
     <% end %>
 
-    </table>
-    
 </div>
+
+
 
 <div class="content">
   <a href="controlpanel/show_all"><%= _("Show all modules") %></a>

@@ -58,7 +58,7 @@ img {
 #footer {
   min-width: 450px;
   width: auto;
-  max-width: 1000px;
+  max-width: 960px;
   overflow: hidden;
   margin: 0 auto;
   font-size: 0.8em;
@@ -137,6 +137,7 @@ img {
   margin-top: 0;
   text-indent: 10px;
 }
+.list-row.overview div a,
 .list-row div div {
   float: left;
   margin: 0 25px 0 0;
@@ -144,11 +145,27 @@ img {
   
   text-align: center;
 }
-
 .list-row {
   border-bottom: 1px dotted #ccc;
 }
-
+  .list-row.overview > div {
+    overflow: hidden;
+    padding: 1em 0;
+  }
+    .list-row.overview div a {
+      display: block;
+      padding: 1em 0 0;
+      margin: 0 10px;
+      border: 2px dashed transparent;
+      height: 9em;
+    }
+    .list-row.overview div a:hover {
+      border-color: #999;
+      background: #eee;
+      text-decoration: none;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+    }
 /* == Helper Styles ======================================================= */
 
 .grey-bg {
