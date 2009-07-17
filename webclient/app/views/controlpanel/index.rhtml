@@ -8,21 +8,31 @@
   <% end -%>
 <% end %>
 
+<% if ActionController::Routing.possible_controllers.include?("status") %>
+  <% javascript_tag do -%>
+    $(document).ready( function() {
+    <%= remote_function(:update => "status_status",
+      :url => { :controller => :status, :action => :show_summary }) %>
+    });
+  <% end -%>
+<% end %>
+
 <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
 <div id="status_patches">
   <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading informations about patches
+    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading patch information
   <% else %>
     Patch plugin is not installed.
   <% end %>
 </div>
-<br />
-<div id="status_health_icon">
-  <img src="/images/button_ok.png" height="32" width="32" border="0" />
-</div>
-<div id="status_health_msg">
-  <a href=""><%= _("Your system is healthy.") %></a>
+<br/>
+<div id="status_status">
+  <% if ActionController::Routing.possible_controllers.include?("status") %>
+    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading system information
+  <% else %>
+    Status plugin is not installed.
+  <% end %>
 </div>
 
 <div id="favorites">

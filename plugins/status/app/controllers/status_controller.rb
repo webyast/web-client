@@ -108,9 +108,9 @@ class StatusController < ApplicationController
       else
         logger.error "empty key: #{@key} #{list.inspect}"
       end
-#      logger.debug "System information: #{@data_group[key_split[1]].inspect}"
     end
     logger.debug "Limits: #{@limits.inspect}"
+#    logger.debug "System information: #{@data_group.inspect}"
     true
   end
 
@@ -121,7 +121,6 @@ class StatusController < ApplicationController
        status.delete(key)  
      elsif
        next_label = label+ "/" + key
-
        create_save_data(value, params, next_label) if value.is_a? Hash
      end
     end
@@ -143,30 +142,69 @@ class StatusController < ApplicationController
   init_gettext "yast_webclient_status"  
 
   public
+
   def initialize
   end
 
   def edit
     return unless client_permissions
-    create_data()
+    create_data
   end
 
   def index
     return unless client_permissions
-    create_data()
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
+    create_data
   end
 
 
+  def show_summary
+    return unless client_permissions
+    unless create_data
+      erase_redirect_results #reset all redirects
+      erase_render_results
+      flash.clear #no flash from load_proxy
+      render :partial => "status_summary", :locals => { :status => nil }
+      return false
+    end
+    status = ""
+    @data_group.each do |key, map| 
+      error_found = false
+      map.each do |graph_key, list_value|
+        limit_key = "/#{key}/#{graph_key}"
+        if  @limits_list.has_key?(limit_key)
+          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format 
+                                                 #( e.g. MByte for memory)
+          list_value.each do |value|
+            if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
+               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)                  
+              error_found = true
+              break
+            end
+          end
+        end
+      end
+      if error_found 
+        status += "; " unless status.blank?
+        status += key + " " + _("limits exceeded")
+      end
+    end
+
+    render :partial => "status_summary", :locals => { :status => status }
+  end
+
   def save
     return unless client_permissions
-    create_data()
+    begin
+      till = Time.new
+      from = till - 300 #last 5 minutes
+      
+      status = @client.find(:dummy_param, :params => { :start => from.strftime("%H:%M,%m/%d/%Y"), :stop => till.strftime("%H:%M,%m/%d/%Y") })
 
-    status = @client.find()
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        return false
+    end
+
     save_hash = create_save_data(Hash.from_xml(status.to_xml)["status"], params)
     logger.debug "writing #{save_hash.inspect}"
 
