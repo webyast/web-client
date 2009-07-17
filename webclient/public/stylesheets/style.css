@@ -105,6 +105,7 @@ input:focus {
   }
 #footer {
   padding: 1em 0 100px;
+  border-top: 1px dotted #ccc;
 }
 
 /* == Basic Styles ======================================================== */
@@ -211,7 +212,7 @@ input:focus {
 ul.list-2level-inline,
 ul.list-2level-inline ul {
   list-style: none outside;
-  margin: 0;
+  margin: 0.5em 0 1em;
   padding: 0;
   overflow: hidden;
 }
@@ -229,7 +230,16 @@ ul.list-2level-inline ul {
     .list-2level-inline ul li span {
       color: #666;
     }
-    
+
+/* == Text Styles ======================================================= */
+
+.notifications {
+  color: #06c;
+  margin: 1em 0;
+  text-align: center;
+}
+
+
 /* == Helper Styles ======================================================= */
 
 .grey-bg {
