@@ -60,6 +60,7 @@
       <% [:error, :warning, :notice, :message].each do |name| %>
         <% if flash[name] %>
           <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
+	  <% flash.delete name -%>
         <% end %>
       <% end %>
 
