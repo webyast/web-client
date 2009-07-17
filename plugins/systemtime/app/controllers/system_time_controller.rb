@@ -1,8 +1,13 @@
 require 'yast/service_resource'
 require 'systemtime'
 
-# FIXME: add comments to explain functions
 
+# = SystemTimeController
+# Provides all functionality, that handles time management module.
+# The most functionality around time handling is in rest-service and this
+# controller just provide handling of different exceptions and UI features.
+# Update time and timezone is separated as timezone update doesn't neccesarry
+# require also time update and that could set time to bad value.
 class SystemTimeController < ApplicationController
   before_filter :login_required
   layout 'main'
@@ -10,6 +15,8 @@ class SystemTimeController < ApplicationController
 
   #helpers
   private
+  # Fills @+valid+ field that represents valid regions with informations from
+  # @+timezone+ field.
   def fill_valid_timezones
     @valid.clear
     @timezones.each do |region|
@@ -17,6 +24,10 @@ class SystemTimeController < ApplicationController
     end
   end
 
+  # Fills current region name in field @+region+. Requires filled @+timezones+
+  # and @+timezone+ fields
+  # throws:: Exception if current timezone is not in any known region. @+region+
+  # field in this case is +nil+.
   def fill_current_region
     @timezones.each do |region|
       region.entries.each do |entry|
@@ -40,6 +51,9 @@ class SystemTimeController < ApplicationController
     @valid = []    
   end 
 
+  # Index handler. Loads information from backend and if success all required
+  # fields is filled. In case of errors redirect to help page, main page or just
+  # show flash with partial problem.
   def index    
     systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
@@ -69,6 +83,9 @@ class SystemTimeController < ApplicationController
     end
   end
 
+  # Update time handler. Sets to backend new time. If time is set to future it
+  # still shows problems. Now it invalidate session for logged user.If
+  # everything goes fine it redirect to index
   def update_time
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
@@ -96,6 +113,8 @@ class SystemTimeController < ApplicationController
     redirect_to :action => :index
   end
 
+  # Update time handler. Sets to backend new timezone. If everything goes fine
+  # it redirect to index
   def update_timezone
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
@@ -120,6 +139,9 @@ class SystemTimeController < ApplicationController
     redirect_to :action => :index    
   end
 
+
+  #AJAX function that renders new timezones for selected region. Expected
+  # initialized values from index call.
   def timezones_for_region
     region = ""
     @timezones.each do |r|
