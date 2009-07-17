@@ -52,8 +52,11 @@ img {
   border: none;
 }
 input {
-  border: 1px solid #999;
+  border: 1px solid #ccc;
   padding: 3px;
+  color: #666;
+  font-size: 1em;
+  background: #fcfcfc;
 }
 input:focus {
   border: 1px solid #69c;
@@ -149,15 +152,20 @@ input:focus {
   #login-dialogue form {
     display: block;
     background: #fefefe;
-    padding: 5px;
+    padding: 15px;
     margin: 7px;
+    overflow:hidden;
+  }
+  #login-dialogue input {
+    width: 97%;
   }
   #login-dialogue h2 {
     margin: 0;
+    color: #69c;
   }
   #login-dialogue label {
     display: block;
-    width: 5.5em;
+    margin:0 0 0.2em;
   }
 /* == Lists and Tables ==================================================== */
 
@@ -239,23 +247,33 @@ ul.list-2level-inline ul {
   text-align: center;
 }
 
+/* == Form Styles ======================================================= */
+
+#login_button {
+  float: right;
+}
 
 /* == Helper Styles ======================================================= */
-
 .grey-bg {
   background-color: #f6f6f6;
 }
-
-a.button {
-  color: #444;
-  border: 1px solid #06c;
-  background: #0072ba url('images/bg-head-gradient-grey.png') repeat-x scroll top center;
-  padding: 0.5em;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+a.button,
+input.button {
+  background: #eee url(images/bg-dark-gradient.png) repeat-x scroll left top;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #999;
+  cursor: pointer;
+  padding: 3px 10px;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 #999;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  width: auto !important;
 }
-a.button:hover {
-  color: #06c;
+a.button:hover,
+input.button:hover {
+  background-color: #ccc;
+  text-shadow: 0 -1px 0 #666;
 }
-
-
