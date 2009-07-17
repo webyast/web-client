@@ -15,11 +15,11 @@ class StatusController < ApplicationController
   end
 
   def create_data_map( tree, label = "")
-    data_list = []
+    data_map = Hash.new
     if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
         if key.start_with?("t_") 
-          data_list << branch.to_f
+          data_map[key] = branch.to_f
         elsif key == "limit"
           @limits[label] = branch.attributes
         else        
@@ -27,17 +27,20 @@ class StatusController < ApplicationController
           if key != "value"
             next_label += "/" + key
           end
-          data_list = create_data_map(branch, next_label) 
-          if data_list.size > 0
-            @data[next_label] = data_list
+          data_map = create_data_map(branch, next_label) 
+          if data_map.size > 0
             data_list = []
+            flatten_map = data_map.sort #Sorting for timestamps
+            flatten_map.each {|data| data_list << data[1] }
+            @data[next_label] = data_list
+            data_map = {}
           end
         end
       end
     else
       logger.error "wrong result: #{tree.inspect}"
     end
-    return data_list
+    return data_map
   end
 
   def create_data
