@@ -33,13 +33,14 @@ class SystemTimeControllerTest < ActionController::TestCase
 
 
   class Result
-    attr_accessor :time, :timezone, :utcstatus, :timezones, :saved
+    attr_accessor :time, :date, :timezone, :utcstatus, :timezones, :saved
 
     def fill
 	@timezones = [
 		Region.new("Europe","Europe/Prague",[ Entry.new("Europe/Prague","Czech Republic" )])
 ]
-        @time = "2009-07-02 - 12:18:00"
+        @time = "12:18:00"
+        @date = "07/02/2009"
         @utcstatus = "true"
         @timezone = "Europe/Prague"
 #      @available = [Lang.new("cs_CZ","cestina"),
@@ -79,8 +80,9 @@ class SystemTimeControllerTest < ActionController::TestCase
     assert assigns(:permissions)[:read]
     assert assigns(:permissions)[:write]
     assert assigns(:time)
-   # assert assigns(:timezone), "Europe/Prague"
-   # assert assigns(:utcstatus)
+    assert assigns(:date)
+    assert_equal assigns(:timezone), "Europe/Prague"
+    assert assigns(:utcstatus)
   end
 
   def test_access_without_write_permissions

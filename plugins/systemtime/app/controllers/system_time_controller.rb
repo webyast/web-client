@@ -18,22 +18,15 @@ class SystemTimeController < ApplicationController
   end
 
   def fill_current_region
-    # FIXME: @region can remain unset
     @timezones.each do |region|
       region.entries.each do |entry|
-        if entry.id == @systemtime.timezone
+        if entry.id == @timezone
           @region = region
+          return
         end
       end
     end
-  end
-
-  def fill_date_and_time (timedate)
-    # FIXME: such conversions should be in a model
-    @time = timedate[timedate.index(" - ")+3,8]
-    @date = timedate[0..timedate.index(" - ")-1]
-    #convert date to format for datepicker
-    @date.sub!(/^(\d+)-(\d+)-(\d+)/,'\3/\2/\1')
+    raise _("Unknown timezone #{@timezone} on host")
   end
 
   public
@@ -48,9 +41,9 @@ class SystemTimeController < ApplicationController
   end 
 
   def index    
-    @systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
+    systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    unless @systemtime      
+    unless systemtime      
       return false
     end
 
@@ -61,10 +54,19 @@ class SystemTimeController < ApplicationController
     end
 
         
-    @timezones = @systemtime.timezones
+    @timezones = systemtime.timezones
+    @timezone = systemtime.timezone
+    @utcstatus = systemtime.utcstatus
+    @time = systemtime.time
+    @date = systemtime.date
     fill_valid_timezones
-    fill_current_region
-    fill_date_and_time(@systemtime.time)
+    begin
+      fill_current_region
+    rescue Exception => e
+      flash[:warning] = e.message
+      ExceptionLogger.log_exception e
+      redirect_to root_path
+    end
   end
 
   def update_time
@@ -78,17 +80,17 @@ class SystemTimeController < ApplicationController
     fill_proxy_with_time t,params
 
     begin
-      response = t.save
+      t.save
       flash[:notice] = _('Settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
       log.debug "Time moved to future" 
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      log_exception e
+      ExceptionLogger.log_exception e
     rescue Exception => e
       flash[:error] = e.message
-      log_exception e
+      ExceptionLogger.log_exception e
     end    
 
     redirect_to :action => :index
@@ -102,17 +104,17 @@ class SystemTimeController < ApplicationController
       return false
     end
 
-    fill_proxy_with_time t,params,@@systemtime
+    fill_proxy_with_timezone t,params, t.timezones
     
     begin
-      response = t.save
+      t.save
       flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      log_exception e
+      ExceptionLogger.log_exception e
     rescue Exception => e
       flash[:error] = e.message
-      log_exception e
+      ExceptionLogger.log_exception e
     end
 
     redirect_to :action => :index    
