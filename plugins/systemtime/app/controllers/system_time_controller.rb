@@ -66,7 +66,6 @@ class SystemTimeController < ApplicationController
       redirect_to root_path
       return false
     end
-
         
     @timezones = systemtime.timezones
     @timezone = systemtime.timezone
@@ -89,7 +88,6 @@ class SystemTimeController < ApplicationController
   def update_time
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    # FIXME: add a 'redirect_to'
     unless t
       return false
     end
@@ -118,7 +116,6 @@ class SystemTimeController < ApplicationController
   def update_timezone
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    # FIXME: add a 'redirect_to'
     unless t
       return false
     end

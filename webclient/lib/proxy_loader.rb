@@ -1,5 +1,6 @@
 # = ProxyLoader module
-# Modules handles finding and loading proxy. It take care about pottential problems
+# Modules handles finding and loading proxy. It take care about pottential
+# problems and redirect in problems to correct page.
 # == requirements
 # Use ExceptionLogger module to it run. Intended to be used in Controller.
 # == Usage
@@ -14,6 +15,19 @@
 #    end
 #    ...
 #
+# In case you don't want redirect (like in AJAX handlers)
+#   include ProxyLoader
+#   def index
+#    @systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
+#    
+#    unless @systemtime
+#     erase_redirect_results
+#     erase_render_results
+#     #error handling
+#     return false
+#    end
+#
+#
 
 module ProxyLoader
    #Finds proxy and find its result.
@@ -27,6 +41,7 @@ module ProxyLoader
     unless proxy
       logger.warn "Couldn't find proxy for #{name}"
       flash[:error] = "Cannot find service on target machine for #{name}."
+      redirect_to root_path
       @permissions = nil
       return nil
     end
@@ -49,9 +64,11 @@ module ProxyLoader
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       ExceptionLogger.log_exception e
+      redirect_to root_path
     rescue Exception => e
       flash[:error] = e.message
       ExceptionLogger.log_exception e
+      redirect_to root_path
     end
 
     return ret

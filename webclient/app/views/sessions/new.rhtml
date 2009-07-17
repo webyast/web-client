@@ -1,19 +1,20 @@
-<div class="content">
+<div id="login-dialogue">
   <% form_tag( :action => 'create' ) do  %>
 
-    <span id="content_title">Login</span>
+    <h2 id="content_title">Login</h2>
 
     <p><%= _("Enter login credentials for host #{@host.name}.") %></p>
 
     <%= hidden_field_tag 'hostid', @host.id %>
 
-    <p><label for="login"><%= _("Username:") %></label><br>
+    <p><label for="login"><%= _("Username:") %></label>
     <%= text_field_tag 'login', @user %></p>
 
-    <p><label for="password"><%= _("Password:") %></label><br>
+    <p><label for="password"><%= _("Password:") %></label>
     <%= password_field_tag 'password', @password %></p>
 
     <%= submit_tag(_('Login'), :class => "button", :id => "login_button") %>
 
   <% end %>
+  
 </div>

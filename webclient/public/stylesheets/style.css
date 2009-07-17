@@ -1,10 +1,11 @@
 /* == Used Colours ===========================================================
 Title               Hex-Code    Used-for Examples
 ------------------------------------------------------------------------------
-Medium Blue:        #06c
+Medium Blue:        #06c        Links Hover
+Medium Green:       #6c0
 Dark Grey:          #333        Font
 Medium Grey:        #666        Header Font
-Soft Light Grey:   #0072ba     Header BG
+Soft Light Grey:    #0072ba     Header BG
 BG Grey:            #fcfcfc     Body-BG
 =========================================================================== */
 
@@ -50,7 +51,14 @@ a:hover {
 img {
   border: none;
 }
-/* == /Basic setup ======================================================== */
+input {
+  border: 1px solid #999;
+  padding: 3px;
+}
+input:focus {
+  border: 1px solid #69c;
+  color: #69c;
+}
 
 /* == Basic Structure ===================================================== */
 
@@ -59,7 +67,7 @@ img {
 #footer {
   min-width: 450px;
   width: auto;
-  max-width: 1000px;
+  max-width: 960px;
   overflow: hidden;
   margin: 0 auto;
   font-size: 0.8em;
@@ -91,10 +99,13 @@ img {
   min-height: 600px;
   margin-top: 2em;
 }
+  #content h2 {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+  }
 #footer {
-  
+  padding: 1em 0 100px;
 }
-/* == /Basic Structure  =================================================== */
 
 /* == Basic Styles ======================================================== */
 #header * {
@@ -122,4 +133,119 @@ img {
 #login-wrapper li a:hover {
   color: #06c;
 }
-/* == /Basic Styles ======================================================== */
+
+#login-dialogue {
+  width: 23em;
+  min-height: 17em; /* FIXME not working in IE6 */
+  background: #999;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #666;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  
+}
+  #login-dialogue form {
+    display: block;
+    background: #fefefe;
+    padding: 5px;
+    margin: 7px;
+  }
+  #login-dialogue h2 {
+    margin: 0;
+  }
+  #login-dialogue label {
+    display: block;
+    width: 5.5em;
+  }
+/* == Lists and Tables ==================================================== */
+
+.list-row {
+  clear: left;
+  overflow: hidden;
+  padding: 1em 0;
+}
+
+.list-row h3 {
+  margin-top: 0;
+  text-indent: 10px;
+}
+.list-row div div,
+.list-row div a {
+  float: left;
+  margin: 0 25px 0 0;
+  width: 75px;
+  
+  text-align: center;
+}
+.list-row {
+  border-bottom: 1px dotted #ccc;
+}
+.list-row.overview {
+  border-color: transparent;
+}
+  .list-row.overview > div { /* get child of *.overview */
+    overflow: hidden;
+    padding: 1em 0;
+    
+  }
+  .list-row.overview > div {
+   border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
+  }
+    .list-row div a {
+      display: block;
+      padding: 1em 5px 0;
+      margin: 0 5px;
+      border: 2px solid transparent;
+      height: 8em;
+    }
+    .list-row div a:hover {
+      border-color: #999;
+      background: #eee;
+      text-decoration: none;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+    }
+    
+    
+ul.list-2level-inline,
+ul.list-2level-inline ul {
+  list-style: none outside;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+  .list-2level-inline ul {
+    
+  }
+    .list-2level-inline ul li {
+      float: left;
+      margin-right: 1em;
+    }
+    
+    .list-2level-inline + p {
+      clear: left;
+    }
+    .list-2level-inline ul li span {
+      color: #666;
+    }
+    
+/* == Helper Styles ======================================================= */
+
+.grey-bg {
+  background-color: #f6f6f6;
+}
+
+a.button {
+  color: #444;
+  border: 1px solid #06c;
+  background: #0072ba url('images/bg-head-gradient-grey.png') repeat-x scroll top center;
+  padding: 0.5em;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+a.button:hover {
+  color: #06c;
+}
+
+
