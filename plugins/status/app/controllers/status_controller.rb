@@ -29,8 +29,8 @@ class StatusController < ApplicationController
           end
           data_list = create_data_map(branch, next_label) 
           if data_list.size > 0
-             @data[next_label] = data_list
-             data_list = []
+            @data[next_label] = data_list
+            data_list = []
           end
         end
       end
@@ -63,8 +63,13 @@ class StatusController < ApplicationController
     @data.each do |key, list_value|
       if @limits.has_key?(key)
         graph_list = []
+        key_split = key.split("/")
         for i in 0..list_value.size-1 do
-           graph_list << [i,@limits[key]["value"]]
+          if key_split.size>1 && key_split[1]=="memory" # take MByte for the value 
+            graph_list << [i,@limits[key]["value"]/1024/1024]
+          else 
+            graph_list << [i,@limits[key]["value"]]
+          end
         end
         @limits_list[key] = graph_list
       end
@@ -119,7 +124,12 @@ class StatusController < ApplicationController
     end
     if params.has_key?(label+"/value")
       limit = Hash.new
-      limit["value"] = params[label+"/value"]
+      key_split = label.split("/")
+      if key_split.size>1 && key_split[1]=="memory" # MByte for the value --> change it to Byte
+        limit["value"] = params[label+"/value"].to_f*1024*1024
+      else
+        limit["value"] = params[label+"/value"]
+      end
       limit["maximum"] = params[label+"/maximum"] == "true"?true:false
       status["limit"] = limit
     end
