@@ -57,11 +57,11 @@
 
     <div id="content" class="content">
       <!-- show the flash messages -->
-      <% [:notice, :warning, :message, :error].each do |name| %>
+      <% [:error, :warning, :notice, :message].each do |name| %>
         <% if flash[name] %>
           <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
-          <% end %>
         <% end %>
+      <% end %>
 
         <div id="progress" style="display:none;">
           <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
