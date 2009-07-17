@@ -24,6 +24,8 @@ class HostsController < ApplicationController
       host = Host.find(params[:hostid]) rescue nil
       flash[:error] = _("Can't connect to host #{host.name}.") if host
       flash[:warning] = _("Make sure the host is up and that the YaST web service is running.")
+    elsif error == "nohostid"
+      flash[:notice] = _("Please select a host to connect to.")
     end
   end
 
