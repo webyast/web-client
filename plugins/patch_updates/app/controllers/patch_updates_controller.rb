@@ -16,6 +16,8 @@ class PatchUpdatesController < ApplicationController
     patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
 
     unless patch_updates
+      erase_redirect_results #reset all redirects
+      erase_render_results
       flash.clear #no flash from load_proxy
       render :partial => "patch_summary", :locals => { :patch => nil }
       return false
