@@ -24,7 +24,8 @@ Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-devel
 BuildArch:      noarch  
-BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails rubygem-gettext_rails
+BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails
+BuildRequires:  rubygem-gettext_rails
 BuildRequires:  tidy
 #
 %define service_name yastwc
