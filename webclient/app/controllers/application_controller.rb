@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     @error = e
     #render :text => "I am sorry"
     render :template => "shared/exception_trap"
+    return
   end
   
   def ensure_login
