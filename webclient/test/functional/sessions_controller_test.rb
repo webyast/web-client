@@ -34,14 +34,13 @@ class SessionsControllerTest < ActionController::TestCase
   # new without any parameters should redirect to hosts
   def test_new
     get :new
-    assert_redirected_to :controller => :hosts
+    assert_redirected_to :controller => :hosts, :error => "nohostid"
   end
 
   # new with :hostname empty
   def test_new_with_empty_hostid
     get :new, :hostid => nil
-    assert_redirected_to :controller => :hosts
-    assert flash[:notice]
+    assert_redirected_to :controller => :hosts, :error => "nohostid"
   end
 
   # new with hostname, must show login
@@ -92,9 +91,8 @@ class SessionsControllerTest < ActionController::TestCase
     post :create, :login => 'quentin', :password => 'bad host', :hostid => @host.id
     assert_nil session[:account_id]
     assert_nil flash[:warning]
-    assert flash[:error]
-    # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new
+    # we should be at the hosts list againn
+    assert_redirected_to :controller => :hosts, :hostid => @host.id, :error => "econnrefused"
   end
   
   def test_create_with_exception_raised
