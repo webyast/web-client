@@ -29,12 +29,13 @@ class SessionsController < ApplicationController
       return
     end
 
+    # Set @host to display info at login screen
     @host = Host.find(params[:hostid]) rescue nil
+
     # if the hostname is not set, go to the host controller
     # to pickup a service
     unless @host
-      flash[:notice] = _("Please select a host to connect to.") unless flash[:notice]
-      redirect_to :controller => 'hosts', :action => 'index'
+      redirect_to :controller => 'hosts', :action => 'index', :error => "nohostid"
       return
     end
 
@@ -67,8 +68,7 @@ class SessionsController < ApplicationController
         # error handling when login to the service is pretty
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
-        flash[:error] = _("Can't connect to host at #{host.name}, make sure the host is up and that the YaST web service is running.")
-        redirect_to :action => "new"
+        redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "econnrefused"
         return
       rescue Exception => e
         logger.warn e.to_s

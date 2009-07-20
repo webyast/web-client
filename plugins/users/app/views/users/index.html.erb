@@ -4,20 +4,16 @@
   <tr>
     <th class="first" width=150><%=_("Login")%></th>
     <th><%=_("Full Name")%></th>
-    <th width=8%><%= label_edit %></th>
+    <th width=8%><%=  _("Edit") %></th>
     <% if @permissions[:userdelete] %>
-    <th width=8%><%=_("SSH-Key")%></th>
     <th class="last" width=8%><%= label_delete %></th>
-    <% else %>
-    <th class="last" width=8%><%=_("SSH-Key")%></th>
     <% end %>
   </tr>
   <% for user in @users %>
   <tr>
     <td><strong><%=h user.uid %></strong></td>
     <td><%=h user.cn %></td>
-    <td><%= html_edit_link(user.id) %></td>
-    <td><%= link_to image_tag("/images/key_add.png", :alt =>  "key"), exportssh_user_path(:id=>user.id), :onclick=>"Element.show('progress')" %></td>
+    <td><%= link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => :edit, :id => user.id}, :onclick=>"Element.show('progress')" %></td>
     <% if @permissions[:userdelete] %>
     <td class="last"><%= html_delete_link(user.uid) %></td>
     <% end %>
@@ -30,3 +26,5 @@
   <%= link_to _("<strong>[New User]</strong>"), new_user_path, :onclick=>"Element.show('progress')" -%><p/>
 </div>
 <% end %>
+
+<a href="/" class="button"><%=_("Back")%></a>

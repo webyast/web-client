@@ -1,46 +1,40 @@
 
 
 <div class="services-list">
-      <label for="services-list">Please choose a service:</label>
-      <table id="services-list" class="list">
-        <tbody>
-          <% for host in @hosts %>
-          <tr class="host-item">
-            <td class="icon">
-	      <div class="container"><img src="/icons/yast-service-22.png" alt="" /></div>
-	    </td>
-            <td>
-	      <div class="title"><%= link_to host.name, new_session_path(:hostid => "#{host.id}") %></div>
-	    </td>
-            <td>
-	      <div class="label"><%=h host.url %></div>
-	    </td>
-            <td>
-	      <div class="label"><%=h host.description %></div>
-	    </td>
-            <td class="icon">
-              <div class="container">
-                <%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"), 
-                    edit_host_path(host) %>
-              </div>
-            </td>
-            <td class="icon">
-              <div class="container">
-                <%= link_to image_tag("/images/delete.png", :alt =>  "delete"), 
-                    host, :confirm => _("Really delete host #{host.name} ?"), :method => :delete %>
-              </div>
-            </td>
-
-          </tr>
-          <% end %>
-        </tbody>
-
-      </table>  
-      <%= button_to _('Add'), new_host_path, :class => "button" %>
-      <!--
-       FIXME may be add remove and edit buttons and get rid of the icons above
-      <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  
-      <input class="button disabled" disabled="true" type="submit" value="Edit" id="edit-printer"/>        
-      -->
+  
+  <label for="services-list">Please choose a service:</label>
+  <ul class="list-2level-inline">
+    <% for host in @hosts %>
+    <li>
+      <ul>
+        <li>
+          <strong><%= link_to host.name, new_session_path(:hostid => "#{host.id}") %></strong>
+        </li>
+        <li>
+          <span><%=h host.url %></span>
+        </li>
+        <li>
+          <span><%=h host.description %></span>
+        </li>
+        <li>
+          <%= link_to image_tag("/images/edit-icon.gif", :alt =>  "edit"),
+                edit_host_path(host) %>
+        </li>
+        <li>
+          <%= link_to image_tag("/images/delete.png", :alt =>  "delete"),
+              host, :confirm => _("Really delete host #{host.name} ?"), :method => :delete %>
+        </li>
+      </ul>
+    </li>
+    <% end %>
+  </ul> 
+  <p>  
+  <%= link_to _('Add'), new_host_path, :class => "button" %>
+  </p>
+  <!--
+   FIXME may be add remove and edit buttons and get rid of the icons above
+  <input class="button disabled" disabled="true" type="submit" value="Remove" id="remove-printer"/>  
+  <input class="button disabled" disabled="true" type="submit" value="Edit" id="edit-printer"/>        
+  -->
 </div>
 <!--host list -->

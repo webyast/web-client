@@ -3,7 +3,11 @@ require 'uri'
 class HostsController < ApplicationController
   layout 'main'
 
+  #
   # GET /hosts
+  # Display list of hosts for user to choose (or add)
+  # params :error, :hostid, set if previously choosen host is wrong
+  #
   def index
     begin
       @hosts = Host.find(:all)
@@ -11,6 +15,17 @@ class HostsController < ApplicationController
       logger.error e.to_s
       # show nice error screen and remind to "rake db:migrate"
       redirect_to "/migration_missing"
+    end
+    
+    # error is set if session couldn't be established and user has to re-choose the host
+    # flash[] doesn't survive redirects across controllers :-(
+    error = params[:error]
+    if error == "econnrefused"
+      host = Host.find(params[:hostid]) rescue nil
+      flash[:error] = _("Can't connect to host #{host.name}.") if host
+      flash[:warning] = _("Make sure the host is up and that the YaST web service is running.")
+    elsif error == "nohostid"
+      flash[:notice] = _("Please select a host to connect to.")
     end
   end
 

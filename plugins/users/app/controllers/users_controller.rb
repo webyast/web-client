@@ -56,12 +56,14 @@ class UsersController < ApplicationController
       :homeDirectory	=> nil,
       :cn		=> nil,
       :uid		=> nil,
+      :uidNumber	=> nil,
       :sshkey		=> nil,
       :loginShell	=> "/bin/bash",
       :userPassword	=> nil,
       :type		=> "local",
       :id		=> nil
     )
+    @user.grp_string = ""
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -90,6 +92,14 @@ class UsersController < ApplicationController
     @user.type	= ""
     @user.id	= @user.uid
     @user.grp_string = ""
+
+    # FIXME hack, this must be done properly
+    # (my keys in camelCase were transformed to under_scored)
+    @user.uidNumber	= @user.uid_number
+    @user.homeDirectory	= @user.home_directory
+    @user.loginShell	= @user.login_shell
+    @user.userPassword	= @user.user_password
+
     counter = 0
     @user.grouplist.each do |group|
        if counter == 0

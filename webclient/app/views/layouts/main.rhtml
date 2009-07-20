@@ -15,6 +15,9 @@
   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.jqplot.js"></script>
   <script type="text/javascript" charset="utf-8" src="/javascripts/plugin/jqplot.pieRenderer.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
+  
+  <!--<script type="text/javascript" charset="utf-8" src="/javascripts/jQuery.dPassword.js"></script>-->
+  <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
 
   <!--<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
@@ -30,50 +33,43 @@
     
     <div id="header">
       
-      <img src="/images/geckohead-grey.png" alt="SUSE" />
+      <img src="/images/geckohead-green.png" alt="SUSE" />
       
       <h1>My Appliance</h1>
 
       <div id="login-wrapper">
       <% host = Host.find(session[:host]) rescue nil
-         user = session[:user]
-         if host.blank? || user.blank? -%>
-      
+        user = session[:user]
+        if host.blank? || user.blank? -%>
         <ul>
           <li><%= link_to _("Login"), '/login' %></li>
         </ul>
-
       <% else -%>
-
         <ul>
           <li><strong><%=_("Connected Host")%></strong></li>
-          <li><strong><%=_("Name:")%></strong> <%= host.name -%></li>
-          <li><strong><%=_("User:")%></strong> <%= user -%></li>
+          <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
+          <li><%=_("User:")%> <strong><%= user -%></strong></li>
           <li><em><%= link_to _("Logout"), '/logout' %></em></li>
         </ul>
-
       <% end -%>
       </div>
     </div>
 
     <div id="content" class="content">
       <!-- show the flash messages -->
-      <% [:notice, :warning, :message, :error].each do |name| %>
+      <% [:error, :warning, :notice, :message].each do |name| %>
         <% if flash[name] %>
           <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
-          <% end %>
+	  <% flash.delete name -%>
         <% end %>
+      <% end %>
 
         <div id="progress" style="display:none;">
           <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
         </div>
 
       <%= @content_for_layout %>
-
     </div>
 
     <div id="footer" class="">
-      <div class="copy">&copy; 2009 Novell, Inc.</div>
-    </div>
-  </body>
-</html>
+      <div class="copy">&copy; 2009 Novell, Inc.</di

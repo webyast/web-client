@@ -1,66 +1,74 @@
 <%= javascript_include_tag :defaults %>
 <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-<% javascript_tag do -%>
-  $(document).ready( function() {
-  <%= remote_function(:update => "status_patches",
+  <% javascript_tag do -%>
+    $(document).ready( function() {
+    <%= remote_function(:update => "status_patches",
       :url => { :controller => :patch_updates, :action => :show_summary }) %>
-  });
-<% end -%>
+    });
+  <% end -%>
 <% end %>
+
+<% if ActionController::Routing.possible_controllers.include?("status") %>
+  <% javascript_tag do -%>
+    $(document).ready( function() {
+    <%= remote_function(:update => "status_status",
+      :url => { :controller => :status, :action => :show_summary }) %>
+    });
+  <% end -%>
+<% end %>
+
 <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
 <div id="status_patches">
   <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-  <img src="/images/working.gif" height="32" width="32" border="0" /> Loading informations about patches
+    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading patch information
   <% else %>
     Patch plugin is not installed.
-    <% end %>
+  <% end %>
 </div>
-<br />
-<div id="status_health_icon">
-  <img src="/images/button_ok.png" height="32" width="32" border="0" />
-</div>
-<div id="status_health_msg">
-  <a href=""><%= _("Your system is healthy.") %></a>
+<br/>
+<div id="status_status">
+  <% if ActionController::Routing.possible_controllers.include?("status") %>
+    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading system information
+  <% else %>
+    Status plugin is not installed.
+  <% end %>
 </div>
 
 <div id="favorites">
-<h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
+  <h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
 
-<% line_counter = 0 %>
-<% shortcuts_counter = 0 %>
-<div class="table">
-  <table class="listing" cellpadding="0" cellspacing="0">
-  <% @shortcuts.each do |name, data| %>
-    <% logger.debug data.inspect %>
-    <% if line_counter*5 == shortcuts_counter %> 
-      <% if line_counter > 0 %>
-      </tr>
-      <% end %>
-      <% line_counter +=1 %>
-      <tr>
-    <% end %>
-    <td>
-      <% link_to (data['url']) do %>
-        <img src="<%= data['icon'] %>"/>
-        <div>
-          <%= data['title'] %>
+  <% line_counter = 0 %>
+  <% shortcuts_counter = 0 %>
+  <div class="list-row overview">
+
+    <% @shortcuts.each do |name, data| %>
+      <% logger.debug data.inspect %>
+      <% if line_counter*5 == shortcuts_counter %>
+        <% if line_counter > 0 %>
         </div>
       <% end %>
-    </td>
-    <% shortcuts_counter +=1 %>
-  <% end %>
-  <% if line_counter*5 != shortcuts_counter-1 %> 
-    </tr>
+      <% line_counter +=1 %>
+      <div class="highlight-bg">
+      <% end %>
+        <% link_to (data['url']) do %>
+          <img src="<%= data['icon'] %>"/>
+          <p>
+            <%= data['title'] %>
+          </p>
+        <% end %>
+      <% shortcuts_counter +=1 %>
+    <% end %>
+    <% if line_counter*5 != shortcuts_counter-1 %>
+    </div>
   <% end %>
 
-  </table>
 </div>
+
+
 
 <div class="content">
   <a href="controlpanel/show_all"><%= _("Show all modules") %></a>
 </div>
 
 </div>
-
-
