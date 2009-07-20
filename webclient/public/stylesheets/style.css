@@ -142,12 +142,16 @@ input:focus {
   width: 23em;
   min-height: 17em; /* FIXME not working in IE6 */
   background: #999;
-  margin: 0 auto;
+  margin: 10px auto;
   overflow: hidden;
   color: #666;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   
+
+  -moz-box-shadow: 0 1px 7px #999;
+  -webkit-box-shadow: 0 1px 7px #999;
+  box-shadow: 0 1px 7px #999;
 }
   #login-dialogue form {
     display: block;
