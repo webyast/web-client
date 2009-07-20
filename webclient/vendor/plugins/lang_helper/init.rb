@@ -8,7 +8,7 @@ begin
 require 'lang_helper'
 rescue
   $stderr.puts "**** Please install rubygem-gettext_rails"
-  exit
+  exit 1
 end
 
 ActionController::Base.class_eval do
