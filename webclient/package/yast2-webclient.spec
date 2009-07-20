@@ -23,6 +23,9 @@ Source1:        cleanurl-v5.lua
 Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby-devel, rubygem-relevance-rcov
+BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails
+BuildRequires:  rubygem-gettext_rails
+BuildRequires:  tidy
 BuildArch:      noarch  
 
 #
