@@ -12,8 +12,14 @@ class PatchUpdatesController < ApplicationController
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
+  # this action is rendered as a partial, so it can't throw
   def show_summary
-    patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    patch_updates = nil    
+    begin
+      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    rescue
+      patch_updates = nil
+    end
 
     unless patch_updates
       flash.clear #no flash from load_proxy
