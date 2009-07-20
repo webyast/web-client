@@ -78,7 +78,7 @@ class PermissionsController < ApplicationController
      @permissions.each do |permission|
         sub = @permission_tree
         #do not regard org.opensuse.yast. in the tree
-        if permission.name.starts_with? ("org.opensuse.yast.")
+        if permission.name.starts_with?("org.opensuse.yast.")
           permission_name = permission.name["org.opensuse.yast.".size, permission.name.size-1]
         else
          permission_name = permission.name
