@@ -6,11 +6,15 @@
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
         <img src="/images/button_critical.png" alt="System need update"/>
+        <div class="status-icon error"></div>
       <% elsif patch[:optional] %>
         <img src="/images/button_warning.png" alt="System contains any update" />
+        <div class="status-icon warning"></div>
       <% else %>
         <img src="/images/button_ok.png" alt="No updates available"/>
+        <div class="status-icon ok"></div>
       <% end %>
+
 
       <% any_update = false %>
       <% if patch[:security] > 0 %>

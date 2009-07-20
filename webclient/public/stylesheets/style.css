@@ -277,3 +277,30 @@ input.button:hover {
   background-color: #ccc;
   text-shadow: 0 -1px 0 #666;
 }
+
+/* ==Status Icons ==*/
+/* -- HTML Example --
+  <div class="status-icon ok"></div>
+  <div class="status-icon warning"></div>
+  <div class="status-icon error"></div>
+  <div class="status-icon optional"></div>
+*/
+.status-icon {
+  display: block;
+  width: 23px;
+  height: 23px;
+  background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
+}
+.status-icon.ok {
+  background-position: 0 0;
+}
+.status-icon.warning {
+  background-position: 0 -22px;
+}
+.status-icon.error {
+  background-position: 0 -44px;
+}
+.status-icon.optional {
+  background-position: 0 -66px;
+}
+/* ==/Status Icons ==*/
