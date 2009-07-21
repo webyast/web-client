@@ -7,7 +7,7 @@ class LoginTest < Selenium::TestCase
   def test_host_selection
     @selenium.open "/hosts"
     # is there the service list table?
-    assert @selenium.is_element_present("services-list")
+    assert @selenium.is_element_present("//div[@class='services-list']")
   end
 
   # check if the login page is displayed after clicking on the localhost:8080 target 
