@@ -54,6 +54,7 @@ class HostsController < ApplicationController
       flash[:notice] = 'Host was successfully created.'
       redirect_to :action => 'index'
     else
+      flash[:warning] = 'Host creation failed.'
       redirect_to :action => 'new'
     end
   end
