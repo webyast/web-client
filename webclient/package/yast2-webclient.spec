@@ -110,7 +110,7 @@ fi
 %files 
 %defattr(-,root,root)
 %dir /srv/www/yast 
-/srv/www/yast/locale
+#/srv/www/yast/locale
 /srv/www/yast/po
 /srv/www/yast/vendor
 /srv/www/yast/app  
@@ -123,7 +123,7 @@ fi
 /srv/www/yast/COPYING  
 /srv/www/yast/INSTALL
 /srv/www/yast/script  
-/srv/www/yast/test  
+#/srv/www/yast/test  
 /srv/www/yast/config  
 /srv/www/yast/start.sh
 %doc README* COPYING  
