@@ -63,6 +63,16 @@ input:focus {
   color: #69c;
 }
 
+ul li {
+  padding: 3px;
+}
+/*  ul li ul {
+    padding: 0;
+    margin: 0;
+  }
+  ul li li {
+    padding: 0;
+  }*/
 /* == Basic Structure ===================================================== */
 
 /*#header,*/
@@ -155,7 +165,7 @@ input:focus {
   box-shadow: 0 1px 7px #999;
 }
   .dialoge-wrapper {
-    width: 500px;
+    min-width: 500px;
   }
   #login-dialogue form,
   .dialoge-sub-wrapper {
@@ -226,27 +236,48 @@ input:focus {
       -webkit-border-radius: 5px;
     }
     
-    
 ul.list-2level-inline,
 ul.list-2level-inline ul {
   list-style: none outside;
   margin: 0.5em 0 1em;
+  margin: 0;
   padding: 0;
   overflow: hidden;
 }
+ul.list-2level-inline {
+  margin: 1em 0 2em;
+}
+  ul.list-2level-inline a {
+    text-decoration: underline;
+  }
   .list-2level-inline ul {
     
   }
     .list-2level-inline ul li {
       float: left;
-      margin-right: 1em;
+      margin-right: 0.5em;
     }
     
     .list-2level-inline + p {
       clear: left;
     }
+    
+    .list-2level-inline ul li strong,
+    .list-2level-inline ul li span {
+      display: block;
+    }
+    .list-2level-inline ul li strong {
+      color: #666;
+      min-width: 75px;
+    }
     .list-2level-inline ul li span {
       color: #666;
+    }
+    .list-2level-inline ul li span.li-url {
+      min-width: 150px;
+    }
+    .list-2level-inline ul li span.li-descr {
+      min-width: 250px;
     }
 
 /* == Text Styles ======================================================= */
@@ -330,3 +361,17 @@ input.button {
   background-position: 0 -66px;
 }
 /* ==/Status Icons ==*/
+
+.width-50 {
+  width: 50%;
+}
+.width-65 {
+  width: 65%;
+}
+.width-75 {
+  width: 75%;
+}
+
+.alt-bg {
+  background-color: #f9f9f9;
+}
