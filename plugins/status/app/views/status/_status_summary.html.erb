@@ -1,7 +1,7 @@
 <div class="status_status">
   <% unless status %>
-    <img src="/images/button_warning.png" alt="warning icon" />
-    <%= _("Error occur during loading status information.") %>
+    <div class="status-icon warning"></div>
+    <span><%= _("Error occur during loading status information.") %></span>
   <% else %>
     <% link_to "status" do %>
       <% if !status.blank? %>

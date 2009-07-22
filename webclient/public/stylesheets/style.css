@@ -367,7 +367,14 @@ input.button {
   width: 23px;
   height: 23px;
   background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
+  float: left;
 }
+
+.status-icon + span {
+  margin-left: 1em;
+  line-height: 2em;
+}
+
 .status-icon.ok {
   background-position: 0 0;
 }

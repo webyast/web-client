@@ -23,7 +23,7 @@
       <td><input type="checkbox" id=<%= "patch_#{patch_update.resolvable_id}" %> name=<%="patch_#{patch_update.resolvable_id}" %> value=<%=patch_update.resolvable_id%> ></td>
 
       <% if kinds.has_key?(patch_update.kind) %>
-        <td class="icon" > <%= image_tag(kinds[patch_update.kind]) %> </td>
+        <td class="icon" ><%= image_tag(kinds[patch_update.kind]) %> </td>
       <% else %>
         <td><%=h patch_update.kind %></td>
       <% end %>
