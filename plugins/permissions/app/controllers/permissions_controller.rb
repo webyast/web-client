@@ -74,7 +74,6 @@ class PermissionsController < ApplicationController
   end
   
   def construct_permission_tree()
-     @right_set_permissions = false
      @permissions.each do |permission|
         sub = @permission_tree
         #do not regard org.opensuse.yast. in the tree
@@ -101,7 +100,7 @@ class PermissionsController < ApplicationController
               node = Hash.new
               node[:level] = level
               node[:label] = key
-              node[:path] = branch[:path]
+              node[:path] = branch[:path] if branch.has_key?(:path)
               #taking the subtrees too
               next_take_all = take_all
               if (branch.has_key?(:grant) &&
