@@ -43,7 +43,6 @@
   <div class="list-row overview">
 
     <% @shortcuts.each do |name, data| %>
-      <% logger.debug data.inspect %>
       <% if line_counter*5 == shortcuts_counter %>
         <% if line_counter > 0 %>
         </div>

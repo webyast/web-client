@@ -138,7 +138,8 @@ input:focus {
   color: #06c;
 }
 
-#login-dialogue {
+#login-dialogue,
+.dialoge-wrapper {
   width: 23em;
   min-height: 17em; /* FIXME not working in IE6 */
   background: #999;
@@ -153,7 +154,11 @@ input:focus {
   -webkit-box-shadow: 0 1px 7px #999;
   box-shadow: 0 1px 7px #999;
 }
-  #login-dialogue form {
+  .dialoge-wrapper {
+    width: 500px;
+  }
+  #login-dialogue form,
+  .dialoge-sub-wrapper {
     display: block;
     background: #fefefe;
     padding: 15px;
@@ -163,8 +168,9 @@ input:focus {
   #login-dialogue input {
     width: 97%;
   }
-  #login-dialogue h2 {
-    margin: 0;
+  #login-dialogue h2,
+  .dialoge-wrapper h2 {
+    margin: 0 !important;
     color: #69c;
   }
   #login-dialogue label {
@@ -253,8 +259,22 @@ ul.list-2level-inline ul {
 
 /* == Form Styles ======================================================= */
 
+label {
+  display: block;
+  margin: 0.2em 0;
+}
+
 #login_button {
   float: right;
+}
+
+.dialoge-wrapper input[type="text"] {
+  width: 99%;
+}
+.dialogue-footer {
+  margin: 0;
+  padding-top: 15px;
+  text-align: center;
 }
 
 /* == Helper Styles ======================================================= */
@@ -276,12 +296,14 @@ input.button {
   -webkit-border-radius: 3px;
   width: auto !important;
 }
-a.button:hover,
-input.button:hover {
-  background-color: #ccc;
-  text-shadow: 0 -1px 0 #666;
-}
-
+  a.button:hover,
+  input.button:hover {
+    background-color: #ccc;
+    text-shadow: 0 -1px 0 #666;
+  }
+  input.button {
+    padding: 2px 9px;
+  }
 /* ==Status Icons ==*/
 /* -- HTML Example --
   <div class="status-icon ok"></div>
