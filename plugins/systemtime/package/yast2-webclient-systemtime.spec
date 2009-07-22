@@ -11,7 +11,6 @@
 
 Name:           yast2-webclient-systemtime
 PreReq:         yast2-webclient >= 0.0.2
-Provides:       yast2-webclient:/srv/www/yast/app/controllers/system_time_controller.rb
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
