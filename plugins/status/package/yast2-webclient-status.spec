@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-systemtime (Version 0.1)
+# spec file for package yast2-webclient-status (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,21 +9,21 @@
 #
 
 
-Name:           yast2-webclient-systemtime
+Name:           yast2-webclient-status
 PreReq:         yast2-webclient >= 0.0.2
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.2
 Release:        0
-Summary:        YaST2 - Webclient - SystemTime
+Summary:        YaST2 - Webclient - status
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
 #
 %define pkg_user yast
-%define plugin_name systemtime
+%define plugin_name status
 #
 
 
@@ -64,13 +64,13 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 #/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
 #/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 
 %changelog
