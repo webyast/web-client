@@ -34,6 +34,10 @@ h2 {
 h3 {
   font-size: 1.1em;
 }
+#content h3 {
+  font-size: 1.7em;
+  color: #666;
+}
 h4 {
   font-size: 1em;
 }
@@ -187,6 +191,20 @@ ul li {
     display: block;
     margin:0 0 0.2em;
   }
+  #favorites,
+  #status-wrapper {
+    padding: 10px;
+  }
+  #status-wrapper {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #999;
+    margin: 0 0 1em;
+    background: #f9f9f9;
+  }
+    #status-wrapper h3:first-child {
+      margin-top: 0;
+    }
 /* == Lists and Tables ==================================================== */
 
 .list-row {
