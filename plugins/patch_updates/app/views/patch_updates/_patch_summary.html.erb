@@ -2,11 +2,12 @@
   <% unless patch %>
     <div class="status-icon warning"></div>
     <%= _("Error occur during loading patch information.") %>
+
   <% else %>
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
         <div class="status-icon error"></div>
-      <% elsif patch[:optional] %>
+      <% elsif patch[:optional] > 0%>
         <div class="status-icon warning"></div>
       <% else %>
         <div class="status-icon ok"></div>
