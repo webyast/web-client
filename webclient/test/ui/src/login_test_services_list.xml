@@ -4,31 +4,21 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="" />
-<title>login_test_services-list</title>
+<title>login_test_services_list</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">login_test_services-list</td></tr>
+<tr><td rowspan="1" colspan="3">login_test_services_list</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/hosts?error=nohostid</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>link=exact:http://localhost:8080</td>
+	<td>/</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>login</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>password</td>
+	<td>//div[@class='services-list']</td>
 	<td></td>
 </tr>
 
