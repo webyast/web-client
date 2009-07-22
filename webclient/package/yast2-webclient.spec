@@ -26,6 +26,8 @@ BuildRequires:  ruby, rubygem-relevance-rcov
 BuildRequires:  sqlite avahi-utils rubygem-sqlite3 rubygem-rails-2_3
 BuildRequires:  rubygem-gettext_rails
 BuildRequires:  tidy
+# we require the lighttpd user to be present when building the rpm
+BuildRequires:  lighttpd
 BuildArch:      noarch  
 # required because we include selenium jar
 BuildRequires:  fastjar
