@@ -1,44 +1,10 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
-require 'rake/packagetask'
 require File.join(File.dirname(__FILE__), 'config', 'rails_parent')
 require File.join(RailsParent.parent, 'config', 'boot')
 require 'tasks/rails'
 
 desc 'Default: run unit tests.'
 task :default => :test
-
-desc 'Generate documentation for the systemtime plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Systemtime'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-desc 'Generate tarball package'
-Rake::PackageTask.new('www', :noversion) do |p|
-  %x[rm -r package/www]
-  p.need_tar_bz2 = true
-  p.package_dir = 'package'
-  p.package_files.include('**/*')
-  p.package_files.exclude('package')
-  p.package_files.exclude('locale')
-  p.package_files.exclude('nbproject')
-end
-
-desc "Create mo-files for L10n"
-task :makemo do
-  require 'gettext_rails/tools'
-  GetText.create_mofiles
-end
-
-desc "Update pot/po files to match new version."
-task :updatepo do
-  require 'gettext_rails/tools'
-  GetText.update_pofiles("yast_webclient_systemtime", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"),
-                         "yast_webclient systemtime 1.0.0")
-end
 

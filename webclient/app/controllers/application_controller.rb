@@ -23,9 +23,8 @@ class ApplicationController < ActionController::Base
 
   def exception_trap(e)
     logger.error "***" + e.to_s
-    @error = e
     #render :text => "I am sorry"
-    render :template => "shared/exception_trap"
+    render :template => "shared/exception_trap", :locals => {:error => e}
     return
   end
   

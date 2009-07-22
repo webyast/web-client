@@ -1,9 +1,11 @@
 
+$selenium_available = false
+
 begin
     require 'rubygems'
     # try loading all selenium task definitions
     require 'selenium/rake/tasks'
-
+    $selenium_available = true
     # define selenium:rc:start task
     Selenium::Rake::RemoteControlStartTask.new do |rc|
 	      rc.port = 4444
@@ -21,7 +23,7 @@ begin
 	      rc.timeout_in_seconds = 3 * 60
     end
 rescue LoadError
-    selenium_missing = true
+    puts "Selenium not available"
 end
 
 namespace :test do
@@ -36,7 +38,7 @@ namespace :test do
 
     # define test:ui task - start/shut down Selenium server component automatically
     desc 'Run UI tests using Selenium testing framework'
-    if selenium_missing
+    if not $selenium_available
       task :ui do 
 	    $stderr.puts "ERROR: 'selenium-client' gem is missing, UI testing task (test:ui)"
 	    $stderr.puts "       cannot be started. Install 'selenium-client' Ruby gem first."
