@@ -1,36 +1,34 @@
 <div class="status_patches">
   <% unless patch %>
-    <img src="/images/button_warning.png" alt="warning icon" />
+    <div class="status-icon warning"></div>
     <%= _("Error occur during loading patch information.") %>
+
   <% else %>
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
-        <img src="/images/button_critical.png" alt="System need update"/>
         <div class="status-icon error"></div>
-      <% elsif patch[:optional] %>
-        <img src="/images/button_warning.png" alt="System contains any update" />
+      <% elsif patch[:optional] > 0%>
         <div class="status-icon warning"></div>
       <% else %>
-        <img src="/images/button_ok.png" alt="No updates available"/>
         <div class="status-icon ok"></div>
       <% end %>
 
 
       <% any_update = false %>
       <% if patch[:security] > 0 %>
-        <%= _("Security Updates: #{patch[:security]} ") %>
+        <span><%= _("Security Updates: #{patch[:security]} ") %></span>
         <% any_update = true %>
       <% end %>
       <% if patch[:important] > 0 %>
-        <%= _("Important Updates: #{patch[:important]} ") %>
+        <span><%= _("Important Updates: #{patch[:important]} ") %></span>
         <% any_update = true %>
       <% end %>
       <% if patch[:optional] > 0 %>
-        <%= _("Optional Updates: #{patch[:optional]} ") %>
+        <span><%= _("Optional Updates: #{patch[:optional]} ") %></span>
         <% any_update = true %>
       <% end %>
       <% unless any_update %>
-        <%= _("Your system is up to date.") %>
+        <span><%= _("Your system is up to date.") %></span>
       <% end %>
     <% end %>
   <% end %>

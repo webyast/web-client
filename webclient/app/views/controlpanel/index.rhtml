@@ -16,24 +16,26 @@
     });
   <% end -%>
 <% end %>
+<div id="status-wrapper" class="">
+  <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
-<h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
+  <div id="status_patches">
+    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+      <img src="/images/working.gif" height="32" width="32" border="0" /> Loading patch information
+    <% else %>
+      Patch plugin is not installed.
+    <% end %>
+  </div>
+  <br/>
+  <div id="status_status">
+    <% if ActionController::Routing.possible_controllers.include?("status") %>
+      <img src="/images/working.gif" height="32" width="32" border="0" /> Loading system information
+    <% else %>
+      Status plugin is not installed.
+    <% end %>
+  </div>
+</div>
 
-<div id="status_patches">
-  <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading patch information
-  <% else %>
-    Patch plugin is not installed.
-  <% end %>
-</div>
-<br/>
-<div id="status_status">
-  <% if ActionController::Routing.possible_controllers.include?("status") %>
-    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading system information
-  <% else %>
-    Status plugin is not installed.
-  <% end %>
-</div>
 
 <div id="favorites">
   <h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
