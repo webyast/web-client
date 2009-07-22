@@ -27,7 +27,8 @@ BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails
 BuildRequires:  rubygem-gettext_rails
 BuildRequires:  tidy
 BuildArch:      noarch  
-
+# required because we include selenium jar
+BuildRequires:  fastjar
 #
 %define service_name yastwc
 #
