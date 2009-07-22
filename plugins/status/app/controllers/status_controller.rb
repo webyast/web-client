@@ -197,11 +197,11 @@ class StatusController < ApplicationController
     begin
       till = Time.new
       from = till - 300 #last 5 minutes
-      
-      status = @client.find(:dummy_param, :params => { :start => from.strftime("%H:%M,%m/%d/%Y"), :stop => till.strftime("%H:%M,%m/%d/%Y") })
+      status = @client.find(:dummy_param, :params => {  :start => from.to_i.to_s, :stop => till.to_i.to_s })
 
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
+        redirect_to :controller=>"status", :action=>"edit"
         return false
     end
 
