@@ -22,8 +22,8 @@ Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  ruby-devel, rubygem-relevance-rcov
-BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails
+BuildRequires:  ruby, rubygem-relevance-rcov
+BuildRequires:  sqlite avahi-utils rubygem-sqlite3 rubygem-rails-2_3
 BuildRequires:  rubygem-gettext_rails
 BuildRequires:  tidy
 BuildArch:      noarch  
@@ -134,6 +134,6 @@ fi
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
 
-# %changelog  
-# * Tue Nov 27 2008 schubi@suse.de  
-# - initial  
+%changelog  
+* Tue Nov 27 2008 schubi@suse.de  
+- initial  
