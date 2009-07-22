@@ -11,14 +11,14 @@ $(document).ready(function() {
 
 <h2>Error Message:</h2>
 
-<p><%= @error.to_s %></p>
+<p><pre><%= h error.to_s %></pre></p>
 
 <p>Please <a href="https://bugzilla.novell.com/enter_bug.cgi?classification=7340&product=openSUSE+11.2&submit=Use+This+Product&component=WebYaST&format=guided">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
 
 <a href="#" id="details-link">Show details...</a>
 
 <pre id="backtrace" style="display: none">
-<%= @error.backtrace.blank? ? @error.backtrace.join("\n") : "No information available" %>
+<%= (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? "No information available" : error.backtrace.join("\n") %>
 </pre>
 
 
