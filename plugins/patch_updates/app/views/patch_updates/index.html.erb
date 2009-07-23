@@ -36,8 +36,6 @@
 
     <div id="patchesd"><%= render :partial => "patches"%></div>
 
-    <input type="checkbox" name="All" id="All">All</input>
-
     <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
     <%= link_to _("Back"), '/', :class=>"button" %>
   <% end %>

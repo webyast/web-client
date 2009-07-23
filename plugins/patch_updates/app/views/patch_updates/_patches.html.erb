@@ -1,6 +1,9 @@
 <table class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr>
-    <th class="first" width=5%><%=_("Check")%></th>
+    <th class="first checkbox" width=8% >
+      <input type="checkbox" name="All" id="All" style="float: left;"></input>
+      <div style="margin-top: 2px;"><%=_("Check")%></div>
+    </th>
     <th width=5%><%=_("Kind")%></th>
     <th width=15%><%=_("Name")%></th>
     <th width="100"><%=_("Summary")%></th>
