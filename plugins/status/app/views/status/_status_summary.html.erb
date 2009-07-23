@@ -1,7 +1,21 @@
+<% if !error.blank? %>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#details-link').click(function() { $('#details-link').hide();$('#details-text').show();return false; });
+});
+</script>
+<% end %>
+
 <div class="status_status">
   <% unless status %>
     <div class="status-icon warning"></div>
     <span><%= _("An error occured when loading status information.") %></span>
+    <% if !error.blank? %>
+    <a href="#" id="details-link"><%=_("Show details...")%></a>
+    <div id="details-text" style="display: none">
+    <%= h error %>
+    </div>
+    <% end %>
   <% else %>
     <% link_to "status" do %>
       <% if !status.blank? %>

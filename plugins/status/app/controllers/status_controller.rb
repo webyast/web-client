@@ -162,8 +162,9 @@ class StatusController < ApplicationController
     unless create_data
       erase_redirect_results #reset all redirects
       erase_render_results
+      error = flash[:error]
       flash.clear #no flash from load_proxy
-      render :partial => "status_summary", :locals => { :status => nil }
+      render :partial => "status_summary", :locals => { :status => nil, :error => error }
       return false
     end
     status = ""
@@ -189,7 +190,7 @@ class StatusController < ApplicationController
       end
     end
 
-    render :partial => "status_summary", :locals => { :status => status }
+    render :partial => "status_summary", :locals => { :status => status, :error => nil }
   end
 
   def save
