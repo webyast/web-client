@@ -2,8 +2,7 @@
 <h1>Status</h1>
 
 <% column = 1 %>
-<% groups = @data_group.keys.sort %>
-<% groups.each do |key| %>
+<% @data_group.keys.sort.each do |key| %>
   <% map = @data_group[key]%>
   <% if column != 1 %>
     <br style='clear: both'>
@@ -16,8 +15,9 @@
     <h3><%= key.tr('_',' ').capitalize %></h3>
   <% end %>
 
-  <% map.each do |graph_key, list_value| %>
-    <% if key != "df" || !graph_key.end_with? ("used")  %>
+  <% map.keys.sort.each do |graph_key| %>
+    <% list_value = map[graph_key] %>
+    <% if key != "df" || !graph_key.end_with?("used") %>
       <% graph_id = key + "_" + graph_key.tr('/','_') %>
       <%= graph(graph_id, 200, 150, column == 4?true:false) %>
       <% if column == 4 %>
@@ -35,7 +35,7 @@
 <% end %>
 <br>
 <br>
-<%= button_to  _("edit limits"),  :action => :edit, :class => "button" %>
+<%= button_to  _("Edit limits"),  :action => :edit, :class => "button" %>
 <br>
 <%= button_to _("Back"), :back %>
 <br>
@@ -103,7 +103,7 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
             plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
           <% end %>        
         <% else %>        
-           <% if graph_key.end_with? ("free")  %>
+           <% if graph_key.end_with?("free")  %>
              $('#' + '<%= graph_id %>').html("");
              <% used_key = graph_key[0..graph_key.length-5] + "used" %>
              plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
