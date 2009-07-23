@@ -15,7 +15,9 @@
     option[value=optional]:before { content:url('/icons/kupdateapplet_optional.png'); }
 
   </style>
-
+  <div class='plugin-icon'><img src='/icons/yast-online_update.png'/></div>
+  <div class='plugin-content'>
+  <h2>Updates</h2>
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
     <p><%=_("Your system is up to date.") %></p>
@@ -39,6 +41,7 @@
     <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
     <a href="/" class="button"><%=_("Back")%></a>
   <% end %>
+  </div>
 
 <% end %>
 
@@ -49,3 +52,4 @@
   :with => "'value=' + value"
 )
 %>
+
