@@ -38,6 +38,7 @@ Authors:
 %setup -q -n www
 
 %build
+export RAILS_PARENT=/srv/www/yast
 (rake makemo)
 
 %install
@@ -58,6 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
+/srv/www/yast/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
@@ -65,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
