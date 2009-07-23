@@ -207,7 +207,7 @@ class StatusController < ApplicationController
         if key == "df"
           status += _("Disk free limits exceeded")
         else
-          status += key + " " + _("limits exceeded")
+          status += key.capitalize + " " + _("limits exceeded")
         end
       end
     end
