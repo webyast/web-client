@@ -1,4 +1,6 @@
-<h1><%=_("Language")%></h1>
+<div class='plugin-icon'><img src='/icons/yast-language.png'/></div>
+<div class='plugin-content'>
+<h2><%=_("Language")%></h2>
 <br/>
 
 <% form_tag '/language/commit_language' do -%>
@@ -30,7 +32,7 @@
   <%= submit_tag _("Save"), :disabled=>!@permissions[:write] %>
 </div>
 <% end -%>
-
+</div>
 
 
 
