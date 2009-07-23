@@ -39,7 +39,7 @@
     <input type="checkbox" name="All" id="All">All</input>
 
     <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
-    <a href="/" class="button"><%=_("Back")%></a>
+    <%= link_to _("Back"), '/', :class=>"button" %>
   <% end %>
   </div>
 
