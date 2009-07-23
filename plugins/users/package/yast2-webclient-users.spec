@@ -60,7 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
-/srv/www/yast/vendor/plugins/users/config/rails_parent.rb
+/srv/www/yast/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
