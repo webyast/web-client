@@ -154,6 +154,24 @@ class StatusController < ApplicationController
   def index
     return unless client_permissions
     create_data
+    @limit_hits = []
+    @data_group.each do |key, map| 
+      map.each do |graph_key, list_value|
+        limit_key = "/#{key}/#{graph_key}"
+        if  @limits_list.has_key?(limit_key)
+          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format 
+                                                 #( e.g. MByte for memory)
+          list_value.each do |value|
+            if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
+               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)                  
+              @limit_hits << limit_key
+              break
+            end
+          end
+        end
+      end
+    end
+    logger.debug "limits reached for #{@limit_hits.inspect}"
   end
 
 
@@ -162,8 +180,9 @@ class StatusController < ApplicationController
     unless create_data
       erase_redirect_results #reset all redirects
       erase_render_results
+      error = flash[:error]
       flash.clear #no flash from load_proxy
-      render :partial => "status_summary", :locals => { :status => nil }
+      render :partial => "status_summary", :locals => { :status => nil, :error => error }
       return false
     end
     status = ""
@@ -189,7 +208,7 @@ class StatusController < ApplicationController
       end
     end
 
-    render :partial => "status_summary", :locals => { :status => status }
+    render :partial => "status_summary", :locals => { :status => status, :error => nil }
   end
 
   def save
