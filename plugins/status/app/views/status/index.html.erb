@@ -2,7 +2,9 @@
 <h1>Status</h1>
 
 <% column = 1 %>
-<% @data_group.each do |key, map| %>
+<% groups = @data_group.keys.sort %>
+<% groups.each do |key| %>
+  <% map = @data_group[key]%>
   <% if column != 1 %>
     <br style='clear: both'>
     <br>
