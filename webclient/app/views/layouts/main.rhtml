@@ -40,9 +40,6 @@
       <% host = Host.find(session[:host]) rescue nil
         user = session[:user]
         if host.blank? || user.blank? -%>
-        <ul>
-          <li><%= link_to _("Login"), '/login' %></li>
-        </ul>
       <% else -%>
         <ul>
           <li><strong><%=_("Connected Host")%></strong></li>
