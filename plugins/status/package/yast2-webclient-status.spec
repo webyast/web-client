@@ -20,6 +20,8 @@ Summary:        YaST2 - Webclient - status
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  ruby
+BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
