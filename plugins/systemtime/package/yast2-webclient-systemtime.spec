@@ -14,12 +14,14 @@ PreReq:         yast2-webclient >= 0.0.2
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.2
+Version:        0.0.3
 Release:        0
 Summary:        YaST2 - Webclient - SystemTime
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  ruby
+BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
@@ -37,7 +39,8 @@ Authors:
 %setup -q -n www
 
 %build
-(rake makemo)
+export RAILS_PARENT=/srv/www/yast
+rake makemo
 
 %install
 
@@ -67,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 #/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb

@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-users (Version 0.1)
+# spec file for package yast2-webclient-network (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,31 +9,32 @@
 #
 
 
-Name:           yast2-webclient-users
-PreReq:         yast2-webclient
-Provides:       yast2-webclient:/srv/www/yast/app/controllers/users_controller.rb
+Name:           yast2-webclient-network
+PreReq:         yast2-webclient >= 0.0.2
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.1
+Version:        0.0.2
 Release:        0
-Summary:        YaST2 - Webclient - Users
+Summary:        YaST2 - Webclient - network
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  ruby
+BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name users
+%define plugin_name network
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle users settings.
+YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
-
+    Josef Reidinger <jreidinger@suse.cz>
 %prep
 %setup -q -n www
 
@@ -60,17 +61,20 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
-/srv/www/yast/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/MIT-LICENSE
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 #/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 
+%changelog

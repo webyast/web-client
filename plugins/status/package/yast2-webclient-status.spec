@@ -20,6 +20,8 @@ Summary:        YaST2 - Webclient - status
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  ruby
+BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
@@ -37,6 +39,7 @@ Authors:
 %setup -q -n www
 
 %build
+export RAILS_PARENT=/srv/www/yast
 (rake makemo)
 
 %install
