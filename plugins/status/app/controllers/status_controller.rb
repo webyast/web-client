@@ -154,6 +154,24 @@ class StatusController < ApplicationController
   def index
     return unless client_permissions
     create_data
+    @limit_hits = []
+    @data_group.each do |key, map| 
+      map.each do |graph_key, list_value|
+        limit_key = "/#{key}/#{graph_key}"
+        if  @limits_list.has_key?(limit_key)
+          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format 
+                                                 #( e.g. MByte for memory)
+          list_value.each do |value|
+            if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
+               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)                  
+              @limit_hits << limit_key
+              break
+            end
+          end
+        end
+      end
+    end
+    logger.debug "limits reached for #{@limit_hits.inspect}"
   end
 
 
