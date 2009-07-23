@@ -39,6 +39,7 @@ Authors:
 %setup -q -n www
 
 %build
+export RAILS_PARENT=/srv/www/yast
 (rake makemo)
 
 %install
