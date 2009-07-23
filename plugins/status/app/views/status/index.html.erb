@@ -154,9 +154,9 @@ function plotLineGraphError(graph_id, graph_title, graph_data ) {
     <% @data_group.each do |key, map| %>
       <% map.each do |graph_key, list_value| %>
         <% graph_id = key + "_" + graph_key.tr('/','_') %>
+        <% limit_key = "/#{key}/#{graph_key}" %>
         <% if key != "df" %>
           $('#' + '<%= graph_id %>').html("");
-          <% limit_key = "/#{key}/#{graph_key}" %>
           <% if @limits_list.has_key?(limit_key) %>
             <% if @limit_hits.include?(limit_key) %> 
               plotLineGraphError('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key].inspect %>]);
@@ -164,17 +164,17 @@ function plotLineGraphError(graph_id, graph_title, graph_data ) {
               plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key].inspect %>]);
             <% end %>
           <% else %>        
-            <% if @limit_hits.include?(limit_key) %> 
-              plotLineGraphError('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
-            <% else %>
-              plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
-            <% end %>
+            plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
           <% end %>        
         <% else %>        
            <% if graph_key.end_with?("free")  %>
              $('#' + '<%= graph_id %>').html("");
              <% used_key = graph_key[0..graph_key.length-5] + "used" %>
-             plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
+             <% if @limit_hits.include?(limit_key) %> 
+               plotPieGraphError ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
+             <% else %>
+               plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
+             <% end %>
            <% end %>
         <% end %>
       <% end %>

@@ -204,7 +204,11 @@ class StatusController < ApplicationController
       end
       if error_found 
         status += "; " unless status.blank?
-        status += key + " " + _("limits exceeded")
+        if key == "df"
+          status += _("Disk free limits exceeded")
+        else
+          status += key + " " + _("limits exceeded")
+        end
       end
     end
 
