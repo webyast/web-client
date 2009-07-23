@@ -20,9 +20,9 @@
   <h2>Updates</h2>
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
-    <p><%=_("Your system is up to date.") %></p>
+    <h3><%=_("Your system is up to date.") %></h3>
   <% else %>
-    <p><%=_("Updates available") %></p>
+    <h3><%=_("Updates available") %></h3>
   <% end %>
 
   <select name="selector" id="selector" size="1">

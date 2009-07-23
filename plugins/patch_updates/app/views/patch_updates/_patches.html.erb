@@ -1,11 +1,11 @@
 <table class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr>
     <th class="first" width=5%><%=_("Check")%></th>
-    <th width=8%><%=_("Kind")%></th>
+    <th width=5%><%=_("Kind")%></th>
     <th width=15%><%=_("Name")%></th>
     <th width="100"><%=_("Summary")%></th>
     <% if @permissions[:install] %>
-      <th width=15%><%=_("Source")%></th>
+      <th width=25%><%=_("Source")%></th>
       <th class="last" width=5%><%=_("Install")%></th>
     <% else %>
       <th class="last" width=15%><%=_("Source")%></th>
@@ -20,7 +20,7 @@
 %>
   <% @patch_updates.each do |patch_update| %>
     <tr>
-      <td><input type="checkbox" id=<%= "patch_#{patch_update.resolvable_id}" %> name=<%="patch_#{patch_update.resolvable_id}" %> value=<%=patch_update.resolvable_id%> ></td>
+      <td class="checkbox"><input type="checkbox"id=<%= "patch_#{patch_update.resolvable_id}" %> name=<%="patch_#{patch_update.resolvable_id}" %> value=<%=patch_update.resolvable_id%> ></td>
 
       <% if kinds.has_key?(patch_update.kind) %>
         <td class="icon" ><%= image_tag(kinds[patch_update.kind]) %> </td>
@@ -30,7 +30,7 @@
 
       <td class="label"><%=h patch_update.name %></td>
       <td class="label"><%=h patch_update.summary %></td>
-      <td><%=h patch_update.repo %></td>
+      <td class="icon"><%=h patch_update.repo %></td>
       <% if @permissions[:install] %>
         <td><%= link_to image_tag("/icons/system-software-install.png"\
               , :alt =>  "install", :class=>"icon", :border => "0"),\
