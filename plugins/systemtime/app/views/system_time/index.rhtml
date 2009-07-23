@@ -26,7 +26,8 @@
         <% #region is always non-nil as it is prerequisites which throws exception
         %>
         <td>
-          <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled %>
+          <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled,
+                                   :class=>'aligned-inputs' %>
         </td>
 
       </tr>
@@ -64,14 +65,10 @@
         </tr>
 
       <% end %>
-
-      <tr>
-        <td/>
-        <td>
-          <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
-        </td>
-      </tr>
     </table>
+    <p>
+    <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
+    </p>
   <% end %>
   <h2><%=_("Manually configure time")%></h2>
   <% form_tag '/system_time/update_time', :class => 'container' do %>
@@ -79,12 +76,12 @@
       <tr>
         <td>
           <label for="date_date">
-            <%= _("Date") %>
+            <%= _("Date:") %>
           </label>
         </td>
         <td>
-          <%= text_field "date","date", :class => :datepicker,
-            :disabled=> disabled, :value => @date
+          <%= text_field "date","date", :class => :datepicker, 
+            :disabled=> disabled, :value => @date, :class=>'aligned-inputs'
         %>
         </td>
       </tr>
@@ -92,22 +89,16 @@
       <tr>
         <td>
           <label for="currenttime">
-            <%= _("Time") %>
+            <%= _("Time:") %>
           </label>
         </td>
-        <td><%= text_field_tag "currenttime", @time, :disabled=> disabled %></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>
-
-          <%= submit_tag _("Save"), :onclick=>"Element.show('progress')",
-            :disabled=> disabled, :class => 'button' -%>
-
-        </td>
+        <td><%= text_field_tag "currenttime", @time, :disabled=> disabled, :class=>'aligned-inputs' %></td>
       </tr>
     </table>
+    <p>
+      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')",
+                                :disabled=> disabled, :class => 'button' -%>
+    </p>
   <% end %>
   </div>
 

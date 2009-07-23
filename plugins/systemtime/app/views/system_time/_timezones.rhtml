@@ -8,4 +8,4 @@ region.entries.each() do |timezone|
 end
 %>
 <%= select_tag "timezone",
-  options_for_select(list, central), :disabled=> disabled %>
+  options_for_select(list, central), :disabled=> disabled, :class=>'aligned-inputs' %>
