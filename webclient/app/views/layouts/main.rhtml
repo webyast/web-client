@@ -48,8 +48,11 @@
           <li><strong><%=_("Connected Host")%></strong></li>
           <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
-          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
         </ul>
+        <ul class='header-links'>
+          <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
+          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
+       </ul>
       <% end -%>
       </div>
     </div>
