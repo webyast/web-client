@@ -19,11 +19,11 @@ $(document).ready(function() {
   <% else %>
     <% link_to "status" do %>
       <% if !status.blank? %>
-        <img src="/images/button_critical.png" alt="error found"/>
-        <%= status %>          
+	<div class="status-icon error"></div>
+        <span><%= status %></span>
       <% else %>
-        <img src="/images/button_ok.png" alt="Your system is healthy"/>
-        <%= _("Your system is healthy.") %>
+	<div class="status-icon ok"></div>
+        <span><%= _("Your system is healthy.") %></span>
       <% end %>
     <% end %>
   <% end %>
