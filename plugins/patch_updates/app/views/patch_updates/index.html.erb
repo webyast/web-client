@@ -21,7 +21,7 @@
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
     <h3><%=_("Your system is up to date.") %></h3>
-
+    <%= link_to _("Back"), '/', :class=>"button" %>
   <% else %>
     <h3><%=_("Updates available") %></h3>
 
@@ -37,9 +37,9 @@
       <div id="patchesd"><%= render :partial => "patches"%></div>
 
       <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
+      <%= link_to _("Back"), '/', :class=>"button" %>
     <% end %>
   <% end %>
-  <%= link_to _("Back"), '/', :class=>"button" %>
   </div>
 
 <% end %>
