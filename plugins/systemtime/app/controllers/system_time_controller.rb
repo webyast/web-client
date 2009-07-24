@@ -140,11 +140,25 @@ class SystemTimeController < ApplicationController
   #AJAX function that renders new timezones for selected region. Expected
   # initialized values from index call.
   def timezones_for_region
-    region = ""
+    # since while calling this function there is different instance of the class
+    # than when calling index, @timezones were empty; reinitialize them
+    # possible FIXME: how does it increase the amount of data transferred?
+    systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
+
+    unless systemtime
+      return false  #possible FIXME: is returnign false for AJAX correct?
+    end
+
+    @timezones = systemtime.timezones
+
+    region = "" #possible FIXME later it gets class, not a string
     @timezones.each do |r|
       if r.name == params[:value]
         region = r
       end
+    end
+    if region == ""
+      return false; #possible FIXME: is returnign false for AJAX correct?
     end
     render(:partial => 'timezones',
       :locals => {:region => region, :default => region.central,
