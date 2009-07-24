@@ -1,4 +1,6 @@
 <% if @permissions %>  
+  <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+
   <% javascript_tag do -%>
     $(document).ready( function() {
     $(".datepicker").datepicker( { dateFormat: 'dd/mm/yy'} );
@@ -80,8 +82,8 @@
           </label>
         </td>
         <td>
-          <%= text_field "date","date", :class => :datepicker, 
-            :disabled=> disabled, :value => @date, :class=>'aligned-inputs'
+          <%= text_field "date","date", :class => 'datepicker aligned-inputs', 
+            :disabled=> disabled, :value => @date
         %>
         </td>
       </tr>
