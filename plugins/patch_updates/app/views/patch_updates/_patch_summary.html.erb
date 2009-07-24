@@ -14,22 +14,20 @@
       <% end %>
 
 
-      <% any_update = false %>
+      <% label = [] %>
       <% if patch[:security] > 0 %>
-        <span><%= _("Security Updates: #{patch[:security]} ") %></span>
-        <% any_update = true %>
+        <% label << _("Security Updates: #{patch[:security]}") %>
       <% end %>
       <% if patch[:important] > 0 %>
-        <span><%= _("Important Updates: #{patch[:important]} ") %></span>
-        <% any_update = true %>
+	<% label << _("Important Updates: #{patch[:important]}") %>
       <% end %>
       <% if patch[:optional] > 0 %>
-        <span><%= _("Optional Updates: #{patch[:optional]} ") %></span>
-        <% any_update = true %>
+	<% label << _("Optional Updates: #{patch[:optional]}") %>
       <% end %>
-      <% unless any_update %>
-        <span><%= _("Your system is up to date.") %></span>
+      <% if label.empty? %>
+	<% label << _("Your system is up to date.") %>
       <% end %>
+      <span><%= label.join(", ") %></span>
     <% end %>
   <% end %>
 </div>
