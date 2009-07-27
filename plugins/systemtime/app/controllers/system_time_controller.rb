@@ -19,7 +19,7 @@ class SystemTimeController < ApplicationController
   # @+timezone+ field.
   def fill_valid_timezones
     @valid.clear
-    @timezones.each do |region|
+    @@timezones.each do |region|
       @valid.push(region.name)
     end
   end
@@ -29,7 +29,7 @@ class SystemTimeController < ApplicationController
   # throws:: Exception if current timezone is not in any known region. @+region+
   # field in this case is +nil+.
   def fill_current_region
-    @timezones.each do |region|
+    @@timezones.each do |region|
       region.entries.each do |entry|
         if entry.id == @timezone
           @region = region
@@ -47,7 +47,9 @@ class SystemTimeController < ApplicationController
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
 
   def initialize
-    @timezones = {}
+    unless defined? @@timezones
+      @@timezones = {}
+    end
     @valid = []    
   end 
 
@@ -67,7 +69,7 @@ class SystemTimeController < ApplicationController
       return false
     end
         
-    @timezones = systemtime.timezones
+    @@timezones = systemtime.timezones
     @timezone = systemtime.timezone
     @utcstatus = systemtime.utcstatus
     @time = systemtime.time
@@ -140,19 +142,21 @@ class SystemTimeController < ApplicationController
   #AJAX function that renders new timezones for selected region. Expected
   # initialized values from index call.
   def timezones_for_region
-    # since while calling this function there is different instance of the class
-    # than when calling index, @timezones were empty; reinitialize them
-    # possible FIXME: how does it increase the amount of data transferred?
-    systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
-
-    unless systemtime
-      return false  #possible FIXME: is returnign false for AJAX correct?
+    if @@timezones.empty?
+      # since while calling this function there is different instance of the class
+      # than when calling index, @@timezones were empty; reinitialize them
+      # possible FIXME: how does it increase the amount of data transferred?
+      systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
+  
+      unless systemtime
+        return false  #possible FIXME: is returnign false for AJAX correct?
+      end
+  
+      @@timezones = systemtime.timezones
     end
 
-    @timezones = systemtime.timezones
-
     region = "" #possible FIXME later it gets class, not a string
-    @timezones.each do |r|
+    @@timezones.each do |r|
       if r.name == params[:value]
         region = r
       end
