@@ -8,6 +8,7 @@ $(document).ready(function() {
   });
 
   // Alternating Lines in "Tables"
-  $('.striped-rows > li:even').addClass('alt-bg');
+  // $('.striped-rows > li:even').addClass('alt-bg');
+  $('.alternate-rows > li:even').addClass('alt-bg');
 
 });
