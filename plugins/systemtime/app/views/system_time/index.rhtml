@@ -13,7 +13,7 @@
   <% disabled = ! @permissions[:write] %>
 
 
-  <div class='plugin-icon'><img src='/icons/yast-ntp-client.png'/></div>
+  <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <div class='plugin-content'>
   <h2><%=_("Configure timezone")%></h2>
   <% form_tag '/system_time/update_timezone', :class => 'container' do %>
