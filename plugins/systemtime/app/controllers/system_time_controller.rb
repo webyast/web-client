@@ -18,26 +18,17 @@ class SystemTimeController < ApplicationController
   # Fills @+valid+ field that represents valid regions with informations from
   # @+timezone+ field.
   def fill_valid_timezones
-    @valid.clear
-    @@timezones.each do |region|
-      @valid.push(region.name)
-    end
+    @valid = @@timezones.collect { |region| region.name }
   end
 
   # Fills current region name in field @+region+. Requires filled @+timezones+
   # and @+timezone+ fields
   # throws:: Exception if current timezone is not in any known region. @+region+
   # field in this case is +nil+.
-  def fill_current_region
-    @@timezones.each do |region|
-      region.entries.each do |entry|
-        if entry.id == @timezone
-          @region = region
-          return
-        end
-      end
-    end
-    raise _("Unknown timezone #{@timezone} on host")
+  def fill_current_region   
+    @region = @@timezones.find { |region|
+      region.entries.find { |entry| entry.id==@timezone } }
+    raise _("Unknown timezone #{@timezone} on host") unless @region
   end
 
   public
@@ -151,19 +142,16 @@ class SystemTimeController < ApplicationController
       unless systemtime
         return false  #possible FIXME: is returnign false for AJAX correct?
       end
-  
+
       @@timezones = systemtime.timezones
     end
 
-    region = "" #possible FIXME later it gets class, not a string
-    @@timezones.each do |r|
-      if r.name == params[:value]
-        region = r
-      end
-    end
-    if region == ""
+    region = @@timezones.find { |r| r.name == params[:value] } #possible FIXME later it gets class, not a string
+    
+    unless region
       return false; #possible FIXME: is returnign false for AJAX correct?
     end
+
     render(:partial => 'timezones',
       :locals => {:region => region, :default => region.central,
         :disabled => ! params[:disabled]=="true"})
