@@ -30,6 +30,7 @@ class LanguageController < ApplicationController
           @current = avail.name
         end        
       end
+      @valid.sort!
       @rootlocale=@language.rootlocale
       @utf8 = @language.utf8
     end
