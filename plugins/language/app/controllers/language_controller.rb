@@ -22,7 +22,6 @@ class LanguageController < ApplicationController
       return false
     end
 
-#    debugger
     @valid = language.available.collect { |item| item.name } || []
     @valid.sort!
     cur = language.available.find { |avail| avail.id.size>0 && avail.id == language.current }
