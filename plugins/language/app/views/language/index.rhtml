@@ -1,4 +1,4 @@
-<div class='plugin-icon'><img src='/icons/yast-language.png'/></div>
+<div class='plugin-icon'><img src='/icons/yast-language.png' alt="<%= _("language plugin") %>"/></div>
 <div class='plugin-content'>
 <h2><%=_("Language")%></h2>
 <br/>
@@ -9,7 +9,7 @@
   <tr>
     <td class="first"><%=_("First Language")%></td>
     <td>
-      <%= select_tag :first_language, options_for_select(@valid, @current),
+      <%= select_tag :first_language, options_for_select(@valid||[], @current||""),
             :disabled=>!@permissions[:write] %>
     </td>
   </tr>
