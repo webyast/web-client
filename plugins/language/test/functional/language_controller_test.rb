@@ -168,9 +168,9 @@ class LanguageControllerTest < ActionController::TestCase
   end
 
 
-  def test_commit
+  def test_update
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.language').returns(@proxy)
-    post :commit_language, { :first_language => "English (US)", :rootlocale => "ctype" }
+    post :update, { :first_language => "English (US)", :rootlocale => "ctype" }
 
     assert_response :redirect
     assert_redirected_to :action => "index"
