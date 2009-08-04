@@ -1,12 +1,5 @@
 <% if @permissions and @patch_updates %>
   <%= javascript_include_tag :defaults %>
-  <% javascript_tag do -%>
-    $(document).ready(function() {
-      $('#All').click(function() {
-        $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));
-      });
-    });
-  <% end %>
   <style type="text/css">
 
     option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }

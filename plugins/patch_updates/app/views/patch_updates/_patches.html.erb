@@ -1,7 +1,13 @@
+
+  <% javascript_tag do -%>
+    function all() {
+        $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));      
+    };
+  <% end %>
 <table class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr>
     <th class="first checkbox" width=8% >
-      <input type="checkbox" name="All" id="All" style="float: left;"></input>
+      <input type="checkbox" name="All" onclick="all()" id="All" style="float: left;"></input>
       <div style="margin-top: 2px;"><%=_("Check")%></div>
     </th>
     <th width=5%><%=_("Kind")%></th>
