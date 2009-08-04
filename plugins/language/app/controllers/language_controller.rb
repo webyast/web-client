@@ -3,73 +3,52 @@ require 'yast/service_resource'
 class LanguageController < ApplicationController
   before_filter :login_required
   layout 'main'
+  include ProxyLoader
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_language"  # textdomain, options(:charset, :content_type)
 
 
   def index
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.language')
-    if proxy.nil?
-      access_denied
-      return
-    end
-    @permissions = proxy.permissions
-    begin
-      @language = proxy.find
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
+    language = load_proxy 'org.opensuse.yast.modules.yapi.language'
+    
+    unless language
+      return false
     end
 
-    @valid = []
-    
+    unless@permissions[:read]
+      flash[:warning] = _("No permissions for language module")
+      redirect_to root_path
+      return false
+    end
+       
     if @language
-      @language.available.each do  |avail|
-        @valid << avail.name
-        if avail.id.size>0 && avail.id == @language.current
-          @current = avail.name
-        end        
-      end
+      @valid = language.available.collect { |item| item.name } || []
       @valid.sort!
-      @rootlocale=@language.rootlocale
-      @utf8 = @language.utf8
+      cur = language.available.find { |avail| avail.id.size>0 && avail.id == language.current }
+      @current = cur.name if cur
+      @rootlocale=language.rootlocale
+      @utf8 = language.utf8
     end
   end
 
   def commit_language
-     proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.language')
-     proxy.timeout = 120
-     @permissions = proxy.permissions
-     begin
-       lang = proxy.find
-       rescue ActiveResource::ClientError => e
-         flash[:error] = YaST::ServiceResource.error(e)
-     end
+     lang = load_proxy 'org.opensuse.yast.modules.yapi.language'
 
      if lang
-       lang.available.each do  |avail|
-         if params[:first_language]==avail.name
-           lang.current = avail.id
-           break
-         end
-       end
+       cur = lang.available.find { |avail| params[:first_language]==avail.name }
+       lang.current = cur.id if cur
 
        lang.available = [] #not needed anymore
-       if params[:utf8] && params[:utf8]=="true"
-        lang.utf8 = "true"
-       else
-        lang.utf8 = "false"
-       end
+       lang.utf8 = (params[:utf8] && params[:utf8]=="true") ? "true" : "false"
        lang.rootlocale = params[:rootlocale]
-       
-       response = true
+              
        begin
-         response = lang.save
+         lang.save
+         flash[:notice] = _("Settings have been written.")
          rescue ActiveResource::ClientError => e
-           flash[:error] = YaST::ServiceResource.error(e)
-           response = false
-       end
-       flash[:notice] = _("Settings have been written.") if response
+           flash[:error] = YaST::ServiceResource.error(e)           
+       end       
      end
      redirect_to :action => :index 
   end
