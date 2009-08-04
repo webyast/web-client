@@ -55,7 +55,7 @@ class SystemTimeController < ApplicationController
     end
 
     unless @permissions[:read]
-      flash[:warning] = "No permissions for time module"
+      flash[:warning] = _("No permissions for time module")
       redirect_to root_path
       return false
     end
