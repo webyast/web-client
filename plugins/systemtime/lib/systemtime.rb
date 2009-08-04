@@ -9,27 +9,15 @@ def fill_proxy_with_time(proxy,params)
 end
 
 def fill_proxy_with_timezone(proxy,params,timezones)
-  region = {}
-    timezones.each do |reg|
-      if reg.name == params[:region]
-        region = reg
-        break
-      end
-    end
+    region = timezones.find { |reg| reg.name == params[:region] }
+    region = {} unless region
 
-    region.entries.each do |e|
-      if (e.name == params[:timezone])
-        proxy.timezone = e.id
-        break
-      end
-    end
+    tmz = region.entries.find { |e| e.name == params[:timezone]}
+    proxy.timezone = tmz.id if tmz
+
 
     if (proxy.utcstatus != "UTConly")
-      if params[:utc] == "true"
-        proxy.utcstatus = "UTC"
-      else
-        proxy.utcstatus = "localtime"
-      end
+      proxy.utcstatus = params[:utc] == "true" ? "UTC" : "localtime"
     end
 
     proxy.time = ""
