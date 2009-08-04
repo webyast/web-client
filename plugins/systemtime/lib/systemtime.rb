@@ -1,5 +1,6 @@
 # Systemtime
 
+#fills proxy with time parameters and set rest parameters to empty value
 def fill_proxy_with_time(proxy,params)
   proxy.date = params[:date][:date]
   proxy.time = params[:currenttime]
@@ -8,6 +9,7 @@ def fill_proxy_with_time(proxy,params)
   proxy.timezone = ""
 end
 
+#fills proxy with timezone parameters and set rest parameters to empty value
 def fill_proxy_with_timezone(proxy,params,timezones)
   region = timezones.find { |reg| reg.name == params[:region] } || Hash.new
 

@@ -1,5 +1,10 @@
 require 'yast/service_resource'
 
+# = Language controller
+# Provides all functionality, that handles locale management module.
+# The most functionality around language handling is in rest-service and this
+# controller just provide handling of different exceptions and UI features.
+
 class LanguageController < ApplicationController
   before_filter :login_required
   layout 'main'
@@ -8,7 +13,9 @@ class LanguageController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_language"  # textdomain, options(:charset, :content_type)
 
-
+  # Index handler. Loads information from backend and if success all required
+  # fields is filled. In case of errors redirect to help page, main page or just
+  # show flash with partial problem.
   def index
     language = load_proxy 'org.opensuse.yast.modules.yapi.language'
     
@@ -31,7 +38,9 @@ class LanguageController < ApplicationController
     
   end
 
-  def commit_language
+  # Update handler. Sets to backend new language settins. If
+  # everything goes fine show confirmation message, otherwise show some error.
+  def update
     lang = load_proxy 'org.opensuse.yast.modules.yapi.language'
 
     if lang
