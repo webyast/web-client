@@ -41,7 +41,7 @@
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Password")%></strong></td>
-	<td class="last"><%= f.text_field :user_password, :disabled => disabled %></td>
+	<td class="last"><%= f.password_field :user_password, :disabled => disabled %></td>
     </tr>
     </table>
     <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), users_path, :onclick=>"Element.show('progress')", :class => "button"%></p>

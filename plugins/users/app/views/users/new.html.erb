@@ -39,7 +39,7 @@
     </tr>
     <tr>
 	<td class="first"><strong><%=_("Password")%></strong></td>
-	<td class="last"><%= f.text_field :user_password %></td>
+	<td class="last"><%= f.password_field :user_password %></td>
     </tr>
     </table>
     <p><%= f.submit _("Create"), :onclick=>"Element.show('progress')" %><%= link_to _('Back'), users_path, :onclick=>"Element.show('progress')", :class => "button" %></p>
