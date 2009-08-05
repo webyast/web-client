@@ -18,7 +18,7 @@
     <td><%=h user.cn %></td>
     <td><%= link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => :edit, :id => user.id}, :onclick=>"Element.show('progress')" %></td>
     <% if @permissions[:userdelete] %>
-    <td class="last"><%= html_delete_link(user.uid) %></td>
+    <td class="last"><%= html_delete_link(user.uid, :destroy) %></td>
     <% end %>
   </tr>
   <% end %>
