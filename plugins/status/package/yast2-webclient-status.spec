@@ -30,7 +30,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
+YaST2 - Webclient - UI for YaST-webservice for monitoring and status
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
