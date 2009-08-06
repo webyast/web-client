@@ -44,13 +44,18 @@
 
   <link rel="stylesheet" href="/inc/checktree/checktree.css" type="text/css" media="screen" title="default" charset="utf-8" />
  </head>
-<h1><%=_("User Permissions")%></h1>
+<div class='plugin-icon'><img src='/icons/yast-security.png'/></div>
+<div class='plugin-content'>
+
+<h2><%=_("User Permissions")%></h2>
 <br>
 <% form_tag '/permissions/search' do %>
   <p><label for="user"><%=_("User")%></label>
   <input type="text" name="user" size=25 value=<%= "#{@current_user}" %> >
-  <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"Element.show('progress')"%>
-  <a href="/" class="button"><%=_("Back")%></a>
+  <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"Element.show('progress')", :class => 'button'%>
+  <% if @current_user.blank? %>
+    <a href="/" class="button"><%=_("Back")%></a>
+  <% end %>
 <% end %>
 <br>
 <br>
@@ -62,12 +67,12 @@
    <col>
    </colgroup>
    <tr>
-   <th><%=_("Revoked Permissions")%></th>
-   <th><%=_("Granted Permissions")%></th>
+     <th><%=_("Revoked Permissions")%></th>
+     <th><%=_("Granted Permissions")%></th>
    </tr>
    <tr>
-   <td valign="top">
-   <body>
+     <td valign="top">
+     <body>
        <div id="revoketree"></div>
        <ul class="tree" style="margin-left: 15px;">
        <% last_level = 0 %>
@@ -104,10 +109,10 @@
        <% end %>
        <% end %>
        </ul>
-   </body>
-   </td>
-   <td valign="top">
-   <body>
+     </body>
+     </td>
+     <td valign="top">
+     <body>
        <div id="granttree"></div>
        <ul class="tree" style="margin-left: 15px;">
        <% last_level = 0 %>
@@ -144,17 +149,17 @@
        <% end %>
        <% end %>
        </ul>
-   </body>
-   </td>
-   <td valign="top">
-     <body>
-       <div id="setpermission"></div>
-       <%= submit_tag _("Set"), :disabled=> !@right_set_permissions, :onclick=>"Element.show('progress')"%>
-       <a href="/" class="button"><%=_("Back")%></a>
      </body>
-    </td>
-    </tr>
+     </td>
+
+   </tr>
    </table>
+   <br style='clear: both'>
+   <br>
+   <%= submit_tag _("Set"), :disabled=> !@right_set_permissions, :class => 'button' %>
+   <a href="/" class="button"><%=_("Back")%></a>
  <% end %>
 <% end %>
+</div>
 </html>
+

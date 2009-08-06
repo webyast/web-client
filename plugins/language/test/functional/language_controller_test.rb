@@ -66,11 +66,10 @@ class LanguageControllerTest < ActionController::TestCase
     #check if everything is correctly setted
     assert_response :success
     assert_valid_markup
-    assert assigns(:permissions)
-    assert assigns(:permissions)[:read]
-    assert assigns(:permissions)[:write]
-    assert assigns(:language)
-    assert_equal assigns(:valid), ["cestina","English (US)"]
+    assert assigns(:permissions) , "Permission is not set"
+    assert assigns(:permissions)[:read], "Read permission is not set"
+    assert assigns(:permissions)[:write], "Write permission is not set"
+    assert_equal assigns(:valid), ["cestina","English (US)"].sort
     assert_equal assigns(:current), "cestina"
     assert_equal assigns(:utf8), @result.utf8
     assert_equal assigns(:rootlocale), @result.rootlocale
@@ -121,8 +120,7 @@ class LanguageControllerTest < ActionController::TestCase
     assert assigns(:permissions)
     assert assigns(:permissions)[:read]
     assert !assigns(:permissions)[:write]
-    assert assigns(:language)
-    assert_equal assigns(:valid), ["cestina","English (US)"]
+    assert_equal assigns(:valid), ["cestina","English (US)"].sort
     assert_equal assigns(:current), "cestina"
     assert_equal assigns(:utf8), @result.utf8
     assert_equal assigns(:rootlocale), @result.rootlocale
@@ -170,9 +168,9 @@ class LanguageControllerTest < ActionController::TestCase
   end
 
 
-  def test_commit
+  def test_update
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.language').returns(@proxy)
-    post :commit_language, { :first_language => "English (US)", :rootlocale => "ctype" }
+    post :update, { :first_language => "English (US)", :rootlocale => "ctype" }
 
     assert_response :redirect
     assert_redirected_to :action => "index"

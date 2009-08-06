@@ -17,7 +17,8 @@
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
 
   <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
-  
+  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
+
   <!--<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>-->
@@ -32,7 +33,7 @@
     
     <div id="header">
       
-      <img src="/images/webyast-logo.png" alt="webyast" />
+      <a href="/"><img src="/images/webyast-logo.png" alt="webyast" /></a>
       
       <h1>My Appliance</h1>
 
@@ -40,16 +41,16 @@
       <% host = Host.find(session[:host]) rescue nil
         user = session[:user]
         if host.blank? || user.blank? -%>
-        <ul>
-          <li><%= link_to _("Login"), '/login' %></li>
-        </ul>
       <% else -%>
         <ul>
           <li><strong><%=_("Connected Host")%></strong></li>
           <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
-          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
         </ul>
+        <ul class='header-links'>
+          <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
+          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
+       </ul>
       <% end -%>
       </div>
     </div>
@@ -71,4 +72,5 @@
     </div>
 
     <div id="footer" class="">
-      <div class="copy">&copy; 2009 Novell, Inc.</di
+      <div class="copy">&copy; 2009 Novell, Inc.</div>
+    </div>

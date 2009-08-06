@@ -18,26 +18,17 @@ class SystemTimeController < ApplicationController
   # Fills @+valid+ field that represents valid regions with informations from
   # @+timezone+ field.
   def fill_valid_timezones
-    @valid.clear
-    @timezones.each do |region|
-      @valid.push(region.name)
-    end
+    @valid = @@timezones.collect { |region| region.name }
   end
 
   # Fills current region name in field @+region+. Requires filled @+timezones+
   # and @+timezone+ fields
   # throws:: Exception if current timezone is not in any known region. @+region+
   # field in this case is +nil+.
-  def fill_current_region
-    @timezones.each do |region|
-      region.entries.each do |entry|
-        if entry.id == @timezone
-          @region = region
-          return
-        end
-      end
-    end
-    raise _("Unknown timezone #{@timezone} on host")
+  def fill_current_region   
+    @region = @@timezones.find { |region|
+      region.entries.find { |entry| entry.id==@timezone } }
+    raise _("Unknown timezone #{@timezone} on host") unless @region
   end
 
   public
@@ -47,7 +38,9 @@ class SystemTimeController < ApplicationController
   init_gettext "yast_webclient_systemtime"  # textdomain, options(:charset, :content_type)
 
   def initialize
-    @timezones = {}
+    unless defined? @@timezones
+      @@timezones = {}
+    end
     @valid = []    
   end 
 
@@ -62,12 +55,12 @@ class SystemTimeController < ApplicationController
     end
 
     unless @permissions[:read]
-      flash[:warning] = "No permissions for time module"
+      flash[:warning] = _("No permissions for time module")
       redirect_to root_path
       return false
     end
         
-    @timezones = systemtime.timezones
+    @@timezones = systemtime.timezones
     @timezone = systemtime.timezone
     @utcstatus = systemtime.utcstatus
     @time = systemtime.time
@@ -99,7 +92,8 @@ class SystemTimeController < ApplicationController
       flash[:notice] = _('Settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
-      log.debug "Time moved to future" 
+      log.debug "Time moved to future"
+      flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       ExceptionLogger.log_exception e
@@ -140,12 +134,25 @@ class SystemTimeController < ApplicationController
   #AJAX function that renders new timezones for selected region. Expected
   # initialized values from index call.
   def timezones_for_region
-    region = ""
-    @timezones.each do |r|
-      if r.name == params[:value]
-        region = r
+    if @@timezones.empty?
+      # since while calling this function there is different instance of the class
+      # than when calling index, @@timezones were empty; reinitialize them
+      # possible FIXME: how does it increase the amount of data transferred?
+      systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
+  
+      unless systemtime
+        return false  #possible FIXME: is returnign false for AJAX correct?
       end
+
+      @@timezones = systemtime.timezones
     end
+
+    region = @@timezones.find { |r| r.name == params[:value] } #possible FIXME later it gets class, not a string
+    
+    unless region
+      return false; #possible FIXME: is returnign false for AJAX correct?
+    end
+
     render(:partial => 'timezones',
       :locals => {:region => region, :default => region.central,
         :disabled => ! params[:disabled]=="true"})

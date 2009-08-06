@@ -1,17 +1,34 @@
 <% if @permissions %>  
+  <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+
   <% javascript_tag do -%>
     $(document).ready( function() {
     $(".datepicker").datepicker( { dateFormat: 'dd/mm/yy'} );
     });
   <% end -%>
 
-
+  <!-- FIXME move javascript function outside of index -->
+  <% javascript_tag do -%>
+    function submitTime() {
+      if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
+        alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
+        return false;
+      }
+      if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
+        alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
+        return false;
+      }
+      Element.show('progress');
+      return true;
+    };
+  <% end -%>
 
   <%= javascript_include_tag :defaults %>
   <% disabled = ! @permissions[:write] %>
 
 
-
+  <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
+  <div class='plugin-content'>
   <h2><%=_("Configure timezone")%></h2>
   <% form_tag '/system_time/update_timezone', :class => 'container' do %>
     <table summary="<%= _("Table for settings timezone for target machine.") %>">
@@ -25,7 +42,8 @@
         <% #region is always non-nil as it is prerequisites which throws exception
         %>
         <td>
-          <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled %>
+          <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled,
+                                   :class=>'aligned-inputs' %>
         </td>
 
       </tr>
@@ -63,14 +81,10 @@
         </tr>
 
       <% end %>
-
-      <tr>
-        <td/>
-        <td>
-          <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
-        </td>
-      </tr>
     </table>
+    <p>
+    <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
+    </p>
   <% end %>
   <h2><%=_("Manually configure time")%></h2>
   <% form_tag '/system_time/update_time', :class => 'container' do %>
@@ -78,11 +92,11 @@
       <tr>
         <td>
           <label for="date_date">
-            <%= _("Date") %>
+            <%= _("Date:") %>
           </label>
         </td>
         <td>
-          <%= text_field "date","date", :class => :datepicker,
+          <%= text_field "date","date", :class => 'datepicker aligned-inputs', 
             :disabled=> disabled, :value => @date
         %>
         </td>
@@ -91,23 +105,18 @@
       <tr>
         <td>
           <label for="currenttime">
-            <%= _("Time") %>
+            <%= _("Time:") %>
           </label>
         </td>
-        <td><%= text_field_tag "currenttime", @time, :disabled=> disabled %></td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td>
-
-          <%= submit_tag _("Save"), :onclick=>"Element.show('progress')",
-            :disabled=> disabled, :class => 'button' -%>
-
-        </td>
+        <td><%= text_field_tag "currenttime", @time, :disabled=> disabled, :class=>'aligned-inputs' %></td>
       </tr>
     </table>
+    <p>
+      <%= submit_tag _("Save"), :onclick=>"return submitTime()",
+                                :disabled=> disabled, :class => 'button' -%>
+    </p>
   <% end %>
+  </div>
 
   <%= observe_field(:region,
     :frequency => 0.25,
@@ -115,3 +124,4 @@
     :url => { :action => :timezones_for_region },
     :with => "'disabled=' + "+ (disabled ? "true":"false")+" + '&value=' +value") %>
 <% end %>
+

@@ -36,7 +36,10 @@ $(document).ready(function() {
 	<td class="last"><%= f.text_field :description %></td>
     </tr>
     </table>
-    <p><%= f.submit _("Ok") %></p>
+    <p>
+      <%= f.submit _("Ok"), :class => "button" %>
+      <%= link_to _("Back"), '/hosts', :class=>"button" %>
+    </p>
   </div>
 <% end %>
-<%= button_to _('Cancel'), host_path, :class => "button" %>
+

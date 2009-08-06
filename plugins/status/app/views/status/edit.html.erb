@@ -1,5 +1,6 @@
 <% disabled = ! @permissions[:writelimits] %>
-
+<div class='plugin-icon'><img src='/images/monitoring.png'/></div>
+<div class='plugin-content'>
 <h2><%=_("Configure Status Limits")%></h2>
 
 <% form_tag '/status/save' do %>
@@ -12,36 +13,36 @@
 
   <% @data_group.each do |key, map| %>
     <% map.each do |graph_key, list_value| %>
-      <tr>
-      <% limit_key = "/#{key}/#{graph_key}" %>
-      <td><%= limit_key %></td>
+      <% if key != "df" || !graph_key.end_with?("used") %>
+        <tr>
+        <% limit_key = "/#{key}/#{graph_key}" %>
+        <td><%= limit_key %></td>
 
-      <% if  @limits_list.has_key?(limit_key)  %>
-        <td>
-        <input name=<%= limit_key+"/value" %> type="text" size="10" maxlength="15" value=<%= @limits_list[limit_key][0][1] %>>
-        </td>
-        <td>
-        <input type="checkbox" name= <%= limit_key+"/maximum" %> id=<%= limit_key+"/maximum" %> value="true"
-          <%= @limits[limit_key]["maximum"] ? "checked" : "" %>
-         <%= "disabled=\"disabled\"" if disabled %> />
-        </td>
-      <% else %>
-        <td>
-        <input name=<%= limit_key+"/value" %> type="text" size="10" maxlength="15" value=0>
-        </td>
-        <td>
-        <input type="checkbox" name= <%= limit_key+"/maximum" %> id=<%= limit_key+"/maximum" %> value="true"
-         <%= "disabled=\"disabled\"" if disabled %> />
-        </td>
+        <% if  @limits_list.has_key?(limit_key)  %>
+          <td>
+          <input name=<%= limit_key+"/value" %> type="text" size="10" maxlength="15" value=<%= @limits_list[limit_key][0][1] %>>
+          </td>
+          <td class="checkbox">
+          <input type="checkbox" name= <%= limit_key+"/maximum" %> id=<%= limit_key+"/maximum" %> value="true"
+            <%= @limits[limit_key]["maximum"] ? "checked" : "" %>
+           <%= "disabled=\"disabled\"" if disabled %> />
+          </td>
+        <% else %>
+          <td>
+          <input name=<%= limit_key+"/value" %> type="text" size="10" maxlength="15" value=0>
+          </td>
+          <td class="checkbox">
+          <input type="checkbox" name= <%= limit_key+"/maximum" %> id=<%= limit_key+"/maximum" %> value="true"
+           <%= "disabled=\"disabled\"" if disabled %> />
+          </td>
+        <% end %>
+        </tr>
       <% end %>
-      </tr>
     <% end %>
   <% end %>
 </table>
 <%= submit_tag _("Save"), :disabled=> disabled, :class => 'button' -%>
+<a href="/status" class="button"><%=_("Back")%></a>
 <% end -%>
-<br>
-<a href="/" class="button"><%=_("Back")%></a>
-<br>
-
+</div>
 

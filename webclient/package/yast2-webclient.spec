@@ -77,6 +77,13 @@ rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd
 install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
 
+#  create empty tmp directory
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/cache
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/pids
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sessions
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sockets
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -131,7 +138,7 @@ fi
 /srv/www/yast/start.sh
 %doc README* COPYING  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
-%attr(-,lighttpd,lighttpd) /srv/www/yast/tmp  
+%attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %config /etc/lighttpd/cleanurl-v5.lua  
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}

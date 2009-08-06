@@ -75,5 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 
 %changelog
