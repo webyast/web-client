@@ -17,6 +17,14 @@
   <% end -%>
 <% end %>
 <div id="status-wrapper" class="">
+  
+  <div id="machine-controle">
+    <ul>
+      <li> <a class="button" href="#">Reboot</a></li>
+      <li><a class="button" href="#">Shutdown</a></li>
+    </ul>
+  </div>
+  
   <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 
   <div id="status_patches">
@@ -34,6 +42,7 @@
       Status plugin is not installed.
     <% end %>
   </div>
+  
 </div>
 
 

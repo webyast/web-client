@@ -203,9 +203,29 @@ ul li {
     border: 1px solid #999;
     margin: 0 0 1em;
     background: #f9f9f9;
+    position: relative;
   }
     #status-wrapper h3:first-child {
       margin-top: 0;
+    }
+    #status-wrapper #machine-controle {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 100%;
+      overflow: hidden;
+      border-left: 1px solid #999;
+      background-color: #eee;
+    }
+
+    #status-wrapper #machine-controle ul {
+      list-style: none outside;
+    }
+
+    #status-wrapper #machine-controle ul li  {
+      margin: 0.5em 0;
     }
 /* == Lists and Tables ==================================================== */
 
