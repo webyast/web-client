@@ -83,7 +83,7 @@
       <% end %>
     </table>
     <p>
-    <%= submit_tag _("Save"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
+    <%= submit_tag _("Save timezone"), :onclick=>"Element.show('progress')", :disabled=> disabled, :class => 'button' -%>
     </p>
   <% end %>
   <h2><%=_("Manually configure time")%></h2>
@@ -112,7 +112,7 @@
       </tr>
     </table>
     <p>
-      <%= submit_tag _("Save"), :onclick=>"return submitTime()",
+      <%= submit_tag _("Save time"), :onclick=>"return submitTime()",
                                 :disabled=> disabled, :class => 'button' -%>
     </p>
   <% end %>
