@@ -18,16 +18,16 @@ class StatusController < ApplicationController
     data_map = Hash.new
     if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
-        if key.start_with?("t_") 
+        if key.start_with?("t_")
           data_map[key] = branch.to_f
         elsif key == "limit"
           @limits[label] = branch.attributes
-        else        
+        else
           next_label = label
           if key != "value"
             next_label += "/" + key
           end
-          data_map = create_data_map(branch, next_label) 
+          data_map = create_data_map(branch, next_label)
           if data_map.size > 0
             data_list = []
             flatten_map = data_map.sort #Sorting for timestamps
@@ -52,7 +52,7 @@ class StatusController < ApplicationController
     begin
       till = Time.new
       from = till - 300 #last 5 minutes
-      
+
       status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
 
       rescue ActiveResource::ClientError => e
@@ -68,9 +68,9 @@ class StatusController < ApplicationController
         graph_list = []
         key_split = key.split("/")
         for i in 0..list_value.size-1 do
-          if key_split.size>1 && key_split[1]=="memory" # take MByte for the value 
+          if key_split.size>1 && key_split[1]=="memory" # take MByte for the value
             graph_list << [i,@limits[key]["value"]/1024/1024]
-          else 
+          else
             graph_list << [i,@limits[key]["value"]]
           end
         end
@@ -83,16 +83,14 @@ class StatusController < ApplicationController
         group_map = @data_group[key_split[1]] if @data_group.has_key?(key_split[1])
         label_name = ""
         for i in 2..key_split.size-1 do
-          if i==2 
+          if i==2
             label_name = key_split[i]
           else
             label_name += "/" + key_split[i]
           end
         end
         graph_list = []
-        store_data = false #take only a list which has one value greater than 0 at least
         for i in 0..list_value.size-1
-          store_data = true if list_value[i] != 0
           value_list = [i]
           if key_split[1]=="memory" # take MByte for the value
             value_list << list_value[i]/1024/1024
@@ -101,10 +99,8 @@ class StatusController < ApplicationController
           end
           graph_list << value_list
         end
-        if store_data
-          group_map[label_name] = graph_list
-          @data_group[key_split[1]] = group_map
-        end
+        group_map[label_name] = graph_list
+        @data_group[key_split[1]] = group_map
       else
         logger.error "empty key: #{@key} #{list.inspect}"
       end
@@ -117,8 +113,8 @@ class StatusController < ApplicationController
   #removing logging data and add limits which are defined in params
   def create_save_data(status, params, label = "")
     status.each do |key, value|
-     if key.start_with?("t_") 
-       status.delete(key)  
+     if key.start_with?("t_")
+       status.delete(key)
      elsif
        next_label = label+ "/" + key
        create_save_data(value, params, next_label) if value.is_a? Hash
@@ -139,7 +135,7 @@ class StatusController < ApplicationController
   end
 
  # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_status"  
+  init_gettext "yast_webclient_status"
 
   public
 
@@ -155,15 +151,15 @@ class StatusController < ApplicationController
     return unless client_permissions
     create_data
     @limit_hits = []
-    @data_group.each do |key, map| 
+    @data_group.each do |key, map|
       map.each do |graph_key, list_value|
         limit_key = "/#{key}/#{graph_key}"
         if  @limits_list.has_key?(limit_key)
-          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format 
+          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format
                                                  #( e.g. MByte for memory)
           list_value.each do |value|
             if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
-               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)                  
+               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)
               @limit_hits << limit_key
               break
             end
@@ -186,23 +182,23 @@ class StatusController < ApplicationController
       return false
     end
     status = ""
-    @data_group.each do |key, map| 
+    @data_group.each do |key, map|
       error_found = false
       map.each do |graph_key, list_value|
         limit_key = "/#{key}/#{graph_key}"
         if  @limits_list.has_key?(limit_key)
-          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format 
+          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format
                                                  #( e.g. MByte for memory)
           list_value.each do |value|
             if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
-               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)                  
+               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)
               error_found = true
               break
             end
           end
         end
       end
-      if error_found 
+      if error_found
         status += "; " unless status.blank?
         if key == "df"
           status += _("Disk free limits exceeded")
@@ -243,7 +239,7 @@ class StatusController < ApplicationController
        flash[:error] = YaST::ServiceResource.error(e)
        ExceptionLogger.log_exception e
        success = false
-    end        
+    end
     if success
       redirect_to :controller=>"status", :action=>"index"
     else
