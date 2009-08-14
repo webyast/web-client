@@ -1,31 +1,32 @@
 <% if @permissions %>  
-  <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
-  <% javascript_tag do -%>
-    $(document).ready( function() {
-    $(".datepicker").datepicker( { dateFormat: 'dd/mm/yy'} );
-    });
-  <% end -%>
+  <% content_for :head do %>
+    <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
-  <!-- FIXME move javascript function outside of index -->
-  <% javascript_tag do -%>
-    function submitTime() {
-      if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
-        alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
-        return false;
-      }
-      if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
-        alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
-        return false;
-      }
-      Element.show('progress');
-      return true;
-    };
-  <% end -%>
+    <% javascript_tag do -%>
+      $(document).ready( function() {
+      $(".datepicker").datepicker( { dateFormat: 'dd/mm/yy'} );
+      });
+    <% end -%>
 
-  <%= javascript_include_tag :defaults %>
+    <!-- FIXME move javascript function outside of index -->
+    <% javascript_tag do -%>
+      function submitTime() {
+        if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
+          alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
+          return false;
+        }
+        if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
+          alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
+          return false;
+        }
+        Element.show('progress');
+        return true;
+      };
+    <% end -%>
+
+  <% end %>
   <% disabled = ! @permissions[:write] %>
-
 
   <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <div class='plugin-content'>

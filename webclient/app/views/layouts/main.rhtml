@@ -31,6 +31,9 @@
   <script type="text/javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
 
+  <!-- custom page scripts and css -->
+  <%= yield :head %>
+
   <title>WebYaST</title>
 </head>
   <body id="shell" onload="">
@@ -72,9 +75,11 @@
           <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
         </div>
 
-      <%= @content_for_layout %>
+      <%= yield %>
     </div>
 
     <div id="footer" class="">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
     </div>
+  </body>
+</html>
