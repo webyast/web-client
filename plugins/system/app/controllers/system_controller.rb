@@ -4,19 +4,18 @@ class SystemController < ApplicationController
 
     def initialize
 	@sys = System.new rescue nil
-	@host = Host.find(session[:host]) rescue 'computer'
     end
 
     def reboot
 	if request.put?
 	    begin
 		if !@sys.nil? and @sys.reboot
-		    flash[:message] = "Rebooting #{@host}..."
+		    flash[:message] = "Rebooting the machine..."
 		else
-		    flash[:error] = "Cannot reboot #{@host}!"
+		    flash[:error] = "Cannot reboot the machine!"
 		end
 	    rescue Exception => e
-		flash[:error] = "Cannot reboot #{@host}!"
+		flash[:error] = "Cannot reboot the machine!"
 	    end
 	else
 	    flash[:error] = 'Reboot request is accepted only via PUT method!'
@@ -29,12 +28,12 @@ class SystemController < ApplicationController
 	if request.put?
 	    begin
 		if !@sys.nil? and @sys.shutdown
-		    flash[:message] = "Shuting down #{@host}..."
+		    flash[:message] = "Shuting down the machine..."
 		else
-		    flash[:error] = "Cannot shutdown #{@host}!"
+		    flash[:error] = "Cannot shutdown the machine!"
 		end
 	    rescue Exception => e
-		flash[:error] = "Cannot shutdown #{@host}!"
+		flash[:error] = "Cannot shutdown the machine!"
 	    end
 	else
 	    flash[:error] = 'Shutdown request is accepted only via PUT method!'
