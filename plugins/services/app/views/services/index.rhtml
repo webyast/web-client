@@ -27,6 +27,7 @@
   YAHOO.util.Event.addListener(window, "load", initResultDialog);
 </script>
 
+
 <!-- begin: dialog box -->
 <div id="resultdlg">
 </div>
@@ -39,29 +40,30 @@
 <br>
 
 <% if ! @permissions[:execute] %>
-<p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
+<!-- TODO generalize this to all views -->
+<p>You do not have permission to execute the services. The links are disabled.</p>
 <% end %>
 
 <ul>
-<% @services.each do |service| %>
-<li><b><%=h service.name %></b>
-  <% [ "start", "stop" ].each do |cmd|
-	if @permissions[:execute] %>
-	    <%=
-		 link_to_remote cmd,
+<% @services.each do |svc| %>
+<li><b><%=h svc.link %></b>
+  <% svc.command_list.each do |cmd|
+       if cmd[:name] == "configure" %>
+      <%= link_to cmd[:name], :id=>"config", :action =>svc.link %>
+    <% else
+         if @permissions[:execute] %>
+        <%= link_to_remote cmd[:name],
                            :update => "resultdlg",
-			   :url=>{ :id=> cmd, 
+			   :url=>{ :id=> cmd[:name], 
                                    :action => "execute", 
-                                   :service_id=> service.name 
-			    }
-#			   :loading => "Element.show('progress')"
-#			   :complete => "Element.hide('progress'); showResultDialog();"
-	    %>
-	<%
-	else %>
-	    <span style="color: #BDBDBD"><%="#{cmd}" -%></span>
-	<%
-	end
+                                   :service_id=> svc.link },
+			   :loading => "Element.show('progress');",
+			   :complete => "Element.hide('progress'); showResultDialog();"
+        %>
+      <% else %>
+        <span style="color: #BDBDBD"><%="#{cmd[:name]}" -%></span>
+      <% end
+       end
      end %>
 </li>
 <% end %>
