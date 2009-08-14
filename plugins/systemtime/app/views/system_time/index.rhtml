@@ -76,8 +76,8 @@
             <% #don't use check_box helper as it generate also hidden opposite value
             %>
             <input type="checkbox" name="utc" id="utc" value="true"
-            <%= @utcstatus == "UTC" ? "checked" : "" %>
-                   <%= "disabled=\"disabled\"" if disabled %> />
+              <%=  "checked=\"checked\"" if @utcstatus == "UTC"%>
+              <%=  "disabled=\"disabled\"" if disabled %> />
           </td>
         </tr>
 
