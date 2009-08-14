@@ -75,9 +75,11 @@
           <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
         </div>
 
-      <%= @content_for_layout %>
+      <%= yield %>
     </div>
 
     <div id="footer" class="">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
     </div>
+  </body>
+</html>
