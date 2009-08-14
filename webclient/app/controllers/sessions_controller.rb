@@ -92,7 +92,7 @@ class SessionsController < ApplicationController
 
         # success, go to the main controller
         logger.info "Login success."
-        redirect_to "/"
+        redirect_back_or_default("/")
       else
         session[:user] = session[:host] = nil
         #show # getting hosts again
