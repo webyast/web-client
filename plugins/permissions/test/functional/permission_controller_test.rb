@@ -17,10 +17,13 @@ class PermissionsControllerTest < ActionController::TestCase
   end
 
   class Permission
-    attr_accessor  :name, :grant
+    attr_accessor  :name, :grant, :id
     def initialize (name, grant)
       @grant = grant
       @name = name
+      @id = 0
+    end
+    def save
     end
   end
 
@@ -122,9 +125,7 @@ class PermissionsControllerTest < ActionController::TestCase
       ];
     end
 
-    def save
-      @saved = true
-    end
+
   end
 
   def setup
@@ -133,8 +134,6 @@ class PermissionsControllerTest < ActionController::TestCase
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
-    @right_set_permissions = true
-    @right_get_permissions = true
     @result = Result.new
     @result.fill
     @proxy = Proxy.new
@@ -143,19 +142,24 @@ class PermissionsControllerTest < ActionController::TestCase
     PermissionsController.any_instance.stubs(:client_permissions).with().returns(@proxy)
   end
   
-  def test_access_index
+  def test_permission_index
     get :index
 
     #check if everything is correctly setted
     assert_response :success
   end
 
-  def test_access_search
+  def test_permission_search
     get :search, {:user =>"test" }
 
     #check if everything is correctly setted
     assert_response :success
   end
 
+  def test_permission_set
+    post :set, { "org.opensuse.yast.patch.install"=>"revoke", :user =>"test" }
+
+    assert_response :success
+  end
 
 end
