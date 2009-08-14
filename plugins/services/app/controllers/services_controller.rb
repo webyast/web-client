@@ -43,20 +43,26 @@ class ServicesController < ApplicationController
     return unless client_permissions
     @service = @client.find(params[:service_id])
 
-    response = @client.put(params[:service_id], :execute => params[:id])
+    @service.execute	= params[:id]
+    @service.save
 
-    # we get a hash with exit, stderr, stdout
-    ret = Hash.from_xml(response.body)
-    ret = ret["hash"]
-    logger.debug "returns #{ret.inspect}"
-    
-    @result_string = ""
-    @result_string << ret["stdout"] if ret["stdout"]
-    @result_string << ret["stderr"] if ret["stderr"]
-    @error_string = ret["exit"].to_s
-    if ret["exit"] == 0
-       @error_string = _("success")
-    end
+#    @service.id = @service.link
+#    command_id = "commands/" + params[:id]
+#    logger.debug "calling #{command_id} with service #{@service.inspect}"
+#    response = @service.put(command_id)
+#
+#    # we get a hash with exit, stderr, stdout
+#    ret = Hash.from_xml(response.body)
+#    ret = ret["hash"]
+#    logger.debug "returns #{ret.inspect}"
+#    
+#    @result_string = ""
+#    @result_string << ret["stdout"] if ret["stdout"]
+#    @result_string << ret["stderr"] if ret["stderr"]
+#    @error_string = ret["exit"].to_s # TODO translate exit codes (use YaST?)
+#    if ret["exit"] == 0
+#       @error_string = _("success")
+#    end
     render(:partial =>'result')
   end
 
