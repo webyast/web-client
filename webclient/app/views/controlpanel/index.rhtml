@@ -18,12 +18,19 @@
 <% end %>
 <div id="status-wrapper" class="">
   
+<% if ActionController::Routing.possible_controllers.include?("system") %>
+    <% host = Host.find(session[:host]) rescue nil %>
+    <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
   <div id="machine-controle">
     <ul>
-      <li> <a class="button" href="#">Reboot</a></li>
-      <li><a class="button" href="#">Shutdown</a></li>
+      <li><h4>System actions </h4></li>
+      <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
+	    :confirm => _("Really reboot #{host_name}?"), :method => :put, :class => 'button' %></li>
+      <li><%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
+	    :confirm => _("Really shutdown #{host_name}?"), :method => :put, :class => 'button' %></li>
     </ul>
   </div>
+<% end %>
   
   <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
 

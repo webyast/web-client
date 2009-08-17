@@ -141,9 +141,12 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if response
-        flash[:notice] = _('User was successfully created.')
+        flash[:notice] = _("User <i>#{@user.uid}</i> was successfully created.")
         format.html { redirect_to(users_url) }
       else
+        if @user.uid_number.nil?
+           flash[:error] = _("Empty UID value")
+        end
         if @user.uid_number.to_i < 1000
            #Only UID greater than 1000 are allowed for local user
            flash[:error] = _("UID: value >= 1000 is valid for local user only")
@@ -191,7 +194,7 @@ class UsersController < ApplicationController
           response = false
       end
       if  response
-        flash[:notice] = _('User was successfully updated.')
+        flash[:notice] = _("User <i>#{@user.uid}</i> was successfully updated.")
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
@@ -208,7 +211,14 @@ class UsersController < ApplicationController
     @user = @client.find(params[:id])
     @user.id = @user.uid
     @user.type = "local"
-    @user.destroy
+
+    ret = @user.destroy
+
+    if ret.code_type == Net::HTTPOK
+	flash[:notice] = _("User <i>#{@user.uid}</i> was successfully removed.")
+    else
+	flash[:error] = _("Error: Could not remove user <i>#{@user.uid}</i>.")
+    end
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
