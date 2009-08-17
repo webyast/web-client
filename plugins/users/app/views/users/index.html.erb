@@ -26,7 +26,7 @@
 
 <% if @permissions[:useradd] %>
 <div class="select">
-  <%= link_to _("<strong>[New User]</strong>"), new_user_path, :onclick=>"Element.show('progress')" -%><p/>
+  <%= link_to _("<strong>[New User]</strong>"), {:action => :new}, :onclick=>"Element.show('progress')" -%><p/>
 </div>
 <% end %>
 
