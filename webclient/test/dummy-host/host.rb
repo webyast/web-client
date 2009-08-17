@@ -1,4 +1,4 @@
-# dummy-host.rb
+# host.rb
   require 'rubygems'
   require 'active_support'
   require 'sinatra'

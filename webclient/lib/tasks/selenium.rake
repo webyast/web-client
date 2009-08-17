@@ -1,4 +1,3 @@
-
 $selenium_available = false
 
 begin
@@ -26,6 +25,17 @@ rescue LoadError
     puts "Selenium not available"
 end
 
+namespace :sinatra do
+    task :start do
+      cmd = "ruby #{File.join(File.dirname(__FILE__),"../..", "test/dummy-host/host.rb")} &"
+      system cmd
+    end
+    task :stop do
+      system "ps a|grep dummy-host/host.rb|cut -c -6 | xargs kill -9"
+    end
+end
+
+
 namespace :test do
     # define test:ui:check task
     Rake::TestTask.new(:"ui:check") do |t|
@@ -51,7 +61,7 @@ namespace :test do
 	    exit 1
 	end
     else
-	  task :ui => [:"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop"]
+	  task :ui => [:"sinatra:start", :"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop", :"sinatra:stop"]
     end
 end
 
