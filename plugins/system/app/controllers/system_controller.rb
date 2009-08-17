@@ -2,7 +2,8 @@
 class SystemController < ApplicationController
     before_filter :login_required
 
-    include GetText
+    # Initialize GetText and Content-Type.
+    init_gettext "yast_webclient_system"  # textdomain, options(:charset, :content_type)
 
     def initialize
 	@sys = System.new rescue nil
