@@ -7,10 +7,12 @@
 require 'yaml'
 
 class ControlpanelController < ApplicationController
-
+  include ProxyLoader
   before_filter :ensure_login
 
   def index
+    return false if need_redirect
+    session[:wizard_mode] = nil #clean wizard mode request from session
     @shortcuts = shortcuts_data
   end
 
@@ -71,5 +73,26 @@ class ControlpanelController < ApplicationController
       end
     end
     s
+  end
+  
+  # Constant that signalize, that all steps from base system settings is done
+  # +warn+: must be synchronized with same constant in base system module
+  FINAL_STEP = "FINISH"
+  # Checks if basic system modul need show another module instead control panel
+  def need_redirect
+    basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
+    unless basesystem
+      erase_redirect_results #reset all error redirects
+      erase_render_results #erase all error render
+      flash.clear #no error flash from load_proxy
+      logger.warn "Error occure during loading basesystem information"
+      return false
+    end
+
+    return false if basesystem.current == FINAL_STEP
+
+    session[:wizard_mode] = "true"
+    redirect_to :controller => basesystem.current
+    return true
   end
 end
