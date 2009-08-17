@@ -8,7 +8,7 @@ require 'systemtime'
 # controller just provide handling of different exceptions and UI features.
 # Update time and timezone is separated as timezone update doesn't neccesarry
 # require also time update and that could set time to bad value.
-class SystemTimeController < ApplicationController
+class SystemtimeController < ApplicationController
   before_filter :login_required
   layout 'main'
   include ProxyLoader
