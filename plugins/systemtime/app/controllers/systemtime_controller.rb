@@ -70,7 +70,7 @@ class SystemtimeController < ApplicationController
       fill_current_region
     rescue Exception => e
       flash[:warning] = e.message
-      ExceptionLogger.log_exception e
+      logger.warn e
       redirect_to root_path
     end
   end
@@ -96,10 +96,10 @@ class SystemtimeController < ApplicationController
       flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      ExceptionLogger.log_exception e
+      logger.warn e
     rescue Exception => e
       flash[:error] = e.message
-      ExceptionLogger.log_exception e
+      logger.warn e
     end    
 
     redirect_to :action => :index
@@ -121,10 +121,10 @@ class SystemtimeController < ApplicationController
       flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      ExceptionLogger.log_exception e
+      logger.warn e
     rescue Exception => e
       flash[:error] = e.message
-      ExceptionLogger.log_exception e
+      logger.warn e
     end
 
     redirect_to :action => :index    
