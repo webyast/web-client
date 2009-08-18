@@ -4,7 +4,7 @@ require File.expand_path( File.join("test","validation_assert"), RailsParent.par
 require 'rubygems'
 require 'mocha'
 
-class SystemTimeControllerTest < ActionController::TestCase
+class SystemtimeControllerTest < ActionController::TestCase
 
   class Proxy
     attr_accessor :result, :permissions, :timeout
@@ -57,8 +57,8 @@ class SystemTimeControllerTest < ActionController::TestCase
   end
 
   def setup
-    SystemTimeController.any_instance.stubs(:login_required)
-    @controller = SystemTimeController.new
+    SystemtimeController.any_instance.stubs(:login_required)
+    @controller = SystemtimeController.new
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
