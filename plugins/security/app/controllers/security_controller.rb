@@ -5,7 +5,7 @@ class SecurityController < ApplicationController
   before_filter :login_required, :prepare
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_securities"  # textdomain, options(:charset, :content_type)
+  init_gettext "yast_webclient_security"  # textdomain, options(:charset, :content_type)
 
   private
 
@@ -26,6 +26,10 @@ class SecurityController < ApplicationController
     @ssh = "checked" if @security.ssh
   end
 
+  def index
+    create
+    render :create
+  end
   # GET /security
   # GET /security.xml
   def show
