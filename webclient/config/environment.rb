@@ -75,6 +75,10 @@ init = Rails::Initializer.run do |config|
   config.gem "gettext_activerecord"
   config.gem "gettext_rails"
 
+  # reload all plugins, changes in *.rb files take effect immediately
+  # it's here because of https://rails.lighthouseapp.com/projects/8994/tickets/2324-configreload_plugins-true-only-works-in-environmentrb
+  config.reload_plugins = true unless Rails.env.production?
+
   # In order to prevent unloading of AuthenticatedSystem
   config.load_once_paths += %W( #{RAILS_ROOT}/lib )
   # allows to find plugin in development tree locations
