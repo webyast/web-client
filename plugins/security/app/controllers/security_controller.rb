@@ -1,7 +1,7 @@
 require 'yast/service_resource'
 
 
-class SecuritiesController < ApplicationController
+class SecurityController < ApplicationController
   before_filter :login_required, :prepare
 
   # Initialize GetText and Content-Type.
