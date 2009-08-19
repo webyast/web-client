@@ -6,7 +6,15 @@
 <div class='plugin-icon'><img src='/icons/yast-online_update.png'/></div>
 <div class='plugin-content'>
 
-<h2><%=_("Services")%></h2>
+<h2><%=
+
+if params.has_key?("custom")
+    _("Custom Services")
+else
+    _("System Services")
+end
+%></h2>
+
 <br>
 
 <% unless @permissions[:execute] %>
@@ -19,12 +27,15 @@
   <% [ "start", "stop" ].each do |cmd|
 	if @permissions[:execute] %>
 	    <%=
-		 link_to_remote cmd,
-                           :update => "resultdlg",
-			   :url=>{ :id=> cmd, 
-                                   :action => "execute", 
-                                   :service_id=> service.name 
-			    }
+		url	= {
+		    :id		=> cmd, 
+		    :action	=> "execute", 
+		    :service_id	=> service.name 
+		}
+		url[:custom]	= 1 if params.has_key?("custom")
+		link_to_remote cmd,
+		    :update 	=> "resultdlg",
+		    :url	=> url
 	    %>
 	<%
 	else %>
