@@ -4,9 +4,14 @@
   require 'sinatra'
 
   post '/login.xml' do
+    req = Hash.from_xml request.env["rack.input"].read
     login = Hash.new
-    login["login"] = "granted"
-    login["auth_token"] = {"expires"=>"Tue Aug 18 07:08:22 UTC 2009", "value"=>"3e3910533595dd5657c54c32f27fc6068df96873"}
+    if req["hash"]["login"] == "webyast_guest"
+      login["login"] = "revoked"
+    else
+      login["login"] = "granted"
+      login["auth_token"] = {"expires"=>"Tue Aug 18 07:08:22 UTC 2009", "value"=>"3e3910533595dd5657c54c32f27fc6068df96873"}
+    end
     login.to_xml
   end
 

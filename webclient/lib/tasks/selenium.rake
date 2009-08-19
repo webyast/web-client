@@ -31,10 +31,19 @@ namespace :sinatra do
       system cmd
     end
     task :stop do
-      system "ps a|grep dummy-host/host.rb|cut -c -6 | xargs kill -9"
+      system "ps a|grep dummy-host/host.rb|cut -c -6 | xargs kill -SIGTERM"
     end
 end
 
+namespace :webric do
+    task :start do
+      cmd = "#{File.join(File.dirname(__FILE__),"../..", "script/server")} -p 4568 &"
+      system cmd
+    end
+    task :stop do
+      system "ps a|grep server|grep 4568|cut -c -6 | xargs kill -SIGTERM"
+    end
+end
 
 namespace :test do
     # define test:ui:check task
@@ -61,7 +70,7 @@ namespace :test do
 	    exit 1
 	end
     else
-	  task :ui => [:"sinatra:start", :"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop", :"sinatra:stop"]
+	  task :ui => [:"webric:start",:"sinatra:start", :"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop", :"sinatra:stop", :"webric:stop"]
     end
 end
 

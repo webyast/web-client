@@ -32,7 +32,7 @@ module Selenium
 		                                                          "/usr/lib/firefox/firefox"
 
 		    @selenium = Selenium::SeleniumDriver.new("localhost", 4444, "*firefox #{firefox}",
-			"http://localhost:3000", 10000);
+			"http://localhost:4568", 10000);
 		    @selenium.start
 		end
 	    end
