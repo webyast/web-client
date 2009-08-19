@@ -1,8 +1,6 @@
 # = ProxyLoader module
 # Modules handles finding and loading proxy. It take care about pottential
 # problems and redirect in problems to correct page.
-# == requirements
-# Use ExceptionLogger module to it run. Intended to be used in Controller.
 # == Usage
 # Include module in controller and use method load_proxy.
 # 
@@ -49,7 +47,7 @@ module ProxyLoader
     begin
       @permissions = proxy.permissions
     rescue Exception => e
-      ExceptionLogger.log_exception e
+      Rails.logger.warn e
       redirect_to "/bad_permissions"
       return nil
     end
@@ -63,11 +61,11 @@ module ProxyLoader
       end
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      ExceptionLogger.log_exception e
+      Rails.logger.warn e
       redirect_to root_path
     rescue Exception => e
       flash[:error] = e.message
-      ExceptionLogger.log_exception e
+      Rails.logger.warn e
       redirect_to root_path
     end
 

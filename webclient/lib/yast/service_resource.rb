@@ -69,7 +69,7 @@ module YaST
         resource = self.resource_for_interface(interface_name)
         raise "null resource, should throw inside resource_for_interface" unless resource
       rescue Exception => e
-        ExceptionLogger::log_exception e
+        Rails.logger.warn e
         return nil
       end
       

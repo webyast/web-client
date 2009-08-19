@@ -31,7 +31,7 @@
   <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <div class='plugin-content'>
   <h2><%=_("Configure timezone")%></h2>
-  <% form_tag '/system_time/update_timezone', :class => 'container' do %>
+  <% form_tag '/systemtime/update_timezone', :class => 'container' do %>
     <table summary="<%= _("Table for settings timezone for target machine.") %>">
       <tr>
 
@@ -88,7 +88,7 @@
     </p>
   <% end %>
   <h2><%=_("Manually configure time")%></h2>
-  <% form_tag '/system_time/update_time', :class => 'container' do %>
+  <% form_tag '/systemtime/update_time', :class => 'container' do %>
     <table summary="<%= _("Manual time configuration table, where user selects data and time for target machine") %>">
       <tr>
         <td>
