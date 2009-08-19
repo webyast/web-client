@@ -15,6 +15,12 @@
           <td class="last"><%=h @result_string %></td>
       </tr>
       </table>
-      <p><a href="services" class="button"><%=_("Back")%></a></p>
+      <p>
+      <% if params.has_key?("custom") -%>
+      <a href="services?custom=1" class="button"><%=_("Back")%></a>
+      <% else -%>
+      <a href="services" class="button"><%=_("Back")%></a>
+      </p>
+      <% end -%>
    </div>
    </div>

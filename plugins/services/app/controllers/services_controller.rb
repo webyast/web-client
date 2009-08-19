@@ -26,9 +26,10 @@ class ServicesController < ApplicationController
   # GET /services.xml
   def index
     return unless client_permissions
+
     @services = []
     begin
-      @services = @client.find(:all)
+      @services	= @client.find(:all, :params => params)
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
@@ -40,9 +41,10 @@ class ServicesController < ApplicationController
   end
 
   def execute
-    return unless client_permissions
-    @service = @client.find(params[:service_id])
 
+    return unless client_permissions
+
+    # PUT /services/1.xml
     response = @client.put(params[:service_id], :execute => params[:id])
 
     # we get a hash with exit, stderr, stdout
@@ -54,10 +56,10 @@ class ServicesController < ApplicationController
     @result_string << ret["stdout"] if ret["stdout"]
     @result_string << ret["stderr"] if ret["stderr"]
     @error_string = ret["exit"].to_s
-    if ret["exit"] == 0
+    if ret["exit"] == 0 || ret["exit"] == "0"
        @error_string = _("success")
     end
-    render(:partial =>'result')
+    render(:partial =>'result', :params => params)
   end
 
 
