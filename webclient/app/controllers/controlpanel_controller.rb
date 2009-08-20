@@ -12,7 +12,6 @@ class ControlpanelController < ApplicationController
 
   def index
     return false if need_redirect
-    session[:wizard_mode] = nil #clean wizard mode request from session
     @shortcuts = shortcuts_data
   end
 
@@ -35,7 +34,17 @@ class ControlpanelController < ApplicationController
       format.json { render :json => shortcuts_data.to_json, :location => "none" }
     end
   end
-  
+
+
+  def nextstep
+    logger.debug "next step in base system"
+    proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
+    basesystem = proxy.find
+    basesystem.current = session[:wizard_mode]
+    basesystem.save
+    redirect_to "/controlpanel"
+  end
+
   protected
 
   # reads the shortcuts and returns the
@@ -80,6 +89,7 @@ class ControlpanelController < ApplicationController
   FINAL_STEP = "FINISH"
   # Checks if basic system modul need show another module instead control panel
   def need_redirect
+    session[:wizard_mode] = nil #clean wizard mode request from session
     basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
     unless basesystem
       erase_redirect_results #reset all error redirects
@@ -89,9 +99,9 @@ class ControlpanelController < ApplicationController
       return false
     end
 
-    return false if basesystem.current == FINAL_STEP
+    return false if basesystem.current.upcase == FINAL_STEP
 
-    session[:wizard_mode] = "true"
+    session[:wizard_mode] = basesystem.current
     redirect_to :controller => basesystem.current
     return true
   end

@@ -79,7 +79,12 @@
     </div>
 
     <div id="footer" class="">
+      <%- if session[:wizard_mode] -%>
+      <span> Wizard mode </span>
+        <%= button_to "Next", :controller => "controlpanel", :action => "nextstep" %>
+      <%  end -%>
       <div class="copy">&copy; 2009 Novell, Inc.</div>
+
     </div>
   </body>
 </html>
