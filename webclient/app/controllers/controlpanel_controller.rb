@@ -37,11 +37,25 @@ class ControlpanelController < ApplicationController
 
 
   def nextstep
-    logger.debug "next step in base system"
-    proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
-    basesystem = proxy.find
-    basesystem.current = session[:wizard_mode]
-    basesystem.save
+    steps = session[:wizard_steps].split ","
+    if (steps.last == session[:wizard_current])
+      proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
+      basesystem = proxy.find
+      basesystem.current = FINAL_STEP
+      basesystem.steps = []
+      basesystem.save
+      session[:wizard_current] = FINAL_STEP
+    else
+      session[:wizard_current] = steps[steps.index(session[:wizard_current])+1]
+    end
+    redirect_to "/controlpanel"
+  end
+
+  def backstep
+    steps = session[:wizard_steps].split ","
+    if session[:wizard_current] != steps.first
+      session[:wizard_current] = steps[steps.index(session[:wizard_current])+1]
+    end
     redirect_to "/controlpanel"
   end
 
@@ -88,21 +102,32 @@ class ControlpanelController < ApplicationController
   # +warn+: must be synchronized with same constant in base system module
   FINAL_STEP = "FINISH"
   # Checks if basic system modul need show another module instead control panel
+  # TODO check if wizard from config exists
   def need_redirect
-    session[:wizard_mode] = nil #clean wizard mode request from session
-    basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
-    unless basesystem
-      erase_redirect_results #reset all error redirects
-      erase_render_results #erase all error render
-      flash.clear #no error flash from load_proxy
-      logger.warn "Error occure during loading basesystem information"
-      return false
+    if session[:wizard_current]
+      return false if session[:wizard_current] == FINAL_STEP
+      redirect_to :controller => session[:wizard_current]
+      return true
+    else
+      basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
+      unless basesystem
+        erase_redirect_results #reset all error redirects
+        erase_render_results #erase all error render
+        flash.clear #no error flash from load_proxy
+        logger.warn "Error occure during loading basesystem information"
+        return false
+      end
+
+      if basesystem.steps.empty? or basesystem.current == FINAL_STEP
+        session[:wizard_current] = FINAL_STEP
+        return false
+      end
+
+      logger.debug basesystem.steps.inspect
+      session[:wizard_steps] = basesystem.steps.join(",")
+      session[:wizard_current] = basesystem.steps.first
+      redirect_to :controller => basesystem.current
+      return true
     end
-
-    return false if basesystem.current.upcase == FINAL_STEP
-
-    session[:wizard_mode] = basesystem.current
-    redirect_to :controller => basesystem.current
-    return true
   end
 end

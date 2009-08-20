@@ -79,7 +79,8 @@
     </div>
 
     <div id="footer" class="">
-      <%- if session[:wizard_mode] -%>
+      <%- if session[:wizard_current] and session[:wizard_current] != "FINISH" -%>
+      <%= button_to "Back", :controller => "controlpanel", :action => "backstep" %>
       <span> Wizard mode </span>
         <%= button_to "Next", :controller => "controlpanel", :action => "nextstep" %>
       <%  end -%>
