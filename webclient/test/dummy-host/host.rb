@@ -1527,3 +1527,101 @@ EOX
 EOX
     ret["status"].to_xml(:root => "status")
   end
+
+  get '/security.xml' do
+    ret = Hash.from_xml <<EOX
+<security><ssh type="boolean">true</ssh><firewall type="boolean">true</firewall><firewall_after_startup type="boolean">false</firewall_after_startup></security>
+EOX
+    ret["security"].to_xml(:root => "security")
+  end
+
+  post '/security.xml' do
+    security = { "ssh" => true, "firewall" => true, "firewall_after_startup" => false }
+    security.to_xml(:root => "security")
+  end
+
+  get '/language.xml' do
+    ret = Hash.from_xml <<EOX
+<language><current>de_DE</current><utf8>true</utf8><rootlocale>ctype</rootlocale><available type="array"><language><id>zh_TW</id><name>ç¹é«ä¸­æ</name></language><language><id>tr_TR</id><name>Türkçe</name></language><language><id>ru_RU</id><name>Русский </name></language><language><id>ro_RO</id><name>Română</name></language><language><id>pl_PL</id><name>Polski</name></language><language><id>mk_MK</id><name>Македонски</name></language><language><id>fi_FI</id><name>Suomi</name></language><language><id>da_DK</id><name>Dansk</name></language><language><id>uk_UA</id><name>Українська</name></language><language><id>si_LK</id><name>සිංහල</name></language><language><id>nb_NO</id><name>Norsk</name></language><language><id>th_TH</id><name>ภาษาไทย</name></language><language><id>pt_PT</id><name>Português</name></language><language><id>nn_NO</id><name>Nynorsk</name></language><language><id>nl_NL</id><name>Nederlands</name></language><language><id>mr_IN</id><name>मराठी</name></language><language><id>lt_LT</id><name>Lietuvių</name></language><language><id>fr_FR</id><name>Français</name></language><language><id>es_ES</id><name>Español</name></language><language><id>en_US</id><name>English (US)</name></language><language><id>bs_BA</id><name>Bosanski</name></language><language><id>bg_BG</id><name>Български</name></language><language><id>ta_IN</id><name>தமிழ்</name></language><language><id>sv_SE</id><name>Svenska</name></language><language><id>sr_RS</id><name>Srpski</name></language><language><id>af_ZA</id><name>Afrikaans</name></language><language><id>zu_ZA</id><name>isiZulu</name></language><language><id>xh_ZA</id><name>isiXhosa</name></language><language><id>wa_BE</id><name>Walon</name></language><language><id>pt_BR</id><name>Português brasileiro</name></language><language><id>ko_KR</id><name>íê¸ </name></language><language><id>gu_IN</id><name>ગુજરાતી</name></language><language><id>ca_ES</id><name>Català</name></language><language><id>he_IL</id><name>עברית</name></language><language><id>et_EE</id><name>Eesti</name></language><language><id>el_GR</id><name>Ελληνικά </name></language><language><id>vi_VN</id><name>Tiếng Việt</name></language><language><id>km_KH</id><name>ខ្មែរ</name></language><language><id>cy_GB</id><name>Cymraeg</name></language><language><id>ka_GE</id><name>ქართული</name></language><language><id>ja_JP</id><name>�̦׈��</name></language><language><id>hr_HR</id><name>Hrvatski</name></language><language><id>hi_IN</id><name>हिन्दी</name></language><language><id>ar_EG</id><name>العربية</name></language><language><id>zh_CN</id><name>ᮮ᪝᪘ئ</name></language><language><id>sl_SI</id><name>Slovenščina</name></language><language><id>gl_ES</id><name>Galego</name></language><language><id>cs_CZ</id><name>Čeština</name></language><language><id>sk_SK</id><name>Slovenčina</name></language><language><id>it_IT</id><name>Italiano</name></language><language><id>id_ID</id><name>Bahasa Indonesia</name></language><language><id>hu_HU</id><name>Magyar</name></language><language><id>de_DE</id><name>Deutsch</name></language><language><id>pa_IN</id><name>ਪੰਜਾਬੀ</name></language><language><id>en_GB</id><name>English (UK)</name></language><language><id>bn_BD</id><name>বাংলা</name></language></available></language>
+EOX
+    ret["language"].to_xml(:root => "language")
+  end
+
+  post '/language.xml' do
+    language = { "language" => "de_DE", "utf8" => true, "rootlocale" => "ctype" }
+    language.to_xml(:root => "language")
+  end
+
+  get '/user/:id.xml' do
+    user = {"id" =>"tux5", "cn" => "tux5",
+            "groupname" => "users", "gid_number" => 0,
+            "home_directory" => "/home/tux5", "login_shell" => "/bin/bash",
+            "uid" => "tux5", "uid_number" => 1005,
+            "type" => "local", "grouplist type" => [] }
+    user.to_xml(:root => "user")
+  end
+
+  get '/user.xml' do
+    ret = Hash.from_xml <<EOX
+<users type="array">
+  <user>
+    <id>tuxtux</id>
+    <cn>tux tux</cn>
+    <groupname/>
+    <gid_number type="integer"/>
+    <home_directory/>
+    <login_shell/>
+    <uid>tuxtux</uid>
+    <uid_number type="integer"/>
+    <user_password/>
+    <type>local</type>
+    <grouplist type="array">
+    </grouplist>
+  </user>
+  <user>
+    <id>tux19</id>
+    <cn>tux19</cn>
+    <groupname/>
+    <gid_number type="integer"/>
+    <home_directory/>
+    <login_shell/>
+    <uid>tux19</uid>
+    <uid_number type="integer"/>
+    <user_password/>
+    <type>local</type>
+    <grouplist type="array">
+    </grouplist>
+  </user>
+  <user>
+    <id>tux2</id>
+    <cn>Da Web Mastas</cn>
+    <groupname/>
+    <gid_number type="integer"/>
+    <home_directory/>
+    <login_shell/>
+    <uid>tux2</uid>
+    <uid_number type="integer"/>
+    <user_password/>
+    <type>local</type>
+    <grouplist type="array">
+    </grouplist>
+  </user>
+  <user>
+    <id>tux5</id>
+    <cn>tux5</cn>
+    <groupname/>
+    <gid_number type="integer"/>
+    <home_directory/>
+    <login_shell/>
+    <uid>tux5</uid>
+    <uid_number type="integer"/>
+    <user_password/>
+    <type>local</type>
+    <grouplist type="array">
+    </grouplist>
+  </user>
+</users>
+EOX
+    ret["users"].to_xml(:root => "users")
+  end
+
