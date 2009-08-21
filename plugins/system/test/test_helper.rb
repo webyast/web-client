@@ -1,9 +1,8 @@
 # find the rails parent
 require File.join(File.dirname(__FILE__), '..', 'config', 'rails_parent')
-# first config rails
-require File.expand_path( File.join("config","environment"), RailsParent.parent )
-# then enable testing, this will get the routing right
+
 ENV["RAILS_ENV"] = "test"
+require File.expand_path( File.join("config","environment"), RailsParent.parent )
 require 'test_help'
 
 require 'rubygems'

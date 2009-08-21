@@ -11,7 +11,7 @@ class ServicesController < ApplicationController
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
-    @permissions = @client.permissions
+    @permissions = @client.permissions rescue {}
   end
 
   # Initialize GetText and Content-Type.
