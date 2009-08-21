@@ -24,6 +24,16 @@ end
 <ul>
 <% @services.each do |service| %>
 <li><b><%=h service.name %></b>
+  <%=
+  if service.status == 0
+      _("(running)")
+  elsif service.status.nil?
+      _("(unknown)")
+  else
+      _("(stopped: #{service.status})")
+  end
+  %>
+
   <% [ "start", "stop" ].each do |cmd|
 	if @permissions[:execute] %>
 	    <%=
