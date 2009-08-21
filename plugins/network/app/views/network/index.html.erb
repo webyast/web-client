@@ -1,19 +1,21 @@
 <div class='plugin-icon'><img src='/icons/yast-network.png'/></div>
 <div class='plugin-content'>
-<h2><%=_("Network Device")%></h2>
+<h2><%=_("Network")%></h2>
 
-<table class="list">
-  <tr>
-    <th class="first" ><%=_("Login")%></th>
-  </tr>
-  <% for network in @networks %>
-  <tr>
-    <td><strong><%=h network.name %></strong></td>
-    <td><%= html_edit_link(network.id) %></td>
-  </tr>
-  <% end %>
-</table>
+<!-- TODO translations -->
 
+<h3>IP Address</h3>
+
+<p>Configuration Mode: <%=h "TODO" %></p>
+<p>IP Address: <%=h "TODO" %></p>
+<p>Netmask: <%=h "TODO" %></p>
+
+<h3>DNS</h3>
+<p>Hostname: <%=h @name %></p>
+<p>Domain: <%=h @domain %></p>
+
+<h3>Routing</h3>
+<p>Default Route: <%=h "TODO" %></p>
 
 <a href="/" class="button"><%=_("Back")%></a>
 </div>
