@@ -9,10 +9,9 @@ unless rails_parent
      exit
   end
 end
-# first config rails
-require File.expand_path(rails_parent + "/config/environment")
-# then enable testing, this will get the routing right
+
 ENV["RAILS_ENV"] = "test"
+require File.expand_path(rails_parent + "/config/environment")
 
 require 'rubygems'
 require 'active_support'
