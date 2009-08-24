@@ -9,6 +9,7 @@ require 'yaml'
 class ControlpanelController < ApplicationController
   include ProxyLoader
   before_filter :ensure_login
+  before_filter :ensure_wizard, :only => [:nextstep, :backstep]
 
   def index
     return false if need_redirect
@@ -35,18 +36,26 @@ class ControlpanelController < ApplicationController
     end
   end
 
+  # nextstep and backstep expect, that wizard session variables are set
+  def ensure_wizard
+    if session[:wizard_steps].nil? or session[:wizard_current].nil? or session[:wizard_current] == FINAL_STEP
+       redirect_to "/controlpanel"
+    end
+  end
+
 
   def nextstep
     steps = session[:wizard_steps].split ","
-    if (steps.last == session[:wizard_current])
+    if (steps.last != session[:wizard_current])
+      session[:wizard_current] = steps[steps.index(session[:wizard_current])+1]
+    else
       proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
       basesystem = proxy.find
-      basesystem.current = FINAL_STEP
+      # this is just for saving network bandwidth, the steps list will not be saved
       basesystem.steps = []
+      # basesystem.save will set always current to FINAL_STEP 
       basesystem.save
       session[:wizard_current] = FINAL_STEP
-    else
-      session[:wizard_current] = steps[steps.index(session[:wizard_current])+1]
     end
     redirect_to "/controlpanel"
   end
@@ -68,34 +77,34 @@ class ControlpanelController < ApplicationController
     # each shortcuts file has each plugin shortcut named
     # by a key, we return the same key but namespaced with the plugin
     # name like pluginname:shortcutkey
-    s = {}
+    shortcuts = {}
     # read shortcuts from plugins
     #logger.debug Rails::Plugin::Loader.all_plugins.inspect
     #logger.debug Rails.configuration.load_paths
     YaST::LOADED_PLUGINS.each do |plugin|
       logger.debug "looking into #{plugin.directory}"
-      s.merge!(plugin_shortcuts(plugin))
+      shortcuts.merge!(plugin_shortcuts(plugin))
     end
-    logger.debug s.inspect
-    s
+    logger.debug shortcuts.inspect
+    shortcuts
   end
   
   # reads shortcuts of a specific plugin directory
   def plugin_shortcuts(plugin)
-    s = {}
-    shortcuts = File.join(plugin.directory, 'shortcuts.yml')
-    if File.exists?(shortcuts)
+    shortcuts = {}
+    shortcuts_fn = File.join(plugin.directory, 'shortcuts.yml')
+    if File.exists?(shortcuts_fn)
       logger.debug "Shortcuts at #{plugin.directory}"
-      shortcutsdata = YAML::load(File.open(shortcuts))
+      shortcuts_data = YAML::load(File.open(shortcuts_fn))
       return nil unless shortcutsdata.is_a? Hash
       # now go over each shortcut and add it to the modules
       shortcutsdata.each do |k,v|
         # use the plugin name and the shortcut key as
         # the new key
-        s["#{plugin.name}:#{k}"] = v
+        shortcuts["#{plugin.name}:#{k}"] = v
       end
     end
-    s
+    shortcuts
   end
   
   # Constant that signalizes, that all steps from base system setup are done
