@@ -4,16 +4,26 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="" />
-<title>systemtime_test_datepicker</title>
+<title>systemtime_test_lookat</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">systemtime_test_datepicker</td></tr>
+<tr><td rowspan="1" colspan="3">systemtime_test_lookat</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
 	<td>/systemtime</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>currenttime</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>utc</td>
 	<td></td>
 </tr>
 <tr>
@@ -29,6 +39,16 @@
 <tr>
 	<td>assertElementPresent</td>
 	<td>css=div#ui-datepicker-div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=21</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//a[contains(@href, '/logout')]</td>
 	<td></td>
 </tr>
 
