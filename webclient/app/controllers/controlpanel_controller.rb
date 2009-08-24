@@ -36,6 +36,10 @@ class ControlpanelController < ApplicationController
     end
   end
 
+  # Constant that signalizes, that all steps from base system setup are done
+  # This constant and constant in rest-service -> basesystem.rb are not connected
+  # and do not have to be the same value
+  FINAL_STEP = "FINISH"
   # nextstep and backstep expect, that wizard session variables are set
   def ensure_wizard
     if session[:wizard_steps].nil? or session[:wizard_current].nil? or session[:wizard_current] == FINAL_STEP
@@ -53,6 +57,7 @@ class ControlpanelController < ApplicationController
       basesystem = proxy.find
       # this is just for saving network bandwidth, the steps list will not be saved
       basesystem.steps = []
+      basesystem.finish = true
       # basesystem.save will set always current to FINAL_STEP 
       basesystem.save
       session[:wizard_current] = FINAL_STEP
@@ -107,13 +112,10 @@ class ControlpanelController < ApplicationController
     shortcuts
   end
   
-  # Constant that signalizes, that all steps from base system setup are done
-  # This constant and constant in rest-service -> basesystem.rb are not connected
-  # and do not have to be the same value
-  FINAL_STEP = "FINISH"
+  
   # Checks if basic system module should be shown instead of control panel
   # and if it should, then also redirects to that module.
-  # TODO check if wizard from config exists
+  # TODO check if controller from config exists
   def need_redirect
     if session[:wizard_current]
       # session variable is used to find out, if basic system module is needed
@@ -124,6 +126,7 @@ class ControlpanelController < ApplicationController
     else
       basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
       unless basesystem
+        #FIXME after load_proxy improvement
         erase_redirect_results #reset all error redirects
         erase_render_results #erase all error render
         flash.clear #no error flash from load_proxy
@@ -131,13 +134,13 @@ class ControlpanelController < ApplicationController
         return false
       end
 
-      if basesystem.steps.empty? or basesystem.current == basesystem.final_step
+      if basesystem.steps.empty? or basesystem.finish
         session[:wizard_current] = FINAL_STEP
         return false
       end
       # we got some steps from backend, base system setup is not over and 
       # no sign of progress in session variables => restart base system setup
-      logger.debug basesystem.steps.inspect
+      logger.debug "Base system steps loaded: #{basesystem.steps.inspect}"
       session[:wizard_steps] = basesystem.steps.join(",")
       session[:wizard_current] = basesystem.steps.first
       redirect_to :controller => basesystem.steps.first
