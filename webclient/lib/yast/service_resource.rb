@@ -72,7 +72,7 @@ module YaST
         Rails.logger.warn e
         return nil
       end
-      
+
       proxy = self.class_for_resource(resource, opts)
       
       if block_given?
@@ -142,31 +142,36 @@ module YaST
         # dynamic implementation of permissions as described
         # on proxy_for documentation
         def permissions(opts={})
-          login = opts.has_key?(:user) ? opts[:user] : YaST::ServiceResource::Session.login
+          login = opts.fetch(:user, YaST::ServiceResource::Session.login)
           raise "Can't retrieve permissions. No user specified and not logged in" if not login
+
+          policy_name = nil
+          if not policy_name
+            raise "object does not implement any interface" if not (self.respond_to?(:interface) and self.interface)
+            policy_name = self.interface
+          end
+
           perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
           proxy = YaST::ServiceResource.class_for_resource(perm_resource)
           
-          raise "object does not implement any interface" if not (self.respond_to?(:interface) and self.interface)
-          ret = Hash.new
-          interface_name = self.interface
           begin
             permissions = proxy.find(:all, :params =>
-                { :user_id => login, :filter => interface_name })
+                { :user_id => login, :filter => policy_name })
           rescue
-            raise "Cannot find permission for user #{login} and interface #{interface_name}"
+            raise "Cannot find permission for user #{login} and policy #{policy_name}"
           end
           RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
+          ret = Hash.new
           permissions.each do |perm|
             break if perm.name.nil? # no permissions
             # the permission name is an extension
-            # of the interface name, if the
-            # interface is not a subset of the permission
+            # of the policy name, if the
+            # policy is not a subset of the permission
             # something wrong happened with the query
             # and we should ignore it
-            next if not perm.name.include?(interface_name)
+            next if not perm.name.include?(policy_name)
             perm_short_name = perm.name
-            perm_short_name.slice!("#{interface_name}.")
+            perm_short_name.slice!("#{policy_name}.")
             # to this point the short name must be something
             next if perm_short_name.blank?
             ret[perm_short_name.to_sym] = perm.grant
