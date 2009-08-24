@@ -54,7 +54,7 @@ class ControlpanelController < ApplicationController
   def backstep
     steps = session[:wizard_steps].split ","
     if session[:wizard_current] != steps.first
-      session[:wizard_current] = steps[steps.index(session[:wizard_current])+1]
+      session[:wizard_current] = steps[steps.index(session[:wizard_current])-1]
     end
     redirect_to "/controlpanel"
   end
@@ -98,14 +98,18 @@ class ControlpanelController < ApplicationController
     s
   end
   
-  # Constant that signalize, that all steps from base system settings is done
-  # +warn+: must be synchronized with same constant in base system module
+  # Constant that signalizes, that all steps from base system setup are done
+  # This constant and constant in rest-service -> basesystem.rb are not connected
+  # and do not have to be the same value
   FINAL_STEP = "FINISH"
-  # Checks if basic system modul need show another module instead control panel
+  # Checks if basic system module should be shown instead of control panel
+  # and if it should, then also redirects to that module.
   # TODO check if wizard from config exists
   def need_redirect
     if session[:wizard_current]
+      # session variable is used to find out, if basic system module is needed
       return false if session[:wizard_current] == FINAL_STEP
+      # basic system setup in progress => redirect to current module
       redirect_to :controller => session[:wizard_current]
       return true
     else
@@ -114,19 +118,20 @@ class ControlpanelController < ApplicationController
         erase_redirect_results #reset all error redirects
         erase_render_results #erase all error render
         flash.clear #no error flash from load_proxy
-        logger.warn "Error occure during loading basesystem information"
+        logger.warn "Error occured during loading basesystem information"
         return false
       end
 
-      if basesystem.steps.empty? or basesystem.current == FINAL_STEP
+      if basesystem.steps.empty? or basesystem.current == basesystem.final_step
         session[:wizard_current] = FINAL_STEP
         return false
       end
-
+      # we got some steps from backend, base system setup is not over and 
+      # no sign of progress in session variables => restart base system setup
       logger.debug basesystem.steps.inspect
       session[:wizard_steps] = basesystem.steps.join(",")
       session[:wizard_current] = basesystem.steps.first
-      redirect_to :controller => basesystem.current
+      redirect_to :controller => basesystem.steps.first
       return true
     end
   end
