@@ -122,7 +122,7 @@ class ControlpanelController < ApplicationController
       # session variable is used to find out, if basic system module is needed
       return false if session[:wizard_current] == FINAL_STEP
       # basic system setup in progress => redirect to current module
-      redirect_to :controller => session[:wizard_current]
+      redirect_to get_redirect_hash(session[:wizard_current])
       return true
     else
       basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
@@ -141,10 +141,19 @@ class ControlpanelController < ApplicationController
       # we got some steps from backend, base system setup is not over and 
       # no sign of progress in session variables => restart base system setup
       logger.debug "Basesystem steps: #{basesystem.steps.inspect}"
-      session[:wizard_steps] = basesystem.steps.join(",")
-      session[:wizard_current] = basesystem.steps.first
-      redirect_to :controller => basesystem.steps.first
+      decoded_steps = basesystem.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : step.controller  }
+      session[:wizard_steps] = decoded_steps.join(",")
+      session[:wizard_current] = decoded_steps.first
+      redirect_to get_redirect_hash(session[:wizard_current])
       return true
     end
   end
+
+  def get_redirect_hash (target)
+    arr = target.split(":")
+    ret = { :controller => arr[0], :action => arr[1]||"index"}
+    logger.debug ret.inspect
+    return ret
+  end
+
 end
