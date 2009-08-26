@@ -38,8 +38,6 @@ class ControlpanelController < ApplicationController
 
 
   # Constant that signalizes, that all steps from base system setup are done
-  # This constant and constant in rest-service -> basesystem.rb are not connected
-  # and do not have to be the same value
   FINAL_STEP = "FINISH"
   # nextstep and backstep expect, that wizard session variables are set
   def ensure_wizard
@@ -62,8 +60,9 @@ class ControlpanelController < ApplicationController
       # basesystem.save will set always current to FINAL_STEP 
       basesystem.save
       session[:wizard_current] = FINAL_STEP
+      redirect_to "/controlpanel"
     end
-    redirect_to "/controlpanel"
+    redirect_to get_redirect_hash(session[:wizard_current])
   end
 
   def backstep
@@ -71,7 +70,17 @@ class ControlpanelController < ApplicationController
     if session[:wizard_current] != steps.first
       session[:wizard_current] = steps[steps.index(session[:wizard_current])-1]
     end
-    redirect_to "/controlpanel"
+    redirect_to get_redirect_hash(session[:wizard_current])
+  end
+
+  # when triggered by button/link from basesystem, shows current module from session
+  def thisstep
+    redirect_to get_redirect_hash(session[:wizard_current])
+  end
+
+  # display some message, that setup is not completed and that by clicking button
+  # you start setting up the system
+  def basesystem
   end
 
   protected
@@ -102,9 +111,9 @@ class ControlpanelController < ApplicationController
     if File.exists?(shortcuts_fn)
       logger.debug "Shortcuts at #{plugin.directory}"
       shortcuts_data = YAML::load(File.open(shortcuts_fn))
-      return nil unless shortcutsdata.is_a? Hash
+      return nil unless shortcuts_data.is_a? Hash
       # now go over each shortcut and add it to the modules
-      shortcutsdata.each do |k,v|
+      shortcuts_data.each do |k,v|
         # use the plugin name and the shortcut key as
         # the new key
         shortcuts["#{plugin.name}:#{k}"] = v
@@ -122,7 +131,7 @@ class ControlpanelController < ApplicationController
       # session variable is used to find out, if basic system module is needed
       return false if session[:wizard_current] == FINAL_STEP
       # basic system setup in progress => redirect to current module
-      redirect_to get_redirect_hash(session[:wizard_current])
+      redirect_to :action => :basesystem
       return true
     else
       basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
@@ -144,7 +153,7 @@ class ControlpanelController < ApplicationController
       decoded_steps = basesystem.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : step.controller  }
       session[:wizard_steps] = decoded_steps.join(",")
       session[:wizard_current] = decoded_steps.first
-      redirect_to get_redirect_hash(session[:wizard_current])
+      redirect_to :action => :basesystem
       return true
     end
   end
