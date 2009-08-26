@@ -1,4 +1,3 @@
-require 'rack/request'
 require 'uri'
 
 module YaST
