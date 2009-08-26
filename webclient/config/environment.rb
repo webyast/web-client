@@ -1,3 +1,5 @@
+require 'yast/rack/static_overlay'
+
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
@@ -76,4 +78,9 @@ end
 module YaST
 end
 YaST::LOADED_PLUGINS = init.loaded_plugins
+
+# look for all existing loaded plugin's public/ directories
+plugin_assets = init.loaded_plugins.map { |plugin| File.join(plugin.directory, 'public') }.reject { |dir| not (File.directory?(dir) and File.exist?(dir)) }
+init.configuration.middleware.use YaST::Rack::StaticOverlay, :roots => plugin_assets
+
 
