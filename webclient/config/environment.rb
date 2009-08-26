@@ -1,5 +1,3 @@
-require 'yast/rack/static_overlay'
-
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
@@ -11,6 +9,7 @@ require 'yast/rack/static_overlay'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'yast/rack/static_overlay'
 
 init = Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
