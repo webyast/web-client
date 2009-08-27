@@ -21,27 +21,26 @@ class PatchUpdatesController < ApplicationController
       patch_updates = nil
     end
 
-    unless patch_updates
+    patches_summary = nil
+
+    if patch_updates
+      patches_summary = { :security => 0, :important => 0, :optional => 0}
+
+      [:security, :important, :optional].each do |patch_type|
+        patches_summary[patch_type] = patch_updates.collect { |p| p.kind == patch_type.to_s }.size
+      end
+    else
       erase_redirect_results #reset all redirects
       erase_render_results
       flash.clear #no flash from load_proxy
-      render :partial => "patch_summary", :locals => { :patch => nil }
-      return false
     end
 
-    patches = { :security => 0, :important => 0, :optional => 0}
-
-    patch_updates.each do |patch|
-      case patch.kind
-        when "security":  patches[:security] += 1
-        when "important": patches[:important] += 1
-        when "optional":  patches[:optional] += 1
-      else
-        logger.warn "unknown patch kind #{patch.kind}"
-      end
+    respond_to do |format|
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary } }
+      format.json  { render :json => patches_summary }
     end
 
-    render :partial => "patch_summary", :locals => { :patch => patches }
+    
   end
 
   def load_filtered

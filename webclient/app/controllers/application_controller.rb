@@ -23,7 +23,14 @@ class ApplicationController < ActionController::Base
 
   def exception_trap(e)
     logger.error "***" + e.to_s
-    #render :text => "I am sorry"
+    
+    # for ajax request render a different template, much less verbose
+    if request.xhr?
+      logger.error "Error during ajax request"
+      render :partial => "shared/exception_trap", :locals => {:error => e} and return
+      #render :text => "shit" and return
+    end
+
     render :template => "shared/exception_trap", :locals => {:error => e}
     return
   end
