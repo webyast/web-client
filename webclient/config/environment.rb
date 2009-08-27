@@ -9,6 +9,7 @@
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'yast/rack/static_overlay'
 
 init = Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -76,4 +77,9 @@ end
 module YaST
 end
 YaST::LOADED_PLUGINS = init.loaded_plugins
+
+# look for all existing loaded plugin's public/ directories
+plugin_assets = init.loaded_plugins.map { |plugin| File.join(plugin.directory, 'public') }.reject { |dir| not (File.directory?(dir) and File.exist?(dir)) }
+init.configuration.middleware.use YaST::Rack::StaticOverlay, :roots => plugin_assets
+
 
