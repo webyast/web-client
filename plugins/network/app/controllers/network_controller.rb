@@ -29,6 +29,9 @@ class NetworkController < ApplicationController
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
 
+#    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes"
+#    return false unless rt
+
     unless @permissions[:read]
       flash[:warning] = _("No permissions for hostname module")
       redirect_to root_path
@@ -37,32 +40,33 @@ class NetworkController < ApplicationController
 
     @name = hn.name
     @domain = hn.domain
+#    @default_route = rt.default
   end
 
   # GET /users/new
   # GET /users/new.xml
   def new
     return unless network_permissions
-    @user = @client.new( :id => :nil,
-      :no_home=>nil, 
-      :default_group=>nil, 
-      :new_login_name=>nil, 
-      :login_name=>nil, 
-      :groups=>[],
-      :grp_string=>nil,
-      :home_directory=>nil,
-      :full_name=>nil, 
-      :uid=>nil,
-      :sshkey=>nil, 
-      :new_uid=>nil, 
-      :login_shell=>"/bin/bash", 
-      :password=>nil,
-      :type=>"local", 
-      :id=>nil )
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
+#    @user = @client.new( :id => :nil,
+#      :no_home=>nil, 
+#      :default_group=>nil, 
+#      :new_login_name=>nil, 
+#      :login_name=>nil, 
+#      :groups=>[],
+#      :grp_string=>nil,
+#      :home_directory=>nil,
+#      :full_name=>nil, 
+#      :uid=>nil,
+#      :sshkey=>nil, 
+#      :new_uid=>nil, 
+#      :login_shell=>"/bin/bash", 
+#      :password=>nil,
+#      :type=>"local", 
+#      :id=>nil )
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.xml  { render :xml => @user }
+#    end
   end
 
   # GET /users/1/edit
