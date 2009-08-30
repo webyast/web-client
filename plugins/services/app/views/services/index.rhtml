@@ -1,3 +1,5 @@
+<%= javascript_include_tag :defaults %>
+
 <!-- begin: dialog box -->
 <div id="resultdlg">
 </div>
@@ -24,15 +26,20 @@ end
 <ul>
 <% @services.each do |service| %>
 <li><b><%=h service.name %></b>
-  <%=
-  if service.status == 0
-      _("(running)")
-  elsif service.status.nil?
-      _("(unknown)")
-  else
-      _("(stopped: #{service.status})")
-  end
-  %>
+
+<span class='service_status' id='service_status_<%=service.name%>'>
+<% if service.status.nil? %>
+     <img src="/images/working.gif" height="12" width="12" border="0" />
+<%   javascript_tag do %>
+$(document).ready( function() {
+   <%= remote_function(:update => "service_status_#{service.name}",
+    :url => { :controller => :services, :action => :show_status, :id => service.name }) %>
+});
+<%   end %>
+<% else %>
+<%= render :partial => 'status', :object => service.status %>
+<% end %>
+</span>
 
   <% [ "start", "stop" ].each do |cmd|
 	if @permissions[:execute] %>
