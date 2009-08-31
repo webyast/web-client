@@ -5,19 +5,25 @@
 $(document).ready(
   function() {
     $('#error-<%= error_id %>-balloon-content').hide();
-    $('#error-<%= error_id %>-details-link').click(
-      $('#error-<%= error_id %>-details-link').bt({
-        contentSelector: "$('#error-<%= error_id %>-balloon-content').html()",
-        trigger: 'click',
-        positions: ['left', 'right', 'bottom']
-        }));
-     $('#error-<%= error_id %>-show-backtrace-link').click(function() { $('#error-<%= error_id %>-backtrace').hide();$(this).next().show();return false; });
+    $('#error-<%= error_id %>-balloon-content').dialog(
+    {
+    	bgiframe: true,
+    	autoOpen: false,
+    	height: 300,
+    	modal: true
+    });
+    
+    $('#error-<%= error_id %>-details-link').click( function() {
+      $('#error-<%= error_id %>-balloon-content').dialog('open');
+      });
+     $('#error-<%= error_id %>-show-backtrace-link').click(function() { $('#error-<%= error_id %>-backtrace').hide();$('#error-<%= error_id %>-backtrace').show();return false; });
    });
+
 </script>
 
 <div id="error-<%= error_id %>-balloon-content">
   <p><strong>Error message:</strong>: <%= error.message %></p>
-  <p><a href="https://bugzilla.novell.com/enter_bug.cgi?classification=7340&product=openSUSE+11.2&submit=Use+This+Product&component=WebYaST&format=guided">Report bug</a></p>
+  <p><a href="<%= @bug_url %>">Report bug</a></p>
   <p><a href="#" id="error-<%= error_id %>-show-backtrace-link">Show details</a>
   <pre id="error-<%= error_id %>-backtrace" style="display: none"><%= (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? "No information available" : error.backtrace.join("\n") %></pre>
 </div>

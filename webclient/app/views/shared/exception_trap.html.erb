@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 <p><pre><%= h error.to_s %></pre></p>
 
-<p>Please <a href="https://bugzilla.novell.com/enter_bug.cgi?classification=7340&product=openSUSE+11.2&submit=Use+This+Product&component=WebYaST&format=guided">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
+<p>Please <a href="<%= @bug_url %>">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
 
 <a href="#" id="details-link">Show details...</a>
 
