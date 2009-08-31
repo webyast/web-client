@@ -15,7 +15,36 @@ class StatusController < ApplicationController
   end
 
   def create_data_map( tree, label = "")
-    data_map = Hash.new
+    tree.attributes["metric"].each{ |metric|
+      metric_name = metric.name
+      group = metric.metricgroup
+      interval = metric.interval #TODO: not used yet
+      starttime = metric.starttime
+      case metric.attributes["label"]
+      when YaST::ServiceResource::Proxies::Status::Metric::Label
+        label = metric.attributes["label"].attributes["name"]
+        data_list = Array.new
+        metric.attributes["label"].attributes["values"].each{ |value| data_list << value.to_f }
+        @limits[label] = metric.attributes["limits"].attributes if metric.attributes.has_key? "limits" #TODO
+        @data["/#{group}/#{metric_name}"] = data_list
+      
+      when Array
+        metric.attributes["label"].each{ |l|
+          label = l.attributes["value"]
+          data_list = Array.new
+          l.attributes["values"].each{ |value|
+            if label == "memory" # take MByte for the value
+              data_list << value.to_f/1024/1024
+            else
+              data_list << value.to_f
+            end
+          }
+          @limits[label] = l.attributes["limits"].attributes if l.attributes.has_key? "limits" #TODO
+          @data["/#{group}/#{metric_name}/#{label}"] = data_list
+      }
+      end
+    }
+=begin
     if tree.methods.include?("attributes")
       tree.attributes.each do |key, branch|
         if key.start_with?("t_")
@@ -40,7 +69,8 @@ class StatusController < ApplicationController
     else
       logger.error "wrong result: #{tree.inspect}"
     end
-    return data_map
+=end
+#    return data_map
   end
 
   def create_data
@@ -52,7 +82,7 @@ class StatusController < ApplicationController
     begin
       till = Time.new
       from = till - 300 #last 5 minutes
-
+#puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
       status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
 
       rescue ActiveResource::ClientError => e
