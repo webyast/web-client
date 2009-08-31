@@ -29,8 +29,8 @@ class NetworkController < ApplicationController
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
 
-#    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes"
-#    return false unless rt
+    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
+    return false unless rt
 
     unless @permissions[:read]
       flash[:warning] = _("No permissions for hostname module")
@@ -40,7 +40,7 @@ class NetworkController < ApplicationController
 
     @name = hn.name
     @domain = hn.domain
-#    @default_route = rt.default
+    @default_route = rt.via
   end
 
   # GET /users/new
