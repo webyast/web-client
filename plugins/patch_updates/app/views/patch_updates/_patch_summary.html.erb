@@ -1,8 +1,9 @@
-<div class="status_patches">
-  <% unless patch %>
-    <div class="status-icon warning"></div>
-    <%= _("An error occured when loading patch information.") %>
+<%= report_error(error, _("An error occured when loading patch information.")) if error %>
 
+<div class="status_patches">
+  <% unless patch %>    
+    <div class="status-icon warning"></div>    
+    <%= _("No information about patches available") %>
   <% else %>
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>

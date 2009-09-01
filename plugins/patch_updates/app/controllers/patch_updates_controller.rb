@@ -14,10 +14,12 @@ class PatchUpdatesController < ApplicationController
 
   # this action is rendered as a partial, so it can't throw
   def show_summary
+    error = nil
     patch_updates = nil    
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
-    rescue
+    rescue Exception => e
+      error = e
       patch_updates = nil
     end
 
@@ -36,11 +38,9 @@ class PatchUpdatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
       format.json  { render :json => patches_summary }
-    end
-
-    
+    end    
   end
 
   def load_filtered

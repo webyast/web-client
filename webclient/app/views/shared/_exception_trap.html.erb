@@ -1,36 +1,4 @@
 
-<% error_id = error.nil? ? rand(10000) : error.object_id %>
+<%= report_error(error) %>
 
-<script type="text/javascript">
-$(document).ready(
-  function() {
-    $('#error-<%= error_id %>-balloon-content').hide();
-    $('#error-<%= error_id %>-balloon-content').dialog(
-    {
-    	bgiframe: true,
-    	autoOpen: false,
-    	height: 300,
-    	modal: true
-    });
-    
-    $('#error-<%= error_id %>-details-link').click( function() {
-      $('#error-<%= error_id %>-balloon-content').dialog('open');
-      });
-     $('#error-<%= error_id %>-show-backtrace-link').click(function() { $('#error-<%= error_id %>-backtrace').hide();$('#error-<%= error_id %>-backtrace').show();return false; });
-   });
-
-</script>
-
-<div id="error-<%= error_id %>-balloon-content">
-  <p><strong>Error message:</strong>: <%= error.message %></p>
-  <p><a href="<%= @bug_url %>">Report bug</a></p>
-  <p><a href="#" id="error-<%= error_id %>-show-backtrace-link">Show details</a>
-  <pre id="error-<%= error_id %>-backtrace" style="display: none"><%= (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? "No information available" : error.backtrace.join("\n") %></pre>
-</div>
-
-<div class="status-icon error"></div><div>There was a problem retrieving the information (<a href="#" id="error-<%= error_id %>-details-link">more..</a>)</div>
-
-<pre id="backtrace-<%= error_id %>" style="display: none">
-<%= (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? "No information available" : error.backtrace.join("\n") %>
-</pre>
 
