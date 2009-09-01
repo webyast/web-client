@@ -25,7 +25,13 @@ class ServicesController < ApplicationController
   def show_status
     return unless client_permissions
 
-    @response = @client.find(params[:id])
+    begin
+	@response = @client.find(params[:id])
+    rescue ActiveResource::ResourceNotFound => e
+	Rails.logger.error "Resource not found: #{e.to_s}: #{e.response.body}"
+	render :text => _('(cannot read status)') and return
+    end
+
     render(:partial =>'status', :object => @response.status, :params => params)
   end
 
