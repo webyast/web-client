@@ -22,7 +22,8 @@ class StatusController < ApplicationController
     @data_group[group].merge!({metric_name => data_list})
     count = 0
     #TODO: implement maximum and minimum format
-    @limits_list[label] = limits.map{ |l| count+=1; [count,l.to_f/divisor]} if limits
+    @limits_list[label].merge!({:min => limits["min"].map{ |l| count+=1; [count,l.to_f/divisor]}} if limits["min"]
+    @limits_list[label].merge!({:max => limits["max"].map{ |l| count+=1; [count,l.to_f/divisor]}} if limits["max"]
 #    @data["/#{group}/#{metric_name}/..."] = data_list
   end
 
