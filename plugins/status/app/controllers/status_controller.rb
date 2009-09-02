@@ -20,8 +20,9 @@ class StatusController < ApplicationController
     count = 0
     data_list = label.map{ |v| count+=1; [count,v.to_f/divisor]}
     @data_group[group].merge!({metric_name => data_list})
-    divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
-    @limits[label] = limits if limits #TODO: implement maximum and minimum format
+    count = 0
+    #TODO: implement maximum and minimum format
+    @limits_list[label] = limits.map{ |l| count+=1; [count,l.to_f/divisor]} if limits
 #    @data["/#{group}/#{metric_name}/..."] = data_list
   end
 
