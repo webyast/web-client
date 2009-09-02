@@ -14,63 +14,35 @@ class StatusController < ApplicationController
     @permissions = @client.permissions
   end
 
-  def create_data_map( tree, label = "")
+  def write_data_group(label, group, metric_name, limits=nil)
+    data_list = Array.new
+    divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
+    count = 0
+    data_list = label.map{ |v| count+=1; [count,v.to_f/divisor]}
+    @data_group[group].merge!({metric_name => data_list})
+    divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
+    @limits[label] = limits if limits #TODO: implement maximum and minimum format
+#    @data["/#{group}/#{metric_name}/..."] = data_list
+  end
+
+  def create_data_map(tree)
     tree.attributes["metric"].each{ |metric|
       metric_name = metric.name
       group = metric.metricgroup
+      @data_group[group] ||= Hash.new
       interval = metric.interval #TODO: not used yet
       starttime = metric.starttime
       case metric.attributes["label"]
-      when YaST::ServiceResource::Proxies::Status::Metric::Label
-        label = metric.attributes["label"].attributes["name"]
-        data_list = Array.new
-        metric.attributes["label"].attributes["values"].each{ |value| data_list << value.to_f }
-        @limits[label] = metric.attributes["limits"].attributes if metric.attributes.has_key? "limits" #TODO
-        @data["/#{group}/#{metric_name}"] = data_list
-      
-      when Array
+      when YaST::ServiceResource::Proxies::Status::Metric::Label # one label
+        limits = metric.attributes["limits"].attributes if metric.attributes.has_key? "limits"
+        write_data_group(metric.attributes["label"].attributes["values"], group, metric_name, limits)
+      when Array # several label
         metric.attributes["label"].each{ |l|
-          label = l.attributes["value"]
-          data_list = Array.new
-          l.attributes["values"].each{ |value|
-            if label == "memory" # take MByte for the value
-              data_list << value.to_f/1024/1024
-            else
-              data_list << value.to_f
-            end
-          }
-          @limits[label] = l.attributes["limits"].attributes if l.attributes.has_key? "limits" #TODO
-          @data["/#{group}/#{metric_name}/#{label}"] = data_list
+          limits = l.attributes["limits"].attributes if l.attributes.has_key? "limits"
+          write_data_group(l.attributes["values"], group, metric_name, limits)
       }
       end
     }
-=begin
-    if tree.methods.include?("attributes")
-      tree.attributes.each do |key, branch|
-        if key.start_with?("t_")
-          data_map[key] = branch.to_f
-        elsif key == "limit"
-          @limits[label] = branch.attributes
-        else
-          next_label = label
-          if key != "value"
-            next_label += "/" + key
-          end
-          data_map = create_data_map(branch, next_label)
-          if data_map.size > 0
-            data_list = []
-            flatten_map = data_map.sort #Sorting for timestamps
-            flatten_map.each {|data| data_list << data[1] }
-            @data[next_label] = data_list
-            data_map = {}
-          end
-        end
-      end
-    else
-      logger.error "wrong result: #{tree.inspect}"
-    end
-=end
-#    return data_map
   end
 
   def create_data
@@ -89,9 +61,8 @@ class StatusController < ApplicationController
         flash[:error] = YaST::ServiceResource.error(e)
         return false
     end
-
     create_data_map status
-
+=begin
     #grouping graphs to memory, cpu,...
     @data.each do |key, list_value|
       if @limits.has_key?(key)
@@ -110,40 +81,17 @@ class StatusController < ApplicationController
       key_split = key.split("/")
       if key_split.size > 1
         group_map = {}
-        group_map = @data_group[key_split[1]] if @data_group.has_key?(key_split[1])
-        label_name = ""
-        for i in 2..key_split.size-1 do
-          if i==2
-            label_name = key_split[i]
-          else
-            label_name += "/" + key_split[i]
-          end
-        end
-        graph_list = []
-        for i in 0..list_value.size-1
-          value_list = [i]
-          if key_split[1]=="memory" # take MByte for the value
-            value_list << list_value[i]/1024/1024
-          else
-            value_list << list_value[i]
-          end
-          graph_list << value_list
-        end
-        group_map[label_name] = graph_list
-        @data_group[key_split[1]] = group_map
-      else
-        logger.error "empty key: #{@key} #{list.inspect}"
       end
     end
-    logger.debug "Limits: #{@limits.inspect}"
-#    logger.debug "System information: #{@data_group.inspect}"
+=end
+    # puts @data_group.inspect
     true
   end
 
   #removing logging data and add limits which are defined in params
-  def create_save_data(status, params, label = "")
+  def create_save_data(status, params, label = "") #TODO: customize for new xml format
     status.each do |key, value|
-     if key.start_with?("t_")
+     if key.start_with?("values")
        status.delete(key)
      elsif
        next_label = label+ "/" + key
