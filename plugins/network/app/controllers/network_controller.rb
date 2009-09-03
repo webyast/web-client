@@ -29,17 +29,26 @@ class NetworkController < ApplicationController
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
 
+    dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
+    return false unless dns
+
     rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
     return false unless rt
 
+    # FIXME mixed up by multiple load_proxy
     unless @permissions[:read]
-      flash[:warning] = _("No permissions for hostname module")
+      flash[:warning] = _("No permissions for network module")
       redirect_to root_path
       return false
     end
 
     @name = hn.name
     @domain = hn.domain
+    # @nameservers = dns.dnsservers
+    # @searchdomains = dns.dnsdomains
+    @nameservers = ["fake-ns1", "fake-ns2"]
+    @searchdomains = ["fake-d1", "fake-d2"]
+
     @default_route = rt.via
   end
 
