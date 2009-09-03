@@ -76,7 +76,7 @@ init = Rails::Initializer.run do |config|
   # is the directory "vendor" in the "public" directory. Each file in the public
   # directory can be exchanged by putting a file with the same path in the vendor 
   # directory.
-  # Please take care that all links in the views has to defined by the AssetTagHelper like
+  # Please take care that all links in the views have to be defined by the AssetTagHelper like
   # image_tag, stylesheet_link_tag, javascript_include_tag, ...
   config.action_controller.asset_host = Proc.new do |source, request|
     path = "#{config.root_path}/public/vendor#{source}".split("?")
