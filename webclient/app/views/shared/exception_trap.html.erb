@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $('#details-link').click(function() { $('#backtrace').hide();$(this).next().show();return false; });
+  $('#details-link').click(function() { $('#backtrace').hide();$('#backtrace').show();return false; });
 });
 </script>
 
@@ -9,16 +9,18 @@ $(document).ready(function() {
 
 <p>We are sorry, but WebYaST is still in alpha and there are some problems.</p>
 
-<h2>Error Message:</h2>
+<h3>Problem:</h3>
 
 <p><pre><%= h error.to_s %></pre></p>
 
-<p>Please <a href="https://bugzilla.novell.com/enter_bug.cgi?classification=7340&product=openSUSE+11.2&submit=Use+This+Product&component=WebYaST&format=guided">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
+<p>Please <a href="<%= @bug_url %>">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
 
-<a href="#" id="details-link">Show details...</a>
+<% backtrace = (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? _("No information available") : error.backtrace.join("\n") %>
+
+<p><a href="#" id="details-link">Show details...</a><%= clippy(backtrace) %><p>
 
 <pre id="backtrace" style="display: none">
-<%= (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? "No information available" : error.backtrace.join("\n") %>
+<%= backtrace  %>
 </pre>
 
 

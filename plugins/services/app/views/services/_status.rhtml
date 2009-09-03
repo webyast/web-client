@@ -1,0 +1,24 @@
+<%
+# Status values (see /etc/init.d/skeleton):
+#
+# 0 - service up and running
+# 1 - service dead, but /var/run/  pid  file exists
+# 2 - service dead, but /var/lock/ lock file exists
+# 3 - service not running (unused)
+# 4 - service status unknown :-(
+# 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
+-%>
+<%=
+case status
+    when nil, 4
+	_("(unknown)")
+    when 0
+	_("(running)")
+    when 1,2
+	_("(dead)")
+    when 3
+	_("(not running)")
+    else
+	_("(unknown: #{status})")
+end
+-%>

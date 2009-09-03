@@ -71,6 +71,22 @@ init = Rails::Initializer.run do |config|
   # allows to find plugin in development tree locations
   # avoiding installing plugins to see them
   config.plugin_paths << File.join(RAILS_ROOT, '..', 'plugins')
+
+  # In order to overwrite,exchange images, stylesheets,.... for special vendors there
+  # is the directory "vendor" in the "public" directory. Each file in the public
+  # directory can be exchanged by putting a file with the same path in the vendor 
+  # directory.
+  # Please take care that all links in the views have to be defined by the AssetTagHelper like
+  # image_tag, stylesheet_link_tag, javascript_include_tag, ...
+  config.action_controller.asset_host = Proc.new do |source, request|
+    path = "#{config.root_path}/public/vendor#{source}".split("?")
+    if path.length >0 and File.exists?(path[0]) 
+      "#{request.protocol}#{request.host_with_port}/vendor"
+    else
+      ""
+    end
+  end
+
 end
 
 # save loaded plugins, which are used to scan shortcuts laters
@@ -81,5 +97,3 @@ YaST::LOADED_PLUGINS = init.loaded_plugins
 # look for all existing loaded plugin's public/ directories
 plugin_assets = init.loaded_plugins.map { |plugin| File.join(plugin.directory, 'public') }.reject { |dir| not (File.directory?(dir) and File.exist?(dir)) }
 init.configuration.middleware.use YaST::Rack::StaticOverlay, :roots => plugin_assets
-
-
