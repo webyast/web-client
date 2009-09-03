@@ -137,15 +137,11 @@ class ControlpanelController < ApplicationController
       redirect_to :action => :basesystem
       return true
     else
-      basesystem = load_proxy 'org.opensuse.yast.modules.basesystem'
-      unless basesystem
-        erase_redirect_results #reset all error redirects
-        erase_render_results #erase all error render
-        flash.clear #no error flash from load_proxy
-        logger.warn "Error occured during loading basesystem information"
-        return false
-      end
-
+      proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
+      return false unless proxy
+      basesystem = proxy.find
+      return false unless basesystem
+     
       if basesystem.steps.empty? or basesystem.finish
         session[:wizard_current] = FINAL_STEP
         return false
