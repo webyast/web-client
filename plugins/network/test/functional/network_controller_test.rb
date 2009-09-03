@@ -27,6 +27,9 @@ class NetworkControllerTest < ActionController::TestCase
     NetworkController.any_instance.stubs(:login_required)
 
     # stub what the REST is supposed to return
+    @if_proxy = ProxyN.new
+    @if_proxy.result = OpenStruct.new("ipaddr" => '10.20.30.42/24')
+
     @hn_proxy = Proxy1.new
     @hn_proxy.result = OpenStruct.new("name" => "Arthur, king of the Britons")
 
@@ -39,6 +42,7 @@ class NetworkControllerTest < ActionController::TestCase
     def x # a shorthand. return another stub
        YaST::ServiceResource.stubs(:proxy_for)
     end
+    x.with('org.opensuse.yast.modules.yapi.network.interfaces').returns(@if_proxy)
     x.with('org.opensuse.yast.modules.yapi.network.hostname').returns(@hn_proxy)
     x.with('org.opensuse.yast.modules.yapi.network.dns').returns(@dns_proxy)
     x.with('org.opensuse.yast.modules.yapi.network.routes').returns(@rt_proxy)
