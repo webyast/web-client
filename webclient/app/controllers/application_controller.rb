@@ -63,6 +63,25 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def self.init_gettext(domainname, options = {})
+    locale_path = options[:locale_path]
+    unless locale_path
+      #If path of the translation has not been set we are trying to load
+      #vendor specific translations too
+      if Dir.glob(File.join("**", "public", "**", "#{domainname}.mo")).size > 0
+        locale_path = File.join(RAILS_ROOT, "public/vendor/text/locale")
+        opt = {:locale_path => locale_path}.merge(options)
+        ActionController::Base.init_gettext(domainname, opt)
+      else
+        #load default no vendor translation available
+        ActionController::Base.init_gettext(domainname, options)
+      end
+    else
+      #load default if the path has been given
+      ActionController::Base.init_gettext(domainname, options)
+    end
+  end
+
   # Initialize GetText and Content-Type.
   # You need to call this once a request from WWW browser.
   # You can select the scope of the textdomain.
@@ -83,6 +102,7 @@ class ApplicationController < ActionController::Base
     p "after_init_gettext"
   end
 =end
+
 
 =begin
   # you can redefined the title/explanation of the top of the error message.
