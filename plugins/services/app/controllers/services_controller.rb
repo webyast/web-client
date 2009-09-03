@@ -22,6 +22,19 @@ class ServicesController < ApplicationController
   def initialize
   end
 
+  def show_status
+    return unless client_permissions
+
+    begin
+	@response = @client.find(params[:id])
+    rescue ActiveResource::ResourceNotFound => e
+	Rails.logger.error "Resource not found: #{e.to_s}: #{e.response.body}"
+	render :text => _('(cannot read status)') and return
+    end
+
+    render(:partial =>'status', :object => @response.status, :params => params)
+  end
+
   # GET /services
   # GET /services.xml
   def index
@@ -33,6 +46,9 @@ class ServicesController < ApplicationController
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
+
+    # sort services by name (case insensitive)
+    @services.sort! {|s1,s2| s1.name.downcase <=> s2.name.downcase } unless @services.nil?
 
     respond_to do |format|
       format.html # index.html.erb

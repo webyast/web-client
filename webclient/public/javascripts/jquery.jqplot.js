@@ -766,10 +766,14 @@
         this._elem.css({ position: 'absolute', left: this._offsets.left, top: this._offsets.top });
         // borrowed from flot by Ole Laursen
         if ($.browser.msie) {
-            window.G_vmlCanvasManager.init_(document);
+            if (window.G_vmlCanvasManager) {
+                window.G_vmlCanvasManager.init_(document);
+            }
         }
         if ($.browser.msie) {
-            elem = window.G_vmlCanvasManager.initElement(elem);
+            if (window.G_vmlCanvasManager) {
+                elem = window.G_vmlCanvasManager.initElement(elem);
+            }
         }
         return this._elem;
     };
@@ -1625,10 +1629,14 @@
         this._elem.addClass('jqplot-grid-canvas');
         this._elem.css({ position: 'absolute', left: 0, top: 0 });
         if ($.browser.msie) {
-            window.G_vmlCanvasManager.init_(document);
+            if (window.G_vmlCanvasManager) {
+                window.G_vmlCanvasManager.init_(document);
+            }
         }
         if ($.browser.msie) {
-            elem = window.G_vmlCanvasManager.initElement(elem);
+            if (window.G_vmlCanvasManager) {
+                elem = window.G_vmlCanvasManager.initElement(elem);
+            }
         }
         this._top = this._offsets.top;
         this._bottom = h - this._offsets.bottom;

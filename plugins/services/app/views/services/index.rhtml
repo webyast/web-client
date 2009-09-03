@@ -1,3 +1,5 @@
+<%= javascript_include_tag :defaults %>
+
 <!-- begin: dialog box -->
 <div id="resultdlg">
 </div>
@@ -24,6 +26,26 @@ end
 <ul>
 <% @services.each do |service| %>
 <li><b><%=h service.name %></b>
+
+<img src="/images/working.gif" height="12" width="12" border="0"
+    id="service_progress_<%=service.name%>" style="display: none" />
+
+<span class='service_status' id='service_status_<%=service.name%>'>
+<% if service.status.nil? %>
+<%   javascript_tag do %>
+$(document).ready( function() {
+   <%= remote_function :update => "service_status_#{service.name}",
+    :url => { :controller => :services, :action => :show_status, :id => service.name },
+    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
+    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+     %>
+});
+<%   end %>
+<% else %>
+<%= render :partial => 'status', :object => service.status %>
+<% end %>
+</span>
+
   <% [ "start", "stop" ].each do |cmd|
 	if @permissions[:execute] %>
 	    <%=
@@ -34,8 +56,12 @@ end
 		}
 		url[:custom]	= 1 if params.has_key?("custom")
 		link_to_remote cmd,
-		    :update 	=> "resultdlg",
-		    :url	=> url
+#		    :update 	=> "resultdlg",
+		    :url	=> url,
+		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
+		    :complete   => remote_function(:update => "service_status_#{service.name}",
+		        :url => { :controller => :services, :action => :show_status, :id => service.name },
+			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()")
 	    %>
 	<%
 	else %>
@@ -43,6 +69,11 @@ end
 	<%
 	end
      end %>
+
+     <%= link_to_remote _('status'), :update => "service_status_#{service.name}",
+	:url => { :controller => :services, :action => :show_status, :id => service.name },
+	:loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
+	:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()" %>
 </li>
 <% end %>
 </ul>

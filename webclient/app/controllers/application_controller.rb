@@ -1,5 +1,6 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
+require 'open-uri'
 
 class ApplicationController < ActionController::Base
   layout 'main'
@@ -23,7 +24,27 @@ class ApplicationController < ActionController::Base
 
   def exception_trap(e)
     logger.error "***" + e.to_s
-    #render :text => "I am sorry"
+
+    # get the vendor settings
+    begin
+      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
+      @bug_url = ActiveSupport::JSON.decode(open(settings_url).read)
+    rescue Exception => vendor_excp
+      @bug_url = "https://bugzilla.novell.com/enter_bug.cgi?classification=7340&product=openSUSE+11.2&submit=Use+This+Product&component=WebYaST&format=guided"
+      # there was a problem or the setting does not exist
+      # Here we should handle this always as an error
+      # the service should return a sane default if the
+      # url is not configured
+      logger.warn "Can't get vendor bug reporting url, Using Novell"
+    end
+    
+    # for ajax request render a different template, much less verbose
+    if request.xhr?
+      logger.error "Error during ajax request"
+      render :partial => "shared/exception_trap", :locals => {:error => e} and return
+      #render :text => "shit" and return
+    end
+
     render :template => "shared/exception_trap", :locals => {:error => e}
     return
   end

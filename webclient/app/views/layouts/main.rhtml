@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/stylesheets/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" title="default" charset="utf-8" />
   <link rel="stylesheet" href="/stylesheets/jquery.jqplot.css" type="text/css" media="screen" title="default" charset="utf-8" />
-
+  <link rel="stylesheet" href="/stylesheets/jquery-ui-1.7.2.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
@@ -18,19 +18,17 @@
 
   <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
-
   <!-- browser detection -->
-  <!-- <script type="text/javascript" charset="utf-8" src="/javascripts/jqbrowser-compressed.js"></script>-->
-  <!-- <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.badbrowser.js"></script>-->
+   <script type="text/javascript" charset="utf-8" src="/javascripts/jqbrowser-compressed.js"></script>
+   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.badbrowser.js"></script>
 
-  <!--<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>-->
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>
 
   <script type="text/javascript" charset="utf-8" src="/inc/shortcut.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
-
   <!-- custom page scripts and css -->
   <%= yield :head %>
 
@@ -40,7 +38,7 @@
     
     <div id="header">
       
-      <a href="/"><img src="/images/webyast-logo.png" alt="webyast" /></a>
+      <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
       
       <h1>My Appliance</h1>
 
@@ -63,18 +61,33 @@
     </div>
 
     <div id="content" class="content">
+      <!-- here both flash and dynamic notifications should be added -->
+      <div id="flash-messages">
       <!-- show the flash messages -->
-      <% [:error, :warning, :notice, :message].each do |name| %>
-        <% if flash[name] %>
-          <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
-	  <% flash.delete name -%>
-        <% end %>
-      <% end %>
 
-        <div id="progress" style="display:none;">
-          <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+      <% flash.each do |flash_type, message| %>
+        <%
+          flash_icon = case flash_type
+            when :error then "ui-icon-alert"
+            else "ui-icon-info"
+          end
+          flash_style = case flash_type
+            when :error then "ui-state-error"
+            else "ui-state-highlight"
+          end
+        %>
+
+        <div class="flash-message <%= flash_style %> ui-corner-all" style="margin-top: 20px; padding: .7em;">
+          <p><span class="ui-icon <%= flash_icon %>" style="float: left; margin-right: .3em;"></span><strong><%= message %></strong></p>
         </div>
+        <% flash.delete flash_type -%>
+      <% end %>
+      </div> <!-- flash messages -->
 
+      <div id="progress" style="display:none;">
+        <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+      </div>
+      
       <%= yield %>
     </div>
 
