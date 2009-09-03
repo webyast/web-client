@@ -48,9 +48,12 @@ class ControlpanelController < ApplicationController
 
 
   def nextstep
+    logger.debug "Wizard next step: current one: #{session[:wizard_current]} - steps #{session[:wizard_steps]}"
     steps = session[:wizard_steps].split ","
     if (steps.last != session[:wizard_current])
       session[:wizard_current] = steps[steps.index(session[:wizard_current])+1]
+      logger.debug "Wizard next step: next one #{session[:wizard_current]}"
+      redirect_to get_redirect_hash(session[:wizard_current])
     else
       proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
       basesystem = proxy.find
@@ -60,9 +63,9 @@ class ControlpanelController < ApplicationController
       # basesystem.save will set always current to FINAL_STEP 
       basesystem.save
       session[:wizard_current] = FINAL_STEP
+      logger.debug "Wizard next step: DONE"
       redirect_to "/controlpanel"
-    end
-    redirect_to get_redirect_hash(session[:wizard_current])
+    end    
   end
 
   def backstep

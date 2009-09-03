@@ -58,7 +58,7 @@ class LanguageController < ApplicationController
         flash[:error] = YaST::ServiceResource.error(e)
       end
     end
-    redirect_to :action => :index
+    redirect_success
   end
 
 end

@@ -4,9 +4,6 @@
 def fill_proxy_with_time(proxy,params)
   proxy.date = params[:date][:date]
   proxy.time = params[:currenttime]
-  proxy.timezones = [] #not needed anymore
-  proxy.utcstatus = ""
-  proxy.timezone = ""
 end
 
 #fills proxy with timezone parameters and set rest parameters to empty value
@@ -21,8 +18,4 @@ def fill_proxy_with_timezone(proxy,params,timezones)
   if (proxy.utcstatus != "UTConly")
     proxy.utcstatus = params[:utc] == "true" ? "UTC" : "localtime"
   end
-
-  proxy.time = ""
-  proxy.date = ""
-  proxy.timezones = [] #not needed anymore
 end

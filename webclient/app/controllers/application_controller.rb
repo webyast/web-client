@@ -4,6 +4,15 @@
 class ApplicationController < ActionController::Base
   layout 'main'
 
+  def redirect_success
+    if session[:wizard_current] and session[:wizard_current] != "FINISH"
+      logger.debug "wizard redirect DONE"
+      redirect_to :controller => "controlpanel", :action => "nextstep"
+    else
+      redirect_to :action => :index
+    end
+  end
+
   rescue_from Exception, :with => :exception_trap
   
   include AuthenticatedSystem
