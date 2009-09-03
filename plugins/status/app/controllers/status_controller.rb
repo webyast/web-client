@@ -20,10 +20,13 @@ class StatusController < ApplicationController
     count = 0
     data_list = label.map{ |v| count+=1; [count,v.to_f/divisor]}
     @data_group[group].merge!({metric_name => data_list})
-    count = 0
     #TODO: implement maximum and minimum format
-    @limits_list[label].merge!({:min => limits["min"].map{ |l| count+=1; [count,l.to_f/divisor]}} if limits["min"]
-    @limits_list[label].merge!({:max => limits["max"].map{ |l| count+=1; [count,l.to_f/divisor]}} if limits["max"]
+    if limits
+      count = 0
+      @limits_list[label] = Hash.new
+      @limits_list[label].merge!({:min => limits["min"].map{ |l| count+=1; [count,l.to_f/divisor]}}) if limits["min"]
+      @limits_list[label].merge!({:max => limits["max"].map{ |l| count+=1; [count,l.to_f/divisor]}}) if limits["max"]
+    end
 #    @data["/#{group}/#{metric_name}/..."] = data_list
   end
 
