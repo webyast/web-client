@@ -56,7 +56,7 @@ $(document).ready( function() {
 		}
 		url[:custom]	= 1 if params.has_key?("custom")
 		link_to_remote cmd,
-		    :update 	=> "resultdlg",
+#		    :update 	=> "resultdlg",
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
 		    :complete   => remote_function(:update => "service_status_#{service.name}",
