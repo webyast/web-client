@@ -53,10 +53,8 @@ class NetworkController < ApplicationController
     
     @name = hn.name
     @domain = hn.domain
-    # @nameservers = dns.dnsservers
-    # @searchdomains = dns.dnsdomains
-    @nameservers = ["fake-ns1", "fake-ns2"]
-    @searchdomains = ["fake-d1", "fake-d2"]
+    @nameservers = dns.nameservers
+    @searchdomains = dns.searches
 
     @default_route = rt.via
   end
