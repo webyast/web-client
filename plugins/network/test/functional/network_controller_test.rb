@@ -29,6 +29,7 @@ class NetworkControllerTest < ActionController::TestCase
     # stub what the REST is supposed to return
     @if_proxy = ProxyN.new
     @if_proxy.result = OpenStruct.new("ipaddr" => '10.20.30.42/24')
+    @if_proxy.result = OpenStruct.new("bootproto" => "dhcp")
 
     @hn_proxy = Proxy1.new
     @hn_proxy.result = OpenStruct.new("name" => "Arthur, king of the Britons")
@@ -49,6 +50,14 @@ class NetworkControllerTest < ActionController::TestCase
   end
 
   def test_should_show_it
+    get :index
+    assert_response :success
+    # test just the last assignment, for brevity
+    assert_not_nil assigns(:default_route)
+  end
+
+  def test_with_dhcp
+    @if_proxy.result = OpenStruct.new("bootproto" => "dhcp")
     get :index
     assert_response :success
     # test just the last assignment, for brevity

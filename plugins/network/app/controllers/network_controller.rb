@@ -26,8 +26,8 @@ class NetworkController < ApplicationController
   # GET /network
   def index
     @iface = "eth0"
-    # ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
-    # return false unless ifc
+    ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
+    return false unless ifc
 
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
@@ -45,11 +45,13 @@ class NetworkController < ApplicationController
       return false
     end
 
-    # @conf_mode = ifc. ?
-    # @ip, @netmask = ifc.ipaddr.split "/"
-    @conf_mode = "fake-dhcp"
-    @ip = "fake-ip"
-    @netmask = "fake-netmask"
+    @conf_mode = ifc.bootproto
+    if @conf_mode == "static"
+      ipaddr = ifc.ipaddr
+    else
+      ipaddr = "-/-"
+    end
+    @ip, @netmask = ipaddr.split "/"
     
     @name = hn.name
     @domain = hn.domain
