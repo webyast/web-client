@@ -64,6 +64,7 @@ class ApplicationController < ActionController::Base
   end
 
   def self.init_gettext(domainname, options = {})
+    logger.info "Loading textdomain: #{domainname}"
     locale_path = options[:locale_path]
     unless locale_path
       #If path of the translation has not been set we are trying to load
@@ -71,6 +72,7 @@ class ApplicationController < ActionController::Base
       if Dir.glob(File.join("**", "public", "**", "#{domainname}.mo")).size > 0
         locale_path = File.join(RAILS_ROOT, "public/vendor/text/locale")
         opt = {:locale_path => locale_path}.merge(options)
+        logger.info "Loading VENDOR textdomain in #{locale_path}"
         ActionController::Base.init_gettext(domainname, opt)
       else
         #load default no vendor translation available
