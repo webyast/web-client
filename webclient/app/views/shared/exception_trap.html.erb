@@ -5,15 +5,16 @@ $(document).ready(function() {
 });
 </script>
 
-<h1>This is embarrasing....</h1>
+<h1><%= _("This is embarrasing....") %></h1>
 
-<p>We are sorry, but WebYaST is still in alpha and there are some problems.</p>
+<p><%= _("We are sorry, but WebYaST is still in alpha and there are some problems.") %></p>
 
-<h3>Problem:</h3>
+<h3><%= _("Problem:") %></h3>
 
 <p><pre><%= h error.to_s %></pre></p>
 
-<p>Please <a href="<%= @bug_url %>">Report a bug so we can fix the problem!.</a> Don't forget to include the bug details.</p>
+<p><%= _("Please Report a bug so we can fix the problem!.") %><a href="<%= @bug_url %>"><%= _("(report link)") %></a> 
+<%= _("Don't forget to include the bug details.") %></p>
 
 <% backtrace = (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? _("No information available") : error.backtrace.join("\n") %>
 

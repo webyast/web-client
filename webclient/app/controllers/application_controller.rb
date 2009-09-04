@@ -51,14 +51,14 @@ class ApplicationController < ActionController::Base
   
   def ensure_login
     unless logged_in?
-      flash[:notice] = "Please login to continue"
+      flash[:notice] = _("Please login to continue")
       redirect_to new_session_path
     end
   end
 
   def ensure_logout
     if logged_in?
-      flash[:notice] = "You must logout before you can login"
+      flash[:notice] = _("You must logout before you can login")
       redirect_to root_url
     end
   end

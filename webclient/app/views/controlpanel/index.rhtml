@@ -27,7 +27,7 @@
     <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
   <div id="machine-controle">
     <ul>
-      <li><h4>System actions </h4></li>
+      <li><h4><%= _("System actions")%></h4></li>
       <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
 	    :confirm => _("Really reboot #{host_name}?"), :method => :put, :class => 'button' %></li>
       <li><%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
@@ -40,17 +40,17 @@
 
   <div id="status_patches">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-      <img src="/images/working.gif" height="32" width="32" border="0" /> Loading patch information
+      <img src="/images/working.gif" height="32" width="32" border="0" /> <%= _("Loading patch information") %>
     <% else %>
-      Patch plugin is not installed.
+      <%= _("Patch plugin is not installed.") %>
     <% end %>
   </div>
   <br/>
   <div id="status_status">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
-      <img src="/images/working.gif" height="32" width="32" border="0" /> Loading system information
+      <img src="/images/working.gif" height="32" width="32" border="0" /> <%= _("Loading system information") %>
     <% else %>
-      Status plugin is not installed.
+      <%= _("Status plugin is not installed.") %>
     <% end %>
   </div>
   

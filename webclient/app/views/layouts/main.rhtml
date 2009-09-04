@@ -32,7 +32,7 @@
   <!-- custom page scripts and css -->
   <%= yield :head %>
 
-  <title>WebYaST</title>
+  <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
     
@@ -40,7 +40,7 @@
       
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
       
-      <h1>My Appliance</h1>
+      <h1><%= _("My Appliance") %></h1>
 
       <div id="login-wrapper">
       <% host = Host.find(session[:host]) rescue nil
