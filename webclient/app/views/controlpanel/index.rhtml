@@ -36,11 +36,11 @@
   </div>
 <% end %>
   
-  <h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
+  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border="0") %> <%= _("Status") %></h3>
 
   <div id="status_patches">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-      <img src="/images/working.gif" height="32" width="32" border="0" /> <%= _("Loading patch information") %>
+      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
     <% else %>
       <%= _("Patch plugin is not installed.") %>
     <% end %>
@@ -48,7 +48,7 @@
   <br/>
   <div id="status_status">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
-      <img src="/images/working.gif" height="32" width="32" border="0" /> <%= _("Loading system information") %>
+      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
     <% else %>
       <%= _("Status plugin is not installed.") %>
     <% end %>
@@ -58,7 +58,7 @@
 
 
 <div id="favorites">
-  <h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
+  <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
 
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
@@ -73,7 +73,7 @@
       <div class="highlight-bg">
       <% end %>
         <% link_to (data['url']) do %>
-          <img src="<%= data['icon'] %>"/>
+          <%= image_tag(data['icon']) %>
           <p>
             <%= data['title'] %>
           </p>
