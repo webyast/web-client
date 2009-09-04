@@ -4,6 +4,7 @@ class NetworkController < ApplicationController
 
   before_filter :login_required
   layout 'main'
+  include ProxyLoader
 
   private
   def network_permissions
@@ -22,61 +23,69 @@ class NetworkController < ApplicationController
   def initialize
   end
   
-  # GET /users
-  # GET /users.xml
+  # GET /network
   def index
-    return unless network_permissions
-    @networks = []
-    begin
-      @networks = @network.find(:all)
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
+    @iface = "eth0"
+    ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
+    return false unless ifc
+
+    hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
+    return false unless hn
+
+    dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
+    return false unless dns
+
+    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
+    return false unless rt
+
+    # FIXME mixed up by multiple load_proxy
+    unless @permissions[:read]
+      flash[:warning] = _("No permissions for network module")
+      redirect_to root_path
+      return false
     end
+
+    @conf_mode = ifc.bootproto
+    if @conf_mode == "static"
+      ipaddr = ifc.ipaddr
+    else
+      ipaddr = "-/-"
+    end
+    @ip, @netmask = ipaddr.split "/"
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @networks }
-    end
+    @name = hn.name
+    @domain = hn.domain
+    @nameservers = dns.nameservers
+    @searchdomains = dns.searches
+
+    @default_route = rt.via
   end
 
   # GET /users/new
   # GET /users/new.xml
   def new
     return unless network_permissions
-    @user = @client.new( :id => :nil,
-      :no_home=>nil, 
-      :default_group=>nil, 
-      :new_login_name=>nil, 
-      :login_name=>nil, 
-      :groups=>[],
-      :grp_string=>nil,
-      :home_directory=>nil,
-      :full_name=>nil, 
-      :uid=>nil,
-      :sshkey=>nil, 
-      :new_uid=>nil, 
-      :login_shell=>"/bin/bash", 
-      :password=>nil,
-      :type=>"local", 
-      :id=>nil )
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
-  end
-
-  # GET /users/1/exportssh
-#  def exportssh
-#    return unless client_permissions
-#    @user = @client.find(params[:id])
-#    @user.type = ""
-#    @user.id = @user.login_name
-#    logger.debug "exportssh: #{@user.inspect}"
+#    @user = @client.new( :id => :nil,
+#      :no_home=>nil, 
+#      :default_group=>nil, 
+#      :new_login_name=>nil, 
+#      :login_name=>nil, 
+#      :groups=>[],
+#      :grp_string=>nil,
+#      :home_directory=>nil,
+#      :full_name=>nil, 
+#      :uid=>nil,
+#      :sshkey=>nil, 
+#      :new_uid=>nil, 
+#      :login_shell=>"/bin/bash", 
+#      :password=>nil,
+#      :type=>"local", 
+#      :id=>nil )
 #    respond_to do |format|
-#      format.html # exportssh.html.erb
-#      format.xml  { render :xml => @user, :location => "none" }
+#      format.html # new.html.erb
+#      format.xml  { render :xml => @user }
 #    end
-#  end
+  end
 
   # GET /users/1/edit
   def edit
@@ -98,32 +107,6 @@ class NetworkController < ApplicationController
 #    end
   end
 
-  # POST /users/1/sshexport
-#  def sshexport
-#    return unless client_permissions
-    
-#    @user = @client.find(params["user"]["login_name"])
-#    @user.id = @user.login_name
-#    logger.debug "sshexportssh: #{@user.inspect}"
-#    @user.sshkey = params["user"]["sshkey"]
-#    response = true
-#    begin
-#      response = @user.save
-#      rescue ActiveResource::ClientError => e
-#        flash[:error] = YaST::ServiceResource.error(e)
-#        response = false
-#    end
-#    logger.debug "sshexportssh: #{response}"
-#    respond_to do |format|
-#      if response
-#        flash[:notice] = _('SSH-Key was successfully exported.')
-#        format.html { redirect_to(users_url) }
-#      else
-#        format.html { render :action => "exportssh" }
-#        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-#      end
-#    end
-#  end
 
 
   # POST /users
