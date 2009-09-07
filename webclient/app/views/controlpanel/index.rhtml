@@ -21,7 +21,7 @@
   <% end -%>
 <% end %>
 <div id="status-wrapper" class="">
-  
+
 <% if ActionController::Routing.possible_controllers.include?("system") %>
     <% host = Host.find(session[:host]) rescue nil %>
     <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
@@ -35,8 +35,8 @@
     </ul>
   </div>
 <% end %>
-  
-  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border="0") %> <%= _("Status") %></h3>
+
+  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
 
   <div id="status_patches">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
@@ -53,7 +53,7 @@
       <%= _("Status plugin is not installed.") %>
     <% end %>
   </div>
-  
+
 </div>
 
 
