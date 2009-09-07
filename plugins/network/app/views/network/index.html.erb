@@ -4,9 +4,17 @@
 
 <!-- TODO translations -->
 
+<h3>Interface</h3>
+
+<% form_tag("/network", :method => "get") do |f| %>
+  <!-- (..., :id, :name) -->
+  <%= select_tag(:interface,
+      options_from_collection_for_select(@ifcs, :id, :id)) %>
+  <%= submit_tag("Select") %>
+<% end %>
+
 <h3>IP Address</h3>
 
-<p>Interface: <%=h @iface %></p>
 <p>Configuration Mode: <%=h @conf_mode %></p>
 <p>IP Address: <%=h @ip %></p>
 <p>Netmask: <%=h @netmask %></p>
@@ -22,4 +30,3 @@
 
 <a href="/" class="button"><%=_("Back")%></a>
 </div>
-

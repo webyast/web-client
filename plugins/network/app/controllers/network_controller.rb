@@ -25,7 +25,9 @@ class NetworkController < ApplicationController
   
   # GET /network
   def index
-    @iface = "eth0"
+    @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
+    @iface = params[:interface] || @ifcs[0].id
+
     ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
     return false unless ifc
 
