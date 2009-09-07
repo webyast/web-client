@@ -1,6 +1,10 @@
 require 'test_helper'
 require 'ostruct'
 
+class OpenStruct
+  undef_method :id # so that it looks for our id
+end
+
 class NetworkControllerTest < ActionController::TestCase
 
   class Proxy
@@ -22,14 +26,22 @@ class NetworkControllerTest < ActionController::TestCase
     end
   end
 
+  class ProxyH < Proxy
+    def find(arg)
+      return result[arg]
+    end
+  end
+
   def setup
     # bypass authentication
     NetworkController.any_instance.stubs(:login_required)
 
     # stub what the REST is supposed to return
-    @if_proxy = ProxyN.new
-    @if_proxy.result = OpenStruct.new("ipaddr" => '10.20.30.42/24')
-    @if_proxy.result = OpenStruct.new("bootproto" => "dhcp")
+    @if_proxy = ProxyH.new
+    @if_proxy.result = {
+      :all => [ OpenStruct.new("id" => "eth1") ],
+      "eth1" => OpenStruct.new("id" => "eth1", "ipaddr" => '10.20.30.42/24')
+    }
 
     @hn_proxy = Proxy1.new
     @hn_proxy.result = OpenStruct.new("name" => "Arthur, king of the Britons")
@@ -57,7 +69,7 @@ class NetworkControllerTest < ActionController::TestCase
   end
 
   def test_with_dhcp
-    @if_proxy.result = OpenStruct.new("bootproto" => "dhcp")
+    @if_proxy.result["eth1"] = OpenStruct.new("bootproto" => "dhcp")
     get :index
     assert_response :success
     # test just the last assignment, for brevity
