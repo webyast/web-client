@@ -5,11 +5,10 @@
 <!-- TODO translations -->
 
 <h3>Interface</h3>
-
 <% form_tag("/network", :method => "get") do |f| %>
-  <!-- (..., :id, :name) -->
+  <!-- (collection, value, text, selected) -->
   <%= select_tag(:interface,
-      options_from_collection_for_select(@ifcs, :id, :id)) %>
+      options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
   <%= submit_tag("Select") %>
 <% end %>
 
@@ -22,8 +21,8 @@
 <h3>DNS</h3>
 <p>Hostname: <%=h @name %></p>
 <p>Domain: <%=h @domain %></p>
-<p>Name Servers: <%=h @nameservers %></p>
-<p>Search Domains: <%=h @searchdomains %></p>
+<p>Name Servers: <%=h @nameservers.join " " %></p>
+<p>Search Domains: <%=h @searchdomains.join " " %></p>
 
 <h3>Routing</h3>
 <p>Default Route: <%=h @default_route %></p>
