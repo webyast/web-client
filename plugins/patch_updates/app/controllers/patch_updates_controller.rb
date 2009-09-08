@@ -29,7 +29,7 @@ class PatchUpdatesController < ApplicationController
       patches_summary = { :security => 0, :important => 0, :optional => 0}
 
       [:security, :important, :optional].each do |patch_type|
-        patches_summary[patch_type] = patch_updates.collect { |p| p.kind == patch_type.to_s }.size
+        patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
       end
     else
       erase_redirect_results #reset all redirects

@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
-  <link rel="stylesheet" href="/stylesheets/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
-  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" title="default" charset="utf-8" />
-  <link rel="stylesheet" href="/stylesheets/jquery.jqplot.css" type="text/css" media="screen" title="default" charset="utf-8" />
-  <link rel="stylesheet" href="/stylesheets/jquery-ui-1.7.2.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+  <%= stylesheet_link_tag "yast", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "style", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "jquery.jqplot.css", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "jquery-ui-1.7.2.custom.css", :title=>"default", :charset=>"utf-8" %>
 
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
@@ -32,7 +31,7 @@
   <!-- custom page scripts and css -->
   <%= yield :head %>
 
-  <title>WebYaST</title>
+  <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
     
@@ -40,7 +39,7 @@
       
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
       
-      <h1>My Appliance</h1>
+      <h1><%= _("My Appliance") %></h1>
 
       <div id="login-wrapper">
       <% host = Host.find(session[:host]) rescue nil
