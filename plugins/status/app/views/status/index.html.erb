@@ -1,10 +1,41 @@
+
+<% content_for :head do %>
+<script type="text/javascript">
+
+function refreshLogs() {
+
+<% @logs.each do |log| %>
+  $('#log-<%= log.id %>-console').load('/status/ajax_log_custom?id=<%= log.id %>&lines=5');
+<% end %>
+}
+
+$(document).ready(function() {
+  $.ajaxSetup ({  
+    cache: false  
+  });
+  //$('#log-console').addClass('busy');
+  setInterval(refreshLogs, 10000); // refresh every 10 seconds
+});
+
+</script>
+<% end %>
+
 <div class='plugin-icon'><img src='/images/monitoring.png'/></div>
 <div class='plugin-content'>
 <h2><%=_("Status")%></h2>
 
 <h3><%= _("Events") %></h3>
 
+<% @logs.each do |log| %>
+<h2><%= log.description %></h2>
+<div id="log-<%= log.id %>-console"
+<%= log.path %>
+</div>
+<% end %>
 
+
+<div id="log-console">
+</div>
 
 <% column = 1 %>
 <% @data_group.keys.sort.each do |key| %>
