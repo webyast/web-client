@@ -23,13 +23,14 @@ class StatusController < ApplicationController
 
       if @data_group.has_key? group and @data_group[group].has_key? metric_name
         for value in @data_group[group][metric_name]
-          if value[1] < @limits_list[key][:min][0][1] or value[1] > @limits_list[key][:max][0][1]
+          if not @limits_list[key][:min][0][1].nil? and value[1] < @limits_list[key][:min][0][1]\
+             or not @limits_list[key][:max][0][1].nil? and value[1] > @limits_list[key][:max][0][1]
             if key == "df"
               @limits_list[:reached] += _("Disk free limits exceeded;")
             else
               @limits_list[:reached] += key + ";"
             end
-            break;
+            break
           end
         end
       else
@@ -154,13 +155,45 @@ class StatusController < ApplicationController
       render :partial => "status_summary", :locals => { :status => nil, :error => error }
       return false
     end
-    status = "limits exceeded for " + limits_reached
+    status = limits_reached
+    status = "limits exceeded for " + status unless status.empty?
 
     render :partial => "status_summary", :locals => { :status => status, :error => nil }
   end
 
   def save
     return unless client_permissions
+    limits = Hash.new
+    params.each_pair{|key, value|
+      if key =~ /\/[-\w]*\/[-\w]*\/min/ # e.g /interface/if_packets-pan0/max
+        unless value.empty?
+          slizes = key.split "/"
+          limits[slizes[1]] ||= Hash.new
+          limits[slizes[1]][slizes[2]] ||= Hash.new
+          limits[slizes[1]][slizes[2]].merge!(:min => value)
+        end
+      elsif key =~ /\/[-\w]*\/[-\w]*\/max/
+        unless value.empty?
+          slizes = key.split "/"
+          limits[slizes[1]] ||= Hash.new
+          limits[slizes[1]][slizes[2]] ||= Hash.new
+          limits[slizes[1]][slizes[2]].merge!(:max => value)
+        end
+      end
+    }
+
+    puts "limits " + limits.inspect
+#respond = @client.create(:params => params.inspect)
+@client.create(:params => limits.inspect)
+puts "respond: " + respond
+#    respond = @client.put(:status, :params => params) #:status, {:params => params})
+#    if respond == :success
+#      redirect_to :controller=>"status", :action=>"index"
+#    else
+#      redirect_to :controller=>"status", :action=>"edit"
+#    end
+  end
+=begin
     begin
       till = Time.new
       from = till - 300 #last 5 minutes
@@ -194,4 +227,5 @@ class StatusController < ApplicationController
       redirect_to :controller=>"status", :action=>"edit"
     end
   end
+=end
 end
