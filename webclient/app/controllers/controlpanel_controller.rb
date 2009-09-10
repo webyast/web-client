@@ -149,7 +149,7 @@ class ControlpanelController < ApplicationController
       # we got some steps from backend, base system setup is not over and 
       # no sign of progress in session variables => restart base system setup
       logger.debug "Basesystem steps: #{basesystem.steps.inspect}"
-      decoded_steps = basesystem.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : step.controller  }
+      decoded_steps = basesystem.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : "#{step.controller}"  }
       session[:wizard_steps] = decoded_steps.join(",")
       session[:wizard_current] = decoded_steps.first
       redirect_to :action => :basesystem
