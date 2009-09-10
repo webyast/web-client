@@ -113,7 +113,7 @@ class ControlpanelController < ApplicationController
     shortcuts_fn = File.join(plugin.directory, 'shortcuts.yml')
     if File.exists?(shortcuts_fn)
       logger.debug "Shortcuts at #{plugin.directory}"
-      shortcuts_data = YAML::load(File.open(shortcuts_fn))
+      shortcutsdata = YAML::load(File.open(shortcuts_fn))
       return nil unless shortcutsdata.is_a? Hash
       # now go over each shortcut and add it to the modules
       shortcutsdata.each do |k,v|
