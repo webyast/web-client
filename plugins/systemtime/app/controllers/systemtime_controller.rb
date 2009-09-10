@@ -47,7 +47,7 @@ class SystemtimeController < ApplicationController
   # Index handler. Loads information from backend and if success all required
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
-  def index    
+  def index
     systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     unless systemtime      
@@ -55,6 +55,7 @@ class SystemtimeController < ApplicationController
     end
 
     unless @permissions[:read]
+      logger.debug "No permissions for time module"
       flash[:warning] = _("No permissions for time module")
       redirect_to root_path
       return false
