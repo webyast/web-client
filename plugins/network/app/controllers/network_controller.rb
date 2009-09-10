@@ -9,21 +9,13 @@ class NetworkController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_network" 
 
-  private
-  def network_permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.network')
-    unless @client
-      # FIXME: check the reason why proxy_for failed, i.e.
-      # - no server known
-      # - no permission to connect to server
-      # - server does not provide interface
-      # - server does not respond (timeout, etc.)
-      # - invalid session
-      flash[:notice] = _("Invalid session, please login again.")
-      redirect_to( logout_path ) and return
-    end
+  public
+  def initialize
+  end
+  
+  # GET /network
+  def index
 
-    @permissions = @client.permissions
     @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
     @iface = params[:interface] || @ifcs[0].id
 
@@ -39,13 +31,14 @@ class NetworkController < ApplicationController
     rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
     return false unless rt
 
-#    # FIXME mixed up by multiple load_proxy
-#    unless @permissions[:read]
-#      flash[:warning] = _("No permissions for network module")
-#      redirect_to root_path
-#      return false
-#    end
-#
+
+    # FIXME mixed up by multiple load_proxy
+    unless @permissions[:read]
+      flash[:warning] = _("No permissions for network module")
+      redirect_to root_path
+      return false
+    end
+
  
     @conf_mode = ifc.bootproto
     if @conf_mode == "static"
@@ -62,32 +55,8 @@ class NetworkController < ApplicationController
 
     @default_route = rt.via
 
-#    @network = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.network')
-#    unless @network
-#      flash[:notice] = _("Invalid session, please login again.")
-#      redirect_to( logout_path ) and return
-#    end
   end
-  
-  public
-  def initialize
-  end
-  
-  # GET /network
-  def index
-    return unless network_permissions
-    @networks = []
-    begin
-      @networks = @client.find(:all)
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-    end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @networks }
-    end
-  end
 
   # GET /users/1/edit
   def edit
@@ -103,7 +72,6 @@ class NetworkController < ApplicationController
     end
 
     rt.via = params["default_route"]
-#    fill_proxy_with_time t,params
 
     begin
       rt.save
@@ -116,8 +84,6 @@ class NetworkController < ApplicationController
       logger.warn e
     end    
 
-#    redirect_to :action => :index    
-#    index
     redirect_to :action => 'index'
   end
 end
