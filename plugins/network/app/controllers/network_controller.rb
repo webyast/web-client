@@ -66,15 +66,24 @@ class NetworkController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-     rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
-    unless rt
-      return false
-    end
-
+    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
+    return false unless rt
     rt.via = params["default_route"]
 
+    dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
+    return false unless dns
+    dns.nameservers = params["nameservers"]
+    dns.searches    = params["searches"]
+
+    hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
+    return false unless hn
+    hn.name   = params["name"]
+    hn.domain = params["domain"]
+    
     begin
       rt.save
+      dns.save
+      hn.save
       flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
