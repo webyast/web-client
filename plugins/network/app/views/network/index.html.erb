@@ -1,20 +1,31 @@
 <div class='plugin-icon'><img src='/icons/yast-network.png'/></div>
 <div class='plugin-content'>
-<h2><%=_("Network Device")%></h2>
+<h2><%=_("Network")%></h2>
 
-<table class="list">
-  <tr>
-    <th class="first" ><%=_("Login")%></th>
-  </tr>
-  <% for network in @networks %>
-  <tr>
-    <td><strong><%=h network.name %></strong></td>
-    <td><%= html_edit_link(network.id) %></td>
-  </tr>
-  <% end %>
-</table>
+<!-- TODO translations -->
 
+<h3>Interface</h3>
+<% form_tag("/network", :method => "get") do |f| %>
+  <!-- (collection, value, text, selected) -->
+  <%= select_tag(:interface,
+      options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
+  <%= submit_tag("Select") %>
+<% end %>
+
+<h3>IP Address</h3>
+
+<p>Configuration Mode: <%=h @conf_mode %></p>
+<p>IP Address: <%=h @ip %></p>
+<p>Netmask: <%=h @netmask %></p>
+
+<h3>DNS</h3>
+<p>Hostname: <%=h @name %></p>
+<p>Domain: <%=h @domain %></p>
+<p>Name Servers: <%=h @nameservers.join " " %></p>
+<p>Search Domains: <%=h @searchdomains.join " " %></p>
+
+<h3>Routing</h3>
+<p>Default Route: <%=h @default_route %></p>
 
 <a href="/" class="button"><%=_("Back")%></a>
 </div>
-

@@ -1,6 +1,6 @@
 <div class='plugin-icon'><img src='/images/monitoring.png'/></div>
 <div class='plugin-content'>
-<h2>Status</h2>
+<h2><%=_("Status")%></h2>
 
 <% column = 1 %>
 <% @data_group.keys.sort.each do |key| %>
@@ -20,12 +20,12 @@
     <% list_value = map[graph_key] %>
     <% if key != "df" || !graph_key.end_with?("used") %>
       <% graph_id = key + "_" + graph_key.tr('/','_') %>
-      <%= graph(graph_id, 200, 150, column == 4?true:false, @limit_hits.include?("/" + key + "/" + graph_key)&&key=="df") %>
+      <%= graph(graph_id, 200, 150, column == 4?true:false, @limits_list[:reached].include?("/" + key + "/" + graph_key)&&key=="df") %>
       <% if column == 4 %>
         <br>
-        <% column = 1 %>         
+        <% column = 1 %>
       <% else %>
-        <% column += 1 %>         
+        <% column += 1 %>
       <% end %>
     <% end %>
   <% end %>
@@ -69,7 +69,7 @@ function plotPieGraph (graph_id, graph_title, graph_data ) {
 
 function plotPieGraphError (graph_id, graph_title, graph_data ) {
   $.jqplot(graph_id, [graph_data], {
-      title: { 
+      title: {
          text: graph_title,
          textColor: '#FF0000'
              },
@@ -102,7 +102,7 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
         yaxis: {
           showTicks: true,
           min: 0
-        }        
+        }
       },
       series:[{color:'#5FAB78',
                lineWidth: 1,
@@ -121,7 +121,7 @@ function plotLineGraph(graph_id, graph_title, graph_data ) {
 
 function plotLineGraphError(graph_id, graph_title, graph_data ) {
   $.jqplot(graph_id, graph_data, {
-      title: { 
+      title: {
          text: graph_title,
          textColor: '#FF0000'
              },
@@ -137,7 +137,7 @@ function plotLineGraphError(graph_id, graph_title, graph_data ) {
           showTicks: true,
           min: 0,
           borderColor: '#FF0000'
-        }        
+        }
       },
       series:[{color:'#FF0000',
                lineWidth: 1,
@@ -163,19 +163,19 @@ function plotLineGraphError(graph_id, graph_title, graph_data ) {
         <% if key != "df" %>
           $('#' + '<%= graph_id %>').html("");
           <% if @limits_list.has_key?(limit_key) %>
-            <% if @limit_hits.include?(limit_key) %> 
-              plotLineGraphError('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key].inspect %>]);
+            <% if not @limits_list[:reached].blank? and @limits_list[:reached].include?(limit_key) %>
+              plotLineGraphError('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key][:min].inspect %>, <%= @limits_list[limit_key][:max].inspect %>]);
             <% else %>
-              plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key].inspect %>]);
+              plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key][:min].inspect %>, <%= @limits_list[limit_key][:max].inspect %>]);
             <% end %>
-          <% else %>        
+          <% else %>
             plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
-          <% end %>        
-        <% else %>        
+          <% end %>
+        <% else %>
            <% if graph_key.end_with?("free")  %>
              $('#' + '<%= graph_id %>').html("");
              <% used_key = graph_key[0..graph_key.length-5] + "used" %>
-             <% if @limit_hits.include?(limit_key) %> 
+             <% if not @limits_list[:reached].blank? and @limits_list[:reached].include?(limit_key) %>
                plotPieGraphError ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
              <% else %>
                plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);

@@ -114,9 +114,9 @@ class ControlpanelController < ApplicationController
     if File.exists?(shortcuts_fn)
       logger.debug "Shortcuts at #{plugin.directory}"
       shortcuts_data = YAML::load(File.open(shortcuts_fn))
-      return nil unless shortcuts_data.is_a? Hash
+      return nil unless shortcutsdata.is_a? Hash
       # now go over each shortcut and add it to the modules
-      shortcuts_data.each do |k,v|
+      shortcutsdata.each do |k,v|
         # use the plugin name and the shortcut key as
         # the new key
         shortcuts["#{plugin.name}:#{k}"] = v
@@ -128,7 +128,7 @@ class ControlpanelController < ApplicationController
 
   # Checks if basic system module should be shown instead of control panel
   # and if it should, then also redirects to that module.
-  # TODO check if wizard from config exists
+  # TODO check if controller from config exists
   def need_redirect
     if session[:wizard_current]
       # session variable is used to find out, if basic system module is needed
