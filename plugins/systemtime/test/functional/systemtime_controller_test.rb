@@ -122,7 +122,7 @@ class SystemtimeControllerTest < ActionController::TestCase
 
     puts @response.body
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :controller => "controlpanel", :action => "nextstep"
 
     assert @result.saved
   end
