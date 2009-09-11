@@ -23,8 +23,8 @@ class StatusController < ApplicationController
 
       if @data_group.has_key? group and @data_group[group].has_key? metric_name
         for value in @data_group[group][metric_name]
-          if not @limits_list[key][:min][0][1].nil? and value[1] < @limits_list[key][:min][0][1]\
-             or not @limits_list[key][:max][0][1].nil? and value[1] > @limits_list[key][:max][0][1]
+          if not @limits_list[key][:min][0].nil? and value[1] < @limits_list[key][:min][0][1]\
+             or not @limits_list[key][:max][0].nil? and value[1] > @limits_list[key][:max][0][1]
             if key == "df"
               @limits_list[:reached] += _("Disk free limits exceeded;")
             else
