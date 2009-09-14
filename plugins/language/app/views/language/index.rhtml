@@ -29,7 +29,7 @@
   </tr>
 </table>
 <div>
-  <%= submit_tag _("Save"), :disabled=>!@permissions[:write] %>
+  <%= form_send_buttons :disabled => !@permissions[:write] %>
 </div>
 <% end -%>
 </div>

@@ -3,11 +3,26 @@
 require 'open-uri'
 
 class ApplicationController < ActionController::Base
-  layout 'main'
+  layout 'main'  
 
+  def redirect_success
+    if session[:wizard_current] and session[:wizard_current] != "FINISH"
+      logger.debug "wizard redirect DONE"
+      redirect_to :controller => "controlpanel", :action => "nextstep"
+    else
+      logger.debug "Success non-wizard redirect"
+      redirect_to :action => :index
+    end
+  end
+
+  #catch webservice errors
   rescue_from Exception, :with => :exception_trap
+  rescue_from ActiveResource::ServerError, :with => :backendexception_trap
+  
+
   
   include AuthenticatedSystem
+  include ErrorConstructor
 
   begin
     require 'gettext_rails'
@@ -20,6 +35,24 @@ class ApplicationController < ActionController::Base
 
   def initialize
     super
+  end
+
+  
+  def backendexception_trap(e)
+    logger.debug "Backend exception trap"
+    logger.debug e.response.body.inspect
+    if e.response.code =~ /.*503.*/
+      logger.debug "get backend Exception"
+      error = Hash.from_xml e.response.body
+      err_msg = construct_error(error)
+      if request.xhr?
+        render :text => err_msg
+      else
+        render :template => "shared/backendexception_trap", :locals => {:error => err_msg}
+      end
+    else
+      exception_trap(e)
+    end
   end
 
   def exception_trap(e)

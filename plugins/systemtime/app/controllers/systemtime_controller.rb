@@ -47,7 +47,7 @@ class SystemtimeController < ApplicationController
   # Index handler. Loads information from backend and if success all required
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
-  def index    
+  def index
     systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     unless systemtime      
@@ -55,6 +55,7 @@ class SystemtimeController < ApplicationController
     end
 
     unless @permissions[:read]
+      logger.debug "No permissions for time module"
       flash[:warning] = _("No permissions for time module")
       redirect_to root_path
       return false
@@ -75,17 +76,22 @@ class SystemtimeController < ApplicationController
     end
   end
 
-  # Update time handler. Sets to backend new time. If time is set to future it
+  # Update time handler. Sets to backend new timezone and time.
+  # If time is set to future it
   # still shows problems. Now it invalidate session for logged user.If
   # everything goes fine it redirect to index
-  def update_time
+  def update
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     unless t
       return false
     end
 
+    fill_proxy_with_timezone t, params, t.timezones
+    #TODO for future change between init types
     fill_proxy_with_time t,params
+
+    t.timezone = [] #save bandwitch
 
     begin
       t.save
@@ -102,32 +108,7 @@ class SystemtimeController < ApplicationController
       logger.warn e
     end    
 
-    redirect_to :action => :index
-  end
-
-  # Update time handler. Sets to backend new timezone. If everything goes fine
-  # it redirect to index
-  def update_timezone
-    t = load_proxy 'org.opensuse.yast.modules.yapi.time'
-
-    unless t
-      return false
-    end
-
-    fill_proxy_with_timezone t,params, t.timezones
-    
-    begin
-      t.save
-      flash[:notice] = _('Settings have been written.')
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      logger.warn e
-    rescue Exception => e
-      flash[:error] = e.message
-      logger.warn e
-    end
-
-    redirect_to :action => :index    
+    redirect_success
   end
 
 

@@ -52,8 +52,62 @@ class PatchUpdatesController < ApplicationController
     render :partial => "patches"
   end
 
-  # POST /patch_updates/1
-  # POST /patch_updates/1.xml
+  # POST /patch_updates/start_install_all
+  # Starting installation of all proposed patches
+  def start_install_all
+    logger.debug "Start installation of all patches"
+
+    respond_to do |format|
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true }}
+    end    
+  end
+
+  def stop_install_all
+    logger.debug "Stopping installation of all patches"
+
+    respond_to do |format|
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false }}
+    end    
+  end
+
+  # POST /patch_updates/install_all
+  # Install each patch. This function will be called periodically from the controll center
+  def install_all
+    logger.debug "Installing one available patch...."
+
+    error = nil
+    patch_updates = nil    
+    begin
+      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    rescue Exception => e
+      error = e
+      patch_updates = nil
+    end
+
+    flash.clear #no flash from load_proxy
+    last_patch = ""
+    if patch_updates
+      #installing the first available patch
+      ret = true
+      #ret = patch_updates[0].save #install patch
+      logger.info "Installing patch :#{patch_updates[0].name}"
+      last_patch = patch_updates[0].name
+    else
+      erase_redirect_results #reset all redirects
+      erase_render_results
+    end
+
+    respond_to do |format|
+      if last_patch.blank?
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false }}
+      else
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("#{last_patch} installed.") , :error => error }}
+      end
+    end    
+  end
+
+  # POST /patch_updates/install
+  # Installing one or more patches which has given via param 
 
   def install    
     update_array = []

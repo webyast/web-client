@@ -14,20 +14,52 @@ class StatusController < ApplicationController
     @permissions = @client.permissions
   end
 
-  def write_data_group(label, group, metric_name, limits=nil)
-    data_list = Array.new
+  def limits_reached
+    @limits_list.each {|key, data|
+      next if key == :reached
+      keys = key.split "/"
+      group = keys[1]
+      metric_name = keys[2]
+
+      if @data_group.has_key? group and @data_group[group].has_key? metric_name
+        for value in @data_group[group][metric_name]
+          if not @limits_list[key][:min][0].nil? and value[1] < @limits_list[key][:min][0][1]\
+             or not @limits_list[key][:max][0].nil? and value[1] > @limits_list[key][:max][0][1]
+            if key == "df"
+              @limits_list[:reached] += _("Disk free limits exceeded;")
+            else
+              @limits_list[:reached] += key + ";"
+            end
+            break
+          end
+        end
+      else
+        logger.debug "error: metric not found"
+      end
+    }
+    @limits_list[:reached]
+  end
+
+  def write_data_group(label, group, metric_name)
+    values = label.attributes["values"]
+    value_size = values.length
     divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
-    count = 0
-    data_list = label.map{ |v| count+=1; [count,v.to_f/divisor]}
+    data_list = Array.new
+    value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
     @data_group[group].merge!({metric_name => data_list})
-    #TODO: implement maximum and minimum format
+
+    limits = label.attributes["limits"]
     if limits
-      count = 0
-      @limits_list[label] = Hash.new
-      @limits_list[label].merge!({:min => limits["min"].map{ |l| count+=1; [count,l.to_f/divisor]}}) if limits["min"]
-      @limits_list[label].merge!({:max => limits["max"].map{ |l| count+=1; [count,l.to_f/divisor]}}) if limits["max"]
+      @limits_list["/#{group}/#{metric_name}"] = {:min=>Array.new, :max=>Array.new}
+      if label.attributes["limits"] and limits.attributes["min"] #limits.has_key? "min"
+        minimum = limits.attributes["min"].to_f/divisor
+        value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:min] << [i,minimum]}
+      end
+      if label.attributes["limits"] and limits.attributes["max"] #limits.has_key? "min"
+        maximum = limits.attributes["max"].to_f/divisor
+        value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:max] << [i,maximum]}
+      end
     end
-#    @data["/#{group}/#{metric_name}/..."] = data_list
   end
 
   def create_data_map(tree)
@@ -39,21 +71,18 @@ class StatusController < ApplicationController
       starttime = metric.starttime
       case metric.attributes["label"]
       when YaST::ServiceResource::Proxies::Status::Metric::Label # one label
-        limits = metric.attributes["limits"].attributes if metric.attributes.has_key? "limits"
-        write_data_group(metric.attributes["label"].attributes["values"], group, metric_name, limits)
+        write_data_group(metric.attributes["label"], group, metric_name)
       when Array # several label
-        metric.attributes["label"].each{ |l|
-          limits = l.attributes["limits"].attributes if l.attributes.has_key? "limits"
-          write_data_group(l.attributes["values"], group, metric_name, limits)
+        metric.attributes["label"].each{ |label|
+          write_data_group(label, group, metric_name)
       }
       end
     }
   end
 
   def create_data
-    @data = Hash.new
-    @limits = Hash.new
     @limits_list = Hash.new
+    @limits_list[:reached] = String.new
     @data_group = Hash.new
     status = []
     begin
@@ -67,28 +96,6 @@ class StatusController < ApplicationController
         return false
     end
     create_data_map status
-=begin
-    #grouping graphs to memory, cpu,...
-    @data.each do |key, list_value|
-      if @limits.has_key?(key)
-        graph_list = []
-        key_split = key.split("/")
-        for i in 0..list_value.size-1 do
-          if key_split.size>1 && key_split[1]=="memory" # take MByte for the value
-            graph_list << [i,@limits[key]["value"]/1024/1024]
-          else
-            graph_list << [i,@limits[key]["value"]]
-          end
-        end
-        @limits_list[key] = graph_list
-      end
-
-      key_split = key.split("/")
-      if key_split.size > 1
-        group_map = {}
-      end
-    end
-=end
     # puts @data_group.inspect
     true
   end
@@ -133,24 +140,8 @@ class StatusController < ApplicationController
   def index
     return unless client_permissions
     create_data
-    @limit_hits = []
-    @data_group.each do |key, map|
-      map.each do |graph_key, list_value|
-        limit_key = "/#{key}/#{graph_key}"
-        if  @limits_list.has_key?(limit_key)
-          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format
-                                                 #( e.g. MByte for memory)
-          list_value.each do |value|
-            if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
-               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)
-              @limit_hits << limit_key
-              break
-            end
-          end
-        end
-      end
-    end
-    logger.debug "limits reached for #{@limit_hits.inspect}"
+    limits_reached
+    logger.debug "limits reached for #{@limits_list[:reached].inspect}"
   end
 
 
@@ -164,38 +155,45 @@ class StatusController < ApplicationController
       render :partial => "status_summary", :locals => { :status => nil, :error => error }
       return false
     end
-    status = ""
-    @data_group.each do |key, map|
-      error_found = false
-      map.each do |graph_key, list_value|
-        limit_key = "/#{key}/#{graph_key}"
-        if  @limits_list.has_key?(limit_key)
-          cmp_value = @limits_list[limit_key][0][1] #take thatone cause it has already the right format
-                                                 #( e.g. MByte for memory)
-          list_value.each do |value|
-            if (@limits[limit_key]["maximum"] && value[1]>= cmp_value) ||
-               (!@limits[limit_key]["maximum"] && value[1]<= cmp_value)
-              error_found = true
-              break
-            end
-          end
-        end
-      end
-      if error_found
-        status += "; " unless status.blank?
-        if key == "df"
-          status += _("Disk free limits exceeded")
-        else
-          status += key.capitalize + " " + _("limits exceeded")
-        end
-      end
-    end
+    status = limits_reached
+    status = "limits exceeded for " + status unless status.empty?
 
     render :partial => "status_summary", :locals => { :status => status, :error => nil }
   end
 
   def save
     return unless client_permissions
+    limits = Hash.new
+    params.each_pair{|key, value|
+      if key =~ /\/[-\w]*\/[-\w]*\/min/ # e.g /interface/if_packets-pan0/max
+        unless value.empty?
+          slizes = key.split "/"
+          limits[slizes[1]] ||= Hash.new
+          limits[slizes[1]][slizes[2]] ||= Hash.new
+          limits[slizes[1]][slizes[2]].merge!(:min => value)
+        end
+      elsif key =~ /\/[-\w]*\/[-\w]*\/max/
+        unless value.empty?
+          slizes = key.split "/"
+          limits[slizes[1]] ||= Hash.new
+          limits[slizes[1]][slizes[2]] ||= Hash.new
+          limits[slizes[1]][slizes[2]].merge!(:max => value)
+        end
+      end
+    }
+
+    puts "limits " + limits.inspect
+#respond = @client.create(:params => params.inspect)
+@client.create(:params => limits.inspect)
+puts "respond: " + respond
+#    respond = @client.put(:status, :params => params) #:status, {:params => params})
+#    if respond == :success
+#      redirect_to :controller=>"status", :action=>"index"
+#    else
+#      redirect_to :controller=>"status", :action=>"edit"
+#    end
+  end
+=begin
     begin
       till = Time.new
       from = till - 300 #last 5 minutes
@@ -229,5 +227,5 @@ class StatusController < ApplicationController
       redirect_to :controller=>"status", :action=>"edit"
     end
   end
-
+=end
 end

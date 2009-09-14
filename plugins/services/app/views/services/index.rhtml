@@ -26,6 +26,7 @@ end
 <ul>
 <% @services.each do |service| %>
 <li><b><%=h service.name %></b>
+<i><%=h service.description unless service.description.nil? %></i>
 
 <img src="/images/working.gif" height="12" width="12" border="0"
     id="service_progress_<%=service.name%>" style="display: none" />

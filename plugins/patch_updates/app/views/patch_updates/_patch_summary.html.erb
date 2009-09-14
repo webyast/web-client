@@ -5,6 +5,7 @@
     <div class="status-icon warning"></div>    
     <%= _("No information about patches available") %>
   <% else %>
+    <% label = [] %>
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
         <div class="status-icon error"></div>
@@ -14,8 +15,6 @@
         <div class="status-icon ok"></div>
       <% end %>
 
-
-      <% label = [] %>
       <% if patch[:security] > 0 %>
         <% label << _("Security Updates: #{patch[:security]}") %>
       <% end %>
@@ -30,5 +29,9 @@
       <% end %>
       <span><%= label.join(", ") %></span>
     <% end %>
+    <% if not label.empty? %>
+      <%= button_to_remote "Update All", :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
+    <% end %>
+
   <% end %>
 </div>
