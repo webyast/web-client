@@ -66,6 +66,7 @@ class NetworkControllerTest < ActionController::TestCase
     assert_response :success
     # test just the last assignment, for brevity
     assert_not_nil assigns(:default_route)
+    assert_not_nil assigns(:name)
   end
 
   def test_with_dhcp
@@ -74,6 +75,7 @@ class NetworkControllerTest < ActionController::TestCase
     assert_response :success
     # test just the last assignment, for brevity
     assert_not_nil assigns(:default_route)
+    assert_not_nil assigns(:name)
   end
 
 end

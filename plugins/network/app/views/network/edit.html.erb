@@ -3,7 +3,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put } ) do |f| %>
+<% form_for(:network, @network, :url => { :action => "update" }, :xml => { :method => :put } ) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
