@@ -57,7 +57,6 @@ class PatchUpdatesController < ApplicationController
   def start_install_all
     logger.debug "Start installation of all patches"
 
-    flash.clear #no flash from load_proxy
     respond_to do |format|
       format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true }}
     end    
@@ -66,9 +65,8 @@ class PatchUpdatesController < ApplicationController
   def stop_install_all
     logger.debug "Stopping installation of all patches"
 
-    flash.clear #no flash from load_proxy
     respond_to do |format|
-      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing stopped"), :error => nil  , :go_on => false }}
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false }}
     end    
   end
 
@@ -76,6 +74,7 @@ class PatchUpdatesController < ApplicationController
   # Install each patch. This function will be called periodically from the controll center
   def install_all
     logger.debug "Installing one available patch...."
+
     error = nil
     patch_updates = nil    
     begin
@@ -85,6 +84,7 @@ class PatchUpdatesController < ApplicationController
       patch_updates = nil
     end
 
+    flash.clear #no flash from load_proxy
     last_patch = ""
     if patch_updates
       #installing the first available patch
@@ -101,7 +101,7 @@ class PatchUpdatesController < ApplicationController
       if last_patch.blank?
         format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false }}
       else
-        format.html { render :partial => "patch_installation", :locals => { :patch => last_patch, :error => error  , :go_on => true }}
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("#{last_patch} installed.") , :error => error }}
       end
     end    
   end

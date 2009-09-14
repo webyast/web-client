@@ -1,5 +1,7 @@
 <% javascript_tag do -%>
-  check_var = <%= go_on%>;
+  <% if defined? go_on %>
+    continue_loop = <%= go_on %>;
+  <% end -%>
 <% end -%>
 
 <%= report_error(error, _("An error occured while installing patches.")) if error %>
@@ -13,8 +15,8 @@
       <% end %>
       <span><%= patch %></span>
     <% end %>
-    <% if go_on %>
+    <% if !defined?(go_on) or go_on %>
       <%= button_to_remote _("Stop"), :update =>"status_patches", :url=>{ :controller => :patch_updates, :action => :stop_install_all}, :confirm => _("Are you sure?") %>
     <% end %>
-    <%= periodically_call_remote(:condition => "check_var == true",:url=>{ :controller => :patch_updates, :action => :install_all}, :udpate =>"status_patches", :frequency => 15) %>
+    <%= periodically_call_remote(:condition => "continue_loop == true", :update =>"status_patches", :url=>{ :controller => :patch_updates, :action => :install_all}, :frequency => 20) %>
 </div>
