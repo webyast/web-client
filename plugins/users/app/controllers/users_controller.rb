@@ -53,13 +53,12 @@ class UsersController < ApplicationController
       :groupname	=> nil,
       :cn		=> nil,
       :grouplist	=> {},
-      :homeDirectory	=> nil,
+      :home_directory	=> nil,
       :cn		=> nil,
       :uid		=> nil,
-      :uidNumber	=> nil,
-      :sshkey		=> nil,
-      :loginShell	=> "/bin/bash",
-      :userPassword	=> nil,
+      :uid_number	=> nil,
+      :login_shell	=> "/bin/bash",
+      :user_password	=> nil,
       :type		=> "local",
       :id		=> nil
     )
@@ -70,18 +69,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/exportssh
-  def exportssh
-    return unless client_permissions
-    @user = @client.find(params[:id])
-    @user.type = ""
-    @user.id = @user.uid
-    logger.debug "exportssh: #{@user.inspect}"
-    respond_to do |format|
-      format.html # exportssh.html.erb
-      format.xml  { render :xml => @user, :location => "none" }
-    end
-  end
 
   # GET /users/1/edit
   def edit
@@ -95,10 +82,10 @@ class UsersController < ApplicationController
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
-    @user.uidNumber	= @user.uid_number
-    @user.homeDirectory	= @user.home_directory
-    @user.loginShell	= @user.login_shell
-    @user.userPassword	= @user.user_password
+    @user.uid_number	= @user.uid_number
+    @user.home_directory	= @user.home_directory
+    @user.login_shell	= @user.login_shell
+    @user.user_password	= @user.user_password
 
     counter = 0
     @user.grouplist.each do |group|
@@ -111,33 +98,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # POST /users/1/sshexport
-  def sshexport
-    return unless client_permissions
-
-    @user	= @client.find(params["user"]["uid"])
-    @user.id	= @user.uid
-    logger.debug "sshexportssh: #{@user.inspect}"
-    @user.sshkey = params["user"]["sshkey"]
-    response = true
-    begin
-      response = @user.save
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        response = false
-    end
-    logger.debug "sshexportssh: #{response}"
-    respond_to do |format|
-      if response
-        flash[:notice] = _('SSH-Key was successfully exported.')
-        format.html { redirect_to(users_url) }
-      else
-        format.html { render :action => "exportssh" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
 
   # POST /users
   # POST /users.xml
@@ -146,29 +106,30 @@ class UsersController < ApplicationController
     dummy = @client.new(params[:user])
     dummy.grp_string = params[:user][:grp_string] #do not know, why this will not be assigned in the constructor
 
-    dummy.groups = []
+    dummy.grouplist = {}
     if dummy.grp_string != nil
        dummy.grp_string.split(",").each do |group|
-          dummy.groups << { :id=>group.strip }
+          dummy.grouplist[group.strip]	= 1
        end
     end
+
     @user = @client.new(
 	:groupname	=> dummy.groupname,
         :uid		=> dummy.uid,
         :grouplist	=> dummy.grouplist,
-#                      :grp_string=>dummy.grp_string,
-        :homeDirectory	=> dummy.homeDirectory,
+        :home_directory	=> dummy.home_directory,
 	:cn		=> dummy.cn,
-        :uidNumber	=> dummy.uidNumber,
-        :sshkey		=> nil,
-        :loginShell	=> dummy.loginShell,
-        :userPassword	=> dummy.userPassword,
+        :uid_number	=> dummy.uid_number,
+        :login_shell	=> dummy.login_shell,
+        :user_password	=> dummy.user_password,
         :type		=> "local"
     )
+    @user.grp_string	= dummy.grp_string
 
     #Only UID greater than 1000 are allowed for local user
+    # FIXME leave this check on YaPI?
     response = true
-    if @user.uidNumber.to_i < 1000
+    if @user.uid_number.to_i < 1000
       response = false
     else
       begin
@@ -180,10 +141,13 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if response
-        flash[:notice] = _('User was successfully created.')
+        flash[:notice] = _("User <i>#{@user.uid}</i> was successfully created.")
         format.html { redirect_to(users_url) }
       else
-        if @user.uidNumber.to_i < 1000
+        if @user.uid_number.nil?
+           flash[:error] = _("Empty UID value")
+        end
+        if @user.uid_number.to_i < 1000
            #Only UID greater than 1000 are allowed for local user
            flash[:error] = _("UID: value >= 1000 is valid for local user only")
         end
@@ -214,11 +178,11 @@ class UsersController < ApplicationController
 #    if @user.uid != params["user"]["uid"]
 #      @user.new_uid = params["user"]["uid"]
 #    end
-    @user.uidNumber	= params["user"]["uidNumber"]
-    @user.homeDirectory = params["user"]["homeDirectory"]
+    @user.uid_number	= params["user"]["uid_number"]
+    @user.home_directory = params["user"]["home_directory"]
     @user.cn = params["user"]["cn"]
-    @user.loginShell = params["user"]["loginShell"]
-    @user.userPassword = params["user"]["userPassword"]
+    @user.login_shell = params["user"]["login_shell"]
+    @user.user_password = params["user"]["user_password"]
     @user.type = "local"
 
     respond_to do |format|
@@ -230,7 +194,7 @@ class UsersController < ApplicationController
           response = false
       end
       if  response
-        flash[:notice] = _('User was successfully updated.')
+        flash[:notice] = _("User <i>#{@user.uid}</i> was successfully updated.")
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
@@ -247,7 +211,14 @@ class UsersController < ApplicationController
     @user = @client.find(params[:id])
     @user.id = @user.uid
     @user.type = "local"
-    @user.destroy
+
+    ret = @user.destroy
+
+    if ret.code_type == Net::HTTPOK
+	flash[:notice] = _("User <i>#{@user.uid}</i> was successfully removed.")
+    else
+	flash[:error] = _("Error: Could not remove user <i>#{@user.uid}</i>.")
+    end
 
     respond_to do |format|
       format.html { redirect_to(users_url) }

@@ -9,6 +9,7 @@
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'yast/rack/static_overlay'
 
 init = Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -19,6 +20,9 @@ init = Rails::Initializer.run do |config|
   # Skip frameworks you're not going to use. To use Rails without a database
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
+
+  # configure load path for test unit, needed for mocha >= 0.9.6 and test-unit >= 2.0.0
+  config.gem 'test-unit', :lib => 'test/unit'  if ENV['RAILS_ENV'] == 'test'
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
@@ -43,20 +47,6 @@ init = Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names. Uncomment to use default local time.
   config.time_zone = 'UTC'
 
-  # Your secret key for verifying cookie session data integrity.
-  # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
-  # no regular words or you'll be exposed to dictionary attacks.
-  config.action_controller.session = {
-    :session_key => '_web-client_session',
-    :secret      => 'f05944f2fa89ced61528d66622c2f5f4dded5912a1276890d2907d012c416f3a32f22dbd22f24614346c1360380dbf71a6fcbbc0e32b2d0cc6812afc623d6c41'
-  }
-
-  # Use the database for sessions instead of the cookie-based default,
-  # which shouldn't be used to store highly confidential information
-  # (create the session table with "rake db:sessions:create")
-  # config.action_controller.session_store = :active_record_store
-
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
@@ -72,11 +62,31 @@ init = Rails::Initializer.run do |config|
   config.gem "gettext_activerecord"
   config.gem "gettext_rails"
 
+  # reload all plugins, changes in *.rb files take effect immediately
+  # it's here because of https://rails.lighthouseapp.com/projects/8994/tickets/2324-configreload_plugins-true-only-works-in-environmentrb
+  config.reload_plugins = true if ENV['RAILS_ENV'] == 'development'
+
   # In order to prevent unloading of AuthenticatedSystem
   config.load_once_paths += %W( #{RAILS_ROOT}/lib )
   # allows to find plugin in development tree locations
   # avoiding installing plugins to see them
   config.plugin_paths << File.join(RAILS_ROOT, '..', 'plugins')
+
+  # In order to overwrite,exchange images, stylesheets,.... for special vendors there
+  # is the directory "vendor" in the "public" directory. Each file in the public
+  # directory can be exchanged by putting a file with the same path in the vendor 
+  # directory.
+  # Please take care that all links in the views have to be defined by the AssetTagHelper like
+  # image_tag, stylesheet_link_tag, javascript_include_tag, ...
+  config.action_controller.asset_host = Proc.new do |source, request|
+    path = "#{config.root_path}/public/vendor#{source}".split("?")
+    if path.length >0 and File.exists?(path[0]) 
+      "#{request.protocol}#{request.host_with_port}/vendor"
+    else
+      ""
+    end
+  end
+
 end
 
 # save loaded plugins, which are used to scan shortcuts laters
@@ -84,3 +94,6 @@ module YaST
 end
 YaST::LOADED_PLUGINS = init.loaded_plugins
 
+# look for all existing loaded plugin's public/ directories
+plugin_assets = init.loaded_plugins.map { |plugin| File.join(plugin.directory, 'public') }.reject { |dir| not (File.directory?(dir) and File.exist?(dir)) }
+init.configuration.middleware.use YaST::Rack::StaticOverlay, :roots => plugin_assets

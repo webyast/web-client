@@ -6,11 +6,8 @@ $(document).ready(function() {
   }).mouseout(function() {
     $(this).removeClass('grey-bg'); // remove class for highlighting
   });
-  
-  // Make more usable password-input-field
-  // http://blog.decaf.de/2009/07/iphone-like-password-fields-using-jquery/
-  $('input:password').dPassword({
-    duration: 400 // How long will last typed in letter be displayed
-  });
-  
+
+  // Alternating Lines in "Tables"
+  $('.alternate-rows > li:even').addClass('alt-bg');
+
 });

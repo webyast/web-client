@@ -1,4 +1,7 @@
-<h1><%=_("Local User")%></h1>
+<div class='plugin-icon'><img src='/icons/yast-users.png'/></div>
+<div class='plugin-content'>
+
+<h2><%=_("Local User")%></h2>
 
 <table class="list">
   <tr>
@@ -15,7 +18,7 @@
     <td><%=h user.cn %></td>
     <td><%= link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => :edit, :id => user.id}, :onclick=>"Element.show('progress')" %></td>
     <% if @permissions[:userdelete] %>
-    <td class="last"><%= html_delete_link(user.uid) %></td>
+    <td class="last"><%= html_delete_link(user.uid, :destroy) %></td>
     <% end %>
   </tr>
   <% end %>
@@ -23,8 +26,11 @@
 
 <% if @permissions[:useradd] %>
 <div class="select">
-  <%= link_to _("<strong>[New User]</strong>"), new_user_path, :onclick=>"Element.show('progress')" -%><p/>
+  <%= link_to _("<strong>[New User]</strong>"), {:action => :new}, :onclick=>"Element.show('progress')" -%><p/>
 </div>
 <% end %>
 
 <a href="/" class="button"><%=_("Back")%></a>
+
+</div>
+

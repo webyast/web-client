@@ -8,14 +8,14 @@ class PermissionsController < ApplicationController
   def client_permissions
     login = YaST::ServiceResource::Session.login
     perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
-    @proxy = YaST::ServiceResource.class_for_resource(perm_resource)
-    unless @proxy
+    proxy = YaST::ServiceResource.class_for_resource(perm_resource)
+    unless proxy
       flash[:notice] = _("Invalid session, please login again.")
-      redirect_to( logout_path ) and return
+      redirect_to( logout_path ) and return nil
     end
     @right_set_permissions = false
     @right_get_permissions = false
-    permissions = @proxy.find(:all, :params => { :user_id => login, :filter => 'org.opensuse.yast.webservice' })
+    permissions = proxy.find(:all, :params => { :user_id => login, :filter => 'org.opensuse.yast.webservice' })
     permissions.each do |permission|
       if permission.name == "org.opensuse.yast.webservice.write-permissions" &&
         permission.grant
@@ -26,6 +26,7 @@ class PermissionsController < ApplicationController
         @right_get_permissions = true
       end
     end
+    return proxy
   end
 
  # Initialize GetText and Content-Type.
@@ -74,7 +75,6 @@ class PermissionsController < ApplicationController
   end
   
   def construct_permission_tree()
-     @right_set_permissions = false
      @permissions.each do |permission|
         sub = @permission_tree
         #do not regard org.opensuse.yast. in the tree
@@ -101,7 +101,7 @@ class PermissionsController < ApplicationController
               node = Hash.new
               node[:level] = level
               node[:label] = key
-              node[:path] = branch[:path]
+              node[:path] = branch[:path] if branch.has_key?(:path)
               #taking the subtrees too
               next_take_all = take_all
               if (branch.has_key?(:grant) &&
@@ -118,11 +118,11 @@ class PermissionsController < ApplicationController
      return data_list
   end
 
-  def get_permissions(user, get_perm_from_server)
+  def get_permissions(user, get_perm_from_server, proxy)
     @current_user = nil
     if get_perm_from_server
       begin
-         @permissions = @proxy.find(:all, :params => { :user_id => user })
+         @permissions = proxy.find(:all, :params => { :user_id => user })
       rescue ActiveResource::ClientError => e
         return YaST::ServiceResource.error(e)
       rescue Exception => e
@@ -147,8 +147,9 @@ class PermissionsController < ApplicationController
 
 
   def set
-    return unless client_permissions
-    error = get_permissions(params[:user].rstrip, true)
+    proxy = client_permissions
+    return unless proxy
+    error = get_permissions(params[:user].rstrip, true, proxy)
     if !error.blank?
       flash[:error] = error
       render :action => "index" and return
@@ -175,14 +176,15 @@ class PermissionsController < ApplicationController
       break unless response
     end
     flash[:notice] = _("Permissions have been set.") if response
-    error = get_permissions(params[:user].rstrip, true)
+    error = get_permissions(params[:user].rstrip, true, proxy)
     flash[:error] = error if !error.blank?
     render :action => "index" 
   end
 
   def search
-    return unless client_permissions
-    flash[:error] = get_permissions(params[:user].rstrip, true)
+    proxy = client_permissions
+    return unless proxy
+    flash[:error] = get_permissions(params[:user].rstrip, true, proxy)
     render :action => "index" 
   end
 

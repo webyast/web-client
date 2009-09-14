@@ -14,34 +14,33 @@ class PatchUpdatesController < ApplicationController
 
   # this action is rendered as a partial, so it can't throw
   def show_summary
+    error = nil
     patch_updates = nil    
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
-    rescue
+    rescue Exception => e
+      error = e
       patch_updates = nil
     end
 
-    unless patch_updates
+    patches_summary = nil
+
+    if patch_updates
+      patches_summary = { :security => 0, :important => 0, :optional => 0}
+
+      [:security, :important, :optional].each do |patch_type|
+        patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
+      end
+    else
       erase_redirect_results #reset all redirects
       erase_render_results
       flash.clear #no flash from load_proxy
-      render :partial => "patch_summary", :locals => { :patch => nil }
-      return false
     end
 
-    patches = { :security => 0, :important => 0, :optional => 0}
-
-    patch_updates.each do |patch|
-      case patch.kind
-        when "security":  patches[:security] += 1
-        when "important": patches[:important] += 1
-        when "optional":  patches[:optional] += 1
-      else
-        logger.warn "unknown patch kind #{patch.kind}"
-      end
-    end
-
-    render :partial => "patch_summary", :locals => { :patch => patches }
+    respond_to do |format|
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
+      format.json  { render :json => patches_summary }
+    end    
   end
 
   def load_filtered
@@ -53,8 +52,62 @@ class PatchUpdatesController < ApplicationController
     render :partial => "patches"
   end
 
-  # POST /patch_updates/1
-  # POST /patch_updates/1.xml
+  # POST /patch_updates/start_install_all
+  # Starting installation of all proposed patches
+  def start_install_all
+    logger.debug "Start installation of all patches"
+
+    flash.clear #no flash from load_proxy
+    respond_to do |format|
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true }}
+    end    
+  end
+
+  def stop_install_all
+    logger.debug "Stopping installation of all patches"
+
+    flash.clear #no flash from load_proxy
+    respond_to do |format|
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing stopped"), :error => nil  , :go_on => false }}
+    end    
+  end
+
+  # POST /patch_updates/install_all
+  # Install each patch. This function will be called periodically from the controll center
+  def install_all
+    logger.debug "Installing one available patch...."
+    error = nil
+    patch_updates = nil    
+    begin
+      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    rescue Exception => e
+      error = e
+      patch_updates = nil
+    end
+
+    last_patch = ""
+    if patch_updates
+      #installing the first available patch
+      ret = true
+      #ret = patch_updates[0].save #install patch
+      logger.info "Installing patch :#{patch_updates[0].name}"
+      last_patch = patch_updates[0].name
+    else
+      erase_redirect_results #reset all redirects
+      erase_render_results
+    end
+
+    respond_to do |format|
+      if last_patch.blank?
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false }}
+      else
+        format.html { render :partial => "patch_installation", :locals => { :patch => last_patch, :error => error  , :go_on => true }}
+      end
+    end    
+  end
+
+  # POST /patch_updates/install
+  # Installing one or more patches which has given via param 
 
   def install    
     update_array = []

@@ -1,38 +1,21 @@
 # Systemtime
 
+#fills proxy with time parameters and set rest parameters to empty value
 def fill_proxy_with_time(proxy,params)
-    proxy.date = params[:date][:date]
-    proxy.time = params[:currenttime]
-    proxy.timezones = [] #not needed anymore
-    proxy.utcstatus = ""
-    proxy.timezone = ""
+  proxy.date = params[:date][:date]
+  proxy.time = params[:currenttime]
 end
 
+#fills proxy with timezone parameters and set rest parameters to empty value
 def fill_proxy_with_timezone(proxy,params,timezones)
-  region = {}
-    timezones.each do |reg|
-      if reg.name == params[:region]
-        region = reg
-        break
-      end
-    end
+  region = timezones.find { |reg| reg.name == params[:region] } || Hash.new
 
-    region.entries.each do |e|
-      if (e.name == params[:timezone])
-        proxy.timezone = e.id
-        break
-      end
-    end
 
-    if (proxy.utcstatus != "UTConly")
-      if params[:utc] == "true"
-        proxy.utcstatus = "UTC"
-      else
-        proxy.utcstatus = "localtime"
-      end
-    end
+  tmz = region.entries.find { |e| e.name == params[:timezone]}
+  proxy.timezone = tmz.id if tmz
 
-    proxy.time = ""
-    proxy.date = ""
-    proxy.timezones = [] #not needed anymore
+
+  if (proxy.utcstatus != "UTConly")
+    proxy.utcstatus = params[:utc] == "true" ? "UTC" : "localtime"
+  end
 end

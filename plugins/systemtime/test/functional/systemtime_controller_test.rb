@@ -4,7 +4,7 @@ require File.expand_path( File.join("test","validation_assert"), RailsParent.par
 require 'rubygems'
 require 'mocha'
 
-class SystemTimeControllerTest < ActionController::TestCase
+class SystemtimeControllerTest < ActionController::TestCase
 
   class Proxy
     attr_accessor :result, :permissions, :timeout
@@ -43,12 +43,6 @@ class SystemTimeControllerTest < ActionController::TestCase
         @date = "07/02/2009"
         @utcstatus = "true"
         @timezone = "Europe/Prague"
-#      @available = [Lang.new("cs_CZ","cestina"),
-#        Lang.new("en_US","English (US)")
-#      ];
-#      @current = "cs_CZ"
-#      @utf8 = "true"
-#      @rootlocale = "false"
     end
 
     def save
@@ -57,8 +51,8 @@ class SystemTimeControllerTest < ActionController::TestCase
   end
 
   def setup
-    SystemTimeController.any_instance.stubs(:login_required)
-    @controller = SystemTimeController.new
+    SystemtimeController.any_instance.stubs(:login_required)
+    @controller = SystemtimeController.new
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
@@ -87,8 +81,6 @@ class SystemTimeControllerTest < ActionController::TestCase
 
   def test_access_without_write_permissions
     @permissions[:write] = false
-#    @result.utf8 = "false"
-#    @result.rootlocale = "true"
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
 
     get :index
@@ -104,14 +96,10 @@ class SystemTimeControllerTest < ActionController::TestCase
 
   def test_commit
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
-    post :update_time, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }
-
+    post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }    
     assert_response :redirect
     assert_redirected_to :action => "index"
 
-#    assert_equal "en_US", @result.current
-#    assert_equal "false", @result.utf8
-#    assert_equal "ctype", @result.rootlocale
     assert @result.saved
   end
 
@@ -125,6 +113,18 @@ class SystemTimeControllerTest < ActionController::TestCase
 
     assert_response :redirect
     assert_redirected_to "/bad_permissions"
+  end
+
+  def test_commit_wizard
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
+    session[:wizard_current] = "test"
+    post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }    
+
+    puts @response.body
+    assert_response :redirect
+    assert_redirected_to :controller => "controlpanel", :action => "nextstep"
+
+    assert @result.saved
   end
 
 end

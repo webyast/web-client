@@ -1,3 +1,4 @@
+require "open3"
 
 class ActionController::TestCase
   def assert_valid_markup(markup=@response.body)
@@ -7,12 +8,26 @@ class ActionController::TestCase
 
     fail("Tidy is not available") unless system("which tidy &>/dev/null")
 
-    validate_temp = File.new("#{RAILS_ROOT}/tmp/validate.html", 'w')
-    validate_temp.puts markup
-    validate_temp.close
+    Open3.popen3('tidy') do |stdin, stdout, stderr|
+      # write the markup to tidy
+      stdin.puts markup
+      stdin.close_write
+      stdout.read
+      output = stderr.read
 
-    system("tidy #{RAILS_ROOT}/tmp/validate.html 1>/dev/null 2>#{RAILS_ROOT}/tmp/validate.result")
-    result = `grep '^[0-9]\\+ warnings*, [0-9]\\+ errors*' #{RAILS_ROOT}/tmp/validate.result`    
-    assert result.empty?, "Find validation problems: "+`cat #{RAILS_ROOT}/tmp/validate.result`
+      messages = []
+      output.each_line do |line|
+        messages << line.chomp if line =~ /Warning|Info|Error/
+      end
+
+      errors = 0
+      warns = 0
+      if output =~ /^(\d+) warnings*, (\d+) errors*/
+        warns = $1.to_i
+        errors = $2.to_i
+        assert (errors == 0 and warns == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")}"
+      end
+      
+    end
   end
 end

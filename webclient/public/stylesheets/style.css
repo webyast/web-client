@@ -1,8 +1,8 @@
-/* == Used Colours ===========================================================
+ /* == Used Colours ===========================================================
 Title               Hex-Code    Used-for Examples
 ------------------------------------------------------------------------------
-Medium Blue:        #06c        Links Hover
-Medium Green:       #6c0
+Blue:        #06c        Links Hover
+Green:       #6c0
 Dark Grey:          #333        Font
 Medium Grey:        #666        Header Font
 Soft Light Grey:    #0072ba     Header BG
@@ -34,6 +34,10 @@ h2 {
 h3 {
   font-size: 1.1em;
 }
+#content h3 {
+  font-size: 1.7em;
+  color: #666;
+}
 h4 {
   font-size: 1em;
 }
@@ -63,6 +67,9 @@ input:focus {
   color: #69c;
 }
 
+ul li {
+  padding: 3px;
+}
 /* == Basic Structure ===================================================== */
 
 /*#header,*/
@@ -82,22 +89,31 @@ input:focus {
   border-bottom: 1px solid #39f;
   border-bottom: 1px solid #06c;
   height: 50px;
+  text-align: center;
 }
   #header h1,
   #header img {
-    float: left;
   }
   #header h1 {
-    margin: 10px 1em;
+    margin: 0;
+    padding-top: 13px;
   }
   #header img {
     margin: 2px 1em 0;
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+  #header ul.header-links {
+    float: right;
+    vertical-align: bottom;
   }
   #login-wrapper {
-    position: relative;
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
-  
+
 #content {
   min-height: 600px;
   margin-top: 2em;
@@ -118,7 +134,7 @@ input:focus {
 
 #login-wrapper ul {
   list-style: none outside;
-  margin: 5px 0 0;
+  margin: 0;
   font-size: 0.7em;
 }
 #login-wrapper ul * {
@@ -138,7 +154,8 @@ input:focus {
   color: #06c;
 }
 
-#login-dialogue {
+#login-dialogue,
+.dialoge-wrapper {
   width: 23em;
   min-height: 17em; /* FIXME not working in IE6 */
   background: #999;
@@ -153,7 +170,11 @@ input:focus {
   -webkit-box-shadow: 0 1px 7px #999;
   box-shadow: 0 1px 7px #999;
 }
-  #login-dialogue form {
+  .dialoge-wrapper {
+    min-width: 500px;
+  }
+  #login-dialogue form,
+  .dialoge-sub-wrapper {
     display: block;
     background: #fefefe;
     padding: 15px;
@@ -163,14 +184,49 @@ input:focus {
   #login-dialogue input {
     width: 97%;
   }
-  #login-dialogue h2 {
-    margin: 0;
+  #login-dialogue h2,
+  .dialoge-wrapper h2 {
+    margin: 0 !important;
     color: #69c;
   }
   #login-dialogue label {
     display: block;
     margin:0 0 0.2em;
   }
+  #favorites,
+  #status-wrapper {
+    padding: 10px;
+  }
+  #status-wrapper {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #999;
+    margin: 0 0 1em;
+    background: #f9f9f9;
+    position: relative;
+  }
+    #status-wrapper h3:first-child {
+      margin-top: 0;
+    }
+    #status-wrapper #machine-controle {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 100%;
+      overflow: hidden;
+      border-left: 1px solid #999;
+      background-color: #eee;
+    }
+
+    #status-wrapper #machine-controle ul {
+      list-style: none outside;
+    }
+
+    #status-wrapper #machine-controle ul li  {
+      margin: 0.5em 0;
+    }
 /* == Lists and Tables ==================================================== */
 
 .list-row {
@@ -220,41 +276,78 @@ input:focus {
       -webkit-border-radius: 5px;
     }
     
-    
 ul.list-2level-inline,
 ul.list-2level-inline ul {
   list-style: none outside;
   margin: 0.5em 0 1em;
+  margin: 0;
   padding: 0;
   overflow: hidden;
 }
+ul.list-2level-inline {
+  margin: 1em 0 2em;
+}
+  ul.list-2level-inline a {
+    text-decoration: underline;
+  }
   .list-2level-inline ul {
     
   }
     .list-2level-inline ul li {
       float: left;
-      margin-right: 1em;
+      margin-right: 0.5em;
     }
     
     .list-2level-inline + p {
       clear: left;
     }
+    
+    .list-2level-inline ul li strong,
+    .list-2level-inline ul li span {
+      display: block;
+    }
+    .list-2level-inline ul li strong {
+      color: #666;
+      min-width: 75px;
+    }
     .list-2level-inline ul li span {
       color: #666;
+    }
+    .list-2level-inline ul li span.li-url {
+      min-width: 150px;
+    }
+    .list-2level-inline ul li span.li-descr {
+      min-width: 250px;
     }
 
 /* == Text Styles ======================================================= */
 
 .notifications {
   color: #06c;
+  color: #f90;
   margin: 1em 0;
   text-align: center;
+  text-shadow: 0 1px 1px #ccc;
 }
 
 /* == Form Styles ======================================================= */
 
+label {
+  display: block;
+  margin: 0.2em 0;
+}
+
 #login_button {
   float: right;
+}
+
+.dialoge-wrapper input[type="text"] {
+  width: 99%;
+}
+.dialogue-footer {
+  margin: 0;
+  padding-top: 15px;
+  text-align: center;
 }
 
 /* == Helper Styles ======================================================= */
@@ -276,12 +369,14 @@ input.button {
   -webkit-border-radius: 3px;
   width: auto !important;
 }
-a.button:hover,
-input.button:hover {
-  background-color: #ccc;
-  text-shadow: 0 -1px 0 #666;
-}
-
+  a.button:hover,
+  input.button:hover {
+    background-color: #ccc;
+    text-shadow: 0 -1px 0 #666;
+  }
+  input.button {
+    padding: 2px 9px;
+  }
 /* ==Status Icons ==*/
 /* -- HTML Example --
   <div class="status-icon ok"></div>
@@ -294,7 +389,14 @@ input.button:hover {
   width: 23px;
   height: 23px;
   background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
+  float: left;
 }
+
+.status-icon + span {
+  margin-left: 1em;
+  line-height: 2em;
+}
+
 .status-icon.ok {
   background-position: 0 0;
 }
@@ -308,3 +410,52 @@ input.button:hover {
   background-position: 0 -66px;
 }
 /* ==/Status Icons ==*/
+
+.width-50 {
+  width: 50%;
+}
+.width-65 {
+  width: 65%;
+}
+.width-75 {
+  width: 75%;
+}
+
+.alt-bg {
+  background-color: #f9f9f9;
+}
+
+.plugin-icon {
+  float: left;
+  margin: 1em;
+}
+
+.plugin-content {
+  float: left;
+  width: 90%;
+}
+
+select.aligned-inputs,
+input.aligned-inputs {
+  width: 100%;
+}
+
+td.icon,
+td.checkbox,
+th.checkbox {
+  text-align: center;
+}
+
+.clipboard {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: transparent url(images/clipboard/button_up.png) no-repeat scroll 0 0;
+  float: left;
+}
+.clipboard:hover {
+  background: transparent url(images/clipboard/button_over.png) no-repeat scroll 0 0;
+}
+.clipboard:active {
+  background: transparent url(images/clipboard/button_down.png) no-repeat scroll 0 0;
+}

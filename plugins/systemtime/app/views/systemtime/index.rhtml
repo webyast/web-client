@@ -1,0 +1,102 @@
+<% if @permissions %>  
+
+  <% content_for :head do %>
+    <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+
+    <% javascript_tag do -%>
+      $(document).ready( function() {
+      $(".datepicker").datepicker( { dateFormat: 'dd/mm/yy'} );
+      });
+    <% end -%>
+
+    <!-- FIXME move javascript function outside of index -->
+    <% javascript_tag do -%>
+      function submitTime() {
+      if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
+      alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
+      return false;
+      }
+      if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
+      alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
+      return false;
+      }
+      Element.show('progress');
+      return true;
+      };
+    <% end -%>
+
+  <% end %>
+  <% disabled = ! @permissions[:write] %>
+
+  <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
+  <div class='plugin-content'>
+    <h2><%=_("Configure timezone")%></h2>
+    <% form_tag '/systemtime/update', :class => 'container' do %>
+      <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
+      %>
+      <div>
+        <label for="region">
+          <%=_("Region:")%>
+        </label>
+        <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled,
+          :class=>'aligned-inputs' %>
+      </div>
+      <div>
+        <label for="timezone">
+          <%=_("Timezone:")%>
+        </label>
+        <span id="timezones">
+          <%= render(:partial => 'timezones',
+            :locals => {:region => @region, :default => @timezone,
+              :disabled => disabled})  %>
+        </span>
+      </div>
+      <% if @utcstatus != "UTConly" %>
+
+        <div>
+          <label for="utc">
+            <%=_("Hardware clock is set to UTC")%>
+          </label>
+          <% #don't use check_box helper as it generate also hidden opposite value
+          %>
+          <input type="checkbox" name="utc" id="utc" value="true"
+          <%=  "checked=\"checked\"" if @utcstatus == "UTC"%>
+                 <%=  "disabled=\"disabled\"" if disabled %> />
+        </div>
+      <% end %>
+
+      <div>
+        <input type="radio" name="timeconfig" value="manual" checked="true"/>
+        <%=_("Manually configure time")%>
+      </div>
+      <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
+      %>
+      <div>
+        <label for="date_date">
+          <%= _("Date:") %>
+        </label>
+
+        <%= text_field "date","date", :class => 'datepicker aligned-inputs',
+          :disabled=> disabled, :value => @date
+      %>
+      </div>
+      <div>
+        <label for="currenttime">
+          <%= _("Time:") %>
+        </label>
+
+        <span><%= text_field_tag "currenttime", @time, :disabled=> disabled, :class=>'aligned-inputs' %></span>
+      </div>
+      <div>
+        <%= form_send_buttons ({:disabled => disabled, :onclick => "submitTime();"}) %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= observe_field(:region,
+    :frequency => 0.25,
+    :update => :timezones,
+    :url => { :action => :timezones_for_region },
+    :with => "'disabled=' + "+ (disabled ? "true":"false")+" + '&value=' +value") %>
+<% end %>
+

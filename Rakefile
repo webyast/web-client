@@ -1,22 +1,19 @@
-env = %(PKG_BUILD="#{ENV['PKG_BUILD']}") if ENV['PKG_BUILD']
- 
-PROJECTS = ['webclient', *Dir.glob('plugins/*')]
+env = ENV.map { |key,val| ENV[key] ? %(#{key}="#{ENV[key]}") : nil }.reject {|x| x.nil?}.join(' ')
 
+plugins = Dir.glob('plugins/*')#.reject{|x| ['users'].include?(File.basename(x))}
+PROJECTS = ['webclient', *plugins]
 desc 'Run all tests by default'
 task :default => :test
- 
-%w(test rdoc pgem package release).each do |task_name|
+
+
+%w(makemo test test:ui rdoc pgem package release install install_policies check_syntax package-local buildrpm buildrpm-local test:test:rcov).each do |task_name|
   desc "Run #{task_name} task for all projects"
   task task_name do
     PROJECTS.each do |project|
       system %(cd #{project} && #{env} #{$0} #{task_name})
+      raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
     end
   end
 end
-
-desc "Check syntax of all Ruby files."
-task :check_syntax do
-    `find . -name "*.rb" |xargs -n1 ruby -c |grep -v "Syntax OK"`
-      puts "* Done"
-end
+ 
 

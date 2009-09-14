@@ -1,4 +1,8 @@
+
+<% content_for :head do %>
 <%= javascript_include_tag :defaults %>
+<% end %>
+
 <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
   <% javascript_tag do -%>
     $(document).ready( function() {
@@ -16,34 +20,51 @@
     });
   <% end -%>
 <% end %>
+<div id="status-wrapper" class="">
 
-<h3><img src="/images/monitoring.png" height="23" width="23" border="0" /> <%= _("Status") %></h3>
+<% if ActionController::Routing.possible_controllers.include?("system") %>
+    <% host = Host.find(session[:host]) rescue nil %>
+    <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
+  <div id="machine-controle">
+    <ul>
+      <li><h4><%= _("System actions")%></h4></li>
+      <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
+	    :confirm => _("Really reboot #{host_name}?"), :method => :put, :class => 'button' %></li>
+      <li><%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
+	    :confirm => _("Really shutdown #{host_name}?"), :method => :put, :class => 'button' %></li>
+    </ul>
+  </div>
+<% end %>
 
-<div id="status_patches">
-  <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading patch information
-  <% else %>
-    Patch plugin is not installed.
-  <% end %>
+  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
+
+  <div id="status_patches">
+    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
+    <% else %>
+      <%= _("Patch plugin is not installed.") %>
+    <% end %>
+  </div>
+  <br/>
+  <div id="status_status">
+    <% if ActionController::Routing.possible_controllers.include?("status") %>
+      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
+    <% else %>
+      <%= _("Status plugin is not installed.") %>
+    <% end %>
+  </div>
+
 </div>
-<br/>
-<div id="status_status">
-  <% if ActionController::Routing.possible_controllers.include?("status") %>
-    <img src="/images/working.gif" height="32" width="32" border="0" /> Loading system information
-  <% else %>
-    Status plugin is not installed.
-  <% end %>
-</div>
+
 
 <div id="favorites">
-  <h3><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h3>
+  <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
 
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
   <div class="list-row overview">
 
     <% @shortcuts.each do |name, data| %>
-      <% logger.debug data.inspect %>
       <% if line_counter*5 == shortcuts_counter %>
         <% if line_counter > 0 %>
         </div>

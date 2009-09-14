@@ -43,11 +43,8 @@ end
 # Tests
 #
 
-begin
-  require 'gettext'
-  include GetText
-rescue Exception => e
-  escape "GetText not found", "install rubygem-gettext_rails"
-end
+test_module 'rubygems', 'rubygems'
+
+test_module 'gettext', 'rubygem-gettext_rails'
 
 puts "All fine, webclient is ready to run"

@@ -1,37 +1,37 @@
+<%= report_error(error, _("An error occured when loading patch information.")) if error %>
+
 <div class="status_patches">
-  <% unless patch %>
-    <img src="/images/button_warning.png" alt="warning icon" />
-    <%= _("Error occur during loading patch information.") %>
+  <% unless patch %>    
+    <div class="status-icon warning"></div>    
+    <%= _("No information about patches available") %>
   <% else %>
+    <% label = [] %>
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
-        <img src="/images/button_critical.png" alt="System need update"/>
         <div class="status-icon error"></div>
-      <% elsif patch[:optional] %>
-        <img src="/images/button_warning.png" alt="System contains any update" />
+      <% elsif patch[:optional] > 0%>
         <div class="status-icon warning"></div>
       <% else %>
-        <img src="/images/button_ok.png" alt="No updates available"/>
         <div class="status-icon ok"></div>
       <% end %>
 
-
-      <% any_update = false %>
       <% if patch[:security] > 0 %>
-        <%= _("Security Updates: #{patch[:security]} ") %>
-        <% any_update = true %>
+        <% label << _("Security Updates: #{patch[:security]}") %>
       <% end %>
       <% if patch[:important] > 0 %>
-        <%= _("Important Updates: #{patch[:important]} ") %>
-        <% any_update = true %>
+	<% label << _("Important Updates: #{patch[:important]}") %>
       <% end %>
       <% if patch[:optional] > 0 %>
-        <%= _("Optional Updates: #{patch[:optional]} ") %>
-        <% any_update = true %>
+	<% label << _("Optional Updates: #{patch[:optional]}") %>
       <% end %>
-      <% unless any_update %>
-        <%= _("Your system is up to date.") %>
+      <% if label.empty? %>
+	<% label << _("Your system is up to date.") %>
       <% end %>
+      <span><%= label.join(", ") %></span>
     <% end %>
+    <% if not label.empty? %>
+      <%= button_to_remote "Update All", :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
+    <% end %>
+
   <% end %>
 </div>

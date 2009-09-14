@@ -25,11 +25,11 @@
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Home Directory")%></strong></td>
-	<td class="last"><%= f.text_field :homeDirectory, :disabled => disabled %></td>
+	<td class="last"><%= f.text_field :home_directory, :disabled => disabled %></td>
     </tr>
     <tr>
 	<td class="first"><strong><%=_("Login Shell")%></strong></td>
-	<td class="last"><%= f.text_field :loginShell, :disabled => disabled %></td>
+	<td class="last"><%= f.text_field :login_shell, :disabled => disabled %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Login Name")%></strong></td>
@@ -37,13 +37,13 @@
     </tr>
     <tr>
 	<td class="first"><strong><%=_("UID Number")%></strong></td>
-	<td class="last"><%= f.text_field :uidNumber , :disabled => disabled %></td>
+	<td class="last"><%= f.text_field :uid_number , :disabled => disabled %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Password")%></strong></td>
-	<td class="last"><%= f.text_field :userPassword, :disabled => disabled %></td>
+	<td class="last"><%= f.password_field :user_password, :disabled => disabled %></td>
     </tr>
     </table>
-    <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), users_path, :onclick=>"Element.show('progress')", :class => "button"%></p>
+    <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), {:action => :index}, :onclick=>"Element.show('progress')", :class => "button"%></p>
   </div>
 <% end %>

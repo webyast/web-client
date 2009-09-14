@@ -15,19 +15,22 @@ PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_3, ruby
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.1
+Version:        0.0.3
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  ruby-devel, rubygem-relevance-rcov
-BuildRequires:  sqlite avahi-utils rubygem-rake rubygem-sqlite3 rubygem-rails
+BuildRequires:  ruby
+BuildRequires:  sqlite avahi-utils rubygem-sqlite3 rubygem-rails-2_3
 BuildRequires:  rubygem-gettext_rails
 BuildRequires:  tidy
+# we require the lighttpd user to be present when building the rpm
+BuildRequires:  lighttpd
 BuildArch:      noarch  
-
+# required because we include selenium jar
+BuildRequires:  fastjar
 #
 %define service_name yastwc
 #
@@ -74,6 +77,13 @@ rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd
 install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
 
+#  create empty tmp directory
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/cache
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/pids
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sessions
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sockets
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -110,7 +120,7 @@ fi
 %files 
 %defattr(-,root,root)
 %dir /srv/www/yast 
-/srv/www/yast/locale
+#/srv/www/yast/locale
 /srv/www/yast/po
 /srv/www/yast/vendor
 /srv/www/yast/app  
@@ -123,16 +133,16 @@ fi
 /srv/www/yast/COPYING  
 /srv/www/yast/INSTALL
 /srv/www/yast/script  
-/srv/www/yast/test  
+#/srv/www/yast/test  
 /srv/www/yast/config  
 /srv/www/yast/start.sh
 %doc README* COPYING  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
-%attr(-,lighttpd,lighttpd) /srv/www/yast/tmp  
+%attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %config /etc/lighttpd/cleanurl-v5.lua  
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
 
-# %changelog  
-# * Tue Nov 27 2008 schubi@suse.de  
-# - initial  
+%changelog  
+* Tue Nov 27 2008 schubi@suse.de  
+- initial  

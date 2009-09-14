@@ -1,4 +1,4 @@
-<h2><img src="/images/yast-config.png" height="23" width="23" border="0" /> <%= _("Configuration") %></h2>
+<h2><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h2>
 
 <% @shortcut_groups.each do |name, shortcuts| %>
   <% line_counter = 0 %>

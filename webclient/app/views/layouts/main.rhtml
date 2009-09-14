@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
-  <link rel="stylesheet" href="/stylesheets/yast.css" type="text/css" media="screen" title="default" charset="utf-8" />
-  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" title="default" charset="utf-8" />
-  <link rel="stylesheet" href="/stylesheets/jquery.jqplot.css" type="text/css" media="screen" title="default" charset="utf-8" />
-
+  <%= stylesheet_link_tag "yast", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "style", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "jquery.jqplot.css", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "jquery-ui-1.7.2.custom.css", :title=>"default", :charset=>"utf-8" %>
 
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
@@ -15,61 +14,85 @@
   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.jqplot.js"></script>
   <script type="text/javascript" charset="utf-8" src="/javascripts/plugin/jqplot.pieRenderer.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
-  
-  <!--<script type="text/javascript" charset="utf-8" src="/javascripts/jQuery.dPassword.js"></script>-->
-  <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
 
-  <!--<script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
+  <!-- browser detection -->
+   <script type="text/javascript" charset="utf-8" src="/javascripts/jqbrowser-compressed.js"></script>
+   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.badbrowser.js"></script>
+
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
   <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>-->
+  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>
 
   <script type="text/javascript" charset="utf-8" src="/inc/shortcut.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
+  <!-- custom page scripts and css -->
+  <%= yield :head %>
 
-  <title>WebYaST</title>
+  <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
     
     <div id="header">
       
-      <img src="/images/geckohead-green.png" alt="SUSE" />
+      <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
       
-      <h1>My Appliance</h1>
+      <h1><%= _("My Appliance") %></h1>
 
       <div id="login-wrapper">
       <% host = Host.find(session[:host]) rescue nil
         user = session[:user]
         if host.blank? || user.blank? -%>
-        <ul>
-          <li><%= link_to _("Login"), '/login' %></li>
-        </ul>
       <% else -%>
         <ul>
           <li><strong><%=_("Connected Host")%></strong></li>
           <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
-          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
         </ul>
+        <ul class='header-links'>
+          <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
+          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
+       </ul>
       <% end -%>
       </div>
     </div>
 
     <div id="content" class="content">
+      <!-- here both flash and dynamic notifications should be added -->
+      <div id="flash-messages">
       <!-- show the flash messages -->
-      <% [:error, :warning, :notice, :message].each do |name| %>
-        <% if flash[name] %>
-          <%= "<div class=\"notifications\" id=\"#{name}\">#{flash[name]}</div>" %>
-	  <% flash.delete name -%>
-        <% end %>
-      <% end %>
 
-        <div id="progress" style="display:none;">
-          <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+      <% flash.each do |flash_type, message| %>
+        <%
+          flash_icon = case flash_type
+            when :error then "ui-icon-alert"
+            else "ui-icon-info"
+          end
+          flash_style = case flash_type
+            when :error then "ui-state-error"
+            else "ui-state-highlight"
+          end
+        %>
+
+        <div class="flash-message <%= flash_style %> ui-corner-all" style="margin-top: 20px; padding: .7em;">
+          <p><span class="ui-icon <%= flash_icon %>" style="float: left; margin-right: .3em;"></span><strong><%= message %></strong></p>
         </div>
+        <% flash.delete flash_type -%>
+      <% end %>
+      </div> <!-- flash messages -->
 
-      <%= @content_for_layout %>
+      <div id="progress" style="display:none;">
+        <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+      </div>
+      
+      <%= yield %>
     </div>
 
     <div id="footer" class="">
-      <div class="copy">&copy; 2009 Novell, Inc.</di
+      <div class="copy">&copy; 2009 Novell, Inc.</div>
+
+    </div>
+  </body>
+</html>

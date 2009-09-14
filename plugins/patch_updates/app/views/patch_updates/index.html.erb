@@ -1,12 +1,5 @@
 <% if @permissions and @patch_updates %>
   <%= javascript_include_tag :defaults %>
-  <% javascript_tag do -%>
-    $(document).ready(function() {
-      $('#All').click(function() {
-        $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));
-      });
-    });
-  <% end %>
   <style type="text/css">
 
     option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
@@ -15,30 +8,32 @@
     option[value=optional]:before { content:url('/icons/kupdateapplet_optional.png'); }
 
   </style>
-
+  <div class='plugin-icon'><img src='/icons/yast-online_update.png'/></div>
+  <div class='plugin-content'>
+  <h2><%=_("Updates") %></h2>
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
-    <p><%=_("Your system is up to date.") %></p>
+    <h3><%=_("Your system is up to date.") %></h3>
+    <%= link_to _("Back"), '/', :class=>"button" %>
   <% else %>
-    <p><%=_("Updates available") %></p>
+    <h3><%=_("Updates available") %></h3>
+
+    <select name="selector" id="selector" size="1">
+      <option value="all">All</option>
+      <option value="security">Security</option>
+      <option value="important">Important</option>
+      <option value="green">Green</option>
+      <option value="optional">Optional</option>
+    </select>
+    <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
+
+      <div id="patchesd"><%= render :partial => "patches"%></div>
+
+      <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
+      <%= link_to _("Back"), '/', :class=>"button" %>
+    <% end %>
   <% end %>
-
-  <select name="selector" id="selector" size="1">
-    <option value="all">All</option>
-    <option value="security">Security</option>
-    <option value="important">Important</option>
-    <option value="green">Green</option>
-    <option value="optional">Optional</option>
-  </select>
-  <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
-
-    <div id="patchesd"><%= render :partial => "patches"%></div>
-
-    <input type="checkbox" name="All" id="All">All</input>
-
-    <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
-    <a href="/" class="button"><%=_("Back")%></a>
-  <% end %>
+  </div>
 
 <% end %>
 
@@ -49,3 +44,4 @@
   :with => "'value=' + value"
 )
 %>
+

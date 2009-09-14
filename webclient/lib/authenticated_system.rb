@@ -81,7 +81,7 @@ module AuthenticatedSystem
 
     # Redirect to the URI stored by the most recent store_location call or
     # to the passed default.
-    def redirect_back_or_default(default)
+    def redirect_back_or_default(default)      
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
@@ -100,6 +100,7 @@ module AuthenticatedSystem
     # Called from #current_account.  Now, attempt to login by basic authentication information.
     def login_from_basic_auth
       authenticate_with_http_basic do |username, password|
+        return false if session[:host].blank?
         self.current_account = Account.authenticate(username, password, session[:host])
       end
     end

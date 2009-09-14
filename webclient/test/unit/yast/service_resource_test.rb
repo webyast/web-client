@@ -19,11 +19,13 @@ class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
       <resources type=\"array\">
         <resource>
           <interface>org.yast.foo</interface>
+          <policy></policy>
           <singular type="boolean">false</singular>
           <href>/foos</href>
         </resource>
         <resource>
           <interface>org.yast.master</interface>
+          <policy>org.opensuse.yast</policy>
           <singular type="boolean">true</singular>
           <href>/master</href>
         </resource>
@@ -33,11 +35,13 @@ EOF
       <resources type=\"array\">
         <resource>
           <interface>org.yast.foo</interface>
+          <policy></policy>
           <singular type="boolean">false</singular>
           <href>/someprefix/foos</href>
         </resource>
         <resource>
           <interface>org.yast.master</interface>
+          <policy>org.opensuse.yast</policy>
           <singular type="boolean">true</singular>
           <href>/someprefix/master</href>
         </resource>
@@ -232,6 +236,7 @@ EOFA
       <resources type=\"array\">
         <resource>
           <interface>org.yast.status</interface>
+          <policy/>
           <singular type="boolean">true</singular>
           <href>/status</href>
         </resource>

@@ -1,81 +1,67 @@
-require 'service'
+require 'yast/service_resource'
 
 class ServicesController < ApplicationController
   before_filter :login_required
   layout 'main'
 
+  private
+  def client_permissions
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.services')
+    unless @client
+      flash[:notice] = _("Invalid session, please login again.")
+      redirect_to( logout_path ) and return
+    end
+    @permissions = @client.permissions rescue {}
+  end
+
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_services"  # textdomain, options(:charset, :content_type)
 
+  public
+
+  def initialize
+  end
+
+  def show_status
+    return unless client_permissions
+
+    begin
+	@response = @client.find(params[:id])
+    rescue ActiveResource::ResourceNotFound => e
+	Rails.logger.error "Resource not found: #{e.to_s}: #{e.response.body}"
+	render :text => _('(cannot read status)') and return
+    end
+
+    render(:partial =>'status', :object => @response.status, :params => params)
+  end
+
+  # GET /services
+  # GET /services.xml
   def index
-    proxy = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.services')
-    @permissions = proxy.permissions
+    return unless client_permissions
 
-    @services = Service.find(:all, :from => '/services.xml')
-    @table = []
-    counter = 1
-    max_column = 0
-    table_counter = 1
-    @services.each do | s |
-      @services[counter-1].command_list = []
-      commands = %w{status start stop restart force-reload bogus} # FIXME s.commands is gone
-      commands.each do | comm |
-        cname = comm # FIXME comm.name is gone
-        iname = cname
-        case iname
-        when "run"
-          iname = "start"
-        when "try-restart"
-          iname = "restart"
-        when "force-reload"
-          iname = "reload"
-        else
-          iname = "empty"
-        end
-        c = {:name => cname, :icon => "/images/#{iname}.png" }
-        @services[counter-1].command_list << c
-      end
-
-       if s.link == "ntp"
-          #add configuration module if there is a read permission
-          c = {:name=>"configure", :icon=>"/images/configure.png" }
-          @services[counter-1].command_list << c
-       end
-       if @services[counter-1].command_list.size > max_column
-          max_column = @services[counter-1].command_list.size
-       end
-       if table_counter * 4 == counter #next table have to begin
-          @table << max_column
-          table_counter +=1
-          max_column = 0
-       end
-       counter += 1
-    end
-    if max_column > 0
-       @table << max_column #add last table
-    end
-    if params[:last_error] && params[:last_error] != 0
-       @last_result = params[:last_error]
-    else
-       @last_result = 0
-    end
-    if params[:last_error_string]
-       @last_result_string = params[:last_error_string]
-    else
-       @last_result_string = ""
+    @services = []
+    begin
+      @services	= @client.find(:all, :params => params)
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
     end
 
-    if params[:fancy] == "1"
-      render :fancy_index and return
+    # sort services by name (case insensitive)
+    @services.sort! {|s1,s2| s1.name.downcase <=> s2.name.downcase } unless @services.nil?
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @services }
     end
   end
 
   def execute
-    @service = Service.find(params[:service_id])
-    @service.id = @service.link
-    command_id = "commands/" + params[:id]
-    logger.debug "calling #{command_id} with service #{@service.inspect}"
-    response = @service.put(command_id)
+
+    return unless client_permissions
+
+    # PUT /services/1.xml
+    response = @client.put(params[:service_id], :execute => params[:id])
 
     # we get a hash with exit, stderr, stdout
     ret = Hash.from_xml(response.body)
@@ -85,11 +71,12 @@ class ServicesController < ApplicationController
     @result_string = ""
     @result_string << ret["stdout"] if ret["stdout"]
     @result_string << ret["stderr"] if ret["stderr"]
-    @error_string = ret["exit"].to_s # TODO translate exit codes (use YaST?)
-    if ret["exit"] == 0
+    @error_string = ret["exit"].to_s
+    if ret["exit"] == 0 || ret["exit"] == "0"
        @error_string = _("success")
     end
-    render(:partial =>'result')
+    render(:partial =>'result', :params => params)
   end
+
 
 end

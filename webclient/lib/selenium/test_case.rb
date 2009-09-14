@@ -2,7 +2,7 @@ require 'rubygems'
 gem 'selenium-client', '>=1.2.16'
 require 'selenium'
 
-# test-unit gem is need, it provides startup and shutdown
+# test-unit gem is needed, it provides startup and shutdown
 # methods which are not available in Test::Unit included in standard Ruby.
 # see http://test-unit.rubyforge.org/test-unit/
 # and http://test-unit.rubyforge.org/test-unit/classes/Test/Unit/TestCase.html
@@ -29,10 +29,10 @@ module Selenium
 		    # specify the exact path to the binary (/usr/bin/firefox is a script,
 		    # Selenium server cannot correctly close the browser if it is started via the script)
 		    firefox = (File.exists? "/usr/lib64/firefox/firefox") ? "/usr/lib64/firefox/firefox" :
-			"/usr/lib/firefox/firefox"
+		                                                          "/usr/lib/firefox/firefox"
 
 		    @selenium = Selenium::SeleniumDriver.new("localhost", 4444, "*firefox #{firefox}",
-			"http://localhost:3000", 10000);
+			"http://localhost:4568", 10000);
 		    @selenium.start
 		end
 	    end
