@@ -24,8 +24,13 @@ class ApplicationController < ActionController::Base
   def exception_trap(e)
     logger.error "***" + e.to_s
     @error = e
-    #render :text => "I am sorry"
-    render :template => "shared/exception_trap"
+    case @error
+    when ActionController::InvalidAuthenticityToken
+      render :template => "shared/cookies_disabled"
+    else
+      #render :text => "I am sorry"
+      render :template => "shared/exception_trap"
+    end
     return
   end
   
