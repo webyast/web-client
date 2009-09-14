@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
       #render :text => "shit" and return
     end
 
-    case @error
+    case e
     when ActionController::InvalidAuthenticityToken
       render :template => "shared/cookies_disabled"
     else
