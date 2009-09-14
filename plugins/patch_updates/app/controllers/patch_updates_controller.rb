@@ -88,9 +88,13 @@ class PatchUpdatesController < ApplicationController
     last_patch = ""
     if patch_updates
       #installing the first available patch
-      ret = true
-      #ret = patch_updates[0].save #install patch
       logger.info "Installing patch :#{patch_updates[0].name}"
+      begin
+        patch_updates[0].save
+        logger.debug "updated #{patch_updates[0].name}"
+      rescue ActiveResource::ClientError => e
+        error = e
+      end        
       last_patch = patch_updates[0].name
     else
       erase_redirect_results #reset all redirects
@@ -128,7 +132,6 @@ class PatchUpdatesController < ApplicationController
           flash[:notice] = _("Patch has been installed.")
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
-          ExceptionLogger.log_exception e
         end        
       end
   end
