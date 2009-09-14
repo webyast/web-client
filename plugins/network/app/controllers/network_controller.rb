@@ -52,7 +52,6 @@ class NetworkController < ApplicationController
     @domain = hn.domain
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
-
     @default_route = rt.via
 
   end
@@ -72,14 +71,16 @@ class NetworkController < ApplicationController
 
     dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
     return false unless dns
-    dns.nameservers = params["nameservers"]
-    dns.searches    = params["searches"]
+# FIXME: params bellow should be arrays    
+    dns.nameservers = params["nameservers"]#.split
+    dns.searches    = params["searchdomains"]#.split
 
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
     hn.name   = params["name"]
     hn.domain = params["domain"]
-    
+
+
     begin
       rt.save
       dns.save
