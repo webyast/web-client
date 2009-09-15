@@ -11,19 +11,16 @@
     <tr class="bg">
 	<td class="first"><strong><%=_("Password")%></strong></td>
 	<td class="last"><%= f.password_field :password, :disabled => disabled %></td>
-	<td><%= f.submit _("Save"), :disabled => disabled %></td>
+	<td><%= f.submit _("Save"), :name => "save_password", :disabled => disabled %></td>
     </tr>
-  <% end %>
-  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put } ) do |f| %>
-  <%= f.error_messages %>
     <tr class="bg">
 	<td class="first"><strong><%=_("Forward mail to")%></strong></td>
 	<td class="last"><%= f.text_field :aliases, :disabled => disabled %></td>
-	<td><%= f.submit _("Save"), :disabled => disabled %></td>
+	<td><%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled %></td>
+    </tr>
+    <tr>
+    <td><%= form_send_buttons :onclick=>"Element.show('progress')" %></td>
     </tr>
   <% end %>
   </table>
 </div>
-
-<%= link_to _('Back'), {:action => :index}, :onclick=>"Element.show('progress')", :class => "button"%>
-
