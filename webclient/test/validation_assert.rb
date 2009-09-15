@@ -25,7 +25,14 @@ class ActionController::TestCase
       if output =~ /^(\d+) warnings*, (\d+) errors*/
         warns = $1.to_i
         errors = $2.to_i
-        assert (errors == 0 and warns == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")}"
+        unless (errors == 0 and warns == 0)
+          File.open("tidy-failed.html","w+") do
+            |file|
+            file.puts markup
+          end
+        end
+        assert (errors == 0 and warns == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")} \n
+            See #{Dir.pwd}/tidy-failed.html"
       end
       
     end
