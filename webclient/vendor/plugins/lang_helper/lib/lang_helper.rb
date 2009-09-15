@@ -10,6 +10,14 @@ module LangHelper
   bindtextdomain("lang_helper", 
         :path => File.join(RAILS_ROOT, "vendor/plugins/lang_helper/locale"))
 
+  def current_locale_image
+    return "/images/flags/#{locale.language}.png"
+  end
+
+  def current_locale
+    locale.language
+  end
+
   def show_language
     langs = I18n.supported_locales.sort
     ret = "<h4>" + _("Select locale") + "</h4>"
@@ -26,7 +34,7 @@ module LangHelper
   def cookie_locale
     cookies["lang"] = params["id"]
     set_locale params["id"]
-    flash[:notice] = _('Cookie &quot;lang&quot; is set: %s') % params["id"]
+#    flash[:notice] = _('Cookie &quot;lang&quot; is set: %s') % params["id"]
     redirect_to :action => 'index'
   end
 end

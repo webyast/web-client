@@ -26,6 +26,15 @@ class ControlpanelController < ApplicationController
     end
   end
 
+  # POST /controlpanel/select_language
+  # setting language for translations
+  def select_language
+    respond_to do |format|
+      format.html { render :partial => "select_language" }
+    end    
+  end
+
+
   # this action allows to retrieve the shortcuts
   # as a resource
   def shortcuts
