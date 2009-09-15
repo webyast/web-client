@@ -81,8 +81,11 @@ class ControlpanelController < ApplicationController
     steps = session[:wizard_steps].split ","
     if session[:wizard_current] != steps.first
       session[:wizard_current] = steps[steps.index(session[:wizard_current])-1]
+      redirect_to get_redirect_hash(session[:wizard_current])
+    else
+      #back from first module return to basesystem screen
+      redirect_to :action => :basesystem
     end
-    redirect_to get_redirect_hash(session[:wizard_current])
   end
 
   # when triggered by button/link from basesystem, shows current module from session
