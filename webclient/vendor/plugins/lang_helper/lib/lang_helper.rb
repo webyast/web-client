@@ -22,7 +22,7 @@ module LangHelper
     langs = I18n.supported_locales.sort
     ret = "<h4>" + _("Select locale") + "</h4>"
     langs.each_with_index do |lang, i|
-      ret << link_to( image_tag("/images/flags/#{lang}.png", :size => "16x11", :alt => "[#{lang}]" ), 
+      ret << link_to( image_tag("/images/flags/#{lang}.png", :size => "20x20", :alt => "[#{lang}]" ), 
                      :action => "cookie_locale", :id => lang)
       if ((i + 1) % 6 == 0)
 	ret << "<br/>"
