@@ -50,7 +50,8 @@ class Account < ActiveRecord::Base
     YaST::ServiceResource::Base.site = uri
     # create a login resource
     ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
-    logger.debug ret.inspect
+    # this would log the password!
+    # logger.debug ret.inspect
     if (ret and ret.attributes["login"] == "granted")
       @password = passwd
       acc = find_by_login(login)
