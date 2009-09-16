@@ -17,7 +17,7 @@ class NetworkController < ApplicationController
   def index
 
     @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
-    @iface = params[:interface] || @ifcs[0].id
+    @iface = params[:interface] || @ifcs[0].id #FIXME: first configured interface
 
     ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
     return false unless ifc
@@ -80,11 +80,18 @@ class NetworkController < ApplicationController
     hn.name   = params["name"]
     hn.domain = params["domain"]
 
-
+    ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", params["interface"]
+    return false unless ifc
+    ifc.bootproto=params["conf_mode"]
+    if ifc.bootproto=="static"
+      ifc.ipaddr=params["ip"]+"/"+params["netmask"]
+    end
+    
     begin
       rt.save
       dns.save
       hn.save
+      ifc.save
       flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)

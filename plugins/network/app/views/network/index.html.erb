@@ -4,15 +4,8 @@
 
 <% disabled = ! @permissions[:write] %>
 
-<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put } ) do |n| %>
-<%#= n.error_messages %>
-<!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
 
-
-<!--
-TODO: we can't do form-in-form, use some AJAX trick instead
-//-->
-<%# form_tag("/network", :method => "get") do |f| %>
+<% form_tag("/network", :method => "get") do |f| %>
   <!-- (collection, value, text, selected) -->
   <div class="table">
     <table class="list" cellpadding="0" cellspacing="0">
@@ -22,11 +15,17 @@ TODO: we can't do form-in-form, use some AJAX trick instead
     <tr>
 	<td class="first" width="120"><%= select_tag(:interface,
       options_from_collection_for_select(@ifcs, :id, :id, @iface)) %></td>
-	<td class="last"><%#= submit_tag("Select") %></td>
+	<td class="last"><%= submit_tag("Select") %></td>
     </tr>
     </table>
   </div>
-<%# end %>
+<% end %>
+
+<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put } ) do |n| %>
+<%= n.error_messages %>
+<!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
+
+<input type="hidden" id="interface" name="interface" value="<%= @iface %>">
 
   <div class="table">
     <table class="list" cellpadding="0" cellspacing="0">
