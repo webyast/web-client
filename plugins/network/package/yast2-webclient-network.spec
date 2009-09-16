@@ -10,11 +10,10 @@
 
 
 Name:           yast2-webclient-network
-PreReq:         yast2-webclient >= 0.0.2
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.2
+Version:        0.0.3
 Release:        0
 Summary:        YaST2 - Webclient - network
 Source:         www.tar.bz2
@@ -22,8 +21,9 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 BuildRequires:  ruby
 BuildRequires:  yast2-webclient
+PreReq:         yast2-webclient >= 0.0.2
 # minimum counterpart required:
-Conflicts:      yast2-webservice-network < 0.0.2
+Conflicts:      yast2-webservice-network < 0.0.3
 
 #
 %define pkg_user yast
