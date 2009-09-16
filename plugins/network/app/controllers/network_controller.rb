@@ -17,7 +17,11 @@ class NetworkController < ApplicationController
   def index
 
     @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
-    @iface = params[:interface] || @ifcs.find {|i| i.bootproto!=nil}.id || @ifcs[0].id
+    @iface = params[:interface]
+    unless @iface
+      ifc = @ifcs.find {|i| i.bootproto!=nil} || @ifcs[0]
+      @iface = ifc.id
+    end
 
     ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
     return false unless ifc
@@ -38,7 +42,6 @@ class NetworkController < ApplicationController
       redirect_to root_path
       return false
     end
-
  
     @conf_mode = ifc.bootproto
     if @conf_mode == "static"
