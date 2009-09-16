@@ -64,6 +64,12 @@ class BasesystemControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "basesystem ensure wizard" do
+    @result.finish = false
+    get :nextstep
+    assert_redirected_to "/controlpanel"
+  end
+
   test "basesystem thisstep" do
     @result.finish = false
     get :index
