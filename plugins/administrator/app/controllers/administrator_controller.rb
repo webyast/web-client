@@ -22,6 +22,7 @@ class AdministratorController < ApplicationController
   def index
     return unless client_permissions
     @administrator	= @client.find
+    @administrator.confirm_password	= ""
   end
 
   # PUT
@@ -33,12 +34,28 @@ class AdministratorController < ApplicationController
     @administrator.password	= admin["password"]
     @administrator.aliases	= admin["aliases"]
 
+    # FIXME validate for set of mails, not just one
+    if !admin["aliases"].empty? && admin["aliases"] !~ /(.+)@(.+)\.(.{2})/ # yes, very weak
+      flash[:error] = _("Enter a valid e-mail address.")
+      redirect_to :action => "index"
+      return 
+    end
+
+    if admin["password"] != admin["confirm_password"]
+      flash[:error] = _("Passwords do not match.")
+      redirect_to :action => "index"
+      return 
+    end
+
     # only save selected subset of administrator data:
     if params.has_key? "save_aliases"
       @administrator.password	= nil
     elsif params.has_key? "save_password"
       @administrator.aliases	= nil
     end
+
+    # we cannot pass empty string to rest-service
+    @administrator.aliases = "NONE" if @administrator.aliases == ""
 
     begin
       response = @administrator.save
