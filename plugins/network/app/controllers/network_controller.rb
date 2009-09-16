@@ -17,7 +17,7 @@ class NetworkController < ApplicationController
   def index
 
     @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
-    @iface = params[:interface] || @ifcs[0].id #FIXME: first configured interface
+    @iface = params[:interface] || @ifcs.find {|i| i.bootproto!=nil}.id || @ifcs[0].id
 
     ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
     return false unless ifc
