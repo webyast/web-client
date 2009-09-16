@@ -25,7 +25,6 @@ class SessionsControllerTest < ActionController::TestCase
     auth_token = "abcdef"
     Account.stubs(:authenticate).with("quentin","test",@host.url).returns([current_account, auth_token])
     Account.stubs(:authenticate).with("quentin","bad password",@host.url).returns([nil,nil])
-    Account.stubs(:authenticate).with("quentin","exception",@host.url).raises(RuntimeError)
     Account.stubs(:authenticate).with("quentin","bad host",@host.url).raises(Errno::ECONNREFUSED)
     YaST::ServiceResource::Session.site = @host.url
     ActiveResource::Base.site = @host.url
@@ -94,15 +93,6 @@ class SessionsControllerTest < ActionController::TestCase
     # we should be at the hosts list againn
     assert_redirected_to :controller => :hosts, :hostid => @host.id, :error => "econnrefused"
   end
-  
-  def test_create_with_exception_raised
-    post :create, :login => 'quentin', :password => 'exception', :hostid => @host.id
-    assert_nil flash[:warning]
-    assert flash[:error]
-    # we should be at the login form again
-    assert_redirected_to :controller => :sessions, :action => :new, :hostid => @host.id
-  end
-  
 
   def test_should_logout
     ActiveResource::HttpMock.respond_to do |mock|
