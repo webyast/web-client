@@ -70,12 +70,6 @@ class SessionsController < ApplicationController
       rescue Errno::ECONNREFUSED => e
         redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "econnrefused"
         return
-      rescue Exception => e
-        logger.warn e.to_s
-        logger.info e.backtrace.join("\n")
-        flash[:error] = _("Exception raised when trying to login to #{host.name}. Please try again")
-        redirect_to :action => "new", :hostid => host.id
-        return
       end
       
       # Now check if the authentication was successful
