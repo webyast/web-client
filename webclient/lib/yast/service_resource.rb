@@ -158,12 +158,9 @@ module YaST
           perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
           proxy = YaST::ServiceResource.class_for_resource(perm_resource)
           
-          begin
-            permissions = proxy.find(:all, :params =>
-                { :user_id => login, :filter => policy_name })
-          rescue
-            raise "Cannot find permission for user #{login} and policy #{policy_name}"
-          end
+          permissions = proxy.find(:all, :params =>
+             { :user_id => login, :filter => policy_name })
+          
           RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
           ret = Hash.new
           permissions.each do |perm|
