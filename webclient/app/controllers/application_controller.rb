@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
 
   def exception_trap(e)
     logger.error "***" + e.to_s
-
+    
     # get the vendor settings
     begin
       settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
