@@ -13,7 +13,7 @@ module ErrorConstructor
     when "NOT_LOGGED"
       return _("Noone is logged to rest service.")
     when "BADFILE"
-      return _("Target system is not consistent: Missing or corrupted file #{@file}")
+      return _("Target system is not consistent: Missing or corrupted file #{error["file"]}")
     end
   end
 end
