@@ -14,6 +14,9 @@ module ErrorConstructor
       return _("Noone is logged to rest service.")
     when "BADFILE"
       return _("Target system is not consistent: Missing or corrupted file #{error["file"]}")
+    else
+      RAILS_DEFAULT_LOGGER.warning "Untranslated message for exception #{error["type"]}"
+      return error["description"]
     end
   end
 end
