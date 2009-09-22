@@ -40,7 +40,8 @@ Authors:
 
 %build
 export RAILS_PARENT=/srv/www/yast
-env LANG=en rake makemo
+export LANG=en
+rake makemo
 
 %install
 
