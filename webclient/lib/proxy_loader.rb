@@ -44,13 +44,7 @@ module ProxyLoader
       return nil
     end
 
-    begin
       @permissions = proxy.permissions
-    rescue Exception => e
-      Rails.logger.warn e
-      redirect_to "/bad_permissions"
-      return nil
-    end
     
     ret = nil
     begin
@@ -61,10 +55,6 @@ module ProxyLoader
       end
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
-      Rails.logger.warn e
-      redirect_to root_path
-    rescue Exception => e
-      flash[:error] = e.message
       Rails.logger.warn e
       redirect_to root_path
     end

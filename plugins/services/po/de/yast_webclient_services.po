@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient services 1.0.0\n"
-"POT-Creation-Date: 2009-05-04 14:37+0200\n"
+"POT-Creation-Date: 2009-09-22 09:42+0200\n"
 "PO-Revision-Date: 2009-05-04 14:37+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,45 +16,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/controllers/config_ntp_controller.rb:64
-msgid "Settings have been written."
-msgstr "Einstellungen wurden gespeichert."
+#: app/controllers/services_controller.rb:11
+msgid "Invalid session, please login again."
+msgstr ""
 
-#: app/controllers/services_controller.rb:80
-msgid "failed"
-msgstr "mißlungen"
+#: app/controllers/services_controller.rb:32
+msgid "(cannot read status)"
+msgstr ""
 
-#: app/controllers/services_controller.rb:82
+#: app/controllers/services_controller.rb:76
 msgid "success"
 msgstr "erfolgreich"
 
-#: app/views/config_ntp/show.html.erb:1
-msgid "NTP Server"
+#: app/views/services/_status.rhtml:14
+msgid "(unknown)"
 msgstr ""
 
-#: app/views/config_ntp/show.html.erb:10
-msgid "Settings"
-msgstr "Einstellungen"
+#: app/views/services/_status.rhtml:16
+msgid "(running)"
+msgstr ""
 
-#: app/views/config_ntp/show.html.erb:13
-msgid "Enabled"
-msgstr "Aktiviert"
+#: app/views/services/_status.rhtml:18
+msgid "(dead)"
+msgstr ""
 
-#: app/views/config_ntp/show.html.erb:17
-msgid "Use random server"
-msgstr "Benutze uufälligen Serve "
-
-#: app/views/config_ntp/show.html.erb:21
-msgid "Manual Servers"
-msgstr "Manueller Server"
-
-#: app/views/config_ntp/show.html.erb:25
-msgid "Save"
-msgstr "Speichert"
-
-#: app/views/config_ntp/show.html.erb:25 app/views/services/_result.rhtml:18
-msgid "Back"
-msgstr "Zurück"
+#: app/views/services/_status.rhtml:20
+msgid "(not running)"
+msgstr ""
 
 #: app/views/services/_result.rhtml:7
 msgid "Service Call Result"
@@ -68,6 +56,44 @@ msgstr "Ergebnis"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: app/views/services/index.rhtml:38
-msgid "Services"
+#: app/views/services/_result.rhtml:20 app/views/services/_result.rhtml:22
+msgid "Back"
+msgstr "Zurück"
+
+#: app/views/services/index.rhtml:14
+msgid "Custom Services"
 msgstr ""
+
+#: app/views/services/index.rhtml:16
+msgid "System Services"
+msgstr ""
+
+#: app/views/services/index.rhtml:23
+msgid ""
+"You do not have permission to execute the services. The links are disabled."
+msgstr ""
+
+#: app/views/services/index.rhtml:74
+msgid "status"
+msgstr ""
+
+#~ msgid "Settings have been written."
+#~ msgstr "Einstellungen wurden gespeichert."
+
+#~ msgid "failed"
+#~ msgstr "mißlungen"
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiviert"
+
+#~ msgid "Use random server"
+#~ msgstr "Benutze uufälligen Serve "
+
+#~ msgid "Manual Servers"
+#~ msgstr "Manueller Server"
+
+#~ msgid "Save"
+#~ msgstr "Speichert"

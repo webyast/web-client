@@ -15,13 +15,13 @@ class PermissionsController < ApplicationController
     end
     @right_set_permissions = false
     @right_get_permissions = false
-    permissions = proxy.find(:all, :params => { :user_id => login, :filter => 'org.opensuse.yast.webservice' })
+    permissions = proxy.find(:all, :params => { :user_id => login, :filter => 'org.opensuse.yast.permissions' })
     permissions.each do |permission|
-      if permission.name == "org.opensuse.yast.webservice.write-permissions" &&
+      if permission.name == "org.opensuse.yast.permissions.write" &&
         permission.grant
         @right_set_permissions = true
       end
-      if permission.name == "org.opensuse.yast.webservice.read-permissions" &&
+      if permission.name == "org.opensuse.yast.permissions.read" &&
         permission.grant
         @right_get_permissions = true
       end

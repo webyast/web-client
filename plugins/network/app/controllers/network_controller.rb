@@ -17,7 +17,11 @@ class NetworkController < ApplicationController
   def index
 
     @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
-    @iface = params[:interface] || @ifcs[0].id
+    @iface = params[:interface]
+    unless @iface
+      ifc = @ifcs.find {|i| i.bootproto!=nil} || @ifcs[0]
+      @iface = ifc.id
+    end
 
     ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
     return false unless ifc
@@ -38,7 +42,6 @@ class NetworkController < ApplicationController
       redirect_to root_path
       return false
     end
-
  
     @conf_mode = ifc.bootproto
     if @conf_mode == "static"
@@ -52,7 +55,6 @@ class NetworkController < ApplicationController
     @domain = hn.domain
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
-
     @default_route = rt.via
 
   end
@@ -72,18 +74,27 @@ class NetworkController < ApplicationController
 
     dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
     return false unless dns
-    dns.nameservers = params["nameservers"]
-    dns.searches    = params["searches"]
+# FIXME: params bellow should be arrays    
+    dns.nameservers = params["nameservers"]#.split
+    dns.searches    = params["searchdomains"]#.split
 
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
     hn.name   = params["name"]
     hn.domain = params["domain"]
+
+    ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", params["interface"]
+    return false unless ifc
+    ifc.bootproto=params["conf_mode"]
+    if ifc.bootproto=="static"
+      ifc.ipaddr=params["ip"]+"/"+params["netmask"]
+    end
     
     begin
       rt.save
       dns.save
       hn.save
+      ifc.save
       flash[:notice] = _('Settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)

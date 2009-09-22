@@ -30,7 +30,7 @@
 
   <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <div class='plugin-content'>
-    <h2><%=_("Configure timezone")%></h2>
+    <h2><%=_("Time")%></h2>
     <% form_tag '/systemtime/update', :class => 'container' do %>
       <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
       %>
@@ -66,8 +66,12 @@
       <% end %>
 
       <div>
-        <input type="radio" name="timeconfig" value="manual" checked="true"/>
+        <input type="radio" name="timeconfig" value="none" checked="true"/>
+        <%=_("Don't set time")%>
+        <input type="radio" name="timeconfig" value="manual"/>
         <%=_("Manually configure time")%>
+        <input type="radio" name="timeconfig" value="ntp_sync"/>
+        <%=_("Synchronize via NTP")%>
       </div>
       <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
       %>

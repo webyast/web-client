@@ -61,11 +61,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
+%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
