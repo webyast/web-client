@@ -1,4 +1,4 @@
 #!/bin/sh
 rm -f log/development.log
 rake db:migrate
-ruby script/server
+ruby script/server --port=54984
