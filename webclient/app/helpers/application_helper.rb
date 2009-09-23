@@ -7,7 +7,7 @@ module ApplicationHelper
           return submit+back
         else
           back = link_to "Back", :controller => "controlpanel", :action => "backstep"
-          nextb = link_to submit_tag _("Next"),send_options
+          nextb = submit_tag _("Next"),send_options
           return back+nextb
         end
   end
