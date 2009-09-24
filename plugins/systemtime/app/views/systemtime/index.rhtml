@@ -1,6 +1,7 @@
 <% if @permissions %>  
 
   <% content_for :head do %>
+    <%= javascript_include_tag :defaults %>
     <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
     <% javascript_tag do -%>

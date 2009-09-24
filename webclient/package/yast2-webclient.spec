@@ -24,7 +24,7 @@ Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite avahi-utils rubygem-sqlite3 rubygem-rails-2_3
-BuildRequires:  rubygem-gettext_rails
+BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy
 # we require the lighttpd user to be present when building the rpm
 BuildRequires:  lighttpd
@@ -50,7 +50,7 @@ Authors:
 %setup -q -n www
 
 %build
-#(rake makemo)
+env LANG=en rake makemo
 
 %install
 
@@ -120,7 +120,7 @@ fi
 %files 
 %defattr(-,root,root)
 %dir /srv/www/yast 
-#/srv/www/yast/locale
+/srv/www/yast/locale
 /srv/www/yast/po
 /srv/www/yast/vendor
 /srv/www/yast/app  
@@ -133,7 +133,6 @@ fi
 /srv/www/yast/COPYING  
 /srv/www/yast/INSTALL
 /srv/www/yast/script  
-#/srv/www/yast/test  
 /srv/www/yast/config  
 /srv/www/yast/start.sh
 %doc README* COPYING  
