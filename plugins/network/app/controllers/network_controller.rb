@@ -56,7 +56,13 @@ class NetworkController < ApplicationController
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-
+    #FIXME: this is ugly and keys are duplicated, but otherwise seems it doesn't work
+    @conf_modes = [["",""], ["static","static"], ["dhcp", "dhcp"]]
+    # if unknown item, just add it into list
+    found = false
+    @conf_modes.each {|a| found=true if a[0] == @conf_mode}
+    @conf_modes << [@conf_mode, @conf_mode] if !found
+    
   end
 
 
