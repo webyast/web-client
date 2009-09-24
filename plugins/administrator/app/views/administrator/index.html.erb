@@ -1,29 +1,34 @@
 <div class='plugin-icon'><img src='/icons/yast-users.png'/></div>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
-<style type="text/css">
-    * { font-family: Verdana; font-size: 96%; }
-    label { width: 10em; float: left; }
-    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
-    p { clear: both; }
-    .submit { margin-left: 12em; }
-    em { font-weight: bold; padding-right: 1em; vertical-align: top; }
-</style>
-<script>
-    $(document).ready(function(){
-	$("#adminForm").validate();
-    });
-</script>
+<% content_for :head do %>
+  <%= javascript_include_tag :defaults %>
 
+  <style type="text/css">
+    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+  </style>
+
+  <% javascript_tag do -%>
+  $(document).ready(function(){
+    $("#adminForm").validate({
+      rules: {
+	"administrator[password]": "required",
+	"administrator[confirm_password]": {
+	    equalTo: "#administrator_password"
+	}
+    }
+    });
+  });
+  <% end %>
+
+<% end %>
 
 <h2><%=_("Administrator Settings")%></h2>
 
 <% disabled = ! @permissions[:write] %>
 
 <div class="table">
-  <table class="list">
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm" } ) do |f| %>
+  <table class="list">
   <%= f.error_messages %>
     <tr class="bg">
 	<td class="first"><strong><%=_("Password")%></strong></td>
@@ -31,7 +36,7 @@
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Confirm Password")%></strong></td>
-	<td class="last"><%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %></td>
+	<td class="last"><%= f.password_field :confirm_password, :disabled => disabled %></td>
 	<td><%= f.submit _("Save"), :name => "save_password", :disabled => disabled %></td>
     </tr>
     <tr class="bg">
@@ -42,6 +47,6 @@
     <tr>
     <td><%= form_send_buttons :onclick=>"Element.show('progress')" %></td>
     </tr>
-  <% end %>
   </table>
+  <% end %>
 </div>
