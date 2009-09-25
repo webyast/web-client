@@ -9,7 +9,7 @@ module ErrorConstructor
     when "NO_PERM"
       return _("Permission #{error["permission"]} is not granted for user #{error["user"]}")
     when "POLKIT"
-      return _("Policy kit exception for user #{error["user"]} and permission #{error["permission"]} (untranslated message): #{error["message"]}")
+      return _("Policy kit exception for user #{error["user"]} and permission #{error["permission"]} (untranslated message): #{error["polkitout"]}")
     when "NOT_LOGGED"
       return _("Noone is logged to rest service.")
     when "BADFILE"
