@@ -36,7 +36,7 @@ YaST2 Web user interface for security settings
 
 %build
 export RAILS_PARENT=/srv/www/yast
-(rake makemo)
+env LANG=en rake makemo
 
 %install
 

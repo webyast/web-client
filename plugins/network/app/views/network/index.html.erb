@@ -2,30 +2,88 @@
 <div class='plugin-content'>
 <h2><%=_("Network")%></h2>
 
-<!-- TODO translations -->
+<% disabled = ! @permissions[:write] %>
 
-<h3>Interface</h3>
-<% form_tag("/network", :method => "get") do |f| %>
+
+<% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
-  <%= select_tag(:interface,
-      options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
-  <%= submit_tag("Select") %>
+  <div class="table">
+    <table class="list" cellpadding="0" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2"><%=_("Interface")%></th>
+    </tr>
+    <tr>
+	<td class="first" width="120"><%= select_tag(:interface,
+      options_from_collection_for_select(@ifcs, :id, :id, @iface)) %></td>
+	<td class="last"><%= submit_tag("Select") %></td>
+    </tr>
+    </table>
+  </div>
 <% end %>
 
-<h3>IP Address</h3>
+<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put } ) do |n| %>
+<%= n.error_messages %>
+<!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
 
-<p>Configuration Mode: <%=h @conf_mode %></p>
-<p>IP Address: <%=h @ip %></p>
-<p>Netmask: <%=h @netmask %></p>
+<input type="hidden" id="interface" name="interface" value="<%= @iface %>">
 
-<h3>DNS</h3>
-<p>Hostname: <%=h @name %></p>
-<p>Domain: <%=h @domain %></p>
-<p>Name Servers: <%=h @nameservers.join " " %></p>
-<p>Search Domains: <%=h @searchdomains.join " " %></p>
+  <div class="table">
+    <table class="list" cellpadding="0" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2"><%=_("IP Address")%></th>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Configuration Mode")%></strong></td>
+	<td class="last"><%=text_field_tag :conf_mode, @conf_mode, :disabled => disabled %></td>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("IP Address")%></strong></td>
+	<td class="last"><%=text_field_tag :ip, @ip, :disabled => disabled %></td>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Prefixlen")%></strong></td>
+	<td class="last"><%=text_field_tag :netmask, @netmask, :disabled => disabled %></td>
+    </tr>
+    </table>
+  </div>
 
-<h3>Routing</h3>
-<p>Default Route: <%=h @default_route %></p>
+  <div class="table">
+    <table class="list" cellpadding="0" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2"><%=_("DNS")%></th>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Hostname")%></strong></td>
+	<td class="last"><%=text_field_tag :name, @name, :disabled => disabled %></td>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Domain")%></strong></td>
+	<td class="last"><%=text_field_tag :domain, @domain, :disabled => disabled %></td>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Name Servers")%></strong></td>
+	<td class="last"><%=text_field_tag :nameservers, @nameservers.join(" "), :disabled => disabled %></td>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Search Domains")%></strong></td>
+	<td class="last"><%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => disabled %></td>
+    </tr>
 
-<a href="/" class="button"><%=_("Back")%></a>
+    </table>
+  </div>
+
+  <div class="table">
+    <table class="list" cellpadding="0" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2"><%=_("Routing")%></th>
+    </tr>
+    <tr>
+	<td class="first" width="120"><strong><%=_("Default Route")%></strong></td>
+	<td class="last"><%=text_field_tag :default_route, @default_route, :disabled => disabled %></td>
+    </tr>
+    </table>
+  </div>
+
+<%= n.submit _("Update"), :disabled => disabled %><a href="/" class="button"><%=_("Back")%></a>
+<% end %>
 </div>

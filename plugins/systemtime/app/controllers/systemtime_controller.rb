@@ -31,6 +31,11 @@ class SystemtimeController < ApplicationController
     raise _("Unknown timezone #{@timezone} on host") unless @region
   end
 
+    def clear_time(proxy)
+    proxy.time = ""
+    proxy.date = ""
+  end
+
   public
 
   # cannot move to initialize, it is not finded - http://www.yotabanana.com/hiki/ruby-gettext-howto-rails.html#ApplicationController
@@ -83,15 +88,26 @@ class SystemtimeController < ApplicationController
   def update
     t = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
-    unless t
-      return false
-    end
+    return false unless t
 
     fill_proxy_with_timezone t, params, t.timezones
-    #TODO for future change between init types
-    fill_proxy_with_time t,params
+    case params[:timeconfig]
+    when "none" 
+      clear_time t #do nothing
+    when "manual"
+      fill_proxy_with_time t,params
+    when "ntp_sync"
+      clear_time t
+      ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
+      return false unless ntp      
+      ntp.synchronize = true
+      ntp.save #FIXME check return value
+    else
+      logger.error "Unknown value for timeconfig #{params[:timeconfig]}"
+    end
+    
 
-    t.timezone = [] #save bandwitch
+    t.timezones = [] #save bandwitch
 
     begin
       t.save

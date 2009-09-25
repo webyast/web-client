@@ -1,6 +1,9 @@
 require 'yast/service_resource'
+require 'open-uri'
 
 class StatusController < ApplicationController
+  include ProxyLoader
+  
   before_filter :login_required
   layout "main"
 
@@ -137,8 +140,28 @@ class StatusController < ApplicationController
     create_data
   end
 
+  def ajax_log_custom
+    # set the site to the view so it can load the log
+    # dynamically
+    if not params.has_key?(:id)
+      raise "Unknown log file"
+    end
+    
+    lines = params[:lines] || 5
+    log_url = YaST::ServiceResource::Session.site
+    log_url = log_url.merge("logs/#{params[:id]}.txt?lines=#{lines}")
+    logger.info "requesting #{log_url}"
+    @content = open(log_url).read
+    render :partial => 'status_log'
+  end
+  
   def index
     return unless client_permissions
+
+    log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
+    #log = load_proxy 'org.opensuse.yast.system.logs'
+    @logs = log.find(:all) 
+    
     create_data
     limits_reached
     logger.debug "limits reached for #{@limits_list[:reached].inspect}"

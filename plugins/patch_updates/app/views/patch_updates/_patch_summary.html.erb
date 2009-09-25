@@ -29,7 +29,7 @@
       <% end %>
       <span><%= label.join(", ") %></span>
     <% end %>
-    <% if not label.empty? %>
+    <% if patch[:security] > 0 or patch[:important] > 0 or patch[:optional] > 0%>
       <%= button_to_remote "Update All", :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
     <% end %>
 

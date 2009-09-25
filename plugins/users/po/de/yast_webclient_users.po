@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient users 1.0.0\n"
-"POT-Creation-Date: 2009-05-04 14:52+0200\n"
+"POT-Creation-Date: 2009-09-22 09:42+0200\n"
 "PO-Revision-Date: 2009-05-04 14:52+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,113 +16,116 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/controllers/users_controller.rb:122
-msgid "User was successfully created."
-msgstr "Benutzer wurde angelegt."
+#: app/controllers/users_controller.rb:18
+msgid "Invalid session, please login again."
+msgstr ""
 
-#: app/controllers/users_controller.rb:170
-msgid "SSH-Key was successfully exported."
-msgstr "SSH-Key wurde exportiert."
+#: app/controllers/users_controller.rb:148
+msgid "Empty UID value"
+msgstr ""
 
-#: app/controllers/users_controller.rb:172
-msgid "User was successfully updated."
-msgstr "Benutzerdaten wurden geändert."
+#: app/controllers/users_controller.rb:152
+msgid "UID: value >= 1000 is valid for local user only"
+msgstr ""
 
-#: app/views/users/index.html.erb:1
+#: app/views/users/index.html.erb:4
 msgid "Local User"
 msgstr "Lokale Benutzer"
 
-#: app/views/users/index.html.erb:9
+#: app/views/users/index.html.erb:8
 msgid "Login"
 msgstr ""
+
+#: app/views/users/index.html.erb:9 app/views/users/edit.html.erb:15
+#: app/views/users/new.html.erb:9
+msgid "Full Name"
+msgstr "Name"
 
 #: app/views/users/index.html.erb:10
 msgid "Edit"
 msgstr "Ändern"
 
-#: app/views/users/index.html.erb:12 app/views/users/index.html.erb:15
-msgid "SSH-Key"
-msgstr ""
-
-#: app/views/users/index.html.erb:13
-msgid "Delete"
-msgstr "Löschen"
-
-#: app/views/users/index.html.erb:30
-msgid "Are you sure?"
-msgstr "Sind Sie sicher ?"
-
-#: app/views/users/index.html.erb:38
+#: app/views/users/index.html.erb:29
 msgid "<strong>[New User]</strong>"
 msgstr "[neuer Benutzer]"
 
+#: app/views/users/index.html.erb:33 app/views/users/edit.html.erb:47
+#: app/views/users/new.html.erb:45
+msgid "Back"
+msgstr "Zurück"
+
 #: app/views/users/edit.html.erb:1
-msgid "Edit User"
+#, fuzzy
+msgid "Edit User %s"
 msgstr "Benutzer ändern"
 
-#: app/views/users/edit.html.erb:11 app/views/users/exportssh.html.erb:11
+#: app/views/users/edit.html.erb:12
 msgid "User"
 msgstr "Benutzer"
 
-#: app/views/users/edit.html.erb:14 app/views/users/new.html.erb:14
-msgid "Full Name"
-msgstr "Name"
-
-#: app/views/users/edit.html.erb:18 app/views/users/new.html.erb:18
+#: app/views/users/edit.html.erb:19 app/views/users/new.html.erb:13
 msgid "Groups"
 msgstr "Gruppe"
 
-#: app/views/users/edit.html.erb:22 app/views/users/new.html.erb:22
+#: app/views/users/edit.html.erb:23
 msgid "Default Group"
 msgstr "Standardgruppe"
 
-#: app/views/users/edit.html.erb:26 app/views/users/new.html.erb:26
-#: app/views/users/exportssh.html.erb:18
+#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:21
 msgid "Home Directory"
 msgstr ""
 
-#: app/views/users/edit.html.erb:30 app/views/users/new.html.erb:34
+#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:29
 msgid "Login Shell"
 msgstr ""
 
-#: app/views/users/edit.html.erb:34 app/views/users/new.html.erb:38
-#: app/views/users/exportssh.html.erb:14
+#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:33
 msgid "Login Name"
 msgstr ""
 
-#: app/views/users/edit.html.erb:38 app/views/users/new.html.erb:42
-msgid "UID"
+#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:37
+msgid "UID Number"
 msgstr ""
 
-#: app/views/users/edit.html.erb:42 app/views/users/new.html.erb:46
+#: app/views/users/edit.html.erb:43 app/views/users/new.html.erb:41
 msgid "Password"
 msgstr "Paßwort"
 
-#: app/views/users/edit.html.erb:46
+#: app/views/users/edit.html.erb:47
 msgid "Update"
 msgstr ""
-
-#: app/views/users/edit.html.erb:46 app/views/users/new.html.erb:50
-#: app/views/users/exportssh.html.erb:26
-msgid "Back"
-msgstr "Zurück"
 
 #: app/views/users/new.html.erb:1
 msgid "New User"
 msgstr "Neuer Benutzer"
 
-#: app/views/users/new.html.erb:30
+#: app/views/users/new.html.erb:17
+#, fuzzy
+msgid "Default Group (GID)"
+msgstr "Standardgruppe"
+
+#: app/views/users/new.html.erb:25
 msgid "do NOT create home directory"
 msgstr "Home directory nicht erzeugen"
 
-#: app/views/users/new.html.erb:50
+#: app/views/users/new.html.erb:45
 msgid "Create"
 msgstr "Speichern"
 
-#: app/views/users/exportssh.html.erb:1 app/views/users/exportssh.html.erb:26
-msgid "Export SSH-Key"
-msgstr "SSH-Key exportieren"
+#~ msgid "User was successfully created."
+#~ msgstr "Benutzer wurde angelegt."
 
-#: app/views/users/exportssh.html.erb:22
-msgid "SHH Key"
-msgstr ""
+#~ msgid "SSH-Key was successfully exported."
+#~ msgstr "SSH-Key wurde exportiert."
+
+#~ msgid "User was successfully updated."
+#~ msgstr "Benutzerdaten wurden geändert."
+
+#~ msgid "Delete"
+#~ msgstr "Löschen"
+
+#~ msgid "Are you sure?"
+#~ msgstr "Sind Sie sicher ?"
+
+#~ msgid "Export SSH-Key"
+#~ msgstr "SSH-Key exportieren"

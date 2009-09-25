@@ -15,7 +15,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controlle
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.3
+Version:        0.0.4
 Release:        0
 Summary:        YaST2 - Webclient - Services
 Source:         www.tar.bz2
@@ -33,13 +33,16 @@ YaST2 - Webclient - UI for YaST-webservice in order to handle services.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
+    Martin Vidner <mvidner@suse.cz>
+    Jiri Suchomel <jsuchome@suse.cz>
+    Ladislav Slezak <lslezak@suse.cz>
 
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
-(rake makemo)
+env LANG=en rake makemo
 
 %install
 

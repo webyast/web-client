@@ -47,6 +47,8 @@
         if host.blank? || user.blank? -%>
       <% else -%>
         <ul>
+          <li><%= link_to_remote( image_tag(current_locale_image, :size => "16x11", :alt => "#{current_locale}"), 
+              :update =>"language_selection", :url => { :controller => :controlpanel, :action => :select_language} ) %></li>
           <li><strong><%=_("Connected Host")%></strong></li>
           <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
@@ -60,8 +62,11 @@
     </div>
 
     <div id="content" class="content">
+
+
       <!-- here both flash and dynamic notifications should be added -->
       <div id="flash-messages">
+      <div id="language_selection"/>
       <!-- show the flash messages -->
 
       <% flash.each do |flash_type, message| %>

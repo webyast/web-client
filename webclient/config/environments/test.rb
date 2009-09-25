@@ -20,3 +20,6 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+# configure load path for test unit, needed for mocha >= 0.9.6 and test-unit >= 2.0.0
+config.gem 'test-unit', :lib => 'test/unit'

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient systemtime 1.0.0\n"
-"POT-Creation-Date: 2009-05-04 13:02+0200\n"
+"POT-Creation-Date: 2009-09-22 09:42+0200\n"
 "PO-Revision-Date: 2009-05-04 13:02+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,34 +16,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: app/controllers/system_time_controller.rb:39
+#: app/controllers/systemtime_controller.rb:59
+msgid "No permissions for time module"
+msgstr ""
+
+#: app/controllers/systemtime_controller.rb:98
+#: app/controllers/systemtime_controller.rb:102
 msgid "Settings have been written."
 msgstr ""
 
-#: app/views/system_time/index.rhtml:2
-msgid "Configure time"
+#: app/views/systemtime/index.rhtml:16
+msgid "Invalid date format. Correct one is dd/mm/yyyy"
 msgstr ""
 
-#: app/views/system_time/index.rhtml:14
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:20
+msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr ""
 
-#: app/views/system_time/index.rhtml:20
-msgid "UTC (Universal Time Coordinated)"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:24
-msgid "Date"
-msgstr ""
-
-#: app/views/system_time/index.rhtml:30
+#: app/views/systemtime/index.rhtml:33
 msgid "Time"
 msgstr ""
 
-#: app/views/system_time/index.rhtml:36
-msgid "Save"
+#: app/views/systemtime/index.rhtml:39
+msgid "Region:"
 msgstr ""
 
-#: app/views/system_time/index.rhtml:37
-msgid "Back"
+#: app/views/systemtime/index.rhtml:46
+msgid "Timezone:"
+msgstr ""
+
+#: app/views/systemtime/index.rhtml:58
+msgid "Hardware clock is set to UTC"
+msgstr ""
+
+#: app/views/systemtime/index.rhtml:70
+msgid "Manually configure time"
+msgstr ""
+
+#: app/views/systemtime/index.rhtml:76
+msgid "Date:"
+msgstr ""
+
+#: app/views/systemtime/index.rhtml:85
+msgid "Time:"
 msgstr ""

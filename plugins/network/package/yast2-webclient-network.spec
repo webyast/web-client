@@ -10,11 +10,10 @@
 
 
 Name:           yast2-webclient-network
-PreReq:         yast2-webclient >= 0.0.2
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.2
+Version:        0.0.3
 Release:        0
 Summary:        YaST2 - Webclient - network
 Source:         www.tar.bz2
@@ -22,6 +21,9 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 BuildRequires:  ruby
 BuildRequires:  yast2-webclient
+PreReq:         yast2-webclient >= 0.0.2
+# minimum counterpart required:
+Conflicts:      yast2-webservice-network < 0.0.3
 
 #
 %define pkg_user yast
@@ -30,17 +32,17 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
+YaST2 - Webclient - UI for YaST-webservice to set up networking.
 Authors:
 --------
-    Stefan Schubert <schubi@opensuse.org>
-    Josef Reidinger <jreidinger@suse.cz>
+    Michal Zugec <mzugec@suse.cz>
+    Martin Vidner <mvidner@suse.cz>
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
-(rake makemo)
+env LANG=en rake makemo
 
 %install
 
@@ -62,7 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/MIT-LICENSE
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
@@ -74,7 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 #/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 #/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 
 %changelog

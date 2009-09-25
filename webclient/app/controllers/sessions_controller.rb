@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
   #before_filter :ensure_logout, :only => [:new, :create]
   
   def index
-    # only used to display the flash message
+    #This is used in order to support the browser "back" button
+    new
+    return
   end
 
   # shows the current session
@@ -23,12 +25,6 @@ class SessionsController < ApplicationController
   #  render login screen
   #
   def new
-    # we can't create session if we are logged in
-    if logged_in?
-      redirect_to :action => "index"
-      return
-    end
-
     # Set @host to display info at login screen
     @host = Host.find(params[:hostid]) rescue nil
 
@@ -69,12 +65,6 @@ class SessionsController < ApplicationController
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
         redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "econnrefused"
-        return
-      rescue Exception => e
-        logger.warn e.to_s
-        logger.info e.backtrace.join("\n")
-        flash[:error] = _("Exception raised when trying to login to #{host.name}. Please try again")
-        redirect_to :action => "new", :hostid => host.id
         return
       end
       
