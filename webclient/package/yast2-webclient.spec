@@ -100,8 +100,8 @@ test -r /usr/sbin/yastwc || { echo "Creating link /usr/sbin/yastwc";
 #
 cd /srv/www/yast
 rake db:migrate
-chgrp lighttpd db db/*.sqlite*
-chown lighttpd db db/*.sqlite*
+chgrp lighttpd db db/*.sqlite* log log/*
+chown lighttpd db db/*.sqlite* log log/*
 
 %preun
 %stop_on_removal %{service_name}
