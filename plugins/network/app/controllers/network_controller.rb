@@ -50,25 +50,19 @@ class NetworkController < ApplicationController
       ipaddr = "-/-"
     end
     @ip, @netmask = ipaddr.split "/"
-    
+    # when detect PREFIXLEN with leading "/"
+    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
+ 
     @name = hn.name
     @domain = hn.domain
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-    #FIXME: this is ugly and keys are duplicated, but otherwise seems it doesn't work
-    @conf_modes = [["",""], ["static","static"], ["dhcp", "dhcp"]]
-    # if unknown item, just add it into list
-    found = false
-    @conf_modes.each {|a| found=true if a[0] == @conf_mode}
-    @conf_modes << [@conf_mode, @conf_mode] if !found
+    @conf_modes = {""=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
+    @conf_modes[@conf_mode] ||=@conf_mode
     
   end
 
-
-  # GET /users/1/edit
-  def edit
-  end
 
 
   # PUT /users/1
