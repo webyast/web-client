@@ -51,7 +51,11 @@ class NetworkController < ApplicationController
     end
     @ip, @netmask = ipaddr.split "/"
     # when detect PREFIXLEN with leading "/"
-    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
+    NETMASK_RANGE = 0..32
+    if ifc.bootproto == "static" && NETMASK_RANGE.include?(netmask.to_i)
+      @netmask = "/"+@netmask
+    end    
+#    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
  
     @name = hn.name
     @domain = hn.domain
