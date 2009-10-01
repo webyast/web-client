@@ -50,19 +50,23 @@ class NetworkController < ApplicationController
       ipaddr = "-/-"
     end
     @ip, @netmask = ipaddr.split "/"
-    
+    # when detect PREFIXLEN with leading "/"
+    NETMASK_RANGE = 0..32
+    if ifc.bootproto == "static" && NETMASK_RANGE.include?(netmask.to_i)
+      @netmask = "/"+@netmask
+    end    
+#    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
+ 
     @name = hn.name
     @domain = hn.domain
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-
+    @conf_modes = {""=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
+    @conf_modes[@conf_mode] ||=@conf_mode
+    
   end
 
-
-  # GET /users/1/edit
-  def edit
-  end
 
 
   # PUT /users/1
