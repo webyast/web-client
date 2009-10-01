@@ -96,14 +96,21 @@ class NetworkController < ApplicationController
     end
     
     begin
+      # this is not transaction!
+      # if any *.save failed, the previous will be applied
       rt.save
       dns.save
       hn.save
       ifc.save
       flash[:notice] = _('Settings have been written.')
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      logger.warn e
+    rescue ActiveResource::ServerError => e
+      response = Hash.from_xml(e.response.body)
+      if ( response["error"] && response["error"]["type"]=="NETWORK_ROUTE_ERROR")
+	flash[:error] = response["error"]["description"]
+	logger.warn e
+      else
+         throw e
+      end
     rescue Exception => e
       flash[:error] = e.message
       logger.warn e
