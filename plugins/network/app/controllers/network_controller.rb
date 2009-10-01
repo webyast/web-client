@@ -13,6 +13,8 @@ class NetworkController < ApplicationController
   def initialize
   end
   
+  NETMASK_RANGE = 0..32
+
   # GET /network
   def index
 
@@ -51,7 +53,6 @@ class NetworkController < ApplicationController
     end
     @ip, @netmask = ipaddr.split "/"
     # when detect PREFIXLEN with leading "/"
-    NETMASK_RANGE = 0..32
     if ifc.bootproto == "static" && NETMASK_RANGE.include?(netmask.to_i)
       @netmask = "/"+@netmask
     end    
@@ -63,7 +64,7 @@ class NetworkController < ApplicationController
     @searchdomains = dns.searches
     @default_route = rt.via
     @conf_modes = {""=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
-    @conf_modes[@conf_mode] ||=@conf_mode
+    @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
     
   end
 
