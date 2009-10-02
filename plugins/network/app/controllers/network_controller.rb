@@ -109,7 +109,7 @@ class NetworkController < ApplicationController
 	flash[:error] = response["error"]["description"]
 	logger.warn e
       else
-         throw e
+        raise
       end
     rescue Exception => e
       flash[:error] = e.message
