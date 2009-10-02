@@ -19,7 +19,10 @@ module ErrorConstructor
       if error["output"]=="NOSERVERS" #special value indicates that there is no predefined ntp server
         problem = _("There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS")
       end
-      return _("Error occure during ntp synchronization: #{problem}")
+      return _("Error occured during ntp synchronization: #{problem}")
+    when "ADMINISTRATOR_ERROR"
+      problem = error["output"]
+      return _("Error while savig administrator settings: #{problem}")
     else
       RAILS_DEFAULT_LOGGER.warn "Untranslated message for exception #{error["type"]}"
       return error["description"]

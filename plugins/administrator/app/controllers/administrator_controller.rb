@@ -61,6 +61,12 @@ class AdministratorController < ApplicationController
       response = @administrator.save
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
+	logger.warn e.inspect
+      # handle backend exception here, not by generic handler:
+      rescue ActiveResource::ServerError => e
+	error = Hash.from_xml e.response.body
+	logger.warn error.inspect
+        flash[:error] = _("Error while savig administrator settings: #{error["error"]["output"]}")
     end
 
     if params.has_key? "commit"
