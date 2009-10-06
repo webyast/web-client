@@ -14,7 +14,7 @@ PreReq:         yast2-webclient
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.1
+Version:        0.0.2
 Release:        0
 Summary:        YaST2 - Webclient - Custom Services
 Source:         www.tar.bz2
@@ -25,7 +25,7 @@ Requires:	yast2-webclient-services
 
 #
 %define pkg_user yast
-%define plugin_name services
+%define plugin_name custom_services
 #
 
 
@@ -33,7 +33,7 @@ Requires:	yast2-webclient-services
 YaST2 - Webclient - UI for YaST-webservice in order to handle custom service(s).
 Authors:
 --------
-    Stefan Schubert <schubi@opensuse.org>
+
 
 %prep
 %setup -q -n www

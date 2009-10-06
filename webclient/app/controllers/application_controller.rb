@@ -78,7 +78,13 @@ class ApplicationController < ActionController::Base
       #render :text => "shit" and return
     end
 
-    render :template => "shared/exception_trap", :locals => {:error => e}
+    case e
+    when ActionController::InvalidAuthenticityToken
+      render :template => "shared/cookies_disabled"
+    else
+      render :template => "shared/exception_trap", :locals => {:error => e}
+    end
+
     return
   end
   

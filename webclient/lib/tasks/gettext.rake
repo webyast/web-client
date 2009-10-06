@@ -1,11 +1,19 @@
 #
 # Added for Ruby-GetText-Package
 #
+require 'fileutils'
 
 desc "Create mo-files for L10n"
 task :makemo do
   require 'gettext_rails/tools'
   GetText.create_mofiles
+  destdir = File.join(File.dirname(__FILE__),"../../..", "webclient", "public", "vendor", "text")
+  if File.directory?(destdir)
+    # I am a plugin. In order to get the translation available the concerning mo files have to be
+    # available in webservice/public/vendor/text/locale. That is needed in the development environment ONLY.
+    srcdir = File.join(Dir.pwd,"locale")
+    FileUtils.cp_r(srcdir, destdir) if File.directory?(srcdir)
+  end
 end
 
 desc "Update pot/po files to match new version."

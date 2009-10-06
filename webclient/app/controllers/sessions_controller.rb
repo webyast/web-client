@@ -45,6 +45,7 @@ class SessionsController < ApplicationController
   # it will show the login form
   def create
     host = Host.find(params[:hostid]) rescue nil
+    puts "Host(#{params[:hostid]}): #{host.inspect}"
     # if the user or password is not there, then render the login form
     if host.nil?
       flash[:warning] = _("You need to specify the host")
@@ -65,6 +66,9 @@ class SessionsController < ApplicationController
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
         redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "econnrefused"
+        return
+      rescue SocketError => e
+        redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "ecantresolve"
         return
       end
       

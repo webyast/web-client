@@ -15,7 +15,7 @@ PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_3, ruby
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.3
+Version:        0.0.4
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
@@ -99,9 +99,9 @@ test -r /usr/sbin/yastwc || { echo "Creating link /usr/sbin/yastwc";
 # create database 
 #
 cd /srv/www/yast
-rake db:migrate
-chgrp lighttpd db db/*.sqlite*
-chown lighttpd db db/*.sqlite*
+RAILS_ENV=production rake db:migrate
+chgrp lighttpd db db/*.sqlite* log log/*
+chown lighttpd db db/*.sqlite* log log/*
 
 %preun
 %stop_on_removal %{service_name}

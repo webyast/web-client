@@ -26,6 +26,10 @@ class HostsController < ApplicationController
       flash[:warning] = _("Make sure the host is up and that the YaST web service is running.")
     elsif error == "nohostid"
       flash[:notice] = _("Please select a host to connect to.")
+    elsif error == "ecantresolve"
+      host = Host.find(params[:hostid]) rescue nil
+      flash[:error] = _("The host '#{host.url}' cannot be found.") if host
+      flash[:warning] = _("Please double-check the host URL.")
     end
   end
 

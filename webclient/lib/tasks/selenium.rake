@@ -22,7 +22,6 @@ begin
 	      rc.timeout_in_seconds = 3 * 60
     end
 rescue LoadError
-    puts "Selenium not available"
 end
 
 namespace :sinatra do

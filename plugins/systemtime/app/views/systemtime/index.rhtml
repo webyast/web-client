@@ -1,4 +1,5 @@
-<% if @permissions %>  
+<% if @permissions %>
+  <% disabled = ! @permissions[:write] %>
 
   <% content_for :head do %>
     <%= javascript_include_tag :defaults %>
@@ -25,9 +26,22 @@
       return true;
       };
     <% end -%>
+    <% javascript_tag do -%>
+      function enable() {
+        if ( !<%= disabled %> ){
+          $("#date_date")[0].disabled = false;
+          $("#currenttime")[0].disabled = false;
+        }
+      };
+      function disable() {
+          $("#date_date")[0].disabled = true;
+          $("#currenttime")[0].disabled = true;
+      }
 
+
+    <% end -%>
   <% end %>
-  <% disabled = ! @permissions[:write] %>
+  
 
   <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <div class='plugin-content'>
@@ -67,11 +81,11 @@
       <% end %>
 
       <div>
-        <input type="radio" name="timeconfig" value="none" checked="true"/>
+        <input type="radio" name="timeconfig" value="none" checked="true" onclick="disable();"/>
         <%=_("Don't set time")%>
-        <input type="radio" name="timeconfig" value="manual"/>
+        <input type="radio" name="timeconfig" value="manual" onclick="enable();"/>
         <%=_("Manually configure time")%>
-        <input type="radio" name="timeconfig" value="ntp_sync"/>
+        <input type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"/>
         <%=_("Synchronize via NTP")%>
       </div>
       <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
@@ -82,7 +96,7 @@
         </label>
 
         <%= text_field "date","date", :class => 'datepicker aligned-inputs',
-          :disabled=> disabled, :value => @date
+          :disabled=> "true", :value => @date
       %>
       </div>
       <div>
@@ -90,7 +104,7 @@
           <%= _("Time:") %>
         </label>
 
-        <span><%= text_field_tag "currenttime", @time, :disabled=> disabled, :class=>'aligned-inputs' %></span>
+        <span><%= text_field_tag "currenttime", @time, :disabled=> "true", :class=>'aligned-inputs' %></span>
       </div>
       <div>
         <%= form_send_buttons ({:disabled => disabled, :onclick => "submitTime();"}) %>
