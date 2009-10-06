@@ -99,7 +99,7 @@ test -r /usr/sbin/yastwc || { echo "Creating link /usr/sbin/yastwc";
 # create database 
 #
 cd /srv/www/yast
-rake db:migrate
+RAILS_ENV=production rake db:migrate
 chgrp lighttpd db db/*.sqlite* log log/*
 chown lighttpd db db/*.sqlite* log log/*
 
