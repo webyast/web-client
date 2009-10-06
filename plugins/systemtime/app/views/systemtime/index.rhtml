@@ -96,7 +96,7 @@
         </label>
 
         <%= text_field "date","date", :class => 'datepicker aligned-inputs',
-          :disabled=> disabled, :value => @date
+          :disabled=> "true", :value => @date
       %>
       </div>
       <div>
@@ -104,7 +104,7 @@
           <%= _("Time:") %>
         </label>
 
-        <span><%= text_field_tag "currenttime", @time, :disabled=> disabled, :class=>'aligned-inputs' %></span>
+        <span><%= text_field_tag "currenttime", @time, :disabled=> "true", :class=>'aligned-inputs' %></span>
       </div>
       <div>
         <%= form_send_buttons ({:disabled => disabled, :onclick => "submitTime();"}) %>
