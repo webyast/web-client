@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient 1.0.0\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-07 11:17+0200\n"
 "PO-Revision-Date: 2009-02-27 09:24+0100\n"
 "Last-Translator: Schubert Stefan <schubi@suse.de>\n"
 "Language-Team:  <de@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: app/controllers/application_controller.rb:87
+#: app/controllers/application_controller.rb:93
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:94
+#: app/controllers/application_controller.rb:100
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -32,23 +32,27 @@ msgstr ""
 msgid "Please select a host to connect to."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:50
+#: app/controllers/hosts_controller.rb:32
+msgid "Please double-check the host URL."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:51
 msgid "You need to specify the host"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:53
+#: app/controllers/sessions_controller.rb:54
 msgid "No login specified"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:56
+#: app/controllers/sessions_controller.rb:57
 msgid "No password specified"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:89
+#: app/controllers/sessions_controller.rb:93
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:114
+#: app/controllers/sessions_controller.rb:118
 msgid "You have been logged out."
 msgstr "Sie haben sich abgemeldet."
 
@@ -211,7 +215,7 @@ msgid "No information available"
 msgstr ""
 
 #: app/views/shared/backendexception_trap.html.erb:4
-msgid "Problem occur on target machine."
+msgid "Problem occured on target machine."
 msgstr ""
 
 #: app/views/layouts/main.rhtml:34
@@ -320,3 +324,12 @@ msgstr ""
 msgid "Noone is logged to rest service."
 msgstr ""
 
+#: lib/error_constructor.rb:20
+msgid ""
+"There is no predefined ntp server at /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
+msgstr ""
+
+#: lib/error_constructor.rb:24
+msgid "ADMINISTRATOR_ERROR"
+msgstr ""
