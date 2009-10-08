@@ -118,23 +118,27 @@ class PatchUpdatesController < ApplicationController
 
     #search for patches and collect the ids
     params.each { |key, value|
-      if key =~ /\D*_\d/
+      if key =~ /\D*_\d/ || key == "id"
         update_array << value
       end
     }
     update_array.each do |patch_id|
-      update = load_proxy 'org.opensuse.yast.system.patches', patch_id
-      
-      if update
-        begin
-          update.save
-          logger.debug "updated #{patch_id}"
-          flash[:notice] = _("Patch has been installed.")
-        rescue ActiveResource::ClientError => e
-          flash[:error] = YaST::ServiceResource.error(e)
-        end        
-      end
-  end
+      update = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches').new(
+                             :repo=>nil, 
+                             :kind=>nil, 
+                             :name=>nil, 
+                             :arch=>nil, 
+                             :version=>nil,
+                             :summary=>nil, 
+                             :resolvable_id=>patch_id)
+      begin
+        update.save
+        logger.debug "updated #{patch_id}"
+        flash[:notice] = _("Patch has been installed.")
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+      end        
+    end
     redirect_to({:controller=>"patch_updates", :action=>"index"})
   end
 end
