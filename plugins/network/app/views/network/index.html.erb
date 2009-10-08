@@ -34,7 +34,7 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Configuration Mode")%></strong></td>
-	<td class="last"><%=text_field_tag :conf_mode, @conf_mode, :disabled => disabled %></td>
+	<td class="last"><%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => disabled)%></td>
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("IP Address")%></strong></td>

@@ -13,6 +13,8 @@ class NetworkController < ApplicationController
   def initialize
   end
   
+  NETMASK_RANGE = 0..32
+
   # GET /network
   def index
 
@@ -50,19 +52,22 @@ class NetworkController < ApplicationController
       ipaddr = "-/-"
     end
     @ip, @netmask = ipaddr.split "/"
-    
+    # when detect PREFIXLEN with leading "/"
+    if ifc.bootproto == "static" && NETMASK_RANGE.include?(netmask.to_i)
+      @netmask = "/"+@netmask
+    end    
+#    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
+ 
     @name = hn.name
     @domain = hn.domain
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-
+    @conf_modes = {""=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
+    @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
+    
   end
 
-
-  # GET /users/1/edit
-  def edit
-  end
 
 
   # PUT /users/1
@@ -91,14 +96,21 @@ class NetworkController < ApplicationController
     end
     
     begin
+      # this is not transaction!
+      # if any *.save failed, the previous will be applied
       rt.save
       dns.save
       hn.save
       ifc.save
       flash[:notice] = _('Settings have been written.')
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      logger.warn e
+    rescue ActiveResource::ServerError => e
+      response = Hash.from_xml(e.response.body)
+      if ( response["error"] && response["error"]["type"]=="NETWORK_ROUTE_ERROR")
+	flash[:error] = response["error"]["description"]
+	logger.warn e
+      else
+        raise
+      end
     rescue Exception => e
       flash[:error] = e.message
       logger.warn e
