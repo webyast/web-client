@@ -86,7 +86,7 @@ class PatchUpdatesController < ApplicationController
 
     flash.clear #no flash from load_proxy
     last_patch = ""
-    if patch_updates
+    if patch_updates.size > 0
       #installing the first available patch
       logger.info "Installing patch :#{patch_updates[0].name}"
       begin
