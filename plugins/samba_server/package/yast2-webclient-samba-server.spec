@@ -15,7 +15,6 @@
 
 Name:           yast2-webclient-samba-server
 PreReq:         yast2-webclient
-BuildRequires:	rubygem-rake rubygem-gettext_rails
 Provides:       yast2-webclient:/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/controllers/sambserver_controller.rb
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
@@ -26,6 +25,8 @@ Summary:        YaST2 - Webclient - Samba Server
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  ruby
+BuildRequires:  yast2-webclient
 
 
 
