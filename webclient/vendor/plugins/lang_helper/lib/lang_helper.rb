@@ -35,7 +35,7 @@ module LangHelper
     cookies["lang"] = params["id"]
     set_locale params["id"]
 #    flash[:notice] = _('Cookie &quot;lang&quot; is set: %s') % params["id"]
-    redirect_to :action => 'index'
+    redirect_to :back
   end
 end
  
