@@ -51,6 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %dir /srv/www/yast
+%dir /srv/www/yast/vendor
 /srv/www/yast/vendor/selenium-remote-control
 %doc README*
 
