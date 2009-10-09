@@ -29,9 +29,6 @@ BuildRequires:  tidy
 # we require the lighttpd user to be present when building the rpm
 BuildRequires:  lighttpd
 BuildArch:      noarch  
-# required because we include selenium jar
-BuildRequires:  fastjar
-#
 %define service_name yastwc
 #
 
