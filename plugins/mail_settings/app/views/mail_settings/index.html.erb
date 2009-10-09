@@ -1,0 +1,36 @@
+<div class='plugin-icon'><img src='/icons/yast-mail-server.png'/></div>
+
+<h2><%=_("Mail Settings")%></h2>
+
+<% disabled = ! @permissions[:write] %>
+
+<div class="table">
+  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm" } ) do |f| %>
+  <table class="list">
+  <%= f.error_messages %>
+    <tr class="bg">
+	<td class="first"><strong><%=_("SMTP server address")%></strong></td>
+	<td class="last"><%= f.text_field :smtp_server, :disabled => disabled %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong><%=_("TLS")%></strong></td>
+	<td class="last"><%= f.text_field :transport_layer_security, :disabled => disabled %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong><%=_("User name")%></strong></td>
+	<td class="last"><%= f.text_field :user, :disabled => disabled %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong><%=_("Password")%></strong></td>
+	<td class="last"><%= f.password_field :password, :disabled => disabled %></td>
+    </tr>
+    <tr class="bg">
+	<td class="first"><strong><%=_("Confirm Password")%></strong></td>
+        <td class="last"><%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %></td>
+    </tr>
+    <tr>
+    <td><%= form_send_buttons :onclick=>"Element.show('progress')" %></td>
+    </tr>
+  </table>
+  <% end %>
+</div>
