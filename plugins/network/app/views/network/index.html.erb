@@ -1,9 +1,31 @@
+<%
+  write_disabled = ! @permissions[:write]
+  static_disabled = write_disabled || @conf_mode != "static"
+%>
+<% content_for :head do %>
+   <%= javascript_include_tag :defaults %>
+   <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+
+   <% javascript_tag do -%>
+      function disable_static_config(abool) {
+          $("#ip")[0].disabled = abool;
+          $("#netmask")[0].disabled = abool;
+          $("#nameservers")[0].disabled = abool;
+          $("#searchdomains")[0].disabled = abool;
+          $("#default_route")[0].disabled = abool;
+// TODO fix and use this
+//          $.each(["#ip", "#netmask",
+//                  "#nameservers", "#searchdomains",
+//                  "#default_route"], function() {
+//              $(this)[0].disabled = abool;
+//          });
+      }
+   <% end -%>
+<% end %>
+
 <div class='plugin-icon'><img src='/icons/yast-network.png'/></div>
 <div class='plugin-content'>
 <h2><%=_("Network")%></h2>
-
-<% disabled = ! @permissions[:write] %>
-
 
 <% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
@@ -34,15 +56,15 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Configuration Mode")%></strong></td>
-	<td class="last"><%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => disabled)%></td>
+	<td class="last"><%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%></td>
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("IP Address")%></strong></td>
-	<td class="last"><%=text_field_tag :ip, @ip, :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :ip, @ip, :disabled => static_disabled %></td>
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Prefixlen")%></strong></td>
-	<td class="last"><%=text_field_tag :netmask, @netmask, :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :netmask, @netmask, :disabled => static_disabled %></td>
     </tr>
     </table>
   </div>
@@ -54,19 +76,19 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Hostname")%></strong></td>
-	<td class="last"><%=text_field_tag :name, @name, :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :name, @name, :disabled => write_disabled %></td>
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Domain")%></strong></td>
-	<td class="last"><%=text_field_tag :domain, @domain, :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :domain, @domain, :disabled => write_disabled %></td>
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Name Servers")%></strong></td>
-	<td class="last"><%=text_field_tag :nameservers, @nameservers.join(" "), :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :nameservers, @nameservers.join(" "), :disabled => static_disabled %></td>
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Search Domains")%></strong></td>
-	<td class="last"><%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => static_disabled %></td>
     </tr>
 
     </table>
@@ -79,11 +101,17 @@
     </tr>
     <tr>
 	<td class="first" width="120"><strong><%=_("Default Route")%></strong></td>
-	<td class="last"><%=text_field_tag :default_route, @default_route, :disabled => disabled %></td>
+	<td class="last"><%=text_field_tag :default_route, @default_route, :disabled => static_disabled %></td>
     </tr>
     </table>
   </div>
 
-<%= n.submit _("Update"), :disabled => disabled %><a href="/" class="button"><%=_("Back")%></a>
+<%= n.submit _("Update"), :disabled => write_disabled %><a href="/" class="button"><%=_("Back")%></a>
 <% end %>
 </div>
+<% javascript_tag do -%>
+   $('#conf_mode').delayedObserver(0.25, function(element, value) {
+     disabled = <%= write_disabled %> || value != "static";
+     disable_static_config(disabled);
+   })
+<% end -%>
