@@ -46,9 +46,9 @@ class ApplicationController < ActionController::Base
       error = Hash.from_xml e.response.body
       err_msg = construct_error(error)
       if request.xhr?
-        render :text => err_msg
+        render :status => 503, :text => err_msg
       else
-        render :template => "shared/backendexception_trap", :locals => {:error => err_msg}
+        render :status => 503, :template => "shared/backendexception_trap", :locals => {:error => err_msg}
       end
     else
       exception_trap(e)
@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
 
   def exception_trap(e)
     logger.error "***" + e.to_s
+    logger.error e.backtrace.join "\n"
     
     # get the vendor settings
     begin
@@ -74,15 +75,15 @@ class ApplicationController < ActionController::Base
     # for ajax request render a different template, much less verbose
     if request.xhr?
       logger.error "Error during ajax request"
-      render :partial => "shared/exception_trap", :locals => {:error => e} and return
+      render :status => 500, :partial => "shared/exception_trap", :locals => {:error => e} and return
       #render :text => "shit" and return
     end
 
     case e
     when ActionController::InvalidAuthenticityToken
-      render :template => "shared/cookies_disabled"
+      render :status => 500, :template => "shared/cookies_disabled"
     else
-      render :template => "shared/exception_trap", :locals => {:error => e}
+      render :status => 500, :template => "shared/exception_trap", :locals => {:error => e}
     end
 
     return

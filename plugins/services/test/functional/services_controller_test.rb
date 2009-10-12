@@ -4,23 +4,29 @@ class ServicesControllerTest < ActionController::TestCase
 
   class Proxy
     attr_accessor :result, :permissions, :timeout
-    def find(params = {})
-      return result
+    def find(arg, params = {})
+      if arg == :all
+        return [result]
+      else
+        return result
+      end
     end
   end
 
   class Proxy2
     attr_accessor :result, :permissions, :timeout
-    def find(params = {})
+    def find(arg, params = {})
       raise ActiveResource::ResourceNotFound.new(Net::HTTPNotFound.new('1.1', '404', 'Not Found '))
     end
   end
 
   class Result
-    attr_accessor :status
+    attr_accessor :status, :name, :description
 
     def fill
 	@status = 0
+        @name = "fake-service"
+        @description = "a fake service"
     end
 
     def save
