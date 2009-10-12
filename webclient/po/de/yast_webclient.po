@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient 1.0.0\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-12 11:50+0200\n"
 "PO-Revision-Date: 2009-02-27 09:24+0100\n"
 "Last-Translator: Schubert Stefan <schubi@suse.de>\n"
 "Language-Team:  <de@li.org>\n"
@@ -16,13 +16,88 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: app/controllers/application_controller.rb:93
-msgid "Please login to continue"
+#: app/models/host.rb:-
+msgid "host"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
-msgid "You must logout before you can login"
+#: app/models/host.rb:-
+#, fuzzy
+msgid "Host|Name"
+msgstr "Name"
+
+#: app/models/host.rb:-
+msgid "Host|Url"
 msgstr ""
+
+#: app/models/host.rb:-
+#, fuzzy
+msgid "Host|Description"
+msgstr "Beschreibung"
+
+#: app/models/host.rb:-
+msgid "Host|Created at"
+msgstr ""
+
+#: app/models/host.rb:-
+msgid "Host|Updated at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "account"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Login"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Created at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Updated at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Remember token"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Remember token expires at"
+msgstr ""
+
+#: app/models/account.rb:-
+msgid "Account|Salt"
+msgstr ""
+
+#: app/helpers/application_helper.rb:5
+msgid "Save"
+msgstr "Speichern"
+
+#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr ""
+
+#: app/helpers/application_helper.rb:10
+msgid "Next"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:10
+msgid "Are you sure?"
+msgstr "Sind Sie sicher ?"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr ""
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Editieren"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Löschen"
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -56,132 +131,13 @@ msgstr ""
 msgid "You have been logged out."
 msgstr "Sie haben sich abgemeldet."
 
-#: app/models/account.rb:-
-msgid "account"
+#: app/controllers/application_controller.rb:93
+msgid "Please login to continue"
 msgstr ""
 
-#: app/models/account.rb:-
-msgid "Account|Login"
+#: app/controllers/application_controller.rb:100
+msgid "You must logout before you can login"
 msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Created at"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Updated at"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Remember token"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Remember token expires at"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Salt"
-msgstr ""
-
-#: app/models/host.rb:-
-msgid "host"
-msgstr ""
-
-#: app/models/host.rb:-
-#, fuzzy
-msgid "Host|Name"
-msgstr "Name"
-
-#: app/models/host.rb:-
-msgid "Host|Url"
-msgstr ""
-
-#: app/models/host.rb:-
-#, fuzzy
-msgid "Host|Description"
-msgstr "Beschreibung"
-
-#: app/models/host.rb:-
-msgid "Host|Created at"
-msgstr ""
-
-#: app/models/host.rb:-
-msgid "Host|Updated at"
-msgstr ""
-
-#: app/helpers/application_helper.rb:5
-msgid "Save"
-msgstr "Speichern"
-
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr ""
-
-#: app/helpers/application_helper.rb:10
-msgid "Next"
-msgstr ""
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr ""
-
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Editieren"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Löschen"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "Sind Sie sicher ?"
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr "YaST-Web-Service ändern"
-
-#: app/views/hosts/edit.html.erb:24
-msgid "YaST-Web-Service"
-msgstr "YaST-Web-Service"
-
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
-msgid "Name"
-msgstr "Name"
-
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
-msgid "Url"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
-msgid "Description"
-msgstr "Beschreibung"
-
-#: app/views/hosts/edit.html.erb:40
-msgid "Ok"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:41
-msgid "Back"
-msgstr "Zurück"
-
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr ""
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
-msgstr ""
-
-#: app/views/hosts/new.html.erb:47
-msgid "Create"
-msgstr "Erzeuge"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
@@ -216,6 +172,106 @@ msgstr ""
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
+msgstr ""
+
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:4
+msgid "New WebYaST Host"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:31 app/views/hosts/edit.html.erb:27
+msgid "Name"
+msgstr "Name"
+
+#: app/views/hosts/new.html.erb:36 app/views/hosts/edit.html.erb:31
+msgid "Url"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:41 app/views/hosts/edit.html.erb:35
+msgid "Description"
+msgstr "Beschreibung"
+
+#: app/views/hosts/new.html.erb:47
+msgid "Create"
+msgstr "Erzeuge"
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr "YaST-Web-Service ändern"
+
+#: app/views/hosts/edit.html.erb:24
+msgid "YaST-Web-Service"
+msgstr "YaST-Web-Service"
+
+#: app/views/hosts/edit.html.erb:40
+msgid "Ok"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:41
+msgid "Back"
+msgstr "Zurück"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:61
+msgid "Configuration"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:30
+#, fuzzy
+msgid "System actions"
+msgstr "Systemzeit"
+
+#: app/views/controlpanel/index.rhtml:31
+msgid "Reboot"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:33
+msgid "Shutdown"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Status"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:43
+msgid "Loading patch information"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:45
+msgid "Patch plugin is not installed."
+msgstr "Patch Plugin ist nicht installiert"
+
+#: app/views/controlpanel/index.rhtml:51
+msgid "Loading system information"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:53
+msgid "Status plugin is not installed."
+msgstr "Status Plugin ist nicht installiert."
+
+#: app/views/controlpanel/index.rhtml:92
+msgid "Show all modules"
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid ""
+"Your system setup was not completed. Please continue with setting up the "
+"modules."
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
 msgstr ""
 
 #: app/views/layouts/main.rhtml:34
@@ -264,64 +320,21 @@ msgstr "Benutzer"
 msgid "Password:"
 msgstr "Passwort"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
+#: lib/error_constructor.rb:10
+msgid "Permission %s is not granted for user %s"
 msgstr ""
 
-#: app/views/controlpanel/basesystem.rhtml:3
+#: lib/error_constructor.rb:12
 msgid ""
-"Your system setup was not completed. Please continue with setting up the "
-"modules."
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr ""
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
-msgid "Configuration"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:30
-#, fuzzy
-msgid "System actions"
-msgstr "Systemzeit"
-
-#: app/views/controlpanel/index.rhtml:31
-msgid "Reboot"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:33
-msgid "Shutdown"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:43
-msgid "Loading patch information"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:45
-msgid "Patch plugin is not installed."
-msgstr "Patch Plugin ist nicht installiert"
-
-#: app/views/controlpanel/index.rhtml:51
-msgid "Loading system information"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:53
-msgid "Status plugin is not installed."
-msgstr "Status Plugin ist nicht installiert."
-
-#: app/views/controlpanel/index.rhtml:92
-msgid "Show all modules"
+"Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
+msgstr ""
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
 #: lib/error_constructor.rb:20
@@ -330,6 +343,10 @@ msgid ""
 "NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
+#: lib/error_constructor.rb:23
+msgid "Error occured during ntp synchronization: %s"
+msgstr ""
+
+#: lib/error_constructor.rb:26
+msgid "Error while saving administrator settings: %s"
 msgstr ""
