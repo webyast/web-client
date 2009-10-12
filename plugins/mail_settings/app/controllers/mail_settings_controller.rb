@@ -33,7 +33,7 @@ class MailSettingsController < ApplicationController
 	error = Hash.from_xml e.response.body
 	logger.warn error.inspect
 	if error["error"] && error["error"]["type"] == "MAIL_SETTINGS_ERROR"
-          flash[:error] = _("Error while saving mail settings: #{error["error"]["output"]}")
+          flash[:error] = _("Error while saving mail settings: %s") % error["error"]["output"]
 	else
 	  raise e
 	end
