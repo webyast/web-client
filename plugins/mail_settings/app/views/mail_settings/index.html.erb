@@ -28,8 +28,8 @@
 	<td class="last"><%= f.text_field :smtp_server, :disabled => disabled %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("TLS")%></strong></td>
-	<td class="last"><%= f.text_field :transport_layer_security, :disabled => disabled %></td>
+	<td class="first"><strong><%=_("Transport Layer Security")%></strong></td>
+	<td class="last"><%= f.select :transport_layer_security, [ "NONE", "MAY", "MUST"], :disabled => disabled %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("User name")%></strong></td>
