@@ -22,11 +22,7 @@ class MailSettingsController < ApplicationController
     @mail_settings	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
     return unless @mail_settings
 
-    mail	= params["mail_settings"]
-    @mail_settings.smtp_server	= mail["smtp_server"]
-    @mail_settings.password	= mail["password"]
-    @mail_settings.user		= mail["user"]
-    @mail_settings.transport_layer_security	= mail["transport_layer_security"]
+    @mail_settings.load params["mail_settings"]
 
     begin
       response = @mail_settings.save
