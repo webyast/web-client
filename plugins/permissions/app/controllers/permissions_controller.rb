@@ -184,7 +184,8 @@ class PermissionsController < ApplicationController
   def search
     proxy = client_permissions
     return unless proxy
-    flash[:error] = get_permissions(params[:user].rstrip, true, proxy)
+    response = get_permissions(params[:user].rstrip, true, proxy)
+    flash[:error] = response unless response.empty?
     render :action => "index" 
   end
 
