@@ -67,7 +67,8 @@ class AdministratorController < ApplicationController
 	error = Hash.from_xml e.response.body
 	logger.warn error.inspect
 	if error["error"] && error["error"]["type"] == "ADMINISTRATOR_ERROR"
-          flash[:error] = _("Error while saving administrator settings: #{error["error"]["output"]}")
+	  # %s is detailed error message
+          flash[:error] = _("Error while saving administrator settings: %s") % error["error"]["output"]
 	else
 	  raise e
 	end

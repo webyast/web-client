@@ -31,9 +31,6 @@
       return true;
     }, "<%= _("Enter a valid e-mail address.") -%>");
 
-    $(document).ready(function(){
-      $("#adminForm").validate()
-    });
  </script>
 
 <% end %>
@@ -53,15 +50,15 @@
     <tr class="bg">
 	<td class="first"><strong><%=_("Confirm Password")%></strong></td>
         <td class="last"><%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %></td>
-	<td><%= f.submit _("Save"), :name => "save_password", :disabled => disabled %></td>
+	<td><%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');" %></td>
     </tr>
     <tr class="bg">
 	<td class="first"><strong><%=_("Forward mail to")%></strong></td>
 	<td class="last"><%= f.text_field :aliases, :disabled => disabled, :class => "emails" %></td>
-	<td><%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled %></td>
+	<td><%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');"%></td>
     </tr>
     <tr>
-    <td><%= form_send_buttons :onclick=>"Element.show('progress')" %></td>
+    <td><%= form_send_buttons :onclick=>"return $('#adminForm').validate();" %></td>
     </tr>
   </table>
   <% end %>

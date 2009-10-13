@@ -47,7 +47,7 @@ class NetworkControllerTest < ActionController::TestCase
     @hn_proxy.result = OpenStruct.new("name" => "Arthur, king of the Britons")
 
     @dns_proxy = Proxy1.new
-    @dns_proxy.result = OpenStruct.new("nameservers" => ["n1", "n2"])
+    @dns_proxy.result = OpenStruct.new("nameservers" => ["n1", "n2"], "searches" => ["s1", "s2"])
 
     @rt_proxy = ProxyN.new
     @rt_proxy.result = OpenStruct.new("via" => 'mygw')

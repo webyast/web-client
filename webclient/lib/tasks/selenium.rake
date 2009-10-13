@@ -6,20 +6,43 @@ begin
     require 'selenium/rake/tasks'
     $selenium_available = true
     # define selenium:rc:start task
-    Selenium::Rake::RemoteControlStartTask.new do |rc|
+
+    # this is GIT file location (used when running directly from GIT)
+    jar_file = Dir.glob(File.join(File.dirname(__FILE__),"../../..", "selenium/selenium-server*.jar")).first
+
+    # this is RPM package location
+    if jar_file.nil?
+	jar_file = Dir.glob(File.join(File.dirname(__FILE__),"../..", "vendor/selenium-remote-control/selenium-server*.jar")).first
+    end
+
+    if jar_file.nil?
+	namespace :'selenium:rc' do
+	    desc "Start Selenium server"
+	    task :start do
+		raise "Error: selenium-server-*.jar file was not found"
+	    end
+
+	    desc "Stop Selenium server"
+	    task :stop do
+		raise "Error: selenium-server-*.jar file was not found"
+	    end
+	end
+    else
+	Selenium::Rake::RemoteControlStartTask.new do |rc|
 	      rc.port = 4444
 	      rc.timeout_in_seconds = 3 * 60
 	      rc.background = true
 	      rc.wait_until_up_and_running = true
-	      rc.jar_file = Dir.glob(File.join(File.dirname(__FILE__),"../..", "vendor/selenium-remote-control/selenium-server*.jar")).first
+	      rc.jar_file = jar_file
 	      rc.additional_args << "-singleWindow"
-    end
+	end
 
-    # define selenium:rc:stop task
-    Selenium::Rake::RemoteControlStopTask.new do |rc|
-        rc.host = "localhost"
+	# define selenium:rc:stop task
+	Selenium::Rake::RemoteControlStopTask.new do |rc|
+	      rc.host = "localhost"
 	      rc.port = 4444
 	      rc.timeout_in_seconds = 3 * 60
+	end
     end
 rescue LoadError
 end

@@ -15,7 +15,7 @@ PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_3, ruby
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.4
+Version:        0.0.7
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
@@ -29,9 +29,6 @@ BuildRequires:  tidy
 # we require the lighttpd user to be present when building the rpm
 BuildRequires:  lighttpd
 BuildArch:      noarch  
-# required because we include selenium jar
-BuildRequires:  fastjar
-#
 %define service_name yastwc
 #
 
