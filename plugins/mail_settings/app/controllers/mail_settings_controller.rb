@@ -14,7 +14,7 @@ class MailSettingsController < ApplicationController
   def index
     @mail_settings	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
     return unless @mail_settings
-    @mail_settings.confirm_password	= ""
+    @mail_settings.confirm_password	= @mail_settings.password
   end
 
   # PUT
@@ -23,6 +23,13 @@ class MailSettingsController < ApplicationController
     return unless @mail_settings
 
     @mail_settings.load params["mail_settings"]
+
+    # validate data also here, if javascript in view is off
+    if @mail_settings.password != @mail_settings.confirm_password
+      flash[:error] = _("Passwords do not match.")
+      redirect_to :action => "index"
+      return 
+    end
 
     begin
       response = @mail_settings.save
