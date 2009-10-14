@@ -252,6 +252,36 @@ EOX
     language.to_xml(:root => "language")
   end
 
+  post '/registration.xml' do
+    if request.env["rack.input"].size>0
+      req = Hash.from_xml request.env["rack.input"].read 
+    else
+      req = Hash.new
+    end
+    if req["hash"].blank? || req["hash"]["arguments"].blank?
+      registration = { 'status'=>'missinginfo',
+        'exitcode'=>0,
+        'missingarguments'=>[{'name'=>'Email', 'type'=>'string'},{'name'=>'Registration Name', 'type'=>'string'},{'name'=>'System Name', 'type'=>'string'}]
+      }
+    else
+      registration = { 'status'=>'finished',
+        'exitcode'=>0,
+        'guid'=>1234,
+        'changedrepos'=>[{'name'=>'repoName', 
+                          'alias'=>'myRepoName', 
+                          'urls'=>[{'name'=>"http://some.host/repo/xy"}],
+                          'priority'=>80,
+                          'autorefresh'=>true,
+                          'enabled'=>true,
+                          'status'=>'added'}],
+        'changedservices'=>[{'name'=>'some-serv1',
+                             'url'=>'http://some.host/services/serv1',
+                             'status'=>'added'}]
+       }
+    end
+    registration.to_xml(:root => "registration")
+  end
+
   get '/user/:id.xml' do
     user = {"id" =>"tux5", "cn" => "tux5",
             "groupname" => "users", "gid_number" => 0,
