@@ -157,6 +157,9 @@
                       {"name" =>"org.opensuse.yast.services.read-config-ntp", "grant" => true},
                       {"name" =>"org.opensuse.yast.services.write-config-ntp-userandomserverw", "grant" => true},
                       {"name" =>"org.opensuse.yast.services.read-config", "grant" => true},
+                      {"name" =>"org.opensuse.yast.modules.ysr.statelessregister", "grant" => true},
+                      {"name" =>"org.opensuse.yast.modules.ysr.getregistrationconfig", "grant" => true},
+                      {"name" =>"org.opensuse.yast.modules.ysr.setregistrationconfig", "grant" => true},
                       {"name" =>"org.opensuse.yast.modules.yapi.users.usermodify", "grant" => true}]
     permissions.to_xml(:root => "permissions")
   end 
