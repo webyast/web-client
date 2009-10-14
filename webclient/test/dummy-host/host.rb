@@ -52,15 +52,18 @@
                 {"interface" => "org.opensuse.yast.system.status",
                  "singular" => true,
                  "href" => "status"},
-                {"interface" => "org.opensuse.yast.modules.yapi.registration",
+                {"interface" => "org.opensuse.yast.modules.registration",
                  "singular" => true,
+                 "policy" => "org.opensuse.yast.modules.ysr",
                  "href" => "registration"},
-                {"interface" => "org.opensuse.yast.modules.yapi.registration.configuration",
+                {"interface" => "org.opensuse.yast.modules.registration.configuration",
                  "singular" => true,
-                 "href" => "/registration/configuration"},
-                {"interface" => "org.opensuse.yast.modules.yapi.registration.registration",
+                 "policy" => "org.opensuse.yast.modules.ysr",
+                 "href" => "registration/configuration"},
+                {"interface" => "org.opensuse.yast.modules.registration.registration",
                  "singular" => true,
-                 "href" => "/registration/registration"},
+                 "policy" => "org.opensuse.yast.modules.ysr",
+                 "href" => "registration/registration"},
                 {"interface" => "org.opensuse.yast.commandline",
                  "singular" => true,
                  "href" => "yast/commandline"}]
@@ -266,6 +269,7 @@ EOX
         'exitcode'=>0,
         'missingarguments'=>[{'name'=>'Email', 'type'=>'string'},{'name'=>'Registration Name', 'type'=>'string'},{'name'=>'System Name', 'type'=>'string'}]
       }
+      status 400
     else
       registration = { 'status'=>'finished',
         'exitcode'=>0,
