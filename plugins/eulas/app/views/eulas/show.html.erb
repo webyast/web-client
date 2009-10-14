@@ -2,21 +2,13 @@
 
 <% form_tag :method => :post, :controller => :eulas, :action => :update, :id => @eula_id, :class => 'container' do  -%>
   <%= _("Available translations:") -%>
-<!--
-                 :onchange => remote_function(:update => "eula-text",
-                                              :url => {:id => @eula_id, :action => :show_text},
-                                              :with => "'lang='+value")
-
-                 :onchange => remote_function(:url => {:id => @eula_id, :action => :update_text},
-                                              :with => "'lang='+value")
--->
   <%= select_tag "text_lang",
                  options_for_select(@eula.available_langs, :selected => @eula.text_lang),
                  :onchange => "location.href='" + (url_for :controller => "eulas", :id => @eula_id, :action => :show) + "?eula_lang=' + value"
       %>
 
   <br/>
-  <textarea "eula-text" cols="90" rows="30" readonly>
+  <textarea cols="95" rows="30" readonly>
   <%= @eula.text -%>
   </textarea>
   <br/>

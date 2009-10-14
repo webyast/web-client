@@ -5,7 +5,7 @@ require 'enumerator'
 class EulasController < ApplicationController
   before_filter :login_required
   before_filter :ensure_eula_list, :only => [:next, :show]
-  before_filter :ensure_id, :only => [:show, :update, :update_text, :show_text]
+  before_filter :ensure_id, :only => [:show, :update]
 
   layout 'main'
   include ProxyLoader
@@ -44,20 +44,6 @@ class EulasController < ApplicationController
     else
       redirect_to :action => :show, :id => next_id, :eula_lang => params[:eula_lang]
     end
-  end
-
-  def update_text
-    eula_params = params[:lang].nil? ? Hash.new : { :lang => params[:lang][0] }
-    @eula = load_proxy_without_permissions "org.opensuse.yast.modules.eulas", @eula_id, :params => eula_params
-    render :update do |page|
-      page.replace_html 'eula-text', @eula.text
-    end
-  end
-
-  def show_text
-    eula_params = params[:lang].nil? ? Hash.new : { :lang => params[:lang][0] }
-    @eula = load_proxy_without_permissions "org.opensuse.yast.modules.eulas", @eula_id, :params => eula_params
-    render :text => @eula.text
   end
 
   def show
