@@ -1,0 +1,27 @@
+<div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="<%= _("register plugin") %>"/></div>
+<div class='plugin-content'>
+<h2><%=_("Registration")%></h2>
+<br/>
+
+<% form_tag '/registration/update' do -%>
+  <table summary="<%= _("This table gives registration settings.") %>">
+    <tr><td colspan="2" class="full" align="center"></td></tr>
+    <% for argument in @arguments %>
+      <tr>
+        <% if argument["error"] %>
+          <td><strong><font color=red><%=_(argument["name"])%></font></strong></td>
+        <% else %>
+          <td><strong><%=_(argument["name"])%></strong></td>
+        <% end %>
+        <td><%= text_field_tag "registration_arg,"+argument["name"], argument["value"], :class=>'aligned-inputs' %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br>
+  <%= submit_tag _("Register"), :onclick=>"Element.show('progress')", :class => 'button' -%>
+  <a href="/" class="button"><%=_("Cancel")%></a>
+<% end -%>
+</div>
+
+
+
