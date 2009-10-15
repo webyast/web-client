@@ -54,7 +54,7 @@ env LANG=en rake makemo
 #
 # Install all web and frontend parts.
 #
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast
+mkdir -p $RPM_BUILD_ROOT/srv/www/yast/log
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
 cp -a * $RPM_BUILD_ROOT/srv/www/yast
 rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*

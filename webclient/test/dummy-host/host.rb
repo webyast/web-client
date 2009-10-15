@@ -264,27 +264,41 @@ EOX
     else
       req = Hash.new
     end
-    if req["hash"].blank? || req["hash"]["arguments"].blank?
+    if req["registration"].blank? || req["registration"]["arguments"].blank?
       registration = { 'status'=>'missinginfo',
         'exitcode'=>0,
-        'missingarguments'=>[{'name'=>'Email', 'type'=>'string'},{'name'=>'Registration Name', 'type'=>'string'},{'name'=>'System Name', 'type'=>'string'}]
+        'missingarguments'=>[{'name'=>'Email', 'type'=>'string'},
+                             {'name'=>'Registration Name', 'type'=>'string'},
+                             {'name'=>'System Name', 'type'=>'string'}]
       }
       status 400
     else
-      registration = { 'status'=>'finished',
-        'exitcode'=>0,
-        'guid'=>1234,
-        'changedrepos'=>[{'name'=>'repoName', 
-                          'alias'=>'myRepoName', 
-                          'urls'=>[{'name'=>"http://some.host/repo/xy"}],
-                          'priority'=>80,
-                          'autorefresh'=>true,
-                          'enabled'=>true,
-                          'status'=>'added'}],
-        'changedservices'=>[{'name'=>'some-serv1',
-                             'url'=>'http://some.host/services/serv1',
-                             'status'=>'added'}]
-       }
+      #checking parameters
+      missing_args = req["registration"]["arguments"]
+      missing_args.reject! {|item| !item["value"].blank? }
+
+      if missing_args.empty?
+        registration = { 'status'=>'finished',
+          'exitcode'=>0,
+          'guid'=>1234,
+          'changedrepos'=>[{'name'=>'repoName', 
+                            'alias'=>'myRepoName', 
+                            'urls'=>[{'name'=>"http://some.host/repo/xy"}],
+                            'priority'=>80,
+                            'autorefresh'=>true,
+                            'enabled'=>true,
+                            'status'=>'added'}],
+          'changedservices'=>[{'name'=>'some-serv1',
+                               'url'=>'http://some.host/services/serv1',
+                               'status'=>'added'}]
+         }
+      else
+        registration = { 'status'=>'missinginfo',
+                         'exitcode'=>0,
+                         'missingarguments'=>missing_args
+        }
+        status 400
+      end
     end
     registration.to_xml(:root => "registration")
   end
