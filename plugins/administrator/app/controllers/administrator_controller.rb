@@ -34,11 +34,16 @@ class AdministratorController < ApplicationController
     @administrator.password	= admin["password"]
     @administrator.aliases	= admin["aliases"]
 
-    # FIXME validate for set of mails, not just one
-    if !admin["aliases"].empty? && admin["aliases"] !~ /(.+)@(.+)\.(.{2})/ # yes, very weak
-      flash[:error] = _("Enter a valid e-mail address.")
-      redirect_to :action => "index"
-      return 
+    # validate data also here, if javascript in view is off
+    if !admin["aliases"].empty?
+      admin["aliases"].split(",").each do |mail|
+	# only check emails, not local users
+        if mail.include?("@") && mail !~ /(.+)@(.+)\.(.{2})/
+          flash[:error] = _("Enter a valid e-mail address.")
+          redirect_to :action => "index"
+          return 
+	end
+      end
     end
 
     if admin["password"] != admin["confirm_password"]
