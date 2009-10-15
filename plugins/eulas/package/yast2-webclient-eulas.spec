@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-mailsettings
+# spec file for package yast2-webclient-eulas (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,14 +9,14 @@
 #
 
 
-Name:           yast2-webclient-mailsettings
+Name:           yast2-webclient-eulas
 PreReq:         yast2-webclient >= 0.0.2
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.4
+Version:        0.0.5
 Release:        0
-Summary:        YaST2 - Webclient - Mail Settings
+Summary:        YaST2 - Webclient - Eulas
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -25,23 +25,22 @@ BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name mailsettings
+%define plugin_name eulas
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for for system mail settings
+YaST2 - Webclient - UI for YaST-webservice in order to handle accepting EULAs.
 Authors:
 --------
-    Jiri Suchomel <jsuchome@novell.com>
-
+    Martin Kudlvasr <mkudlvasr@suse.cz>
+    Josef Reidinger <jreidinger@suse.cz>
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
-export LANG=en
-rake makemo
+env LANG=en rake makemo
 
 %install
 
@@ -68,11 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 

@@ -1,0 +1,30 @@
+<h1><%=_("Accept End User Licence Agreement")-%> - <%= @eula.name -%></h1><br/>
+
+<% form_tag :method => :post, :controller => :eulas, :action => :update, :id => @eula_id, :class => 'container' do  -%>
+  <%= _("Available translations:") -%>
+  <%= select_tag "text_lang",
+                 options_for_select(@eula.available_langs, :selected => @eula.text_lang),
+                 :onchange => "location.href='" + (url_for :controller => "eulas", :id => @eula_id, :action => :show) + "?eula_lang=' + value"
+      %>
+
+  <br/>
+  <textarea cols="95" rows="30" readonly>
+  <%= @eula.text -%>
+  </textarea>
+  <br/>
+  <% if @eula.only_show then -%>
+    <input type="hidden" name="accepted" value="true"/>
+  <% else -%>
+    <input type="radio" name="accepted" value="true">
+    <%= _("Yes, I agree to the license agreement.") %>
+    <br/>
+    <input type="radio" checked="checked" name="accepted" value="false">
+    <%= _("No, I do not agree.") %>
+    <br/>
+  <% end -%>
+  <% unless @eula.text_lang == 'en' then %>
+    <input type="hidden" name="eula_lang" value="<%= @eula.text_lang %>"/>
+  <% end %>
+
+  <%= form_send_buttons( {:disabled => false} ) %>
+<% end -%>
