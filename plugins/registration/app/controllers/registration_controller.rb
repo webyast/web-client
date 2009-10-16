@@ -17,7 +17,6 @@ class RegistrationController < ApplicationController
     @permissions = @client.permissions
     @options = {'debug'=>2 }
     @arguments = []
-
   end
 
   # Initialize GetText and Content-Type.
@@ -108,6 +107,7 @@ class RegistrationController < ApplicationController
         flash[:error] = _("Error occured while connecting to registration server.")
       end
     end  
+    @arguments.sort! {|a,b| a["name"] <=> b["name"] }
 
     respond_to do |format|
       format.html { render :action => "index" }
