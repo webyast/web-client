@@ -303,6 +303,7 @@ EOX
     registration.to_xml(:root => "registration")
   end
 
+
   get '/user/:id.xml' do
     user = {"id" =>"tux5", "cn" => "tux5",
             "groupname" => "users", "gid_number" => 0,

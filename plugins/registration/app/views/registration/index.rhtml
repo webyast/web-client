@@ -16,6 +16,21 @@
         <td><%= text_field_tag "registration_arg,"+argument["name"], argument["value"], :class=>'aligned-inputs' %></td>
       </tr>
     <% end %>
+    <% unless @changed_repositories.blank? %>
+      <tr><td height=10></td></tr>
+      <% first=true %>
+      <% for repo in @changed_repositories %>
+        <tr>
+          <% if first %>
+            <td><strong><%=_("Changed Repositories")%></strong></td>
+            <% first=false %>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td><%= repo.alias %> (<%= repo.status %>)</td>
+        </tr>
+      <% end %>
+    <% end %>
   </table>
   <br>
   <%= submit_tag _("Register"), :onclick=>"Element.show('progress')", :class => 'button' -%>

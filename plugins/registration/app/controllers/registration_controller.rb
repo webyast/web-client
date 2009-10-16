@@ -78,11 +78,12 @@ class RegistrationController < ApplicationController
       end
     }
 
-    register = @client.new(:arguments=>@arguments, 
-                           :options=>@options)
     @changed_repositories = []
     begin
-      register.save
+      register = @client.create(:arguments=>@arguments, 
+                                :options=>@options)
+      logger.debug "registration finished: #{register.to_xml}"
+      @changed_repositories = register.changedrepos
       flash[:notice] = _("Registration finished successfully.")
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
