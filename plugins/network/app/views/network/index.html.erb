@@ -33,7 +33,6 @@
         return false; //FIXME
       }
 
-      // FIXME returning false does not prevent it from submitting
       function validateNetwork() {
         if ($("#conf_mode")[0].value == "static") {
           say_bad = "<%= _("Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
@@ -80,7 +79,7 @@
   </div>
 <% end %>
 
-<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put } ) do |n| %>
+<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put, :onsubmit => "return validateNetwork();" }) do |n| %>
 <%= n.error_messages %>
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
 
@@ -143,7 +142,7 @@
     </table>
   </div>
 
-<%= n.submit _("Update"), :disabled => write_disabled, :onclick => "validateNetwork();" %><a href="/" class="button"><%=_("Back")%></a>
+<%= n.submit _("Update"), :disabled => write_disabled %><a href="/" class="button"><%=_("Back")%></a>
 <% end %>
 </div>
 <% javascript_tag do -%>
