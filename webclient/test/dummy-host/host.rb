@@ -258,7 +258,7 @@ EOX
     language.to_xml(:root => "language")
   end
 
-  post '/registration.xml' do
+  post '/registration/registration.xml' do
     if request.env["rack.input"].size>0
       req = Hash.from_xml request.env["rack.input"].read 
     else

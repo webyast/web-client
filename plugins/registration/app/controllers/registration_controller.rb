@@ -9,7 +9,7 @@ class RegistrationController < ApplicationController
 
   private
   def client_permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.registration')
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.registration.registration')
     unless @client
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
