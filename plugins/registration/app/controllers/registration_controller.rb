@@ -44,7 +44,7 @@ class RegistrationController < ApplicationController
       error = Hash.from_xml(e.response.body)["registration"]
       if error["status"] == "missinginfo" && !error["missingarguments"].blank?
         logger.debug "missing arguments #{error["missingarguments"].inspect}"
-        @arguments = error["missingarguments"]
+        @arguments = error["missingarguments"].sort {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
       else
         logger.error "error while getting arguments: #{error.inspect}"  
         flash[:error] = _("Arguments for registration cannot be evaluated.")
@@ -107,7 +107,7 @@ class RegistrationController < ApplicationController
         flash[:error] = _("Error occured while connecting to registration server.")
       end
     end  
-    @arguments.sort! {|a,b| a["name"] <=> b["name"] }
+    @arguments.sort! {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
 
     respond_to do |format|
       format.html { render :action => "index" }
