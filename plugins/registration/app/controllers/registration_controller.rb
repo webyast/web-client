@@ -15,12 +15,7 @@ class RegistrationController < ApplicationController
       redirect_to( logout_path ) and return
     end
     @permissions = @client.permissions
-    @options = {'debug'=>0,
-                'forcereg'=>false,
-                'nooptional'=>true,
-                'nohwdata'=>true,
-                'optional'=>false,
-                'hwdata'=>false}
+    @options = {'debug'=>2 }
     @arguments = []
 
   end
@@ -83,7 +78,7 @@ class RegistrationController < ApplicationController
       register = @client.create(:arguments=>@arguments, 
                                 :options=>@options)
       logger.debug "registration finished: #{register.to_xml}"
-      @changed_repositories = register.changedrepos
+      @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
       flash[:notice] = _("Registration finished successfully.")
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
