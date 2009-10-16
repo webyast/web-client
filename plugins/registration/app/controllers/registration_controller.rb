@@ -36,8 +36,8 @@ class RegistrationController < ApplicationController
       redirect_to root_path
       return false
     end
-    register = @client.new(:arguments=>nil, 
-                           :options=>@options)
+    register = @client.new({:arguments=>nil, 
+                           :options=>@options})
     begin
       register.save
     rescue ActiveResource::ClientError => e
@@ -74,8 +74,8 @@ class RegistrationController < ApplicationController
 
     @changed_repositories = []
     begin
-      register = @client.create(:arguments=>@arguments, 
-                                :options=>@options)
+      register = @client.create({:arguments=>@arguments, 
+                                :options=>@options})
       logger.debug "registration finished: #{register.to_xml}"
       @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
       flash[:notice] = _("Registration finished successfully.")

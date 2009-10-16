@@ -11,10 +11,38 @@ class RegistrationControllerTest < ActionController::TestCase
 
   class Proxy
     attr_accessor :result, :permissions, :timeout
-    def find
-      return result
+    def save
+      result
+    end
+    def create dummy1
+      result
+    end
+    def new dummy1
+      result
     end
   end
+
+  class Result
+    attr_accessor :status,
+      :exitcode,
+      :missingarguments,
+      :saved
+
+    def fill
+      @status = 'missinginfo'
+      @exitcode = 0,
+      @missingarguments =[{'name'=>'Email', 'type'=>'string'},
+                          {'name'=>'Registration Name', 'type'=>'string'},
+                          {'name'=>'System Name', 'type'=>'string'}]
+    end
+    def save
+      @saved = true
+    end
+    def to_xml
+      "xml output"
+    end
+  end
+
 
 
   def setup
@@ -24,45 +52,41 @@ class RegistrationControllerTest < ActionController::TestCase
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
     @permissions = { :statelessregister => true }
-#    @result = Result.new
-#    @result.fill
+    @result = Result.new
+    @result.fill
     @proxy = Proxy.new
     @proxy.permissions = @permissions
     @proxy.result = @result
   end
   
   def test_access_index
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration').returns(@proxy)
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
     get :index
 
-    #check if everything is correctly setted
-#    assert_response :success
-#    assert_valid_markup
-#    assert assigns(:permissions) , "Permission is not set"
-#    assert assigns(:permissions)[:statelessregister], ":statelessregister permission is not set"
+    #check if everything have been correctly set
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:permissions) , "Permission is not set"
+    assert assigns(:permissions)[:statelessregister], ":statelessregister permission is not set"
   end
 
-  def test_access_without_write_permissions
-    @permissions[:write] = false
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration').returns(@proxy)
+  def test_access_without_statelessregister_permissions
+    @permissions[:statelessregister] = false
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
 
     get :index
 
-#    assert_response :success
-#    assert_valid_markup
-#    assert assigns(:permissions)
-#    assert assigns(:permissions)[:statelessregister]
-
+    assert_response 302
+    assert_valid_markup
+    assert assigns(:permissions)
+    assert !assigns(:permissions)[:statelessregister]
   end
 
 
-  def test_update
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration').returns(@proxy)
-#    post :update, { }
-
-#    assert_response :redirect
-#    assert_redirected_to :action => "index"
-#    assert @result.saved
+  def test_register
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
+    post :update, {"registration_arg,Registration Name"=>"registrationName", "registration_arg,System Name"=>"systemName", "registration_arg,Email"=>"email" }
+    assert_response :success
   end
 
 end
