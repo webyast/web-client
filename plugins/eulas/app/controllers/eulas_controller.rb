@@ -4,7 +4,7 @@ require 'enumerator'
 
 class EulasController < ApplicationController
   before_filter :login_required
-  before_filter :ensure_eula_list, :only => [:next, :show]
+  before_filter :ensure_eula_list, :only => [:next, :show, :index]
   before_filter :ensure_id, :only => [:show, :update]
 
   layout 'main'
@@ -33,8 +33,12 @@ class EulasController < ApplicationController
     @eula_id   = params[:id]
   end
 
-  def index 
-    redirect_to :action => :next
+  def index
+    if session[:eula_unaccepted_ids_cache].empty? then
+      render :all_accepted
+    else
+      redirect_to :action => :next
+    end
   end
 
   def next
