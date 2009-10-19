@@ -1,0 +1,328 @@
+# translation of yast_webclient.po to Japanese
+# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: yast_webclient\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"PO-Revision-Date: 2009-10-08 18:02+0900\n"
+"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
+"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/controllers/application_controller.rb:93
+msgid "Please login to continue"
+msgstr "続行するにはログインしてください"
+
+#: app/controllers/application_controller.rb:100
+msgid "You must logout before you can login"
+msgstr "ログインの前にログアウトしなければなりません"
+
+#: app/controllers/hosts_controller.rb:26
+msgid "Make sure the host is up and that the YaST web service is running."
+msgstr "ホストが起動されていて、かつ YaST Web サービスが起動済みであることを確認してください。"
+
+#: app/controllers/hosts_controller.rb:28
+msgid "Please select a host to connect to."
+msgstr "接続先のホストを選択してください。"
+
+#: app/controllers/hosts_controller.rb:32
+#| msgid "%s does not exist, please double-check the path."
+msgid "Please double-check the host URL."
+msgstr "ホスト URL をもう一度ご確認ください。"
+
+#: app/controllers/sessions_controller.rb:51
+msgid "You need to specify the host"
+msgstr "ホストを指定する必要があります"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "No login specified"
+msgstr "ログインが指定されていません"
+
+#: app/controllers/sessions_controller.rb:57
+msgid "No password specified"
+msgstr "パスワードが指定されていません"
+
+#: app/controllers/sessions_controller.rb:93
+msgid "Login incorrect. Check your username and password."
+msgstr "ログインに失敗しました。ユーザ名とパスワードをご確認ください。"
+
+#: app/controllers/sessions_controller.rb:118
+msgid "You have been logged out."
+msgstr "ログアウトしました。"
+
+#: app/models/account.rb:-
+msgid "account"
+msgstr "アカウント"
+
+#: app/models/account.rb:-
+msgid "Account|Login"
+msgstr "アカウント|ログイン"
+
+#: app/models/account.rb:-
+msgid "Account|Created at"
+msgstr "アカウント|作成場所"
+
+#: app/models/account.rb:-
+msgid "Account|Updated at"
+msgstr "アカウント|更新場所"
+
+#: app/models/account.rb:-
+msgid "Account|Remember token"
+msgstr "アカウント|トークン記憶"
+
+#: app/models/account.rb:-
+msgid "Account|Remember token expires at"
+msgstr "アカウント|トークン記憶期限切れ"
+
+#: app/models/account.rb:-
+msgid "Account|Salt"
+msgstr "アカウント|Salt"
+
+#: app/models/host.rb:-
+msgid "host"
+msgstr "ホスト"
+
+#: app/models/host.rb:-
+msgid "Host|Name"
+msgstr "ホスト|ホスト名"
+
+#: app/models/host.rb:-
+msgid "Host|Url"
+msgstr "ホスト|URL"
+
+#: app/models/host.rb:-
+msgid "Host|Description"
+msgstr "ホスト|説明"
+
+#: app/models/host.rb:-
+msgid "Host|Created at"
+msgstr "ホスト|作成先"
+
+#: app/models/host.rb:-
+msgid "Host|Updated at"
+msgstr "ホスト|更新先"
+
+#: app/helpers/application_helper.rb:5
+msgid "Save"
+msgstr "保存"
+
+# cancel button label
+#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: app/helpers/application_helper.rb:10
+msgid "Next"
+msgstr "次"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "追加"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "編集"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "削除"
+
+#: app/helpers/view_helpers/html_helper.rb:10
+msgid "Are you sure?"
+msgstr "正しいですか？"
+
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "サービスを選択してください:"
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr "YaST-Web-サービスを編集しています"
+
+#: app/views/hosts/edit.html.erb:24
+msgid "YaST-Web-Service"
+msgstr "YaST-Web-サービス"
+
+#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+msgid "Name"
+msgstr "名前"
+
+#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+msgid "Url"
+msgstr "URL"
+
+#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+msgid "Description"
+msgstr "説明"
+
+#: app/views/hosts/edit.html.erb:40
+msgid "Ok"
+msgstr "OK"
+
+#: app/views/hosts/edit.html.erb:41
+msgid "Back"
+msgstr "戻る"
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "インデックス"
+
+#: app/views/hosts/new.html.erb:4
+msgid "New WebYaST Host"
+msgstr "新しい WebYaST ホスト"
+
+#: app/views/hosts/new.html.erb:47
+msgid "Create"
+msgstr "作成"
+
+#: app/views/shared/exception_trap.html.erb:8
+#: app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "申し訳ありません...."
+
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "申し訳ありません。 WebYaST は現在アルファ版で、いくつかの問題点があります。"
+
+#: app/views/shared/exception_trap.html.erb:12
+#: app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "問題点:"
+
+#: app/views/shared/exception_trap.html.erb:16
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "バグとして報告していただけると助かります!"
+
+#: app/views/shared/exception_trap.html.erb:16
+msgid "(report link)"
+msgstr "(報告リンク)"
+
+#: app/views/shared/exception_trap.html.erb:17
+msgid "Don't forget to include the bug details."
+msgstr "バグの詳細説明を忘れずにお願いいたします。"
+
+#: app/views/shared/exception_trap.html.erb:19
+msgid "No information available"
+msgstr "情報が利用できません"
+
+#: app/views/shared/backendexception_trap.html.erb:4
+#| msgid "Problem occur on target machine."
+msgid "Problem occured on target machine."
+msgstr "ターゲットマシンで問題が発生しました。"
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:42
+msgid "My Appliance"
+msgstr "アプライアンス"
+
+#: app/views/layouts/main.rhtml:52
+msgid "Connected Host"
+msgstr "接続先ホスト"
+
+#: app/views/layouts/main.rhtml:53
+msgid "Name:"
+msgstr "名前:"
+
+#: app/views/layouts/main.rhtml:54
+msgid "User:"
+msgstr "ユーザ:"
+
+#: app/views/layouts/main.rhtml:57
+msgid "Control panel"
+msgstr "コントロールパネル"
+
+#: app/views/layouts/main.rhtml:58
+msgid "Logout"
+msgstr "ログアウト"
+
+#: app/views/layouts/main.rhtml:92
+msgid "...Wait..."
+msgstr "...お待ちください..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "ログイン"
+
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "ユーザ名:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "パスワード:"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "基本システムセットアップ"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgstr "お使いのシステムのセットアップが完了していません。モジュールのセットアップを続けてください。"
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "システムのセットアップ"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:61
+msgid "Configuration"
+msgstr "設定"
+
+#: app/views/controlpanel/index.rhtml:30
+msgid "System actions"
+msgstr "システムアクション"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:31
+msgid "Reboot"
+msgstr "再起動"
+
+#: app/views/controlpanel/index.rhtml:33
+msgid "Shutdown"
+msgstr "シャットダウン"
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Status"
+msgstr "状態"
+
+#: app/views/controlpanel/index.rhtml:43
+msgid "Loading patch information"
+msgstr "修正情報を読み込んでいます"
+
+#: app/views/controlpanel/index.rhtml:45
+msgid "Patch plugin is not installed."
+msgstr "修正プラグインがインストールされていません。"
+
+#: app/views/controlpanel/index.rhtml:51
+msgid "Loading system information"
+msgstr "システム情報を読み込んでいます"
+
+#: app/views/controlpanel/index.rhtml:53
+msgid "Status plugin is not installed."
+msgstr "状態プラグインがインストールされていません。"
+
+#: app/views/controlpanel/index.rhtml:92
+msgid "Show all modules"
+msgstr "全てのモジュールを表示"
+
+#: lib/error_constructor.rb:14
+msgid "Noone is logged to rest service."
+msgstr "REST サービスには誰もログインしていません。"
+
+#: lib/error_constructor.rb:20
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "/etc/sysconfig/network/config 内の NETCONFIG_NTP_STATIC_SERVERS には、 NTP サーバが事前設定されていません。"
+
+#: lib/error_constructor.rb:24
+msgid "ADMINISTRATOR_ERROR"
+msgstr "管理者エラー"
+
