@@ -141,7 +141,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if response
-        flash[:notice] = _("User <i>#{@user.uid}</i> was successfully created.")
+        flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
         format.html { redirect_to(users_url) }
       else
         if @user.uid_number.nil?
@@ -194,7 +194,7 @@ class UsersController < ApplicationController
           response = false
       end
       if  response
-        flash[:notice] = _("User <i>#{@user.uid}</i> was successfully updated.")
+        flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
@@ -215,9 +215,9 @@ class UsersController < ApplicationController
     ret = @user.destroy
 
     if ret.code_type == Net::HTTPOK
-	flash[:notice] = _("User <i>#{@user.uid}</i> was successfully removed.")
+	flash[:notice] = _("User <i>%s</i> was successfully removed.") % @user.uid
     else
-	flash[:error] = _("Error: Could not remove user <i>#{@user.uid}</i>.")
+	flash[:error] = _("Error: Could not remove user <i>%s</i>.") % @user.uid
     end
 
     respond_to do |format|

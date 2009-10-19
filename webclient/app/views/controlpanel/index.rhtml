@@ -29,9 +29,9 @@
     <ul>
       <li><h4><%= _("System actions")%></h4></li>
       <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
-	    :confirm => _("Really reboot #{host_name}?"), :method => :put, :class => 'button' %></li>
+	    :confirm => _("Really reboot %s?") % host_name, :method => :put, :class => 'button' %></li>
       <li><%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
-	    :confirm => _("Really shutdown #{host_name}?"), :method => :put, :class => 'button' %></li>
+	    :confirm => _("Really shutdown %s?") % host_name, :method => :put, :class => 'button' %></li>
     </ul>
   </div>
 <% end %>

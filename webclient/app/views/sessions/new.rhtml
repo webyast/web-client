@@ -3,7 +3,7 @@
 
     <h2 id="content_title"><%= _("Login") %></h2>
 
-    <p><%= _("Enter login credentials for host #{@host.name}.") %></p>
+    <p><%= _("Enter login credentials for host %s.") % @host.name %></p>
 
     <%= hidden_field_tag 'hostid', @host.id %>
 

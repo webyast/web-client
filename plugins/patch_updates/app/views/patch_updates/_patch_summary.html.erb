@@ -16,13 +16,13 @@
       <% end %>
 
       <% if patch[:security] > 0 %>
-        <% label << _("Security Updates: #{patch[:security]}") %>
+        <% label << _("Security Updates: %d") % patch[:security]%>
       <% end %>
       <% if patch[:important] > 0 %>
-	<% label << _("Important Updates: #{patch[:important]}") %>
+	<% label << _("Important Updates: %d") % patch[:important] %>
       <% end %>
       <% if patch[:optional] > 0 %>
-	<% label << _("Optional Updates: #{patch[:optional]}") %>
+	<% label << _("Optional Updates: %d") % patch[:optional] %>
       <% end %>
       <% if label.empty? %>
 	<% label << _("Your system is up to date.") %>
