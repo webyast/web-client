@@ -35,3 +35,21 @@ task :updatepot do
   File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
 end
 
+desc "Fetch po files from lcn. Parameter: source directory of lcn e.g. ...lcn/trunk/webyast/"
+task :fetch_po, [:lcn_dir] do |t, args|
+  args.with_defaults(:lcn_dir => File.join(File.dirname(__FILE__),"../../../../..", "lcn", "trunk","webyast"))  
+  puts "Scanning #{args.lcn_dir}"
+  po_files = File.join(args.lcn_dir, "**", "*.po")
+  Dir.glob(po_files).each {|po_file|
+    filename_array = File.basename(po_file).split(".")
+    if filename_array[0] == "yast_webclient_#{File.basename(Dir.pwd)}" ||
+       filename_array[0] == "yast_webclient" && File.basename(Dir.pwd) == "webclient"
+       destdir = File.join(Dir.pwd, "po", filename_array[1])
+       Dir.mkdir destdir unless File.directory?(destdir)
+       destfile = File.join(destdir,filename_array[0]+".po")
+       puts "copy #{po_file} --> #{destfile}"
+       FileUtils.cp(po_file, destfile)
+    end
+  }
+end
+
