@@ -38,7 +38,7 @@ class AdministratorController < ApplicationController
     if !admin["aliases"].empty?
       admin["aliases"].split(",").each do |mail|
 	# only check emails, not local users
-        if mail.include?("@") && mail !~ /(.+)@(.+)\.(.{2})/
+        if mail.include?("@") && mail !~ /^.+@.+$/ #only trivial check
           flash[:error] = _("Enter a valid e-mail address.")
           redirect_to :action => "index"
           return 
