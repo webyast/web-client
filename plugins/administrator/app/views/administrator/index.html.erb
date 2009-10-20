@@ -22,8 +22,8 @@
         // user name without a domain is valid as well (local alias)
         if (email.search(/@/) < 0) email += "@example.com";
 
-        // TODO FIXME: use jQuery call here, remove the copy pasted regex
-        // unfortunately jQuery.validator.methods.email(email, element) doesn't work :-(
+        // this is a modified email regexp from jQuery validator
+        // which accepts also user@localhost email address
         if (!/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)*(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(email))
           return false;
       }
@@ -33,7 +33,12 @@
 
     // disable global onsubmit validation, the relevant fields are validated explicitly in onclick handlers
     $(document).ready(function() {
-	$("#adminForm").validate({onsubmit: false})
+      $("#adminForm").validate({onsubmit: false})
+
+      // make the error message translatable - override the default messsage
+      $.extend($.validator.messages, {
+	equalTo: "<%= _("The passwords do not match.") -%>"
+      });
     });
 
  </script>
@@ -63,7 +68,7 @@
 	<td><%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %></td>
     </tr>
     <tr>
-    <td><%= form_send_buttons :onclick=>"a = $('#adminForm').validate().element('#administrator_aliases'); b = $('#adminForm').validate().element('#administrator_confirm_password'); return a && b;" %></td>
+    <td><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %></td>
     </tr>
   </table>
   <% end %>
