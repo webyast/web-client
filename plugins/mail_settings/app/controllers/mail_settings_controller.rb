@@ -33,6 +33,7 @@ class MailSettingsController < ApplicationController
 
     begin
       response = @mail_settings.save
+      flash[:notice] = _('Mail settings have been written.')
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
 	logger.warn e.inspect
