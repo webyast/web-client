@@ -39,7 +39,7 @@ class AdministratorController < ApplicationController
       end
     end
 
-    if admin["password"] != admin["confirm_password"]
+    if admin["password"] != admin["confirm_password"] && ! params.has_key? ("save_aliases")
       flash[:error] = _("Passwords do not match.")
       redirect_to :action => "index"
       return 
