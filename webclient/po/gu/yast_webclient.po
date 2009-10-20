@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -14,13 +14,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Trying to connect to the %s server..."
+msgid "Can't connect to host %s."
+msgstr "%s સર્વરને જોડાણ કરવાનો પ્રયત્ન થઇ રહ્યો છે..."
 
 #: app/controllers/hosts_controller.rb:26
 #, fuzzy
@@ -33,6 +47,12 @@ msgstr "જ્યાં NFS સર્વર ચાલી રહ્યું છ�
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "તમારા નેટવર્કના ઉપકરણનો પ્રકાર પસંદ કરવા વિનંતી."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Host %s was not found."
+msgid "The host '%s' cannot be found."
+msgstr "%s હોસ્ટ મળ્યું નથી."
 
 #: app/controllers/hosts_controller.rb:32
 #, fuzzy
@@ -161,6 +181,10 @@ msgstr ""
 msgid "Please choose a service:"
 msgstr "CCW બસ ઇન્ટરફેસ પસંદ કરવા વિનંતી."
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -281,6 +305,12 @@ msgstr ""
 msgid "Login"
 msgstr "લોગીન"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "\"%s\" ચિપસેટ માટે ખાસ પારમિતિઓ દાખલ કરો."
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr ""
@@ -318,9 +348,17 @@ msgstr "સિસ્ટમ માહિતી"
 msgid "Reboot"
 msgstr "ફરીથી બૂટ કરો"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "બંધ કરો"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -354,14 +392,36 @@ msgstr ""
 msgid "Show all modules"
 msgstr "લોડ થયેલા મોડ્યૂલ્સ દર્શાવો"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "સર્વિસ '%2' માટે '%1' ક્રિયાની મંજૂરી નથી."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
+msgstr ""
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "સ્થાપન દરમિયાન ભૂલ થઇ."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "જૂની શેડો ફાઈલ બંધ કરતી વખતે ભૂલ : %m "

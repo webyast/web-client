@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -32,7 +32,13 @@ msgstr "ઈન્સ્ટોલેશન સોર્સ"
 msgid "Installation finished"
 msgstr "સ્થાપન"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s નું સ્થાપન બરાબર"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr ""
 
@@ -87,6 +93,20 @@ msgstr "સ્થાપન દરમિયાન ભૂલ થઇ."
 #| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
 msgstr "બેટરી અને એસી સ્થિતિ વિષે કોઇ માહિતી ઉપલબ્ધ નથી"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Driver Updates added"
+msgid "Security Updates: %d"
+msgstr "ડ્રાઇવરના અદ્યતનો ઉમેરાયા"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr ""
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr ""
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

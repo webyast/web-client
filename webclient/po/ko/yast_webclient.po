@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -11,15 +11,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "인터넷에 연결되었는지 확인해주세요."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "'%s' (%s)에 chroot 할 수 없습니다."
 
 #: app/controllers/hosts_controller.rb:26
 #, fuzzy
@@ -32,6 +46,12 @@ msgstr "실행 중인 NFS 서버의 포트 번호를 입력하세요."
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "사용자 네트워크 장치의 타입을 선택해 주세요."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "'%s' 저장소를 찾을 수 없습니다."
 
 #: app/controllers/hosts_controller.rb:32
 #, fuzzy
@@ -166,6 +186,10 @@ msgstr ""
 msgid "Please choose a service:"
 msgstr "CCW 버스 인터페이스를 선택해 주세요."
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -297,6 +321,12 @@ msgstr ""
 msgid "Login"
 msgstr "로그인"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "\"%s\" 칩셋을 위한 지정 매개변수를 입력하세요."
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "Username: "
@@ -337,9 +367,17 @@ msgstr "시스템 연결(&S)"
 msgid "Reboot"
 msgstr "재부팅"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "종료"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -375,16 +413,38 @@ msgstr "'%s'가 설치되지 않았습니다."
 msgid "Show all modules"
 msgstr "불러온 모듈 표시"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "'%2' 서비스에 대한 '%1' 동작은 허용되지 않습니다."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "kioslave 에서 서비스 탐색"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "설치 도중 오류가 발생 했습니다."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "예전 숨김 파일 닫는 동안 오류: %m"

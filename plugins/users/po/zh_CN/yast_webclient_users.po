@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -22,6 +22,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr ""
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Repository '%s' has been sucessfully enabled."
+msgid "User <i>%s</i> was successfully created."
+msgstr "成功启用软件源 '%s'。"
+
 #: app/controllers/users_controller.rb:148
 #, fuzzy
 #| msgid "Empty CA name."
@@ -31,6 +37,24 @@ msgstr "CA 名称为空。"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr ""
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Repository '%s' has been sucessfully disabled."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "成功禁用软件源 '%s'。"
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "指定的锁定已经成功删除。"
+
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr "错误：无法读取配置文件 %s：%s。\n"
 
 #: app/views/users/index.html.erb:4
 #, fuzzy

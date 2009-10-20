@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-26 10:08+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
@@ -18,6 +18,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "セッションが正しくありません。ログインし直してください。"
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully created."
+msgstr "サービス '%s' は正常に追加されました。"
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr "UID 値が設定されていません"
@@ -25,6 +31,24 @@ msgstr "UID 値が設定されていません"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: ローカルユーザに対しては 1000 以上の値を指定してください"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "サービス '%s' は正常に追加されました。"
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "指定したパッケージロックを解除しました。"
+
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr "エラー: プロファイル %s を読み込めませんでした: %s\n"
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"

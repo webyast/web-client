@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-08-24 17:37+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenščina <sl@li.org>\n"
@@ -23,40 +23,44 @@ msgid "Invalid session, please login again."
 msgstr ""
 
 # e.g 'not a SUSE LINUX CD-ROM'
-#: app/controllers/administrator_controller.rb:39
+#: app/controllers/administrator_controller.rb:42
 #: app/views/administrator/index.html.erb:32
 #, fuzzy
 #| msgid "This is not a valid CCW address."
 msgid "Enter a valid e-mail address."
 msgstr "To ni veljaven CCW naslov."
 
-#: app/controllers/administrator_controller.rb:45
+#: app/controllers/administrator_controller.rb:50
 msgid "Passwords do not match."
 msgstr ""
 
-#: app/views/administrator/index.html.erb:41
+#: app/controllers/administrator_controller.rb:76
+msgid "Error while saving administrator settings: %s"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:38
 #, fuzzy
 #| msgid "Monitor Settings"
 msgid "Administrator Settings"
 msgstr "Nastvitve monitorja"
 
 # password dialog title
-#: app/views/administrator/index.html.erb:50
+#: app/views/administrator/index.html.erb:47
 msgid "Password"
 msgstr "Geslo"
 
 # password dialog title
-#: app/views/administrator/index.html.erb:54
+#: app/views/administrator/index.html.erb:51
 #, fuzzy
 #| msgid "Password"
 msgid "Confirm Password"
 msgstr "Geslo"
 
-#: app/views/administrator/index.html.erb:56
-#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:53
+#: app/views/administrator/index.html.erb:58
 msgid "Save"
 msgstr "Shrani"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:56
 msgid "Forward mail to"
 msgstr ""

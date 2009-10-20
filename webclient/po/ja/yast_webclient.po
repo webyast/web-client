@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-08 18:02+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
@@ -14,13 +14,27 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr "続行するにはログインしてください"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr "ログインの前にログアウトしなければなりません"
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "'%s' (%s) に chroot することができません。"
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -30,8 +44,13 @@ msgstr "ホストが起動されていて、かつ YaST Web サービスが起�
 msgid "Please select a host to connect to."
 msgstr "接続先のホストを選択してください。"
 
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "リポジトリ '%s' が見つかりません。"
+
 #: app/controllers/hosts_controller.rb:32
-#| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
 msgstr "ホスト URL をもう一度ご確認ください。"
 
@@ -141,6 +160,10 @@ msgstr "正しいですか？"
 msgid "Please choose a service:"
 msgstr "サービスを選択してください:"
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "YaST-Web-サービスを編集しています"
@@ -212,7 +235,6 @@ msgid "No information available"
 msgstr "情報が利用できません"
 
 #: app/views/shared/backendexception_trap.html.erb:4
-#| msgid "Problem occur on target machine."
 msgid "Problem occured on target machine."
 msgstr "ターゲットマシンで問題が発生しました。"
 
@@ -252,6 +274,12 @@ msgstr "...お待ちください..."
 msgid "Login"
 msgstr "ログイン"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "チップセット \"%s\" に対するパラメータを入力してください。"
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr "ユーザ名:"
@@ -286,9 +314,17 @@ msgstr "システムアクション"
 msgid "Reboot"
 msgstr "再起動"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "シャットダウン"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -314,15 +350,39 @@ msgstr "状態プラグインがインストールされていません。"
 msgid "Show all modules"
 msgstr "全てのモジュールを表示"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "サービス「%2」でアクション「%1」は禁止されています。"
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
 msgstr "REST サービスには誰もログインしていません。"
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "/etc/sysconfig/network/config 内の NETCONFIG_NTP_STATIC_SERVERS には、 NTP サーバが事前設定されていません。"
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr "管理者エラー"
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "インストール処理でエラーが発生しました。"
 
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "古い shadow ファイルを閉じる際にエラーが発生しました: %m"
+
+#~ msgid "ADMINISTRATOR_ERROR"
+#~ msgstr "管理者エラー"

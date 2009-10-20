@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users.es.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-24 12:48+0100\n"
 "Last-Translator: Carlos E. Robinson M. <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish, OpenSUSE <opensuse-translation-es@opensuse.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Sesión inválida, por favor entre de nuevo."
 
+#: app/controllers/users_controller.rb:144
+msgid "User <i>%s</i> was successfully created."
+msgstr ""
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr "Valor UID vacío"
@@ -25,6 +29,18 @@ msgstr "Valor UID vacío"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: un valor  >= 1000 es válido sólo para usuarios locales"
+
+#: app/controllers/users_controller.rb:197
+msgid "User <i>%s</i> was successfully updated."
+msgstr ""
+
+#: app/controllers/users_controller.rb:218
+msgid "User <i>%s</i> was successfully removed."
+msgstr ""
+
+#: app/controllers/users_controller.rb:220
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr ""
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"
@@ -34,8 +50,7 @@ msgstr "Usuario local"
 msgid "Login"
 msgstr "Inicio de sesión"
 
-#: app/views/users/index.html.erb:9
-#: app/views/users/edit.html.erb:15
+#: app/views/users/index.html.erb:9 app/views/users/edit.html.erb:15
 #: app/views/users/new.html.erb:9
 msgid "Full Name"
 msgstr "Nombre completo"
@@ -48,8 +63,7 @@ msgstr "Editar"
 msgid "<strong>[New User]</strong>"
 msgstr "<strong>[Nuevo usuario]</strong>"
 
-#: app/views/users/index.html.erb:33
-#: app/views/users/edit.html.erb:47
+#: app/views/users/index.html.erb:33 app/views/users/edit.html.erb:47
 #: app/views/users/new.html.erb:45
 msgid "Back"
 msgstr "Atrás"
@@ -62,8 +76,7 @@ msgstr "Editar usuario %s"
 msgid "User"
 msgstr "Usuario"
 
-#: app/views/users/edit.html.erb:19
-#: app/views/users/new.html.erb:13
+#: app/views/users/edit.html.erb:19 app/views/users/new.html.erb:13
 msgid "Groups"
 msgstr "Grupos"
 
@@ -71,29 +84,24 @@ msgstr "Grupos"
 msgid "Default Group"
 msgstr "Grupo predeterminado"
 
-#: app/views/users/edit.html.erb:27
-#: app/views/users/new.html.erb:21
+#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:21
 msgid "Home Directory"
 msgstr "Directorio \"home\""
 
-#: app/views/users/edit.html.erb:31
-#: app/views/users/new.html.erb:29
+#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:29
 msgid "Login Shell"
 msgstr "intérprete de órdenes, de entrada de sesion"
 
-#: app/views/users/edit.html.erb:35
-#: app/views/users/new.html.erb:33
+#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:33
 msgid "Login Name"
 msgstr "Nombre de entrada de sesión"
 
-#: app/views/users/edit.html.erb:39
-#: app/views/users/new.html.erb:37
+#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:37
 msgid "UID Number"
 msgstr "Número UID "
 
 # password dialog title
-#: app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:41
+#: app/views/users/edit.html.erb:43 app/views/users/new.html.erb:41
 msgid "Password"
 msgstr "Contraseña"
 
@@ -116,4 +124,3 @@ msgstr "NO crear el directorio \"home\""
 #: app/views/users/new.html.erb:45
 msgid "Create"
 msgstr "Crear"
-

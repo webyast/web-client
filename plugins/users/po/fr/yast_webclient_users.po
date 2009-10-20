@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -16,6 +16,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr ""
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully created."
+msgstr "Le service '%s' a été ajouté avec succès."
+
 #: app/controllers/users_controller.rb:148
 #, fuzzy
 #| msgid "Empty CA name."
@@ -25,6 +31,24 @@ msgstr "Nom CA vide."
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr ""
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "Le service '%s' a été ajouté avec succès."
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "Le verrouillage spécifié a été supprimé avec succès."
+
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr "Erreur : impossible de lire le profil %s. %s.\n"
 
 # TLABEL linuxrc_2002_03_29_0036__161
 #: app/views/users/index.html.erb:4

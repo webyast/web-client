@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-08 14:43+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -16,22 +16,25 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: app/controllers/patch_updates_controller.rb:61
-#| msgid "Installing updates..."
 msgid "Installing all patches..."
 msgstr "instalují se aktualizace..."
 
 #: app/controllers/patch_updates_controller.rb:69
-#| msgid "Installation Source"
 msgid "Installation stopped"
 msgstr "Instalace zastavena"
 
 #: app/controllers/patch_updates_controller.rb:106
-#| msgid "Installation"
 msgid "Installation finished"
 msgstr "Instalace dokončena"
 
-#: app/controllers/patch_updates_controller.rb:132
-#| msgid "Package '%s' has been installed"
+#
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s nainstalován ok"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr "Oprava byla nainstalována."
 
@@ -41,7 +44,6 @@ msgstr "Aktualizace"
 
 #: app/views/patch_updates/index.html.erb:16
 #: app/views/patch_updates/_patch_summary.html.erb:28
-#| msgid "Your system is up-to-date."
 msgid "Your system is up to date."
 msgstr "Vás systém je aktuální."
 
@@ -51,7 +53,6 @@ msgid "Back"
 msgstr "Zpět"
 
 #: app/views/patch_updates/index.html.erb:19
-#| msgid "No Updates Available"
 msgid "Updates available"
 msgstr "Dostupné aktualizace"
 
@@ -60,7 +61,6 @@ msgid "Update"
 msgstr "Aktualizace"
 
 #: app/views/patch_updates/_patch_installation.html.erb:7
-#| msgid "An error occurred during the installation."
 msgid "An error occured while installing patches."
 msgstr "Během aktualizace s objevila chyba."
 
@@ -73,14 +73,30 @@ msgid "Are you sure?"
 msgstr "Jste si jistý/á?"
 
 #: app/views/patch_updates/_patch_summary.html.erb:1
-#| msgid "An error occurred during the installation."
 msgid "An error occured when loading patch information."
 msgstr "Během načítání informací o opravě došlo k chybě."
 
 #: app/views/patch_updates/_patch_summary.html.erb:6
-#| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
 msgstr "Nejsou dostupné informace o dostupných opravách"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Security update"
+msgid "Security Updates: %d"
+msgstr "Bezpečnostní aktualizace"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+#, fuzzy
+#| msgid "Important update"
+msgid "Important Updates: %d"
+msgstr "Důležitá aktualizace"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+#, fuzzy
+#| msgid "Additonal updates done."
+msgid "Optional Updates: %d"
+msgstr "Doplňkové aktualizace provedeny."
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"
@@ -110,4 +126,3 @@ msgstr "Zdroj"
 #: app/views/patch_updates/_patches.html.erb:18
 msgid "Install"
 msgstr "Instalovat"
-

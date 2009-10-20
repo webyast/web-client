@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-06 23:08+0100\n"
 "Last-Translator: Jan Madsen <jan-portugal@opensuse.org>\n"
 "Language-Team: Danish <opensuse-da@opensuse.org>\n"
@@ -17,6 +17,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Ugyldig session. Log ind igen."
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully created."
+msgstr "Tjenesten '%s' er blevet tilføjet."
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr "Tom UID-værdi"
@@ -24,6 +30,24 @@ msgstr "Tom UID-værdi"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: værdi >= 1000 er kun gyldig for lokal bruger"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "Tjenesten '%s' er blevet tilføjet."
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "Angivet lås er blevet fjernet."
+
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr "Fejl: Kunne ikke læse profilen %s: %s.\n"
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"

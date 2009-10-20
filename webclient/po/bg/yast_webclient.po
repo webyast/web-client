@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-08-18 21:16+0300\n"
 "Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -11,13 +11,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+# %s is FTP or HTTP
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Trying to connect to the %s server..."
+msgid "Can't connect to host %s."
+msgstr "Опит за връзка с %s сървъра..."
 
 #: app/controllers/hosts_controller.rb:26
 #, fuzzy
@@ -30,6 +45,12 @@ msgstr "Въведете номера на порта, на който рабо�
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "Изберете типа на мрежовото устройство."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Host %s was not found."
+msgid "The host '%s' cannot be found."
+msgstr "Хостът %s не бе открит."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -148,6 +169,10 @@ msgstr ""
 #| msgid "Please choose the CCW bus interface."
 msgid "Please choose a service:"
 msgstr "Моля, изберете интерфейса за CCW шината."
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -273,6 +298,12 @@ msgstr ""
 msgid "Login"
 msgstr "Влизане"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Въведете специфичните параметри за чипсета \"%s\"."
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "&Username:"
@@ -315,8 +346,16 @@ msgstr "Системна информация"
 msgid "Reboot"
 msgstr "Рестартиране"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
 msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
@@ -353,16 +392,36 @@ msgstr "ГРЕШКА: модулът %s не е инсталиран.\n"
 msgid "Show all modules"
 msgstr "Преглед на заредените модули"
 
+#: lib/error_constructor.rb:10
+msgid "Permission %s is not granted for user %s"
+msgstr ""
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "kioslave за браузване на услуги"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Възникнала е грешка по време на инсталацията."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Възникнала е грешка при затварянето на стария shadow файл: %m"

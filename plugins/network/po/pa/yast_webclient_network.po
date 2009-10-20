@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-10 22:34+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -18,81 +18,86 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:41
+#: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "ਨੈੱਟਵਰਕ ਮੋਡੀਊਲ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ"
 
-#: app/controllers/network_controller.rb:98
+#: app/controllers/network_controller.rb:66
+msgid "static"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
+msgid "dhcp"
+msgstr "dhcp"
+
+#: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
 msgstr "ਸੈਟਿੰਗ ਲਿਖੀਆਂ ਗਈਆਂ ਹਨ।"
 
-#: app/views/network/index.html.erb:3
+#: app/views/network/index.html.erb:38
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:64
 msgid "Network"
 msgstr "ਨੈੱਟਵਰਕ"
 
-#: app/views/network/index.html.erb:13
+#: app/views/network/index.html.erb:71
 msgid "Interface"
 msgstr "ਇੰਟਰਫੇਸ"
 
-#: app/views/network/index.html.erb:33 app/views/network/index.html.erb:40
-#| msgid "Own Address"
+#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr "IP ਐਡਰੈੱਸ"
 
-#: app/views/network/index.html.erb:36
-#| msgid "Configuration"
+#: app/views/network/index.html.erb:94
 msgid "Configuration Mode"
 msgstr "ਸੰਰਚਨਾ ਮੋਡ"
 
-#: app/views/network/index.html.erb:44
+#: app/views/network/index.html.erb:102
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
 msgstr "ਡਾਇਲ ਪ੍ਰੀ-ਫਿਕਸ"
 
-#: app/views/network/index.html.erb:53
+#: app/views/network/index.html.erb:111
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:56
-#| msgid "Host Names"
+#: app/views/network/index.html.erb:114
 msgid "Hostname"
 msgstr "ਹੋਸਟ ਨਾਂ"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:60
-#| msgid "Domain\n"
+#: app/views/network/index.html.erb:118
 msgid "Domain"
 msgstr "ਡੋਮੇਨ"
 
-#: app/views/network/index.html.erb:64
-#| msgid "Name Server"
+#: app/views/network/index.html.erb:122
 msgid "Name Servers"
 msgstr "ਨੇਮ ਸਰਵਰ"
 
-#: app/views/network/index.html.erb:68
-#| msgid "Search Index"
+#: app/views/network/index.html.erb:126
 msgid "Search Domains"
 msgstr "ਖੋਜ ਡੋਮੇਨ"
 
-#: app/views/network/index.html.erb:78
+#: app/views/network/index.html.erb:136
 msgid "Routing"
 msgstr "ਰਾਊਟਿੰਗ"
 
-#: app/views/network/index.html.erb:81
+#: app/views/network/index.html.erb:139
 msgid "Default Route"
 msgstr "ਡਿਫਾਲਟ ਰਾਊਟ"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Update"
 msgstr "ਅੱਪਡੇਟ"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
 #: app/views/network/edit.html.erb:1
-#| msgid "Network Servers"
 msgid "Edit Network Device"
 msgstr "ਨੈੱਟਵਰਕ ਜੰਤਰ ਸੋਧ"
 
@@ -109,17 +114,13 @@ msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
 #: app/views/network/edit.html.erb:23
-#| msgid "DMA"
 msgid "MAC"
 msgstr "MAC"
 
 #: app/views/network/edit.html.erb:27
-#| msgid "Device"
 msgid "Device Name"
 msgstr "ਜੰਤਰ ਨਾਂ"
 
 #: app/views/network/edit.html.erb:31
-#| msgid "Start-Up"
 msgid "Startup"
 msgstr "ਸ਼ੁਰੂ"
-

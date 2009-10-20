@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -29,7 +29,13 @@ msgstr "স্থাপন"
 msgid "Installation finished"
 msgstr "স্থাপন"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s ইন্সটল ঠিক আছে"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr ""
 
@@ -86,6 +92,20 @@ msgstr "ইন্সটল করার সময় একটি ভুল হয়�
 #| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
 msgstr "ব্যাটারি এবং AC অবস্থার বিষয়ে কোনো তথ্য উপলব্ধ নেই।"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Driver Updates added"
+msgid "Security Updates: %d"
+msgstr "ড্রাইভার আপডেটগুলি যুক্ত করা হয়েছে"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr ""
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr ""
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

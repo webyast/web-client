@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast memory\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2004-04-05 17:37+0200\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <i18n@suse.de>\n"
@@ -15,14 +15,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "Raloyîz vs al daegntoele, s' i vs plait."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
+msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+msgid "Can't connect to host %s."
 msgstr ""
 
 #: app/controllers/hosts_controller.rb:26
@@ -34,6 +46,10 @@ msgstr ""
 #| msgid "Please connect to the internet."
 msgid "Please select a host to connect to."
 msgstr "Raloyîz vs al daegntoele, s' i vs plait."
+
+#: app/controllers/hosts_controller.rb:31
+msgid "The host '%s' cannot be found."
+msgstr ""
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -153,6 +169,10 @@ msgstr ""
 #| msgid "A kioslave to browse services"
 msgid "Please choose a service:"
 msgstr "On vårlet d' I/R po foyter avå les siervices"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -282,6 +302,10 @@ msgstr ""
 msgid "Login"
 msgstr "Elodjaedje"
 
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr ""
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "&Username:"
@@ -324,9 +348,17 @@ msgstr "Tchuzes do sistinme"
 msgid "Reboot"
 msgstr "Renonder l' copiutrece"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Distinde"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -356,16 +388,32 @@ msgstr ""
 msgid "Show all modules"
 msgstr ""
 
+#: lib/error_constructor.rb:10
+msgid "Permission %s is not granted for user %s"
+msgstr ""
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "On vårlet d' I/R po foyter avå les siervices"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
+#: lib/error_constructor.rb:22
+msgid "Error occured during ntp synchronization: %s"
+msgstr ""
+
+#: lib/error_constructor.rb:25
+msgid "Error while saving administrator settings: %s"
 msgstr ""

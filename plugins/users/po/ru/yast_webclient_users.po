@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-23 23:21+0400\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
@@ -19,6 +19,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Неверный сеанс, пожалуйста, войдите снова."
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Repository '%s' has been sucessfully enabled."
+msgid "User <i>%s</i> was successfully created."
+msgstr "Репозитарий '%s' успешно включён."
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr "Пустое значение UID"
@@ -26,6 +32,24 @@ msgstr "Пустое значение UID"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: значение >= 1000 верно только для локального пользователя"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Repository '%s' has been sucessfully disabled."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "Репозитарий '%s' успешно отключён."
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "Указанная блокировка успешно удалена."
+
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr "Ошибка: Не удалось прочитать профиль %s: %s.\n"
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"

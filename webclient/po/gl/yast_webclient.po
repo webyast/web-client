@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2002-07-23 11:51+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <i18n@suse.de>\n"
@@ -11,15 +11,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "Conéctese á Internet."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Connected to: %s"
+msgid "Can't connect to host %s."
+msgstr "Conectado a: %s"
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -30,6 +44,12 @@ msgstr ""
 #| msgid "Please connect to the internet."
 msgid "Please select a host to connect to."
 msgstr "Conéctese á Internet."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Non se atopou o repositorio '%s'."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -151,6 +171,10 @@ msgstr ""
 #| msgid "A kioslave to browse services"
 msgid "Please choose a service:"
 msgstr "Un kioslave para buscar servizos"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -276,6 +300,10 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr ""
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "User Name"
@@ -320,9 +348,17 @@ msgstr "Información do Sistema "
 msgid "Reboot"
 msgstr "Reiniciar"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Apagar"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -356,16 +392,34 @@ msgstr "'%s' non está instalado."
 msgid "Show all modules"
 msgstr ""
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "A acción '%1' non está permitida para o servizo '%2'."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "Un kioslave para buscar servizos"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
+#: lib/error_constructor.rb:22
+msgid "Error occured during ntp synchronization: %s"
+msgstr ""
+
+#: lib/error_constructor.rb:25
+msgid "Error while saving administrator settings: %s"
 msgstr ""

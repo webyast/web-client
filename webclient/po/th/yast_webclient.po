@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,14 +14,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 #, fuzzy
 #| msgid "Select one of the options to continue."
 msgid "Please login to continue"
 msgstr "เลือกตัวเลือกใดตัวเลือกหนึ่งเพื่อทำต่อไป"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
+msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+msgid "Can't connect to host %s."
 msgstr ""
 
 #: app/controllers/hosts_controller.rb:26
@@ -33,6 +45,12 @@ msgstr ""
 #| msgid "Please select directory..."
 msgid "Please select a host to connect to."
 msgstr "โปรดเลือกไดเรกทอรี..."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "The hostname cannot be empty."
+msgid "The host '%s' cannot be found."
+msgstr "ไม่สามารถปล่อยชื่อเครื่องให้ว่างไว้ได้"
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -167,6 +185,12 @@ msgstr ""
 msgid "Please choose a service:"
 msgstr "โปรดเลือกดีมอน ftp ที่ต้องการ"
 
+#: app/views/hosts/index.html.erb:26
+#, fuzzy
+#| msgid "Really delete it?"
+msgid "Really delete host %s ?"
+msgstr "ต้องการจะลบมันจริงหรือไม่ ?"
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -299,6 +323,10 @@ msgstr ""
 msgid "Login"
 msgstr "ล็อกอิน"
 
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr ""
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "Username"
@@ -340,9 +368,21 @@ msgstr "ข้อมูลรายละเอียดของระบบ"
 msgid "Reboot"
 msgstr "บูตระบบใหม่"
 
+#: app/views/controlpanel/index.rhtml:32
+#, fuzzy
+#| msgid "Really abort?"
+msgid "Really reboot %s?"
+msgstr "คุณต้องการจะทำการยกเลิกจริงหรือไม่ ?"
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "ปิดเครื่อง"
+
+#: app/views/controlpanel/index.rhtml:34
+#, fuzzy
+#| msgid "Really delete section %1?"
+msgid "Really shutdown %s?"
+msgstr "ต้องการจะลบรายการบูตระบบ %1 นี้จริงหรือไม่ ?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -378,16 +418,39 @@ msgstr "ไฟร์วอลล์ยังไม่ถูกติดตั้
 msgid "Show all modules"
 msgstr "แสดงรายการมอดูลของเคอร์เนล"
 
+#: lib/error_constructor.rb:10
+msgid "Permission %s is not granted for user %s"
+msgstr ""
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
+msgstr ""
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
+#: lib/error_constructor.rb:22
 #, fuzzy
-#| msgid "INTERNAL ERROR"
-msgid "ADMINISTRATOR_ERROR"
-msgstr "ข้อผิดพลาดภายใน"
+#| msgid "An error occurred during initrd creation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while writing settings."
+msgid "Error while saving administrator settings: %s"
+msgstr "เกิดข้อผิดพลาดระหว่างเขียนค่าการปรับแต่ง"
+
+#, fuzzy
+#~| msgid "INTERNAL ERROR"
+#~ msgid "ADMINISTRATOR_ERROR"
+#~ msgstr "ข้อผิดพลาดภายใน"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -17,13 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Trying to connect to the %s server..."
+msgid "Can't connect to host %s."
+msgstr "%s சேவகனுடன் இணைப்பதற்கு முயற்சிக்கப்படுகிறது..."
 
 #: app/controllers/hosts_controller.rb:26
 #, fuzzy
@@ -36,6 +50,12 @@ msgstr "NFS சேவகன் இயங்கிக் கொண்டிரு
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "உங்கள் வலையமைப்பு சாதனத்தின் வகையை தயவுசெய்து தேர்ந்தெடுக்கவும்."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Host %s was not found."
+msgid "The host '%s' cannot be found."
+msgstr "புரவலன் %s காணப்படவில்லை."
 
 #: app/controllers/hosts_controller.rb:32
 #, fuzzy
@@ -164,6 +184,10 @@ msgstr ""
 msgid "Please choose a service:"
 msgstr "CCW bus உள்முகத்தை தயவுசெய்து தேர்ந்தெடுக்கவும்."
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -284,6 +308,12 @@ msgstr ""
 msgid "Login"
 msgstr "உட்செல்லவும்"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "\"%s\" சிப்செட்டுக்கான குறிப்பிட்ட அளவுருக்களை உள்ளிடவும்."
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr ""
@@ -321,11 +351,19 @@ msgstr "கணினி மணி"
 msgid "Reboot"
 msgstr "ரீபூட்"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 #, fuzzy
 #| msgid "_Shutdown"
 msgid "Shutdown"
 msgstr "_மூடவும்"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -359,14 +397,36 @@ msgstr ""
 msgid "Show all modules"
 msgstr "ஏற்றப்பட்ட கூறுகளைக் காட்டவும்"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "சேவை '%2'க்கு செயல்பாடு '%1' அனுமதிக்கப்பட மாட்டாது."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
+msgstr ""
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "நிறுவுதலின்போது ஒரு  பிழை தோன்றியுள்ளது."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "பழைய நிழல்உரு கோப்பு: %mஐ மூடும்போது பிழை"

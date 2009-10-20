@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-24 15:58+0200\n"
 "Last-Translator: Oprea Lucian <oprea_luci@yahoo.com>\n"
 "Language-Team: Romanian <i18n@suse.de>\n"
@@ -17,68 +17,82 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:41
+#: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Nu există permisiuni pentru modulul de reţea"
 
-#: app/controllers/network_controller.rb:98
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Static"
+msgid "static"
+msgstr "Static"
+
+#: app/controllers/network_controller.rb:66
+msgid "dhcp"
+msgstr "dhcp"
+
+#: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
 msgstr "Setările au fost scrise."
 
-#: app/views/network/index.html.erb:3
+#: app/views/network/index.html.erb:38
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:64
 msgid "Network"
 msgstr "Rețea"
 
-#: app/views/network/index.html.erb:13
+#: app/views/network/index.html.erb:71
 msgid "Interface"
 msgstr "Interfață"
 
-#: app/views/network/index.html.erb:33 app/views/network/index.html.erb:40
+#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr "Adresă IP"
 
-#: app/views/network/index.html.erb:36
+#: app/views/network/index.html.erb:94
 msgid "Configuration Mode"
 msgstr "Mod de configurare"
 
-#: app/views/network/index.html.erb:44
+#: app/views/network/index.html.erb:102
 msgid "Prefixlen"
 msgstr "Prefixlen"
 
-#: app/views/network/index.html.erb:53
+#: app/views/network/index.html.erb:111
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:56
+#: app/views/network/index.html.erb:114
 msgid "Hostname"
 msgstr "Nume gazdă"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:60
+#: app/views/network/index.html.erb:118
 msgid "Domain"
 msgstr "Domeniu"
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:122
 msgid "Name Servers"
 msgstr "Servere de nume"
 
-#: app/views/network/index.html.erb:68
+#: app/views/network/index.html.erb:126
 msgid "Search Domains"
 msgstr "Domenii de căutare"
 
-#: app/views/network/index.html.erb:78
+#: app/views/network/index.html.erb:136
 msgid "Routing"
 msgstr "Rutare"
 
-#: app/views/network/index.html.erb:81
+#: app/views/network/index.html.erb:139
 msgid "Default Route"
 msgstr "Rută implicită"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Update"
 msgstr "Actualizare"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Back"
 msgstr "Înapoi"
 

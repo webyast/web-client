@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2006-02-18 09:47+0700\n"
 "Last-Translator: Keo Sophon <keosophon@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -11,16 +11,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
 # %s is FTP or HTTP
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:105
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "សូម​តភ្ជាប់​ទៅ​កាន់​អ៊ីនធឺណិត ។"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "មិនអាច chroot ទៅ '%s' (%s) បានទេ ។"
 
 #: app/controllers/hosts_controller.rb:26
 #, fuzzy
@@ -33,6 +47,12 @@ msgstr "បញ្ចូល​លេខ​ច្រក​ដែល​ម៉ាស
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "សូម​ជ្រើស​ប្រភេទ​ឧបករណ៍​បណ្ដាញ​របស់​អ្នក ។"
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "រក​មិន​ឃើញ​ឃ្លាំង '%s' ទេ ។"
 
 #: app/controllers/hosts_controller.rb:32
 #, fuzzy
@@ -164,6 +184,10 @@ msgstr ""
 msgid "Please choose a service:"
 msgstr "សូម​ជ្រើស​ចំណុច​ប្រទាក់​ខ្សែ​បញ្ជូន CCW ។"
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -290,6 +314,12 @@ msgstr ""
 msgid "Login"
 msgstr "ចូល"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "បញ្ចូល​ប៉ារ៉ាម៉ែត្រ​ជាក់លាក់​សម្រាប់​សំណុំ​បន្ទះ​សៀគ្វី​តូច \"%s\" ។"
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "Username: "
@@ -330,9 +360,17 @@ msgstr "ការ​តភ្ជាប់​ប្រព័ន្ធ"
 msgid "Reboot"
 msgstr "ចាប់​ផ្ដើម​ឡើង​វិញ"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "បិទ"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -368,16 +406,38 @@ msgstr "'%s' មិនទាន់​បាន​ដំឡើង​ទេ ។"
 msgid "Show all modules"
 msgstr "បង្ហាញ​ម៉ូឌុល​ដែល​បាន​ផ្ទុក"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "មិនបាន​អនុញ្ញាត​អំពើ '%1' សម្រាប់​សេវា '%2' ទេ ។"
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "kioslave ដើម្បី​រុករក​សេវា"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "កំហុស​មួយ​បាន​កើត​ឡើង កំឡុង​ពេល​ដំឡើង ។"
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "មាន​កំហុស ខណៈ​ពេល​បិទ​ឯកសារ shadown ចាស់ ៖ %m"

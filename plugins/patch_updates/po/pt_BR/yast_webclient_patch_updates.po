@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_updates\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-23 11:44-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
@@ -33,7 +33,13 @@ msgstr "Instalação parada"
 msgid "Installation finished"
 msgstr "Instalação concluída"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s instalado com êxito"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr "A correção foi instalada."
 
@@ -78,6 +84,25 @@ msgstr "Ocorreu um erro ao carregar a informação da correção."
 #: app/views/patch_updates/_patch_summary.html.erb:6
 msgid "No information about patches available"
 msgstr "Nenhuma informação disponível sobre correções disponíveis"
+
+# button label for other/more options
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Security update"
+msgid "Security Updates: %d"
+msgstr "Atualização de segurança"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+#, fuzzy
+#| msgid "Important update"
+msgid "Important Updates: %d"
+msgstr "Atualização importante"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+#, fuzzy
+#| msgid "Additonal updates done."
+msgid "Optional Updates: %d"
+msgstr "Atualizações adicionais feitas."
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

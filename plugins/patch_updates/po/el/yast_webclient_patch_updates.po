@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2005-08-24 17:53+0300\n"
 "Last-Translator: Hellenic SuSE Translation Team <hstg@billg.gr>\n"
 "Language-Team: Hellenic-Ελληνικά-Greek <hstg@billg.gr>\n"
@@ -30,7 +30,13 @@ msgstr "Πηγή Εγκατάστασης"
 msgid "Installation finished"
 msgstr "Εγκατάσταση"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s εγκατάσταση ok"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr ""
 
@@ -85,6 +91,20 @@ msgstr "Προκλήθηκε σφάλμα κατά τη διάρκεια της 
 #| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
 msgstr "Δεν υπάρχουν πληροφορίες σχετικά με την μπαταρία και την κατάσταση του AC"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Driver Updates added"
+msgid "Security Updates: %d"
+msgstr "Προστέθηκε Ενημέρωση Οδηγού "
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr ""
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr ""
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

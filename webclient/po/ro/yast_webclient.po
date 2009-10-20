@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-25 23:33+0200\n"
 "Last-Translator: Andrei Cipu <traduceri@strainu.ro>\n"
 "Language-Team: Romanian <i18n@suse.de>\n"
@@ -17,13 +17,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr "Vă rugăm să vă conectați pentru a continua."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr "Trebuie să vă deconectaţi înainte să vă reconectaţi"
+
+# %s is FTP or HTTP
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Trying to connect to the %s server..."
+msgid "Can't connect to host %s."
+msgstr "Încerc să mă conectez la serverul %s..."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -32,6 +47,12 @@ msgstr "Asiguraţi-vă că maşina este pornită şi serviciul web YaST rulează
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
 msgstr "Vă rugăm să alegeti o gazdă la care să vă conectati."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Nu am găsit sursa de instalare '%s'."
 
 #: app/controllers/hosts_controller.rb:32
 #, fuzzy
@@ -148,6 +169,10 @@ msgstr "Sunteţi sigur?"
 msgid "Please choose a service:"
 msgstr "Vă rugăm să alegeți un serviciu:"
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "Editez Serviciul-Web-YaST"
@@ -262,6 +287,12 @@ msgstr "...Aşteptaţi..."
 msgid "Login"
 msgstr "Autentificare"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Introduceți parametrii specifici pentru chipsetul \"%s\"."
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr "Nume utilizator: "
@@ -299,9 +330,17 @@ msgstr "Acţiuni de sistem"
 msgid "Reboot"
 msgstr "Restartează"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Oprire calculator"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -327,14 +366,36 @@ msgstr "Pluginul de status nu este instalat"
 msgid "Show all modules"
 msgstr "Arată toate modulele"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "Acțiunea '%1' nu este permisă pentru serviciul '%2'."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
 msgstr "Nimeni nu este conectat la serviciul rest."
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "A apărut o eroare la instalare."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Eroare la închiderea vechiului fișier shadow: %m"

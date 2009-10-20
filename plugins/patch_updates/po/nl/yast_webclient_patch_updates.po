@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_patch_updates.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-23 21:06+0200\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
@@ -31,7 +31,13 @@ msgstr "Installatie is gestopt"
 msgid "Installation finished"
 msgstr "Installatie is gereed"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s is met succes geïnstalleerd"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr "Patch is geïnstalleerd."
 
@@ -76,6 +82,25 @@ msgstr "Er is een fout opgetreden tijdens het laden van patchinformatie."
 #: app/views/patch_updates/_patch_summary.html.erb:6
 msgid "No information about patches available"
 msgstr "Geen informatie over patches beschikbaar"
+
+# /usr/lib/YaST2/clients/inst_config_x11.ycp:947
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Security update"
+msgid "Security Updates: %d"
+msgstr "Beveiligingsopwaardering"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+#, fuzzy
+#| msgid "Important update"
+msgid "Important Updates: %d"
+msgstr "Belangrijke opwaardering"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+#, fuzzy
+#| msgid "Additonal updates done."
+msgid "Optional Updates: %d"
+msgstr "Aanvullende opwaarderingen zijn voltooid."
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

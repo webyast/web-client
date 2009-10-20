@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-08 14:29+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -15,13 +15,27 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr "Pro pokračování se prosím přihlaste"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr "Před přihlášením se musíte odhlásit"
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "Nemůžu změnit kořenový adresář na '%s' (%s)."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -31,8 +45,13 @@ msgstr "Ujistěte se, že je cílový počítač zapnutý a webová služba YaST
 msgid "Please select a host to connect to."
 msgstr "Prosím zvolte hostitele pro připojení."
 
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Repozitář '%s' nebyl nalezen."
+
 #: app/controllers/hosts_controller.rb:32
-#| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
 msgstr "Prosíme dvakrát zkontrolujte URL hostitele."
 
@@ -89,7 +108,6 @@ msgid "host"
 msgstr "hostitel"
 
 #: app/models/host.rb:-
-#| msgid "Host Names"
 msgid "Host|Name"
 msgstr "Hostitel|Jméno"
 
@@ -98,7 +116,6 @@ msgid "Host|Url"
 msgstr "Hostitel|URL"
 
 #: app/models/host.rb:-
-#| msgid "Description"
 msgid "Host|Description"
 msgstr "Hostitel|Popis"
 
@@ -107,7 +124,6 @@ msgid "Host|Created at"
 msgstr "Hostitel|Vytvořen"
 
 #: app/models/host.rb:-
-#| msgid "Updated"
 msgid "Host|Updated at"
 msgstr "Hostitel|Aktualizované"
 
@@ -142,16 +158,18 @@ msgid "Are you sure?"
 msgstr "Jste si jistý?"
 
 #: app/views/hosts/index.html.erb:6
-#| msgid "Please choose the CCW bus interface."
 msgid "Please choose a service:"
 msgstr "Prosíme, vyberte typ služby:"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "Upravuji YaST-Web-Service"
 
 #: app/views/hosts/edit.html.erb:24
-#| msgid "Service"
 msgid "YaST-Web-Service"
 msgstr "Služba YaST-Web-Service"
 
@@ -198,7 +216,6 @@ msgstr "Omlouvám se, ale WebYaST je stále v alfa verzi a obsahuje určité pro
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
-#| msgid "Problem: "
 msgid "Problem:"
 msgstr "Problém:"
 
@@ -227,12 +244,10 @@ msgid "WebYaST"
 msgstr "WebYaST"
 
 #: app/views/layouts/main.rhtml:42
-#| msgid "Applied"
 msgid "My Appliance"
 msgstr "Můj prostředek"
 
 #: app/views/layouts/main.rhtml:52
-#| msgid "Connected To"
 msgid "Connected Host"
 msgstr "Propojený hostitel"
 
@@ -245,7 +260,6 @@ msgid "User:"
 msgstr "Uživatelské jméno: "
 
 #: app/views/layouts/main.rhtml:57
-#| msgid "Control Center"
 msgid "Control panel"
 msgstr "Ovládací panel"
 
@@ -261,8 +275,13 @@ msgstr "...Čekejte..."
 msgid "Login"
 msgstr "Přihlášení"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Zadejte specifické parametry pro \"%s\"."
+
 #: app/views/sessions/new.rhtml:10
-#| msgid "Username: "
 msgid "Username:"
 msgstr "Uživatelské jméno:"
 
@@ -279,7 +298,6 @@ msgid "Your system setup was not completed. Please continue with setting up the 
 msgstr "Nastavení vašeho systému nebylo dokončeno. Prosíme, pokračujte s nastavením modulů."
 
 #: app/views/controlpanel/basesystem.rhtml:4
-#| msgid "Reboot the system now?"
 msgid "Set up the system"
 msgstr "Nastavení systému"
 
@@ -289,7 +307,6 @@ msgid "Configuration"
 msgstr "Konfigurace"
 
 #: app/views/controlpanel/index.rhtml:30
-#| msgid "System Information"
 msgid "System actions"
 msgstr "Systémové akce"
 
@@ -298,31 +315,35 @@ msgstr "Systémové akce"
 msgid "Reboot"
 msgstr "Restartovat"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Vypnout"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
 msgstr "Stav"
 
 #: app/views/controlpanel/index.rhtml:43
-#| msgid "Downloading update information"
 msgid "Loading patch information"
 msgstr "Stahuje se informace o patchi"
 
 #: app/views/controlpanel/index.rhtml:45
-#| msgid "Package '%s' is not installed."
 msgid "Patch plugin is not installed."
 msgstr "Plugin na práci s patchi není nainstalován"
 
 #: app/views/controlpanel/index.rhtml:51
-#| msgid "Downloading update information"
 msgid "Loading system information"
 msgstr "Načítají se systémové informace"
 
 #: app/views/controlpanel/index.rhtml:53
-#| msgid "'%s' is not installed."
 msgid "Status plugin is not installed."
 msgstr "Plugin stavu není nainstalován"
 
@@ -330,16 +351,39 @@ msgstr "Plugin stavu není nainstalován"
 msgid "Show all modules"
 msgstr "Zobrazit všechny moduly"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "Akce '%1' nesmí pro službu %2 povolena."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
-#| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
+msgstr ""
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "V /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS není nastaven žádný NTP server."
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr "ADMINISTRÁTORSKÁ_CHYBA"
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Objevila se chyba během instalace."
 
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Chyba při uzavírání starého stínového souboru: %m"
+
+#~ msgid "ADMINISTRATOR_ERROR"
+#~ msgstr "ADMINISTRÁTORSKÁ_CHYBA"

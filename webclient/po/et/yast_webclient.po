@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2003-09-22 13:26+0200\n"
 "Last-Translator: Ain Vagula <avagula@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -10,13 +10,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Connected to: %s"
+msgid "Can't connect to host %s."
+msgstr "Ühendatud: %s"
 
 #: app/controllers/hosts_controller.rb:26
 #, fuzzy
@@ -29,6 +43,12 @@ msgstr "Sisesta pordi number, milles NFS-i server töötab."
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "Palun vali oma võrguseadme tüüp."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Host %s was not found."
+msgid "The host '%s' cannot be found."
+msgstr "Masinat %s ei leitud."
 
 #: app/controllers/hosts_controller.rb:32
 #, fuzzy
@@ -153,6 +173,10 @@ msgstr ""
 #| msgid "A kioslave to browse services"
 msgid "Please choose a service:"
 msgstr "Teenuste lehitsemise KIO-moodul"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -282,6 +306,10 @@ msgstr ""
 msgid "Login"
 msgstr "Sisselogimine"
 
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr ""
+
 #: app/views/sessions/new.rhtml:10
 #, fuzzy
 #| msgid "&Username:"
@@ -324,11 +352,19 @@ msgstr "Süsteemi sätted"
 msgid "Reboot"
 msgstr "Taaskäivita"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 #, fuzzy
 #| msgid "Shutdown Computer"
 msgid "Shutdown"
 msgstr "Arvuti väljalülitamine"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -362,16 +398,36 @@ msgstr ""
 msgid "Show all modules"
 msgstr "Näita laaditud mooduleid"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "Tegevus '%1' ei ole teenuse '%2' puhul lubatud."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "Teenuste lehitsemise KIO-moodul"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Paigaldamise käigus tekkis viga."
+
+#: lib/error_constructor.rb:25
+msgid "Error while saving administrator settings: %s"
 msgstr ""

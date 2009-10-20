@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-07 22:59+0100\n"
 "Last-Translator: Guillaume GARDET <guillaume.gardet@free.fr>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -12,15 +12,29 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "Veuillez vous connecter à Internet."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "Impossible de chrooter dans '%s' (%s)."
 
 # TLABEL linuxrc_2002_03_29_0036__132
 #: app/controllers/hosts_controller.rb:26
@@ -34,6 +48,13 @@ msgstr "Entrez le numéro du port sur lequel fonctionne le serveur NFS."
 #| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
 msgstr "Veuillez sélectionner le type de votre périphérique réseau."
+
+# TLABEL linuxrc_2002_03_29_0036__117
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Dépot '%s' non trouvé."
 
 # TLABEL support_2002_03_14_2340__2
 #: app/controllers/hosts_controller.rb:32
@@ -165,6 +186,10 @@ msgstr ""
 msgid "Please choose a service:"
 msgstr "Choisissez l'interface de bus CCW."
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr ""
@@ -286,6 +311,13 @@ msgstr ""
 msgid "Login"
 msgstr "Connexion"
 
+# TLABEL linuxrc_2002_03_29_0036__77
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Entrez les paramètres spécifiques pour le jeu de puces \"%s\"."
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr "Nom d'utilisateur :"
@@ -327,9 +359,17 @@ msgstr "Connexion &système"
 msgid "Reboot"
 msgstr "Réamorcer"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Arrêt"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 # TLABEL lan_inetd_2002_01_04_0147__28
 #: app/views/controlpanel/index.rhtml:39
@@ -368,16 +408,39 @@ msgstr "'%s' n'est pas installé."
 msgid "Show all modules"
 msgstr "Affichr les modules chargés"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "L'action %1 n'est pas autorisée pour le service '%2'."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
 msgstr "Un 'kioslave' pour parcourir les services"
 
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr ""
+# TLABEL linuxrc_2002_03_29_0036__95
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Erreur au cours de l'installation."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Erreur lors de la fermeture de l'ancien fichier de copie : %m"

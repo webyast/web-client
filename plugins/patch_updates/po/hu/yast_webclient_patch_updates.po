@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_patch_updates.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-10-08 19:38+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"PO-Revision-Date: 2009-10-19 22:33+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,11 @@ msgstr "A telepítés megállt"
 msgid "Installation finished"
 msgstr "A telepítés befejeződött"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+msgid "%s installed."
+msgstr "A(z) %s telepítése befejeződött."
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr "A javítás telepítése befejeződött."
 
@@ -71,6 +75,18 @@ msgstr "Hiba történt a telepítés közben."
 #: app/views/patch_updates/_patch_summary.html.erb:6
 msgid "No information about patches available"
 msgstr "Nem áll rendelkezésre információ az elérhető javításokról"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+msgid "Security Updates: %d"
+msgstr "Biztonsági frissítés: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr "Fontos frissítés: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr "Opvionális frissítések: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

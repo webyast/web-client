@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-28 08:22+0300\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
@@ -18,6 +18,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Epäkelpo istunto, kirjaudu uudestaan."
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully created."
+msgstr "Asennuslähdepalvelun '%s' lisääminen onnistui."
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr "Tyhjä UID arvo"
@@ -25,6 +31,24 @@ msgstr "Tyhjä UID arvo"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: arvo >= 1000 kelpaa vain paikalliselle käyttäjälle"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "Asennuslähdepalvelun '%s' lisääminen onnistui."
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "Pakettilukon poistaminen onnistui."
+
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr "Virhe: Ei voitu lukea profiilia %s: %s\n"
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"

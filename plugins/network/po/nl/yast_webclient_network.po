@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-23 20:40+0200\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
@@ -19,69 +19,84 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/network_controller.rb:41
+#: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Geen toestemming voor de netwerkmodule"
 
+# /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Static"
+msgid "static"
+msgstr "Statisch"
+
+#: app/controllers/network_controller.rb:66
+msgid "dhcp"
+msgstr "dhcp"
+
 # %s is either BOOTP or DHCP
-#: app/controllers/network_controller.rb:98
+#: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
 msgstr "Instellingen zijn weggeschreven."
 
-#: app/views/network/index.html.erb:3
+#: app/views/network/index.html.erb:38
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:64
 msgid "Network"
 msgstr "Netwerk"
 
-#: app/views/network/index.html.erb:13
+#: app/views/network/index.html.erb:71
 msgid "Interface"
 msgstr "Interface"
 
-#: app/views/network/index.html.erb:33 app/views/network/index.html.erb:40
+#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr "IP-adres"
 
-#: app/views/network/index.html.erb:36
+#: app/views/network/index.html.erb:94
 msgid "Configuration Mode"
 msgstr "Configuratiemodus"
 
-#: app/views/network/index.html.erb:44
+#: app/views/network/index.html.erb:102
 msgid "Prefixlen"
 msgstr "Lengte voorvoegsel"
 
-#: app/views/network/index.html.erb:53
+#: app/views/network/index.html.erb:111
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:56
+#: app/views/network/index.html.erb:114
 msgid "Hostname"
 msgstr "Hostnaam"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:60
+#: app/views/network/index.html.erb:118
 msgid "Domain"
 msgstr "Domein"
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:122
 msgid "Name Servers"
 msgstr "Naamservers"
 
-#: app/views/network/index.html.erb:68
+#: app/views/network/index.html.erb:126
 msgid "Search Domains"
 msgstr "Domeinen zoeken"
 
-#: app/views/network/index.html.erb:78
+#: app/views/network/index.html.erb:136
 msgid "Routing"
 msgstr "Routering"
 
-#: app/views/network/index.html.erb:81
+#: app/views/network/index.html.erb:139
 msgid "Default Route"
 msgstr "Standaardroute"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Update"
 msgstr "Opwaarderen"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Back"
 msgstr "Terug"
 

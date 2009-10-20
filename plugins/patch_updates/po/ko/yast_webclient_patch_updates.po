@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -31,7 +31,13 @@ msgstr "설치 소스"
 msgid "Installation finished"
 msgstr "오픈수세 설치"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "not installed"
+msgid "%s installed."
+msgstr "설치되지 않음"
+
+#: app/controllers/patch_updates_controller.rb:137
 #, fuzzy
 #| msgid "Package '%s' has been installed"
 msgid "Patch has been installed."
@@ -88,6 +94,24 @@ msgstr "설치 도중 오류가 발생 했습니다."
 #| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
 msgstr "배터리와 AC 사용 상태에 대한 정보가 없습니다."
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Security update"
+msgid "Security Updates: %d"
+msgstr "보안 업데이트"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+#, fuzzy
+#| msgid "Important update"
+msgid "Important Updates: %d"
+msgstr "중요 업데이트"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+#, fuzzy
+#| msgid "Additonal updates done."
+msgid "Optional Updates: %d"
+msgstr "추가 업데이트 완료."
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

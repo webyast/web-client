@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-10 10:21+0400\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
@@ -15,13 +15,27 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr "Для продолжения необходимо войти в систему."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr "Перед входом необходимо выйти"
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "Не удаётся выполнить chroot в '%s' (%s)."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -31,8 +45,13 @@ msgstr "Удостоверьтесь, что узел работает, а ве�
 msgid "Please select a host to connect to."
 msgstr "Выберите узел для подключения."
 
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Репозитарий '%s' не найден."
+
 #: app/controllers/hosts_controller.rb:32
-#| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
 msgstr "Пожалуйста, дважды проверьте URL узла."
 
@@ -141,6 +160,10 @@ msgstr "Вы уверены?"
 msgid "Please choose a service:"
 msgstr "Выберите службу:"
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "Редактирование веб-службы YaST"
@@ -212,7 +235,6 @@ msgid "No information available"
 msgstr "Сведения недоступны"
 
 #: app/views/shared/backendexception_trap.html.erb:4
-#| msgid "Problem occur on target machine."
 msgid "Problem occured on target machine."
 msgstr "Проблема на целевой машине."
 
@@ -252,6 +274,12 @@ msgstr "...Ожидание..."
 msgid "Login"
 msgstr "Вход"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Укажите параметры для набора микросхем \"%s\"."
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr "Имя пользователя: "
@@ -285,9 +313,17 @@ msgstr "Системные действия"
 msgid "Reboot"
 msgstr "Перезагрузка"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Выключение"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -313,15 +349,39 @@ msgstr "Модуль состояния не установлен."
 msgid "Show all modules"
 msgstr "Показать все модули"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "Действие '%1' недопустимо для службы '%2'."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
 msgstr "Никто не вошёл в службу rest."
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Не указан сервер NTP в файле /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr "ADMINISTRATOR_ERROR"
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Во время установки возникла ошибка."
 
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Ошибка при закрытии старого теневого файла: %m"
+
+#~ msgid "ADMINISTRATOR_ERROR"
+#~ msgstr "ADMINISTRATOR_ERROR"

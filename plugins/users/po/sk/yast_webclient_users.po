@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-25 09:53+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -24,6 +24,12 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Neplatné sedenie, prihláste sa znovu, prosím."
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully created."
+msgstr "Služba '%s' bola úspešne pridaná."
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr "Prázdna UID hodnota"
@@ -31,6 +37,22 @@ msgstr "Prázdna UID hodnota"
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: hodnota >= 1000 je platná iba pre lokálneho používateľa"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "Služba '%s' bola úspešne pridaná."
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
+msgid "User <i>%s</i> was successfully removed."
+msgstr "Zadaný zámok bol úspešne odstránený."
+
+#: app/controllers/users_controller.rb:220
+msgid "Error: Could not remove user <i>%s</i>."
+msgstr ""
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"

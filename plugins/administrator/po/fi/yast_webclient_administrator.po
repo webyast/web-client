@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-09-25 07:57+0300\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
@@ -18,33 +18,39 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Epäkelpo istunto, kirjaudu uudelleen."
 
-#: app/controllers/administrator_controller.rb:39
+#: app/controllers/administrator_controller.rb:42
 #: app/views/administrator/index.html.erb:32
 msgid "Enter a valid e-mail address."
 msgstr "Anna toimiva sähköposti osoite."
 
-#: app/controllers/administrator_controller.rb:45
+#: app/controllers/administrator_controller.rb:50
 msgid "Passwords do not match."
 msgstr "Salasanat eivät täsmää."
 
-#: app/views/administrator/index.html.erb:41
+#: app/controllers/administrator_controller.rb:76
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Virhe suljettaessa vanhaa varjotiedostoa: %m"
+
+#: app/views/administrator/index.html.erb:38
 msgid "Administrator Settings"
 msgstr "Järjestelmävalvojan asetukset"
 
 # password dialog title
-#: app/views/administrator/index.html.erb:50
+#: app/views/administrator/index.html.erb:47
 msgid "Password"
 msgstr "Salasana"
 
-#: app/views/administrator/index.html.erb:54
+#: app/views/administrator/index.html.erb:51
 msgid "Confirm Password"
 msgstr "Vahvista salasana"
 
-#: app/views/administrator/index.html.erb:56
-#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:53
+#: app/views/administrator/index.html.erb:58
 msgid "Save"
 msgstr "Tallenna"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:56
 msgid "Forward mail to"
 msgstr "Ohjaa sähköposti osoitteeseen"

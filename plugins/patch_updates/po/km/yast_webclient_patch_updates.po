@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2006-02-18 09:47+0700\n"
 "Last-Translator: Keo Sophon <keosophon@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -29,7 +29,13 @@ msgstr "ប្រភព​ដំឡើង​"
 msgid "Installation finished"
 msgstr "ការដំឡើង"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "បាន​ដំឡើង %s ដោយ​ជោគជ័យ"
+
+#: app/controllers/patch_updates_controller.rb:137
 #, fuzzy
 #| msgid "Package '%s' has been installed"
 msgid "Patch has been installed."
@@ -86,6 +92,24 @@ msgstr "កំហុស​មួយ​បាន​កើត​ឡើង កំ�
 #| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
 msgstr "មិន​មាន​ព័ត៌មាន​អំពី​ថ្ម និង​ស្ថានភាព​ចរន្ត​ឆ្លាស់​ឡើយ"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Security update"
+msgid "Security Updates: %d"
+msgstr "ភាព​ទាន់សម័យ​សុវត្ថិភាព"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+#, fuzzy
+#| msgid "Important update"
+msgid "Important Updates: %d"
+msgstr "ភាព​ទាន់សម័យ​សំខាន់"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+#, fuzzy
+#| msgid "Additonal updates done."
+msgid "Optional Updates: %d"
+msgstr "បាន​ធ្វើ​​ភាព​ទាន់សម័យ​បន្ថែម ។"
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"

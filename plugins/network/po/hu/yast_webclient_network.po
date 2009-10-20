@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-09-25 19:26+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"PO-Revision-Date: 2009-10-19 22:34+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,68 +14,82 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:41
+#: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Nincs jogosultság a hálózati modulhoz"
 
-#: app/controllers/network_controller.rb:98
+#: app/controllers/network_controller.rb:66
+msgid "static"
+msgstr "statikus"
+
+#: app/controllers/network_controller.rb:66
+msgid "dhcp"
+msgstr "dhcp"
+
+#: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
 msgstr "A beállítások mentése befejeződött."
 
-#: app/views/network/index.html.erb:3
+#: app/views/network/index.html.erb:38
+msgid ""
+"Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn "
+"between 0 and 255."
+msgstr "Hibás IP-cím formátum. A megfelelő formátum: nnn.nnn.nnn.nnn, ahol nnn 0 és 255 közé esik."
+
+#: app/views/network/index.html.erb:64
 msgid "Network"
 msgstr "Hálózat"
 
-#: app/views/network/index.html.erb:13
+#: app/views/network/index.html.erb:71
 msgid "Interface"
 msgstr "Csatoló"
 
-#: app/views/network/index.html.erb:33 app/views/network/index.html.erb:40
+#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr "IP-cím"
 
-#: app/views/network/index.html.erb:36
+#: app/views/network/index.html.erb:94
 msgid "Configuration Mode"
 msgstr "Beállítás módja"
 
-#: app/views/network/index.html.erb:44
+#: app/views/network/index.html.erb:102
 msgid "Prefixlen"
 msgstr "Előtag"
 
-#: app/views/network/index.html.erb:53
+#: app/views/network/index.html.erb:111
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:56
+#: app/views/network/index.html.erb:114
 msgid "Hostname"
 msgstr "Gépnév"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:60
+#: app/views/network/index.html.erb:118
 msgid "Domain"
 msgstr "Tartomány"
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:122
 msgid "Name Servers"
 msgstr "Névkiszolgálók"
 
-#: app/views/network/index.html.erb:68
+#: app/views/network/index.html.erb:126
 msgid "Search Domains"
 msgstr "Tartományok keresése"
 
-#: app/views/network/index.html.erb:78
+#: app/views/network/index.html.erb:136
 msgid "Routing"
 msgstr "Útválasztás"
 
-#: app/views/network/index.html.erb:81
+#: app/views/network/index.html.erb:139
 msgid "Default Route"
 msgstr "Alapértelmezett útvonal"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Update"
 msgstr "Frissítés"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Back"
 msgstr "Vissza"
 
@@ -106,3 +120,4 @@ msgstr "Eszköznév"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Indítás"
+

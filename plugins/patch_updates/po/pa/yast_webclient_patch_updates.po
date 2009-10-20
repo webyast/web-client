@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-10 22:41+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -19,33 +19,33 @@ msgstr ""
 "Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/patch_updates_controller.rb:61
-#| msgid "Installing Packages..."
 msgid "Installing all patches..."
 msgstr "ਸਭ ਪੈਂਚ ਇੰਸਟਾਲ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ.."
 
 #: app/controllers/patch_updates_controller.rb:69
-#| msgid "Installation Source"
 msgid "Installation stopped"
 msgstr "ਇੰਸਟਾਲੇਸ਼ਨ ਰੁਕੀ"
 
 #: app/controllers/patch_updates_controller.rb:106
-#| msgid "Installation"
 msgid "Installation finished"
 msgstr "ਇੰਸਟਾਲੇਸ਼ਨ ਮੁਕੰਮਲ"
 
-#: app/controllers/patch_updates_controller.rb:132
-#| msgid "Choose the updates to be installed:"
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s ਇੰਸਟਾਲ ਹੋਇਆ"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
 msgstr "ਪੈਂਚ ਇੰਸਟਾਲ ਕੀਤੇ ਗਏ।"
 
 #: app/views/patch_updates/index.html.erb:13
-#| msgid "Update"
 msgid "Updates"
 msgstr "ਅੱਪਡੇਟ"
 
 #: app/views/patch_updates/index.html.erb:16
 #: app/views/patch_updates/_patch_summary.html.erb:28
-#| msgid "Repository '%s' is up to date."
 msgid "Your system is up to date."
 msgstr "ਤੁਹਾਡਾ ਸਿਸਟਮ ਅੱਪਡੇਟ ਹੈ।"
 
@@ -55,7 +55,6 @@ msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
 #: app/views/patch_updates/index.html.erb:19
-#| msgid "No Updates Available"
 msgid "Updates available"
 msgstr "ਅੱਪਡੇਟ ਉਪਲੱਬਧ ਹਨ"
 
@@ -89,12 +88,25 @@ msgstr "ਇੰਸਟਾਲੇਸ਼ਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ �
 msgid "No information about patches available"
 msgstr "ਬੈਟਰੀ ਅਤੇ AC ਹਾਲਤ ਬਾਰੇ ਕੋਈ ਜਾਣਕਾਰੀ ਨਹੀਂ ਹੈ।"
 
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Only security updates"
+msgid "Security Updates: %d"
+msgstr "ਕੇਵਲ ਸੁਰੱਖਿਆ ਅੱਪਡੇਟ"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr ""
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr ""
+
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"
 msgstr "ਸਭ ਅੱਪਡੇਟ ਕਰਨੇ ਹਨ। ਕੀ ਤੁਸੀਂ ਕਰਨੇ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #: app/views/patch_updates/_patches.html.erb:11
-#| msgid "DNS Check"
 msgid "Check"
 msgstr "ਚੈੱਕ"
 
@@ -118,4 +130,3 @@ msgstr "ਸਰੋਤ"
 #: app/views/patch_updates/_patches.html.erb:18
 msgid "Install"
 msgstr "ਇੰਸਟਾਲ"
-

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-08 18:06+0200\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -13,23 +13,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr "Zum Fortfahren melden Sie sich bitte an."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr "Sie müssen sich abmelden, bevor Sie sich anmelden können"
 
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "Kann nicht zu '%s' (%s) chroot'en."
+
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr ""
-"Stellen Sie sicher, dass der Rechner aktiv ist und dass der YaST-Webdienst "
-"läuft."
+msgstr "Stellen Sie sicher, dass der Rechner aktiv ist und dass der YaST-Webdienst läuft."
 
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
 msgstr "Wählen Sie den zu benutzenden Rechner."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Repository '%s' nicht gefunden."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -141,6 +159,10 @@ msgstr "Sind Sie sicher?"
 msgid "Please choose a service:"
 msgstr "Wählen Sie einen Dienst:"
 
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "YaST-Web-Dienst bearbeiten"
@@ -187,11 +209,8 @@ msgid "This is embarrasing...."
 msgstr "Dies ist peinlich ..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid ""
-"We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr ""
-"Es tut uns leid, aber WebYaST im immer noch im Alpha-Status und es gibt "
-"einige Probleme."
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "Es tut uns leid, aber WebYaST im immer noch im Alpha-Status und es gibt einige Probleme."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
@@ -200,8 +219,7 @@ msgstr "Problem: "
 
 #: app/views/shared/exception_trap.html.erb:16
 msgid "Please Report a bug so we can fix the problem!."
-msgstr ""
-"Bitte melden Sie einen Fehler, damit wir das Problem bereinigen können!"
+msgstr "Bitte melden Sie einen Fehler, damit wir das Problem bereinigen können!"
 
 #: app/views/shared/exception_trap.html.erb:16
 msgid "(report link)"
@@ -255,6 +273,12 @@ msgstr "... Bitte warten ..."
 msgid "Login"
 msgstr "Login"
 
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Geben Sie etwaige spezifische Parameter für den Chipsatz \"%s\" ein."
+
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr "Benutzername: "
@@ -268,12 +292,8 @@ msgid "Base system setup"
 msgstr "Grundlegende System-Einrichtung"
 
 #: app/views/controlpanel/basesystem.rhtml:3
-msgid ""
-"Your system setup was not completed. Please continue with setting up the "
-"modules."
-msgstr ""
-"Ihre Systemeinrichtung ist nicht vollständig. Bitte machen Sie mit der "
-"Einrichtung der Module weiter."
+msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgstr "Ihre Systemeinrichtung ist nicht vollständig. Bitte machen Sie mit der Einrichtung der Module weiter."
 
 #: app/views/controlpanel/basesystem.rhtml:4
 msgid "Set up the system"
@@ -293,9 +313,17 @@ msgstr "System-Aktionen"
 msgid "Reboot"
 msgstr "Neustart"
 
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Ausschalten"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -321,18 +349,39 @@ msgstr "Status-Erweiterung ist nicht installiert."
 msgid "Show all modules"
 msgstr "Alle Module anzeigen"
 
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "Aktion '%1' ist für Dienst '%2' nicht zulässig."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
 msgstr "Niemand ist im rest-Dienst angemeldet."
 
-#: lib/error_constructor.rb:20
-msgid ""
-"There is no predefined ntp server at /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
-"Unter /etc/sysconfig/network/config gibt es keinen vordefinierten NTP-Server "
-"- NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:24
-msgid "ADMINISTRATOR_ERROR"
-msgstr "ADMINISTRATOR_FEHLER"
+#: lib/error_constructor.rb:20
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "Unter /etc/sysconfig/network/config gibt es keinen vordefinierten NTP-Server - NETCONFIG_NTP_STATIC_SERVERS"
+
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Während der Installation trat ein Fehler auf."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Fehler beim Schließen der alten Shadow-Datei: %m"
+
+#~ msgid "ADMINISTRATOR_ERROR"
+#~ msgstr "ADMINISTRATOR_FEHLER"

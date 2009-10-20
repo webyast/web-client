@@ -4,24 +4,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-10-11 14:57+0200\n"
-"Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"PO-Revision-Date: 2009-10-19 21:45+0100\n"
+"Last-Translator: Carlos E.R.M. <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Spanish\n"
 
-#: app/controllers/application_controller.rb:93
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
 msgstr "Por favor, entre para continuar"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
 msgstr "Debe salir antes de poder entrar"
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+msgid "Can't connect to host %s."
+msgstr "No se pudo conectar al servidor %s"
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -31,11 +44,15 @@ msgstr "Asegúrese de que el equipo está levantado y que el servicio web YaST e
 msgid "Please select a host to connect to."
 msgstr "Por favor, Seleccione el equipo de destino al que conectarse."
 
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+msgid "The host '%s' cannot be found."
+msgstr "El archivo no puede ser accedido"
+
 # clients/support_registration.ycp:225 include/support/registration.ycp:77
 # clients/support_askkey.ycp:246 include/support/supportio.ycp:79
 # clients/support_askkey.ycp:246 include/support/supportio.ycp:79
-#: app/controllers/hosts_controller.rb:32#
-#| msgid "%s does not exist, please double-check the path."
+#: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
 msgstr "Por favor vuelva a comprobar la URL del equipo."
 
@@ -116,7 +133,8 @@ msgid "Save"
 msgstr "Guardar"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:6
+#: app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -145,6 +163,11 @@ msgstr "¿Está seguro?"
 msgid "Please choose a service:"
 msgstr "Por favor elija un servicio:"
 
+#: app/views/hosts/index.html.erb:26
+#, fuzzy
+msgid "Really delete host %s ?"
+msgstr "¿Realemente borrar %d archivos?"
+
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "Editando YaST-Web-Service"
@@ -153,15 +176,18 @@ msgstr "Editando YaST-Web-Service"
 msgid "YaST-Web-Service"
 msgstr "Servicio-web-YaST"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:27
+#: app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nombre"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:31
+#: app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:35
+#: app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Descripción"
 
@@ -216,7 +242,6 @@ msgid "No information available"
 msgstr "No hay información disponible"
 
 #: app/views/shared/backendexception_trap.html.erb:4
-#| msgid "Problem occur on target machine."
 msgid "Problem occured on target machine."
 msgstr "El problema ocurrió en la máquina destinataria."
 
@@ -253,9 +278,14 @@ msgstr "Fin de sesión"
 msgid "...Wait..."
 msgstr "...Espere..."
 
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+#: app/views/sessions/new.rhtml:4
+#: app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "Inicio de sesión"
+
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr ""
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -291,9 +321,19 @@ msgstr "Acciones de sistema"
 msgid "Reboot"
 msgstr "Reiniciar"
 
+#: app/views/controlpanel/index.rhtml:32
+#, fuzzy
+msgid "Really reboot %s?"
+msgstr "%s: ***** REINICIE A LINUX *****\n"
+
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
 msgstr "Apagar"
+
+#: app/views/controlpanel/index.rhtml:34
+#, fuzzy
+msgid "Really shutdown %s?"
+msgstr "¿Realmente borrar: \"%s\"?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -319,20 +359,40 @@ msgstr "El complemento de estado no ha sido instalado."
 msgid "Show all modules"
 msgstr "Mostrar todos los módulos"
 
+#: lib/error_constructor.rb:10
+msgid "Permission %s is not granted for user %s"
+msgstr ""
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
 # CER, 2009 11.2: ¿MANDE?
 # CER: significa "No one is logged into the REST service"
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
 msgstr "Nadie ha iniciado sesión en el servicio REST."
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
 # CER, 20091011: Bug 546025
+#: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "No hay servidor predefinido en /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:24
+#: lib/error_constructor.rb:22
+msgid "Error occured during ntp synchronization: %s"
+msgstr ""
+
+#: lib/error_constructor.rb:25
 #, fuzzy
+msgid "Error while saving administrator settings: %s"
+msgstr "Error mientras se cargaban las opciones del dispositivo:"
+
 # CER, 20091011: Bug 546025
-msgid "ADMINISTRATOR_ERROR"
-msgstr "ADMINISTRATOR_ERROR"
+#, fuzzy
+#~ msgid "ADMINISTRATOR_ERROR"
+#~ msgstr "ADMINISTRATOR_ERROR"
 

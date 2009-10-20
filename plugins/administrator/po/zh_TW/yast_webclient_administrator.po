@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-04 14:57+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -23,33 +23,39 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "不適用的工作階段，請重新登入。"
 
-#: app/controllers/administrator_controller.rb:39
+#: app/controllers/administrator_controller.rb:42
 #: app/views/administrator/index.html.erb:32
 msgid "Enter a valid e-mail address."
 msgstr "輸入適用的 e-mail 位址。"
 
-#: app/controllers/administrator_controller.rb:45
+#: app/controllers/administrator_controller.rb:50
 msgid "Passwords do not match."
 msgstr "密碼不符合。"
 
-#: app/views/administrator/index.html.erb:41
+#: app/controllers/administrator_controller.rb:76
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "關閉舊的陰影檔案時發生錯誤：%m"
+
+#: app/views/administrator/index.html.erb:38
 msgid "Administrator Settings"
 msgstr "管理員設定"
 
 # password dialog title
-#: app/views/administrator/index.html.erb:50
+#: app/views/administrator/index.html.erb:47
 msgid "Password"
 msgstr "密碼"
 
-#: app/views/administrator/index.html.erb:54
+#: app/views/administrator/index.html.erb:51
 msgid "Confirm Password"
 msgstr "確認密碼"
 
-#: app/views/administrator/index.html.erb:56
-#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:53
+#: app/views/administrator/index.html.erb:58
 msgid "Save"
 msgstr "儲存"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:56
 msgid "Forward mail to"
 msgstr "轉寄信件至"

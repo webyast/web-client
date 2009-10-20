@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2009-10-08 18:03+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
@@ -13,6 +13,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/controllers/systemtime_controller.rb:31
+#, fuzzy
+#| msgid "Unknown option "
+msgid "Unknown timezone %s on host"
+msgstr "不明なオプション "
 
 #: app/controllers/systemtime_controller.rb:64
 msgid "No permissions for time module"
@@ -48,7 +54,6 @@ msgid "Hardware clock is set to UTC"
 msgstr "ハードウエアクロックは UTC に設定されています"
 
 #: app/views/systemtime/index.rhtml:85
-#| msgid "Don't trust the key."
 msgid "Don't set time"
 msgstr "時間を設定しない"
 
@@ -67,4 +72,3 @@ msgstr "日付:"
 #: app/views/systemtime/index.rhtml:104
 msgid "Time:"
 msgstr "時刻:"
-

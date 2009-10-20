@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -18,12 +18,34 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr ""
 
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "The fstab entry was successfully repaired"
+msgid "User <i>%s</i> was successfully created."
+msgstr "รายการในแฟ้ม fstab ถูกซ่อมแซมเรียบร้อยแล้ว"
+
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
 msgstr ""
 
 #: app/controllers/users_controller.rb:152
 msgid "UID: value >= 1000 is valid for local user only"
+msgstr ""
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Package %1 was successfully installed."
+msgid "User <i>%s</i> was successfully updated."
+msgstr "แพกเกจ %1 ถูกติดตั้งเสร็จเรียบร้อยแล้ว"
+
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Root partition was successfully mounted"
+msgid "User <i>%s</i> was successfully removed."
+msgstr "การเมานท์พาร์ทิชันรากสำเร็จแล้ว"
+
+#: app/controllers/users_controller.rb:220
+msgid "Error: Could not remove user <i>%s</i>."
 msgstr ""
 
 #: app/views/users/index.html.erb:4

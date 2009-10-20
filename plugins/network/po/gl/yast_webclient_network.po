@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
 "PO-Revision-Date: 2002-07-23 11:51+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <i18n@suse.de>\n"
@@ -11,82 +11,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: app/controllers/network_controller.rb:41
+#: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
 
-#: app/controllers/network_controller.rb:98
+#: app/controllers/network_controller.rb:66
+msgid "static"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
+msgid "dhcp"
+msgstr "dhcp"
+
+#: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:3
+#: app/views/network/index.html.erb:38
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:64
 #, fuzzy
 #| msgid "Network: None"
 msgid "Network"
 msgstr "Rede: Ningunha"
 
-#: app/views/network/index.html.erb:13
+#: app/views/network/index.html.erb:71
 #, fuzzy
 #| msgid "Interactive: "
 msgid "Interface"
 msgstr "Interactivo: "
 
-#: app/views/network/index.html.erb:33 app/views/network/index.html.erb:40
+#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr ""
 
-#: app/views/network/index.html.erb:36
+#: app/views/network/index.html.erb:94
 #, fuzzy
 #| msgid "IP configuration"
 msgid "Configuration Mode"
 msgstr "Configurazón da IP"
 
-#: app/views/network/index.html.erb:44
+#: app/views/network/index.html.erb:102
 msgid "Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:53
+#: app/views/network/index.html.erb:111
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:56
+#: app/views/network/index.html.erb:114
 msgid "Hostname"
 msgstr ""
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:60
+#: app/views/network/index.html.erb:118
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Dominio\n"
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:122
 #, fuzzy
 #| msgid "Network Servers"
 msgid "Name Servers"
 msgstr "Servidores de rede"
 
-#: app/views/network/index.html.erb:68
+#: app/views/network/index.html.erb:126
 #, fuzzy
 #| msgid "Search"
 msgid "Search Domains"
 msgstr "Buscar"
 
-#: app/views/network/index.html.erb:78
+#: app/views/network/index.html.erb:136
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:81
+#: app/views/network/index.html.erb:139
 #, fuzzy
 #| msgid "Default"
 msgid "Default Route"
 msgstr "Predeterminado"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 msgid "Update"
 msgstr "Actualizar"
 
-#: app/views/network/index.html.erb:87 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
 #, fuzzy
 #| msgid "Backend:"
 msgid "Back"
