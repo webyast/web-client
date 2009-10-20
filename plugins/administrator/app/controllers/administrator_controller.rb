@@ -2,17 +2,9 @@ require 'yast/service_resource'
 
 class AdministratorController < ApplicationController
   before_filter :login_required
+  include ProxyLoader
 
   private
-
-  def client_permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.administrator')
-    unless @client
-      flash[:notice] = _("Invalid session, please login again.")
-      redirect_to( logout_path ) and return
-    end
-    @permissions = @client.permissions rescue {}
-  end
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_administrator"  # textdomain, options(:charset, :content_type)
@@ -20,15 +12,16 @@ class AdministratorController < ApplicationController
   public
 
   def index
-    return unless client_permissions
-    @administrator	= @client.find
+    @administrator	= load_proxy 'org.opensuse.yast.modules.yapi.administrator'
+    return unless @administrator
+
     @administrator.confirm_password	= ""
   end
 
   # PUT
   def update
-    return unless client_permissions
-    @administrator	= @client.find
+    @administrator	= load_proxy 'org.opensuse.yast.modules.yapi.administrator'
+    return unless @administrator
 
     admin	= params["administrator"]
     @administrator.password	= admin["password"]
@@ -64,6 +57,7 @@ class AdministratorController < ApplicationController
 
     begin
       response = @administrator.save
+      flash[:notice] = _('Administrator settings have been written.')
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
 	logger.warn e.inspect
