@@ -107,7 +107,7 @@
         <span><%= text_field_tag "currenttime", @time, :disabled=> "true", :class=>'aligned-inputs' %></span>
       </div>
       <div>
-        <%= form_send_buttons ({:disabled => disabled, :onclick => "submitTime();"}) %>
+        <%= form_send_buttons ({:disabled => disabled, :onclick => "submitTime();", :class => "button"}) %>
       </div>
     <% end %>
   </div>
