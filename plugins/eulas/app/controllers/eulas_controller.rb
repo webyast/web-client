@@ -11,7 +11,7 @@ class EulasController < ApplicationController
   include ProxyLoader
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_language"  # textdomain, options(:charset, :content_type)
+  init_gettext "yast_webclient_eulas"  # textdomain, options(:charset, :content_type)
 
   def load_proxy_without_permissions (*args)
     proxy = YaST::ServiceResource.proxy_for args[0]

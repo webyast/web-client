@@ -5,6 +5,10 @@ class PatchUpdatesController < ApplicationController
   before_filter :login_required
   layout 'main'
   include ProxyLoader
+
+  # Initialize GetText and Content-Type.
+  init_gettext "yast_webclient_patch_updates"
+
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
