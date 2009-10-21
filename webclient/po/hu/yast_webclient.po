@@ -1,0 +1,383 @@
+# translation of yast_webclient.hu.po to Hungarian
+# Kalman Kemenczy <kkemenczy@novell.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: yast_webclient.hu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"PO-Revision-Date: 2009-10-19 22:39+0200\n"
+"Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr "A termék használata előtt el kell fogadnia a licencszerződést!"
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr "Nem működik az átirányítás a licencszerződéshez. Ellenőrizze, hogy a yast2-webclient-eulas csomag telepítve van"
+
+#: app/controllers/application_controller.rb:105
+msgid "Please login to continue"
+msgstr "Lépjen be a folytatáshoz"
+
+#: app/controllers/application_controller.rb:112
+msgid "You must logout before you can login"
+msgstr "Belépés előtt ki kell jelentkeznie"
+
+#: app/controllers/hosts_controller.rb:25
+msgid "Can't connect to host %s."
+msgstr "Nem tud kapcsolódni a(z) %s géphez."
+
+#: app/controllers/hosts_controller.rb:26
+msgid "Make sure the host is up and that the YaST web service is running."
+msgstr ""
+"Győződjön meg arról, hogy a számítógép be van működik és a YaST "
+"webszolgáltatás fut."
+
+#: app/controllers/hosts_controller.rb:28
+msgid "Please select a host to connect to."
+msgstr "Válassza ki a a számítógépet, amelyhez kapcsolódni kíván."
+
+#: app/controllers/hosts_controller.rb:31
+msgid "The host '%s' cannot be found."
+msgstr "A(z) %s gép nem található."
+
+#: app/controllers/hosts_controller.rb:32
+msgid "Please double-check the host URL."
+msgstr "Ellenőrizze a gép URL-jét."
+
+#: app/controllers/sessions_controller.rb:51
+msgid "You need to specify the host"
+msgstr "Meg kell adni egy számítógépet"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "No login specified"
+msgstr "Nincs beállítva belépési név"
+
+#: app/controllers/sessions_controller.rb:57
+msgid "No password specified"
+msgstr "Nincs megadva jelszó"
+
+#: app/controllers/sessions_controller.rb:93
+msgid "Login incorrect. Check your username and password."
+msgstr "Bejelentkezési hiba. Ellenőrizze a felhasználónevet és a jelszót."
+
+#: app/controllers/sessions_controller.rb:118
+msgid "You have been logged out."
+msgstr "Kijelentkezett."
+
+#: app/models/account.rb:-
+msgid "account"
+msgstr "azonosító"
+
+#: app/models/account.rb:-
+msgid "Account|Login"
+msgstr "Azonosító|Bejelentkezés"
+
+#: app/models/account.rb:-
+msgid "Account|Created at"
+msgstr "Azonosító|Létrehozás itt: "
+
+#: app/models/account.rb:-
+msgid "Account|Updated at"
+msgstr "Azonosító|Frissítés itt: "
+
+#: app/models/account.rb:-
+msgid "Account|Remember token"
+msgstr "Azonosító|Token megjegyzése"
+
+#: app/models/account.rb:-
+msgid "Account|Remember token expires at"
+msgstr "Azonosító|Token lejárta:"
+
+#: app/models/account.rb:-
+msgid "Account|Salt"
+msgstr "Azonosító|Salt"
+
+#: app/models/host.rb:-
+msgid "host"
+msgstr "Számítógép"
+
+#: app/models/host.rb:-
+msgid "Host|Name"
+msgstr "Számítógép|Név"
+
+#: app/models/host.rb:-
+msgid "Host|Url"
+msgstr "Számítógép|Url"
+
+#: app/models/host.rb:-
+msgid "Host|Description"
+msgstr "Számítógép|Leírás"
+
+#: app/models/host.rb:-
+msgid "Host|Created at"
+msgstr "Számítógép|Létrehozás itt: "
+
+#: app/models/host.rb:-
+msgid "Host|Updated at"
+msgstr "Számítógép|Frissítés itt: "
+
+#: app/helpers/application_helper.rb:5
+msgid "Save"
+msgstr "Mentés"
+
+# cancel button label
+#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: app/helpers/application_helper.rb:10
+msgid "Next"
+msgstr "Következő"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Törlés"
+
+#: app/helpers/view_helpers/html_helper.rb:10
+msgid "Are you sure?"
+msgstr "Biztos benne?"
+
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Válasszon szolgáltatást:"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "Valóban törli a(z) %s gépet?"
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr "YaST webszolgáltatás szerkesztése"
+
+#: app/views/hosts/edit.html.erb:24
+msgid "YaST-Web-Service"
+msgstr "YaST webszolgáltatás"
+
+#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+msgid "Name"
+msgstr "Név"
+
+#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+msgid "Url"
+msgstr "Url"
+
+#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+msgid "Description"
+msgstr "Leírás"
+
+#: app/views/hosts/edit.html.erb:40
+msgid "Ok"
+msgstr "OK"
+
+#: app/views/hosts/edit.html.erb:41
+msgid "Back"
+msgstr "Vissza"
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Index"
+
+#: app/views/hosts/new.html.erb:4
+msgid "New WebYaST Host"
+msgstr "Új WebYaST számítógép"
+
+#: app/views/hosts/new.html.erb:47
+msgid "Create"
+msgstr "Létrehozás"
+
+#: app/views/shared/exception_trap.html.erb:8
+#: app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "Ez kicsit zavarba ejtő..."
+
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "Elnézést, de a WebYaST fejlesztési alatt áll és néhol hibás a működés."
+
+#: app/views/shared/exception_trap.html.erb:12
+#: app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "Probléma:"
+
+#: app/views/shared/exception_trap.html.erb:16
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "Jelentse be a hibát, hogy kijavíthassuk!"
+
+#: app/views/shared/exception_trap.html.erb:16
+msgid "(report link)"
+msgstr "(bejelentett hivatkozás)"
+
+#: app/views/shared/exception_trap.html.erb:17
+msgid "Don't forget to include the bug details."
+msgstr "Ne felejtse le csatolni a hiba részleteit."
+
+#: app/views/shared/exception_trap.html.erb:19
+msgid "No information available"
+msgstr "Nincs elérhető információ"
+
+#: app/views/shared/backendexception_trap.html.erb:4
+msgid "Problem occured on target machine."
+msgstr "Hiba történt a célgépen."
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:42
+msgid "My Appliance"
+msgstr "Saját berendezés"
+
+#: app/views/layouts/main.rhtml:52
+msgid "Connected Host"
+msgstr "Csatlakoztatott számítógép"
+
+#: app/views/layouts/main.rhtml:53
+msgid "Name:"
+msgstr "Név:"
+
+#: app/views/layouts/main.rhtml:54
+msgid "User:"
+msgstr "Felhasználó:"
+
+#: app/views/layouts/main.rhtml:57
+msgid "Control panel"
+msgstr "Vezérlőpult"
+
+#: app/views/layouts/main.rhtml:58
+msgid "Logout"
+msgstr "Kijelentkezés"
+
+#: app/views/layouts/main.rhtml:92
+msgid "...Wait..."
+msgstr "...Várakozás..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "Azonosító"
+
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr "Adja meg a hitelesítéshez szükséges adatokat a(z) %s géphez."
+
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "Felhasználónév:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "Jelszó:"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Alaprendszer-beállítás"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid ""
+"Your system setup was not completed. Please continue with setting up the "
+"modules."
+msgstr "A rendszerbeállítás nem teljes. Folytassa a modulok beállításával."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "Rendszerbeállítás"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:61
+msgid "Configuration"
+msgstr "Beállítások"
+
+#: app/views/controlpanel/index.rhtml:30
+msgid "System actions"
+msgstr "Rendszerműveletek"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:31
+msgid "Reboot"
+msgstr "Újraindítás"
+
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr "Valóban újraindítja a(z) %s gépet?"
+
+#: app/views/controlpanel/index.rhtml:33
+msgid "Shutdown"
+msgstr "Lekapcsolás"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr "Valóban leállítja a(z) %s gépet?"
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Status"
+msgstr "Állapot"
+
+#: app/views/controlpanel/index.rhtml:43
+msgid "Loading patch information"
+msgstr "Javítási információk betöltése"
+
+#: app/views/controlpanel/index.rhtml:45
+msgid "Patch plugin is not installed."
+msgstr "A javítás bővítmény nincs telepítve."
+
+#: app/views/controlpanel/index.rhtml:51
+msgid "Loading system information"
+msgstr "Rendszerinformáció betöltése"
+
+# modules/inst_target_part.ycp:676
+#: app/views/controlpanel/index.rhtml:53
+msgid "Status plugin is not installed."
+msgstr "Az állapotbővítmény nincs telepítve."
+
+#: app/views/controlpanel/index.rhtml:92
+msgid "Show all modules"
+msgstr "Összes modul megjelenítése"
+
+#: lib/error_constructor.rb:10
+msgid "Permission %s is not granted for user %s"
+msgstr "A(z) %s jogosultság nem került hozzáadásra a(z) %s felhasználóhoz"
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr "Policy kit kivétel a(z) %s felhasználóhoz és a(z) %s engedélyhez: %s"
+
+#: lib/error_constructor.rb:14
+msgid "Noone is logged to rest service."
+msgstr ""
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr "A célrendszer nem konzisztens. A(z) %s fájl hiányzik vagy hibás"
+
+#: lib/error_constructor.rb:20
+msgid ""
+"There is no predefined ntp server at /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
+msgstr ""
+"Nincs előre beállított NTP-kiszolgáló az /etc/sysconfig/network/config "
+"fájlban, a NETCONFIG_NTP_STATIC_SERVERS paraméternél."
+
+#: lib/error_constructor.rb:22
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Hiba történt az ntp-szinkronizáció közben: %s"
+
+#: lib/error_constructor.rb:25
+msgid "Error while saving administrator settings: %s"
+msgstr "Hiba történt az adminisztrációs beállítások kiírása közben: %s"
+

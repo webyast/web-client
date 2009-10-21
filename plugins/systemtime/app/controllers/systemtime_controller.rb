@@ -28,7 +28,7 @@ class SystemtimeController < ApplicationController
   def fill_current_region   
     @region = @@timezones.find { |region|
       region.entries.find { |entry| entry.id==@timezone } }
-    raise _("Unknown timezone #{@timezone} on host") unless @region
+    raise _("Unknown timezone %s on host") % @timezone unless @region
   end
 
     def clear_time(proxy)

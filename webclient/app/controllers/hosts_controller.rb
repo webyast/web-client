@@ -22,13 +22,13 @@ class HostsController < ApplicationController
     error = params[:error]
     if error == "econnrefused"
       host = Host.find(params[:hostid]) rescue nil
-      flash[:error] = _("Can't connect to host #{host.name}.") if host
+      flash[:error] = _("Can't connect to host %s.") % host.name if host
       flash[:warning] = _("Make sure the host is up and that the YaST web service is running.")
     elsif error == "nohostid"
       flash[:notice] = _("Please select a host to connect to.")
     elsif error == "ecantresolve"
       host = Host.find(params[:hostid]) rescue nil
-      flash[:error] = _("The host '#{host.url}' cannot be found.") if host
+      flash[:error] = _("The host '%s' cannot be found.") % host.url if host
       flash[:warning] = _("Please double-check the host URL.")
     end
   end

@@ -1,45 +1,48 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Hermann-Josef Beckers <hj.beckers@onlinehome.de>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient patch_updates 1.0.0\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-05-04 14:27+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"PO-Revision-Date: 2009-09-24 10:57+0200\n"
+"Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: app/controllers/patch_updates_controller.rb:61
 msgid "Installing all patches..."
-msgstr ""
+msgstr "Alle Aktualisierungen werden installiert ..."
 
 #: app/controllers/patch_updates_controller.rb:69
 msgid "Installation stopped"
-msgstr ""
+msgstr "Installation angehalten"
 
 #: app/controllers/patch_updates_controller.rb:106
 msgid "Installation finished"
-msgstr ""
+msgstr "Installation beendet"
 
-#: app/controllers/patch_updates_controller.rb:132
+#: app/controllers/patch_updates_controller.rb:108
+#, fuzzy
+#| msgid "%s installed ok"
+msgid "%s installed."
+msgstr "%s ordnungsgemäß installiert"
+
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
-msgstr "Update wurde installiert"
+msgstr "Patch wurde installiert"
 
 #: app/views/patch_updates/index.html.erb:13
 msgid "Updates"
-msgstr ""
+msgstr "Aktualisierungen"
 
 #: app/views/patch_updates/index.html.erb:16
 #: app/views/patch_updates/_patch_summary.html.erb:28
 msgid "Your system is up to date."
-msgstr ""
+msgstr "Ihr System ist auf dem neuesten Stand."
 
 #: app/views/patch_updates/index.html.erb:17
 #: app/views/patch_updates/index.html.erb:33
@@ -48,39 +51,57 @@ msgstr "Zurück"
 
 #: app/views/patch_updates/index.html.erb:19
 msgid "Updates available"
-msgstr ""
+msgstr "Es sind Aktualisierungen verfügbar"
 
 #: app/views/patch_updates/index.html.erb:32
 msgid "Update"
-msgstr ""
+msgstr "Aktualisierung"
 
 #: app/views/patch_updates/_patch_installation.html.erb:7
 msgid "An error occured while installing patches."
-msgstr ""
+msgstr "Während der Patch-Installation trat ein Fehler auf."
 
 #: app/views/patch_updates/_patch_installation.html.erb:19
 msgid "Stop"
-msgstr ""
+msgstr "Halt"
 
 #: app/views/patch_updates/_patch_installation.html.erb:19
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sind Sie sicher?"
 
 #: app/views/patch_updates/_patch_summary.html.erb:1
 msgid "An error occured when loading patch information."
-msgstr ""
+msgstr "Während des Ladens der Patch-Informationen trat ein Fehler auf."
 
 #: app/views/patch_updates/_patch_summary.html.erb:6
 msgid "No information about patches available"
-msgstr ""
+msgstr "Keine Informationen über Patches verfügbar."
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+#, fuzzy
+#| msgid "Security update"
+msgid "Security Updates: %d"
+msgstr "Sicherheitsaktualisierung"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+#, fuzzy
+#| msgid "Important update"
+msgid "Important Updates: %d"
+msgstr "Wichtige Aktualisierung"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+#, fuzzy
+#| msgid "Additonal updates done."
+msgid "Optional Updates: %d"
+msgstr "Zusätzliche Aktualisierungen erledigt."
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"
-msgstr ""
+msgstr "Alles aktualisieren. Sind Sie sicher?"
 
 #: app/views/patch_updates/_patches.html.erb:11
 msgid "Check"
-msgstr ""
+msgstr "Prüfen"
 
 #: app/views/patch_updates/_patches.html.erb:13
 msgid "Kind"
@@ -92,7 +113,7 @@ msgstr "Name"
 
 #: app/views/patch_updates/_patches.html.erb:15
 msgid "Summary"
-msgstr "Beschreibung"
+msgstr "Zusammenfassung"
 
 #: app/views/patch_updates/_patches.html.erb:17
 #: app/views/patch_updates/_patches.html.erb:20
@@ -102,6 +123,3 @@ msgstr "Quelle"
 #: app/views/patch_updates/_patches.html.erb:18
 msgid "Install"
 msgstr "Installieren"
-
-#~ msgid "Available patches"
-#~ msgstr "verfügbare Updates"

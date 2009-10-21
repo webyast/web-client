@@ -105,7 +105,7 @@ class PatchUpdatesController < ApplicationController
       if last_patch.blank?
         format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false }}
       else
-        format.html { render :partial => "patch_installation", :locals => { :patch => _("#{last_patch} installed.") , :error => error }}
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("%s installed.") % last_patch , :error => error }}
       end
     end    
   end

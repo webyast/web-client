@@ -14,6 +14,9 @@
     <!-- FIXME move javascript function outside of index -->
     <% javascript_tag do -%>
       function submitTime() {
+      if (!$("#timeconfig_manual")[0].checked){
+        return true;
+      }
       if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
       alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
       return false;
@@ -46,7 +49,7 @@
   <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <div class='plugin-content'>
     <h2><%=_("Time")%></h2>
-    <% form_tag '/systemtime/update', :class => 'container' do %>
+    <% form_tag '/systemtime/update', {:class => 'container', :onsubmit => "submitTime();"} do %>
       <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
       %>
       <div>
@@ -83,7 +86,7 @@
       <div>
         <input type="radio" name="timeconfig" value="none" checked="true" onclick="disable();"/>
         <%=_("Don't set time")%>
-        <input type="radio" name="timeconfig" value="manual" onclick="enable();"/>
+        <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"/>
         <%=_("Manually configure time")%>
         <input type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"/>
         <%=_("Synchronize via NTP")%>
@@ -107,7 +110,9 @@
         <span><%= text_field_tag "currenttime", @time, :disabled=> "true", :class=>'aligned-inputs' %></span>
       </div>
       <div>
-        <%= form_send_buttons ({:disabled => disabled, :onclick => "submitTime();", :class => "button"}) %>
+      <p>
+        <%= form_send_buttons :disabled => disabled, :class => "button" %>
+      </p>
       </div>
     <% end %>
   </div>

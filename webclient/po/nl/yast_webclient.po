@@ -1,0 +1,399 @@
+# translation of yast_webclient.nl.po to Dutch
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# Freek de Kruijf <freek@opensuse.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: yast_webclient.nl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"PO-Revision-Date: 2009-09-26 13:27+0200\n"
+"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
+"Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: app/controllers/application_controller.rb:60
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
+
+#: app/controllers/application_controller.rb:64
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+
+#: app/controllers/application_controller.rb:105
+msgid "Please login to continue"
+msgstr "Gaarne aanmelden om door te gaan"
+
+#: app/controllers/application_controller.rb:112
+msgid "You must logout before you can login"
+msgstr "Eerst afmelden alvorens aan te melden"
+
+#: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
+msgid "Can't connect to host %s."
+msgstr "Kan geen chroot doen naar '%s' (%s)."
+
+#: app/controllers/hosts_controller.rb:26
+msgid "Make sure the host is up and that the YaST web service is running."
+msgstr "Verzeker u ervan dat de host op is en dat YaST-webservice draait."
+
+#: app/controllers/hosts_controller.rb:28
+msgid "Please select a host to connect to."
+msgstr "Gaarne een host selecteren waarnaar te verbinden."
+
+#: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
+msgid "The host '%s' cannot be found."
+msgstr "Installatiebron '%s' is niet gevonden."
+
+#: app/controllers/hosts_controller.rb:32
+#, fuzzy
+#| msgid "%s does not exist, please double-check the path."
+msgid "Please double-check the host URL."
+msgstr "%s bestaat niet, controleer het pad."
+
+#: app/controllers/sessions_controller.rb:51
+msgid "You need to specify the host"
+msgstr "U dient een host op te geven"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "No login specified"
+msgstr "Geen aanmelding gespecificeerd"
+
+#: app/controllers/sessions_controller.rb:57
+msgid "No password specified"
+msgstr "Geen wachtwoord gespecificeerd"
+
+#: app/controllers/sessions_controller.rb:93
+msgid "Login incorrect. Check your username and password."
+msgstr "Aanmelden onjuist. Controleer uw gebruikersnaam en het wachtwoord."
+
+#: app/controllers/sessions_controller.rb:118
+msgid "You have been logged out."
+msgstr "U bent afgemeld."
+
+#: app/models/account.rb:-
+msgid "account"
+msgstr "account"
+
+#: app/models/account.rb:-
+msgid "Account|Login"
+msgstr "Account|Aanmelden"
+
+#: app/models/account.rb:-
+msgid "Account|Created at"
+msgstr "Account|Aanmaken op"
+
+#: app/models/account.rb:-
+msgid "Account|Updated at"
+msgstr "Account|Bijgewerkt op"
+
+#: app/models/account.rb:-
+msgid "Account|Remember token"
+msgstr "Account|Token onthouden"
+
+#: app/models/account.rb:-
+msgid "Account|Remember token expires at"
+msgstr "Account|Geldigheid token eindigt op"
+
+#: app/models/account.rb:-
+msgid "Account|Salt"
+msgstr "Account|Salt"
+
+#: app/models/host.rb:-
+msgid "host"
+msgstr "host"
+
+#: app/models/host.rb:-
+msgid "Host|Name"
+msgstr "Host|Naam"
+
+#: app/models/host.rb:-
+msgid "Host|Url"
+msgstr "Host|Url-adres"
+
+#: app/models/host.rb:-
+msgid "Host|Description"
+msgstr "Host|Beschrijving"
+
+#: app/models/host.rb:-
+msgid "Host|Created at"
+msgstr "Host|Aangemaakt op"
+
+#: app/models/host.rb:-
+msgid "Host|Updated at"
+msgstr "Host|Opgewaardeerd op"
+
+#: app/helpers/application_helper.rb:5
+msgid "Save"
+msgstr "Opslaan"
+
+# cancel button label
+#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: app/helpers/application_helper.rb:10
+msgid "Next"
+msgstr "Verder"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Toevoegen"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Bewerken"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: app/helpers/view_helpers/html_helper.rb:10
+msgid "Are you sure?"
+msgstr "Weet u het zeker?"
+
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Gaarne een service kiezen:"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr "YaST-Web-service bewerken"
+
+#: app/views/hosts/edit.html.erb:24
+msgid "YaST-Web-Service"
+msgstr "YaST-Web-service"
+
+#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+msgid "Name"
+msgstr "Naam"
+
+#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+msgid "Url"
+msgstr "Url-adres"
+
+#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+msgid "Description"
+msgstr "Beschrijving"
+
+#: app/views/hosts/edit.html.erb:40
+msgid "Ok"
+msgstr "Ok"
+
+#: app/views/hosts/edit.html.erb:41
+msgid "Back"
+msgstr "Terug"
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Index"
+
+#: app/views/hosts/new.html.erb:4
+msgid "New WebYaST Host"
+msgstr "Nieuwe WebYaST-host"
+
+#: app/views/hosts/new.html.erb:47
+msgid "Create"
+msgstr "Aanmaken"
+
+#: app/views/shared/exception_trap.html.erb:8
+#: app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "Dit is een onaangename verrassing...."
+
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "Helaas, WebYaST is nog in alfa en er zijn enige problemen."
+
+#: app/views/shared/exception_trap.html.erb:12
+#: app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "Probleem:"
+
+#: app/views/shared/exception_trap.html.erb:16
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "Gaarne een bugrapport indienen zodat we het probleem kunnen oplossen!."
+
+#: app/views/shared/exception_trap.html.erb:16
+msgid "(report link)"
+msgstr "(koppeling naar rapport)"
+
+#: app/views/shared/exception_trap.html.erb:17
+msgid "Don't forget to include the bug details."
+msgstr "Vergeet niet om de details van de bug in te sluiten."
+
+#: app/views/shared/exception_trap.html.erb:19
+msgid "No information available"
+msgstr "Geen informatie beschikbaar"
+
+#: app/views/shared/backendexception_trap.html.erb:4
+#, fuzzy
+#| msgid "Problem occur on target machine."
+msgid "Problem occured on target machine."
+msgstr "Probleem zit op de doelmachine."
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:42
+msgid "My Appliance"
+msgstr "Mijn appliance"
+
+#: app/views/layouts/main.rhtml:52
+msgid "Connected Host"
+msgstr "Verbonden host"
+
+#: app/views/layouts/main.rhtml:53
+msgid "Name:"
+msgstr "Naam:"
+
+# /usr/lib/YaST2/clients/lan_dns.ycp:85
+# /usr/lib/YaST2/clients/lan_dns.ycp:85
+#: app/views/layouts/main.rhtml:54
+msgid "User:"
+msgstr "Gebruiker:"
+
+#: app/views/layouts/main.rhtml:57
+msgid "Control panel"
+msgstr "Controlepaneel"
+
+#: app/views/layouts/main.rhtml:58
+msgid "Logout"
+msgstr "Afmelden"
+
+#: app/views/layouts/main.rhtml:92
+msgid "...Wait..."
+msgstr "...Wachten..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "Aanmelden"
+
+#: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
+msgid "Enter login credentials for host %s."
+msgstr "Geef de specifieke parameters voor de chipset \"%s\" op."
+
+# /usr/lib/YaST2/clients/lan_dns.ycp:85
+# /usr/lib/YaST2/clients/lan_dns.ycp:85
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "Gebruikersnaam:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "Wachtwoord:"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Instellen van het basissysteem"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgstr "Het instellen van het systeem is niet compleet. Gaarne doorgaan met het instellen van de modulen."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "Instellen van het systeem"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:61
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: app/views/controlpanel/index.rhtml:30
+msgid "System actions"
+msgstr "Systeemacties"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:31
+msgid "Reboot"
+msgstr "Herstarten"
+
+#: app/views/controlpanel/index.rhtml:32
+msgid "Really reboot %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:33
+msgid "Shutdown"
+msgstr "Afsluiten"
+
+#: app/views/controlpanel/index.rhtml:34
+msgid "Really shutdown %s?"
+msgstr ""
+
+# /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
+#: app/views/controlpanel/index.rhtml:39
+msgid "Status"
+msgstr "Status"
+
+#: app/views/controlpanel/index.rhtml:43
+msgid "Loading patch information"
+msgstr "Laden van patchinformatie"
+
+#: app/views/controlpanel/index.rhtml:45
+msgid "Patch plugin is not installed."
+msgstr "Patch-plugin is niet geïnstalleerd."
+
+#: app/views/controlpanel/index.rhtml:51
+msgid "Loading system information"
+msgstr "Laden van systeeminformatie"
+
+#: app/views/controlpanel/index.rhtml:53
+msgid "Status plugin is not installed."
+msgstr "Status-plugin is niet geïnstalleerd."
+
+#: app/views/controlpanel/index.rhtml:92
+msgid "Show all modules"
+msgstr "Alle modules tonen"
+
+#: lib/error_constructor.rb:10
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
+msgid "Permission %s is not granted for user %s"
+msgstr "Actie '%1' is niet toegestaan voor service '%2'."
+
+#: lib/error_constructor.rb:12
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+
+#: lib/error_constructor.rb:14
+msgid "Noone is logged to rest service."
+msgstr "Niemand is ingelogd op de REST-service."
+
+#: lib/error_constructor.rb:16
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr ""
+
+#: lib/error_constructor.rb:20
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr ""
+
+#: lib/error_constructor.rb:22
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Er is een fout opgetreden tijdens de installatie."
+
+#: lib/error_constructor.rb:25
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
+msgid "Error while saving administrator settings: %s"
+msgstr "Fout bij sluiten van nieuw shadow-bestand: %m"
