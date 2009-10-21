@@ -32,6 +32,6 @@
 	<td class="last"><%= f.text_field :startup, :disabled => disabled %></td>
     </tr>
     </table>
-    <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), "/network", :onclick=>"Element.show('progress')", :class => "button"%></p>
+    <p><%= f.submit _("Save"), :disabled => disabled %><%= link_to _('Cancel'), "/network", :onclick=>"Element.show('progress')", :class => "button"%></p>
   </div>
 <% end %>
