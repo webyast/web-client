@@ -54,12 +54,12 @@ cp -a * $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_mailsettings
+%find_lang yast_webclient_mail_settings
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_mailsettings.lang
+%files -f yast_webclient_mail_settings.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
