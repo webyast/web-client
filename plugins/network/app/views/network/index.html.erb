@@ -142,7 +142,8 @@
     </table>
   </div>
 
-<%= n.submit _("Update"), :disabled => write_disabled %><a href="/" class="button"><%=_("Back")%></a>
+<%= n.submit _("Save"), :disabled => write_disabled, :class => "button" %> or <a href="/"><%=_("Cancel")%></a>
+
 <% end %>
 </div>
 <% javascript_tag do -%>
