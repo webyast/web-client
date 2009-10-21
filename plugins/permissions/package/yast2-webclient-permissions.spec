@@ -49,16 +49,21 @@ env LANG=en rake makemo
 mkdir -p $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 cp -a * $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 
+# remove .po files (no longer needed)
+rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+# search locale files
+%find_lang yast_webclient_permission
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files 
+%files -f yast_webclient_permission.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
+%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
@@ -67,9 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/test
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 
 
