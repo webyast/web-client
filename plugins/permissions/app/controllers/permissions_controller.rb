@@ -30,7 +30,7 @@ class PermissionsController < ApplicationController
   end
 
  # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_permission"  # textdomain, options(:charset, :content_type)
+  init_gettext "yast_webclient_permissions"  # textdomain, options(:charset, :content_type)
 
   public
   def initialize
