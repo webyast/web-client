@@ -57,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_users
+%files -f yast_webclient_users.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
