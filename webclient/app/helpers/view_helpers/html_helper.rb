@@ -128,7 +128,11 @@ module ViewHelpers::HtmlHelper
     # get the id of the error, or use a random id
     error_id = error.nil? ? rand(10000) : error.object_id
     # get the backtrace, or create a message saying there is none
-    backtrace_text = (error.nil? || error.backtrace.nil? || error.backtrace.blank?) ? "No information available" : error.backtrace.join("\n")
+    backtrace_text = _("No information available")
+    if error.kind_of? ActiveResource::ConnectionError
+      backtrace_text =  error.response.body
+    else
+      backtrace_text = error.backtrace.join("\n") unless (error.nil? || error.backtrace.nil? || error.backtrace.blank?)
 
     # the summary message
     if message.nil?
