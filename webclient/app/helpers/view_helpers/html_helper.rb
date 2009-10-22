@@ -133,6 +133,7 @@ module ViewHelpers::HtmlHelper
       backtrace_text =  error.response.body
     else
       backtrace_text = error.backtrace.join("\n") unless (error.nil? || error.backtrace.nil? || error.backtrace.blank?)
+    end
 
     # the summary message
     if message.nil?
