@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 <p><pre>
   <%= if error.kind_of? ActiveResource::ConnectionError
-    "Problem occure on target machine"
+    _("Problem occure on target machine")
     else
     h error.to_s
     end%>
