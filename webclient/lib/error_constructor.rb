@@ -11,7 +11,7 @@ module ErrorConstructor
     when "POLKIT"
       return _("Policy kit exception for user %s and permission %s (untranslated message): %s") % [error["user"], error["permission"], error["polkitout"]]
     when "NOT_LOGGED"
-      return _("Noone is logged to rest service.")
+      return _("A user is no longer logged to target machine. Please log in again.")
     when "BADFILE"
       return _("Target system is not consistent: Missing or corrupted file %s") %error["file"]
     when "NTP_ERROR"
