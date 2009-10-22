@@ -54,16 +54,16 @@
   <table class="list">
   <%= f.error_messages %>
     <tr class="bg">
-	<td class="first"><strong><%=_("Password")%></strong></td>
+	<td class="first"><%=_("Password")%></td>
 	<td class="last"><%= f.password_field :password, :disabled => disabled %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("Confirm Password")%></strong></td>
+	<td class="first"><%=_("Confirm password")%></td>
         <td class="last"><%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %></td>
 	<td><%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("Forward mail to")%></strong></td>
+	<td class="first"><%=_("Forward mail to")%></td>
 	<td class="last"><%= f.text_field :aliases, :disabled => disabled, :class => "emails" %></td>
 	<td><%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %></td>
     </tr>
