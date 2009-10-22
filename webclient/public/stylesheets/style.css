@@ -332,9 +332,23 @@ ul.list-2level-inline {
 
 /* == Form Styles ======================================================= */
 
+fieldset {
+  border: none;
+}
+fieldset p {
+  clear: both;
+  margin-bottom: 0.5em;
+}
+legend {
+  font-weight: bold;
+}
+
 label {
   display: block;
-  margin: 0.2em 0;
+  float: left;
+  width: 7em;
+  text-align: right;
+  margin: 0.2em 0.5em;
 }
 
 #login_button {
@@ -354,6 +368,11 @@ label {
 .grey-bg {
   background-color: #f6f6f6;
 }
+
+.hidden {
+  display: none;
+}
+
 a.button,
 input.button {
   background: #eee url(images/bg-dark-gradient.png) repeat-x scroll left top;
