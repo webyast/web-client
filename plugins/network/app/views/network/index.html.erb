@@ -65,85 +65,71 @@
 
 <% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
-  <div class="table">
-    <table class="list" cellpadding="0" cellspacing="0">
-    <tr>
- 	<th class="full" colspan="2"><%=_("Interface")%></th>
-    </tr>
-    <tr>
-	<td class="first" width="120"><%= select_tag(:interface,
-      options_from_collection_for_select(@ifcs, :id, :id, @iface)) %></td>
-	<td class="last"><%= submit_tag("Select") %></td>
-    </tr>
-    </table>
-  </div>
+  <fieldset id="" class="">
+    <legend><%=_("Interface")%></legend>
+    <p>
+      <%= select_tag(:interface, options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
+    </p>
+    <p>
+      <%= submit_tag(_("Select"), :class => "button") %>
+    </p>
+  </fieldset>
+
 <% end %>
 
 <% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put, :onsubmit => "return validateNetwork();" }) do |n| %>
 <%= n.error_messages %>
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
 
-<input type="hidden" id="interface" name="interface" value="<%= @iface %>">
+  <input type="hidden" id="interface" name="interface" value="<%= @iface %>">
 
-  <div class="table">
-    <table class="list" cellpadding="0" cellspacing="0">
-    <tr>
- 	<th class="full" colspan="2"><%=_("IP address")%></th>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Configuration mode")%></strong></td>
-	<td class="last"><%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%></td>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("IP address")%></strong></td>
-	<td class="last"><%=text_field_tag :ip, @ip, :disabled => static_disabled %></td>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Prefixlen")%></strong></td>
-	<td class="last"><%=text_field_tag :netmask, @netmask, :disabled => static_disabled %></td>
-    </tr>
-    </table>
-  </div>
 
-  <div class="table">
-    <table class="list" cellpadding="0" cellspacing="0">
-    <tr>
- 	<th class="full" colspan="2"><%=_("DNS")%></th>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Hostname")%></strong></td>
-	<td class="last"><%=text_field_tag :name, @name, :disabled => write_disabled %></td>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Domain")%></strong></td>
-	<td class="last"><%=text_field_tag :domain, @domain, :disabled => write_disabled %></td>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Name servers")%></strong></td>
-	<td class="last"><%=text_field_tag :nameservers, @nameservers.join(" "), :disabled => static_disabled %></td>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Search domains")%></strong></td>
-	<td class="last"><%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => static_disabled %></td>
-    </tr>
 
-    </table>
-  </div>
+  <fieldset id="" class="">
+    <legend><%=_("IP address")%></legend>
+    <p>
+      <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
+      <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
+    </p>
+    <p>
+      <label for="<%= :ip %>"><%=_("IP address")%></label>
+      <%=text_field_tag :ip, @ip, :disabled => static_disabled %>
+    </p>
+    <p>
+      <label for="<%= :netmask %>"><%=_("Prefixlen")%></label>
+      <%=text_field_tag :netmask, @netmask, :disabled => static_disabled %>
+    </p>
+  </fieldset>
+  <fieldset id="" class="">
+    <legend><%=_("DNS")%></legend>
+    <p>
+      <label for="<%= :name %>"><%=_("Hostname")%></label>
+      <%=text_field_tag :name, @name, :disabled => write_disabled %>
+    </p>
+    <p>
+      <label for="<%= :domain %>"><%=_("Domain")%></label>
+      <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
+    </p>
+    <p>
+      <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
+      <%=text_field_tag :nameservers, @nameservers.join(" "), :disabled => static_disabled %>
+    </p>
+    <p>
+      <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
+      <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => static_disabled %>
+    </p>
+  </fieldset>
 
-  <div class="table">
-    <table class="list" cellpadding="0" cellspacing="0">
-    <tr>
- 	<th class="full" colspan="2"><%=_("Routing")%></th>
-    </tr>
-    <tr>
-	<td class="first" width="120"><strong><%=_("Default route")%></strong></td>
-	<td class="last"><%=text_field_tag :default_route, @default_route, :disabled => static_disabled %></td>
-    </tr>
-    </table>
-  </div>
-
-<%= n.submit _("Save"), :disabled => write_disabled, :class => "button" %> or <a href="/"><%=_("Cancel")%></a>
-
+  <fieldset id="" class="">
+    <legend><%=_("Routing")%></legend>
+    <p>
+      <label for="<%= :default_route %>"><%=_("Default route")%></label>
+      <%=text_field_tag :default_route, @default_route, :disabled => static_disabled %>
+    </p>
+  </fieldset>
+  <p>
+    <%= n.submit _("Save"), :disabled => write_disabled, :class => "button" %> or <a href="/"><%=_("Cancel")%></a>
+  </p>
 <% end %>
 </div>
 <% javascript_tag do -%>
