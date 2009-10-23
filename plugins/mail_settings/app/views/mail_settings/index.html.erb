@@ -39,23 +39,23 @@
   <table class="list">
   <%= f.error_messages %>
     <tr class="bg">
-	<td class="first"><strong><%=_("SMTP server address")%></strong></td>
+	<td class="first"><%=_("Outgoing mail server (SMTP)")%></strong></td>
 	<td class="last"><%= f.text_field :smtp_server, :disabled => disabled, :class => "smtp_server" %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("Transport Layer Security (TLS)")%></strong></td>
+	<td class="first"><%=_("Transport Layer Security (TLS)")%></td>
 	<td class="last"><%= f.select :transport_layer_security, [ [_("Disabled"), "NONE" ], [_("If available"), "MAY"], [_("Always"), "MUST"]], :disabled => disabled %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("User name")%></strong></td>
+	<td class="first"><%=_("User name")%></td>
 	<td class="last"><%= f.text_field :user, :disabled => disabled %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("Password")%></strong></td>
+	<td class="first"><%=_("Password")%></td>
 	<td class="last"><%= f.password_field :password, :disabled => disabled %></td>
     </tr>
     <tr class="bg">
-	<td class="first"><strong><%=_("Confirm Password")%></strong></td>
+	<td class="first"><%=_("Confirm Password")%></td>
         <td class="last"><%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_settings_password" %></td>
     </tr>
     <tr>
