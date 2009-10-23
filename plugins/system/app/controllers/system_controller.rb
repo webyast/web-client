@@ -14,6 +14,8 @@ class SystemController < ApplicationController
 	    begin
 		if !@sys.nil? and @sys.reboot
 		    flash[:message] = _("Rebooting the machine...")
+		    # logout from the service, reboot is in progress
+		    redirect_to(logout_path) and return
 		else
 		    flash[:error] = _("Cannot reboot the machine!")
 		end
@@ -32,6 +34,8 @@ class SystemController < ApplicationController
 	    begin
 		if !@sys.nil? and @sys.shutdown
 		    flash[:message] = _("Shuting down the machine...")
+		    # logout from the service, shut down is in progress
+		    redirect_to(logout_path) and return
 		else
 		    flash[:error] = _("Cannot shutdown the machine!")
 		end
