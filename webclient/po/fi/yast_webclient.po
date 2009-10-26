@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-08 14:47+0300\n"
+"PO-Revision-Date: 2009-10-23 12:00+0300\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "Sinun täytyy hyväksyä kaikki käyttöoikeussopimukset ennen tämän tuotteen käyttöä!"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "Ei voi uudelleen ohjata EULAa. Varmista että yast2-webclient-eulas-paketti on asennettu"
 
 # %s is FTP or HTTP
 #: app/controllers/application_controller.rb:105
@@ -32,10 +32,9 @@ msgid "You must logout before you can login"
 msgstr "Sinun täytyy kirjautua ulos ennen sisään kirjautumista"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "Hakemistorajoitus(chroot) ei onnistu hakemistoon '%s' (%s)."
+msgstr "Koneeseen %s yhdistäminen ei onnistu."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -46,10 +45,9 @@ msgid "Please select a host to connect to."
 msgstr "Valitse kone johon yhdistetään."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Asennuslähdettä '%s' ei löydy."
+msgstr "Konetta '%s' ei löytynyt."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -163,7 +161,7 @@ msgstr "Valitse palvelu:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "Poistetaanko kone %s varmasti?"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -276,10 +274,9 @@ msgid "Login"
 msgstr "Kirjautumisnimi"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
 #| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "Anna määritetyt parametrit piirisarjalle \"%s\"."
+msgstr "Anna kirjautumisvaltuutus koneelle %s."
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -317,7 +314,7 @@ msgstr "Käynnistä uudelleen"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "Käynnistetäänkö %s uudelleen?"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -325,7 +322,7 @@ msgstr "Sammuta"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "Sammutetaanko %s varmasti?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -352,14 +349,13 @@ msgid "Show all modules"
 msgstr "Näytä kaikki moduulit"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "Toiminto '%1' ei ole sallittu palvelulle '%2'."
+msgstr "Oikeutta %s ei myönnetty käyttäjälle %s"
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
+msgstr "Policy kit poikkeus käyttäjälle %s ja käyttöoikeus %s (kääntämätön viesti): %s"
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
@@ -367,23 +363,19 @@ msgstr "Kukaan ei ole kirjautunut rest-palveluun."
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "Kohdejärjestelmä ei ole yhtenäinen. Tiedosto %s puuttuu tai on vioittunut"
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Esimääritettyjä ntp-palvelimia ei löytynyt /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:22
-#, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
-msgstr "Tapahtui virhe asennuksen aikana."
+msgstr "Tapahtui virhe ntp synkronoinnin aikana: %s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "Virhe suljettaessa vanhaa varjotiedostoa: %m"
+msgstr "Virhe tallennettaessa järjestelmävalvojan asetuksia: %s"
 
-#~ msgid "ADMINISTRATOR_ERROR"
-#~ msgstr "ADMINISTRATOR_ERROR"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-12 22:56+0800\n"
+"PO-Revision-Date: 2009-10-22 23:41+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "在使用此產品前，您必須接受所有 EULA！"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "無法重新導向到 EULA。請確認已安裝 yast2-webclient-eulas 套件"
 
 #: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
@@ -36,10 +36,9 @@ msgid "You must logout before you can login"
 msgstr "在您能登入前必須先登出"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "無法 chroot 到 '%s' (%s)。"
+msgstr "無法連線到主機 %s。"
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -50,10 +49,9 @@ msgid "Please select a host to connect to."
 msgstr "請選取要連線的主機。"
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "找不到套件庫 '%s'。"
+msgstr "找不到主機 '%s'。"
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -167,7 +165,7 @@ msgstr "請選擇一個服務："
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "確定要刪除主機 %s ？"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -280,10 +278,9 @@ msgid "Login"
 msgstr "登入"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
 #| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "輸入晶片組「%s」的特定參數。"
+msgstr "輸入主機 %s 的登入憑證。"
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -321,7 +318,7 @@ msgstr "重新開機"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "確定要重新啟動 %s ？"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -329,7 +326,7 @@ msgstr "關機"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "確定要關閉 %s ？"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -356,10 +353,9 @@ msgid "Show all modules"
 msgstr "顯示所有的模組"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "「%1」動作不允許用於「%2」服務。"
+msgstr "權限 %s 無法取得(使用者 %s)"
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
@@ -378,13 +374,12 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "在 /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS 沒有預先定義的 ntp 伺服器"
 
 #: lib/error_constructor.rb:22
-#, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
-msgstr "安裝時發生錯誤。"
+msgstr "ntp 同步時發生錯誤：%s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "關閉舊的陰影檔案時發生錯誤：%m"
+msgstr "儲存管理員設定時發生錯誤：%s"
+

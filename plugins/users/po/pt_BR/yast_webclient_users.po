@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-09-23 12:08-0300\n"
+"PO-Revision-Date: 2009-10-20 11:31-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,10 +26,9 @@ msgid "Invalid session, please login again."
 msgstr "Sessão inválida, por favor conecte-se novamente."
 
 #: app/controllers/users_controller.rb:144
-#, fuzzy
 #| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully created."
-msgstr "O serviço '%s' foi adicionado com sucesso."
+msgstr "O usuário <i>%s</i> foi criado com sucesso."
 
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
@@ -40,22 +39,19 @@ msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: valor >= 1000 é válido somente para usuário local"
 
 #: app/controllers/users_controller.rb:197
-#, fuzzy
 #| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully updated."
-msgstr "O serviço '%s' foi adicionado com sucesso."
+msgstr "O usuário <i>%s</i> foi atualizado com sucesso."
 
 #: app/controllers/users_controller.rb:218
-#, fuzzy
 #| msgid "Specified lock has been successfully removed."
 msgid "User <i>%s</i> was successfully removed."
-msgstr "A trava especificada foi removida com sucesso."
+msgstr "O usuário <i>%s</i> foi removido com sucesso."
 
 #: app/controllers/users_controller.rb:220
-#, fuzzy
 #| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Erro: não foi possível ler o perfil %s: %s.\n"
+msgstr "Erro: não foi possível remover o usuário <i>%s</i>."
 
 #: app/views/users/index.html.erb:4
 msgid "Local User"
@@ -65,7 +61,8 @@ msgstr "Usuário local"
 msgid "Login"
 msgstr "Conectar"
 
-#: app/views/users/index.html.erb:9 app/views/users/edit.html.erb:15
+#: app/views/users/index.html.erb:9
+#: app/views/users/edit.html.erb:15
 #: app/views/users/new.html.erb:9
 msgid "Full Name"
 msgstr "Nome completo"
@@ -78,7 +75,8 @@ msgstr "Editar"
 msgid "<strong>[New User]</strong>"
 msgstr "<strong>[Novo usuário]</strong>"
 
-#: app/views/users/index.html.erb:33 app/views/users/edit.html.erb:47
+#: app/views/users/index.html.erb:33
+#: app/views/users/edit.html.erb:47
 #: app/views/users/new.html.erb:45
 msgid "Back"
 msgstr "Cancelar"
@@ -91,7 +89,8 @@ msgstr "Editar usuário %s"
 msgid "User"
 msgstr "Usuário"
 
-#: app/views/users/edit.html.erb:19 app/views/users/new.html.erb:13
+#: app/views/users/edit.html.erb:19
+#: app/views/users/new.html.erb:13
 msgid "Groups"
 msgstr "Grupos"
 
@@ -99,24 +98,29 @@ msgstr "Grupos"
 msgid "Default Group"
 msgstr "Grupo padrão"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:21
+#: app/views/users/edit.html.erb:27
+#: app/views/users/new.html.erb:21
 msgid "Home Directory"
 msgstr "Diretório home"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:29
+#: app/views/users/edit.html.erb:31
+#: app/views/users/new.html.erb:29
 msgid "Login Shell"
 msgstr "Shell de login"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:33
+#: app/views/users/edit.html.erb:35
+#: app/views/users/new.html.erb:33
 msgid "Login Name"
 msgstr "Nome de login"
 
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:37
+#: app/views/users/edit.html.erb:39
+#: app/views/users/new.html.erb:37
 msgid "UID Number"
 msgstr "Número do UID"
 
 # password dialog title
-#: app/views/users/edit.html.erb:43 app/views/users/new.html.erb:41
+#: app/views/users/edit.html.erb:43
+#: app/views/users/new.html.erb:41
 msgid "Password"
 msgstr "Senha"
 
@@ -139,3 +143,4 @@ msgstr "NÃO criar diretório home"
 #: app/views/users/new.html.erb:45
 msgid "Create"
 msgstr "Criar"
+

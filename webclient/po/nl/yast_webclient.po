@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-09-26 13:27+0200\n"
+"PO-Revision-Date: 2009-10-21 09:37+0200\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "U moet alle EULA's accepteren alvorens dit product te gebruiken!"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "Kan niet naar EULA doorverwijzen. Verzeker u ervan dat pakket yast2-webclient-eulas is geïnstalleerd"
 
 #: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
@@ -36,10 +36,9 @@ msgid "You must logout before you can login"
 msgstr "Eerst afmelden alvorens aan te melden"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "Kan geen chroot doen naar '%s' (%s)."
+msgstr "Kan niet verbinden naar host %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -50,16 +49,14 @@ msgid "Please select a host to connect to."
 msgstr "Gaarne een host selecteren waarnaar te verbinden."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Installatiebron '%s' is niet gevonden."
+msgstr "De host '%s' is niet gevonden."
 
 #: app/controllers/hosts_controller.rb:32
-#, fuzzy
 #| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
-msgstr "%s bestaat niet, controleer het pad."
+msgstr "Controleer nog eens de URL van de host."
 
 #: app/controllers/sessions_controller.rb:51
 msgid "You need to specify the host"
@@ -169,7 +166,7 @@ msgstr "Gaarne een service kiezen:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "Echt de host %s verwijderen?"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -242,10 +239,9 @@ msgid "No information available"
 msgstr "Geen informatie beschikbaar"
 
 #: app/views/shared/backendexception_trap.html.erb:4
-#, fuzzy
 #| msgid "Problem occur on target machine."
 msgid "Problem occured on target machine."
-msgstr "Probleem zit op de doelmachine."
+msgstr "Probleem trad op op de doelmachine."
 
 #: app/views/layouts/main.rhtml:34
 msgid "WebYaST"
@@ -286,10 +282,9 @@ msgid "Login"
 msgstr "Aanmelden"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
 #| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "Geef de specifieke parameters voor de chipset \"%s\" op."
+msgstr "Geef de aanmeldcredentials voor host %s."
 
 # /usr/lib/YaST2/clients/lan_dns.ycp:85
 # /usr/lib/YaST2/clients/lan_dns.ycp:85
@@ -329,7 +324,7 @@ msgstr "Herstarten"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "Echt opnieuw starten?"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -337,7 +332,7 @@ msgstr "Afsluiten"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "Echt afsluiten?"
 
 # /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
 #: app/views/controlpanel/index.rhtml:39
@@ -365,14 +360,13 @@ msgid "Show all modules"
 msgstr "Alle modules tonen"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "Actie '%1' is niet toegestaan voor service '%2'."
+msgstr "Toestemming %s is niet toegewezen voor gebruiker %s"
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
+msgstr "Uitzondering in beleidsgedeelte voor gebruiker %s en toestemming %s (onvertaalde boodschap): %s"
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
@@ -380,20 +374,19 @@ msgstr "Niemand is ingelogd op de REST-service."
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "Doelsysteem is niet consequent: Ontbrekend of beschadigd bestand %s"
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
+msgstr "Er is geen voorgedefinieerde ntp-server in /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:22
-#, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
-msgstr "Er is een fout opgetreden tijdens de installatie."
+msgstr "Er is een fout opgetreden bij ntp-synchronisatie: %s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "Fout bij sluiten van nieuw shadow-bestand: %m"
+msgstr "Fout bij het opslaan van beheerdersinstellingen: %s"
+

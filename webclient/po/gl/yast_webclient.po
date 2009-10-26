@@ -1,139 +1,131 @@
+# Galician translation of yast_webclient.gl.po
+# Manuel A. Vázquez <xixirei@yahoo.es>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: yast_webclient.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2002-07-23 11:51+0200\n"
-"Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
-"Language-Team: Galician <i18n@suse.de>\n"
+"PO-Revision-Date: 2009-10-25 11:27+0100\n"
+"Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 0.2\n"
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "Debe aceptar todos os EULAS antes de usar este produto!"
 
 #: app/controllers/application_controller.rb:64
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgid ""
+"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
+"Non se pode redireccionar ao EULA. Asegúrese que o paquete yast2-webclient-"
+"eulas estea instalado"
 
 #: app/controllers/application_controller.rb:105
-#, fuzzy
-#| msgid "Please connect to the internet."
 msgid "Please login to continue"
-msgstr "Conéctese á Internet."
+msgstr "Inicie sesión para continuar"
 
 #: app/controllers/application_controller.rb:112
 msgid "You must logout before you can login"
-msgstr ""
+msgstr "Debe saír antes de poder iniciar sesión"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
-#| msgid "Connected to: %s"
 msgid "Can't connect to host %s."
-msgstr "Conectado a: %s"
+msgstr "Non é posible conectarse ao host %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
 msgstr ""
+"Asegúrese que o host está correndo e que o servizo web de YaST estase a "
+"executar."
 
 #: app/controllers/hosts_controller.rb:28
-#, fuzzy
-#| msgid "Please connect to the internet."
 msgid "Please select a host to connect to."
-msgstr "Conéctese á Internet."
+msgstr "Seleccione o host ao que conectarse."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
-#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Non se atopou o repositorio '%s'."
+msgstr "Non se pode atopar o host '%s'."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
-msgstr ""
+msgstr "Volva comprobar o URL do host."
 
 #: app/controllers/sessions_controller.rb:51
 msgid "You need to specify the host"
-msgstr ""
+msgstr "Precisa especificar o host"
 
 #: app/controllers/sessions_controller.rb:54
-#, fuzzy
-#| msgid "No valid arguments specified."
 msgid "No login specified"
-msgstr "Non se especificaron argumentos válidos."
+msgstr "Non se especificou ningún nome de inicio de sesión"
 
 #: app/controllers/sessions_controller.rb:57
-#, fuzzy
-#| msgid "No valid arguments specified."
 msgid "No password specified"
-msgstr "Non se especificaron argumentos válidos."
+msgstr "Non se especificou ningún contrasinal"
 
 #: app/controllers/sessions_controller.rb:93
 msgid "Login incorrect. Check your username and password."
-msgstr ""
+msgstr "Inicio de sesión incorrecto. Comprobe o nome de usuario e contrasinal."
 
 #: app/controllers/sessions_controller.rb:118
 msgid "You have been logged out."
-msgstr ""
+msgstr "Foi desconectado."
 
 #: app/models/account.rb:-
 msgid "account"
-msgstr ""
+msgstr "conta"
 
 #: app/models/account.rb:-
 msgid "Account|Login"
-msgstr ""
+msgstr "Conta|Inicio de sesión"
 
 #: app/models/account.rb:-
 msgid "Account|Created at"
-msgstr ""
+msgstr "Conta|Creada o"
 
 #: app/models/account.rb:-
 msgid "Account|Updated at"
-msgstr ""
+msgstr "Conta|Actualizada o"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token"
-msgstr ""
+msgstr "Conta|Lembre o token"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token expires at"
-msgstr ""
+msgstr "Conta|Lembre que o token expira o"
 
 #: app/models/account.rb:-
 msgid "Account|Salt"
-msgstr ""
+msgstr "Conta|Sal"
 
 #: app/models/host.rb:-
 msgid "host"
-msgstr ""
+msgstr "host"
 
 #: app/models/host.rb:-
-#, fuzzy
-#| msgid "Name"
 msgid "Host|Name"
-msgstr "Nome"
+msgstr "Host|Nome"
 
 #: app/models/host.rb:-
 msgid "Host|Url"
-msgstr ""
+msgstr "Host|Url"
 
 #: app/models/host.rb:-
-#, fuzzy
-#| msgid "Description"
 msgid "Host|Description"
-msgstr "Descrición"
+msgstr "Host|Descrición"
 
 #: app/models/host.rb:-
 msgid "Host|Created at"
-msgstr ""
+msgstr "Host|Creado o"
 
 #: app/models/host.rb:-
 msgid "Host|Updated at"
-msgstr ""
+msgstr "Host|Actualizado o"
 
 #: app/helpers/application_helper.rb:5
 msgid "Save"
@@ -145,18 +137,16 @@ msgstr "Cancelar"
 
 #: app/helpers/application_helper.rb:10
 msgid "Next"
-msgstr ""
+msgstr "Seguinte"
 
 #: app/helpers/view_helpers/label_helper.rb:6
 #: app/views/hosts/index.html.erb:33
 msgid "Add"
-msgstr ""
+msgstr "Engadir"
 
 #: app/helpers/view_helpers/label_helper.rb:10
-#, fuzzy
-#| msgid "&Edit"
 msgid "Edit"
-msgstr "&Editar"
+msgstr "Editar"
 
 #: app/helpers/view_helpers/label_helper.rb:14
 msgid "Delete"
@@ -164,25 +154,23 @@ msgstr "Eliminar"
 
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
-msgstr ""
+msgstr "Está seguro?"
 
 #: app/views/hosts/index.html.erb:6
-#, fuzzy
-#| msgid "A kioslave to browse services"
 msgid "Please choose a service:"
-msgstr "Un kioslave para buscar servizos"
+msgstr "Por favor, escolla un servizo:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "Está seguro de querer eliminar o host %s?"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
-msgstr ""
+msgstr "Editando servizo-web-YaST"
 
 #: app/views/hosts/edit.html.erb:24
 msgid "YaST-Web-Service"
-msgstr ""
+msgstr "Servizo-web-YaST"
 
 #: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
 msgid "Name"
@@ -190,7 +178,7 @@ msgstr "Nome"
 
 #: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
 msgid "Description"
@@ -201,10 +189,8 @@ msgid "Ok"
 msgstr "Aceptar"
 
 #: app/views/hosts/edit.html.erb:41
-#, fuzzy
-#| msgid "Backend:"
 msgid "Back"
-msgstr "Motor:"
+msgstr "Atrás"
 
 #: app/views/hosts/show.html.erb:7
 msgid "Index"
@@ -212,81 +198,71 @@ msgstr "Índice"
 
 #: app/views/hosts/new.html.erb:4
 msgid "New WebYaST Host"
-msgstr ""
+msgstr "Novo host WebYaST"
 
 #: app/views/hosts/new.html.erb:47
-#, fuzzy
-#| msgid "Created On: "
 msgid "Create"
-msgstr "Creado o: "
+msgstr "Creado"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
-msgstr ""
+msgstr "Isto é embarazoso..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr ""
+msgid ""
+"We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "Desculpe, pero WebYaST aínda está en fase alfa e hai algúns problemas."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
-#, fuzzy
-#| msgid "Problem: "
 msgid "Problem:"
 msgstr "Problema: "
 
 #: app/views/shared/exception_trap.html.erb:16
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
+"Por favor, envíe un informe de erro para que poidamos arranxar o problema!"
 
 #: app/views/shared/exception_trap.html.erb:16
 msgid "(report link)"
-msgstr ""
+msgstr "(ligazón para enviar)"
 
 #: app/views/shared/exception_trap.html.erb:17
 msgid "Don't forget to include the bug details."
-msgstr ""
+msgstr "Non esqueza incluír os detalles do erro."
 
 #: app/views/shared/exception_trap.html.erb:19
-#, fuzzy
-#| msgid "No optional updates available"
 msgid "No information available"
-msgstr "Non hai dispoñibles actualizacións opcionais"
+msgstr "Non hai información dispoñible"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
-msgstr ""
+msgstr "Aconteceu un problema na máquina destino."
 
 #: app/views/layouts/main.rhtml:34
 msgid "WebYaST"
-msgstr ""
+msgstr "WebYaST"
 
 #: app/views/layouts/main.rhtml:42
-#, fuzzy
-#| msgid "Not Applicable"
 msgid "My Appliance"
-msgstr "Non Aplicable"
+msgstr "O meu aplicativo"
 
 #: app/views/layouts/main.rhtml:52
-#, fuzzy
-#| msgid "Connected to: %s"
 msgid "Connected Host"
-msgstr "Conectado a: %s"
+msgstr "Host conectado"
 
 #: app/views/layouts/main.rhtml:53
-#, fuzzy
-#| msgid "Name: "
 msgid "Name:"
-msgstr "Nome: "
+msgstr "Nome:"
 
 #: app/views/layouts/main.rhtml:54
 msgid "User:"
-msgstr ""
+msgstr "Usuario:"
 
 #: app/views/layouts/main.rhtml:57
 msgid "Control panel"
-msgstr ""
+msgstr "Panel de control"
 
 #: app/views/layouts/main.rhtml:58
 msgid "Logout"
@@ -294,54 +270,48 @@ msgstr "Rematar a Sesión"
 
 #: app/views/layouts/main.rhtml:92
 msgid "...Wait..."
-msgstr ""
+msgstr "...Agarde..."
 
 #: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
-msgstr ""
+msgstr "Inicio de sesión"
 
 #: app/views/sessions/new.rhtml:6
 msgid "Enter login credentials for host %s."
-msgstr ""
+msgstr "Introduza as credenciais de inicio de sesión para o host %s."
 
 #: app/views/sessions/new.rhtml:10
-#, fuzzy
-#| msgid "User Name"
 msgid "Username:"
-msgstr "Nome de Usuario"
+msgstr "Nome de usuario: "
 
 #: app/views/sessions/new.rhtml:13
-#, fuzzy
-#| msgid "Password: "
 msgid "Password:"
-msgstr "Contrasinal: "
+msgstr "Contrasinal:"
 
 #: app/views/controlpanel/basesystem.rhtml:1
 msgid "Base system setup"
-msgstr ""
+msgstr "Configuración básica do sistema"
 
 #: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgid ""
+"Your system setup was not completed. Please continue with setting up the "
+"modules."
 msgstr ""
+"A configuración do seu sistema no foi completada. Por favor, continúe coa "
+"configuración dos módulos."
 
 #: app/views/controlpanel/basesystem.rhtml:4
-#, fuzzy
-#| msgid "Halt the system now?"
 msgid "Set up the system"
-msgstr "Apagar o sistema agora?"
+msgstr "Configurar o sistema"
 
 #: app/views/controlpanel/show_all.rhtml:1
 #: app/views/controlpanel/index.rhtml:61
-#, fuzzy
-#| msgid "IP configuration"
 msgid "Configuration"
-msgstr "Configurazón da IP"
+msgstr "Configuración"
 
 #: app/views/controlpanel/index.rhtml:30
-#, fuzzy
-#| msgid "System Information"
 msgid "System actions"
-msgstr "Información do Sistema "
+msgstr "Accións do sistema"
 
 # reboot button label
 #: app/views/controlpanel/index.rhtml:31
@@ -350,7 +320,7 @@ msgstr "Reiniciar"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "Desexa reiniciar %s?"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -358,68 +328,64 @@ msgstr "Apagar"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "Desexa apagar %1?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
 msgstr "Estado"
 
 #: app/views/controlpanel/index.rhtml:43
-#, fuzzy
-#| msgid "Looking for CPU information..."
 msgid "Loading patch information"
-msgstr "Buscando infomación da CPU"
+msgstr "Cargando información do parche"
 
 #: app/views/controlpanel/index.rhtml:45
-#, fuzzy
-#| msgid "Package '%s' is not installed."
 msgid "Patch plugin is not installed."
-msgstr "O paquete '%s' non está instalado."
+msgstr "A extensión de parches non foi instalada."
 
 #: app/views/controlpanel/index.rhtml:51
-#, fuzzy
-#| msgid "System Information"
 msgid "Loading system information"
-msgstr "Información do Sistema "
+msgstr "Cargando información do sistema"
 
 #: app/views/controlpanel/index.rhtml:53
-#, fuzzy
-#| msgid "'%s' is not installed."
 msgid "Status plugin is not installed."
-msgstr "'%s' non está instalado."
+msgstr "A extensión de estado non foi instalado."
 
 #: app/views/controlpanel/index.rhtml:92
 msgid "Show all modules"
-msgstr ""
+msgstr "Amosar todos os módulos"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
-#| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "A acción '%1' non está permitida para o servizo '%2'."
+msgstr "O permiso %s non se concede ao usuario %s"
 
 #: lib/error_constructor.rb:12
-msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgid ""
+"Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
+"Excepción do Policykit para o usuario %s e permiso %s (mensaxe sen "
+"traducir): %s"
 
 #: lib/error_constructor.rb:14
-#, fuzzy
-#| msgid "A kioslave to browse services"
 msgid "Noone is logged to rest service."
-msgstr "Un kioslave para buscar servizos"
+msgstr "Ninguén iniciou sesión no servizo rest"
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "O sistema destino non é consistente: ficheiro %s perdido ou corrupto"
 
 #: lib/error_constructor.rb:20
-msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgid ""
+"There is no predefined ntp server at /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
+"Non hai servidor predefinido en /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:22
 msgid "Error occured during ntp synchronization: %s"
-msgstr ""
+msgstr "Houbo un erro durante a sincronización ntp: %s"
 
 #: lib/error_constructor.rb:25
 msgid "Error while saving administrator settings: %s"
 msgstr ""
+"Ocorreu un erro mentres se gardaban a configuración do administrador: %s"

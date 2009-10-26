@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-08 18:02+0900\n"
+"PO-Revision-Date: 2009-10-20 19:40+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "この製品を使用する前に、全ての使用許諾契約 (EULA) に同意しなければなりません！"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "使用許諾契約 (EULA) にリダイレクトできません。 yast2-webclient-eulas パッケージがインストールされているかどうかご確認ください。"
 
 #: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
@@ -31,10 +31,9 @@ msgid "You must logout before you can login"
 msgstr "ログインの前にログアウトしなければなりません"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "'%s' (%s) に chroot することができません。"
+msgstr "ホスト %s に接続できません。"
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -45,10 +44,9 @@ msgid "Please select a host to connect to."
 msgstr "接続先のホストを選択してください。"
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "リポジトリ '%s' が見つかりません。"
+msgstr "ホスト '%s' が見つかりません。"
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -162,7 +160,7 @@ msgstr "サービスを選択してください:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "ホスト %s を削除してよろしいですか？"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -275,10 +273,9 @@ msgid "Login"
 msgstr "ログイン"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
 #| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "チップセット \"%s\" に対するパラメータを入力してください。"
+msgstr "ホスト %s に対するログイン資格を入力してください。"
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -316,7 +313,7 @@ msgstr "再起動"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "%s を再起動してよろしいですか？"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -324,7 +321,7 @@ msgstr "シャットダウン"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "%s をシャットダウンしてよろしいですか？"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -351,14 +348,13 @@ msgid "Show all modules"
 msgstr "全てのモジュールを表示"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "サービス「%2」でアクション「%1」は禁止されています。"
+msgstr "ユーザ %2$s に対する %1$s の許可がありません"
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
+msgstr "ユーザ %s に対する %s の許可を確認する際に Policy kit の例外が発生しました (エラーメッセージ原文): %s"
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
@@ -366,23 +362,19 @@ msgstr "REST サービスには誰もログインしていません。"
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "ターゲットのシステムに矛盾があります: ファイル %s が見つからないか、壊れています"
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "/etc/sysconfig/network/config 内の NETCONFIG_NTP_STATIC_SERVERS には、 NTP サーバが事前設定されていません。"
 
 #: lib/error_constructor.rb:22
-#, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
-msgstr "インストール処理でエラーが発生しました。"
+msgstr "NTP の同期処理時にエラーが発生しました: %s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "古い shadow ファイルを閉じる際にエラーが発生しました: %m"
+msgstr "管理者設定を保存する際にエラーが発生しました: %s"
 
-#~ msgid "ADMINISTRATOR_ERROR"
-#~ msgstr "管理者エラー"

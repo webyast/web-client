@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-08 12:05+0200\n"
+"PO-Revision-Date: 2009-10-22 17:40+0200\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,11 +15,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "Morate prihvatiti sve licence krajnjeg korisnika prije korištenja ovog proizvoda!"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "Ne mogu preusmjeriti na licencu krajnjeg korisnika. Pobrinite se da je instaliran paket yast2-webclient-eulas"
 
 #: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
@@ -30,10 +30,9 @@ msgid "You must logout before you can login"
 msgstr "Morate se odjaviti prije nego što se možete prijaviti"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Connected to: %s"
 msgid "Can't connect to host %s."
-msgstr "Spojen na: %s"
+msgstr "Ne mogu se spojiti na računao %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -44,10 +43,9 @@ msgid "Please select a host to connect to."
 msgstr "Molimo vas da odaberete računalo na koje se želite spojiti."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Repozitorij '%s' nije pronađen."
+msgstr "Računalo '%s' ne može biti pronađeno."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -160,7 +158,7 @@ msgstr "Molimo odaberite servis:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "Da li zaista želite obrisati računalo %s?"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -274,7 +272,7 @@ msgstr "Prijava"
 
 #: app/views/sessions/new.rhtml:6
 msgid "Enter login credentials for host %s."
-msgstr ""
+msgstr "Unesite akreditive za prijavu na računalo %s."
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -312,7 +310,7 @@ msgstr "Ponovno pokreni računalo"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "Da li zaista želite ponovno pokrenuti %s?"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -320,7 +318,7 @@ msgstr "Ugasi"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "Da li zaista želite ugasiti %s?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -347,14 +345,13 @@ msgid "Show all modules"
 msgstr "Prikaži sve module"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "Akcija '%1' nije dopuštena za servis '%2'."
+msgstr "Dozvola %s nije odobrena za korisnika %s"
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
+msgstr "Policy kit iznimka za korisnika %s i dozvole %s (neprevedena poruka): %s"
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
@@ -362,7 +359,7 @@ msgstr "Nitko nije prijavljen na REST servis."
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "Ciljni sustav nije konzistentan. Nedostaje ili je oštećena datoteka %s"
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
@@ -370,13 +367,13 @@ msgstr "Ne postoji unaprijed određen ntp poslužitelj u /etc/sysconfig/network/
 
 #: lib/error_constructor.rb:22
 msgid "Error occured during ntp synchronization: %s"
-msgstr ""
+msgstr "Dogodila se greška prilikom ntp sinkronizacije: %s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "Greška prilikom zatvaranja stare shadow datoteke: %m"
+msgstr "Greška prilikom spremanja postavki administratora: %s"
 
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ADMINISTRATOR_ERROR"
+

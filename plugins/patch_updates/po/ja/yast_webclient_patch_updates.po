@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient_patch_updates\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-09-26 09:52+0900\n"
+"PO-Revision-Date: 2009-10-20 19:45+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,10 +27,9 @@ msgid "Installation finished"
 msgstr "インストールが完了しました"
 
 #: app/controllers/patch_updates_controller.rb:108
-#, fuzzy
 #| msgid "%s installed ok"
 msgid "%s installed."
-msgstr "%s は問題なくインストールされました"
+msgstr "%s をインストールしました。"
 
 #: app/controllers/patch_updates_controller.rb:137
 msgid "Patch has been installed."
@@ -79,22 +78,19 @@ msgid "No information about patches available"
 msgstr "修正に関する情報が利用できません"
 
 #: app/views/patch_updates/_patch_summary.html.erb:19
-#, fuzzy
 #| msgid "Security update"
 msgid "Security Updates: %d"
-msgstr "セキュリティ更新"
+msgstr "セキュリティ更新: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:22
-#, fuzzy
 #| msgid "Important update"
 msgid "Important Updates: %d"
-msgstr "重要な更新"
+msgstr "重要な更新: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:25
-#, fuzzy
 #| msgid "Additonal updates done."
 msgid "Optional Updates: %d"
-msgstr "任意として指定された更新を適用しました。"
+msgstr "任意指定の更新: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:33
 msgid "Updating all. Are you sure?"
@@ -124,3 +120,4 @@ msgstr "ソース"
 #: app/views/patch_updates/_patches.html.erb:18
 msgid "Install"
 msgstr "インストール"
+

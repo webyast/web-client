@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-10 10:21+0400\n"
+"PO-Revision-Date: 2009-10-22 22:24+0400\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,11 +17,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "Перед использованием данного продукта вы должны принять все лицензии!"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "Невозможно перейти к EULA. Убедитесь, что пакет yast2-webclient-eulas установлен"
 
 #: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
@@ -32,10 +32,9 @@ msgid "You must logout before you can login"
 msgstr "Перед входом необходимо выйти"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "Не удаётся выполнить chroot в '%s' (%s)."
+msgstr "Невозможно подключиться к узлу %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -46,10 +45,9 @@ msgid "Please select a host to connect to."
 msgstr "Выберите узел для подключения."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Репозитарий '%s' не найден."
+msgstr "Узел '%s' не найден."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -162,7 +160,7 @@ msgstr "Выберите службу:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "Действительно удалить узел %s?"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -275,10 +273,9 @@ msgid "Login"
 msgstr "Вход"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
 #| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "Укажите параметры для набора микросхем \"%s\"."
+msgstr "Укажите параметры для входа на узел %s."
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -315,7 +312,7 @@ msgstr "Перезагрузка"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "Действительно перезагрузить %s?"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -323,7 +320,7 @@ msgstr "Выключение"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "Действительно выключить %s?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -350,14 +347,13 @@ msgid "Show all modules"
 msgstr "Показать все модули"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "Действие '%1' недопустимо для службы '%2'."
+msgstr "У пользователя %s нет права %s"
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
+msgstr "Исключение PolicyKit для пользователя %s и права %s (непереведённое сообщение): %s"
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
@@ -365,23 +361,21 @@ msgstr "Никто не вошёл в службу rest."
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "Нарушена целостность целевой системы: файл %s повреждён или отсутствует"
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Не указан сервер NTP в файле /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:22
-#, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
-msgstr "Во время установки возникла ошибка."
+msgstr "Произошла ошибка при синхронизации по ntp: %s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "Ошибка при закрытии старого теневого файла: %m"
+msgstr "Ошибка при сохранении настроек администратора: %s"
 
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ADMINISTRATOR_ERROR"

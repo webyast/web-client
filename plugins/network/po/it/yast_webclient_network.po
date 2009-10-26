@@ -3,24 +3,24 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-09-29 22:28+0100\n"
-"Last-Translator: Stefano Luciani <stefano.luciani@studenti.unibg.it>\n"
+"PO-Revision-Date: 2009-10-20 21:15+0100\n"
+"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Italian\n"
 
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Nessun permesso per il modulo di rete"
 
 #: app/controllers/network_controller.rb:66
-#, fuzzy
 #| msgid "Static"
 msgid "static"
-msgstr "Statico"
+msgstr "statico"
 
 #: app/controllers/network_controller.rb:66
 msgid "dhcp"
@@ -32,7 +32,7 @@ msgstr "Scrittura delle impostazioni completata."
 
 #: app/views/network/index.html.erb:38
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Indirizzo IP in un formato non valito. Quello corretto è nnn.nnn.nnn.nnn dove nnn varia tra 0 e 255"
 
 #: app/views/network/index.html.erb:64
 msgid "Network"
@@ -42,7 +42,8 @@ msgstr "Rete"
 msgid "Interface"
 msgstr "Interfaccia"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:91
+#: app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr "Indirizzo IP"
 
@@ -52,7 +53,7 @@ msgstr "Modalità di configurazione"
 
 #: app/views/network/index.html.erb:102
 msgid "Prefixlen"
-msgstr "Prefisso di composizione"
+msgstr "Lunghezza del prefisso"
 
 #: app/views/network/index.html.erb:111
 msgid "DNS"
@@ -84,11 +85,13 @@ msgstr "Instradamento"
 msgid "Default Route"
 msgstr "Instradamento predefinito"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145
+#: app/views/network/edit.html.erb:35
 msgid "Update"
-msgstr "Aggiornamenti"
+msgstr "Aggiornamento"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145
+#: app/views/network/edit.html.erb:35
 msgid "Back"
 msgstr "Indietro"
 
@@ -120,3 +123,4 @@ msgstr "Nome del dispositivo"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Avvio"
+
