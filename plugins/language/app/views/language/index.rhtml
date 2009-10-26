@@ -4,29 +4,21 @@
 <br/>
 
 <% form_tag '/language/update' do -%>
-  <table summary="<%= _("This table gives language settings description and current value for it") %>">
-  <tr>
-    <td class="first"><%=_("First language")%></td>
-    <td>
-      <%= select_tag :first_language, options_for_select(@valid||[], @current||""),
+  <fieldset id="" class="">
+    <p>
+<label><%=_("First language")%></label>
+    	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
             :disabled=>!@permissions[:write] %>
-    </td>
-  </tr>
-  <tr>
-    <td class="utf8"> <%=_("Use UTF8 encoding")%> </td>
-    <td>
-      <%= check_box_tag :utf8, "true", @utf8=="true",
-        :disabled=>!@permissions[:write] %>
-    </td>
-  </tr>
-  <tr>
-    <td class="rootlocale"><%=_("Set root locale")%></td>
-    <td>
-      <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
+    <p> 
+<label><%=_("Use UTF8 encoding")%></label>
+    	<%= check_box_tag :utf8, "true", @utf8=="true",
+        :disabled=>!@permissions[:write] %></p>
+    <p>
+<label><%=_("Set root locale")%></label>
+    <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
         @rootlocale), :disabled=>!@permissions[:write] %>
-    </td>
-  </tr>
-</table>
+    </p>
+</fieldset>
 <div>
   <%= form_send_buttons :disabled => !@permissions[:write] %>
 </div>

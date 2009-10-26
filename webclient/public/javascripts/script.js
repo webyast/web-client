@@ -10,4 +10,22 @@ $(document).ready(function() {
   // Alternating Lines in "Tables"
   $('.alternate-rows > li:even').addClass('alt-bg');
 
+
+// Tab-UI ====================================================================
+
+$('.ui-tab-parent').tabs();
+
+$('.ui-tab-parent').bind('tabsselect', function(event, ui) {
+
+    // Objects available in the function context:
+    // ui.tab     // anchor element of the selected (clicked) tab
+    // ui.panel   // element, that contains the selected/clicked tab contents
+    // ui.index   // zero-based index of the selected (clicked) tab
+    
+    
+
+});
+
+
+
 });

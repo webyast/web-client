@@ -49,27 +49,24 @@
 
 <% disabled = ! @permissions[:write] %>
 
-<div class="table">
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm" } ) do |f| %>
-  <table class="list">
   <%= f.error_messages %>
-    <tr class="bg">
-	<td class="first"><%=_("Password")%></td>
-	<td class="last"><%= f.password_field :password, :disabled => disabled %></td>
-    </tr>
-    <tr class="bg">
-	<td class="first"><%=_("Confirm password")%></td>
-        <td class="last"><%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %></td>
-	<td><%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %></td>
-    </tr>
-    <tr class="bg">
-	<td class="first"><%=_("Forward mail to")%></td>
-	<td class="last"><%= f.text_field :aliases, :disabled => disabled, :class => "emails" %></td>
-	<td><%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %></td>
-    </tr>
-    <tr>
-    <td><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %></td>
-    </tr>
-  </table>
+    <fieldset>
+	<p><label><%=_("Password")%></label>
+	<%= f.password_field :password, :disabled => disabled %>
+	</p>
+	<p>
+	<label><%=_("Confirm password")%></label>
+    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %>
+	<%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
+    </p>
+	<p>
+	<label><%=_("Forward mail to")%></label>
+	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
+	<%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
+	</p>
+    </fieldset>
+    <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %>
+    </p>
   <% end %>
 </div>
