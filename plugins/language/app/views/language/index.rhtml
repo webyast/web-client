@@ -5,11 +5,11 @@
 
 <% form_tag '/language/update' do -%>
   <fieldset id="" class="">
-    <p><%=_("First language")%></p>
-    <p><%= select_tag :first_language, options_for_select(@valid||[], @current||""),
-            :disabled=>!@permissions[:write] %></p>
-    <p> <%=_("Use UTF8 encoding")%> </p>
-    <p><%= check_box_tag :utf8, "true", @utf8=="true",
+    <p><%=_("First language")%>
+    	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
+            :disabled=>!@permissions[:write] %>
+    <p> <%=_("Use UTF8 encoding")%>
+    	<%= check_box_tag :utf8, "true", @utf8=="true",
         :disabled=>!@permissions[:write] %></p>
     <p><%=_("Set root locale")%>
     <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
