@@ -80,11 +80,17 @@
 
 <% end %>
 
-<% form_for(:network, @network, :url => { :action => "update" }, :class => 'ui-tab-parent', :html => { :method => :put, :onsubmit => "return validateNetwork();" }) do |n| %>
+
+<% form_for :network, @network, :url => { :action => "update" }, :html => { :method => :put, :onsubmit => "return validateNetwork();" , :class => 'tab-form'} do |n| %>
 <%= n.error_messages %>
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
-
+  
+  <ul class="tab-nav">
+    
+  </ul>
+  
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>">
+
 
   <fieldset id="ip-address" class="">
     <legend><%=_("IP address")%></legend>
@@ -133,9 +139,33 @@
   </p>
 <% end %>
 </div>
+
 <% javascript_tag do -%>
    $('#conf_mode').delayedObserver(0.25, function(element, value) {
      disabled = <%= write_disabled %> || value != "static";
      disable_static_config(disabled);
    })
 <% end -%>
+
+<!-- <div id="tabs">
+    <ul>
+        <li><a href="#fragment-1"><span>One</span></a></li>
+        <li><a href="#fragment-2"><span>Two</span></a></li>
+        <li><a href="#fragment-3"><span>Three</span></a></li>
+    </ul>
+    <div id="fragment-1">
+        <p>First tab is active by default:</p>
+        <pre><code>$('#example').tabs();</code></pre>
+    </div>
+    <div id="fragment-2">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    </div>
+    <div id="fragment-3">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    </div>
+</div> -->
+
+
