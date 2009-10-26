@@ -1,12 +1,9 @@
-require 'rubygems'
-gem 'selenium-client', '>=1.2.16'
 require 'selenium'
 
 # test-unit gem is needed, it provides startup and shutdown
 # methods which are not available in Test::Unit included in standard Ruby.
 # see http://test-unit.rubyforge.org/test-unit/
 # and http://test-unit.rubyforge.org/test-unit/classes/Test/Unit/TestCase.html
-gem 'test-unit', '>=2.0.2'
 require 'test/unit'
 
 module Selenium

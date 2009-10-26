@@ -1,2 +1,11 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+== Webyast Webclient Framefront
+  Used to provide shared functionality for yast webclient plugins. Contains
+also core functionality to log to target machine and get permissions of user.
+
+=== Provided functionality
+* AuthenticatedSystem to ensure that user is logged to webclient
+* ErrorConstructor provides localized version of exceptions which is
+  throwed by BackendException at backend
+* ProxyLoader to provide easy access to resource on target system
+* YaST::ServiceResource is core functionality to get resource from target system. Simplified version is ProxyLoader
+

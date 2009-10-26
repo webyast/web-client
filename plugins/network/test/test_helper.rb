@@ -13,6 +13,5 @@ end
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(rails_parent + "/config/environment")
 
-require 'rubygems'
 require 'active_support'
 require 'active_support/test_case'

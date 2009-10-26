@@ -31,6 +31,21 @@
         </tr>
       <% end %>
     <% end %>
+    <% unless @changed_services.blank? %>
+      <tr><td height=10></td></tr>
+      <% first=true %>
+      <% for service in @changed_services %>
+        <tr>
+          <% if first %>
+            <td><strong><%=_("Changed Services")%></strong></td>
+            <% first=false %>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td><%= service.alias %> (<%= service.status %>)</td>
+        </tr>
+      <% end %>
+    <% end %>
   </table>
   <br/>
   <%= submit_tag _("Register"), :onclick=>"Element.show('progress')", :class => 'button' -%>

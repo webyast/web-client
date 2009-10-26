@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 require 'test/unit'
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
-require 'rubygems'
 
 class SystemControllerTest < ActionController::TestCase
 
@@ -76,7 +75,7 @@ class SystemControllerTest < ActionController::TestCase
 
     # redirected to the control panel?
     assert_response :found
-    assert_redirected_to :controller => :controlpanel, :action => :index
+    assert_redirected_to :controller => :logout
 
     # no error and a message present?
     assert ret.flash[:error].blank?
@@ -88,7 +87,7 @@ class SystemControllerTest < ActionController::TestCase
 
     # redirected to the control panel?
     assert_response :found
-    assert_redirected_to :controller => :controlpanel, :action => :index
+    assert_redirected_to :controller => :logout
 
     # no error and a message present?
     assert ret.flash[:error].blank?
