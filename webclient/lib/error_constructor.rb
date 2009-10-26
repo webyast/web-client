@@ -6,6 +6,10 @@ module ErrorConstructor
 
     error = error["error"]
     case error["type"]
+    when "SERVICE_NOT_AVAILABLE"
+      return _("Service %s is not available in the target machine") % [error["service"]]
+    when "SERVICE_NOT_RUNNING"
+      return _("Service %s is not running on the target machine") % [error["service"]]
     when "NO_PERM"
       return _("Permission %s is not granted for user %s") % [error["permission"], error["user"]]
     when "POLKIT"

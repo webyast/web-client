@@ -170,18 +170,16 @@ class StatusController < ApplicationController
 
   def show_summary
     return unless client_permissions
-    unless create_data
+    begin
+      create_data
+      status = limits_reached
+      status = "limits exceeded for " + status unless status.empty?
+      render :partial => "status_summary", :locals => { :status => status, :error => nil }
+    rescue Exception => error
       erase_redirect_results #reset all redirects
       erase_render_results
-      error = flash[:error]
-      flash.clear #no flash from load_proxy
-      render :partial => "status_summary", :locals => { :status => nil, :error => error }
-      return false
+      render :partial => "status_summary", :locals => { :status => nil, :error => error } and return
     end
-    status = limits_reached
-    status = "limits exceeded for " + status unless status.empty?
-
-    render :partial => "status_summary", :locals => { :status => status, :error => nil }
   end
 
   def save
