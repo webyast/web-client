@@ -65,8 +65,10 @@
 
 <% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
+
+<!--  temporally disabled - 2009-10-26 rlihm
   <fieldset id="" class="">
-    <legend><%=_("Interface")%></legend>
+    <legend><%= _("Interface")%></legend>
     <p>
       <%= select_tag(:interface, options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
     </p>
@@ -74,18 +76,17 @@
       <%= submit_tag(_("Select"), :class => "button") %>
     </p>
   </fieldset>
+   -->
 
 <% end %>
 
-<% form_for(:network, @network, :url => { :action => "update" }, :html => { :method => :put, :onsubmit => "return validateNetwork();" }) do |n| %>
+<% form_for(:network, @network, :url => { :action => "update" }, :class => 'ui-tab-parent', :html => { :method => :put, :onsubmit => "return validateNetwork();" }) do |n| %>
 <%= n.error_messages %>
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
 
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>">
 
-
-
-  <fieldset id="" class="">
+  <fieldset id="ip-address" class="">
     <legend><%=_("IP address")%></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
@@ -100,7 +101,7 @@
       <%=text_field_tag :netmask, @netmask, :disabled => static_disabled %>
     </p>
   </fieldset>
-  <fieldset id="" class="">
+  <fieldset id="dns" class="">
     <legend><%=_("DNS")%></legend>
     <p>
       <label for="<%= :name %>"><%=_("Hostname")%></label>
@@ -120,7 +121,7 @@
     </p>
   </fieldset>
 
-  <fieldset id="" class="">
+  <fieldset id="routing" class="ui-tab">
     <legend><%=_("Routing")%></legend>
     <p>
       <label for="<%= :default_route %>"><%=_("Default route")%></label>
