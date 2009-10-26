@@ -11,7 +11,9 @@
 
 Name:           yast2-webclient
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, avahi-utils
-PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3, rubygem-rails-2_3, rubygem-gettext_rails
+PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3
+PreReq:         rubygem-rails-2_3 = 2.3.4
+PreReq:         rubygem-gettext_rails
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
@@ -23,7 +25,8 @@ Source1:        cleanurl-v5.lua
 Source2:        yastwc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
-BuildRequires:  sqlite avahi-utils rubygem-sqlite3 rubygem-rails-2_3
+BuildRequires:  sqlite avahi-utils rubygem-sqlite3
+BuildRequires:  rubygem-rails-2_3 = 2.3.4
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy
 # we require the lighttpd user to be present when building the rpm
