@@ -13,7 +13,7 @@ Name:           yast2-webclient-network
 License:        GPL
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.5
+Version:        0.0.6
 Release:        0
 Summary:        YaST2 - Webclient - network
 Source:         www.tar.bz2
