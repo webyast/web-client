@@ -1,7 +1,6 @@
 $selenium_available = false
 
 begin
-    require 'rubygems'
     # try loading all selenium task definitions
     require 'selenium/rake/tasks'
     $selenium_available = true
@@ -77,6 +76,14 @@ namespace :test do
 
     Rake::Task['test:ui:check'].comment = "Note: Selenium Server must be running"
 
+    begin
+      require 'test/unit/version'
+      # require test-unit version 2.x
+      test_unit_present = (Test::Unit::VERSION =~ (/^2\./)).zero?
+    rescue LoadError
+      test_unit_present = false
+    end
+
     # define test:ui task - start/shut down Selenium server component automatically
     desc 'Run UI tests using Selenium testing framework'
     if not $selenium_available
@@ -84,13 +91,13 @@ namespace :test do
 	    $stderr.puts "ERROR: 'selenium-client' gem is missing, UI testing task (test:ui)"
 	    $stderr.puts "       cannot be started. Install 'selenium-client' Ruby gem first."
 	    exit 1
-	end
-    elsif !Gem.available? 'test-unit', '>=2.0.2'
-    task :ui do 
+      end
+    elsif !test_unit_present
+      task :ui do
 	    $stderr.puts "ERROR: 'test-unit' gem is missing, UI testing task (test:ui)"
 	    $stderr.puts "       cannot be started. Install 'test-unit' Ruby gem first."
 	    exit 1
-	end
+      end
     else
 	  task :ui => [:"webric:start",:"sinatra:start", :"selenium:rc:start", :"test:ui:check", :"selenium:rc:stop", :"sinatra:stop", :"webric:stop"]
     end

@@ -5,7 +5,6 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path( File.join("config","environment"), RailsParent.parent )
 require 'test_help'
 
-require 'rubygems'
 require 'active_support'
 require 'active_support/test_case'
 
