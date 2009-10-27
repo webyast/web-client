@@ -1,8 +1,12 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
+require 'gettext'
 
-module ErrorConstructor   
-  def construct_error (error)
+# from the error data (a hash created from
+# the error response body xml), return a
+# translation if the error type is known
+module ErrorConstructor
+  include GetText
+  
+  def construct_error(error)
     error = error["error"]
     case error["type"]
     when "SERVICE_NOT_AVAILABLE"

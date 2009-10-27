@@ -14,7 +14,7 @@ require 'error_constructor'
 #
 class ClientException < Exception
   include ErrorConstructor
-
+  
   # creates an client exception from another
   # exception
   def initialize(excpt)
@@ -54,8 +54,8 @@ class ClientException < Exception
   end
 
   # forward any other method
-  def method_missing(name, *args)
-    @excpt.send(name, *args)
-  end
+  #def method_missing(name, *args)
+  #  @excpt.send(name, *args)
+  #end
   
 end

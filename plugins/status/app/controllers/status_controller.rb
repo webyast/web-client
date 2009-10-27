@@ -1,4 +1,5 @@
 require 'yast/service_resource'
+require 'client_exception'
 require 'open-uri'
 
 class StatusController < ApplicationController
@@ -173,7 +174,7 @@ class StatusController < ApplicationController
     rescue Exception => error
       erase_redirect_results #reset all redirects
       erase_render_results
-      render :partial => "status_summary", :locals => { :status => nil, :error => error } and return
+      render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } and return
     end
   end
 

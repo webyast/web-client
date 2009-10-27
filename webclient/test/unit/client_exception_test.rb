@@ -1,10 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 require 'client_exception'
 
-def _(msg)
-  msg
-end
-
 class ClientExceptionTest < ActiveSupport::TestCase
 
   def test_decode

@@ -1,4 +1,5 @@
 require 'yast/service_resource'
+require 'client_exception'
 
 class PatchUpdatesController < ApplicationController
 
@@ -42,7 +43,7 @@ class PatchUpdatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => ClientException.new(error) } }
       format.json  { render :json => patches_summary }
     end    
   end
