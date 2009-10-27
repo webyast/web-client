@@ -137,7 +137,7 @@ module ViewHelpers::HtmlHelper
 
     # the summary message
     if message.nil?
-      message = "There was a problem retrieving information from the server."
+      message = _("There was a problem retrieving information from the server.")
     end
 
     # build the html    

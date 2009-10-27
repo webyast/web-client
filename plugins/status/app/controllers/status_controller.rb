@@ -88,16 +88,11 @@ class StatusController < ApplicationController
     @limits_list[:reached] = String.new
     @data_group = Hash.new
     status = []
-    begin
-      till = Time.new
-      from = till - 300 #last 5 minutes
+    
+    till = Time.new
+    from = till - 300 #last 5 minutes
 #puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
-      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
-
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        return false
-    end
+    status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
     create_data_map status
     # puts @data_group.inspect
     true
@@ -170,18 +165,16 @@ class StatusController < ApplicationController
 
   def show_summary
     return unless client_permissions
-    unless create_data
+    begin
+      create_data
+      status = limits_reached
+      status = "limits exceeded for " + status unless status.empty?
+      render :partial => "status_summary", :locals => { :status => status, :error => nil }
+    rescue Exception => error
       erase_redirect_results #reset all redirects
       erase_render_results
-      error = flash[:error]
-      flash.clear #no flash from load_proxy
-      render :partial => "status_summary", :locals => { :status => nil, :error => error }
-      return false
+      render :partial => "status_summary", :locals => { :status => nil, :error => error } and return
     end
-    status = limits_reached
-    status = "limits exceeded for " + status unless status.empty?
-
-    render :partial => "status_summary", :locals => { :status => status, :error => nil }
   end
 
   def save
