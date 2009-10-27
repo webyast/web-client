@@ -63,7 +63,7 @@ class NetworkController < ApplicationController
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-    @conf_modes = {""=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
+    @conf_modes = {_("not set")=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
     @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
     
   end
