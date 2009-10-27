@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'ostruct'
+require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 
 class OpenStruct
   undef_method :id # so that it looks for our id
@@ -64,6 +65,7 @@ class NetworkControllerTest < ActionController::TestCase
   def test_should_show_it
     get :index
     assert_response :success
+    assert_valid_markup
     # test just the last assignment, for brevity
     assert_not_nil assigns(:default_route)
     assert_not_nil assigns(:name)
@@ -73,6 +75,7 @@ class NetworkControllerTest < ActionController::TestCase
     @if_proxy.result["eth1"] = OpenStruct.new("bootproto" => "dhcp")
     get :index
     assert_response :success
+    assert_valid_markup
     # test just the last assignment, for brevity
     assert_not_nil assigns(:default_route)
     assert_not_nil assigns(:name)
