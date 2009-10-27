@@ -109,7 +109,10 @@ module AuthenticatedSystem
     def login_from_cookie
       account = cookies[:auth_token] && Account.find_by_remember_token(cookies[:auth_token])
       if account && account.remember_token?
-        cookies[:auth_token] = { :value => account.remember_token, :expires => account.remember_token_expires_at }
+	auth_token = { :value => account.remember_token, :expires => account.remember_token_expires_at }
+	# make cookie accessible via https only
+	auth_token[:secure] = true if ENV["RAILS_ENV"] == "production"
+        cookies[:auth_token] = auth_token
         self.current_account = account
       end
     end
