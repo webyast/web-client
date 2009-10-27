@@ -30,7 +30,7 @@ class LanguageController < ApplicationController
     end
 
     @valid = language.available.collect { |item| item.name } || []
-    @valid.sort!
+    @valid = @valid.sort_by { |item| item.parameterize }
     cur = language.available.find { |avail| avail.id.size>0 && avail.id == language.current }
     @current = cur ? cur.name : ""
     @rootlocale=language.rootlocale
