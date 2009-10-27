@@ -45,9 +45,15 @@ class ApplicationController < ActionController::Base
       logger.debug "got backend Exception"
       error = Hash.from_xml e.response.body
       eulaexception_trap and return if error["error"]["type"] == "EULA_NOT_ACCEPTED"
+      # construct an exception from what we have
       err_msg = construct_error(error)
+      e = Exception.new
+      e.message = err_msg
+      # add the backtrace to the exception
+      #e.set_backtrace(error["error"]["backtrace"].split("\n"))
       if request.xhr?
-        render :status => 503, :text => err_msg
+        logger.error "Backend error during ajax request"
+        render :status => 503, :partial => "shared/exception_trap", :locals => {:error => e} and return
       else
         render :status => 503, :template => "shared/backendexception_trap", :locals => {:error => err_msg}
       end

@@ -88,16 +88,11 @@ class StatusController < ApplicationController
     @limits_list[:reached] = String.new
     @data_group = Hash.new
     status = []
-    begin
-      till = Time.new
-      from = till - 300 #last 5 minutes
+    
+    till = Time.new
+    from = till - 300 #last 5 minutes
 #puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
-      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
-
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        return false
-    end
+    status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
     create_data_map status
     # puts @data_group.inspect
     true
