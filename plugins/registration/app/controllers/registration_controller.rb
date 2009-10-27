@@ -74,6 +74,7 @@ class RegistrationController < ApplicationController
 
     @changed_repositories = []
     @changed_services = []
+    success = false
     begin
       register = @client.create({:arguments=>@arguments, 
                                 :options=>@options})
@@ -81,6 +82,7 @@ class RegistrationController < ApplicationController
       @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
       @changed_services = register.changedservices if register.respond_to? :changedservices
       flash[:notice] = _("Registration finished successfully.")
+      success = true
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
       if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
@@ -111,8 +113,12 @@ class RegistrationController < ApplicationController
     end  
     @arguments.sort! {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
 
-    respond_to do |format|
-      format.html { render :action => "index" }
+    if success
+      redirect_success
+    else
+      respond_to do |format|
+        format.html { render :action => "index" }
+      end
     end      
   end
 

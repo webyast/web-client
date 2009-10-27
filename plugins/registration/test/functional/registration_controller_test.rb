@@ -85,7 +85,16 @@ class RegistrationControllerTest < ActionController::TestCase
   def test_register
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
     post :update, {"registration_arg,Registration Name"=>"registrationName", "registration_arg,System Name"=>"systemName", "registration_arg,Email"=>"email" }
-    assert_response :success
+    assert_response :redirect
+    assert_redirected_to :action => "index"
   end
 
+  def test_register_in_basesystem
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
+    session[:wizard_current] = "test"
+
+    post :update, {"registration_arg,Registration Name"=>"registrationName", "registration_arg,System Name"=>"systemName", "registration_arg,Email"=>"email" }
+    assert_response :redirect
+    assert_redirected_to :controller => "controlpanel", :action => "nextstep"
+  end
 end
