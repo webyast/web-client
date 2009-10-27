@@ -4,7 +4,7 @@
 <br/>
 
 <% form_tag '/language/update' do -%>
-  <fieldset id="" class="">
+  <fieldset id="language_set" class="">
     <p>
 <label><%=_("First language")%></label>
     	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
