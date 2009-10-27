@@ -5,7 +5,7 @@
 </div>
 <!-- end: dialog box -->
 
-<div class='plugin-icon'><img src='/icons/yast-online_update.png'/></div>
+<div class='plugin-icon'><img src='/icons/yast-online_update.png' alt=''/></div>
 <div class='plugin-content'>
 
 <h2><%=
@@ -17,7 +17,7 @@ else
 end
 %></h2>
 
-<br>
+<br/>
 
 <% unless @permissions[:execute] %>
 <p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
@@ -29,7 +29,7 @@ end
 <i><%=h service.description unless service.description.nil? %></i>
 
 <img src="/images/working.gif" height="12" width="12" border="0"
-    id="service_progress_<%=service.name%>" style="display: none" />
+    id="service_progress_<%=service.name%>" style="display: none" alt='working...'/>
 
 <span class='service_status' id='service_status_<%=service.name%>'>
 <% if service.status.nil? %>

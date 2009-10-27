@@ -69,7 +69,6 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
     ret = get :show_status, {:id => 'ntp'}
     assert_response :success
-    assert_valid_markup
     assert ret.body == '(running)'
   end
 
@@ -78,7 +77,6 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy2)
     ret = get :show_status, {:id => 'aaaaaaaa'}
     assert_response :success
-    assert_valid_markup
     assert ret.body == '(cannot read status)'
   end
 
