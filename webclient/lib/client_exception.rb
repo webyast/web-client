@@ -52,5 +52,10 @@ class ClientException < Exception
   def backtrace
     @excpt.backtrace
   end
-    
+
+  # forward any other method
+  def method_missing(name, *args)
+    @excpt.send(name, *args)
+  end
+  
 end

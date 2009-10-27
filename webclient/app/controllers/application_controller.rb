@@ -1,6 +1,7 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 require 'open-uri'
+require 'client_exception'
 
 class ApplicationController < ActionController::Base
   layout 'main'  
@@ -17,9 +18,6 @@ class ApplicationController < ActionController::Base
 
   #catch webservice errors
   rescue_from Exception, :with => :exception_trap
-  rescue_from ActiveResource::ServerError, :with => :backendexception_trap
-  
-
   
   include AuthenticatedSystem
   include ErrorConstructor
@@ -37,31 +35,6 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  
-  def backendexception_trap(e)
-    logger.debug "Backend exception trap"
-    logger.debug e.response.body.inspect
-    if e.response.code =~ /.*503.*/
-      logger.debug "got backend Exception"
-      error = Hash.from_xml e.response.body
-      eulaexception_trap and return if error["error"]["type"] == "EULA_NOT_ACCEPTED"
-      # construct an exception from what we have
-      err_msg = construct_error(error)
-      e = Exception.new
-      e.message = err_msg
-      # add the backtrace to the exception
-      #e.set_backtrace(error["error"]["backtrace"].split("\n"))
-      if request.xhr?
-        logger.error "Backend error during ajax request"
-        render :status => 503, :partial => "shared/exception_trap", :locals => {:error => e} and return
-      else
-        render :status => 503, :template => "shared/backendexception_trap", :locals => {:error => err_msg}
-      end
-    else
-      exception_trap(e)
-    end
-  end
-
   def eulaexception_trap
     flash[:error] = _("You must accept all EULAs before using this product!")
     if ActionController::Routing.possible_controllers.include?("eulas") then
@@ -72,9 +45,12 @@ class ApplicationController < ActionController::Base
     true
   end
 
-  def exception_trap(e)
-    logger.error "***" + e.to_s
-    logger.error e.backtrace.join "\n"
+  def exception_trap(error)
+    logger.error "***" + error.to_s
+    logger.error error.backtrace.join "\n"
+
+    e = ClientException.new(error)    
+    eulaexception_trap(e) and return if e.backend_exception? and e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
     
     # get the vendor settings
     begin
