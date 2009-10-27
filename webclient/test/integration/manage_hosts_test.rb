@@ -49,9 +49,11 @@ class ManageHostsTest < ActionController::IntegrationTest
   
   private
     def list_hosts
-      get "/"
-      assert_response :redirect
-      follow_redirect!
+# main_controller defaults to localhost in appliances
+#      get "/"
+#      assert_response :redirect
+#      follow_redirect!
+      get "sessions/new"
       # now at session/new
       # we dont have a host yet
       assert_response :redirect
