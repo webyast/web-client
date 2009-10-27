@@ -8,7 +8,7 @@ class ActionController::TestCase
 
     fail("Tidy is not available") unless system("which tidy &>/dev/null")
 
-    Open3.popen3('tidy') do |stdin, stdout, stderr|
+    Open3.popen3('tidy -e') do |stdin, stdout, stderr|
       # write the markup to tidy
       stdin.puts markup
       stdin.close_write
@@ -31,7 +31,7 @@ class ActionController::TestCase
             file.puts markup
           end
         end
-        assert (errors == 0 and warns == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")} \n
+        assert (errors == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")} \n
             See #{Dir.pwd}/tidy-failed.html"
       end
       
