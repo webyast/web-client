@@ -1,4 +1,5 @@
-require 'test_helper'
+require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
+require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 
 class ServicesControllerTest < ActionController::TestCase
 
@@ -59,6 +60,7 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
     get :index
     assert_response :success
+    assert_valid_markup
     assert_not_nil assigns(:services)
   end
 
@@ -67,6 +69,7 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
     ret = get :show_status, {:id => 'ntp'}
     assert_response :success
+    assert_valid_markup
     assert ret.body == '(running)'
   end
 
@@ -75,6 +78,7 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy2)
     ret = get :show_status, {:id => 'aaaaaaaa'}
     assert_response :success
+    assert_valid_markup
     assert ret.body == '(cannot read status)'
   end
 
