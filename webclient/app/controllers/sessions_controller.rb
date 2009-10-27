@@ -120,9 +120,8 @@ class SessionsController < ApplicationController
 
     reset_session
 
-    # add the values from backup (add each key instead of copying the whole map,
-    # this resets the used flag so the messages from the backup are really displayed
-    flash_backup.each{|key, value| flash[key] = value} if flash_backup
+    # restore the values from backup
+    flash.replace(flash_backup)
 
     flash[:notice] = _("You have been logged out.") unless flash[:notice]
     redirect_to :controller => 'hosts', :action => 'index'
