@@ -9,10 +9,12 @@
 <label><%=_("First language")%></label>
     	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
             :disabled=>!@permissions[:write] %>
+    </p>
     <p> 
 <label><%=_("Use UTF8 encoding")%></label>
     	<%= check_box_tag :utf8, "true", @utf8=="true",
-        :disabled=>!@permissions[:write] %></p>
+        :disabled=>!@permissions[:write] %>
+    </p>
     <p>
 <label><%=_("Set root locale")%></label>
     <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
