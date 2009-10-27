@@ -143,6 +143,8 @@ fi
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %config /etc/lighttpd/cleanurl-v5.lua  
+%dir /etc/lighttpd/certs
+%attr(-,lighttpd,lighttpd) /etc/lighttpd/certs/webyast.pem
 /etc/lighttpd/certs/webyast.pem
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
