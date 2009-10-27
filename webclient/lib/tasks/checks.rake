@@ -83,6 +83,9 @@ task :system_check do
   test_version "rubygem-gettext"
   test_version "rubygem-gettext_rails"
   
+  # development package
+  test_version "tidy"
+  
   #
   # check needed modules
   # 
