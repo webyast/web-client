@@ -1,4 +1,5 @@
-require 'test_helper'
+require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
+require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 
 class ServicesControllerTest < ActionController::TestCase
 
@@ -59,6 +60,7 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
     get :index
     assert_response :success
+    assert_valid_markup
     assert_not_nil assigns(:services)
   end
 

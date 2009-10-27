@@ -5,8 +5,8 @@
 # This file is distributed under the same license as Ruby-GetText-Package.
 
 begin
-require 'lang_helper'
-rescue
+  require 'lang_helper'
+rescue LoadError
   $stderr.puts "**** Please install rubygem-gettext_rails"
   exit 1
 end

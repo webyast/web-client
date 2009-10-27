@@ -86,7 +86,7 @@ module ViewHelpers::HtmlHelper
 
 	ret = "<table class=\"list\"><tr>#{header}</tr>#{content}</table>"
 
-	ret += "<br>" + button_to(label_add, {:action => "new"}) if permissions[:add]
+	ret += "<br/>" + button_to(label_add, {:action => "new"}) if permissions[:add]
 
 	return ret
     end

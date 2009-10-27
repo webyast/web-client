@@ -59,15 +59,16 @@
    <% end %>
 <% end %>
 
-<div class='plugin-icon'><img src='/icons/yast-network.png'/></div>
+<div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/></div>
 <div class='plugin-content'>
 <h2><%=_("Network")%></h2>
 
 <% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
 
+
 <!--  temporally disabled - 2009-10-26 rlihm
-  <fieldset id="" class="">
+  <fieldset id="interface_set" class="">
     <legend><%= _("Interface")%></legend>
     <p>
       <%= select_tag(:interface, options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
@@ -91,8 +92,7 @@
   
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>">
 
-
-  <fieldset id="ip-address" class="">
+  <fieldset id="ipadress" class="">
     <legend><%=_("IP address")%></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>

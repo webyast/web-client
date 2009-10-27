@@ -83,7 +83,7 @@ class RegistrationController < ApplicationController
       flash[:notice] = _("Registration finished successfully.")
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
-      if error["status"] == "missinginfo" && !error["missingarguments"].blank?
+      if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
         logger.debug "missing arguments #{error["missingarguments"].inspect}"
         #compare this with already existing arguments
         missed_args = error["missingarguments"]
