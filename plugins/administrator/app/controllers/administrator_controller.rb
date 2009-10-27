@@ -28,21 +28,21 @@ class AdministratorController < ApplicationController
     @administrator.aliases	= admin["aliases"]
 
     # validate data also here, if javascript in view is off
-    if !admin["aliases"].empty?
+    unless admin["aliases"].empty?
       admin["aliases"].split(",").each do |mail|
 	# only check emails, not local users
         if mail.include?("@") && mail !~ /^.+@.+$/ #only trivial check
           flash[:error] = _("Enter a valid e-mail address.")
           redirect_to :action => "index"
-          return 
+          return
 	end
       end
     end
 
-    if admin["password"] != admin["confirm_password"] && ! params.has_key? ("save_aliases")
+    if admin["password"] != admin["confirm_password"] && ! params.has_key?("save_aliases")
       flash[:error] = _("Passwords do not match.")
       redirect_to :action => "index"
-      return 
+      return
     end
 
     # only save selected subset of administrator data:
