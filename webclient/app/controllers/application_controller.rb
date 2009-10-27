@@ -35,6 +35,19 @@ class ApplicationController < ActionController::Base
     super
   end
 
+  before_filter :set_session_login
+  # The information is kept in YaST::ServiceResource::Session, a module
+  # that is shared between all connected clients, leading to bnc#542143.
+  # To work around it, we reset the data from the browser session
+  # in a global before_filter.
+  def set_session_login
+    if logged_in? && session[:host]
+      YaST::ServiceResource::Session.login = session[:user]
+      YaST::ServiceResource::Session.auth_token = session[:auth_token]
+      YaST::ServiceResource::Session.site = Host.find(session[:host]).url
+    end
+  end
+
   def eulaexception_trap
     flash[:error] = _("You must accept all EULAs before using this product!")
     if ActionController::Routing.possible_controllers.include?("eulas") then

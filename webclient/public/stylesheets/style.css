@@ -46,10 +46,11 @@ h5 {
 }
 
 a {
+  color: #06c;
   text-decoration: none;
 }
 a:hover {
-  color: #06c;
+  color: #666;
   text-decoration: underline;
 }
 img {
@@ -62,10 +63,13 @@ input {
   font-size: 1em;
   background: #fcfcfc;
 }
-input:focus {
-  border: 1px solid #69c;
-  color: #69c;
-}
+  input[type="text"] {
+    width: 13em;
+  }
+  input:focus {
+    border: 1px solid #69c;
+    color: #69c;
+  }
 
 ul li {
   padding: 3px;
@@ -191,7 +195,8 @@ ul li {
   }
   #login-dialogue label {
     display: block;
-    margin:0 0 0.2em;
+    margin: 0 0 0.2em;
+    text-align: left;
   }
   #favorites,
   #status-wrapper {
@@ -350,7 +355,9 @@ label {
   text-align: right;
   margin: 0.2em 0.5em;
 }
-
+  label.width-label {
+    width: auto;
+  }
 #login_button {
   float: right;
 }
@@ -486,4 +493,9 @@ th.checkbox {
 
 .busy {
   background: transparent url(images/spinner.gif) no-repeat scroll 0 0;
+}
+
+.form-details {
+  font-size: 0.8em;
+  color: #666;
 }

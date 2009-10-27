@@ -68,7 +68,7 @@ class LanguageControllerTest < ActionController::TestCase
     assert assigns(:permissions) , "Permission is not set"
     assert assigns(:permissions)[:read], "Read permission is not set"
     assert assigns(:permissions)[:write], "Write permission is not set"
-    assert_equal assigns(:valid), ["cestina","English (US)"].sort
+    assert_equal assigns(:valid), ["cestina","English (US)"].sort_by { |item| item.parameterize }
     assert_equal assigns(:current), "cestina"
     assert_equal assigns(:utf8), @result.utf8
     assert_equal assigns(:rootlocale), @result.rootlocale
@@ -119,7 +119,7 @@ class LanguageControllerTest < ActionController::TestCase
     assert assigns(:permissions)
     assert assigns(:permissions)[:read]
     assert !assigns(:permissions)[:write]
-    assert_equal assigns(:valid), ["cestina","English (US)"].sort
+    assert_equal assigns(:valid), ["cestina","English (US)"].sort_by { |item| item.parameterize }
     assert_equal assigns(:current), "cestina"
     assert_equal assigns(:utf8), @result.utf8
     assert_equal assigns(:rootlocale), @result.rootlocale

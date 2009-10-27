@@ -146,6 +146,7 @@ class PermissionsControllerTest < ActionController::TestCase
 
     #check if everything is correctly setted
     assert_response :success
+    assert_valid_markup
   end
 
   def test_permission_search
@@ -153,12 +154,14 @@ class PermissionsControllerTest < ActionController::TestCase
 
     #check if everything is correctly setted
     assert_response :success
+    assert_valid_markup
   end
 
   def test_permission_set
     post :set, { "org.opensuse.yast.patch.install"=>"revoke", :user =>"test" }
 
     assert_response :success
+    assert_valid_markup
   end
 
 end

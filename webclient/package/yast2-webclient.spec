@@ -23,6 +23,7 @@ Summary:        YaST2 - Webclient
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
+Source3:        webyast.pem
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite avahi-utils rubygem-sqlite3
@@ -77,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd
 install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
 
+mkdir -p $RPM_BUILD_ROOT/etc/lighttpd/certs
+install -m 0400 %SOURCE3 $RPM_BUILD_ROOT/etc/lighttpd/certs
+
 #  create empty tmp directory
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/cache
@@ -102,6 +106,8 @@ cd /srv/www/yast
 RAILS_ENV=production rake db:migrate
 chgrp lighttpd db db/*.sqlite* log log/*
 chown lighttpd db db/*.sqlite* log log/*
+chmod 700 db log
+chmod 600 db/*.sqlite* log/*
 
 %preun
 %stop_on_removal %{service_name}
@@ -139,6 +145,9 @@ fi
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %config /etc/lighttpd/cleanurl-v5.lua  
+%dir /etc/lighttpd/certs
+%attr(-,lighttpd,lighttpd) /etc/lighttpd/certs/webyast.pem
+/etc/lighttpd/certs/webyast.pem
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
 

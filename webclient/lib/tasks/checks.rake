@@ -78,6 +78,9 @@ task :system_check do
   #
   version = "0.0.1" # do not take care
   test_version "libsqlite3-0", version
+  test_version "rubygem-locale"
+  test_version "rubygem-locale_rails"
+  test_version "rubygem-gettext"
   test_version "rubygem-gettext_rails"
   
   #
