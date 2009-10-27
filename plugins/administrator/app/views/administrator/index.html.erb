@@ -1,4 +1,4 @@
-<div class='plugin-icon'><img src='/icons/yast-users.png'/></div>
+<div class='plugin-icon'><img src='/icons/yast-users.png' alt='<%= _("Administrator Settings") %>'/></div>
 
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
@@ -69,4 +69,3 @@
     <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %>
     </p>
   <% end %>
-</div>
