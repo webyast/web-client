@@ -92,11 +92,6 @@ mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sockets
 rm -rf $RPM_BUILD_ROOT
 
 %post
-#
-#installing lighttpd server init scripts
-#
-test -r /usr/sbin/yastwc || { echo "Creating link /usr/sbin/yastwc";
-        ln -s /usr/sbin/lighttpd /usr/sbin/yastwc; }
 %fillup_and_insserv %{service_name}
 
 #
@@ -115,13 +110,6 @@ chmod 600 db/*.sqlite* log/*
 %postun
 %restart_on_update %{service_name}
 %{insserv_cleanup}
-#remove link
-if test -r /usr/sbin/yastwc ; then
-  echo "/usr/sbin/yastwc already removed"
-else
-  echo "Removing link /usr/sbin/yastwc";
-  rm /usr/sbin/yastwc
-fi
 
 %files 
 %defattr(-,root,root)
