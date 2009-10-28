@@ -154,8 +154,8 @@ class StatusController < ApplicationController
   def index
     return unless client_permissions
 
-    log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
-    #log = load_proxy 'org.opensuse.yast.system.logs'
+    #log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
+    log = load_proxy 'org.opensuse.yast.system.logs'
     @logs = log.find(:all) 
     
     create_data

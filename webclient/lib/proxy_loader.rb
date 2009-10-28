@@ -44,21 +44,21 @@ module ProxyLoader
       return nil
     end
 
-      @permissions = proxy.permissions
-    
-    ret = nil
     begin
-      if find_arg
-        ret = proxy.find find_arg
-      else
-        ret = proxy.find
-      end
+      @permissions = proxy.permissions
+    rescue Exception => e
+      logger.error "Could not retrieve permissions"
+      raise e
+    end
+    
+    begin
+      return proxy.find(find_arg) if find_arg
+      return proxy.find
     rescue ActiveResource::ClientError => e
+      logger.error "#{e.message} when calling find"
       flash[:error] = YaST::ServiceResource.error(e)
-      Rails.logger.warn e
       redirect_to root_path
     end
-
-    return ret
+    nil
   end
 end
