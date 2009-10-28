@@ -86,6 +86,9 @@ init = Rails::Initializer.run do |config|
 
 end
 
+# Enforce https and pass cookie only via https
+ActionController::Base.session_options[:session_secure] = true if ENV['RAILS_ENV'] == 'production'
+
 # save loaded plugins, which are used to scan shortcuts laters
 module YaST
 end
