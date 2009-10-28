@@ -21,13 +21,13 @@ class HostsController < ApplicationController
     # flash[] doesn't survive redirects across controllers :-(
     error = params[:error]
     if error == "econnrefused"
-      host = Host.find(params[:hostid]) rescue nil
+      host = Host.find_by_id_or_name(params[:hostid])
       flash[:error] = _("Can't connect to host %s.") % host.name if host
       flash[:warning] = _("Make sure the host is up and that the YaST web service is running.")
     elsif error == "nohostid"
       flash[:notice] = _("Please select a host to connect to.")
     elsif error == "ecantresolve"
-      host = Host.find(params[:hostid]) rescue nil
+      host = Host.find_by_id_or_name(params[:hostid])
       flash[:error] = _("The host '%s' cannot be found.") % host.url if host
       flash[:warning] = _("Please double-check the host URL.")
     end
@@ -35,7 +35,7 @@ class HostsController < ApplicationController
 
   # GET /hosts/show/1
   def show
-    @host = Host.find(params[:id])
+    @host = Host.find_by_id_or_name(params[:id])
   end
 
   # GET /hosts/new
@@ -45,7 +45,7 @@ class HostsController < ApplicationController
 
   # GET /hosts/1/edit
   def edit
-    @host = Host.find(params[:id])
+    @host = Host.find_by_id_or_name(params[:id])
   end
 
   # POST /hosts
@@ -65,7 +65,7 @@ class HostsController < ApplicationController
 
   # PUT /hosts/1
   def update
-    host = Host.find(params[:id])
+    host = Host.find_by_id_or_name(params[:id])
 
     if host.update_attributes(params[:host])
       flash[:notice] = 'Host updated.'
@@ -77,7 +77,7 @@ class HostsController < ApplicationController
 
   # DELETE /hosts/1
   def destroy
-    host = Host.find(params[:id])
+    host = Host.find_by_id_or_name(params[:id])
     if host
 	flash[:notice] = 'Host removed.'
 	host.destroy
