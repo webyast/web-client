@@ -24,10 +24,14 @@ class ClientException < Exception
     if backend_exception?
       Rails.logger.error "got exception : #{excpt.class} #{excpt.inspect}"
       Rails.logger.error "code: #{excpt.response.code}" if excpt.respond_to?(:response)
+      Rails.logger.error "body: #{excpt.response.body}" if excpt.respond_to?(:response)
       Rails.logger.error "methods: #{excpt.request.methods.sort}" if excpt.respond_to?(:request)
       Rails.logger.error "original message: #{@excpt.message}"
       xml_data = Hash.from_xml(excpt.response.body) rescue {}
       @error_data.merge!(xml_data['error']) if xml_data.has_key?('error')
+
+      Rails.logger.error "Exception is a bug: #{bug?}"
+      
       # construct an exception from what we have
       @err_msg = construct_error(@error_data) if not @error_data.empty?
       Rails.logger.error "new message: #{@err_msg}"

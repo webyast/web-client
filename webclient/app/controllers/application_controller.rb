@@ -84,7 +84,6 @@ class ApplicationController < ActionController::Base
     if request.xhr?
       logger.error "Error during ajax request"
       render :status => 500, :partial => "shared/exception_trap", :locals => {:error => e} and return
-      #render :text => "shit" and return
     end
 
     case e
