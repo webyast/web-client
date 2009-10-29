@@ -22,9 +22,19 @@ class ClientException < Exception
     @excpt = excpt
     @error_data = {}
     if backend_exception?
-      @error_data = Hash.from_xml(excpt.response.body) rescue {}
+      Rails.logger.error "got exception : #{excpt.class} #{excpt.inspect}"
+      Rails.logger.error "code: #{excpt.response.code}" if excpt.respond_to?(:response)
+      Rails.logger.error "body: #{excpt.response.body}" if excpt.respond_to?(:response)
+      Rails.logger.error "methods: #{excpt.request.methods.sort}" if excpt.respond_to?(:request)
+      Rails.logger.error "original message: #{@excpt.message}"
+      xml_data = Hash.from_xml(excpt.response.body) rescue {}
+      @error_data.merge!(xml_data['error']) if xml_data.has_key?('error')
+
+      Rails.logger.error "Exception is a bug: #{bug?}"
+      
       # construct an exception from what we have
-      @err_msg = construct_error(@error_data)
+      @err_msg = construct_error(@error_data) if not @error_data.empty?
+      Rails.logger.error "new message: #{@err_msg}"
     end
   end
   
@@ -32,21 +42,28 @@ class ClientException < Exception
   # message for the error on the server side if the exception
   # happened there, or the local one if it is a normal exception
   def message
-    return @err_msg unless  @err_msg.blank?
+    return @err_msg unless @err_msg.blank?
     return @excpt.message
   end
 
-  # remote exception type as a symbol
+  # remote exception type as a string or "UNDEFINED"
   def backend_exception_type
-    if error_data.has_key?('error')
-      return error_data['error']['type'].to_sym if error_data['error'].has_key?('type')
-    end
-    return :exception
+    return @error_data['type'] if @error_data.has_key?('type')
+    "UNDEFINED"
   end
-
+  
+  # if the exception was produced because another exception
+  # happened at the server side
   def backend_exception?
     @excpt.is_a?(ActiveResource::ServerError) and
-      @excpt.response.code.to_s =~ /.*503.*/
+      @excpt.response.code.to_s =~ /.*503.*|.*500.*/
+  end
+
+  # if the exception is discarded to be a bug, like
+  # a service not running on the server side
+  def bug?
+    return @error_data['bug'] if @error_data.has_key?('bug')
+    true
   end
   
   def backtrace

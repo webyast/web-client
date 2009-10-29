@@ -62,7 +62,9 @@ class ApplicationController < ActionController::Base
     logger.error "***" + error.to_s
     logger.error error.backtrace.join "\n"
 
-    e = ClientException.new(error)    
+    e = ClientException.new(error)
+    logger.error "Exception started at the server side" if e.backend_exception?
+    
     eulaexception_trap(e) and return if e.backend_exception? and e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
     
     # get the vendor settings
@@ -82,7 +84,6 @@ class ApplicationController < ActionController::Base
     if request.xhr?
       logger.error "Error during ajax request"
       render :status => 500, :partial => "shared/exception_trap", :locals => {:error => e} and return
-      #render :text => "shit" and return
     end
 
     case e

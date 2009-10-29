@@ -144,7 +144,7 @@ class StatusController < ApplicationController
     end
     
     lines = params[:lines] || 5
-    log_url = YaST::ServiceResource::Session.site
+    log_url = URI.parse(YaST::ServiceResource::Session.site.to_s)
     log_url = log_url.merge("logs/#{params[:id]}.txt?lines=#{lines}")
     logger.info "requesting #{log_url}"
     @content = open(log_url).read
@@ -155,7 +155,6 @@ class StatusController < ApplicationController
     return unless client_permissions
 
     log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
-    #log = load_proxy 'org.opensuse.yast.system.logs'
     @logs = log.find(:all) 
     
     create_data

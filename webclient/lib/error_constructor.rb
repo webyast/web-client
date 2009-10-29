@@ -7,7 +7,6 @@ module ErrorConstructor
   include GetText
   
   def construct_error(error)
-    error = error["error"]
     case error["type"]
     when "SERVICE_NOT_AVAILABLE"
       return _("Service %s is not available in the target machine") % [error["service"]]

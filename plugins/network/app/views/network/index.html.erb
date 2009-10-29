@@ -92,7 +92,7 @@
   
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
 
-  <fieldset id="ipadress" class="">
+  <fieldset id="ip-address" class="">
     <legend><%=_("IP address")%></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
@@ -135,7 +135,7 @@
     </p>
   </fieldset>
   <p>
-    <%= n.submit _("Save"), :disabled => write_disabled, :class => "button" %> or <a href="/"><%=_("Cancel")%></a>
+    <%= form_send_buttons :disabled => write_disabled %>
   </p>
 <% end %>
 </div>

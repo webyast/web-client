@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-18 12:17+0100\n"
+"PO-Revision-Date: 2009-10-27 20:02+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: app/controllers/application_controller.rb:60
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
+msgstr "Należy zaakceptować wszystkie licencje EULA, by móc używać tego produktu!"
 
 #: app/controllers/application_controller.rb:64
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
+msgstr "Nie można uzyskać przekierowania do licencji EULA. Należy upewnić się, czy pakiet yast2-webclient-eulas został zainstalowany."
 
 #: app/controllers/application_controller.rb:105
 msgid "Please login to continue"
@@ -35,10 +35,9 @@ msgid "You must logout before you can login"
 msgstr "Należy się wylogować przed ponownym zalogowaniem"
 
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
 #| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "Nie można wykonać chroot do \"%s\" (%s)/"
+msgstr "Nie można podłączyć się do %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -49,10 +48,9 @@ msgid "Please select a host to connect to."
 msgstr "Proszę wybrać host, z którym zostanie nawiązane połaczenie."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
 #| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Repozytorium \"%s\" nie zostało znalezione."
+msgstr "Repozytorium '%s' nie zostało znalezione."
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
@@ -135,7 +133,8 @@ msgid "Save"
 msgstr "Zapisz"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:6
+#: app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -166,7 +165,7 @@ msgstr "Proszę wybrać usługę:"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr ""
+msgstr "Czy na pewno usunąć %s ?"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -176,15 +175,18 @@ msgstr "Edycja YaST-Web-Service "
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:27
+#: app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nazwa"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:31
+#: app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:35
+#: app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Opis"
 
@@ -274,15 +276,15 @@ msgstr "Wyloguj"
 msgid "...Wait..."
 msgstr "...Proszę czekać..."
 
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+#: app/views/sessions/new.rhtml:4
+#: app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "Login"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
 #| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "Proszę podać parametry specyficzne dla chipsetu \"%s\"."
+msgstr "Proszę wprowadzić informacje uwierzytelniające logowanie dla hosta %s."
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -320,7 +322,7 @@ msgstr "Uruchom ponownie"
 
 #: app/views/controlpanel/index.rhtml:32
 msgid "Really reboot %s?"
-msgstr ""
+msgstr "Czy na pewno uruchomić ponownie %s?"
 
 #: app/views/controlpanel/index.rhtml:33
 msgid "Shutdown"
@@ -328,7 +330,7 @@ msgstr "Wyłącz"
 
 #: app/views/controlpanel/index.rhtml:34
 msgid "Really shutdown %s?"
-msgstr ""
+msgstr "Czy na pewno zamknąć %s?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Status"
@@ -355,14 +357,13 @@ msgid "Show all modules"
 msgstr "Wyświetl wszystkie moduły"
 
 #: lib/error_constructor.rb:10
-#, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "Czynność \"%1\" jest niedozwolona dla usługi \"%2\"."
+msgstr "Nie można uzyskać zezwolenia %s dla użytkownika %s "
 
 #: lib/error_constructor.rb:12
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
+msgstr "Wyjątek Policy Kit dla użytkownika %s i uprawnień %s (nieprzetłumaczony komunikat): %s"
 
 #: lib/error_constructor.rb:14
 msgid "Noone is logged to rest service."
@@ -370,23 +371,22 @@ msgstr "Nikt nie jest zalogowany do pozostałych usług."
 
 #: lib/error_constructor.rb:16
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "Docelowy system jest niespójny: brakuje pliku %s lub jest on uszkodzony "
 
 #: lib/error_constructor.rb:20
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Brak predefiniowanego serwera NTP w /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:22
-#, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
-msgstr "Wystąpił błąd podczas instalacji"
+msgstr "Wystąpił błąd podczas synchronizacji NTP: %s"
 
 #: lib/error_constructor.rb:25
-#, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "Błąd podczas zamykania starego pliku shadow: %m"
+msgstr "Wystąpił błąd podczas zapisu ustawień administracyjnych: %s"
 
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ADMINISTRATOR_ERROR"
+

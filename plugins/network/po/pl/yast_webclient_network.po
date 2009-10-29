@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-04 20:26+0100\n"
+"PO-Revision-Date: 2009-10-27 20:14+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,14 +23,13 @@ msgid "No permissions for network module"
 msgstr "Brak zezwolenia dla modułu sieciowego"
 
 #: app/controllers/network_controller.rb:66
-#, fuzzy
 #| msgid "Static"
 msgid "static"
-msgstr "Statyczny"
+msgstr "statyczny"
 
 #: app/controllers/network_controller.rb:66
 msgid "dhcp"
-msgstr "dhcp"
+msgstr "DHCP"
 
 #: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
@@ -38,7 +37,7 @@ msgstr "Zapisano ustawienia."
 
 #: app/views/network/index.html.erb:38
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
 
 #: app/views/network/index.html.erb:64
 msgid "Network"
@@ -48,7 +47,8 @@ msgstr "Sieć"
 msgid "Interface"
 msgstr "Interfejs"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:91
+#: app/views/network/index.html.erb:98
 msgid "IP Address"
 msgstr "Adres IP"
 
@@ -89,11 +89,13 @@ msgstr "ROuting"
 msgid "Default Route"
 msgstr "Trasa domyślna"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145
+#: app/views/network/edit.html.erb:35
 msgid "Update"
 msgstr "Aktualizacja"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:145
+#: app/views/network/edit.html.erb:35
 msgid "Back"
 msgstr "Powrót"
 
@@ -124,3 +126,4 @@ msgstr "Nazwa urządzenia"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Uruchamienie"
+

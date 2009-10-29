@@ -12,25 +12,16 @@ $(document).ready(function() {
 <h3><%= _("Problem:") %></h3>
 
 <p><pre>
-  <%= if error.kind_of? ActiveResource::ConnectionError
-    _("Problem occured on target machine")
-    else
-    h error.to_s
-    end%>
+  <%= error.message %>
 </pre></p>
 
-<p><%= _("Please Report a bug so we can fix the problem!.") %><a href="<%= @bug_url %>"><%= _("(report link)") %></a> 
-<%= _("Don't forget to include the bug details.") %></p>
+<p><span class="bug-icon"></span><%= _("Please Report a bug so we can fix the problem!.") %><a href="<%= @bug_url %>"><%= _("(report link)") %></a></p>
+<p><%= _("Don't forget to include the bug details.") %></p>
 
   <%
   backtrace = _("No information available")
-  if error.kind_of? ActiveResource::ConnectionError
-    backtrace = error.response.body
-  else
-    backtrace = error.backtrace.join("\n") unless (error.nil? || error.backtrace.nil? || error.backtrace.blank?)
-  end
+  backtrace = error.backtrace.join("\n") unless (error.nil? || error.backtrace.nil? || error.backtrace.blank?)
   %>
-
 
 <p><a href="#" id="details-link">Show details...</a><%= clippy(backtrace) %><p>
 
