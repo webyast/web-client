@@ -10,14 +10,14 @@
 
 
 Name:           yast2-webclient
-Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, avahi-utils
+Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite
 PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 = 2.3.4
 PreReq:         rubygem-gettext_rails
 License:        LGPL v 2.1
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.7
+Version:        0.0.8
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
@@ -26,7 +26,7 @@ Source2:        yastwc
 Source3:        webyast.pem
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
-BuildRequires:  sqlite avahi-utils rubygem-sqlite3
+BuildRequires:  sqlite rubygem-sqlite3
 BuildRequires:  rubygem-rails-2_3 = 2.3.4
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy
