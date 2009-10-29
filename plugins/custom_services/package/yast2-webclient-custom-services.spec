@@ -11,7 +11,7 @@
 
 Name:           yast2-webclient-custom-services
 PreReq:         yast2-webclient
-License:        GPL
+License:        GPLv2
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.3
@@ -49,7 +49,7 @@ env LANG=en rake makemo
 #
 mkdir -p $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 cp -a * $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-
+rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -68,3 +68,4 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
+%doc COPYING
