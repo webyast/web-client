@@ -11,7 +11,7 @@
 
 Name:           yast2-webclient-registration
 PreReq:         yast2-webclient
-License:        GPL
+License:        GPLv2
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.1
@@ -75,5 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
+%doc COPYING
 
 

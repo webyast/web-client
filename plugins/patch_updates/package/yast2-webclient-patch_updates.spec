@@ -12,7 +12,7 @@
 Name:           yast2-webclient-patch_updates
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
-License:        GPL
+License:        GPLv2
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.5
@@ -73,6 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
+%doc COPYING
 
 %changelog
 

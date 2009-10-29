@@ -12,7 +12,7 @@
 Name:           yast2-webclient-language
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controller.rb
-License:        GPL
+License:        GPLv2
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.6
@@ -75,5 +75,4 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
-
-
+%doc COPYING

@@ -16,7 +16,7 @@
 Name:           yast2-webclient-samba-server
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/controllers/sambserver_controller.rb
-License:        GPL
+License:        GPLv2
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.1
@@ -75,4 +75,5 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
+%doc COPYING
 
