@@ -1,4 +1,22 @@
 -------------------------------------------------------------------
+Thu Oct 29 15:43:40 CET 2009 - schubi@suse.de
+
+- fix license
+- mistery why proxy_for works and load_proxy does not
+- Use URI.parse so we make sure it works even if the URI is a plain
+  string
+- Improve the error handling. Handle 500 internal errors as server errors
+  too. Still a strange bug with find_proxy
+- Use the exception wrapper to extract information and show a meanful
+  error message
+- Making error handling consistent
+- Make status summary use the default error handling instead of its own
+- update translations
+- do not require rubygems
+- added missing init_gettext calls, fixed gettext domain names
+- version 0.0.4 
+
+-------------------------------------------------------------------
 Tue Sep 29 12:54:52 CEST 2009 - schubi@suse.de
 
 - version 0.0.3 
