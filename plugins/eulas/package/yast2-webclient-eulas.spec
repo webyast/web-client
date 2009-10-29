@@ -11,7 +11,7 @@
 
 Name:           yast2-webclient-eulas
 PreReq:         yast2-webclient >= 0.0.2
-License:        GPL
+License:        GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.6
@@ -67,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/LICENSE
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
