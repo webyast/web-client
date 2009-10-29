@@ -125,7 +125,6 @@ chmod 600 db/*.sqlite* log/*
 /srv/www/yast/public  
 /srv/www/yast/Rakefile  
 /srv/www/yast/README*  
-/srv/www/yast/COPYING  
 /srv/www/yast/INSTALL
 /srv/www/yast/script  
 /srv/www/yast/config  
