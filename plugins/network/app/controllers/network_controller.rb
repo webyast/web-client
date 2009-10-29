@@ -116,6 +116,6 @@ class NetworkController < ApplicationController
       logger.warn e
     end    
 
-    redirect_to :action => 'index'
+    redirect_success
   end
 end

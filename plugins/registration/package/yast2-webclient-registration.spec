@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-registration (Version 0.1)
+# spec file for package yast2-webclient-registration (Version 0.0.2)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -11,10 +11,10 @@
 
 Name:           yast2-webclient-registration
 PreReq:         yast2-webclient
-License:        GPL
+License:        GPLv2
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.1
+Version:        0.0.2
 Release:        0
 Summary:        YaST2 - Webclient - Registration
 Source:         www.tar.bz2
@@ -31,7 +31,8 @@ BuildArch:      noarch
 YaST2 - Webclient - UI for YaST-webservice in order register the system.
 Authors:
 --------
-    Stefan Schubert <schubi@opensuse.org>
+    Stefan Schubert <schubi@novell.com>
+    J. Daniel Schmidt <jdsn@novell.com>
 
 %prep
 %setup -q -n www
@@ -47,6 +48,7 @@ env LANG=en rake makemo
 #
 mkdir -p $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 cp -a * $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
+rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
@@ -75,5 +77,6 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
+%doc COPYING
 
 

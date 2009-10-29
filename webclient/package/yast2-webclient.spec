@@ -14,7 +14,7 @@ Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, avahi-utils
 PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 = 2.3.4
 PreReq:         rubygem-gettext_rails
-License:        GPL
+License:        LGPL v 2.1
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.7
@@ -62,6 +62,7 @@ mkdir -p $RPM_BUILD_ROOT/srv/www/yast/log
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
 cp -a * $RPM_BUILD_ROOT/srv/www/yast
 rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
+rm -f $RPM_BUILD_ROOT/srv/www/yast/COPYING
 
 #
 # init script
@@ -124,7 +125,6 @@ chmod 600 db/*.sqlite* log/*
 /srv/www/yast/public  
 /srv/www/yast/Rakefile  
 /srv/www/yast/README*  
-/srv/www/yast/COPYING  
 /srv/www/yast/INSTALL
 /srv/www/yast/script  
 /srv/www/yast/config  
@@ -134,7 +134,7 @@ chmod 600 db/*.sqlite* log/*
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %config /etc/lighttpd/cleanurl-v5.lua  
 %dir /etc/lighttpd/certs
-%attr(-,lighttpd,lighttpd) /etc/lighttpd/certs/webyast.pem
+%attr(-,lighttpd,lighttpd) %config /etc/lighttpd/certs/webyast.pem
 /etc/lighttpd/certs/webyast.pem
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
