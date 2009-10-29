@@ -14,6 +14,7 @@ class RegistrationController < ApplicationController
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
+    @client.timeout = 120 #increasing server timeout cause registration can take a while
     @permissions = @client.permissions
     @options = {'debug'=>2 }
     @arguments = []
@@ -42,7 +43,7 @@ class RegistrationController < ApplicationController
       register.save
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
-      if error["status"] == "missinginfo" && !error["missingarguments"].blank?
+      if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
         logger.debug "missing arguments #{error["missingarguments"].inspect}"
         @arguments = error["missingarguments"].sort {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
       else

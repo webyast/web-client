@@ -7,14 +7,18 @@
   <table summary="<%= _("This table gives registration settings.") %>">
     <tr><td colspan="2" class="full" align="center"></td></tr>
     <% for argument in @arguments %>
-      <tr>
-        <% if argument["error"] %>
-          <td><strong><font color=red><%=_(argument["name"])%></font></strong></td>
-        <% else %>
-          <td><strong><%=_(argument["name"])%></strong></td>
-        <% end %>
-        <td><%= text_field_tag "registration_arg,"+argument["name"], argument["value"], :class=>'aligned-inputs' %></td>
-      </tr>
+      <% if argument["flag"] == "m" %>
+        <tr>
+          <% if argument["error"] %>
+            <td><strong><font color=red><%=_(argument["name"])%></font></strong></td>
+          <% else %>
+            <td><strong><%=_(argument["name"])%></strong></td>
+          <% end %>
+          <td><%= text_field_tag "registration_arg,"+argument["name"], argument["value"], :class=>'aligned-inputs' %></td>
+        </tr>
+      <% else %>
+        <input type="hidden" id="<%= 'registration_arg_'+argument['name'] %>" name="<%= 'registration_arg_'+argument['name'] %>" value="<%= argument["value"] %>"/>
+      <% end %>
     <% end %>
     <% unless @changed_repositories.blank? %>
       <tr><td height=10></td></tr>
