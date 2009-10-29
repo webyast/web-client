@@ -62,6 +62,7 @@ mkdir -p $RPM_BUILD_ROOT/srv/www/yast/log
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
 cp -a * $RPM_BUILD_ROOT/srv/www/yast
 rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
+rm -f $RPM_BUILD_ROOT/srv/www/yast/COPYING
 
 #
 # init script
