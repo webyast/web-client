@@ -11,11 +11,7 @@
 
 Name:           yast2-webclient-eulas
 PreReq:         yast2-webclient >= 0.0.2
-<<<<<<< HEAD:plugins/eulas/package/yast2-webclient-eulas.spec
-License:        GPL v2 only
-=======
 License:        GPLv2
->>>>>>> 097a1cbfbefea6bc7b57b2408254c92fa1d36aad:plugins/eulas/package/yast2-webclient-eulas.spec
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.6
