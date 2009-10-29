@@ -135,7 +135,7 @@
     </p>
   </fieldset>
   <p>
-    <%= n.submit _("Save"), :disabled => write_disabled, :class => "button" %> or <a href="/"><%=_("Cancel")%></a>
+    <%= form_send_buttons :disabled => write_disabled %>
   </p>
 <% end %>
 </div>
