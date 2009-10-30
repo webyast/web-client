@@ -10,6 +10,20 @@ module LangHelper
   bindtextdomain("lang_helper", 
         :path => File.join(RAILS_ROOT, "vendor/plugins/lang_helper/locale"))
 
+  LANGUGAGES = { 'af' => 'Afrikaans', 'ar' => 'العربية', 'be' => 'Беларуская', 'bg' => 'Български', 'bn' => 'বাংলা',
+    'bs' => 'Bosanski', 'ca' => 'Català', 'cs' => 'Čeština', 'cy' => 'Cymraeg', 'da' => 'Dansk',
+    'de' => 'Deutsch', 'el' => 'Ελληνικά ', 'en' => 'English', 'en_GB' => 'English (UK)', 'en_US' => 'English (US)',
+    'es' => 'Español', 'et' => 'Eesti', 'fi' => 'Suomi', 'fr' => 'Français', 'gl' => 'Galego',
+    'gu' => 'ગુજરાતી', 'he' => 'עברית', 'hi' => 'हिन्दी', 'hr' => 'Hrvatski', 'hu' => 'Magyar',
+    'id' => 'Bahasa Indonesia', 'it' => 'Italiano', 'ja' => '日本語', 'ka' => 'ქართული',
+    'km' => 'ខ្មែរ', 'ko' => '한글 ', 'lo' => 'ພາສາລາວ', 'lt' => 'Lietuvių', 'mk' => 'Македонски', 'mr' => 'मराठी',
+    'nb' => 'Norsk', 'nl' => 'Nederlands', 'pa' => 'ਪੰਜਾਬੀ', 'pl' => 'Polski',
+    'pt_BR' => 'Português brasileiro', 'pt' => 'Português', 'ro' => 'Română', 'ru' => 'Русский ',
+    'si' => 'සිංහල', 'sk' => 'Slovenčina', 'sl' => 'Slovenščina', 'sr' => 'Srpski',
+    'sv' => 'Svenska', 'ta' => 'தமிழ்', 'tg' => 'тоҷикӣ', 'th' => 'ภาษาไทย', 'tr' => 'Türkçe',
+    'uk' => 'Українська', 'vi' => 'Tiếng Việt', 'wa' => 'Walon', 'xh' => 'isiXhosa',
+    'zh_CN' => '简体中文', 'zh_TW' => '繁體中文', 'zu' => 'isiZulu'}
+
   def current_locale_image
     return "/images/flags/#{locale.language}.png"
   end
@@ -18,15 +32,26 @@ module LangHelper
     locale.language
   end
 
+  def language_name(code)
+    language = LANGUGAGES[code]
+    if language.nil?
+      Rails.logger.warn "Missing text for language code #{current_locale}"
+      language = code
+    end
+    language
+  end
+
+  def current_locale_name
+    language_name current_locale
+  end
+
   def show_language
     langs = I18n.supported_locales.sort
     ret = "<h4>" + _("Select locale") + "</h4>"
     langs.each_with_index do |lang, i|
-      ret << link_to( image_tag("/images/flags/#{lang}.png", :size => "16x11", :alt => "[#{lang}]" ), 
+      ret << link_to( language_name(lang),
                      :action => "cookie_locale", :id => lang)
-      if ((i + 1) % 6 == 0)
-	ret << "<br/>"
-      end
+      ret << "<br/>"
     end
     ret
   end
