@@ -47,6 +47,7 @@ $('.tab-nav a').click(function() {
   var curTab = $(this).attr('href');
   // alert(curTab);
   $(curTab).show().siblings('fieldset').hide();
+  return false;
 });
 
 

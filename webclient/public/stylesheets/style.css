@@ -128,7 +128,8 @@ ul li {
   }
 #footer {
   padding: 1em 0;
-/*  border-top: 1px dotted #ccc;*/
+  color: #999;
+  border-top: 1px dotted #ccc;
 }
 
 /* == Basic Styles ======================================================== */
@@ -329,12 +330,14 @@ ul.list-2level-inline {
 .tab-form {
   
 }
-.tab-form fieldset{
+.tab-form fieldset {
   clear: left;
+  margin-top: 1em;
 }
 ul.tab-nav {
   list-style: none inside;
   padding: 0;
+  overflow: hidden;
 }
 
 .tab-nav li {
@@ -354,7 +357,10 @@ ul.tab-nav {
     -moz-border-radius-topright: 5px;
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
-    
+  }
+  
+  .tab-nav li a:hover {
+    text-decoration: none;
   }
 /* == Text Styles ======================================================= */
 
