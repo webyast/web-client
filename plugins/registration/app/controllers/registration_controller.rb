@@ -32,6 +32,12 @@ class RegistrationController < ApplicationController
   def index
     return unless client_permissions
 
+    if action_name == "detail"
+      @detail = true
+    else
+      @detail = false
+    end
+
     unless @permissions[:statelessregister]
       flash[:warning] = _("No permissions for registration")
       redirect_to root_path
@@ -52,12 +58,18 @@ class RegistrationController < ApplicationController
         redirect_to root_path
         return false
       end
-    end        
+    end  
+  end
+
+  def detail
+    index
+    render :action => "index" 
   end
 
   # Calling the register over the service
   def update
     return unless client_permissions
+    @detail = false
 
     unless @permissions[:statelessregister]
       flash[:warning] = _("No permissions for registration")
@@ -94,6 +106,8 @@ class RegistrationController < ApplicationController
           missed_args.each {|missed_arg|
             if missed_arg["name"] == argument["name"]
               argument["error"] = true #flag error for already existing argument
+              argument["flag"] = missed_arg["flag"]
+              argument["kind"] = missed_arg["kind"]
               missed_args.reject! {|del_arg| del_arg["name"] == argument["name"] }
               break
             end

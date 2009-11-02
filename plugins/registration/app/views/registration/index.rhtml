@@ -7,7 +7,7 @@
   <table summary="<%= _("This table gives registration settings.") %>">
     <tr><td colspan="2" class="full" align="center"></td></tr>
     <% for argument in @arguments %>
-      <% if argument["flag"] == "m" %>
+      <% if argument["flag"] == "m" || @detail%>
         <tr>
           <% if argument["error"] %>
             <td><strong><font color=red><%=_(argument["name"])%></font></strong></td>
@@ -50,9 +50,17 @@
         </tr>
       <% end %>
     <% end %>
+    <% unless @detail || controller.action_name == "update"%>
+      <tr><td height=10></td></tr>
+      <tr>
+        <td></td>
+        <td align="right"><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"Element.show('progress')", :class => "button"%></p></td>
+      </tr>
+    <% end %>
   </table>
   <br/>
   <%= form_send_buttons %>
+
 <% end -%>
 </div>
 
