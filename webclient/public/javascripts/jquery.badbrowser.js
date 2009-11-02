@@ -1,7 +1,9 @@
 function badBrowser(){
-    if($.browser.msie() && parseInt($.browser.version) <= 6){ return true;}
-    if($.browser.konqueror()) { return true; }
-       return false;
+    if(   ($.browser.msie() && parseInt($.browser.version) == 7 ) 
+       ||  $.browser.firefox()
+       ||  $.browser.opera()
+       ||  $.browser.safari() ) { return false;}
+    return true;
 }
 
 function getBadBrowser(c_name)
