@@ -24,7 +24,7 @@ class PatchUpdatesController < ApplicationController
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
     rescue Exception => e
-      error = e
+      error = ClientException.new(e)
       patch_updates = nil
     end
 
@@ -43,7 +43,7 @@ class PatchUpdatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => ClientException.new(error) } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
       format.json  { render :json => patches_summary }
     end    
   end
