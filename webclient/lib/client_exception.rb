@@ -43,31 +43,32 @@ class ClientException < Exception
   # happened there, or the local one if it is a normal exception
   def message
     return @err_msg unless @err_msg.blank?
-    return @excpt.message
+    return @excpt.message if @excpt
   end
 
   # remote exception type as a string or "UNDEFINED"
   def backend_exception_type
-    return @error_data['type'] if @error_data.has_key?('type')
+    return @error_data['type'] if (@error_data && @error_data.has_key?('type'))
     "UNDEFINED"
   end
   
   # if the exception was produced because another exception
   # happened at the server side
   def backend_exception?
-    @excpt.is_a?(ActiveResource::ServerError) and
+    @excpt and @excpt.is_a?(ActiveResource::ServerError) and
       @excpt.response.code.to_s =~ /.*503.*|.*500.*/
   end
 
   # if the exception is discarded to be a bug, like
   # a service not running on the server side
   def bug?
-    return @error_data['bug'] if @error_data.has_key?('bug')
+    return @error_data['bug'] if (@error_data && @error_data.has_key?('bug'))
     true
   end
   
   def backtrace
-    @excpt.backtrace
+    return @excpt.backtrace if (@excpt && !@excpt.backtrace.blank?)
+    []
   end
 
   # forward any other method
