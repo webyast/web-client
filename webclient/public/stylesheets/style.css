@@ -38,6 +38,7 @@ h3 {
 #content h3 {
   font-size: 1.7em;
   color: #666;
+  margin-bottom: 0.5em;
 }
 h4 {
   font-size: 1em;
@@ -128,14 +129,17 @@ ul li {
     margin-bottom: 1.5em;
   }
 #footer {
-  padding: 1em 0;
+  padding: 2em 0;
   color: #999;
-  border-top: 1px dotted #ccc;
 }
 
 /* == Basic Styles ======================================================== */
 #header * {
   color: #666;
+}
+
+.wrapper {
+  
 }
 
 #login-wrapper ul {
@@ -171,7 +175,6 @@ ul li {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   
-
   -moz-box-shadow: 0 1px 7px #999;
   -webkit-box-shadow: 0 1px 7px #999;
   box-shadow: 0 1px 7px #999;
@@ -202,13 +205,13 @@ ul li {
   }
 /*  #status-wrapper, */
   #favorites {
-    padding: 10px;
   }
+  
   #status-wrapper {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border: 1px solid #999;
-    margin: 0 0 1em;
+    margin-bottom: 3em;
     background: #f9f9f9;
     position: relative;
     overflow: hidden;
@@ -527,14 +530,20 @@ input[type="submit"] {
 
 .plugin-content {
   float: left;
-  width: 90%;
+  clear: left;
+}
+
+.wrapper,
+.plugin-content {
+  background-color: #fff;
+  min-height: 5em;
+}
+.wrapper,
+#status-wrapper,
+.plugin-content {
   border-color: #ddd #ccc #bbb;
   border-style: solid;
   border-width: 1px;
-  
-  clear: left;
-  
-  min-height: 5em;
   
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -544,9 +553,8 @@ input[type="submit"] {
   -webkit-box-shadow: 0 1px 3px #ccc;
   -moz-box-shadow: 0 1px 3px #ccc;
   box-shadow: 0 1px 3px #ccc;
-  
-  background-color: #fff;
 }
+
 .plugin-content form > p,
 .plugin-content form > fieldset {
   margin-left: 1em;
