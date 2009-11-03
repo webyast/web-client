@@ -13,6 +13,7 @@ BG Grey:            #fcfcfc     Body-BG
 html,
 body {
   background-color: #fcfcfc;
+  background-color: #f5f5f5;
   color: #333;
   font: 1em "lsLucida Grande", "Trebuchet MS", Verdana, sans-serif;
   width: 100%;
@@ -515,12 +516,27 @@ input[type="submit"] {
 .plugin-content {
   float: left;
   width: 90%;
-  padding-bottom: 5em;
-  
-/*  border-color: #FF0000 #00FF00 #0000FF;
+/*  padding-bottom: 5em;*/
+  border-color: #ddd #ccc #bbb;
   border-style: solid;
   border-width: 1px;
-*/}
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0 1px 3px #ccc;
+  -moz-box-shadow: 0 1px 3px #ccc;
+  box-shadow: 0 1px 3px #ccc;
+  
+  background-color: #fff;
+}
+.plugin-content form > p,
+.plugin-content form > fieldset {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 
 select.aligned-inputs,
 input.aligned-inputs {
