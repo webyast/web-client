@@ -48,7 +48,7 @@
   <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
   <h2><%=_("Time")%></h2>
   
-  <div class='plugin-content'>
+  <div class="plugin-content grid_12">
     <% form_tag '/systemtime/update', {:class => 'container', :onsubmit => "submitTime();"} do %>
       <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
       %>

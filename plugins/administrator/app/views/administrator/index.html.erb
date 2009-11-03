@@ -1,5 +1,7 @@
 <div class='plugin-icon'><img src='/icons/yast-users.png' alt='<%= _("Administrator Settings") %>'/></div>
+<h2><%=_("Administrator Settings")%></h2>
 
+<div class="plugin-content grid_12">
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
 
@@ -45,8 +47,6 @@
 
 <% end %>
 
-<h2><%=_("Administrator Settings")%></h2>
-
 <% disabled = ! @permissions[:write] %>
 
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm" } ) do |f| %>
@@ -69,3 +69,5 @@
     <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %>
     </p>
   <% end %>
+
+</div>

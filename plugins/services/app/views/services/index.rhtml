@@ -6,8 +6,6 @@
 <!-- end: dialog box -->
 
 <div class='plugin-icon'><img src='/icons/yast-online_update.png' alt=''/></div>
-<div class='plugin-content'>
-
 <h2><%=
 
 if params.has_key?("custom")
@@ -17,7 +15,7 @@ else
 end
 %></h2>
 
-<br/>
+<div class="plugin-content grid_12">
 
 <% unless @permissions[:execute] %>
 <p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
