@@ -15,10 +15,16 @@
   <% if @eula.only_show then -%>
     <input type="hidden" name="accepted" value="true"/>
   <% else -%>
-    <input type="radio" name="accepted" value="true">
+    <input type="radio" name="accepted" value="true" 
+      <%= @eula.accepted ? 'checked="checked"' : "" %>
+      <%= @eula.accepted ? 'readonly="readonly"' : "" %>
+      >
     <%= _("Yes, I agree to the license agreement.") %>
     <br/>
-    <input type="radio" checked="checked" name="accepted" value="false">
+    <input type="radio" name="accepted" value="false" 
+      <%= @eula.accepted ? "" : 'checked="checked"' %>
+      <%= @eula.accepted ? 'readonly="readonly"' : '' %>
+      >
     <%= _("No, I do not agree.") %>
     <br/>
   <% end -%>
@@ -26,5 +32,10 @@
     <input type="hidden" name="eula_lang" value="<%= @eula.text_lang %>"/>
   <% end %>
 
-  <%= form_send_buttons( {:disabled => false} ) %>
+  <%= if @first_eula
+        form_back_button
+      else
+        link_to "Back", :action => :show, :id => @prev_id
+      end %>
+  <%= form_str_spacer + form_next_button %>
 <% end -%>

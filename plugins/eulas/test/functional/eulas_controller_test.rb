@@ -17,7 +17,7 @@ class EulasControllerTest < ActionController::TestCase
       if args[0] == :all then
         @result
       else
-        @result[0]
+        @result[args[0]-1]
       end
     end
 
@@ -51,22 +51,24 @@ class EulasControllerTest < ActionController::TestCase
   end
 
   def test_eula_start
-    session[:eula_unaccepted_ids_cache] = nil
+    session[:eula_count] = nil
     get :index
-    assert_redirected_to "/eulas/next"
-    assert_not_nil session[:eula_unaccepted_ids_cache]
-    get :next
     assert_redirected_to "/eulas/show/1"
+    assert_not_nil session[:eula_count]
   end
 
   def test_eula_step
     @opensuse_eula.accepted = false
-    session[:eula_unaccepted_ids_cache] = [1,2]
+    get :index
     post :update, "accepted" => true, "id" => "1"
-    assert_equal( session[:eula_unaccepted_ids_cache], [2] )
+    assert( @opensuse_eula.accepted )
+    assert_redirected_to "/eulas/show/2"
     post :update, "accepted" => false, "id" => "2"
-    assert_equal( session[:eula_unaccepted_ids_cache], [2] )
-    assert_redirected_to "/eulas/next"
+    assert_false(@sles_eula.accepted)
+    assert_redirected_to "/eulas/show/2"
+    post :update, "accepted" => true, "id" => "2"
+    assert(@sles_eula.accepted)
+    assert_redirected_to "/eulas" # in basesystem redirected to "/controller/nextstep"
   end
 
 end

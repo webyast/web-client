@@ -7,16 +7,27 @@ module ApplicationHelper
   # Example:
   #   <%= form_send_buttons :disabled => write_disabled %>
   def form_send_buttons (send_options={})
-        str_spacer = _(' or ')
-        if session[:wizard_current].nil? or session[:wizard_current] == "FINISH"
-          submit = submit_tag _("Save"),send_options
-          back = link_to _("Cancel"), :controller => "controlpanel"
-          return submit+str_spacer+back
-        else
-          back = link_to "Back", :controller => "controlpanel", :action => "backstep"
-          nextb = submit_tag _("Next"),send_options
-          return back+str_spacer+nextb
-        end
+    form_back_button + form_str_spacer + form_next_button(send_options)
+  end
+
+  def form_str_spacer
+    _(' or ')
+  end
+
+  def form_back_button
+    if session[:wizard_current].nil? or session[:wizard_current] == "FINISH"
+      link_to _("Cancel"), :controller => "controlpanel"
+    else
+      link_to "Back", :controller => "controlpanel", :action => "backstep"
+    end
+  end
+
+  def form_next_button(send_options={})
+    if session[:wizard_current].nil? or session[:wizard_current] == "FINISH"
+      submit_tag _("Save"),send_options
+    else
+      submit_tag _("Next"),send_options
+    end
   end
 end
 
