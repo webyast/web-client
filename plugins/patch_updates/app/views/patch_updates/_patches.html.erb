@@ -44,7 +44,7 @@
         <td><%= link_to image_tag("/icons/system-software-install.png"\
               , :alt =>  "install", :class=>"icon", :border => "0"),\
             :controller => 'patch_updates', :id => patch_update.resolvable_id,\
-            :onclick=>"Element.show('progress')", :method => :post, :action => "install" %></td>
+            :onclick=>"$('#progress').show()", :method => :post, :action => "install" %></td>
         <% end %>
     </tr>
   <% end %>

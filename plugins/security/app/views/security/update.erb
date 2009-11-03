@@ -23,7 +23,7 @@
 
   <span>
     <hbox>
-      <%= submit_tag _("Save"), :onclick=>"Element.show('progress')",
+      <%= submit_tag _("Save"), :onclick=>"$('#progress').show()",
                       :disabled => !@client.permissions[:write], :class => 'button' -%>
       <a href="/" class="button"><%=_("Back")%></a>
     </hbox>

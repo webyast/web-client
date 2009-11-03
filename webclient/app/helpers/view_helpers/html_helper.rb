@@ -2,7 +2,7 @@
 module ViewHelpers::HtmlHelper
 
     def html_edit_link(id, action = :edit)
-	return link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => action, :id => id}, :onclick=>"Element.show('progress')"
+	return link_to image_tag("/images/edit-icon.gif", :alt => :edit), {:action => action, :id => id}, :onclick=>"$('#progress').show()"
     end
 
     def html_delete_link(id, action = :delete)

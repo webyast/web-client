@@ -52,7 +52,7 @@
 <% form_tag '/permissions/search' do %>
   <p><label for="user"><%=_("User")%></label>
   <input type="text" name="user" size=25 value=<%= "#{@current_user}" %> >
-  <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"Element.show('progress')", :class => 'button'%>
+  <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"$('#progress').show()", :class => 'button'%>
   <% if @current_user.blank? %>
     <a href="/" class="button"><%=_("Back")%></a>
   <% end %>
