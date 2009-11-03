@@ -200,8 +200,8 @@ ul li {
     margin: 0 0 0.2em;
     text-align: left;
   }
-  #favorites,
-  #status-wrapper {
+/*  #status-wrapper, */
+  #favorites {
     padding: 10px;
   }
   #status-wrapper {
@@ -211,29 +211,40 @@ ul li {
     margin: 0 0 1em;
     background: #f9f9f9;
     position: relative;
+    overflow: hidden;
   }
+  
+  
     #status-wrapper h3:first-child {
       margin-top: 0;
     }
     #status-wrapper #machine-controle {
       display: block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 250px;
+      min-height: 110px;
       height: 100%;
       overflow: hidden;
       border-left: 1px solid #999;
       background-color: #eee;
+      
+      float: right;
     }
-
+    #status-wrapper #status_patches,
+    #status-wrapper #status_status {
+      margin: 10px;
+    }
     #status-wrapper #machine-controle ul {
       list-style: none outside;
+      margin: 10px 0;
     }
 
     #status-wrapper #machine-controle ul li  {
       margin: 0.5em 0;
     }
+    
+    #status-wrapper #machine-controle h4 {
+      margin: 0;
+    }
+    
 /* == Lists and Tables ==================================================== */
 
 .list-row {
@@ -463,6 +474,7 @@ input[type="submit"] {
   display: block;
   width: 23px;
   height: 23px;
+  margin-right: 1em;
   background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
   float: left;
 }
@@ -476,7 +488,7 @@ input[type="submit"] {
 }
 
 .status-icon + span {
-  margin-left: 1em;
+/*  margin-left: 1em;*/
   line-height: 2em;
 }
 
@@ -579,7 +591,7 @@ th.checkbox {
 /* Error Messages */
 
 #flash-messages {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 .flash-message {
   margin-top: 20px;

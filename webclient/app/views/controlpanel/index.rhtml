@@ -20,12 +20,15 @@
     });
   <% end -%>
 <% end %>
-<div id="status-wrapper" class="">
+
+  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
+
+<div id="status-wrapper" class="grid_12">
 
 <% if ActionController::Routing.possible_controllers.include?("system") %>
     <% host = Host.find(session[:host]) rescue nil %>
     <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
-  <div id="machine-controle">
+  <div id="machine-controle" class="grid_3 omega">
     <ul>
       <li><h4><%= _("System actions")%></h4></li>
       <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
@@ -36,9 +39,7 @@
   </div>
 <% end %>
 
-  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
-
-  <div id="status_patches">
+  <div id="status_patches" class="grid_8">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
       <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
     <% else %>
@@ -46,7 +47,7 @@
     <% end %>
   </div>
   <br/>
-  <div id="status_status">
+  <div id="status_status" class="grid_8">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
       <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
     <% else %>
