@@ -19,7 +19,7 @@ $(document).ready(function() {
     $('.tab-form fieldset legend').each(function(index) {
       var tabTitle = $(this).html();  // get string from legent to have a tab-title
       var tabID = tabTitle.toLowerCase().replace(' ', '_'); // create id compatibel string
-      $('.tab-nav').append('<li><a href="#' + tabID + '">' + tabTitle + '</a></li>'); // make tab bar
+      $('.tab-nav').append('<li><a class="' + tabID + '" href="#' + tabID + '">' + tabTitle + '</a></li>'); // make tab bar
       $(this).parent('fieldset').attr('id', tabID); // set IDs in tabs
       $('.tab-form fieldset:first').show(); //show 1st fieldset
     });
@@ -30,7 +30,7 @@ $(document).ready(function() {
       $(this).closest('.tab-nav').find('a').removeClass('selected'); // remove old selection
       var curTab = $(this).attr('href'); // get current tab
       $(curTab).show().siblings('fieldset').hide(); // show current and hide others
-      $(this).addClass('selected').siblings(); // add class selected to current tab
+      $(this).addClass('selected'); // add class selected to current tab
       return false;
     });
   };
