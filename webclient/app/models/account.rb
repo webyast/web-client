@@ -22,7 +22,8 @@ class Account < ActiveRecord::Base
   # Authenticates a user by their login name and unencrypted password to host.
   # Returns pair of [ account, token ]
   #
-  # Will raise unless uri is a valid uri
+  # Will raise unless uri is a valid uri or if target host is blocked by
+  # failed attempt to login
   #
   def self.authenticate(login, passwd, uri_s)
     # host is just a hostname, and we want to set the
@@ -66,9 +67,19 @@ class Account < ActiveRecord::Base
       YaST::ServiceResource::Base.password = ret.attributes["auth_token"].attributes["value"]
       YaST::ServiceResource::Session.auth_token = ret.attributes["auth_token"].attributes["value"]
       return acc, ret.attributes["auth_token"].attributes["value"]
+    elsif (ret && ret.attributes["login"] == "blocked")
+      raise BlockedService.new(ret.attributes["remain"])
     else
       puts "Authenticate Failure"
       return nil, nil
+    end
+  end
+
+  class BlockedService < RuntimeError
+    attr_accessor :time
+
+    def initialize(time)
+      @time = time
     end
   end
 

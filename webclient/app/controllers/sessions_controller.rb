@@ -70,6 +70,12 @@ class SessionsController < ApplicationController
       rescue SocketError => e
         redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "ecantresolve"
         return
+      rescue Account::BlockedService => e
+        session[:user] = session[:host] = nil
+        #show warning that user cannot log to host to %s time
+        flash[:warning] = _("Host is blocked to login to %s") % e.time.to_s
+        redirect_to :action => "new", :hostid => host.id
+        return
       end
       
       # Now check if the authentication was successful
