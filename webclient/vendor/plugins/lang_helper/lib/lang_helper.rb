@@ -42,6 +42,12 @@ module LangHelper
   end
 
   def current_locale_name
+    # check full locale at first (language + country)
+    if LANGUGAGES.has_key?(locale.to_s)
+      return language_name locale.to_s
+    end
+
+    # use only language code
     language_name current_locale
   end
 
