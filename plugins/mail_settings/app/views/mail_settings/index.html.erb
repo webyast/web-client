@@ -1,5 +1,3 @@
-<div class='plugin-icon'><img src='/icons/yast-mail-server.png'/></div>
-
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
 
@@ -29,8 +27,11 @@
   </script>
 <% end %>
 
-
+<!-- <div class='plugin-icon'><img src='/icons/yast-mail-server.png'/></div> -->
+<div class='plugin-icon'><img src='/icons/yast-mail-server.png'/></div>
 <h2><%=_("Mail Settings")%></h2>
+
+<div class='plugin-content'>
 
 <% disabled = ! @permissions[:write] %>
 

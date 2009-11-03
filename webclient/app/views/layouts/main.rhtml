@@ -4,6 +4,7 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <%= stylesheet_link_tag "yast", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "grid", :title=>"default", :charset=>"utf-8" %>
   <%= stylesheet_link_tag "style", :title=>"default", :charset=>"utf-8" %>
   <%= stylesheet_link_tag "jquery.jqplot.css", :title=>"default", :charset=>"utf-8" %>
   <%= stylesheet_link_tag "jquery-ui-1.7.2.custom.css", :title=>"default", :charset=>"utf-8" %>
@@ -60,15 +61,14 @@
       <% end -%>
       </div>
     </div>
-
-    <div id="content" class="content">
-
-
+    
+    <div id="content" class="container_12">
+      
       <!-- here both flash and dynamic notifications should be added -->
-      <div id="flash-messages">
-      <div id="language_selection"/>
+      <div id="flash-messages" class="grid_12">
+      <div id="language_selection"></div>
       <!-- show the flash messages -->
-
+      
       <% flash.each do |flash_type, message| %>
         <%
           flash_icon = case flash_type
@@ -80,24 +80,23 @@
             else "ui-state-highlight"
           end
         %>
-
-        <div class="flash-message <%= flash_style %> ui-corner-all" style="margin-top: 20px; padding: .7em;">
-          <p><span class="ui-icon <%= flash_icon %>" style="float: left; margin-right: .3em;"></span><strong><%= message %></strong></p>
+        
+        <div class="flash-message <%= flash_style %> ui-corner-all grid_12">
+          <p><span class="ui-icon <%= flash_icon %>"></span><strong><%= message %></strong></p>
         </div>
         <% flash.delete flash_type -%>
       <% end %>
       </div> <!-- flash messages -->
-<br/>
-      <div id="progress" style="display:none;">
+      <div id="progress" style="display: none;">
         <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
       </div>
       
       <%= yield %>
     </div>
 
-    <div id="footer" class="">
+    <div id="footer" class="container_12">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
-
     </div>
+
   </body>
 </html>
