@@ -1,8 +1,7 @@
 function badBrowser(){
-    if(   ($.browser.msie() && parseInt($.browser.version) == 7 ) 
-       ||  $.browser.firefox()
-       ||  $.browser.opera()
-       ||  $.browser.safari() ) { return false;}
+    if(   ($.browser.msie() && parseInt($.browser.version.string()) == 8 )
+       || ($.browser.firefox() && parseFloat($.browser.version.string()) >= 3.5 )
+      ) { return false;}
     return true;
 }
 
@@ -29,7 +28,7 @@ function setBadBrowser(c_name,value,expiredays)
 
 if(badBrowser() && getBadBrowser('browserWarning') != 'seen' ){
     $(function(){
-            $("<div id='browserWarning'>You are using an unsupported browser. Please switch to <a href='http://getfirefox.com'>FireFox</a>, <a href='http://www.opera.com/download/'>Opera</a>, <a href='http://www.apple.com/safari/'>Safari</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 7</a>. Thanks!&nbsp;&nbsp;&nbsp;[<a href='#' id='warningClose'>close</a>] </div> ")
+            $("<div id='browserWarning'>You are using an unsupported browser. Please switch to <a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>. Thanks!&nbsp;&nbsp;&nbsp;[<a href='#' id='warningClose'>close</a>] </div> ")
                 .css({
                     backgroundColor: '#fcfdde',
                         'width': '100%',
