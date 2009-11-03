@@ -12,7 +12,7 @@
 Name:           yast2-webclient-services
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controller.rb
-License:        GPLv2
+License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.8

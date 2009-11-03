@@ -11,7 +11,7 @@
 
 Name:           yast2-webclient-system
 PreReq:         yast2-webclient >= 0.0.2
-License:        GPLv2
+License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.4
