@@ -9,7 +9,7 @@
       <li>
         <ul>
           <li>
-            <strong><%= link_to host.name, new_session_path(:hostid => "#{host.id}") %></strong>
+            <strong><%= link_to h(host.name), new_session_path(:hostid => "#{host.id}") %></strong>
           </li>
           <li>
             <span class="li-url"><%=h host.url %></span>
