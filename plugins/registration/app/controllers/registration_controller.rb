@@ -89,7 +89,7 @@ class RegistrationController < ApplicationController
     @changed_services = []
     success = false
     begin
-      register = @client.create({:arguments=>@arguments, 
+      register = @client.create({:arguments=> { 'argument' => @arguments }, 
                                 :options=>@options})
       logger.debug "registration finished: #{register.to_xml}"
       @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
