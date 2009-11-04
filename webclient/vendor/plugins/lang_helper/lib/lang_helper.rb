@@ -10,7 +10,7 @@ module LangHelper
   bindtextdomain("lang_helper", 
         :path => File.join(RAILS_ROOT, "vendor/plugins/lang_helper/locale"))
 
-  LANGUGAGES = { 'af' => 'Afrikaans', 'ar' => 'العربية', 'be' => 'Беларуская', 'bg' => 'Български', 'bn' => 'বাংলা',
+  LANGUAGES = { 'af' => 'Afrikaans', 'ar' => 'العربية', 'be' => 'Беларуская', 'bg' => 'Български', 'bn' => 'বাংলা',
     'bs' => 'Bosanski', 'ca' => 'Català', 'cs' => 'Čeština', 'cy' => 'Cymraeg', 'da' => 'Dansk',
     'de' => 'Deutsch', 'el' => 'Ελληνικά ', 'en' => 'English', 'en_GB' => 'English (UK)', 'en_US' => 'English (US)',
     'es' => 'Español', 'et' => 'Eesti', 'fi' => 'Suomi', 'fr' => 'Français', 'gl' => 'Galego',
@@ -33,7 +33,7 @@ module LangHelper
   end
 
   def language_name(code)
-    language = LANGUGAGES[code]
+    language = LANGUAGES[code]
     if language.nil?
       Rails.logger.warn "Missing text for language code #{current_locale}"
       language = code
@@ -43,7 +43,7 @@ module LangHelper
 
   def current_locale_name
     # check full locale at first (language + country)
-    if LANGUGAGES.has_key?(locale.to_s)
+    if LANGUAGES.has_key?(locale.to_s)
       return language_name locale.to_s
     end
 
