@@ -53,7 +53,7 @@ class NetworkController < ApplicationController
     end
     @ip, @netmask = ipaddr.split "/"
     # when detect PREFIXLEN with leading "/"
-    if ifc.bootproto == "static" && NETMASK_RANGE.include?(netmask.to_i)
+    if ifc.bootproto == "static" && NETMASK_RANGE.include?(@netmask.to_i)
       @netmask = "/"+@netmask
     end    
 #    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
