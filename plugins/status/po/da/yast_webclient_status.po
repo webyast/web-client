@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-05 17:02+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <opensuse-translation@opensuse.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Ugyldig session, log venligst ind igen."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Grænse for ledig diskplads overskredet;"
 
@@ -73,14 +73,21 @@ msgstr "Maksimumværdi"
 msgid "Save"
 msgstr "Gem"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "En fejl opstod under indlæsning af statusinformation."
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Vis detaljer..."
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Ingen information tilgængelig."
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Dit system er i god tilstand."
+
+#~ msgid "Show details..."
+#~ msgstr "Vis detaljer..."

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-22 17:40+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 20:03+0100\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -13,24 +13,23 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 0.2\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr "Morate prihvatiti sve licence krajnjeg korisnika prije korištenja ovog proizvoda!"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "Ne mogu preusmjeriti na licencu krajnjeg korisnika. Pobrinite se da je instaliran paket yast2-webclient-eulas"
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Molimo vas da se prijavite da biste mogli nastaviti"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Morate se odjaviti prije nego što se možete prijaviti"
 
 #: app/controllers/hosts_controller.rb:25
-#| msgid "Connected to: %s"
 msgid "Can't connect to host %s."
 msgstr "Ne mogu se spojiti na računao %s."
 
@@ -43,7 +42,6 @@ msgid "Please select a host to connect to."
 msgstr "Molimo vas da odaberete računalo na koje se želite spojiti."
 
 #: app/controllers/hosts_controller.rb:31
-#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
 msgstr "Računalo '%s' ne može biti pronađeno."
 
@@ -67,7 +65,7 @@ msgstr "Lozinka nije navedena"
 msgid "Login incorrect. Check your username and password."
 msgstr "Prijava nije ispravna. Provjerite vaše korisničko ime i lozinku."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Odjavili ste se."
 
@@ -123,15 +121,19 @@ msgstr "Računalo|Napravljeno na"
 msgid "Host|Updated at"
 msgstr "Računalo|Nadograđeno na"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr " ili "
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Sačuvaj"
 
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Dalje"
 
@@ -151,6 +153,15 @@ msgstr "Obriši"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Da li ste sigurni?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Nema dostupnih informacija"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Dogodio se problem prilikom dohvaćanja podataka sa poslužitelja."
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -215,20 +226,21 @@ msgid "Problem:"
 msgstr "Problem:"
 
 #: app/views/shared/exception_trap.html.erb:16
+#| msgid "Problem occured on target machine."
+msgid "Problem occured on target machine"
+msgstr "Dogodio se problem na ciljnom računalu"
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Molio vas da prijavite grešku tako da možemo popraviti problem."
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(veza za prijavu)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Nemojte zaboraviti uključiti detalje o greški."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Nema dostupnih informacija"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -344,35 +356,44 @@ msgstr "Umetak za status nije instaliran."
 msgid "Show all modules"
 msgstr "Prikaži sve module"
 
-#: lib/error_constructor.rb:10
-#| msgid "Action '%1' is not allowed for service '%2'."
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr "Servis %s nije dostupan na ciljnom računalu"
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr "Servis %s nije pokrenut na ciljnom računalu"
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "Dozvola %s nije odobrena za korisnika %s"
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Policy kit iznimka za korisnika %s i dozvole %s (neprevedena poruka): %s"
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Nitko nije prijavljen na REST servis."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr "Korisnik više nije prijavljen na ciljno računalo. Molimo vas da se ponovo prijavite."
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Ciljni sustav nije konzistentan. Nedostaje ili je oštećena datoteka %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Ne postoji unaprijed određen ntp poslužitelj u /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Dogodila se greška prilikom ntp sinkronizacije: %s"
 
-#: lib/error_constructor.rb:25
-#| msgid "Error while closing old shadow file: %m"
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Greška prilikom spremanja postavki administratora: %s"
+
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Nitko nije prijavljen na REST servis."
 
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ADMINISTRATOR_ERROR"

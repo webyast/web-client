@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_mail_settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-20 19:50+0900\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 20:00+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,56 +18,53 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "パスワードが一致しません。"
 
-#: app/controllers/mail_settings_controller.rb:43
-#| msgid "Error while closing old opasswd file: %s"
+#: app/controllers/mail_settings_controller.rb:36
+#| msgid "All services have been refreshed."
+msgid "Mail settings have been written."
+msgstr "メール設定を書き込みました。"
+
+#: app/controllers/mail_settings_controller.rb:44
 msgid "Error while saving mail settings: %s"
 msgstr "メール設定を保存する際にエラーが発生しました: %s"
 
 #: app/views/mail_settings/index.html.erb:21
-#| msgid "Enter your IP address."
 msgid "Enter a valid domain name or an IP address."
 msgstr "正しいドメイン名か IP アドレスを入力してください。"
 
 #: app/views/mail_settings/index.html.erb:33
-#| msgid "Manual Settings"
 msgid "Mail Settings"
 msgstr "メール設定"
 
 #: app/views/mail_settings/index.html.erb:42
-#| msgid "Name Server Address"
-msgid "SMTP server address"
-msgstr "SMTP サーバアドレス"
+msgid "Outgoing mail server (SMTP)"
+msgstr "外部向けメール配送サーバ (SMTP)"
+
+#: app/views/mail_settings/index.html.erb:45
+msgid "Transport Layer Security (TLS)"
+msgstr "トランスポート層セキュリティ (TLS)"
 
 #: app/views/mail_settings/index.html.erb:46
-msgid "Transport Layer Security (TLS)"
-msgstr "Transport Layer Security (TLS)"
-
-#: app/views/mail_settings/index.html.erb:47
 msgid "Disabled"
 msgstr "無効"
 
-#: app/views/mail_settings/index.html.erb:47
-#| msgid "(%1 available)"
+#: app/views/mail_settings/index.html.erb:46
 msgid "If available"
 msgstr "利用可能であれば"
 
-#: app/views/mail_settings/index.html.erb:47
-#| msgid "Alwa&ys"
+#: app/views/mail_settings/index.html.erb:46
 msgid "Always"
 msgstr "常に"
 
-#: app/views/mail_settings/index.html.erb:50
-#| msgid "Username: "
+#: app/views/mail_settings/index.html.erb:48
 msgid "User name"
 msgstr "ユーザ名"
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "パスワード"
 
-#: app/views/mail_settings/index.html.erb:58
-#| msgid "_Confirm Password:"
+#: app/views/mail_settings/index.html.erb:54
 msgid "Confirm Password"
 msgstr "パスワードの確認"
 

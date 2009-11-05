@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2006-01-04 08:58+0100\n"
 "Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
 "Language-Team: Belarusian <i18n@suse.de>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr ""
 
@@ -86,15 +86,17 @@ msgstr "Максімальная хутасць ў бодах"
 msgid "Save"
 msgstr "Захаваць"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+msgid "An problem occured when loading status information."
 msgstr ""
+
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "No additional information"
+msgid "No status information available"
+msgstr "Няма дадатковай інфармацыі"
 
 #: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr ""
-
-#: app/views/status/_status_summary.html.erb:26
 #, fuzzy
 #| msgid "<p>Your system is ready for use.</p>"
 msgid "Your system is healthy."

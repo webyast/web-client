@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.uk\n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-09-27 16:10-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Нечинний сеанс, увійдіть знов."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Перевищено межу вільного місця на диску;"
 
@@ -78,14 +78,21 @@ msgstr "Максимальне значення"
 msgid "Save"
 msgstr "Зберегти"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "Під час завантаження інформації про стан трапилась помилка."
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Показати подробиці..."
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Інформація недоступна."
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Ваша система здорова."
+
+#~ msgid "Show details..."
+#~ msgstr "Показати подробиці..."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -17,6 +17,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "Ungaqali"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -38,23 +44,29 @@ msgstr ""
 msgid "Network"
 msgstr "Inethiwekhi"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "I-Interface"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "selection"
+msgid "Select"
+msgstr "okukhethiwe"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
 #, fuzzy
 #| msgid "Own Address"
-msgid "IP Address"
+msgid "IP address"
 msgstr "Ikheli Lakho"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "Ukuhlela"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -64,44 +76,47 @@ msgstr "Isanduleli Sokudayela"
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Igama Lesiphakeli"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "I-domain\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Name Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "Isiphakelalwazi Segama"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr ""
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "Umgudu Wokwaziswa Oyi-default"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Vuselela Uhlelo"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Gcina"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Emuva"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Khansela"
 
 #: app/views/network/edit.html.erb:1
 #, fuzzy
@@ -138,3 +153,9 @@ msgstr "Idivayisi"
 #| msgid "Start-Up"
 msgid "Startup"
 msgstr "Ukuqalisa"
+
+#~ msgid "Update"
+#~ msgstr "Vuselela Uhlelo"
+
+#~ msgid "Back"
+#~ msgstr "Emuva"

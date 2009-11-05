@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-10-20 21:22+0100\n"
-"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 15:04+0100\n"
+"Last-Translator: Andrea Florio <andrea@opensuse.org>\n"
 "Language-Team: italiano <translations@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Italian\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Sessione non valida, per favore fai il login di nuovo."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Il limite di spazio libero sul disco è stato superato;"
 
@@ -78,15 +78,20 @@ msgstr "Valore massimo"
 msgid "Save"
 msgstr "Salva"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "Si è verificato un errore durante il caricamento dello stato delle informazioni."
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Mostra dettagli..."
+#: app/views/status/_status_summary.html.erb:6
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Nessuna informazione sullo stato disponibile."
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Il tuo sistema è recuperato."
+
+#~ msgid "Show details..."
+#~ msgstr "Mostra dettagli..."
 

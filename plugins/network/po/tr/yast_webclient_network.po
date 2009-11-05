@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -20,6 +20,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "not connected"
+msgid "not set"
+msgstr "bağlı değil"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -43,23 +49,29 @@ msgstr ""
 msgid "Network"
 msgstr "Ağ Bağlantı Durumu"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Arayüz"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select Script"
+msgid "Select"
+msgstr "Komut dosyası seçin"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
 #, fuzzy
 #| msgid "Own Address"
-msgid "IP Address"
+msgid "IP address"
 msgstr "Yerel adres"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "Yapılandırma"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr ""
 
@@ -67,46 +79,49 @@ msgstr ""
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Makine adları"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Alan\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Name Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "Ad sunucusu"
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:125
 #, fuzzy
 #| msgid "Search"
-msgid "Search Domains"
+msgid "Search domains"
 msgstr "Ara"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "Öntanımlı yol"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Güncelleştir"
-
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
 msgstr ""
+
+# /usr/lib/YaST2/keyboard_raw.ycp:139
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Vazgeç"
 
 # classnames.ycp:171 classnames.ycp:176
 #: app/views/network/edit.html.erb:1
@@ -140,3 +155,6 @@ msgstr "Aygıtlar"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr ""
+
+#~ msgid "Update"
+#~ msgstr "Güncelleştir"

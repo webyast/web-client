@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-27 20:02+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -18,24 +18,23 @@ msgstr ""
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr "Należy zaakceptować wszystkie licencje EULA, by móc używać tego produktu!"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "Nie można uzyskać przekierowania do licencji EULA. Należy upewnić się, czy pakiet yast2-webclient-eulas został zainstalowany."
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Proszę zalogować się by kontynuować"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Należy się wylogować przed ponownym zalogowaniem"
 
 #: app/controllers/hosts_controller.rb:25
-#| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
 msgstr "Nie można podłączyć się do %s."
 
@@ -48,7 +47,6 @@ msgid "Please select a host to connect to."
 msgstr "Proszę wybrać host, z którym zostanie nawiązane połaczenie."
 
 #: app/controllers/hosts_controller.rb:31
-#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
 msgstr "Repozytorium '%s' nie zostało znalezione."
 
@@ -72,7 +70,7 @@ msgstr "Nie podano hasła"
 msgid "Login incorrect. Check your username and password."
 msgstr "Logowanie nieudane. Sprawdź nazwę użytkownika oraz hasło"
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Użytkownik został wylogowany"
 
@@ -128,17 +126,20 @@ msgstr "Host|Utworzony"
 msgid "Host|Updated at"
 msgstr "Host|Uaktualniono"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Zapisz"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6
-#: app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "&Następny"
 
@@ -159,6 +160,15 @@ msgstr "Usuń"
 msgid "Are you sure?"
 msgstr "Na pewno?"
 
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Brak dostępnej informacji"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr ""
+
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
 msgstr "Proszę wybrać usługę:"
@@ -175,18 +185,15 @@ msgstr "Edycja YaST-Web-Service "
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:27
-#: app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nazwa"
 
-#: app/views/hosts/edit.html.erb:31
-#: app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:35
-#: app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Opis"
 
@@ -225,20 +232,22 @@ msgid "Problem:"
 msgstr "Problem:"
 
 #: app/views/shared/exception_trap.html.erb:16
+#, fuzzy
+#| msgid "Problem occured on target machine."
+msgid "Problem occured on target machine"
+msgstr "Na maszynie docelowej wystąpił problem. "
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Prosimy zgłosić bład, by można było naprawić problem."
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(link do zgłoszenia)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Prosimy umieścić szczegóły dotyczące błędu."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Brak dostępnej informacji"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -276,13 +285,11 @@ msgstr "Wyloguj"
 msgid "...Wait..."
 msgstr "...Proszę czekać..."
 
-#: app/views/sessions/new.rhtml:4
-#: app/views/sessions/new.rhtml:16
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "Login"
 
 #: app/views/sessions/new.rhtml:6
-#| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
 msgstr "Proszę wprowadzić informacje uwierzytelniające logowanie dla hosta %s."
 
@@ -356,37 +363,44 @@ msgstr "Nie zainstalowano wtyczki statusu."
 msgid "Show all modules"
 msgstr "Wyświetl wszystkie moduły"
 
-#: lib/error_constructor.rb:10
-#| msgid "Action '%1' is not allowed for service '%2'."
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "Nie można uzyskać zezwolenia %s dla użytkownika %s "
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Wyjątek Policy Kit dla użytkownika %s i uprawnień %s (nieprzetłumaczony komunikat): %s"
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Nikt nie jest zalogowany do pozostałych usług."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Docelowy system jest niespójny: brakuje pliku %s lub jest on uszkodzony "
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Brak predefiniowanego serwera NTP w /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:22
-#| msgid "An error occurred during the installation."
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Wystąpił błąd podczas synchronizacji NTP: %s"
 
-#: lib/error_constructor.rb:25
-#| msgid "Error while closing old shadow file: %m"
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Wystąpił błąd podczas zapisu ustawień administracyjnych: %s"
 
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Nikt nie jest zalogowany do pozostałych usług."
+
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ADMINISTRATOR_ERROR"
-

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2002-07-23 18:27+0200\n"
 "Last-Translator: Damir Bjelobradic <Nagual@lugbih.org>\n"
 "Language-Team: Bosnian <i18n@suse.de>\n"
@@ -14,6 +14,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "not connected"
+msgid "not set"
+msgstr "niste spojeni"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -35,22 +41,26 @@ msgstr ""
 msgid "Network"
 msgstr "Mreža"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr ""
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+msgid "Select"
+msgstr ""
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+msgid "IP address"
 msgstr ""
 
 # %s is either BOOTP or DHCP
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "%s configuration failed."
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "%s podešavanje nije uspjelo."
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr ""
 
@@ -58,41 +68,41 @@ msgstr ""
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr ""
 
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr ""
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+msgid "Name servers"
 msgstr ""
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:125
 #, fuzzy
 #| msgid "Search"
-msgid "Search Domains"
+msgid "Search domains"
 msgstr "Traži"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+msgid "Default route"
 msgstr ""
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-#, fuzzy
-#| msgid "U_pdate every:"
-msgid "Update"
-msgstr "_Ažuriraj svakih:"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr ""
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Nazad"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+#, fuzzy
+#| msgid "France"
+msgid "Cancel"
+msgstr "Francuska"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -128,3 +138,11 @@ msgstr "Uređaji"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr ""
+
+#, fuzzy
+#~| msgid "U_pdate every:"
+#~ msgid "Update"
+#~ msgstr "_Ažuriraj svakih:"
+
+#~ msgid "Back"
+#~ msgstr "Nazad"

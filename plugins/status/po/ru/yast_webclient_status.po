@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
-"PO-Revision-Date: 2009-09-23 22:45+0400\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-11-01 02:04+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Неверный сеанс, пожалуйста, войдите снова."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Превышены ограничения свободного места;"
 
@@ -75,14 +75,19 @@ msgstr "Максимальное значение"
 msgid "Save"
 msgstr "Сохранить"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "При загрузке сведений о состоянии произошла ошибка."
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Показать подробности..."
+#: app/views/status/_status_summary.html.erb:6
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Сведения о состоянии недоступны"
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Ваша система здорова."
+
+#~ msgid "Show details..."
+#~ msgstr "Показать подробности..."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-10 22:34+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -21,6 +21,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "ਨੈੱਟਵਰਕ ਮੋਡੀਊਲ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ"
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "ਨਾ ਸ਼ੁਰੂ ਕਰੋ"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -42,19 +48,29 @@ msgstr ""
 msgid "Network"
 msgstr "ਨੈੱਟਵਰਕ"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "ਇੰਟਰਫੇਸ"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select Script"
+msgid "Select"
+msgstr "ਸਕਰਿਪਟ ਚੁਣੋ"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "IP Address"
+msgid "IP address"
 msgstr "IP ਐਡਰੈੱਸ"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+#, fuzzy
+#| msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "ਸੰਰਚਨਾ ਮੋਡ"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -64,38 +80,45 @@ msgstr "ਡਾਇਲ ਪ੍ਰੀ-ਫਿਕਸ"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "ਹੋਸਟ ਨਾਂ"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "ਡੋਮੇਨ"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+#, fuzzy
+#| msgid "Name Servers"
+msgid "Name servers"
 msgstr "ਨੇਮ ਸਰਵਰ"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+#, fuzzy
+#| msgid "Search Domains"
+msgid "Search domains"
 msgstr "ਖੋਜ ਡੋਮੇਨ"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "ਰਾਊਟਿੰਗ"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "ਡਿਫਾਲਟ ਰਾਊਟ"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "ਅੱਪਡੇਟ"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "ਸੰਭਾਲੋ"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "ਪਿੱਛੇ"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -124,3 +147,9 @@ msgstr "ਜੰਤਰ ਨਾਂ"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "ਸ਼ੁਰੂ"
+
+#~ msgid "Update"
+#~ msgstr "ਅੱਪਡੇਟ"
+
+#~ msgid "Back"
+#~ msgstr "ਪਿੱਛੇ"

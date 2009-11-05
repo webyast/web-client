@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-21 09:25+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 19:01+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -23,9 +23,13 @@ msgstr ""
 msgid "No permissions for network module"
 msgstr "Geen toestemming voor de netwerkmodule"
 
+#: app/controllers/network_controller.rb:66
+#| msgid "Do not start"
+msgid "not set"
+msgstr "niet ingesteld"
+
 # /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
 #: app/controllers/network_controller.rb:66
-#| msgid "Static"
 msgid "static"
 msgstr "statisch"
 
@@ -46,19 +50,26 @@ msgstr "Ongeldige IP-adresopmaak. De juiste is nnn.nnn.nnn.nnn met nnn tussen 0 
 msgid "Network"
 msgstr "Netwerk"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Interface"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+#| msgid "_Selection"
+msgid "Select"
+msgstr "Selectie"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#| msgid "IP Address"
+msgid "IP address"
 msgstr "IP-adres"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+#| msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "Configuratiemodus"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr "Lengte voorvoegsel"
 
@@ -66,38 +77,42 @@ msgstr "Lengte voorvoegsel"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "Hostnaam"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "Domein"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+#| msgid "Name Servers"
+msgid "Name servers"
 msgstr "Naamservers"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
-msgstr "Domeinen zoeken"
+#: app/views/network/index.html.erb:125
+#| msgid "&Search domains:"
+msgid "Search domains"
+msgstr "Zoeken naar domeinen"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "Routering"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "Standaardroute"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Opwaarderen"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Opslaan"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Terug"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Annuleren"
 
 # /usr/lib/YaST2/clients/dialup_dev_cfg.ycp:71
 #: app/views/network/edit.html.erb:1

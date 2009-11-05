@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -22,7 +22,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "口令不匹配。"
 
-#: app/controllers/mail_settings_controller.rb:43
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr ""
+
+#: app/controllers/mail_settings_controller.rb:44
 #, fuzzy
 #| msgid "Error while closing old opasswd file: %s"
 msgid "Error while saving mail settings: %s"
@@ -41,44 +45,47 @@ msgid "Mail Settings"
 msgstr "手动设置"
 
 #: app/views/mail_settings/index.html.erb:42
-#, fuzzy
-#| msgid "Name Server Address"
-msgid "SMTP server address"
-msgstr "名称服务器地址"
+msgid "Outgoing mail server (SMTP)"
+msgstr ""
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr "已禁用"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "(%1 available)"
 msgid "If available"
 msgstr "（%1 可用）"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Alwa&ys"
 msgid "Always"
 msgstr "总是(&Y)"
 
-#: app/views/mail_settings/index.html.erb:50
+#: app/views/mail_settings/index.html.erb:48
 #, fuzzy
 #| msgid "Username: "
 msgid "User name"
 msgstr "用户名："
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "口令"
 
-#: app/views/mail_settings/index.html.erb:58
+#: app/views/mail_settings/index.html.erb:54
 #, fuzzy
 #| msgid "_Confirm Password:"
 msgid "Confirm Password"
 msgstr "确认口令(_C)："
+
+#, fuzzy
+#~| msgid "Name Server Address"
+#~ msgid "SMTP server address"
+#~ msgstr "名称服务器地址"

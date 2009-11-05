@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -18,7 +18,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "Wagwoorde stem nie ooreen nie."
 
-#: app/controllers/mail_settings_controller.rb:43
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr ""
+
+#: app/controllers/mail_settings_controller.rb:44
 #, fuzzy
 #| msgid "Error while closing old opasswd file: %s"
 msgid "Error while saving mail settings: %s"
@@ -37,42 +41,45 @@ msgid "Mail Settings"
 msgstr "Instellings met die hand"
 
 #: app/views/mail_settings/index.html.erb:42
-#, fuzzy
-#| msgid "Name Server Address"
-msgid "SMTP server address"
-msgstr "Naambedieneradres"
+msgid "Outgoing mail server (SMTP)"
+msgstr ""
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr "Versper"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Help Unavailable"
 msgid "If available"
 msgstr "Hulp nie beskikbaar nie"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Alwa&ys"
 msgid "Always"
 msgstr "Alt&yd"
 
-#: app/views/mail_settings/index.html.erb:50
+#: app/views/mail_settings/index.html.erb:48
 msgid "User name"
 msgstr ""
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "Wagwoord"
 
-#: app/views/mail_settings/index.html.erb:58
+#: app/views/mail_settings/index.html.erb:54
 #, fuzzy
 #| msgid "_Confirm Password:"
 msgid "Confirm Password"
 msgstr "_Bevestig wagwoord:"
+
+#, fuzzy
+#~| msgid "Name Server Address"
+#~ msgid "SMTP server address"
+#~ msgstr "Naambedieneradres"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-08 19:38+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 13:55+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,11 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Érvénytelen munkamenet, lépjen be újra."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "A szabad lemezterület elérte a határértéket."
 
@@ -74,14 +74,17 @@ msgstr "Maximális érték"
 msgid "Save"
 msgstr "Mentés"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "Hiba történt az állapotinformáció betöltése közben."
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Részletek megjelenítése..."
+#: app/views/status/_status_summary.html.erb:6
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Nincs elérhető állapotinformáció"
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "A rendszer stabil."
+

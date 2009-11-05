@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-06 21:42+0100\n"
 "Last-Translator: Jan Madsen <jan-portugal@opensuse.org>\n"
 "Language-Team: Danish <opensuse-da@opensuse.org>\n"
@@ -13,19 +13,19 @@ msgstr ""
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr ""
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Log ind for at fortsætte"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Du skal logge ud før du kan logge ind"
 
@@ -71,7 +71,7 @@ msgstr "Ingen adgangskode angivet"
 msgid "Login incorrect. Check your username and password."
 msgstr "Login forkert. Tjek dit brugernavn og adgangskode."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Du er blevet logget ud."
 
@@ -127,16 +127,20 @@ msgstr "Vært|Oprettet d."
 msgid "Host|Updated at"
 msgstr "Vært|Opdateret d."
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Gem"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Annullér"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Næste"
 
@@ -156,6 +160,15 @@ msgstr "Slet"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Er du sikker?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Ingen information tilgængelig"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr ""
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -220,20 +233,22 @@ msgid "Problem:"
 msgstr "Problem: "
 
 #: app/views/shared/exception_trap.html.erb:16
+#, fuzzy
+#| msgid "Problem occur on target machine."
+msgid "Problem occured on target machine"
+msgstr "Problem opstår på målmaskine."
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Vær venlig at rapportere en fejl så vi kan løse problemet!"
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(rapport-link)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Glem ikke at inkludere fejldetaljerne."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Ingen information tilgængelig"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 #, fuzzy
@@ -353,36 +368,47 @@ msgstr "Status-plugin er ikke installeret."
 msgid "Show all modules"
 msgstr "Vis alle moduler"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:17
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Handlingen '%1' er ikke tilladt for tjenesten '%2'."
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Ingen er logget til rest-tjeneste."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Der opstod en fejl under installationen."
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Fejl under lukning af gammel shadow-fil: %m"
+
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Ingen er logget til rest-tjeneste."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr ""
 
@@ -96,20 +96,25 @@ msgstr "ขนาดสูงสุด"
 msgid "Save"
 msgstr "จัดเก็บ"
 
-#: app/views/status/_status_summary.html.erb:12
+#: app/views/status/_status_summary.html.erb:1
 #, fuzzy
 #| msgid "An error occurred during initrd creation."
-msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:6
 #, fuzzy
-#| msgid "Show &details"
-msgid "Show details..."
-msgstr "แสดงรายละเอียด"
+#| msgid "<P>No information available.</P>"
+msgid "No status information available"
+msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 #, fuzzy
 #| msgid "<p>Your system is ready for use.</p>"
 msgid "Your system is healthy."
 msgstr "<p>ระบบของคุณพร้อมที่จะใช้งานได้แล้ว</p>"
+
+#, fuzzy
+#~| msgid "Show &details"
+#~ msgid "Show details..."
+#~ msgstr "แสดงรายละเอียด"

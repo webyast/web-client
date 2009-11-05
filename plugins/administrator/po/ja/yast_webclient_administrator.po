@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-20 19:41+0900\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 19:48+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,43 +14,50 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/administrator_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "セッションが無効です。ログインし直してください。"
-
-#: app/controllers/administrator_controller.rb:42
+#: app/controllers/administrator_controller.rb:35
 #: app/views/administrator/index.html.erb:32
 msgid "Enter a valid e-mail address."
 msgstr "正しい電子メールアドレスを入力してください。"
 
-#: app/controllers/administrator_controller.rb:50
+#: app/controllers/administrator_controller.rb:43
 msgid "Passwords do not match."
 msgstr "パスワードが一致しません。"
 
-#: app/controllers/administrator_controller.rb:76
-#| msgid "Error while closing old shadow file: %m"
+#: app/controllers/administrator_controller.rb:60
+#| msgid "Administrator Settings"
+msgid "Administrator settings have been written."
+msgstr "管理者設定を書き込みました。"
+
+#: app/controllers/administrator_controller.rb:70
 msgid "Error while saving administrator settings: %s"
 msgstr "管理者設定を保存する際にエラーが発生しました: %s"
 
-#: app/views/administrator/index.html.erb:38
+#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:48
 msgid "Administrator Settings"
 msgstr "管理者設定"
 
+#: app/views/administrator/index.html.erb:40
+#| msgid "Passwords do not match."
+msgid "The passwords do not match."
+msgstr "パスワードが一致しません。"
+
 # password dialog title
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:55
 msgid "Password"
 msgstr "パスワード"
 
-#: app/views/administrator/index.html.erb:51
-msgid "Confirm Password"
+#: app/views/administrator/index.html.erb:59
+#| msgid "Confirm Password"
+msgid "Confirm password"
 msgstr "パスワードの確認"
 
-#: app/views/administrator/index.html.erb:53
-#: app/views/administrator/index.html.erb:58
+#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:66
 msgid "Save"
 msgstr "保存"
 
-#: app/views/administrator/index.html.erb:56
+#: app/views/administrator/index.html.erb:64
 msgid "Forward mail to"
 msgstr "メール転送先"
 

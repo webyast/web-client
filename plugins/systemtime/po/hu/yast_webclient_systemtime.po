@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-19 22:29+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 13:57+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,19 +27,19 @@ msgstr "Nincs jogosultság a hálózati modulhoz"
 msgid "Settings have been written."
 msgstr "A beállítások mentése befejeződött."
 
-#: app/views/systemtime/index.rhtml:18
+#: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
 msgstr "Nem megfelelő dátumformátum. A megfelelő formátum nn/hh/éééé"
 
-#: app/views/systemtime/index.rhtml:22
+#: app/views/systemtime/index.rhtml:25
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Nem megfelelő időformátum. A megfelelő formátum: óó:pp:mp"
 
-#: app/views/systemtime/index.rhtml:48
+#: app/views/systemtime/index.rhtml:51
 msgid "Time"
 msgstr "Idő"
 
-#: app/views/systemtime/index.rhtml:54
+#: app/views/systemtime/index.rhtml:57
 msgid "Region:"
 msgstr "Régió:"
 
@@ -47,26 +47,24 @@ msgstr "Régió:"
 msgid "Timezone:"
 msgstr "Időzóna:"
 
-#: app/views/systemtime/index.rhtml:73
+#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
 msgid "Hardware clock is set to UTC"
 msgstr "UTC-hez állított hardveróra"
 
-#: app/views/systemtime/index.rhtml:85
-msgid "Don't set time"
-msgstr "Ne állítsa be az időt"
-
-#: app/views/systemtime/index.rhtml:87
+#: app/views/systemtime/index.rhtml:83
 msgid "Manually configure time"
 msgstr "Kézi időbeállítás"
 
-#: app/views/systemtime/index.rhtml:89
-msgid "Synchronize via NTP"
-msgstr "Szinkronizáció NTP-n keresztül"
-
-#: app/views/systemtime/index.rhtml:95
+#: app/views/systemtime/index.rhtml:88
 msgid "Date:"
 msgstr "Dátum:"
 
-#: app/views/systemtime/index.rhtml:104
+#: app/views/systemtime/index.rhtml:92
 msgid "Time:"
 msgstr "Idő:"
+
+#: app/views/systemtime/index.rhtml:97
+#| msgid "Network Time Protocol daemon"
+msgid "Synchronize via Network Time Protocol (NTP)"
+msgstr "Szinkronizálás NTP használatával"
+

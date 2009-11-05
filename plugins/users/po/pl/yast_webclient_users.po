@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-27 20:44+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -23,7 +23,6 @@ msgid "Invalid session, please login again."
 msgstr "Niepoprawna sesja. Proszę zalogować się ponownie."
 
 #: app/controllers/users_controller.rb:144
-#| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully created."
 msgstr "Konto użytkownika <i>%s</i>zostało pomyślnie utworzone."
 
@@ -36,17 +35,14 @@ msgid "UID: value >= 1000 is valid for local user only"
 msgstr "UID: wartość >= jest poprawna wyłącznie dla lokalnego użytkownika"
 
 #: app/controllers/users_controller.rb:197
-#| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Konto użytkownika <i>%s</i>zostało pomyślnie zaktualizowane."
 
 #: app/controllers/users_controller.rb:218
-#| msgid "Specified lock has been successfully removed."
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Konto użytkownika <i>%s</i>zostało pomyślnie usunięte."
 
 #: app/controllers/users_controller.rb:220
-#| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Błąd: Nie można usunąć konta użytkownia <i>%s</i>."
 
@@ -58,8 +54,7 @@ msgstr "Lokalny użytkownik"
 msgid "Login"
 msgstr "Login"
 
-#: app/views/users/index.html.erb:9
-#: app/views/users/edit.html.erb:15
+#: app/views/users/index.html.erb:9 app/views/users/edit.html.erb:15
 #: app/views/users/new.html.erb:9
 msgid "Full Name"
 msgstr "Pełna nazwa"
@@ -72,8 +67,7 @@ msgstr "Edycja"
 msgid "<strong>[New User]</strong>"
 msgstr "<strong>[Nowy użytkownik]</strong>"
 
-#: app/views/users/index.html.erb:33
-#: app/views/users/edit.html.erb:47
+#: app/views/users/index.html.erb:33 app/views/users/edit.html.erb:47
 #: app/views/users/new.html.erb:45
 msgid "Back"
 msgstr "Powrót"
@@ -86,8 +80,7 @@ msgstr "Edycja użytkownika %s"
 msgid "User"
 msgstr "Nazwa użytkownika"
 
-#: app/views/users/edit.html.erb:19
-#: app/views/users/new.html.erb:13
+#: app/views/users/edit.html.erb:19 app/views/users/new.html.erb:13
 msgid "Groups"
 msgstr "Grupy"
 
@@ -95,29 +88,24 @@ msgstr "Grupy"
 msgid "Default Group"
 msgstr "Domyślna grupa"
 
-#: app/views/users/edit.html.erb:27
-#: app/views/users/new.html.erb:21
+#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:21
 msgid "Home Directory"
 msgstr "Katalog domowy"
 
-#: app/views/users/edit.html.erb:31
-#: app/views/users/new.html.erb:29
+#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:29
 msgid "Login Shell"
 msgstr "Powłoka logowania"
 
-#: app/views/users/edit.html.erb:35
-#: app/views/users/new.html.erb:33
+#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:33
 msgid "Login Name"
 msgstr "Login"
 
-#: app/views/users/edit.html.erb:39
-#: app/views/users/new.html.erb:37
+#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:37
 msgid "UID Number"
 msgstr "Wartość UID (liczba)"
 
 # password dialog title
-#: app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:41
+#: app/views/users/edit.html.erb:43 app/views/users/new.html.erb:41
 msgid "Password"
 msgstr "Hasło"
 
@@ -140,4 +128,3 @@ msgstr "NIE TWORZYĆ katalogu domowego"
 #: app/views/users/new.html.erb:45
 msgid "Create"
 msgstr "Utwórz"
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-09-25 19:42+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -20,19 +20,19 @@ msgstr ""
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr ""
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Prihláste sa prosím, ak chcete pokračovať"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Predtým, ako sa môžete prihlásiť sa musíte odhlásiť"
 
@@ -76,7 +76,7 @@ msgstr "Nebolo zadané žiadne heslo"
 msgid "Login incorrect. Check your username and password."
 msgstr "Nesprávne prihlásenie. Skontrolujte Vaše používateľské meno a heslo."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Boli ste odhlásený."
 
@@ -132,16 +132,20 @@ msgstr "Hostiteľ|Vytvorený"
 msgid "Host|Updated at"
 msgstr "Hostiteľ|Aktualizovaný"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Uložiť"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Ďalej"
 
@@ -161,6 +165,15 @@ msgstr "Odstrániť"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Ste si istý?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Nie sú dostupné žiadne informácie"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr ""
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -225,20 +238,22 @@ msgid "Problem:"
 msgstr "Problém:"
 
 #: app/views/shared/exception_trap.html.erb:16
+#, fuzzy
+#| msgid "Problem occur on target machine."
+msgid "Problem occured on target machine"
+msgstr "Na cieľovom počítači sa vyskytol problém."
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Prosíme nahláste chybu, aby sme mohli opraviť problém!."
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(kliknite pre nahlásenie chyby)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Nezabudnite zahrnúť detaily chyby."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Nie sú dostupné žiadne informácie"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 #, fuzzy
@@ -358,36 +373,47 @@ msgstr "Modul stavu nie je nainštalovaný."
 msgid "Show all modules"
 msgstr "Zobraziť všetky moduly"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:17
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Akcia '%1' nie je povolená pre službu '%2'."
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Nikto nie je prihlásený do služby."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Počas inštalácie nastala chyba."
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Chyba pri zatváraní starého shadow súboru: %m"
+
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Nikto nie je prihlásený do služby."

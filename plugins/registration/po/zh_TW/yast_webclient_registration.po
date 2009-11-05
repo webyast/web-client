@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:31+0100\n"
 "PO-Revision-Date: 2009-10-22 19:36+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -32,16 +32,15 @@ msgstr "沒有註冊的權限"
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:81
+#: app/controllers/registration_controller.rb:84
 msgid "Registration finished successfully."
 msgstr "註冊順利完成。"
 
-#: app/controllers/registration_controller.rb:104
+#: app/controllers/registration_controller.rb:108
 msgid "Please fill out missing entries."
 msgstr "請填寫缺少的項目。"
 
-#: app/controllers/registration_controller.rb:107
-#| msgid "An error occurred while reading from the installation source."
+#: app/controllers/registration_controller.rb:111
 msgid "Error occured while connecting to registration server."
 msgstr "連結到註冊伺服器時發生錯誤。"
 
@@ -50,7 +49,6 @@ msgid "register plugin"
 msgstr "註冊插件"
 
 #: app/views/registration/index.rhtml:3
-#| msgid "Administration"
 msgid "Registration"
 msgstr "註冊"
 
@@ -59,16 +57,18 @@ msgid "This table gives registration settings."
 msgstr "此表格給定註冊設定。"
 
 #: app/views/registration/index.rhtml:25
-#| msgid "Error reading repositories:"
 msgid "Changed Repositories"
 msgstr "變更的套件庫"
 
-#: app/views/registration/index.rhtml:36
-msgid "Register"
-msgstr "註冊"
+#: app/views/registration/index.rhtml:40
+#, fuzzy
+#| msgid "Changed profiles"
+msgid "Changed Services"
+msgstr "已變更的設定檔"
+
+#~ msgid "Register"
+#~ msgstr "註冊"
 
 # cancel button label
-#: app/views/registration/index.rhtml:37
-msgid "Cancel"
-msgstr "取消"
-
+#~ msgid "Cancel"
+#~ msgstr "取消"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-20 19:47+0900\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 19:57+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,11 @@ msgid "No permissions for network module"
 msgstr "ネットワークモジュールに対する許可がありません"
 
 #: app/controllers/network_controller.rb:66
-#| msgid "Static"
+#| msgid "Do not start"
+msgid "not set"
+msgstr "設定しない"
+
+#: app/controllers/network_controller.rb:66
 msgid "static"
 msgstr "固定"
 
@@ -39,19 +43,26 @@ msgstr "IP アドレスの書式が正しくありません。正しい書式は
 msgid "Network"
 msgstr "ネットワーク"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "インターフェイス"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+#| msgid "_Selection"
+msgid "Select"
+msgstr "選択"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#| msgid "IP Address"
+msgid "IP address"
 msgstr "IP アドレス"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
-msgstr "設定モジュール"
+#: app/views/network/index.html.erb:98
+#| msgid "Configuration Mode"
+msgid "Configuration mode"
+msgstr "設定モード"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr "プレフィクス長"
 
@@ -59,38 +70,42 @@ msgstr "プレフィクス長"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "ホスト名"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "ドメイン"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+#| msgid "Name Servers"
+msgid "Name servers"
 msgstr "ネームサーバ"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
-msgstr "検索ドメイン"
+#: app/views/network/index.html.erb:125
+#| msgid "&Search domains:"
+msgid "Search domains"
+msgstr "ドメイン検索"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "ルーティング"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "既定のルート"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "更新"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "保存(S)"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "戻る"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "キャンセル"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"

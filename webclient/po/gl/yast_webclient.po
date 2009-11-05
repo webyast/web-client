@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-25 11:27+0100\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-31 11:52+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,22 +14,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 0.2\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr "Debe aceptar todos os EULAS antes de usar este produto!"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid ""
 "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 "Non se pode redireccionar ao EULA. Asegúrese que o paquete yast2-webclient-"
 "eulas estea instalado"
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Inicie sesión para continuar"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Debe saír antes de poder iniciar sesión"
 
@@ -71,7 +71,7 @@ msgstr "Non se especificou ningún contrasinal"
 msgid "Login incorrect. Check your username and password."
 msgstr "Inicio de sesión incorrecto. Comprobe o nome de usuario e contrasinal."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Foi desconectado."
 
@@ -127,15 +127,19 @@ msgstr "Host|Creado o"
 msgid "Host|Updated at"
 msgstr "Host|Actualizado o"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr "ou"
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Gardar"
 
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Seguinte"
 
@@ -155,6 +159,15 @@ msgstr "Eliminar"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Está seguro?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Non hai información dispoñible"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Houbo un problema ao obter información do servidor."
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -220,21 +233,21 @@ msgid "Problem:"
 msgstr "Problema: "
 
 #: app/views/shared/exception_trap.html.erb:16
+msgid "Problem occured on target machine"
+msgstr "Aconteceu un problema na máquina destino"
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 "Por favor, envíe un informe de erro para que poidamos arranxar o problema!"
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(ligazón para enviar)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Non esqueza incluír os detalles do erro."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Non hai información dispoñible"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -354,26 +367,34 @@ msgstr "A extensión de estado non foi instalado."
 msgid "Show all modules"
 msgstr "Amosar todos os módulos"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr "O servizo %1 non está dispoñible na máquina de destino"
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr "O servizo %1 non se está executando na máquina de destino"
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "O permiso %s non se concede ao usuario %s"
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid ""
 "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 "Excepción do Policykit para o usuario %s e permiso %s (mensaxe sen "
 "traducir): %s"
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Ninguén iniciou sesión no servizo rest"
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr "Non hai un usuario conectado na máquina de destino. Entre de novo."
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "O sistema destino non é consistente: ficheiro %s perdido ou corrupto"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid ""
 "There is no predefined ntp server at /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
@@ -381,11 +402,14 @@ msgstr ""
 "Non hai servidor predefinido en /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Houbo un erro durante a sincronización ntp: %s"
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr ""
-"Ocorreu un erro mentres se gardaban a configuración do administrador: %s"
+"Ocorreu un erro mentres se gardaba a configuración do administrador: %s"
+
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Ninguén iniciou sesión no servizo rest"

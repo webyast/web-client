@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-09-25 20:08+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gamil.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Neplatné sedenie, prihláste sa znovu prosím."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Prekročené voľné limity disku;"
 
@@ -80,14 +80,21 @@ msgstr "Maximálna hodnota"
 msgid "Save"
 msgstr "Uložiť"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "Počas načítania informácie stavu nastala chyba."
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Zobraziť detaily..."
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Nie sú dostupné žiadne informácie."
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Váš systém je v poriadku."
+
+#~ msgid "Show details..."
+#~ msgstr "Zobraziť detaily..."

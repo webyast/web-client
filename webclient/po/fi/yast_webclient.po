@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-23 12:00+0300\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 21:04+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,25 +14,24 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr "Sinun täytyy hyväksyä kaikki käyttöoikeussopimukset ennen tämän tuotteen käyttöä!"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "Ei voi uudelleen ohjata EULAa. Varmista että yast2-webclient-eulas-paketti on asennettu"
 
 # %s is FTP or HTTP
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Kirjaudu jatkaaksesi"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Sinun täytyy kirjautua ulos ennen sisään kirjautumista"
 
 #: app/controllers/hosts_controller.rb:25
-#| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
 msgstr "Koneeseen %s yhdistäminen ei onnistu."
 
@@ -45,7 +44,6 @@ msgid "Please select a host to connect to."
 msgstr "Valitse kone johon yhdistetään."
 
 #: app/controllers/hosts_controller.rb:31
-#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
 msgstr "Konetta '%s' ei löytynyt."
 
@@ -69,7 +67,7 @@ msgstr "Salasanaa ei määritetty"
 msgid "Login incorrect. Check your username and password."
 msgstr "Kirjautumisvirhe. Tarkista käyttäjätunnus ja salasana."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Olet kirjautunut ulos."
 
@@ -125,16 +123,20 @@ msgstr "Kone|Luonti aika"
 msgid "Host|Updated at"
 msgstr "Kone|Päivitys aika"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr " tai "
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Tallenna"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Seuraava"
 
@@ -154,6 +156,15 @@ msgstr "Poista"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Oletko varma?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Tietoja ei saatavilla"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Ongelma haettaessa tietoja palvelimelta."
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -218,20 +229,21 @@ msgid "Problem:"
 msgstr "Ongelma:"
 
 #: app/views/shared/exception_trap.html.erb:16
+#| msgid "Problem occured on target machine."
+msgid "Problem occured on target machine"
+msgstr "Ilmeni ongelma kohdekoneessa."
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Ilmoita virheestä niin voimme korjata ongelman!"
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(ilmoitus linkki)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Älä unohda sisällyttää virheen yksityiskohtia."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Tietoja ei saatavilla"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -274,7 +286,6 @@ msgid "Login"
 msgstr "Kirjautumisnimi"
 
 #: app/views/sessions/new.rhtml:6
-#| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
 msgstr "Anna kirjautumisvaltuutus koneelle %s."
 
@@ -348,34 +359,39 @@ msgstr "Tila-liitännäistä ei ole asennettu."
 msgid "Show all modules"
 msgstr "Näytä kaikki moduulit"
 
-#: lib/error_constructor.rb:10
-#| msgid "Action '%1' is not allowed for service '%2'."
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr "Palvelua %s ei ole saatavissa kohdekoneella"
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr "Palvelu %s ei ole käynnissä kohdekoneella"
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "Oikeutta %s ei myönnetty käyttäjälle %s"
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Policy kit poikkeus käyttäjälle %s ja käyttöoikeus %s (kääntämätön viesti): %s"
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Kukaan ei ole kirjautunut rest-palveluun."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr "Käyttäjä ei ole enää kirjautuneena kohdekoneella. Kirjaudu uudestaan."
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Kohdejärjestelmä ei ole yhtenäinen. Tiedosto %s puuttuu tai on vioittunut"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Esimääritettyjä ntp-palvelimia ei löytynyt /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:22
-#| msgid "An error occurred during the installation."
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Tapahtui virhe ntp synkronoinnin aikana: %s"
 
-#: lib/error_constructor.rb:25
-#| msgid "Error while closing old shadow file: %m"
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Virhe tallennettaessa järjestelmävalvojan asetuksia: %s"
 

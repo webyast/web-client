@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-22 19:30+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -24,12 +24,18 @@ msgid "No permissions for network module"
 msgstr "無網路模組權限"
 
 #: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "不要啟動"
+
+#: app/controllers/network_controller.rb:66
 msgid "static"
 msgstr "靜態"
 
 #: app/controllers/network_controller.rb:66
 msgid "dhcp"
-msgstr ""
+msgstr "DHCP"
 
 #: app/controllers/network_controller.rb:105
 msgid "Settings have been written."
@@ -43,19 +49,29 @@ msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn
 msgid "Network"
 msgstr "網路"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "介面"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select item"
+msgid "Select"
+msgstr "選取的項目"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "IP Address"
+msgid "IP address"
 msgstr "IP 位址"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+#, fuzzy
+#| msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "組態模式"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr "撥號前置號碼"
 
@@ -63,38 +79,45 @@ msgstr "撥號前置號碼"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "主機名稱"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "領域"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+#, fuzzy
+#| msgid "Name Servers"
+msgid "Name servers"
 msgstr "名稱伺服器"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+#, fuzzy
+#| msgid "Search Domains"
+msgid "Search domains"
 msgstr "搜尋領域"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "路由"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "預設路由"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "更新"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "儲存"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "上一步"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "取消"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -124,3 +147,8 @@ msgstr "裝置名稱"
 msgid "Startup"
 msgstr "啟動"
 
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#~ msgid "Back"
+#~ msgstr "上一步"

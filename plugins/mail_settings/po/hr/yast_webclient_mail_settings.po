@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-20 18:24+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 20:01+0100\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "Lozinke se ne podudaraju."
 
-#: app/controllers/mail_settings_controller.rb:43
-#| msgid "Error while closing old opasswd file: %s"
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr "Postavke pošte su zapisane."
+
+#: app/controllers/mail_settings_controller.rb:44
 msgid "Error while saving mail settings: %s"
 msgstr "Greška kod spremanja postavki pošte: %s"
 
@@ -27,45 +30,43 @@ msgid "Enter a valid domain name or an IP address."
 msgstr "Unesite ispravan naziv domene ili IP adresu."
 
 #: app/views/mail_settings/index.html.erb:33
-#| msgid "Manual Settings"
 msgid "Mail Settings"
 msgstr "Postavke pošte"
 
 #: app/views/mail_settings/index.html.erb:42
-msgid "SMTP server address"
-msgstr "SMTP adresa poslužitelja"
+msgid "Outgoing mail server (SMTP)"
+msgstr "Odlazni poslužitelj pošte (SMTP)"
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr "Sigurnost transportnog sloja (TLS)"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr "Onemogućeno"
 
-#: app/views/mail_settings/index.html.erb:47
-#| msgid "Available"
+#: app/views/mail_settings/index.html.erb:46
 msgid "If available"
 msgstr "Ako je dostupno"
 
-#: app/views/mail_settings/index.html.erb:47
-#| msgid "Alwa&ys"
+#: app/views/mail_settings/index.html.erb:46
 msgid "Always"
 msgstr "Uvijek"
 
-#: app/views/mail_settings/index.html.erb:50
-#| msgid "User Name"
+#: app/views/mail_settings/index.html.erb:48
 msgid "User name"
 msgstr "Korisničko ime"
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "Lozinka"
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:58
-#| msgid "Password"
+#: app/views/mail_settings/index.html.erb:54
 msgid "Confirm Password"
 msgstr "Potvrdite lozinku"
+
+#~ msgid "SMTP server address"
+#~ msgstr "SMTP adresa poslužitelja"
 

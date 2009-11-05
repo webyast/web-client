@@ -45,6 +45,9 @@ class StatusController < ApplicationController
   end
 
   def write_data_group(label, group, metric_name)
+puts "qqqqqqqqqqqq #{metric_name } xxx #{label.name}"
+    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
+puts "qqqqqqqqqqqq #{metric_name } xxx #{label.name}"
     values = label.attributes["values"]
     value_size = values.length
     divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
@@ -75,9 +78,11 @@ class StatusController < ApplicationController
       starttime = metric.starttime
       case metric.attributes["label"]
       when YaST::ServiceResource::Proxies::Status::Metric::Label # one label
+puts "yyyyyyyyyyyyyyy #{metric.attributes["label"].inspect}"
         write_data_group(metric.attributes["label"], group, metric_name)
       when Array # several label
         metric.attributes["label"].each{ |label|
+puts "2222yyyyyyyyyyyyyyy #{label.inspect} yyy #{group.inspect} yyy #{metric_name}"
           write_data_group(label, group, metric_name)
       }
       end
@@ -94,8 +99,10 @@ class StatusController < ApplicationController
     from = till - 300 #last 5 minutes
 #puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
     status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+    logger.debug "xxxxxxxxxxxxxxxxxx #{status.inspect}"
     create_data_map status
-    # puts @data_group.inspect
+logger.debug "xxxxxxxxxxxxxxxxxx"
+    logger.debug @data_group.inspect
     true
   end
 

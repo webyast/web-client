@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-23 13:28+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 19:58+0100\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -13,22 +13,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr "Vor der Benutzung dieses Produktes müssen Sie alle EULAs akzeptieren."
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid ""
 "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 "Auf EULA kann nicht umgeleitet werden. Stellen Sie sicher, dass das Paket "
 "yast2-webclient-eulas installiert ist."
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Zum Fortfahren melden Sie sich bitte an."
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Sie müssen sich abmelden, bevor Sie sich anmelden können"
 
@@ -70,7 +70,7 @@ msgstr "Kein Passwort angegeben."
 msgid "Login incorrect. Check your username and password."
 msgstr "Anmelde-Fehler. Bitte überprüfen Sie Nutzername und Passwort."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Sie wurden abgemeldet."
 
@@ -126,16 +126,20 @@ msgstr "Rechner|Erstellt am"
 msgid "Host|Updated at"
 msgstr "Rechner|Aktualisiert am"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr " oder "
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Speichern"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Verwerfen"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Weiter"
 
@@ -155,6 +159,15 @@ msgstr "Löschen"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Keine Informationen verfügbar."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Beim Abrufen der Informationen vom Server trat ein Fehler auf."
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -222,21 +235,21 @@ msgid "Problem:"
 msgstr "Problem: "
 
 #: app/views/shared/exception_trap.html.erb:16
+msgid "Problem occured on target machine"
+msgstr "Fehler auf Zielmaschine aufgetreten."
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 "Bitte melden Sie einen Fehler, damit wir das Problem bereinigen können!"
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(Berichtslink)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Vergessen Sie nicht, die Fehler-Einzelheiten mitzuteilen."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Keine Informationen verfügbar."
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -356,24 +369,36 @@ msgstr "Status-Erweiterung ist nicht installiert."
 msgid "Show all modules"
 msgstr "Alle Module anzeigen"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr "Dienst %s ist auf der Zielmaschine nicht verfügbar."
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr "Dienst %s läuft nicht auf der Zielmaschine."
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "Berechtigung %1 ist für Benutzer %2 nicht gegeben."
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid ""
 "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
+"PolicyKit-Ausnahme für Benutzer %2 und Berechtigung %s (nicht übersetzte "
+"Nachricht): %s"
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr "Niemand ist im rest-Dienst angemeldet."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr ""
+"Auf der Zielmaschine ist niemand mehr angemeldet. Bitte melden Sie sich "
+"erneut an."
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Zielsystem ist nicht konsistent. Fehlende oder beschädigte Datei %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid ""
 "There is no predefined ntp server at /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
@@ -381,13 +406,16 @@ msgstr ""
 "Unter /etc/sysconfig/network/config gibt es keinen vordefinierten NTP-Server "
 "- NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Während der ntp-Synchronisation trat ein Fehler auf: %s"
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Fehler beim Speichern der Administrator-Einstellungen: %s"
+
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Niemand ist im rest-Dienst angemeldet."
 
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ADMINISTRATOR_FEHLER"
