@@ -45,28 +45,30 @@ class StatusController < ApplicationController
   end
 
   def write_data_group(label, group, metric_name)
-puts "qqqqqqqqqqqq #{metric_name } xxx #{label.name}"
-    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
-puts "qqqqqqqqqqqq #{metric_name } xxx #{label.name}"
+#    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
     values = label.attributes["values"]
-    value_size = values.length
-    divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
-    data_list = Array.new
-    value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
-    @data_group[group].merge!({metric_name => data_list})
+    if values.uniq != ["invalid"] #use only entries which have at least one valid value
+      value_size = values.length
+      divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
+      data_list = Array.new
+      value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
+      @data_group[group].merge!({metric_name => data_list})
 
-    limits = label.attributes["limits"]
-    if limits
-      @limits_list["/#{group}/#{metric_name}"] = {:min=>Array.new, :max=>Array.new}
-      if label.attributes["limits"] and limits.attributes["min"] #limits.has_key? "min"
-        minimum = limits.attributes["min"].to_f/divisor
-        value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:min] << [i,minimum]}
+      limits = label.attributes["limits"]
+      if limits
+        @limits_list["/#{group}/#{metric_name}"] = {:min=>Array.new, :max=>Array.new}
+        if label.attributes["limits"] and limits.attributes["min"] #limits.has_key? "min"
+          minimum = limits.attributes["min"].to_f/divisor
+          value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:min] << [i,minimum]}
+        end
+        if label.attributes["limits"] and limits.attributes["max"] #limits.has_key? "min"
+          maximum = limits.attributes["max"].to_f/divisor
+          value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:max] << [i,maximum]}
+        end
       end
-      if label.attributes["limits"] and limits.attributes["max"] #limits.has_key? "min"
-        maximum = limits.attributes["max"].to_f/divisor
-        value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:max] << [i,maximum]}
-      end
-    end
+    else
+      logger.debug "#{group} #{metric_name} #{label.name} has no valid entry"
+    end 
   end
 
   def create_data_map(tree)
@@ -78,11 +80,9 @@ puts "qqqqqqqqqqqq #{metric_name } xxx #{label.name}"
       starttime = metric.starttime
       case metric.attributes["label"]
       when YaST::ServiceResource::Proxies::Status::Metric::Label # one label
-puts "yyyyyyyyyyyyyyy #{metric.attributes["label"].inspect}"
         write_data_group(metric.attributes["label"], group, metric_name)
       when Array # several label
         metric.attributes["label"].each{ |label|
-puts "2222yyyyyyyyyyyyyyy #{label.inspect} yyy #{group.inspect} yyy #{metric_name}"
           write_data_group(label, group, metric_name)
       }
       end
@@ -99,9 +99,7 @@ puts "2222yyyyyyyyyyyyyyy #{label.inspect} yyy #{group.inspect} yyy #{metric_nam
     from = till - 300 #last 5 minutes
 #puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
     status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
-    logger.debug "xxxxxxxxxxxxxxxxxx #{status.inspect}"
     create_data_map status
-logger.debug "xxxxxxxxxxxxxxxxxx"
     logger.debug @data_group.inspect
     true
   end
