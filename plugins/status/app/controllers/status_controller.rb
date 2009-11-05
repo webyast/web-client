@@ -175,7 +175,7 @@ logger.debug "xxxxxxxxxxxxxxxxxx"
     begin
       create_data
       status = limits_reached
-      status = "limits exceeded for " + status unless status.empty?
+      status = (_("Limits exceeded for %s") % status) unless status.empty?
       render :partial => "status_summary", :locals => { :status => status, :error => nil }
     rescue Exception => error
       erase_redirect_results #reset all redirects
