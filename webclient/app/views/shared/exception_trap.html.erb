@@ -12,7 +12,7 @@ $(document).ready(function() {
 <h3><%= _("Problem:") %></h3>
 
 <p><pre>
-  <%= error.message %>
+  <%= h error.message %>
 </pre></p>
 
 <p><span class="bug-icon"></span><%= _("Please Report a bug so we can fix the problem!.") %><a href="<%= @bug_url %>"><%= _("(report link)") %></a></p>
@@ -26,7 +26,7 @@ $(document).ready(function() {
 <p><a href="#" id="details-link">Show details...</a><%= clippy(backtrace) %><p>
 
 <pre id="backtrace" style="display: none">
-<%= backtrace  %>
+<%= h backtrace  %>
 </pre>
 
 
