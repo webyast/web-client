@@ -1,4 +1,35 @@
 -------------------------------------------------------------------
+Thu Nov  5 16:45:34 CET 2009 - mvidner@suse.cz
+
+- Clarify license: LGPL v2.1 *only* (kkaempf)
+- Back button in Administrator Settings did not work, bnc#552069 (mkudlvasr).
+- tell the user we support only FF>=3.5 and IE8,  bnc#551779 (mkudlvasr)
+- Properly HTML escape the exception data (mvidner).
+- Fixed HTML injection in hosts/show (jreidinger).
+- Removed unused images and scripts from public/ (bbrunner).
+- Use jQuery instead of Prototype for progress, in html_edit_link (lslezak).
+- Translation updated (schubi).
+- UI changes (rlihm):
+  * changed style for System Actions on Home
+  * wrapped control center favorites
+  * unified position of module-headlines
+  * moved title above plugin content
+  * added 960 grid to main view
+  * moved headline out of status box
+  * added tab style, added highlighting for current tab
+  * fixed skipping page onClick and added more css
+  * added space between flash-message and next content (Bug #547179)
+  * fixed position of #footer in DOM
+  * added global styling for input[type="submit"]
+- 0.0.11
+
+-------------------------------------------------------------------
+Thu Nov  5 16:20:18 CET 2009 - lslezak@suse.cz
+
+- fixed exception handler - added nil and method checks (bnc#550934),
+  code cleanup
+ 
+-------------------------------------------------------------------
 Wed Nov  4 11:53:40 UTC 2009 - jreidinger@novell.com
 
 - disallow html injection in host view (bnc#514382)

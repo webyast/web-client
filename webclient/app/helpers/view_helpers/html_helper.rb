@@ -127,20 +127,22 @@ module ViewHelpers::HtmlHelper
   def report_error(error, message=nil)
     # get the id of the error, or use a random id
     error_id = error.nil? ? rand(10000) : error.object_id
+
+    err_message = error.try(:message)
+    err_message ||= _("Unknown error")
+
     # get the backtrace, or create a message saying there is none
-    backtrace_text = _("No information available")
-    backtrace_text = error.backtrace.join("\n") unless (error.nil? || error.backtrace.nil? || error.backtrace.blank?)
+    backtrace_text = error.try(:backtrace).try(:join, "\n")
+    backtrace_text = _("No information available") if backtrace_text.blank?
 
     # the summary message
-    if message.nil?
-      message = _("There was a problem retrieving information from the server.")
-    end
+    message ||= _("There was a problem retrieving information from the server.")
 
     # build the html    
     html =<<-EOF2
       <div id="error-#{error_id}-content">
         <div>
-          <p><strong>Error message:</strong>#{error.message}</p>
+          <p><strong>Error message:</strong>#{err_message}</p>
           <p><span class="bug-icon"></span><a href="#{@bug_url}">Report bug</a></p>
           <p><a href="#" id="error-#{error_id}-show-backtrace-link">Show details</a>#{clippy(backtrace_text)}</p></p>
           <pre id="error-#{error_id}-backtrace" style="display: none">
