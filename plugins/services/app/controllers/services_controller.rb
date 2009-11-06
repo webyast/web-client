@@ -26,7 +26,9 @@ class ServicesController < ApplicationController
     return unless client_permissions
 
     begin
-	@response = @client.find(params[:id])
+	args	= {}
+	args[:custom]	= 1 if params.has_key? "custom"
+	@response = @client.find(:one, :from => params[:id].intern, :params => args)
     rescue ActiveResource::ResourceNotFound => e
 	Rails.logger.error "Resource not found: #{e.to_s}: #{e.response.body}"
 	render :text => _('(cannot read status)') and return
@@ -61,7 +63,9 @@ class ServicesController < ApplicationController
     return unless client_permissions
 
     # PUT /services/1.xml
-    response = @client.put(params[:service_id], :execute => params[:id])
+    args	= { :execute => params[:id] }
+    args[:custom]	= 1 if params.has_key? "custom"
+    response = @client.put(params[:service_id], args)
 
     # we get a hash with exit, stderr, stdout
     ret = Hash.from_xml(response.body)

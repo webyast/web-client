@@ -33,11 +33,19 @@ end
 <% if service.status.nil? %>
 <%   javascript_tag do %>
 $(document).ready( function() {
-   <%= remote_function :update => "service_status_#{service.name}",
-    :url => { :controller => :services, :action => :show_status, :id => service.name },
+   <%=
+    url	= {
+	    :controller => :services,
+	    :id		=> service.name,
+	    :action	=> :show_status
+    }
+    url[:custom]	= 1 if params.has_key?("custom")
+
+    remote_function :update => "service_status_#{service.name}",
+    :url => url,
     :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
     :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
-     %>
+   %>
 });
 <%   end %>
 <% else %>
@@ -54,12 +62,17 @@ $(document).ready( function() {
 		    :service_id	=> service.name 
 		}
 		url[:custom]	= 1 if params.has_key?("custom")
+		status_url	= {
+		    :controler	=> :services,
+		    :action	=> :show_status,
+		    :id		=> service.name 
+		}
+		status_url[:custom]	= 1 if params.has_key?("custom")
 		link_to_remote cmd,
-#		    :update 	=> "resultdlg",
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
 		    :complete   => remote_function(:update => "service_status_#{service.name}",
-		        :url => { :controller => :services, :action => :show_status, :id => service.name },
+		        :url => status_url,
 			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()")
 	    %>
 	<%
@@ -69,10 +82,19 @@ $(document).ready( function() {
 	end
      end %>
 
-     <%= link_to_remote _('status'), :update => "service_status_#{service.name}",
-	:url => { :controller => :services, :action => :show_status, :id => service.name },
-	:loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
-	:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()" %>
+     <%=
+	url	= {
+	    :controller => :services,
+	    :id		=> service.name,
+	    :action	=> :show_status
+	}
+	url[:custom]	= 1 if params.has_key?("custom")
+
+	link_to_remote _('status'), :update => "service_status_#{service.name}",
+	    :url => url,
+	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
+	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+      %>
 </li>
 <% end %>
 </ul>
