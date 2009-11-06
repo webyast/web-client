@@ -302,7 +302,7 @@ textarea, input[type=text] {
 
 /*
  *
- * Subpages (Printers...)
+ * Subpages (Samba, Network,...)
  *
  */
 
@@ -449,8 +449,6 @@ table.list {
   .list .hidden {
     display: none;
   }
-  #printer-list {
-  }
   
   .default.emblem {
     position: absolute;
@@ -459,21 +457,6 @@ table.list {
     background: url(../images/default-emblem.png) no-repeat center center;
   }
  
-.printer-info {}
-
-  .printer-info .label {
-    display: inline-block;
-    width: 7em;
-  } 
-  
-  .printer-info .property {
-    font-weight: bold;
-  }
-  
-  .printer-info>div {
-    margin-bottom: 1em;
-  }
-
 select {
   font-weight: bold;
 }
@@ -486,16 +469,4 @@ table.widgets {
 .jqmWindow form>h2 {
   margin-top: 0;
 }
-
-#printer-types li>a {
-  padding-left: 32px;
-  min-height: 22px;
-}
-  a[href='#printers-autodetected'] { background: url(../icons/autodetected-22.png) no-repeat 6px 4px; }
-  a[href='#printers-network'] { background: url(../icons/printer-remote-22.png) no-repeat 6px 4px; }
-  a[href='#printers-bluetooth'] { background: url(../icons/yast-bluetooth-22.png) no-repeat 6px 4px; }
-  
-  #autodetected-printers {
-    min-height: 100px;
-  }
 
