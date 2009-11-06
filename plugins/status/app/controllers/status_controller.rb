@@ -45,13 +45,17 @@ class StatusController < ApplicationController
   end
 
   def write_data_group(label, group, metric_name)
-#    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
+    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
     values = label.attributes["values"]
     if values.uniq != ["invalid"] #use only entries which have at least one valid value
       value_size = values.length
       divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
       data_list = Array.new
       value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
+      if group == "df"
+        data_list.reject! {|value| value[1] == 0 } if group == "df"  #df returns sometime 0 entries
+        data_list = [[0,0]] if data_list.size == 0 #it is really 0 :-)
+      end
       @data_group[group].merge!({metric_name => data_list})
 
       limits = label.attributes["limits"]
