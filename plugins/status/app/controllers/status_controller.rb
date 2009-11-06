@@ -102,7 +102,9 @@ class StatusController < ApplicationController
     till = Time.new
     from = till - 300 #last 5 minutes
 #puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
-    status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+    ActionController::Base.benchmark("Status data read from the server") do
+      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+    end
     create_data_map status
     logger.debug @data_group.inspect
     true
@@ -207,10 +209,20 @@ class StatusController < ApplicationController
       end
     }
 
-    puts "limits " + limits.inspect
-#respond = @client.create(:params => params.inspect)
-@client.create(:params => limits.inspect)
-puts "respond: " + respond
+    Rails.logger.debug "New limits: #{limits.inspect}"
+
+    begin
+      ActionController::Base.benchmark("Limits saved on the server") do
+	@client.create(:params => limits.inspect)
+      end
+    rescue Exception => ex
+      flash[:error] = _("Saving limits failed!")
+      redirect_to :controller=>"status", :action=>"edit" and return
+    end
+
+    redirect_to :controller=>"status", :action=>"index"
+
+#puts "respond: " + respond
 #    respond = @client.put(:status, :params => params) #:status, {:params => params})
 #    if respond == :success
 #      redirect_to :controller=>"status", :action=>"index"
