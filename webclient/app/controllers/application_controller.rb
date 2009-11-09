@@ -65,6 +65,15 @@ class ApplicationController < ActionController::Base
     e = ClientException.new(error)
     logger.error "Exception started at the server side" if e.backend_exception?
     
+#handle insufficient permissions, especially useful for read permissions,
+#because you cannot open module for which you don't have read permissions.
+# if it appear during save, then it is module bug, as it cannot allow it
+    if e.backend_exception_type == "NO_PERM"
+      flash[:error] = e.message #already localized from error constructor
+      redirect_to :controller => :controlpanel
+      return
+    end
+    
     eulaexception_trap(e) and return if e.backend_exception? and e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
     
     # get the vendor settings
