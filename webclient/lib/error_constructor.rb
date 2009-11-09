@@ -29,6 +29,9 @@ module ErrorConstructor
     when "ADMINISTRATOR_ERROR"
       problem = error["output"]
       return _("Error while saving administrator settings: %s") %problem
+    when "GENERIC"
+      problem = error["description"]
+      return _("Uncommon exception on target machine:\n #{problem}")
     else
       RAILS_DEFAULT_LOGGER.warn "Untranslated message for exception #{error["type"]}"
       return error["description"]
