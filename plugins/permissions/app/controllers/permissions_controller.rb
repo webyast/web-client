@@ -122,13 +122,18 @@ class PermissionsController < ApplicationController
     @current_user = nil
     if get_perm_from_server
       begin
-         @permissions = proxy.find(:all, :params => { :user_id => user })
-      rescue ActiveResource::ClientError => e
-        return YaST::ServiceResource.error(e)
-      rescue Exception => e
-        es = "AIEEE, #{e}"
-        logger.debug es
-        return es
+        @permissions = proxy.find(:all, :params => { :user_id => user })
+      rescue ActiveResource::ResourceInvalid => e
+        error = Hash.from_xml(e.response.body)
+        logger.info error.inspect
+        error["errors"][0].match(/^.*---\s*(.*)$/) #XXX ugly should be improved, if failed, then it is catched by default handler
+        logger.debug $1
+        case $1
+        when "INVALID" then
+          return _("User name is not valid name")
+        when "UNKNOWN" then
+          return _("User does not exist")
+        end
       end
     end
     @current_user = user
