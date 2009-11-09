@@ -34,6 +34,7 @@ class ClientException < Exception
       
       # construct an exception from what we have
       @err_msg = construct_error(@error_data) if not @error_data.empty?
+#handle 
       Rails.logger.error "new message: #{@err_msg}"
     end
   end
@@ -67,6 +68,7 @@ class ClientException < Exception
   end
   
   def backtrace
+    return @error_data["backtrace"] if backend_exception_type == "GENERIC"
     return @excpt.backtrace if (@excpt && !@excpt.backtrace.blank?)
     []
   end

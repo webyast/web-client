@@ -16,11 +16,10 @@ class PermissionsControllerTest < ActionController::TestCase
   end
 
   class Permission
-    attr_accessor  :name, :grant, :id
+    attr_accessor  :granted, :id
     def initialize (name, grant)
-      @grant = grant
-      @name = name
-      @id = 0
+      @granted = grant
+      @id = name
     end
     def save
     end
@@ -156,12 +155,14 @@ class PermissionsControllerTest < ActionController::TestCase
     assert_response :success
     assert_valid_markup
   end
-
+=begin
+disable setting, not required to first release
   def test_permission_set
     post :set, { "org.opensuse.yast.patch.install"=>"revoke", :user =>"test" }
 
     assert_response :success
     assert_valid_markup
   end
+=end
 
 end

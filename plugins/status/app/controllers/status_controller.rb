@@ -130,9 +130,11 @@ class StatusController < ApplicationController
       raise "Unknown log file"
     end
     
+#XXX FIXME Really ugly way how to use REST service
+# should be something like find(:one, :from => params[:id], params => { :lines => lines })
     lines = params[:lines] || 5
     log_url = URI.parse(YaST::ServiceResource::Session.site.to_s)
-    log_url = log_url.merge("logs/#{params[:id]}.txt?lines=#{lines}")
+    log_url = log_url.merge("logs/#{params[:id]}.xml?lines=#{lines}")
     logger.info "requesting #{log_url}"
     @content = open(log_url).read
     render :partial => 'status_log'
