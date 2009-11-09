@@ -44,10 +44,8 @@
 
   <link rel="stylesheet" href="/inc/checktree/checktree.css" type="text/css" media="screen" title="default" charset="utf-8" />
  </head>
-<div class='plugin-icon'><img src='/icons/yast-security.png'/></div>
-<div class='plugin-content'>
-
-<h2><%=_("User Permissions")%></h2>
+<div class='plugin-icon'><img src='/icons/yast-security.png'/><%=_("User Permissions")%></div>
+<div class="plugin-content"
 <br>
 <% form_tag '/permissions/search' do %>
   <p><label for="user"><%=_("User")%></label>
