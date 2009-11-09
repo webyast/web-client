@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -17,6 +17,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "શરૂ થાઓ નહીં"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -38,23 +44,29 @@ msgstr ""
 msgid "Network"
 msgstr "નેટવર્ક"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "ઇન્ટરફેસ"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select Script"
+msgid "Select"
+msgstr "સ્ક્રિપ્ટ પસંદ કરો"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
 #, fuzzy
 #| msgid "Own Address"
-msgid "IP Address"
+msgid "IP address"
 msgstr "પોતાનું સરનામું"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "કન્ફિગરેશન"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -64,43 +76,45 @@ msgstr "ડાયલ પ્રિફિક્સ "
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "હોસ્ટ નામો"
 
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "ડોમેઇન\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Name Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "નામ સર્વર"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr ""
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "પ્રાથમિક માર્ગ"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "અદ્યતન"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "સાચવો"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "પાછળ"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "રદ કરો "
 
 #: app/views/network/edit.html.erb:1
 #, fuzzy
@@ -137,3 +151,9 @@ msgstr "ડિવાઈસ"
 #| msgid "Start-Up"
 msgid "Startup"
 msgstr "સ્ટાર્ટ-અપ"
+
+#~ msgid "Update"
+#~ msgstr "અદ્યતન"
+
+#~ msgid "Back"
+#~ msgstr "પાછળ"

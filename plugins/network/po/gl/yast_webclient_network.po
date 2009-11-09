@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-24 11:00+0100\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-31 11:37+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,10 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Sen permisos para o módulo de rede"
+
+#: app/controllers/network_controller.rb:66
+msgid "not set"
+msgstr "non seleccionado"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -42,19 +46,23 @@ msgstr ""
 msgid "Network"
 msgstr "Rede"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Interface"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+msgid "Select"
+msgstr "Seleccionar"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+msgid "IP address"
 msgstr "Enderezo IP"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+msgid "Configuration mode"
 msgstr "Modo de configuración"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr "Prefixlen"
 
@@ -62,38 +70,38 @@ msgstr "Prefixlen"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "Nome de host"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "Dominio"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+msgid "Name servers"
 msgstr "Servidores de nomes"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr "Dominios de busca"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "Enrutado"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+msgid "Default route"
 msgstr "Ruta predeterminada"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Actualizar"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Gardar"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Atrás"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -122,3 +130,9 @@ msgstr "Nome do dispositivo"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Inicio"
+
+#~ msgid "Update"
+#~ msgstr "Actualizar"
+
+#~ msgid "Back"
+#~ msgstr "Atrás"

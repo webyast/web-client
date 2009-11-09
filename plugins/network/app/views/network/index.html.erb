@@ -20,6 +20,23 @@
 //              $(this)[0].disabled = abool;
 //          });
       }
+      // Sets a focus to a fieldID, switching to its tab first.
+      // fieldID is like "default_route"
+      function focus_tabbed(fieldID) {
+	// show its fieldset and save ID
+	var fsID = $("#"+fieldID).closest('fieldset').attr('id');
+	$("#"+fsID).show()
+	// hide all other fieldsets
+	$("#"+fsID).siblings('fieldset').hide();
+	// Remove highlighting from tabs
+	$('.tab-nav').find('a').removeClass('selected');
+	var className = fsID
+	// highlight its tab
+	$('.'+className).addClass('selected');
+	// focus at last
+	$("#"+fieldID).focus();
+      }
+
    <% end -%>
    <% javascript_tag do -%>
       function validIP(ip) {
@@ -37,23 +54,23 @@
         if ($("#conf_mode")[0].value == "static") {
           say_bad = "<%= _("Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
           if (! validIP($("#ip")[0].value)) {
-            $("#ip").focus();
+	    focus_tabbed("ip");
             alert (say_bad);
             return false;
           }
           netmask = $("#netmask")[0].value;
           if (!validPrefix(netmask) && ! validMask(netmask)) {
-            $("#netmask").focus();
+	    focus_tabbed("netmask");
             alert (say_bad);
             return false;
           }
           if (! validIP($("#default_route")[0].value)) {
-            $("#default_route").focus();
+	    focus_tabbed("default_route");
             alert (say_bad);
             return false;
           }
         }
-        Element.show('progress');
+        $('#progress').show();
         return true;
       };
    <% end %>

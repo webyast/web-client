@@ -44,6 +44,6 @@
 	<td class="last"><%= f.password_field :user_password, :disabled => disabled %></td>
     </tr>
     </table>
-    <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), {:action => :index}, :onclick=>"Element.show('progress')", :class => "button"%></p>
+    <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), {:action => :index}, :onclick=>"$('#progress').show()", :class => "button"%></p>
   </div>
 <% end %>

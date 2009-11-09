@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-09-28 08:21+0300\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 20:48+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,11 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Epäkelpo istunto, kirjaudu uudestaan."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Vapaa levy-tila rajoitukset ylitettiin;"
 
@@ -74,14 +74,17 @@ msgstr "Enimmäisarvo"
 msgid "Save"
 msgstr "Tallenna"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
-msgstr "Tapahtui virhe ladattaessa tilatietoja."
+#: app/views/status/_status_summary.html.erb:1
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
+msgstr "Ilmeni ongelma ladattaessa tilatietoja."
+
+#: app/views/status/_status_summary.html.erb:6
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Tilatietoja ei saatavilla."
 
 #: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Näytä yksityiskohdat..."
-
-#: app/views/status/_status_summary.html.erb:26
 msgid "Your system is healthy."
 msgstr "Järjestelmäsi on kunnossa."
+

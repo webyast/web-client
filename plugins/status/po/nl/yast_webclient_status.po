@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-09-23 21:19+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 19:12+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Ongeldige sessie, gaarne opnieuw aanmelden."
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "Limieten van vrije ruimte op schijf overschreden;"
 
@@ -81,14 +81,17 @@ msgstr "Maximale waarde"
 msgid "Save"
 msgstr "Opslaan"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
-msgstr "Er is een fout opgetreden tijdens de laden van de statusinformatie."
+#: app/views/status/_status_summary.html.erb:1
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
+msgstr "Er is een probleem opgetreden tijdens de laden van de statusinformatie."
+
+#: app/views/status/_status_summary.html.erb:6
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Geen statusinformatie beschikbaar"
 
 #: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "Toon details..."
-
-#: app/views/status/_status_summary.html.erb:26
 msgid "Your system is healthy."
 msgstr "Uw systeem is gezond."
+

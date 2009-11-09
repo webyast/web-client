@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2003-09-22 13:26+0200\n"
 "Last-Translator: Ain Vagula <avagula@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -10,19 +10,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr ""
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr ""
 
@@ -134,16 +134,20 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Salvesta"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Loobu"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 #, fuzzy
 #| msgid "&Next"
 msgid "Next"
@@ -166,6 +170,17 @@ msgstr "Kustuta"
 
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+#, fuzzy
+#| msgid "No information available."
+msgid "No information available"
+msgstr "Info puudub."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
 msgstr ""
 
 #: app/views/hosts/index.html.erb:6
@@ -239,22 +254,20 @@ msgid "Problem:"
 msgstr "Probleem: "
 
 #: app/views/shared/exception_trap.html.erb:16
+msgid "Problem occured on target machine"
+msgstr ""
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:19
-#, fuzzy
-#| msgid "No information available."
-msgid "No information available"
-msgstr "Info puudub."
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -398,36 +411,47 @@ msgstr ""
 msgid "Show all modules"
 msgstr "Näita laaditud mooduleid"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:17
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Tegevus '%1' ei ole teenuse '%2' puhul lubatud."
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:14
-#, fuzzy
-#| msgid "A kioslave to browse services"
-msgid "Noone is logged to rest service."
-msgstr "Teenuste lehitsemise KIO-moodul"
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Paigaldamise käigus tekkis viga."
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr ""
+
+#, fuzzy
+#~| msgid "A kioslave to browse services"
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "Teenuste lehitsemise KIO-moodul"

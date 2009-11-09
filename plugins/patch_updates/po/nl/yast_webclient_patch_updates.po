@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_patch_updates.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-21 09:38+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 19:10+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -19,24 +19,23 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/patch_updates_controller.rb:61
+#: app/controllers/patch_updates_controller.rb:66
 msgid "Installing all patches..."
 msgstr "Patches worden geïnstalleerd..."
 
-#: app/controllers/patch_updates_controller.rb:69
+#: app/controllers/patch_updates_controller.rb:74
 msgid "Installation stopped"
 msgstr "Installatie is gestopt"
 
-#: app/controllers/patch_updates_controller.rb:106
+#: app/controllers/patch_updates_controller.rb:111
 msgid "Installation finished"
 msgstr "Installatie is gereed"
 
-#: app/controllers/patch_updates_controller.rb:108
-#| msgid "%s installed ok"
+#: app/controllers/patch_updates_controller.rb:113
 msgid "%s installed."
 msgstr "%s is geïnstalleerd."
 
-#: app/controllers/patch_updates_controller.rb:137
+#: app/controllers/patch_updates_controller.rb:142
 msgid "Patch has been installed."
 msgstr "Patch is geïnstalleerd."
 
@@ -75,8 +74,9 @@ msgid "Are you sure?"
 msgstr "Weet u het zeker?"
 
 #: app/views/patch_updates/_patch_summary.html.erb:1
-msgid "An error occured when loading patch information."
-msgstr "Er is een fout opgetreden tijdens het laden van patchinformatie."
+#| msgid "An error occured when loading patch information."
+msgid "A problem occured when loading patch information."
+msgstr "Er is een probleem opgetreden tijdens het laden van patchinformatie."
 
 #: app/views/patch_updates/_patch_summary.html.erb:6
 msgid "No information about patches available"
@@ -84,17 +84,14 @@ msgstr "Geen informatie over patches beschikbaar"
 
 # /usr/lib/YaST2/clients/inst_config_x11.ycp:947
 #: app/views/patch_updates/_patch_summary.html.erb:19
-#| msgid "Security update"
 msgid "Security Updates: %d"
 msgstr "Beveiligingsopwaarderingen: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:22
-#| msgid "Important update"
 msgid "Important Updates: %d"
 msgstr "Belangrijke opwaarderingen: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:25
-#| msgid "Additonal updates done."
 msgid "Optional Updates: %d"
 msgstr "Optionele opwaarderingen: %d"
 

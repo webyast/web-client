@@ -1,7 +1,7 @@
 <div class="table">
-	<%= @host.name %>
-	<%= @host.url %>
-	<%= @host.description %>
+	<%=h @host.name %>
+	<%=h @host.url %>
+	<%=h @host.description %>
 
 </div>
 <%= link_to _('Index'), host_path, :class => "button" %>

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2001-07-17 16:27+0200\n"
 "Last-Translator: James Ogley <ogley@suse.co.uk>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -15,7 +15,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "Passwords do not match."
 
-#: app/controllers/mail_settings_controller.rb:43
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr ""
+
+#: app/controllers/mail_settings_controller.rb:44
 #, fuzzy
 #| msgid "Error while closing old opasswd file: %s"
 msgid "Error while saving mail settings: %s"
@@ -34,45 +38,48 @@ msgid "Mail Settings"
 msgstr "Manual Settings"
 
 #: app/views/mail_settings/index.html.erb:42
-#, fuzzy
-#| msgid "Name Server Address"
-msgid "SMTP server address"
-msgstr "Name Server Address"
+msgid "Outgoing mail server (SMTP)"
+msgstr ""
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr "Disabled"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "(%1 available)"
 msgid "If available"
 msgstr "(%1 available)"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Alwa&ys"
 msgid "Always"
 msgstr "Alwa&ys"
 
-#: app/views/mail_settings/index.html.erb:50
+#: app/views/mail_settings/index.html.erb:48
 #, fuzzy
 #| msgid "Username: "
 msgid "User name"
 msgstr "Username: "
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "Password"
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:58
+#: app/views/mail_settings/index.html.erb:54
 #, fuzzy
 #| msgid "Password"
 msgid "Confirm Password"
 msgstr "Password"
+
+#, fuzzy
+#~| msgid "Name Server Address"
+#~ msgid "SMTP server address"
+#~ msgstr "Name Server Address"

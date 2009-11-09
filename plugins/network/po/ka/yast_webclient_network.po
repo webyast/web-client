@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2005-05-18 10:33+0200\n"
 "Last-Translator: Aiet Kolkhi <aiet@qartuli.net>\n"
 "Language-Team: Georgian <i18n@suse.de>\n"
@@ -13,6 +13,10 @@ msgstr ""
 
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
+msgid "not set"
 msgstr ""
 
 #: app/controllers/network_controller.rb:66
@@ -37,21 +41,25 @@ msgstr ""
 msgid "Network"
 msgstr "KNetworkManager"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr ""
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+msgid "Select"
 msgstr ""
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+msgid "IP address"
+msgstr ""
+
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "IP configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "IP კონფიგურაცია"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr ""
 
@@ -59,48 +67,45 @@ msgstr ""
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr ""
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "დომენი\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Server\n"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "სერვერი\n"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr ""
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
+#: app/views/network/index.html.erb:133
 #, fuzzy
 #| msgid "Default"
-msgid "Default Route"
+msgid "Default route"
 msgstr "ნაგულისხმები"
 
-# driver update dialog title
-# -> txt_dud_file_msg
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-#, fuzzy
-#| msgid "Driver Update"
-msgid "Update"
-msgstr "დრაივერის განახლება"
-
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
 msgstr ""
+
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "შეწყვეტა"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -131,3 +136,10 @@ msgstr ""
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr ""
+
+# driver update dialog title
+# -> txt_dud_file_msg
+#, fuzzy
+#~| msgid "Driver Update"
+#~ msgid "Update"
+#~ msgstr "დრაივერის განახლება"

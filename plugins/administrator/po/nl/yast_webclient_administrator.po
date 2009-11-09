@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-21 09:23+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 18:58+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -19,43 +19,50 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/administrator_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Ongeldige sessie, gaarne opnieuw aanmelden."
-
-#: app/controllers/administrator_controller.rb:42
+#: app/controllers/administrator_controller.rb:35
 #: app/views/administrator/index.html.erb:32
 msgid "Enter a valid e-mail address."
 msgstr "Geef een geldig e-mailadres op."
 
-#: app/controllers/administrator_controller.rb:50
+#: app/controllers/administrator_controller.rb:43
 msgid "Passwords do not match."
 msgstr "Wachtwoorden komen niet overeen."
 
-#: app/controllers/administrator_controller.rb:76
-#| msgid "Error while closing old shadow file: %m"
+#: app/controllers/administrator_controller.rb:60
+#| msgid "Administrator Settings"
+msgid "Administrator settings have been written."
+msgstr "Systeembeheerderinstellingen zijn weggeschreven."
+
+#: app/controllers/administrator_controller.rb:70
 msgid "Error while saving administrator settings: %s"
 msgstr "Fout bij het opslaan van beheerdersinstellingen: %s"
 
-#: app/views/administrator/index.html.erb:38
+#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:48
 msgid "Administrator Settings"
 msgstr "Systeembeheerderinstellingen"
 
+#: app/views/administrator/index.html.erb:40
+#| msgid "Passwords do not match."
+msgid "The passwords do not match."
+msgstr "De wachtwoorden komen niet overeen."
+
 # password dialog title
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:55
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: app/views/administrator/index.html.erb:51
-msgid "Confirm Password"
+#: app/views/administrator/index.html.erb:59
+#| msgid "Confirm Password"
+msgid "Confirm password"
 msgstr "Wachtwoord bevestigen"
 
-#: app/views/administrator/index.html.erb:53
-#: app/views/administrator/index.html.erb:58
+#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:66
 msgid "Save"
 msgstr "Opslaan"
 
-#: app/views/administrator/index.html.erb:56
+#: app/views/administrator/index.html.erb:64
 msgid "Forward mail to"
 msgstr "E-mail doorsturen naar"
 

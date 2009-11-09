@@ -54,7 +54,7 @@
       <tr><td height=10></td></tr>
       <tr>
         <td></td>
-        <td align="right"><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"Element.show('progress')", :class => "button"%></p></td>
+        <td align="right"><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"$('#progress').show()", :class => "button"%></p></td>
       </tr>
     <% end %>
   </table>

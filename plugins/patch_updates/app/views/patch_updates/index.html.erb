@@ -29,7 +29,7 @@
 
       <div id="patchesd"><%= render :partial => "patches"%></div>
 
-      <%= submit_tag _("Update"), :onclick=>"Element.show('progress')", :action => 'install', :class => 'button' -%>
+      <%= submit_tag _("Update"), :onclick=>"$('#progress').show()", :action => 'install', :class => 'button' -%>
       <%= link_to _("Back"), '/', :class=>"button" %>
     <% end %>
   <% end %>

@@ -211,9 +211,9 @@ function plotLineGraphError(graph_id, graph_title, graph_data ) {
              $('#' + '<%= graph_id %>').html("");
              <% used_key = graph_key[0..graph_key.length-5] + "used" %>
              <% if not @limits_list[:reached].blank? and @limits_list[:reached].include?(limit_key) %>
-               plotPieGraphError ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
+               plotPieGraphError ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('-','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
              <% else %>
-               plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('_','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
+               plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('-','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
              <% end %>
            <% end %>
         <% end %>

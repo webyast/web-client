@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-20 11:06-0300\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-28 16:06-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,10 @@ msgid "No permissions for network module"
 msgstr "Sem permissões para o módulo de rede"
 
 #: app/controllers/network_controller.rb:66
-#| msgid "Static"
+msgid "not set"
+msgstr "não definido"
+
+#: app/controllers/network_controller.rb:66
 msgid "static"
 msgstr "estático"
 
@@ -46,20 +49,24 @@ msgstr "Formato de endereço IP inválodo. O correto é nnn.nnn.nnn.nnn para nnn
 msgid "Network"
 msgstr "Rede"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Interface"
 
-#: app/views/network/index.html.erb:91
-#: app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+msgid "Select"
+msgstr "Selecionar"
+
+#: app/views/network/index.html.erb:96
+#: app/views/network/index.html.erb:102
+msgid "IP address"
 msgstr "Endereço IP"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+msgid "Configuration mode"
 msgstr "Modo de configuração"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr "Comprimento do prefixo"
 
@@ -67,40 +74,40 @@ msgstr "Comprimento do prefixo"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "Nome de máquina"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "Domínio"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
-msgstr "Servidores de nomes"
+#: app/views/network/index.html.erb:121
+msgid "Name servers"
+msgstr "Servidores de nome"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr "Domínios de pesquisa"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "Roteamento"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+msgid "Default route"
 msgstr "Rota padrão"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:138
 #: app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Atualizar"
+msgid "Save"
+msgstr "Salvar"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:138
 #: app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Voltar"
+msgid "Cancel"
+msgstr "Cancelar"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -129,4 +136,19 @@ msgstr "Nome do dispositivo"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Inicialização"
+
+#~ msgid "IP Address"
+#~ msgstr "Endereço IP"
+#~ msgid "Configuration Mode"
+#~ msgstr "Modo de configuração"
+#~ msgid "Name Servers"
+#~ msgstr "Servidores de nomes"
+#~ msgid "Search Domains"
+#~ msgstr "Domínios de pesquisa"
+#~ msgid "Default Route"
+#~ msgstr "Rota padrão"
+#~ msgid "Update"
+#~ msgstr "Atualizar"
+#~ msgid "Back"
+#~ msgstr "Voltar"
 

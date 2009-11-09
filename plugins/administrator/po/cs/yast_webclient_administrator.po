@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-08 14:07+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -15,44 +15,59 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/administrator_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Chybná session, prosím přihlaste se znova."
-
-#: app/controllers/administrator_controller.rb:42
+#: app/controllers/administrator_controller.rb:35
 #: app/views/administrator/index.html.erb:32
 msgid "Enter a valid e-mail address."
 msgstr "Zadejte platnou e-mailovou adresu."
 
-#: app/controllers/administrator_controller.rb:50
+#: app/controllers/administrator_controller.rb:43
 msgid "Passwords do not match."
 msgstr "Hesla se neshodují."
 
-#: app/controllers/administrator_controller.rb:76
+# Tady si nejsem jistý zda nebude lepší: Administrátorská nastavení. Cervajzz
+#: app/controllers/administrator_controller.rb:60
+#, fuzzy
+#| msgid "Administrator Settings"
+msgid "Administrator settings have been written."
+msgstr "Administrátorské nastavení"
+
+#: app/controllers/administrator_controller.rb:70
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Chyba při uzavírání starého stínového souboru: %m"
 
 # Tady si nejsem jistý zda nebude lepší: Administrátorská nastavení. Cervajzz
-#: app/views/administrator/index.html.erb:38
+#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:48
 msgid "Administrator Settings"
 msgstr "Administrátorské nastavení"
 
+#: app/views/administrator/index.html.erb:40
+#, fuzzy
+#| msgid "Passwords do not match."
+msgid "The passwords do not match."
+msgstr "Hesla se neshodují."
+
 # password dialog title
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:55
 msgid "Password"
 msgstr "Heslo"
 
-#: app/views/administrator/index.html.erb:51
-msgid "Confirm Password"
+#: app/views/administrator/index.html.erb:59
+#, fuzzy
+#| msgid "Confirm Password"
+msgid "Confirm password"
 msgstr "Potvrďte heslo"
 
-#: app/views/administrator/index.html.erb:53
-#: app/views/administrator/index.html.erb:58
+#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:66
 msgid "Save"
 msgstr "Uložit"
 
-#: app/views/administrator/index.html.erb:56
+#: app/views/administrator/index.html.erb:64
 msgid "Forward mail to"
 msgstr "Předat mail na"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Chybná session, prosím přihlaste se znova."

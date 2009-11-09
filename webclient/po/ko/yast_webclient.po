@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -11,21 +11,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr ""
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "인터넷에 연결되었는지 확인해주세요."
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgstr ""
 "로그인 실패\n"
 "사용자 이름과 열쇠글을 확인하고 다시 시도해주세요."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr ""
 
@@ -149,15 +149,19 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr "업데이트되어 있음"
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "저장"
 
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "취소"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "다음"
 
@@ -178,6 +182,17 @@ msgstr "삭제"
 
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+#, fuzzy
+#| msgid "No information available."
+msgid "No information available"
+msgstr "사용 가능한 정보가 없습니다."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
 msgstr ""
 
 #: app/views/hosts/index.html.erb:6
@@ -252,22 +267,20 @@ msgid "Problem:"
 msgstr "문제: "
 
 #: app/views/shared/exception_trap.html.erb:16
+msgid "Problem occured on target machine"
+msgstr ""
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:19
-#, fuzzy
-#| msgid "No information available."
-msgid "No information available"
-msgstr "사용 가능한 정보가 없습니다."
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -413,38 +426,49 @@ msgstr "'%s'가 설치되지 않았습니다."
 msgid "Show all modules"
 msgstr "불러온 모듈 표시"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:17
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "'%2' 서비스에 대한 '%1' 동작은 허용되지 않습니다."
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:14
-#, fuzzy
-#| msgid "A kioslave to browse services"
-msgid "Noone is logged to rest service."
-msgstr "kioslave 에서 서비스 탐색"
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "설치 도중 오류가 발생 했습니다."
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "예전 숨김 파일 닫는 동안 오류: %m"
+
+#, fuzzy
+#~| msgid "A kioslave to browse services"
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "kioslave 에서 서비스 탐색"

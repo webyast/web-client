@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2005-08-24 17:37+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenščina <sl@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "X-Generator: KBabel 1.3.1\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr ""
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr ""
 
@@ -139,16 +139,20 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Shrani"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Prekini"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 #, fuzzy
 #| msgid "&Next"
 msgid "Next"
@@ -171,6 +175,17 @@ msgstr "Zbriši"
 
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+#, fuzzy
+#| msgid "No information available."
+msgid "No information available"
+msgstr "Informacij ni na voljo."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
 msgstr ""
 
 #: app/views/hosts/index.html.erb:6
@@ -238,22 +253,20 @@ msgid "Problem:"
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:16
+msgid "Problem occured on target machine"
+msgstr ""
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:19
-#, fuzzy
-#| msgid "No information available."
-msgid "No information available"
-msgstr "Informacij ni na voljo."
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -391,32 +404,40 @@ msgstr ""
 msgid "Show all modules"
 msgstr "Prikaz naloženih modulov"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr ""
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr ""
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Med namestitvijo je prišlo do napake."
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr ""

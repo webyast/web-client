@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-19 22:20+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 13:39+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,43 +14,53 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/administrator_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Érvénytelen munkamenet, lépjen be újra."
-
 # clients/lan_ISDN.ycp:1014 clients/lan_ISDN.ycp:1032
-#: app/controllers/administrator_controller.rb:42
+#: app/controllers/administrator_controller.rb:35
 #: app/views/administrator/index.html.erb:32
 msgid "Enter a valid e-mail address."
 msgstr "Adjon meg érvényes e-mailcímet."
 
-#: app/controllers/administrator_controller.rb:50
+#: app/controllers/administrator_controller.rb:43
 msgid "Passwords do not match."
 msgstr "A jelszavak nem egyeznek."
 
-#: app/controllers/administrator_controller.rb:76
+# /tmp/xapi:271
+#: app/controllers/administrator_controller.rb:60
+#| msgid "Administrator Settings"
+msgid "Administrator settings have been written."
+msgstr "Adminisztrátori beállítások mentése megtörtént."
+
+#: app/controllers/administrator_controller.rb:70
 msgid "Error while saving administrator settings: %s"
 msgstr "Hiba történt az adminsztrátori beállítások mentése közben: %s"
 
 # /tmp/xapi:271
-#: app/views/administrator/index.html.erb:38
+#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:48
 msgid "Administrator Settings"
 msgstr "Adminisztrátori beállítások"
 
+#: app/views/administrator/index.html.erb:40
+#| msgid "Passwords do not match."
+msgid "The passwords do not match."
+msgstr "A jelszavak nem egyeznek."
+
 # password dialog title
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:55
 msgid "Password"
 msgstr "Jelszó"
 
-#: app/views/administrator/index.html.erb:51
-msgid "Confirm Password"
+#: app/views/administrator/index.html.erb:59
+#| msgid "Confirm Password"
+msgid "Confirm password"
 msgstr "Jelszó megerősítése"
 
-#: app/views/administrator/index.html.erb:53
-#: app/views/administrator/index.html.erb:58
+#: app/views/administrator/index.html.erb:61
+#: app/views/administrator/index.html.erb:66
 msgid "Save"
 msgstr "Mentés"
 
-#: app/views/administrator/index.html.erb:56
+#: app/views/administrator/index.html.erb:64
 msgid "Forward mail to"
 msgstr "Levéltovábbítás ide:"
+

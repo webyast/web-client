@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2005-08-24 17:53+0300\n"
 "Last-Translator: Hellenic SuSE Translation Team <hstg@billg.gr>\n"
 "Language-Team: Hellenic-Ελληνικά-Greek <hstg@billg.gr>\n"
@@ -16,7 +16,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "Τα συνθηματικά δεν ταιριάζουν."
 
-#: app/controllers/mail_settings_controller.rb:43
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr ""
+
+#: app/controllers/mail_settings_controller.rb:44
 #, fuzzy
 #| msgid "Error while closing old opasswd file: %s"
 msgid "Error while saving mail settings: %s"
@@ -35,45 +39,48 @@ msgid "Mail Settings"
 msgstr "Χειροκίνητες Ρυθμίσεις"
 
 #: app/views/mail_settings/index.html.erb:42
-#, fuzzy
-#| msgid "Name Server Address"
-msgid "SMTP server address"
-msgstr "Διεύθυνση name server"
+msgid "Outgoing mail server (SMTP)"
+msgstr ""
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "(%1 available)"
 msgid "If available"
 msgstr "(%1 διαθέσιμο)"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Alwa&ys"
 msgid "Always"
 msgstr "Πάντ&α"
 
 #  Proposal for uml user name
-#: app/views/mail_settings/index.html.erb:50
+#: app/views/mail_settings/index.html.erb:48
 #, fuzzy
 #| msgid "Username: "
 msgid "User name"
 msgstr "Όνομα Χρήστη: "
 
 # password dialog title
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "Κωδικός"
 
-#: app/views/mail_settings/index.html.erb:58
+#: app/views/mail_settings/index.html.erb:54
 #, fuzzy
 #| msgid "Change Password"
 msgid "Confirm Password"
 msgstr "Αλλαγή Συνθηματικού"
+
+#, fuzzy
+#~| msgid "Name Server Address"
+#~ msgid "SMTP server address"
+#~ msgstr "Διεύθυνση name server"

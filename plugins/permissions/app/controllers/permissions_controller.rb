@@ -7,7 +7,7 @@ class PermissionsController < ApplicationController
   private
   def client_permissions
     login = YaST::ServiceResource::Session.login
-    perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
+    perm_resource = OpenStruct.new(:href => '/permissions', :singular => true, :interface => 'org.opensuse.yast.webservice.permissions')
     proxy = YaST::ServiceResource.class_for_resource(perm_resource)
     unless proxy
       flash[:notice] = _("Invalid session, please login again.")
@@ -17,12 +17,12 @@ class PermissionsController < ApplicationController
     @right_get_permissions = false
     permissions = proxy.find(:all, :params => { :user_id => login, :filter => 'org.opensuse.yast.permissions' })
     permissions.each do |permission|
-      if permission.name == "org.opensuse.yast.permissions.write" &&
-        permission.grant
+      if permission.id == "org.opensuse.yast.permissions.write" &&
+        permission.granted
         @right_set_permissions = true
       end
-      if permission.name == "org.opensuse.yast.permissions.read" &&
-        permission.grant
+      if permission.id == "org.opensuse.yast.permissions.read" &&
+        permission.granted
         @right_get_permissions = true
       end
     end
@@ -37,13 +37,13 @@ class PermissionsController < ApplicationController
   end
 
 
-  # Checks the tree if there is a node which is set to the value of "grant"
+  # Checks the tree if there is a node which is set to the value of "granted"
   # and check if the subtree has to be shown
   def show_subtree (tree, grant)
      return false if !tree
      show = false
      tree.each do |key, branches|
-	if (key == :grant)
+	if (key == :granted)
            if branches == true
               if (grant == true) #the complete subtree is granted
                  show = true
@@ -78,18 +78,18 @@ class PermissionsController < ApplicationController
      @permissions.each do |permission|
         sub = @permission_tree
         #do not regard org.opensuse.yast. in the tree
-        if permission.name.starts_with?("org.opensuse.yast.")
-          permission_name = permission.name["org.opensuse.yast.".size, permission.name.size-1]
+        if permission.id.starts_with?("org.opensuse.yast.")
+          permission_name = permission.id["org.opensuse.yast.".size, permission.id.size-1]
         else
-         permission_name = permission.name
+         permission_name = permission.id
         end
         permission_name = permission_name.tr("-", ".")
         permission_split = permission_name.split(".")
         permission_split.each do |dir|
            sub = sub[dir] 
         end
-        sub[:grant] = permission.grant
-        sub[:path] = permission.name
+        sub[:granted] = permission.granted
+        sub[:path] = permission.id
      end
   end
 
@@ -104,9 +104,9 @@ class PermissionsController < ApplicationController
               node[:path] = branch[:path] if branch.has_key?(:path)
               #taking the subtrees too
               next_take_all = take_all
-              if (branch.has_key?(:grant) &&
+              if (branch.has_key?(:granted) &&
                   grant &&
-                  branch[:grant] == true)
+                  branch[:granted] == true)
                   next_take_all = true
                   #logger.debug "#{branch[:path]} is granted. So all other subtrees are granted"
               end
@@ -122,13 +122,18 @@ class PermissionsController < ApplicationController
     @current_user = nil
     if get_perm_from_server
       begin
-         @permissions = proxy.find(:all, :params => { :user_id => user })
-      rescue ActiveResource::ClientError => e
-        return YaST::ServiceResource.error(e)
-      rescue Exception => e
-        es = "AIEEE, #{e}"
-        logger.debug es
-        return es
+        @permissions = proxy.find(:all, :params => { :user_id => user })
+      rescue ActiveResource::ResourceInvalid => e
+        error = Hash.from_xml(e.response.body)
+        logger.info error.inspect
+        error["errors"][0].match(/^.*---\s*(.*)$/) #XXX ugly should be improved, if failed, then it is catched by default handler
+        logger.debug $1
+        case $1
+        when "INVALID" then
+          return _("User name is not valid name")
+        when "UNKNOWN" then
+          return _("User does not exist")
+        end
       end
     end
     @current_user = user
@@ -158,7 +163,7 @@ class PermissionsController < ApplicationController
     params.each do |key, value|
       if value == "grant" || value == "revoke"
         for i in 0..@permissions.size-1 do
-          if  @permissions[i].name == key
+          if  @permissions[i].id == key
             @permissions[i].grant = true if value == "grant"
             @permissions[i].grant = false if value == "revoke"
             begin

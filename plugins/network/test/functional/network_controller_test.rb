@@ -41,7 +41,7 @@ class NetworkControllerTest < ActionController::TestCase
     @if_proxy = ProxyH.new
     @if_proxy.result = {
       :all => [ OpenStruct.new("id" => "eth1") ],
-      "eth1" => OpenStruct.new("id" => "eth1", "ipaddr" => '10.20.30.42/24')
+      "eth1" => OpenStruct.new("id" => "eth1", "ipaddr" => '10.20.30.42/24', "bootproto" => "static")
     }
 
     @hn_proxy = Proxy1.new

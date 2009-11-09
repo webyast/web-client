@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-09-25 08:24+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -23,6 +23,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Bez povolení pre sieťový modul"
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "Nespúšťať"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -44,19 +50,29 @@ msgstr ""
 msgid "Network"
 msgstr "Sieť"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Rozhranie"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select item"
+msgid "Select"
+msgstr "Vybrať položku"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "IP Address"
+msgid "IP address"
 msgstr "IP adresa"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+#, fuzzy
+#| msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "Režim konfigurácie"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -66,38 +82,45 @@ msgstr "Predvoľba"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "Hostiteľ"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "Doména"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+#, fuzzy
+#| msgid "Name Servers"
+msgid "Name servers"
 msgstr "Názvové servery"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+#, fuzzy
+#| msgid "Search Domains"
+msgid "Search domains"
 msgstr "Hľadať domény"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "Smerovanie"
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "Štandardné smerovanie"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Aktualizácia"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Uložiť"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Nazad"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Zrušiť"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -126,3 +149,9 @@ msgstr "Názov zariadenia"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Spustenie"
+
+#~ msgid "Update"
+#~ msgstr "Aktualizácia"
+
+#~ msgid "Back"
+#~ msgstr "Nazad"

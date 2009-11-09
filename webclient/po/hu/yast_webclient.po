@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-19 22:39+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-29 13:43+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,22 +14,19 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr "A termék használata előtt el kell fogadnia a licencszerződést!"
 
-#: app/controllers/application_controller.rb:64
-msgid ""
-"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
-"Nem működik az átirányítás a licencszerződéshez. Ellenőrizze, hogy a yast2-"
-"webclient-eulas csomag telepítve van"
+#: app/controllers/application_controller.rb:56
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr "Nem működik az átirányítás a licencszerződéshez. Ellenőrizze, hogy a yast2-webclient-eulas csomag telepítve van"
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 msgid "Please login to continue"
 msgstr "Lépjen be a folytatáshoz"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr "Belépés előtt ki kell jelentkeznie"
 
@@ -39,9 +36,7 @@ msgstr "Nem tud kapcsolódni a(z) %s géphez."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr ""
-"Győződjön meg arról, hogy a számítógép be van működik és a YaST "
-"webszolgáltatás fut."
+msgstr "Győződjön meg arról, hogy a számítógép be van működik és a YaST webszolgáltatás fut."
 
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
@@ -71,7 +66,7 @@ msgstr "Nincs megadva jelszó"
 msgid "Login incorrect. Check your username and password."
 msgstr "Bejelentkezési hiba. Ellenőrizze a felhasználónevet és a jelszót."
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr "Kijelentkezett."
 
@@ -127,16 +122,20 @@ msgstr "Számítógép|Létrehozás itt: "
 msgid "Host|Updated at"
 msgstr "Számítógép|Frissítés itt: "
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr " vagy "
+
+#: app/helpers/application_helper.rb:6
 msgid "Save"
 msgstr "Mentés"
 
 # cancel button label
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "Következő"
 
@@ -156,6 +155,16 @@ msgstr "Törlés"
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
 msgstr "Biztos benne?"
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+msgid "No information available"
+msgstr "Nincs elérhető információ"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+#| msgid "There was an error while getting the sharing information"
+msgid "There was a problem retrieving information from the server."
+msgstr "Hiba történt a kiszolgálóról való információ lekérdezése közben."
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -211,8 +220,7 @@ msgid "This is embarrasing...."
 msgstr "Ez kicsit zavarba ejtő..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid ""
-"We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
 msgstr "Elnézést, de a WebYaST fejlesztési alatt áll és néhol hibás a működés."
 
 #: app/views/shared/exception_trap.html.erb:12
@@ -221,20 +229,21 @@ msgid "Problem:"
 msgstr "Probléma:"
 
 #: app/views/shared/exception_trap.html.erb:16
+#| msgid "Problem occured on target machine."
+msgid "Problem occured on target machine"
+msgstr "Hiba történt a célgépen"
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Jelentse be a hibát, hogy kijavíthassuk!"
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr "(bejelentett hivatkozás)"
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 msgid "Don't forget to include the bug details."
 msgstr "Ne felejtse le csatolni a hiba részleteit."
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "No information available"
-msgstr "Nincs elérhető információ"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -293,9 +302,7 @@ msgid "Base system setup"
 msgstr "Alaprendszer-beállítás"
 
 #: app/views/controlpanel/basesystem.rhtml:3
-msgid ""
-"Your system setup was not completed. Please continue with setting up the "
-"modules."
+msgid "Your system setup was not completed. Please continue with setting up the modules."
 msgstr "A rendszerbeállítás nem teljes. Folytassa a modulok beállításával."
 
 #: app/views/controlpanel/basesystem.rhtml:4
@@ -353,35 +360,39 @@ msgstr "Az állapotbővítmény nincs telepítve."
 msgid "Show all modules"
 msgstr "Összes modul megjelenítése"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+msgid "Service %s is not available in the target machine"
+msgstr "A(z) %s szolgáltatás nem érhető el a célgépen"
+
+#: lib/error_constructor.rb:15
+msgid "Service %s is not running on the target machine"
+msgstr "A(z) %S szolgáltatás nem fut a célgépen"
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "A(z) %s jogosultság nem került hozzáadásra a(z) %s felhasználóhoz"
 
-#: lib/error_constructor.rb:12
-msgid ""
-"Policy kit exception for user %s and permission %s (untranslated message): %s"
+#: lib/error_constructor.rb:19
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Policy kit kivétel a(z) %s felhasználóhoz és a(z) %s engedélyhez: %s"
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
-msgstr ""
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr "A felhasználó már nincs bejelentkezve a célgépen. Jelentkezzen be újra."
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "A célrendszer nem konzisztens. A(z) %s fájl hiányzik vagy hibás"
 
-#: lib/error_constructor.rb:20
-msgid ""
-"There is no predefined ntp server at /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
-"Nincs előre beállított NTP-kiszolgáló az /etc/sysconfig/network/config "
-"fájlban, a NETCONFIG_NTP_STATIC_SERVERS paraméternél."
+#: lib/error_constructor.rb:27
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "Nincs előre beállított NTP-kiszolgáló az /etc/sysconfig/network/config fájlban, a NETCONFIG_NTP_STATIC_SERVERS paraméternél."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Hiba történt az ntp-szinkronizáció közben: %s"
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Hiba történt az adminisztrációs beállítások kiírása közben: %s"
+

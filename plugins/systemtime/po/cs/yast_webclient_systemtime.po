@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-08 14:30+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -30,20 +30,20 @@ msgstr "Nemáte práva nastavení času"
 msgid "Settings have been written."
 msgstr "Nastavení byla uložena."
 
-#: app/views/systemtime/index.rhtml:18
+#: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
 msgstr "Chybný formát data. Správně je to dd/mm/rrrr"
 
-#: app/views/systemtime/index.rhtml:22
+#: app/views/systemtime/index.rhtml:25
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Chybný formát času. Správně je to: hh:mm:ss"
 
-#: app/views/systemtime/index.rhtml:48
+#: app/views/systemtime/index.rhtml:51
 msgid "Time"
 msgstr "Čas"
 
 # Možná země bude lepší. Cervajz.
-#: app/views/systemtime/index.rhtml:54
+#: app/views/systemtime/index.rhtml:57
 msgid "Region:"
 msgstr "Region:"
 
@@ -51,26 +51,30 @@ msgstr "Region:"
 msgid "Timezone:"
 msgstr "Časové pásmo:"
 
-#: app/views/systemtime/index.rhtml:73
+#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
 msgid "Hardware clock is set to UTC"
 msgstr "Hardware hodiny nastaveny na UTC."
 
-#: app/views/systemtime/index.rhtml:85
-msgid "Don't set time"
-msgstr "Nenastavujte čas"
-
-#: app/views/systemtime/index.rhtml:87
+#: app/views/systemtime/index.rhtml:83
 msgid "Manually configure time"
 msgstr "Nastavit čas ručně"
 
-#: app/views/systemtime/index.rhtml:89
-msgid "Synchronize via NTP"
-msgstr "Synchronizovat s NTP"
-
-#: app/views/systemtime/index.rhtml:95
+#: app/views/systemtime/index.rhtml:88
 msgid "Date:"
 msgstr "Datum:"
 
-#: app/views/systemtime/index.rhtml:104
+#: app/views/systemtime/index.rhtml:92
 msgid "Time:"
 msgstr "Čas:"
+
+#: app/views/systemtime/index.rhtml:97
+#, fuzzy
+#| msgid "Network Time Protocol daemon"
+msgid "Synchronize via Network Time Protocol (NTP)"
+msgstr "NTP démon"
+
+#~ msgid "Don't set time"
+#~ msgstr "Nenastavujte čas"
+
+#~ msgid "Synchronize via NTP"
+#~ msgstr "Synchronizovat s NTP"

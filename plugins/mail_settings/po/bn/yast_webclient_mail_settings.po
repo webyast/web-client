@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -15,7 +15,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "পাসওয়ার্ডে মিল নেই৷"
 
-#: app/controllers/mail_settings_controller.rb:43
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr ""
+
+#: app/controllers/mail_settings_controller.rb:44
 #, fuzzy
 #| msgid "Error while closing old opasswd file: %s"
 msgid "Error while saving mail settings: %s"
@@ -34,41 +38,44 @@ msgid "Mail Settings"
 msgstr "হস্তচালিত সেটিংগুলি"
 
 #: app/views/mail_settings/index.html.erb:42
-#, fuzzy
-#| msgid "Name Server Address"
-msgid "SMTP server address"
-msgstr "নেম সার্ভারের ঠিকানা"
+msgid "Outgoing mail server (SMTP)"
+msgstr ""
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr " অক্ষম "
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Help Unavailable"
 msgid "If available"
 msgstr "উপস্থিত নেই"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "Alwa&ys"
 msgid "Always"
 msgstr "স&র্বদা"
 
-#: app/views/mail_settings/index.html.erb:50
+#: app/views/mail_settings/index.html.erb:48
 msgid "User name"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "পাসওয়ার্ড"
 
-#: app/views/mail_settings/index.html.erb:58
+#: app/views/mail_settings/index.html.erb:54
 #, fuzzy
 #| msgid "_Confirm Password:"
 msgid "Confirm Password"
 msgstr "পাসওয়ার্ড (_P):"
+
+#, fuzzy
+#~| msgid "Name Server Address"
+#~ msgid "SMTP server address"
+#~ msgstr "নেম সার্ভারের ঠিকানা"

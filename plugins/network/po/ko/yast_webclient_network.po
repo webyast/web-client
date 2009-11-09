@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -14,6 +14,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "시작하지 않음"
 
 #: app/controllers/network_controller.rb:66
 #, fuzzy
@@ -39,21 +45,29 @@ msgstr ""
 msgid "Network"
 msgstr "네트워크"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "인터페이스"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "_Selection"
+msgid "Select"
+msgstr "선택사항(_S)"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "IP Address"
+msgid "IP address"
 msgstr "IP 주소"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "구성"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -65,46 +79,48 @@ msgstr "국번"
 msgid "DNS"
 msgstr "NFS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "호스트 이름:"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "도메인\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Name Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "네임서버"
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:125
 #, fuzzy
-#| msgid "Search Domains:"
-msgid "Search Domains"
-msgstr "도메인 검색:"
+#| msgid "&Search domains:"
+msgid "Search domains"
+msgstr "도메인 검색(&S):"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "기본 라우트"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "업데이트"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "저장"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "뒤로"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "취소"
 
 #  Selection box item
 #: app/views/network/edit.html.erb:1
@@ -142,3 +158,14 @@ msgstr "장치"
 #| msgid "Start-Up"
 msgid "Startup"
 msgstr "시작"
+
+#, fuzzy
+#~| msgid "Search Domains:"
+#~ msgid "Search Domains"
+#~ msgstr "도메인 검색:"
+
+#~ msgid "Update"
+#~ msgstr "업데이트"
+
+#~ msgid "Back"
+#~ msgstr "뒤로"

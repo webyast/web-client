@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -20,7 +20,11 @@ msgstr ""
 msgid "Passwords do not match."
 msgstr "รหัสผ่านไม่ตรงกัน กำลังออก"
 
-#: app/controllers/mail_settings_controller.rb:43
+#: app/controllers/mail_settings_controller.rb:36
+msgid "Mail settings have been written."
+msgstr ""
+
+#: app/controllers/mail_settings_controller.rb:44
 #, fuzzy
 #| msgid "Error while saving file: %1 \n"
 msgid "Error while saving mail settings: %s"
@@ -38,38 +42,43 @@ msgstr "ตั้งค่าเมล"
 
 #: app/views/mail_settings/index.html.erb:42
 #, fuzzy
-#| msgid "NTP Server Address"
-msgid "SMTP server address"
-msgstr "ที่อยู่ของแม่ข่ายบริการ NTP"
+#| msgid "Zone mail servers"
+msgid "Outgoing mail server (SMTP)"
+msgstr "เครื่องให้บริการเมลของโซน"
 
-#: app/views/mail_settings/index.html.erb:46
+#: app/views/mail_settings/index.html.erb:45
 msgid "Transport Layer Security (TLS)"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Disabled"
 msgstr "ปิดการใช้"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 #, fuzzy
 #| msgid "No help available"
 msgid "If available"
 msgstr "ไม่พบข้อความช่วยเหลือ"
 
-#: app/views/mail_settings/index.html.erb:47
+#: app/views/mail_settings/index.html.erb:46
 msgid "Always"
 msgstr ""
 
-#: app/views/mail_settings/index.html.erb:50
+#: app/views/mail_settings/index.html.erb:48
 #, fuzzy
 #| msgid "&User name:"
 msgid "User name"
 msgstr "ชื่อผู้ใช้:"
 
-#: app/views/mail_settings/index.html.erb:54
+#: app/views/mail_settings/index.html.erb:51
 msgid "Password"
 msgstr "รหัสผ่าน"
 
-#: app/views/mail_settings/index.html.erb:58
+#: app/views/mail_settings/index.html.erb:54
 msgid "Confirm Password"
 msgstr "ยืนยันรหัสผ่าน"
+
+#, fuzzy
+#~| msgid "NTP Server Address"
+#~ msgid "SMTP server address"
+#~ msgstr "ที่อยู่ของแม่ข่ายบริการ NTP"

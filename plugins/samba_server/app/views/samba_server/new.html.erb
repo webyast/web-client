@@ -21,6 +21,6 @@
     <% end %>
 
     </table>
-    <p><%= f.submit _("Create"), :onclick=>"Element.show('progress')" %><%= link_to _('Back'), 'samba_server', :onclick=>"Element.show('progress')", :class => "button" %></p>
+    <p><%= f.submit _("Create"), :onclick=>"$('#progress').show()" %><%= link_to _('Back'), 'samba_server', :onclick=>"$('#progress').show()", :class => "button" %></p>
   </div>
 <% end %>

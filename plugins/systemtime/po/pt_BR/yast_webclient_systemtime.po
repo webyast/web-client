@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-20 11:07-0300\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-10-28 16:05-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,6 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: app/controllers/systemtime_controller.rb:31
-#| msgid "Unknown option "
 msgid "Unknown timezone %s on host"
 msgstr "Fuso horário desconhecido %s na máquina"
 
@@ -35,19 +34,19 @@ msgstr "Sem permissões para o módulo de hora"
 msgid "Settings have been written."
 msgstr "As configurações foram salvas."
 
-#: app/views/systemtime/index.rhtml:18
+#: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
 msgstr "Formato de data inválido. O correto é dd/mm/aaaa"
 
-#: app/views/systemtime/index.rhtml:22
+#: app/views/systemtime/index.rhtml:25
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Formato de hora inválido. O correto é hh:mm:ss"
 
-#: app/views/systemtime/index.rhtml:48
+#: app/views/systemtime/index.rhtml:51
 msgid "Time"
 msgstr "Hora"
 
-#: app/views/systemtime/index.rhtml:54
+#: app/views/systemtime/index.rhtml:57
 msgid "Region:"
 msgstr "Região:   "
 
@@ -55,27 +54,29 @@ msgstr "Região:   "
 msgid "Timezone:"
 msgstr "Fuso horário:"
 
-#: app/views/systemtime/index.rhtml:73
+#: app/views/systemtime/index.rhtml:70
+#: app/views/systemtime/index.rhtml:76
 msgid "Hardware clock is set to UTC"
 msgstr "O relógio do hardware está definido como UTC"
 
-#: app/views/systemtime/index.rhtml:85
-msgid "Don't set time"
-msgstr "Não definir a hora"
-
-#: app/views/systemtime/index.rhtml:87
+#: app/views/systemtime/index.rhtml:83
 msgid "Manually configure time"
 msgstr "Configurar a hora manualmente"
 
-#: app/views/systemtime/index.rhtml:89
-msgid "Synchronize via NTP"
-msgstr "Sincronizar via NTP"
-
-#: app/views/systemtime/index.rhtml:95
+#: app/views/systemtime/index.rhtml:88
 msgid "Date:"
 msgstr "Data:"
 
-#: app/views/systemtime/index.rhtml:104
+#: app/views/systemtime/index.rhtml:92
 msgid "Time:"
 msgstr "Hora:"
+
+#: app/views/systemtime/index.rhtml:97
+msgid "Synchronize via Network Time Protocol (NTP)"
+msgstr "Sincronizar via NTP (Network Time Protocol)"
+
+#~ msgid "Don't set time"
+#~ msgstr "Não definir a hora"
+#~ msgid "Synchronize via NTP"
+#~ msgstr "Sincronizar via NTP"
 

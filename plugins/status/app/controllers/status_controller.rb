@@ -45,25 +45,34 @@ class StatusController < ApplicationController
   end
 
   def write_data_group(label, group, metric_name)
+    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
     values = label.attributes["values"]
-    value_size = values.length
-    divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
-    data_list = Array.new
-    value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
-    @data_group[group].merge!({metric_name => data_list})
+    if values.uniq != ["invalid"] #use only entries which have at least one valid value
+      value_size = values.length
+      divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
+      data_list = Array.new
+      value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
+      if group == "df"
+        data_list.reject! {|value| value[1] == 0 } if group == "df"  #df returns sometime 0 entries
+        data_list = [[0,0]] if data_list.size == 0 #it is really 0 :-)
+      end
+      @data_group[group].merge!({metric_name => data_list})
 
-    limits = label.attributes["limits"]
-    if limits
-      @limits_list["/#{group}/#{metric_name}"] = {:min=>Array.new, :max=>Array.new}
-      if label.attributes["limits"] and limits.attributes["min"] #limits.has_key? "min"
-        minimum = limits.attributes["min"].to_f/divisor
-        value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:min] << [i,minimum]}
+      limits = label.attributes["limits"]
+      if limits
+        @limits_list["/#{group}/#{metric_name}"] = {:min=>Array.new, :max=>Array.new}
+        if label.attributes["limits"] and limits.attributes["min"] #limits.has_key? "min"
+          minimum = limits.attributes["min"].to_f/divisor
+          value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:min] << [i,minimum]}
+        end
+        if label.attributes["limits"] and limits.attributes["max"] #limits.has_key? "min"
+          maximum = limits.attributes["max"].to_f/divisor
+          value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:max] << [i,maximum]}
+        end
       end
-      if label.attributes["limits"] and limits.attributes["max"] #limits.has_key? "min"
-        maximum = limits.attributes["max"].to_f/divisor
-        value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:max] << [i,maximum]}
-      end
-    end
+    else
+      logger.debug "#{group} #{metric_name} #{label.name} has no valid entry"
+    end 
   end
 
   def create_data_map(tree)
@@ -93,9 +102,11 @@ class StatusController < ApplicationController
     till = Time.new
     from = till - 300 #last 5 minutes
 #puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
-    status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+    ActionController::Base.benchmark("Status data read from the server") do
+      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+    end
     create_data_map status
-    # puts @data_group.inspect
+    logger.debug @data_group.inspect
     true
   end
 
@@ -168,7 +179,7 @@ class StatusController < ApplicationController
     begin
       create_data
       status = limits_reached
-      status = "limits exceeded for " + status unless status.empty?
+      status = (_("Limits exceeded for %s") % status) unless status.empty?
       render :partial => "status_summary", :locals => { :status => status, :error => nil }
     rescue Exception => error
       erase_redirect_results #reset all redirects
@@ -198,10 +209,20 @@ class StatusController < ApplicationController
       end
     }
 
-    puts "limits " + limits.inspect
-#respond = @client.create(:params => params.inspect)
-@client.create(:params => limits.inspect)
-puts "respond: " + respond
+    Rails.logger.debug "New limits: #{limits.inspect}"
+
+    begin
+      ActionController::Base.benchmark("Limits saved on the server") do
+	@client.create(:params => limits.inspect)
+      end
+    rescue Exception => ex
+      flash[:error] = _("Saving limits failed!")
+      redirect_to :controller=>"status", :action=>"edit" and return
+    end
+
+    redirect_to :controller=>"status", :action=>"index"
+
+#puts "respond: " + respond
 #    respond = @client.put(:status, :params => params) #:status, {:params => params})
 #    if respond == :success
 #      redirect_to :controller=>"status", :action=>"index"

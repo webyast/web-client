@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-21 15:12+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"PO-Revision-Date: 2009-11-01 23:00+0100\n"
 "Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,10 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr "Pas de permissions pour le module réseau"
+
+#: app/controllers/network_controller.rb:66
+msgid "not set"
+msgstr "non défini"
 
 # TLABEL lan_inetd_2002_01_04_0147__28
 #: app/controllers/network_controller.rb:66
@@ -44,20 +48,25 @@ msgid "Network"
 msgstr "Réseau"
 
 # TLABEL kinternet_2002_02_20_2255__50
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Interface"
 
+# TLABEL kinternet_2002_02_20_2255__4
+#: app/views/network/index.html.erb:77
+msgid "Select"
+msgstr "Sélectionner"
+
 # TLABEL kinternet_2002_02_20_2255__49
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+msgid "IP address"
 msgstr "Adresse IP"
 
-#: app/views/network/index.html.erb:94
-msgid "Configuration Mode"
+#: app/views/network/index.html.erb:98
+msgid "Configuration mode"
 msgstr "Mode de configuration"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr "Longueur du préfixe"
 
@@ -65,42 +74,41 @@ msgstr "Longueur du préfixe"
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "Nom d'hôte"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "Domaine"
 
 # TLABEL kinternet_2002_02_20_2255__42
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
-msgstr "Serveur de noms"
+#: app/views/network/index.html.erb:121
+msgid "Name servers"
+msgstr "Serveurs de noms"
 
-# TLABEL packages_2002_01_04_0147__110
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr "Domaines de recherche"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "Routage"
 
 # TLABEL kinternet_2002_02_20_2255__41
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+msgid "Default route"
 msgstr "Route par défaut"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Mettre à jour"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Enregistrer"
 
-# TLABEL linuxrc_2002_03_29_0036__1
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Retour"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Annuler"
 
 # TLABEL lan_2002_01_04_0147__264
 #: app/views/network/edit.html.erb:1
@@ -132,3 +140,14 @@ msgstr "Nom du périphérique"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr "Démarrage"
+
+# TLABEL packages_2002_01_04_0147__110
+#~ msgid "Search Domains"
+#~ msgstr "Domaines de recherche"
+
+#~ msgid "Update"
+#~ msgstr "Mettre à jour"
+
+# TLABEL linuxrc_2002_03_29_0036__1
+#~ msgid "Back"
+#~ msgstr "Retour"

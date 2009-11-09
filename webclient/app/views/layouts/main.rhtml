@@ -3,11 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <%= stylesheet_link_tag "yast", :title=>"default", :charset=>"utf-8" %>
-  <%= stylesheet_link_tag "grid", :title=>"default", :charset=>"utf-8" %>
-  <%= stylesheet_link_tag "style", :title=>"default", :charset=>"utf-8" %>
-  <%= stylesheet_link_tag "jquery.jqplot.css", :title=>"default", :charset=>"utf-8" %>
-  <%= stylesheet_link_tag "jquery-ui-1.7.2.custom.css", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css","jquery-ui-1.7.2.custom.css",
+      :title=>"default", :charset=>"utf-8" # , :cache => "webclient-base.css" add after solve permissions problem
+      %>
 
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>

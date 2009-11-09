@@ -11,10 +11,10 @@
 
 Name:           yast2-webclient-registration
 PreReq:         yast2-webclient
-License:	GPL v2 only
+License:        GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.2
+Version:        0.0.3
 Release:        0
 Summary:        YaST2 - Webclient - Registration
 Source:         www.tar.bz2

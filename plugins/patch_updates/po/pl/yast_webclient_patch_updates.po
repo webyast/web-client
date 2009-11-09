@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-27 20:16+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -18,24 +18,23 @@ msgstr ""
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/patch_updates_controller.rb:61
+#: app/controllers/patch_updates_controller.rb:66
 msgid "Installing all patches..."
 msgstr "Instalacja wszystkich poprawek..."
 
-#: app/controllers/patch_updates_controller.rb:69
+#: app/controllers/patch_updates_controller.rb:74
 msgid "Installation stopped"
 msgstr "Przerwano instalację"
 
-#: app/controllers/patch_updates_controller.rb:106
+#: app/controllers/patch_updates_controller.rb:111
 msgid "Installation finished"
 msgstr "Zakończono instalację"
 
-#: app/controllers/patch_updates_controller.rb:108
-#| msgid "%s installed ok"
+#: app/controllers/patch_updates_controller.rb:113
 msgid "%s installed."
 msgstr "%s zainstalowany."
 
-#: app/controllers/patch_updates_controller.rb:137
+#: app/controllers/patch_updates_controller.rb:142
 msgid "Patch has been installed."
 msgstr "Poprawka została zainstalowana."
 
@@ -74,7 +73,9 @@ msgid "Are you sure?"
 msgstr "Na pewno?"
 
 #: app/views/patch_updates/_patch_summary.html.erb:1
-msgid "An error occured when loading patch information."
+#, fuzzy
+#| msgid "An error occured when loading patch information."
+msgid "A problem occured when loading patch information."
 msgstr "Wystąpił błąd podczas wczytywania informacji o uaktualnieniach."
 
 #: app/views/patch_updates/_patch_summary.html.erb:6
@@ -82,17 +83,14 @@ msgid "No information about patches available"
 msgstr "Brak dostępnych informacji o uaktualnieniach"
 
 #: app/views/patch_updates/_patch_summary.html.erb:19
-#| msgid "Security update"
 msgid "Security Updates: %d"
 msgstr "Aktualizacje bezpieczeństwa: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:22
-#| msgid "Important update"
 msgid "Important Updates: %d"
 msgstr "Ważne aktualizacje: %d"
 
 #: app/views/patch_updates/_patch_summary.html.erb:25
-#| msgid "Additonal updates done."
 msgid "Optional Updates: %d"
 msgstr "Aktualizacje dodatkowe: %d"
 
@@ -124,4 +122,3 @@ msgstr "Źródło"
 #: app/views/patch_updates/_patches.html.erb:18
 msgid "Install"
 msgstr "Zainstaluj"
-

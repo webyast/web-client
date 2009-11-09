@@ -165,12 +165,12 @@ EOF
     permissions_response = <<EOF
       <permissions type=\"array\">
         <permission>
-          <name>org.yast.foo.read</name>
-          <grant type=\"boolean\">true</grant>
+          <id>org.yast.foo.read</id>
+          <granted type=\"boolean\">true</granted>
         </permission>
         <permission>
-          <name>org.yast.foo.write</name>
-         <grant type=\"boolean\">false</grant>
+          <id>org.yast.foo.write</id>
+         <granted type=\"boolean\">false</granted>
         </permission>
       </permissions>
 EOF

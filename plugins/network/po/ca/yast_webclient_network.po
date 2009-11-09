@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2002-02-08 15:47+0100\n"
 "Last-Translator: Jaume Badiella <myotis@drac.com>\n"
 "Language-Team: Catalan\n"
@@ -14,6 +14,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "No l'iniciïs"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -35,23 +41,29 @@ msgstr ""
 msgid "Network"
 msgstr "Xarxa"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Interfície"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select Script"
+msgid "Select"
+msgstr "Selecciona l'script"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
 #, fuzzy
 #| msgid "Own Address"
-msgid "IP Address"
+msgid "IP address"
 msgstr "Adreça pròpia"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "Configuració"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -61,44 +73,47 @@ msgstr "Prefix de marcatge"
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Noms d'ordinadors centrals"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Domini\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Name Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "Servidor de noms"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr ""
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "Ruta predeterminada"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Actualitza"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Desa"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Enrere"
+# FR
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Anul·la"
 
 #: app/views/network/edit.html.erb:1
 #, fuzzy
@@ -135,3 +150,9 @@ msgstr "Dispositiu"
 #| msgid "Start-Up"
 msgid "Startup"
 msgstr "Inici"
+
+#~ msgid "Update"
+#~ msgstr "Actualitza"
+
+#~ msgid "Back"
+#~ msgstr "Enrere"

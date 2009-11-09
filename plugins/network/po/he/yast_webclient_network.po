@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -14,6 +14,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "not connected"
+msgid "not set"
+msgstr "לא מחובר"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -35,21 +41,25 @@ msgstr ""
 msgid "Network"
 msgstr ""
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr ""
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
+#: app/views/network/index.html.erb:77
+msgid "Select"
 msgstr ""
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+msgid "IP address"
+msgstr ""
+
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "הגדרות"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr ""
 
@@ -57,39 +67,42 @@ msgstr ""
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr ""
 
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr ""
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "שרת"
 
-#: app/views/network/index.html.erb:126
-msgid "Search Domains"
+#: app/views/network/index.html.erb:125
+msgid "Search domains"
 msgstr ""
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+msgid "Default route"
 msgstr ""
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "עדכון"
-
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
 msgstr ""
+
+# FR
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+#, fuzzy
+#| msgid "France"
+msgid "Cancel"
+msgstr "צרפת"
 
 #: app/views/network/edit.html.erb:1
 msgid "Edit Network Device"
@@ -123,3 +136,6 @@ msgstr "התקן"
 #: app/views/network/edit.html.erb:31
 msgid "Startup"
 msgstr ""
+
+#~ msgid "Update"
+#~ msgstr "עדכון"

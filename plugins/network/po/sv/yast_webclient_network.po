@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2005-09-18 19:09+0200\n"
 "Last-Translator: Mattias Newzella <newzella@linux.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -21,6 +21,12 @@ msgstr ""
 #: app/controllers/network_controller.rb:43
 msgid "No permissions for network module"
 msgstr ""
+
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Do not start"
+msgid "not set"
+msgstr "Starta inte"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -42,23 +48,29 @@ msgstr ""
 msgid "Network"
 msgstr "Nätverk"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "Gränssnitt"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:77
+#, fuzzy
+#| msgid "Select Script"
+msgid "Select"
+msgstr "Välj skript"
+
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
 #, fuzzy
 #| msgid "Own Address"
-msgid "IP Address"
+msgid "IP address"
 msgstr "Egen adress"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "Inställningar"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
@@ -68,46 +80,49 @@ msgstr "Uppringningsprefix"
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Värddatornamn"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Domän\n"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:121
 #, fuzzy
 #| msgid "Name Server"
-msgid "Name Servers"
+msgid "Name servers"
 msgstr "Namnserver"
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:125
 #, fuzzy
 #| msgid "Search Index"
-msgid "Search Domains"
+msgid "Search domains"
 msgstr "Sökindex"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:139
-msgid "Default Route"
+#: app/views/network/index.html.erb:133
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
 msgstr "Standardrutt"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "Uppdatera"
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Save"
+msgstr "Spara"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Back"
-msgstr "Tillbaka"
+# cancel button label
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "Avbryt"
 
 #: app/views/network/edit.html.erb:1
 #, fuzzy
@@ -144,3 +159,9 @@ msgstr "Enhet"
 #| msgid "Start-Up"
 msgid "Startup"
 msgstr "Start"
+
+#~ msgid "Update"
+#~ msgstr "Uppdatera"
+
+#~ msgid "Back"
+#~ msgstr "Tillbaka"

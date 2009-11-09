@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2009-10-04 15:26+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:14
+#: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "不適用的工作階段，請重新登入。"
 
-#: app/controllers/status_controller.rb:32
+#: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
 msgstr "超出磁碟可用空間限制;"
 
@@ -79,14 +79,21 @@ msgstr "最大值"
 msgid "Save"
 msgstr "儲存"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "An error occured when loading status information."
+#: app/views/status/_status_summary.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
 msgstr "載入狀態資訊時發生錯誤。"
 
-#: app/views/status/_status_summary.html.erb:14
-msgid "Show details..."
-msgstr "顯示詳細資料..."
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "沒有可用的資訊。"
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "您的系統狀態良好。"
+
+#~ msgid "Show details..."
+#~ msgstr "顯示詳細資料..."

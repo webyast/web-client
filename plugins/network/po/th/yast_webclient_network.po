@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -19,6 +19,10 @@ msgstr ""
 #| msgid "Access Permissions for Anonymous: "
 msgid "No permissions for network module"
 msgstr "สิทธิ์ในการเข้าใช้ของผู้ใช้นิรนาม: "
+
+#: app/controllers/network_controller.rb:66
+msgid "not set"
+msgstr ""
 
 #: app/controllers/network_controller.rb:66
 #, fuzzy
@@ -42,21 +46,25 @@ msgstr ""
 msgid "Network"
 msgstr "ระบบเครือข่าย"
 
-#: app/views/network/index.html.erb:71
+#: app/views/network/index.html.erb:72
 msgid "Interface"
 msgstr "ส่วนเชื่อมต่อ"
 
-#: app/views/network/index.html.erb:91 app/views/network/index.html.erb:98
-msgid "IP Address"
-msgstr "หมายเลขไอพี"
+#: app/views/network/index.html.erb:77
+msgid "Select"
+msgstr "เลือก"
 
-#: app/views/network/index.html.erb:94
+#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+msgid "IP address"
+msgstr "ที่อยู่ไอพี"
+
+#: app/views/network/index.html.erb:98
 #, fuzzy
 #| msgid "Configuration"
-msgid "Configuration Mode"
+msgid "Configuration mode"
 msgstr "การปรับแต่งค่า"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:106
 msgid "Prefixlen"
 msgstr ""
 
@@ -66,43 +74,45 @@ msgstr ""
 msgid "DNS"
 msgstr "โมเด็ม DSL"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:113
 msgid "Hostname"
 msgstr "ชื่อเครื่อง"
 
-#: app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:117
 msgid "Domain"
 msgstr "โดเมน"
 
-#: app/views/network/index.html.erb:122
-msgid "Name Servers"
+#: app/views/network/index.html.erb:121
+#, fuzzy
+#| msgid "Name Servers"
+msgid "Name servers"
 msgstr "เครื่องให้บริการสืบค้นชื่อ"
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:125
 #, fuzzy
 #| msgid "Search in"
-msgid "Search Domains"
+msgid "Search domains"
 msgstr "ค้นหาใน"
 
-#: app/views/network/index.html.erb:136
+#: app/views/network/index.html.erb:131
 msgid "Routing"
 msgstr "การหาเส้นทาง (Routing)"
 
-#: app/views/network/index.html.erb:139
+#: app/views/network/index.html.erb:133
 #, fuzzy
 #| msgid "D&efault Route"
-msgid "Default Route"
+msgid "Default route"
 msgstr "การหาเส้นทาง (Route) ปริยาย"
 
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
-msgid "Update"
-msgstr "ปรับให้ทันสมัย"
-
-#: app/views/network/index.html.erb:145 app/views/network/edit.html.erb:35
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
 #, fuzzy
-#| msgid "&Back"
-msgid "Back"
-msgstr "ย้อนกลับ"
+#| msgid "&Save"
+msgid "Save"
+msgstr "จัดเก็บ"
+
+#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
+msgid "Cancel"
+msgstr "ยกเลิก"
 
 #: app/views/network/edit.html.erb:1
 #, fuzzy
@@ -137,3 +147,14 @@ msgstr "ชื่ออุปกรณ์"
 #| msgid "Start"
 msgid "Startup"
 msgstr "เริ่ม"
+
+#~ msgid "IP Address"
+#~ msgstr "หมายเลขไอพี"
+
+#~ msgid "Update"
+#~ msgstr "ปรับให้ทันสมัย"
+
+#, fuzzy
+#~| msgid "&Back"
+#~ msgid "Back"
+#~ msgstr "ย้อนกลับ"

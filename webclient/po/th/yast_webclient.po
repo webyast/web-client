@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-10-28 11:30+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,21 +14,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/application_controller.rb:60
+#: app/controllers/application_controller.rb:52
 msgid "You must accept all EULAs before using this product!"
 msgstr ""
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:56
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:105
+#: app/controllers/application_controller.rb:100
 #, fuzzy
 #| msgid "Select one of the options to continue."
 msgid "Please login to continue"
 msgstr "เลือกตัวเลือกใดตัวเลือกหนึ่งเพื่อทำต่อไป"
 
-#: app/controllers/application_controller.rb:112
+#: app/controllers/application_controller.rb:107
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr "ยังไม่ระบุผู้ใช้"
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:118
+#: app/controllers/sessions_controller.rb:126
 msgid "You have been logged out."
 msgstr ""
 
@@ -146,17 +146,21 @@ msgstr "สร้างเมื่อ:"
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:5
+#: app/helpers/application_helper.rb:4
+msgid " or "
+msgstr ""
+
+#: app/helpers/application_helper.rb:6
 #, fuzzy
 #| msgid "&Save"
 msgid "Save"
 msgstr "จัดเก็บ"
 
-#: app/helpers/application_helper.rb:6 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: app/helpers/application_helper.rb:10
+#: app/helpers/application_helper.rb:11
 msgid "Next"
 msgstr "ถัดไป"
 
@@ -177,6 +181,17 @@ msgstr "ลบ"
 
 #: app/helpers/view_helpers/html_helper.rb:10
 msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:131
+#: app/views/shared/exception_trap.html.erb:26
+#, fuzzy
+#| msgid "<P>No information available.</P>"
+msgid "No information available"
+msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
 msgstr ""
 
 #: app/views/hosts/index.html.erb:6
@@ -252,24 +267,22 @@ msgid "Problem:"
 msgstr "ปัญหา"
 
 #: app/views/shared/exception_trap.html.erb:16
+msgid "Problem occured on target machine"
+msgstr ""
+
+#: app/views/shared/exception_trap.html.erb:22
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:16
+#: app/views/shared/exception_trap.html.erb:22
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:17
+#: app/views/shared/exception_trap.html.erb:23
 #, fuzzy
 #| msgid "Don't forget what you enter here!"
 msgid "Don't forget to include the bug details."
 msgstr "อย่าลืมสิ่งที่คุณได้ป้อนไว้ที่นี่ !"
-
-#: app/views/shared/exception_trap.html.erb:19
-#, fuzzy
-#| msgid "<P>No information available.</P>"
-msgid "No information available"
-msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -418,33 +431,45 @@ msgstr "ไฟร์วอลล์ยังไม่ถูกติดตั้
 msgid "Show all modules"
 msgstr "แสดงรายการมอดูลของเคอร์เนล"
 
-#: lib/error_constructor.rb:10
+#: lib/error_constructor.rb:13
+#, fuzzy
+#| msgid "There is no available space in the current container %1."
+msgid "Service %s is not available in the target machine"
+msgstr "ไม่มีพื้นที่ว่างเหลืออยู่ในคอนเทนเนอร์ %1 ตัวปัจจุบัน"
+
+#: lib/error_constructor.rb:15
+#, fuzzy
+#| msgid "Service is not running"
+msgid "Service %s is not running on the target machine"
+msgstr "บริการไม่ได้ทำงานอยู่"
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr ""
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:14
-msgid "Noone is logged to rest service."
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during initrd creation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
 
-#: lib/error_constructor.rb:25
+#: lib/error_constructor.rb:32
 #, fuzzy
 #| msgid "Error while writing settings."
 msgid "Error while saving administrator settings: %s"
