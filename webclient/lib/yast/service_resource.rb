@@ -155,27 +155,23 @@ module YaST
             policy_name = self.interface
           end
 
-          perm_resource = OpenStruct.new(:href => '/permissions', :singular => false, :interface => 'org.opensuse.yast.webservice.permissions')
+          perm_resource = OpenStruct.new(:href => '/permissions', :singular => true, :interface => 'org.opensuse.yast.webservice.permissions')
           proxy = YaST::ServiceResource.class_for_resource(perm_resource)
           
           permissions = proxy.find(:all, :params =>
              { :user_id => login, :filter => policy_name })
+          Rails.logger.debug "returned permissions #{permissions.inspect}"
           
           RAILS_DEFAULT_LOGGER.warn "#{proxy.element_name} #{proxy.site}"
           ret = Hash.new
           permissions.each do |perm|
-            break if perm.name.nil? # no permissions
-            # the permission name is an extension
-            # of the policy name, if the
-            # policy is not a subset of the permission
-            # something wrong happened with the query
-            # and we should ignore it
-            next if not perm.name.include?(policy_name)
-            perm_short_name = perm.name
+            Rails.logger.debug perm.inspect
+            break if perm.id.nil? # no permissions
+            perm_short_name = perm.id
             perm_short_name.slice!("#{policy_name}.")
             # to this point the short name must be something
             next if perm_short_name.blank?
-            ret[perm_short_name.to_sym] = perm.grant
+            ret[perm_short_name.to_sym] = perm.granted
           end
           return ret
         end
