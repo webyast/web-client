@@ -66,7 +66,7 @@
 	<%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
 	</p>
     </fieldset>
-    <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %>
+    <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :disabled => disabled %>
     </p>
   <% end %>
 
