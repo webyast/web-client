@@ -53,8 +53,8 @@ class StatusController < ApplicationController
       data_list = Array.new
       value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
       if group == "df"
-        data_list.reject! {|value| value[1] == 0 } if group == "df"  #df returns sometime 0 entries
-        data_list = [[0,0]] if data_list.size == 0 #it is really 0 :-)
+        data_list.reject! {|value| value[1] == 0 } #df returns sometime 0 entries
+        data_list = [[0,0]] if data_list.empty? #it is really 0 :-)
       end
       @data_group[group].merge!({metric_name => data_list})
 
