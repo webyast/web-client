@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 19:58+0100\n"
+"POT-Creation-Date: 2009-11-04 12:45+0100\n"
+"PO-Revision-Date: 2009-11-04 18:42+0100\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,11 +24,11 @@ msgstr ""
 "Auf EULA kann nicht umgeleitet werden. Stellen Sie sicher, dass das Paket "
 "yast2-webclient-eulas installiert ist."
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:101
 msgid "Please login to continue"
 msgstr "Zum Fortfahren melden Sie sich bitte an."
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:108
 msgid "You must logout before you can login"
 msgstr "Sie müssen sich abmelden, bevor Sie sich anmelden können"
 
@@ -66,11 +66,15 @@ msgstr "Keine Anmeldung angegeben."
 msgid "No password specified"
 msgstr "Kein Passwort angegeben."
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Host hat Benutzer %s blockiert. Vor %s ist keine Anmeldung möglich."
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr "Anmelde-Fehler. Bitte überprüfen Sie Nutzername und Passwort."
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "Sie wurden abgemeldet."
 
@@ -126,20 +130,20 @@ msgstr "Rechner|Erstellt am"
 msgid "Host|Updated at"
 msgstr "Rechner|Aktualisiert am"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr " oder "
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Speichern"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Verwerfen"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Speichern"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "Weiter"
 
@@ -161,11 +165,11 @@ msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
 #: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Keine Informationen verfügbar."
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:136
 msgid "There was a problem retrieving information from the server."
 msgstr "Beim Abrufen der Informationen vom Server trat ein Fehler auf."
 
@@ -234,20 +238,16 @@ msgstr ""
 msgid "Problem:"
 msgstr "Problem: "
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr "Fehler auf Zielmaschine aufgetreten."
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 "Bitte melden Sie einen Fehler, damit wir das Problem bereinigen können!"
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr "(Berichtslink)"
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr "Vergessen Sie nicht, die Fehler-Einzelheiten mitzuteilen."
 
@@ -255,35 +255,39 @@ msgstr "Vergessen Sie nicht, die Fehler-Einzelheiten mitzuteilen."
 msgid "Problem occured on target machine."
 msgstr "Fehler auf Zielmaschine aufgetreten."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:35
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:43
 msgid "My Appliance"
 msgstr "Meine Appliance"
 
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:51
+msgid "Langugage:"
+msgstr "Sprache:"
+
+#: app/views/layouts/main.rhtml:53
 msgid "Connected Host"
 msgstr "Verbundener Rechner"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:54
 msgid "Name:"
 msgstr "Name: "
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:55
 msgid "User:"
 msgstr "Benutzer: "
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:58
 msgid "Control panel"
 msgstr "Kontrollzentrum"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:59
 msgid "Logout"
 msgstr "Abmelden"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:91
 msgid "...Wait..."
 msgstr "... Bitte warten ..."
 
@@ -324,81 +328,81 @@ msgstr "System einrichten"
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Status"
+
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "System-Aktionen"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Neustart"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr "%s wirklich neustarten?"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Ausschalten"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr "%s wirklich anhalten?"
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Status"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "Aktualisierungsinformationen herunterladen"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 msgid "Patch plugin is not installed."
 msgstr "Patch-Modul ist nicht installiert."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "System-Informationen laden"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr "Status-Erweiterung ist nicht installiert."
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 msgid "Show all modules"
 msgstr "Alle Module anzeigen"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr "Dienst %s ist auf der Zielmaschine nicht verfügbar."
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr "Dienst %s läuft nicht auf der Zielmaschine."
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 msgid "Permission %s is not granted for user %s"
 msgstr "Berechtigung %1 ist für Benutzer %2 nicht gegeben."
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid ""
 "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 "PolicyKit-Ausnahme für Benutzer %2 und Berechtigung %s (nicht übersetzte "
 "Nachricht): %s"
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 "Auf der Zielmaschine ist niemand mehr angemeldet. Bitte melden Sie sich "
 "erneut an."
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Zielsystem ist nicht konsistent. Fehlende oder beschädigte Datei %s"
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid ""
 "There is no predefined ntp server at /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
@@ -406,13 +410,16 @@ msgstr ""
 "Unter /etc/sysconfig/network/config gibt es keinen vordefinierten NTP-Server "
 "- NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Während der ntp-Synchronisation trat ein Fehler auf: %s"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
 msgstr "Fehler beim Speichern der Administrator-Einstellungen: %s"
+
+#~ msgid "Problem occured on target machine"
+#~ msgstr "Fehler auf Zielmaschine aufgetreten."
 
 #~ msgid "Noone is logged to rest service."
 #~ msgstr "Niemand ist im rest-Dienst angemeldet."

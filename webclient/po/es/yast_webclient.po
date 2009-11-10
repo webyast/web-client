@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-04 12:45+0100\n"
 "PO-Revision-Date: 2009-10-29 13:30+0100\n"
 "Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
@@ -20,16 +20,17 @@ msgid "You must accept all EULAs before using this product!"
 msgstr "¡Debe aceptar todos los EULAs antes de usar este producto!"
 
 #: app/controllers/application_controller.rb:56
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgid ""
+"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 "No se puede redireccionar al EULA. Asegúrese de que el paquete yast2-"
 "webclient-eulas está instalado"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:101
 msgid "Please login to continue"
 msgstr "Por favor, entre para continuar"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:108
 msgid "You must logout before you can login"
 msgstr "Debe salir antes de poder entrar"
 
@@ -67,11 +68,16 @@ msgstr "No se especificó nombre de entrada"
 msgid "No password specified"
 msgstr "No se especificó contraseña"
 
-#: app/controllers/sessions_controller.rb:93
-msgid "Login incorrect. Check your username and password."
-msgstr "Nombre de entrada incorrecto. Verifique su nombre de usuario y contraseña."
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:99
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+"Nombre de entrada incorrecto. Verifique su nombre de usuario y contraseña."
+
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "Ha sido echado de su sesión."
 
@@ -127,20 +133,20 @@ msgstr "Equipo|Creado el"
 msgid "Host|Updated at"
 msgstr "Equipo|Actualizado el"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr " o "
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Guardar"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Guardar"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "Siguiente"
 
@@ -162,11 +168,11 @@ msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
 #: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "No hay información disponible"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:136
 msgid "There was a problem retrieving information from the server."
 msgstr "Hubo un problema al recuperar información desde el servidor."
 
@@ -224,7 +230,8 @@ msgid "This is embarrasing...."
 msgstr "Esto es embarazoso...."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid ""
+"We are sorry, but WebYaST is still in alpha and there are some problems."
 msgstr ""
 "Lo sentimos, pero WebYaST está todavía en estado alfa y hay algunos "
 "problemas."
@@ -234,19 +241,16 @@ msgstr ""
 msgid "Problem:"
 msgstr "Problema:"
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr "Ocurrió un problema en la máquina destinataria"
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "Por favor, ¡reporte el bug de modo que podamos solucionar el problema!."
+msgstr ""
+"Por favor, ¡reporte el bug de modo que podamos solucionar el problema!."
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr "(enlace para reportar)"
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr "No se le olvide incluir los detalles del bug."
 
@@ -254,36 +258,40 @@ msgstr "No se le olvide incluir los detalles del bug."
 msgid "Problem occured on target machine."
 msgstr "El problema ocurrió en la máquina destinataria."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:35
 msgid "WebYaST"
 msgstr "WebYaST"
 
 # CER, 2009, 11.2: ¿ApLiance? ¿Que dijimos?
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:43
 msgid "My Appliance"
 msgstr "Mi aplicativo"
 
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:51
+msgid "Langugage:"
+msgstr ""
+
+#: app/views/layouts/main.rhtml:53
 msgid "Connected Host"
 msgstr "Equipo conectado"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:54
 msgid "Name:"
 msgstr "Nombre:"
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:55
 msgid "User:"
 msgstr "Usuario:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:58
 msgid "Control panel"
 msgstr "Panel de control"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:59
 msgid "Logout"
 msgstr "Fin de sesión"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:91
 msgid "...Wait..."
 msgstr "...Espere..."
 
@@ -324,80 +332,83 @@ msgstr "Configurar el sistema"
 msgid "Configuration"
 msgstr "Configuración"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Estado"
+
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "Acciones de sistema"
 
 # Reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Reiniciar"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr "¿Realmente reiniciar %s?"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Apagar"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr "¿Realmente apagar %s?"
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Estado"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "Cargando información de parches"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 msgid "Patch plugin is not installed."
 msgstr "El complemento de parches no ha sido instalado."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "Cargando información del sistema"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr "El complemento de estado no ha sido instalado."
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 msgid "Show all modules"
 msgstr "Mostrar todos los módulos"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr "El servicio %s no está disponible en la máquina destinataria"
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr "El servicio %s no está corriendo en la máquina destinataria"
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 msgid "Permission %s is not granted for user %s"
 msgstr "El permiso %s no se concede al usuario %s"
 
 # CER, 11.2, 20091020: ¿Policy kit?
-#: lib/error_constructor.rb:19
-msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+#: lib/error_constructor.rb:18
+msgid ""
+"Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 "Excepción \"policy kit\" para el usuario %s y permiso %s (mensaje sin "
 "traducir): %s"
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "No hay un usuario conectado en la máquina destinataria. Por favor, entre de nuevo."
+msgstr ""
+"No hay un usuario conectado en la máquina destinataria. Por favor, entre de "
+"nuevo."
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "El sistema destino no es consistente: archivo %s perdido o corrupto"
 
 # CER, 20091011: Bug 546025
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid ""
 "There is no predefined ntp server at /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
@@ -405,11 +416,13 @@ msgstr ""
 "No hay servidor predefinido en /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Ocurrió un error durante la sincronización ntp: %s"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
 msgstr "Error mientras se guardaban las configuraciones del administrador: %s"
 
+#~ msgid "Problem occured on target machine"
+#~ msgstr "Ocurrió un problema en la máquina destinataria"
