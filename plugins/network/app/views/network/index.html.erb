@@ -108,7 +108,7 @@
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
 
   <fieldset id="ip-address" class="">
-    <legend><%=_("IP address")%></legend>
+    <legend>IP Adress</legend>    
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
       <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
@@ -123,7 +123,7 @@
     </p>
   </fieldset>
   <fieldset id="dns" class="">
-    <legend><%=_("DNS")%></legend>
+    <legend>DNS</legend>
     <p>
       <label for="<%= :name %>"><%=_("Hostname")%></label>
       <%=text_field_tag :name, @name, :disabled => write_disabled %>
@@ -143,7 +143,7 @@
   </fieldset>
 
   <fieldset id="routing" class="ui-tab">
-    <legend><%=_("Routing")%></legend>
+    <legend>Routing</legend>    
     <p>
       <label for="<%= :default_route %>"><%=_("Default route")%></label>
       <%=text_field_tag :default_route, @default_route, :disabled => static_disabled %>

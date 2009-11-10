@@ -78,8 +78,8 @@
   </fieldset>
   <fieldset>
     <p>
-      <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"/>
-      <label for="timeconfig" class="width-label"><%=_("Manually configure time")%></label>
+      <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual">
+      <%=_("Manually configure time")%>
     </p>
       <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
       %>
@@ -92,17 +92,13 @@
       <%= text_field_tag "currenttime", @time, :disabled=> "true"%>
     </p>
     <p>
-      <input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"/>
-      <label for="timeconfig" class="width-label"><%=_("Synchronize via Network Time Protocol (NTP)")%></label>
+      <input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"> <%=_("Synchronize via Network Time Protocol (NTP)")%>
     </p>
   </fieldset>
-
-  <p>
     <%= form_send_buttons :disabled => disabled, :class => "button" %>
-  </p>
-
     <% end %>
   </div>
+ 
 
   <%= observe_field(:region,
     :frequency => 0.25,

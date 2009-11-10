@@ -12,7 +12,7 @@
   </tr>
   <% for user in @users %>
   <tr>
-    <td><strong><%=h user.uid %></strong></td>
+    <td><%=h user.uid %></td>
     <td><%=h user.cn %></td>
     <td><%= link_to image_tag("/images/edit-icon.png", :alt => :edit), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %></td>
     <% if @permissions[:userdelete] %>
