@@ -22,9 +22,7 @@ $(document).ready(function() {
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
-
-<h3><%= _("Events") %></h3>
-
+<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 <% @logs.each do |log| %>
 <h2><%= log.description %></h2>
 <div id="log-<%= log.id %>-console"
@@ -68,14 +66,7 @@ $(document).ready(function() {
   <br style='clear: both'>
   <br>
 <% end %>
-<br>
-<br>
-<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 <a href="/" class="button"><%=_("Back")%></a>
-<br>
-<br>
-<h4><%= _("These values have been evaluated the last 5 minutes.") %></h4>
-<br>
 </div>
 
 <script type="text/javascript">
