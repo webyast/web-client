@@ -1,0 +1,26 @@
+<%= report_error(error, _("A problem occured when loading patch information.")) if error %>
+
+<div class="status_patches">
+  <% translations = {
+    'refresh-cache' => _("Refreshing package cache"),
+    'setup' => _("Starting package manager"),
+    'running' => _("Waiting for the package manager lock"),
+    'query' => _("Evaluating available patches"),
+    'finished' => _("Finished reading patches")
+  }
+  -%>
+
+
+  <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %>
+
+  <% status ||= {:status => 'unknown'} -%>
+  <%= translations[status[:status]] || _("Evaluating available patches") -%>: <%= status[:progress].to_i -%> %
+
+  <!-- refresh the status again after 5 seconds -->
+  <% javascript_tag do -%>
+    setTimeout(function() {
+      <%= remote_function(:update => "status_patches",
+	:url => { :controller => :patch_updates, :action => :show_summary }) %>
+    }, 5000);
+  <% end -%>
+</div>

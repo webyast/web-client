@@ -29,15 +29,20 @@ class PatchUpdatesController < ApplicationController
     end
 
     patches_summary = nil
-    patches_status = nil
 
     if patch_updates
+      # is it a background progress?
       if patch_updates.size == 1 && patch_updates.first.respond_to?(:status)
         bg_stat = patch_updates.first
-        patches_status = {:status => bg_stat.status, :progress => bg_stat.progress, :subprogress => bg_stat.subprogress}
 
-        Rails.logger.debug "Received background status: #{patches_status.inspect}"
-        render :partial => 'patch_summary', :locals => {:patch => patches_summary, :status => patches_status, :error => error}
+        patches_status = {:status => bg_stat.status, :progress => bg_stat.progress, :subprogress => bg_stat.subprogress}
+        Rails.logger.debug "Received background patches progress: #{patches_status.inspect}"
+
+        respond_to do |format|
+          format.html { render :partial  => 'patch_progress', :locals => {:status => patches_status, :error => error} }
+          format.json  { render :json => patches_status }
+        end
+
         return
       else
         patches_summary = { :security => 0, :important => 0, :optional => 0}
