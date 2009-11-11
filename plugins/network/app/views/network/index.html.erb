@@ -61,12 +61,24 @@
 
         return true;
       }
-
       function validNameservers(nameservers){
         if (nameservers.match(/^\s*$/))
             return false;
         return true; //FIXME better check
       }
+      function validHostname(hostname){
+        //not empty
+        if (hostname.match(/^\s*$/))
+            return false;
+        return true; //FIXME better check
+      }
+      function validDomain(domain){
+        //not empty, suse doesn't support it
+        if (domain.match(/^\s*$/))
+            return false;
+        return true; //FIXME better check
+      }
+
 
 
       function validateNetwork() {
@@ -93,8 +105,20 @@
           }
           if (!validNameservers($("#nameservers")[0].value)){
       	    focus_tabbed("nameservers");
-            say_bad_route = "<%= _("Name servers is not valid. There must be at least one specified.") %>"
-            alert (say_bad_route);
+            say_bad_ns = "<%= _("Name servers is not valid. There must be at least one specified.") %>"
+            alert (say_bad_ns);
+            return false;
+          }
+          if (!validHostname($("#name")[0].value)){
+      	    focus_tabbed("name");
+            say_bad_hostname = "<%= _("Hostname is not valid. It must be specified.") %>"
+            alert (say_bad_hostname);
+            return false;
+          }
+          if (!validDomain($("#domain")[0].value)){
+      	    focus_tabbed("domain");
+            say_bad_domain = "<%= _("Domain is not valid. It is not supported empty domain.") %>"
+            alert (say_bad_domain);
             return false;
           }
         }
