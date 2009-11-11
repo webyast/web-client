@@ -22,7 +22,7 @@ class PatchUpdatesController < ApplicationController
     error = nil
     patch_updates = nil    
     begin
-      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
     rescue Exception => e
       error = ClientException.new(e)
       patch_updates = nil

@@ -20,7 +20,7 @@
   <% javascript_tag do -%>
     setTimeout(function() {
       <%= remote_function(:update => "status_patches",
-	:url => { :controller => :patch_updates, :action => :show_summary }) %>
+	:url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
     }, 5000);
   <% end -%>
 </div>

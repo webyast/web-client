@@ -31,7 +31,8 @@ module ProxyLoader
    #Finds proxy and find its result.
    #_fields_:: set @+permissions+ field to permissions of proxy
    #name:: Name of proxy
-   #find_ard:: Argument for find call on proxy, nil is no argument (singleton resource)
+   #find_arg:: Argument for find call on proxy, nil is no argument (singleton resource)
+   #params:: Optional parameters passed to the REST backend
    #+returns+:: Returns result of proxy.find or nil if something goes bad
    def load_proxy (name,find_arg = nil, params = {})
     proxy = YaST::ServiceResource.proxy_for(name)
