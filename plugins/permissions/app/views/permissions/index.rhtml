@@ -81,7 +81,7 @@
        <%= "  " * last_level %><ul>
        <%= "  " * (last_level+1) %><li>
 		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant">
-		  <label_tree><%= @revoke_data[k][:label] %></label_tree>
+		  <%= @revoke_data[k][:label] %>
             <% if k < @revoke_data.size-1 && @revoke_data[k+1][:level] == @revoke_data[k][:level] %>
        <%= "  " * (last_level+1) %></li>
             <% end %>
@@ -93,11 +93,11 @@
             <% last_level = @revoke_data[k][:level] %>
        <%= "  " * last_level %><li>
 		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant">
-		  <label_tree><%= @revoke_data[k][:label] %></label_tree>
+		  <%= @revoke_data[k][:label] %>
           <% else %>
        <%= "  " * (last_level+1) %><li>
 		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant">
-		  <label_tree><%= @revoke_data[k][:label] %></label_tree>
+		  <%= @revoke_data[k][:label] %>
        <%= "  " * (last_level+1) %></li>
           <% end %>
        <% end %>
@@ -121,7 +121,7 @@
        <%= "  " * last_level %><ul>
        <%= "  " * (last_level+1) %><li>
 		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke">
-		  <label_tree><%= @grant_data[k][:label] %></label_tree>
+		  <%= @grant_data[k][:label] %>
             <% if k < @grant_data.size-1 && @grant_data[k+1][:level] == @grant_data[k][:level] %>
        <%= "  " * (last_level+1) %></li>
             <% end %>
@@ -133,11 +133,11 @@
             <% last_level = @grant_data[k][:level] %>
        <%= "  " * last_level %><li>
 		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke">
-		  <label_tree><%= @grant_data[k][:label] %></label_tree>
+		  <%= @grant_data[k][:label] %>
           <% else %>
        <%= "  " * (last_level+1) %><li>
 		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke">
-		  <label_tree><%= @grant_data[k][:label] %></label_tree>
+		  <%= @grant_data[k][:label] %>
        <%= "  " * (last_level+1) %></li>
           <% end %>
        <% end %>
