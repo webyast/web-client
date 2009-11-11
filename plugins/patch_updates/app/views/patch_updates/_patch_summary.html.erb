@@ -1,9 +1,24 @@
 <%= report_error(error, _("A problem occured when loading patch information.")) if error %>
 
 <div class="status_patches">
-  <% unless patch %>    
-    <div class="status-icon warning"></div>    
-    <%= _("No information about patches available") %>
+  <% unless patch %>
+    <% if status %>
+      <% status_trans = {'refresh-cache' => _("Refreshing package cache") } %>
+      <% status_str = status_trans[status[:status]] || _("Evaluating available patches")%>
+      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %>
+      <%= _("%s: %s%%") % [status_str, status[:progress]] %>
+
+      <% javascript_tag do -%>
+	setTimeout(function() {
+      <%= remote_function(:update => "status_patches",
+	:url => { :controller => :patch_updates, :action => :show_summary }) %>
+	}, 5000);
+      <% end -%>
+
+    <% else %>
+      <div class="status-icon warning"></div>
+      <%= _("No information about patches available") %>
+    <% end %>
   <% else %>
     <% label = [] %>
     <% link_to "patch_updates" do %>

@@ -29,12 +29,22 @@ class PatchUpdatesController < ApplicationController
     end
 
     patches_summary = nil
+    patches_status = nil
 
     if patch_updates
-      patches_summary = { :security => 0, :important => 0, :optional => 0}
+      if patch_updates.size == 1 && patch_updates.first.respond_to?(:status)
+        bg_stat = patch_updates.first
+        patches_status = {:status => bg_stat.status, :progress => bg_stat.progress, :subprogress => bg_stat.subprogress}
 
-      [:security, :important, :optional].each do |patch_type|
-        patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
+        Rails.logger.debug "Received background status: #{patches_status.inspect}"
+        render :partial => 'patch_summary', :locals => {:patch => patches_summary, :status => patches_status, :error => error}
+        return
+      else
+        patches_summary = { :security => 0, :important => 0, :optional => 0}
+
+        [:security, :important, :optional].each do |patch_type|
+          patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
+        end
       end
     else
       erase_redirect_results #reset all redirects
