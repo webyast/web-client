@@ -53,7 +53,7 @@
       }
 
       function validPrefix(prefix) {
-        if (!prefix.match(/^\\[0-9]{1,2}$/))
+        if (!prefix.match(/^\/[0-9]{1,2}$/))
           return false;
 
         if (prefix.substr(1)>32)
@@ -61,6 +61,13 @@
 
         return true;
       }
+
+      function validNameservers(nameservers){
+        if (nameservers.match(/^\s*$/))
+            return false;
+        return true; //FIXME better check
+      }
+
 
       function validateNetwork() {
         if ($("#conf_mode")[0].value == "static") {
@@ -74,13 +81,19 @@
           //support only prefix as it is not confusing with label
           if (!validPrefix(netmask)) {
       	    focus_tabbed("netmask");
-            say_bad_mask = "<%= _("Invalid Prefix. The correct one \\\\nn where nn is between 0-32 (CIDR format).") %>"
+            say_bad_mask = "<%= _("Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format).") %>"
             alert (say_bad_mask);
             return false;
           }
           if (! validIP($("#default_route")[0].value)) {
       	    focus_tabbed("default_route");
             say_bad_route = "<%= _("Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
+            alert (say_bad_route);
+            return false;
+          }
+          if (!validNameservers($("#nameservers")[0].value)){
+      	    focus_tabbed("nameservers");
+            say_bad_route = "<%= _("Name servers is not valid. There must be at least one specified.") %>"
             alert (say_bad_route);
             return false;
           }
