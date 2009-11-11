@@ -40,33 +40,48 @@
    <% end -%>
    <% javascript_tag do -%>
       function validIP(ip) {
-        valid = ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/);
-        return valid;
+        //use [0-9] to avoid negative values and it is also better prepared to IP6
+        if (!ip.match(/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/))
+          return false;
+
+        ipArray = ip.split(/\./);
+        for (i=0;i<4;++i){
+          if (ipArray[i]>255)
+            return false;
+        }
+        return true;
       }
-      function validMask(ip) {
-        return validIP(ip); // FIXME
-      }
-      function validPrefix(ip) {
-        return false; //FIXME
+
+      function validPrefix(prefix) {
+        if (!prefix.match(/^\\[0-9]{1,2}$/))
+          return false;
+
+        if (prefix.substr(1)>32)
+          return false;
+
+        return true;
       }
 
       function validateNetwork() {
         if ($("#conf_mode")[0].value == "static") {
-          say_bad = "<%= _("Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
           if (! validIP($("#ip")[0].value)) {
-	    focus_tabbed("ip");
-            alert (say_bad);
+            say_bad_ip = "<%= _("Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
+      	    focus_tabbed("ip");
+            alert (say_bad_ip);
             return false;
           }
           netmask = $("#netmask")[0].value;
-          if (!validPrefix(netmask) && ! validMask(netmask)) {
-	    focus_tabbed("netmask");
-            alert (say_bad);
+          //support only prefix as it is not confusing with label
+          if (!validPrefix(netmask)) {
+      	    focus_tabbed("netmask");
+            say_bad_mask = "<%= _("Invalid Prefix. The correct one \\\\nn where nn is between 0-32 (CIDR format).") %>"
+            alert (say_bad_mask);
             return false;
           }
           if (! validIP($("#default_route")[0].value)) {
-	    focus_tabbed("default_route");
-            alert (say_bad);
+      	    focus_tabbed("default_route");
+            say_bad_route = "<%= _("Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
+            alert (say_bad_route);
             return false;
           }
         }
