@@ -64,47 +64,12 @@ class LanguageControllerTest < ActionController::TestCase
 
     #check if everything is correctly setted
     assert_response :success
-#disable markup check as tidy has problem with js in a href
-#assert_valid_markup
+    assert_valid_markup
     assert assigns(:permissions) , "Permission is not set"
     assert assigns(:permissions)[:read], "Read permission is not set"
     assert assigns(:permissions)[:write], "Write permission is not set"
     assert_equal assigns(:valid), ["cestina","English (US)"].sort_by { |item| item.parameterize }
     assert_equal assigns(:current), "cestina"
-    assert_equal assigns(:utf8), @result.utf8
-    assert_equal assigns(:rootlocale), @result.rootlocale
-
-    #test if options is correctly rendered
-    rootlocale = {:tag => "select",
-      :attributes => {
-        :name => "rootlocale"
-      }}
-    assert_tag rootlocale
-    assert_tag :tag => "option",
-      :attributes => {
-        :value => "false",
-        :selected => "selected"
-      },
-      :parent => rootlocale
-    assert_tag :tag => "input",
-      :attributes => {
-        :name => "utf8",
-        :checked => "checked"
-      }
-    langs = {
-      :tag => "select",
-      :attributes => {
-        :name => "first_language"
-      }
-    }
-    assert_tag langs
-    assert_tag :tag => "option",
-      :attributes => {
-        :value => "cestina",
-        :selected => "selected"
-      },
-      :parent => langs
-
   end
 
   def test_access_without_write_permissions
@@ -116,56 +81,12 @@ class LanguageControllerTest < ActionController::TestCase
     get :index
 
     assert_response :success
-#disable markup check as tidy has problem with js in a href
-#    assert_valid_markup
+    assert_valid_markup
     assert assigns(:permissions)
     assert assigns(:permissions)[:read]
     assert !assigns(:permissions)[:write]
     assert_equal assigns(:valid), ["cestina","English (US)"].sort_by { |item| item.parameterize }
     assert_equal assigns(:current), "cestina"
-    assert_equal assigns(:utf8), @result.utf8
-    assert_equal assigns(:rootlocale), @result.rootlocale
-
-    #test if options is correctly rendered
-    rootlocale = {:tag => "select",
-      :attributes => {
-        :name => "rootlocale",
-        :disabled => "disabled"
-      }}
-    assert_tag rootlocale
-    assert_tag :tag => "option",
-      :attributes => {
-        :value => "true",
-        :selected => "selected"
-      },
-      :parent => rootlocale
-    assert_tag :tag => "input",
-      :attributes => {
-        :name => "utf8",
-        :disabled => "disabled"
-      }
-    langs = {
-      :tag => "select",
-      :attributes => {
-        :name => "first_language",
-        :disabled => "disabled"
-      }
-    }
-    assert_tag langs
-    assert_tag :tag => "option",
-      :attributes => {
-        :value => "cestina",
-        :selected => "selected"
-      },
-      :parent => langs
-    assert_tag :tag => "input",
-      :attributes => {
-        :type => "submit",
-        :name => "commit",
-        :value => "Save",
-        :disabled => "disabled"
-      }
-
   end
 
 
