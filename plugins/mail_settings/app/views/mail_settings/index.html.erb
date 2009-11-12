@@ -35,7 +35,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm" } ) do |f| %>
+  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset class="grid_12">
       <p>
