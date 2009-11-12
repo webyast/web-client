@@ -49,7 +49,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()" } ) do |f| %>
+  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset id="password">
 	<p><label><%=_("Password")%></label>
