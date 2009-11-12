@@ -53,11 +53,11 @@
       %>
     <fieldset id="" class="">
       <p>
-        <label for="region"><%=_("Region:")%></label>
+        <label for="region"><%=_("Region")%></label>
           <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled %>
       </p>
       <p>
-        <label for="timezone"><%=_("Timezone:")%></label>
+        <label for="timezone"><%=_("Timezone")%></label>
         <span id="timezones">
           <%= render(:partial => 'timezones',
             :locals => {:region => @region, :default => @timezone,
@@ -84,11 +84,11 @@
       <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
       %>
     <p>
-      <label for="date_date"><%= _("Date:") %></label>
+      <label for="date_date"><%= _("Date") %></label>
       <%= text_field "date","date", :disabled=> "true", :value => @date %>
     </p>
     <p>
-      <label for="currenttime"><%= _("Time:") %></label>
+      <label for="currenttime"><%= _("Time") %></label>
       <%= text_field_tag "currenttime", @time, :disabled=> "true"%>
     </p>
     <p>

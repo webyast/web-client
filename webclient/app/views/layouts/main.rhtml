@@ -46,10 +46,7 @@
         if host.blank? || user.blank? -%>
       <% else -%>
         <ul>
-          <li><%=_("Langugage:")%> <strong><%= link_to_remote(current_locale_name,
-              :update =>"language_selection", :url => { :controller => :controlpanel, :action => :select_language} ) %></strong></li>
-          <li><strong><%=_("Connected Host")%></strong></li>
-          <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
+          <li><%=_("Connected host:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
         </ul>
         <ul class='header-links'>

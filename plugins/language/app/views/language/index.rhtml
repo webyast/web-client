@@ -1,24 +1,17 @@
 <div class='plugin-icon'><img src='/icons/yast-language.png' alt="<%= _("language plugin") %>"/><%=_("Language")%></div>
 <div class='plugin-content grid_12'>
-<br/>
-
 <% form_tag '/language/update' do -%>
   <fieldset id="language_set" class="">
     <p>
-<label><%=_("First language")%></label>
+	<label><%=_("System language")%></label>
     	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
             :disabled=>!@permissions[:write] %>
     </p>
-    <p> 
-<label><%=_("Use UTF8 encoding")%></label>
-    	<%= check_box_tag :utf8, "true", @utf8=="true",
-        :disabled=>!@permissions[:write] %>
-    </p>
     <p>
-<label><%=_("Set root locale")%></label>
-    <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
-        @rootlocale), :disabled=>!@permissions[:write] %>
-    </p>
+	 <label><%=_("webYaST langugage")%> <label>
+         <%= link_to_remote(current_locale_name,
+          :update =>"language_selection", :url => { :controller => :controlpanel, :action => :select_language} ) %></label>
+   </p>
 </fieldset>
 <div>
   <%= form_send_buttons :disabled => !@permissions[:write] %>
