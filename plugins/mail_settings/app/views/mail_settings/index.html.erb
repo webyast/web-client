@@ -18,6 +18,13 @@
 
     }, "<%= _("Enter a valid domain name or an IP address.") -%>");
 
+    $(document).ready(function() {
+      // make the error message translatable - override the default messsage
+      $.extend($.validator.messages, {
+	equalTo: "<%= _("The passwords do not match.") -%>"
+      });
+    });
+
  </script>
 
   <script type="text/javascript">
