@@ -53,8 +53,8 @@ class StatusController < ApplicationController
       data_list = Array.new
       value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
       if group == "df"
-        data_list.reject! {|value| value[1] == 0 } if group == "df"  #df returns sometime 0 entries
-        data_list = [[0,0]] if data_list.size == 0 #it is really 0 :-)
+        data_list.reject! {|value| value[1] == 0 } #df returns sometime 0 entries
+        data_list = [[0,0]] if data_list.empty? #it is really 0 :-)
       end
       @data_group[group].merge!({metric_name => data_list})
 
@@ -101,38 +101,33 @@ class StatusController < ApplicationController
     
     till = Time.new
     from = till - 300 #last 5 minutes
-#puts File.read(@client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s }))
-    ActionController::Base.benchmark("Status data read from the server") do
-      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+    begin
+      ActionController::Base.benchmark("Status data read from the server") do
+        status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+      end
+      create_data_map status
+    rescue Exception => e
+      flash[:warning] = e.message
+      logger.warn e
     end
-    create_data_map status
-    logger.debug @data_group.inspect
+#    logger.debug @data_group.inspect
+
+    #checking if there is one valid data entry at least
+    found = false
+    @data_group.each do |key, map|
+      map.each do |graph_key, list_value|
+         unless list_value.empty?
+           found = true
+           break
+         end
+      end
+      break if found
+    end
+    flash[:notice] = _("No data found for showing system status.") unless found
+
     true
   end
 
-  #removing logging data and add limits which are defined in params
-  def create_save_data(status, params, label = "") #TODO: customize for new xml format
-    status.each do |key, value|
-     if key.start_with?("values")
-       status.delete(key)
-     elsif
-       next_label = label+ "/" + key
-       create_save_data(value, params, next_label) if value.is_a? Hash
-     end
-    end
-    if params.has_key?(label+"/value")
-      limit = Hash.new
-      key_split = label.split("/")
-      if key_split.size>1 && key_split[1]=="memory" # MByte for the value --> change it to Byte
-        limit["value"] = params[label+"/value"].to_f*1024*1024
-      else
-        limit["value"] = params[label+"/value"]
-      end
-      limit["maximum"] = params[label+"/maximum"] == "true"?true:false
-      status["limit"] = limit
-    end
-    return status
-  end
 
  # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_status"
@@ -154,9 +149,11 @@ class StatusController < ApplicationController
       raise "Unknown log file"
     end
     
+#XXX FIXME Really ugly way how to use REST service
+# should be something like find(:one, :from => params[:id], params => { :lines => lines })
     lines = params[:lines] || 5
     log_url = URI.parse(YaST::ServiceResource::Session.site.to_s)
-    log_url = log_url.merge("logs/#{params[:id]}.txt?lines=#{lines}")
+    log_url = log_url.merge("logs/#{params[:id]}.xml?lines=#{lines}")
     logger.info "requesting #{log_url}"
     @content = open(log_url).read
     render :partial => 'status_log'
@@ -192,19 +189,17 @@ class StatusController < ApplicationController
     return unless client_permissions
     limits = Hash.new
     params.each_pair{|key, value|
-      if key =~ /\/[-\w]*\/[-\w]*\/min/ # e.g /interface/if_packets-pan0/max
-        unless value.empty?
-          slizes = key.split "/"
+      slizes = key.split "/"
+      value = value.to_f*1024*1024 if !value.empty? && slizes[1]=="memory" #MByte for the value --> change it to Byte
+      unless value.empty?
+        if key =~ /\/[-\w]*\/[-\w]*\/min/ # e.g /interface/if_packets-pan0/max
           limits[slizes[1]] ||= Hash.new
           limits[slizes[1]][slizes[2]] ||= Hash.new
-          limits[slizes[1]][slizes[2]].merge!(:min => value)
-        end
-      elsif key =~ /\/[-\w]*\/[-\w]*\/max/
-        unless value.empty?
-          slizes = key.split "/"
+          limits[slizes[1]][slizes[2]].merge!(:min => value) 
+        elsif key =~ /\/[-\w]*\/[-\w]*\/max/
           limits[slizes[1]] ||= Hash.new
           limits[slizes[1]][slizes[2]] ||= Hash.new
-          limits[slizes[1]][slizes[2]].merge!(:max => value)
+          limits[slizes[1]][slizes[2]].merge!(:max => value) unless value.empty?
         end
       end
     }
@@ -213,7 +208,8 @@ class StatusController < ApplicationController
 
     begin
       ActionController::Base.benchmark("Limits saved on the server") do
-	@client.create(:params => limits.inspect)
+        #This is a hack and will be removed when the status service has be replaced by the metric service
+	@client.create( :limits=>limits.to_xml(:root => "limits") ) 
       end
     rescue Exception => ex
       flash[:error] = _("Saving limits failed!")
@@ -221,48 +217,6 @@ class StatusController < ApplicationController
     end
 
     redirect_to :controller=>"status", :action=>"index"
-
-#puts "respond: " + respond
-#    respond = @client.put(:status, :params => params) #:status, {:params => params})
-#    if respond == :success
-#      redirect_to :controller=>"status", :action=>"index"
-#    else
-#      redirect_to :controller=>"status", :action=>"edit"
-#    end
   end
-=begin
-    begin
-      till = Time.new
-      from = till - 300 #last 5 minutes
-      status = @client.find(:dummy_param, :params => {  :start => from.to_i.to_s, :stop => till.to_i.to_s })
 
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        redirect_to :controller=>"status", :action=>"edit"
-        return false
-    end
-
-    save_hash = create_save_data(Hash.from_xml(status.to_xml)["status"], params)
-    logger.debug "writing #{save_hash.inspect}"
-
-    save_status = @client.new()
-    save_status.load(save_hash)
-
-    success = true
-    begin
-      save_status.save
-      logger.debug "limits have been written"
-      flash[:notice] = _("Limits have been written.")
-    rescue ActiveResource::ClientError => e
-       flash[:error] = YaST::ServiceResource.error(e)
-       ExceptionLogger.log_exception e
-       success = false
-    end
-    if success
-      redirect_to :controller=>"status", :action=>"index"
-    else
-      redirect_to :controller=>"status", :action=>"edit"
-    end
-  end
-=end
 end

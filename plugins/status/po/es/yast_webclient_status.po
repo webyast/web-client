@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-10 16:36+0100\n"
 "PO-Revision-Date: 2009-10-30 00:12+0100\n"
 "Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
@@ -23,7 +23,15 @@ msgstr "Sesión inválida, por favor entre de nuevo."
 msgid "Disk free limits exceeded;"
 msgstr "Límites de disco libre excedidos;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:160
+msgid "Limits exceeded for %s"
+msgstr ""
+
+#: app/controllers/status_controller.rb:196
+msgid "Saving limits failed!"
+msgstr ""
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Estado"
 
@@ -47,11 +55,11 @@ msgstr "Atrás"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Estos valores han sido evaluados los últimos 5 minutos."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "libre"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "usado"
 
@@ -76,16 +84,14 @@ msgid "Save"
 msgstr "Guardar"
 
 #: app/views/status/_status_summary.html.erb:1
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
-msgstr "Se ha producido un problema mientras se cargaba la información de estado."
+msgstr ""
+"Se ha producido un problema mientras se cargaba la información de estado."
 
 #: app/views/status/_status_summary.html.erb:6
-#| msgid "No information available."
 msgid "No status information available"
 msgstr "No hay información de estado disponible"
 
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Su sistema está saludable."
-

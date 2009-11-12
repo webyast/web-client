@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_eulas.es\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-11-10 16:36+0100\n"
 "PO-Revision-Date: 2009-10-20 11:22+0100\n"
 "Last-Translator: Carlos E. Robinson M. <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
@@ -14,12 +14,16 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:77
+msgid "You cannot reject a license once it has been accepted!"
+msgstr ""
+
+#: app/controllers/eulas_controller.rb:80
 msgid "You must accept all licences before using this product!"
 msgstr "¡Debe aceptar todas las licencias antes de usar este producto!"
 
-#: app/views/eulas/show.html.erb:1
-#: app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "Acepte el acuerdo de licencia de usuario final"
 
@@ -27,11 +31,11 @@ msgstr "Acepte el acuerdo de licencia de usuario final"
 msgid "Available translations:"
 msgstr "Traducciones disponibles:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 msgid "Yes, I agree to the license agreement."
 msgstr "Si, acepto el acuerdo de licencia"
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr "No, no estoy de acuerdo"
 
@@ -39,3 +43,6 @@ msgstr "No, no estoy de acuerdo"
 msgid "All licenses have already been accepted"
 msgstr "Ya han sido aceptadas todas las licencias"
 
+#: app/views/eulas/no_licenses.erb:2
+msgid "There are no licenses to accept."
+msgstr ""

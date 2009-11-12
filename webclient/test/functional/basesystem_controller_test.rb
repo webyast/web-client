@@ -57,11 +57,9 @@ class BasesystemControllerTest < ActionController::TestCase
   test "basesystem start" do
     @result.finish = false
     get :index
-    assert_redirected_to :action => :basesystem
+    assert_redirected_to "/systemtime"
     assert_not_nil session[:wizard_current]
     assert_not_nil session[:wizard_steps]
-    get :basesystem
-    assert_response :success
   end
 
   test "basesystem ensure wizard" do

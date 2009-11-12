@@ -130,6 +130,7 @@ class SessionsController < ApplicationController
     flash.replace(flash_backup)
 
     flash[:notice] = _("You have been logged out.") unless flash[:notice]
-    redirect_to :controller => 'hosts', :action => 'index'
+#FIXME redirect to hosts if we are not on appliance
+    redirect_to :controller => "session", :action => "new", :hostid => "localhost"
   end
 end

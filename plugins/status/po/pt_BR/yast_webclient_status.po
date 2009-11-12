@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-10 16:36+0100\n"
 "PO-Revision-Date: 2009-10-29 23:23-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
@@ -29,7 +29,15 @@ msgstr "Sessão inválida, por favor conecte-se novamente."
 msgid "Disk free limits exceeded;"
 msgstr "O limite de espaço livre em disco foi excedido;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:160
+msgid "Limits exceeded for %s"
+msgstr ""
+
+#: app/controllers/status_controller.rb:196
+msgid "Saving limits failed!"
+msgstr ""
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Estado"
 
@@ -53,11 +61,11 @@ msgstr "Voltar"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Estes valores foram avaliados nos últimos 5 minutos."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "livre"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "usado"
 
