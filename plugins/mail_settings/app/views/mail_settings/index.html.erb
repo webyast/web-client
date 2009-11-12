@@ -18,6 +18,13 @@
 
     }, "<%= _("Enter a valid domain name or an IP address.") -%>");
 
+    $(document).ready(function() {
+      // make the error message translatable - override the default messsage
+      $.extend($.validator.messages, {
+	equalTo: "<%= _("The passwords do not match.") -%>"
+      });
+    });
+
  </script>
 
   <script type="text/javascript">
@@ -35,7 +42,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm" } ) do |f| %>
+  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset class="grid_12">
       <p>

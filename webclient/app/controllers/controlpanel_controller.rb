@@ -81,21 +81,14 @@ class ControlpanelController < ApplicationController
     steps = session[:wizard_steps].split ","
     if session[:wizard_current] != steps.first
       session[:wizard_current] = steps[steps.index(session[:wizard_current])-1]
-      redirect_to get_redirect_hash(session[:wizard_current])
-    else
-      #back from first module return to basesystem screen
-      redirect_to :action => :basesystem
+    # no else, "Back" from first module redirects to first module again
     end
+    redirect_to get_redirect_hash(session[:wizard_current])
   end
 
   # when triggered by button/link from basesystem, shows current module from session
   def thisstep
     redirect_to get_redirect_hash(session[:wizard_current])
-  end
-
-  # display some message, that setup is not completed and that by clicking button
-  # you start setting up the system
-  def basesystem
   end
 
   protected
@@ -146,7 +139,7 @@ class ControlpanelController < ApplicationController
       # session variable is used to find out, if basic system module is needed
       return false if session[:wizard_current] == FINAL_STEP
       # basic system setup in progress => redirect to current module
-      redirect_to :action => :basesystem
+      redirect_to get_redirect_hash(session[:wizard_current])
       return true
     else
       proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
@@ -164,7 +157,7 @@ class ControlpanelController < ApplicationController
       decoded_steps = basesystem.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : "#{step.controller}"  }
       session[:wizard_steps] = decoded_steps.join(",")
       session[:wizard_current] = decoded_steps.first
-      redirect_to :action => :basesystem
+      redirect_to get_redirect_hash(session[:wizard_current])
       return true
     end
   end
