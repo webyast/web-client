@@ -53,7 +53,7 @@ class LanguageController < ApplicationController
               
       begin
         lang.save
-        flash[:notice] = _("Settings have been written.")
+        flash[:notice] = _("Language settings have been written.")
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
       end
