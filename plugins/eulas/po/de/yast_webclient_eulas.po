@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
-"PO-Revision-Date: 2009-10-23 13:41+0200\n"
+"POT-Creation-Date: 2009-11-10 16:36+0100\n"
+"PO-Revision-Date: 2009-11-10 22:17+0100\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -13,12 +13,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:77
+msgid "You cannot reject a license once it has been accepted!"
+msgstr ""
+"Sie können eine Lizenz nicht mehr ablehnen, nachdem sie akzeptiert wurde!"
+
+#: app/controllers/eulas_controller.rb:80
 msgid "You must accept all licences before using this product!"
 msgstr ""
 "Vor der Benutzung dieses Produktes müssen Sie alle Lizenzen akzeptieren!"
 
 #: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "_Akzeptiere Vereinbarung"
 
@@ -26,14 +32,18 @@ msgstr "_Akzeptiere Vereinbarung"
 msgid "Available translations:"
 msgstr "Verfügbare Übersetzungen:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 msgid "Yes, I agree to the license agreement."
 msgstr "Ja, ich stimme der Lizenzvereinbarung zu."
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr "Nein, ich stimme nicht zu."
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
 msgstr "Alle Lizenzen wurden bereits akzeptiert."
+
+#: app/views/eulas/no_licenses.erb:2
+msgid "There are no licenses to accept."
+msgstr "Es gibt keine zu akzeptierenden Lizenzen."

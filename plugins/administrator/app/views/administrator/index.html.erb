@@ -1,5 +1,4 @@
-<div class='plugin-icon'><img src='/icons/yast-system-user.png' alt='<%= _("Administrator Settings") %>'/></div>
-<h2><%=_("Administrator Settings")%></h2>
+<div class="plugin-icon"><img src='/icons/yast-system-user.png' alt='<%= _("Administrator Settings") %>'><%=_("Administrator Settings")%></div>
 
 <div class="plugin-content grid_12">
 <% content_for :head do %>
@@ -49,7 +48,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()" } ) do |f| %>
+  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset id="password">
 	<p><label><%=_("Password")%></label>

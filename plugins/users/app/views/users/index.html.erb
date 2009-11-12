@@ -1,5 +1,4 @@
-<div class='plugin-icon'><img src='/icons/yast-users.png'/></div>
-<h2><%=_("Local User")%></h2>
+<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local User")%></div>
 <div class="plugin-content grid_12">
 
 <table class="list">
@@ -13,7 +12,7 @@
   </tr>
   <% for user in @users %>
   <tr>
-    <td><strong><%=h user.uid %></strong></td>
+    <td><%=h user.uid %></td>
     <td><%=h user.cn %></td>
     <td><%= link_to image_tag("/images/edit-icon.png", :alt => :edit), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %></td>
     <% if @permissions[:userdelete] %>

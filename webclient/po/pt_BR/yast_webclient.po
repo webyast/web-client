@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-04 12:45+0100\n"
+"POT-Creation-Date: 2009-11-10 16:36+0100\n"
 "PO-Revision-Date: 2009-11-04 10:35-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
@@ -26,14 +26,17 @@ msgid "You must accept all EULAs before using this product!"
 msgstr "Você deve aceitar todas as EULAs antes de usar este produto!"
 
 #: app/controllers/application_controller.rb:56
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr "Não foi possíve redirecionar para a EULA. Tenha certeza que o pacote yast2-webclient-eulas está instalado "
+msgid ""
+"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
+"Não foi possíve redirecionar para a EULA. Tenha certeza que o pacote yast2-"
+"webclient-eulas está instalado "
 
-#: app/controllers/application_controller.rb:101
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "Por favor, conecte-se para continuar"
 
-#: app/controllers/application_controller.rb:108
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "Você deve desconectar antes que possa conectar-se"
 
@@ -43,7 +46,9 @@ msgstr "Não foi possível conectar-se a máquina %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "Tenha certeza de que a máquina está ligada e que o serviço Web do YaST está em execução."
+msgstr ""
+"Tenha certeza de que a máquina está ligada e que o serviço Web do YaST está "
+"em execução."
 
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
@@ -138,8 +143,7 @@ msgid " or "
 msgstr " ou "
 
 # cancel button label
-#: app/helpers/application_helper.rb:19
-#: app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -168,12 +172,16 @@ msgstr "Remover"
 msgid "Are you sure?"
 msgstr "Você tem certeza?"
 
-#: app/helpers/view_helpers/html_helper.rb:131
+#: app/helpers/view_helpers/html_helper.rb:132
+msgid "Unknown error"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:136
 #: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Nenhuma informação disponível"
 
-#: app/helpers/view_helpers/html_helper.rb:136
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr "Houve um problema ao obter a informação do servidor."
 
@@ -189,30 +197,27 @@ msgstr "Realmente remover a máquina %s?"
 msgid "Editing YaST-Web-Service"
 msgstr "Editando o YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:27
-#: app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nome"
 
-#: app/views/hosts/edit.html.erb:31
-#: app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:35
-#: app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Descrição"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "OK"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Voltar"
 
@@ -234,8 +239,11 @@ msgid "This is embarrasing...."
 msgstr "Isto é constrangedor..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "Desculpe, mas o WebYaST ainda está em estágio alfa e existem alguns problemas."
+msgid ""
+"We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr ""
+"Desculpe, mas o WebYaST ainda está em estágio alfa e existem alguns "
+"problemas."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
@@ -258,44 +266,43 @@ msgstr "Não esqueça de incluir os detalhes da falha."
 msgid "Problem occured on target machine."
 msgstr "Ocorreu um problema na máquina destino."
 
-#: app/views/layouts/main.rhtml:35
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:43
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr "Meu appliance"
 
-#: app/views/layouts/main.rhtml:51
+#: app/views/layouts/main.rhtml:49
 msgid "Langugage:"
 msgstr "Idioma:"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "Máquina conectada"
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Nome:"
 
-#: app/views/layouts/main.rhtml:55
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Usuário:"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "Painel de controle"
 
-#: app/views/layouts/main.rhtml:59
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Desconectar"
 
-#: app/views/layouts/main.rhtml:91
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "...Aguarde..."
 
-#: app/views/sessions/new.rhtml:4
-#: app/views/sessions/new.rhtml:16
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "Conectar"
 
@@ -316,8 +323,12 @@ msgid "Base system setup"
 msgstr "Configuração do sistema base"
 
 #: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "Sua configuração do sistema não foi concluída. Por favor, continue com a configuração dos módulos."
+msgid ""
+"Your system setup was not completed. Please continue with setting up the "
+"modules."
+msgstr ""
+"Sua configuração do sistema não foi concluída. Por favor, continue com a "
+"configuração dos módulos."
 
 #: app/views/controlpanel/basesystem.rhtml:4
 msgid "Set up the system"
@@ -386,20 +397,30 @@ msgid "Permission %s is not granted for user %s"
 msgstr "A permissão %s não está concedida para o usuário %s"
 
 #: lib/error_constructor.rb:18
-msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr "Exceção do Policykit para o usuário %s e permissão %s (mensagem não traduzida): %s"
+msgid ""
+"Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+"Exceção do Policykit para o usuário %s e permissão %s (mensagem não "
+"traduzida): %s"
 
 #: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "Um usuário não está mais logado na máquina destino. Por favor, logue-se novamente."
+msgstr ""
+"Um usuário não está mais logado na máquina destino. Por favor, logue-se "
+"novamente."
 
 #: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr "O sistema destino não está consistente: arquivo %s faltante ou corrompido"
+msgstr ""
+"O sistema destino não está consistente: arquivo %s faltante ou corrompido"
 
 #: lib/error_constructor.rb:26
-msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr "Não existe servidor NTP pré-definido em /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgid ""
+"There is no predefined ntp server at /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
+msgstr ""
+"Não existe servidor NTP pré-definido em /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
@@ -411,8 +432,9 @@ msgstr "Erro ao salvar as configurações do administrador: %s"
 
 #~ msgid "Problem occured on target machine"
 #~ msgstr "Ocorreu um problema na máquina destino"
+
 #~ msgid "Noone is logged to rest service."
 #~ msgstr "'Ninguém está conectado ao serviço REST."
+
 #~ msgid "ADMINISTRATOR_ERROR"
 #~ msgstr "ERRO_DO_ADMINISTRADOR"
-
