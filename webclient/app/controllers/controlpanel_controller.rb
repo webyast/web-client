@@ -126,9 +126,8 @@ class ControlpanelController < ApplicationController
     if Basesystem.initialized?(session)
       # session variable is used to find out, if basic system module is needed
       return false if Basesystem.done? session
-      # basic system setup in progress => redirect to current module
-#TODO this should not happen, render mkudlvasr page
-      redirect_to Basesystem.current_target(session)
+      # error happen during basesystem, so show this page (prevent endless loop bnc#554989) 
+      render :action => "basesystem"
       return true
     else
       proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
