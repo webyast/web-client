@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
 #handle insufficient permissions, especially useful for read permissions,
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
-    if e.backend_exception_type == "NO_PERM"
+    if e.backend_exception_type == "NO_PERM" && !request.xhr?
       flash[:error] = e.message #already localized from error constructor
       redirect_to :controller => :controlpanel
       return
