@@ -101,15 +101,10 @@ class StatusController < ApplicationController
     
     till = Time.new
     from = till - 300 #last 5 minutes
-    begin
-      ActionController::Base.benchmark("Status data read from the server") do
-        status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
-      end
-      create_data_map status
-    rescue Exception => e
-      flash[:warning] = e.message
-      logger.warn e
+    ActionController::Base.benchmark("Status data read from the server") do
+      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
     end
+    create_data_map status
 #    logger.debug @data_group.inspect
 
     #checking if there is one valid data entry at least
