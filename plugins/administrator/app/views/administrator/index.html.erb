@@ -6,7 +6,7 @@
   <%= javascript_include_tag :defaults %>
 
   <style type="text/css">
-    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1em; text-align: left; vertical-align: top; width: 50% }
   </style>
 
   <script type="text/javascript">
@@ -49,6 +49,12 @@
 
 <% disabled = ! @permissions[:write] %>
 
+  <p>
+  <%= 
+  _("Here, configure the settings for system administrator ('root').")
+  %>
+  </p>
+
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset id="password">
@@ -57,14 +63,18 @@
 	</p>
 	<p>
 	<label><%=_("Confirm password")%></label>
-    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %>
+    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
 	<%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
     </p>
+    <!-- this is a pre-generated placeholder for the validation messages -->
+    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
 	<p>
 	<label><%=_("Forward mail to")%></label>
-	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
+	<%= f.text_field :aliases, :disabled => disabled, :class => "emails", :style => 'width: auto' %>
 	<%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
 	</p>
+    <!-- this is a pre-generated placeholder for the validation messages -->
+    <p><label for="administrator_aliases" generated="true" class="error"></label></p>
     </fieldset>
     <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :disabled => disabled %>
     </p>

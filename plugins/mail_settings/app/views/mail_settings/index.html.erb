@@ -34,9 +34,7 @@
   </script>
 <% end %>
 
-<!-- <div class='plugin-icon'><img src='/icons/yast-mail-server.png'/></div> -->
-<div class='plugin-icon'><img src='/icons/yast-mail-server.png'/></div>
-<h2><%=_("Mail Settings")%></h2>
+<div class='plugin-icon'><img src='/icons/yast-mail-server.png'/><%=_("Mail Settings")%></div>
 
 <div class='plugin-content grid_12'>
 
@@ -46,10 +44,10 @@
   <%= f.error_messages %>
     <fieldset class="grid_12">
       <p>
-        <label for="<%= :smtp_server %>"><%=_("Outgoing mail server (SMTP)")%></label>
+        <label for="<%= :smtp_server %>"><%=_("Outgoing mail server <br> (SMTP)")%></label>
         <%=f.text_field :smtp_server, :disabled => disabled, :class => "smtp_server" %></p>
       <p>
-        <label><%=_("Transport Layer Security (TLS)")%></label>
+        <label><%=_("Transport Layer Security<br> (TLS)")%></label>
         <%= f.select :transport_layer_security, [ [_("Disabled"), "NONE" ], [_("If available"), "MAY"], [_("Always"), "MUST"]], :disabled => disabled %></p>
       <p>
         <label><%=_("User name")%></label>

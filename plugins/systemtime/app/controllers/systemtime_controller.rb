@@ -111,11 +111,11 @@ class SystemtimeController < ApplicationController
 
     begin
       t.save
-      flash[:notice] = _('Settings have been written.')
+      flash[:notice] = _('Time settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
       log.debug "Time moved to future"
-      flash[:notice] = _('Settings have been written.')
+      flash[:notice] = _('Time settings have been written.')
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       logger.warn e

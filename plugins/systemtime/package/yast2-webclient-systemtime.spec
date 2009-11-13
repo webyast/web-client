@@ -14,7 +14,7 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.9
+Version:        0.0.10
 Release:        0
 Summary:        YaST2 - Webclient - SystemTime
 Source:         www.tar.bz2
