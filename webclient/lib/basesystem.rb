@@ -44,6 +44,7 @@ module Basesystem
   end
 
   def Basesystem.first_step?(session)
+    return false unless session[:wizard_steps]
     steps = session[:wizard_steps].split ","
     session[:wizard_current] == steps.first
   end
