@@ -118,6 +118,7 @@ class SystemtimeControllerTest < ActionController::TestCase
   def test_commit_wizard
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
     session[:wizard_current] = "test"
+    session[:wizard_steps] = "systemtime,language"
     post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }    
 
     puts @response.body
