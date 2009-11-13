@@ -129,8 +129,10 @@ class RegistrationController < ApplicationController
     @arguments.sort! {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
 
     if success
+      logger.info "registration succeed"
       redirect_success
     else
+      logger.info "additional steps required"
       respond_to do |format|
         format.html { render :action => "index" }
       end
