@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   layout 'main'  
 
   def redirect_success
-    if session[:wizard_current] and session[:wizard_current] != "FINISH"
+    if !Basesystem::done?(session)
       logger.debug "wizard redirect DONE"
       redirect_to :controller => "controlpanel", :action => "nextstep"
     else
@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
       return
     end
     
-    eulaexception_trap(e) and return if e.backend_exception? and e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
+    eulaexception_trap(e) and return if e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
     
     # get the vendor settings
     begin
