@@ -59,11 +59,11 @@
   <%= f.error_messages %>
     <fieldset id="password">
 	<p><label><%=_("Password")%></label>
-	<%= f.password_field :password, :disabled => disabled, :equalTo => "#administrator_confirm_password", :class => "required" %>
+	<%= f.password_field :password, :disabled => disabled %>
 	</p>
 	<p>
 	<label><%=_("Confirm password")%></label>
-    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %>
+    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
 	<%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
     </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
