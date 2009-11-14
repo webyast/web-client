@@ -2,63 +2,44 @@
 
 <div class='plugin-content grid_12'>
 
-<% form_tag '/registration/update' do -%>
-  <table summary="<%= _("This table gives registration settings.") %>">
-    <tr><td colspan="2" class="full" align="center"></td></tr>
+  <% form_target_save = @detail ? '/registration/detail' : '/registration/update' %>
+
+  <% if @guid then %>
+     <fieldset>
+       <p><strong><%=_("This system is registered")%></strong></p>
+       <p><small><%=_("System's GUID:")%> <%= @guid %></small></p>
+       <p><%= link_to _('Register again'), {:controller => :registration, :action =>:update}, :onclick=>"$('#progress').show()", :class => "button" %></p>
+     </fieldset>
+  <%
+       form_target_save = '/controlpanel'
+     end
+  %>
+
+<% form_tag form_target_save, { :onsubmit => "$('#progress').show()" } do -%>
+
+  <% if @arguments && @arguments.size > 0 then %>
+    <fieldset>
     <% for argument in @arguments %>
-      <% if argument["flag"] == "m" || @detail%>
-        <tr>
-          <% if argument["error"] %>
-            <td><strong><font color=red><%=_(argument["name"])%></font></strong></td>
-          <% else %>
-            <td><strong><%=_(argument["name"])%></strong></td>
-          <% end %>
-          <td><%= text_field_tag "registration_arg,"+argument["name"], argument["value"], :class=>'aligned-inputs' %></td>
-        </tr>
+      <% if argument["flag"] == "m" || @detail then %>
+         <p>
+         <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
+           <%=_(argument["name"])%>
+         </label>
+         <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+         </p>
       <% else %>
-        <input type="hidden" id="<%= 'registration_arg_'+argument['name'] %>" name="<%= 'registration_arg_'+argument['name'] %>" value="<%= argument["value"] %>"/>
+         <%= hidden_field_tag "registration_arg,"+argument["name"], argument["value"], :disabled => 'disabled'  %>
       <% end %>
+
     <% end %>
-    <% unless @changed_repositories.blank? %>
-      <tr><td height=10></td></tr>
-      <% first=true %>
-      <% for repo in @changed_repositories %>
-        <tr>
-          <% if first %>
-            <td><strong><%=_("Changed Repositories")%></strong></td>
-            <% first=false %>
-          <% else %>
-            <td></td>
-          <% end %>
-          <td><%= repo.alias %> (<%= repo.status %>)</td>
-        </tr>
-      <% end %>
-    <% end %>
-    <% unless @changed_services.blank? %>
-      <tr><td height=10></td></tr>
-      <% first=true %>
-      <% for service in @changed_services %>
-        <tr>
-          <% if first %>
-            <td><strong><%=_("Changed Services")%></strong></td>
-            <% first=false %>
-          <% else %>
-            <td></td>
-          <% end %>
-          <td><%= service.alias %> (<%= service.status %>)</td>
-        </tr>
-      <% end %>
-    <% end %>
-    <% unless @detail || controller.action_name == "update"%>
-      <tr><td height=10></td></tr>
-      <tr>
-        <td></td>
-        <td align="right"><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"$('#progress').show()", :class => "button"%></p></td>
-      </tr>
-    <% end %>
-  </table>
-  <br/>
-  <%= form_send_buttons %>
+    </fieldset>
+  <% end %>
+
+  <% unless @detail || @guid %>
+    <p><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"$('#progress').show()" %></p>
+  <% end %>
+
+  <p><%= form_send_buttons %></p>
 
 <% end -%>
 </div>
