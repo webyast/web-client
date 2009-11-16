@@ -34,7 +34,13 @@
   <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
-    
+
+  <noscript>
+    <div id="no_js_warning">
+      JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (<a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>).
+    </div>
+  </noscript>
+
     <div id="header">
       
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
