@@ -8,7 +8,7 @@
             :disabled=>!@permissions[:write] %>
     </p>
     <p>
-	 <label><%=_("webYaST langugage")%> <label>
+	 <label><%=_("webYaST language")%> <label>
          <%= link_to_remote(current_locale_name, 
 	     :update =>"language_selection", :url => { :controller => :controlpanel, :action => :select_language} ) %></label>
    </p>
