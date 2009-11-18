@@ -14,7 +14,7 @@ Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite
 PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 = 2.3.4
 PreReq:         rubygem-gettext_rails
-License:        LGPL v2.1 only
+License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.13
