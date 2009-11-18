@@ -16,7 +16,9 @@ end
 
 <div class="plugin-content grid_12">
 
-<% unless @permissions[:execute] %>
+<% if @services.empty? && params.has_key?("custom") %>
+<p><%=_("No custom service is defined on target machine.") %></p>
+<% elsif ! @permissions[:execute] %>
 <p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
 <% end %>
 
