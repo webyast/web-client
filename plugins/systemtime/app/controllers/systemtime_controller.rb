@@ -101,7 +101,12 @@ class SystemtimeController < ApplicationController
       ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
       return false unless ntp      
       ntp.synchronize = true
-      ntp.save #FIXME check return value
+      begin 
+        ntp.save #FIXME check return value
+      rescue Timeout::Error => e
+        #do nothing as if you move time to future it throws this exception
+        log.info "Time moved to future by NTP"
+      end
     else
       logger.error "Unknown value for timeconfig #{params[:timeconfig]}"
     end
@@ -116,12 +121,6 @@ class SystemtimeController < ApplicationController
       #do nothing as if you move time to future it throws this exception
       log.debug "Time moved to future"
       flash[:notice] = _('Time settings have been written.')
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
-      logger.warn e
-    rescue Exception => e
-      flash[:error] = e.message
-      logger.warn e
     end    
 
     redirect_success
