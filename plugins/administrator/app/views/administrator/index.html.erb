@@ -59,14 +59,14 @@
 	<p>
 	<label><%=_("Confirm password")%></label>
     <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
-	<%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
+	<%= f.submit _("Save Password"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
     </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
 	<p>
 	<label><%=_("Forward mail to")%></label>
 	<%= f.text_field :aliases, :disabled => disabled, :class => "emails", :style => 'width: auto' %>
-	<%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
+	<%= f.submit _("Save Mail"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
 	</p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_aliases" generated="true" class="error"></label></p>
