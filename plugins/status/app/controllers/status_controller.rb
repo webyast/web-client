@@ -118,9 +118,7 @@ class StatusController < ApplicationController
       end
       break if found
     end
-    flash[:notice] = _("No data found for showing system status.") unless found
-
-    true
+    found
   end
 
 
@@ -134,7 +132,7 @@ class StatusController < ApplicationController
 
   def edit
     return unless client_permissions
-    create_data
+    flash[:notice] = _("No data found for showing system status.") unless create_data
   end
 
   def ajax_log_custom
@@ -159,8 +157,7 @@ class StatusController < ApplicationController
 
     log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
     @logs = log.find(:all) 
-    
-    create_data
+    flash[:notice] = _("No data found for showing system status.") unless create_data
     limits_reached
     logger.debug "limits reached for #{@limits_list[:reached].inspect}"
   end
@@ -169,9 +166,12 @@ class StatusController < ApplicationController
   def show_summary
     return unless client_permissions
     begin
-      create_data
-      status = limits_reached
-      status = (_("Limits exceeded for %s") % status) unless status.empty?
+      if create_data
+        status = limits_reached
+        status = (_("Limits exceeded for %s") % status) unless status.empty?
+      else
+        status = _("No data found for showing system status.")
+      end
       render :partial => "status_summary", :locals => { :status => status, :error => nil }
     rescue Exception => error
       erase_redirect_results #reset all redirects
