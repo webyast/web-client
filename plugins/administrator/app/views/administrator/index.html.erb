@@ -37,6 +37,9 @@
       });
     });
 
+    // start password validation workaround only when "Save" button has been pressed
+    password_validation_enabled = false;
+
  </script>
 
 <% end %>
@@ -53,12 +56,13 @@
   <%= f.error_messages %>
     <fieldset id="password">
 	<p><label><%=_("Password")%></label>
-	<%= f.password_field :password, :disabled => disabled %>
+	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
+	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');" %>
 	</p>
 	<p>
 	<label><%=_("Confirm password")%></label>
     <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
-	<%= f.submit _("Save Password"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
+	<%= f.submit _("Save Password"), :name => "save_password", :disabled => disabled, :onclick=>"password_validation_enabled = true; return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
     </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
@@ -70,7 +74,7 @@
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_aliases" generated="true" class="error"></label></p>
     </fieldset>
-    <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :disabled => disabled %>
+    <p><%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :disabled => disabled %>
     </p>
   <% end %>
 
