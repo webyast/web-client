@@ -5,7 +5,7 @@
     <p>
 	 <label><%=_("webYaST language")%> <label>
 <%= select_tag "webyast_language",
-  options_for_select(LangHelper::LANGUAGES.invert.to_a.sort_by { |a| a[0].parameterize}, current_locale) %>
+  options_for_select(LangHelper::LANGUAGES.invert.to_a.reject{|val| !(I18n.supported_locales.include?(val[1]))}.sort_by { |a| a[0].parameterize}, current_locale) %>
    </p>
 </fieldset>
 <div>
