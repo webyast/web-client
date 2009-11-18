@@ -8,7 +8,8 @@ require 'yast/service_resource'
 class LanguageController < ApplicationController
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
+#include ProxyLoader
+  include LangHelper
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_language"  # textdomain, options(:charset, :content_type)
@@ -17,6 +18,7 @@ class LanguageController < ApplicationController
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
   def index
+    return #no backend stuff is needed in appliance
     language = load_proxy 'org.opensuse.yast.modules.yapi.language'
     
     unless language
@@ -41,6 +43,10 @@ class LanguageController < ApplicationController
   # Update handler. Sets to backend new language settins. If
   # everything goes fine show confirmation message, otherwise show some error.
   def update
+    cookies["lang"] = params[:webyast_language]
+    set_locale params[:webyast_language]
+    redirect_success
+    return #do nothing for update
     lang = load_proxy 'org.opensuse.yast.modules.yapi.language'
 
     if lang
