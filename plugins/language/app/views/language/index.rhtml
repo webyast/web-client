@@ -3,18 +3,13 @@
 <% form_tag '/language/update' do -%>
   <fieldset id="language_set" class="">
     <p>
-	<label><%=_("System language")%></label>
-    	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
-            :disabled=>!@permissions[:write] %>
-    </p>
-    <p>
 	 <label><%=_("webYaST language")%> <label>
-         <%= link_to_remote(current_locale_name, 
-	     :update =>"language_selection", :url => { :controller => :controlpanel, :action => :select_language} ) %></label>
+<%= select_tag "webyast_language",
+  options_for_select(LangHelper::LANGUAGES.invert.to_a.sort_by { |a| a[0].parameterize}, current_locale) %>
    </p>
 </fieldset>
 <div>
-  <%= form_send_buttons :disabled => !@permissions[:write] %>
+  <%= form_send_buttons %>
 </div>
 <% end -%>
 </div>
