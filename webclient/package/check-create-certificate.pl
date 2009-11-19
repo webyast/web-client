@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-# create-ssl-certificate.pl
+# check-create-certificate.pl
 #     Check and create a self-signed 2048 bit RSA SSL certificate.
 #     Target issue: non-interactively create a certificate for any kind of a webservice or webserver.
 #
