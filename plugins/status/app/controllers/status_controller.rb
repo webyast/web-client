@@ -154,14 +154,23 @@ class StatusController < ApplicationController
   
   def index
     return unless client_permissions
-
-    log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
-    @logs = log.find(:all) 
-    flash[:notice] = _("No data found for showing system status.") unless create_data
-    limits_reached
-    logger.debug "limits reached for #{@limits_list[:reached].inspect}"
+    begin
+      log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
+      @logs = log.find(:all) 
+      flash[:notice] = _("No data found for showing system status.") unless create_data
+      limits_reached
+      logger.debug "limits reached for #{@limits_list[:reached].inspect}"
+      rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && 
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || error_hash["error"]["type"] == "NO_PERM")
+           flash[:error] = error_hash["error"]["description"]
+	else
+           raise error
+	end
+    end
   end
-
 
   def show_summary
     return unless client_permissions
@@ -173,10 +182,19 @@ class StatusController < ApplicationController
         status = _("No data found for showing system status.")
       end
       render :partial => "status_summary", :locals => { :status => status, :error => nil }
-    rescue Exception => error
-      erase_redirect_results #reset all redirects
-      erase_render_results
-      render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } and return
+      rescue ActiveResource::ClientError => error
+	logger.warn error.inspect
+        render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } and return
+      rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && 
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || error_hash["error"]["type"] == "NO_PERM")
+           status = error_hash["error"]["description"]
+           render :partial => "status_summary", :locals => { :status => status, :error => nil }
+	else
+           render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } 
+	end
     end
   end
 
