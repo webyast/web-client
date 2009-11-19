@@ -157,6 +157,7 @@ class StatusController < ApplicationController
     begin
       log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
       @logs = log.find(:all) 
+      @logs ||= {}
       flash[:notice] = _("No data found for showing system status.") unless create_data
       limits_reached
       logger.debug "limits reached for #{@limits_list[:reached].inspect}"
