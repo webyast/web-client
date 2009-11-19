@@ -22,7 +22,6 @@ $(document).ready(function() {
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
-<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 <% @logs.each do |log| %>
 <h2><%= log.description %></h2>
 <div id="log-<%= log.id %>-console"
@@ -66,6 +65,7 @@ $(document).ready(function() {
   <br style='clear: both'>
   <br>
 <% end %>
+<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 <a href="/" class="button"><%=_("Back")%></a>
 </div>
 
