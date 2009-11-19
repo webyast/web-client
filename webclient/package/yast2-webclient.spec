@@ -17,7 +17,7 @@ PreReq:         rubygem-gettext_rails
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.14
+Version:        0.0.15
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2

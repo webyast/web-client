@@ -6,11 +6,11 @@ module Basesystem
   end
 
   def Basesystem.in_process?(session)
-    session.has_key?("wizard_steps") && !done?(session)
+    !session[:wizard_steps].nil? && !done?(session)
   end
 
   def Basesystem.initialized?(session)
-    session.has_key?(:wizard_current)
+    !session[:wizard_current].nil?
   end
 
   def Basesystem.set_finish(session)
