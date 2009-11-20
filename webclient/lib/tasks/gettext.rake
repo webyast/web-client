@@ -51,5 +51,32 @@ task :fetch_po, [:lcn_dir] do |t, args|
        FileUtils.cp(po_file, destfile)
     end
   }
+  result = Hash.new()
+  destdir = File.join(File.dirname(__FILE__),"../../..", "pot")
+  Dir.mkdir destdir unless File.directory?(destdir)
+  result = YAML.load(File.open(File.join(destdir, "translation_status.yaml"))) if File.exists?(File.join(destdir, "translation_status.yaml"))
+
+  Dir.glob("{po}/**/*.po").each {|po_file|
+    output = `LANG=C msgfmt -o /dev/null -c -v --statistics #{po_file} 2>&1`
+    language = File.basename(File.dirname(po_file))
+    output.split(",").each {|column|
+       value = column.split(" ")
+       if value.size > 2 
+         unless result[language].blank? 
+           unless result[language][value[1]].blank?
+             result[language][value[1]] += value[0].to_i
+           else
+             result[language][value[1]] = value[0].to_i
+           end
+         else
+           result[language] = Hash.new
+           result[language][value[1]] = value[0].to_i
+         end
+       end
+    }
+  }
+  f = File.open(File.join(destdir, "translation_status.yaml"), "w")
+  f.write(result.to_yaml)
+  f.close
 end
 

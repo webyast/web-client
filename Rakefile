@@ -8,12 +8,36 @@ task :default => :test
 
 %w(fetch_po makemo updatepot test test:ui rdoc pgem package release install install_policies check_syntax package-local buildrpm buildrpm-local test:test:rcov).each do |task_name|
   desc "Run #{task_name} task for all projects"
+
   task task_name do
+    if task_name == "fetch_po"
+      #remove translation statistik
+      File.delete(File.join("pot", "translation_status.yaml")) if File.exist?("pot/translation_status.yaml")
+    end
+
     PROJECTS.each do |project|
       system %(cd #{project} && #{env} #{$0} #{task_name})
       raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
     end
+
+    if task_name == "fetch_po"
+      #remove translations which have not at least 80 percent translated text
+      limit = Float(80)
+      result = Hash.new
+      result = YAML.load(File.open(File.join("pot", "translation_status.yaml"))) if File.exists?(File.join("pot", "translation_status.yaml"))
+      result.each {|key,value|
+        translated = un_translated = Float(0)
+        translated = value["translated"].to_f if value.has_key? "translated"
+        un_translated += value["untranslated"].to_f if value.has_key? "untranslated"
+        un_translated += value["fuzzy"].to_f if value.has_key? "fuzzy"
+        limit_eval = translated/(un_translated+translated) 
+        if limit_eval < limit/100
+          puts "Language #{key} should be deleted cause it has only #{(limit_eval*100).to_i} percent translation reached."
+        end      
+     }
+    end
   end
+
 end
  
 desc "Run doc to generate whole documentation"
