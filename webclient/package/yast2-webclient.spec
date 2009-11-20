@@ -17,13 +17,13 @@ PreReq:         rubygem-gettext_rails
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.17
+Version:        0.0.18
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
-Source3:        webyast.pem
+Source3:        check-create-certificate.pl
 Source4:        webyast-ui
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
@@ -81,7 +81,7 @@ mkdir -p $RPM_BUILD_ROOT/etc/lighttpd
 install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
 
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd/certs
-install -m 0400 %SOURCE3 $RPM_BUILD_ROOT/etc/lighttpd/certs
+install -m 0755 %SOURCE3 $RPM_BUILD_ROOT/usr/sbin
 
 # firewall service definition, bnc#545627
 mkdir -p $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
@@ -140,8 +140,7 @@ chmod 600 db/*.sqlite* log/*
 %config /etc/lighttpd/cleanurl-v5.lua  
 %config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
 %dir /etc/lighttpd/certs
-%attr(-,lighttpd,lighttpd) %config /etc/lighttpd/certs/webyast.pem
-/etc/lighttpd/certs/webyast.pem
+/usr/sbin/check-create-certificate.pl
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
 
