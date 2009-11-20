@@ -72,12 +72,7 @@ class AdministratorController < ApplicationController
 	  raise e
 	end
     end
-
-    if params.has_key? "commit"
-      redirect_success # redirect to next step
-    else
-      redirect_to :action => "index"
-    end
+    redirect_success
   end
 
 end
