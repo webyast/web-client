@@ -10,12 +10,8 @@ end
 def fill_proxy_with_timezone(proxy,params,timezones)
   region = timezones.find { |reg| reg.name == params[:region] } || Hash.new
 
-
   tmz = region.entries.find { |e| e.name == params[:timezone]}
   proxy.timezone = tmz.id if tmz
 
-
-  if (proxy.utcstatus != "UTConly")
-    proxy.utcstatus = params[:utc] == "true" ? "UTC" : "localtime"
-  end
+  proxy.utcstatus = "UTC" #allways UTC see bnc#556467
 end

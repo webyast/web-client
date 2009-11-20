@@ -91,13 +91,11 @@ class SystemtimeController < ApplicationController
     return false unless t
 
     fill_proxy_with_timezone t, params, t.timezones
+    clear_time t #do nothing
     case params[:timeconfig]
-    when "none" 
-      clear_time t #do nothing
     when "manual"
       fill_proxy_with_time t,params
     when "ntp_sync"
-      clear_time t
       ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
       return false unless ntp      
       ntp.synchronize = true
@@ -107,6 +105,7 @@ class SystemtimeController < ApplicationController
         #do nothing as if you move time to future it throws this exception
         log.info "Time moved to future by NTP"
       end
+    when "none" 
     else
       logger.error "Unknown value for timeconfig #{params[:timeconfig]}"
     end
