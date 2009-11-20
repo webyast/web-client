@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 20:01+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-13 20:03+0100\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,21 @@ msgstr "Neispravna sesija, molimo vas da se ponovno prijavite."
 msgid "Disk free limits exceeded;"
 msgstr "Prekoračena su ograničenja slobodnog dijela diska;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr "Nema dostupnih podataka za prikaz statusa sustava."
+
+#: app/controllers/status_controller.rb:179
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "Granice su prekoračene za %s"
+
+#: app/controllers/status_controller.rb:215
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Spremanje granica nije uspjelo!"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Status"
 
@@ -45,11 +59,11 @@ msgstr "Natrag"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Ove vrijednosti su ocijenjene u zadnjih 5 minuta."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "slobodno"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "koristi se"
 
@@ -74,12 +88,10 @@ msgid "Save"
 msgstr "Sačuvaj"
 
 #: app/views/status/_status_summary.html.erb:1
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "Dogodio se problem prilikom učitavanja informacija o statusu."
 
 #: app/views/status/_status_summary.html.erb:6
-#| msgid "No configuration available"
 msgid "No status information available"
 msgstr "Informacije o statusu nisu dostupne"
 

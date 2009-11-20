@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 19:51+0900\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-13 19:54+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,21 @@ msgstr "セッションが正しくありません。ログインし直してく
 msgid "Disk free limits exceeded;"
 msgstr "ディスクの残り容量の制限を超過しました:"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr "システム情報を表示するためのデータが見つかりません。"
+
+#: app/controllers/status_controller.rb:179
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "%s に対する制限が超過しています"
+
+#: app/controllers/status_controller.rb:215
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "制限の保存に失敗しました！"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "状態"
 
@@ -46,11 +60,11 @@ msgstr "戻る"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "これらの値は直前の 5 分で計測されたものです。"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "残り"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "使用"
 
@@ -75,12 +89,10 @@ msgid "Save"
 msgstr "保存"
 
 #: app/views/status/_status_summary.html.erb:1
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "状態情報を読み込む際に問題が発生しました。"
 
 #: app/views/status/_status_summary.html.erb:6
-#| msgid "No information available."
 msgid "No status information available"
 msgstr "利用可能な状態情報がありません"
 

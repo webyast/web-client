@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.uk\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-09-27 16:39-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -27,11 +27,11 @@ msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is insta
 msgstr ""
 
 # %s is FTP or HTTP
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "Будь ласка, увійдіть, щоб продовжити"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "Мусите вийти з системи перед тим як увійти"
 
@@ -73,11 +73,15 @@ msgstr "Не вказано користувача"
 msgid "No password specified"
 msgstr "Не вказано пароль"
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr "Помилка входу. Перевірте ім'я користувача та пароль."
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "Ви вийшли з системи."
 
@@ -133,20 +137,20 @@ msgstr "Вузол|Створено"
 msgid "Host|Updated at"
 msgstr "Вузол|Оновлено"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr ""
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Зберегти"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Зберегти"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "Далі"
 
@@ -167,12 +171,18 @@ msgstr "Вилучити"
 msgid "Are you sure?"
 msgstr "Ви впевнені?"
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Невідома помилка\n"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Немає інформації"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr ""
 
@@ -188,27 +198,27 @@ msgstr ""
 msgid "Editing YaST-Web-Service"
 msgstr "Редагування веб-служби YaST"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Назва"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Опис"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "Гаразд"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Назад"
 
@@ -238,21 +248,15 @@ msgstr "Вибачте, алеWebYaST ще в альфа-версії і має 
 msgid "Problem:"
 msgstr "Проблема:"
 
-#: app/views/shared/exception_trap.html.erb:16
-#, fuzzy
-#| msgid "Problem occur on target machine."
-msgid "Problem occured on target machine"
-msgstr "Трапилась проблема на машині цілі."
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Будь ласка, повідомте про ваду, щоб ми могли виправити проблему."
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr "(посилання для повідомлення)"
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr "Не забудьте включити подробиці про ваду."
 
@@ -262,35 +266,42 @@ msgstr "Не забудьте включити подробиці про вад�
 msgid "Problem occured on target machine."
 msgstr "Трапилась проблема на машині цілі."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr "Мій окремий пристрій"
 
-#: app/views/layouts/main.rhtml:52
+# label for language selection
+#: app/views/layouts/main.rhtml:49
+#, fuzzy
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "Мова"
+
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "З'єднано з вузлом"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Назва:"
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Користувач:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "Центр керування"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Вийти"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "...Зачекайте..."
 
@@ -329,92 +340,97 @@ msgstr "Налаштувати систему"
 msgid "Configuration"
 msgstr "Налаштування"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Стан"
+
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "Системні дії"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Перезапустити"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Вимкнути"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Стан"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "Звантаження інформації про латки"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 msgid "Patch plugin is not installed."
 msgstr "Не встановлено додаток для латок."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "Звантаження інформації про систему"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr "Не встановлено додаток про стан."
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 msgid "Show all modules"
 msgstr "Показати всі модулі"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Дія \"%1\" не дозволена для служби \"%2\"."
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Під час встановлення трапилась помилка."
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Помилка під час закриття старого файла shadow: %m"
+
+#, fuzzy
+#~| msgid "Problem occur on target machine."
+#~ msgid "Problem occured on target machine"
+#~ msgstr "Трапилась проблема на машині цілі."
 
 #~ msgid "Noone is logged to rest service."
 #~ msgstr "Немає жодного користувача у службі REST."

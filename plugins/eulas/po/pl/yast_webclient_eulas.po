@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-27 20:08+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -18,11 +18,16 @@ msgstr ""
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:78
+msgid "You cannot reject a license once it has been accepted!"
+msgstr ""
+
+#: app/controllers/eulas_controller.rb:81
 msgid "You must accept all licences before using this product!"
 msgstr "Należy zaakceptować wszystkie licencje, by móc używać tego produktu!"
 
 #: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "Czy zaakceptować licencję użytkownika końcowego EULA"
 
@@ -30,14 +35,20 @@ msgstr "Czy zaakceptować licencję użytkownika końcowego EULA"
 msgid "Available translations:"
 msgstr "Dostępne tłumaczenia:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 msgid "Yes, I agree to the license agreement."
 msgstr "Tak, akceptuję zapisy licencyjne."
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr "Nie, nie zgadzam się."
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
 msgstr "Wszystkie licencje już zostały zaakceptowane"
+
+#: app/views/eulas/no_licenses.erb:2
+#, fuzzy
+#| msgid "There are no enabled services defined."
+msgid "There are no licenses to accept."
+msgstr "Brak zdefiniowanych repozytoriów, które są włączone."

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-25 09:51+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-14 18:46+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,19 @@ msgstr "Sesión non válida, inicie a sesión de novo."
 msgid "Disk free limits exceeded;"
 msgstr "Excedido olímite do disco libre;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr "Non se atopou ningún dato para amosar o estado do sistema."
+
+#: app/controllers/status_controller.rb:179
+msgid "Limits exceeded for %s"
+msgstr "Límites excedidos para %s"
+
+#: app/controllers/status_controller.rb:215
+msgid "Saving limits failed!"
+msgstr "Fallou ao gardar os límites!"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Estado"
 
@@ -45,11 +57,11 @@ msgstr "Atrás"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Estes valores foron avaliados nos últimos 5 minutos."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "libre"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "usado"
 

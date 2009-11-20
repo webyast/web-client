@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-10 22:39+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -27,11 +27,11 @@ msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is insta
 msgstr ""
 
 # %s is FTP or HTTP
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "ਜਾਰੀ ਰੱਖਣ ਲਈ ਲਾਗਇਨ ਕਰੋ"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਲਾਗ-ਆਉਟ ਕਰਨਾ ਪਵੇਗਾ"
 
@@ -76,11 +76,15 @@ msgstr "ਲਾਗਇਨ ਨਹੀਂ ਦਿੱਤਾ"
 msgid "No password specified"
 msgstr "ਪਾਸਵਰਡ ਨਹੀਂ ਦਿੱਤਾ"
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr "ਲਾਗਇਨ ਗਲਤ ਹੈ। ਆਪਣਾ ਯੂਜ਼ਰ ਨਾਂ ਅਤੇ ਪਾਸਵਰਡ ਜਾਂਚ ਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ"
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਚੁੱਕੇ ਹੋ।"
 
@@ -136,20 +140,20 @@ msgstr "ਬਣਾਇਆ ਗਿਆ"
 msgid "Host|Updated at"
 msgstr "ਅੱਪਡੇਟ ਕੀਤਾ"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr ""
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "ਸੰਭਾਲੋ"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "ਰੱਦ ਕਰੋ"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "ਸੰਭਾਲੋ"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "ਅੱਗੇ"
 
@@ -170,12 +174,18 @@ msgstr "ਹਟਾਓ"
 msgid "Are you sure?"
 msgstr "ਕੀ ਪੱਕਾ ਹੈ?"
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "ਅਣਜਾਣ ਗਲਤੀ\n"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "ਕੋਈ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀ ਹੈ"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr ""
 
@@ -191,27 +201,27 @@ msgstr ""
 msgid "Editing YaST-Web-Service"
 msgstr "YaST-ਵੈੱਬ-ਸਰਵਿਸ ਸੋਧ"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "ਨਾਂ"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "ਠੀਕ ਹੈ"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "ਪਿੱਛੇ"
 
@@ -241,19 +251,15 @@ msgstr ""
 msgid "Problem:"
 msgstr "ਸਮੱਸਿਆ: "
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr ""
 
@@ -261,37 +267,44 @@ msgstr ""
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 #, fuzzy
 #| msgid "Applied"
 msgid "My Appliance"
 msgstr "ਲਾਗੂ ਕੀਤਾ"
 
-#: app/views/layouts/main.rhtml:52
+# label for language selection
+#: app/views/layouts/main.rhtml:49
+#, fuzzy
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "ਭਾਸ਼ਾ"
+
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "ਕੁਨੈਕਟ ਹੋਇਆ ਹੋਸਟ"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "ਨਾਂ: "
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "ਯੂਜ਼ਰ:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "ਕੰਟਰੋਲ ਪੈਨਲ"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "ਲਾਗਆਉਟ"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "...ਉਡੀਕੋ..."
 
@@ -332,93 +345,93 @@ msgstr "ਕੀ ਸਿਸਟਮ ਹੁਣੇ ਮੁੜ-ਚਾਲੂ ਕਰਨਾ 
 msgid "Configuration"
 msgstr "ਸੰਰਚਨਾ"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "ਹਾਲਤ"
+
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "ਸਿਸਟਮ ਐਕਸ਼ਨ"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "ਮੁੜ-ਚਾਲੂ"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "ਬੰਦ ਕਰੋ"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "ਹਾਲਤ"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "ਪੈਂਚ ਜਾਣਕਾਰੀ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
 # %s is either BOOTP or DHCP
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 #, fuzzy
 #| msgid "The configuration is not initialized."
 msgid "Patch plugin is not installed."
 msgstr "ਸੰਰਚਨਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।"
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "ਸਿਸਟਮ ਜਾਣਕਾਰੀ ਲੋਡ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 #, fuzzy
 #| msgid "Show Loaded Modules"
 msgid "Show all modules"
 msgstr "ਲੋਡ ਕੀਤੇ ਮੋਡੀਊਲ ਵੇਖਾਓ"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "ਕਾਰਵਾਈ '%1' ਸਰਵਿਸ '%2' ਲਈ ਮਨਜ਼ੂਰ ਨਹੀਂ ਹੈ।"
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "ਇੰਸਟਾਲੇਸ਼ਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ।"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"

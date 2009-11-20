@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-11-01 22:58+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-12 17:53+0100\n"
 "Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr ""
 "Impossible de rediriger vers l'accord de licence. Assurez-vous que le paquet "
 "yast2-webclient-eulas est installé"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "Veuillez vous connecter pour continuer"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "Vous devez vous déconnecter avant de pouvoir vous connecter"
 
@@ -70,13 +70,17 @@ msgstr "Aucun login n'a été spécifié"
 msgid "No password specified"
 msgstr "Aucun mot de passe n'a été spécifié"
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "L'hôte a bloqué l'utilisateur %s. Il ne peut pas se connecter avant %s"
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 "Échec de l'identification. Veuillez vérifier votre nom d'utilisateur et mot "
 "de passe."
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "Vous avez été déconnecté."
 
@@ -132,20 +136,20 @@ msgstr "Hôte|Créé le"
 msgid "Host|Updated at"
 msgstr "Hôte|Mis à jour le"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr " ou "
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Enregistrer"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Annuler"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Enregistrer"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "Suivant"
 
@@ -167,13 +171,17 @@ msgstr "Effacer"
 msgid "Are you sure?"
 msgstr "Êtes-vous sûr ?"
 
+#: app/helpers/view_helpers/html_helper.rb:132
+msgid "Unknown error"
+msgstr "Erreur inconnue"
+
 # TLABEL linuxrc_2002_03_29_0036__109
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Aucune information disponible"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr ""
 "Un problème est survenu lors de la récupération des informations depuis le "
@@ -191,28 +199,28 @@ msgstr "Voulez-vous vraiment supprimer l'hôte %s ?"
 msgid "Editing YaST-Web-Service"
 msgstr "Modification de YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nom"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Description"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "OK"
 
 # TLABEL linuxrc_2002_03_29_0036__1
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Retour"
 
@@ -245,20 +253,16 @@ msgstr ""
 msgid "Problem:"
 msgstr "Problème :"
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr "Un problème est survenu sur la machine cible"
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 "Veuillez signaler le bug afin que nous puissions corriger le problème !"
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr "(lien de rapport)"
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr "N'oubliez pas d'inclure les détails du problème."
 
@@ -266,36 +270,40 @@ msgstr "N'oubliez pas d'inclure les détails du problème."
 msgid "Problem occured on target machine."
 msgstr "Un problème est survenu sur la machine cible."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr "Ma Machine"
 
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:49
+msgid "Langugage:"
+msgstr "Langue :"
+
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "Hôte connecté"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Nom : "
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Utilisateur :"
 
 # TLABEL general_2002_03_14_2340__44
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "Panneau de configuration"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "... Patientez ..."
 
@@ -339,85 +347,85 @@ msgstr "Configurer le système"
 msgid "Configuration"
 msgstr "Configuration"
 
+# TLABEL lan_inetd_2002_01_04_0147__28
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "État"
+
 # TLABEL linuxrc_2002_03_29_0036__142
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "Actions système"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Redémarrage"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr "Voulez-vous vraiment redémarrer %s ?"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Arrêt"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr "Voulez-vous vraiment arrêter %s ?"
 
-# TLABEL lan_inetd_2002_01_04_0147__28
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "État"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "Chargement des informations sur les correctifs"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 msgid "Patch plugin is not installed."
 msgstr "Le module d'installation des correctifs n'est pas installé."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "Chargement des informations sur le système"
 
 # TLABEL partitioning_2002_01_04_0147__180
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr "Le module d'état n'est pas installé."
 
 # TLABEL linuxrc_2002_03_29_0036__17
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 msgid "Show all modules"
 msgstr "Afficher tous les modules"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr "Le service %s n'est pas disponible sur la machine cible"
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr "Le service %s n'est pas en cours d'exécution sur la machine cible"
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 msgid "Permission %s is not granted for user %s"
 msgstr "La permission %s n'est pas accordée à l'utilisateur %s"
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid ""
 "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 "Exception Policy Kit pour l'utilisateur %s et la permission %s (message non "
 "traduit) : %s"
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 "Il n'y a plus d'utilisateur connecté à la machine cible. Veuillez vous "
 "reconnecter."
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Le système cible n'est pas cohérent : fichier %s corrompu ou manquant"
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid ""
 "There is no predefined ntp server at /etc/sysconfig/network/config - "
 "NETCONFIG_NTP_STATIC_SERVERS"
@@ -426,14 +434,17 @@ msgstr ""
 "NETCONFIG_NTP_STATIC_SERVERS"
 
 # TLABEL linuxrc_2002_03_29_0036__95
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Une erreur est survenue lors de la synchronisation NTP : %s"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
 msgstr ""
 "Erreur lors de l'enregistrement des paramètres de l'administrateur : %s"
+
+#~ msgid "Problem occured on target machine"
+#~ msgstr "Un problème est survenu sur la machine cible"
 
 #~ msgid "Noone is logged to rest service."
 #~ msgstr "Personne n'est connecté au service REST."

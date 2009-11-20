@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.uk\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-09-27 15:56-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -41,111 +41,124 @@ msgstr "dhcp"
 msgid "Settings have been written."
 msgstr "Параметри було збережено."
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr ""
+
+#: app/views/network/index.html.erb:102
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+#, fuzzy
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "Не вказано чинного файла запиту."
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Мережа"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Інтерфейс"
 
-#: app/views/network/index.html.erb:77
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "_Selection"
 msgid "Select"
 msgstr "_Вибір"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "IP Address"
 msgid "IP address"
 msgstr "Адреса IP"
 
-#: app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration Mode"
 msgid "Configuration mode"
 msgstr "Режим налаштування"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 msgid "Prefixlen"
 msgstr "Префікс"
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 msgid "Hostname"
 msgstr "Назва вузла"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 msgid "Domain"
 msgstr "Домен"
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Servers"
 msgid "Name servers"
 msgstr "Сервер назв"
 
-#: app/views/network/index.html.erb:125
+#: app/views/network/index.html.erb:193
 #, fuzzy
 #| msgid "&Search domains:"
 msgid "Search domains"
 msgstr "&Домени пошуку:"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr "Маршрутизація"
 
-#: app/views/network/index.html.erb:133
+#: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "Default Route"
 msgid "Default route"
 msgstr "Типовий маршрут"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "Зберегти"
+#~ msgid "Save"
+#~ msgstr "Зберегти"
 
 # cancel button label
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "Скасувати"
+#~ msgid "Cancel"
+#~ msgstr "Скасувати"
 
-#: app/views/network/edit.html.erb:1
-msgid "Edit Network Device"
-msgstr "Редагувати мережний пристрій"
+#~ msgid "Edit Network Device"
+#~ msgstr "Редагувати мережний пристрій"
 
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "Налаштування"
+#~ msgid "Configuration"
+#~ msgstr "Налаштування"
 
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr "ІД"
+#~ msgid "ID"
+#~ msgstr "ІД"
 
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "Опис"
+#~ msgid "Description"
+#~ msgstr "Опис"
 
-#: app/views/network/edit.html.erb:23
-msgid "MAC"
-msgstr "MAC"
+#~ msgid "MAC"
+#~ msgstr "MAC"
 
-#: app/views/network/edit.html.erb:27
-msgid "Device Name"
-msgstr "Назва пристрою"
+#~ msgid "Device Name"
+#~ msgstr "Назва пристрою"
 
-#: app/views/network/edit.html.erb:31
-msgid "Startup"
-msgstr "Запуск"
+#~ msgid "Startup"
+#~ msgstr "Запуск"
 
 #~ msgid "Search Domains"
 #~ msgstr "Домени пошуку"

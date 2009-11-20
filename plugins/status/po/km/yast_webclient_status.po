@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2006-02-18 09:47+0700\n"
 "Last-Translator: Keo Sophon <keosophon@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -19,7 +19,23 @@ msgstr ""
 msgid "Disk free limits exceeded;"
 msgstr ""
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "ការ​បន្ថែម​បាន​ជោគជ័យ​សម្រាប់ \"%s\" ។\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "រក្សាទុក​ការ​ផ្លាស់ប្ដូរ​បាន​បរាជ័យ"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "ស្ថានភាព"
 
@@ -45,11 +61,11 @@ msgstr "ថយក្រោយ"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 #, fuzzy
 #| msgid "Last used"
 msgid "used"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-10 16:36+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-29 13:45+0100\n"
 "Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
@@ -35,66 +35,88 @@ msgstr "dhcp"
 msgid "Settings have been written."
 msgstr "Se ha escrito la configuración."
 
-#: app/views/network/index.html.erb:55
-msgid ""
-"Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn "
-"between 0 and 255."
-msgstr ""
-"Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn "
-"un número entre 0 y 255."
+#: app/views/network/index.html.erb:87
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:79
+#: app/views/network/index.html.erb:96
+#, fuzzy
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
+
+#: app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+#, fuzzy
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "No se ha especificado ningún archivo de solicitud válido."
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Red"
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Interfaz"
 
-#: app/views/network/index.html.erb:93
+#: app/views/network/index.html.erb:145
 msgid "Select"
 msgstr "Seleccione"
 
-#: app/views/network/index.html.erb:112 app/views/network/index.html.erb:118
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 msgid "IP address"
 msgstr "Dirección IP"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Modo de configuración"
 
-#: app/views/network/index.html.erb:122
+#: app/views/network/index.html.erb:174
 msgid "Prefixlen"
 msgstr "Prefixlen"
 
-#: app/views/network/index.html.erb:127
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:129
+#: app/views/network/index.html.erb:181
 msgid "Hostname"
 msgstr "Nombre de equipo"
 
 # as in Windows Authentication Domain
 #  msgid "Domain\n
 # CER, 2009, 11.2: ¿es eso cierto?
-#: app/views/network/index.html.erb:133
+#: app/views/network/index.html.erb:185
 msgid "Domain"
 msgstr "Dominio"
 
-#: app/views/network/index.html.erb:137
+#: app/views/network/index.html.erb:189
 msgid "Name servers"
 msgstr "Servidores de nombres"
 
-#: app/views/network/index.html.erb:141
+#: app/views/network/index.html.erb:193
 msgid "Search domains"
 msgstr "Dominios de búsqueda"
 
-#: app/views/network/index.html.erb:147
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr "Rutado"
 
-#: app/views/network/index.html.erb:149
+#: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Ruta por defecto"
 

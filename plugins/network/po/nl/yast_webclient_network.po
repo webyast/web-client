@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 19:01+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-16 22:56+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,6 @@ msgid "No permissions for network module"
 msgstr "Geen toestemming voor de netwerkmodule"
 
 #: app/controllers/network_controller.rb:66
-#| msgid "Do not start"
 msgid "not set"
 msgstr "niet ingesteld"
 
@@ -42,104 +41,83 @@ msgstr "dhcp"
 msgid "Settings have been written."
 msgstr "Instellingen zijn weggeschreven."
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Ongeldige IP-adresopmaak. De juiste is nnn.nnn.nnn.nnn met nnn tussen 0 en 255."
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Ongeldige masker. De juiste is /nn met nn tussen 0 en 32 (CIDR-indeling)."
+
+#: app/views/network/index.html.erb:102
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Ongeldige standaard route. De juiste is nnn.nnn.nnn.nnn met nnn tussen 0 en 255."
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr "Naamservers zijn niet geldig. Er moet er minstens één zijn gedefinieerd."
+
+#: app/views/network/index.html.erb:114
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "Hostnaam is niet geldig. Deze moet worden opgegeven."
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr "Domeinnaam is niet geldig. Een lege domeinnaam wordt niet ondersteund."
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Netwerk"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Interface"
 
-#: app/views/network/index.html.erb:77
-#| msgid "_Selection"
+#: app/views/network/index.html.erb:145
 msgid "Select"
 msgstr "Selectie"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 msgid "IP address"
 msgstr "IP-adres"
 
-#: app/views/network/index.html.erb:98
-#| msgid "Configuration Mode"
+#: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Configuratiemodus"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 msgid "Prefixlen"
 msgstr "Lengte voorvoegsel"
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 msgid "Hostname"
 msgstr "Hostnaam"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 msgid "Domain"
 msgstr "Domein"
 
-#: app/views/network/index.html.erb:121
-#| msgid "Name Servers"
+#: app/views/network/index.html.erb:189
 msgid "Name servers"
 msgstr "Naamservers"
 
-#: app/views/network/index.html.erb:125
-#| msgid "&Search domains:"
+#: app/views/network/index.html.erb:193
 msgid "Search domains"
 msgstr "Zoeken naar domeinen"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr "Routering"
 
-#: app/views/network/index.html.erb:133
-#| msgid "Default Route"
+#: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Standaardroute"
-
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "Opslaan"
-
-# cancel button label
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "Annuleren"
-
-# /usr/lib/YaST2/clients/dialup_dev_cfg.ycp:71
-#: app/views/network/edit.html.erb:1
-msgid "Edit Network Device"
-msgstr "Netwerkapparaat bewerken"
-
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "Configuratie"
-
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr "ID"
-
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "Beschrijving"
-
-#: app/views/network/edit.html.erb:23
-msgid "MAC"
-msgstr "MAC"
-
-#: app/views/network/edit.html.erb:27
-msgid "Device Name"
-msgstr "Apparaatnaam"
-
-#: app/views/network/edit.html.erb:31
-msgid "Startup"
-msgstr "Opstarten"
 

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_eulas.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-20 14:32+0300\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-17 22:22+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,16 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:78
+msgid "You cannot reject a license once it has been accepted!"
+msgstr "Et voi hylätä sopimusta kun sen olet kerran hyväksynyt!"
+
+#: app/controllers/eulas_controller.rb:81
 msgid "You must accept all licences before using this product!"
 msgstr "Sinun täytyy hyväksyä kaikki käyttöoikeussopimukset ennen tämän tuotteen käyttöä!"
 
 #: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "Hyväksy loppukäyttäjän käyttöoikeussopimus"
 
@@ -26,14 +31,20 @@ msgstr "Hyväksy loppukäyttäjän käyttöoikeussopimus"
 msgid "Available translations:"
 msgstr "Saatavilla olevat käännökset:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 msgid "Yes, I agree to the license agreement."
 msgstr "Kyllä, hyväksyn käyttöoikeussopimuksen."
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr "Ei, en hyväksy"
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
 msgstr "Kaikki käyttöoikeussopimukset on jo hyväksytty"
+
+#: app/views/eulas/no_licenses.erb:2
+#| msgid "There are no enabled services defined."
+msgid "There are no licenses to accept."
+msgstr "Ei käyttöoikeussopimuksia hyväksyttäväksi."
+

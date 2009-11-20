@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-04 12:45+0100\n"
-"PO-Revision-Date: 2009-10-31 11:52+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-14 18:48+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +25,11 @@ msgstr ""
 "Non se pode redireccionar ao EULA. Asegúrese que o paquete yast2-webclient-"
 "eulas estea instalado"
 
-#: app/controllers/application_controller.rb:101
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "Inicie sesión para continuar"
 
-#: app/controllers/application_controller.rb:108
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "Debe saír antes de poder iniciar sesión"
 
@@ -69,7 +69,7 @@ msgstr "Non se especificou ningún contrasinal"
 
 #: app/controllers/sessions_controller.rb:76
 msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
+msgstr "O host bloqueou ao usuario %s. Non poderá iniciar sesión ata %s"
 
 #: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
@@ -164,12 +164,16 @@ msgstr "Eliminar"
 msgid "Are you sure?"
 msgstr "Está seguro?"
 
-#: app/helpers/view_helpers/html_helper.rb:131
+#: app/helpers/view_helpers/html_helper.rb:132
+msgid "Unknown error"
+msgstr "Erro descoñecido"
+
+#: app/helpers/view_helpers/html_helper.rb:136
 #: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Non hai información dispoñible"
 
-#: app/helpers/view_helpers/html_helper.rb:136
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr "Houbo un problema ao obter información do servidor."
 
@@ -185,27 +189,27 @@ msgstr "Está seguro de querer eliminar o host %s?"
 msgid "Editing YaST-Web-Service"
 msgstr "Editando servizo-web-YaST"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "Servizo-web-YaST"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nome"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Descrición"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "Aceptar"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Atrás"
 
@@ -253,39 +257,39 @@ msgstr "Non esqueza incluír os detalles do erro."
 msgid "Problem occured on target machine."
 msgstr "Aconteceu un problema na máquina destino."
 
-#: app/views/layouts/main.rhtml:35
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:43
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr "O meu aplicativo"
 
-#: app/views/layouts/main.rhtml:51
+#: app/views/layouts/main.rhtml:49
 msgid "Langugage:"
-msgstr ""
+msgstr "Idioma:"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "Host conectado"
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Nome:"
 
-#: app/views/layouts/main.rhtml:55
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Usuario:"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "Panel de control"
 
-#: app/views/layouts/main.rhtml:59
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Rematar a Sesión"
 
-#: app/views/layouts/main.rhtml:91
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "...Agarde..."
 

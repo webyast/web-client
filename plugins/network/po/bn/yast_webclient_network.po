@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -33,123 +33,133 @@ msgstr ""
 msgid "Settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr ""
+
+#: app/views/network/index.html.erb:102
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+#, fuzzy
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "বৈধ অনুরোধ ফাইলের উল্লেখ করা হয়নি"
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "নেটওয়ার্ক"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "ইন্টারফেস"
 
-#: app/views/network/index.html.erb:77
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "selection"
 msgid "Select"
 msgstr "নির্বাচন"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "Own Address"
 msgid "IP address"
 msgstr "নিজস্ব ঠিকানা"
 
-#: app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "সংরূপণ"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
 msgstr "ডায়াল প্রিফিক্স"
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "হোস্ট নেম"
 
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "ডোমেন\n"
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "নেম সার্ভার"
 
-#: app/views/network/index.html.erb:125
+#: app/views/network/index.html.erb:193
 #, fuzzy
 #| msgid "Search Index"
 msgid "Search domains"
 msgstr "সন্ধানের সূচি"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:133
+#: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "Default Route"
 msgid "Default route"
 msgstr "ডিফল্ট রুট"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "সংরক্ষণ করুন"
+#~ msgid "Save"
+#~ msgstr "সংরক্ষণ করুন"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "বাতিল"
+#~ msgid "Cancel"
+#~ msgstr "বাতিল"
 
-#: app/views/network/edit.html.erb:1
 #, fuzzy
-#| msgid "Choose the network device."
-msgid "Edit Network Device"
-msgstr "নেটওয়ার্ক ডিভাইসটি বাছাই করুন।"
+#~| msgid "Choose the network device."
+#~ msgid "Edit Network Device"
+#~ msgstr "নেটওয়ার্ক ডিভাইসটি বাছাই করুন।"
 
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "সংরূপণ"
+#~ msgid "Configuration"
+#~ msgstr "সংরূপণ"
 
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr ""
+#~ msgid "Description"
+#~ msgstr "বর্ণনা"
 
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "বর্ণনা"
-
-#: app/views/network/edit.html.erb:23
 #, fuzzy
-#| msgid "DMA"
-msgid "MAC"
-msgstr "DMA"
+#~| msgid "DMA"
+#~ msgid "MAC"
+#~ msgstr "DMA"
 
-#: app/views/network/edit.html.erb:27
 #, fuzzy
-#| msgid "Device"
-msgid "Device Name"
-msgstr "ডিভাইস"
+#~| msgid "Device"
+#~ msgid "Device Name"
+#~ msgstr "ডিভাইস"
 
-#: app/views/network/edit.html.erb:31
 #, fuzzy
-#| msgid "Start-Up"
-msgid "Startup"
-msgstr "স্টার্ট-আপ"
+#~| msgid "Start-Up"
+#~ msgid "Startup"
+#~ msgstr "স্টার্ট-আপ"
 
 #  Proposal for installation mode
 #~ msgid "Update"

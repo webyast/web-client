@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 20:48+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-17 22:31+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,21 @@ msgstr "Epäkelpo istunto, kirjaudu uudestaan."
 msgid "Disk free limits exceeded;"
 msgstr "Vapaa levy-tila rajoitukset ylitettiin;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr "Järjestelmän tilan tietoja ei löytynyt näytettäväksi."
+
+#: app/controllers/status_controller.rb:179
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "Rajat ylitettiin %s"
+
+#: app/controllers/status_controller.rb:215
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Rajojen tallennus epäonnistui!"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Tila"
 
@@ -46,11 +60,11 @@ msgstr "Takaisin"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Nämä arvot arvioitiin viimeisten 5 minuutin aikana."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "vapaana"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "käytössä"
 
@@ -75,12 +89,10 @@ msgid "Save"
 msgstr "Tallenna"
 
 #: app/views/status/_status_summary.html.erb:1
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "Ilmeni ongelma ladattaessa tilatietoja."
 
 #: app/views/status/_status_summary.html.erb:6
-#| msgid "No information available."
 msgid "No status information available"
 msgstr "Tilatietoja ei saatavilla."
 

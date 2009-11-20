@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-29 13:55+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -22,7 +22,23 @@ msgstr "Érvénytelen munkamenet, lépjen be újra."
 msgid "Disk free limits exceeded;"
 msgstr "A szabad lemezterület elérte a határértéket."
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "\"%s\" hozzáadása sikerült.\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "A mentések módosítása nem sikerült"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Állapot"
 
@@ -46,11 +62,11 @@ msgstr "Vissza"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Ezek az értékek az elmúlt 5 perc adatai mutatják."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "szabad"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "használt"
 
@@ -75,16 +91,13 @@ msgid "Save"
 msgstr "Mentés"
 
 #: app/views/status/_status_summary.html.erb:1
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "Hiba történt az állapotinformáció betöltése közben."
 
 #: app/views/status/_status_summary.html.erb:6
-#| msgid "No information available."
 msgid "No status information available"
 msgstr "Nincs elérhető állapotinformáció"
 
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "A rendszer stabil."
-

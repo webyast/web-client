@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast memory\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2004-04-05 17:37+0200\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <i18n@suse.de>\n"
@@ -23,7 +23,21 @@ msgstr ""
 msgid "Disk free limits exceeded;"
 msgstr ""
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+msgid "Limits exceeded for %s"
+msgstr ""
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Li schapaedje des candjmints a fwait berwete"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Estat"
 
@@ -51,11 +65,11 @@ msgstr "Bouye di fond:"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 #, fuzzy
 #| msgid "Last used"
 msgid "used"

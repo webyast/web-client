@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:31+0100\n"
-"PO-Revision-Date: 2009-10-29 20:49+0200\n"
+"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"PO-Revision-Date: 2009-11-17 22:29+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,24 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Virheellinen istunto, kirjaudu uudelleen."
 
-#: app/controllers/registration_controller.rb:35
-#: app/controllers/registration_controller.rb:62
+#: app/controllers/registration_controller.rb:42
+#: app/controllers/registration_controller.rb:75
 msgid "No permissions for registration"
 msgstr "Ei oikeuksia rekisteröitymiseen"
 
-#: app/controllers/registration_controller.rb:50
+#: app/controllers/registration_controller.rb:57
 msgid "Arguments for registration cannot be evaluated."
 msgstr "Rekisteröinnin arvoja ei voida tunnistaa."
 
-#: app/controllers/registration_controller.rb:84
+#: app/controllers/registration_controller.rb:97
 msgid "Registration finished successfully."
 msgstr "Rekisteröinti suoritettiin onnistuneesti."
 
-#: app/controllers/registration_controller.rb:108
+#: app/controllers/registration_controller.rb:123
 msgid "Please fill out missing entries."
 msgstr "Täytä puuttuvat kohdat."
 
-#: app/controllers/registration_controller.rb:111
+#: app/controllers/registration_controller.rb:126
 msgid "Error occured while connecting to registration server."
 msgstr "Tapahtui virhe yhdistettäessä rekisteröintipalvelimeen."
 
@@ -43,7 +43,7 @@ msgstr "Tapahtui virhe yhdistettäessä rekisteröintipalvelimeen."
 msgid "register plugin"
 msgstr "rekisteröinti-liitännäinen"
 
-#: app/views/registration/index.rhtml:3
+#: app/views/registration/index.rhtml:2
 msgid "Registration"
 msgstr "Rekisteröinti"
 
@@ -51,12 +51,16 @@ msgstr "Rekisteröinti"
 msgid "This table gives registration settings."
 msgstr "Tämä taulu näyttää rekisteröinti asetukset."
 
-#: app/views/registration/index.rhtml:25
+#: app/views/registration/index.rhtml:29
 msgid "Changed Repositories"
 msgstr "Muutetut asennuslähteet"
 
-#: app/views/registration/index.rhtml:40
-#| msgid "Changed profiles"
+#: app/views/registration/index.rhtml:44
 msgid "Changed Services"
 msgstr "Muuttuneet palvelut"
+
+#: app/views/registration/index.rhtml:57
+#| msgid "Details"
+msgid "Detail"
+msgstr "Tiedot"
 

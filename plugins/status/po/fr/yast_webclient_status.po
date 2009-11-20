@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-11-01 23:02+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-12 17:58+0100\n"
 "Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,8 +21,20 @@ msgstr "Session invalide, veuillez vous reconnecter."
 msgid "Disk free limits exceeded;"
 msgstr "Limites d'espace disque libre dépassées ;"
 
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr "Aucune donnée disponible pour afficher l'état du système."
+
+#: app/controllers/status_controller.rb:179
+msgid "Limits exceeded for %s"
+msgstr "Limites dépassées pour %s"
+
+#: app/controllers/status_controller.rb:215
+msgid "Saving limits failed!"
+msgstr "L'enregistrement des limites a échoué !"
+
 # TLABEL lan_inetd_2002_01_04_0147__28
-#: app/views/status/index.html.erb:25
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "État"
 
@@ -47,11 +59,11 @@ msgstr "Retour"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Ces valeurs ont été évaluées dans les 5 dernières minutes."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "disponible"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "utilisé"
 

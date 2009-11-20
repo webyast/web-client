@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-08 14:31+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -19,35 +19,46 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Chybná session, prosím přihlaste se znova."
 
-#: app/controllers/permissions_controller.rb:178
+#: app/controllers/permissions_controller.rb:133
+#, fuzzy
+#| msgid "`%s' is not a valid netmask."
+msgid "User name is not valid name"
+msgstr " '%s' není platná maska sítě."
+
+#: app/controllers/permissions_controller.rb:135
+#, fuzzy
+#| msgid "'%1' does not exist."
+msgid "User does not exist"
+msgstr "%1 neexistuje."
+
+#: app/controllers/permissions_controller.rb:183
 msgid "Permissions have been set."
 msgstr "Práva byla nastavena."
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:49
 msgid "User Permissions"
 msgstr "Uživatelská práva"
 
-#: app/views/permissions/index.rhtml:53
+#: app/views/permissions/index.rhtml:52
 msgid "User"
 msgstr "Uživatel"
 
-#: app/views/permissions/index.rhtml:55
+#: app/views/permissions/index.rhtml:54
 msgid "Search"
 msgstr "Vyhledávání"
 
-#: app/views/permissions/index.rhtml:57 app/views/permissions/index.rhtml:160
+#: app/views/permissions/index.rhtml:56 app/views/permissions/index.rhtml:160
 msgid "Back"
 msgstr "Zpět"
 
 # Nejsem si jistý. Cervajz.
-#: app/views/permissions/index.rhtml:70
+#: app/views/permissions/index.rhtml:69
 msgid "Revoked Permissions"
 msgstr "Revokovaná práva"
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:70
 msgid "Granted Permissions"
 msgstr "Udělená práva"
 
-#: app/views/permissions/index.rhtml:159
-msgid "Set"
-msgstr "Nastavit"
+#~ msgid "Set"
+#~ msgstr "Nastavit"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_eulas.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-21 16:04+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team:  <hu@li.org>\n"
@@ -14,11 +14,16 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:78
+msgid "You cannot reject a license once it has been accepted!"
+msgstr ""
+
+#: app/controllers/eulas_controller.rb:81
 msgid "You must accept all licences before using this product!"
 msgstr "A termék használatához el kell fogadnia az összes licencmegállapodást!"
 
 #: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "Licencmegállapodás elfogadása"
 
@@ -26,14 +31,20 @@ msgstr "Licencmegállapodás elfogadása"
 msgid "Available translations:"
 msgstr "Elérhető fordítások:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 msgid "Yes, I agree to the license agreement."
 msgstr "Igen, elfogadom a licencmegállapodást."
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr "Nem, nem fogadom el."
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
 msgstr "Már minden licenc elfogadása megtörtént"
+
+#: app/views/eulas/no_licenses.erb:2
+#, fuzzy
+#| msgid "There are no enabled services defined."
+msgid "There are no licenses to accept."
+msgstr "Nincs engedélyezett szolgáltatás beállítva."
