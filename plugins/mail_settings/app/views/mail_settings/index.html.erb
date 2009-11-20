@@ -25,7 +25,9 @@
       });
     });
 
- </script>
+    // start password validation workaround only when "Save" button has been pressed
+    password_validation_enabled = false;
+</script>
 
   <script type="text/javascript">
      $(document).ready(function(){
@@ -40,7 +42,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off } ) do |f| %>
+  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show()" } ) do |f| %>
   <%= f.error_messages %>
     <fieldset class="grid_12">
       <p>
@@ -54,14 +56,14 @@
         <%= f.text_field :user, :disabled => disabled %></p>
       <p>
         <label><%=_("Password")%></label>
-        <%= f.password_field :password, :disabled => disabled %></p>
+        <%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#mailForm').validate().element('#mail_settings_confirm_password')" %></p>
       <p>
         <label><%=_("Confirm password")%></label>
         <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_settings_password" %>
       </p>
     </fieldset>
     <p>
-    <%= form_send_buttons :onclick=>"$('#progress').show()", :disabled => disabled %>
+    <%= form_send_buttons :onclick=>"password_validation_enabled = true", :disabled => disabled %>
     </p>
   <% end %>
 </div>
