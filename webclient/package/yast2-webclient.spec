@@ -138,6 +138,7 @@ chmod 600 db/*.sqlite* log/*
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %config /etc/lighttpd/cleanurl-v5.lua  
+%config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
 %dir /etc/lighttpd/certs
 %attr(-,lighttpd,lighttpd) %config /etc/lighttpd/certs/webyast.pem
 /etc/lighttpd/certs/webyast.pem
