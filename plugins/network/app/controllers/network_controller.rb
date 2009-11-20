@@ -102,7 +102,7 @@ class NetworkController < ApplicationController
       dns.save
       hn.save
       ifc.save
-      flash[:notice] = _('Settings have been written.')
+      flash[:notice] = _('Network settings have been written.')
     rescue ActiveResource::ServerError => e
       response = Hash.from_xml(e.response.body)
       if ( response["error"] && response["error"]["type"]=="NETWORK_ROUTE_ERROR")
