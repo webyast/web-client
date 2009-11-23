@@ -83,11 +83,12 @@ class NetworkController < ApplicationController
     dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
     return false unless dns
     #compare empty array and nill cause true, so at first test emptyness
+    #FIXME repair it when spliting of param is ready
     unless (dns.nameservers.empty? && params["nameservers"].blank?)
-      dirty = true unless ( dns.nameservers == params["nameservers"].split)
+      dirty = true unless ( dns.nameservers == params["nameservers"])
     end
     unless (dns.searches.empty? && params["searchdomains"].blank?)
-      dirty = true if (dns.searches == params["searchdomains"].split)
+      dirty = true if (dns.searches == params["searchdomains"])
     end
     logger.info "dirty after  dns: #{dirty}"
 # FIXME: params bellow should be arrays    
