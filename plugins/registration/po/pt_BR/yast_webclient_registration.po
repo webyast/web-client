@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2009-10-28 16:05-0300\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2009-11-20 19:27-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,28 +18,45 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Sessão inválida. Por favor, efetue login novamente."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr "Sem permissão para registro"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr "Os arguementos para o registro não podem ser avaliados."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "Ocorreu um erro durante o registro. Por favor, tente novamente."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr "Registro concluído com sucesso."
 
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "Serviço adicionado:"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "Catálogo habilitado:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "Repositório adicionado:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr "Por favor, preencha os campos em branco."
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
 msgstr "Ocorreu um erro ao conectar ao servidor de registro."
 
@@ -47,25 +64,34 @@ msgstr "Ocorreu um erro ao conectar ao servidor de registro."
 msgid "register plugin"
 msgstr "extensão de registro"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "Registro"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "Esta tabela fornece a configuração do registro."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "Este sistema está registrado"
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "Repositórios alterados"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "GUID do sistema:"
 
-#: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "Serviços alterados"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "Registrar novamente"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "Detalhe"
+
+#~ msgid "This table gives registration settings."
+#~ msgstr "Esta tabela fornece a configuração do registro."
+
+#~ msgid "Changed Repositories"
+#~ msgstr "Repositórios alterados"
+
+#~ msgid "Changed Services"
+#~ msgstr "Serviços alterados"
 
 #~ msgid "Register"
 #~ msgstr "Registrar"

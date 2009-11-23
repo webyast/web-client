@@ -128,6 +128,11 @@ test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG not existing";
 PID_FILE=/var/run/yastwc.pid
 IGNORE_FILE=/var/run/yastws.pid
 
+
+CERTIFICATEFILE=/etc/lighttpd/certs/webyast.pem
+CERTKEYFILE=/etc/lighttpd/certs/webyast.key
+COMBINEDCERTFILE=/etc/lighttpd/certs/webyast-combined.pem
+
 # Source LSB init functions
 # providing start_daemon, killproc, pidofproc, 
 # log_success_msg, log_failure_msg and log_warning_msg.
@@ -171,6 +176,13 @@ rc_reset
 
 case "$1" in
     start)
+    if [ ! -e  $COMBINEDCERTFILE ]
+    then
+        echo "No certificate found. Creating one now."
+        /usr/sbin/check-create-certificate.pl -c -C $CERTIFICATEFILE -K $CERTKEYFILE -B $COMBINEDCERTFILE >/srv/www/yast/log/check-create-certificate.log 2>&1
+        chown lighttpd:lighttpd $CERTIFICATEFILE $CERTKEYFILE $COMBINEDCERTFILE
+    fi
+
 	echo -n "Starting yastwc "
 	startproc -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG 
 

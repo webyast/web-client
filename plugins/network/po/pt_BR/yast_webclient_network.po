@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-11-13 13:41-0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-11-20 19:30-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,22 +26,22 @@ msgid "No permissions for network module"
 msgstr "Sem permissões para o módulo de rede"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "não definido"
+msgid "Not configured"
+msgstr "Não configurado"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "estático"
+msgid "Manual"
+msgstr "Manual"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+msgid "Automatic"
+msgstr "Automático"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
-msgstr "As configurações foram salvas."
+msgid "Network settings have been written."
+msgstr "As configurações de rede foram gravadas."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid ""
 "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn "
 "between 0 and 255."
@@ -49,30 +49,33 @@ msgstr ""
 "Formato de endereço IP inválodo. O correto é nnn.nnn.nnn.nnn para nnn entre "
 "0 e 255."
 
-#: app/views/network/index.html.erb:96
+#: app/views/network/index.html.erb:97
 msgid ""
-"Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+"Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR "
+"format)."
 msgstr ""
-"Prefixo inválido. O correto é /nn onde nn está entre 0 e 32 (formato CIDR)."
+"Formato de prefixo inválido. O correto é /nn onde nn está entre 0 e 32 "
+"(formato CIDR)."
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:103
 msgid ""
-"Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 "
-"and 255."
+"Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn "
+"between 0 and 255."
 msgstr ""
-"Rota padrão inválida. O correto é nnn.nnn.nnn.nnn para nnn entre 0 e 255."
+"Formato de rota inválido. O correto é nnn.nnn.nnn.nnn para nnn entre 0 e 255."
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
-msgstr "Servidores de nome inválidos. Deve haver pelo menos um especificado."
+#: app/views/network/index.html.erb:109
+msgid "Name servers are required. There must be at least one specified."
+msgstr ""
+"Servidores de nome são necessários. Deve haver pelo menos um especificado."
 
-#: app/views/network/index.html.erb:114
-msgid "Hostname is not valid. It must be specified."
-msgstr "O nome de máquina não é válido. Ele deve ser especificado."
+#: app/views/network/index.html.erb:115
+msgid "Hostname is required. It must be specified."
+msgstr "O nome de máquina é necessário. Ele deve ser especificado."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
-msgstr "O domínio não é válido. Não é suportado um domínio vazio."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
+msgstr "O domínio é necessário. Não é suportado um domínio vazio."
 
 #: app/views/network/index.html.erb:131
 msgid "Network"
@@ -86,21 +89,17 @@ msgstr "Interface"
 msgid "Select"
 msgstr "Selecionar"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "Endereço IP"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Modo de configuração"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "Comprimento do prefixo"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "Endereço IP"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr "Máscara de subrede/comprimento do prefixo"
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -119,13 +118,53 @@ msgstr "Servidores de nome"
 msgid "Search domains"
 msgstr "Domínios de pesquisa"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "Roteamento"
-
 #: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Rota padrão"
+
+#~ msgid "not set"
+#~ msgstr "não definido"
+
+#~ msgid "static"
+#~ msgstr "estático"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#~ msgid "Settings have been written."
+#~ msgstr "As configurações foram salvas."
+
+#~ msgid ""
+#~ "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR "
+#~ "format)."
+#~ msgstr ""
+#~ "Prefixo inválido. O correto é /nn onde nn está entre 0 e 32 (formato "
+#~ "CIDR)."
+
+#~ msgid ""
+#~ "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between "
+#~ "0 and 255."
+#~ msgstr ""
+#~ "Rota padrão inválida. O correto é nnn.nnn.nnn.nnn para nnn entre 0 e 255."
+
+#~ msgid "Name servers is not valid. There must be at least one specified."
+#~ msgstr ""
+#~ "Servidores de nome inválidos. Deve haver pelo menos um especificado."
+
+#~ msgid "Hostname is not valid. It must be specified."
+#~ msgstr "O nome de máquina não é válido. Ele deve ser especificado."
+
+#~ msgid "Domain is not valid. It is not supported empty domain."
+#~ msgstr "O domínio não é válido. Não é suportado um domínio vazio."
+
+#~ msgid "Prefixlen"
+#~ msgstr "Comprimento do prefixo"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "Roteamento"
 
 #~ msgid "Save"
 #~ msgstr "Salvar"
