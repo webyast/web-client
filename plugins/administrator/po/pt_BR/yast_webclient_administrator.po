@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-28 16:10-0300\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-11-20 19:25-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Digite um endereço de e-mail válido."
 
@@ -39,31 +39,41 @@ msgid "Error while saving administrator settings: %s"
 msgstr "Erro ao salvar as configurações do administrador: %s"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 msgid "Administrator Settings"
 msgstr "Configurações do administrador"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "As senhas não correspondem."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
+"Aqui, defina as configurações para o administrador do sistema ('root')."
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Senha"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 msgid "Confirm password"
 msgstr "Confirmar senha"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Salvar"
+#: app/views/administrator/index.html.erb:65
+msgid "Save Password"
+msgstr "Salvar senha"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr "Encaminhar e-mail para"
+
+#: app/views/administrator/index.html.erb:72
+msgid "Save Mail"
+msgstr "Salvar e-mail"
+
+#~ msgid "Save"
+#~ msgstr "Salvar"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Sessão inválida, por favor conecte-se novamente."
