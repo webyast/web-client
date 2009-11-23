@@ -1,3 +1,5 @@
+require 'fileutils'
+
 env = ENV.map { |key,val| ENV[key] ? %(#{key}="#{ENV[key]}") : nil }.reject {|x| x.nil?}.join(' ')
 
 plugins = Dir.glob('plugins/*')#.reject{|x| ['users'].include?(File.basename(x))}
@@ -31,6 +33,12 @@ task :default => :test
         limit_eval = translated/(un_translated+translated) 
         if limit_eval < limit/100
           puts "Language #{key} should be deleted cause it has only #{(limit_eval*100).to_i} percent translation reached."
+          Dir.glob("**/#{key}/").each {|po_dir|
+            unless po_dir.include? "lang_helper" #do not delete translations for language selections
+#              puts "deleting #{po_dir}"
+#              remove_dir(po_dir, true) #force=true
+            end
+          }
         end      
      }
     end
