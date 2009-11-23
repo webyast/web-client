@@ -179,7 +179,13 @@ case "$1" in
     if [ ! -e  $COMBINEDCERTFILE ]
     then
         echo "No certificate found. Creating one now."
-        /usr/sbin/check-create-certificate.pl -c -C $CERTIFICATEFILE -K $CERTKEYFILE -B $COMBINEDCERTFILE >/srv/www/yast/log/check-create-certificate.log 2>&1
+        if ! /usr/sbin/check-create-certificate.pl -c -C $CERTIFICATEFILE -K $CERTKEYFILE -B $COMBINEDCERTFILE >/srv/www/yast/log/check-create-certificate.log 2>&1
+        then
+            echo -n "Can not create certificate. Please see /srv/www/yast/log/check-create-certificate.log for details."
+            rc_failed
+            rc_status -v
+            rc_exit
+        fi
         chown lighttpd:lighttpd $CERTIFICATEFILE $CERTKEYFILE $COMBINEDCERTFILE
     fi
 

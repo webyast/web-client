@@ -70,9 +70,9 @@ emailAddress = root\@$fqdn
     chomp $CNF;
     chomp $CERT;
     chomp $KEY;
-    if ( not defined $CNF  || $CNF   =~ /^$/  || 
-         not defined $CERT || $CERT  =~ /^$/  ||
-         not defined $KEY  || $KEY   =~ /^$/     )
+    if ( (not defined $CNF ) || $CNF   =~ /^$/  || 
+         (not defined $CERT) || $CERT  =~ /^$/  ||
+         (not defined $KEY ) || $KEY   =~ /^$/     )
     {
         print STDERR "Could not create temporary files. Aborting.\n";
         return 0;
@@ -178,10 +178,20 @@ if (defined $create)
 
     $hostname = `hostname --fqdn` unless defined $hostname;
     chomp $hostname if defined $hostname;
-    unless (defined $hostname)
+    if ( (not defined $hostname) || $hostname =~ /^$/)
     {
-        print STDERR "Hostname missing or invalid. Aborting.\n";
-        exit 1;
+        # do not abort, just create a certificate (bnc#557752)
+        #print STDERR "Hostname missing or invalid. Aborting.\n";
+        #exit 1;
+
+        print STDERR "No fully qualified domain name can be found. Please fix your DNS setup.\n";
+        print STDERR "Using only the hostname for SSL certificate.\n";
+        $hostname = `hostname`;
+        chomp $hostname if defined $hostname;
+        if ( (not defined $hostname) || $hostname =~ /^$/)
+        {
+            $hostname = 'localhost';
+        }
     }
 
     if ( create_certificate( $hostname, $certfile, $keyfile, $combinedfile ) )
