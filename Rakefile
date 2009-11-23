@@ -10,10 +10,8 @@ task :default => :test
   desc "Run #{task_name} task for all projects"
 
   task task_name do
-    if task_name == "fetch_po"
-      #remove translation statistik
-      File.delete(File.join("pot", "translation_status.yaml")) if File.exist?("pot/translation_status.yaml")
-    end
+    #remove translation statistik
+    File.delete(File.join("pot", "translation_status.yaml")) if task_name == "fetch_po" && File.exist?("pot/translation_status.yaml")
 
     PROJECTS.each do |project|
       system %(cd #{project} && #{env} #{$0} #{task_name})
