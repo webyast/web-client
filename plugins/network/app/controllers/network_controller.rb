@@ -73,35 +73,56 @@ class NetworkController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
+    dirty = false
     rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
     return false unless rt
+    dirty = true unless rt.via == params["default_route"]
     rt.via = params["default_route"]
+    logger.info "dirty after default routing: #{dirty}"
 
     dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
     return false unless dns
+    #compare empty array and nill cause true, so at first test emptyness
+    unless (dns.nameservers.empty? && params["nameservers"].blank?)
+      dirty = true unless ( dns.nameservers == params["nameservers"].split)
+    end
+    unless (dns.searches.empty? && params["searchdomains"].blank?)
+      dirty = true if (dns.searches == params["searchdomains"].split)
+    end
+    logger.info "dirty after  dns: #{dirty}"
 # FIXME: params bellow should be arrays    
     dns.nameservers = params["nameservers"]#.split
     dns.searches    = params["searchdomains"]#.split
 
     hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
     return false unless hn
+    dirty = true unless (hn.name == params["name"] && hn.domain == params["domain"])
+    logger.info "dirty after  hostname: #{dirty}"
     hn.name   = params["name"]
     hn.domain = params["domain"]
 
     ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", params["interface"]
     return false unless ifc
+    dirty = true unless (ifc.bootproto == params["conf_mode"])
+    logger.info "dirty after interface config: #{dirty}"
     ifc.bootproto=params["conf_mode"]
     if ifc.bootproto=="static"
+      #ip addr is returned in another state then given, but restart of static address is not problem
+      dirty = true
       ifc.ipaddr=params["ip"]+"/"+params["netmask"]
     end
-    
+   
     begin
       # this is not transaction!
       # if any *.save failed, the previous will be applied
-      rt.save
-      dns.save
-      hn.save
-      ifc.save
+      # FIXME JR: I think that if user choose dhcp not all settings should be written
+      if dirty
+        rt.save
+        dns.save
+        hn.save
+        ifc.save
+      end
+#write to avoid confusion, with another string
       flash[:notice] = _('Network settings have been written.')
     rescue ActiveResource::ServerError => e
       response = Hash.from_xml(e.response.body)
@@ -111,10 +132,11 @@ class NetworkController < ApplicationController
       else
         raise
       end
+    #XXX FIXME don't catch universal exception, it is not user friendly and break testing of update
     rescue Exception => e
       flash[:error] = e.message
       logger.warn e
-    end    
+    end
 
     redirect_success
   end
