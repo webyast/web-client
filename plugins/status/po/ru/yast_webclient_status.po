@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-11-01 02:04+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
@@ -23,7 +23,23 @@ msgstr "Неверный сеанс, пожалуйста, войдите сно
 msgid "Disk free limits exceeded;"
 msgstr "Превышены ограничения свободного места;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "Добавление для \"%s\" выполнено.\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Не удалось сохранить изменения"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Состояние"
 
@@ -47,11 +63,11 @@ msgstr "Назад"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Эти значения рассчитаны за последние пять минут."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "свободно"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "использовано"
 
@@ -76,12 +92,10 @@ msgid "Save"
 msgstr "Сохранить"
 
 #: app/views/status/_status_summary.html.erb:1
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "При загрузке сведений о состоянии произошла ошибка."
 
 #: app/views/status/_status_summary.html.erb:6
-#| msgid "No information available."
 msgid "No status information available"
 msgstr "Сведения о состоянии недоступны"
 

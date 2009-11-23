@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:31+0100\n"
-"PO-Revision-Date: 2009-10-29 20:01+0900\n"
+"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"PO-Revision-Date: 2009-11-13 20:12+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,24 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "セッションが正しくありません。ログインし直してください。"
 
-#: app/controllers/registration_controller.rb:35
-#: app/controllers/registration_controller.rb:62
+#: app/controllers/registration_controller.rb:42
+#: app/controllers/registration_controller.rb:75
 msgid "No permissions for registration"
 msgstr "登録に対する許可がありません"
 
-#: app/controllers/registration_controller.rb:50
+#: app/controllers/registration_controller.rb:57
 msgid "Arguments for registration cannot be evaluated."
 msgstr "登録理由が処理できません。"
 
-#: app/controllers/registration_controller.rb:84
+#: app/controllers/registration_controller.rb:97
 msgid "Registration finished successfully."
 msgstr "登録処理が成功しました。"
 
-#: app/controllers/registration_controller.rb:108
+#: app/controllers/registration_controller.rb:123
 msgid "Please fill out missing entries."
 msgstr "失われた項目を入力してください。"
 
-#: app/controllers/registration_controller.rb:111
+#: app/controllers/registration_controller.rb:126
 msgid "Error occured while connecting to registration server."
 msgstr "登録サーバに対して接続する際にエラーが発生しました。"
 
@@ -43,7 +43,7 @@ msgstr "登録サーバに対して接続する際にエラーが発生しまし
 msgid "register plugin"
 msgstr "登録プラグイン"
 
-#: app/views/registration/index.rhtml:3
+#: app/views/registration/index.rhtml:2
 msgid "Registration"
 msgstr "登録"
 
@@ -51,12 +51,16 @@ msgstr "登録"
 msgid "This table gives registration settings."
 msgstr "この表には登録に関する設定が示されています。"
 
-#: app/views/registration/index.rhtml:25
+#: app/views/registration/index.rhtml:29
 msgid "Changed Repositories"
 msgstr "変更されたリポジトリ"
 
-#: app/views/registration/index.rhtml:40
-#| msgid "Changed profiles"
+#: app/views/registration/index.rhtml:44
 msgid "Changed Services"
 msgstr "変更されたサービス"
+
+#: app/views/registration/index.rhtml:57
+#| msgid "Details"
+msgid "Detail"
+msgstr "詳細"
 

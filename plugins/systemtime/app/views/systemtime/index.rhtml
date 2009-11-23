@@ -45,8 +45,7 @@
     <% end -%>
   <% end %>
   
-  <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/></div>
-  <h2><%=_("Time")%></h2>
+  <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/><%=_("Time")%></div>
   
   <div class="plugin-content grid_12">
     <% form_tag '/systemtime/update', {:class => 'container', :onsubmit => "submitTime();"} do %>
@@ -54,56 +53,41 @@
       %>
     <fieldset id="" class="">
       <p>
-        <label for="region"><%=_("Region:")%></label>
+        <label for="region"><%=_("Region")%></label>
           <%= select_tag "region", options_for_select(@valid, @region.name), :disabled => disabled %>
       </p>
       <p>
-        <label for="timezone"><%=_("Timezone:")%></label>
+        <label for="timezone"><%=_("Timezone")%></label>
         <span id="timezones">
           <%= render(:partial => 'timezones',
             :locals => {:region => @region, :default => @timezone,
               :disabled => disabled})  %>
         </span>
     </p>
-    <p>
-      <% if @utcstatus != "UTConly" %>
-        <label for="utc"><%= _("Hardware clock is set to UTC") %></label>
-        <% #don't use check_box helper as it generate also hidden opposite value
-        %>
-        <input type="checkbox" name="utc" id="utc" value="true"
-        <%=  "checked=\"checked\"" if @utcstatus == "UTC"%>
-               <%=  "disabled=\"disabled\"" if disabled %> />
-        <span class="form-details"><%=_("Hardware clock is set to UTC")%></span>
-    <% end %>
-    </p>
   </fieldset>
   <fieldset>
     <p>
-      <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"/>
-      <label for="timeconfig" class="width-label"><%=_("Manually configure time")%></label>
+      <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual">
+      <%=_("Manually configure time")%>
     </p>
       <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
       %>
     <p>
-      <label for="date_date"><%= _("Date:") %></label>
+      <label for="date_date"><%= _("Date") %></label>
       <%= text_field "date","date", :disabled=> "true", :value => @date %>
     </p>
     <p>
-      <label for="currenttime"><%= _("Time:") %></label>
+      <label for="currenttime"><%= _("Time") %></label>
       <%= text_field_tag "currenttime", @time, :disabled=> "true"%>
     </p>
     <p>
-      <input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"/>
-      <label for="timeconfig" class="width-label"><%=_("Synchronize via Network Time Protocol (NTP)")%></label>
+      <input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"> <%=_("Synchronize via Network Time Protocol (NTP)")%>
     </p>
   </fieldset>
-
-  <p>
     <%= form_send_buttons :disabled => disabled, :class => "button" %>
-  </p>
-
     <% end %>
   </div>
+ 
 
   <%= observe_field(:region,
     :frequency => 0.25,

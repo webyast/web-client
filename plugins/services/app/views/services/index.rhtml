@@ -5,19 +5,20 @@
 </div>
 <!-- end: dialog box -->
 
-<div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/></div>
-<h2><%=
+<div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%=
 
 if params.has_key?("custom")
     _("Custom Services")
 else
     _("System Services")
 end
-%></h2>
+%></div>
 
 <div class="plugin-content grid_12">
 
-<% unless @permissions[:execute] %>
+<% if @services.empty? && params.has_key?("custom") %>
+<p><%=_("No custom service is defined on target machine.") %></p>
+<% elsif ! @permissions[:execute] %>
 <p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
 <% end %>
 

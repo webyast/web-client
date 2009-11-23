@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -26,7 +26,23 @@ msgstr ""
 msgid "Disk free limits exceeded;"
 msgstr ""
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "Adição bem sucedida para \"%s\".\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Falhou a gravação das alterações"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Estado"
 
@@ -52,11 +68,11 @@ msgstr "Retroceder"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 #, fuzzy
 #| msgid "Last used"
 msgid "used"

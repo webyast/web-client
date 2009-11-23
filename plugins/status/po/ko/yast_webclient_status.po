@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -19,7 +19,23 @@ msgstr ""
 msgid "Disk free limits exceeded;"
 msgstr ""
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "\"%s\"의 추가에 성공했습니다.\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "변경 저장에 실패"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "상태"
 
@@ -45,11 +61,11 @@ msgstr "뒤로"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr ""
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 #, fuzzy
 #| msgid "Last used"
 msgid "used"

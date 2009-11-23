@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_permissions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-10-21 20:15+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-13 16:04+0100\n"
 "Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: italiano <translations@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,37 +19,46 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Sessione non valida, per favore fai il login di nuovo."
 
-#: app/controllers/permissions_controller.rb:178
+#: app/controllers/permissions_controller.rb:133
+#| msgid "`%s' is not a valid netmask."
+msgid "User name is not valid name"
+msgstr "Il nome utente non è un nome valido"
+
+#: app/controllers/permissions_controller.rb:135
+#| msgid "'%1' does not exist."
+msgid "User does not exist"
+msgstr "L'utente non esiste."
+
+#: app/controllers/permissions_controller.rb:183
 msgid "Permissions have been set."
 msgstr "I permessi sono stati impostati."
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:49
 msgid "User Permissions"
 msgstr "Permessi dell'utente"
 
-#: app/views/permissions/index.rhtml:53
+#: app/views/permissions/index.rhtml:52
 msgid "User"
 msgstr "Utente"
 
 # "c" as a keyboard accel is already taken.
-#: app/views/permissions/index.rhtml:55
+#: app/views/permissions/index.rhtml:54
 msgid "Search"
 msgstr "Cerca"
 
-#: app/views/permissions/index.rhtml:57
+#: app/views/permissions/index.rhtml:56
 #: app/views/permissions/index.rhtml:160
 msgid "Back"
 msgstr "Indietro"
 
-#: app/views/permissions/index.rhtml:70
+#: app/views/permissions/index.rhtml:69
 msgid "Revoked Permissions"
 msgstr "Permessi revocati"
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:70
 msgid "Granted Permissions"
 msgstr "Permessi concessi"
 
-#: app/views/permissions/index.rhtml:159
-msgid "Set"
-msgstr "Imposta"
+#~ msgid "Set"
+#~ msgstr "Imposta"
 

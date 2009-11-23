@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2003-09-22 13:26+0200\n"
 "Last-Translator: Ain Vagula <avagula@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -70,11 +70,15 @@ msgstr ""
 msgid "No password specified"
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr ""
 
@@ -134,20 +138,20 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr ""
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Salvesta"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Loobu"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Salvesta"
+
+#: app/helpers/application_helper.rb:29
 #, fuzzy
 #| msgid "&Next"
 msgid "Next"
@@ -172,14 +176,20 @@ msgstr "Kustuta"
 msgid "Are you sure?"
 msgstr ""
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Tundmatu viga\n"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 #, fuzzy
 #| msgid "No information available."
 msgid "No information available"
 msgstr "Info puudub."
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr ""
 
@@ -197,29 +207,29 @@ msgstr ""
 msgid "Editing YaST-Web-Service"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 #, fuzzy
 #| msgid "Web Server"
 msgid "YaST-Web-Service"
 msgstr "Veebiserver"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nimi"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "Sobib"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Tagasi"
 
@@ -253,19 +263,15 @@ msgstr ""
 msgid "Problem:"
 msgstr "Probleem: "
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr ""
 
@@ -273,45 +279,52 @@ msgstr ""
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 #, fuzzy
 #| msgid "Applied"
 msgid "My Appliance"
 msgstr "Rakendatud"
 
-#: app/views/layouts/main.rhtml:52
+# label for language selection
+#: app/views/layouts/main.rhtml:49
+#, fuzzy
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "Keel"
+
+#: app/views/layouts/main.rhtml:51
 #, fuzzy
 #| msgid "Connected to: %s"
 msgid "Connected Host"
 msgstr "Ühendatud: %s"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 #, fuzzy
 #| msgid "Name: "
 msgid "Name:"
 msgstr "Nimi: "
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 #, fuzzy
 #| msgid "&Username:"
 msgid "User:"
 msgstr "Kas&utajanimi:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 #, fuzzy
 #| msgid "Control Center"
 msgid "Control panel"
 msgstr "Juhtimiskeskus"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Logi välja"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr ""
 
@@ -354,100 +367,100 @@ msgstr "Kas taaskäivitada süsteem nüüd?"
 msgid "Configuration"
 msgstr "Häälestamine"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Olek"
+
+#: app/views/controlpanel/index.rhtml:33
 #, fuzzy
 #| msgid "System Settings"
 msgid "System actions"
 msgstr "Süsteemi sätted"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Taaskäivita"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 #, fuzzy
 #| msgid "Shutdown Computer"
 msgid "Shutdown"
 msgstr "Arvuti väljalülitamine"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Olek"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 #, fuzzy
 #| msgid "Looking for CPU information..."
 msgid "Loading patch information"
 msgstr "CPU teabe otsimine..."
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 #, fuzzy
 #| msgid "The configuration is not initialized."
 msgid "Patch plugin is not installed."
 msgstr "Häälestus on initsialiseerimata."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 #, fuzzy
 #| msgid "System Information"
 msgid "Loading system information"
 msgstr "Süsteemi info"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 #, fuzzy
 #| msgid "Show Loaded Modules"
 msgid "Show all modules"
 msgstr "Näita laaditud mooduleid"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Tegevus '%1' ei ole teenuse '%2' puhul lubatud."
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Paigaldamise käigus tekkis viga."
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
 msgstr ""
 

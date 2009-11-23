@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-22 22:09+0400\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
@@ -19,11 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:78
+msgid "You cannot reject a license once it has been accepted!"
+msgstr ""
+
+#: app/controllers/eulas_controller.rb:81
 msgid "You must accept all licences before using this product!"
 msgstr "Перед использованием данного продукта вы должны принять все лицензии!"
 
 #: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "Принять Лицензионное соглашение конечного пользователя"
 
@@ -32,14 +37,18 @@ msgstr "Принять Лицензионное соглашение конеч�
 msgid "Available translations:"
 msgstr "Доступные переводы:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 msgid "Yes, I agree to the license agreement."
 msgstr "Да, я принимаю Лицензионное соглашение."
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr "Нет, я не принимаю."
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
 msgstr "Все лицензии приняты."
+
+#: app/views/eulas/no_licenses.erb:2
+msgid "There are no licenses to accept."
+msgstr ""

@@ -6,6 +6,7 @@ require 'yast/service_resource'
 class RegistrationController < ApplicationController
   before_filter :login_required
   layout 'main'
+  include ProxyLoader
 
   private
   def client_permissions
@@ -32,44 +33,57 @@ class RegistrationController < ApplicationController
   def index
     return unless client_permissions
 
-    if action_name == "detail"
-      @detail = true
-    else
-      @detail = false
-    end
+    @detail = action_name == "detail"
 
     unless @permissions[:statelessregister]
       flash[:warning] = _("No permissions for registration")
       redirect_to root_path
       return false
     end
-    register = @client.new({:arguments=>nil, 
-                           :options=>@options})
+
+    status = nil
+    @guid = nil
     begin
-      register.save
-    rescue ActiveResource::ClientError => e
-      error = Hash.from_xml(e.response.body)["registration"]
-      if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
-        logger.debug "missing arguments #{error["missingarguments"].inspect}"
-        @arguments = error["missingarguments"].sort {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
-      else
-        logger.error "error while getting arguments: #{error.inspect}"  
-        flash[:error] = _("Arguments for registration cannot be evaluated.")
-        redirect_to root_path
-        return false
+      status = @client.find if @client
+    rescue
+      status = nil
+    end
+
+    if status && status.respond_to?('guid') then
+      @guid = status.guid unless status.guid.blank?
+      # flash[:error] = "YES we have a GUI: #{status.guid}"
+    else
+      begin
+        register = @client.new( {:arguments=>nil,
+                                :options=>@options} )
+        register.save
+      rescue ActiveResource::ClientError => e
+        error = Hash.from_xml(e.response.body)["registration"]
+        if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
+          logger.debug "missing arguments #{error["missingarguments"].inspect}"
+          @arguments = error["missingarguments"].sort {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
+        else
+          logger.error "error while getting arguments: #{error.inspect}"
+          # keep the old message for the translation, in case we need it later
+          old_error_msg = _("Arguments for registration cannot be evaluated.")
+          flash[:error] = _("An error occurred during registration. Please try again.")
+          redirect_to root_path
+          return false
+        end
       end
-    end  
+    end
   end
 
   def detail
-    index
-    render :action => "index" 
+    # different action but same semantic as in update
+    update
   end
 
   # Calling the register over the service
   def update
     return unless client_permissions
-    @detail = false
+
+    @detail = action_name == "detail"
 
     unless @permissions[:statelessregister]
       flash[:warning] = _("No permissions for registration")
@@ -96,6 +110,42 @@ class RegistrationController < ApplicationController
       @changed_services = register.changedservices if register.respond_to? :changedservices
       flash[:notice] = _("Registration finished successfully.")
       success = true
+
+      # inform about added services and its catalogs
+      if @changed_services && @changed_services.kind_of?(Array) then
+        flash[:notice] += "<ul>"
+        @changed_services.each do |c|
+          if c.respond_to?(:name) && c.name && c.respond_to?(:status) && c.status == 'added' then
+            flash[:notice] += "<li>" + _("Service added:") + " #{c.name}</li>"
+          end
+          if c.respond_to?(:catalogs) && c.catalogs && c.catalogs.respond_to?(:catalog) && c.catalogs.catalog then
+            if c.catalogs.catalog.respond_to?(:name) && c.catalogs.catalog.respond_to?(:status) && c.catalogs.catalog.status == 'added' then
+              flash[:notice] += "<ul><li>" + _("Catalog enabled:") + " #{c.catalogs.catalog.name}</li></ul>"
+            elsif c.catalogs.catalog.kind_of?(Array) then
+              flash[:notice] += "<ul>"
+              c.catalogs.catalog.each do |s|
+                if s && s.respond_to?(:name) && s.respond_to?(:status) && s.status == 'added' then
+                  flash[:notice] += "<li>" + _("Catalog enabled:") + " #{s.name}</li>"
+                end
+              end
+              flash[:notice] += "</ul>"
+            end
+          end
+        end
+        flash[:notice] += "</ul>"
+      end
+
+      # inform about added repositories
+      if @changed_repositories && @changed_repositories.kind_of?(Array) then
+        flash[:notice] += "<ul>"
+        @changed_repositories.each do |r|
+          if r.respond_to?(:name) && r.name && r.respond_to?(:status) && r.status == 'added' then
+            flash[:notice] += "<li>" + _("Repository added:") + " #{r.name}</li>"
+          end
+        end
+        flash[:notice] += "</ul>"
+      end
+
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
       if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
@@ -129,12 +179,14 @@ class RegistrationController < ApplicationController
     @arguments.sort! {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
 
     if success
+      logger.info "registration succeed"
       redirect_success
     else
+      logger.info "additional steps required"
       respond_to do |format|
         format.html { render :action => "index" }
       end
-    end      
+    end
   end
 
 end

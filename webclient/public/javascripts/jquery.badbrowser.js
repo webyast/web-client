@@ -1,6 +1,6 @@
 function badBrowser(){
-    if(   ($.browser.msie() && parseInt($.browser.version.string()) == 8 )
-       || ($.browser.firefox() && parseFloat($.browser.version.string()) >= 3.5 )
+    if(   ($.browser.msie() && $.browser.version.number() == 8 )
+       || ($.browser.firefox() && $.browser.version.number() >= 3.5 )
       ) { return false;}
     return true;
 }

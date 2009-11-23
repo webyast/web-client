@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:31+0100\n"
+"POT-Creation-Date: 2009-11-12 12:07+0100\n"
 "PO-Revision-Date: 2009-10-29 13:54+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -19,24 +19,24 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Érvénytelen munkamenet, jelentkezzen be újra."
 
-#: app/controllers/registration_controller.rb:35
-#: app/controllers/registration_controller.rb:62
+#: app/controllers/registration_controller.rb:42
+#: app/controllers/registration_controller.rb:75
 msgid "No permissions for registration"
 msgstr "Nincs hozzáférése a regisztrációhoz"
 
-#: app/controllers/registration_controller.rb:50
+#: app/controllers/registration_controller.rb:57
 msgid "Arguments for registration cannot be evaluated."
 msgstr "A regisztrációhoz megadott argumentum nem értékelhető."
 
-#: app/controllers/registration_controller.rb:84
+#: app/controllers/registration_controller.rb:97
 msgid "Registration finished successfully."
 msgstr "A regisztráció sikeresen befejeződött."
 
-#: app/controllers/registration_controller.rb:108
+#: app/controllers/registration_controller.rb:123
 msgid "Please fill out missing entries."
 msgstr "Töltse ki a hiányzó adatokat."
 
-#: app/controllers/registration_controller.rb:111
+#: app/controllers/registration_controller.rb:126
 msgid "Error occured while connecting to registration server."
 msgstr "A regisztrációs kiszolgálóhoz való csatlakozás közben hiba történt."
 
@@ -44,7 +44,7 @@ msgstr "A regisztrációs kiszolgálóhoz való csatlakozás közben hiba tört�
 msgid "register plugin"
 msgstr "regisztrációs bővítmény"
 
-#: app/views/registration/index.rhtml:3
+#: app/views/registration/index.rhtml:2
 msgid "Registration"
 msgstr "Regisztráció"
 
@@ -52,12 +52,16 @@ msgstr "Regisztráció"
 msgid "This table gives registration settings."
 msgstr "Ez a táblázat tartalmazza a regisztrációs beállításokat."
 
-#: app/views/registration/index.rhtml:25
+#: app/views/registration/index.rhtml:29
 msgid "Changed Repositories"
 msgstr "Mondosított telepítési források"
 
-#: app/views/registration/index.rhtml:40
-#| msgid "Changed profiles"
+#: app/views/registration/index.rhtml:44
 msgid "Changed Services"
 msgstr "Módosított szolgáltatások"
 
+#: app/views/registration/index.rhtml:57
+#, fuzzy
+#| msgid "Details"
+msgid "Detail"
+msgstr "Részletek"

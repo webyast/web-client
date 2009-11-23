@@ -1,28 +1,15 @@
-<div class='plugin-icon'><img src='/icons/yast-language.png' alt="<%= _("language plugin") %>"/></div>
-<h2><%=_("Language")%></h2>
+<div class='plugin-icon'><img src='/icons/yast-language.png' alt="<%= _("language plugin") %>"/><%=_("Language")%></div>
 <div class='plugin-content grid_12'>
-<br/>
-
 <% form_tag '/language/update' do -%>
   <fieldset id="language_set" class="">
     <p>
-<label><%=_("First language")%></label>
-    	<%= select_tag :first_language, options_for_select(@valid||[], @current||""),
-            :disabled=>!@permissions[:write] %>
-    </p>
-    <p> 
-<label><%=_("Use UTF8 encoding")%></label>
-    	<%= check_box_tag :utf8, "true", @utf8=="true",
-        :disabled=>!@permissions[:write] %>
-    </p>
-    <p>
-<label><%=_("Set root locale")%></label>
-    <%= select_tag :rootlocale, options_for_select(["true","false","ctype"],
-        @rootlocale), :disabled=>!@permissions[:write] %>
-    </p>
+	 <label><%=_("webYaST language")%> <label>
+<%= select_tag "webyast_language",
+  options_for_select(LangHelper::LANGUAGES.invert.to_a.reject{|val| !(I18n.supported_locales.include?(val[1]))}.sort_by { |a| a[0].parameterize}, current_locale) %>
+   </p>
 </fieldset>
 <div>
-  <%= form_send_buttons :disabled => !@permissions[:write] %>
+  <%= form_send_buttons %>
 </div>
 <% end -%>
 </div>

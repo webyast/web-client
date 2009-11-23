@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_permissions\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
-"PO-Revision-Date: 2009-09-26 09:53+0900\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-13 20:09+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,34 +18,41 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "セッションが無効です。ログインし直してください。"
 
-#: app/controllers/permissions_controller.rb:178
+#: app/controllers/permissions_controller.rb:133
+#| msgid "`%s' is not a valid netmask."
+msgid "User name is not valid name"
+msgstr "ユーザ名が正しくありません"
+
+#: app/controllers/permissions_controller.rb:135
+#| msgid "'%1' does not exist."
+msgid "User does not exist"
+msgstr "ユーザが存在していません"
+
+#: app/controllers/permissions_controller.rb:183
 msgid "Permissions have been set."
 msgstr "許可が設定されていません。"
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:49
 msgid "User Permissions"
 msgstr "ユーザ許可"
 
-#: app/views/permissions/index.rhtml:53
+#: app/views/permissions/index.rhtml:52
 msgid "User"
 msgstr "ユーザ"
 
-#: app/views/permissions/index.rhtml:55
+#: app/views/permissions/index.rhtml:54
 msgid "Search"
 msgstr "検索"
 
-#: app/views/permissions/index.rhtml:57 app/views/permissions/index.rhtml:160
+#: app/views/permissions/index.rhtml:56 app/views/permissions/index.rhtml:160
 msgid "Back"
 msgstr "戻る"
 
-#: app/views/permissions/index.rhtml:70
+#: app/views/permissions/index.rhtml:69
 msgid "Revoked Permissions"
 msgstr "取り消した許可"
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:70
 msgid "Granted Permissions"
 msgstr "与えた許可"
 
-#: app/views/permissions/index.rhtml:159
-msgid "Set"
-msgstr "設定"

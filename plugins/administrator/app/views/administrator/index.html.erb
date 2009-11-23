@@ -1,12 +1,11 @@
-<div class='plugin-icon'><img src='/icons/yast-system-user.png' alt='<%= _("Administrator Settings") %>'/></div>
-<h2><%=_("Administrator Settings")%></h2>
+<div class='plugin-icon'><img src='/icons/yast-system-user.png'/><%=_("Administrator Settings")%></div>
 
 <div class="plugin-content grid_12">
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
 
   <style type="text/css">
-    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1em; text-align: left; vertical-align: top; width: 50% }
   </style>
 
   <script type="text/javascript">
@@ -19,11 +18,6 @@
 
       for(i=0; i < emails.length; i++){
         var email = $.trim(emails[i]);
-
-        // add a dummy domain if it's missing
-        // user name without a domain is valid as well (local alias)
-        if (email.search(/@/) < 0) email += "@example.com";
-
         // this is a modified email regexp from jQuery validator
         // which accepts also user@localhost email address
         if (!/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)*(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i.test(email))
@@ -43,30 +37,44 @@
       });
     });
 
+    // start password validation workaround only when "Save" button has been pressed
+    password_validation_enabled = false;
+
  </script>
 
 <% end %>
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()" } ) do |f| %>
+  <p>
+  <%= 
+  _("Here, configure the settings for system administrator ('root').")
+  %>
+  </p>
+
+  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset id="password">
 	<p><label><%=_("Password")%></label>
-	<%= f.password_field :password, :disabled => disabled %>
+	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
+	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');" %>
 	</p>
 	<p>
 	<label><%=_("Confirm password")%></label>
-    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password" %>
-	<%= f.submit _("Save"), :name => "save_password", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
+    <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
+	<%= f.submit _("Save Password"), :name => "save_password", :disabled => disabled, :onclick=>"password_validation_enabled = true; return $('#adminForm').validate().element('#administrator_confirm_password');", :class=>'cancel' %>
     </p>
+    <!-- this is a pre-generated placeholder for the validation messages -->
+    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
 	<p>
 	<label><%=_("Forward mail to")%></label>
-	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
-	<%= f.submit _("Save"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
+	<%= f.text_field :aliases, :disabled => disabled, :class => "emails", :style => 'width: auto' %>
+	<%= f.submit _("Save Mail"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
 	</p>
+    <!-- this is a pre-generated placeholder for the validation messages -->
+    <p><label for="administrator_aliases" generated="true" class="error"></label></p>
     </fieldset>
-    <p><%= form_send_buttons :onclick=>"alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;" %>
+    <p><%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :disabled => disabled %>
     </p>
   <% end %>
 

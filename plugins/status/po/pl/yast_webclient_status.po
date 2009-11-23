@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-04 21:04+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-08 16:28+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,23 @@ msgstr "Niepoprawna sesja, proszę zalogować się ponownie."
 msgid "Disk free limits exceeded;"
 msgstr "Przekroczono limit wolnego miejsca na dysku;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "Dodanie dla \"%s\" zakończone powodzeniem.\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Zapisanie zmian nie powiodło się"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Status"
 
@@ -50,11 +66,11 @@ msgstr "Powrót"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Niniejsze wartości zostały sprawdzone w ciągu ostatnich pięciu minut."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "wolne miejsce"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "użyte"
 
@@ -79,16 +95,12 @@ msgid "Save"
 msgstr "Zapisz"
 
 #: app/views/status/_status_summary.html.erb:1
-#, fuzzy
-#| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "Wystąpił błąd podczas odczytywania informacji o statusie."
 
 #: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
 msgid "No status information available"
-msgstr "Brak informacji"
+msgstr "Brak informacji dotyczącej statusu"
 
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."

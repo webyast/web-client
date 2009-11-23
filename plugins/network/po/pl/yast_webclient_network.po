@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-27 20:14+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-08 16:42+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,10 +23,8 @@ msgid "No permissions for network module"
 msgstr "Brak zezwolenia dla modułu sieciowego"
 
 #: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Do not start"
 msgid "not set"
-msgstr "Nie uruchamiaj"
+msgstr "nie ustawione"
 
 #: app/controllers/network_controller.rb:66
 msgid "static"
@@ -40,111 +38,116 @@ msgstr "DHCP"
 msgid "Settings have been written."
 msgstr "Zapisano ustawienia."
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+#, fuzzy
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
+
+#: app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+#, fuzzy
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "Nie podano prawidłowego pliku żądania."
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Sieć"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Interfejs"
 
-#: app/views/network/index.html.erb:77
-#, fuzzy
-#| msgid "_Selection"
+#: app/views/network/index.html.erb:145
 msgid "Select"
-msgstr "_Wybór"
+msgstr "Wybór"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
-#, fuzzy
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 msgid "IP address"
 msgstr "Adres IP"
 
-#: app/views/network/index.html.erb:98
-#, fuzzy
-#| msgid "Configuration Mode"
+#: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Tryb konfiguracji"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 msgid "Prefixlen"
 msgstr "wartość prefixlen"
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr "adres DNS"
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 msgid "Hostname"
 msgstr "Nazwa hosta"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 msgid "Domain"
 msgstr "Domena"
 
-#: app/views/network/index.html.erb:121
-#, fuzzy
-#| msgid "Name Servers"
+#: app/views/network/index.html.erb:189
 msgid "Name servers"
-msgstr "Serwery DNS"
+msgstr "Serwery nazw DNS"
 
-#: app/views/network/index.html.erb:125
-#, fuzzy
-#| msgid "&Search domains:"
+#: app/views/network/index.html.erb:193
 msgid "Search domains"
-msgstr "&Szukaj domen:"
+msgstr "Domeny wyszukiwania"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr "ROuting"
 
-#: app/views/network/index.html.erb:133
-#, fuzzy
-#| msgid "Default Route"
+#: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Trasa domyślna"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "Zapisz"
+#~ msgid "Save"
+#~ msgstr "Zapisz"
 
 # cancel button label
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "Anuluj"
+#~ msgid "Cancel"
+#~ msgstr "Anuluj"
 
-#: app/views/network/edit.html.erb:1
-msgid "Edit Network Device"
-msgstr "Edycja urządzenia sieciowego"
+#~ msgid "Edit Network Device"
+#~ msgstr "Edycja urządzenia sieciowego"
 
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "Konfiguracja"
+#~ msgid "Configuration"
+#~ msgstr "Konfiguracja"
 
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr "ID"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "Opis"
+#~ msgid "Description"
+#~ msgstr "Opis"
 
-#: app/views/network/edit.html.erb:23
-msgid "MAC"
-msgstr "MAC"
+#~ msgid "MAC"
+#~ msgstr "MAC"
 
-#: app/views/network/edit.html.erb:27
-msgid "Device Name"
-msgstr "Nazwa urządzenia"
+#~ msgid "Device Name"
+#~ msgstr "Nazwa urządzenia"
 
-#: app/views/network/edit.html.erb:31
-msgid "Startup"
-msgstr "Uruchamienie"
+#~ msgid "Startup"
+#~ msgstr "Uruchamienie"
 
 #~ msgid "Search Domains"
 #~ msgstr "Przeszukiwane domeny"

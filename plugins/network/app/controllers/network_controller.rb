@@ -63,7 +63,7 @@ class NetworkController < ApplicationController
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-    @conf_modes = {_("not set")=>"", _("static")=>"static", _("dhcp")=>"dhcp"}
+    @conf_modes = {_("Not configured")=>"", _("Manual")=>"static", _("Automatic")=>"dhcp"}
     @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
     
   end
@@ -102,7 +102,7 @@ class NetworkController < ApplicationController
       dns.save
       hn.save
       ifc.save
-      flash[:notice] = _('Settings have been written.')
+      flash[:notice] = _('Network settings have been written.')
     rescue ActiveResource::ServerError => e
       response = Hash.from_xml(e.response.body)
       if ( response["error"] && response["error"]["type"]=="NETWORK_ROUTE_ERROR")

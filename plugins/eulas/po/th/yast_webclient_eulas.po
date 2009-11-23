@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-19 12:17+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,11 +14,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/eulas_controller.rb:68
+#: app/controllers/eulas_controller.rb:78
+msgid "You cannot reject a license once it has been accepted!"
+msgstr ""
+
+#: app/controllers/eulas_controller.rb:81
 msgid "You must accept all licences before using this product!"
 msgstr ""
 
 #: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
+#: app/views/eulas/no_licenses.erb:1
 #, fuzzy
 #| msgid "Accept or decline the license agreement."
 msgid "Accept End User Licence Agreement"
@@ -30,13 +35,13 @@ msgstr "ยอมรับหรือปฏิเสธข้อตกลงเ
 msgid "Available translations:"
 msgstr "เครื่องแม่ข่ายที่มีอยู่:"
 
-#: app/views/eulas/show.html.erb:19
+#: app/views/eulas/show.html.erb:22
 #, fuzzy
 #| msgid "&Yes, I Agree to the License Agreement"
 msgid "Yes, I agree to the license agreement."
 msgstr "ใช่ ฉันยอมรับเงื่อนไขในสัญญาอนุญาตสิทธิ์"
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:28
 msgid "No, I do not agree."
 msgstr ""
 
@@ -45,3 +50,9 @@ msgstr ""
 #| msgid "License needs to be accepted"
 msgid "All licenses have already been accepted"
 msgstr "จะต้องทำการยอมรับเงื่อนไขสัญญาอนุญาตสิทธิ์เสียก่อน"
+
+#: app/views/eulas/no_licenses.erb:2
+#, fuzzy
+#| msgid "There are no changes to save."
+msgid "There are no licenses to accept."
+msgstr "ไม่มีการเปลี่ยนแปลงที่จะบันทึก"

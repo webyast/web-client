@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2006-02-18 09:47+0700\n"
 "Last-Translator: Keo Sophon <keosophon@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -38,127 +38,137 @@ msgstr "dhcp"
 msgid "Settings have been written."
 msgstr "ឯកសារ​កំណត់​រចនាសម្ព័ន្ធ​ត្រូវ​បានសរសេរ ។"
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr ""
+
+#: app/views/network/index.html.erb:102
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+#, fuzzy
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "គ្មាន​ឯកសារ​សំណើ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "បណ្តាញ"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "ចំណុច​ប្រទាក់"
 
-#: app/views/network/index.html.erb:77
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "_Selection"
 msgid "Select"
 msgstr "ជម្រើស"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "IP Address"
 msgid "IP address"
 msgstr "អាសយដ្ឋាន IP"
 
-#: app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "កំណត់រចនាសម្ព័ន្ធ"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 #, fuzzy
 #| msgid "Dial Prefix"
 msgid "Prefixlen"
 msgstr "បុព្វបទ​ការ​ហៅ"
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 #, fuzzy
 #| msgid "NFS"
 msgid "DNS"
 msgstr "NFS"
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "ឈ្មោះ​ម៉ាស៊ីន"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "ដែន\n"
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "ម៉ាស៊ីន​បម្រើ​ឈ្មោះ"
 
-#: app/views/network/index.html.erb:125
+#: app/views/network/index.html.erb:193
 #, fuzzy
 #| msgid "&Search domains:"
 msgid "Search domains"
 msgstr "ដែន​ស្វែងរក ៖"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:133
+#: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "Default Route"
 msgid "Default route"
 msgstr "ផ្លូវ​លំនាំដើ៼ម"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "រក្សា​ទុក"
+#~ msgid "Save"
+#~ msgstr "រក្សា​ទុក"
 
 # cancel button label
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "បោះបង់"
+#~ msgid "Cancel"
+#~ msgstr "បោះបង់"
 
-#: app/views/network/edit.html.erb:1
 #, fuzzy
-#| msgid "Network Servers"
-msgid "Edit Network Device"
-msgstr "ម៉ាស៊ីន​បម្រើ​បណ្ដាញ"
+#~| msgid "Network Servers"
+#~ msgid "Edit Network Device"
+#~ msgstr "ម៉ាស៊ីន​បម្រើ​បណ្ដាញ"
 
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "កំណត់រចនាសម្ព័ន្ធ"
+#~ msgid "Configuration"
+#~ msgstr "កំណត់រចនាសម្ព័ន្ធ"
 
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr ""
+#~ msgid "Description"
+#~ msgstr "សេចក្តី​ពិពណ៌នា"
 
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "សេចក្តី​ពិពណ៌នា"
-
-#: app/views/network/edit.html.erb:23
 #, fuzzy
-#| msgid "DMA"
-msgid "MAC"
-msgstr "DMA"
+#~| msgid "DMA"
+#~ msgid "MAC"
+#~ msgstr "DMA"
 
-#: app/views/network/edit.html.erb:27
 #, fuzzy
-#| msgid "Device"
-msgid "Device Name"
-msgstr "ឧបករណ៍"
+#~| msgid "Device"
+#~ msgid "Device Name"
+#~ msgstr "ឧបករណ៍"
 
-#: app/views/network/edit.html.erb:31
 #, fuzzy
-#| msgid "Start-Up"
-msgid "Startup"
-msgstr "ចាប់ផ្ដើម"
+#~| msgid "Start-Up"
+#~ msgid "Startup"
+#~ msgstr "ចាប់ផ្ដើម"
 
 #, fuzzy
 #~| msgid "Search Domains:"

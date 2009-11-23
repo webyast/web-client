@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2001-07-17 16:27+0200\n"
 "Last-Translator: James Ogley <ogley@suse.co.uk>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -15,42 +15,50 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/permissions_controller.rb:178
+#: app/controllers/permissions_controller.rb:133
+#, fuzzy
+#| msgid "`%s' is not a valid netmask."
+msgid "User name is not valid name"
+msgstr "`%s' is not a valid netmask."
+
+#: app/controllers/permissions_controller.rb:135
+#, fuzzy
+#| msgid "'%1' does not exist."
+msgid "User does not exist"
+msgstr "'%1' does not exist."
+
+#: app/controllers/permissions_controller.rb:183
 #, fuzzy
 #| msgid "Permissions denied"
 msgid "Permissions have been set."
 msgstr "Permissions denied"
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:49
 #, fuzzy
 #| msgid "Other Versions"
 msgid "User Permissions"
 msgstr "Other Versions"
 
-#: app/views/permissions/index.rhtml:53
+#: app/views/permissions/index.rhtml:52
 msgid "User"
 msgstr ""
 
-#: app/views/permissions/index.rhtml:55
+#: app/views/permissions/index.rhtml:54
 #, fuzzy
 #| msgid "Search:"
 msgid "Search"
 msgstr "Search:"
 
-#: app/views/permissions/index.rhtml:57 app/views/permissions/index.rhtml:160
+#: app/views/permissions/index.rhtml:56 app/views/permissions/index.rhtml:160
 msgid "Back"
 msgstr "Back"
 
-#: app/views/permissions/index.rhtml:70
+#: app/views/permissions/index.rhtml:69
 msgid "Revoked Permissions"
 msgstr ""
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:70
 #, fuzzy
 #| msgid "Other Versions"
 msgid "Granted Permissions"
 msgstr "Other Versions"
-
-#: app/views/permissions/index.rhtml:159
-msgid "Set"
-msgstr ""

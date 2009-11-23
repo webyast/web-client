@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 19:59+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-12 18:56+0100\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,19 @@ msgstr "Ungültige Sitzung, bitte melden Sie sich erneut an."
 msgid "Disk free limits exceeded;"
 msgstr "Begrenzung des freien Plattenplatzes überschritten;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr "Für die Anzeige des Systemstatus wurden keine Daten gefunden."
+
+#: app/controllers/status_controller.rb:179
+msgid "Limits exceeded for %s"
+msgstr "Grenzwerte überschritten für %f"
+
+#: app/controllers/status_controller.rb:215
+msgid "Saving limits failed!"
+msgstr "Speichern der Begrenzungen nicht erfolgreich!"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Status"
 
@@ -45,11 +57,11 @@ msgstr "Zurück"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "Diese Werte wurden in den letzten 5 Minuten ausgewertet."
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "frei"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "verwendet"
 

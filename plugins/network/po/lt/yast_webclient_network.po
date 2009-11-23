@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2001-10-18 09:54+0200\n"
 "Last-Translator: Jonas Gocentas <jonasgocentas@florida.usa.com>\n"
 "Language-Team: Lithuanian <i18n@suse.de>\n"
@@ -39,121 +39,126 @@ msgstr "dhcp"
 msgid "Settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr ""
+
+#: app/views/network/index.html.erb:102
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr ""
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+msgid "Hostname is not valid. It must be specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Tinklas"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Sąsaja"
 
-#: app/views/network/index.html.erb:77
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "selection"
 msgid "Select"
 msgstr "pažymėjimas"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "IP Address:"
 msgid "IP address"
 msgstr "IP adresas:"
 
-#: app/views/network/index.html.erb:98
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "Konfigūracija"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 msgid "Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr ""
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Kompiuterių vardai"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Domenas\n"
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "Vardų serveris"
 
-#: app/views/network/index.html.erb:125
+#: app/views/network/index.html.erb:193
 #, fuzzy
 #| msgid "Search Index"
 msgid "Search domains"
 msgstr "Paieškos rodyklė"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr ""
 
-#: app/views/network/index.html.erb:133
+#: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "Default System"
 msgid "Default route"
 msgstr "Numatyta sistema"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "Išsaugoti"
+#~ msgid "Save"
+#~ msgstr "Išsaugoti"
 
 # cancel button label
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "Atšaukti"
+#~ msgid "Cancel"
+#~ msgstr "Atšaukti"
 
-#: app/views/network/edit.html.erb:1
 #, fuzzy
-#| msgid "Choose the network device."
-msgid "Edit Network Device"
-msgstr "Pasirinkite tinklo įrenginį."
+#~| msgid "Choose the network device."
+#~ msgid "Edit Network Device"
+#~ msgstr "Pasirinkite tinklo įrenginį."
 
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "Konfigūracija"
+#~ msgid "Configuration"
+#~ msgstr "Konfigūracija"
 
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr ""
+#~ msgid "Description"
+#~ msgstr "Aprašymas"
 
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "Aprašymas"
-
-#: app/views/network/edit.html.erb:23
 #, fuzzy
-#| msgid "DMA"
-msgid "MAC"
-msgstr "DMA"
+#~| msgid "DMA"
+#~ msgid "MAC"
+#~ msgstr "DMA"
 
-#: app/views/network/edit.html.erb:27
 #, fuzzy
-#| msgid "Device"
-msgid "Device Name"
-msgstr "Įrenginys"
-
-#: app/views/network/edit.html.erb:31
-msgid "Startup"
-msgstr ""
+#~| msgid "Device"
+#~ msgid "Device Name"
+#~ msgstr "Įrenginys"
 
 #~ msgid "Update"
 #~ msgstr "Atnaujinta"

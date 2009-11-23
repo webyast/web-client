@@ -10,6 +10,7 @@
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.timers.js"></script>
+  <!--[if IE]><script type="text/javascript" charset="utf-8" src="/javascripts/excanvas.js"></script><![endif]-->
   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.jqplot.js"></script>
   <script type="text/javascript" charset="utf-8" src="/javascripts/plugin/jqplot.pieRenderer.js"></script>
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
@@ -33,7 +34,13 @@
   <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
-    
+
+  <noscript>
+    <div id="no_js_warning">
+      JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (<a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>).
+    </div>
+  </noscript>
+
     <div id="header">
       
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
@@ -46,10 +53,7 @@
         if host.blank? || user.blank? -%>
       <% else -%>
         <ul>
-          <li><%=_("Langugage:")%> <strong><%= link_to_remote(current_locale_name,
-              :update =>"language_selection", :url => { :controller => :controlpanel, :action => :select_language} ) %></strong></li>
-          <li><strong><%=_("Connected Host")%></strong></li>
-          <li><%=_("Name:")%> <strong><%= host.name -%></strong></li>
+          <li><%=_("Connected host:")%> <strong><%= host.name -%></strong></li>
           <li><%=_("User:")%> <strong><%= user -%></strong></li>
         </ul>
         <ul class='header-links'>
@@ -91,7 +95,6 @@
       
       <%= yield %>
     </div>
-
     <div id="footer" class="container_12">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
     </div>

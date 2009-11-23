@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   layout 'main'  
 
   def redirect_success
-    if session[:wizard_current] and session[:wizard_current] != "FINISH"
+    logger.debug session.inspect
+    if Basesystem::in_process?(session)
       logger.debug "wizard redirect DONE"
       redirect_to :controller => "controlpanel", :action => "nextstep"
     else
@@ -68,13 +69,13 @@ class ApplicationController < ActionController::Base
 #handle insufficient permissions, especially useful for read permissions,
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
-    if e.backend_exception_type == "NO_PERM"
+    if e.backend_exception_type == "NO_PERM" && !request.xhr?
       flash[:error] = e.message #already localized from error constructor
       redirect_to :controller => :controlpanel
       return
     end
     
-    eulaexception_trap(e) and return if e.backend_exception? and e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
+    eulaexception_trap(e) and return if e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
     
     # get the vendor settings
     begin

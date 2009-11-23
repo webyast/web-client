@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-11-01 02:08+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
@@ -20,7 +20,6 @@ msgid "No permissions for network module"
 msgstr "Нет прав для модуля сети"
 
 #: app/controllers/network_controller.rb:66
-#| msgid "Do not start"
 msgid "not set"
 msgstr "не задано"
 
@@ -36,104 +35,115 @@ msgstr "dhcp"
 msgid "Settings have been written."
 msgstr "Настройки были записаны."
 
-#: app/views/network/index.html.erb:38
+#: app/views/network/index.html.erb:87
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
 
-#: app/views/network/index.html.erb:64
+#: app/views/network/index.html.erb:96
+#, fuzzy
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
+
+#: app/views/network/index.html.erb:102
+#, fuzzy
+#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
+
+#: app/views/network/index.html.erb:108
+msgid "Name servers is not valid. There must be at least one specified."
+msgstr ""
+
+#: app/views/network/index.html.erb:114
+#, fuzzy
+#| msgid "No valid request file specified."
+msgid "Hostname is not valid. It must be specified."
+msgstr "Не указан действующий файл запроса."
+
+#: app/views/network/index.html.erb:120
+msgid "Domain is not valid. It is not supported empty domain."
+msgstr ""
+
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Сеть"
 
-#: app/views/network/index.html.erb:72
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: app/views/network/index.html.erb:77
-#| msgid "Select item"
+#: app/views/network/index.html.erb:145
 msgid "Select"
 msgstr "Выбрать"
 
-#: app/views/network/index.html.erb:96 app/views/network/index.html.erb:102
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
 msgid "IP address"
 msgstr "IP-адрес"
 
-#: app/views/network/index.html.erb:98
-#| msgid "Configuration Mode"
+#: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Режим настройки"
 
-#: app/views/network/index.html.erb:106
+#: app/views/network/index.html.erb:174
 msgid "Prefixlen"
 msgstr "Длина префикса"
 
-#: app/views/network/index.html.erb:111
+#: app/views/network/index.html.erb:179
 msgid "DNS"
 msgstr "DNS"
 
-#: app/views/network/index.html.erb:113
+#: app/views/network/index.html.erb:181
 msgid "Hostname"
 msgstr "Имя узла"
 
-#: app/views/network/index.html.erb:117
+#: app/views/network/index.html.erb:185
 msgid "Domain"
 msgstr "Домен"
 
-#: app/views/network/index.html.erb:121
-#| msgid "Name Servers"
+#: app/views/network/index.html.erb:189
 msgid "Name servers"
 msgstr "Серверы имён"
 
-#: app/views/network/index.html.erb:125
-#| msgid "&Search domains:"
+#: app/views/network/index.html.erb:193
 msgid "Search domains"
 msgstr "Домены поиска"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:199
 msgid "Routing"
 msgstr "Маршрутизация"
 
-#: app/views/network/index.html.erb:133
-#| msgid "Default Route"
+#: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Маршрут по умолчанию"
 
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Save"
-msgstr "Сохранить"
+#~ msgid "Save"
+#~ msgstr "Сохранить"
 
 # cancel button label
-#: app/views/network/index.html.erb:138 app/views/network/edit.html.erb:35
-msgid "Cancel"
-msgstr "Отмена"
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
 
-#: app/views/network/edit.html.erb:1
-msgid "Edit Network Device"
-msgstr "Редактировать сетевое устройство"
+#~ msgid "Edit Network Device"
+#~ msgstr "Редактировать сетевое устройство"
 
-#: app/views/network/edit.html.erb:12
-msgid "Configuration"
-msgstr "Настройка"
+#~ msgid "Configuration"
+#~ msgstr "Настройка"
 
-#: app/views/network/edit.html.erb:15
-msgid "ID"
-msgstr "ID"
+#~ msgid "ID"
+#~ msgstr "ID"
 
-#: app/views/network/edit.html.erb:19
-msgid "Description"
-msgstr "Описание"
+#~ msgid "Description"
+#~ msgstr "Описание"
 
-#: app/views/network/edit.html.erb:23
-msgid "MAC"
-msgstr "MAC"
+#~ msgid "MAC"
+#~ msgstr "MAC"
 
-#: app/views/network/edit.html.erb:27
-msgid "Device Name"
-msgstr "Имя устройства"
+#~ msgid "Device Name"
+#~ msgstr "Имя устройства"
 
-#: app/views/network/edit.html.erb:31
-msgid "Startup"
-msgstr "Запуск"
+#~ msgid "Startup"
+#~ msgstr "Запуск"
 
 #~ msgid "Search Domains"
 #~ msgstr "Домены поиска"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-10 22:47+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -26,7 +26,23 @@ msgstr "ਗਲਤ ਸ਼ੈਸ਼ਨ, ਫੇਰ ਲਾਗਇਨ ਕਰੋ ਜੀ
 msgid "Disk free limits exceeded;"
 msgstr "ਡਿਸਕ ਖਾਲੀ ਲਿਮਟ ਤੋਂ ਵੱਧ ਗਈ;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Removal succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "ਸਫ਼ਲ \"%s\" ਲਈ ਹਟਾਉਣਾ\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "ਬਦਲਾਅ ਬਾਅਦ ਸੰਭਾਲਣ ਲਈ ਫੇਲ੍ਹ"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "ਹਾਲਤ"
 
@@ -50,11 +66,11 @@ msgstr "ਪਿੱਛੇ"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "ਇਹ ਮੁੱਲ ਪਿਛਲੇ ੫ ਮਿੰਟਾਂ ਵਿੱਚ ਜਾਂਚ ਗਏ ਹਨ।"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "ਖਾਲੀ"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "ਵਰਤੀ"
 

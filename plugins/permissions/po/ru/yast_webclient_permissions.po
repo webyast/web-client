@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_permissions\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-09-22 09:42+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-09-23 23:17+0400\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
@@ -19,34 +19,45 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Неверный сеанс, пожалуйста, войдите снова."
 
-#: app/controllers/permissions_controller.rb:178
+#: app/controllers/permissions_controller.rb:133
+#, fuzzy
+#| msgid "`%s' is not a valid netmask."
+msgid "User name is not valid name"
+msgstr "`%s' не является допустимой сетевой маской."
+
+#: app/controllers/permissions_controller.rb:135
+#, fuzzy
+#| msgid "'%1' does not exist."
+msgid "User does not exist"
+msgstr "'%1' не существует."
+
+#: app/controllers/permissions_controller.rb:183
 msgid "Permissions have been set."
 msgstr "Права были заданы."
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:49
 msgid "User Permissions"
 msgstr "Права пользователя"
 
-#: app/views/permissions/index.rhtml:53
+#: app/views/permissions/index.rhtml:52
 msgid "User"
 msgstr "Пользователь"
 
-#: app/views/permissions/index.rhtml:55
+#: app/views/permissions/index.rhtml:54
 msgid "Search"
 msgstr "Поиск"
 
-#: app/views/permissions/index.rhtml:57 app/views/permissions/index.rhtml:160
+#: app/views/permissions/index.rhtml:56 app/views/permissions/index.rhtml:160
 msgid "Back"
 msgstr "Назад"
 
-#: app/views/permissions/index.rhtml:70
+#: app/views/permissions/index.rhtml:69
 msgid "Revoked Permissions"
 msgstr "Отозванные права"
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:70
 msgid "Granted Permissions"
 msgstr "Данные права"
 
-#: app/views/permissions/index.rhtml:159
-msgid "Set"
-msgstr "Задать"
+#~ msgid "Set"
+#~ msgstr "Задать"

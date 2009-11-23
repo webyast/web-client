@@ -53,8 +53,8 @@ class StatusController < ApplicationController
       data_list = Array.new
       value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
       if group == "df"
-        data_list.reject! {|value| value[1] == 0 } if group == "df"  #df returns sometime 0 entries
-        data_list = [[0,0]] if data_list.size == 0 #it is really 0 :-)
+        data_list.reject! {|value| value[1] == 0 } #df returns sometime 0 entries
+        data_list = [[0,0]] if data_list.empty? #it is really 0 :-)
       end
       @data_group[group].merge!({metric_name => data_list})
 
@@ -106,7 +106,19 @@ class StatusController < ApplicationController
     end
     create_data_map status
 #    logger.debug @data_group.inspect
-    true
+
+    #checking if there is one valid data entry at least
+    found = false
+    @data_group.each do |key, map|
+      map.each do |graph_key, list_value|
+         unless list_value.empty?
+           found = true
+           break
+         end
+      end
+      break if found
+    end
+    found
   end
 
 
@@ -120,7 +132,7 @@ class StatusController < ApplicationController
 
   def edit
     return unless client_permissions
-    create_data
+    flash[:notice] = _("No data found for showing system status.") unless create_data
   end
 
   def ajax_log_custom
@@ -142,27 +154,48 @@ class StatusController < ApplicationController
   
   def index
     return unless client_permissions
-
-    log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
-    @logs = log.find(:all) 
-    
-    create_data
-    limits_reached
-    logger.debug "limits reached for #{@limits_list[:reached].inspect}"
+    begin
+      log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
+      @logs = log.find(:all) 
+      @logs ||= {}
+      flash[:notice] = _("No data found for showing system status.") unless create_data
+      limits_reached
+      logger.debug "limits reached for #{@limits_list[:reached].inspect}"
+      rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && 
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || error_hash["error"]["type"] == "NO_PERM")
+           flash[:error] = error_hash["error"]["description"]
+	else
+           raise error
+	end
+    end
   end
-
 
   def show_summary
     return unless client_permissions
     begin
-      create_data
-      status = limits_reached
-      status = (_("Limits exceeded for %s") % status) unless status.empty?
+      if create_data
+        status = limits_reached
+        status = (_("Limits exceeded for %s") % status) unless status.empty?
+      else
+        status = _("No data found for showing system status.")
+      end
       render :partial => "status_summary", :locals => { :status => status, :error => nil }
-    rescue Exception => error
-      erase_redirect_results #reset all redirects
-      erase_render_results
-      render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } and return
+      rescue ActiveResource::ClientError => error
+	logger.warn error.inspect
+        render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } and return
+      rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && 
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || error_hash["error"]["type"] == "NO_PERM")
+           status = error_hash["error"]["description"]
+           render :partial => "status_summary", :locals => { :status => status, :error => nil }
+	else
+           render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } 
+	end
     end
   end
 

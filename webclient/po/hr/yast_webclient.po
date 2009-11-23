@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 20:03+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-13 20:02+0100\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr "Morate prihvatiti sve licence krajnjeg korisnika prije korištenja ovog 
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "Ne mogu preusmjeriti na licencu krajnjeg korisnika. Pobrinite se da je instaliran paket yast2-webclient-eulas"
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "Molimo vas da se prijavite da biste mogli nastaviti"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "Morate se odjaviti prije nego što se možete prijaviti"
 
@@ -61,11 +61,15 @@ msgstr "Prijava nije navedena"
 msgid "No password specified"
 msgstr "Lozinka nije navedena"
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Računalo je blokiralo korisnika %s. Ne može se prijaviti do %s"
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr "Prijava nije ispravna. Provjerite vaše korisničko ime i lozinku."
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "Odjavili ste se."
 
@@ -121,19 +125,19 @@ msgstr "Računalo|Napravljeno na"
 msgid "Host|Updated at"
 msgstr "Računalo|Nadograđeno na"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr " ili "
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Sačuvaj"
-
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Sačuvaj"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "Dalje"
 
@@ -154,12 +158,17 @@ msgstr "Obriši"
 msgid "Are you sure?"
 msgstr "Da li ste sigurni?"
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Nepoznata greška"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Nema dostupnih informacija"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr "Dogodio se problem prilikom dohvaćanja podataka sa poslužitelja."
 
@@ -175,27 +184,27 @@ msgstr "Da li zaista želite obrisati računalo %s?"
 msgid "Editing YaST-Web-Service"
 msgstr "Uređujem YaST-Web-Servis"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Servis"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Ime"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Opis"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "U redu"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Natrag"
 
@@ -225,20 +234,15 @@ msgstr "Žao nam je ali WebYaST je još u alfi i postoje neki problemi."
 msgid "Problem:"
 msgstr "Problem:"
 
-#: app/views/shared/exception_trap.html.erb:16
-#| msgid "Problem occured on target machine."
-msgid "Problem occured on target machine"
-msgstr "Dogodio se problem na ciljnom računalu"
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Molio vas da prijavite grešku tako da možemo popraviti problem."
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr "(veza za prijavu)"
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr "Nemojte zaboraviti uključiti detalje o greški."
 
@@ -246,35 +250,41 @@ msgstr "Nemojte zaboraviti uključiti detalje o greški."
 msgid "Problem occured on target machine."
 msgstr "Dogodio se problem na ciljnom računalu."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr "Moja primjena"
 
-#: app/views/layouts/main.rhtml:52
+# label for language selection
+#: app/views/layouts/main.rhtml:49
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "Jezik:"
+
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "Spojeno računalo"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Ime:"
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Korisnik:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "Upravljačka ploča"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Odjavi se"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "...Čekajte..."
 
@@ -311,86 +321,90 @@ msgstr "Postavi sustav"
 msgid "Configuration"
 msgstr "Postavke"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Status"
+
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "Akcije sustava"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Ponovno pokreni računalo"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr "Da li zaista želite ponovno pokrenuti %s?"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Ugasi"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr "Da li zaista želite ugasiti %s?"
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Status"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "Učitavam informacije o zakrpi"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 msgid "Patch plugin is not installed."
 msgstr "Umetak za zakrpe nije instaliran."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "Učitavam informacije o sustavu"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr "Umetak za status nije instaliran."
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 msgid "Show all modules"
 msgstr "Prikaži sve module"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr "Servis %s nije dostupan na ciljnom računalu"
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr "Servis %s nije pokrenut na ciljnom računalu"
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 msgid "Permission %s is not granted for user %s"
 msgstr "Dozvola %s nije odobrena za korisnika %s"
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Policy kit iznimka za korisnika %s i dozvole %s (neprevedena poruka): %s"
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "Korisnik više nije prijavljen na ciljno računalo. Molimo vas da se ponovo prijavite."
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Ciljni sustav nije konzistentan. Nedostaje ili je oštećena datoteka %s"
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Ne postoji unaprijed određen ntp poslužitelj u /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Dogodila se greška prilikom ntp sinkronizacije: %s"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
 msgstr "Greška prilikom spremanja postavki administratora: %s"
+
+#~| msgid "Problem occured on target machine."
+#~ msgid "Problem occured on target machine"
+#~ msgstr "Dogodio se problem na ciljnom računalu"
 
 #~ msgid "Noone is logged to rest service."
 #~ msgstr "Nitko nije prijavljen na REST servis."

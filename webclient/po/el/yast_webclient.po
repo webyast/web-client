@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2005-08-24 17:53+0300\n"
 "Last-Translator: Hellenic SuSE Translation Team <hstg@billg.gr>\n"
 "Language-Team: Hellenic-Ελληνικά-Greek <hstg@billg.gr>\n"
@@ -20,11 +20,11 @@ msgstr ""
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -77,11 +77,15 @@ msgstr "Δεν καθορίστηκε έγκυρο κλειδί."
 msgid "No password specified"
 msgstr "Δεν καθορίστηκε έγκυρο κλειδί."
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr ""
 
@@ -141,20 +145,20 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr ""
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "&Αποθήκευση"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "&Αποθήκευση"
+
+#: app/helpers/application_helper.rb:29
 #, fuzzy
 #| msgid "&Next"
 msgid "Next"
@@ -179,14 +183,20 @@ msgstr "Διαγραφή"
 msgid "Are you sure?"
 msgstr ""
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Άγνωστο σφάλμα\n"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 #, fuzzy
 #| msgid "No information available."
 msgid "No information available"
 msgstr "Δεν υπάρχει διαθέσιμη πληροφορία."
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr ""
 
@@ -204,29 +214,29 @@ msgstr ""
 msgid "Editing YaST-Web-Service"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 #, fuzzy
 #| msgid "Web Server"
 msgid "YaST-Web-Service"
 msgstr "Διακομιστής Δικτύου"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Όνομα"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "Εντάξει"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Επιστροφή"
 
@@ -260,19 +270,15 @@ msgstr ""
 msgid "Problem:"
 msgstr "Πρόβλημα: "
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr ""
 
@@ -280,46 +286,53 @@ msgstr ""
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 #, fuzzy
 #| msgid "Applied"
 msgid "My Appliance"
 msgstr "Εφαρμοσμένο"
 
-#: app/views/layouts/main.rhtml:52
+# label for language selection
+#: app/views/layouts/main.rhtml:49
+#, fuzzy
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "Γλώσσα"
+
+#: app/views/layouts/main.rhtml:51
 #, fuzzy
 #| msgid "Connected To"
 msgid "Connected Host"
 msgstr "Συνδεδεμένη σε"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 #, fuzzy
 #| msgid "Name: "
 msgid "Name:"
 msgstr "Όνομα: "
 
 #  Proposal for uml user name
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 #, fuzzy
 #| msgid "Username: "
 msgid "User:"
 msgstr "Όνομα Χρήστη: "
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 #, fuzzy
 #| msgid "Control Center"
 msgid "Control panel"
 msgstr "Κέντρο Ελέγχου"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr ""
 
@@ -363,99 +376,99 @@ msgstr "Θέλετε να επανεκκινήσετε το σύστημα τώ�
 msgid "Configuration"
 msgstr "Ρύθμιση"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Κατάσταση"
+
+#: app/views/controlpanel/index.rhtml:33
 #, fuzzy
 #| msgid "System Information"
 msgid "System actions"
 msgstr "Πληροφορίες Συστήματος"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Επανεκκίνηση"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Τερματισμός"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Κατάσταση"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 #, fuzzy
 #| msgid "Switch information"
 msgid "Loading patch information"
 msgstr "Πληροφορίες Αλλαγής"
 
 # %s is either BOOTP or DHCP
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 #, fuzzy
 #| msgid "The configuration is not initialized."
 msgid "Patch plugin is not installed."
 msgstr "Η ρύθμιση δεν αρχικοποιήθηκε."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 #, fuzzy
 #| msgid "System Information"
 msgid "Loading system information"
 msgstr "Πληροφορίες Συστήματος"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr ""
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 #, fuzzy
 #| msgid "Show Loaded Modules"
 msgid "Show all modules"
 msgstr "Εμφάνιση Μονάδων που έχουν φορτωθεί"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr ""
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Η ενέργεια '%1' δεν επιτρέπεται για την υπηρεσία '%2'."
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Προκλήθηκε σφάλμα κατά τη διάρκεια της εγκατάστασης."
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"

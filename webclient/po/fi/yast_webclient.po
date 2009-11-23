@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
-"PO-Revision-Date: 2009-10-29 21:04+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"PO-Revision-Date: 2009-11-17 22:23+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,11 +23,11 @@ msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is insta
 msgstr "Ei voi uudelleen ohjata EULAa. Varmista että yast2-webclient-eulas-paketti on asennettu"
 
 # %s is FTP or HTTP
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 msgid "Please login to continue"
 msgstr "Kirjaudu jatkaaksesi"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr "Sinun täytyy kirjautua ulos ennen sisään kirjautumista"
 
@@ -63,11 +63,15 @@ msgstr "Kirjautumisnimeä ei määritetty"
 msgid "No password specified"
 msgstr "Salasanaa ei määritetty"
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Koneella on estetty käyttäjä %s. Se ei voi kirjautua ennen %s"
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr "Kirjautumisvirhe. Tarkista käyttäjätunnus ja salasana."
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr "Olet kirjautunut ulos."
 
@@ -123,20 +127,20 @@ msgstr "Kone|Luonti aika"
 msgid "Host|Updated at"
 msgstr "Kone|Päivitys aika"
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr " tai "
 
-#: app/helpers/application_helper.rb:6
-msgid "Save"
-msgstr "Tallenna"
-
 # cancel button label
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:27
+msgid "Save"
+msgstr "Tallenna"
+
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "Seuraava"
 
@@ -157,12 +161,17 @@ msgstr "Poista"
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Tuntematon virhe"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Tietoja ei saatavilla"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr "Ongelma haettaessa tietoja palvelimelta."
 
@@ -178,27 +187,27 @@ msgstr "Poistetaanko kone %s varmasti?"
 msgid "Editing YaST-Web-Service"
 msgstr "Muokataan YaST-Webpalvelua"
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "YaST-webpalvelu"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "Nimi"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr "Verkko-osoite"
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "Kuvaus"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "Ok"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Takaisin"
 
@@ -228,20 +237,15 @@ msgstr "Olemme pahoillamme, mutta WebYaST on edelleen alpha ja siinä on edellee
 msgid "Problem:"
 msgstr "Ongelma:"
 
-#: app/views/shared/exception_trap.html.erb:16
-#| msgid "Problem occured on target machine."
-msgid "Problem occured on target machine"
-msgstr "Ilmeni ongelma kohdekoneessa."
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr "Ilmoita virheestä niin voimme korjata ongelman!"
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr "(ilmoitus linkki)"
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
 msgstr "Älä unohda sisällyttää virheen yksityiskohtia."
 
@@ -249,35 +253,41 @@ msgstr "Älä unohda sisällyttää virheen yksityiskohtia."
 msgid "Problem occured on target machine."
 msgstr "Tapahtui virhe kohdekoneessa."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr "Oma appliance"
 
-#: app/views/layouts/main.rhtml:52
+# label for language selection
+#: app/views/layouts/main.rhtml:49
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "Kieli:"
+
+#: app/views/layouts/main.rhtml:51
 msgid "Connected Host"
 msgstr "Kytketty kone"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 msgid "Name:"
 msgstr "Nimi:"
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 msgid "User:"
 msgstr "Käyttäjä:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 msgid "Control panel"
 msgstr "Ohjauskeskus"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 msgid "Logout"
 msgstr "Kirjaudu ulos"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr "...Odota..."
 
@@ -314,84 +324,84 @@ msgstr "Aseta järjestelmä"
 msgid "Configuration"
 msgstr "Määritykset"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Tila"
+
+#: app/views/controlpanel/index.rhtml:33
 msgid "System actions"
 msgstr "Järjestelmätoiminnot"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "Käynnistä uudelleen"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "Really reboot %s?"
 msgstr "Käynnistetäänkö %s uudelleen?"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "Sammuta"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Really shutdown %s?"
 msgstr "Sammutetaanko %s varmasti?"
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "Tila"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 msgid "Loading patch information"
 msgstr "Ladataan tietoja korjauksista"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 msgid "Patch plugin is not installed."
 msgstr "Korjaus-liitännäistä ei ole asennettu."
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 msgid "Loading system information"
 msgstr "Ladataan järjestelmätietoja"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 msgid "Status plugin is not installed."
 msgstr "Tila-liitännäistä ei ole asennettu."
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 msgid "Show all modules"
 msgstr "Näytä kaikki moduulit"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr "Palvelua %s ei ole saatavissa kohdekoneella"
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr "Palvelu %s ei ole käynnissä kohdekoneella"
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 msgid "Permission %s is not granted for user %s"
 msgstr "Oikeutta %s ei myönnetty käyttäjälle %s"
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Policy kit poikkeus käyttäjälle %s ja käyttöoikeus %s (kääntämätön viesti): %s"
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "Käyttäjä ei ole enää kirjautuneena kohdekoneella. Kirjaudu uudestaan."
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Kohdejärjestelmä ei ole yhtenäinen. Tiedosto %s puuttuu tai on vioittunut"
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Esimääritettyjä ntp-palvelimia ei löytynyt /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Tapahtui virhe ntp synkronoinnin aikana: %s"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
 msgstr "Virhe tallennettaessa järjestelmävalvojan asetuksia: %s"
 

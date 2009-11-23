@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-07 11:17+0200\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-04 20:36+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -22,34 +22,45 @@ msgstr ""
 msgid "Invalid session, please login again."
 msgstr "Niepoprawna sesja, porszę zalogować się ponownie."
 
-#: app/controllers/permissions_controller.rb:178
+#: app/controllers/permissions_controller.rb:133
+#, fuzzy
+#| msgid "`%s' is not a valid netmask."
+msgid "User name is not valid name"
+msgstr "'%s' nie jest prawidłową maską podsieci"
+
+#: app/controllers/permissions_controller.rb:135
+#, fuzzy
+#| msgid "'%1' does not exist."
+msgid "User does not exist"
+msgstr "\"%1\" nie istnieje."
+
+#: app/controllers/permissions_controller.rb:183
 msgid "Permissions have been set."
 msgstr "Uprawnienia zostały ustawione."
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:49
 msgid "User Permissions"
 msgstr "Uprawnienia użytkownika"
 
-#: app/views/permissions/index.rhtml:53
+#: app/views/permissions/index.rhtml:52
 msgid "User"
 msgstr "Nazwa użytkownika"
 
-#: app/views/permissions/index.rhtml:55
+#: app/views/permissions/index.rhtml:54
 msgid "Search"
 msgstr "Wyszukiwanie"
 
-#: app/views/permissions/index.rhtml:57 app/views/permissions/index.rhtml:160
+#: app/views/permissions/index.rhtml:56 app/views/permissions/index.rhtml:160
 msgid "Back"
 msgstr "Powrót"
 
-#: app/views/permissions/index.rhtml:70
+#: app/views/permissions/index.rhtml:69
 msgid "Revoked Permissions"
 msgstr "Cofnięcie uprawnień"
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:70
 msgid "Granted Permissions"
 msgstr "Przyznanie uprawnień"
 
-#: app/views/permissions/index.rhtml:159
-msgid "Set"
-msgstr "Ustaw"
+#~ msgid "Set"
+#~ msgstr "Ustaw"

@@ -63,9 +63,10 @@ class EulasController < ApplicationController
     @eula.text            = ""
     @eula.available_langs = []
     @eula.id              = @eula_id # XXX Why is this not set by the load_proxy !!!!
-    if params[:accepted]
+    accepted = (params[:accepted] == "true") || (params[:accepted] == true)
+    if accepted
       unless @eula.accepted
-        @eula.accepted = params[:accepted]
+        @eula.accepted = accepted
         @eula.save # do not save again if there is no change
       end
       if @eula_count == @eula_id

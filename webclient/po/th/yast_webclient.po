@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -22,13 +22,13 @@ msgstr ""
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 
-#: app/controllers/application_controller.rb:100
+#: app/controllers/application_controller.rb:110
 #, fuzzy
 #| msgid "Select one of the options to continue."
 msgid "Please login to continue"
 msgstr "เลือกตัวเลือกใดตัวเลือกหนึ่งเพื่อทำต่อไป"
 
-#: app/controllers/application_controller.rb:107
+#: app/controllers/application_controller.rb:117
 msgid "You must logout before you can login"
 msgstr ""
 
@@ -72,11 +72,15 @@ msgstr "ยังไม่ระบุจุดเมานท์"
 msgid "No password specified"
 msgstr "ยังไม่ระบุผู้ใช้"
 
-#: app/controllers/sessions_controller.rb:93
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
 msgstr ""
 
-#: app/controllers/sessions_controller.rb:126
+#: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
 msgstr ""
 
@@ -146,21 +150,21 @@ msgstr "สร้างเมื่อ:"
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:4
+#: app/helpers/application_helper.rb:14
 msgid " or "
 msgstr ""
 
-#: app/helpers/application_helper.rb:6
+#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: app/helpers/application_helper.rb:27
 #, fuzzy
 #| msgid "&Save"
 msgid "Save"
 msgstr "จัดเก็บ"
 
-#: app/helpers/application_helper.rb:7 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-#: app/helpers/application_helper.rb:11
+#: app/helpers/application_helper.rb:29
 msgid "Next"
 msgstr "ถัดไป"
 
@@ -183,14 +187,20 @@ msgstr "ลบ"
 msgid "Are you sure?"
 msgstr ""
 
-#: app/helpers/view_helpers/html_helper.rb:131
-#: app/views/shared/exception_trap.html.erb:26
+#: app/helpers/view_helpers/html_helper.rb:132
+#, fuzzy
+#| msgid "Unknown Error Code"
+msgid "Unknown error"
+msgstr "ไม่รู้จักรหัสข้อผิดพลาด"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
 #, fuzzy
 #| msgid "<P>No information available.</P>"
 msgid "No information available"
 msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
 msgstr ""
 
@@ -210,29 +220,29 @@ msgstr "ต้องการจะลบมันจริงหรือไม
 msgid "Editing YaST-Web-Service"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:24
+#: app/views/hosts/edit.html.erb:22
 #, fuzzy
 #| msgid "Service"
 msgid "YaST-Web-Service"
 msgstr "บริการ"
 
-#: app/views/hosts/edit.html.erb:27 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
 msgid "Name"
 msgstr "ชื่อ"
 
-#: app/views/hosts/edit.html.erb:31 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
 msgid "Url"
 msgstr ""
 
-#: app/views/hosts/edit.html.erb:35 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
 msgid "Description"
 msgstr "ข้อมูลอธิบาย"
 
-#: app/views/hosts/edit.html.erb:40
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "ตกลง"
 
-#: app/views/hosts/edit.html.erb:41
+#: app/views/hosts/edit.html.erb:39
 #, fuzzy
 #| msgid "&Back"
 msgid "Back"
@@ -266,19 +276,15 @@ msgstr ""
 msgid "Problem:"
 msgstr "ปัญหา"
 
-#: app/views/shared/exception_trap.html.erb:16
-msgid "Problem occured on target machine"
-msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:22
+#: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:23
+#: app/views/shared/exception_trap.html.erb:19
 #, fuzzy
 #| msgid "Don't forget what you enter here!"
 msgid "Don't forget to include the bug details."
@@ -288,47 +294,53 @@ msgstr "อย่าลืมสิ่งที่คุณได้ป้อน
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:33
 #, fuzzy
 #| msgid "YaST"
 msgid "WebYaST"
 msgstr "YaST"
 
-#: app/views/layouts/main.rhtml:42
+#: app/views/layouts/main.rhtml:41
 msgid "My Appliance"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:49
+#, fuzzy
+#| msgid "Language"
+msgid "Langugage:"
+msgstr "ภาษา"
+
+#: app/views/layouts/main.rhtml:51
 #, fuzzy
 #| msgid "Connected As"
 msgid "Connected Host"
 msgstr "เชื่อมต่ออยู่ด้วย"
 
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:52
 #, fuzzy
 #| msgid "Name: "
 msgid "Name:"
 msgstr "ชื่อ: "
 
-#: app/views/layouts/main.rhtml:54
+#: app/views/layouts/main.rhtml:53
 #, fuzzy
 #| msgid "User"
 msgid "User:"
 msgstr "ผู้ใช้"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:56
 #, fuzzy
 #| msgid "YaST2 Control Center"
 msgid "Control panel"
 msgstr "ศูนย์ควบคุม YaST2"
 
-#: app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:57
 #, fuzzy
 #| msgid "Logout Dialog"
 msgid "Logout"
 msgstr "กล่องล็อกเอาต์"
 
-#: app/views/layouts/main.rhtml:92
+#: app/views/layouts/main.rhtml:89
 msgid "...Wait..."
 msgstr ""
 
@@ -371,105 +383,105 @@ msgstr "จัดเก็บการตั้งค่าของระบบ
 msgid "Configuration"
 msgstr "การปรับแต่งค่า"
 
-#: app/views/controlpanel/index.rhtml:30
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "สถานะ"
+
+#: app/views/controlpanel/index.rhtml:33
 #, fuzzy
 #| msgid "System Information"
 msgid "System actions"
 msgstr "ข้อมูลรายละเอียดของระบบ"
 
-#: app/views/controlpanel/index.rhtml:31
+#: app/views/controlpanel/index.rhtml:34
 msgid "Reboot"
 msgstr "บูตระบบใหม่"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 #, fuzzy
 #| msgid "Really abort?"
 msgid "Really reboot %s?"
 msgstr "คุณต้องการจะทำการยกเลิกจริงหรือไม่ ?"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:36
 msgid "Shutdown"
 msgstr "ปิดเครื่อง"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 #, fuzzy
 #| msgid "Really delete section %1?"
 msgid "Really shutdown %s?"
 msgstr "ต้องการจะลบรายการบูตระบบ %1 นี้จริงหรือไม่ ?"
 
-#: app/views/controlpanel/index.rhtml:39
-msgid "Status"
-msgstr "สถานะ"
-
-#: app/views/controlpanel/index.rhtml:43
+#: app/views/controlpanel/index.rhtml:44
 #, fuzzy
 #| msgid "No additional information"
 msgid "Loading patch information"
 msgstr "ไม่มีข้อมูลเพิ่มเติม"
 
-#: app/views/controlpanel/index.rhtml:45
+#: app/views/controlpanel/index.rhtml:46
 #, fuzzy
 #| msgid "Firewall is not installed"
 msgid "Patch plugin is not installed."
 msgstr "ไฟร์วอลล์ยังไม่ถูกติดตั้ง"
 
-#: app/views/controlpanel/index.rhtml:51
+#: app/views/controlpanel/index.rhtml:52
 #, fuzzy
 #| msgid "System Information"
 msgid "Loading system information"
 msgstr "ข้อมูลรายละเอียดของระบบ"
 
-#: app/views/controlpanel/index.rhtml:53
+#: app/views/controlpanel/index.rhtml:54
 #, fuzzy
 #| msgid "Firewall is not installed"
 msgid "Status plugin is not installed."
 msgstr "ไฟร์วอลล์ยังไม่ถูกติดตั้ง"
 
-#: app/views/controlpanel/index.rhtml:92
+#: app/views/controlpanel/index.rhtml:93
 #, fuzzy
 #| msgid "Show List of Kernel Modules"
 msgid "Show all modules"
 msgstr "แสดงรายการมอดูลของเคอร์เนล"
 
-#: lib/error_constructor.rb:13
+#: lib/error_constructor.rb:12
 #, fuzzy
 #| msgid "There is no available space in the current container %1."
 msgid "Service %s is not available in the target machine"
 msgstr "ไม่มีพื้นที่ว่างเหลืออยู่ในคอนเทนเนอร์ %1 ตัวปัจจุบัน"
 
-#: lib/error_constructor.rb:15
+#: lib/error_constructor.rb:14
 #, fuzzy
 #| msgid "Service is not running"
 msgid "Service %s is not running on the target machine"
 msgstr "บริการไม่ได้ทำงานอยู่"
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:16
 msgid "Permission %s is not granted for user %s"
 msgstr ""
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:28
 #, fuzzy
 #| msgid "An error occurred during initrd creation."
 msgid "Error occured during ntp synchronization: %s"
 msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
 #, fuzzy
 #| msgid "Error while writing settings."
 msgid "Error while saving administrator settings: %s"

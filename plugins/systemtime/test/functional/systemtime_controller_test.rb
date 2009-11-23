@@ -40,7 +40,7 @@ class SystemtimeControllerTest < ActionController::TestCase
 ]
         @time = "12:18:00"
         @date = "07/02/2009"
-        @utcstatus = "true"
+        @utcstatus = "UTC"
         @timezone = "Europe/Prague"
     end
 
@@ -75,7 +75,6 @@ class SystemtimeControllerTest < ActionController::TestCase
     assert assigns(:time)
     assert assigns(:date)
     assert_equal assigns(:timezone), "Europe/Prague"
-    assert assigns(:utcstatus)
   end
 
   def test_access_without_write_permissions
@@ -95,36 +94,26 @@ class SystemtimeControllerTest < ActionController::TestCase
 
   def test_commit
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
-    post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }    
+    post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" } }    
     assert_response :redirect
     assert_redirected_to :action => "index"
 
     assert @result.saved
+    assert_equal @result.utcstatus, "UTC"
   end
-
-  #Handling permissions is not done automatic and this test should not be here
-#  def test_failing_permissions
-#    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
-#    def @proxy.permissions
-#      raise "Cannot find permission"
-#    end
-#
-#    get :index
-#
-#    assert_response :redirect
-#    assert_redirected_to "/bad_permissions"
-#  end
 
   def test_commit_wizard
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
     session[:wizard_current] = "test"
-    post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }, :utc => "true" }    
+    session[:wizard_steps] = "systemtime,language"
+    post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }}    
 
     puts @response.body
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
 
     assert @result.saved
+    assert_equal @result.utcstatus, "UTC"
   end
 
 end

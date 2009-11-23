@@ -60,7 +60,10 @@ class EulasControllerTest < ActionController::TestCase
   def test_eula_step
     @opensuse_eula.accepted = false
     get :index
-    post :update, "accepted" => true, "id" => "1"
+    post :update, "accepted" => "false", "id" => "1"
+    assert_false( @opensuse_eula.accepted )
+    assert_redirected_to "/eulas/show/1"
+    post :update, "accepted" => "true", "id" => "1"
     assert( @opensuse_eula.accepted )
     assert_redirected_to "/eulas/show/2"
     post :update, "accepted" => false, "id" => "2"

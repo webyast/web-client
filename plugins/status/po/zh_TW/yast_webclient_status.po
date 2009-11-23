@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 11:30+0100\n"
+"POT-Creation-Date: 2009-11-12 12:06+0100\n"
 "PO-Revision-Date: 2009-10-04 15:26+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -27,7 +27,23 @@ msgstr "不適用的工作階段，請重新登入。"
 msgid "Disk free limits exceeded;"
 msgstr "超出磁碟可用空間限制;"
 
-#: app/views/status/index.html.erb:25
+#: app/controllers/status_controller.rb:126
+msgid "No data found for showing system status."
+msgstr ""
+
+#: app/controllers/status_controller.rb:179
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for %s"
+msgstr "\"%s\" 附加成功。\n"
+
+#: app/controllers/status_controller.rb:215
+#, fuzzy
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "儲存變更失敗"
+
+#: app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "狀態"
 
@@ -51,11 +67,11 @@ msgstr "上一步"
 msgid "These values have been evaluated the last 5 minutes."
 msgstr "此數值為最近 5 分鐘的評估。"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "free"
 msgstr "可用"
 
-#: app/views/status/index.html.erb:214 app/views/status/index.html.erb:216
+#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
 msgid "used"
 msgstr "已使用"
 

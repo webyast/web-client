@@ -1,7 +1,5 @@
 <% disabled = ! @permissions[:writelimits] %>
-<div class='plugin-icon'><img src='/images/monitoring.png'/></div>
-<div class='plugin-content'>
-<h2><%=_("Configure Status Limits")%></h2>
+<h1><%=_("Configure Status Limits")%></h1>
 
 <% form_tag '/status/save' do %>
 <table class="list">
@@ -41,5 +39,4 @@
 <%= submit_tag _("Save"), :disabled=> disabled, :class => 'button' -%>
 <a href="/status" class="button"><%=_("Back")%></a>
 <% end -%>
-</div>
 
