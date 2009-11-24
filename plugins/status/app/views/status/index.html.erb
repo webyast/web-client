@@ -25,7 +25,7 @@
 <div class="plugin-content grid_12">
   <% @logs.each do |log| %>
     <h2><%= log.description %></h2>
-    <div id="log-<%= log.id %>-console"
+    <div id="log-<%= log.id %>-console">
       <%= log.path %>
     </div>
   <% end %>
