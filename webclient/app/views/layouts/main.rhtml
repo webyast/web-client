@@ -48,19 +48,19 @@
       <h1><%= _("My Appliance") %></h1>
 
       <div id="login-wrapper">
-      <% host = Host.find(session[:host]) rescue nil
-        user = session[:user]
-        if host.blank? || user.blank? -%>
-      <% else -%>
-        <ul>
-          <li><%=_("Connected host:")%> <strong><%= host.name -%></strong></li>
-          <li><%=_("User:")%> <strong><%= user -%></strong></li>
-        </ul>
-        <ul class='header-links'>
-          <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
-          <li><em><%= link_to _("Logout"), '/logout' %></em></li>
-       </ul>
-      <% end -%>
+        <% host = Host.find(session[:host]) rescue nil
+          user = session[:user]
+          if host.blank? || user.blank? -%>
+        <% else -%>
+          <ul>
+            <li><%=_("Connected host:")%> <strong><%= host.name -%></strong></li>
+            <li><%=_("User:")%> <strong><%= user -%></strong></li>
+          </ul>
+          <ul class='header-links'>
+            <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
+            <li><em><%= link_to _("Logout"), '/logout' %></em></li>
+          </ul>
+        <% end -%>
       </div>
     </div>
     
@@ -68,33 +68,35 @@
       
       <!-- here both flash and dynamic notifications should be added -->
       <div id="flash-messages" class="grid_12 alpha">
-      <div id="language_selection"></div>
-      <!-- show the flash messages -->
+        <div id="language_selection"></div>
+        <!-- show the flash messages -->
       
-      <% flash.each do |flash_type, message| %>
-        <%
-          flash_icon = case flash_type
-            when :error then "ui-icon-alert"
-            else "ui-icon-info"
-          end
-          flash_style = case flash_type
-            when :error then "ui-state-error"
-            else "ui-state-highlight"
-          end
-        %>
+        <% flash.each do |flash_type, message| %>
+          <%
+            flash_icon = case flash_type
+              when :error then "ui-icon-alert"
+              else "ui-icon-info"
+            end
+            flash_style = case flash_type
+              when :error then "ui-state-error"
+              else "ui-state-highlight"
+            end
+          %>
         
-        <div class="flash-message <%= flash_style %> ui-corner-all grid_12">
-          <p><span class="ui-icon <%= flash_icon %>"></span><strong><%= message %></strong></p>
-        </div>
-        <% flash.delete flash_type -%>
-      <% end %>
+          <div class="flash-message <%= flash_style %> ui-corner-all grid_12">
+            <p><span class="ui-icon <%= flash_icon %>"></span><strong><%= message %></strong></p>
+          </div>
+          <% flash.delete flash_type -%>
+        <% end %>
       </div> <!-- flash messages -->
+      
       <div id="progress" style="display: none;">
         <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
       </div>
       
       <%= yield %>
     </div>
+
     <div id="footer" class="container_12">
       <div class="copy">&copy; 2009 Novell, Inc.</div>
     </div>

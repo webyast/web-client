@@ -1,75 +1,72 @@
 
 <% content_for :head do %>
-  <script type="text/javascript">
+<script type="text/javascript">
 
-  function refreshLogs() {
+function refreshLogs() {
 
-    <% @logs.each do |log| %>
-      $('#log-<%= log.id %>-console').load('/status/ajax_log_custom?id=<%= log.id %>&lines=5');
-    <% end %>
-  }
+<% @logs.each do |log| %>
+  $('#log-<%= log.id %>-console').load('/status/ajax_log_custom?id=<%= log.id %>&lines=5');
+<% end %>
+}
 
-  $(document).ready(function() {
-    $.ajaxSetup ({  
-      cache: false  
-    });
-    //$('#log-console').addClass('busy');
-    setInterval(refreshLogs, 10000); // refresh every 10 seconds
+$(document).ready(function() {
+  $.ajaxSetup ({  
+    cache: false  
   });
+  //$('#log-console').addClass('busy');
+  setInterval(refreshLogs, 10000); // refresh every 10 seconds
+});
 
-  </script>
+</script>
 <% end %>
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
-
 <div class="plugin-content grid_12">
   <% @logs.each do |log| %>
-    <h2><%= log.description %></h2>
-    <div id="log-<%= log.id %>-console"
-      <%= log.path %>
-    </div>
-  <% end %>
-
-
-  <div id="log-console">
+  <h2><%= log.description %></h2>
+  <div id="<%="log-#{log.id}-console"%>" >
+    <%= log.path %>
   </div>
+<% end %>
 
-  <% column = 1 %>
-  <% @data_group.keys.sort.each do |key| %>
-    <% map = @data_group[key]%>
-    <% if column != 1 %>
-      <br style='clear: both'>
-      <br>
-      <% column = 1 %>
-    <% end %>
-    <% if key == "df" %>
-      <h3><%= _("Disk usage") %></h3>
-    <% else %>
-      <h3><%= key.tr('_',' ').capitalize %></h3>
-    <% end %>
 
-    <% map.keys.sort.each do |graph_key| %>
-      <% list_value = map[graph_key] %>
-      <% if key != "df" || !graph_key.end_with?("used") %>
-        <% graph_id = key + "_" + graph_key.tr('/','_') %>
-        <%= graph(graph_id, 200, 150, column == 4?true:false, @limits_list[:reached].include?("/" + key + "/" + graph_key)&&key=="df") %>
-        <% if column == 4 %>
-          <br>
-          <% column = 1 %>
-        <% else %>
-          <% column += 1 %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-  
+<div id="log-console">
+</div>
+
+<% column = 1 %>
+<% @data_group.keys.sort.each do |key| %>
+  <% map = @data_group[key]%>
   <% if column != 1 %>
     <br style='clear: both'>
     <br>
+    <% column = 1 %>
   <% end %>
-  
-  <%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
-  <a href="/" class="button"><%=_("Back")%></a>
+  <% if key == "df" %>
+    <h3><%= _("Disk usage") %></h3>
+  <% else %>
+    <h3><%= key.tr('_',' ').capitalize %></h3>
+  <% end %>
+
+  <% map.keys.sort.each do |graph_key| %>
+    <% list_value = map[graph_key] %>
+    <% if key != "df" || !graph_key.end_with?("used") %>
+      <% graph_id = key + "_" + graph_key.tr('/','_') %>
+      <%= graph(graph_id, 200, 150, column == 4?true:false, @limits_list[:reached].include?("/" + key + "/" + graph_key)&&key=="df") %>
+      <% if column == 4 %>
+        <br>
+        <% column = 1 %>
+      <% else %>
+        <% column += 1 %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if column != 1 %>
+  <br style='clear: both'>
+  <br>
+<% end %>
+<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
+<a href="/" class="button"><%=_("Back")%></a>
 </div>
 
 <script type="text/javascript">

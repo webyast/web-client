@@ -1,18 +1,13 @@
 <%= report_error(error, _("An problem occured when loading status information.")) if error %>
 
 <div class="status_status">
-  <% unless status %>
-    <div class="status-icon warning"></div>
-    <span><%= _("No status information available") %></span>
-  <% else %>
-    <% link_to "status" do %>
-      <% if !status.blank? %>
-	<div class="status-icon error"></div>
-        <span><%= status %></span>
-      <% else %>
-	<div class="status-icon ok"></div>
-        <span><%= _("Your system is healthy.") %></span>
-      <% end %>
+  <% link_to "status" do %>
+    <% if !status.blank? %>
+      <div class="status-icon <%= level %>"></div>
+      <span><%= status %></span>
+    <% else %>
+       <div class="status-icon ok"></div>
+       <span><%= _("Your system is healthy.") %></span>
     <% end %>
   <% end %>
 </div>
