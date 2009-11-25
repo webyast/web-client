@@ -4,7 +4,9 @@
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css","jquery-ui-1.7.2.custom.css",
-      :title=>"default", :charset=>"utf-8" # , :cache => "webclient-base.css" add after solve permissions problem
+      :title=>"default", :charset=>"utf-8"
+      # key :cache is disabled, because user which run webyast doesn't have permission to write to 
+      #             stylesheet directory and cache cannot be created.
       %>
 
   <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
