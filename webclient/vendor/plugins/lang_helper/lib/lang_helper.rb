@@ -29,7 +29,13 @@ module LangHelper
   end
 
   def current_locale
-    locale.language
+    ret = locale.language
+    Rails.logger.info ("detected locale #{ret}")
+    #find locale from existing one, translate if locale came from browser to current one, fallback to american english
+    default = lambda{return "en_US"} #detect require something which response to call
+    ret = I18n.supported_locales.detect(default) { |k| ret.tr('-','_').downcase == k.downcase ? k : nil} 
+    Rails.logger.info ("returned locale #{ret}")
+    return ret
   end
 
   def language_name(code)
