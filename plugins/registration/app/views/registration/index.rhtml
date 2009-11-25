@@ -23,7 +23,7 @@
       <% if argument["flag"] == "m" || @detail then %>
          <p>
          <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
-           <%=_(argument["name"])%>
+           <%=_(argument['description'])%>
          </label>
          <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
          </p>
