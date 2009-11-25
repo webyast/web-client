@@ -190,6 +190,9 @@ case "$1" in
     fi
 
 	echo -n "Starting yastwc "
+        #Waiting for yastws until he has really written his pid file (currently just a hack)
+        sleep 4 
+
 	startproc -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG 
 
 	# Remember status and be verbose
