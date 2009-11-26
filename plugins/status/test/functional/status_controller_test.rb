@@ -100,4 +100,35 @@ ATTR_DATA = {
     assert_valid_markup
     assert assigns(:logs)
   end
+
+OUT_SYNC_ERROR = <<EOF
+<error>
+  <type>COLLECTD_SYNC_ERROR</type>
+  <description>blba bla</description>
+</error>
+EOF
+
+class ResponseMock
+  def body
+    return OUT_SYNC_ERROR
+  end
+
+  def code
+    return "503"
+  end
+end
+
+#status module must survive collectd out of sync
+  def test_collectd_out_of_sync
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.system.logs').returns(@logs_proxy)
+    sproxy = StatusProxy.new
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.system.status').returns(sproxy)
+    sproxy.stubs(:find).raises(ActiveResource::ServerError.new(ResponseMock.new,""))
+    get :index
+
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:logs)
+  end
+
 end
