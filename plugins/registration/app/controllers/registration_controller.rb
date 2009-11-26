@@ -36,14 +36,14 @@ class RegistrationController < ApplicationController
 
   def translate_argument_key(key)
     return '-unknown-' unless key
-    return @trans[key] if @trans[key]
+    return @trans[key] if ( @trans.kind_of?(Hash) && @trans[key] )
     key
   end
 
   def sort_arguments(args)
-    return Array.new unless args
+    return Array.new unless args.kind_of?(Array)
     args.collect! do |arg|
-      arg['description'] = translate_argument_key( arg['name'] )
+      arg['description'] = translate_argument_key( arg.kind_of?(Hash) ? arg['name'] : nil )
       arg
     end
     args.sort! { |a,b|  a['name'] <=> b['name'] }
