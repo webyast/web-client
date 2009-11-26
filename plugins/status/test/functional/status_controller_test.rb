@@ -3,6 +3,21 @@ require 'test/unit'
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 require 'mocha'
 
+#extra ugly hack for dynamic created type
+module YaST
+  module ServiceResource
+    module Proxies
+      module Status
+        module Metric
+          module Label
+          end
+        end
+      end
+    end
+  end
+end
+
+
 class StatusControllerTest < ActionController::TestCase
 
 class Log
@@ -21,15 +36,48 @@ DEFINED_LOGS = [
 
   class StatusProxy
     attr_accessor :result, :permissions, :timeout
-    def find(arg=nil)
-      return {}
+    def initialize
+      @permissions = { :read => true, :write => :true}
+    end
+    def find(arg=nil,arg2=nil)
+      return StatusMock.new
     end
   end
 
   class LogsProxy
     attr_accessor :result, :permissions, :timeout
+    def initialize
+      @permissions = { :read => true, :write => :true}
+    end
     def find(arg)
       return @result
+    end
+  end
+
+class MetricMock 
+  attr_accessor :name, :metricgroup, :interval, :starttime
+  def initialize (n,m,i,s)
+    @name = n
+    @metricgroup = m
+    @interval = i
+    @starttime = s
+  end
+
+  def attributes
+    { "label" => ""}
+  end
+end
+
+ATTR_DATA = {
+  "metric" => [
+      MetricMock.new("test","tg",5,Time.now())
+    ],
+  "label" => "" #hach to avoid creating horrible mockup
+}
+
+  class StatusMock
+    def attributes
+      ATTR_DATA
     end
   end
 
