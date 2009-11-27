@@ -10,7 +10,7 @@
 
 
 Name:           yast2-webclient-language
-PreReq:         yast2-webclient>= 0.0.26
+PreReq:         yast2-webclient >= 0.0.26
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
