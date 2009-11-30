@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   #catch webservice errors
   rescue_from Exception, :with => :exception_trap
+  rescue_from ActiveResource::UnauthorizedAccess do #lazy load of activeresource exception
+    flash[:error] = _("Session timeout");
+    redirect_to '/logout' unless request.xhr?
+  end
   
   include AuthenticatedSystem
   include ErrorConstructor
