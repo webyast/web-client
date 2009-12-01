@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => "controlpanel", :action => "nextstep"
     else
       logger.debug "Success non-wizard redirect"
-      redirect_to :action => :index
+      redirect_to :controller => "controlpanel", :action => "index"
     end
   end
 
