@@ -17,7 +17,7 @@ PreReq:         rubygem-gettext_rails
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.26
+Version:        0.0.27
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
@@ -116,6 +116,10 @@ chmod 600 db/*.sqlite* log/*
 %postun
 %restart_on_update %{service_name}
 %{insserv_cleanup}
+
+# restart yastwc on lighttpd update (bnc#559534)
+%triggerin -- lighttpd
+%restart_on_update %{service_name}
 
 %files 
 %defattr(-,root,root)
