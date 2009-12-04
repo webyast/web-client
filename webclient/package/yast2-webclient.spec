@@ -11,13 +11,27 @@
 
 Name:           yast2-webclient
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite
-PreReq:         lighttpd, rubygem-rake, rubygem-sqlite3
+PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 = 2.3.4
 PreReq:         rubygem-gettext_rails
+%if 0%{?suse_version} == 0 || %suse_version > 1110
+# 11.2 or newer
+# Require startproc respecting -p, bnc#559534#c44
+Requires:       sysvinit > 2.86-215.2
+# Require lighttpd whose postun does not mass kill, bnc#559534#c19
+# (Updating it later does not work because postun uses the old
+# version.)
+PreReq:         lighttpd > 1.4.20-3.6
+%else
+# 11.1 or SLES11
+Requires:       sysvinit > 2.86-195.3.1
+PreReq:         lighttpd > 1.4.20-2.29.1
+%endif
+
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.27
+Version:        0.0.28
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2

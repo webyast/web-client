@@ -126,8 +126,6 @@ test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG not existing";
 	else exit 6; fi; }
 
 PID_FILE=/var/run/yastwc.pid
-IGNORE_FILE=/var/run/yastws.pid
-
 
 CERTIFICATEFILE=/etc/lighttpd/certs/webyast.pem
 CERTKEYFILE=/etc/lighttpd/certs/webyast.key
@@ -190,7 +188,7 @@ case "$1" in
     fi
 
 	echo -n "Starting yastwc "
-	startproc -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG 
+	startproc -p $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG 
 
 	# Remember status and be verbose
 	rc_status -v
@@ -207,7 +205,7 @@ case "$1" in
 	## Stop daemon with killproc(8) and if this fails
 	## killproc sets the return value according to LSB.
 
-	killproc -TERM -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN
+	killproc -TERM -p $PID_FILE $LIGHTTPD_BIN
 
 	# Remember status and be verbose
 	rc_status -v
@@ -244,7 +242,7 @@ case "$1" in
 
 	echo -n "Reload service yastwc "
 	## if it supports it:
-	killproc -HUP -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN
+	killproc -HUP -p $PID_FILE $LIGHTTPD_BIN
 	#touch /var/run/lighttpd.pid
 	rc_status -v
 
@@ -258,7 +256,7 @@ case "$1" in
 
 	# If it supports signaling:
 	echo -n "Reload service yastwc "
-	killproc -HUP -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN
+	killproc -HUP -p $PID_FILE $LIGHTTPD_BIN
 	#touch /var/run/lighttpd.pid
 	rc_status -v
 	
@@ -280,7 +278,7 @@ case "$1" in
 	# 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
 	
 	# NOTE: checkproc returns LSB compliant status values.
-	checkproc -p $PID_FILE -i $IGNORE_FILE $LIGHTTPD_BIN
+	checkproc -p $PID_FILE $LIGHTTPD_BIN
 	# NOTE: rc_status knows that we called this init script with
 	# "status" option and adapts its messages accordingly.
 	rc_status -v
