@@ -7,7 +7,7 @@
   <% if @guid then %>
      <fieldset>
        <p><strong><%=_("This system is registered")%></strong></p>
-       <p><small><%=_("System's GUID:")%> <%= @guid %></small></p>
+       <p><small><%=_("System number (GUID)")%> <%= @guid %></small></p>
        <p><%= link_to _('Register again'), {:controller => :registration, :action =>:update}, :onclick=>"$('#progress').show()", :class => "button" %></p>
      </fieldset>
   <%
