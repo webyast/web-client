@@ -39,6 +39,7 @@ class BasesystemTest < ActiveSupport::TestCase
     result = {:controller => "timezone", :action => "index"}
     assert_equal  result,Basesystem.current_target(session)
     Basesystem.next_step session
+    assert Basesystem.last_step?(session)
     Basesystem.next_step session
     assert Basesystem.done?(session)
   end
