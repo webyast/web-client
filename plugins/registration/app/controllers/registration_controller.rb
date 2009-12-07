@@ -10,14 +10,14 @@ class RegistrationController < ApplicationController
 
   def initialize
     @trans = { 'email' => _("Email"),
-                'moniker' => _("System Name"),
-                'regcode-sles' => _("SLES Registration Code"),
-                'regcode-sled' => _("SLED Registration Code"),
-                'appliance-regcode' => _("Appliance Registration Code"),
-                '___getittranslated1' => _("Registration Code"),
+                'moniker' => _("System name"),
+                'regcode-sles' => _("SLES registration code"),
+                'regcode-sled' => _("SLED registration code"),
+                'appliance-regcode' => _("Appliance registration code"),
+                '___getittranslated1' => _("Registration code"),
                 '___getittranslated2' => _("Hostname"),
-                '___getittranslated3' => _("Device Name"),
-                '___getittranslated4' => _("Appliance Name")   }
+                '___getittranslated3' => _("Device name"),
+                '___getittranslated4' => _("Appliance name")   }
     @trans.freeze
   end
 
