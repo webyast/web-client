@@ -93,17 +93,23 @@ class StatusController < ApplicationController
     }
   end
 
-  def create_data
+  def create_data(from = nil, till = nil, background = false)
     @limits_list = Hash.new
     @limits_list[:reached] = String.new
     @data_group = Hash.new
     status = []
     
-    till = Time.new
-    from = till - 300 #last 5 minutes
+    till ||= Time.new
+    from ||= till - 300 #last 5 minutes
     ActionController::Base.benchmark("Status data read from the server") do
-      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+      stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
+      stat_params[:background] = "true" if background
+      status = @client.find(:dummy_param, :params => stat_params )
     end
+
+    # this is a background status result
+    return status.attributes if status.attributes.keys.sort == ["progress", "status", "subprogress"]
+
     create_data_map status
 #    logger.debug @data_group.inspect
 
@@ -176,7 +182,28 @@ class StatusController < ApplicationController
   def show_summary
     return unless client_permissions
     begin
-      if create_data
+      till = params['till']
+      from = params['from']
+
+      till ||= Time.new.to_i
+      from ||= till - 300 #last 5 minutes
+
+      result = create_data(from, till, !params['background'].nil?)
+
+      # is it a background progress?
+      if result.class == Hash
+        status_progress = result.symbolize_keys
+        Rails.logger.debug "Received background status progress: #{status_progress.inspect}"
+
+        respond_to do |format|
+          format.html { render :partial  => 'status_progress', :locals => {:status => status_progress, :from => from, :till => till } }
+          format.json  { render :json => status_progress }
+        end
+
+        return
+      end
+
+      if result
         status = limits_reached
         status = (_("Limits exceeded for %s") % status) unless status.empty?
       else
