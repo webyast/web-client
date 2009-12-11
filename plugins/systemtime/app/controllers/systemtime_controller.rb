@@ -108,10 +108,10 @@ class SystemtimeController < ApplicationController
     when "manual"
       fill_proxy_with_time t,params
     when "ntp_sync"
-      t.utcstatus = "UTC" #ntp implementation force utc in hardware clock (bnc#556467)
       ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
       return false unless ntp      
       ntp.synchronize = true
+      ntp.synchronize_utc = (t.utcstatus=="UTC")
       begin 
         ntp.save #FIXME check return value
       rescue Timeout::Error => e
