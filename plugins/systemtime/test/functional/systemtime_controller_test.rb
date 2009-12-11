@@ -127,7 +127,6 @@ class SystemtimeControllerTest < ActionController::TestCase
     session[:wizard_steps] = "systemtime,language"
     post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" }}    
 
-    puts @response.body
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
 
@@ -144,6 +143,7 @@ class SystemtimeControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "index"
     assert ntpproxy.result.synchronize
+    assert !ntpproxy.result.synchronize_utc
   end
 
 end
