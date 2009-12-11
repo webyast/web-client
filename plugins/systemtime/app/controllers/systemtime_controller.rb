@@ -36,6 +36,17 @@ class SystemtimeController < ApplicationController
     proxy.date = ""
   end
 
+  def available_ntp
+    begin
+      ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
+    rescue Exception => e #available call, so don't show anything, just log
+      logger.warn e
+      return false
+    end
+    return false unless ntp
+    return ntp.respond_to? :synchronize
+  end
+
   public
 
   # cannot move to initialize, it is not finded - http://www.yotabanana.com/hiki/ruby-gettext-howto-rails.html#ApplicationController
@@ -71,6 +82,7 @@ class SystemtimeController < ApplicationController
     @utcstatus = systemtime.utcstatus
     @time = systemtime.time
     @date = systemtime.date
+    @ntp = available_ntp
     fill_valid_timezones
     begin
       fill_current_region
