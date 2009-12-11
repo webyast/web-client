@@ -24,11 +24,10 @@ module ApplicationHelper
   end
 
   def form_next_button(send_options={})
-    if Basesystem.done? session
-      submit_tag _("Save"),send_options
-    else
-      submit_tag _("Next"),send_options
-    end
+    label = _("Next")
+    label = _("Save") if Basesystem.done?(session)
+    label = _("Finish") if Basesystem.last_step?(session)
+    submit_tag label,send_options
   end
 end
 
