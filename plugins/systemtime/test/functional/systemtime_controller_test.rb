@@ -20,10 +20,11 @@ class SystemtimeControllerTest < ActionController::TestCase
   end
 
   class Ntp
-    attr_accessor :synchronize
+    attr_accessor :synchronize, :synchronize_utc
 
     def initialize
       @synchronize = false
+      @synchronize_utc = true
     end
     
     def save
@@ -114,7 +115,7 @@ class SystemtimeControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
     post :update, { :currenttime => "2009-07-02 - 12:18:00", :date => { :date => "2009-07-02 - 12:18:00/2009-07-02 - 12:18:00" } }    
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :controller => "controlpanel", :action => "index"
 
     assert @result.saved
     assert_equal  "localtime",@result.utcstatus
@@ -134,16 +135,15 @@ class SystemtimeControllerTest < ActionController::TestCase
     assert_equal "localtime",@result.utcstatus
   end
 
-  def test_ntp_force_utc
+  def test_ntp_force
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.time').returns(@proxy)
     ntpproxy = NtpProxy.new
     ntpproxy.result = Ntp.new
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.ntp').returns(ntpproxy)
     post :update, { :timeconfig => "ntp_sync" }
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :controller => "controlpanel", :action => "index"
     assert ntpproxy.result.synchronize
-    assert_equal "UTC", @result.utcstatus
   end
 
 end
