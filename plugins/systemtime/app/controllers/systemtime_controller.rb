@@ -64,6 +64,7 @@ class SystemtimeController < ApplicationController
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
   def index
+    @ntp = available_ntp
     systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     unless systemtime      
@@ -82,7 +83,6 @@ class SystemtimeController < ApplicationController
     @utcstatus = systemtime.utcstatus
     @time = systemtime.time
     @date = systemtime.date
-    @ntp = available_ntp
     fill_valid_timezones
     begin
       fill_current_region
