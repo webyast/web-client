@@ -144,6 +144,6 @@ class PatchUpdatesController < ApplicationController
         flash[:error] = YaST::ServiceResource.error(e)
       end        
     end
-    redirect_to({:controller=>"patch_updates", :action=>"index"})
+    redirect_to({:controller=>"controlpanel", :action=>"index"})
   end
 end

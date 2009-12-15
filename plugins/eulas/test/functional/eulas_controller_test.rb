@@ -43,8 +43,8 @@ class EulasControllerTest < ActionController::TestCase
     @controller = EulasController.new
 
     # setup for eulas controller tests
-    @opensuse_eula = Eula.new ('openSUSE-11.1', false, ['en'], true)
-    @sles_eula     = Eula.new ('SLES-11', false, ['en'], false)
+    @opensuse_eula = Eula.new('openSUSE-11.1', false, ['en'], true)
+    @sles_eula     = Eula.new('SLES-11', false, ['en'], false)
     @proxy = Proxy.new([@opensuse_eula, @sles_eula], {:read=>true, :write=>true})
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.eulas').returns(@proxy)
  
@@ -71,7 +71,20 @@ class EulasControllerTest < ActionController::TestCase
     assert_redirected_to "/eulas/show/2"
     post :update, "accepted" => true, "id" => "2"
     assert(@sles_eula.accepted)
-    assert_redirected_to "/eulas" # in basesystem redirected to "/controller/nextstep"
+    assert_redirected_to :controller => "controlpanel", :action => "index"
+  end
+
+  def test_eula_step_in_wizard
+    session[:wizard_current] = "test"
+    session[:wizard_steps] = "systemtime,eulas,language"
+    @opensuse_eula.accepted = false
+    get :index
+    post :update, "accepted" => "false", "id" => "1"
+    post :update, "accepted" => "true", "id" => "1"
+    post :update, "accepted" => false, "id" => "2"
+    post :update, "accepted" => true, "id" => "2"
+    assert(@sles_eula.accepted)
+    assert_redirected_to :controller => "controlpanel", :action => "nextstep"
   end
 
 end

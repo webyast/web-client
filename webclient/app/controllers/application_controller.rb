@@ -13,12 +13,16 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => "controlpanel", :action => "nextstep"
     else
       logger.debug "Success non-wizard redirect"
-      redirect_to :action => :index
+      redirect_to :controller => "controlpanel", :action => "index"
     end
   end
 
   #catch webservice errors
   rescue_from Exception, :with => :exception_trap
+  rescue_from ActiveResource::UnauthorizedAccess do #lazy load of activeresource exception
+    flash[:error] = _("Session timeout");
+    redirect_to '/logout' unless request.xhr?
+  end
   
   include AuthenticatedSystem
   include ErrorConstructor
