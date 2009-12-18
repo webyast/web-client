@@ -59,7 +59,7 @@ class SystemtimeControllerTest < ActionController::TestCase
 ]
         @time = "12:18:00"
         @date = "07/02/2009"
-        @utcstatus = "localtime"
+        @utcstatus = false
         @timezone = "Europe/Prague"
     end
 
@@ -118,7 +118,7 @@ class SystemtimeControllerTest < ActionController::TestCase
     assert_redirected_to :controller => "controlpanel", :action => "index"
 
     assert @result.saved
-    assert_equal  "localtime",@result.utcstatus
+    assert_equal  false,@result.utcstatus
   end
 
   def test_commit_wizard
@@ -131,7 +131,7 @@ class SystemtimeControllerTest < ActionController::TestCase
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
 
     assert @result.saved
-    assert_equal "localtime",@result.utcstatus
+    assert_equal false, @result.utcstatus
   end
 
   def test_ntp_force
