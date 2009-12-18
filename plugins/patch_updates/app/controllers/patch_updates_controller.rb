@@ -16,16 +16,15 @@ class PatchUpdatesController < ApplicationController
     begin
       @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
     rescue ActiveResource::ServerError => e
-      error_hash = Hash.from_xml e.response.body
-      logger.warn error_hash.inspect
-      if error_hash["error"] && error_hash["error"]["type"] == "PACKAGEKIT_ERROR"
-        flash[:error] = error_hash["error"]["description"]
+      ce = ClientException.new e
+      if ce.backend_exception_type ==  "PACKAGEKIT_ERROR"
+        flash[:error] = ce.message
         @patch_updates = []
         @error = true
       else
         raise e
       end
-    end    
+    end
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
@@ -40,14 +39,9 @@ class PatchUpdatesController < ApplicationController
       patch_updates = nil
       error_string = _("A problem occured when loading patch information.")
     rescue ActiveResource::ServerError => e
-      error_hash = Hash.from_xml e.response.body
-      logger.warn error_hash.inspect
-      if error_hash["error"] && error_hash["error"]["type"] == "PACKAGEKIT_ERROR"
-        error_string = error_hash["error"]["description"]
-      else
-        error_string = _("A problem occured when loading patch information.")
-      end
       error = ClientException.new(e)
+      error_string = _("A problem occured when loading patch information.")
+      error_string = error.message if error.backend_exception_type ==  "PACKAGEKIT_ERROR"
       patch_updates = nil
     end    
     patches_summary = nil
