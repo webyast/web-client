@@ -1,6 +1,7 @@
 require 'test_helper'
 require 'ostruct'
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
+require 'mocha'
 
 class OpenStruct
   undef_method :id # so that it looks for our id
@@ -10,6 +11,11 @@ class NetworkControllerTest < ActionController::TestCase
 
   class Proxy
     attr_accessor :result, :timeout
+
+    def initialize
+      @saved = false
+    end
+
     def permissions
       return { :read => true, :execute => true }
     end
@@ -79,6 +85,14 @@ class NetworkControllerTest < ActionController::TestCase
     # test just the last assignment, for brevity
     assert_not_nil assigns(:default_route)
     assert_not_nil assigns(:name)
+  end
+
+  def test_dhcp_without_change
+    @if_proxy.result["eth1"] = OpenStruct.new("bootproto" => "dhcp")
+    @if_proxy.expects(:save).never #don't call save if dhcp is not saved
+    post :update, { :interface => "eth1", :conf_mode => "dhcp" }
+    assert_response :redirect
+    assert_redirected_to :action => "index"
   end
 
 end

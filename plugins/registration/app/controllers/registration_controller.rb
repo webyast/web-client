@@ -8,6 +8,19 @@ class RegistrationController < ApplicationController
   layout 'main'
   include ProxyLoader
 
+  def initialize
+    @trans = { 'email' => _("Email"),
+                'moniker' => _("System name"),
+                'regcode-sles' => _("SLES registration code"),
+                'regcode-sled' => _("SLED registration code"),
+                'appliance-regcode' => _("Appliance registration code"),
+                '___getittranslated1' => _("Registration code"),
+                '___getittranslated2' => _("Hostname"),
+                '___getittranslated3' => _("Device name"),
+                '___getittranslated4' => _("Appliance name")   }
+    @trans.freeze
+  end
+
   private
   def client_permissions
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.registration.registration')
@@ -19,6 +32,21 @@ class RegistrationController < ApplicationController
     @permissions = @client.permissions
     @options = {'debug'=>2 }
     @arguments = []
+  end
+
+  def translate_argument_key(key)
+    return '-unknown-' unless key
+    return @trans[key] if ( @trans.kind_of?(Hash) && @trans[key] )
+    key
+  end
+
+  def sort_arguments(args)
+    return Array.new unless args.kind_of?(Array)
+    args.collect! do |arg|
+      arg['description'] = translate_argument_key( arg.kind_of?(Hash) ? arg['name'] : nil )
+      arg
+    end
+    args.sort! { |a,b|  a['name'] <=> b['name'] }
   end
 
   # Initialize GetText and Content-Type.
@@ -61,7 +89,7 @@ class RegistrationController < ApplicationController
         error = Hash.from_xml(e.response.body)["registration"]
         if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
           logger.debug "missing arguments #{error["missingarguments"].inspect}"
-          @arguments = error["missingarguments"].sort {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
+          @arguments = sort_arguments( error["missingarguments"] ) #in order to show it in an unique order
         else
           logger.error "error while getting arguments: #{error.inspect}"
           # keep the old message for the translation, in case we need it later
@@ -90,7 +118,7 @@ class RegistrationController < ApplicationController
       redirect_to root_path
       return false
     end
-    params.each {| key, value | 
+    params.each {| key, value |
       if key.starts_with? "registration_arg,"
         argument = Hash.new
         argument["name"] = key[17, key.size-17]
@@ -165,18 +193,18 @@ class RegistrationController < ApplicationController
           argument
         }
         #add the rest of missed arguments
-        missed_args.collect! {|missed_arg| 
+        missed_args.collect! {|missed_arg|
           missed_arg["error"] = true
           missed_arg
         }
         @arguments.concat(missed_args)
         flash[:error] = _("Please fill out missing entries.")
       else
-        logger.error "error while registration: #{error.inspect}"  
+        logger.error "error while registration: #{error.inspect}"
         flash[:error] = _("Error occured while connecting to registration server.")
       end
-    end  
-    @arguments.sort! {|a,b| a["name"] <=> b["name"] } #in order to show it in an unique order
+    end
+    @arguments = sort_arguments( @arguments ) #in order to show it in an unique order
 
     if success
       logger.info "registration succeed"

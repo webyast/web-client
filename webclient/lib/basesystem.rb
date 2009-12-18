@@ -49,6 +49,12 @@ module Basesystem
     session[:wizard_current] == steps.first
   end
 
+  def Basesystem.last_step?(session)
+    return false unless session[:wizard_steps]
+    steps = session[:wizard_steps].split ","
+    session[:wizard_current] == steps.last
+  end
+
   def Basesystem.initialize(basesystem,session)
     if basesystem.steps.empty? or basesystem.finish
       session[:wizard_current] = FINAL_STEP

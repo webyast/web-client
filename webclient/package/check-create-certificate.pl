@@ -30,25 +30,33 @@ sub usage
     print STDERR "                              if omitted exitance of certificate files will only be checked\n";
     print STDERR "  -f [--force]                force to overwrite certificate\n";
     print STDERR "  -h [--help]                 this help\n";
-    print STDERR "  -H [--hostname]     <name>  define hostname to use for certificate\n";
-    print STDERR "                              if omitted defaults to 'hostname --fqdn'\n";
-    print STDERR "  -C [--certfile]     <file>  define certificate file\n";
+    print STDERR "  -H [--hostname]     <name>  defines hostname to use as CN for certificate\n";
+    print STDERR "                              if omitted it will use the FQDN hostname or just the hostname or the default CN\n";
+    print STDERR "  -D [--defaultcn]    <name>  defines the default CN that is used if no FQDN can be found\n";
+    print STDERR "                              hostnames like 'localhost' and 'linux' will be overwritten by this as well\n";
+    print STDERR "  -C [--certfile]     <file>  defines certificate file\n";
     print STDERR "                              if omitted defaults to /etc/ssl/certs/self-signed-certificate.pem\n";
-    print STDERR "  -K [--keyfile]      <file>  define key file\n";
+    print STDERR "  -K [--keyfile]      <file>  defines key file\n";
     print STDERR "                              if omitted defaults to /etc/ssl/private/self-signed-certificate.key\n";
-    print STDERR "  -B [--combinedfile] <file>  define combination file of key and certificate\n";
+    print STDERR "  -B [--combinedfile] <file>  defines combination file of key and certificate\n";
     print STDERR "                              will not be created or checked if omitted\n";
+    print STDERR "  -O [--organization] <org>   sets the organization name in the certificate\n";
+    print STDERR "  -U [--unit]         <unit>  sets the organizational unit name in the certificate\n";
     print STDERR "\n";
 }
 
 
-sub create_certificate($$$$)
+sub create_certificate($$$$$$)
 {
     my $fqdn         = shift || return undef;
+    my $org          = shift || '';
+    my $orgunit      = shift || '';
     my $CERTFILE     = shift || return undef;
     my $KEYFILE      = shift || return undef;
     my $COMBINEDFILE = shift || undef;
     chomp $fqdn;
+    chomp $org;
+    chomp $orgunit;
     chomp $CERTFILE;
     chomp $KEYFILE;
     chomp $COMBINEDFILE if defined $COMBINEDFILE;
@@ -63,6 +71,8 @@ prompt=no
 commonName = $fqdn
 emailAddress = root\@$fqdn
 ";
+    $config .="organizationName        = $org\n" if ( $org ne '' );
+    $config .="organizationalUnitName  = $orgunit\n" if ( $orgunit ne '' );
 
     my $CNF  = `mktemp /tmp/create-ssl-config-XXXXX`;
     my $CERT = `mktemp /tmp/create-ssl-cert-XXXXX`;
@@ -70,9 +80,9 @@ emailAddress = root\@$fqdn
     chomp $CNF;
     chomp $CERT;
     chomp $KEY;
-    if ( not defined $CNF  || $CNF   =~ /^$/  || 
-         not defined $CERT || $CERT  =~ /^$/  ||
-         not defined $KEY  || $KEY   =~ /^$/     )
+    if ( (not defined $CNF ) || $CNF   =~ /^$/  || 
+         (not defined $CERT) || $CERT  =~ /^$/  ||
+         (not defined $KEY ) || $KEY   =~ /^$/     )
     {
         print STDERR "Could not create temporary files. Aborting.\n";
         return 0;
@@ -132,10 +142,13 @@ emailAddress = root\@$fqdn
 
 ################################# MAIN ########################################
 
-my ($create, $force, $hostname, $certfile, $keyfile, $combinedfile, $help);
+my ($create, $force, $hostname, $certfile, $keyfile, $combinedfile, $help, $organization, $unit, $defaultcn);
 my $result = GetOptions ("create|c"         => \$create,
                          "force|f"          => \$force,
                          "hostname|H=s"     => \$hostname,
+                         "defaultcn|D=s"    => \$defaultcn,
+                         "organization|O=s" => \$organization,
+                         "unit|U=s"         => \$unit,
                          "certfile|C=s"     => \$certfile,
                          "keyfile|K=s"      => \$keyfile,
                          "combinedfile|B=s" => \$combinedfile,
@@ -176,15 +189,21 @@ if (defined $create)
         }
     }
 
-    $hostname = `hostname --fqdn` unless defined $hostname;
-    chomp $hostname if defined $hostname;
-    unless (defined $hostname)
-    {
-        print STDERR "Hostname missing or invalid. Aborting.\n";
-        exit 1;
-    }
+    my @HOSTNAMES = ('localhost');
+    push @HOSTNAMES, $defaultcn;
+    push @HOSTNAMES, `hostname`;
+    push @HOSTNAMES, `hostname --fqdn`;
+    push @HOSTNAMES, $hostname;
 
-    if ( create_certificate( $hostname, $certfile, $keyfile, $combinedfile ) )
+    foreach my $H (@HOSTNAMES)
+    {
+        next unless (defined $H);
+        chomp $H;
+        $hostname = $H unless ( $H !~ /^$/ && $H !~ /^linux$/i  && $H !~ /^localhost$/i );
+    }
+    $hostname = 'localhost' unless ( defined $hostname && $hostname !~ /^$/ );
+
+    if ( create_certificate( $hostname, $organization, $unit, $certfile, $keyfile, $combinedfile ) )
     {
         print "Successfully created certificate.\n";
         exit 0;

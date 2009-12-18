@@ -13,7 +13,18 @@ class PatchUpdatesController < ApplicationController
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
-    @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    begin
+      @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    rescue ActiveResource::ServerError => e
+      ce = ClientException.new e
+      if ce.backend_exception_type ==  "PACKAGEKIT_ERROR"
+        flash[:error] = ce.message
+        @patch_updates = []
+        @error = true
+      else
+        raise e
+      end
+    end
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
@@ -23,11 +34,16 @@ class PatchUpdatesController < ApplicationController
     patch_updates = nil    
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
-    rescue Exception => e
+    rescue ActiveResource::ClientError => e
       error = ClientException.new(e)
       patch_updates = nil
-    end
-
+      error_string = _("A problem occured when loading patch information.")
+    rescue ActiveResource::ServerError => e
+      error = ClientException.new(e)
+      error_string = _("A problem occured when loading patch information.")
+      error_string = error.message if error.backend_exception_type ==  "PACKAGEKIT_ERROR"
+      patch_updates = nil
+    end    
     patches_summary = nil
 
     if patch_updates
@@ -58,7 +74,7 @@ class PatchUpdatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string } }
       format.json  { render :json => patches_summary }
     end    
   end
@@ -159,6 +175,6 @@ class PatchUpdatesController < ApplicationController
         flash[:error] = YaST::ServiceResource.error(e)
       end        
     end
-    redirect_to({:controller=>"patch_updates", :action=>"index"})
+    redirect_to({:controller=>"controlpanel", :action=>"index"})
   end
 end

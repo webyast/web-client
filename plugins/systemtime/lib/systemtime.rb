@@ -12,4 +12,5 @@ def fill_proxy_with_timezone(proxy,params,timezones)
 
   tmz = region.entries.find { |e| e.name == params[:timezone]}
   proxy.timezone = tmz.id if tmz
+  proxy.utcstatus = params[:utc] == "true"
 end

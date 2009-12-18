@@ -36,7 +36,6 @@
     <% end %>
   <% end %>
 </table>
-<%= submit_tag _("Save"), :disabled=> disabled, :class => 'button' -%>
-<a href="/status" class="button"><%=_("Back")%></a>
+<%= form_send_buttons :disabled => disabled, :class => "button" %>
 <% end -%>
 

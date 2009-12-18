@@ -171,7 +171,9 @@ class StatusController < ApplicationController
 	error_hash = Hash.from_xml error.response.body
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
-          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || error_hash["error"]["type"] == "NO_PERM")
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" ||
+           error_hash["error"]["type"] == "NO_PERM")
            flash[:error] = error_hash["error"]["description"]
 	else
            raise error
@@ -203,25 +205,34 @@ class StatusController < ApplicationController
         return
       end
 
+      level = "ok"
+
       if result
         status = limits_reached
         status = (_("Limits exceeded for %s") % status) unless status.empty?
+        level = "error"
       else
         status = _("No data found for showing system status.")
+        level = "warning"
       end
-      render :partial => "status_summary", :locals => { :status => status, :error => nil }
+      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
-        render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } and return
+        level = "error"
+        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) } and return
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
+        level = "error"
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
-          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || error_hash["error"]["type"] == "NO_PERM")
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
+           error_hash["error"]["type"] == "NO_PERM" ||
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
+           level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
            status = error_hash["error"]["description"]
-           render :partial => "status_summary", :locals => { :status => status, :error => nil }
+           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
 	else
-           render :partial => "status_summary", :locals => { :status => nil, :error => ClientException.new(error) } 
+           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error) } 
 	end
     end
   end

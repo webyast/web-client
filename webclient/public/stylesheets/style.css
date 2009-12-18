@@ -96,6 +96,7 @@ ul li {
   border-bottom: 1px solid #06c;
   height: 50px;
   text-align: center;
+  position:relative;
 }
   #header h1,
   #header img {
@@ -206,7 +207,12 @@ ul li {
 /*  #status-wrapper, */
   #favorites {
   }
-  
+ 
+#status_patches {
+  margin: 0;
+  padding-top: 1em;
+}
+
   #status-wrapper {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -567,7 +573,6 @@ input[type="submit"] {
   -webkit-box-shadow: 0 1px 3px #ccc;
   -moz-box-shadow: 0 1px 3px #ccc;
   box-shadow: 0 1px 3px #ccc;
-  padding: 1em;
 }
 
 .plugin-content form > p,

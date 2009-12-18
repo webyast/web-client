@@ -36,6 +36,17 @@ class SystemtimeController < ApplicationController
     proxy.date = ""
   end
 
+  def available_ntp
+    begin
+      ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
+    rescue Exception => e #available call, so don't show anything, just log
+      logger.warn e
+      return false
+    end
+    return false unless ntp
+    return ntp.respond_to? :synchronize
+  end
+
   public
 
   # cannot move to initialize, it is not finded - http://www.yotabanana.com/hiki/ruby-gettext-howto-rails.html#ApplicationController
@@ -53,6 +64,7 @@ class SystemtimeController < ApplicationController
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
   def index
+    @ntp = available_ntp
     systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
 
     unless systemtime      
@@ -96,10 +108,10 @@ class SystemtimeController < ApplicationController
     when "manual"
       fill_proxy_with_time t,params
     when "ntp_sync"
-      t.utcstatus = "UTC" #ntp implementation force utc in hardware clock (bnc#556467)
       ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
       return false unless ntp      
       ntp.synchronize = true
+      ntp.synchronize_utc = (t.utcstatus=="UTC")
       begin 
         ntp.save #FIXME check return value
       rescue Timeout::Error => e

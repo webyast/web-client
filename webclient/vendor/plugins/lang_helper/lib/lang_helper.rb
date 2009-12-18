@@ -24,12 +24,19 @@ module LangHelper
     'uk' => 'Українська', 'vi' => 'Tiếng Việt', 'wa' => 'Walon', 'xh' => 'isiXhosa',
     'zh_CN' => '简体中文', 'zh_TW' => '繁體中文', 'zu' => 'isiZulu'}
 
+
   def current_locale_image
     return "/images/flags/#{locale.language}.png"
   end
 
   def current_locale
-    locale.language
+    ret = locale.language
+    Rails.logger.info ("detected locale #{ret}")
+    #find locale from existing one, translate if locale came from browser to current one, fallback to american english
+    default = lambda{return "en_US"} #detect require something which response to call
+    ret = supported_languages.detect(default) { |k| ret.tr('-','_').downcase == k.downcase ? k : nil} 
+    Rails.logger.info ("returned locale #{ret}")
+    return ret
   end
 
   def language_name(code)
@@ -52,7 +59,7 @@ module LangHelper
   end
 
   def show_language
-    langs = I18n.supported_locales.sort
+    langs = supported_languages.sort
     ret = "<h4>" + _("Select locale") + "</h4>"
     langs.each_with_index do |lang, i|
       ret << link_to( language_name(lang),
@@ -67,6 +74,17 @@ module LangHelper
     set_locale params["id"]
 #    flash[:notice] = _('Cookie &quot;lang&quot; is set: %s') % params["id"]
     redirect_to :back
+  end
+
+    #do not use this constant (only internal), use supported_languages method
+    SUPPORTED_LANGUAGE= [
+     "ar","cs","de","es","en_US","fr","hu","it","ja","ko",
+     "nl","pl","pt_BR","ru","sv","zh_CN","zh_TW" 
+    ]
+  def supported_languages
+    #TODO read from file if vendor want create own translations
+    #list is same as SLE11SP1 supported
+    return SUPPORTED_LANGUAGE
   end
 end
  

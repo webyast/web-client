@@ -22,11 +22,11 @@ $(document).ready(function() {
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
-<% @logs.each do |log| %>
-<h2><%= log.description %></h2>
-<div id="log-<%= log.id %>-console"
-<%= log.path %>
-</div>
+  <% @logs.each do |log| %>
+  <h2><%= log.description %></h2>
+  <div id="<%="log-#{log.id}-console"%>" >
+    <%= log.path %>
+  </div>
 <% end %>
 
 

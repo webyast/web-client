@@ -29,14 +29,22 @@ class RegistrationControllerTest < ActionController::TestCase
 
     def fill
       @status = 'missinginfo'
-      @exitcode = 0,
+      @exitcode = 4,
       @missingarguments =[{'name'=>'Email', 'type'=>'string'},
                           {'name'=>'Registration Name', 'type'=>'string'},
                           {'name'=>'System Name', 'type'=>'string'}]
     end
+
+    def fill_false
+      @status = 'missinginfo'
+      @exitcode = 4,
+      @missingarguments = [nil, nil]
+    end
+
     def save
       @saved = true
     end
+
     def to_xml
       "xml output"
     end
@@ -98,4 +106,15 @@ class RegistrationControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
   end
+
+  def test_register_with_false_arguments
+    @proxy.result.fill_false
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
+
+    get :index
+
+    assert_response :success
+    assert_valid_markup
+  end
+
 end
