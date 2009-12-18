@@ -13,7 +13,19 @@ class PatchUpdatesController < ApplicationController
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
-    @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    begin
+      @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    rescue ActiveResource::ServerError => e
+      error_hash = Hash.from_xml e.response.body
+      logger.warn error_hash.inspect
+      if error_hash["error"] && error_hash["error"]["type"] == "PACKAGEKIT_ERROR"
+        flash[:error] = error_hash["error"]["description"]
+        @patch_updates = []
+        @error = true
+      else
+        raise e
+      end
+    end    
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
@@ -23,11 +35,21 @@ class PatchUpdatesController < ApplicationController
     patch_updates = nil    
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
-    rescue Exception => e
+    rescue ActiveResource::ClientError => e
       error = ClientException.new(e)
       patch_updates = nil
-    end
-
+      error_string = _("A problem occured when loading patch information.")
+    rescue ActiveResource::ServerError => e
+      error_hash = Hash.from_xml e.response.body
+      logger.warn error_hash.inspect
+      if error_hash["error"] && error_hash["error"]["type"] == "PACKAGEKIT_ERROR"
+        error_string = error_hash["error"]["description"]
+      else
+        error_string = _("A problem occured when loading patch information.")
+      end
+      error = ClientException.new(e)
+      patch_updates = nil
+    end    
     patches_summary = nil
 
     if patch_updates
@@ -43,7 +65,7 @@ class PatchUpdatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string } }
       format.json  { render :json => patches_summary }
     end    
   end

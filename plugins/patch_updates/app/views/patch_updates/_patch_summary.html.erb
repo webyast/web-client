@@ -1,4 +1,4 @@
-<%= report_error(error, _("A problem occured when loading patch information.")) if error %>
+<%= report_error(error, error_string) if error %>
 
 <div class="status_patches">
   <% unless patch %>    
