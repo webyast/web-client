@@ -8,8 +8,7 @@ PERMISSION_RESPONSE= <<EOF
   <permission>
     <granted type="boolean">true</granted>
     <id>org.opensuse.yast.modules.yapi.ntp.synchronize</id>
-  <:w
-  /permission>
+  </permission>
 </permissions>
 EOF
 
@@ -41,16 +40,20 @@ def setup
   YaST::ServiceResource::Session.auth_token = "1234"
 end
 
-class Test < YastModel::Base
+class TestModel < YastModel::Base
   model_interface :'org.opensuse.yast.modules.test'
 end
 
 def test_model
-  assert Test.site.to_s.include?('localhost'), "site doesn't include localhost : #{Test.site}"
+  assert TestModel.site.to_s.include?('localhost'), "site doesn't include localhost : #{TestModel.site}"
+  puts YastModel::Base.collection_name
+  puts TestModel.collection_name
+  assert_equal "test",TestModel.collection_name
+  assert_equal "/",TestModel.prefix
 end
 
 def test_find
-  test = Test.find :one
+  test = TestModel.find :one
   assert "test",test.arg1
 end
 
