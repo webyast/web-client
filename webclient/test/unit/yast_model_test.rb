@@ -20,6 +20,12 @@ RESOURCE_RESPONSE = <<EOF
     <singular type="boolean">true</singular>
     <href>/test</href>
   </resource>
+  <resource>
+    <interface>org.opensuse.yast.modules.test2</interface>
+    <policy/>
+    <singular type="boolean">true</singular>
+    <href>/test2</href>
+  </resource>
 </resources>
 EOF
 
@@ -29,12 +35,23 @@ TEST_RESPONSE = <<EOF
 </test>
 EOF
 
+TEST2_RESPONSE = <<EOF
+<test2>
+  <arg1>test2</arg1>
+</test2>
+EOF
+
+TEST_STRING = "test"
+TEST2_STRING = "test2"
+
 def setup
   ActiveResource::HttpMock.respond_to do |mock|
     mock.get   "/resources.xml",   {}, RESOURCE_RESPONSE, 200
     mock.get   "/permissions.xml", {}, PERMISSION_RESPONSE,200
     mock.get   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
     mock.post   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
+    mock.get   "/test2.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST2_RESPONSE, 200
+    mock.post   "/test2.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST2_RESPONSE, 200
   end
   YaST::ServiceResource::Session.site = "http://localhost"
   YaST::ServiceResource::Session.login = "test"
@@ -44,6 +61,9 @@ end
 class TestModel < YastModel::Base
   model_interface :'org.opensuse.yast.modules.test'
 end
+class Test2Model < YastModel::Base
+  model_interface :'org.opensuse.yast.modules.test2'
+end
 
 def test_model
   assert TestModel.site.to_s.include?('localhost'), "site doesn't include localhost : #{TestModel.site}"
@@ -51,14 +71,24 @@ def test_model
   assert_equal "/",TestModel.prefix
 end
 
-def test_find
+def test_find_and_save
   begin
     test = TestModel.find :one
-    assert_equal "test",test.arg1
+    assert_equal TEST_STRING,test.arg1
     assert test.save
   ensure
-    puts ActiveResource::HttpMock.requests.inspect
+    Rails.logger.debug ActiveResource::HttpMock.requests.inspect
   end
+end
+
+def test_mix_of_two_models
+  test = TestModel.find :one
+  assert_equal TEST_STRING,test.arg1
+  test2 = Test2Model.find :one
+  assert_equal TEST2_STRING,test2.arg1
+  assert_equal TEST_STRING,test.arg1
+  assert_equal "test",TestModel.collection_name
+  assert_equal "test2",Test2Model.collection_name
 end
 
 end
