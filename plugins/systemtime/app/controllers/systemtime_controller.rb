@@ -65,19 +65,8 @@ class SystemtimeController < ApplicationController
   # show flash with partial problem.
   def index
     @ntp = available_ntp
-    systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
-
-    unless systemtime      
-      return false
-    end
-
-    unless @permissions[:read]
-      logger.debug "No permissions for time module"
-      flash[:warning] = _("No permissions for time module")
-      redirect_to root_path
-      return false
-    end
-        
+    systemtime = Stime.find :one
+    @permissions = Stime.permissions
     @@timezones = systemtime.timezones
     @timezone = systemtime.timezone
     @utcstatus = systemtime.utcstatus
@@ -98,9 +87,7 @@ class SystemtimeController < ApplicationController
   # still shows problems. Now it invalidate session for logged user.If
   # everything goes fine it redirect to index
   def update
-    t = load_proxy 'org.opensuse.yast.modules.yapi.time'
-
-    return false unless t
+    t = Stime.find :one
 
     fill_proxy_with_timezone t, params, t.timezones
     clear_time t #do nothing
@@ -146,11 +133,7 @@ class SystemtimeController < ApplicationController
       # since while calling this function there is different instance of the class
       # than when calling index, @@timezones were empty; reinitialize them
       # possible FIXME: how does it increase the amount of data transferred?
-      systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
-  
-      unless systemtime
-        return false  #possible FIXME: is returnign false for AJAX correct?
-      end
+      systemtime = Stime.find :one
 
       @@timezones = systemtime.timezones
     end

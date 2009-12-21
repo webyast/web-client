@@ -47,7 +47,7 @@ TEST2_STRING = "test2"
 def setup
   ActiveResource::HttpMock.respond_to do |mock|
     mock.get   "/resources.xml",   {}, RESOURCE_RESPONSE, 200
-    mock.get   "//permissions.xml?filter=org.opensuse.yast.modules.test&user_id=test", {}, PERMISSION_RESPONSE,200
+    mock.get   "/permissions.xml?filter=org.opensuse.yast.modules.test&user_id=test", {"Authorization"=>"Basic OjEyMzQ="}, PERMISSION_RESPONSE,200
     mock.get   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
     mock.post   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
     mock.get   "/test2.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST2_RESPONSE, 200
@@ -95,7 +95,7 @@ end
 
 def test_permissions
   perm = TestModel.permissions
-  assert perm.include?(:synchronize), "permission is not available #{perm.inspect}"
+  assert perm[:synchronize], "permission is not granted #{perm.inspect}"
 end
 
 end

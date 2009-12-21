@@ -46,14 +46,16 @@ module YastModel
 
     def permissions
       return @permissions if @permissions
-      YastModel::Permission.site = "#{self.site}/" #resource has constant prefix to allow introspect
+      YastModel::Permission.site = self.site #resource has constant prefix to allow introspect
+      YastModel::Permission.password = self.password #resource has constant prefix to allow introspect
       permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => @interface }
-      granted = permissions.collect { |p| p.granted ? p.id : nil }
-      granted.delete(nil)
-      @permissions = granted.collect { |p|
-        p.slice!("#{@interface}.")
-        p.to_sym
-      }
+      @permissions = {}
+      permissions.each do |p|
+        key = p.id
+        key.slice! "#{@interface}."
+        @permissions[key.to_sym] = p.granted
+      end
+      @permissions
     end
   end
 end
