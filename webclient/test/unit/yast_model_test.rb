@@ -33,7 +33,7 @@ def setup
   ActiveResource::HttpMock.respond_to do |mock|
     mock.get   "/resources.xml",   {}, RESOURCE_RESPONSE, 200
     mock.get   "/permissions.xml", {}, PERMISSION_RESPONSE,200
-    mock.get   "/test.xml", {}, TEST_RESPONSE, 200
+    mock.get   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
   end
   YaST::ServiceResource::Session.site = "http://localhost"
   YaST::ServiceResource::Session.login = "test"
@@ -46,15 +46,17 @@ end
 
 def test_model
   assert TestModel.site.to_s.include?('localhost'), "site doesn't include localhost : #{TestModel.site}"
-  puts YastModel::Base.collection_name
-  puts TestModel.collection_name
   assert_equal "test",TestModel.collection_name
   assert_equal "/",TestModel.prefix
 end
 
 def test_find
-  test = TestModel.find :one
-  assert "test",test.arg1
+  begin
+    test = TestModel.find :one
+    assert "test",test.arg1
+  ensure
+    puts ActiveResource::HttpMock.requests.inspect
+  end
 end
 
 end
