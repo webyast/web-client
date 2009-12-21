@@ -7,7 +7,7 @@ PERMISSION_RESPONSE= <<EOF
 <permissions type="array">
   <permission>
     <granted type="boolean">true</granted>
-    <id>org.opensuse.yast.modules.yapi.ntp.synchronize</id>
+    <id>org.opensuse.yast.modules.test.synchronize</id>
   </permission>
 </permissions>
 EOF
@@ -47,7 +47,7 @@ TEST2_STRING = "test2"
 def setup
   ActiveResource::HttpMock.respond_to do |mock|
     mock.get   "/resources.xml",   {}, RESOURCE_RESPONSE, 200
-    mock.get   "/permissions.xml", {}, PERMISSION_RESPONSE,200
+    mock.get   "//permissions.xml?filter=org.opensuse.yast.modules.test&user_id=test", {}, PERMISSION_RESPONSE,200
     mock.get   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
     mock.post   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
     mock.get   "/test2.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST2_RESPONSE, 200
@@ -91,6 +91,11 @@ def test_mix_of_two_models
   assert_equal TEST_STRING,test.arg1
   assert_equal "test",TestModel.collection_name
   assert_equal "test2",Test2Model.collection_name
+end
+
+def test_permissions
+  perm = TestModel.permissions
+  assert perm.include?(:synchronize), "permission is not available #{perm.inspect}"
 end
 
 end

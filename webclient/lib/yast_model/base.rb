@@ -15,9 +15,10 @@ module YastModel
       end
 
       def set_site
+        @permissions = nil #reset permission as it can be for each site and for each user different
         self.site = YaST::ServiceResource::Session.site
         self.password = YaST::ServiceResource::Session.auth_token
-        YastModel::Resource.site = "#{site}/" #resource has constant prefix to allow introspect
+        YastModel::Resource.site = "#{self.site}/" #resource has constant prefix to allow introspect
         #FIXME not thread save
         Rails.logger.debug "read interface to #{@interface.to_s}"
         resource = YastModel::Resource.find(:all).find { |r| r.interface.to_sym == @interface.to_sym }
@@ -41,6 +42,18 @@ module YastModel
           path = self.collection_path(prefix_options, query_options)
           instantiate_record( (connection.get(path, headers)), prefix_options )
         end
+    end
+
+    def permissions
+      return @permissions if @permissions
+      YastModel::Permission.site = "#{self.site}/" #resource has constant prefix to allow introspect
+      permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => @interface }
+      granted = permissions.collect { |p| p.granted ? p.id : nil }
+      granted.delete(nil)
+      @permissions = granted.collect { |p|
+        p.slice!("#{@interface}.")
+        p.to_sym
+      }
     end
   end
 end
