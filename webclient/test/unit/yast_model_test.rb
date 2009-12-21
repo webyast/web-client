@@ -34,6 +34,7 @@ def setup
     mock.get   "/resources.xml",   {}, RESOURCE_RESPONSE, 200
     mock.get   "/permissions.xml", {}, PERMISSION_RESPONSE,200
     mock.get   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
+    mock.post   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
   end
   YaST::ServiceResource::Session.site = "http://localhost"
   YaST::ServiceResource::Session.login = "test"
@@ -53,7 +54,8 @@ end
 def test_find
   begin
     test = TestModel.find :one
-    assert "test",test.arg1
+    assert_equal "test",test.arg1
+    assert test.save
   ensure
     puts ActiveResource::HttpMock.requests.inspect
   end

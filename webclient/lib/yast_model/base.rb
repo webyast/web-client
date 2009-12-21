@@ -29,11 +29,16 @@ module YastModel
         p, sep, @@collection_name = resource.href.rpartition('/')
         p += '/'
         self.prefix = p
+        @@element_name = @@collection_name
       end
 
 #redefine collection name as it is little broken see http://lists.opensuse.org/opensuse-ruby/2009-12/msg00008.html
       def collection_name
         @@collection_name
+      end
+
+      def element_name
+        @@element_name
       end
 
       #fix ARs broken singleton
