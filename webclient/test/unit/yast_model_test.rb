@@ -58,10 +58,12 @@ def setup
   YaST::ServiceResource::Session.auth_token = "1234"
 end
 
-class TestModel < YastModel::Base
+class TestModel < ActiveResource::Base
+  extend YastModel::Base
   model_interface :'org.opensuse.yast.modules.test'
 end
-class Test2Model < YastModel::Base
+class Test2Model < ActiveResource::Base
+  extend YastModel::Base
   model_interface :'org.opensuse.yast.modules.test2'
 end
 
