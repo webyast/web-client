@@ -1,33 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'active_resource/http_mock'
+require 'yast_mock'
 
 class YastModelTest < ActiveSupport::TestCase
-
-PERMISSION_RESPONSE= <<EOF
-<permissions type="array">
-  <permission>
-    <granted type="boolean">true</granted>
-    <id>org.opensuse.yast.modules.test.synchronize</id>
-  </permission>
-</permissions>
-EOF
-
-RESOURCE_RESPONSE = <<EOF
-<resources type="array">
-  <resource>
-    <interface>org.opensuse.yast.modules.test</interface>
-    <policy/>
-    <singular type="boolean">true</singular>
-    <href>/test</href>
-  </resource>
-  <resource>
-    <interface>org.opensuse.yast.modules.test2</interface>
-    <policy/>
-    <singular type="boolean">true</singular>
-    <href>/test2</href>
-  </resource>
-</resources>
-EOF
 
 TEST_RESPONSE = <<EOF
 <test>
@@ -45,17 +19,16 @@ TEST_STRING = "test"
 TEST2_STRING = "test2"
 
 def setup
+  ActiveResource::HttpMock.set_authentification
   ActiveResource::HttpMock.respond_to do |mock|
-    mock.get   "/resources.xml",   {}, RESOURCE_RESPONSE, 200
-    mock.get   "/permissions.xml?filter=org.opensuse.yast.modules.test&user_id=test", {"Authorization"=>"Basic OjEyMzQ="}, PERMISSION_RESPONSE,200
-    mock.get   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
-    mock.post   "/test.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST_RESPONSE, 200
-    mock.get   "/test2.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST2_RESPONSE, 200
-    mock.post   "/test2.xml", {"Authorization"=>"Basic OjEyMzQ="}, TEST2_RESPONSE, 200
+    header = ActiveResource::HttpMock.authentification_header
+    mock.resources :'org.opensuse.yast.modules.test' => "/test", :'org.opensuse.yast.modules.test2' => "/test2"
+    mock.permissions "org.opensuse.yast.modules.test", { :synchronize => true }
+    mock.get   "/test.xml", header, TEST_RESPONSE, 200
+    mock.post   "/test.xml", header, TEST_RESPONSE, 200
+    mock.get   "/test2.xml", header, TEST2_RESPONSE, 200
+    mock.post   "/test2.xml", header, TEST2_RESPONSE, 200
   end
-  YaST::ServiceResource::Session.site = "http://localhost"
-  YaST::ServiceResource::Session.login = "test"
-  YaST::ServiceResource::Session.auth_token = "1234"
 end
 
 class TestModel < ActiveResource::Base
