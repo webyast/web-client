@@ -7,8 +7,8 @@ module YastModel
 
       def site
         ret = super
-        if ret.nil? || ret != URI.parse(YaST::ServiceResource::Session.site) ||
-            password != YaST::ServiceResource::Session.auth_token
+        if ret.nil? || ret != URI.parse(YaST::ServiceResource::Session.site) || password != YaST::ServiceResource::Session.auth_token
+          Rails.logger.debug "set new site for interface #{@interface}"
           set_site
         end
         return super
