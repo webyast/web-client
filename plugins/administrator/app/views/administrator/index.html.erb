@@ -8,6 +8,43 @@
     label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1em; text-align: left; vertical-align: top; width: 50% }
   </style>
 
+  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.example.js"></script>
+
+	<script language="javascript">
+	 function changeBox()
+	 {
+	    document.getElementById('div1').style.display='none';
+	    document.getElementById('div2').style.display='';
+	    document.getElementById('password').focus();
+	 }
+	 function restoreBox()
+	 {
+	    if(document.getElementById('password').value=='')
+	    {
+	      document.getElementById('div1').style.display='';
+	      document.getElementById('div2').style.display='none';
+	    }
+	 }
+	</script>
+
+	  <script type="text/javascript">
+	    $(function() {
+	      $('#administrator_password').example('Password');
+	    });
+	  </script>
+	
+	  <script type="text/javascript">
+	    $(function() {
+	      $('#administrator_confirm_password').example('Retype password');
+	    });
+	  </script>
+
+	<script type="text/javascript">
+	    $(function() {
+	      $('#administrator_aliases').example('Email adress to receive system mails');
+	    });
+	  </script>
+	
   <script type="text/javascript">
     // define custom validation function
     // alias is actually a list of email aliases
@@ -46,18 +83,28 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <p>
-  <%= 
-  _("Here, configure the settings for system administrator ('root').")
-  %>
-  </p>
-
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
-    <fieldset id="password">
+ 	<fieldset class="grid_12" id="div1">
+		<label><%=_("Password")%></label>
+		<input name="pass_temp" type="text" value="New password for system administrator ('root')" size="20" maxlength="20" onfocus="changeBox()" />
+	</fieldset>
+	<fieldset class="grid_12" id="div2" style="display:none">
+		<label><%=_("Password")%></label>
+		<input name="password" id="password" type="password" value="" size="20" maxlength="20" onBlur="restoreBox()" />
+	</fieldset>
+	<fieldset class="grid_12" id="div1">
+		<label><%=_("Confirm password")%></label>
+		<input name="pass_temp" type="text" value="Retype new password" size="20" maxlength="20" onfocus="changeBox()" />
+	</fieldset>
+	<fieldset class="grid_12" id="div2" style="display:none">
+		<label><%=_("Confirm password")%></label>
+		<input name="password" id="password" type="password" value="" size="20" maxlength="20" onBlur="restoreBox()" />
+	</fieldset>  
+  <fieldset class="grid_12" id="password">
 	<p><label><%=_("Password")%></label>
 	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
-	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');" %>
+	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"  %>
 	</p>
 	<p>
 	<label><%=_("Confirm password")%></label>
@@ -68,7 +115,7 @@
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
 	<p>
 	<label><%=_("Forward mail to")%></label>
-	<%= f.text_field :aliases, :disabled => disabled, :class => "emails", :style => 'width: auto' %>
+	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
 	<%= f.submit _("Save Mail"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
 	</p>
     <!-- this is a pre-generated placeholder for the validation messages -->

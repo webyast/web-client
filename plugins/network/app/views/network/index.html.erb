@@ -6,6 +6,50 @@
    <%= javascript_include_tag :defaults %>
    <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
+  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.example.js"></script>
+
+	<script type="text/javascript">
+	    $(function() {
+	      $('#ip').example('Adress of this machine (e.g. 192.168.0.18)');
+	    });
+	  </script>
+
+	<script type="text/javascript">
+	    $(function() {
+	      $('#netmask').example('Adress shared with other machines (e.g. 255.255.255.0)');
+	    });
+	  </script>
+
+	 <script type="text/javascript">
+	    $(function() {
+	      $('#name').example('Name of this machine in the network (e.g. mycomputer)');
+	    });
+	  </script>
+
+	 <script type="text/javascript">
+	    $(function() {
+	      $('#domain').example('Network name (e.g. example.com)');
+	    });
+	  </script>
+
+	 <script type="text/javascript">
+	    $(function() {
+	      $('#nameservers').example('IP adress of machine which translates hostnames in IP adresses');
+	    });
+	  </script>
+
+	 <script type="text/javascript">
+	    $(function() {
+	      $('#searchdomains').example('Domain name where hostname searching starts ');
+	    });
+	  </script>
+
+	 <script type="text/javascript">
+	    $(function() {
+	      $('#default_route').example('Target adress for outgoing IP data packages');
+	    });
+	  </script>
+
    <% javascript_tag do -%>
       function disable_static_config(abool) {
           $("#ip")[0].disabled = abool;
