@@ -10,12 +10,13 @@ class StatusController < ApplicationController
 
   private
   def client_permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
-    unless @client
+    @client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
+    @client_graphs = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.graphs')
+    unless @client_status && @client_graphs
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
-    @permissions = @client.permissions
+    @permissions = @client_status.permissions
   end
 
   def limits_reached
@@ -102,7 +103,7 @@ class StatusController < ApplicationController
     till = Time.new
     from = till - 300 #last 5 minutes
     ActionController::Base.benchmark("Status data read from the server") do
-      status = @client.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
+      status = @client_status.find(:dummy_param, :params => { :start => from.to_i.to_s, :stop => till.to_i.to_s })
     end
     create_data_map status
 #    logger.debug @data_group.inspect
@@ -179,14 +180,25 @@ class StatusController < ApplicationController
     return unless client_permissions
     begin
       level = "ok"
-      if create_data
-        status = limits_reached
-        status = (_("Limits exceeded for %s") % status) unless status.empty?
-        level = "error"
-      else
-        status = _("No data found for showing system status.")
-        level = "warning"
+      status = ""
+      ActionController::Base.benchmark("Status data read from the server") do
+        graphs = @client_graphs.find(:all, :params => { :checklimits => true })
+        graphs.each do |graph|
+          graph.single_graphs.each do |single_graph|
+            single_graph.lines.each do |line|
+              if line.limits.reached == "true"
+                label = single_graph.headline + "/" + line.label
+                if status.empty?
+                  status = _("Limits exceeded for ") + label
+                else
+                  status += "; " + label
+                end
+              end 
+            end    
+          end
+        end
       end
+      level = "error" unless status.empty?
       render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
@@ -233,7 +245,7 @@ class StatusController < ApplicationController
     begin
       ActionController::Base.benchmark("Limits saved on the server") do
         #This is a hack and will be removed when the status service has be replaced by the metric service
-	@client.create( :limits=>limits.to_xml(:root => "limits") ) 
+	@client_status.create( :limits=>limits.to_xml(:root => "limits") ) 
       end
     rescue Exception => ex
       flash[:error] = _("Saving limits failed!")
