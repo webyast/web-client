@@ -18,13 +18,7 @@
     <%= translations[status[:status]] || _("Evaluating available patches") -%>
   </div>
 
-  <div style="float: left; padding-left: 1em; padding-top:10px">
-    <!-- TODO FIXME: put these styles to the stylesheet -->
-    <div style="float: left; width: 150px; text-align: center"><%= status[:progress].to_i -%>%</div>
-    <div style="border-style: solid; border-width: 1px; width: 150px; height: 1.2em;">
-        <div style="background: #66CC00; width: <%= status[:progress].to_i -%>%; height: 1.2em;"/>
-    </div>
-  </div>
+  <%= progress_bar(status[:progress]) -%>
 
   <!-- refresh the status again after 5 seconds -->
   <% javascript_tag do -%>
