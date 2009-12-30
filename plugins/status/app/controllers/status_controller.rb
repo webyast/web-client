@@ -154,26 +154,30 @@ class StatusController < ApplicationController
   def show_summary
     return unless client_permissions
     begin
-      till = params['till']
-      from = params['from']
 
-      till ||= Time.new.to_i
-      from ||= till - 300 #last 5 minutes
-
-      result = create_data(from, till, !params['background'].nil?)
-
-      # is it a background progress?
-      if result.class == Hash
-        status_progress = result.symbolize_keys
-        Rails.logger.debug "Received background status progress: #{status_progress.inspect}"
-
-        respond_to do |format|
-          format.html { render :partial  => 'status_progress', :locals => {:status => status_progress, :from => from, :till => till } }
-          format.json  { render :json => status_progress }
-        end
-
-        return
-      end
+# The background machanism should be moved for @client_graphs cause status will become obsolete.
+#
+#
+#      till = params['till']
+#      from = params['from']
+#
+#      till ||= Time.new.to_i
+#      from ||= till - 300 #last 5 minutes
+#
+#      result = create_data(from, till, !params['background'].nil?)
+#
+#      # is it a background progress?
+#      if result.class == Hash
+#        status_progress = result.symbolize_keys
+#        Rails.logger.debug "Received background status progress: #{status_progress.inspect}"
+#
+#        respond_to do |format|
+#          format.html { render :partial  => 'status_progress', :locals => {:status => status_progress, :from => from, :till => till } }
+#          format.json  { render :json => status_progress }
+#        end
+#
+#        return
+#      end
 
       level = "ok"
       status = ""
