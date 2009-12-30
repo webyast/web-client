@@ -17,15 +17,15 @@ $(document).ready(function() {
   setInterval(refreshLogs, 10000); // refresh every 10 seconds
 });
 
-function initMenu() {
+function initMenuBar() {
   $('#menu ul').hide();
   $('#menu li a').click(
     function() {
-        $(this).next().slideToggle('normal');
+        $(this).next().slideToggle('slow');
       }
     );
   }
-$(document).ready(function() {initMenu();});
+$(document).ready(function() {initMenuBar();});
 
 </script>
 <% end %>
