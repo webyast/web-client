@@ -7,7 +7,7 @@
   <% javascript_tag do -%>
     $(document).ready( function() {
     <%= remote_function(:update => "status_patches",
-      :url => { :controller => :patch_updates, :action => :show_summary }) %>
+	:url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
     });
   <% end -%>
 <% end %>
@@ -16,7 +16,7 @@
   <% javascript_tag do -%>
     $(document).ready( function() {
     <%= remote_function(:update => "status_status",
-      :url => { :controller => :status, :action => :show_summary }) %>
+      :url => { :controller => :status, :action => :show_summary, :background => true }) %>
     });
   <% end -%>
 <% end %>
