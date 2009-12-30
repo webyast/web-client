@@ -19,62 +19,29 @@ class StatusController < ApplicationController
     @permissions = @client_status.permissions
   end
 
-  def limits_reached
-    @limits_list.each {|key, data|
-      next if key == :reached
-      keys = key.split "/"
-      group = keys[1]
-      metric_name = keys[2]
-
-      if @data_group.has_key? group and @data_group[group].has_key? metric_name
-        for value in @data_group[group][metric_name]
-          if not @limits_list[key][:min][0].nil? and value[1] < @limits_list[key][:min][0][1]\
-             or not @limits_list[key][:max][0].nil? and value[1] > @limits_list[key][:max][0][1]
-            if key == "df"
-              @limits_list[:reached] += _("Disk free limits exceeded;")
-            else
-              @limits_list[:reached] += key + ";"
-            end
-            break
+  #
+  # evaluate error string if a limit for a group (CPU,Memory,Disk,...) has been reached
+  #
+  # returns e.g. "Disk/user; Disk/root"
+  #
+  def limits_reached (group)
+    status = ""
+    group.single_graphs.each do |single_graph|
+      single_graph.lines.each do |line|
+        if line.limits.reached == "true"
+          label = group.id + "/" + single_graph.headline 
+          label += "/" + line.label unless line.label.blank?
+          if status.empty?
+            status = label
+          else
+            status += "; " + label
           end
-        end
-      else
-        logger.debug "error: metric not found"
-      end
-    }
-    @limits_list[:reached]
+        end 
+      end    
+    end
+    return status
   end
 
-  def write_data_group(label, group, metric_name)
-    metric_name += "/" + label.name if label.name != "value" #more than one labels of a group
-    values = label.attributes["values"]
-    if values.uniq != ["invalid"] #use only entries which have at least one valid value
-      value_size = values.length
-      divisor = (group == "memory")? 1024*1024 : 1 # take MByte for the value
-      data_list = Array.new
-      value_size.times{|t| data_list << [t,values[t].to_f/divisor]}
-      if group == "df"
-        data_list.reject! {|value| value[1] == 0 } #df returns sometime 0 entries
-        data_list = [[0,0]] if data_list.empty? #it is really 0 :-)
-      end
-      @data_group[group].merge!({metric_name => data_list})
-
-      limits = label.attributes["limits"]
-      if limits
-        @limits_list["/#{group}/#{metric_name}"] = {:min=>Array.new, :max=>Array.new}
-        if label.attributes["limits"] and limits.attributes["min"] #limits.has_key? "min"
-          minimum = limits.attributes["min"].to_f/divisor
-          value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:min] << [i,minimum]}
-        end
-        if label.attributes["limits"] and limits.attributes["max"] #limits.has_key? "min"
-          maximum = limits.attributes["max"].to_f/divisor
-          value_size.times{|i| @limits_list["/#{group}/#{metric_name}"][:max] << [i,maximum]}
-        end
-      end
-    else
-      logger.debug "#{group} #{metric_name} #{label.name} has no valid entry"
-    end 
-  end
 
   def create_data_map(tree)
     tree.attributes["metric"].each{ |metric|
@@ -159,9 +126,11 @@ class StatusController < ApplicationController
       log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
       @logs = log.find(:all) 
       @logs ||= {}
-      flash[:notice] = _("No data found for showing system status.") unless create_data
-      limits_reached
-      logger.debug "limits reached for #{@limits_list[:reached].inspect}"
+      @graphs = @client_graphs.find(:all, :params => { :checklimits => true })
+      @graphs ||= []
+      #sorting graphs via id
+      @graphs.sort! {|x,y| y.id <=> x.id } 
+      flash[:notice] = _("No data found for showing system status.") if @graphs.blank?
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
 	logger.warn error_hash.inspect
@@ -183,22 +152,19 @@ class StatusController < ApplicationController
       status = ""
       ActionController::Base.benchmark("Status data read from the server") do
         graphs = @client_graphs.find(:all, :params => { :checklimits => true })
+        graphs ||= []
         graphs.each do |graph|
-          graph.single_graphs.each do |single_graph|
-            single_graph.lines.each do |line|
-              if line.limits.reached == "true"
-                label = single_graph.headline + "/" + line.label
-                if status.empty?
-                  status = _("Limits exceeded for ") + label
-                else
-                  status += "; " + label
-                end
-              end 
-            end    
+          label = limits_reached(graph)
+          unless label.blank?
+            if status.blank?
+              status = _("Limits exceeded for ") + label
+            else
+              status += "; " + label
+            end
           end
         end
       end
-      level = "error" unless status.empty?
+      level = "error" unless status.blank?
       render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect

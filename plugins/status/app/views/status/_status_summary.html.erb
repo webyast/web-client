@@ -2,7 +2,7 @@
 
 <div class="status_status">
   <% link_to "status" do %>
-    <% if !status.blank? %>
+    <% unless status.blank? %>
       <div class="status-icon <%= level %>"></div>
       <span><%= status %></span>
     <% else %>

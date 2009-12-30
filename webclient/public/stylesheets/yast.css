@@ -144,7 +144,39 @@
   border-color: #000000;
   background: #c2c2c2;
   padding-bottom: 5px;
-}
+  }
+
+  ul#menu, ul#menu ul {
+    list-style-type:none;
+     margin: 0;
+     padding: 0;
+     width: 33em;
+  }
+
+  ul#menu a {
+    display: block;
+    text-decoration: none;	
+  }
+
+  ul#menu li {
+    margin-top: 1px;
+  }
+
+  ul#menu li a {
+    background: #d3d3d3;
+    color: #000000;	
+    padding: 0.5em;
+  }
+
+  ul#menu li a:hover {
+    background: #c2c2c2;
+  }
+
+  ul#menu li ul li a:hover {
+    background: #d3d3d3;
+    border-left: 5px #000000 solid;
+    padding-left: 15px;
+  }
 
 th {
   background: #dddddd;
