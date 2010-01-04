@@ -64,6 +64,14 @@ def test_mix_of_two_models
   assert_equal TEST_STRING,test.arg1
   assert_equal "test",TestModel.collection_name
   assert_equal "test2",Test2Model.collection_name
+  test = TestModel.find :one
+  assert_equal TEST_STRING,test.arg1
+  assert_equal TEST2_STRING,test2.arg1
+  assert_equal TEST_STRING,test.arg1
+  assert_equal "test",TestModel.collection_name
+  assert_equal "test2",Test2Model.collection_name
+  assert_equal :'org.opensuse.yast.modules.test', TestModel.interface
+  assert_equal :'org.opensuse.yast.modules.test2', Test2Model.interface
 end
 
 def test_permissions

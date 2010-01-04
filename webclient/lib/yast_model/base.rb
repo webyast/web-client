@@ -1,12 +1,28 @@
 module YastModel
   module Base
 
+      def connection
+        #check if connection is still valid
+        if self.site.nil? || self.site != URI.parse(YaST::ServiceResource::Session.site) || self.password != YaST::ServiceResource::Session.auth_token
+          set_site
+        end
+        super
+      end
+
       def model_interface(i)
         @interface = i.to_sym
       end
 
+      def interface
+        @interface
+      end
+
       def site
         ret = super
+        Rails.logger.debug "read interface to #{@interface.to_s}"
+        Rails.logger.debug "site is #{ret.to_s} and should be #{YaST::ServiceResource::Session.site}"
+        Rails.logger.debug "pwd is #{password} and should be #{YaST::ServiceResource::Session.auth_token}"
+
         if ret.nil? || ret != URI.parse(YaST::ServiceResource::Session.site) || password != YaST::ServiceResource::Session.auth_token
           Rails.logger.debug "set new site for interface #{@interface}"
           set_site
@@ -21,6 +37,8 @@ module YastModel
         YastModel::Resource.site = "#{self.site}/" #resource has constant prefix to allow introspect
         #FIXME not thread save
         Rails.logger.debug "read interface to #{@interface.to_s}"
+        Rails.logger.debug "set site tot #{self.site}"
+        Rails.logger.debug "set token to #{self.password}"
         resource = YastModel::Resource.find(:all).find { |r| r.interface.to_sym == @interface.to_sym }
         #TODO throw exception if not find
         p, sep, self.collection_name = resource.href.rpartition('/')
