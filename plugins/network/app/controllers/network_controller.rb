@@ -1,11 +1,10 @@
-require 'yast/service_resource'
-
 class NetworkController < ApplicationController
 
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
-  
+
+  private
+
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_network" 
 
@@ -17,34 +16,34 @@ class NetworkController < ApplicationController
 
   # GET /network
   def index
-
-    @ifcs = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", :all
+    @ifcs = Interface.find :all
     @iface = params[:interface]
     unless @iface
       ifc = @ifcs.find {|i| i.bootproto!=nil} || @ifcs[0]
       @iface = ifc.id
     end
 
-    ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", @iface
+    ifc = Interface.find @iface
     return false unless ifc
 
-    hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
+    # TODO use rescue_from "AR::Base not found..."
+    # http://api.rubyonrails.org/classes/ActiveSupport/Rescuable/ClassMethods.html
+    hn = Hostname.find :one
     return false unless hn
 
-    dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
+    dns = Dns.find :one
     return false unless dns
 
-    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
+    rt = Route.find "default"
     return false unless rt
 
+    # Only check permissions for one model, they should be the same
+    # and it is a UI hint only
+    # Can we also remove the resource lookups?
+    @permissions = Interface.permissions
 
-    # FIXME mixed up by multiple load_proxy
-    unless @permissions[:read]
-      flash[:warning] = _("No permissions for network module")
-      redirect_to root_path
-      return false
-    end
- 
+    # FIXME tests for YSRB
+
     @conf_mode = ifc.bootproto
     if @conf_mode == "static"
       ipaddr = ifc.ipaddr
@@ -56,7 +55,6 @@ class NetworkController < ApplicationController
     if ifc.bootproto == "static" && NETMASK_RANGE.include?(@netmask.to_i)
       @netmask = "/"+@netmask
     end    
-#    @netmask = "/"+@netmask if ifc.bootproto == "static" && @netmask.to_i >= 0 && @netmask.to_i <= 32
  
     @name = hn.name
     @domain = hn.domain
@@ -74,13 +72,13 @@ class NetworkController < ApplicationController
   # PUT /users/1.xml
   def update
     dirty = false
-    rt = load_proxy "org.opensuse.yast.modules.yapi.network.routes", "default"
+    rt = Route.find "default"
     return false unless rt
     dirty = true unless rt.via == params["default_route"]
     rt.via = params["default_route"]
     logger.info "dirty after default routing: #{dirty}"
 
-    dns = load_proxy "org.opensuse.yast.modules.yapi.network.dns"
+    dns = Dns.find :one
     return false unless dns
     #compare empty array and nill cause true, so at first test emptyness
     #FIXME repair it when spliting of param is ready
@@ -95,14 +93,14 @@ class NetworkController < ApplicationController
     dns.nameservers = params["nameservers"]#.split
     dns.searches    = params["searchdomains"]#.split
 
-    hn = load_proxy "org.opensuse.yast.modules.yapi.network.hostname"
+    hn = Hostname.find :one
     return false unless hn
     dirty = true unless (hn.name == params["name"] && hn.domain == params["domain"])
     logger.info "dirty after  hostname: #{dirty}"
     hn.name   = params["name"]
     hn.domain = params["domain"]
 
-    ifc = load_proxy "org.opensuse.yast.modules.yapi.network.interfaces", params["interface"]
+    ifc = Interface.find params["interface"]
     return false unless ifc
     dirty = true unless (ifc.bootproto == params["conf_mode"])
     logger.info "dirty after interface config: #{dirty}"
