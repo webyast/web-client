@@ -51,6 +51,10 @@ module YastModel
       end
     end
 
+    def permission_prefix
+      @policy.blank? ?  @interface : @policy
+    end
+
     # Sets new site to model, together with path of interface on target machine and password for user
     # also invalidates old permissions
     def set_site
@@ -68,6 +72,7 @@ module YastModel
       p += '/'
       self.prefix = p
       self.element_name = collection_name
+      @policy = resource.policy
     end
 
     # Overwritten implementation from ActiveResource as it requires site, which
@@ -94,11 +99,11 @@ module YastModel
       return @permissions if @permissions
       YastModel::Permission.site = self.site
       YastModel::Permission.password = self.password
-      permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => @interface }
+      permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }
       @permissions = {}
       permissions.each do |p|
         key = p.id
-        key.slice! "#{@interface}."
+        key.slice! "#{permission_prefix}."
         @permissions[key.to_sym] = p.granted
       end
       @permissions

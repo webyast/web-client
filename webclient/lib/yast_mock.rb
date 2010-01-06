@@ -26,7 +26,7 @@ module ActiveResource
         routes.each do |interface,path|
           response << "<resource><interface>#{interface}</interface><href>#{path}</href>"
           response << (opts[:policy] ? "<policy>#{opts[:policy]}</policy>" : "<policy/>")
-          response << ("<singular type=\"boolean\">" + (opts[:singular].nil? ? "true" : opts[:policy].to_s) + "</singular>")
+          response << ("<singular type=\"boolean\">" + (opts[:singular].nil? ? "true" : opts[:singular].to_s) + "</singular>")
           response << "</resource>\n"
         end
         response << "</resources>"

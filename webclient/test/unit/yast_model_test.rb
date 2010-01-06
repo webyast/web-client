@@ -29,6 +29,8 @@ def setup
     mock.get   "/test2.xml", header, TEST2_RESPONSE, 200
     mock.post   "/test2.xml", header, TEST2_RESPONSE, 200
   end
+  TestModel.set_site #reset site cache
+  Test2Model.set_site
 end
 
 class TestModel < ActiveResource::Base
@@ -73,6 +75,20 @@ end
 
 def test_permissions
   perm = TestModel.permissions
+  assert perm[:synchronize], "permission is not granted #{perm.inspect}"
+end
+
+def test_specified_policy
+  ActiveResource::HttpMock.respond_to do |mock|
+    header = ActiveResource::HttpMock.authentification_header
+    mock.resources({:'org.opensuse.yast.modules.test' => "/test", :'org.opensuse.yast.modules.test2' => "/test2"}, { :policy => "org.perm" })
+    mock.permissions "org.perm", { :synchronize => true }
+    mock.get   "/test.xml", header, TEST_RESPONSE, 200
+    mock.post   "/test.xml", header, TEST_RESPONSE, 200
+  end
+  TestModel.set_site #reset site cache, to reread resources
+  perm = TestModel.permissions
+  assert_equal "org.perm", TestModel.permission_prefix
   assert perm[:synchronize], "permission is not granted #{perm.inspect}"
 end
 
