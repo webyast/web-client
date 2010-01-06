@@ -2,17 +2,17 @@ require 'active_resource/http_mock'
 module ActiveResource
   class HttpMock
     class << self
-      # sets authentification for webyast structure to generate proper
-      # authentification header
-      def set_authentification
+      # sets authentication for webyast structure to generate proper
+      # authentication header
+      def set_authentication
         YaST::ServiceResource::Session.site = "http://localhost"
         YaST::ServiceResource::Session.login = "test"
         YaST::ServiceResource::Session.auth_token = "1234"
       end
 
-      # Gets authentification header which must send request for authentification
+      # Gets authentication header which must send request for authentication
       # to rest-service
-      def authentification_header
+      def authentication_header
         {"Authorization"=>"Basic OjEyMzQ="}
       end
     end
@@ -46,7 +46,7 @@ module ActiveResource
           response << "</permission>"
         end
         response << "</permissions>"
-        get   "/permissions.xml?filter=#{prefix}&user_id=test", HttpMock.authentification_header, response, 200
+        get   "/permissions.xml?filter=#{prefix}&user_id=test", HttpMock.authentication_header, response, 200
       end
     end
 

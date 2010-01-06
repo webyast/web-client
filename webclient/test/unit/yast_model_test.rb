@@ -19,9 +19,9 @@ TEST_STRING = "test"
 TEST2_STRING = "test2"
 
 def setup
-  ActiveResource::HttpMock.set_authentification
+  ActiveResource::HttpMock.set_authentication
   ActiveResource::HttpMock.respond_to do |mock|
-    header = ActiveResource::HttpMock.authentification_header
+    header = ActiveResource::HttpMock.authentication_header
     mock.resources :'org.opensuse.yast.modules.test' => "/test", :'org.opensuse.yast.modules.test2' => "/test2"
     mock.permissions "org.opensuse.yast.modules.test", { :synchronize => true }
     mock.get   "/test.xml", header, TEST_RESPONSE, 200
@@ -80,7 +80,7 @@ end
 
 def test_specified_policy
   ActiveResource::HttpMock.respond_to do |mock|
-    header = ActiveResource::HttpMock.authentification_header
+    header = ActiveResource::HttpMock.authentication_header
     mock.resources({:'org.opensuse.yast.modules.test' => "/test", :'org.opensuse.yast.modules.test2' => "/test2"}, { :policy => "org.perm" })
     mock.permissions "org.perm", { :synchronize => true }
     mock.get   "/test.xml", header, TEST_RESPONSE, 200

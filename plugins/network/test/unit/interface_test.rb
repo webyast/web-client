@@ -14,9 +14,9 @@ class NetworkControllerTest < ActiveSupport::TestCase
     response_ifcs = fixture "ifcs.xml"
     response_eth1 = fixture "ifc.xml"
 
-    ActiveResource::HttpMock.set_authentification
+    ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
-      header = ActiveResource::HttpMock.authentification_header
+      header = ActiveResource::HttpMock.authentication_header
       # this is inadequate, :singular is per resource,
       # and does NOT depend on :policy
       # see yast-rest-service/plugins/network/config/resources/*

@@ -20,9 +20,9 @@ class NetworkControllerTest < ActionController::TestCase
     response_dns = fixture "dns.xml"
     response_rt = fixture "routes_default.xml"
 
-    ActiveResource::HttpMock.set_authentification # ? vs login_required
+    ActiveResource::HttpMock.set_authentication # ? vs login_required
     ActiveResource::HttpMock.respond_to do |mock|
-      header = ActiveResource::HttpMock.authentification_header
+      header = ActiveResource::HttpMock.authentication_header
       # this is inadequate, :singular is per resource,
       # and does NOT depend on :policy
       # see yast-rest-service/plugins/network/config/resources/*

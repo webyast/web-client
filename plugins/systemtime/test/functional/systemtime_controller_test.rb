@@ -14,9 +14,9 @@ class SystemtimeControllerTest < ActionController::TestCase
     @request.session[:account_id] = 1 # defined in fixtures
     response_time = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","success.xml"))
     response_ntp = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
-    ActiveResource::HttpMock.set_authentification
+    ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
-      header = ActiveResource::HttpMock.authentification_header
+      header = ActiveResource::HttpMock.authentication_header
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
