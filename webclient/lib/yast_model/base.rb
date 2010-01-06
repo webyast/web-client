@@ -33,6 +33,12 @@ module YastModel
       super args
     end
 
+    # this is not endless recursion because set_site sets prefix, which overwrittes method prefix
+    def prefix(*args)
+      set_site
+      prefix args
+    end
+
     # Specifies interface for model (webyast rest-service
     # defines interface which implement and path to implementation on site)
     def model_interface(i)

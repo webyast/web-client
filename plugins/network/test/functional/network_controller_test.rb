@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.join(File.dirname(__FILE__),'..','test_helper')
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 require 'mocha'
 require 'yast_mock'
@@ -26,12 +26,12 @@ class NetworkControllerTest < ActionController::TestCase
       # this is inadequate, :singular is per resource,
       # and does NOT depend on :policy
       # see yast-rest-service/plugins/network/config/resources/*
-      mock.resources Hash[
+      mock.resources({
         :"org.opensuse.yast.modules.yapi.network.dns" => "/network/dns",
         :"org.opensuse.yast.modules.yapi.network.hostname" => "/network/hostname",    
         :"org.opensuse.yast.modules.yapi.network.interfaces" => "/network/interfaces",
         :"org.opensuse.yast.modules.yapi.network.routes" => "/network/routes",
-      ]
+        }, { :policy => "org.opensuse.yast.modules.yapi.network" })
       mock.permissions "org.opensuse.yast.modules.yapi.network", { :read => true, :write => true }
       mock.get  "/network/interfaces.xml", header, response_ifcs, 200
 #      mock.post   "/systemtime.xml", header, response_time, 200
