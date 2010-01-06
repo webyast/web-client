@@ -16,6 +16,7 @@ class NetworkControllerTest < ActionController::TestCase
     # stub what the REST is supposed to return
     response_ifcs = fixture "ifcs.xml"
     response_eth1 = fixture "ifc.xml"
+    response_eth2 = fixture "ifc-dhcp.xml"
     response_hn = fixture "hostname.xml"
     response_dns = fixture "dns.xml"
     response_rt = fixture "routes_default.xml"
@@ -34,11 +35,12 @@ class NetworkControllerTest < ActionController::TestCase
         }, { :policy => "org.opensuse.yast.modules.yapi.network" })
       mock.permissions "org.opensuse.yast.modules.yapi.network", { :read => true, :write => true }
       mock.get  "/network/interfaces.xml", header, response_ifcs, 200
-#      mock.post   "/systemtime.xml", header, response_time, 200
       mock.get  "/network/interfaces/eth1.xml", header, response_eth1, 200
+      mock.get  "/network/interfaces/eth2.xml", header, response_eth2, 200
       mock.get  "/network/hostname.xml", header, response_hn, 200
       mock.get  "/network/dns.xml", header, response_dns, 200
       mock.get  "/network/routes/default.xml", header, response_rt, 200
+      # no mock.post, meaning we expect no saves
     end
   end
 
@@ -55,9 +57,8 @@ class NetworkControllerTest < ActionController::TestCase
     assert_not_nil assigns(:name)
   end
 
-  def skip_test_with_dhcp
-    @if_proxy.result["eth1"] = OpenStruct.new("bootproto" => "dhcp")
-    get :index
+  def test_with_dhcp
+    get :index, :interface => "eth2"
     assert_response :success
     assert_valid_markup
     # test just the last assignment, for brevity
@@ -65,12 +66,9 @@ class NetworkControllerTest < ActionController::TestCase
     assert_not_nil assigns(:name)
   end
 
-  def skip_test_dhcp_without_change
-    @if_proxy.result["eth1"] = OpenStruct.new("bootproto" => "dhcp")
-    @if_proxy.expects(:save).never #don't call save if dhcp is not saved
-    post :update, { :interface => "eth1", :conf_mode => "dhcp" }
+  def test_dhcp_without_change
+    post :update, { :interface => "eth2", :conf_mode => "dhcp" }
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :controller => "controlpanel", :action => "index"
   end
-
 end

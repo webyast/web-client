@@ -131,10 +131,6 @@ class NetworkController < ApplicationController
       else
         raise
       end
-    #XXX FIXME don't catch universal exception, it is not user friendly and break testing of update
-    rescue Exception => e
-      flash[:error] = e.message
-      logger.warn e
     end
 
     redirect_success
