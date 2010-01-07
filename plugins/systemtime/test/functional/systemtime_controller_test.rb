@@ -27,6 +27,10 @@ class SystemtimeControllerTest < ActionController::TestCase
     end
   end
 
+  def teardown
+    ActiveResource::HttpMock.reset!
+  end
+
   def test_index
     get :index
     assert_response :success

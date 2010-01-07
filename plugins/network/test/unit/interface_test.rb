@@ -28,6 +28,10 @@ class NetworkControllerTest < ActiveSupport::TestCase
     end
   end
 
+  def teardown
+    ActiveResource::HttpMock.reset!
+  end
+
   def test_find_all
     res = Interface.find :all
     assert res

@@ -33,7 +33,12 @@ module YastModel
       super args
     end
 
-    # this is not endless recursion because set_site sets prefix, which overwrittes method prefix
+    # Overwritten default initial prefix methods
+    #
+    # Note:: this is not endless recursion because set_site sets prefix, which overwrittes method prefix
+    # 
+    # +FIXME+ :: If changing site could change also prefix, this doesn't work.
+    # Then is needed rewrite also prefix= and prefix_source and use lazy loading of variable instead of dynamic changing methods (bad rails idea to do it).
     def prefix(*args)
       set_site
       prefix args

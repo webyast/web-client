@@ -42,6 +42,10 @@ class NetworkControllerTest < ActionController::TestCase
     end
   end
 
+  def teardown
+    ActiveResource::HttpMock.reset!
+  end
+
   def test_should_show_it
     get :index
     assert_response :success
