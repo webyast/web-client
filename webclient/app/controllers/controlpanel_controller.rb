@@ -122,7 +122,7 @@ class ControlpanelController < ApplicationController
       bs = Basesystem.find session
       return false if bs.completed?
       logger.info "start basesystem setup"
-      redirect_to bs.current_step(session)
+      redirect_to bs.current_step
       return true
     end
   end
