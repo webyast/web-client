@@ -1,0 +1,30 @@
+<%= report_error(error, _("A problem occured when loading status information.")) if error %>
+
+<script type="text/javascript">
+
+$.jqplot('<%=graph_id(data[:group_id], data[:graph_id])%>',  [
+<% data[:lines].each do |line| %>
+  <%= line[:values].inspect %>,
+<% end %>
+ ], {
+  stackSeries: true,
+  title: '<%=data[:y_label]%>',
+  legend: {show: true, location: 'ne'},
+  seriesDefaults: {fill:true, showMarker: false},
+  series: [
+    <% data[:lines].each do |line| %>
+      {label: '<%=line[:label]%>'}, 
+    <% end %>
+  ],
+  axes: {
+      xaxis: { renderer:$.jqplot.DateAxisRenderer,
+               tickOptions:{formatString:'%X'},
+               numberTicks:7},
+      yaxis: { autoscale: true,
+               min: 0}
+  }
+});
+
+</script>
+
+

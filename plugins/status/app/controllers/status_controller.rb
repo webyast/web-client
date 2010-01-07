@@ -11,6 +11,7 @@ class StatusController < ApplicationController
   private
   def client_permissions
     @client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
+    @client_metrics = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.metrics')
     @client_graphs = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.graphs')
     unless @client_status && @client_graphs
       flash[:notice] = _("Invalid session, please login again.")
@@ -42,57 +43,38 @@ class StatusController < ApplicationController
     return status
   end
 
-
-  def create_data_map(tree)
-    tree.attributes["metric"].each{ |metric|
-      metric_name = metric.name
-      group = metric.metricgroup
-      @data_group[group] ||= Hash.new
-      interval = metric.interval #TODO: not used yet
-      starttime = metric.starttime
-      case metric.attributes["label"]
-      when YaST::ServiceResource::Proxies::Status::Metric::Label # one label
-        write_data_group(metric.attributes["label"], group, metric_name)
-      when Array # several label
-        metric.attributes["label"].each{ |label|
-          write_data_group(label, group, metric_name)
-      }
-      end
-    }
-  end
-
-  def create_data(from = nil, till = nil, background = false)
+  #
+  # retrieving the data from collectd for a single value like waerden+memory+memory-used
+  # return an array of [[timestamp1,value1], [timestamp2,value2],...]
+  #
+  def get_data(id, column_id, scale = 1, from = nil, till = nil)
     @limits_list = Hash.new
     @limits_list[:reached] = String.new
     @data_group = Hash.new
-    status = []
     
     till ||= Time.new
     from ||= till - 300 #last 5 minutes
-    ActionController::Base.benchmark("Status data read from the server") do
-      stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
-      stat_params[:background] = "true" if background
-      status = @client_status.find(:dummy_param, :params => stat_params )
+    stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
+    status = @client_metrics.find(id, :params => stat_params )
+    ret = Array.new
+
+    case status.attributes["values"]
+      when YaST::ServiceResource::Proxies::Metrics::Values # one entry
+        status.values.value.collect!{|x| x.tr('\"','')} #removing \"
+        status.values.value.size.times{|t| ret << [(status.values.start.to_i + t*status.values.interval.to_i)*1000, status.values.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
+      when Array # several entries
+        status.attributes["values"].each{ |value|
+          if value.column == column_id
+            value.value.collect!{|x| x.tr('\"','')} #removing \"
+            value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f]/scale} # *1000 --> jlpot evalutas MSec for date format
+            break
+          end
+        }
+    else
+      logger.error "requesting collectdid #{id}/#{column_id} not found."
     end
 
-    # this is a background status result
-    return status.attributes if status.attributes.keys.sort == ["progress", "status", "subprogress"]
-
-    create_data_map status
-#    logger.debug @data_group.inspect
-
-    #checking if there is one valid data entry at least
-    found = false
-    @data_group.each do |key, map|
-      map.each do |graph_key, list_value|
-         unless list_value.empty?
-           found = true
-           break
-         end
-      end
-      break if found
-    end
-    found
+    ret
   end
 
 
@@ -102,11 +84,6 @@ class StatusController < ApplicationController
   public
 
   def initialize
-  end
-
-  def edit
-    return unless client_permissions
-    flash[:notice] = _("No data found for showing system status.") unless create_data
   end
 
   def ajax_log_custom
@@ -151,39 +128,16 @@ class StatusController < ApplicationController
     end
   end
 
+  #
+  # AJAX call for showing status overview
+  #
   def show_summary
     return unless client_permissions
     begin
-
-# The background machanism should be moved for @client_graphs cause status will become obsolete.
-#
-#
-#      till = params['till']
-#      from = params['from']
-#
-#      till ||= Time.new.to_i
-#      from ||= till - 300 #last 5 minutes
-#
-#      result = create_data(from, till, !params['background'].nil?)
-#
-#      # is it a background progress?
-#      if result.class == Hash
-#        status_progress = result.symbolize_keys
-#        Rails.logger.debug "Received background status progress: #{status_progress.inspect}"
-#
-#        respond_to do |format|
-#          format.html { render :partial  => 'status_progress', :locals => {:status => status_progress, :from => from, :till => till } }
-#          format.json  { render :json => status_progress }
-#        end
-#
-#        return
-#      end
-
       level = "ok"
       status = ""
-      ActionController::Base.benchmark("Status data read from the server") do
-        graphs = @client_graphs.find(:all, :params => { :checklimits => true })
-        graphs ||= []
+      ActionController::Base.benchmark("Graphs data read from the server") do
+        graphs = @client_graphs.find(:all, :params => { :checklimits => true }) || []  
         graphs.each do |graph|
           label = limits_reached(graph)
           unless label.blank?
@@ -217,6 +171,62 @@ class StatusController < ApplicationController
 	end
     end
   end
+
+  #
+  # AJAX call for showing a single graph
+  #
+  def evaluate_values
+    return unless client_permissions
+    group_id = params[:group_id]
+    graph_id = params[:graph_id]
+    data = Hash.new
+    
+    begin
+      ActionController::Base.benchmark("Graphs data read from the server") do
+        @graph = @client_graphs.find(group_id)
+        available_metrics = @client_metrics.find(:all)
+        data[:y_scale] = @graph.y_scale.to_f
+        data[:y_label] = @graph.y_label
+        data[:graph_id] = graph_id
+        data[:group_id] = group_id
+        data[:lines] = []
+        graph_descriptions = @graph.single_graphs.select{|gr| gr.headline == graph_id} || []
+        if graph_descriptions.size >= 1
+          logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
+          graph_description = graph_descriptions.first
+          data[:cummulated] = graph_description.cummulated
+          graph_description.lines.each do |line|
+            original_metrics = available_metrics.select{|me| me.id[(me.host.size+1)..(me.id.size-1)] == line.metric_id}
+            if original_metrics.size >= 1
+              logger.warn "More than one metrics with the same id found: #{line.metric_id}. --> taking first" if original_metrics.size > 1              
+              original_metric = original_metrics.first
+              single_line = Hash.new
+              single_line[:label] = line.label
+              single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], data[:y_scale])
+              data[:lines] << single_line
+            end
+          end
+        else
+          logger.error "No description for #{group_id}/#{graph_id} found."
+        end
+        if data[:cummulated] == "true" && data[:lines].size > 1
+          #cummulating values
+          for i in 0..data[:lines].size-2
+            data[:lines][i][:values].size.times do |t|
+              data[:lines][i+1][:values][t][1] += data[:lines][i][:values][t][1]
+            end
+          end
+        end
+      end
+      logger.debug "Rendering #{data.inspect}"
+
+      render :partial => "status_graph", :locals => { :data => data, :error => nil }
+      rescue Exception => error
+	logger.warn error.inspect
+        render :partial => "status_graph", :locals => { :data => nil, :error => ClientException.new(error) }
+    end
+  end
+
 
   def save
     return unless client_permissions
