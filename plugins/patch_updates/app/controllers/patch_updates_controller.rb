@@ -33,7 +33,7 @@ class PatchUpdatesController < ApplicationController
     error = nil
     patch_updates = nil    
     begin
-      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
     rescue ActiveResource::ClientError => e
       error = ClientException.new(e)
       patch_updates = nil
@@ -47,10 +47,25 @@ class PatchUpdatesController < ApplicationController
     patches_summary = nil
 
     if patch_updates
-      patches_summary = { :security => 0, :important => 0, :optional => 0}
+      # is it a background progress?
+      if patch_updates.size == 1 && patch_updates.first.respond_to?(:status)
+        bg_stat = patch_updates.first
 
-      [:security, :important, :optional].each do |patch_type|
-        patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
+        patches_status = {:status => bg_stat.status, :progress => bg_stat.progress, :subprogress => bg_stat.subprogress}
+        Rails.logger.debug "Received background patches progress: #{patches_status.inspect}"
+
+        respond_to do |format|
+          format.html { render :partial  => 'patch_progress', :locals => {:status => patches_status, :error => error} }
+          format.json  { render :json => patches_status }
+        end
+
+        return
+      else
+        patches_summary = { :security => 0, :important => 0, :optional => 0}
+
+        [:security, :important, :optional].each do |patch_type|
+          patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
+        end
       end
     else
       erase_redirect_results #reset all redirects

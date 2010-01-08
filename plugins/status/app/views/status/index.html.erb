@@ -1,5 +1,10 @@
 
 <% content_for :head do %>
+
+<script type="text/javascript" charset="utf-8" src="javascripts/plugin/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/plugin/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/plugin/jqplot.canvasTextRenderer.js"></script>
+
 <script type="text/javascript">
 
 function refreshLogs() {
@@ -17,8 +22,20 @@ $(document).ready(function() {
   setInterval(refreshLogs, 10000); // refresh every 10 seconds
 });
 
+function initMenuBar() {
+  $('#menu ul').hide();
+  $('#menu li a').click(
+    function() {
+        $(this).next().slideToggle('slow');
+      }
+    );
+  }
+$(document).ready(function() {initMenuBar();});
+
 </script>
 <% end %>
+
+<%= javascript_include_tag :defaults %>
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
@@ -32,196 +49,55 @@ $(document).ready(function() {
 
 <div id="log-console">
 </div>
+<ul id="menu">
+<% @graphs.each do |group| %>
 
-<% column = 1 %>
-<% @data_group.keys.sort.each do |key| %>
-  <% map = @data_group[key]%>
-  <% if column != 1 %>
-    <br style='clear: both'>
-    <br>
-    <% column = 1 %>
-  <% end %>
-  <% if key == "df" %>
-    <h3><%= _("Disk usage") %></h3>
-  <% else %>
-    <h3><%= key.tr('_',' ').capitalize %></h3>
-  <% end %>
-
-  <% map.keys.sort.each do |graph_key| %>
-    <% list_value = map[graph_key] %>
-    <% if key != "df" || !graph_key.end_with?("used") %>
-      <% graph_id = key + "_" + graph_key.tr('/','_') %>
-      <%= graph(graph_id, 200, 150, column == 4?true:false, @limits_list[:reached].include?("/" + key + "/" + graph_key)&&key=="df") %>
-      <% if column == 4 %>
-        <br>
-        <% column = 1 %>
-      <% else %>
-        <% column += 1 %>
-      <% end %>
+  <li>
+    <% graph_div_id = graph_id(group.id, group.single_graphs.first.headline) %>
+    <% if limits_reached(group) %>
+      <% status_icon = "<div class='status-icon error'></div>" %>
+    <% else %>
+       <% status_icon = "<div class='status-icon ok'></div>" %>
     <% end %>
-  <% end %>
-<% end %>
-<% if column != 1 %>
-  <br style='clear: both'>
-  <br>
-<% end %>
-<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
-<a href="/" class="button"><%=_("Back")%></a>
-</div>
+    <%=link_to_remote status_icon + group.id, :update => graph_div_id,
+      :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
+      :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
+    <ul>
+       <p>
+        <% measurement_id = "measurement_" + group.id %>
+	<%= _("Show last") %> <select name="<%=measurement_id%>" id="<%=measurement_id%>">
+		<option value="5"><%= _("5 Minutes") %></option>
+		<option value="15"><%= _("15 Minutes") %></option>
+		<option value="30"><%= _("30 Minutes") %></option>
+		<option value="60"><%= _("1 Hour") %></option>
+		<option value="360"><%= _("6 Hours") %></option>
+		<option value="720"><%= _("12 Hour") %></option>
+	</select>
+	</p>
+        <%= observe_field(measurement_id,
+            :update => graph_div_id,
+            :frequency => 0.25,
+            :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
+            :complete => evaluate_next_graph(group.id, group.single_graphs, 1 ),
+            :with => "'minutes=' + value" ) %>
 
-<script type="text/javascript">
-
-
-function plotPieGraph (graph_id, graph_title, graph_data ) {
-  $.jqplot(graph_id, [graph_data], {
-      title: graph_title,
-      legend: {
-        show: true
-      },
-      seriesDefaults: {
-        renderer: $.jqplot.PieRenderer,
-        rendererOptions: {
-            sliceMargin: 0,
-            diameter: 100
-        }
-      },
-
-      cursor: {
-        show: false
-      }
-    });
-}
-
-function plotPieGraphError (graph_id, graph_title, graph_data ) {
-  $.jqplot(graph_id, [graph_data], {
-      title: {
-         text: graph_title,
-         textColor: '#FF0000'
-             },
-      legend: {
-        show: true
-      },
-      seriesDefaults: {
-        renderer: $.jqplot.PieRenderer,
-        rendererOptions: {
-            sliceMargin: 0,
-            diameter: 100
-        }
-      },
-
-      cursor: {
-        show: false
-      }
-    });
-}
-
-
-
-function plotLineGraph(graph_id, graph_title, graph_data ) {
-  $.jqplot(graph_id, graph_data, {
-      title: graph_title,
-      axes: {
-        xaxis: {
-         showTicks: false
-        },
-        yaxis: {
-          showTicks: true,
-          min: 0
-        }
-      },
-      series:[{color:'#5FAB78',
-               lineWidth: 1,
-               markerOptions: {
-                 size: 0
-               }
-              },
-              {color:'#E89120',
-               lineWidth: 1,
-               markerOptions: {
-                 size: 0
-               }
-              },
-              {color:'#E89120',
-               lineWidth: 1,
-               markerOptions: {
-                 size: 0
-               }
-              }]
-    });
-}
-
-function plotLineGraphError(graph_id, graph_title, graph_data ) {
-  $.jqplot(graph_id, graph_data, {
-      title: {
-         text: graph_title,
-         textColor: '#FF0000'
-             },
-      grid: {
-         borderColor: '#FF0000'
-            },
-      axes: {
-        xaxis: {
-         showTicks: false,
-         borderColor: '#FF0000'
-        },
-        yaxis: {
-          showTicks: true,
-          min: 0,
-          borderColor: '#FF0000'
-        }
-      },
-      series:[{color:'#FF0000',
-               lineWidth: 1,
-               markerOptions: {
-                 size: 0
-               }
-              },
-              {color:'#E89120',
-               lineWidth: 1,
-               markerOptions: {
-                 size: 0
-               },
-              },
-              {color:'#E89120',
-               lineWidth: 1,
-               markerOptions: {
-                 size: 0
-               },
-              }]
-    });
-}
-
-
-  $(function() {
-    <% @data_group.each do |key, map| %>
-      <% map.each do |graph_key, list_value| %>
-        <% graph_id = key + "_" + graph_key.tr('/','_') %>
-        <% limit_key = "/#{key}/#{graph_key}" %>
-        <% if key != "df" %>
-          $('#' + '<%= graph_id %>').html("");
-          <% if @limits_list.has_key?(limit_key) %>
-            <% if not @limits_list[:reached].blank? and @limits_list[:reached].include?(limit_key) %>
-              plotLineGraphError('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key][:min].inspect %>, <%= @limits_list[limit_key][:max].inspect %>]);
-            <% else %>
-              plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>, <%= @limits_list[limit_key][:min].inspect %>, <%= @limits_list[limit_key][:max].inspect %>]);
-            <% end %>
-          <% else %>
-            plotLineGraph('<%= graph_id %>', '<%= graph_key.tr('/','_').tr('_',' ').capitalize %>', [<%= list_value.inspect %>]);
-          <% end %>
-        <% else %>
-           <% if graph_key.end_with?("free")  %>
-             $('#' + '<%= graph_id %>').html("");
-             <% used_key = graph_key[0..graph_key.length-5] + "used" %>
-             <% if not @limits_list[:reached].blank? and @limits_list[:reached].include?(limit_key) %>
-               plotPieGraphError ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('-','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
-             <% else %>
-               plotPieGraph ('<%= graph_id %>', '<%= graph_key[2..graph_key.length-5].tr('-','/') %>', [["<%= _("free") %>", <%= list_value.last[1] %>], ["<%= _("used") %>", <%= map[used_key].last[1] %>]]);
-             <% end %>
-           <% end %>
+        <% group.single_graphs.each do |single_graph| %>
+          <p>     
+            <h3><%= single_graph.headline %></h3>    
+          </p>
+          <p>         
+            <%= graph(graph_id(group.id, single_graph.headline), 400, 300) %>
+          </p>
         <% end %>
-      <% end %>
-    <% end %>
-
-  });
-</script>
+    </ul>
+  </li>
+<% end %>
+</ul>
+<p>
+<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
+</p>
+<p>
+<a href="/" class="button"><%=_("Back")%></a>
+</p>
+</div>
 

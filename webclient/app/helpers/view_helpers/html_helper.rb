@@ -193,7 +193,22 @@ module ViewHelpers::HtmlHelper
      </script>
 EOF2
   end
-  
+
+  def progress_bar(percent, width = '150px', height = '1.4em')
+    # display only 0-100% range
+    percent = 100 if percent > 100
+    percent = 0 if percent < 0
+
+    html = <<-EOF_PROGRESS
+    <div class="progress_bar">
+      <div class="progress_bar_percent" style="width: #{width}; line-height: #{height}">#{percent.to_i}%</div>
+      <div class="progress_bar_frame" style="width: #{width}; height: #{height};">
+        <div class="progress_bar_progress" style="width: #{percent.to_i}%; height: #{height};"/>
+      </div>
+    </div>
+EOF_PROGRESS
+  end
+
 end
 
 # vim: ft=ruby

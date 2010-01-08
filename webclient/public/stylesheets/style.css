@@ -64,9 +64,10 @@ input {
   color: #666;
   font-size: 1em;
   background: #fcfcfc;
+  width: 32em;
 }
   input[type="text"] {
-    width: 13em;
+    width: 32em;
   }
   input:focus {
     border: 1px solid #69c;
@@ -122,7 +123,7 @@ ul li {
   }
 
 #content {
-  min-height: 600px;
+
   margin-top: 2em;
 }
   #content h2 {
@@ -629,6 +630,9 @@ input {
     margin: 1em;
 }
 
+.example{
+	font-style:italic;
+}
 
 
 /* Error Messages */
@@ -644,3 +648,25 @@ input {
   float: left;
   margin-right: 0.3em;
 }
+
+/* style for progress bars */
+.progress_bar {
+  float: left;
+  padding-left: 1em;
+  padding-top: 8px;
+}
+
+.progress_bar_percent {
+  float: left;
+  text-align: center;
+}
+
+.progress_bar_frame {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.progress_bar_progress{
+  background: #7AD3FF;
+}
+

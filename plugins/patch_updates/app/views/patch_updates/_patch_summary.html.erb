@@ -1,9 +1,9 @@
 <%= report_error(error, error_string) if error %>
 
 <div class="status_patches">
-  <% unless patch %>    
-    <div class="status-icon warning"></div>    
-    <%= _("No information about patches available") %>
+  <% unless patch %>
+      <div class="status-icon warning"></div>
+      <%= _("No information about patches available") %>
   <% else %>
     <% label = [] %>
     <% link_to "patch_updates" do %>
