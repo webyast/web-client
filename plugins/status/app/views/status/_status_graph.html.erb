@@ -7,7 +7,11 @@ $.jqplot('<%=graph_id(data[:group_id], data[:graph_id])%>',  [
   <%= line[:values].inspect %>,
 <% end %>
  ], {
-  stackSeries: true,
+  <% if data[:cummulated] == "true" %>
+    stackSeries: true,
+  <% else %>
+    stackSeries: false,
+  <% end %>
   title: '<%=data[:y_label]%>',
   legend: {show: true, location: 'ne'},
   seriesDefaults: {fill:true, showMarker: false},
@@ -20,8 +24,8 @@ $.jqplot('<%=graph_id(data[:group_id], data[:graph_id])%>',  [
       xaxis: { renderer:$.jqplot.DateAxisRenderer,
                tickOptions:{formatString:'%X'},
                numberTicks:7},
-      yaxis: { autoscale: true,
-               min: 0}
+      yaxis: { min: 0,
+               numberTicks:7}
   }
 });
 

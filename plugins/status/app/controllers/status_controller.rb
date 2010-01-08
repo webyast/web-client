@@ -66,12 +66,16 @@ class StatusController < ApplicationController
         status.attributes["values"].each{ |value|
           if value.column == column_id
             value.value.collect!{|x| x.tr('\"','')} #removing \"
-            value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f]/scale} # *1000 --> jlpot evalutas MSec for date format
+            value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
             break
           end
         }
     else
       logger.error "requesting collectdid #{id}/#{column_id} not found."
+    end
+    #strip zero values at the end of the array
+    while ret.last && ret.last[1] == 0
+      ret.pop
     end
 
     ret
@@ -208,14 +212,6 @@ class StatusController < ApplicationController
           end
         else
           logger.error "No description for #{group_id}/#{graph_id} found."
-        end
-        if data[:cummulated] == "true" && data[:lines].size > 1
-          #cummulating values
-          for i in 0..data[:lines].size-2
-            data[:lines][i][:values].size.times do |t|
-              data[:lines][i+1][:values][t][1] += data[:lines][i][:values][t][1]
-            end
-          end
         end
       end
       logger.debug "Rendering #{data.inspect}"
