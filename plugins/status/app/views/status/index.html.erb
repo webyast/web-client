@@ -35,6 +35,8 @@ $(document).ready(function() {initMenuBar();});
 </script>
 <% end %>
 
+<%= javascript_include_tag :defaults %>
+
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
   <% @logs.each do |log| %>
@@ -62,7 +64,8 @@ $(document).ready(function() {initMenuBar();});
       :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
     <ul>
        <p>
-	<%= _("Show last") %> <select name="measurement">
+        <% measurement_id = "measurement_" + group.id %>
+	<%= _("Show last") %> <select name="<%=measurement_id%>" id="<%=measurement_id%>">
 		<option value="5"><%= _("5 Minutes") %></option>
 		<option value="15"><%= _("15 Minutes") %></option>
 		<option value="30"><%= _("30 Minutes") %></option>
@@ -71,19 +74,25 @@ $(document).ready(function() {initMenuBar();});
 		<option value="720"><%= _("12 Hour") %></option>
 	</select>
 	</p>
+        <%= observe_field(measurement_id,
+            :update => graph_div_id,
+            :frequency => 0.25,
+            :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
+            :complete => evaluate_next_graph(group.id, group.single_graphs, 1 ),
+            :with => "'minutes=' + value" ) %>
+
         <% group.single_graphs.each do |single_graph| %>
           <p>     
             <h3><%= single_graph.headline %></h3>    
           </p>
           <p>         
-            <%= graph(graph_id(group.id, single_graph.headline), 400, 150) %>
+            <%= graph(graph_id(group.id, single_graph.headline), 400, 300) %>
           </p>
         <% end %>
     </ul>
   </li>
 <% end %>
 </ul>
-
 <p>
 <%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 </p>

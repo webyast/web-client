@@ -47,13 +47,11 @@ class StatusController < ApplicationController
   # retrieving the data from collectd for a single value like waerden+memory+memory-used
   # return an array of [[timestamp1,value1], [timestamp2,value2],...]
   #
-  def get_data(id, column_id, scale = 1, from = nil, till = nil)
+  def get_data(id, column_id, from, till, scale = 1)
     @limits_list = Hash.new
     @limits_list[:reached] = String.new
     @data_group = Hash.new
-    
-    till ||= Time.new
-    from ||= till - 300 #last 5 minutes
+
     stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
     status = @client_metrics.find(id, :params => stat_params )
     ret = Array.new
@@ -183,6 +181,12 @@ class StatusController < ApplicationController
     return unless client_permissions
     group_id = params[:group_id]
     graph_id = params[:graph_id]
+    till ||= Time.new
+    if params.has_key? "minutes"
+      from = till -  params[:minutes].to_i*60
+    else
+      from = till -  300 #last 5 minutes
+    end
     data = Hash.new
     
     begin
@@ -194,19 +198,19 @@ class StatusController < ApplicationController
         data[:graph_id] = graph_id
         data[:group_id] = group_id
         data[:lines] = []
-        graph_descriptions = @graph.single_graphs.select{|gr| gr.headline == graph_id} || []
-        if graph_descriptions.size >= 1
+        graph_descriptions = @graph.single_graphs.select{|gr| gr.headline == graph_id}
+        unless graph_descriptions.empty?
           logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
           graph_description = graph_descriptions.first
           data[:cummulated] = graph_description.cummulated
           graph_description.lines.each do |line|
             original_metrics = available_metrics.select{|me| me.id[(me.host.size+1)..(me.id.size-1)] == line.metric_id}
-            if original_metrics.size >= 1
+            unless original_metrics.empty?
               logger.warn "More than one metrics with the same id found: #{line.metric_id}. --> taking first" if original_metrics.size > 1              
               original_metric = original_metrics.first
               single_line = Hash.new
               single_line[:label] = line.label
-              single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], data[:y_scale])
+              single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], from, till, data[:y_scale])
               data[:lines] << single_line
             end
           end
