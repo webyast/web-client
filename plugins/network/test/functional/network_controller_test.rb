@@ -40,7 +40,7 @@ class NetworkControllerTest < ActionController::TestCase
       mock.get  "/network/hostname.xml", header, response_hn, 200
       mock.get  "/network/dns.xml", header, response_dns, 200
       mock.get  "/network/routes/default.xml", header, response_rt, 200
-      # no mock.post, meaning we expect no saves
+      # no mock.post/put, meaning we expect no saves
     end
   end
 
@@ -67,8 +67,10 @@ class NetworkControllerTest < ActionController::TestCase
   end
 
   def test_dhcp_without_change
-    post :update, { :interface => "eth2", :conf_mode => "dhcp" }
+    put :update, { :interface => "eth2", :conf_mode => "dhcp", :default_route => "192.168.1.1", :nameservers => "192.168.1.2 192.168.1.42", :searchdomains => "labs.example.com example.com", :name => "arthur", :domain => "britons" }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "index"
   end
+
+  # TODO also test the case in sample appliance (dhcp-only)
 end

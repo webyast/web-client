@@ -80,15 +80,18 @@ class NetworkController < ApplicationController
 
     dns = Dns.find :one
     return false unless dns
-    #compare empty array and nill cause true, so at first test emptyness
+    # Simply comparing empty array and nil would wrongly mark it dirty,
+    # so at first test emptiness
     #FIXME repair it when spliting of param is ready
     unless (dns.nameservers.empty? && params["nameservers"].blank?)
-      dirty = true unless ( dns.nameservers == params["nameservers"])
+      dirty = true unless dns.nameservers == params["nameservers"].split
     end
     unless (dns.searches.empty? && params["searchdomains"].blank?)
-      dirty = true if (dns.searches == params["searchdomains"])
+      dirty = true unless dns.searches == params["searchdomains"].split
     end
     logger.info "dirty after  dns: #{dirty}"
+    # now the model contains arrays but for saving
+    # they need to be concatenated because we can't serialize them
 # FIXME: params bellow should be arrays    
     dns.nameservers = params["nameservers"]#.split
     dns.searches    = params["searchdomains"]#.split
