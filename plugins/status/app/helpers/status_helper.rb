@@ -14,11 +14,20 @@ module StatusHelper
     return false
   end
 
-  def graph_id group, headline
-    id = group + "_" + headline
-    id = id.dump
+  def graph_id group, headline=nil
+    id = group 
+    id += "_" + headline if headline
+    id.delete!('\"')
     id.tr!(' /','_')
     id
+  end
+
+  def evaluate_next_graph group, single_graphs, index
+    return nil if index+1 > single_graphs.size
+    graph_div_id = graph_id(group, single_graphs[index].headline)
+    remote_function(:update => graph_div_id,
+                    :url => { :action => "evaluate_values", :group_id => group, :graph_id => single_graphs[index].headline},
+                    :complete => evaluate_next_graph(group, single_graphs, index+1))
   end
 
 end

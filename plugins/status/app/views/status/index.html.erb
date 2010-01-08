@@ -1,5 +1,10 @@
 
 <% content_for :head do %>
+
+<script type="text/javascript" charset="utf-8" src="javascripts/plugin/jqplot.categoryAxisRenderer.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/plugin/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" charset="utf-8" src="javascripts/plugin/jqplot.canvasTextRenderer.js"></script>
+
 <script type="text/javascript">
 
 function refreshLogs() {
@@ -44,18 +49,20 @@ $(document).ready(function() {initMenuBar();});
 </div>
 <ul id="menu">
 <% @graphs.each do |group| %>
+
   <li>
-    <a href="#">
+    <% graph_div_id = graph_id(group.id, group.single_graphs.first.headline) %>
     <% if limits_reached(group) %>
-      <div class="status-icon error %>"></div>
+      <% status_icon = "<div class='status-icon error'></div>" %>
     <% else %>
-       <div class="status-icon ok"></div>
+       <% status_icon = "<div class='status-icon ok'></div>" %>
     <% end %>
-    <%= group.id %>
-    </a>
+    <%=link_to_remote status_icon + group.id, :update => graph_div_id,
+      :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
+      :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
     <ul>
        <p>
-	Show last <select name="measurement">
+	<%= _("Show last") %> <select name="measurement">
 		<option value="5"><%= _("5 Minutes") %></option>
 		<option value="15"><%= _("15 Minutes") %></option>
 		<option value="30"><%= _("30 Minutes") %></option>
@@ -69,7 +76,6 @@ $(document).ready(function() {initMenuBar();});
             <h3><%= single_graph.headline %></h3>    
           </p>
           <p>         
-            <% graph_id = group.id + "_" + single_graph.headline %>
             <%= graph(graph_id(group.id, single_graph.headline), 400, 150) %>
           </p>
         <% end %>
