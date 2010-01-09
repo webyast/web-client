@@ -35,6 +35,8 @@ $(document).ready(function() {initMenuBar();});
 </script>
 <% end %>
 
+<%= javascript_include_tag :defaults %>
+
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
   <% @logs.each do |log| %>
@@ -47,43 +49,52 @@ $(document).ready(function() {initMenuBar();});
 
 <div id="log-console">
 </div>
-<ul id="menu">
-<% @graphs.each do |group| %>
-
-  <li>
-    <% graph_div_id = graph_id(group.id, group.single_graphs.first.headline) %>
-    <% if limits_reached(group) %>
-      <% status_icon = "<div class='status-icon error'></div>" %>
-    <% else %>
-       <% status_icon = "<div class='status-icon ok'></div>" %>
-    <% end %>
-    <%=link_to_remote status_icon + group.id, :update => graph_div_id,
-      :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
-      :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
-    <ul>
-       <p>
-	<%= _("Show last") %> <select name="measurement">
+<% if @graphs %>
+  <ul id="menu">
+  <% @graphs.each do |group| %>
+    <li>
+      <% graph_div_id = graph_id(group.id, group.single_graphs.first.headline) %>
+      <% if limits_reached(group) %>
+        <% status_icon = "<div class='status-icon error'></div>" %>
+      <% else %>
+         <% status_icon = "<div class='status-icon ok'></div>" %>
+      <% end %>
+      <%=link_to_remote status_icon + group.id, :update => graph_div_id,
+        :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
+        :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
+      <ul>
+         <p>
+          <% measurement_id = "measurement_" + group.id %>
+          <%= _("Show last") %> <select name="<%=measurement_id%>" id="<%=measurement_id%>">
 		<option value="5"><%= _("5 Minutes") %></option>
 		<option value="15"><%= _("15 Minutes") %></option>
 		<option value="30"><%= _("30 Minutes") %></option>
 		<option value="60"><%= _("1 Hour") %></option>
 		<option value="360"><%= _("6 Hours") %></option>
-		<option value="720"><%= _("12 Hour") %></option>
-	</select>
-	</p>
-        <% group.single_graphs.each do |single_graph| %>
-          <p>     
-            <h3><%= single_graph.headline %></h3>    
+		<option value="720"><%= _("12 Hours") %></option>
+          </select>
           </p>
-          <p>         
-            <%= graph(graph_id(group.id, single_graph.headline), 400, 150) %>
-          </p>
-        <% end %>
-    </ul>
-  </li>
-<% end %>
-</ul>
+          <%= observe_field(measurement_id,
+            :update => graph_div_id,
+            :frequency => 0.25,
+            :loading => "$('#progress').show()",
+            :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
+            :complete => evaluate_next_graph(group.id, group.single_graphs, 1 ),
+            :with => "'minutes=' + value" ) %>
 
+          <% group.single_graphs.each do |single_graph| %>
+            <p>     
+              <h3><%= single_graph.headline %></h3>    
+            </p>
+            <p>         
+              <%= graph(graph_id(group.id, single_graph.headline), 400, 300) %>
+            </p>
+          <% end %>
+      </ul>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
 <p>
 <%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 </p>

@@ -10,14 +10,14 @@ class StatusController < ApplicationController
 
   private
   def client_permissions
-    @client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
     @client_metrics = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.metrics')
     @client_graphs = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.graphs')
-    unless @client_status && @client_graphs
+    client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
+    unless @client_metrics && @client_graphs && client_status
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
-    @permissions = @client_status.permissions
+    @permissions = client_status.permissions
   end
 
   #
@@ -47,32 +47,27 @@ class StatusController < ApplicationController
   # retrieving the data from collectd for a single value like waerden+memory+memory-used
   # return an array of [[timestamp1,value1], [timestamp2,value2],...]
   #
-  def get_data(id, column_id, scale = 1, from = nil, till = nil)
+  def get_data(id, column_id, from, till, scale = 1)
     @limits_list = Hash.new
     @limits_list[:reached] = String.new
     @data_group = Hash.new
-    
-    till ||= Time.new
-    from ||= till - 300 #last 5 minutes
+
     stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
     status = @client_metrics.find(id, :params => stat_params )
     ret = Array.new
-
-    case status.attributes["values"]
-      when YaST::ServiceResource::Proxies::Metrics::Values # one entry
-        status.values.value.collect!{|x| x.tr('\"','')} #removing \"
-        status.values.value.size.times{|t| ret << [(status.values.start.to_i + t*status.values.interval.to_i)*1000, status.values.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
-      when Array # several entries
-        status.attributes["values"].each{ |value|
-          if value.column == column_id
-            value.value.collect!{|x| x.tr('\"','')} #removing \"
-            value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
-            break
-          end
-        }
-    else
-      logger.error "requesting collectdid #{id}/#{column_id} not found."
+    if status.attributes["value"].is_a? Array
+      status.attributes["value"].each{ |value|
+        if value.column == column_id
+          value.value.collect!{|x| x.tr('\"','')} #removing \"
+          value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
+          break
+        end
+      }
+    else #only one value
+      status.value.value.collect!{|x| x.tr('\"','')} #removing \"
+      status.value.value.size.times{|t| ret << [(status.value.start.to_i + t*status.value.interval.to_i)*1000, status.value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
     end
+
     #strip zero values at the end of the array
     while ret.last && ret.last[1] == 0
       ret.pop
@@ -108,7 +103,7 @@ class StatusController < ApplicationController
   end
   
   def index
-    return unless client_permissions
+    client_permissions
     begin
       log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
       @logs = log.find(:all) 
@@ -136,7 +131,7 @@ class StatusController < ApplicationController
   # AJAX call for showing status overview
   #
   def show_summary
-    return unless client_permissions
+    client_permissions
     begin
       level = "ok"
       status = ""
@@ -180,34 +175,62 @@ class StatusController < ApplicationController
   # AJAX call for showing a single graph
   #
   def evaluate_values
-    return unless client_permissions
+    client_permissions
     group_id = params[:group_id]
     graph_id = params[:graph_id]
+    till ||= Time.new
+    if params.has_key? "minutes"
+      from = till -  params[:minutes].to_i*60
+    else
+      from = till -  300 #last 5 minutes
+    end
     data = Hash.new
     
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
-        @graph = @client_graphs.find(group_id)
+        graph = @client_graphs.find(group_id)
         available_metrics = @client_metrics.find(:all)
-        data[:y_scale] = @graph.y_scale.to_f
-        data[:y_label] = @graph.y_label
+        data[:y_scale] = graph.y_scale.to_f
+        data[:y_label] = graph.y_label
         data[:graph_id] = graph_id
         data[:group_id] = group_id
         data[:lines] = []
-        graph_descriptions = @graph.single_graphs.select{|gr| gr.headline == graph_id} || []
-        if graph_descriptions.size >= 1
+        data[:limits] = []
+        graph_descriptions = graph.single_graphs.select{|gr| gr.headline == graph_id}
+        unless graph_descriptions.empty?
           logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
           graph_description = graph_descriptions.first
           data[:cummulated] = graph_description.cummulated
           graph_description.lines.each do |line|
             original_metrics = available_metrics.select{|me| me.id[(me.host.size+1)..(me.id.size-1)] == line.metric_id}
-            if original_metrics.size >= 1
+            unless original_metrics.empty?
               logger.warn "More than one metrics with the same id found: #{line.metric_id}. --> taking first" if original_metrics.size > 1              
               original_metric = original_metrics.first
               single_line = Hash.new
               single_line[:label] = line.label
-              single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], data[:y_scale])
+              single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], from, till, data[:y_scale])
               data[:lines] << single_line
+
+              #checking limit max
+              if line.limits.max.to_i > 0
+                limit_line = []
+                limit_exceeded = false
+                single_line[:values].each do |entry|
+                  limit_exceeded = true if entry[1] > line.limits.max.to_i
+                  limit_line << [entry[0],line.limits.max.to_i]
+                end
+                data[:limits] << {:exceeded => limit_exceeded, :values => limit_line}
+              end
+              #checking limit min
+              if line.limits.min.to_i > 0
+                limit_line = []
+                limit_exceeded = false
+                single_line[:values].each do |entry|
+                  limit_exceeded = true if entry[1] < line.limits.min.to_i
+                  limit_line << [entry[0],line.limits.min.to_i]
+                end
+                data[:limits] << {:exceeded => limit_exceeded, :values => limit_line}
+              end
             end
           end
         else
@@ -223,9 +246,15 @@ class StatusController < ApplicationController
     end
   end
 
+  def edit
+    client_permissions
+    @graphs = @client_graphs.find(:all)
+    #sorting graphs via id
+    @graphs.sort! {|x,y| y.id <=> x.id } 
+  end
 
   def save
-    return unless client_permissions
+    client_permissions
     limits = Hash.new
     params.each_pair{|key, value|
       slizes = key.split "/"
@@ -248,7 +277,7 @@ class StatusController < ApplicationController
     begin
       ActionController::Base.benchmark("Limits saved on the server") do
         #This is a hack and will be removed when the status service has be replaced by the metric service
-	@client_status.create( :limits=>limits.to_xml(:root => "limits") ) 
+#	@client_status.create( :limits=>limits.to_xml(:root => "limits") ) 
       end
     rescue Exception => ex
       flash[:error] = _("Saving limits failed!")

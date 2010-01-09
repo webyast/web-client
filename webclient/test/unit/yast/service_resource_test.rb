@@ -15,6 +15,7 @@ class YaSTServiceResourceBaseTest < ActiveSupport::TestCase
     # simulate we are loggedin
     YaST::ServiceResource::Session.site = "http://localhost:8080"
     YaST::ServiceResource::Session.login = "linus"
+    YaST::ServiceResource::Session.auth_token = nil
     # first define the resources the server would return
     # we have a resource /foos and a singleton /master
     @resources_response = <<EOF
@@ -64,7 +65,6 @@ EOF
     @foo_response = "<foo><bar>Bye</bar></foo>"
     @master_response = "<master><name>He-Man</name></master>"
     # simulate that we are logged to a service
-    YaST::ServiceResource::Session.site = "http://localhost:8080"
   end
 
   def teardown

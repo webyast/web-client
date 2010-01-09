@@ -11,40 +11,21 @@ require 'systemtime'
 class SystemtimeController < ApplicationController
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
 
   #helpers
   private
-  # Fills @+valid+ field that represents valid regions with informations from
-  # @+timezone+ field.
-  def fill_valid_timezones
-    @valid = @@timezones.collect { |region| region.name }
-  end
-
-  # Fills current region name in field @+region+. Requires filled @+timezones+
-  # and @+timezone+ fields
-  # throws:: Exception if current timezone is not in any known region. @+region+
-  # field in this case is +nil+.
-  def fill_current_region   
-    @region = @@timezones.find { |region|
-      region.entries.find { |entry| entry.id==@timezone } }
-    raise _("Unknown timezone %s on host") % @timezone unless @region
-  end
-
-    def clear_time(proxy)
-    proxy.time = ""
-    proxy.date = ""
-  end
-
   def available_ntp
     begin
-      ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
+      unless Ntp.permissions[:available] && Ntp.permissions[:synchronize]
+        logger.info "ntp doesn't have permissions available :  #{Ntp.permissions[:available]} synchronize: #{Ntp.permissions[:synchronize]}"
+        return false
+      end
+      ntp = Ntp.find :one
     rescue Exception => e #available call, so don't show anything, just log
       logger.warn e
       return false
     end
-    return false unless ntp
-    return ntp.respond_to? :synchronize
+    return ntp.available?
   end
 
   public
@@ -64,33 +45,9 @@ class SystemtimeController < ApplicationController
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
   def index
-    @ntp = available_ntp
-    systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
-
-    unless systemtime      
-      return false
-    end
-
-    unless @permissions[:read]
-      logger.debug "No permissions for time module"
-      flash[:warning] = _("No permissions for time module")
-      redirect_to root_path
-      return false
-    end
-        
-    @@timezones = systemtime.timezones
-    @timezone = systemtime.timezone
-    @utcstatus = systemtime.utcstatus
-    @time = systemtime.time
-    @date = systemtime.date
-    fill_valid_timezones
-    begin
-      fill_current_region
-    rescue Exception => e
-      flash[:warning] = e.message
-      logger.warn e
-      redirect_to root_path
-    end
+    @ntp_available = available_ntp
+    @stime = Systemtime.find :one
+    @permissions = Systemtime.permissions
   end
 
   # Update time handler. Sets to backend new timezone and time.
@@ -98,20 +55,16 @@ class SystemtimeController < ApplicationController
   # still shows problems. Now it invalidate session for logged user.If
   # everything goes fine it redirect to index
   def update
-    t = load_proxy 'org.opensuse.yast.modules.yapi.time'
-
-    return false unless t
-
-    fill_proxy_with_timezone t, params, t.timezones
-    clear_time t #do nothing
+    t = Systemtime.find :one
+    t.load_timezone params
+    t.clear_time #do not set time by default
     case params[:timeconfig]
     when "manual"
-      fill_proxy_with_time t,params
+      t.load_time params
     when "ntp_sync"
-      ntp = load_proxy 'org.opensuse.yast.modules.yapi.ntp'
-      return false unless ntp      
-      ntp.synchronize = true
-      ntp.synchronize_utc = (t.utcstatus=="UTC")
+      ntp = Ntp.find :one
+      ntp.actions.synchronize = true
+      ntp.actions.synchronize_utc = (t.utcstatus=="UTC")
       begin 
         ntp.save #FIXME check return value
       rescue Timeout::Error => e
@@ -122,18 +75,17 @@ class SystemtimeController < ApplicationController
     else
       logger.error "Unknown value for timeconfig #{params[:timeconfig]}"
     end
-    
 
     t.timezones = [] #save bandwitch
 
     begin
-      t.save
+      t.save #TODO check return value
       flash[:notice] = _('Time settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
       log.debug "Time moved to future"
       flash[:notice] = _('Time settings have been written.')
-    end    
+    end
 
     redirect_success
   end
@@ -142,24 +94,16 @@ class SystemtimeController < ApplicationController
   #AJAX function that renders new timezones for selected region. Expected
   # initialized values from index call.
   def timezones_for_region
-    if @@timezones.empty?
-      # since while calling this function there is different instance of the class
-      # than when calling index, @@timezones were empty; reinitialize them
-      # possible FIXME: how does it increase the amount of data transferred?
-      systemtime = load_proxy 'org.opensuse.yast.modules.yapi.time'
-  
-      unless systemtime
-        return false  #possible FIXME: is returnign false for AJAX correct?
-      end
+    #FIXME do not use AJAX use java script instead as reload of data is not needed
+    # since while calling this function there is different instance of the class
+    # than when calling index, @@timezones were empty; reinitialize them
+    # possible FIXME: how does it increase the amount of data transferred?
+    systemtime = Systemtime.find :one
 
-      @@timezones = systemtime.timezones
-    end
+    timezones = systemtime.timezones
 
-    region = @@timezones.find { |r| r.name == params[:value] } #possible FIXME later it gets class, not a string
-    
-    unless region
-      return false; #possible FIXME: is returnign false for AJAX correct?
-    end
+    region = timezones.find { |r| r.name == params[:value] } #possible FIXME later it gets class, not a string
+    return false unless region #possible FIXME: is returnign false for AJAX correct?
 
     render(:partial => 'timezones',
       :locals => {:region => region, :default => region.central,

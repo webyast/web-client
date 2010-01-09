@@ -2,32 +2,47 @@
 
 <script type="text/javascript">
 
-$.jqplot('<%=graph_id(data[:group_id], data[:graph_id])%>',  [
-<% data[:lines].each do |line| %>
-  <%= line[:values].inspect %>,
-<% end %>
- ], {
-  <% if data[:cummulated] == "true" %>
-    stackSeries: true,
-  <% else %>
-    stackSeries: false,
+<% if data %>
+  $.jqplot('<%=graph_id(data[:group_id], data[:graph_id])%>',  [
+  <% data[:lines].each do |line| %>
+    <%= line[:values].inspect %>,
   <% end %>
-  title: '<%=data[:y_label]%>',
-  legend: {show: true, location: 'ne'},
-  seriesDefaults: {fill:true, showMarker: false},
-  series: [
-    <% data[:lines].each do |line| %>
-      {label: '<%=line[:label]%>'}, 
+  <% data[:limits].each do |line| %>
+    <%= line[:values].inspect %>,
+  <% end %>
+   ], {
+    <% if data[:cummulated] == "true" %>
+      stackSeries: true,
+    <% else %>
+      stackSeries: false,
     <% end %>
-  ],
-  axes: {
-      xaxis: { renderer:$.jqplot.DateAxisRenderer,
-               tickOptions:{formatString:'%X'},
-               numberTicks:7},
-      yaxis: { min: 0,
-               numberTicks:7}
-  }
-});
+    title: '<%=data[:y_label]%>',
+    legend: {show: true, location: 'ne'},
+    seriesDefaults: {fill:true, showMarker: false},
+    series: [
+      <% data[:lines].each do |line| %>
+        {label: '<%=line[:label]%>'}, 
+      <% end %>
+      <% data[:limits].each do |line| %>
+        {fill:false, 
+         <% if line[:exceeded] %>
+           color:'#FF0000',
+         <% else %>
+           color:'#5FAB78',
+         <% end %>
+         lineWidth: 1,
+         label: '<%= _("limit") %>'},
+      <% end %>
+    ],
+    axes: {
+        xaxis: { renderer:$.jqplot.DateAxisRenderer,
+                 tickOptions:{formatString:'%X'},
+                 numberTicks:7},
+        yaxis: { min: 0,
+                 numberTicks:7}
+    }
+  });
+<% end %>
 
 </script>
 

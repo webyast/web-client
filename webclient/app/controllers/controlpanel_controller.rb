@@ -48,35 +48,23 @@ class ControlpanelController < ApplicationController
 
   # nextstep and backstep expect, that wizard session variables are set
   def ensure_wizard
-    if !Basesystem.in_process?(session)
+    if !Basesystem.new.load_from_session(session).in_process?
        redirect_to "/controlpanel"
     end
   end
 
 
   def nextstep
-    Basesystem.next_step session
-    unless Basesystem.done? session
-      redirect_to Basesystem::current_target(session)
-    else
-      proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
-      basesystem = proxy.find
-      # this is just for saving network bandwidth, the steps list will not be saved
-      basesystem.steps = []
-      basesystem.finish = true
-      basesystem.save
-      redirect_to "/controlpanel"
-    end    
+    redirect_to Basesystem.new.load_from_session(session).next_step
   end
 
   def backstep
-    Basesystem.back_step session
-    redirect_to Basesystem.current_target( session)
+    redirect_to Basesystem.new.load_from_session(session).back_step
   end
 
   # when triggered by button/link from basesystem, shows current module from session
   def thisstep
-    redirect_to Basesystem.current_target( session)
+    redirect_to Basesystem.new.load_from_session(session).current_step
   end
 
   protected
@@ -123,21 +111,18 @@ class ControlpanelController < ApplicationController
   # and if it should, then also redirects to that module.
   # TODO check if controller from config exists
   def need_redirect
-    if Basesystem.initialized?(session)
+    bs = Basesystem.new.load_from_session(session)
+    if bs.initialized?
       # session variable is used to find out, if basic system module is needed
-      return false if Basesystem.done? session
+      return false if Bs.completed?
       # error happen during basesystem, so show this page (prevent endless loop bnc#554989) 
       render :action => "basesystem"
       return true
     else
-      proxy = YaST::ServiceResource.proxy_for 'org.opensuse.yast.modules.basesystem'
-      return false unless proxy
-      basesystem = proxy.find
-      return false unless basesystem
-      Basesystem.initialize(basesystem,session)
-      return false if Basesystem::done? session
+      bs = Basesystem.find session
+      return false if bs.completed?
       logger.info "start basesystem setup"
-      redirect_to Basesystem.current_target(session)
+      redirect_to bs.current_step
       return true
     end
   end

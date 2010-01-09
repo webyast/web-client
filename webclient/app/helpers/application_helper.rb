@@ -7,7 +7,7 @@ module ApplicationHelper
   # Example:
   #   <%= form_send_buttons :disabled => write_disabled %>
   def form_send_buttons (send_options={})
-    ret = Basesystem.first_step?(session)?"":(form_back_button+form_str_spacer)
+    ret = Basesystem.new.load_from_session(session).first_step? ? "":(form_back_button+form_str_spacer)
     ret + form_next_button(send_options)
   end
 
@@ -16,7 +16,8 @@ module ApplicationHelper
   end
 
   def form_back_button
-    if Basesystem.done? session 
+    bs = Basesystem.new.load_from_session(session)
+    if bs.completed?
       link_to _("Cancel"), :controller => "controlpanel"
     else
       link_to "Back", :controller => "controlpanel", :action => "backstep"
@@ -24,9 +25,10 @@ module ApplicationHelper
   end
 
   def form_next_button(send_options={})
+    bs = Basesystem.new.load_from_session(session)
     label = _("Next")
-    label = _("Save") if Basesystem.done?(session)
-    label = _("Finish") if Basesystem.last_step?(session)
+    label = _("Save") if bs.completed?
+    label = _("Finish") if bs.last_step?
     submit_tag label,send_options
   end
 end
