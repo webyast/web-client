@@ -191,14 +191,14 @@ class StatusController < ApplicationController
     
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
-        @graph = @client_graphs.find(group_id)
+        graph = @client_graphs.find(group_id)
         available_metrics = @client_metrics.find(:all)
-        data[:y_scale] = @graph.y_scale.to_f
-        data[:y_label] = @graph.y_label
+        data[:y_scale] = graph.y_scale.to_f
+        data[:y_label] = graph.y_label
         data[:graph_id] = graph_id
         data[:group_id] = group_id
         data[:lines] = []
-        graph_descriptions = @graph.single_graphs.select{|gr| gr.headline == graph_id}
+        graph_descriptions = graph.single_graphs.select{|gr| gr.headline == graph_id}
         unless graph_descriptions.empty?
           logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
           graph_description = graph_descriptions.first
