@@ -77,6 +77,7 @@ $(document).ready(function() {initMenuBar();});
           <%= observe_field(measurement_id,
             :update => graph_div_id,
             :frequency => 0.25,
+            :loading => "$('#progress').show()",
             :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
             :complete => evaluate_next_graph(group.id, group.single_graphs, 1 ),
             :with => "'minutes=' + value" ) %>
