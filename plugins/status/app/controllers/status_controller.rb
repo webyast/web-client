@@ -55,22 +55,19 @@ class StatusController < ApplicationController
     stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
     status = @client_metrics.find(id, :params => stat_params )
     ret = Array.new
-
-    case status.attributes["values"]
-      when YaST::ServiceResource::Proxies::Metrics::Values # one entry
-        status.values.value.collect!{|x| x.tr('\"','')} #removing \"
-        status.values.value.size.times{|t| ret << [(status.values.start.to_i + t*status.values.interval.to_i)*1000, status.values.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
-      when Array # several entries
-        status.attributes["values"].each{ |value|
-          if value.column == column_id
-            value.value.collect!{|x| x.tr('\"','')} #removing \"
-            value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
-            break
-          end
-        }
-    else
-      logger.error "requesting collectdid #{id}/#{column_id} not found."
+    if status.attributes["value"].is_a? Array
+      status.attributes["value"].each{ |value|
+        if value.column == column_id
+          value.value.collect!{|x| x.tr('\"','')} #removing \"
+          value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
+          break
+        end
+      }
+    else #only one value
+      status.value.value.collect!{|x| x.tr('\"','')} #removing \"
+      status.value.value.size.times{|t| ret << [(status.value.start.to_i + t*status.value.interval.to_i)*1000, status.value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
     end
+
     #strip zero values at the end of the array
     while ret.last && ret.last[1] == 0
       ret.pop
