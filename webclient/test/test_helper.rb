@@ -3,6 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
 class ActiveSupport::TestCase
+  def load_xml_response(file)
+    IO.read(File.join(File.dirname(__FILE__), "fixtures", file))
+  end
+
   require File.dirname(__FILE__) + "/authenticated_test_helper.rb"
   include AuthenticatedTestHelper
   # Transactional fixtures accelerate your tests by wrapping each test method

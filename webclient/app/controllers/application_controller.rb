@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_success
     logger.debug session.inspect
-    if Basesystem::in_process?(session)
+    if Basesystem.new.load_from_session(session).in_process?
       logger.debug "wizard redirect DONE"
       redirect_to :controller => "controlpanel", :action => "nextstep"
     else
