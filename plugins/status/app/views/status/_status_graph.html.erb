@@ -7,6 +7,9 @@
   <% data[:lines].each do |line| %>
     <%= line[:values].inspect %>,
   <% end %>
+  <% data[:limits].each do |line| %>
+    <%= line[:values].inspect %>,
+  <% end %>
    ], {
     <% if data[:cummulated] == "true" %>
       stackSeries: true,
@@ -19,6 +22,16 @@
     series: [
       <% data[:lines].each do |line| %>
         {label: '<%=line[:label]%>'}, 
+      <% end %>
+      <% data[:limits].each do |line| %>
+        {fill:false, 
+         <% if line[:exceeded] %>
+           color:'#FF0000',
+         <% else %>
+           color:'#5FAB78',
+         <% end %>
+         lineWidth: 1,
+         label: '<%= _("limit") %>'},
       <% end %>
     ],
     axes: {

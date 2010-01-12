@@ -195,6 +195,7 @@ class StatusController < ApplicationController
         data[:graph_id] = graph_id
         data[:group_id] = group_id
         data[:lines] = []
+        data[:limits] = []
         graph_descriptions = graph.single_graphs.select{|gr| gr.headline == graph_id}
         unless graph_descriptions.empty?
           logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
@@ -209,6 +210,27 @@ class StatusController < ApplicationController
               single_line[:label] = line.label
               single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], from, till, data[:y_scale])
               data[:lines] << single_line
+
+              #checking limit max
+              if line.limits.max.to_i > 0
+                limit_line = []
+                limit_exceeded = false
+                single_line[:values].each do |entry|
+                  limit_exceeded = true if entry[1] > line.limits.max.to_i
+                  limit_line << [entry[0],line.limits.max.to_i]
+                end
+                data[:limits] << {:exceeded => limit_exceeded, :values => limit_line}
+              end
+              #checking limit min
+              if line.limits.min.to_i > 0
+                limit_line = []
+                limit_exceeded = false
+                single_line[:values].each do |entry|
+                  limit_exceeded = true if entry[1] < line.limits.min.to_i
+                  limit_line << [entry[0],line.limits.min.to_i]
+                end
+                data[:limits] << {:exceeded => limit_exceeded, :values => limit_line}
+              end
             end
           end
         else
