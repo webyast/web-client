@@ -1,41 +1,58 @@
-<% disabled = ! @permissions[:writelimits] %>
-<h1><%=_("Configure Status Limits")%></h1>
+<% write_disabled = !true %>
 
-<% form_tag '/status/save' do %>
-<table class="list">
-  <tr>
-    <th width=350><%=_("Status Path")%></th>
-    <th width=100><%=_("Minimum Value")%></th>
-    <th width=100><%=_("Maximum Value") %></th>
-  </tr>
+<% content_for :head do %>
+   <%= javascript_include_tag :defaults %>
+   <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+<% end %>
 
-  <% @data_group.each do |key, map| %>
-    <% map.each do |graph_key, list_value| %>
-      <% if key != "df" || !graph_key.end_with?("used") %>
-        <tr>
-        <% limit_key = "/#{key}/#{graph_key}" %>
-        <td><%= limit_key %></td>
+<div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
+<div class="plugin-content grid_12">
+<h2><%= _("Settings") %></h2>
 
-        <% if  @limits_list.has_key?(limit_key)  %>
-          <td>
-            <input name=<%= limit_key+"/min" %> type="text" size="10" maxlength="15" value=<%= @limits_list[limit_key][:min][0][1] %>>
-          </td>
-          <td>
-            <input name=<%= limit_key+"/max" %> type="text" size="10" maxlength="15" value=<%= @limits_list[limit_key][:max][0][1] %>>
-          </td>
-        <% else %>
-          <td>
-            <input name=<%= limit_key+"/min" %> type="text" size="10" maxlength="15" value="">
-          </td>
-          <td>
-            <input name=<%= limit_key+"/max" %> type="text" size="10" maxlength="15" value="">
-          </td>
-        <% end %>
-        </tr>
-      <% end %>
-    <% end %>
+<% form_tag( {:action => :save} , {:class => 'tab-form'} ) do %>
+  <ul class="tab-nav">
+    <!-- javascript adds tabs here -->
+  </ul>
+
+  <% @graphs.each do |group| %>
+  
+    <fieldset id=<%= group.id %> class="ui-tab">
+      <legend><%= group.id %></legend>    
+      
+        <br>	
+        <p>Alarm, if</p>
+        <p>
+        <div class="table">
+        <table class="list">
+          <% group.single_graphs.each do |single_graph| %>
+            <% single_graph.lines.each do |line| %>
+             <tr>
+
+               <td width="180">
+                 <%= "#{single_graph.headline} / #{line.label}  " %>
+               </td>
+               <td width="60">
+                 <select name="measurement">
+                    <option value="0">undercuts</option>
+                    <option value="1">exceeds</option>
+                 </select>
+               </td>
+               <td width="10">
+                 <input name="" type="text"> 
+               </td>
+               <td>
+                 <%= "#{group.y_label}" %>
+               </td>
+             </tr>
+            <% end %>
+          <% end %>
+        </table>
+        </div>
+    </fieldset>
   <% end %>
-</table>
-<%= form_send_buttons :disabled => disabled, :class => "button" %>
-<% end -%>
 
+  <p>
+    <%= form_send_buttons :disabled => write_disabled %>
+  </p>
+<% end %>
+</div>

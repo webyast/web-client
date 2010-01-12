@@ -246,6 +246,12 @@ class StatusController < ApplicationController
     end
   end
 
+  def edit
+    return unless client_permissions
+    @graphs = @client_graphs.find(:all)
+    #sorting graphs via id
+    @graphs.sort! {|x,y| y.id <=> x.id } 
+  end
 
   def save
     return unless client_permissions
