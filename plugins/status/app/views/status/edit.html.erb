@@ -17,54 +17,37 @@
   <% @graphs.each do |group| %>
     <fieldset id=<%= group.id %> class="ui-tab">
       <legend><%= group.id %></legend>    
-        <br>	
-        <p>Alarm, if</p>
-        <p>
-        <div class="table">
-        <table class="list">
-          <% group.single_graphs.each do |single_graph| %>
-            <% if group.single_graphs.size > 1 %>
-              <tr>
-                <td width="180">
-                   <b><%= "#{single_graph.headline}" %></b>
-                </td>
-              <tr>
-            <% end %>
-            <% single_graph.lines.each do |line| %>
-              <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}" 
-                 measurements = {_("undercuts") => "min", _("exceeds") => "max"}
-                 if line.limits.max.to_i > 0
-                    val = line.limits.max.to_i
-                    measurement = "max"
-                 elsif line.limits.min.to_i > 0
-                    val = line.limits.min.to_i
-                    measurement = "min"
-                 else
-                    val = ""
-                    measurement = "max"
-                 end
-              %>
-              <tr>
-                <td width="180">
-                  <%= "#{line.label}" %>
-                </td>
-                <td>
-                  <%= select_tag("measurement/"+limit_key, options_for_select(measurements, measurement), :disabled => write_disabled)%>
-                </td>
-                <td>
-                  <%=text_field_tag "value/"+limit_key, val, :disabled => write_disabled %>
-                </td>
-                <td>
-                  <%= "#{group.y_label}" %>
-                </td>
-              </tr>
-            <% end %>
-          <% end %>
-        </table>
-        </div>
+      <br>	
+      <p>Alarm, if</p>
+      <% group.single_graphs.each do |single_graph| %>
+        <% if group.single_graphs.size > 1 %>
+          <br>	
+          <p><b><%= "#{single_graph.headline}" %></b></p>
+        <% end %>
+        <% single_graph.lines.each do |line| %>
+          <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}" 
+             measurements = {_("undercuts") => "min", _("exceeds") => "max"}
+             if line.limits.max.to_i > 0
+               val = line.limits.max.to_i
+               measurement = "max"
+             elsif line.limits.min.to_i > 0
+               val = line.limits.min.to_i
+               measurement = "min"
+             else
+               val = ""
+               measurement = "max"
+             end
+          %>
+          <p>
+            <label for="#{limit_key}"><%="#{line.label}"%></label>
+            <%= select_tag("measurement/"+limit_key, options_for_select(measurements, measurement), :disabled => write_disabled)%>
+            <%=text_field_tag "value/"+limit_key, val, :disabled => write_disabled %>
+            <%= "#{group.y_label}" %>
+          </p>
+        <% end %>
+      <% end %>
     </fieldset>
   <% end %>
-
   <p>
     <%= form_send_buttons :disabled => write_disabled %>
   </p>
