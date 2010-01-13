@@ -10,14 +10,13 @@ class StatusController < ApplicationController
 
   private
   def client_permissions
-    @client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
     @client_metrics = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.metrics')
     @client_graphs = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.graphs')
-    unless @client_status && @client_graphs
+    unless @client_metrics && @client_graphs
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
-    @permissions = @client_status.permissions
+    @permissions = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status').permissions
   end
 
   #
@@ -277,7 +276,7 @@ class StatusController < ApplicationController
     begin
       ActionController::Base.benchmark("Limits saved on the server") do
         #This is a hack and will be removed when the status service has be replaced by the metric service
-	@client_status.create( :limits=>limits.to_xml(:root => "limits") ) 
+#	@client_status.create( :limits=>limits.to_xml(:root => "limits") ) 
       end
     rescue Exception => ex
       flash[:error] = _("Saving limits failed!")

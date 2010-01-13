@@ -1,4 +1,4 @@
-<% write_disabled = !true %>
+<% write_disabled = !@permissions[:writelimits] %>
 
 <% content_for :head do %>
    <%= javascript_include_tag :defaults %>
