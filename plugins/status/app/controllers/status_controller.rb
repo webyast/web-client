@@ -12,11 +12,12 @@ class StatusController < ApplicationController
   def client_permissions
     @client_metrics = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.metrics')
     @client_graphs = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.graphs')
-    unless @client_metrics && @client_graphs
+    client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
+    unless @client_metrics && @client_graphs && client_status
       flash[:notice] = _("Invalid session, please login again.")
       redirect_to( logout_path ) and return
     end
-    @permissions = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status').permissions
+    @permissions = client_status.permissions
   end
 
   #
@@ -102,7 +103,7 @@ class StatusController < ApplicationController
   end
   
   def index
-    return unless client_permissions
+    client_permissions
     begin
       log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
       @logs = log.find(:all) 
@@ -130,7 +131,7 @@ class StatusController < ApplicationController
   # AJAX call for showing status overview
   #
   def show_summary
-    return unless client_permissions
+    client_permissions
     begin
       level = "ok"
       status = ""
@@ -174,7 +175,7 @@ class StatusController < ApplicationController
   # AJAX call for showing a single graph
   #
   def evaluate_values
-    return unless client_permissions
+    client_permissions
     group_id = params[:group_id]
     graph_id = params[:graph_id]
     till ||= Time.new
@@ -246,14 +247,14 @@ class StatusController < ApplicationController
   end
 
   def edit
-    return unless client_permissions
+    client_permissions
     @graphs = @client_graphs.find(:all)
     #sorting graphs via id
     @graphs.sort! {|x,y| y.id <=> x.id } 
   end
 
   def save
-    return unless client_permissions
+    client_permissions
     limits = Hash.new
     params.each_pair{|key, value|
       slizes = key.split "/"
