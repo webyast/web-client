@@ -21,17 +21,22 @@
     seriesDefaults: {fill:true, showMarker: false},
     series: [
       <% data[:lines].each do |line| %>
-        {label: '<%=line[:label]%>'}, 
+        <% if  line[:limit_reached].blank?  %>
+          {label: '<%=line[:label]%>'}, 
+        <% else %>
+          {label: '<%=line[:label] + " " + line[:limit_reached]%>',
+           color: '#FF0000'}, 
+        <% end %>
       <% end %>
       <% data[:limits].each do |line| %>
         {fill:false, 
-         <% if line[:exceeded] %>
+         <% unless line[:reached].blank? %>
            color:'#FF0000',
          <% else %>
            color:'#5FAB78',
          <% end %>
          lineWidth: 1,
-         label: '<%= _("limit") %>'},
+         label: '<%= line[:label] + " " + line[:reached]  %>'},
       <% end %>
     ],
     axes: {

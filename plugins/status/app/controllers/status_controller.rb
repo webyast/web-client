@@ -30,7 +30,8 @@ class StatusController < ApplicationController
     group.single_graphs.each do |single_graph|
       single_graph.lines.each do |line|
         if line.limits.reached == "true"
-          label = group.id + "/" + single_graph.headline 
+          label = group.id 
+          label += "/" + single_graph.headline if group.single_graphs.size > 1
           label += "/" + line.label unless line.label.blank?
           if status.empty?
             status = label
@@ -209,28 +210,36 @@ class StatusController < ApplicationController
               single_line = Hash.new
               single_line[:label] = line.label
               single_line[:values] = get_data(original_metric.id, line.attributes["metric_column"], from, till, data[:y_scale])
-              data[:lines] << single_line
 
               #checking limit max
               if line.limits.max.to_i > 0
                 limit_line = []
-                limit_exceeded = false
+                limit_reached = ""
                 single_line[:values].each do |entry|
-                  limit_exceeded = true if entry[1] > line.limits.max.to_i
+                  limit_reached = _("exceeded") if entry[1] > line.limits.max.to_i
                   limit_line << [entry[0],line.limits.max.to_i]
                 end
-                data[:limits] << {:exceeded => limit_exceeded, :values => limit_line}
+                if graph_description.cummulated == "false"
+                  data[:limits] << {:reached => limit_reached, :values => limit_line, :label => line.label} #show it in an own line
+                else
+                  single_line[:limit_reached] = limit_reached unless limit_reached.blank? #just make it "red"
+                end
               end
               #checking limit min
               if line.limits.min.to_i > 0
                 limit_line = []
-                limit_exceeded = false
+                limit_reached = ""
                 single_line[:values].each do |entry|
-                  limit_exceeded = true if entry[1] < line.limits.min.to_i
+                  limit_reached = _("undercut") if entry[1] < line.limits.min.to_i
                   limit_line << [entry[0],line.limits.min.to_i]
                 end
-                data[:limits] << {:exceeded => limit_exceeded, :values => limit_line}
+                if graph_description.cummulated == "false"
+                  data[:limits] << {:reached => limit_reached, :values => limit_line, :label => line.label} #show it in an own line
+                else
+                  single_line[:limit_reached] = limit_reached unless limit_reached.blank? #just make it "red"
+                end
               end
+              data[:lines] << single_line
             end
           end
         else
@@ -248,42 +257,71 @@ class StatusController < ApplicationController
 
   def edit
     client_permissions
-    @graphs = @client_graphs.find(:all)
-    #sorting graphs via id
-    @graphs.sort! {|x,y| y.id <=> x.id } 
+    begin
+      ActionController::Base.benchmark("Graph information from server") do
+        @graphs = @client_graphs.find(:all)
+      end
+      #sorting graphs via id
+      @graphs.sort! {|x,y| y.id <=> x.id } 
+    rescue Exception => error
+      logger.warn error.inspect
+      flash[:error] = YaST::ServiceResource.error(error)
+      redirect_to :controller=>"status", :action=>"index" and return 
+    end
   end
 
   def save
     client_permissions
-    limits = Hash.new
-    params.each_pair{|key, value|
-      slizes = key.split "/"
-      value = value.to_f*1024*1024 if !value.empty? && slizes[1]=="memory" #MByte for the value --> change it to Byte
-      unless value.empty?
-        if key =~ /\/[-\w]*\/[-\w]*\/min/ # e.g /interface/if_packets-pan0/max
-          limits[slizes[1]] ||= Hash.new
-          limits[slizes[1]][slizes[2]] ||= Hash.new
-          limits[slizes[1]][slizes[2]].merge!(:min => value) 
-        elsif key =~ /\/[-\w]*\/[-\w]*\/max/
-          limits[slizes[1]] ||= Hash.new
-          limits[slizes[1]][slizes[2]] ||= Hash.new
-          limits[slizes[1]][slizes[2]].merge!(:max => value) unless value.empty?
-        end
-      end
-    }
-
-    Rails.logger.debug "New limits: #{limits.inspect}"
-
     begin
-      ActionController::Base.benchmark("Limits saved on the server") do
-        #This is a hack and will be removed when the status service has be replaced by the metric service
-#	@client_status.create( :limits=>limits.to_xml(:root => "limits") ) 
+      ActionController::Base.benchmark("Graph information from server") do
+        @graphs = @client_graphs.find(:all)
       end
-    rescue Exception => ex
-      flash[:error] = _("Saving limits failed!")
-      redirect_to :controller=>"status", :action=>"edit" and return
+    rescue Exception => error
+      logger.warn error.inspect
+      flash[:error] = YaST::ServiceResource.error(error)
+      redirect_to :controller=>"status", :action=>"index" and return 
     end
 
+    @graphs.each do |graph|
+      dirty = false
+      params.each_pair{|key, value|
+        slizes = key.split "/"
+        if slizes.size == 4 && slizes[0] == "value"
+          #searching the limit entry in the graph
+          next if graph.id != slizes[1]
+          graph.single_graphs.each do |single_graph|
+            next if single_graph.headline != slizes[2]
+            single_graph.lines.each do |line|
+              next if line.label != slizes[3]
+              #have limit with value --> setting values based on the corresponding min/max flag
+              min_max = params["measurement/" +  slizes[1] + "/" +slizes[2] + "/" + slizes[3]]
+              old_min = line.limits.min
+              old_max = line.limits.max
+              if value.empty?
+                line.limits.min = "0"
+                line.limits.max = "0"
+              else
+                if min_max == "max"
+                  line.limits.max = value
+                  line.limits.min = "0"
+                elsif min_max == "min"
+                  line.limits.max = "0"
+                  line.limits.min = value
+                end
+              end
+              dirty = true if old_min != line.limits.min || old_max != line.limits.max
+            end
+          end
+        end
+      }
+      response = false
+      if dirty
+        Rails.logger.debug "New graph: #{graph.inspect}"
+        graph.save
+      end
+    end
+
+    flash[:notice] = _("Limits have been written.")
     redirect_to :controller=>"status", :action=>"index"
   end
 
