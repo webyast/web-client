@@ -18,6 +18,14 @@ task :default => :test
   end
 end
 
+desc 'Deploy locally for development - convert .po => .mo and run rake db:migrate'
+task :deploy_devel_all => :makemo do |t|
+  project   = "webclient"
+  task_name = "db:migrate"
+  system %(cd #{project} && #{env} #{$0} #{task_name})
+  raise "Error '#{$?.exitstatus}' on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+end
+
 desc "Fetch po files from lcn. Parameter: source directory of lcn e.g. ...lcn/trunk/webyast/"
 task :fetch_po, [:lcn_dir] do |t, args|
   args.with_defaults(:lcn_dir => File.join(File.dirname(__FILE__),"../../", "lcn", "trunk","webyast"))  

@@ -12,7 +12,7 @@
 Name:           yast2-webclient
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite
 PreReq:         rubygem-rake, rubygem-sqlite3
-PreReq:         rubygem-rails-2_3 = 2.3.4
+PreReq:         rubygem-rails-2_3 >= 2.3.4
 PreReq:         rubygem-gettext_rails
 %if 0%{?suse_version} == 0 || %suse_version > 1110
 # 11.2 or newer
@@ -42,7 +42,7 @@ Source4:        webyast-ui
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
-BuildRequires:  rubygem-rails-2_3 = 2.3.4
+BuildRequires:  rubygem-rails-2_3 >= 2.3.4
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy
 # we require the lighttpd user to be present when building the rpm
