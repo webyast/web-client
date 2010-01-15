@@ -63,14 +63,14 @@ class Account < ActiveRecord::Base
       @password = passwd
       acc.password = passwd
       acc.save
-      puts "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
+      Rails.logger.info "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
       YaST::ServiceResource::Base.password = ret.attributes["auth_token"].attributes["value"]
       YaST::ServiceResource::Session.auth_token = ret.attributes["auth_token"].attributes["value"]
       return acc, ret.attributes["auth_token"].attributes["value"]
     elsif (ret && ret.attributes["login"] == "blocked")
       raise BlockedService.new(ret.attributes["remain"])
     else
-      puts "Authenticate Failure"
+      Rails.logger.error "Authenticate Failure"
       return nil, nil
     end
   end
