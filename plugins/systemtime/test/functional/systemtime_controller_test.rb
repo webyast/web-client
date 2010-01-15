@@ -12,7 +12,7 @@ class SystemtimeControllerTest < ActionController::TestCase
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
-    response_time = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","success.xml"))
+    response_time = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","systemtime.xml"))
     response_ntp = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
