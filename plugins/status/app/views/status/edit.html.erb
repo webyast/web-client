@@ -3,13 +3,57 @@
 <% content_for :head do %>
    <%= javascript_include_tag :defaults %>
    <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+
+   <% javascript_tag do -%>
+      // Sets a focus to a fieldID, switching to its tab first.
+      // fieldID is like "value/CPU/CPU"
+      function focus_tabbed(fieldID) {
+	// show its fieldset and save ID
+	var fsID = $("#"+fieldID).closest('fieldset').attr('id');
+	$("#"+fsID).show()
+	// hide all other fieldsets
+	$("#"+fsID).siblings('fieldset').hide();
+	// Remove highlighting from tabs
+	$('.tab-nav').find('a').removeClass('selected');
+	var className = fsID
+	// highlight its tab
+	$('.'+className).addClass('selected');
+	// focus at last
+	$("#"+fieldID).focus();
+      }
+
+      function validNumber(number) {
+        if (number.length > 0 && !number.match(/^[0-9]{1,20}$/))
+          return false;
+
+        return true;
+      }
+
+      function validateLimits() {
+        <% @graphs.each do |group| %>
+          <% group.single_graphs.each do |single_graph| %>
+            <% single_graph.lines.each do |line| %>
+              <% limit_key = "value_#{group.id}_#{single_graph.headline}_#{line.label}" %>
+              if (! validNumber($("#<%=limit_key%>")[0].value)) {
+                say_bad = "<%= _("Only numbers are valid !") %>"
+                focus_tabbed("<%=limit_key%>");
+                alert (say_bad);
+                return false;
+              }
+            <% end %>           
+          <% end %>
+        <% end %>
+        $('#progress').show();
+        return true;
+      };
+   <% end %>
 <% end %>
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
 <h2><%= _("Settings") %></h2>
 
-<% form_tag( {:action => :save} , {:class => 'tab-form'} ) do %>
+<% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
   <ul class="tab-nav">
     <!-- javascript adds tabs here -->
   </ul>
