@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__),'..','test_helper')
 require 'mocha'
 require 'yast_mock'
 
-class NetworkControllerTest < ActiveSupport::TestCase
+class SystemtimeTest < ActiveSupport::TestCase
   # return contents of a fixture file +file+
   def fixture(file)
     IO.read(File.join(File.dirname(__FILE__), "..", "fixtures", file))
