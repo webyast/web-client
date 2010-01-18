@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.uk\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-09-27 16:10-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -26,71 +26,65 @@ msgstr "Нечинний сеанс, увійдіть знов."
 msgid "Disk free limits exceeded;"
 msgstr "Перевищено межу вільного місця на диску;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for %s"
 msgstr "Успішне додавання для \"%s\".\n"
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 #, fuzzy
 #| msgid "Saving the changes failed"
 msgid "Saving limits failed!"
 msgstr "Помилка збереження змін"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Стан"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "Події"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Використання диску"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Редагувати обмеження"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Назад"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Ці значення було визначено протягом останніх 5 хвилин."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "вільно"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "використано"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "Налаштувати межі стану"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Шлях стану"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "Мінімальне значення"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Максимальне значення"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Зберегти"
 
@@ -109,6 +103,12 @@ msgstr "Інформація недоступна."
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Ваша система здорова."
+
+#~ msgid "Events"
+#~ msgstr "Події"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Ці значення було визначено протягом останніх 5 хвилин."
 
 #~ msgid "Show details..."
 #~ msgstr "Показати подробиці..."

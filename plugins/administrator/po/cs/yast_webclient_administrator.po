@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-08 14:07+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Zadejte platnou e-mailovou adresu."
 
@@ -39,35 +39,45 @@ msgstr "Chyba při uzavírání starého stínového souboru: %m"
 
 # Tady si nejsem jistý zda nebude lepší: Administrátorská nastavení. Cervajzz
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 msgid "Administrator Settings"
 msgstr "Administrátorské nastavení"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "Hesla se neshodují."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Heslo"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 #, fuzzy
 #| msgid "Confirm Password"
 msgid "Confirm password"
 msgstr "Potvrďte heslo"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Uložit"
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Změnit heslo"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr "Předat mail na"
+
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Uložit"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Chybná session, prosím přihlaste se znova."

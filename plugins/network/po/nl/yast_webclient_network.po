@@ -4,13 +4,13 @@
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
-# Freek de Kruijf <freek@opensuse.org>, 2009.
+# Freek de Kruijf <freek@opensuse.org>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-11-16 22:56+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2010-01-11 16:53+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -24,49 +24,52 @@ msgid "No permissions for network module"
 msgstr "Geen toestemming voor de netwerkmodule"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "niet ingesteld"
-
-# /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
-#: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "statisch"
+msgid "Not configured"
+msgstr "Niet geconfigureerd"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+msgid "Manual"
+msgstr "Handmatig"
+
+#: app/controllers/network_controller.rb:66
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "Automatisch"
 
 # %s is either BOOTP or DHCP
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
-msgstr "Instellingen zijn weggeschreven."
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
+msgstr "Netwerkinstellingen zijn weggeschreven."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Ongeldige IP-adresopmaak. De juiste is nnn.nnn.nnn.nnn met nnn tussen 0 en 255."
 
-#: app/views/network/index.html.erb:96
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "Ongeldige masker. De juiste is /nn met nn tussen 0 en 32 (CIDR-indeling)."
+#: app/views/network/index.html.erb:97
+#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Ongeldig prefix-indeling. De juiste is /nn met nn tussen 0 en 32 (CIDR-indeling)."
 
-#: app/views/network/index.html.erb:102
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Ongeldige standaard route. De juiste is nnn.nnn.nnn.nnn met nnn tussen 0 en 255."
+#: app/views/network/index.html.erb:103
+#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Ongeldige formaat van standaard route. De juiste is nnn.nnn.nnn.nnn met nnn tussen 0 en 255."
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
-msgstr "Naamservers zijn niet geldig. Er moet er minstens één zijn gedefinieerd."
+#: app/views/network/index.html.erb:109
+#| msgid "Name servers is not valid. There must be at least one specified."
+msgid "Name servers are required. There must be at least one specified."
+msgstr "Naamservers zijn vereist. Er moet er minstens één zijn gedefinieerd."
 
-#: app/views/network/index.html.erb:114
-#| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
-msgstr "Hostnaam is niet geldig. Deze moet worden opgegeven."
+#: app/views/network/index.html.erb:115
+#| msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
+msgstr "Hostnaam is vereist. Deze moet worden opgegeven."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
-msgstr "Domeinnaam is niet geldig. Een lege domeinnaam wordt niet ondersteund."
+#: app/views/network/index.html.erb:121
+#| msgid "Domain is not valid. It is not supported empty domain."
+msgid "Domain is required. It is not supported empty domain."
+msgstr "Domeinnaam is vereist. Een lege domeinnaam wordt niet ondersteund."
 
 #: app/views/network/index.html.erb:131
 msgid "Network"
@@ -80,21 +83,17 @@ msgstr "Interface"
 msgid "Select"
 msgstr "Selectie"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "IP-adres"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Configuratiemodus"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "Lengte voorvoegsel"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "IP-adres"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr "Subnetmasker / prefixlengte"
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -112,10 +111,6 @@ msgstr "Naamservers"
 #: app/views/network/index.html.erb:193
 msgid "Search domains"
 msgstr "Zoeken naar domeinen"
-
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "Routering"
 
 #: app/views/network/index.html.erb:201
 msgid "Default route"

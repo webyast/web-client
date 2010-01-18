@@ -1,128 +1,104 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Olav Pettershagen <olav.pet@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2005-08-11 20:37+0200\n"
-"Last-Translator: Olav Pettershagen <olav.pet@online.no>\n"
-"Language-Team:  <nb@li.org>\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-28 18:17+0100\n"
+"Last-Translator: Olav Pettershagen <olav.pet@gmail.com>\n"
+"Language-Team: Norwegian Bokmål <opensuse-translation@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "Ugyldig økt, logg inn på nytt."
 
 #: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
-msgstr ""
+msgstr "Grensene for ledig diskplass overskredet;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "Ingen data for visning av systemstatus funnet."
 
-#: app/controllers/status_controller.rb:179
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
-msgstr "Lagt til for \"%s\".\n"
+msgstr "Grenser overskredet for %s"
 
-#: app/controllers/status_controller.rb:215
-#, fuzzy
-#| msgid "Saving the changes failed"
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
-msgstr "Endringene kunne ikke lagres"
+msgstr "Grenser kunne ikke lagres!"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/index.html.erb:27
-#, fuzzy
-#| msgid "Even"
-msgid "Events"
-msgstr "Lik"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
-msgstr ""
+msgstr "Brukt plass på disk"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
-msgstr ""
+msgstr "Rediger grenser"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Tilbake"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr ""
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
-msgstr ""
+msgstr "ledig"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
-#, fuzzy
-#| msgid "Last used"
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
-msgstr "Sist brukt"
+msgstr "brukt"
 
-#: app/views/status/edit.html.erb:4
-#, fuzzy
-#| msgid "Configure IP Settings"
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
-msgstr "Velg IP-innstillinger"
+msgstr "Sett opp statusgrenser"
+
+#: app/views/status/edit.html.erb:7
+msgid "Status Path"
+msgstr "Statusfilsti"
+
+#: app/views/status/edit.html.erb:8
+msgid "Minimum Value"
+msgstr "Minimumsverdi"
 
 #: app/views/status/edit.html.erb:9
-#, fuzzy
-#| msgid "Status: "
-msgid "Status Path"
-msgstr "Status: "
-
-#: app/views/status/edit.html.erb:10
-msgid "Minimum Value"
-msgstr ""
-
-#: app/views/status/edit.html.erb:11
-#, fuzzy
-#| msgid "Maximum Memory"
 msgid "Maximum Value"
-msgstr "Maksimalt minne"
+msgstr "Maksimumsverdi"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Lagre"
 
 #: app/views/status/_status_summary.html.erb:1
-#, fuzzy
-#| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
-msgstr "Det oppstod en feil under installasjonen."
+msgstr "Det oppstod en feil under lasting av statusinformasjon."
 
 #: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
 msgid "No status information available"
-msgstr "Ingen informasjon tilgjengelig."
+msgstr "Ingen statusinformasjon tilgjengelig."
 
 #: app/views/status/_status_summary.html.erb:14
-#, fuzzy
-#| msgid "Your system is up-to-date."
 msgid "Your system is healthy."
-msgstr "Systemet er oppdatert."
+msgstr "Systemet er i orden."
 
-#, fuzzy
+#~| msgid "Even"
+#~ msgid "Events"
+#~ msgstr "Lik"
+
 #~| msgid "Show details"
 #~ msgid "Show details..."
 #~ msgstr "Vis detaljer"

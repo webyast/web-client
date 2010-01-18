@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-29 20:47+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
@@ -23,9 +23,11 @@ msgid "No permissions for time module"
 msgstr "Ei käyttöoikeuksia aika-moduuliin"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
 msgstr "Asetukset tallennettiin."
 
 #: app/views/systemtime/index.rhtml:21
@@ -36,34 +38,38 @@ msgstr "Päiväyksen muoto ei kelpaa. Oikea muoto on pp/kk/vvvv"
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Ajan muoto ei kelpaa. Oikea muoto on tt:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Aika"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
+#: app/views/systemtime/index.rhtml:56
+#, fuzzy
+#| msgid "Region:"
+msgid "Region"
 msgstr "Alue:"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:60
+#, fuzzy
+#| msgid "Timezone:"
+msgid "Timezone"
 msgstr "Aikavyöhyke:"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "Laitteiston kello on asetettu UTC-aikaan"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Määritä aika käsin"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
+#: app/views/systemtime/index.rhtml:76
+#, fuzzy
+#| msgid "Date:"
+msgid "Date"
 msgstr "Päiväys:"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Aika:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Tahdista aika käyttämällä Network Time protokollaa (NTP)"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "Laitteiston kello on asetettu UTC-aikaan"
+
+#~ msgid "Time:"
+#~ msgstr "Aika:"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 #, fuzzy
 #| msgid "`%s' is not a valid ip address."
 msgid "Enter a valid e-mail address."
@@ -38,34 +38,44 @@ msgid "Error while saving administrator settings: %s"
 msgstr "Kwenzeke iphutha lapho ivala ifayela yethunzi endala: %m"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 #, fuzzy
 #| msgid "Monitor Settings"
 msgid "Administrator Settings"
 msgstr "Amasethingi Emonitha"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "Amaphasiwedi awahambelani."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Iphasiwedi"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 #, fuzzy
 #| msgid "_Confirm Password:"
 msgid "Confirm password"
 msgstr "_Qinisekisa Iphasiwedi:"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Gcina"
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Shintsha Iphasiwedi"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr ""
+
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Gcina"

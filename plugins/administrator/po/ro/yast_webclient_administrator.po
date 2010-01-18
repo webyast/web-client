@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-09-24 15:55+0200\n"
 "Last-Translator: Oprea Lucian <oprea_luci@yahoo.com>\n"
 "Language-Team: Romanian <i18n@suse.de>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Introduceţi o adresă de email validă."
 
@@ -39,35 +39,45 @@ msgid "Error while saving administrator settings: %s"
 msgstr "Eroare la închiderea vechiului fișier shadow: %m"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 msgid "Administrator Settings"
 msgstr "Setări de administrare"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "Parolele nu corespund."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Parolă"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 #, fuzzy
 #| msgid "Confirm Password"
 msgid "Confirm password"
 msgstr "Confirmaţi parola:"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Salvează"
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Modifică parola"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr "Trimite mailul către"
+
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Salvează"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Sesiune invalidă, vă rugăm să vă reconectati."

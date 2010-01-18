@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-29 13:55+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-11-28 16:57+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,71 +22,61 @@ msgstr "Érvénytelen munkamenet, lépjen be újra."
 msgid "Disk free limits exceeded;"
 msgstr "A szabad lemezterület elérte a határértéket."
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "Nem található adat a rendszerállapot megjelenítéséhez."
 
-#: app/controllers/status_controller.rb:179
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
-msgstr "\"%s\" hozzáadása sikerült.\n"
+msgstr "A(z) %s elérte a határértéket."
 
-#: app/controllers/status_controller.rb:215
-#, fuzzy
-#| msgid "Saving the changes failed"
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
-msgstr "A mentések módosítása nem sikerült"
+msgstr "A határértékek mentése nem sikerült"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Állapot"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "Események"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Lemezhasználat"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Határértékek szerkesztése"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Vissza"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Ezek az értékek az elmúlt 5 perc adatai mutatják."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "szabad"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "használt"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "Állapot határértékeinek beállítása"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Állapot elérési út"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "Minimális érték"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Maximális érték"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Mentés"
 
@@ -101,3 +91,9 @@ msgstr "Nincs elérhető állapotinformáció"
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "A rendszer stabil."
+
+#~ msgid "Events"
+#~ msgstr "Események"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Ezek az értékek az elmúlt 5 perc adatai mutatják."

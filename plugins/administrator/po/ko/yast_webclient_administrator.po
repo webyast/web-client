@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 #, fuzzy
 #| msgid "This is not a valid CCW address."
 msgid "Enter a valid e-mail address."
@@ -35,34 +35,44 @@ msgid "Error while saving administrator settings: %s"
 msgstr "예전 숨김 파일 닫는 동안 오류: %m"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 #, fuzzy
 #| msgid "Monitor Settings"
 msgid "Administrator Settings"
 msgstr "모니터 설정"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "열쇠글이 일치하지 않습니다."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "열쇠글"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 #, fuzzy
 #| msgid "_Confirm Password:"
 msgid "Confirm password"
 msgstr "열쇠글 확인(_C):"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "저장"
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "열쇠글 변경"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr ""
+
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "저장"

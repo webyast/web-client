@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-29 15:06+0100\n"
 "Last-Translator: Andrea Florio <andrea@opensuse.org>\n"
 "Language-Team: Italiano <opensuse-translation@opensuse.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 # TLABEL modules/dialup/dialup.ycp:1329
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Inserisci un indirizzo e-mail valido."
 
@@ -34,31 +34,41 @@ msgid "Error while saving administrator settings: %s"
 msgstr "Errore durante il salvataggio delle impostazioni di amministratore: %s"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 msgid "Administrator Settings"
 msgstr "Impostazioni di Amministratore"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "Le password non corrispondono."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Password"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 msgid "Confirm password"
 msgstr "Conferma password"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Salva"
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Cambia password"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr "Inoltra mail a"
+
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Salva"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Sessione non valida, per favore rifai il login."

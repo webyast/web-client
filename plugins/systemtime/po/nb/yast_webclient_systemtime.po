@@ -1,92 +1,72 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Olav Pettershagen <olav.pet@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2005-08-11 20:37+0200\n"
-"Last-Translator: Olav Pettershagen <olav.pet@online.no>\n"
-"Language-Team:  <nb@li.org>\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-28 18:17+0100\n"
+"Last-Translator: Olav Pettershagen <olav.pet@gmail.com>\n"
+"Language-Team: Norwegian Bokmål <opensuse-translation@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/systemtime_controller.rb:31
-#, fuzzy
-#| msgid "Unknown option "
 msgid "Unknown timezone %s on host"
-msgstr "Ukjent alternativ"
+msgstr "Ukjent tidssone %s på vertsmaskin!"
 
 #: app/controllers/systemtime_controller.rb:64
-#, fuzzy
-#| msgid "Cannot set permissions for '%s': %m\n"
 msgid "No permissions for time module"
-msgstr "Kan ikke angi rettigheter for %s: %m\n"
+msgstr "Ingen rettigheter for tidsmodul"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-#, fuzzy
-#| msgid "The configuration file has been written."
-msgid "Settings have been written."
-msgstr "Oppsettfilen er lagret."
+#: app/controllers/systemtime_controller.rb:122
+msgid "Time settings have been written."
+msgstr "Tidsinnstillingene er lagret."
 
 #: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
-msgstr ""
+msgstr "Ugyldig datoformat. Riktig format er dd/mm/åååå"
 
 #: app/views/systemtime/index.rhtml:25
 msgid "Invalid time format. Correct one is hh:mm:ss"
-msgstr ""
+msgstr "Ugyldig tidsformat. Riktig format er tt:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
-#: app/views/systemtime/index.rhtml:57
-#, fuzzy
-#| msgid "Religion"
-msgid "Region:"
-msgstr "Religion"
+#: app/views/systemtime/index.rhtml:56
+msgid "Region"
+msgstr "Region"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
-msgstr ""
+#: app/views/systemtime/index.rhtml:60
+msgid "Timezone"
+msgstr "Tidssone"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr ""
-
-#: app/views/systemtime/index.rhtml:83
-#, fuzzy
-#| msgid "Manual IP config"
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
-msgstr "Manuelt IP-oppsett"
+msgstr "Angi tiden manuelt"
 
-#: app/views/systemtime/index.rhtml:88
-#, fuzzy
-#| msgid "Date"
-msgid "Date:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
 msgstr "Dato"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr ""
-
-#: app/views/systemtime/index.rhtml:97
-#, fuzzy
-#| msgid "Network Time Protocol daemon"
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
-msgstr "NTP-nisse"
+msgstr "Synkroniser via Network Time Protocol (NTP)"
 
-#, fuzzy
+#~| msgid "Date"
+#~ msgid "Date:"
+#~ msgstr "Dato"
+
 #~| msgid "Don't trust the key."
 #~ msgid "Don't set time"
 #~ msgstr "Ikke stol på nøkkelen."

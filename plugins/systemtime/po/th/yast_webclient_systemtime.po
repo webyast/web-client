@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -26,9 +26,9 @@ msgstr "ไม่รู้จักเขตพื้นที่ %1"
 msgid "No permissions for time module"
 msgstr "ไม่มีตัวเลือกสำหรับมอดูลนี้"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+msgid "Time settings have been written."
 msgstr ""
 
 #: app/views/systemtime/index.rhtml:21
@@ -39,46 +39,44 @@ msgstr ""
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "เวลา"
 
-#: app/views/systemtime/index.rhtml:57
+#: app/views/systemtime/index.rhtml:56
 #, fuzzy
 #| msgid "&Region"
-msgid "Region:"
+msgid "Region"
 msgstr "เขตพื้นที่"
 
-#: app/views/systemtime/index.rhtml:61
+#: app/views/systemtime/index.rhtml:60
 #, fuzzy
 #| msgid "Time Zone"
-msgid "Timezone:"
+msgid "Timezone"
 msgstr "เขตเวลา"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-#, fuzzy
-#| msgid "&Hardware Clock Set To UTC"
-msgid "Hardware clock is set to UTC"
-msgstr "ตั้งฮาร์ดแวร์นาฬิกาเป็น UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 #, fuzzy
 #| msgid "Expert Manual Configuration"
 msgid "Manually configure time"
 msgstr "การปรับแต่งค่าด้วยตนเองสำหรับผู้เชี่ยวชาญ"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:92
-#, fuzzy
-#| msgid "Time"
-msgid "Time:"
-msgstr "เวลา"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 #, fuzzy
 #| msgid "Synchronize with NTP Server"
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "ปรับเทียบเวลากับเครื่องให้บริการ NTP"
+
+#, fuzzy
+#~| msgid "&Hardware Clock Set To UTC"
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "ตั้งฮาร์ดแวร์นาฬิกาเป็น UTC"
+
+#, fuzzy
+#~| msgid "Time"
+#~ msgid "Time:"
+#~ msgstr "เวลา"

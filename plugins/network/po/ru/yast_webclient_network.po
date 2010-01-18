@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-11-01 02:08+0300\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-14 20:51+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,50 +20,51 @@ msgid "No permissions for network module"
 msgstr "Нет прав для модуля сети"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "не задано"
+msgid "Not configured"
+msgstr "Не сконфигурировано"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "статически"
+msgid "Manual"
+msgstr "Вручную"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "Автоматически"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
-msgstr "Настройки были записаны."
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
+msgstr "Настройки сети были записаны."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
 
-#: app/views/network/index.html.erb:96
-#, fuzzy
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
+#: app/views/network/index.html.erb:97
+#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Неверный формат префикса. Верный формат: /nn, где nn от 0 до 32 (формат CIDR)."
 
-#: app/views/network/index.html.erb:102
-#, fuzzy
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
+#: app/views/network/index.html.erb:103
+#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Неверный формат маршрута по умолчанию. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
-msgstr ""
+#: app/views/network/index.html.erb:109
+#| msgid "Name servers is not valid. There must be at least one specified."
+msgid "Name servers are required. There must be at least one specified."
+msgstr "Не указаны серверы имён. Укажите хотя бы один."
 
-#: app/views/network/index.html.erb:114
-#, fuzzy
-#| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
-msgstr "Не указан действующий файл запроса."
+#: app/views/network/index.html.erb:115
+#| msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
+msgstr "Не указано имя узла. Укажите его."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
-msgstr ""
+#: app/views/network/index.html.erb:121
+#| msgid "Domain is not valid. It is not supported empty domain."
+msgid "Domain is required. It is not supported empty domain."
+msgstr "Не указано имя домена. Работы с пустым доменом не поддерживается."
 
 #: app/views/network/index.html.erb:131
 msgid "Network"
@@ -77,21 +78,17 @@ msgstr "Интерфейс"
 msgid "Select"
 msgstr "Выбрать"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "IP-адрес"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Режим настройки"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "Длина префикса"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "IP-адрес"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr "Маска подсети/префикс"
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -109,13 +106,27 @@ msgstr "Серверы имён"
 msgid "Search domains"
 msgstr "Домены поиска"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "Маршрутизация"
-
 #: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Маршрут по умолчанию"
+
+#~ msgid "not set"
+#~ msgstr "не задано"
+
+#~ msgid "static"
+#~ msgstr "статически"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#~ msgid "Prefixlen"
+#~ msgstr "Длина префикса"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "Маршрутизация"
 
 #~ msgid "Save"
 #~ msgstr "Сохранить"

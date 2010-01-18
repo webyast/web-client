@@ -35,9 +35,9 @@ task :updatepot do
   File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
 end
 
-desc "Fetch po files from lcn. Parameter: source directory of lcn e.g. ...lcn/trunk/webyast/"
+desc "Fetch po files from lcn. Parameter: source directory of lcn e.g. ...lcn/trunk/"
 task :fetch_po, [:lcn_dir] do |t, args|
-  args.with_defaults(:lcn_dir => File.join(File.dirname(__FILE__),"../../../../..", "lcn", "trunk","webyast"))  
+  args.with_defaults(:lcn_dir => File.join(File.dirname(__FILE__),"../../../../..", "lcn", "trunk"))  
   puts "Scanning #{args.lcn_dir}"
   po_files = File.join(args.lcn_dir, "**", "*.po")
   Dir.glob(po_files).each {|po_file|

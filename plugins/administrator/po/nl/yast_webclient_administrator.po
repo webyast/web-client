@@ -4,13 +4,13 @@
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
-# Freek de Kruijf <freek@opensuse.org>, 2009.
+# Freek de Kruijf <freek@opensuse.org>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-29 18:58+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2010-01-11 16:49+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Geef een geldig e-mailadres op."
 
@@ -37,28 +37,37 @@ msgid "Error while saving administrator settings: %s"
 msgstr "Fout bij het opslaan van beheerdersinstellingen: %s"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 msgid "Administrator Settings"
 msgstr "Systeembeheerderinstellingen"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "De wachtwoorden komen niet overeen."
 
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr "Hier de instellingen voor de systeembeheerder ('root') configureren."
+
 # password dialog title
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 msgid "Confirm password"
 msgstr "Wachtwoord bevestigen"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Opslaan"
+#: app/views/administrator/index.html.erb:65
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Wachtwoord opslaan"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr "E-mail doorsturen naar"
+
+#: app/views/administrator/index.html.erb:72
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "E-mail opslaan"
+

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-29 13:45+0100\n"
 "Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
@@ -20,49 +20,53 @@ msgid "No permissions for network module"
 msgstr "Sin permisos para el módulo de red"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "no configurado"
+msgid "Not configured"
+msgstr "Sin configurar"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "estática"
+msgid "Manual"
+msgstr "Manual"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+#, fuzzy
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "Modo automático"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
 msgstr "Se ha escrito la configuración."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:96
+#: app/views/network/index.html.erb:97
 #, fuzzy
 #| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:103
 #, fuzzy
 #| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:115
 #, fuzzy
 #| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "No se ha especificado ningún archivo de solicitud válido."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
 #: app/views/network/index.html.erb:131
@@ -77,21 +81,17 @@ msgstr "Interfaz"
 msgid "Select"
 msgstr "Seleccione"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "Dirección IP"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Modo de configuración"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "Prefixlen"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "Dirección IP"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -112,13 +112,27 @@ msgstr "Servidores de nombres"
 msgid "Search domains"
 msgstr "Dominios de búsqueda"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "Rutado"
-
 #: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Ruta por defecto"
+
+#~ msgid "not set"
+#~ msgstr "no configurado"
+
+#~ msgid "static"
+#~ msgstr "estática"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#~ msgid "Prefixlen"
+#~ msgstr "Prefixlen"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "Rutado"
 
 #~ msgid "Save"
 #~ msgstr "Guardar"

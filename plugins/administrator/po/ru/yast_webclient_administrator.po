@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-11-01 02:09+0300\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-14 20:40+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 
 #: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:34
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Введите верный адрес e-mail."
 
@@ -33,30 +33,38 @@ msgid "Error while saving administrator settings: %s"
 msgstr "Ошибка при сохранении настроек администратора: %s"
 
 #: app/views/administrator/index.html.erb:1
-#: app/views/administrator/index.html.erb:2
 msgid "Administrator Settings"
 msgstr "Настройки администратора"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "Пароли не совпадают."
 
-#: app/views/administrator/index.html.erb:55
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr "Здесь можно настроить параметры системного администратора ('root')"
+
+#: app/views/administrator/index.html.erb:58
 msgid "Password"
 msgstr "Пароль"
 
-#: app/views/administrator/index.html.erb:59
+#: app/views/administrator/index.html.erb:63
 msgid "Confirm password"
 msgstr "Подтвердите пароль"
 
-#: app/views/administrator/index.html.erb:61
-#: app/views/administrator/index.html.erb:66
-msgid "Save"
-msgstr "Сохранить"
+#: app/views/administrator/index.html.erb:65
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Сохранить пароль"
 
-#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:70
 msgid "Forward mail to"
 msgstr "Перенаправлять почту на"
+
+#: app/views/administrator/index.html.erb:72
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Сохранить адрес почты"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Неверный сеанс, пожалуйста, войдите снова."

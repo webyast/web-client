@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-29 19:52+0900\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-04 20:11+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,10 +22,11 @@ msgstr "ホスト上で不明な時間帯 %s が設定されています"
 msgid "No permissions for time module"
 msgstr "時刻モジュールへの許可がありません"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
-msgstr "設定を書き込みました。"
+#: app/controllers/systemtime_controller.rb:122
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
+msgstr "時間設定を書き込みました。"
 
 #: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
@@ -35,34 +36,29 @@ msgstr "日付の書式が正しくありません。 (日)/(月)/(年) のよ�
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "時刻の書式が正しくありません。 (時):(分):(秒) のように指定してください。"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "時刻"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
-msgstr "地域:"
+#: app/views/systemtime/index.rhtml:56
+#| msgid "Region:"
+msgid "Region"
+msgstr "地域"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
-msgstr "時間帯:"
+#: app/views/systemtime/index.rhtml:60
+#| msgid "Timezone:"
+msgid "Timezone"
+msgstr "時間帯"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "ハードウエアクロックは UTC に設定されています"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "手動で時刻を設定"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
-msgstr "日付:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
+msgstr "日付"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "時刻:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "ネットワーク時刻プロトコル (NTP) による同期"
+

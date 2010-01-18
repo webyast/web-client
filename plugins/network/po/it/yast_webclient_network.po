@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-13 16:03+0100\n"
 "Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -18,46 +18,57 @@ msgid "No permissions for network module"
 msgstr "Nessun permesso per il modulo di rete"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "non impostato"
+msgid "Not configured"
+msgstr "Non configurato"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "statico"
+msgid "Manual"
+msgstr "Manuale"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+#, fuzzy
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "Modalità automatica"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
 msgstr "Scrittura delle impostazioni completata."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Indirizzo IP in un formato non valito. Quello corretto è nnn.nnn.nnn.nnn dove nnn varia tra 0 e 255"
 
-#: app/views/network/index.html.erb:96
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:97
+#, fuzzy
+#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "Prefisso non valido. Quello corretto è /nn dove nn varia tra 0 e 32 (formato CIDR)"
 
-#: app/views/network/index.html.erb:102
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:103
+#, fuzzy
+#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Instradamento predefinito non valido. Quello corretto è nnn.nnn.nnn.nnn dove nnn varia tra 0 e 255"
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+#, fuzzy
+#| msgid "Name servers is not valid. There must be at least one specified."
+msgid "Name servers are required. There must be at least one specified."
 msgstr "Server dei nomi non validi. Deve esserci almeno un server specificato."
 
-#: app/views/network/index.html.erb:114
-#| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
+#: app/views/network/index.html.erb:115
+#, fuzzy
+#| msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "Il nome dell'host non è valido. Deve essere specificato."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+#, fuzzy
+#| msgid "Domain is not valid. It is not supported empty domain."
+msgid "Domain is required. It is not supported empty domain."
 msgstr "Il dominio non è valido. Il dominio vuoto non è supportato."
 
 #: app/views/network/index.html.erb:131
@@ -72,22 +83,17 @@ msgstr "Interfaccia"
 msgid "Select"
 msgstr "Selezionare"
 
-#: app/views/network/index.html.erb:164
-#: app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "Indirizzo IP"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Modalità di configurazione"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "Lunghezza del prefisso"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "Indirizzo IP"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -106,14 +112,27 @@ msgstr "Server dei nomi"
 msgid "Search domains"
 msgstr "Domini di ricerca"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "Instradamento"
-
 #: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Instradamento predefinito"
 
+#~ msgid "not set"
+#~ msgstr "non impostato"
+
+#~ msgid "static"
+#~ msgstr "statico"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#~ msgid "Prefixlen"
+#~ msgstr "Lunghezza del prefisso"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "Instradamento"
+
 #~ msgid "Save"
 #~ msgstr "Salva"
-

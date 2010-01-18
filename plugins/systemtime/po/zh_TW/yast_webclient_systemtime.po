@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-22 23:31+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -27,9 +27,11 @@ msgstr "主機上未知時區 %s"
 msgid "No permissions for time module"
 msgstr "沒有時間模組的權限"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
 msgstr "設定已經寫入。"
 
 #: app/views/systemtime/index.rhtml:21
@@ -40,39 +42,43 @@ msgstr "不適用的日期格式。正確的是 dd/mm/yyyy"
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "不適用的時間格式。正確的是 hh:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "時間"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
+#: app/views/systemtime/index.rhtml:56
+#, fuzzy
+#| msgid "Region:"
+msgid "Region"
 msgstr "區域："
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:60
+#, fuzzy
+#| msgid "Timezone:"
+msgid "Timezone"
 msgstr "時區："
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "硬體時鐘已設定為 UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "手動設定時間"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
+#: app/views/systemtime/index.rhtml:76
+#, fuzzy
+#| msgid "Date:"
+msgid "Date"
 msgstr "日期："
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "時間："
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 #, fuzzy
 #| msgid "Network Time Protocol daemon"
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "網路時間協定精靈"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "硬體時鐘已設定為 UTC"
+
+#~ msgid "Time:"
+#~ msgstr "時間："
 
 #~ msgid "Don't set time"
 #~ msgstr "不要設定時間"

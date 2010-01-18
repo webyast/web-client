@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -26,83 +26,75 @@ msgstr ""
 msgid "Disk free limits exceeded;"
 msgstr ""
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for %s"
 msgstr "添加\"%s\"成功。\n"
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 #, fuzzy
 #| msgid "Saving the changes failed"
 msgid "Saving limits failed!"
 msgstr "保存更改失败"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "状态"
 
-#: app/views/status/index.html.erb:27
-#, fuzzy
-#| msgid "Button Events"
-msgid "Events"
-msgstr "按钮事件"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 #, fuzzy
 #| msgid "Disks"
 msgid "Disk usage"
 msgstr "磁盘"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr ""
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "后退"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr ""
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr ""
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 #, fuzzy
 #| msgid "Last used"
 msgid "used"
 msgstr "上次使用的"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 #, fuzzy
 #| msgid "Configure Compiz Settings"
 msgid "Configure Status Limits"
 msgstr "配置 Compiz"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 #, fuzzy
 #| msgid "Status: "
 msgid "Status Path"
 msgstr "状态："
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr ""
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 #, fuzzy
 #| msgid "Maximum Memory"
 msgid "Maximum Value"
 msgstr "最大内存"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "保存"
 
@@ -123,6 +115,11 @@ msgstr "没有可用信息。"
 #| msgid "Your system is up-to-date."
 msgid "Your system is healthy."
 msgstr "你的系统处于最新状态。"
+
+#, fuzzy
+#~| msgid "Button Events"
+#~ msgid "Events"
+#~ msgstr "按钮事件"
 
 #, fuzzy
 #~| msgid "Details..."

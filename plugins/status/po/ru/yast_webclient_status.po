@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-11-01 02:04+0300\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-11-23 15:40+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
 "Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,71 +23,61 @@ msgstr "Неверный сеанс, пожалуйста, войдите сно
 msgid "Disk free limits exceeded;"
 msgstr "Превышены ограничения свободного места;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "Нет данных для отображения состояния системы."
 
-#: app/controllers/status_controller.rb:179
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
-msgstr "Добавление для \"%s\" выполнено.\n"
+msgstr "Превышены ограничения для %s"
 
-#: app/controllers/status_controller.rb:215
-#, fuzzy
-#| msgid "Saving the changes failed"
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
-msgstr "Не удалось сохранить изменения"
+msgstr "Сбой сохранения ограничений!"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Состояние"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "События"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Использование дисков"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Редактировать ограничения"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Назад"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Эти значения рассчитаны за последние пять минут."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "свободно"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "использовано"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "Настроить ограничения состояний"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Путь состояния"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "Минимальное значение"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Максимальное значение"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Сохранить"
 
@@ -102,6 +92,12 @@ msgstr "Сведения о состоянии недоступны"
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Ваша система здорова."
+
+#~ msgid "Events"
+#~ msgstr "События"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Эти значения рассчитаны за последние пять минут."
 
 #~ msgid "Show details..."
 #~ msgstr "Показать подробности..."

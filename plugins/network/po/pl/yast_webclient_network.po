@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-08 16:42+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -23,49 +23,48 @@ msgid "No permissions for network module"
 msgstr "Brak zezwolenia dla modułu sieciowego"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "nie ustawione"
+msgid "Not configured"
+msgstr "Nieskonfigurowane"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "statyczny"
+msgid "Manual"
+msgstr "Tryb ręcznyMontuj automatycznie"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "DHCP"
+#, fuzzy
+msgid "Automatic"
+msgstr "Tryb automatyczny"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
+#, fuzzy
+msgid "Network settings have been written."
 msgstr "Zapisano ustawienia."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
 
-#: app/views/network/index.html.erb:96
+#: app/views/network/index.html.erb:97
 #, fuzzy
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:103
 #, fuzzy
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Niepoprawny format IP. Poprwny powinien mieć formę nnn.nnn.nnn.nnn gdzie n to wartość od 0 do 255."
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:115
 #, fuzzy
-#| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "Nie podano prawidłowego pliku żądania."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
 #: app/views/network/index.html.erb:131
@@ -80,21 +79,17 @@ msgstr "Interfejs"
 msgid "Select"
 msgstr "Wybór"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "Adres IP"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Tryb konfiguracji"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "wartość prefixlen"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "Adres IP"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "adres DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -113,13 +108,27 @@ msgstr "Serwery nazw DNS"
 msgid "Search domains"
 msgstr "Domeny wyszukiwania"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "ROuting"
-
 #: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Trasa domyślna"
+
+#~ msgid "not set"
+#~ msgstr "nie ustawione"
+
+#~ msgid "static"
+#~ msgstr "statyczny"
+
+#~ msgid "dhcp"
+#~ msgstr "DHCP"
+
+#~ msgid "Prefixlen"
+#~ msgstr "wartość prefixlen"
+
+#~ msgid "DNS"
+#~ msgstr "adres DNS"
+
+#~ msgid "Routing"
+#~ msgstr "ROuting"
 
 #~ msgid "Save"
 #~ msgstr "Zapisz"

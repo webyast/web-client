@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:33+0100\n"
 "PO-Revision-Date: 2009-11-12 17:53+0100\n"
 "Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
@@ -13,23 +13,19 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/application_controller.rb:52
+#: app/controllers/application_controller.rb:53
 msgid "You must accept all EULAs before using this product!"
-msgstr ""
-"Vous devez accepter tous les accords de licence avant d'utiliser ce produit !"
+msgstr "Vous devez accepter tous les accords de licence avant d'utiliser ce produit !"
 
-#: app/controllers/application_controller.rb:56
-msgid ""
-"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
-"Impossible de rediriger vers l'accord de licence. Assurez-vous que le paquet "
-"yast2-webclient-eulas est installé"
+#: app/controllers/application_controller.rb:57
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr "Impossible de rediriger vers l'accord de licence. Assurez-vous que le paquet yast2-webclient-eulas est installé"
 
-#: app/controllers/application_controller.rb:110
+#: app/controllers/application_controller.rb:111
 msgid "Please login to continue"
 msgstr "Veuillez vous connecter pour continuer"
 
-#: app/controllers/application_controller.rb:117
+#: app/controllers/application_controller.rb:118
 msgid "You must logout before you can login"
 msgstr "Vous devez vous déconnecter avant de pouvoir vous connecter"
 
@@ -40,9 +36,7 @@ msgstr "Impossible de se connecter à l'hôte %s."
 # TLABEL linuxrc_2002_03_29_0036__132
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr ""
-"Assurez-vous que l'hôte est en fonctionnement et que le service web YaST est "
-"en cours d'exécution."
+msgstr "Assurez-vous que l'hôte est en fonctionnement et que le service web YaST est en cours d'exécution."
 
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
@@ -76,9 +70,7 @@ msgstr "L'hôte a bloqué l'utilisateur %s. Il ne peut pas se connecter avant %s
 
 #: app/controllers/sessions_controller.rb:99
 msgid "Login incorrect. Check your username and password."
-msgstr ""
-"Échec de l'identification. Veuillez vérifier votre nom d'utilisateur et mot "
-"de passe."
+msgstr "Échec de l'identification. Veuillez vérifier votre nom d'utilisateur et mot de passe."
 
 #: app/controllers/sessions_controller.rb:132
 msgid "You have been logged out."
@@ -136,20 +128,20 @@ msgstr "Hôte|Créé le"
 msgid "Host|Updated at"
 msgstr "Hôte|Mis à jour le"
 
-#: app/helpers/application_helper.rb:14
+#: app/helpers/application_helper.rb:15
 msgid " or "
 msgstr " ou "
 
 # cancel button label
-#: app/helpers/application_helper.rb:19 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
 msgid "Cancel"
 msgstr "Annuler"
 
-#: app/helpers/application_helper.rb:27
+#: app/helpers/application_helper.rb:28
 msgid "Save"
 msgstr "Enregistrer"
 
-#: app/helpers/application_helper.rb:29
+#: app/helpers/application_helper.rb:30
 msgid "Next"
 msgstr "Suivant"
 
@@ -183,9 +175,7 @@ msgstr "Aucune information disponible"
 
 #: app/helpers/view_helpers/html_helper.rb:139
 msgid "There was a problem retrieving information from the server."
-msgstr ""
-"Un problème est survenu lors de la récupération des informations depuis le "
-"serveur."
+msgstr "Un problème est survenu lors de la récupération des informations depuis le serveur."
 
 #: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
@@ -242,11 +232,8 @@ msgid "This is embarrasing...."
 msgstr "C'est embarrassant ..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid ""
-"We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr ""
-"Nous sommes désolés, mais WebYaST est encore au stade alpha et il reste des "
-"problèmes."
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "Nous sommes désolés, mais WebYaST est encore au stade alpha et il reste des problèmes."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
@@ -255,8 +242,7 @@ msgstr "Problème :"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr ""
-"Veuillez signaler le bug afin que nous puissions corriger le problème !"
+msgstr "Veuillez signaler le bug afin que nous puissions corriger le problème !"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
@@ -270,40 +256,34 @@ msgstr "N'oubliez pas d'inclure les détails du problème."
 msgid "Problem occured on target machine."
 msgstr "Un problème est survenu sur la machine cible."
 
-#: app/views/layouts/main.rhtml:33
+#: app/views/layouts/main.rhtml:34
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:41
+#: app/views/layouts/main.rhtml:48
 msgid "My Appliance"
 msgstr "Ma Machine"
 
-#: app/views/layouts/main.rhtml:49
-msgid "Langugage:"
-msgstr "Langue :"
-
-#: app/views/layouts/main.rhtml:51
-msgid "Connected Host"
+#: app/views/layouts/main.rhtml:56
+#, fuzzy
+#| msgid "Connected Host"
+msgid "Connected host:"
 msgstr "Hôte connecté"
 
-#: app/views/layouts/main.rhtml:52
-msgid "Name:"
-msgstr "Nom : "
-
-#: app/views/layouts/main.rhtml:53
+#: app/views/layouts/main.rhtml:57
 msgid "User:"
 msgstr "Utilisateur :"
 
 # TLABEL general_2002_03_14_2340__44
-#: app/views/layouts/main.rhtml:56
+#: app/views/layouts/main.rhtml:60
 msgid "Control panel"
 msgstr "Panneau de configuration"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:61
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: app/views/layouts/main.rhtml:89
+#: app/views/layouts/main.rhtml:93
 msgid "...Wait..."
 msgstr "... Patientez ..."
 
@@ -330,12 +310,8 @@ msgid "Base system setup"
 msgstr "Configuration du système de base"
 
 #: app/views/controlpanel/basesystem.rhtml:3
-msgid ""
-"Your system setup was not completed. Please continue with setting up the "
-"modules."
-msgstr ""
-"La configuration du système n'est pas terminée. Veuillez continuer à "
-"configurer les modules."
+msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgstr "La configuration du système n'est pas terminée. Veuillez continuer à configurer les modules."
 
 # TLABEL linuxrc_2002_03_29_0036__90
 #: app/views/controlpanel/basesystem.rhtml:4
@@ -409,29 +385,20 @@ msgid "Permission %s is not granted for user %s"
 msgstr "La permission %s n'est pas accordée à l'utilisateur %s"
 
 #: lib/error_constructor.rb:18
-msgid ""
-"Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
-"Exception Policy Kit pour l'utilisateur %s et la permission %s (message non "
-"traduit) : %s"
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr "Exception Policy Kit pour l'utilisateur %s et la permission %s (message non traduit) : %s"
 
 #: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr ""
-"Il n'y a plus d'utilisateur connecté à la machine cible. Veuillez vous "
-"reconnecter."
+msgstr "Il n'y a plus d'utilisateur connecté à la machine cible. Veuillez vous reconnecter."
 
 #: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Le système cible n'est pas cohérent : fichier %s corrompu ou manquant"
 
 #: lib/error_constructor.rb:26
-msgid ""
-"There is no predefined ntp server at /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
-"Il n'y a pas de serveur NTP prédéfini dans /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "Il n'y a pas de serveur NTP prédéfini dans /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 # TLABEL linuxrc_2002_03_29_0036__95
 #: lib/error_constructor.rb:28
@@ -440,8 +407,13 @@ msgstr "Une erreur est survenue lors de la synchronisation NTP : %s"
 
 #: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
-msgstr ""
-"Erreur lors de l'enregistrement des paramètres de l'administrateur : %s"
+msgstr "Erreur lors de l'enregistrement des paramètres de l'administrateur : %s"
+
+#~ msgid "Langugage:"
+#~ msgstr "Langue :"
+
+#~ msgid "Name:"
+#~ msgstr "Nom : "
 
 #~ msgid "Problem occured on target machine"
 #~ msgstr "Un problème est survenu sur la machine cible"

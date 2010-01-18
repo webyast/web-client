@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-05 17:05+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <opensuse-translation@opensuse.org>\n"
@@ -24,9 +24,11 @@ msgid "No permissions for time module"
 msgstr "Ingen rettigheder til tidmodulet"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
 msgstr "Indstillingerne er blevet skrevet."
 
 #: app/views/systemtime/index.rhtml:21
@@ -37,39 +39,43 @@ msgstr "Ugyldigt datoformat. Det korrekte er dd/mm/åååå"
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Ugyldigt tidformat. Det korrekte er tt:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Tid"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
+#: app/views/systemtime/index.rhtml:56
+#, fuzzy
+#| msgid "Region:"
+msgid "Region"
 msgstr "Region:"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:60
+#, fuzzy
+#| msgid "Timezone:"
+msgid "Timezone"
 msgstr "Tidszone:"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "Hardware-uret er sat til UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Konfigurér tid manuelt"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
+#: app/views/systemtime/index.rhtml:76
+#, fuzzy
+#| msgid "Date:"
+msgid "Date"
 msgstr "Dato:"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Tid:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 #, fuzzy
 #| msgid "Network Time Protocol daemon"
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Dæmon for Network Time Protocol"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "Hardware-uret er sat til UTC"
+
+#~ msgid "Time:"
+#~ msgstr "Tid:"
 
 #, fuzzy
 #~| msgid "Don't trust the key."

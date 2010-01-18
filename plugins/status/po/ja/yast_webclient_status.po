@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-13 19:54+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
@@ -22,69 +22,61 @@ msgstr "セッションが正しくありません。ログインし直してく
 msgid "Disk free limits exceeded;"
 msgstr "ディスクの残り容量の制限を超過しました:"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr "システム情報を表示するためのデータが見つかりません。"
 
-#: app/controllers/status_controller.rb:179
-#| msgid "Addition succeeded for \"%s\".\n"
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
 msgstr "%s に対する制限が超過しています"
 
-#: app/controllers/status_controller.rb:215
-#| msgid "Saving the changes failed"
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
 msgstr "制限の保存に失敗しました！"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "状態"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "イベント"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "ディスク使用量"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "制限の編集"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "戻る"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "これらの値は直前の 5 分で計測されたものです。"
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "残り"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "使用"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "状態の制限を設定"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "状態パス"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "最小値"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "最大値"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "保存"
 
@@ -100,3 +92,8 @@ msgstr "利用可能な状態情報がありません"
 msgid "Your system is healthy."
 msgstr "システムは健全な状態です。"
 
+#~ msgid "Events"
+#~ msgstr "イベント"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "これらの値は直前の 5 分で計測されたものです。"

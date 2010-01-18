@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime.uk\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-09-27 16:13-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -29,9 +29,11 @@ msgid "No permissions for time module"
 msgstr "Немає прав доступу до модуля часу"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
 msgstr "Параметри було збережено."
 
 #: app/views/systemtime/index.rhtml:21
@@ -42,39 +44,44 @@ msgstr "Нечинний формат дати. Правильний форма�
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Нечинний формат часу. Правильний формат гг:хх:сс"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Час"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
+#: app/views/systemtime/index.rhtml:56
+#, fuzzy
+#| msgid "Region:"
+msgid "Region"
 msgstr "Регіон:"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:60
+#, fuzzy
+#| msgid "Timezone:"
+msgid "Timezone"
 msgstr "Часовий пояс:"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "Годинник обладнання встановлено на UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Налаштувати час вручну"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
-msgstr "Дата:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
+msgstr "Дата"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Час:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 #, fuzzy
 #| msgid "Network Time Protocol daemon"
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Фонова служба мережного протоколу часу (NTP)"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "Годинник обладнання встановлено на UTC"
+
+#~ msgid "Date:"
+#~ msgstr "Дата:"
+
+#~ msgid "Time:"
+#~ msgstr "Час:"
 
 #, fuzzy
 #~| msgid "Don't trust the key."

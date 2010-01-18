@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-17 22:28+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
@@ -19,47 +19,58 @@ msgid "No permissions for network module"
 msgstr "Ei käyttöoikeuksia verkko-moduuliin"
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr "ei asetettu"
+msgid "Not configured"
+msgstr "Ei määritetty"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "kiinteä"
+msgid "Manual"
+msgstr "Käsin"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+#, fuzzy
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "Automaattinen tila"
 
 # %s is either BOOTP or DHCP
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
 msgstr "Asetukset tallennettiin."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Virheellinen IP-osoitteen muoto. Oikea muoto on nnn.nnn.nnn.nnn jossa nnn on 0 ja 255 väliltä."
 
-#: app/views/network/index.html.erb:96
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:97
+#, fuzzy
+#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "Virheellinen etuliite. Oikea muoto on /nn jossa nn on 0 ja 32 väliltä (CIDR muoto)."
 
-#: app/views/network/index.html.erb:102
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:103
+#, fuzzy
+#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Virheellinen oletus reitti. Oikea muoto on nnn.nnn.nnn.nnn jossa nnn on 0 ja 255 väliltä."
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+#, fuzzy
+#| msgid "Name servers is not valid. There must be at least one specified."
+msgid "Name servers are required. There must be at least one specified."
 msgstr "Nimipalvelin ei kelpaa. Ainakin yksi pitää olla määritettynä."
 
-#: app/views/network/index.html.erb:114
-#| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
+#: app/views/network/index.html.erb:115
+#, fuzzy
+#| msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "Konenimi ei kelpaa, Se täytyy määrittää."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+#, fuzzy
+#| msgid "Domain is not valid. It is not supported empty domain."
+msgid "Domain is required. It is not supported empty domain."
 msgstr "Toimialue ei kelpaa. Tyhjää toimialuetta ei tueta."
 
 #: app/views/network/index.html.erb:131
@@ -74,21 +85,17 @@ msgstr "Liitäntä"
 msgid "Select"
 msgstr "Valitse"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "IP-osoite"
-
 #: app/views/network/index.html.erb:166
 msgid "Configuration mode"
 msgstr "Määritystila"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "Prefixlen"
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "IP-osoite"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -107,11 +114,24 @@ msgstr "Nimipalvelimet"
 msgid "Search domains"
 msgstr "Etsi toimialueita"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "Reititys"
-
 #: app/views/network/index.html.erb:201
 msgid "Default route"
 msgstr "Oletusreitti"
 
+#~ msgid "not set"
+#~ msgstr "ei asetettu"
+
+#~ msgid "static"
+#~ msgstr "kiinteä"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#~ msgid "Prefixlen"
+#~ msgstr "Prefixlen"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "Reititys"

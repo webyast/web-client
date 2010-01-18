@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-14 18:46+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -21,67 +21,61 @@ msgstr "Sesión non válida, inicie a sesión de novo."
 msgid "Disk free limits exceeded;"
 msgstr "Excedido olímite do disco libre;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr "Non se atopou ningún dato para amosar o estado do sistema."
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
 msgstr "Límites excedidos para %s"
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
 msgstr "Fallou ao gardar os límites!"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Estado"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "Eventos"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Uso do disco"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Editar límites"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Atrás"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Estes valores foron avaliados nos últimos 5 minutos."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "libre"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "usado"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "Configurar os límites de estado"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Ruta do estado"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "valor mínimo"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Valor máximo"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Gardar"
 
@@ -96,6 +90,12 @@ msgstr "Non hai dispoñible información do estado"
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "O seu sistema está en bo estado."
+
+#~ msgid "Events"
+#~ msgstr "Eventos"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Estes valores foron avaliados nos últimos 5 minutos."
 
 #~ msgid "Show details..."
 #~ msgstr "Amosar detalles..."

@@ -1,13 +1,13 @@
-# translation of yast_webclient_systemtime.hu.po to Hungarian
-# Kalman Kemenczy <kkemenczy@novell.com>, 2009.
+# translation of yast_webclient_systemtime.hu.po to
+# Kalman Kemenczy <kkemenczy@novell.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-29 13:57+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2010-01-07 19:56+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
-"Language-Team: Hungarian <hu@li.org>\n"
+"Language-Team:  <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,10 +22,11 @@ msgstr "A(z) %s gép időzónája ismeretlen"
 msgid "No permissions for time module"
 msgstr "Nincs jogosultság a hálózati modulhoz"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
-msgstr "A beállítások mentése befejeződött."
+#: app/controllers/systemtime_controller.rb:122
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
+msgstr "Az időbeállítások mentése befejeződött."
 
 #: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
@@ -35,34 +36,29 @@ msgstr "Nem megfelelő dátumformátum. A megfelelő formátum nn/hh/éééé"
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Nem megfelelő időformátum. A megfelelő formátum: óó:pp:mp"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Idő"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
-msgstr "Régió:"
+#: app/views/systemtime/index.rhtml:56
+#| msgid "Region:"
+msgid "Region"
+msgstr "Régió"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
-msgstr "Időzóna:"
+#: app/views/systemtime/index.rhtml:60
+#| msgid "Timezone:"
+msgid "Timezone"
+msgstr "Időzóna"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "UTC-hez állított hardveróra"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Kézi időbeállítás"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
-msgstr "Dátum:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
+msgstr "Dátum"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Idő:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Szinkronizálás NTP használatával"
+

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-31 11:45+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-19 11:45+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,10 +21,10 @@ msgstr "Fuso horario %s descoñecido neste equipo"
 msgid "No permissions for time module"
 msgstr "Non ten permisos para o módulo de hora"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
-msgstr "Gravouse correctamente a configuración."
+#: app/controllers/systemtime_controller.rb:122
+msgid "Time settings have been written."
+msgstr "Gravouse correctamente a configuración da hora."
 
 #: app/views/systemtime/index.rhtml:21
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
@@ -34,37 +34,35 @@ msgstr "O formato da data non é válido. O correcto é dd/mm/yyyy"
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "O formato da hora non é válido. O correcto é hh:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Hora"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
-msgstr "Rexión: "
+#: app/views/systemtime/index.rhtml:56
+msgid "Region"
+msgstr "Rexión "
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
-msgstr "Fuso horario:"
+#: app/views/systemtime/index.rhtml:60
+msgid "Timezone"
+msgstr "Fuso horario"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "O reloxo hardware está posto como UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Configuración manual da hora"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
-msgstr "Data:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
+msgstr "Data"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Hora:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Sincronización mediante NTP (Network Time Protocol)"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "O reloxo hardware está posto como UTC"
+
+#~ msgid "Time:"
+#~ msgstr "Hora:"
 
 #~ msgid "Don't set time"
 #~ msgstr "Non se pode poñer en hora"

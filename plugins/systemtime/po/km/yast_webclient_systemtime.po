@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2006-02-18 09:47+0700\n"
 "Last-Translator: Keo Sophon <keosophon@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -24,11 +24,11 @@ msgid "No permissions for time module"
 msgstr "មិន​អាច​កំណត់​សិទ្ធិ​សម្រាប់ '%s': %m\n"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
+#: app/controllers/systemtime_controller.rb:122
 #, fuzzy
 #| msgid "The configuration file has been written."
-msgid "Settings have been written."
+msgid "Time settings have been written."
 msgstr "ឯកសារ​កំណត់​រចនាសម្ព័ន្ធ​ត្រូវ​បានសរសេរ ។"
 
 #: app/views/systemtime/index.rhtml:21
@@ -39,46 +39,41 @@ msgstr ""
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:57
+#: app/views/systemtime/index.rhtml:56
 #, fuzzy
 #| msgid "Religion"
-msgid "Region:"
+msgid "Region"
 msgstr "សាសនា"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
-msgstr ""
-
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
+#: app/views/systemtime/index.rhtml:60
+msgid "Timezone"
 msgstr ""
 
 # 55493 AttribValues/label
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 #, fuzzy
 #| msgid "Manual IP config"
 msgid "Manually configure time"
 msgstr "កំណត់​រចនា​សម្ព័ន្ធ IP ដោយដៃ"
 
-#: app/views/systemtime/index.rhtml:88
-#, fuzzy
-#| msgid "Date"
-msgid "Date:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
 msgstr "កាល​បរិច្ឆេទ"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr ""
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 #, fuzzy
 #| msgid "Network Time Protocol daemon"
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "ដេមិន​ពិធីការ​ពេលវេលា​បណ្ដាញ"
+
+#, fuzzy
+#~| msgid "Date"
+#~ msgid "Date:"
+#~ msgstr "កាល​បរិច្ឆេទ"
 
 #, fuzzy
 #~| msgid "Don't trust the key."

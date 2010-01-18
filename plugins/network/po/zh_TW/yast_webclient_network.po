@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-22 19:30+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -24,51 +24,55 @@ msgid "No permissions for network module"
 msgstr "無網路模組權限"
 
 #: app/controllers/network_controller.rb:66
+msgid "Not configured"
+msgstr "未設定"
+
+#: app/controllers/network_controller.rb:66
 #, fuzzy
-#| msgid "Do not start"
-msgid "not set"
-msgstr "不要啟動"
+#| msgid "Manual Mode"
+msgid "Manual"
+msgstr "手動模式"
 
 #: app/controllers/network_controller.rb:66
-msgid "static"
-msgstr "靜態"
-
-#: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "DHCP"
+#, fuzzy
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "自動模式"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
 msgstr "設定已經寫入。"
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn 範圍為 0 到 255。"
 
-#: app/views/network/index.html.erb:96
+#: app/views/network/index.html.erb:97
 #, fuzzy
 #| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn 範圍為 0 到 255。"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:103
 #, fuzzy
 #| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn 範圍為 0 到 255。"
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:115
 #, fuzzy
 #| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "沒有指定的有效要求檔案。"
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
 #: app/views/network/index.html.erb:131
@@ -85,25 +89,21 @@ msgstr "介面"
 msgid "Select"
 msgstr "選取的項目"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-#, fuzzy
-#| msgid "IP Address"
-msgid "IP address"
-msgstr "IP 位址"
-
 #: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration Mode"
 msgid "Configuration mode"
 msgstr "組態模式"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr "撥號前置號碼"
+#: app/views/network/index.html.erb:170
+#, fuzzy
+#| msgid "IP Address"
+msgid "IP address"
+msgstr "IP 位址"
 
-#: app/views/network/index.html.erb:179
-msgid "DNS"
-msgstr "DNS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -126,15 +126,31 @@ msgstr "名稱伺服器"
 msgid "Search domains"
 msgstr "搜尋領域"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "路由"
-
 #: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "Default Route"
 msgid "Default route"
 msgstr "預設路由"
+
+#, fuzzy
+#~| msgid "Do not start"
+#~ msgid "not set"
+#~ msgstr "不要啟動"
+
+#~ msgid "static"
+#~ msgstr "靜態"
+
+#~ msgid "dhcp"
+#~ msgstr "DHCP"
+
+#~ msgid "Prefixlen"
+#~ msgstr "撥號前置號碼"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "路由"
 
 #~ msgid "Save"
 #~ msgstr "儲存"

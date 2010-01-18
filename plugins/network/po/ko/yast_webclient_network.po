@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: entries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2006-06-12 16:56+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
@@ -16,51 +16,49 @@ msgid "No permissions for network module"
 msgstr ""
 
 #: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Do not start"
-msgid "not set"
-msgstr "시작하지 않음"
+msgid "Not configured"
+msgstr "설정되지 않음"
+
+#: app/controllers/network_controller.rb:66
+msgid "Manual"
+msgstr "수동"
 
 #: app/controllers/network_controller.rb:66
 #, fuzzy
-#| msgid "Static"
-msgid "static"
-msgstr "고정"
-
-#: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr "dhcp"
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "자동 모드"
 
 #: app/controllers/network_controller.rb:105
 #, fuzzy
 #| msgid "The configuration file has been written."
-msgid "Settings have been written."
+msgid "Network settings have been written."
 msgstr "구성 파일이 기록되었습니다."
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:96
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:97
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:102
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:103
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:115
 #, fuzzy
 #| msgid "No valid request file specified."
-msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "올바른 요청 파일이 지정되지 않았습니다."
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
 #: app/views/network/index.html.erb:131
@@ -77,29 +75,21 @@ msgstr "인터페이스"
 msgid "Select"
 msgstr "선택사항(_S)"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-#, fuzzy
-#| msgid "IP Address"
-msgid "IP address"
-msgstr "IP 주소"
-
 #: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "구성"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:170
 #, fuzzy
-#| msgid "Dial Prefix"
-msgid "Prefixlen"
-msgstr "국번"
+#| msgid "IP Address"
+msgid "IP address"
+msgstr "IP 주소"
 
-#: app/views/network/index.html.erb:179
-#, fuzzy
-#| msgid "NFS"
-msgid "DNS"
-msgstr "NFS"
+#: app/views/network/index.html.erb:174
+msgid "Subnet mask / Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
 #, fuzzy
@@ -126,15 +116,34 @@ msgstr "네임서버"
 msgid "Search domains"
 msgstr "도메인 검색(&S):"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr ""
-
 #: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "Default Route"
 msgid "Default route"
 msgstr "기본 라우트"
+
+#, fuzzy
+#~| msgid "Do not start"
+#~ msgid "not set"
+#~ msgstr "시작하지 않음"
+
+#, fuzzy
+#~| msgid "Static"
+#~ msgid "static"
+#~ msgstr "고정"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#, fuzzy
+#~| msgid "Dial Prefix"
+#~ msgid "Prefixlen"
+#~ msgstr "국번"
+
+#, fuzzy
+#~| msgid "NFS"
+#~ msgid "DNS"
+#~ msgstr "NFS"
 
 #~ msgid "Save"
 #~ msgstr "저장"

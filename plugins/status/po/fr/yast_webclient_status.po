@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-12 17:58+0100\n"
 "Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
@@ -21,70 +21,64 @@ msgstr "Session invalide, veuillez vous reconnecter."
 msgid "Disk free limits exceeded;"
 msgstr "Limites d'espace disque libre dépassées ;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr "Aucune donnée disponible pour afficher l'état du système."
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
 msgstr "Limites dépassées pour %s"
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
 msgstr "L'enregistrement des limites a échoué !"
 
 # TLABEL lan_inetd_2002_01_04_0147__28
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "État"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "Événements"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Utilisation du disque"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Modifier les limites"
 
 # TLABEL linuxrc_2002_03_29_0036__1
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Retour"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Ces valeurs ont été évaluées dans les 5 dernières minutes."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "disponible"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "utilisé"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "Configurer les limites d'état"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Chemin d'état :"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "Valeur minimum"
 
 # TLABEL linuxrc_2002_03_29_0036__40
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Valeur maximum"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -101,6 +95,12 @@ msgstr "Aucune information d'état disponible"
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Votre système est en bon état."
+
+#~ msgid "Events"
+#~ msgstr "Événements"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Ces valeurs ont été évaluées dans les 5 dernières minutes."
 
 #~ msgid "Show details..."
 #~ msgstr "Afficher les détails..."

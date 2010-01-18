@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-16 23:01+0100\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <yast-nl-l10n-request@lists.sf.kovoks.nl>\n"
@@ -27,71 +27,63 @@ msgstr "Ongeldige sessie, gaarne opnieuw aanmelden."
 msgid "Disk free limits exceeded;"
 msgstr "Limieten van vrije ruimte op schijf overschreden;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr "Voor het tonen van de systeemstatus zijn geen gegevens voorhanden."
 
-#: app/controllers/status_controller.rb:179
-#| msgid "Addition succeeded for \"%s\".\n"
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
 msgstr "De limieten voor %s zijn overschreden"
 
-#: app/controllers/status_controller.rb:215
-#| msgid "Saving the changes failed"
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
 msgstr "Opslaan van limieten is mislukt!"
 
 # /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "Gebeurtenissen"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Schijfgebruik"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Bewerkingslimieten"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Terug"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Deze waarden zijn in de laatste 5 minuten geëvalueerd."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "vrij"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "gebruikt"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "statuslimieten configureren"
 
 # /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Statuspad"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "Minimum waarde"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Maximale waarde"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Opslaan"
 
@@ -107,3 +99,8 @@ msgstr "Geen statusinformatie beschikbaar"
 msgid "Your system is healthy."
 msgstr "Uw systeem is gezond."
 
+#~ msgid "Events"
+#~ msgstr "Gebeurtenissen"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Deze waarden zijn in de laatste 5 minuten geëvalueerd."

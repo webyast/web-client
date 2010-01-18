@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -22,55 +22,47 @@ msgstr ""
 msgid "Disk free limits exceeded;"
 msgstr ""
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
 msgstr ""
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 #, fuzzy
 #| msgid "Storing file list failed"
 msgid "Saving limits failed!"
 msgstr "การจัดเก็บรายการแฟ้มล้มเหลว"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "สถานะ"
 
-#: app/views/status/index.html.erb:27
-#, fuzzy
-#| msgid "Button Events"
-msgid "Events"
-msgstr "เหตุการณ์เมื่อกดปุ่ม"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "การใช้งานดิสก์"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 #, fuzzy
 #| msgid "No Limit"
 msgid "Edit Limits"
 msgstr "ไม่จำกัด"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 #, fuzzy
 #| msgid "&Back"
 msgid "Back"
 msgstr "ย้อนกลับ"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr ""
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "ว่าง"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 #, fuzzy
 #| msgid ""
 #| "used\n"
@@ -80,31 +72,31 @@ msgstr ""
 "ใช้ไป\n"
 "%1"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 #, fuzzy
 #| msgid "Configured as %1"
 msgid "Configure Status Limits"
 msgstr "ถูกปรับแต่งเป็น %1"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 #, fuzzy
 #| msgid "Status"
 msgid "Status Path"
 msgstr "สถานะ"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 #, fuzzy
 #| msgid "&Minimum"
 msgid "Minimum Value"
 msgstr "ค่าน้อยที่สุด (&Minimum)"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 #, fuzzy
 #| msgid "Maximum size"
 msgid "Maximum Value"
 msgstr "ขนาดสูงสุด"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 #, fuzzy
 #| msgid "&Save"
 msgid "Save"
@@ -127,6 +119,11 @@ msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
 #| msgid "<p>Your system is ready for use.</p>"
 msgid "Your system is healthy."
 msgstr "<p>ระบบของคุณพร้อมที่จะใช้งานได้แล้ว</p>"
+
+#, fuzzy
+#~| msgid "Button Events"
+#~ msgid "Events"
+#~ msgstr "เหตุการณ์เมื่อกดปุ่ม"
 
 #, fuzzy
 #~| msgid "Show &details"

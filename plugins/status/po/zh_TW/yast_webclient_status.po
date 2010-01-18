@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-10-04 15:26+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -27,71 +27,65 @@ msgstr "不適用的工作階段，請重新登入。"
 msgid "Disk free limits exceeded;"
 msgstr "超出磁碟可用空間限制;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for %s"
 msgstr "\"%s\" 附加成功。\n"
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 #, fuzzy
 #| msgid "Saving the changes failed"
 msgid "Saving limits failed!"
 msgstr "儲存變更失敗"
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "狀態"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "事件"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "磁碟用量"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "編輯限制"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "上一步"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "此數值為最近 5 分鐘的評估。"
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "可用"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "已使用"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "設定狀態限制"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "狀態路徑"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "最小值"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "最大值"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "儲存"
 
@@ -110,6 +104,12 @@ msgstr "沒有可用的資訊。"
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "您的系統狀態良好。"
+
+#~ msgid "Events"
+#~ msgstr "事件"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "此數值為最近 5 分鐘的評估。"
 
 #~ msgid "Show details..."
 #~ msgstr "顯示詳細資料..."

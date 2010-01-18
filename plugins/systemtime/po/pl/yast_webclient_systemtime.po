@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-11-08 16:29+0100\n"
 "Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
 "Language-Team:  <pl@li.org>\n"
@@ -26,9 +26,10 @@ msgstr "Nieznana strefa czasowa %s hosta"
 msgid "No permissions for time module"
 msgstr "Brak uprawnień dla modułu zegara"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+#, fuzzy
+msgid "Time settings have been written."
 msgstr "Zapisano ustawienia."
 
 #: app/views/systemtime/index.rhtml:21
@@ -39,37 +40,40 @@ msgstr "Niepoprawny format daty. Poprawny format (dzień/miesiąc/rok) dd/mm/yyy
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Niepoprawny format czasu. Poprawny format (godziny/minuty/sekundy) hh:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Godzina"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
+#: app/views/systemtime/index.rhtml:56
+#, fuzzy
+msgid "Region"
 msgstr "Strefa:"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:60
+#, fuzzy
+msgid "Timezone"
 msgstr "Strefa czasowa"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "Zegar systemowy ustawiono dla UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Ręczna konfiguracja czasu"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
-msgstr "Data:"
+#: app/views/systemtime/index.rhtml:76
+msgid "Date"
+msgstr "Data"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Godzina:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Synchronizacja przez NTP"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "Zegar systemowy ustawiono dla UTC"
+
+#~ msgid "Date:"
+#~ msgstr "Data:"
+
+#~ msgid "Time:"
+#~ msgstr "Godzina:"
 
 #~ msgid "Don't set time"
 #~ msgstr "Nie ustawiać czasu"

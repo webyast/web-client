@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -30,9 +30,9 @@ msgstr "未知选项"
 msgid "No permissions for time module"
 msgstr "无法设置'%s'的权限：%m\n"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+msgid "Time settings have been written."
 msgstr ""
 
 #: app/views/systemtime/index.rhtml:21
@@ -43,41 +43,33 @@ msgstr ""
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:57
+#: app/views/systemtime/index.rhtml:56
 #, fuzzy
 #| msgid "Version: "
-msgid "Region:"
+msgid "Region"
 msgstr "版本："
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
+#: app/views/systemtime/index.rhtml:60
+msgid "Timezone"
 msgstr ""
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr ""
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 #, fuzzy
 #| msgid "Manual IP config"
 msgid "Manually configure time"
 msgstr "手工 IP 配置"
 
-#: app/views/systemtime/index.rhtml:88
+#: app/views/systemtime/index.rhtml:76
 #, fuzzy
 #| msgid "Date: %1"
-msgid "Date:"
+msgid "Date"
 msgstr "日期：%1"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr ""
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 #, fuzzy
 #| msgid "Network Time Protocol daemon"
 msgid "Synchronize via Network Time Protocol (NTP)"

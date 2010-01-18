@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-09-25 20:08+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gamil.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -28,67 +28,61 @@ msgstr "Neplatné sedenie, prihláste sa znovu prosím."
 msgid "Disk free limits exceeded;"
 msgstr "Prekročené voľné limity disku;"
 
-#: app/controllers/status_controller.rb:126
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:179
+#: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
 msgstr ""
 
-#: app/controllers/status_controller.rb:215
+#: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
 msgstr ""
 
-#: app/views/status/index.html.erb:24
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Stav"
 
-#: app/views/status/index.html.erb:27
-msgid "Events"
-msgstr "Udalosti"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:45
 msgid "Disk usage"
 msgstr "Využitie disku"
 
-#: app/views/status/index.html.erb:74
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Upraviť limity"
 
-#: app/views/status/index.html.erb:75 app/views/status/edit.html.erb:42
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
 msgstr "Nazad"
 
-#: app/views/status/index.html.erb:78
-msgid "These values have been evaluated the last 5 minutes."
-msgstr "Tieto hodnoty boli vyhodnotené za posledných 5 minút."
-
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
 msgstr "voľné"
 
-#: app/views/status/index.html.erb:226 app/views/status/index.html.erb:228
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
 msgstr "použité"
 
-#: app/views/status/edit.html.erb:4
+#: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
 msgstr "Konfigurovať limity stavu"
 
-#: app/views/status/edit.html.erb:9
+#: app/views/status/edit.html.erb:7
 msgid "Status Path"
 msgstr "Cesta stavu"
 
-#: app/views/status/edit.html.erb:10
+#: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
 msgstr "Minimálna hodnota"
 
-#: app/views/status/edit.html.erb:11
+#: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
 msgstr "Maximálna hodnota"
 
-#: app/views/status/edit.html.erb:41
+#: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Uložiť"
 
@@ -107,6 +101,12 @@ msgstr "Nie sú dostupné žiadne informácie."
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "Váš systém je v poriadku."
+
+#~ msgid "Events"
+#~ msgstr "Udalosti"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Tieto hodnoty boli vyhodnotené za posledných 5 minút."
 
 #~ msgid "Show details..."
 #~ msgstr "Zobraziť detaily..."

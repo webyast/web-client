@@ -5,10 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_systemtime\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-11-01 02:03+0300\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-12-14 20:54+0300\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,9 +23,10 @@ msgstr "Неизвестный временной пояс %s"
 msgid "No permissions for time module"
 msgstr "Нет прав для модуля времени"
 
-#: app/controllers/systemtime_controller.rb:114
 #: app/controllers/systemtime_controller.rb:118
-msgid "Settings have been written."
+#: app/controllers/systemtime_controller.rb:122
+#| msgid "Settings have been written."
+msgid "Time settings have been written."
 msgstr "Настройки были записаны."
 
 #: app/views/systemtime/index.rhtml:21
@@ -36,37 +37,38 @@ msgstr "Неверный формат даты. Верный — dd/mm/yyyy"
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr "Неверный формат времени. Верный — hh:mm:ss"
 
-#: app/views/systemtime/index.rhtml:49
+#: app/views/systemtime/index.rhtml:48 app/views/systemtime/index.rhtml:80
 msgid "Time"
 msgstr "Время"
 
-#: app/views/systemtime/index.rhtml:57
-msgid "Region:"
-msgstr "Регион:"
+#: app/views/systemtime/index.rhtml:56
+#| msgid "Region:"
+msgid "Region"
+msgstr "Регион"
 
-#: app/views/systemtime/index.rhtml:61
-msgid "Timezone:"
-msgstr "Часовой пояс:"
+#: app/views/systemtime/index.rhtml:60
+#| msgid "Timezone:"
+msgid "Timezone"
+msgstr "Часовой пояс"
 
-#: app/views/systemtime/index.rhtml:70 app/views/systemtime/index.rhtml:76
-msgid "Hardware clock is set to UTC"
-msgstr "Аппаратные часы установлены в UTC"
-
-#: app/views/systemtime/index.rhtml:83
+#: app/views/systemtime/index.rhtml:71
 msgid "Manually configure time"
 msgstr "Настроить время вручную"
 
-#: app/views/systemtime/index.rhtml:88
-msgid "Date:"
-msgstr "Дата:"
+#: app/views/systemtime/index.rhtml:76
+#| msgid "Date:"
+msgid "Date"
+msgstr "Дата"
 
-#: app/views/systemtime/index.rhtml:92
-msgid "Time:"
-msgstr "Время:"
-
-#: app/views/systemtime/index.rhtml:97
+#: app/views/systemtime/index.rhtml:84
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr "Синхронизировать по Network Time Protocol (NTP)"
+
+#~ msgid "Hardware clock is set to UTC"
+#~ msgstr "Аппаратные часы установлены в UTC"
+
+#~ msgid "Time:"
+#~ msgstr "Время:"
 
 #~ msgid "Don't set time"
 #~ msgstr "Не устанавливать время"

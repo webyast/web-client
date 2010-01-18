@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -21,47 +21,47 @@ msgid "No permissions for network module"
 msgstr "สิทธิ์ในการเข้าใช้ของผู้ใช้นิรนาม: "
 
 #: app/controllers/network_controller.rb:66
-msgid "not set"
-msgstr ""
+msgid "Not configured"
+msgstr "ยังไม่มีการปรับแต่ง"
 
 #: app/controllers/network_controller.rb:66
 #, fuzzy
-#| msgid "Automatic"
-msgid "static"
-msgstr "อัตโนมัติ"
+#| msgid "Manually"
+msgid "Manual"
+msgstr "สั่งด้วยตนเอง"
 
 #: app/controllers/network_controller.rb:66
-msgid "dhcp"
-msgstr ""
+msgid "Automatic"
+msgstr "อัตโนมัติ"
 
 #: app/controllers/network_controller.rb:105
-msgid "Settings have been written."
+msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:87
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:96
-msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:97
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:102
-msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:103
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:108
-msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:109
+msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:115
 #, fuzzy
 #| msgid "Hostname not specified."
-msgid "Hostname is not valid. It must be specified."
+msgid "Hostname is required. It must be specified."
 msgstr "ยังไม่ระบุชื่อเครื่อง"
 
-#: app/views/network/index.html.erb:120
-msgid "Domain is not valid. It is not supported empty domain."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
 #: app/views/network/index.html.erb:131
@@ -76,25 +76,21 @@ msgstr "ส่วนเชื่อมต่อ"
 msgid "Select"
 msgstr "เลือก"
 
-#: app/views/network/index.html.erb:164 app/views/network/index.html.erb:170
-msgid "IP address"
-msgstr "ที่อยู่ไอพี"
-
 #: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "การปรับแต่งค่า"
 
-#: app/views/network/index.html.erb:174
-msgid "Prefixlen"
-msgstr ""
+#: app/views/network/index.html.erb:170
+msgid "IP address"
+msgstr "ที่อยู่ไอพี"
 
-#: app/views/network/index.html.erb:179
+#: app/views/network/index.html.erb:174
 #, fuzzy
-#| msgid "DSL"
-msgid "DNS"
-msgstr "โมเด็ม DSL"
+#| msgid "Subnetmask is invalid."
+msgid "Subnet mask / Prefixlen"
+msgstr "ค่าซับเน็ตมาสก์ใช้ไม่ได้"
 
 #: app/views/network/index.html.erb:181
 msgid "Hostname"
@@ -116,15 +112,24 @@ msgstr "เครื่องให้บริการสืบค้นชื
 msgid "Search domains"
 msgstr "ค้นหาใน"
 
-#: app/views/network/index.html.erb:199
-msgid "Routing"
-msgstr "การหาเส้นทาง (Routing)"
-
 #: app/views/network/index.html.erb:201
 #, fuzzy
 #| msgid "D&efault Route"
 msgid "Default route"
 msgstr "การหาเส้นทาง (Route) ปริยาย"
+
+#, fuzzy
+#~| msgid "Automatic"
+#~ msgid "static"
+#~ msgstr "อัตโนมัติ"
+
+#, fuzzy
+#~| msgid "DSL"
+#~ msgid "DNS"
+#~ msgstr "โมเด็ม DSL"
+
+#~ msgid "Routing"
+#~ msgstr "การหาเส้นทาง (Routing)"
 
 #, fuzzy
 #~| msgid "&Save"
