@@ -46,25 +46,7 @@ end
     id="service_progress_<%=service.name%>" style="display: none" alt='working...'/>
 
 <span class='service_status' id='service_status_<%=service.name%>'>
-<% if service.status.nil? %>
-<%   javascript_tag do %>
-$(document).ready( function() {
-   <%=
-    url	= {
-	    :controller => :services,
-	    :id		=> service.name,
-	    :action	=> :show_status
-    }
-    url[:custom]	= 1 if params.has_key?("custom")
-
-    remote_function :update => "service_status_#{service.name}",
-    :url => url,
-    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
-    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
-   %>
-});
-<%   end %>
-<% else %>
+<% unless service.status.nil? %>
 <%= render :partial => 'status', :object => service.status %>
 <% end %>
 </span>
