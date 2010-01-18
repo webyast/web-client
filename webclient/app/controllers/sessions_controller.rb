@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
   # it will show the login form
   def create
     host = Host.find_by_id_or_name(params[:hostid])
-    puts "Host(#{params[:hostid]}): #{host.inspect}"
+    logger.debug "Host(#{params[:hostid]}): #{host.inspect}"
     # if the user or password is not there, then render the login form
     if host.nil?
       flash[:warning] = _("You need to specify the host")
