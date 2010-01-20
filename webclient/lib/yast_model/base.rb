@@ -78,7 +78,8 @@ module YastModel
       Rails.logger.debug "set site tot #{self.site}"
       Rails.logger.debug "set token to #{self.password}"
       resource = YastModel::Resource.find(:all).find { |r| r.interface.to_sym == @interface.to_sym }
-      #TODO throw exception if not found (maybe it is enought exception throwed by ARes
+      #TODO throw better exception if not found
+      raise "Interface #{@interface} missing on target machine" unless resource
       p, sep, self.collection_name = resource.href.rpartition('/')
       p += '/'
       self.prefix = p
