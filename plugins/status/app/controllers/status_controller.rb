@@ -10,14 +10,7 @@ class StatusController < ApplicationController
 
   private
   def client_permissions
-    @client_metrics = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.metrics')
-    @client_graphs = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.graphs')
-    client_status = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.status')
-    unless @client_metrics && @client_graphs && client_status
-      flash[:notice] = _("Invalid session, please login again.")
-      redirect_to( logout_path ) and return
-    end
-    @permissions = client_status.permissions
+    @permissions = Status.permissions
   end
 
   #
@@ -54,7 +47,7 @@ class StatusController < ApplicationController
     @data_group = Hash.new
 
     stat_params = { :start => from.to_i.to_s, :stop => till.to_i.to_s }
-    status = @client_metrics.find(id, :params => stat_params )
+    status = Metrics.find(id, :params => stat_params )
     ret = Array.new
     if status.attributes["value"].is_a? Array
       status.attributes["value"].each{ |value|
@@ -106,10 +99,9 @@ class StatusController < ApplicationController
   def index
     client_permissions
     begin
-      log = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.logs')
-      @logs = log.find(:all) 
+      @logs = Logs.find(:all) 
       @logs ||= {}
-      @graphs = @client_graphs.find(:all, :params => { :checklimits => true })
+      @graphs = Graphs.find(:all, :params => { :checklimits => true })
       @graphs ||= []
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
@@ -137,7 +129,7 @@ class StatusController < ApplicationController
       level = "ok"
       status = ""
       ActionController::Base.benchmark("Graphs data read from the server") do
-        graphs = @client_graphs.find(:all, :params => { :checklimits => true }) || []  
+        graphs = Graphs.find(:all, :params => { :checklimits => true }) || []  
         graphs.each do |graph|
           label = limits_reached(graph)
           unless label.blank?
@@ -189,8 +181,8 @@ class StatusController < ApplicationController
     
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
-        graph = @client_graphs.find(group_id)
-        available_metrics = @client_metrics.find(:all)
+        graph = Graphs.find(group_id)
+        available_metrics = Metrics.find(:all)
         data[:y_scale] = graph.y_scale.to_f
         data[:y_label] = graph.y_label
         data[:graph_id] = graph_id
@@ -259,7 +251,7 @@ class StatusController < ApplicationController
     client_permissions
     begin
       ActionController::Base.benchmark("Graph information from server") do
-        @graphs = @client_graphs.find(:all)
+        @graphs = Graphs.find(:all)
       end
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
@@ -274,7 +266,7 @@ class StatusController < ApplicationController
     client_permissions
     begin
       ActionController::Base.benchmark("Graph information from server") do
-        @graphs = @client_graphs.find(:all)
+        @graphs = Graphs.find(:all)
       end
     rescue Exception => error
       logger.warn error.inspect
