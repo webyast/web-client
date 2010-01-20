@@ -11,6 +11,7 @@ class StatusController < ApplicationController
   private
   def client_permissions
     @permissions = Status.permissions
+puts "xxxxxxxxxxxxxxxxaaa #{@permissions.inspect}"
   end
 
   #

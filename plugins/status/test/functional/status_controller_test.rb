@@ -18,18 +18,18 @@ class StatusControllerTest < ActionController::TestCase
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
-    response_logs = fixture "logs.xml"
-    response_graphs = fixture "graphs.xml"
-    response_metrics = fixture "metrics.xml"
+    @response_logs = fixture "logs.xml"
+    @response_graphs = fixture "graphs.xml"
+    @response_metrics = fixture "metrics.xml"
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       @header = ActiveResource::HttpMock.authentication_header
       mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
-      mock.get   "/logs.xml", @header, response_logs, 200
-      mock.get   "/graphs.xml?checklimits=true", @header, response_graphs, 200
-      mock.get   "/graphs.xml", @header, response_graphs, 200
-      mock.get   "/metrics.xml", @header, response_metrics, 200
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml?checklimits=true", @header, @response_graphs, 200
+      mock.get   "/graphs.xml", @header, @response_graphs, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
   end
 
@@ -39,6 +39,23 @@ class StatusControllerTest < ActionController::TestCase
 
   #first index call
   def test_index
+    get :index
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:graphs)
+  end
+
+  # now permissions in index
+  def test_index_no_permissions
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
+      mock.permissions "org.opensuse.yast.system.status", { :read => false, :writelimits => false }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml?checklimits=true", @header, @response_graphs, 200
+      mock.get   "/graphs.xml", @header, @response_graphs, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
+    end
+
     get :index
     assert_response :success
     assert_valid_markup
@@ -60,11 +77,10 @@ class StatusControllerTest < ActionController::TestCase
       mock.get   "/metrics.xml", @header, response_metrics, 503
     end
 
-    ret = get :index
+    get :index
     assert_response :success
     assert_valid_markup
     assert_tag "Collectd is out of sync. Status information can be expected at Wed Jan 20 22:34:38 2010."
-
   end
 
   # status module must survive SERVICE_NOT_RUNNING
@@ -82,7 +98,7 @@ class StatusControllerTest < ActionController::TestCase
       mock.get   "/metrics.xml", @header, response_metrics, 503
     end
 
-    ret = get :index
+    get :index
     assert_response :success
     assert_valid_markup
     assert_tag "collectd is not running on the target machine"
