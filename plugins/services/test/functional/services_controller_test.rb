@@ -69,7 +69,7 @@ class ServicesControllerTest < ActionController::TestCase
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
     ret = get :show_status, {:id => 'ntp'}
     assert_response :success
-    assert ret.body == '(running)'
+    assert !ret.body.index("running").nil?
   end
 
   def test_missing_service_status
