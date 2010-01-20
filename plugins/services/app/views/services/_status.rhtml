@@ -8,17 +8,22 @@
 # 4 - service status unknown :-(
 # 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
 -%>
-<%=
+<%
+color	= "#C0C0C0"
 case status
     when nil, 4
-	_("(unknown)")
+	label	= _("(unknown)")
     when 0
-	_("(running)")
+	label	= _("(running)")
+	color	= "#00FF00"
     when 1,2
-	_("(dead)")
+	label	= _("(dead)")
+	color	=  "#FF0000"
     when 3
-	_("(not running)")
+	label	= _("(not running)")
+	color	= "#000000"
     else
-	_("(unknown: %d)") % status
+	label	= _("(unknown: %d)") % status
 end
 -%>
+<span style="color: <%=color%>"><%=label%></span>

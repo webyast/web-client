@@ -3,10 +3,10 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('div#services-list> ul li div.description').hide();
-    $('div#services-list a.toggle-description').hover(function(){
-	$(this).next('div.description').slideDown('slow');
-    },function(){
-	$(this).next('div.description').slideUp('slow');
+    $('div#services-list a.toggle-description').mouseenter(function(){
+	$(this).siblings('div.description').show('slow');
+    }).mouseleave(function(){
+	$(this).siblings('div.description').hide('slow');
     });
 
 })
@@ -51,7 +51,9 @@ end
   <a href="#" class="toggle-description"><img alt="Toggle service description" src="/images/loupe-icon.png" /></a>
 
   <div class='description'>
-    <i><%=h service.description unless service.description.nil? %></i>
+    <i>
+      <%= service.description ? h(service.description) : _("Description for service is not available") %>
+    </i>
   </div> 
 
   <img src="/images/working.gif" height="12" width="12" border="0"
