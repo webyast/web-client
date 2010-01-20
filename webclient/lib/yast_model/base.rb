@@ -109,8 +109,8 @@ module YastModel
     # Note: it is class method, because user, password and site is also on class level
     def permissions
       return @permissions if @permissions
-      YastModel::Permission.site = self.site
-      YastModel::Permission.password = self.password
+      YastModel::Permission.site = YaST::ServiceResource::Session.site
+      YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
       permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }
       @permissions = {}
       permissions.each do |p|
