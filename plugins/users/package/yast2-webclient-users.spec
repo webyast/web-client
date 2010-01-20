@@ -37,6 +37,7 @@ Authors:
 %setup -q -n www
 
 %build
+rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
 
