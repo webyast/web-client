@@ -26,18 +26,18 @@ class StatusControllerTest < ActionController::TestCase
     @response_metrics_memory_cached = fixture "waerden+memory+memory-used.xml"
     @response_metrics = fixture "metrics.xml"
     ActiveResource::HttpMock.set_authentication
+    @header = ActiveResource::HttpMock.authentication_header
     ActiveResource::HttpMock.respond_to do |mock|
-      @header = ActiveResource::HttpMock.authentication_header
       mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
-      mock.get   "/logs.xml", @header, @response_logs, 200
-      mock.get   "/graphs.xml?checklimits=true", @header, @response_graphs, 200
-      mock.get   "/graphs.xml", @header, @response_graphs, 200
-      mock.get   "/graphs/Memory.xml", @header, @response_graphs_memory, 200
-      mock.get   "/metrics.xml", @header, @response_metrics, 200
-      mock.get   "/metrics/waerden+memory+memory-free.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_free, 200
-      mock.get   "/metrics/waerden+memory+memory-used.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_used, 200
-      mock.get   "/metrics/waerden+memory+memory-cached.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_cached, 200
+      mock.get "/logs.xml", @header, @response_logs, 200
+      mock.get "/graphs.xml?checklimits=true", @header, @response_graphs, 200
+      mock.get "/graphs.xml", @header, @response_graphs, 200
+      mock.get "/graphs/Memory.xml", @header, @response_graphs_memory, 200
+      mock.get "/metrics.xml", @header, @response_metrics, 200
+      mock.get "/metrics/waerden+memory+memory-free.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_free, 200
+      mock.get "/metrics/waerden+memory+memory-used.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_used, 200
+      mock.get "/metrics/waerden+memory+memory-cached.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_cached, 200
     end
   end
 
