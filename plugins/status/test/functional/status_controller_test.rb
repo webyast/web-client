@@ -25,6 +25,7 @@ class StatusControllerTest < ActionController::TestCase
     @response_metrics_memory_used = fixture "waerden+memory+memory-used.xml"
     @response_metrics_memory_cached = fixture "waerden+memory+memory-used.xml"
     @response_metrics = fixture "metrics.xml"
+    @response_writing_limits = fixture "memory_write.xml"
     ActiveResource::HttpMock.set_authentication
     @header = ActiveResource::HttpMock.authentication_header
     ActiveResource::HttpMock.respond_to do |mock|
@@ -34,6 +35,7 @@ class StatusControllerTest < ActionController::TestCase
       mock.get "/graphs.xml?checklimits=true", @header, @response_graphs, 200
       mock.get "/graphs.xml", @header, @response_graphs, 200
       mock.get "/graphs/Memory.xml", @header, @response_graphs_memory, 200
+      mock.put "/graphs/Memory.xml", @header, @response_writing_limits, 200
       mock.get "/metrics.xml", @header, @response_metrics, 200
       mock.get "/metrics/waerden+memory+memory-free.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_free, 200
       mock.get "/metrics/waerden+memory+memory-used.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_used, 200
@@ -151,5 +153,21 @@ class StatusControllerTest < ActionController::TestCase
     assert_valid_markup
     assert_tag "collectd is not running on the target machine"
   end
+
+  #call for edit limits
+  def test_edit
+    get :edit
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:graphs)
+  end
+
+  #writing limits
+  def test_commit_limits
+    put :save,  {"value/Memory/Memory/cached"=>"", "measurement/CPU/CPU-0/user"=>"max", "value/CPU/CPU-0/user"=>"", "value/CPU/CPU-1/user"=>"", "value/Network/eth0/received"=>"", "measurement/CPU/CPU-1/idle"=>"max", "measurement/CPU/CPU-0/idle"=>"max", "measurement/Network/eth0/sent"=>"max", "value/CPU/CPU-1/idle"=>"", "measurement/Network/eth0/received"=>"max", "measurement/Memory/Memory/free"=>"min", "measurement/Memory/Memory/used"=>"max", "value/Memory/Memory/used"=>"", "value/CPU/CPU-0/idle"=>"", "value/Network/eth0/sent"=>"", "value/Memory/Memory/free"=>"40", "measurement/Memory/Memory/cached"=>"max", "measurement/CPU/CPU-1/user"=>"max"}
+    assert_response :redirect
+    assert_redirected_to :controller => "status", :action => "index"
+  end
+
 
 end
