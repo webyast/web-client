@@ -66,10 +66,15 @@ class StatusControllerTest < ActionController::TestCase
       mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
 
+    Status.instance_variable_set(:@permissions,nil) #reset permissions cache
+
     get :index
     assert_response :success
     assert_valid_markup
     assert assigns(:graphs)
+    assert assigns(:permissions), "permissions is not assigned"
+    assert !assigns(:permissions)[:read], "read permission is granted"
+    assert !assigns(:permissions)[:writelimits], "writelimits permission is granted"
   end
 
   #testing show summary AJAX call; OK
