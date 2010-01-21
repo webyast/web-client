@@ -171,7 +171,7 @@ class StatusController < ApplicationController
     client_permissions
     group_id = params[:group_id]
     graph_id = params[:graph_id]
-    till ||= Time.new
+    till = Time.now
     if params.has_key? "minutes"
       from = till -  params[:minutes].to_i*60
     else

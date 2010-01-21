@@ -20,6 +20,10 @@ class StatusControllerTest < ActionController::TestCase
     @request.session[:account_id] = 1 # defined in fixtures
     @response_logs = fixture "logs.xml"
     @response_graphs = fixture "graphs.xml"
+    @response_graphs_memory = fixture "graphs_memory.xml"
+    @response_metrics_memory_free = fixture "waerden+memory+memory-free.xml"
+    @response_metrics_memory_used = fixture "waerden+memory+memory-used.xml"
+    @response_metrics_memory_cached = fixture "waerden+memory+memory-used.xml"
     @response_metrics = fixture "metrics.xml"
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
@@ -29,7 +33,11 @@ class StatusControllerTest < ActionController::TestCase
       mock.get   "/logs.xml", @header, @response_logs, 200
       mock.get   "/graphs.xml?checklimits=true", @header, @response_graphs, 200
       mock.get   "/graphs.xml", @header, @response_graphs, 200
+      mock.get   "/graphs/Memory.xml", @header, @response_graphs_memory, 200
       mock.get   "/metrics.xml", @header, @response_metrics, 200
+      mock.get   "/metrics/waerden+memory+memory-free.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_free, 200
+      mock.get   "/metrics/waerden+memory+memory-used.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_used, 200
+      mock.get   "/metrics/waerden+memory+memory-cached.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_cached, 200
     end
   end
 
@@ -64,7 +72,7 @@ class StatusControllerTest < ActionController::TestCase
 
   #testing show summary AJAX call; OK
   def test_show_summary
-    ret = get :show_summary
+    get :show_summary
     assert_response :success
     assert_valid_markup
     assert_tag :tag =>"div",
@@ -84,12 +92,22 @@ class StatusControllerTest < ActionController::TestCase
       mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
 
-    ret = get :show_summary
+    get :show_summary
     assert_response :success
     assert_valid_markup
     assert_tag :tag =>"div",
                :attributes => { :class => "status-icon error" }
     assert_tag "Limits exceeded for CPU/CPU-0/user"
+  end
+
+  #testing evaluate_values AJAX call
+  def test_show_evaluate_values
+    Time.stubs(:now).returns(Time.at(1264006620))
+    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory" } 
+    assert_response :success
+    assert_valid_markup
+    assert_tag :tag =>"script",
+               :attributes => { :type => "text/javascript" }
   end
 
   # status module must survive collectd out of sync
