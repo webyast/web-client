@@ -33,6 +33,11 @@ def setup
   Test2Model.set_site
 end
 
+def test_available_interfaces
+  assert YastModel::Resource.interfaces_available?(:'org.opensuse.yast.modules.test', :'org.opensuse.yast.modules.test2')
+  assert !YastModel::Resource.interfaces_available?(:'org.opensuse.yast.modules')
+end
+
 class TestModel < ActiveResource::Base
   extend YastModel::Base
   model_interface :'org.opensuse.yast.modules.test'
