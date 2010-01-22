@@ -4,7 +4,7 @@
 <br>
 
 
-<% form_for(:repo, @repo, :url => { :action => "update", :id => @repo.repo_alias }, :html => { :method => :put } ) do |f| %>
+<% form_for(:repo, @repo, :url => { :action => "update", :id => @repo.id }, :html => { :method => :put } ) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
@@ -15,7 +15,7 @@
 
     <tr>
 	<td class="first" width="120"><strong><%=_("Alias")-%></strong></td>
-	<td class="last"><strong><%= h @repo.repo_alias %></strong></td>
+	<td class="last"><strong><%= h @repo.id %></strong></td>
     </tr>
 
     <tr>

@@ -12,6 +12,7 @@ class RepositoriesController < ApplicationController
 
   def index
     @repos = load_proxy 'org.opensuse.yast.system.repositories', :all
+    return unless @repos
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
   end
 
@@ -22,33 +23,23 @@ class RepositoriesController < ApplicationController
     end
 
     @repo = load_proxy 'org.opensuse.yast.system.repositories', params[:id]
-
-    if @repo.blank?
-      flash[:error] = YaST::ServiceResource.error("Repository '#{params[:id]}' not found")
-      redirect_to :action => :index and return
-    end
-
+    return unless @repo
   end
 
   def delete
     if params[:id].blank?
       flash[:error] = _('Missing repository parameter')
-      redirect_to :action => :index and return
+      redirect_to :action => 'index' and return
     end
 
     @repo = load_proxy 'org.opensuse.yast.system.repositories', params[:id]
-
-    if @repo.blank?
-      flash[:error] = YaST::ServiceResource.error("Repository '#{params[:id]}' not found")
-      redirect_to :action => :index and return
-    end
+    return unless @repo
 
     if @repo.destroy
-      flash[:message] = _("Repository #{@repo.repo_alias} has been deleted.")
+      flash[:message] = _("Repository '#{@repo.id}' has been deleted.")
     end
 
     redirect_to :action => :index and return
   end
-
 
 end
