@@ -16,7 +16,7 @@ class RepositoriesController < ApplicationController
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
   end
 
-  def edit
+  def show
     if params[:id].blank?
       flash[:error] = _('Missing repository parameter')
       redirect_to :action => :index and return
@@ -42,4 +42,27 @@ class RepositoriesController < ApplicationController
     redirect_to :action => :index and return
   end
 
+  def update
+    if params[:id].blank?
+      flash[:error] = _('Missing repository parameter')
+      redirect_to :action => :index and return
+    end
+
+    @repo = load_proxy 'org.opensuse.yast.system.repositories', params[:id]
+    return unless @repo
+
+    repository = params[:repository]
+
+    @repo.name = repository[:name]
+    @repo.autorefresh = repository[:autorefresh]
+    @repo.enabled = repository[:enabled]
+    @repo.keep_packages = repository[:keep_packages]
+    @repo.priority = repository[:priority]
+
+    if @repo.save
+      flash[:message] = _("Repository '#{@repo.id}' has been updated.")
+    end
+
+    redirect_to :action => :show, :id => params[:id] and return
+  end
 end

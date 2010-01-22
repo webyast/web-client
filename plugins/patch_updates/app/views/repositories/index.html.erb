@@ -17,8 +17,8 @@
       <% @repos.each do |r| %>
 	<tr>
 	  <td align="center"><input type="checkbox" <%= r.enabled ? ' checked' : '' -%> <%= disabled ? 'disabled' : '' -%> /></td>
-	  <td><%= link_to (h r.id), :action => 'edit', :id => r.id -%></td>
-	  <td><%= link_to (h r.name), :action => 'edit', :id => r.id -%></td>
+	  <td><%= link_to (h r.id), :action => 'show', :id => r.id -%></td>
+	  <td><%= link_to (h r.name), :action => 'show', :id => r.id -%></td>
 	  <% unless disabled -%>
 	    <td><%= link_to image_tag('/images/delete.png', :alt => "delete"),
 	      {:action => 'delete', :id => r.id},
