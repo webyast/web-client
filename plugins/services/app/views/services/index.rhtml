@@ -1,4 +1,5 @@
 <%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "jquery.quicksearch.js" %>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -9,6 +10,21 @@ $(document).ready(function() {
 	$(this).siblings('div.description').hide('slow');
     });
 
+    $('ul#services_ul li').quicksearch({
+	attached: 'ul#services_ul',
+	loaderText: '',
+	labelText: '',
+	inputText: '<%= _("Search here for service name or description")%>',
+	delay: 100
+    })
+
+    $('ul#custom_services_ul li').quicksearch({
+	position: 'before',
+	attached: 'ul#custom_services_ul',
+	labelText: '<%= _("Quick Search")%>',
+	loaderText: '',
+	delay: 100
+    })
 })
 </script>
 
@@ -19,10 +35,13 @@ $(document).ready(function() {
 
 <%
 custom	= false
+ul_id	= "services_ul"
+
 [ @services, @custom_services ].each do |service_list|
 
 if custom
     commands	= [ "start", "stop"]
+    ul_id	= "custom_services_ul"
 else
     commands	= [ "start", "stop", "restart", "reload" ]
 end
@@ -36,8 +55,10 @@ else
     _("System Services")
 end
 %></div>
+
 <div class="plugin-content grid_12" id="services-list">
-<ul>
+
+<ul id="<%= ul_id%>">
 
 <% if custom && service_list.empty? %>
 <p><%=_("No custom service is defined on target machine.") %></p>
