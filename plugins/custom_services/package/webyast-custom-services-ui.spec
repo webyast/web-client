@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-custom-services
+Name:           webyast-custom-services-ui
+Provides:       yast2-webclient-custom-services = %{version}
+Obsoletes:      yast2-webclient-custom-services < %{version}
 PreReq:         yast2-webclient
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
