@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-administrator
+Name:           webyast-root-user-ui
+Provides:       yast2-webclient-administrator = %{version}
+Obsoletes:      yast2-webclient-administrator < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
