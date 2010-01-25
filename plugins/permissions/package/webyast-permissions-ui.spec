@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-permissions (Version 0.1)
+# spec file for package webyast-permissions-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-permissions
+Name:           webyast-permissions-ui
+Provides:       yast2-webclient-permissions = %{version}
+Obsoletes:      yast2-webclient-permissions < %{version}
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/system_time_controller.rb
 License:	GPL v2 only
