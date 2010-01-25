@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-language (Version 0.1)
+# spec file for package webyast-language-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-language
+Name:           webyast-language-ui
+Provides:       yast2-webclient-language = %{version}
+Obsoletes:      yast2-webclient-language < %{version}
 PreReq:         yast2-webclient >= 0.0.26
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controller.rb
 License:	GPL v2 only
