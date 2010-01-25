@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-mailsettings
+# spec file for package webyast-mail-ui
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-mailsettings
+Name:           webyast-mail-ui
+Provides:       yast2-webclient-mailsettings = %{version}
+Obsoletes:      yast2-webclient-mailsettings < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
