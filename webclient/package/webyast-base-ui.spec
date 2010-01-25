@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient (Version 0.1)
+# spec file for package webyast-base-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient
+Name:           webyast-base-ui
+Provides:       yast2-webclient = %{version}
+Obsoletes:      yast2-webclient < %{version}
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite
 PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 = 2.3.4
