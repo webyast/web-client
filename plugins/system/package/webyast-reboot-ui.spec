@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-system
+# spec file for package webyast-reboot-ui
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-system
+Name:           webyast-reboot-ui
+Provides:       yast2-webclient-system = %{version}
+Obsoletes:      yast2-webclient-system < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
