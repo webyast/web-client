@@ -10,6 +10,21 @@ $(document).ready(function() {
 	$(this).siblings('div.description').hide('slow');
     });
 
+    $('#show-rb_running').click(function(){
+	$("div#services-list> ul li").hide();
+	$("div#services-list").find("li").filter(':has(span.status_running)').show();
+    });
+
+    $('#show-rb_not-running').click(function(){
+	$("div#services-list> ul li").hide();
+	$("div#services-list").find("li").filter(':has(span.status_not_running)').show();
+    });
+
+    $('#show-rb_dead').click(function(){
+	$("div#services-list> ul li").hide();
+	$("div#services-list").find("li").filter(':has(span.status_dead)').toggle();
+    });
+
     $('ul#services_ul li').quicksearch({
 	attached: 'ul#services_ul',
 	loaderText: '',
@@ -59,6 +74,15 @@ end
 <div class="plugin-content grid_12" id="services-list">
 
 <ul id="<%= ul_id%>">
+
+<p>
+<%= radio_button_tag "show-rb", "running", false %>
+<%= _("Running services") %>
+<%= radio_button_tag "show-rb", "not-running", false %>
+<%= _("Not running services") %>
+<%= radio_button_tag "show-rb", "dead", false %>
+<%= _("Dead services") %>
+</p>
 
 <% if custom && service_list.empty? %>
 <p><%=_("No custom service is defined on target machine.") %></p>
