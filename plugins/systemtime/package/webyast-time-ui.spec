@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-systemtime (Version 0.1)
+# spec file for package webyast-time-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-systemtime
+Name:           webyast-time-ui
+Provides:       yast2-webclient-systemtime = %{version}
+Obsoletes:      yast2-webclient-systemtime < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
