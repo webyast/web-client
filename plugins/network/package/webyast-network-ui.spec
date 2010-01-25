@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-network (Version 0.1)
+# spec file for package webyast-network-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-network
+Name:           webyast-network-ui
+Provides:       yast2-webclient-network = %{version}
+Obsoletes:      yast2-webclient-network < %{version}
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
