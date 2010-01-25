@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-selenium (Version 1.0.1)
+# spec file for package webyast-selenium (Version 1.0.1)
 #
 # Copyright (c) 2009 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -8,7 +8,9 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-Name:           yast2-webclient-selenium
+Name:           webyast-selenium
+Provides:       yast2-webclient-selenium = %{version}
+Obsoletes:      yast2-webclient-selenium < %{version}
 Autoreqprov:    on
 Version:        1.0.1
 Release:        0
