@@ -9,22 +9,22 @@
 # 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
 -%>
 <%
-color		= "#C0C0C0"
+color		= "silver"
 classname	= "status_unknown"
 case status
     when nil, 4
 	label	= _("(unknown)")
     when 0
 	label	= _("(running)")
-	color	= "#00FF00"
+	color	= "lime"
 	classname	= "status_running"
     when 1,2
 	label	= _("(dead)")
-	color	=  "#FF0000"
+	color	=  "red"
 	classname	= "status_dead"
     when 3
 	label	= _("(not running)")
-	color	= "#000000"
+	color	= "black"
 	classname	= "status_not_running"
     else
 	label	= _("(unknown: %d)") % status
