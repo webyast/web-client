@@ -57,7 +57,7 @@ class RepositoriesController < ApplicationController
     @repo.autorefresh = repository[:autorefresh]
     @repo.enabled = repository[:enabled]
     @repo.keep_packages = repository[:keep_packages]
-    @repo.priority = repository[:priority]
+    @repo.priority = repository[:priority].to_i
 
     if @repo.save
       flash[:message] = _("Repository '#{@repo.id}' has been updated.")
