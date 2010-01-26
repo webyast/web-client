@@ -44,6 +44,7 @@ class ServicesController < ApplicationController
 
     @services = []
     begin
+      params[:read_status]	= 1
       @services	= @client.find(:all, :params => params)
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
@@ -56,6 +57,7 @@ class ServicesController < ApplicationController
     begin
       args		= {}
       args[:custom]	= 1
+      args[:read_status]= 1
       @custom_services	= @client.find(:all, :params => args)
     end
 
