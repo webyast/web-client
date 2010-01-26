@@ -134,6 +134,9 @@ end
   </span>
 
   <% commands.each do |cmd|
+	if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0)
+	    next
+	end
 	if @permissions[:execute] %>
 	    <%=
 		url	= {
