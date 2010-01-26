@@ -92,7 +92,6 @@ class RepositoriesController < ApplicationController
     @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
     @permissions = @client.permissions
 
-    debugger
     @repo = @client.new
     repository = params[:repository]
     @repo.load(repository)
