@@ -65,4 +65,43 @@ class RepositoriesController < ApplicationController
 
     redirect_to :action => :show, :id => params[:id] and return
   end
+
+  def add
+    # load only permissions
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
+    @permissions = @client.permissions
+
+    @repo = @client.new
+
+    # add default properties
+    defaults = {
+      :id => '',
+      :name => '',
+      :url => 'http://',
+      :autorefresh => true,
+      :enabled => true,
+      :keep_packages => false,
+      :priority => 99
+    }
+
+    @repo.load(defaults)
+  end
+
+  def create
+    # load only permissions
+    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
+    @permissions = @client.permissions
+
+    debugger
+    @repo = @client.new
+    repository = params[:repository]
+    @repo.load(repository)
+
+    if @repo.save
+      flash[:message] = _("Repository '#{@repo.id}' has been added.")
+    end
+
+    redirect_to :action => :index and return
+  end
+
 end

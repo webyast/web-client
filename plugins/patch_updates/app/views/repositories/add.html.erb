@@ -1,22 +1,22 @@
 
 <% disabled = ! @permissions[:write] %>
-<h3><%= disabled ? _("Repository Properties") : _("Edit Repository Properties") -%></h3>
+<h3><%= _("Add a new repository") -%></h3>
 <br>
 
-
-<% form_for(:repository, @repo, :url => { :action => "update", :id => @repo.id }, :html => { :method => :put } ) do |f| %>
+<% form_for(:repository, @repo, :url => { :action => "create", :id => @repo.id }, :html => { :method => :post } ) do |f| %>
   <%= f.error_messages %>
 
   <div class="table">
     <table class="list" cellpadding="3" cellspacing="0">
     <tr>
- 	<th class="full" colspan="2"><%=_("Repository")%></th>
+ 	<th class="full" colspan="2"><%=_("New repository")%></th>
     </tr>
 
     <tr>
 	<td class="first" width="120"><strong><%=_("Alias")-%></strong></td>
-	<td class="last"><strong><%= h @repo.id %></strong></td>
+	<td class="last"><%= f.text_field :id, :disabled => disabled -%></td>
     </tr>
+
 
     <tr>
 	<td class="first" width="120"><strong><%=_("Enabled")-%></strong></td>
@@ -52,10 +52,7 @@
 
     <br>
     <p>
-      <% if !disabled -%>
-	<%= f.submit _("Update"), :onclick=>"$('#progress').show()"  %>
-      <% end -%>
-
+      <%= f.submit _('Create'), :onclick=>"$('#progress').show()", :disabled => disabled %>
       <%= link_to _('Back'), {:action => :index}, :onclick=>"$('#progress').show()", :class => "button"-%>
     </p>
   </div>

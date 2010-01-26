@@ -33,10 +33,10 @@
   <% end %>
 
   <br>
-  <%= link_to _("Back"), '/', :class=>"button" %>
+  <%= link_to _("Back"), '/', :class=>"button", :onclick=>"$('#progress').show()" %>
 
   <% if !disabled %>
-    <%= link_to _("Add"), {:action => 'add'}, :class=>"button" %> <%= _("a new repository") %>
+    <%= link_to _("Add"), {:action => 'add'}, :class=>"button", :onclick=>"$('#progress').show()" %> <%= _("a new repository") %>
   <% end %>
 
   </div>
