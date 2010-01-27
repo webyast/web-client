@@ -1,0 +1,62 @@
+
+<% disabled = ! @permissions[:write] %>
+<h3><%= disabled ? _("Repository Properties") : _("Edit Repository Properties") -%></h3>
+<br>
+
+
+<% form_for(:repository, @repo, :url => { :action => "update", :id => @repo.id }, :html => { :method => :put } ) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="table">
+    <table class="list" cellpadding="3" cellspacing="0">
+    <tr>
+ 	<th class="full" colspan="2"><%=_("Repository")%></th>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%=_("Alias")-%></strong></td>
+	<td class="last"><strong><%= h @repo.id %></strong></td>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%=_("Enabled")-%></strong></td>
+	<td class="last"><%= f.check_box :enabled, :disabled => disabled -%></td>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%=_("Autorefresh")-%></strong></td>
+	<td class="last"><%= f.check_box :autorefresh, :disabled => disabled -%></td>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%= _("Name") -%></strong></td>
+	<td class="last"><%= f.text_field :name, :disabled => disabled -%></td>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%= _("URL") -%></strong></td>
+	<td class="last"><%= f.text_field :url, :disabled => disabled -%></td>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%=_("Priority")-%></strong></td>
+	<td class="last"><%= f.text_field :priority, :disabled => disabled -%></td>
+    </tr>
+
+    <tr>
+	<td class="first" width="120"><strong><%=_("Keep downloaded packages")-%></strong></td>
+	<td class="last"><%= f.check_box :keep_packages, :disabled => disabled -%></td>
+    </tr>
+
+    </table>
+
+    <br>
+    <p>
+      <% if !disabled -%>
+	<%= f.submit _("Update"), :onclick=>"$('#progress').show()"  %>
+      <% end -%>
+
+      <%= link_to _('Back'), {:action => :index}, :onclick=>"$('#progress').show()", :class => "button"-%>
+    </p>
+  </div>
+<% end %>

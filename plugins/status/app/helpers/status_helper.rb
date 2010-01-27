@@ -22,6 +22,10 @@ module StatusHelper
     id
   end
 
+  def log_id id
+    "log-#{id}-console"
+  end
+
   def evaluate_next_graph group, single_graphs, index
     return "$('#progress').hide()" if index+1 > single_graphs.size
     graph_div_id = graph_id(group, single_graphs[index].headline)

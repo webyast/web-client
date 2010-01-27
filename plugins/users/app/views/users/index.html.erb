@@ -1,26 +1,50 @@
 <div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local User")%></div>
 <div class="plugin-content grid_12">
 
-<table class="list">
-  <tr>
-    <th class="first" width=150><%=_("Login")%></th>
-    <th><%=_("Full Name")%></th>
-    <th width=8%><%=  _("Edit") %></th>
-    <% if @permissions[:userdelete] %>
-    <th class="last" width=8%><%= label_delete %></th>
-    <% end %>
-  </tr>
+ <script language='javascript'>
+ jQuery.expr[':'].Contains = function(a, i, m) {
+  return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+ };
+
+ function clear_filter(){
+  $('#FilterTextBox').val("");
+  $(".row").show();
+ }
+
+ $(document).ready(function(){
+  $("#FilterTextBox").keyup(function(){
+   var s = $(this).val();
+   $(".row").hide();
+   $(".row:has(span:Contains('"+s+"'))").show();
+  });//key up.
+
+ $('.row').mouseenter(function() {
+  $(".del_user")[0].style.cssText="display: inline"
+ }).mouseleave(function() {
+  $(".del_user")[0].style.cssText="display: none"
+ });
+
+ // default state
+ $('.del_user').hide();
+});//document.ready
+</script>
+
+<p>
+ <label>Filter</label>
+ <input id="FilterTextBox" name="FilterTextBox" size="30" value="" type="text">
+ <IMG src="/images/close.png" onclick='clear_filter();'>
+</p>
+
+<ul class="filterable">
   <% for user in @users %>
-  <tr>
-    <td><%=h user.uid %></td>
-    <td><%=h user.cn %></td>
-    <td><%= link_to image_tag("/images/edit-icon.png", :alt => :edit), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %></td>
+  <li class="row">
+   <%= link_to "<span class='login'><b>" + user.uid + "</b></span> <span class='fullname'>" + user.cn + "</span>", {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %>
     <% if @permissions[:userdelete] %>
-    <td class="last"><%= html_delete_link(user.uid, :destroy) %></td>
+    <span class="del_user"><%= html_delete_link(user.uid, :destroy) %></span>
     <% end %>
-  </tr>
+  </li>
   <% end %>
-</table>
+</ul>
 
 <% if @permissions[:useradd] %>
 <div class="select">
