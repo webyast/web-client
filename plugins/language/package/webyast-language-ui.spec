@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-system
+# spec file for package webyast-language-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,31 +9,33 @@
 #
 
 
-Name:           yast2-webclient-system
-PreReq:         yast2-webclient >= 0.0.2
+Name:           webyast-language-ui
+Provides:       yast2-webclient-language = %{version}
+Obsoletes:      yast2-webclient-language < %{version}
+PreReq:         yast2-webclient >= 0.0.26
+Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.4
+Version:        0.0.11
 Release:        0
-Summary:        YaST2 - Webclient - System
+Summary:        YaST2 - Webclient - Language
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
-BuildRequires:  ruby
-BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name system
+%define plugin_name language
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for rebooting/shuting down the system.
+YaST2 - Webclient - UI for YaST-webservice in order to handle language settings.
 Authors:
 --------
-    Ladislav Slezak <lslezak@novell.com>
+    Stefan Schubert <schubi@opensuse.org>
+
 %prep
 %setup -q -n www
 
@@ -53,18 +55,17 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_system
+%find_lang yast_webclient_language
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_system.lang
+%files -f yast_webclient_language.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
 %dir /srv/www/%{pkg_user}/vendor/plugins
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
@@ -73,12 +74,8 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
-
-%changelog

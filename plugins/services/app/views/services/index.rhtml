@@ -10,19 +10,38 @@ $(document).ready(function() {
 	$(this).siblings('div.description').hide('slow');
     });
 
+    $('#show-rb_all').click(function(){
+	$("#services_ul> li").show();
+    });
+
     $('#show-rb_running').click(function(){
-	$("div#services-list> ul li").hide();
-	$("div#services-list").find("li").filter(':has(span.status_running)').show();
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
     });
 
     $('#show-rb_not-running').click(function(){
-	$("div#services-list> ul li").hide();
-	$("div#services-list").find("li").filter(':has(span.status_not_running)').show();
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_not_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
     });
 
     $('#show-rb_dead').click(function(){
-	$("div#services-list> ul li").hide();
-	$("div#services-list").find("li").filter(':has(span.status_dead)').toggle();
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_dead)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
     });
 
     $('ul#services_ul li').quicksearch({
@@ -75,7 +94,10 @@ end
 
 <ul id="<%= ul_id%>">
 
+<% unless custom %>
 <p>
+<%= radio_button_tag "show-rb", "all", true %>
+<%= _("All services") %>
 <%= radio_button_tag "show-rb", "running", false %>
 <%= _("Running services") %>
 <%= radio_button_tag "show-rb", "not-running", false %>
@@ -83,6 +105,7 @@ end
 <%= radio_button_tag "show-rb", "dead", false %>
 <%= _("Dead services") %>
 </p>
+<% end %>
 
 <% if custom && service_list.empty? %>
 <p><%=_("No custom service is defined on target machine.") %></p>
@@ -111,6 +134,9 @@ end
   </span>
 
   <% commands.each do |cmd|
+	if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0)
+	    next
+	end
 	if @permissions[:execute] %>
 	    <%=
 		url	= {

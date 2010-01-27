@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-asministrator
+# spec file for package webyast-reboot-ui
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,14 +9,16 @@
 #
 
 
-Name:           yast2-webclient-administrator
+Name:           webyast-reboot-ui
+Provides:       yast2-webclient-system = %{version}
+Obsoletes:      yast2-webclient-system < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.16
+Version:        0.0.4
 Release:        0
-Summary:        YaST2 - Webclient - Administrator
+Summary:        YaST2 - Webclient - System
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -25,23 +27,21 @@ BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name administrator
+%define plugin_name system
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for for administrator's attributes
+YaST2 - Webclient - UI for YaST-webservice for rebooting/shuting down the system.
 Authors:
 --------
-    Jiri Suchomel <jsuchome@novell.com>
-
+    Ladislav Slezak <lslezak@novell.com>
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
-export LANG=en
-rake makemo
+env LANG=en rake makemo
 
 %install
 
@@ -55,12 +55,12 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_administrator
+%find_lang yast_webclient_system
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_administrator.lang
+%files -f yast_webclient_system.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
@@ -74,9 +74,11 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
+#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING

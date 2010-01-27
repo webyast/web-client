@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-services (Version 0.1)
+# spec file for package webyast-permissions-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,33 +9,32 @@
 #
 
 
-Name:           yast2-webclient-services
+Name:           webyast-permissions-ui
+Provides:       yast2-webclient-permissions = %{version}
+Obsoletes:      yast2-webclient-permissions < %{version}
 PreReq:         yast2-webclient
-Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controller.rb
+Provides:       yast2-webclient:/srv/www/yast/app/controllers/system_time_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.14
+Version:        0.0.7
 Release:        0
-Summary:        YaST2 - Webclient - Services
+Summary:        YaST2 - Webclient - Permissions
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
 #
 %define pkg_user yast
-%define plugin_name services
+%define plugin_name permissions
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle services.
+YaST2 - Webclient - UI for YaST-webservice in order to handle user permissions. (PolKit permissions)
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
-    Martin Vidner <mvidner@suse.cz>
-    Jiri Suchomel <jsuchome@suse.cz>
-    Ladislav Slezak <lslezak@suse.cz>
 
 %prep
 %setup -q -n www
@@ -57,12 +56,12 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_services
+%find_lang yast_webclient_permissions
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_services.lang
+%files -f yast_webclient_permissions.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
@@ -75,8 +74,10 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 %doc COPYING
+
+
 
