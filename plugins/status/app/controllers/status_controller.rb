@@ -85,22 +85,16 @@ class StatusController < ApplicationController
     if not params.has_key?(:id)
       raise "Unknown log file"
     end
-    
-#XXX FIXME Really ugly way how to use REST service
-# should be something like find(:one, :from => params[:id], params => { :lines => lines })
     lines = params[:lines] || 5
-    log_url = URI.parse(YaST::ServiceResource::Session.site.to_s)
-    log_url = log_url.merge("logs/#{params[:id]}.xml?lines=#{lines}")
-    logger.info "requesting #{log_url}"
-    @content = open(log_url).read
+    log = Logs.find(params[:id], :params => { :lines => lines })
+    @content = log.value if log
     render :partial => 'status_log'
   end
   
   def index
     client_permissions
     begin
-      @logs = Logs.find(:all) 
-      @logs ||= {}
+      @logs = Logs.find(:all) || {}
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
       @graphs ||= []
       #sorting graphs via id

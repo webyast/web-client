@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-registration (Version 0.0.2)
+# spec file for package webyast-registration-ui (Version 0.0.2)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,7 +9,9 @@
 #
 
 
-Name:           yast2-webclient-registration
+Name:           webyast-registration-ui
+Provides:       yast2-webclient-registration = %{version}
+Obsoletes:      yast2-webclient-registration < %{version}
 PreReq:         yast2-webclient
 License:        GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
