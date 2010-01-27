@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-mailsettings
+# spec file for package webyast-time-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,14 +9,16 @@
 #
 
 
-Name:           yast2-webclient-mailsettings
+Name:           webyast-time-ui
+Provides:       yast2-webclient-systemtime = %{version}
+Obsoletes:      yast2-webclient-systemtime < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.11
+Version:        0.0.14
 Release:        0
-Summary:        YaST2 - Webclient - Mail Settings
+Summary:        YaST2 - Webclient - SystemTime
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -25,23 +27,22 @@ BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name mailsettings
+%define plugin_name systemtime
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for for system mail settings
+YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
 Authors:
 --------
-    Jiri Suchomel <jsuchome@novell.com>
-
+    Stefan Schubert <schubi@opensuse.org>
+    Josef Reidinger <jreidinger@suse.cz>
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
-export LANG=en
-rake makemo
+env LANG=en rake makemo
 
 %install
 
@@ -55,12 +56,12 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_mail_settings
+%find_lang yast_webclient_systemtime
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_mail_settings.lang
+%files -f yast_webclient_systemtime.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor
@@ -74,9 +75,9 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
