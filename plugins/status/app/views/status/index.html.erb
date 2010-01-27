@@ -9,20 +9,6 @@
 
 <script type="text/javascript">
 
-function refreshLogs() {
-
-<% @logs.each do |log| %>
-  $('#<%= log_id(log.id) %>').load('/status/ajax_log_custom?id=<%= log.id %>&lines=5');
-<% end %>
-}
-
-$(document).ready(function() {
-  $.ajaxSetup ({  
-    cache: false  
-  });
-  setInterval(refreshLogs, 10000); // refresh every 10 seconds
-});
-
 function initMenuBar() {
   $('#menu ul').hide();
   $('#menu li a').click(
@@ -88,14 +74,19 @@ $(document).ready(function() {initMenuBar();});
 <% end %>
 <% @logs.each do |log| %>
     <li>
+      <% default_lines=50 %>
+      <% frequency=15 %>
       <%=link_to_remote "<div class='status-icon ok'></div>" + log.description, 
-         :update => log_id(log.id),
-        :url => { :action => "ajax_log_custom", :id => log.id, :lines => 5 }%>
+            :update => log_id(log.id),
+            :url => { :action => "ajax_log_custom", :id => log.id, :lines => default_lines } %>
       <ul>
         <div id="<%="log-#{log.id}-console"%>" >
           <%= log.path %>
         </div>
       </ul>
+      <%= periodically_call_remote(:url => { :action => "ajax_log_custom", 
+                                   :id => log.id, :lines => default_lines }, :frequency => frequency, 
+                                   :update => log_id(log.id)) %>
     </li>
 <% end %>
 </ul>
@@ -105,5 +96,6 @@ $(document).ready(function() {initMenuBar();});
 <p>
 <a href="/" class="button"><%=_("Back")%></a>
 </p>
+
 </div>
 

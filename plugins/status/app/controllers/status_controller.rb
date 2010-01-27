@@ -8,6 +8,8 @@ class StatusController < ApplicationController
   before_filter :login_required
   layout "main"
 
+  DEFAULT_LINES = 50
+
   private
   def client_permissions
     @permissions = Status.permissions
@@ -85,7 +87,7 @@ class StatusController < ApplicationController
     if not params.has_key?(:id)
       raise "Unknown log file"
     end
-    lines = params[:lines] || 5
+    lines = params[:lines] || DEFAULT_LINES
     log = Logs.find(params[:id], :params => { :lines => lines })
     @content = log.value if log
     render :partial => 'status_log'
