@@ -1,0 +1,42 @@
+<% disabled = !@permissions[:write] %>
+
+<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
+
+<div class="plugin-content grid_12">
+  <% form_tag '/firewall/update', {:class => 'container'} do %>
+  <fieldset id="" class="">
+  <p>
+      <label for="use_firewall"><%=_("Use Firewall")%></label>
+      <% #don't use check_box helper as it generate also hidden opposite value
+      %>
+      <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
+          <%=  "checked=\"checked\"" if @firewall.status %>
+          <%=  "disabled=\"disabled\"" if disabled %> 
+          />
+  </p>
+
+  <p>
+       <table>
+          <tr>
+            <th><%= _("Service") %></th>
+            <th><%= _("Allowed") %></th>
+          </tr>
+          <% @firewall.services.each do |service| %>
+          <tr>
+            <td>
+              <label for="<%= service.id %>"><%= service.name %></label>
+            </td>
+            <td>
+              <input type="checkbox" name="<%= service.id %>" id="<%= service.id %>" value="true"
+                  <%=  "checked=\"checked\"" if service.allowed %>
+                  <%=  "disabled=\"disabled\"" if disabled %>
+                  />
+            </td>
+          </tr>
+          <% end %>
+       </table>
+  </p>
+  </fieldset>
+  <%= form_send_buttons :disabled => disabled, :class => "button" %>
+  <% end %>
+</div>
