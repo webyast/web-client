@@ -1,4 +1,16 @@
+<%=button_to_remote _("first"),
+            :update => log_id(id),
+            :url => { :action => "ajax_log_custom", :id => id, :lines => lines, :pos_begin =>1 } %>
+<%=button_to_remote _("previous"),
+            :update => log_id(id),
+            :url => { :action => "ajax_log_custom", :id => id, :lines => lines, :pos_begin =>(position-lines) } %>
+<%=button_to_remote _("next"),
+            :update => log_id(id),
+            :url => { :action => "ajax_log_custom", :id => id, :lines => lines, :pos_begin =>(position+lines) } %>
+<%=button_to_remote _("last"),
+            :update => log_id(id),
+            :url => { :action => "ajax_log_custom", :id => id, :lines => lines, :pos_begin =>0 } %>
 <pre>
-<%= @content %>
+<%= content %>
 </pre>
 

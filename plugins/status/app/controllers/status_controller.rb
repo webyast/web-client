@@ -87,10 +87,12 @@ class StatusController < ApplicationController
     if not params.has_key?(:id)
       raise "Unknown log file"
     end
-    lines = params[:lines] || DEFAULT_LINES
-    log = Logs.find(params[:id], :params => { :lines => lines })
-    @content = log.value if log
-    render :partial => 'status_log'
+    lines = params[:lines].to_i || DEFAULT_LINES
+    pos_begin = params[:pos_begin].to_i || 0
+    log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
+    content = log.content.value if log
+    position = log.content.position.to_i if log
+    render :partial => 'status_log', :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }
   end
   
   def index
