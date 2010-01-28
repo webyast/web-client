@@ -3,33 +3,36 @@
 
  <script language='javascript'>
   $(document).ready(function(){
-   $(".details")[0].style.display="none";
-   $("#details_button")[0].textContent="Show Details"
+   $("#tab_login")[0].style.display="block";
   })
-
-
-  function toggle_details() {
-    if ($(".details")[0].style.display=="none"){
-         $(".details")[0].style.display="inline";
-         $("#details_button")[0].textContent="Hide Details"
-    }
-        else {
-                $(".details")[0].style.display="none";
-                $("#details_button")[0].textContent="Show Details"
-             }
-   };
  </script>
 
 <% disabled = ! @permissions[:usermodify] %>
 
 <% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put } ) do |f| %>
   <%= f.error_messages %>
-
-  <fieldset>
+ <div class="tab-form">
+<ul class="tab-nav"> 
+  <li><a class="t_login" href="#tab_login">Login Settings</a></li> 
+  <li><a class="t_groups" href="#tab_groups">Groups</a></li> 
+  <li><a class="t_advanced" href="#tab_advanced">Advanced</a></li> 
+</ul> 
+ 
+  <fieldset id="tab_login">
+    <p>
+	<label><%=_("Login Name")%></label>
+	<%= f.text_field :uid, :disabled => disabled %>
+    </p>
     <p>
 	<label><%=_("Full Name")%></label>
 	<%= f.text_field :cn , :disabled => disabled %>
     </p>
+    <p>
+	<label><%=_("Password")%></label>
+	<%= f.password_field :user_password, :disabled => disabled %>
+    </p>
+    </fieldset>
+  <fieldset id="tab_groups">
     <p>
 	<label><%=_("Groups")%></label>
 	<%= f.text_field :grp_string, :disabled => disabled %>
@@ -38,7 +41,8 @@
 	<label><%=_("Default Group")%></label>
 	<%= f.text_field :groupname, :disabled => disabled %>
     </p>
-   <span class="details">
+  </fieldset>
+   <fieldset id="tab_advanced">
     <p>
 	<label><%=_("Home Directory")%></label>
 	<%= f.text_field :home_directory, :disabled => disabled %>
@@ -48,24 +52,11 @@
 	<%= f.text_field :login_shell, :disabled => disabled %>
     </p>
     <p>
-	<label><%=_("Login Name")%></label>
-	<%= f.text_field :uid, :disabled => disabled %>
-    </p>
-    <p>
 	<label><%=_("UID Number")%></label>
 	<%= f.text_field :uid_number , :disabled => disabled %>
     </p>
-    </span>
-    <p>
-	<label><%=_("Password")%></label>
-	<%= f.password_field :user_password, :disabled => disabled %>
-    </p>
-    <p>
-        <label></label>
-        <A href="#" class="button" onclick="toggle_details();"><span id="details_button">Details</span></A>
-    </p>
-
     </fieldset>
+    </div>
     <p><%= f.submit _("Update"), :disabled => disabled %><%= link_to _('Back'), {:action => :index}, :onclick=>"$('#progress').show()", :class => "button"%></p>
   </div>
 <% end %>
