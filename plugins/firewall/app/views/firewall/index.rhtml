@@ -10,7 +10,7 @@
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
       <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
-          <%=  "checked=\"checked\"" if @firewall.status %>
+          <%=  "checked=\"checked\"" if @firewall.use_firewall %>
           <%=  "disabled=\"disabled\"" if disabled %> 
           />
   </p>
