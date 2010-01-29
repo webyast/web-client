@@ -162,7 +162,7 @@
           }
           if (!validDomain($("#domain")[0].value)){
       	    focus_tabbed("domain");
-            say_bad_domain = "<%= _("Domain is required. It is not supported empty domain.") %>"
+            say_bad_domain = "<%= _("Domain is required. An empty domain is not supported.") %>"
             alert (say_bad_domain);
             return false;
           }

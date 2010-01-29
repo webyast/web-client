@@ -19,6 +19,7 @@ class StatusControllerTest < ActionController::TestCase
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
     @response_logs = fixture "logs.xml"
+    @response_logs_system = fixture "logs_system.xml"
     @response_graphs = fixture "graphs.xml"
     @response_graphs_memory = fixture "graphs_memory.xml"
     @response_metrics_memory_free = fixture "waerden+memory+memory-free.xml"
@@ -32,6 +33,7 @@ class StatusControllerTest < ActionController::TestCase
       mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
       mock.get "/logs.xml", @header, @response_logs, 200
+      mock.get "/logs/system.xml?lines=50&pos_begin=0", @header, @response_logs_system, 200
       mock.get "/graphs.xml?checklimits=true", @header, @response_graphs, 200
       mock.get "/graphs.xml", @header, @response_graphs, 200
       mock.get "/graphs/Memory.xml", @header, @response_graphs_memory, 200
@@ -116,6 +118,15 @@ class StatusControllerTest < ActionController::TestCase
     assert_tag :tag =>"script",
                :attributes => { :type => "text/javascript" }
   end
+
+  #testing  call ajax_log_custom
+  def test_show_ajax_log_custom
+    get :ajax_log_custom,  { :id => "system", :lines => "50" } 
+    assert_response :success
+    assert_valid_markup
+    assert_tag "\nJan 28 12:04:27 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\nJan 28 12:04:28 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\n\n"
+  end
+
 
   # status module must survive collectd out of sync
   def test_collectd_out_of_sync
