@@ -3,11 +3,26 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('div#services-list> ul li div.description').hide();
-    $('div#services-list a.toggle-description').mouseenter(function(){
-	$(this).siblings('div.description').show('slow');
-    }).mouseleave(function(){
-	$(this).siblings('div.description').hide('slow');
+
+    $(".service-content").hide();
+
+    $("#services-list li").each (function(index) {
+	if ($(this).is(":has(span.status_running)")) {
+	    $(this).find("h4").css('background-image', 'url("/images/green.png")');
+	}
+	else if ($(this).is(":has(span.status_dead)")) {
+	    $(this).find("h4").css('background-image', 'url("/images/red.png")');
+	}
+	else {
+	    $(this).find("h4").css('background-image', 'url("/images/grey.png")');
+	}
+    });
+
+    $("#services-list h4").click(function(){
+	$(this).next(".service-content").slideToggle("slow");
+	$(this).toggleClass("active");
+	$(this).closest("li").siblings().find("h4").removeClass("active");
+	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
     });
 
     $('#show-rb_all').click(function(){
@@ -62,6 +77,39 @@ $(document).ready(function() {
 })
 </script>
 
+<style type="text/css">
+
+.plugin-content h4 {
+    background: #e9e7e7 no-repeat right center;
+    padding: 7px 15px;
+    margin: 0;
+    margin-right: 15px;
+    font: bold;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+}
+.plugin-content h4:hover {
+    background-color: #e3e2e2;
+}
+
+.plugin-content h4.active {
+    border: solid 1px black;
+}
+.plugin-content ul {
+    list-style-type: none;
+}
+.service-content {
+    background: #f7f7f7;
+    margin: 0;
+    margin-right: 15px;
+    padding: 10px 15px 20px;
+    border-left: solid 1px #c4c4c4;
+    border-right: solid 1px #c4c4c4;
+}
+</style>
+
+
 <% unless @permissions[:execute] %>
 <p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
 <% end %>
@@ -114,14 +162,12 @@ end
 <% service_list.each do |service| %>
   <li>
 
-  <b><%=h service.name %></b>
+  <h4><%=h service.name %></h4>
 
-  <a href="#" class="toggle-description"><img alt="Toggle service description" src="/images/loupe-icon.png" /></a>
+  <div class='service-content'>
 
   <div class='description'>
-    <i>
-      <%= service.description ? h(service.description) : _("Description for service is not available") %>
-    </i>
+    <i><%= service.description ? h(service.description) : _("Description for service is not available") %></i>
   </div> 
 
   <img src="/images/working.gif" height="12" width="12" border="0"
@@ -178,6 +224,7 @@ end
 	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
 	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
       %>
+  </div>
   </li>
   <% end # end of service_list.each %>
 <% custom = true %>
