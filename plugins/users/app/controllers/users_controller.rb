@@ -142,7 +142,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if response
         flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
-        format.html { redirect_to(users_url) }
+        format.html { redirect_to :action => "index" }
       else
         if @user.uid_number.nil?
            flash[:error] = _("Empty UID value")
@@ -195,7 +195,7 @@ class UsersController < ApplicationController
       end
       if  response
         flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
-        format.html { redirect_to(users_url) }
+        format.html { redirect_to :action => "index" }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -221,7 +221,7 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
+      format.html { redirect_to :action => "index" }
       format.xml  { head :ok }
     end
   end
