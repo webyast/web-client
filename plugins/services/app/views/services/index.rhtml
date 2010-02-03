@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     $(".service-content").hide();
 
+    // FIXME not updated when status is changed
     $("#services-list li").each (function(index) {
 	if ($(this).is(":has(span.status_running)")) {
 	    $(this).find("h4").css('background-image', 'url("/images/green.png")');
@@ -111,7 +112,7 @@ $(document).ready(function() {
 
 
 <% unless @permissions[:execute] %>
-<p><%=_("You do not have permission to execute the services. The links are disabled.")%></p>
+<p><%=_("You do not have permission to execute the services.")%></p>
 <% end %>
 
 
@@ -166,9 +167,9 @@ end
 
   <div class='service-content'>
 
-  <div class='description'>
+  <p class='description'>
     <i><%= service.description ? h(service.description) : _("Description for service is not available") %></i>
-  </div> 
+  </p> 
 
   <img src="/images/working.gif" height="12" width="12" border="0"
     id="service_progress_<%=service.name%>" style="display: none" alt='working...'/>
@@ -180,7 +181,7 @@ end
   </span>
 
   <% commands.each do |cmd|
-	if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0)
+	if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0) # FIXME not updated after status change
 	    next
 	end
 	if @permissions[:execute] %>
@@ -188,7 +189,7 @@ end
 		url	= {
 		    :id		=> cmd, 
 		    :action	=> "execute", 
-		    :service_id	=> service.name 
+		    :service_id	=> service.name
 		}
 		url[:custom]	= 1 if custom
 		status_url	= {
@@ -202,11 +203,12 @@ end
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
 		    :complete   => remote_function(:update => "service_status_#{service.name}",
 		        :url => status_url,
-			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()")
+			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+		    ),
+		    :html	=> {
+			:class	=> "button"
+		    }
 	    %>
-	<%
-	else %>
-	    <span style="color: #BDBDBD"><%="#{cmd}" -%></span>
 	<%
 	end
      end %>
@@ -222,7 +224,10 @@ end
 	link_to_remote _('status'), :update => "service_status_#{service.name}",
 	    :url => url,
 	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
-	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()",
+	    :html	=> {
+		:class	=> "button"
+	    }
       %>
   </div>
   </li>
