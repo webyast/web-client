@@ -26,11 +26,11 @@ $(document).ready(function() {
 	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
     });
 
-    $('#show-rb_all').click(function(){
+    $('option[value|=all]').click(function(){
 	$("#services_ul> li").show();
     });
 
-    $('#show-rb_running').click(function(){
+    $('option[value|=running]').click(function(){
 	$('#services_ul>li').each(function(index) {
 	    if ($(this).is(":has(span.status_running)")) {
 		$(this).show();
@@ -40,7 +40,7 @@ $(document).ready(function() {
 	});
     });
 
-    $('#show-rb_not-running').click(function(){
+    $('option[value|=not-running]').click(function(){
 	$('#services_ul>li').each(function(index) {
 	    if ($(this).is(":has(span.status_not_running)")) {
 		$(this).show();
@@ -50,7 +50,7 @@ $(document).ready(function() {
 	});
     });
 
-    $('#show-rb_dead').click(function(){
+    $('option[value|=dead]').click(function(){
 	$('#services_ul>li').each(function(index) {
 	    if ($(this).is(":has(span.status_dead)")) {
 		$(this).show();
@@ -145,15 +145,17 @@ end
 
 <% unless custom %>
 <p>
-<%= radio_button_tag "show-rb", "all", true %>
-<%= _("All services") %>
-<%= radio_button_tag "show-rb", "running", false %>
-<%= _("Running services") %>
-<%= radio_button_tag "show-rb", "not-running", false %>
-<%= _("Not running services") %>
-<%= radio_button_tag "show-rb", "dead", false %>
-<%= _("Dead services") %>
+    <label for="filter"><%=_("Filter services")%></label>
+    <%= select_tag "filter", options_for_select([
+	[ _("All"), "all"],
+	[ _("Running"), "running"],
+	[ _("Not Running"), "not-running"],
+	[ _("Dead"), "dead"],
+    ])
+    %>
 </p>
+
+
 <% end %>
 
 <% if custom && service_list.empty? %>
