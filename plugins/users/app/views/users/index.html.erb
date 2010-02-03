@@ -19,9 +19,9 @@
   });//key up.
 
  $('.row').mouseenter(function() {
-  $(".del_user")[0].style.cssText="display: inline"
+  $(this).find(".del_user").show();
  }).mouseleave(function() {
-  $(".del_user")[0].style.cssText="display: none"
+  $(this).find(".del_user").hide();
  });
 
  // default state
