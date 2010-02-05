@@ -81,8 +81,8 @@ $(document).ready(function() {
 <style type="text/css">
 
 .plugin-content h4 {
-    background: #e9e7e7 no-repeat right center;
-    padding: 7px 15px;
+    background: #e9e7e7 no-repeat left center;
+    padding: 7px 15px 7px 20px;
     margin: 0;
     margin-right: 15px;
     font: bold;
@@ -165,7 +165,7 @@ end
 <% service_list.each do |service| %>
   <li>
 
-  <h4><%=h service.name %></h4>
+  <h4><%=h service.name %> <em style="position:absolute; left:25%"><%=h service.summary%></em></h4>
 
   <div class='service-content'>
 

@@ -22,12 +22,13 @@ class ServicesControllerTest < ActionController::TestCase
   end
 
   class Result
-    attr_accessor :status, :name, :description
+    attr_accessor :status, :name, :description, :summary
 
     def fill
 	@status = 0
         @name = "fake-service"
         @description = "a fake service"
+	@summary	= ""
     end
 
     def save

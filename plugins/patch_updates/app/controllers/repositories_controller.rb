@@ -57,6 +57,7 @@ class RepositoriesController < ApplicationController
     @repo.autorefresh = repository[:autorefresh]
     @repo.enabled = repository[:enabled]
     @repo.keep_packages = repository[:keep_packages]
+    @repo.url = repository[:url]
     @repo.priority = repository[:priority].to_i
 
     if @repo.save

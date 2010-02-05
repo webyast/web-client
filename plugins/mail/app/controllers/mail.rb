@@ -1,6 +1,6 @@
 require 'yast/service_resource'
 
-class MailSettingsController < ApplicationController
+class MailController < ApplicationController
   before_filter :login_required
   include ProxyLoader
 
