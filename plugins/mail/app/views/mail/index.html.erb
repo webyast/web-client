@@ -42,7 +42,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-  <% form_for(:mail_settings, @mail_settings, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show()" } ) do |f| %>
+  <% form_for(:mail, @mail, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show()" } ) do |f| %>
   <%= f.error_messages %>
     <fieldset class="grid_12">
       <p>
@@ -56,10 +56,10 @@
         <%= f.text_field :user, :disabled => disabled %></p>
       <p>
         <label><%=_("Password")%></label>
-        <%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#mailForm').validate().element('#mail_settings_confirm_password')" %></p>
+        <%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#mailForm').validate().element('#mail_confirm_password')" %></p>
       <p>
         <label><%=_("Confirm password")%></label>
-        <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_settings_password" %>
+        <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_password" %>
       </p>
     </fieldset> 
     <p>

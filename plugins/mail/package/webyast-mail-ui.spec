@@ -16,7 +16,7 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.1
+Version:        0.1.2
 Release:        0
 Summary:        YaST2 - Webclient - Mail Settings
 Source:         www.tar.bz2
@@ -57,12 +57,12 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_mail_settings
+%find_lang yast_webclient_mail
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_mail_settings.lang
+%files -f yast_webclient_mail.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor

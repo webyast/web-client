@@ -7,32 +7,32 @@ class MailController < ApplicationController
   private
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_mail_settings"  # textdomain, options(:charset, :content_type)
+  init_gettext "yast_webclient_mail"  # textdomain, options(:charset, :content_type)
 
   public
 
   def index
-    @mail_settings	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
-    return unless @mail_settings
-    @mail_settings.confirm_password	= @mail_settings.password
+    @mail	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
+    return unless @mail
+    @mail.confirm_password	= @mail.password
   end
 
   # PUT
   def update
-    @mail_settings	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
-    return unless @mail_settings
+    @mail	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
+    return unless @mail
 
-    @mail_settings.load params["mail_settings"]
+    @mail.load params["mail"]
 
     # validate data also here, if javascript in view is off
-    if @mail_settings.password != @mail_settings.confirm_password
+    if @mail.password != @mail.confirm_password
       flash[:error] = _("Passwords do not match.")
       redirect_to :action => "index"
       return 
     end
 
     begin
-      response = @mail_settings.save
+      response = @mail.save
       flash[:notice] = _('Mail settings have been written.')
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
