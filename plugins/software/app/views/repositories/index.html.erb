@@ -10,15 +10,19 @@
     <h3><%=_("Configured software repositories") %></h3>
       <table cellpadding="3px" class="alternate-rows">
 	<tr>
+	  <th>Priority</th>
 	  <th>Enabled</th>
-	  <th>Alias</th>
 	  <th>Name</th>
 	  <th>URL</th>
 	</tr>
+
+      <% # Sort by priority then by name -%>
+      <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+
       <% @repos.each do |r| %>
 	<tr>
+	  <td align="center"><%= h r.priority -%></td>
 	  <td align="center"><input type="checkbox" <%= r.enabled ? ' checked' : '' -%> <%= disabled ? 'disabled' : '' -%> /></td>
-	  <td><%= link_to (h r.id), :action => 'show', :id => r.id -%></td>
 	  <td><%= link_to (h r.name), :action => 'show', :id => r.id -%></td>
 	  <td><%= h r.url -%></td>
 	  <% unless disabled -%>
