@@ -22,8 +22,10 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', params[:id]
+    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
     return unless @repo
+
+    @adding = false
   end
 
   def delete
@@ -32,7 +34,7 @@ class RepositoriesController < ApplicationController
       redirect_to :action => 'index' and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', params[:id]
+    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
     return unless @repo
 
     if @repo.destroy
@@ -48,7 +50,7 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', params[:id]
+    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
     return unless @repo
 
     repository = params[:repository]
@@ -86,6 +88,10 @@ class RepositoriesController < ApplicationController
     }
 
     @repo.load(defaults)
+
+    @adding = true
+
+    render :show
   end
 
   def create
@@ -96,6 +102,8 @@ class RepositoriesController < ApplicationController
     @repo = @client.new
     repository = params[:repository]
     @repo.load(repository)
+
+    @repo.id = URI.escape(@repo.id)
 
     if @repo.save
       flash[:message] = _("Repository '#{@repo.id}' has been added.")
