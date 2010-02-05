@@ -27,7 +27,7 @@ BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name mailsettings
+%define plugin_name mail
 #
 
 
