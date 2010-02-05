@@ -16,7 +16,7 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.1
+Version:        0.1.2
 Release:        0
 Summary:        YaST2 - Webclient - Mail Settings
 Source:         www.tar.bz2
@@ -27,7 +27,7 @@ BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name mailsettings
+%define plugin_name mail
 #
 
 
