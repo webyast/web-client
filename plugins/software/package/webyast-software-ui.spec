@@ -26,7 +26,7 @@ BuildArch:      noarch
 
 #
 %define pkg_user yast
-%define plugin_name patch_updates
+%define plugin_name software
 #
 
 
