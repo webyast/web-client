@@ -85,6 +85,7 @@ class UsersController < ApplicationController
     @user.home_directory	= @user.home_directory
     @user.login_shell	= @user.login_shell
     @user.user_password	= @user.user_password
+    @user.user_password2= @user.user_password
 
     counter = 0
     @user.grouplist.each do |group|

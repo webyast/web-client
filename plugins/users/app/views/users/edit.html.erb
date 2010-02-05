@@ -5,11 +5,27 @@
   $(document).ready(function(){
    $("#tab_login")[0].style.display="block";
   })
+
+function validatePassword(){
+ if ($("#user_user_password")[0].value.length==0){
+  empty_password = "<%= _("Empty password.") %>"
+  $("#user_user_password").focus();
+  alert (empty_password);
+  return false;
+ } else if ($("#user_user_password")[0].value != $("#user_user_password2")[0].value){
+  password_not_match = "<%= _("The passwords do not match.  Try again.") %>"
+  $("#user_user_password").focus();
+  alert (password_not_match);
+  return false;
+ } else
+  return true;
+}
+
  </script>
 
 <% disabled = ! @permissions[:usermodify] %>
 
-<% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put } ) do |f| %>
+<% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put, :onsubmit => "return validatePassword();" } ) do |f| %>
   <%= f.error_messages %>
  <div class="tab-form">
 <ul class="tab-nav"> 
@@ -30,6 +46,10 @@
     <p>
 	<label><%=_("Password")%></label>
 	<%= f.password_field :user_password, :disabled => disabled %>
+    </p>
+    <p>
+	<label><%=_("Confirm Password")%></label>
+	<%= f.password_field :user_password2, :disabled => disabled %>
     </p>
     </fieldset>
   <fieldset id="tab_groups">
