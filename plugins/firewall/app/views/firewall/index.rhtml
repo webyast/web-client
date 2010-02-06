@@ -24,10 +24,10 @@
           <% @firewall.services.each do |service| %>
           <tr>
             <td>
-              <label for="<%= service.id %>"><%= service.name %></label>
+              <label for="<%= @cgi_prefix+service.id %>"><%= service.name %></label>
             </td>
             <td>
-              <input type="checkbox" name="<%= service.id %>" id="<%= service.id %>" value="true"
+              <input type="checkbox" name="<%= @cgi_prefix+service.id %>" id="<%= @cgi_prefix+service.id %>" value="true"
                   <%=  "checked=\"checked\"" if service.allowed %>
                   <%=  "disabled=\"disabled\"" if disabled %>
                   />
