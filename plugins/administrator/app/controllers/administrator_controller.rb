@@ -72,6 +72,14 @@ class AdministratorController < ApplicationController
 	  raise e
 	end
     end
+
+    # check if mail is configured FIXME not during initial workflow, if mail config follows
+    if @administrator.aliases != "NONE"
+      @mail       = load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
+      if @mail && (@mail.smtp_server.nil? || @mail.smtp_server.empty?)
+	flash[:warning] = _("Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s).") % ['<a href="/mail">', '</a>']
+      end
+    end
     redirect_success
   end
 
