@@ -47,11 +47,14 @@ class MailController < ApplicationController
 	end
     end
 
-    if params.has_key? "commit"
-      redirect_success # redirect to next step
-    else
-      redirect_to :action => "index"
+    # check if mail forwarning for root is configured
+    if @mail.smtp_server.nil? || @mail.smtp_server.empty?
+      @administrator      = load_proxy 'org.opensuse.yast.modules.yapi.administrator'
+      if @administrator && !@administrator.aliases.nil? && ! @administrator.empty?
+	flash[:error]	= _("No outgoing mail server is set, but administrator has mail forwarders defined. Forwarding mails cannot work.")
+      end
     end
+    redirect_success # redirect to next step
   end
 
 end
