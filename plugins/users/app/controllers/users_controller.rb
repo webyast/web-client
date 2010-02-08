@@ -73,7 +73,6 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     return unless client_permissions
-
     @user = @client.find(params[:id])
 
     @user.type	= ""
@@ -86,6 +85,7 @@ class UsersController < ApplicationController
     @user.home_directory	= @user.home_directory
     @user.login_shell	= @user.login_shell
     @user.user_password	= @user.user_password
+    @user.user_password2= @user.user_password
 
     counter = 0
     @user.grouplist.each do |group|
@@ -161,10 +161,11 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     return unless client_permissions
-    @user = @client.find(params[:id])
+    @user = @client.find(params[:user][:uid])
     @user.id = @user.uid
     @user.groupname = params["user"]["groupname"]
-    @user.grouplist = {}
+    @user.grouplist = {}   #FIXME: value from form
+    @user.gid_number="100" #FIXME: value from form
 #    if params["user"]["grp_string"] != nil
 #      @user.grp_string = params["user"]["grp_string"]
 #      params["user"]["grp_string"].split(",").each do |group|
