@@ -37,6 +37,8 @@ class RepositoriesController < ApplicationController
     @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
     return unless @repo
 
+    @repo.id = URI.escape(@repo.id)
+
     if @repo.destroy
       flash[:message] = _("Repository '#{@repo.id}' has been deleted.")
     end
@@ -62,8 +64,26 @@ class RepositoriesController < ApplicationController
     @repo.url = repository[:url]
     @repo.priority = repository[:priority].to_i
 
-    if @repo.save
-      flash[:message] = _("Repository '#{@repo.id}' has been updated.")
+    @repo.id = URI.escape(@repo.id)
+
+    begin
+      if @repo.save
+        flash[:message] = _("Repository '#{params[:id]}' has been updated.")
+      end
+    rescue ActiveResource::ServerError => ex
+      begin
+        Rails.log.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        err = Hash.from_xml ex.response.body
+
+        if !err['error']['description'].blank?
+          flash[:error] = _("Cannot update repository '#{params[:id]}': #{err['error']['description']}")
+        else
+          flash[:error] = _("Unknown backend error.")
+        end
+      rescue Exception => e
+          # XML parsing has failed, display complete response
+          flash[:error] = _("Unknown backend error: #{ex.response.body}")
+      end
     end
 
     redirect_to :action => :show, :id => params[:id] and return
@@ -105,8 +125,24 @@ class RepositoriesController < ApplicationController
 
     @repo.id = URI.escape(@repo.id)
 
-    if @repo.save
-      flash[:message] = _("Repository '#{@repo.id}' has been added.")
+    begin
+      if @repo.save
+        flash[:message] = _("Repository '#{params[:id]}' has been added.")
+      end
+    rescue ActiveResource::ServerError => ex
+      begin
+        Rails.log.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        err = Hash.from_xml ex.response.body
+
+        if !err['error']['description'].blank?
+          flash[:error] = _("Cannot update repository '#{params[:id]}': #{err['error']['description']}")
+        else
+          flash[:error] = _("Unknown backend error.")
+        end
+      rescue Exception => e
+          # XML parsing has failed, display complete response
+          flash[:error] = _("Unknown backend error: #{ex.response.body}")
+      end
     end
 
     redirect_to :action => :index and return
