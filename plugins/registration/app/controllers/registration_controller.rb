@@ -161,6 +161,9 @@ class RegistrationController < ApplicationController
           end
         end
         flash[:notice] += "</ul>"
+      else
+        # display warning message if no repos are added/changed during registration (bnc#558854)
+        flash[:warning] = _("No repositories were added or changed during the registration process (maybe due to a wrong registration code). If this system already has an update repository everything is fine. But without an update repository this system will not receive any updates. You may run the registration module again.")
       end
 
       # inform about added repositories
