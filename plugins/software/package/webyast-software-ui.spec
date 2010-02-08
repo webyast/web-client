@@ -17,7 +17,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_cont
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.1
+Version:        0.1.2
 Release:        0
 Summary:        YaST2 - Webclient - Patch_Updates
 Source:         www.tar.bz2
