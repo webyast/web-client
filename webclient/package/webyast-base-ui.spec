@@ -33,7 +33,7 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.4
+Version:        0.1.5
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
@@ -155,6 +155,7 @@ chmod 600 db/*.sqlite* log/*
 %doc README* COPYING  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
+%attr(-,lighttpd,root) /srv/www/yast/public/javascripts
 %config /etc/lighttpd/cleanurl-v5.lua  
 %config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
 %dir /etc/lighttpd/certs
