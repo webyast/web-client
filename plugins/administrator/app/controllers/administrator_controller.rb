@@ -14,8 +14,8 @@ class AdministratorController < ApplicationController
   def index
     @administrator	= load_proxy 'org.opensuse.yast.modules.yapi.administrator'
     return unless @administrator
-
     @administrator.confirm_password	= ""
+    params[:firstboot]	= 1 if Basesystem.new.load_from_session(session).in_process?
   end
 
   # PUT
@@ -73,8 +73,9 @@ class AdministratorController < ApplicationController
 	end
     end
 
-    # check if mail is configured FIXME not during initial workflow, if mail config follows
-    if @administrator.aliases != "NONE"
+    # check if mail is configured; during initial workflow, only warn if mail configuration does not follow
+    if @administrator.aliases != "NONE" &&
+       !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "mail" }
       @mail       = load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
       if @mail && (@mail.smtp_server.nil? || @mail.smtp_server.empty?)
 	flash[:warning] = _("Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s).") % ['<a href="/mail">', '</a>']
