@@ -1,3 +1,7 @@
+<% content_for :head do %>
+<%= javascript_include_tag :defaults %>
+<% end %>
+
 <% if @permissions and @repos %>
 
   <div class='plugin-icon'><img src='/icons/yast-online_update.png'/><%=_("Software Repositories") %></div>
@@ -22,7 +26,11 @@
       <% @repos.each do |r| %>
 	<tr>
 	  <td align="center"><%= h r.priority -%></td>
-	  <td align="center"><input type="checkbox" <%= r.enabled ? ' checked' : '' -%> <%= disabled ? 'disabled' : '' -%> /></td>
+	  <td align="center" id="repo_cell_<%= h r.id -%>">
+	    <%= render :partial => 'repository_checkbox',
+	      :locals => { :id => r.id, :enabled => r.enabled, :disabled => disabled,
+	      :error => nil} %>
+	  </td>
 	  <td><%= link_to (h r.name), :action => 'show', :id => r.id -%></td>
 	  <td><%= h r.url -%></td>
 	  <% unless disabled -%>

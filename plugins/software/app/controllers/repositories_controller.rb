@@ -148,4 +148,41 @@ class RepositoriesController < ApplicationController
     redirect_to :action => :index and return
   end
 
-end
+  def set_status
+    if params[:id].blank?
+    end
+
+    enabled = params[:enabled] == 'true'
+    Rails.logger.debug "Setting repository status: '#{params[:id]}' => #{enabled}"
+
+    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    return unless @repo
+
+    @repo.enabled = enabled
+    @repo.id = URI.escape(@repo.id)
+
+    error_string = ''
+
+    begin
+      @repo.save
+    rescue ActiveResource::ServerError => ex
+      begin
+        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        err = Hash.from_xml ex.response.body
+
+        if !err['error']['description'].blank?
+          error_string = _("Cannot update repository '#{params[:id]}': #{err['error']['description']}")
+        else
+          error_string = _("Unknown backend error.")
+        end
+      rescue Exception => e
+          # XML parsing has failed
+          error_string = _("Unknown backend error.")
+      end
+    end
+
+    render :partial => 'repository_checkbox', :locals => {:error => error_string, :id => @repo.id, :enabled => @repo.enabled, :disabled => !@permissions[:write]}
+
+  end
+
+  end
