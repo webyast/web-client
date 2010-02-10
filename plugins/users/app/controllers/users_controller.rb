@@ -7,18 +7,7 @@ class UsersController < ApplicationController
 
   private
   def client_permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.yapi.users')
-    unless @client
-      # FIXME: check the reason why proxy_for failed, i.e.
-      # - no server known
-      # - no permission to connect to server
-      # - server does not provide interface
-      # - server does not respond (timeout, etc.)
-      # - invalid session
-      flash[:notice] = _("Invalid session, please login again.")
-      redirect_to( logout_path ) and return
-    end
-    @permissions = @client.permissions
+    @permissions = User.permissions
   end
 
   # Initialize GetText and Content-Type.
@@ -34,7 +23,7 @@ class UsersController < ApplicationController
     return unless client_permissions
     @users = []
     begin
-      @users = @client.find(:all)
+      @users = User.find :all
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
@@ -49,7 +38,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     return unless client_permissions
-    @user = @client.new( :id => :nil,
+    @user = User.new( :id => :nil,
       :groupname	=> nil,
       :cn		=> nil,
       :grouplist	=> {},
@@ -73,7 +62,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     return unless client_permissions
-    @user = @client.find(params[:id])
+    @user = User.find(params[:id])
+    #FIXME handle if id is invalid
 
     @user.type	= ""
     @user.id	= @user.uid
@@ -81,6 +71,7 @@ class UsersController < ApplicationController
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
+    # XXX this looks like code which do nothing!!!
     @user.uid_number	= @user.uid_number
     @user.home_directory	= @user.home_directory
     @user.login_shell	= @user.login_shell
@@ -103,8 +94,10 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     return unless client_permissions
-    dummy = @client.new(params[:user])
-    dummy.grp_string = params[:user][:grp_string] #do not know, why this will not be assigned in the constructor
+    dummy = User.new(params[:user])
+    #do not know, why this will not be assigned in the constructor
+    #(JR: because ActiveResource fills only known attributes, but whole gro_string stuff "smells" for me)
+    dummy.grp_string = params[:user][:grp_string] 
 
     dummy.grouplist = {}
     if dummy.grp_string != nil
@@ -113,7 +106,7 @@ class UsersController < ApplicationController
        end
     end
 
-    @user = @client.new(
+    @user = User.new(
 	:groupname	=> dummy.groupname,
         :uid		=> dummy.uid,
         :grouplist	=> dummy.grouplist,
@@ -161,7 +154,7 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     return unless client_permissions
-    @user = @client.find(params[:user][:uid])
+    @user = User.find(params[:user][:uid])
     @user.id = @user.uid
     @user.groupname = params["user"]["groupname"]
     @user.grouplist = {}   #FIXME: value from form
@@ -209,7 +202,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     return unless client_permissions
-    @user = @client.find(params[:id])
+    @user = User.find(params[:id])
     @user.id = @user.uid
     @user.type = "local"
 

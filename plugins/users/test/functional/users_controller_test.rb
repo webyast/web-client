@@ -1,40 +1,30 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 require 'test/unit'
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
+require 'yast_mock'
+require 'mocha'
 
 class UsersControllerTest < ActionController::TestCase
 
-  class Proxy
-    attr_accessor :result, :permissions, :timeout
-    def find
-      return result
-    end
-  end
-
-  class Result
-
-    def fill
-    end
-
-    def save
-      return true
-    end
-  end
-
   def setup
-    @request = ActionController::TestRequest.new
-
-    @result = Result.new
-    @result.fill
-
-    @proxy = Proxy.new
-    @proxy.permissions = { :read => true, :write => true }
-    @proxy.result = @result
- 
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.users').returns(@proxy)
-
-    @controller = UsersController.new
     UsersController.any_instance.stubs(:login_required)
+    @request = ActionController::TestRequest.new
+#FIXME move to separate load fixture method
+    response_users = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","emptycn.xml"))
+    ActiveResource::HttpMock.set_authentication
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users"
+      mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
+      mock.get   "/users.xml", header, response_users, 200
+    end
+  end
+
+  def test_empty_full_name
+    get :index
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:users)
   end
   
 end
