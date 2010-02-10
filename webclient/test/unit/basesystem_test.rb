@@ -71,4 +71,13 @@ class BasesystemTest < ActiveSupport::TestCase
     assert bs.completed?
   end
 
+  def test_following_steps
+    session = {:wizard_current => "systemtime", :wizard_steps => "systemtime,language:show" }
+    bs = Basesystem.new.load_from_session session
+    steps = bs.following_steps
+    assert_equal 1,steps.size
+    assert_equal "language", steps[0][:controller]
+    assert_equal "show", steps[0][:action]
+  end
+
 end

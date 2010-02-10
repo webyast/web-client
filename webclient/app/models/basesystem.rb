@@ -55,6 +55,16 @@ class Basesystem < ActiveResource::Base
     redirect_hash
   end
 
+  # Gets steps which follow after current one
+  # return:: array of hashes with keys :controller and :action
+  def following_steps
+    ret = @steps.slice @steps.index(current)+1,@steps.size
+    ret = ret.collect { |step|
+      arr = step.split(":")
+      { :controller => arr[0], :action => arr[1]||"index"}
+    }
+  end
+
   def first_step?
     !(@steps.blank?) && current == @steps.first
   end
