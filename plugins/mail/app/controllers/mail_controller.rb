@@ -48,7 +48,10 @@ class MailController < ApplicationController
     end
 
     # check if mail forwarning for root is configured
-    if @mail.smtp_server.nil? || @mail.smtp_server.empty?
+    if (@mail.smtp_server.nil? || @mail.smtp_server.empty?) &&
+       # during initial workflow, only warn if administrator configuration does not follow
+       !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "administrator" }
+
       @administrator      = load_proxy 'org.opensuse.yast.modules.yapi.administrator'
       if @administrator && !@administrator.aliases.nil? && ! @administrator.empty?
 	flash[:error]	= _("No outgoing mail server is set, but administrator has mail forwarders defined. Forwarding mails cannot work.")
