@@ -78,6 +78,14 @@ class BasesystemTest < ActiveSupport::TestCase
     assert_equal 1,steps.size
     assert_equal "language", steps[0][:controller]
     assert_equal "show", steps[0][:action]
+    session = {:wizard_current => "language:show", :wizard_steps => "systemtime,language:show" }
+    bs = Basesystem.new.load_from_session session
+    steps = bs.following_steps
+    assert_equal 0,steps.size
+    session = {:wizard_current => "FINISH", :wizard_steps => "systemtime,language:show" }
+    bs = Basesystem.new.load_from_session session
+    steps = bs.following_steps
+    assert_equal 0,steps.size
   end
 
 end
