@@ -75,7 +75,9 @@
 	<p>
 	<label><%=_("Forward mail to")%></label>
 	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
+	<% unless params.has_key? "firstboot" # during initial configuration, allow only main Save button %>
 	<%= f.submit _("Save Mail Only"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
+	<% end %>
 	</p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_aliases" generated="true" class="error"></label></p>
