@@ -38,7 +38,7 @@
 <ul class="filterable">
   <% for user in @users %>
   <li class="row">
-   <%= link_to "<span class='login'><b>" + user.uid + "</b></span> <span class='fullname'>" + user.cn + "</span>", {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %>
+   <%= link_to "<span class='login'><b>" + user.uid + "</b></span> <span class='fullname'>" + (user.cn || "") + "</span>", {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %>
     <% if @permissions[:userdelete] %>
     <span class="del_user"><%= html_delete_link(user.uid, :destroy) %></span>
     <% end %>
