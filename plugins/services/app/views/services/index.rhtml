@@ -6,7 +6,6 @@ $(document).ready(function() {
 
     $(".service-content").hide();
 
-    // FIXME not updated when status is changed
     $("#services-list li").each (function(index) {
 	if ($(this).is(":has(span.status_running)")) {
 	    $(this).find("h4").css('background-image', 'url("/images/green.png")');
@@ -21,8 +20,6 @@ $(document).ready(function() {
 
     $("#services-list h4").click(function(){
 	$(this).next(".service-content").slideToggle("slow");
-	$(this).toggleClass("active");
-	$(this).closest("li").siblings().find("h4").removeClass("active");
 	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
     });
 
@@ -76,6 +73,27 @@ $(document).ready(function() {
 	delay: 100
     })
 })
+
+// adapt the status icon of given service
+function toggle_service_info (id) {
+    var heading	= $(id).closest('.service-content').siblings('h4');
+    if ($(id).is(':has(span.status_running)')) {
+	$(heading).css('background-image', 'url(/images/green.png)');
+	$(id).siblings('a#start').hide();
+	$(id).siblings('a#stop').show();
+    }
+    else if ($(id).is(':has(span.status_dead)')) {
+	$(heading).css('background-image', 'url(/images/red.png)');
+	$(id).siblings('a#stop').hide();
+	$(id).siblings('a#start').show();
+    }
+    else {
+	$(heading).css('background-image', 'url(/images/grey.png)');
+	$(id).siblings('a#stop').hide();
+	$(id).siblings('a#start').show();
+    }
+}
+
 </script>
 
 <style type="text/css">
@@ -94,9 +112,6 @@ $(document).ready(function() {
     background-color: #e3e2e2;
 }
 
-.plugin-content h4.active {
-    border: solid 1px black;
-}
 .plugin-content ul {
     list-style-type: none;
 }
@@ -183,9 +198,6 @@ end
   </span>
 
   <% commands.each do |cmd|
-	if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0) # FIXME not updated after status change
-	    next
-	end
 	if @permissions[:execute] %>
 	    <%=
 		url	= {
@@ -200,16 +212,19 @@ end
 		    :id		=> service.name 
 		}
 		status_url[:custom]	= 1 if custom
+		html_options	= {
+		    :class	=> "button"
+		}
+		html_options[:style]	= "display: none" if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0)
+		html_options[:id]	= cmd
 		link_to_remote cmd,
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
 		    :complete   => remote_function(:update => "service_status_#{service.name}",
 		        :url => status_url,
-			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}');"
 		    ),
-		    :html	=> {
-			:class	=> "button"
-		    }
+		    :html	=> html_options
 	    %>
 	<%
 	end
