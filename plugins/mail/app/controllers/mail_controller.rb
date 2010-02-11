@@ -2,7 +2,6 @@ require 'yast/service_resource'
 
 class MailController < ApplicationController
   before_filter :login_required
-  include ProxyLoader
 
   private
 
@@ -12,15 +11,14 @@ class MailController < ApplicationController
   public
 
   def index
-    @mail	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
-    return unless @mail
+    @mail			= Mail.find :one
+    @permissions		= Mail.permissions
     @mail.confirm_password	= @mail.password
   end
 
   # PUT
   def update
-    @mail	= load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
-    return unless @mail
+    @mail			= Mail.find :one
 
     @mail.load params["mail"]
 
@@ -47,14 +45,16 @@ class MailController < ApplicationController
 	end
     end
 
+    smtp_server	= params["mail"]["smtp_server"]
+
     # check if mail forwarning for root is configured
-    if (@mail.smtp_server.nil? || @mail.smtp_server.empty?) &&
+    if (smtp_server.nil? || smtp_server.empty?) &&
        # during initial workflow, only warn if administrator configuration does not follow
        !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "administrator" }
 
-      @administrator      = load_proxy 'org.opensuse.yast.modules.yapi.administrator'
+      @administrator      = Administrator.find :one
       if @administrator && !@administrator.aliases.nil? && ! @administrator.empty?
-	flash[:error]	= _("No outgoing mail server is set, but administrator has mail forwarders defined. Forwarding mails cannot work.")
+	flash[:warning]	= _("No outgoing mail server is set, but administrator has mail forwarders defined. Forwarding mails cannot work.")
       end
     end
     redirect_success # redirect to next step

@@ -75,10 +75,12 @@
           <%
             flash_icon = case flash_type
               when :error then "ui-icon-alert"
+              when :warning then "ui-icon-notice"
               else "ui-icon-info"
             end
             flash_style = case flash_type
               when :error then "ui-state-error"
+              when :warning then "ui-state-warning"
               else "ui-state-highlight"
             end
           %>

@@ -1,0 +1,29 @@
+<%#
+# This partial template renders a repository checkbox with AJAX function
+# for enabling/disabling it, a progress is displayed after clicking it
+# 
+# local valiables:
+#    string  error    - error message
+#    string  id       - repository alias
+#    boolean enabled  - true if the repository is enabled
+#    boolean disabled - true if the checkbox should be disabled (grayed)
+%>
+
+<% if error.blank? -%>
+<%# jQuery doesn't work properly when id contains brackets, escape them %>
+  <% jquery_id = h id -%>
+  <% jquery_id.gsub!('(', '\\\\\\\\(') -%>
+  <% jquery_id.gsub!(')', '\\\\\\\\)') -%>
+
+  <%= image_tag 'working.gif', :height => 16, :width => 16, :border => 0,
+    :id => "repo_progress_#{h id}",
+    :style => 'display: none', :alt => 'working...' -%>
+
+  <input type="checkbox" id="repo_status_<%= h id -%>" <%= disabled ? ' disabled ' : '' -%> <%= enabled ? ' checked ' : '' -%>
+	 onclick="<%=  remote_function(:update => "repo_cell_#{jquery_id}",
+    :loading  => "$('#repo_progress_#{jquery_id}').show(); $('#repo_status_#{jquery_id}').hide()",
+    :url => { :action => :set_status, :id => id, :params => { :enabled => (!enabled).to_s}}) -%>"
+	 />
+<% else -%>
+  Error: <%= h error %>
+<% end -%>

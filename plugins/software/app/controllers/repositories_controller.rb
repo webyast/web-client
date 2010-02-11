@@ -6,6 +6,8 @@ class RepositoriesController < ApplicationController
   before_filter :login_required
   layout 'main'
   include ProxyLoader
+  #don't add load_proxy as action for controller
+  hide_action :load_proxy
 
   # Initialize GetText and Content-Type.
   init_gettext 'yast_webclient_repositories'
@@ -40,7 +42,7 @@ class RepositoriesController < ApplicationController
     @repo.id = URI.escape(@repo.id)
 
     if @repo.destroy
-      flash[:message] = _("Repository '#{@repo.id}' has been deleted.")
+      flash[:message] = _("Repository '#{@repo.name}' has been deleted.")
     end
 
     redirect_to :action => :index and return
@@ -68,7 +70,7 @@ class RepositoriesController < ApplicationController
 
     begin
       if @repo.save
-        flash[:message] = _("Repository '#{params[:id]}' has been updated.")
+        flash[:message] = _("Repository '#{@repo.name}' has been updated.")
       end
     rescue ActiveResource::ServerError => ex
       begin
@@ -76,7 +78,7 @@ class RepositoriesController < ApplicationController
         err = Hash.from_xml ex.response.body
 
         if !err['error']['description'].blank?
-          flash[:error] = _("Cannot update repository '#{params[:id]}': #{err['error']['description']}")
+          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
         else
           flash[:error] = _("Unknown backend error.")
         end
@@ -84,9 +86,11 @@ class RepositoriesController < ApplicationController
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ex.response.body}")
       end
+
+      redirect_to :action => :show, :id => params[:id] and return
     end
 
-    redirect_to :action => :show, :id => params[:id] and return
+    redirect_to :action => :index and return
   end
 
   def add
@@ -127,7 +131,7 @@ class RepositoriesController < ApplicationController
 
     begin
       if @repo.save
-        flash[:message] = _("Repository '#{params[:id]}' has been added.")
+        flash[:message] = _("Repository '#{@repo.name}' has been added.")
       end
     rescue ActiveResource::ServerError => ex
       begin
@@ -135,7 +139,7 @@ class RepositoriesController < ApplicationController
         err = Hash.from_xml ex.response.body
 
         if !err['error']['description'].blank?
-          flash[:error] = _("Cannot update repository '#{params[:id]}': #{err['error']['description']}")
+          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
         else
           flash[:error] = _("Unknown backend error.")
         end
@@ -148,4 +152,41 @@ class RepositoriesController < ApplicationController
     redirect_to :action => :index and return
   end
 
-end
+  def set_status
+    if params[:id].blank?
+    end
+
+    enabled = params[:enabled] == 'true'
+    Rails.logger.debug "Setting repository status: '#{params[:id]}' => #{enabled}"
+
+    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    return unless @repo
+
+    @repo.enabled = enabled
+    @repo.id = URI.escape(@repo.id)
+
+    error_string = ''
+
+    begin
+      @repo.save
+    rescue ActiveResource::ServerError => ex
+      begin
+        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        err = Hash.from_xml ex.response.body
+
+        if !err['error']['description'].blank?
+          error_string = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        else
+          error_string = _("Unknown backend error.")
+        end
+      rescue Exception => e
+          # XML parsing has failed
+          error_string = _("Unknown backend error.")
+      end
+    end
+
+    render :partial => 'repository_checkbox', :locals => {:error => error_string, :id => @repo.id, :enabled => @repo.enabled, :disabled => !@permissions[:write]}
+
+  end
+
+  end

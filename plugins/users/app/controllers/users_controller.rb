@@ -41,13 +41,14 @@ class UsersController < ApplicationController
     @user = User.new( :id => :nil,
       :groupname	=> nil,
       :cn		=> nil,
-      :grouplist	=> {},
+      :grouplist	=> [],
       :home_directory	=> nil,
       :cn		=> nil,
       :uid		=> nil,
       :uid_number	=> nil,
       :login_shell	=> "/bin/bash",
       :user_password	=> nil,
+      :user_password2	=> nil,
       :type		=> "local",
       :id		=> nil
     )
@@ -68,6 +69,7 @@ class UsersController < ApplicationController
     @user.type	= ""
     @user.id	= @user.uid
     @user.grp_string = ""
+    @user.all_grps_string = ""
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
@@ -81,9 +83,18 @@ class UsersController < ApplicationController
     counter = 0
     @user.grouplist.each do |group|
        if counter == 0
-          @user.grp_string = group.id
+          @user.grp_string = group.cn
        else
-          @user.grp_string += ",#{group.id}"
+          @user.grp_string += ",#{group.cn}"
+       end
+       counter += 1
+    end
+    counter = 0
+    @user.allgroups.each do |group|
+       if counter == 0
+          @user.all_grps_string = group.cn
+       else
+          @user.all_grps_string += ",#{group.cn}"
        end
        counter += 1
     end
@@ -99,10 +110,11 @@ class UsersController < ApplicationController
     #(JR: because ActiveResource fills only known attributes, but whole gro_string stuff "smells" for me)
     dummy.grp_string = params[:user][:grp_string] 
 
-    dummy.grouplist = {}
+    dummy.grouplist = []
     if dummy.grp_string != nil
-       dummy.grp_string.split(",").each do |group|
-          dummy.grouplist[group.strip]	= 1
+       dummy.grp_string.split(",").each do |groupname|
+	  group = { "cn" => groupname }
+	  dummy.grouplist.push group
        end
     end
 
@@ -115,35 +127,23 @@ class UsersController < ApplicationController
         :uid_number	=> dummy.uid_number,
         :login_shell	=> dummy.login_shell,
         :user_password	=> dummy.user_password,
+        :user_password2	=> dummy.user_password,
         :type		=> "local"
     )
     @user.grp_string	= dummy.grp_string
 
-    #Only UID greater than 1000 are allowed for local user
-    # FIXME leave this check on YaPI?
     response = true
-    if @user.uid_number.to_i < 1000
-      response = false
-    else
-      begin
+    begin
         response = @user.save
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
-      end
     end
     respond_to do |format|
       if response
         flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
         format.html { redirect_to :action => "index" }
       else
-        if @user.uid_number.nil?
-           flash[:error] = _("Empty UID value")
-        end
-        if @user.uid_number.to_i < 1000
-           #Only UID greater than 1000 are allowed for local user
-           flash[:error] = _("UID: value >= 1000 is valid for local user only")
-        end
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -157,14 +157,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:user][:uid])
     @user.id = @user.uid
     @user.groupname = params["user"]["groupname"]
-    @user.grouplist = {}   #FIXME: value from form
     @user.gid_number="100" #FIXME: value from form
-#    if params["user"]["grp_string"] != nil
-#      @user.grp_string = params["user"]["grp_string"]
-#      params["user"]["grp_string"].split(",").each do |group|
-#        @user.groups << { :id=>group.strip }
-#      end
-#    end
+
+    @user.grouplist = []
+    if params["user"]["grp_string"] != nil
+       params["user"]["grp_string"].split(",").each do |groupname|
+	  group = { "cn" => groupname }
+	  @user.grouplist.push group
+       end
+    end
 # FIXME solve renaming...
 #    if @user.login_name != params["user"]["login_name"]
 #      @user.new_login_name = params["user"]["login_name"]

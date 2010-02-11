@@ -55,7 +55,16 @@ class ControlpanelController < ApplicationController
 
 
   def nextstep
-    redirect_to Basesystem.new.load_from_session(session).next_step
+    bs = Basesystem.new.load_from_session(session)
+    unless params[:done].blank?
+      #in case that user click multiple time on next button
+      #redirect correct bnc#579470
+      unless params[:done] == bs.current_step[:controller]
+        redirect_to bs.current_step 
+        return
+      end
+    end
+    redirect_to bs.next_step
   end
 
   def backstep

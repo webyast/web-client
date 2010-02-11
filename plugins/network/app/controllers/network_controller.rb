@@ -71,7 +71,8 @@ class NetworkController < ApplicationController
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    dirty = false
+    dirty    = false
+    dirty_ifc = false
     rt = Route.find "default"
     return false unless rt
     dirty = true unless rt.via == params["default_route"]
@@ -84,10 +85,10 @@ class NetworkController < ApplicationController
     # so at first test emptiness
     #FIXME repair it when spliting of param is ready
     unless (dns.nameservers.empty? && params["nameservers"].blank?)
-      dirty = true unless dns.nameservers == params["nameservers"].split
+      dirty = true unless dns.nameservers == (params["nameservers"]||"").split
     end
     unless (dns.searches.empty? && params["searchdomains"].blank?)
-      dirty = true unless dns.searches == params["searchdomains"].split
+      dirty = true unless dns.searches == (params["searchdomains"]||"").split
     end
     logger.info "dirty after  dns: #{dirty}"
     # now the model contains arrays but for saving
@@ -105,24 +106,29 @@ class NetworkController < ApplicationController
 
     ifc = Interface.find params["interface"]
     return false unless ifc
-    dirty = true unless (ifc.bootproto == params["conf_mode"])
+    dirty_ifc = true unless (ifc.bootproto == params["conf_mode"])
     logger.info "dirty after interface config: #{dirty}"
     ifc.bootproto=params["conf_mode"]
     if ifc.bootproto=="static"
       #ip addr is returned in another state then given, but restart of static address is not problem
-      dirty = true
-      ifc.ipaddr=params["ip"]+"/"+params["netmask"]
+      if ((ifc.ipaddr||"").delete("/")!=params["ip"]+(params["netmask"]||"").delete("/"))
+        dirty_ifc = true
+        ifc.ipaddr=params["ip"]+"/"+params["netmask"].delete("/")
+      end
     end
    
     begin
       # this is not transaction!
       # if any *.save failed, the previous will be applied
       # FIXME JR: I think that if user choose dhcp not all settings should be written
-      if dirty
+      if dirty||dirty_ifc
         rt.save
         dns.save
         hn.save
-        ifc.save
+        # write interfaces (and therefore restart network) only when interface settings changed (bnc#579044)
+	if dirty_ifc
+          ifc.save
+	end
       end
 #write to avoid confusion, with another string
       flash[:notice] = _('Network settings have been written.')

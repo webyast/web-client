@@ -1,84 +1,50 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
+require 'test/unit'
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
+require 'yast_mock'
+require 'mocha'
 
 class ServicesControllerTest < ActionController::TestCase
 
-  class Proxy
-    attr_accessor :result, :permissions, :timeout
-    def find(arg, params = {})
-      if arg == :all
-        return [result]
-      else
-        return result
-      end
-    end
-  end
-
-  class Proxy2
-    attr_accessor :result, :permissions, :timeout
-    def find(arg, params = {})
-      raise ActiveResource::ResourceNotFound.new(Net::HTTPNotFound.new('1.1', '404', 'Not Found '))
-    end
-  end
-
-  class Result
-    attr_accessor :status, :name, :description, :summary
-
-    def fill
-	@status = 0
-        @name = "fake-service"
-        @description = "a fake service"
-	@summary	= ""
-    end
-
-    def save
-      return true
-    end
-  end
-
   def setup
-    @result = Result.new
-    @result.fill
-
     ServicesController.any_instance.stubs(:login_required)
-    @controller = ServicesController.new
-
     @request = ActionController::TestRequest.new
-    # http://railsforum.com/viewtopic.php?id=1719
-    @request.session[:account_id] = 1 # defined in fixtures
-
-    @permissions = { :read => true, :execute => true }
-    @proxy = Proxy.new
-    @proxy.permissions = @permissions
-    @proxy.result = @result
-
-    @proxy2 = Proxy2.new
-    @proxy2.permissions = @permissions
-    @proxy2.result = @result
+    response_services	= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","services.xml"))
+    response_ntp	= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
+    response_ntp_stop	= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp-stop.xml"))
+    ActiveResource::HttpMock.set_authentication
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources  :"org.opensuse.yast.modules.yapi.services" => "/services"
+      mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
+      mock.get   "/services.xml?read_status=1", header, response_services, 200
+      mock.get   "/services/ntp.xml", header, response_ntp, 200
+      mock.post  "/services.xml", header, response_services, 200
+      mock.put	"/services/ntp.xml?execute=stop", header, response_ntp_stop, 200
+    end
   end
 
-  def test_should_get_index
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
+  def teardown
+    ActiveResource::HttpMock.reset!
+  end
+
+  def test_index
     get :index
     assert_response :success
     assert_valid_markup
     assert_not_nil assigns(:services)
   end
 
-
   def test_ntp_status
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy)
     ret = get :show_status, {:id => 'ntp'}
     assert_response :success
-    assert !ret.body.index("running").nil?
+    assert !ret.body.index("not running").nil? # fixture status is 3 = not running
   end
 
-  def test_missing_service_status
-    Net::HTTPNotFound.any_instance.stubs(:body).returns("<error><code>108</code><message>Missing custom command to 'status' command</message></error>")
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.yapi.services').returns(@proxy2)
-    ret = get :show_status, {:id => 'aaaaaaaa'}
-    assert_response :success
-    assert ret.body == '(cannot read status)'
+  def test_execute
+    put :execute, { :service_id => 'ntp', :id => 'stop'}
+    assert assigns(:error_string), "success"
+    assert assigns(:result_string), "Shutting down network time protocol daemon (NTPD)\n"
   end
 
 end

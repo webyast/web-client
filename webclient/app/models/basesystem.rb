@@ -58,7 +58,7 @@ class Basesystem < ActiveResource::Base
   # Gets steps which follow after current one
   # return:: array of hashes with keys :controller and :action, if basesystem finish return empty array
   def following_steps
-    return [] if completed?
+    return [] if (!initialized || completed?)
     ret = @steps.slice @steps.index(current)+1,@steps.size
     ret = ret.collect { |step|
       arr = step.split(":")

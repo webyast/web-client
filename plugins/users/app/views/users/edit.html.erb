@@ -5,7 +5,31 @@
   <%= javascript_include_tag "digitalspaghetti.password.js" %>
 
   <style type="text/css">
-    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
+    label.error {
+	 display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50%
+    }
+
+    .GContainer {
+        float: left;
+        margin: 3px;
+        width: 100px;
+        border: #669999 2px solid;
+        padding: 5px;
+     }
+
+     .GBox {
+        border: #000 1px solid;
+        padding: 2px;
+        font-size: 10px;
+        margin-bottom: 5px;
+        width: 94px;
+        cursor: pointer;
+        font-family: verdana, tahoma, arial;
+     }
+     #ContainerUser .GBox {
+        background-color: #eee;
+     }
+
   </style>
 
  <script language='javascript'>
@@ -13,28 +37,21 @@
    $("#tab_login")[0].style.display="block";
 
 
-      $("#userForm").validate({onsubmit: false})
+   $("#userForm").validate({onsubmit: false})
 
-      // make the error message translatable - override the default messsage
-/*
-      $.extend($.validator.messages, {
-	equalTo: "<%= _("The passwords do not match.") -%>",
-	required: "<%= _("A password is required.") -%>"
-      });
-*/
 
- $("#userForm").validate({
-  rules: {
-    user_password: "required",
-    user_password2: {
-      equalTo: "#user_password"
+   $("#userForm").validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
     }
-  }
-});
+   });
 
-      $("#user_user_password").pstrength({
-	  'displayMinChar'	: false,
-	  'verdicts'		: [
+   $("#user_user_password").pstrength({
+     'displayMinChar'	: false,
+       'verdicts'		: [
 	    "<%= _("Weak") %>",
 	    "<%= _("Normal") %>",
 	    "<%= _("Medium") %>",
@@ -42,8 +59,81 @@
 	    "<%= _("Very Strong") %>"
 	  ],
       });
-  })
 
+ })
+
+   function user_validation(){
+     valid=false;
+     password_validation_enabled = true;
+     valid =  $('#userForm').validate().element('#user_user_password2');
+     if (!valid){
+       // Remove highlighting from tabs and highlight only first one
+       $('.tab-nav').find('a').removeClass('selected');
+       $(".t_login").addClass("selected")
+
+       $("#tab_login")[0].style.display="block";
+       $("#tab_groups")[0].style.display="none";
+       $("#tab_advanced")[0].style.display="none";
+     }
+     return valid;
+   }
+
+  // fill user and groups containers
+  function _initializeDragContainer(a_groups,containername){
+   var container=document.getElementById(containername);
+   while(container.hasChildNodes()){
+	container.removeChild(container.lastChild);
+   }
+   for(var i=0;i<a_groups.length;i++){
+     var div = document.createElement('div');
+     div.setAttribute('id', a_groups[i].trim());
+     div.setAttribute('class', 'GBox');
+     div.innerHTML=a_groups[i].trim();
+     container.appendChild(div);
+   }
+  }
+
+  function _filter_all_groups(group){
+   var mygroups=[];
+   if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+   var found=false;
+   for(i=0;i<mygroups.length;i++){
+     if (mygroups[i]==group) found=true;
+   }
+   return !found;
+  }
+
+  // open groups "popup" dialog
+  function open_groups_dialog(){
+   var mygroups=[];
+   if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+   _initializeDragContainer(mygroups,'ContainerUser');
+
+   var allgroups = $('#user_all_grps_string')[0].value.split(",");
+   allgroups=allgroups.filter(_filter_all_groups);
+   _initializeDragContainer(allgroups,'ContainerGroups');
+
+   $('#groups').dialog({ buttons: { 'Ok': function() { store_groups(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
+   $('#groups').dialog('open');
+  }
+
+  // store groups from popup dialog
+  function store_groups(dlg){
+    var user = $('#ContainerUser')[0].childNodes;
+    var groups="";
+    for (i=0;i<user.length;i++){
+     groups+=user[i].innerHTML;
+     if (i<user.length-1) groups+=",";
+    }
+    $('#user_grp_string')[0].value=groups;
+    $(dlg).dialog('close');
+  }
+
+  function moveItem(e,target){
+   // this hack is for support both firefox and chrome
+   var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
+    if(item.className=='GBox') $('#'+item.id).appendTo($('#'+target));
+  }
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
  </script>
@@ -77,7 +167,7 @@
     </p>
     <p>
 	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :class => "required" %>
+	<%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password" %>
     </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
@@ -86,11 +176,21 @@
     <p>
 	<label><%=_("Groups")%></label>
 	<%= f.text_field :grp_string, :disabled => disabled %>
+	<a href="#" class="button" onclick="open_groups_dialog();return false;">Manage Groups</a>
     </p>
     <p>
 	<label><%=_("Default Group")%></label>
 	<%= f.text_field :groupname, :disabled => disabled %>
     </p>
+
+    <div id="groups" style="display:none;" title="Groups"> 
+      <DIV>
+        <DIV class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </DIV>
+        <DIV class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </DIV>
+	<div><%= f.hidden_field :all_grps_string, :disabled => disabled %></div>
+      </DIV>
+    </div>
+
   </fieldset>
    <fieldset id="tab_advanced">
     <p>
@@ -107,6 +207,6 @@
     </p>
     </fieldset>
     </div>
-    <p><%= f.submit _("Update"), :disabled => disabled, :onclick=>"password_validation_enabled = true; return $('#userForm').validate().element('#user_user_password2');" %><%= link_to _('Back'), {:action => :index}, :class => "button"%></p>
+    <p><%= f.submit _("Update"), :disabled => disabled, :onclick=>"return user_validation();" %><%= link_to _('Back'), {:action => :index}, :class => "button"%></p>
   </div>
 <% end %>

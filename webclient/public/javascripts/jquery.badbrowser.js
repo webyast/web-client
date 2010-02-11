@@ -2,6 +2,14 @@ function badBrowser(){
     if(   ($.browser.msie() && $.browser.version.number() == 8 )
        || ($.browser.firefox() && $.browser.version.number() >= 3.5 )
       ) { return false;}
+//chrome detection, not supported by our version of jqbrowser
+    if ( /Chrome/.test(navigator.userAgent))
+    {
+      //chrome detected, check major version
+      var version = /Chrome\/([0-9]+)/.exec(navigator.userAgent)[1];
+      if (version.parseInt() >= 4)
+        return false;
+    }
     return true;
 }
 

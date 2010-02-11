@@ -6,7 +6,6 @@ $(document).ready(function() {
 
     $(".service-content").hide();
 
-    // FIXME not updated when status is changed
     $("#services-list li").each (function(index) {
 	if ($(this).is(":has(span.status_running)")) {
 	    $(this).find("h4").css('background-image', 'url("/images/green.png")');
@@ -21,26 +20,42 @@ $(document).ready(function() {
 
     $("#services-list h4").click(function(){
 	$(this).next(".service-content").slideToggle("slow");
-	$(this).toggleClass("active");
-	$(this).closest("li").siblings().find("h4").removeClass("active");
 	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
     });
 
-    $('option[value|=all]').click(function(){
+    $('ul#services_ul li').quicksearch({
+	attached: 'ul#services_ul',
+	loaderText: '',
+	labelText: '<%= _("Quick Search")%>',
+	delay: 100
+    })
+})
+
+// adapt the status icon of given service
+function toggle_service_info (id) {
+    var heading	= $(id).closest('.service-content').siblings('h4');
+    if ($(id).is(':has(span.status_running)')) {
+	$(heading).css('background-image', 'url(/images/green.png)');
+	$(id).siblings('a#start').hide();
+	$(id).siblings('a#stop').show();
+    }
+    else if ($(id).is(':has(span.status_dead)')) {
+	$(heading).css('background-image', 'url(/images/red.png)');
+	$(id).siblings('a#stop').hide();
+	$(id).siblings('a#start').show();
+    }
+    else {
+	$(heading).css('background-image', 'url(/images/grey.png)');
+	$(id).siblings('a#stop').hide();
+	$(id).siblings('a#start').show();
+    }
+}
+
+function select_status (val) {
+    if (val == "all") {
 	$("#services_ul> li").show();
-    });
-
-    $('option[value|=running]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_running)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
-    $('option[value|=not-running]').click(function(){
+    }
+    else if (val == "not-running") {
 	$('#services_ul>li').each(function(index) {
 	    if ($(this).is(":has(span.status_not_running)")) {
 		$(this).show();
@@ -48,9 +63,17 @@ $(document).ready(function() {
 		$(this).hide();
 	    }
 	});
-    });
-
-    $('option[value|=dead]').click(function(){
+    }
+    else if (val == "running") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
+    else if (val == "dead") {
 	$('#services_ul>li').each(function(index) {
 	    if ($(this).is(":has(span.status_dead)")) {
 		$(this).show();
@@ -58,24 +81,9 @@ $(document).ready(function() {
 		$(this).hide();
 	    }
 	});
-    });
+    }
+}
 
-    $('ul#services_ul li').quicksearch({
-	attached: 'ul#services_ul',
-	loaderText: '',
-	labelText: '',
-	inputText: '<%= _("Search here for service name or description")%>',
-	delay: 100
-    })
-
-    $('ul#custom_services_ul li').quicksearch({
-	position: 'before',
-	attached: 'ul#custom_services_ul',
-	labelText: '<%= _("Quick Search")%>',
-	loaderText: '',
-	delay: 100
-    })
-})
 </script>
 
 <style type="text/css">
@@ -94,9 +102,6 @@ $(document).ready(function() {
     background-color: #e3e2e2;
 }
 
-.plugin-content h4.active {
-    border: solid 1px black;
-}
 .plugin-content ul {
     list-style-type: none;
 }
@@ -116,34 +121,12 @@ $(document).ready(function() {
 <% end %>
 
 
-<%
-custom	= false
-ul_id	= "services_ul"
-
-[ @services, @custom_services ].each do |service_list|
-
-if custom
-    commands	= [ "start", "stop"]
-    ul_id	= "custom_services_ul"
-else
-    commands	= [ "start", "stop", "restart", "reload" ]
-end
-
-%>
-<div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%=
-
-if custom
-    _("Custom Services")
-else
-    _("System Services")
-end
-%></div>
+<div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%= _("System Services") %></div>
 
 <div class="plugin-content grid_12" id="services-list">
 
-<ul id="<%= ul_id%>">
+<ul id="services_ul">
 
-<% unless custom %>
 <p>
     <label for="filter"><%=_("Filter services")%></label>
     <%= select_tag "filter", options_for_select([
@@ -153,16 +136,13 @@ end
 	[ _("Dead"), "dead"],
     ])
     %>
+    <%= observe_field("filter", :function => "select_status(value)") %>
 </p>
 
 
-<% end %>
-
-<% if custom && service_list.empty? %>
-<p><%=_("No custom service is defined on target machine.") %></p>
-<% end %>
-
-<% service_list.each do |service| %>
+<%
+commands	= [ "start", "stop", "restart", "reload" ]
+@services.each do |service| %>
   <li>
 
   <h4><%=h service.name %> <em style="position:absolute; left:25%"><%=h service.summary%></em></h4>
@@ -183,9 +163,6 @@ end
   </span>
 
   <% commands.each do |cmd|
-	if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0) # FIXME not updated after status change
-	    next
-	end
 	if @permissions[:execute] %>
 	    <%=
 		url	= {
@@ -193,23 +170,24 @@ end
 		    :action	=> "execute", 
 		    :service_id	=> service.name
 		}
-		url[:custom]	= 1 if custom
 		status_url	= {
 		    :controler	=> :services,
 		    :action	=> :show_status,
 		    :id		=> service.name 
 		}
-		status_url[:custom]	= 1 if custom
+		html_options	= {
+		    :class	=> "button"
+		}
+		html_options[:style]	= "display: none" if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0)
+		html_options[:id]	= cmd
 		link_to_remote cmd,
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
 		    :complete   => remote_function(:update => "service_status_#{service.name}",
 		        :url => status_url,
-			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}');"
 		    ),
-		    :html	=> {
-			:class	=> "button"
-		    }
+		    :html	=> html_options
 	    %>
 	<%
 	end
@@ -221,23 +199,15 @@ end
 	    :id		=> service.name,
 	    :action	=> :show_status
 	}
-	url[:custom]	= 1 if custom
 
-	link_to_remote _('status'), :update => "service_status_#{service.name}",
+	link_to_remote _('refresh status'), :update => "service_status_#{service.name}",
 	    :url => url,
 	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
-	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()",
-	    :html	=> {
-		:class	=> "button"
-	    }
+	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
       %>
   </div>
   </li>
-  <% end # end of service_list.each %>
-<% custom = true %>
+  <% end # end of @services.each %>
 </ul>
-<%= link_to _("Back"), '/', :class=>"button" %>
 </div>
-<% end %>
-
-
+<%= link_to _("Back"), '/', :class=>"button" %>

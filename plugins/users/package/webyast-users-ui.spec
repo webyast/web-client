@@ -8,13 +8,14 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-
-Name:           yast2-webclient-users
+Name:		webyast-users-ui
+Provides:       yast2-webclient-users = %{version}
+Obsoletes:      yast2-webclient-users < %{version}
 PreReq:         yast2-webclient
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.2
+Version:        0.1.4
 Release:        0
 Summary:        YaST2 - Webclient - Users
 Source:         www.tar.bz2

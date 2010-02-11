@@ -33,7 +33,7 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.5
+Version:        0.1.6
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2

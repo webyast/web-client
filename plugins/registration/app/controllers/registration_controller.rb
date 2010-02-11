@@ -6,7 +6,6 @@ require 'yast/service_resource'
 class RegistrationController < ApplicationController
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
 
   def initialize
     @trans = { 'email' => _("Email"),
