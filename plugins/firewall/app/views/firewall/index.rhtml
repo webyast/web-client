@@ -14,26 +14,13 @@
           <%=  "disabled=\"disabled\"" if disabled %> 
           />
   </p>
-
-<div class="plugin-content grid_12" id="allowed-services-list">
-
-<ul id="allowed_services_ul">
-    <% @firewall.services.each do |service| %>
-        <li>
-            <%=h service.name %>
-        </li>
-    <% end %>
-</ul>
-
-</div>
   <p>
-
-  <
        <table>
           <tr>
             <th><%= _("Service") %></th>
             <th><%= _("Allowed") %></th>
           </tr>
+          <% @firewall.fw_services.each do |service| %>
           <tr>
             <td>
               <label for="<%= @cgi_prefix+service.id %>"><%= service.name %></label>
@@ -49,6 +36,8 @@
        </table>
   </p>
   </fieldset>
+  <fieldset>
   <%= form_send_buttons :disabled => disabled, :class => "button" %>
+  </fieldset>
   <% end %>
 </div>
