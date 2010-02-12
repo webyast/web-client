@@ -15,7 +15,7 @@ Obsoletes:      yast2-webclient-network < %{version}
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.11
+Version:        0.1.11
 Release:        0
 Summary:        YaST2 - Webclient - network
 Source:         www.tar.bz2
