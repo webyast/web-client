@@ -1,5 +1,5 @@
 #
-# spec file for package yast2-webclient-services (Version 0.1)
+# spec file for package webyast-firewall-ui (Version 0.1)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
