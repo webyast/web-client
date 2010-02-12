@@ -9,9 +9,18 @@ class FirewallController < ApplicationController
 
   init_gettext "yast_webclient_firewall"
 
+private
+
+  def checkbox_true?(name)
+    ! params[name].nil? && params[name] == "true"
+  end
+
+public
+
   def index
+    @cgi_prefix = CGI_PREFIX
     @firewall    = Firewall.find :one
-    @firewall.services.each do |s|
+    @firewall.fw_services.each do |s|
         s.css_class  = CGI_PREFIX+"-"+s.id.gsub(/^service:/,"service-")
         s.input_name = CGI_PREFIX+"_"+s.id
     end
@@ -19,14 +28,10 @@ class FirewallController < ApplicationController
     @permissions = Firewall.permissions
   end
 
-  def checkbox_true?(name)
-    ! params[name].nil? && params[name] == "true"
-  end
-
   def update
     fw = Firewall.find :one
     fw.use_firewall = checkbox_true? "use_firewall"
-    fw.services.each do |service|
+    fw.fw_services.each do |service|
       service.allowed = checkbox_true? (CGI_PREFIX+service.id)
     end
     fw.save
