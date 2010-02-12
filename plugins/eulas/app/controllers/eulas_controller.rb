@@ -12,7 +12,7 @@ class EulasController < ApplicationController
 
   def ensure_eula_count
     if session[:eula_count].nil?
-      eulas = Eulas.find_all
+      eulas = Eulas.find :all
       session[:eula_count] = eulas.length
     end
     @eula_count = session[:eula_count]
