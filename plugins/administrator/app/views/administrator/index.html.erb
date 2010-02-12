@@ -7,6 +7,11 @@
 
   <style type="text/css">
     label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
+
+   #adminForm fieldset {
+        background-color: #eeeeee;
+        margin: 1em;
+    }
   </style>
 
   <script type="text/javascript">
@@ -61,7 +66,8 @@
 
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
-    <fieldset class="grid_12" id="password">
+    <fieldset class="wrapper" id="password">
+        <legend><%= _("Root User Password Setup") -%></legend>
 	<p><label><%=_("Password")%></label>
 	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
 	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"  %>
@@ -69,9 +75,12 @@
 	<p>
 	<label><%=_("Confirm password")%></label>
 	<%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
-    </p>
+        </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
-    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
+    <p><label for="administrator_confirm_password" generated="true" class="error"></label></p>
+    </fieldset>
+    <fieldset class="wrapper">
+        <legend><%= _("Root User Mail Setup") -%></legend>
 	<p>
 	<label><%=_("Forward mail to")%></label>
 	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
