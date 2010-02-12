@@ -1,42 +1,110 @@
 <% disabled = !@permissions[:write] %>
 
+<% content_for :head do %>
+  <%= javascript_include_tag :defaults %>
+  <% javascript_tag do -%>
+
+ $(document).ready(function(){
+
+   $("ul li input").fadeTo(0,0);
+
+   $("input.blockButton").click( function(){
+     $(this).parent().hide("slow");
+     $(".blockedServices ul li."+$(this).parent().attr("class")).show("slow");
+   });
+
+   $("input.allowButton").click( function(){
+     $(this).parent().hide("slow");
+     $(".allowedServices ul li."+$(this).parent().attr("class")).show("slow");
+   });
+
+   $(".allowedServices ul li,.blockedServices ul li").mouseenter( function(){
+     $(this).find("input").fadeTo("fast",1);
+   });
+
+   $(".allowedServices ul li,.blockedServices ul li").mouseleave( function(){
+     $(this).find("input").fadeTo("fast",0);
+   });
+
+   <% @firewall.services.each do |service| 
+        if service.allowed then %>
+   $(".blockedServices ul li.<%= service.css_class %>").hide();
+   <%   else %>
+   $(".allowedServices ul li.<%= service.css_class %>").hide();
+   <%   end %>
+   <% end %>
+ });
+
+  <% end -%>
+  <style type="text/css">
+    .allowButton {
+      float: left;
+    }
+    .blockButton {
+      float: left;
+    }
+    td.allowedServices {
+      width: 40%;
+    }
+    td.blockedServices {
+      width: 40%;
+    }
+
+  </style>
+<% end %>
+
+
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
 
 <div class="plugin-content grid_12">
   <% form_tag '/firewall/update', {:class => 'container'} do %>
-  <fieldset id="" class="">
-  <p>
-      <label for="use_firewall"><%=_("Use Firewall")%></label>
-      <% #don't use check_box helper as it generate also hidden opposite value
-      %>
-      <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
-          <%=  "checked=\"checked\"" if @firewall.use_firewall %>
-          <%=  "disabled=\"disabled\"" if disabled %> 
+    <fieldset id="" class="">
+      <p>
+        <label for="use_firewall"><%=_("Use Firewall")%></label>
+        <% #don't use check_box helper as it generates also hidden opposite value
+        %>
+        <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
+            <%=  "checked=\"checked\"" if @firewall.use_firewall %>
+            <%=  "disabled=\"disabled\"" if disabled %> 
+            />
+      </p>
+      <% @firewall.services.each do |service| %>
+      <input type="hidden" 
+          name="<%= service.input_name %>"
+          value="<%= if service.allowed then 'true' else 'false' end %>"
+          class="<%= service.css_class %>"
           />
-  </p>
+      <% end %>
+    </fieldset>
+    <fieldset id="" class="">
 
-  <p>
-       <table>
-          <tr>
-            <th><%= _("Service") %></th>
-            <th><%= _("Allowed") %></th>
-          </tr>
-          <% @firewall.services.each do |service| %>
-          <tr>
-            <td>
-              <label for="<%= @cgi_prefix+service.id %>"><%= service.name %></label>
-            </td>
-            <td>
-              <input type="checkbox" name="<%= @cgi_prefix+service.id %>" id="<%= @cgi_prefix+service.id %>" value="true"
-                  <%=  "checked=\"checked\"" if service.allowed %>
-                  <%=  "disabled=\"disabled\"" if disabled %>
-                  />
-            </td>
-          </tr>
-          <% end %>
-       </table>
-  </p>
-  </fieldset>
-  <%= form_send_buttons :disabled => disabled, :class => "button" %>
+      <table><tr>
+        <td class="allowedServices">
+          <h3><%= _("Allowed services")%></h3>
+          <ul>
+            <% @firewall.services.each do |service| %>
+              <li class="<%= service.css_class %>">
+                <input type="button" value="Block" class="blockButton button"/>
+                <%= service.name %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+        <td class="blockedServices">
+          <h3><%= _("Blocked services")%></h3>
+          <ul>
+            <% @firewall.services.each do |service| %>
+              <li class="<%= service.css_class%>">
+                <input type="button" value="Allow" class="allowButton button"/>
+                <%= service.name %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr></table>
+    </fieldset>
+    <fieldset>
+      <%= form_send_buttons :disabled => disabled, :class => "button" %>
+    </fieldset>
   <% end %>
 </div>

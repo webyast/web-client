@@ -3,7 +3,7 @@ require 'firewall'
 
 class FirewallController < ApplicationController
 
-  CGI_PREFIX="firewall_"
+  CGI_PREFIX="firewall"
 
   before_filter :login_required
   layout 'main'
@@ -11,8 +11,12 @@ class FirewallController < ApplicationController
   init_gettext "yast_webclient_firewall"
 
   def index
-    @cgi_prefix  = CGI_PREFIX
     @firewall    = Firewall.find :one
+    @firewall.services.each do |s|
+        s.css_class  = CGI_PREFIX+"-"+s.id.gsub(/^service:/,"service-")
+        s.input_name = CGI_PREFIX+"_"+s.id
+    end
+    Rails.logger.debug @firewall.inspect
     @permissions = Firewall.permissions
   end
 
