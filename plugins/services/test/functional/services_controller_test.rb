@@ -6,12 +6,18 @@ require 'mocha'
 
 class ServicesControllerTest < ActionController::TestCase
 
+  # return contents of a fixture file +file+
+  def fixture(file)
+    IO.read(File.join(File.dirname(__FILE__), "..", "fixtures", file))
+  end
+
+
   def setup
     ServicesController.any_instance.stubs(:login_required)
     @request = ActionController::TestRequest.new
-    response_services	= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","services.xml"))
-    response_ntp	= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
-    response_ntp_stop	= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp-stop.xml"))
+    response_services	= fixture("services.xml")
+    response_ntp	= fixture("ntp.xml")
+    response_ntp_stop	= fixture("ntp-stop.xml")
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
@@ -35,10 +41,40 @@ class ServicesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:services)
   end
 
+  def test_index_failure
+    response_failed = fixture("services-failed.xml")
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources  :"org.opensuse.yast.modules.yapi.services" => "/services"
+      mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
+      mock.get   "/services.xml?read_status=1", header, response_failed, 404
+    end
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:services)
+    #check if flash error is written
+    assert_tag :span, :attributes => { :class => "ui-icon ui-icon-alert" }
+
+# JR: cannot be test, because flash object is already used during render, so it is not passed to response
+#    assert flash[:error] FIXME while this is not set?
+#    assert_equal flash[:error], "Can't get services list"
+  end
+
   def test_ntp_status
     ret = get :show_status, {:id => 'ntp'}
     assert_response :success
     assert !ret.body.index("not running").nil? # fixture status is 3 = not running
+  end
+
+  def test_nonexistent_service_status
+    response_aaa = fixture("aaa.xml")
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.get   "/services/aaa.xml", header, response_aaa, 404
+    end
+    ret = get :show_status, {:id => 'aaa'}
+    assert_equal ret.body, '(cannot read status)'
+    assert_response :success
   end
 
   def test_execute

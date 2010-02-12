@@ -5,9 +5,10 @@ module ViewHelpers::HtmlHelper
 	return link_to image_tag("/images/edit-icon.png", :alt => :edit), {:action => action, :id => id}, :onclick=>"$('#progress').show()"
     end
 
-    def html_delete_link(id, action = :delete)
+	# added additional argument to replace message string (see bnc#581153)
+    def html_delete_link(id, action = :delete, text = _('Are you sure?'))
 	return link_to image_tag("/images/delete.png", :alt => :delete), {:action => action, :id => id},
-	:confirm => _('Are you sure?'), :method => :delete
+	:confirm => text, :method => :delete
     end
 
     def html_create_table_content(items, properties, permissions = {}, proc_obj = nil)

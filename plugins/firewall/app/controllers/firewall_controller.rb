@@ -1,4 +1,3 @@
-require 'yast/service_resource'
 require 'firewall'
 
 class FirewallController < ApplicationController

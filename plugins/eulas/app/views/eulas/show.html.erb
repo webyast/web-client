@@ -1,5 +1,9 @@
-<h1><%=_("Accept End User Licence Agreement")-%> - <%= @eula.name -%></h1><br/>
+<div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="eula module"/>
+<%=_("Accept End User Licence Agreement")-%> - <%= @eula.name -%>
+</div>
 
+<div class="plugin-content grid_12" id="eula">
+<fieldset id="" class="">
 <% form_tag :method => :post, :controller => :eulas, :action => :update, :id => @eula_id, :class => 'container' do  -%>
   <%= _("Available translations:") -%>
   <%= select_tag "text_lang",
@@ -31,11 +35,14 @@
   <% unless @eula.text_lang == 'en' then %>
     <input type="hidden" name="eula_lang" value="<%= @eula.text_lang %>"/>
   <% end %>
-
+</fieldset>
+<fieldset id="" class="">
   <%= if @first_eula
         form_back_button
       else
         link_to "Back", :action => :show, :id => @prev_id
       end %>
   <%= form_str_spacer + form_next_button %>
+</fieldset>
 <% end -%>
+</div>

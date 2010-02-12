@@ -7,6 +7,8 @@ require 'yast_mock'
 class SystemtimeControllerTest < ActionController::TestCase
   
   def setup
+    Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
+    Systemtime.instance_variable_set(:@permissions,nil) #reset permissions cache
     SystemtimeController.any_instance.stubs(:login_required)
     @controller = SystemtimeController.new
     @request = ActionController::TestRequest.new

@@ -10,13 +10,13 @@
 
 	<script type="text/javascript">
 	    $(function() {
-	      $('#ip').example('Adress of this machine (e.g. 192.168.0.18)');
+	      $('#ip').example('Address of this machine (e.g. 192.168.0.18)');
 	    });
 	  </script>
 
 	<script type="text/javascript">
 	    $(function() {
-	      $('#netmask').example('Adress shared with other machines (e.g. 255.255.255.0)');
+	      $('#netmask').example('Address shared with other machines (e.g. 255.255.255.0)');
 	    });
 	  </script>
 
@@ -34,7 +34,7 @@
 
 	 <script type="text/javascript">
 	    $(function() {
-	      $('#nameservers').example('IP adress of machine which translates hostnames in IP adresses');
+	      $('#nameservers').example('IP address of machine which translates hostnames in IP addresses');
 	    });
 	  </script>
 
@@ -46,7 +46,7 @@
 
 	 <script type="text/javascript">
 	    $(function() {
-	      $('#default_route').example('Target adress for outgoing IP data packages');
+	      $('#default_route').example('Target address for outgoing IP data packages');
 	    });
 	  </script>
 
@@ -205,7 +205,7 @@
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
 
   <fieldset id="ip-address" class="">
-    <legend>IP Adress</legend>    
+    <legend>IP Address</legend>    
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
       <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>

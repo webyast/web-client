@@ -1,53 +1,41 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 require 'test/unit'
-
+require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 require 'mocha'
+require 'yast_mock'
 
 class EulasControllerTest < ActionController::TestCase
-  
-  class Proxy
-    attr_accessor :result, :permissions, :timeout
-
-    def initialize(result, permissions)
-      @result = result
-      @permissions = permissions
-    end
-
-    def find(*args)
-      if args[0] == :all then
-        @result
-      else
-        @result[args[0]-1]
-      end
-    end
-
-  end
-
-  class Eula
-    attr_accessor :id, :accepted, :name, :text, :text_lang, :available_langs, :only_show
-
-    def initialize (name, accepted, available_langs, only_show)
-      @name = name
-      @accepted = accepted
-      @available_langs = available_langs
-      @only_show = only_show
-    end
-
-    def save
-      @saved = true
-    end
+  # return contents of a fixture file +file+
+  def fixture(file)
+    IO.read(File.join(File.dirname(__FILE__), "..", "fixtures", file))
   end
 
   def setup
+    # stub what the REST is supposed to return
+    @eulas_response = fixture "eulas.xml"
+    @eulas_accepted_response = fixture "eulas_accepted.xml"
+    @sles_eula_response = fixture "sles_eula.xml"
+    @sles_eula_accepted_response = fixture "sles_eula_accepted.xml"
+    @sles_eula_de_response = fixture "sles_eula_de.xml"
+
     EulasController.any_instance.stubs(:login_required)
     @controller = EulasController.new
+    @request = ActionController::TestRequest.new
+    # http://railsforum.com/viewtopic.php?id=1719
+    @request.session[:account_id] = 1 # defined in fixtures
+    ActiveResource::HttpMock.set_authentication
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources :"org.opensuse.yast.modules.eulas" => "/eulas"
+      mock.permissions "org.opensuse.yast.modules.eulas", { :read => true, :write => true }
+      mock.get  "/eulas.xml", header, @eulas_response, 200
+      mock.get  "/eulas/1.xml", header, @sles_eula_response, 200
+      mock.get  "/eulas/1.xml?lang=de", header, @sles_eula_de_response, 200
+    end
+  end
 
-    # setup for eulas controller tests
-    @opensuse_eula = Eula.new('openSUSE-11.1', false, ['en'], true)
-    @sles_eula     = Eula.new('SLES-11', false, ['en'], false)
-    @proxy = Proxy.new([@opensuse_eula, @sles_eula], {:read=>true, :write=>true})
-    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.eulas').returns(@proxy)
- 
+  def teardown
+    ActiveResource::HttpMock.reset!
   end
 
   def test_eula_start
@@ -58,33 +46,38 @@ class EulasControllerTest < ActionController::TestCase
   end
 
   def test_eula_step
-    @opensuse_eula.accepted = false
     get :index
-    post :update, "accepted" => "false", "id" => "1"
-    assert_false( @opensuse_eula.accepted )
     assert_redirected_to "/eulas/show/1"
-    post :update, "accepted" => "true", "id" => "1"
-    assert( @opensuse_eula.accepted )
-    assert_redirected_to "/eulas/show/2"
-    post :update, "accepted" => false, "id" => "2"
-    assert_false(@sles_eula.accepted)
-    assert_redirected_to "/eulas/show/2"
-    post :update, "accepted" => true, "id" => "2"
-    assert(@sles_eula.accepted)
+    get :show, {:id => 1, "lang" => "de"}
+    assert_response :success
+    post :update, "accepted" => "false", "id" => "1"
+    assert_redirected_to "/eulas/show/1"
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources :"org.opensuse.yast.modules.eulas" => "/eulas"
+      mock.permissions "org.opensuse.yast.modules.eulas", { :read => true, :write => true }
+      mock.get  "/eulas.xml", header, @eulas_accepted_response, 200
+      mock.get  "/eulas/1.xml", header, @sles_eula_response, 200
+      mock.put  "/eulas/1.xml", header, @sles_eula_accepted_response, 200
+    end
+    post :update, {"accepted" => "true", "id" => "1"}
     assert_redirected_to :controller => "controlpanel", :action => "index"
   end
 
   def test_eula_step_in_wizard
     session[:wizard_current] = "test"
     session[:wizard_steps] = "systemtime,eulas,language"
-    @opensuse_eula.accepted = false
     get :index
     post :update, "accepted" => "false", "id" => "1"
-    post :update, "accepted" => "true", "id" => "1"
-    post :update, "accepted" => false, "id" => "2"
-    post :update, "accepted" => true, "id" => "2"
-    assert(@sles_eula.accepted)
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources :"org.opensuse.yast.modules.eulas" => "/eulas"
+      mock.permissions "org.opensuse.yast.modules.eulas", { :read => true, :write => false }
+      mock.get  "/eulas.xml", header, @eulas_accepted_response, 200
+      mock.get  "/eulas/1.xml", header, @sles_eula_response, 200
+      mock.put  "/eulas/1.xml", header, @sles_eula_accepted_response, 200
+    end
+    post :update, {"accepted" => "true", "id" => "1"}
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
   end
-
 end
