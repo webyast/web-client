@@ -13,28 +13,21 @@
    $("#tab_login")[0].style.display="block";
 
 
-      $("#userForm").validate({onsubmit: false})
+   $("#userForm").validate({onsubmit: false})
 
-      // make the error message translatable - override the default messsage
-/*
-      $.extend($.validator.messages, {
-	equalTo: "<%= _("The passwords do not match.") -%>",
-	required: "<%= _("A password is required.") -%>"
-      });
-*/
 
- $("#userForm").validate({
-  rules: {
-    user_password: "required",
-    user_password2: {
-      equalTo: "#user_password"
+   $("#userForm").validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
     }
-  }
-});
+   });
 
-      $("#user_user_password").pstrength({
-	  'displayMinChar'	: false,
-	  'verdicts'		: [
+   $("#user_user_password").pstrength({
+     'displayMinChar'	: false,
+       'verdicts'		: [
 	    "<%= _("Weak") %>",
 	    "<%= _("Normal") %>",
 	    "<%= _("Medium") %>",
@@ -42,7 +35,24 @@
 	    "<%= _("Very Strong") %>"
 	  ],
       });
-  })
+
+ })
+
+   function user_validation(){
+     valid=false;
+     password_validation_enabled = true;
+     valid =  $('#userForm').validate().element('#user_user_password2');
+     if (!valid){
+       // Remove highlighting from tabs and highlight only first one
+       $('.tab-nav').find('a').removeClass('selected');
+       $(".t_login").addClass("selected")
+
+       $("#tab_login")[0].style.display="block";
+       $("#tab_groups")[0].style.display="none";
+       $("#tab_advanced")[0].style.display="none";
+     }
+     return valid;
+   }
 
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
@@ -107,6 +117,6 @@
     </p>
     </fieldset>
     </div>
-    <p><%= f.submit _("Update"), :disabled => disabled, :onclick=>"password_validation_enabled = true; return $('#userForm').validate().element('#user_user_password2');" %><%= link_to _('Back'), {:action => :index}, :class => "button"%></p>
+    <p><%= f.submit _("Update"), :disabled => disabled, :onclick=>"return user_validation();" %><%= link_to _('Back'), {:action => :index}, :class => "button"%></p>
   </div>
 <% end %>
