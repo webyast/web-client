@@ -84,9 +84,11 @@ class RepositoriesController < ApplicationController
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ex.response.body}")
       end
+
+      redirect_to :action => :show, :id => params[:id] and return
     end
 
-    redirect_to :action => :show, :id => params[:id] and return
+    redirect_to :action => :index and return
   end
 
   def add
