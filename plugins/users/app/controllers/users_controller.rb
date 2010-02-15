@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.new( :id => :nil,
       :groupname	=> nil,
       :cn		=> nil,
-      :grouplist	=> {},
+      :grouplist	=> [],
       :home_directory	=> nil,
       :cn		=> nil,
       :uid		=> nil,
@@ -81,9 +81,9 @@ class UsersController < ApplicationController
     counter = 0
     @user.grouplist.each do |group|
        if counter == 0
-          @user.grp_string = group.id
+          @user.grp_string = group.cn
        else
-          @user.grp_string += ",#{group.id}"
+          @user.grp_string += ",#{group.cn}"
        end
        counter += 1
     end
@@ -99,10 +99,11 @@ class UsersController < ApplicationController
     #(JR: because ActiveResource fills only known attributes, but whole gro_string stuff "smells" for me)
     dummy.grp_string = params[:user][:grp_string] 
 
-    dummy.grouplist = {}
+    dummy.grouplist = []
     if dummy.grp_string != nil
-       dummy.grp_string.split(",").each do |group|
-          dummy.grouplist[group.strip]	= 1
+       dummy.grp_string.split(",").each do |groupname|
+	  group = { "cn" => groupname }
+	  dummy.grouplist.push group
        end
     end
 
@@ -157,7 +158,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user][:uid])
     @user.id = @user.uid
     @user.groupname = params["user"]["groupname"]
-    @user.grouplist = {}   #FIXME: value from form
+    @user.grouplist = []   #FIXME: value from form
     @user.gid_number="100" #FIXME: value from form
 #    if params["user"]["grp_string"] != nil
 #      @user.grp_string = params["user"]["grp_string"]
