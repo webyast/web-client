@@ -111,7 +111,7 @@ class NetworkController < ApplicationController
     ifc.bootproto=params["conf_mode"]
     if ifc.bootproto=="static"
       #ip addr is returned in another state then given, but restart of static address is not problem
-      if (ifc.ipaddr.delete("/")!=params["ip"]+params["netmask"].delete("/"))
+      if ((ifc.ipaddr||"").delete("/")!=params["ip"]+(params["netmask"]||"").delete("/"))
         dirty_ifc = true
         ifc.ipaddr=params["ip"]+"/"+params["netmask"].delete("/")
       end
