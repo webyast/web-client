@@ -6,6 +6,7 @@ require 'client_exception'
 class ApplicationController < ActionController::Base
   layout 'main'  
 
+protected
   def redirect_success
     logger.debug session.inspect
     if Basesystem.new.load_from_session(session).in_process?
@@ -26,6 +27,8 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   include ErrorConstructor
+#hide actions because our routing table has automatic action mapping
+  hide_action :construct_error
 
   begin
     require 'gettext_rails'
@@ -34,13 +37,17 @@ class ApplicationController < ActionController::Base
     exit
   end
 
+public
   helper :all # include all helpers, all the time
+
+protected
 
   def initialize
     super
   end
 
   before_filter :set_session_login
+private
   # The information is kept in YaST::ServiceResource::Session, a module
   # that is shared between all connected clients, leading to bnc#542143.
   # To work around it, we reset the data from the browser session
@@ -110,6 +117,7 @@ class ApplicationController < ActionController::Base
     return
   end
   
+protected
   def ensure_login
     unless logged_in?
       flash[:notice] = _("Please login to continue")
@@ -124,6 +132,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+protected
   def self.init_gettext(domainname, options = {})
     locale_path = options[:locale_path]
     unless locale_path
@@ -146,6 +155,8 @@ class ApplicationController < ActionController::Base
       ActionController::Base.init_gettext(domainname, options)
     end
   end
+
+
 
   # Initialize GetText and Content-Type.
   # You need to call this once a request from WWW browser.
