@@ -1,6 +1,48 @@
 <h1><%=_("New User")%></h1>
+<%= javascript_include_tag "digitalspaghetti.password.js" %>
+  <style type="text/css">
+    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
+  </style>
+<script language='javascript'>
 
-<% form_for :user, :url => { :action => "create"}, :html => { :autocomplete => :off}  do |f| %>
+  $(document).ready(function(){
+
+   $("#userForm").validate({onsubmit: false})
+
+   $("#userForm").validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
+    }
+   });
+
+   $("#user_user_password").pstrength({
+     'displayMinChar'   : false,
+       'verdicts'               : [
+            "<%= _("Weak") %>",
+            "<%= _("Normal") %>",
+            "<%= _("Medium") %>",
+            "<%= _("Strong") %>",
+            "<%= _("Very Strong") %>"
+          ],
+      });
+
+ })
+
+   function user_validation(){
+     valid=false;
+     password_validation_enabled = true;
+     valid =  $('#userForm').validate().element('#user_user_password2');
+     return valid;
+   }
+
+    // start password validation workaround only when "Save" button has been pressed
+    password_validation_enabled = false;
+
+</script>
+<% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
   <fieldset>
@@ -38,9 +80,15 @@
     </p>
     <p>
 	<label><%=_("Password")%></label>
-	<%= f.password_field :user_password %>
+	<%= f.password_field :user_password, :onkeyup => "if (password_validation_enabled) $('#userForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"%>
     </p>
+    <p>
+	<label><%=_("Confirm Password")%></label>
+	<%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required" %>
+    </p>
+    <!-- this is a pre-generated placeholder for the validation messages -->
+    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
     </fieldset>
-    <p><%= f.submit _("Create"), :onclick=>".show()",  :class => "button" %> <%= link_to _('Back'), {:action => :index }, :onclick=>"$('#progress').show()", :class => "button" %></p>
+    <p><%= f.submit _("Create"), :onclick=>"return user_validation();",  :class => "button" %> <%= link_to _('Back'), {:action => :index }, :onclick=>"$('#progress').show()", :class => "button" %></p>
   </div>
 <% end %>
