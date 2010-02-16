@@ -3,7 +3,6 @@ require 'client_exception'
 require 'open-uri'
 
 class StatusController < ApplicationController
-  include ProxyLoader
   
   before_filter :login_required
   layout "main"
