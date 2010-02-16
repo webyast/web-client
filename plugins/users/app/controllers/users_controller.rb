@@ -158,14 +158,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:user][:uid])
     @user.id = @user.uid
     @user.groupname = params["user"]["groupname"]
-    @user.grouplist = []   #FIXME: value from form
     @user.gid_number="100" #FIXME: value from form
-#    if params["user"]["grp_string"] != nil
-#      @user.grp_string = params["user"]["grp_string"]
-#      params["user"]["grp_string"].split(",").each do |group|
-#        @user.groups << { :id=>group.strip }
-#      end
-#    end
+
+    @user.grouplist = []
+    if params["user"]["grp_string"] != nil
+       params["user"]["grp_string"].split(",").each do |groupname|
+	  group = { "cn" => groupname }
+	  @user.grouplist.push group
+       end
+    end
 # FIXME solve renaming...
 #    if @user.login_name != params["user"]["login_name"]
 #      @user.new_login_name = params["user"]["login_name"]
