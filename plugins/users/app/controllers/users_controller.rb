@@ -122,31 +122,18 @@ class UsersController < ApplicationController
     )
     @user.grp_string	= dummy.grp_string
 
-    #Only UID greater than 1000 are allowed for local user
-    # FIXME leave this check on YaPI?
     response = true
-    if @user.uid_number.to_i < 1000
-      response = false
-    else
-      begin
+    begin
         response = @user.save
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
-      end
     end
     respond_to do |format|
       if response
         flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
         format.html { redirect_to :action => "index" }
       else
-        if @user.uid_number.nil?
-           flash[:error] = _("Empty UID value")
-        end
-        if @user.uid_number.to_i < 1000
-           #Only UID greater than 1000 are allowed for local user
-           flash[:error] = _("UID: value >= 1000 is valid for local user only")
-        end
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
