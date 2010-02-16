@@ -52,16 +52,6 @@ class ServicesController < ApplicationController
 
     # sort services by name (case insensitive)
     @services.sort! {|s1,s2| s1.name.downcase <=> s2.name.downcase } unless @services.nil?
-
-    @custom_services	= []
-    begin
-      args		= {}
-      args[:custom]	= 1
-      args[:read_status]= 1
-      @custom_services	= @client.find(:all, :params => args)
-    end
-
-    @custom_services.sort! {|s1,s2| s1.name.downcase <=> s2.name.downcase } unless @custom_services.nil?
   end
 
   def execute
