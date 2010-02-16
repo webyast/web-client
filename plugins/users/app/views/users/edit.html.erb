@@ -5,7 +5,29 @@
   <%= javascript_include_tag "digitalspaghetti.password.js" %>
 
   <style type="text/css">
-    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
+    label.error {
+	 display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50%
+    }
+
+    .GContainer, .OverGContainer {
+        float: left;
+        margin: 3px;
+        width: 100px;
+        border: #669999 2px solid;
+        padding: 5px;
+     }
+
+     .GBox, .OverGBox, .miniGBox {
+        border: #000 1px solid;
+        padding: 2px;
+        font-size: 10px;
+        margin-bottom: 5px;
+        width: 94px;
+        cursor: pointer;
+        font-family: verdana, tahoma, arial;
+        background-color: #eee;
+     }
+
   </style>
 
  <script language='javascript'>
@@ -54,6 +76,60 @@
      return valid;
    }
 
+  // fill user and groups containers
+  function _initializeDragContainer(a_groups,containername){
+   var container=document.getElementById(containername);
+   while(container.hasChildNodes()){
+	container.removeChild(container.lastChild);
+   }
+   for(var i=0;i<a_groups.length;i++){
+     var div = document.createElement('div');
+     div.setAttribute('id', a_groups[i].trim());
+     div.setAttribute('class', 'GBox');
+     div.innerHTML=a_groups[i].trim();
+     container.appendChild(div);
+   }
+  }
+
+  function _filter_all_groups(group){
+   var mygroups=[];
+   if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+   var found=false;
+   for(i=0;i<mygroups.length;i++){
+     if (mygroups[i]==group) found=true;
+   }
+   return !found;
+  }
+
+  // open groups "popup" dialog
+  function open_groups_dialog(){
+   var mygroups=[];
+   if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+   _initializeDragContainer(mygroups,'ContainerUser');
+
+   var allgroups = new Array("cdrom","console","daemon","dialout","disk","video");
+   allgroups=allgroups.filter(_filter_all_groups);
+   _initializeDragContainer(allgroups,'ContainerGroups');
+
+   $('#groups').dialog({ buttons: { 'Ok': function() { store_groups(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
+   $('#groups').dialog('open');
+  }
+
+  // store groups from popup dialog
+  function store_groups(dlg){
+    var user = $('#ContainerUser')[0].childNodes;
+    var groups="";
+    for (i=0;i<user.length;i++){
+     groups+=user[i].innerHTML;
+     if (i<user.length-1) groups+=",";
+    }
+    $('#user_grp_string')[0].value=groups;
+    $(dlg).dialog('close');
+  }
+
+  function moveItem(e,target){
+    if(e.srcElement.className=='GBox') $('#'+e.srcElement.id).appendTo($('#'+target));
+  }
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
  </script>
@@ -96,11 +172,20 @@
     <p>
 	<label><%=_("Groups")%></label>
 	<%= f.text_field :grp_string, :disabled => disabled %>
+	<a href="#" class="button" onclick="open_groups_dialog();return false;">Manage Groups</a>
     </p>
     <p>
 	<label><%=_("Default Group")%></label>
 	<%= f.text_field :groupname, :disabled => disabled %>
     </p>
+
+    <div id="groups" style="display:none;" title="Groups"> 
+      <DIV>
+        <DIV class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </DIV>
+        <DIV class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </DIV>
+      </DIV>
+    </div>
+
   </fieldset>
    <fieldset id="tab_advanced">
     <p>
