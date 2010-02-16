@@ -23,40 +23,6 @@ $(document).ready(function() {
 	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
     });
 
-    $('option[value|=all]').click(function(){
-	$("#services_ul> li").show();
-    });
-
-    $('option[value|=running]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_running)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
-    $('option[value|=not-running]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_not_running)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
-    $('option[value|=dead]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_dead)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
     $('ul#services_ul li').quicksearch({
 	attached: 'ul#services_ul',
 	loaderText: '',
@@ -91,6 +57,39 @@ function toggle_service_info (id) {
 	$(heading).css('background-image', 'url(/images/grey.png)');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
+    }
+}
+
+function select_status (val) {
+    if (val == "all") {
+	$("#services_ul> li").show();
+    }
+    else if (val == "not-running") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_not_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
+    else if (val == "running") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
+    else if (val == "dead") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_dead)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
     }
 }
 
@@ -168,6 +167,7 @@ end
 	[ _("Dead"), "dead"],
     ])
     %>
+    <%= observe_field("filter", :function => "select_status(value)") %>
 </p>
 
 
