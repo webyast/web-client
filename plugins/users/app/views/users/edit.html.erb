@@ -107,7 +107,7 @@
    if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
    _initializeDragContainer(mygroups,'ContainerUser');
 
-   var allgroups = new Array("cdrom","console","daemon","dialout","disk","video");
+   var allgroups = $('#user_all_grps_string')[0].value.split(",");
    allgroups=allgroups.filter(_filter_all_groups);
    _initializeDragContainer(allgroups,'ContainerGroups');
 
@@ -183,6 +183,7 @@
       <DIV>
         <DIV class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </DIV>
         <DIV class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </DIV>
+	<div><%= f.hidden_field :all_grps_string, :disabled => disabled %></div>
       </DIV>
     </div>
 

@@ -69,6 +69,7 @@ class UsersController < ApplicationController
     @user.type	= ""
     @user.id	= @user.uid
     @user.grp_string = ""
+    @user.all_grps_string = ""
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
@@ -85,6 +86,15 @@ class UsersController < ApplicationController
           @user.grp_string = group.cn
        else
           @user.grp_string += ",#{group.cn}"
+       end
+       counter += 1
+    end
+    counter = 0
+    @user.allgroups.each do |group|
+       if counter == 0
+          @user.all_grps_string = group.cn
+       else
+          @user.all_grps_string += ",#{group.cn}"
        end
        counter += 1
     end
