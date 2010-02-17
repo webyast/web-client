@@ -2,9 +2,8 @@ require 'yast/service_resource'
 
 class AdministratorController < ApplicationController
   before_filter :login_required
-  include ProxyLoader
-  #hide action from proxyLoader...prefered solution should be move from dynamic load of model to static one using YastModel
-  hide_action :load_proxy
+
+  include ProxyLoader # FIXME until Mail uses YastModel...
 
   private
 
@@ -14,21 +13,19 @@ class AdministratorController < ApplicationController
   public
 
   def index
-    @administrator	= load_proxy 'org.opensuse.yast.modules.yapi.administrator'
-    return unless @administrator
+    @administrator	= Administrator.find :one
+    @permissions	= Administrator.permissions
     @administrator.confirm_password	= ""
     params[:firstboot]	= 1 if Basesystem.new.load_from_session(session).in_process?
   end
 
   # PUT
   def update
-    @administrator	= load_proxy 'org.opensuse.yast.modules.yapi.administrator'
-    return unless @administrator
+    @administrator	= Administrator.find :one
 
     admin	= params["administrator"]
     @administrator.password	= admin["password"]
     @administrator.aliases	= admin["aliases"]
-
     # validate data also here, if javascript in view is off
     unless admin["aliases"].empty?
       admin["aliases"].split(",").each do |mail|
@@ -50,8 +47,6 @@ class AdministratorController < ApplicationController
     # only save selected subset of administrator data:
     if params.has_key? "save_aliases"
       @administrator.password	= nil
-    elsif params.has_key? "save_password"
-      @administrator.aliases	= nil
     end
 
     # we cannot pass empty string to rest-service
@@ -75,8 +70,9 @@ class AdministratorController < ApplicationController
 	end
     end
 
+
     # check if mail is configured; during initial workflow, only warn if mail configuration does not follow
-    if @administrator.aliases != "NONE" &&
+    if admin["aliases"] != "" &&
        !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "mail" }
       @mail       = load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
       if @mail && (@mail.smtp_server.nil? || @mail.smtp_server.empty?)
