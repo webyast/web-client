@@ -3,6 +3,8 @@ require 'yast/service_resource'
 class AdministratorController < ApplicationController
   before_filter :login_required
   include ProxyLoader
+  #hide action from proxyLoader...prefered solution should be move from dynamic load of model to static one using YastModel
+  hide_action :load_proxy
 
   private
 
