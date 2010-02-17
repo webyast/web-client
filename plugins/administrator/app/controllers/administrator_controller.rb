@@ -3,8 +3,6 @@ require 'yast/service_resource'
 class AdministratorController < ApplicationController
   before_filter :login_required
 
-  include ProxyLoader # FIXME until Mail uses YastModel...
-
   private
 
   # Initialize GetText and Content-Type.
@@ -74,7 +72,7 @@ class AdministratorController < ApplicationController
     # check if mail is configured; during initial workflow, only warn if mail configuration does not follow
     if admin["aliases"] != "" &&
        !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "mail" }
-      @mail       = load_proxy 'org.opensuse.yast.modules.yapi.mailsettings'
+      @mail       = Mail.find :one
       if @mail && (@mail.smtp_server.nil? || @mail.smtp_server.empty?)
 	flash[:warning] = _("Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s).") % ['<a href="/mail">', '</a>']
       end
