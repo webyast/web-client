@@ -128,7 +128,9 @@
   }
 
   function moveItem(e,target){
-    if(e.srcElement.className=='GBox') $('#'+e.srcElement.id).appendTo($('#'+target));
+   // this hack is for support both firefox and chrome
+   var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
+    if(item.className=='GBox') $('#'+item.id).appendTo($('#'+target));
   }
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
