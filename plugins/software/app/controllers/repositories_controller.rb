@@ -6,6 +6,8 @@ class RepositoriesController < ApplicationController
   before_filter :login_required
   layout 'main'
   include ProxyLoader
+  #don't add load_proxy as action for controller
+  hide_action :load_proxy
 
   # Initialize GetText and Content-Type.
   init_gettext 'yast_webclient_repositories'
