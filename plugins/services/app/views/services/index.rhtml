@@ -23,53 +23,10 @@ $(document).ready(function() {
 	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
     });
 
-    $('option[value|=all]').click(function(){
-	$("#services_ul> li").show();
-    });
-
-    $('option[value|=running]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_running)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
-    $('option[value|=not-running]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_not_running)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
-    $('option[value|=dead]').click(function(){
-	$('#services_ul>li').each(function(index) {
-	    if ($(this).is(":has(span.status_dead)")) {
-		$(this).show();
-	    } else {
-		$(this).hide();
-	    }
-	});
-    });
-
     $('ul#services_ul li').quicksearch({
 	attached: 'ul#services_ul',
 	loaderText: '',
-	labelText: '',
-	inputText: '<%= _("Search here for service name or description")%>',
-	delay: 100
-    })
-
-    $('ul#custom_services_ul li').quicksearch({
-	position: 'before',
-	attached: 'ul#custom_services_ul',
 	labelText: '<%= _("Quick Search")%>',
-	loaderText: '',
 	delay: 100
     })
 })
@@ -91,6 +48,39 @@ function toggle_service_info (id) {
 	$(heading).css('background-image', 'url(/images/grey.png)');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
+    }
+}
+
+function select_status (val) {
+    if (val == "all") {
+	$("#services_ul> li").show();
+    }
+    else if (val == "not-running") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_not_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
+    else if (val == "running") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_running)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
+    else if (val == "dead") {
+	$('#services_ul>li').each(function(index) {
+	    if ($(this).is(":has(span.status_dead)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
     }
 }
 
@@ -131,34 +121,12 @@ function toggle_service_info (id) {
 <% end %>
 
 
-<%
-custom	= false
-ul_id	= "services_ul"
-
-[ @services, @custom_services ].each do |service_list|
-
-if custom
-    commands	= [ "start", "stop"]
-    ul_id	= "custom_services_ul"
-else
-    commands	= [ "start", "stop", "restart", "reload" ]
-end
-
-%>
-<div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%=
-
-if custom
-    _("Custom Services")
-else
-    _("System Services")
-end
-%></div>
+<div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%= _("System Services") %></div>
 
 <div class="plugin-content grid_12" id="services-list">
 
-<ul id="<%= ul_id%>">
+<ul id="services_ul">
 
-<% unless custom %>
 <p>
     <label for="filter"><%=_("Filter services")%></label>
     <%= select_tag "filter", options_for_select([
@@ -168,16 +136,13 @@ end
 	[ _("Dead"), "dead"],
     ])
     %>
+    <%= observe_field("filter", :function => "select_status(value)") %>
 </p>
 
 
-<% end %>
-
-<% if custom && service_list.empty? %>
-<p><%=_("No custom service is defined on target machine.") %></p>
-<% end %>
-
-<% service_list.each do |service| %>
+<%
+commands	= [ "start", "stop", "restart", "reload" ]
+@services.each do |service| %>
   <li>
 
   <h4><%=h service.name %> <em style="position:absolute; left:25%"><%=h service.summary%></em></h4>
@@ -205,13 +170,11 @@ end
 		    :action	=> "execute", 
 		    :service_id	=> service.name
 		}
-		url[:custom]	= 1 if custom
 		status_url	= {
 		    :controler	=> :services,
 		    :action	=> :show_status,
 		    :id		=> service.name 
 		}
-		status_url[:custom]	= 1 if custom
 		html_options	= {
 		    :class	=> "button"
 		}
@@ -236,7 +199,6 @@ end
 	    :id		=> service.name,
 	    :action	=> :show_status
 	}
-	url[:custom]	= 1 if custom
 
 	link_to_remote _('status'), :update => "service_status_#{service.name}",
 	    :url => url,
@@ -248,11 +210,7 @@ end
       %>
   </div>
   </li>
-  <% end # end of service_list.each %>
-<% custom = true %>
+  <% end # end of @services.each %>
 </ul>
-<%= link_to _("Back"), '/', :class=>"button" %>
 </div>
-<% end %>
-
-
+<%= link_to _("Back"), '/', :class=>"button" %>

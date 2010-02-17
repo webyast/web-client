@@ -3,6 +3,8 @@ require 'yast/service_resource'
 class MailController < ApplicationController
   before_filter :login_required
   include ProxyLoader
+  hide_action :load_proxy #hide action so it cannot be called directly
+#FIXME use yastModel instead load proxy to have better testsuite and cleaner code
 
   private
 

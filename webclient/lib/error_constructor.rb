@@ -13,6 +13,7 @@ module ErrorConstructor
     when "SERVICE_NOT_RUNNING"
       return _("Service %s is not running on the target machine") % [error["service"]]
     when "NO_PERM"
+      return _("Broken permission setup on rest-service. Can be fixed by grantwebyastrights script.") if error["user"] == "yastws" #special login for webservice user
       return _("Permission %s is not granted for user %s") % [error["permission"], error["user"]]
     when "POLKIT"
       return _("Policy kit exception for user %s and permission %s (untranslated message): %s") % [error["user"], error["permission"], error["polkitout"]]
