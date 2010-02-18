@@ -31,6 +31,7 @@ module ActiveResource
         end
         response << "</resources>"
         get   "/resources.xml",   {}, response, 200
+        get   "/resources.xml",   HttpMock.authentication_header, response, 200
       end
 
       # generate response for permission request

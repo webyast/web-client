@@ -1,7 +1,13 @@
-<h1><%=_("New User")%></h1>
+<div class="plugin-content grid_12">
+<h3><%=_("New User")%></h3>
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
   <style type="text/css">
     label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
+    #userForm fieldset {
+	background-color: #eeeeee;
+	margin: 1em;
+	width: 75%;
+    }
   </style>
 <script language='javascript'>
 
@@ -42,11 +48,30 @@
 <% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
-  <fieldset>
+  <fieldset class="wrapper">
+    <legend> Basic User Data</legend>
     <p>
 	<label><%=_("Full Name")%></label>
 	<%= f.text_field :cn %>
     </p>
+    <p>
+	<label><%=_("Login Name")%></label>
+	<%= f.text_field :uid, :class => "required" %>
+    </p>
+    <p>
+	<label><%=_("Password")%></label>
+	<%= f.password_field :user_password, :onkeyup => "if (password_validation_enabled) $('#userForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"%>
+    </p>
+    <p>
+	<label><%=_("Confirm Password")%></label>
+	<%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required" %>
+    </p>
+    <!-- this is a pre-generated placeholder for the validation messages -->
+    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
+
+  </fieldset>
+  <fieldset class="wrapper">
+    <legend>Group Membership</legend>
     <p>
 	<label><%=_("Groups")%></label>
 	<%= f.text_field :grp_string %>
@@ -54,6 +79,13 @@
     <p>
 	<label><%=_("Default Group (GID)")%></label>
 	<%= f.text_field :groupname %>
+    </p>
+  </fieldset>
+  <fieldset class="wrapper">
+    <legend>Detailed User Data </legend>
+    <p>
+	<label><%=_("UID Number")%></label>
+	<%= f.text_field :uid_number, :min => 1000, :class => "number"  %>
     </p>
     <p>
 	<label><%=_("Home Directory")%></label>
@@ -67,25 +99,9 @@
 	<label><%=_("Login Shell")%></label>
 	<%= f.text_field :login_shell %>
     </p>
-    <p>
-	<label><%=_("Login Name")%></label>
-	<%= f.text_field :uid, :class => "required" %>
-    </p>
-    <p>
-	<label><%=_("UID Number")%></label>
-	<%= f.text_field :uid_number, :min => 1000, :class => "number"  %>
-    </p>
-    <p>
-	<label><%=_("Password")%></label>
-	<%= f.password_field :user_password, :onkeyup => "if (password_validation_enabled) $('#userForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"%>
-    </p>
-    <p>
-	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required" %>
-    </p>
-    <!-- this is a pre-generated placeholder for the validation messages -->
-    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
-    </fieldset>
+   </fieldset>
     <p><%= f.submit _("Create"), :onclick=>"return user_validation();",  :class => "button" %> <%= link_to _('Back'), {:action => :index }, :onclick=>"$('#progress').show()", :class => "button" %></p>
-  </div>
+  </div> 
+</div>
 <% end %>
+
