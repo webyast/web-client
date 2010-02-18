@@ -10,12 +10,14 @@ class AdministratorControllerTest < ActionController::TestCase
     AdministratorController.any_instance.stubs(:login_required)
     @request = ActionController::TestRequest.new
     response_admin= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","empty.xml"))
+    response_mail= IO.read(File.join(File.dirname(__FILE__),"..","fixtures","mail-empty.xml"))
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.resources  :"org.opensuse.yast.modules.yapi.administrator" => "/administrator"
+      mock.resources  :"org.opensuse.yast.modules.yapi.administrator" => "/administrator", :"org.opensuse.yast.modules.yapi.mailsettings" => "/mail"
       mock.permissions "org.opensuse.yast.modules.yapi.administrator", { :read => true, :write => true }
       mock.get   "/administrator.xml", header, response_admin, 200
+      mock.get   "/mail.xml", header, response_mail, 200
       mock.post  "/administrator.xml", header, response_admin, 200
     end
   end
@@ -40,11 +42,20 @@ class AdministratorControllerTest < ActionController::TestCase
     assert_redirected_to :controller => "administrator", :action => "index"
   end
 
-#  def test_commit_with_aliases FIXME fails on Basesystem.new.load_from_session...
-#    post :update, { :administrator => {:aliases => "aa@bb.com", :password => "", :confirm_password => "" } }
-#    assert_response :redirect
-#    assert_redirected_to :controller => "controlpanel", :action => "index"
-#  end
+  def test_commit_with_aliases_wizard # goes to next step without warning, because mail config should follow
+    session[:wizard_current] = "administrator"
+    session[:wizard_steps] = "administrator,mail"
+    post :update, { :administrator => {:aliases => "aa@bb.com", :password => "", :confirm_password => "" } }
+    assert_response :redirect
+    assert_redirected_to :controller => "controlpanel", :action => "nextstep"
+  end
+
+  def test_commit_with_mail_warning # should warn that there's no mail config
+    post :update, { :administrator => {:aliases => "aa@bb.com", :password => "", :confirm_password => "" } }
+    assert_response :redirect
+    assert flash[:warning]
+    assert_redirected_to :controller => "controlpanel", :action => "index"
+  end
 
   
 end
