@@ -17,7 +17,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controlle
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.11
+Version:        0.1.0
 Release:        0
 Summary:        YaST2 - Webclient - Language
 Source:         www.tar.bz2
