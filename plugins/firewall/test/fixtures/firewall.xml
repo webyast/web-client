@@ -1,0 +1,100 @@
+<firewall>
+    <use_firewall type="boolean">true</use_firewall>
+    <services type="array">
+        <services>
+            <name>dnsmasq</name>
+            <id>service:dnsmasq-dns</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>dnsmasq</name>
+            <id>service:dnsmasq-dhcp</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>WebYaST UI</name>
+            <id>service:webyast-ui</id>
+            <allowed type="boolean">true</allowed>
+        </services>
+        <services>
+            <name>lighttpd</name>
+            <id>service:lighttpd-ssl</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>xdmcp</name>
+            <id>service:xdmcp</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>Netbios Server</name>
+            <id>service:netbios-server</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>NIS Client</name>
+            <id>service:ypbind</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>Samba Client</name>
+            <id>service:samba-client</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>VNC mini-HTTP server</name>
+            <id>service:vnc-httpd</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>lighttpd</name>
+            <id>service:lighttpd</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>SMTP with Postfix</name>
+            <id>service:postfix</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>VNC</name>
+            <id>service:vnc-server</id>
+            <allowed type="boolean">true</allowed>
+        </services>
+        <services>
+            <name>xntp Server</name>
+            <id>service:ntp</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>Squid Service</name>
+            <id>service:squid</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>NFS Client</name>
+            <id>service:nfs-client</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>Samba Server</name>
+            <id>service:samba-server</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>VNC Server</name>
+            <id>service:xorg-x11-server</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>Secure Shell Server</name>
+            <id>service:sshd</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+        <services>
+            <name>cups</name>
+            <id>service:cups</id>
+            <allowed type="boolean">false</allowed>
+        </services>
+    </services>
+</firewall>

@@ -43,9 +43,7 @@ class AdministratorController < ApplicationController
     end
 
     # only save selected subset of administrator data:
-    if params.has_key? "save_aliases"
-      @administrator.password	= nil
-    end
+    @administrator.password	= nil if params.has_key? "save_aliases"
 
     # we cannot pass empty string to rest-service
     @administrator.aliases = "NONE" if @administrator.aliases == ""
@@ -67,7 +65,6 @@ class AdministratorController < ApplicationController
 	  raise e
 	end
     end
-
 
     # check if mail is configured; during initial workflow, only warn if mail configuration does not follow
     if admin["aliases"] != "" &&
