@@ -200,13 +200,10 @@ commands	= [ "start", "stop", "restart", "reload" ]
 	    :action	=> :show_status
 	}
 
-	link_to_remote _('status'), :update => "service_status_#{service.name}",
+	link_to_remote _('refresh status'), :update => "service_status_#{service.name}",
 	    :url => url,
 	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide()",
-	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()",
-	    :html	=> {
-		:class	=> "button"
-	    }
+	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
       %>
   </div>
   </li>
