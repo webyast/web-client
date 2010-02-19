@@ -43,7 +43,6 @@ class ServicesController < ApplicationController
   def execute
 
     args	= { :execute => params[:id] }
-    args[:custom]	= 1 if params.has_key? "custom"
     response = Service.put(params[:service_id], args)
     # we get a hash with exit, stderr, stdout
     ret = Hash.from_xml(response.body)
