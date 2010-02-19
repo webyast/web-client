@@ -58,27 +58,25 @@
 </div>
 
 
-  <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
+<h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
 <div id="favorites" class="wrapper grid_12">
-
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
   <div class="list-row overview">
-
     <% @shortcuts.each do |name, data| %>
       <% if line_counter*5 == shortcuts_counter %>
         <% if line_counter > 0 %>
-        </div>
-      <% end %>
-      <% line_counter +=1 %>
-      <div class="highlight-bg">
-      <% end %>
-        <% link_to (data['url']) do %>
-          <img src="<%= data['icon'] %>"/>
-          <p>
-            <%= data['title'] %>
-          </p>
+          </div>
         <% end %>
+        <% line_counter +=1 %>
+        <div class="highlight-bg">
+      <% end %>
+      <p>
+      <% link_to (data['url']) do %>
+        <%= image_tag(data['icon']) %>
+        <%= data['title'] %>
+      <% end %>
+      </p>
       <% shortcuts_counter +=1 %>
     <% end %>
     <% if line_counter*5 != shortcuts_counter-1 %>

@@ -15,10 +15,8 @@
       <% end %>
       
       <% link_to (data['url']) do %>
-        <img src="<%= data['icon'] %>"/>
-        <p>
-          <%= data['title'] %>
-        </p>
+        <%= image_tag(data['icon']) %>
+        <p><%= data['title'] %></p>
       <% end %>
       
       <% shortcuts_counter +=1 %>
