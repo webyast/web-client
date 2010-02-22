@@ -34,7 +34,7 @@ class ServicesController < ApplicationController
     @services = []
     begin
       @services	= Service.find(:all, :params => { :read_status => 1 })
-      rescue ActiveResource::ClientError => e
+    rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
   end
