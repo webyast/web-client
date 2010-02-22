@@ -2,16 +2,16 @@
 
 <div class='plugin-content grid_12'>
 
-  <% form_target_save = @detail ? '/registration/detail' : '/registration/update' %>
+  <% form_target_save = '/registration/' + (@nexttarget.kind_of?(String) ? @nexttarget : 'done') %>
 
-  <% if @guid then %>
+  <% if @showstatus then %>
      <fieldset>
        <p><strong><%=_("This system is registered")%></strong></p>
        <p><small><%=_("System number (GUID)")%> <%= @guid %></small></p>
        <p><%= link_to _('Register again'), {:controller => :registration, :action =>:reregister}, :onclick=>"$('#progress').show()", :class => "button" %></p>
      </fieldset>
   <%
-       form_target_save = '/controlpanel'
+       form_target_save = '/registration/done'
      end
   %>
 

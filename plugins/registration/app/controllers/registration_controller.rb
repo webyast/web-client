@@ -46,7 +46,8 @@ class RegistrationController < ApplicationController
       arg['description'] = translate_argument_key( arg.kind_of?(Hash) ? arg['name'] : nil )
       arg
     end
-    args.sort! { |a,b|  a['name'] <=> b['name'] }
+    # sort by names alphabetically and by flags reverse (move mandatory fields up)
+    args.sort! { |a,b|  (b['flag'] || 'z') + a['name'] <=> (a['flag'] || 'z') + b['name'] }
   end
 
   # Initialize GetText and Content-Type.
@@ -65,6 +66,14 @@ class RegistrationController < ApplicationController
     return @guid
   end
 
+  def server_error_flash(msg)
+    error_old = _("Error occured while connecting to registration server.")
+    error_line1 = _("<b>Registration did not finish.</b>")
+    error_line2 = ( msg || "" ) + " " + _("This may be a temporary issue.")
+    error_line3 = _("Please try to register again later.")
+    return error_line1 + "<br />" + error_line2 + "<br />" + error_line3
+  end
+
   public
 
   # Index handler. Loads information from backend and if success all required
@@ -81,20 +90,31 @@ class RegistrationController < ApplicationController
 
     if !client_guid
       @arguments = []
+      @nexttarget = 'update'
       update
+    else
+      @showstatus = true
     end
 
+  end
+
+  def done
+    # just redirect to the appropriate next target
+    redirect_success
+    return
   end
 
   def detail
     # different action but same semantic as in update
     @detail = true
+    @nexttarget = 'detail'
     update
   end
 
   def reregister
     # provide a way to force a new registration, even if system is already registered
     @reregister = true
+    @nexttarget = 'reregister'
     update
   end
 
@@ -108,12 +128,12 @@ class RegistrationController < ApplicationController
       return false
     end
 
-    if client_guid && @reregister
+    # redirect in case of interrupted basesetup
+    if client_guid && !@reregister && !@detail
       flash[:notice] = _("This system is already registered.")
       redirect_success
       return
     end
-
 
     begin
       params.each do | key, value |
@@ -125,7 +145,6 @@ class RegistrationController < ApplicationController
         end
       end
     rescue
-      # @arguments = nil
       logger.debug "No arguments were passed to the registration call."
     end
 
@@ -164,7 +183,7 @@ class RegistrationController < ApplicationController
         end
         flash[:notice] += "</ul>"
       else
-##FIXME - also care about repos!!!
+        ##FIXME - also care about repos!!
         # display warning message if no repos are added/changed during registration (bnc#558854)
         flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
         # flash[:warning] = _("No repositories were added or changed during the registration process (maybe due to a wrong registration code). If this system already has an update repository everything is fine. But without an update repository this system will not receive any updates. You may run the registration module again.")
@@ -180,6 +199,8 @@ class RegistrationController < ApplicationController
         end
         flash[:notice] += "</ul>"
       end
+
+    # rescue ActiveResource::ServerError => e
 
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
@@ -208,13 +229,13 @@ class RegistrationController < ApplicationController
         flash[:error] = _("Please fill out missing entries.")
       else
         logger.error "error while registration: #{error.inspect}"
-        error_old = _("Error occured while connecting to registration server.")
-        error_line1 = _("An error occured while connecting to the registration server.")
-        error_line2 = _("Please try to register again later.")
-        flash[:error] = error_line1 + "<br>" + error_line2
+        flash[:error] = server_error_flash _("The registration server returned invalid data.")
         # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
         success = true
       end
+    rescue Exception => e
+      flash[:error] = server_error_flash _("The registration server was not reachable due to network or registration server problems.")
+      success = true
     end
     @arguments = sort_arguments( @arguments ) #in order to show it in an unique order
 
