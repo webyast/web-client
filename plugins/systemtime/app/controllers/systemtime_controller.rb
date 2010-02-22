@@ -12,22 +12,6 @@ class SystemtimeController < ApplicationController
   before_filter :login_required
   layout 'main'
 
-  #helpers
-  private
-  def available_ntp
-    begin
-      unless Ntp.permissions[:available] && Ntp.permissions[:synchronize]
-        logger.info "ntp doesn't have permissions available :  #{Ntp.permissions[:available]} synchronize: #{Ntp.permissions[:synchronize]}"
-        return false
-      end
-      ntp = Ntp.find :one
-    rescue Exception => e #available call, so don't show anything, just log
-      logger.warn e
-      return false
-    end
-    return ntp.available?
-  end
-
   public
 
   # cannot move to initialize, it is not finded - http://www.yotabanana.com/hiki/ruby-gettext-howto-rails.html#ApplicationController
@@ -45,7 +29,7 @@ class SystemtimeController < ApplicationController
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
   def index
-    @ntp_available = available_ntp
+    @ntp_available = Ntp.available?
     @stime = Systemtime.find :one
     @permissions = Systemtime.permissions
   end

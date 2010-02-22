@@ -10,16 +10,15 @@ class NtpTest < ActiveSupport::TestCase
 
   def setup
     # stub what the REST is supposed to return
-    response = fixture "ntp.xml"
+    @response = fixture "ntp.xml"
 
     ActiveResource::HttpMock.set_authentication
+    @header = ActiveResource::HttpMock.authentication_header
     ActiveResource::HttpMock.respond_to do |mock|
-      header = ActiveResource::HttpMock.authentication_header
       mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
-      mock.get  "/ntp.xml", header, response, 200
+      mock.get  "/ntp.xml", @header, @response, 200
     end
-    @ntp = Ntp.find :one
   end
 
   def teardown
@@ -27,7 +26,27 @@ class NtpTest < ActiveSupport::TestCase
   end
 
   def test_available
-    assert @ntp.available?
+    assert Ntp.available?
   end
 
+  def test_available_not_perm
+    Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
+      mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => false }
+      mock.get  "/ntp.xml", @header, @response, 200
+    end
+    assert !Ntp.available?
+  end
+
+  def test_available_not_perm
+    response = fixture "ntp_unavailable.xml"
+    Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
+      mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
+      mock.get  "/ntp.xml", @header, response, 200
+    end
+    assert !Ntp.available?
+  end
 end
