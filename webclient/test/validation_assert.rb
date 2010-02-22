@@ -1,6 +1,21 @@
 require "open3"
 
 class ActionController::TestCase
+  # Assert which checks if body of response is valid.
+  # 
+  # Use tidy checks. Failed if contain any error. 
+  # If body contain errors or warnings it writes body to file tidy-failed.html
+  #
+  # === example
+  #   require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
+  #   
+  #   class SystemtimeControllerTest < ActionController::TestCase
+  #     def test_index
+  #       get :index
+  #       assert_response :success
+  #       assert_valid_markup
+  #     end
+  #   end
   def assert_valid_markup(markup=@response.body)
     if @response.redirect?
       return
