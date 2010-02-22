@@ -39,13 +39,24 @@ class NtpTest < ActiveSupport::TestCase
     assert !Ntp.available?
   end
 
-  def test_available_not_perm
+  def test_available_not_available
     response = fixture "ntp_unavailable.xml"
     Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
       mock.get  "/ntp.xml", @header, response, 200
+    end
+    assert !Ntp.available?
+  end
+
+  def test_available_failed
+    response = fixture "ntp_unavailable.xml"
+    Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
+      mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
+      mock.get  "/ntp.xml", @header, "plugin missing", 404
     end
     assert !Ntp.available?
   end

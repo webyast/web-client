@@ -11,13 +11,13 @@ class Ntp < ActiveResource::Base
   def Ntp.available? #class method
     begin
       unless Ntp.permissions[:available] && Ntp.permissions[:synchronize]
-        logger.info "ntp doesn't have permissions available :  #{Ntp.permissions[:available]} synchronize: #{Ntp.permissions[:synchronize]}"
+        Rails.logger.info "ntp doesn't have permissions available :  #{Ntp.permissions[:available]} synchronize: #{Ntp.permissions[:synchronize]}"
         return false
       end
       ntp = Ntp.find :one
       return ntp.available?
     rescue Exception => e #available call, so don't show anything, just log
-      logger.warn e
+      Rails.logger.warn e
       return false
     end
   end
