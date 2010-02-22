@@ -35,6 +35,8 @@ class MailController < ApplicationController
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
 	logger.warn e.inspect
+	redirect_to :action => "index"
+	return
       rescue ActiveResource::ServerError => e
 	error = Hash.from_xml e.response.body
 	logger.warn error.inspect
@@ -43,6 +45,8 @@ class MailController < ApplicationController
 	else
 	  raise e
 	end
+	redirect_to :action => "index"
+	return
     end
 
     smtp_server	= params["mail"]["smtp_server"]
