@@ -201,7 +201,13 @@ class RegistrationController < ApplicationController
       end
 
     # rescue ActiveResource::ServerError => e
-
+    #  logger.error "500500500500500500500500500500500"
+    #  logger.error e.inspect
+    #  flash[:error] = "500500500500500500500500500500500"
+    #rescue ActiveResource::ResourceNotFound => e
+    #  logger.error "404404404404404404404404404404404"
+    #  logger.error e.inspect
+    #  flash[:error] = "404404404404404404404404404404404"
     rescue ActiveResource::ClientError => e
       error = Hash.from_xml(e.response.body)["registration"]
       if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
