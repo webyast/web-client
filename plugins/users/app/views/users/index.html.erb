@@ -1,3 +1,4 @@
+<%= javascript_include_tag "jquery.quicksearch.js"-%>
 
 <div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local Users")%></div>
 <div class="plugin-content grid_12">
@@ -7,7 +8,10 @@
     }
     tr {
 	border: solid 1px #ddd;
-   }
+    }
+    label, .qs_input {
+	width: auto !important;
+    }
  </style>
 
  <script language='javascript'>
@@ -15,17 +19,7 @@
   return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
  };
 
- function clear_filter(){
-  $('#FilterTextBox').val("");
-  $(".row").show();
- }
-
  $(document).ready(function(){
-  $("#FilterTextBox").keyup(function(){
-   var s = $(this).val();
-   $(".row").hide();
-   $(".row:has(td:Contains('"+s+"'))").show();
-  });//key up.
 
  $('.row').mouseenter(function() {
   $(this).find(".del_user").show();
@@ -33,18 +27,24 @@
   $(this).find(".del_user").hide();
  });
 
- 
+ $('table tbody tr').quicksearch({
+        attached: 'div#qs_anchor',
+	inputText: 'Type user name or login ...',
+	inputClass: 'qs_input',
+        loaderText: '',
+        labelText: '<%= _("Filter:")%>',
+	stripeRowClass: ['odd', 'even'],
+        delay: 100
+ });
+
  // default state
  $('.del_user').hide();
 });//document.ready
 
 </script>
 
- <label style="width:auto;">Filter:</label>
- <input id="FilterTextBox"  name="FilterTextBox"  value="" type="text">
- <IMG src="/images/actions/clear-location.png" onclick='clear_filter();'>
-
-<div id='test' class='pad1_2em'>
+<div id='qs_anchor' class='pad1_2em'></div>
+<div class='pad1_2em'>
 <table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
   <thead>
     <tr>
