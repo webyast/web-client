@@ -1,5 +1,14 @@
-<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local User")%></div>
+
+<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local Users")%></div>
 <div class="plugin-content grid_12">
+ <style>
+    .pad1_2em {
+	padding: 1em 2em;
+    }
+    tr {
+	border: solid 1px #ddd;
+   }
+ </style>
 
  <script language='javascript'>
  jQuery.expr[':'].Contains = function(a, i, m) {
@@ -15,7 +24,7 @@
   $("#FilterTextBox").keyup(function(){
    var s = $(this).val();
    $(".row").hide();
-   $(".row:has(span:Contains('"+s+"'))").show();
+   $(".row:has(td:Contains('"+s+"'))").show();
   });//key up.
 
  $('.row').mouseenter(function() {
@@ -24,35 +33,49 @@
   $(this).find(".del_user").hide();
  });
 
+ 
  // default state
  $('.del_user').hide();
 });//document.ready
+
 </script>
 
-<p>
- <label>Filter</label>
- <input id="FilterTextBox" name="FilterTextBox" size="30" value="" type="text">
- <IMG src="/images/close.png" onclick='clear_filter();'>
-</p>
+ <label style="width:auto;">Filter:</label>
+ <input id="FilterTextBox"  name="FilterTextBox"  value="" type="text">
+ <IMG src="/images/actions/clear-location.png" onclick='clear_filter();'>
 
-<ul class="filterable">
+<div id='test' class='pad1_2em'>
+<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th>Login</th>
+      <th>Real Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
   <% for user in @users %>
-  <li class="row">
-   <%= link_to "<span class='login'><b>" + user.uid + "</b></span> <span class='fullname'>" + (user.cn || "") + "</span>", {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" %>
+  <tr class= <%= cycle('odd', 'even') -%> >
+    <td align=center ><%= user.uid  -%></td>
+    <td align=center width="65%"><%= link_to ( user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
     <% if @permissions[:userdelete] %>
-    <span class="del_user"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user %s?") % user.id ) %></span>
+    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy) %></td>
     <% end %>
-  </li>
+  </td>
   <% end %>
-</ul>
+  </tbody>
+</table>
+</div>
 
 <% if @permissions[:useradd] %>
-<div class="select">
-  <%= link_to _("<strong>[New User]</strong>"), {:action => :new}, :onclick=>"$('#progress').show()" -%><p/>
-</div>
+<div class='pad1_2em'>
+  <%= link_to image_tag('/images/actions/add.png') + _("New User..."), {:action => :new }, :class=>'iconbutton', :onclick=>"$('#progress').show()" -%>
+</p>
 <% end %>
-
-<a href="/" class="button"><%=_("Back")%></a>
-
+</div>
+<p>
+<%= link_to image_tag('/images/actions/back.png') + _("Back"), '/', :class=>"button" -%>
+</p>
 </div>
 
