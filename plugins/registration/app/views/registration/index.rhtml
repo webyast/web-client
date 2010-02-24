@@ -39,7 +39,12 @@
     <p><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"$('#progress').show()" %></p>
   <% end %>
 
-  <p><%= form_send_buttons %></p>
+  <p><%= if @showstatus then
+           form_back_button
+         else
+           form_send_buttons
+         end
+      %></p>
 
 <% end -%>
 </div>
