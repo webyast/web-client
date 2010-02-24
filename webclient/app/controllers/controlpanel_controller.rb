@@ -7,7 +7,6 @@
 require 'yaml'
 
 class ControlpanelController < ApplicationController
-  include ProxyLoader
   before_filter :ensure_login
   before_filter :ensure_wizard, :only => [:nextstep, :backstep]
 
