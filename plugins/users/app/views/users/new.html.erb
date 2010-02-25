@@ -3,11 +3,6 @@
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
   <style type="text/css">
     label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em;  text-align: left; vertical-align: top; width: 50% }
-    #userForm fieldset {
-	background-color: #eeeeee;
-	margin: 1em;
-	width: 75%;
-    }
   </style>
 <script language='javascript'>
 
@@ -48,7 +43,7 @@
 <% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
-  <fieldset class="wrapper">
+  <fieldset class="wrapper with-background">
     <legend> Basic User Data</legend>
     <p>
 	<label><%=_("Full Name")%></label>
@@ -70,7 +65,7 @@
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
 
   </fieldset>
-  <fieldset class="wrapper">
+  <fieldset class="wrapper with-background">
     <legend>Group Membership</legend>
     <p>
 	<label><%=_("Groups")%></label>
@@ -81,7 +76,7 @@
 	<%= f.text_field :groupname %>
     </p>
   </fieldset>
-  <fieldset class="wrapper">
+  <fieldset class="wrapper with-background">
     <legend>Detailed User Data </legend>
     <p>
 	<label><%=_("UID Number")%></label>
