@@ -45,13 +45,13 @@
   <% end -%>
 <% end %>
 
-<div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/><%=_("Time")%></div>
+<div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/><%=_("Timezone, Date and Time")%></div>
 
 <div class="plugin-content grid_12">
   <% form_tag '/systemtime/update', {:class => 'container', :onsubmit => "submitTime();"} do %>
     <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
     %>
-  <fieldset id="" class="">
+  <fieldset id="" class="wrapper smallfields with-background">
     <p>
       <label for="region"><%=_("Region")%></label>
         <%= select_tag "region", options_for_select(@stime.regions, @stime.region.name), :disabled => disabled %>
@@ -65,22 +65,23 @@
       </span>
   </p>
   <% unless @stime.utcstatus.nil? %>
-  <p>
+  <% # I can't get this cobe-ing checkbox line up with the rest of the fields otherwise, grr
+     # 4em, because labels are 5em wide | -bubli
+  %>
+  <p style="position: relative; left: 4em;">
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
-      <input type="checkbox" name="utc" id="utc" value="true"
+      <input type="checkbox" name="utc" id="utc" value="true" 
       <%=  "checked=\"checked\"" if @stime.utcstatus %>
              <%=  "disabled=\"disabled\"" if disabled %> />
       <span class="form-details"><%=_("Hardware clock is set to UTC")%></span>
   </p>
   <% end %>
 </fieldset>
-<fieldset>
+<fieldset class="wrapper smallfields with-background">
   <p>
-    <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"
-    <%= "disabled=\"disabled\"" if disabled %>
-    >
-    <%=_("Manually configure time")%>
+    <label class="radio-right"><input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"     
+<%= "disabled=\"disabled\"" if disabled %>/> <%=_("Manually configure time")%></label>
   </p>
     <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
     %>
@@ -93,9 +94,9 @@
     <%= text_field_tag "currenttime", @stime.time, :disabled=> "true"%>
   </p>
   <p>
-    <input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
+    <label class="radio-right"><input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
     <%=  "disabled=\"disabled\"" if disabled || !@ntp_available %>
-    > <%=_("Synchronize via Network Time Protocol (NTP)")%>
+    > <%=_("Synchronize via Network Time Protocol (NTP)")%></label>
   </p>
 </fieldset>
   <%= form_send_buttons :disabled => disabled, :class => "button" %>
