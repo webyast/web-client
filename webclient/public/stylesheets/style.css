@@ -406,10 +406,29 @@ ul.tab-nav {
 fieldset {
   border: none;
 }
+
 fieldset p {
   clear: both;
   margin-bottom: 0.5em;
 }
+
+  fieldset.smallfields label {
+    width: 5em;
+  }
+
+  fieldset.smallfields input[type="text"] {
+    width: 10em;
+  }
+
+  fieldset.with-background {
+    background-color: #eee;
+    margin: 1em;
+  }
+
+  fieldset.with-background select {
+    background-color: #fff;
+  }
+ 
 legend {
   font-weight: bold;
 }
@@ -421,9 +440,16 @@ label {
   text-align: right;
   margin: 0.2em 0.5em;
 }
-  label.width-label {
-    width: auto;
+
+  label.radio-right {
+    display:block;
+    float:left;
+    width:auto !important;
+    line-height: 1.5em;
+    margin-bottom: 1em;
   }
+
+
 #login_button {
   float: right;
 }
