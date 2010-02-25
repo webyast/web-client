@@ -7,7 +7,6 @@
 require 'yaml'
 
 class ControlpanelController < ApplicationController
-  include ProxyLoader
   before_filter :ensure_login
   before_filter :ensure_wizard, :only => [:nextstep, :backstep]
 
@@ -25,15 +24,6 @@ class ControlpanelController < ApplicationController
       end
     end
   end
-
-  # POST /controlpanel/select_language
-  # setting language for translations
-  def select_language
-    respond_to do |format|
-      format.html { render :partial => "select_language" }
-    end    
-  end
-
 
   # this action allows to retrieve the shortcuts
   # as a resource

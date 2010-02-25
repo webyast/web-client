@@ -14,18 +14,17 @@ class SystemtimeControllerTest < ActionController::TestCase
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
-    response_time = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","systemtime.xml"))
-    response_ntp = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
+    @response_time = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","systemtime.xml"))
+    @response_ntp = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
     ActiveResource::HttpMock.set_authentication
+    @header = ActiveResource::HttpMock.authentication_header
     ActiveResource::HttpMock.respond_to do |mock|
-      header = ActiveResource::HttpMock.authentication_header
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
-      mock.get   "/systemtime.xml", header, response_time, 200
-      mock.post   "/systemtime.xml", header, response_time, 200
-      mock.get   "/ntp.xml", header, response_ntp, 200
-      mock.post   "/ntp.xml", header, response_ntp, 200
+      mock.get   "/systemtime.xml", @header, @response_time, 200
+      mock.post   "/systemtime.xml", @header, @response_time, 200
+      mock.get   "/ntp.xml", @header, @response_ntp, 200
     end
   end
 
@@ -64,10 +63,21 @@ class SystemtimeControllerTest < ActionController::TestCase
   end
 
   def test_commit_wizard
+    response_ntp_stop = IO.read(File.join(File.dirname(__FILE__),"..","..","..","services","test","fixtures","ntp.xml"))
+    #add mock for services to stop ntp
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
+      mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
+      mock.get   "/systemtime.xml", @header, @response_time, 200
+      mock.post   "/systemtime.xml", @header, @response_time, 200
+      mock.get   "/ntp.xml", @header, @response_ntp, 200
+      mock.put	"/services/ntp.xml?execute=stop", @header, response_ntp_stop, 200
+    end
     session[:wizard_current] = "test"
     session[:wizard_steps] = "systemtime,language"
     post :update, { :currenttime => "12:18:00", :date => { :date => "2009-07-02" }, :timeconfig => "manual"}
-
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
     rq = ActiveResource::HttpMock.requests.find {
@@ -83,6 +93,19 @@ class SystemtimeControllerTest < ActionController::TestCase
   end
 
   def test_ntp
+    response_ntp_stop = IO.read(File.join(File.dirname(__FILE__),"..","..","..","services","test","fixtures","ntp.xml"))
+    #add mock for services to stop ntp
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
+      mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
+      mock.get   "/systemtime.xml", @header, @response_time, 200
+      mock.post   "/systemtime.xml", @header, @response_time, 200
+      mock.get   "/ntp.xml", @header, @response_ntp, 200
+      mock.post   "/ntp.xml", @header, @response_ntp, 200
+      mock.put	"/services/ntp.xml?execute=start", @header, response_ntp_stop, 200
+    end
     post :update, { :timeconfig => "ntp_sync" }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "index"

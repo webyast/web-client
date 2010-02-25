@@ -32,10 +32,6 @@ class PermissionsController < ApplicationController
  # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_permissions"  # textdomain, options(:charset, :content_type)
 
-  public
-  def initialize
-  end
-
 
   # Checks the tree if there is a node which is set to the value of "granted"
   # and check if the subtree has to be shown
@@ -184,6 +180,11 @@ class PermissionsController < ApplicationController
     error = get_permissions(params[:user].rstrip, true, proxy)
     flash[:error] = error if !error.blank?
     render :action => "index" 
+  end
+
+
+  public
+  def initialize
   end
 
   def search

@@ -29,7 +29,7 @@ class FirewallTest < ActiveSupport::TestCase
   def test_find_one
     assert @firewall
     assert @firewall.use_firewall
-    webyast_ui = @firewall.services.find {|s| s.id =="service:webyast-ui"}
+    webyast_ui = @firewall.fw_services.find {|s| s.id =="service:webyast-ui"}
     assert webyast_ui
     assert webyast_ui.allowed
     assert_equal "WebYaST UI", webyast_ui.name

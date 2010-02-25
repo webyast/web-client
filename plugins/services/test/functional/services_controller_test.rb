@@ -56,8 +56,7 @@ class ServicesControllerTest < ActionController::TestCase
     assert_tag :span, :attributes => { :class => "ui-icon ui-icon-alert" }
 
 # JR: cannot be test, because flash object is already used during render, so it is not passed to response
-#    assert flash[:error] FIXME while this is not set?
-#    assert_equal flash[:error], "Can't get services list"
+#    assert flash[:error]
   end
 
   def test_ntp_status

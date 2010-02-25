@@ -100,7 +100,7 @@
 	<%= f.text_field :login_shell %>
     </p>
    </fieldset>
-    <p><%= f.submit _("Create"), :onclick=>"return user_validation();",  :class => "button" %> <%= link_to _('Back'), {:action => :index }, :onclick=>"$('#progress').show()", :class => "button" %></p>
+   <p><%= link_to _('Cancel'), {:action => :index}%><%= f.submit _("Save"), :onclick=>"return user_validation();" %></p>
   </div> 
 </div>
 <% end %>
