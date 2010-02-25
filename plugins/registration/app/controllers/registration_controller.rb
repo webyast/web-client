@@ -33,6 +33,15 @@ class RegistrationController < ApplicationController
     @arguments = []
   end
 
+  def register_permissions
+    unless @permissions[:statelessregister]
+      flash[:warning] = _("No permissions for registration")
+      redirect_to root_path
+      return false
+    end
+    true
+  end
+
   def translate_argument_key(key)
     return '-unknown-' unless key
     return @trans[key] if ( @trans.kind_of?(Hash) && @trans[key] )
@@ -40,13 +49,16 @@ class RegistrationController < ApplicationController
   end
 
   def sort_arguments(args)
-    return Array.new unless args.kind_of?(Array)
-    args.collect! do |arg|
-      arg['description'] = translate_argument_key( arg.kind_of?(Hash) ? arg['name'] : nil )
-      arg
+    begin
+      args.collect! do |arg|
+        arg['description'] = translate_argument_key( arg.kind_of?(Hash) ? arg['name'] : nil )
+        arg
+      end
+      # sort by names alphabetically
+      return args.sort! { |a,b|  a['name'] <=> b['name'] }
+    rescue
+      return Array.new
     end
-    # sort by names alphabetically and by flags reverse (move mandatory fields up)
-    args.sort! { |a,b|  (b['flag'] || 'z') + a['name'] <=> (a['flag'] || 'z') + b['name'] }
   end
 
   # Initialize GetText and Content-Type.
@@ -65,12 +77,21 @@ class RegistrationController < ApplicationController
     return @guid
   end
 
+  def try_again_msg
+    _("Please try to register again later.")
+  end
+
+  def registration_skip_flash
+    error_line1 = "<b>" + _("Registration was skipped.") + "</b>"
+    error_line2 = "The system might not receive necessary updates."
+    return error_line1 + "<p>" + error_line2 + "<br />" + try_again_msg + "</p>"
+  end
+
   def server_error_flash(msg)
     error_old = _("Error occured while connecting to registration server.")
-    error_line1 = _("<b>Registration did not finish.</b>")
+    error_line1 = "<b>" + _("Registration did not finish.") + "</b>"
     error_line2 = ( msg || "" ) + " " + _("This may be a temporary issue.")
-    error_line3 = _("Please try to register again later.")
-    return error_line1 + "<br />" + error_line2 + "<br />" + error_line3
+    return error_line1 + "<p>" + error_line2 + "<br />" + try_again_msg + "</p>"
   end
 
   public
@@ -80,55 +101,45 @@ class RegistrationController < ApplicationController
   # show flash with partial problem.
   def index
     return unless client_permissions
-
-    unless @permissions[:statelessregister]
-      flash[:warning] = _("No permissions for registration")
-      redirect_to root_path
-      return false
-    end
+    return unless register_permissions
 
     if !client_guid
       @arguments = []
       @nexttarget = 'update'
-      update
+      register
     else
       @showstatus = true
     end
 
   end
 
-  def done
-    # just redirect to the appropriate next target
+  def skip
+    return unless client_permissions
+    return unless register_permissions
+    # redirect to the appropriate next target and show skip message
+    flash[:warning] = registration_skip_flash if !client_guid
     redirect_success
     return
-  end
-
-  def detail
-    # different action but same semantic as in update
-    @detail = true
-    @nexttarget = 'detail'
-    update
   end
 
   def reregister
     # provide a way to force a new registration, even if system is already registered
     @reregister = true
     @nexttarget = 'reregister'
-    update
+    register
   end
 
-  # Calling registration over the service
   def update
-    return unless client_permissions
+    @nexttarget = 'update'
+    register
+  end
 
-    unless @permissions[:statelessregister]
-      flash[:warning] = _("No permissions for registration")
-      redirect_to root_path
-      return false
-    end
+  def register
+    return unless client_permissions
+    return unless register_permissions
 
     # redirect in case of interrupted basesetup
-    if client_guid && !@reregister && !@detail
+    if client_guid && !@reregister
       flash[:notice] = _("This system is already registered.")
       redirect_success
       return
@@ -152,7 +163,7 @@ class RegistrationController < ApplicationController
     success = false
     begin
       register = @client.create({:arguments=> { 'argument' => @arguments },
-                                :options=>@options})
+                                 :options=>@options})
       logger.debug "registration finished: #{register.to_xml}"
       @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
       @changed_services = register.changedservices if register.respond_to? :changedservices
@@ -182,14 +193,11 @@ class RegistrationController < ApplicationController
         end
         flash[:notice] += "</ul>"
       else
-        ##FIXME - also care about repos!!
-        # display warning message if no repos are added/changed during registration (bnc#558854)
-        flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
-        # flash[:warning] = _("No repositories were added or changed during the registration process (maybe due to a wrong registration code). If this system already has an update repository everything is fine. But without an update repository this system will not receive any updates. You may run the registration module again.")
+        no_services = true
       end
 
       # inform about added repositories
-      if @changed_repositories && @changed_repositories.kind_of?(Array) then
+      if @changed_repositories && @changed_repositories.kind_of?(Array) && @changed_repositories.size > 0 then
         flash[:notice] += "<ul>"
         @changed_repositories.each do |r|
           if r.respond_to?(:name) && r.name && r.respond_to?(:status) && r.status == 'added' then
@@ -197,58 +205,92 @@ class RegistrationController < ApplicationController
           end
         end
         flash[:notice] += "</ul>"
+      else
+        no_repos = true
       end
 
+      # display warning message if no repos are added/changed during registration (bnc#558854)
+      if no_services && no_repos
+      then
+        flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
+        #OLD flash[:warning] = _("No repositories were added or changed during the registration process (maybe due to a wrong registration code). If this system already has an update repository everything is fine. But without an update repository this system will not receive any updates. You may run the registration module again.")
+      end
+
+
+    ## just for a test
     # rescue ActiveResource::ServerError => e
     #  logger.error "500500500500500500500500500500500"
     #  logger.error e.inspect
     #  flash[:error] = "500500500500500500500500500500500"
+
+    # FIXME - Need to catch a 404 from the rest_service, but nothing catches it - FIXME
     #rescue ActiveResource::ResourceNotFound => e
     #  logger.error "404404404404404404404404404404404"
     #  logger.error e.inspect
     #  flash[:error] = "404404404404404404404404404404404"
     rescue ActiveResource::ClientError => e
+      arg_error_count = 0
       error = Hash.from_xml(e.response.body)["registration"]
       if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
         logger.debug "missing arguments #{error["missingarguments"].inspect}"
         #compare this with already existing arguments
         missed_args = error["missingarguments"]
-        @arguments.collect! {|argument|
-          missed_args.each {|missed_arg|
-            if missed_arg["name"] == argument["name"]
-              argument["error"] = true #flag error for already existing argument
+        @arguments.collect! do |argument|
+          missed_args.each do |missed_arg|
+            if missed_arg["name"] == argument["name"] then
+              if argument["value"] != missed_arg["value"] then
+                # flag error if value is rejected by registration server
+                argument["error"] = true if missed_arg["flag"] == "m"
+                arg_error_count += 1
+              end
+              argument["value"] = missed_arg["value"]
               argument["flag"] = missed_arg["flag"]
               argument["kind"] = missed_arg["kind"]
               missed_args.reject! {|del_arg| del_arg["name"] == argument["name"] }
               break
             end
-          }
+          end
           argument
-        }
-        #add the rest of missed arguments
-        missed_args.collect! {|missed_arg|
-          missed_arg["error"] = true
-          missed_arg
-        }
+        end
+
+        # add remaining arguments to the list
         @arguments.concat(missed_args)
-        flash[:error] = _("Please fill out missing entries.")
+        flash[:error] = _("Please fill out missing entries.") if arg_error_count > 0
+        logger.info "Registration is in needinfo - more information is required"
       else
         logger.error "error while registration: #{error.inspect}"
         flash[:error] = server_error_flash _("The registration server returned invalid data.")
+        logger.error "Registration resulted in an error: Server returned invalid data"
         # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
-        success = true
+        redirect_success
+        return
       end
     rescue Exception => e
       flash[:error] = server_error_flash _("The registration server was not reachable due to network or registration server problems.")
-      success = true
+      logger.error "Registration resulted in an error: Network problem"
+      redirect_success
+      return
     end
-    @arguments = sort_arguments( @arguments ) #in order to show it in an unique order
+
+    # redirect if the registration server is in needinfo but arguments list is empty
+    if !@arguments || @arguments.size < 1
+    then
+      flash[:error] = server_error_flash _("The registration server returned invalid data.")
+      logger.error "Registration resulted in an error: Logic issue, unspecified data requested by registration server"
+      redirect_success
+      return
+    end
+
+    # split in two lists to show them separately and sort each list to show it in a unique order
+    @arguments_mandatory = sort_arguments( @arguments.select { |arg| (arg["flag"] == "m") if arg.kind_of?(Hash) } )
+    @arguments_detail    = sort_arguments( @arguments.select { |arg| (arg["flag"] != "m") if arg.kind_of?(Hash) } )
+
 
     if success
-      logger.info "registration succeed"
+      logger.info "Registration succeed"
       redirect_success
     else
-      logger.info "additional steps required"
+      logger.info "Registration is not yet finished"
       respond_to do |format|
         format.html { render :action => "index" }
       end
