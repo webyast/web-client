@@ -44,8 +44,11 @@ class SystemtimeController < ApplicationController
     t.clear_time #do not set time by default
     case params[:timeconfig]
     when "manual"
+      Service.put("ntp", {:execute => "stop" })
       t.load_time params
     when "ntp_sync"
+      #start ntp service
+      Service.put("ntp", {:execute => "start" })
       ntp = Ntp.find :one
       ntp.actions.synchronize = true
       ntp.actions.synchronize_utc = (t.utcstatus=="UTC")
