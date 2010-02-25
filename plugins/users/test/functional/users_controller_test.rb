@@ -55,6 +55,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_valid_markup
     assert assigns(:user)
+    assert_select 'input#user_id[value=tester]' # fallback for uid
     assert_select 'input#user_uid[value=tester]'
     assert_select 'input#user_cn[value=Tester Testerovic]'
     assert_select 'input#user_grp_string[value=uucp,games,video]'

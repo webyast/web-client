@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     #FIXME handle if id is invalid
 
     @user.type	= ""
-    @user.id	= @user.uid
+    @user.id	= @user.uid # use id for storing index value (see update)
     @user.grp_string = ""
     @user.all_grps_string = ""
 
@@ -154,8 +154,11 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     return unless client_permissions
-    @user = User.find(params[:user][:uid])
+
+    # :id was not changed, so it can be used for find even after renaming
+    @user = User.find(params[:user][:id])
     @user.id = @user.uid
+    @user.uid	= params["user"]["uid"] # 'uid' may have been changed
     @user.groupname = params["user"]["groupname"]
     @user.gid_number="100" #FIXME: value from form
 
@@ -166,13 +169,7 @@ class UsersController < ApplicationController
 	  @user.grouplist.push group
        end
     end
-# FIXME solve renaming...
-#    if @user.login_name != params["user"]["login_name"]
-#      @user.new_login_name = params["user"]["login_name"]
-#    end
-#    if @user.uid != params["user"]["uid"]
-#      @user.new_uid = params["user"]["uid"]
-#    end
+
     @user.uid_number	= params["user"]["uid_number"]
     @user.home_directory = params["user"]["home_directory"]
     @user.cn = params["user"]["cn"]

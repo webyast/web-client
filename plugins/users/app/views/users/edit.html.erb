@@ -65,7 +65,7 @@
    function user_validation(){
      valid=false;
      password_validation_enabled = true;
-     valid =  $('#userForm').validate().element('#user_user_password2');
+     valid =  $('#userForm').validate().element('#user_user_password2') && $('#userForm').validate().element('#user_uid_number');
      if (!valid){
        // Remove highlighting from tabs and highlight only first one
        $('.tab-nav').find('a').removeClass('selected');
@@ -156,6 +156,7 @@
     <p>
 	<label><%=_("Login Name")%></label>
 	<%= f.text_field :uid, :disabled => disabled %>
+	<%= f.text_field :id, :class => "hidden" %>
     </p>
     <p>
 	<label><%=_("Full Name")%></label>
@@ -203,7 +204,7 @@
     </p>
     <p>
 	<label><%=_("UID Number")%></label>
-	<%= f.text_field :uid_number , :disabled => disabled %>
+	<%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number"  %>
     </p>
     </fieldset>
     </div>
