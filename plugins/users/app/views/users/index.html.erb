@@ -70,12 +70,12 @@
 
 <% if @permissions[:useradd] %>
 <div class='pad1_2em'>
-  <%= link_to image_tag('/images/actions/add.png') + _("New User..."), {:action => :new }, :class=>'iconbutton', :onclick=>"$('#progress').show()" -%>
+  <%= link_to  _("New User..."), {:action => :new }, :class=>'iconbutton', :onclick=>"$('#progress').show()" -%>
 </p>
 <% end %>
 </div>
 <p>
-<%= link_to image_tag('/images/actions/back.png') + _("Back"), '/', :class=>"button" -%>
+<%= link_to _("Back"), '/', :class=>"button" -%>
 </p>
 </div>
 
