@@ -13,10 +13,13 @@ class RegistrationController < ApplicationController
                 'regcode-sles' => _("SLES registration code"),
                 'regcode-sled' => _("SLED registration code"),
                 'appliance-regcode' => _("Appliance registration code"),
+                'regcode-webyast'   => _("WebYaST registration code")
                 '___getittranslated1' => _("Registration code"),
                 '___getittranslated2' => _("Hostname"),
                 '___getittranslated3' => _("Device name"),
-                '___getittranslated4' => _("Appliance name")   }
+                '___getittranslated4' => _("Appliance name")
+                '___getittranslated5' => _("registration code")
+             }
     @trans.freeze
   end
 
