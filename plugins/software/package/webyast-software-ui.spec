@@ -1,5 +1,5 @@
 #
-# spec file for package webyast-software-ui (Version 0.1.4)
+# spec file for package webyast-software-ui (Version 0.1.5
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -12,12 +12,13 @@
 Name:           webyast-software-ui
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
-PreReq:         yast2-webclient
+# escape_jquery_seletor helper
+PreReq:         yast2-webclient >= 0.1.8
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.4
+Version:        0.1.5
 Release:        0
 Summary:        YaST2 - Webclient - Patch_Updates
 Source:         www.tar.bz2
