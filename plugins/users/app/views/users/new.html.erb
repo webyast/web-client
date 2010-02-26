@@ -1,6 +1,7 @@
 <div class="plugin-content grid_12">
 <h3><%=_("New User")%></h3>
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
+<%= javascript_include_tag "users_edit.js" %>
   <style type="text/css">
     label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em;  text-align: left; vertical-align: top; width: 50% }
   </style>
@@ -8,7 +9,7 @@
 
   $(document).ready(function(){
 
-   $("#userForm").validate({onsubmit: false})
+   $("#userForm").validate()
 
    $("#userForm").validate({
     rules: {
@@ -33,7 +34,10 @@
  })
 
    function user_validation(){
-     return $('#userForm').valid();
+     var valid = $('#userForm').valid();
+
+//     if (!groups_validation()) valid=false;
+     return valid;
    }
 
     // start password validation workaround only when "Save" button has been pressed
@@ -70,11 +74,20 @@
     <p>
 	<label><%=_("Groups")%></label>
 	<%= f.text_field :grp_string %>
+	<a href="#" class="button" onclick="open_groups_dialog();return false;">Manage Groups</a>
     </p>
+    <p><label id="groups-error" class="error"></label><p>
     <p>
 	<label><%=_("Default Group (GID)")%></label>
 	<%= f.text_field :groupname %>
     </p>
+    <div id="groups" style="display:none;" title="Groups"> 
+      <DIV>
+        <DIV class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </DIV>
+        <DIV class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </DIV>
+	<div><%= f.hidden_field :all_grps_string %></div>
+      </DIV>
+    </div>
   </fieldset>
   <fieldset class="wrapper with-background">
     <legend>Detailed User Data </legend>
@@ -97,6 +110,5 @@
    </fieldset>
    <p><%= link_to _('Cancel'), {:action => :index}%><%= f.submit _("Save"), :onclick=>"return user_validation();" %></p>
   </div> 
-</div>
 <% end %>
 

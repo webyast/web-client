@@ -21,7 +21,7 @@
 	if (allgroups[a]==mygroups[i]) found=true;
        }
        if (!found){
-	errmsg = mygroups[i]+" is not valid group!";
+	errmsg = mygroups[i]+" "+"is not valid group!" ;
        }
      }
      set_tab_focus("groups")
