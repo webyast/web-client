@@ -50,9 +50,6 @@
   <p><label for="user"><%=_("User")%></label>
   <input type="text" name="user" size=25 value=<%= "#{@current_user}" %> >
   <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"$('#progress').show()", :class => 'button'%>
-  <% if @current_user.blank? %>
-    <a href="/" class="button"><%=_("Back")%></a>
-  <% end %>
 <% end %>
 <br>
 <br>
@@ -158,6 +155,9 @@
  <% end %>
 
 <% end %>
+<div style="padding: 1em 1em;">
+<a href="/" class="button"><%=_("Back")%></a>
+</div>
 </div>
 </html>
 
