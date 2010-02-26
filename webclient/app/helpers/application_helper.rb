@@ -32,7 +32,7 @@ module ApplicationHelper
   def form_next_button(send_options={})
     bs = Basesystem.new.load_from_session(session)
     label = _("Next")
-    label = _("Save") if bs.completed?
+    label = send_options[:label] || _("Save") if bs.completed?
     label = _("Finish") if bs.last_step?
     submit_tag label,send_options
   end
