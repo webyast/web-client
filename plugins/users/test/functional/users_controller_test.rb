@@ -44,10 +44,10 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_valid_markup
     assert assigns(:users)
-    assert_select 'span.login', "tester"
-    assert_select 'span.fullname', "Tester Testerovic"
-    assert_select 'span.login', "tester"
-    assert_select 'span.fullname', 2
+    assert_select 'td#login', "tester"
+    assert_select 'td#fullname', "Tester Testerovic"
+    assert_select 'td#login', "tester"
+    assert_select 'td#fullname', 2
   end
 
   def test_edit_user

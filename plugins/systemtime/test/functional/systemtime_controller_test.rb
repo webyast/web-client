@@ -46,6 +46,21 @@ class SystemtimeControllerTest < ActionController::TestCase
       "missing request for ntp on rest-service. \n Requests: #{ActiveResource::HttpMock.requests.inspect}"
   end
 
+  def test_timezone_change #bnc#582810
+    post :update, { :region => "Africa", :timezone => "Kampala" }
+    assert_response :redirect
+    assert_redirected_to :controller => "controlpanel", :action => "index"
+    rq = ActiveResource::HttpMock.requests.find {
+        |r| r.method == :post && r.path == "/systemtime.xml"}
+    assert rq #commit request send
+    assert rq.body
+    params = Hash.from_xml(rq.body)["systemtime"]
+    assert_equal params["timezone"],"Africa/Kampala" 
+    #ntp is not called if time settings is empty
+    assert !ActiveResource::HttpMock.requests.any? {
+        |r| r.method == :post && r.path == "/ntp.xml"}
+  end
+
   def test_commit
     post :update, { :currenttime => "12:18:00", :date => { :date => "2009-07-02" }, :timeconfig => ""}
     assert_response :redirect
