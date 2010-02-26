@@ -4,7 +4,7 @@ Title               Hex-Code    Used-for Examples
 Blue:        #06c        Links Hover
 Green:       #6c0
 Dark Grey:          #333        Font
-Medium Grey:        #666        Header Font
+Medium Grey:        #444        Header Font
 Soft Light Grey:    #0072ba     Header BG
 BG Grey:            #fcfcfc     Body-BG
 =========================================================================== */
@@ -55,6 +55,8 @@ a:hover {
   color: #666;
   text-decoration: underline;
 }
+
+
 img {
   border: none;
 }
@@ -137,7 +139,7 @@ ul li {
 
 /* == Basic Styles ======================================================== */
 #header * {
-  color: #666;
+  color: #444;
 }
 
 .wrapper {
@@ -479,24 +481,28 @@ form a {
 a.button,
 input.button,
 input[type="submit"] {
-  background: #eee url(images/bg-dark-gradient.png) repeat-x scroll left top;
-  color: #fff !important;
+  background: #eee url(images/button-bg-rollover.gif) repeat-x scroll left top;
+  color: #333;
   font-size: 12px;
   font-weight: bold;
   border: 1px solid #999;
   cursor: pointer;
-  padding: 3px 10px;
+  padding: 2px 10px 3px 10px;
   text-decoration: none;
-  text-shadow: 0 -1px 0 #999;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
+  text-shadow: 0 -1px 0 #bbb;
+  -moz-border-radius: 4px;
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  -webkit-border-radius: 4px;
   width: auto !important;
   vertical-align: baseline;
 }
   a.button:hover,
   input.button:hover {
-    background-color: #ccc;
-    text-shadow: 0 -1px 0 #666;
+    background-position:0 -22px;
+    color:#FFF;
+    text-shadow: 0 -1px 0 #252525;
   }
   input.button {
     padding: 2px 9px;
@@ -602,7 +608,6 @@ input[type="submit"] {
   box-shadow: 0 1px 3px #ccc;
 }
 
-.plugin-content > p,
 .plugin-content form > p,
 .plugin-content form > fieldset {
   margin-left: 1em;
