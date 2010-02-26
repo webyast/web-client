@@ -1,12 +1,12 @@
 module ViewHelpers::EffectHelper
   include GetText
 
-  # show_hide_elements - create links and JavaScript snippets to hide one or more HTML elements
+  # show_hide_elements - create links and JavaScript snippets to show and hide one or more HTML elements
   #   takes two parameters
   #   1. String or Symbol or Array of these both with the element ID(s) (required)
   #   2. Hash with confugiration parameters (optional)
   #      Hash keys:
-  #        :hidden => <true/false>  -  is/are the element(s) initially hidden?
+  #        :hidden => <true/false>  -  is/are the element(s) initially hidden? - reverses the function
   #        :hide_msg => "str"       -  string to show for the "hide" action
   #        :show_msg => "str"       -  string to show for the "show" action
   #        :effect_opt => Hash      -  effect options, eg. {:duration => 3} for a 3 sec. effect
