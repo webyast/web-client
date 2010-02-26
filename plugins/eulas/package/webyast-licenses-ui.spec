@@ -13,7 +13,7 @@ Name:           webyast-licenses-ui
 Provides:       yast2-webclient-eulas = %{version}
 Obsoletes:      yast2-webclient-eulas < %{version}
 PreReq:         yast2-webclient >= 0.0.2
-License:	GPL v2 only
+License:        GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.0
