@@ -10,6 +10,8 @@ class EulasController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_eulas"  # textdomain, options(:charset, :content_type)
 
+private
+
   def ensure_eula_count
     if session[:eula_count].nil?
       eulas = Eulas.find :all
@@ -23,20 +25,22 @@ class EulasController < ApplicationController
     @eula_id   = [1,params[:id].to_i].max
   end
 
-  def index
-    if session[:eula_count] == 0
-      render :no_licenses
-    else
-      redirect_to :action => :show, :id => 1
-    end
-  end
-
   def next_in_range(range, current)
     [current+1, range.max].min
   end
 
   def prev_in_range(range, current)
     [current-1, range.min].max
+  end
+
+public
+
+  def index
+    if session[:eula_count] == 0
+      render :no_licenses
+    else
+      redirect_to :action => :show, :id => 1
+    end
   end
 
   def show
