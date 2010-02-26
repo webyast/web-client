@@ -11,13 +11,11 @@ class SessionsController < ApplicationController
   #before_filter :ensure_logout, :only => [:new, :create]
   
   def index
-    #This is used in order to support the browser "back" button
-    new
-    return
+    redirect_to "/"
   end
 
-  # shows the current session
   def show
+    redirect_to "/"
   end
 
   #
