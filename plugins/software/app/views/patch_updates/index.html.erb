@@ -12,25 +12,33 @@
   <div class='plugin-content grid_12'>
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
-    <h3><%=_("Your system is up to date.") unless @error%></h3>
-    <%= link_to _("Back"), '/', :class=>"button" %>
+    <fieldset>
+      <h3><%=_("Your system is up to date.") unless @error%></h3>
+      <%= form_back_button %>
+    </fieldset>
   <% else %>
-    <h3><%=_("Updates available") %></h3>
-
-    <select name="selector" id="selector" size="1">
-      <option value="all">All</option>
-      <option value="security">Security</option>
-      <option value="important">Important</option>
-      <option value="green">Green</option>
-      <option value="optional">Optional</option>
-    </select>
+    <fieldset>
+      <h3><%=_("Updates available") %></h3>
+  
+      <select name="selector" id="selector" size="1">
+        <option value="all">All</option>
+        <option value="security">Security</option>
+        <option value="important">Important</option>
+        <option value="green">Green</option>
+        <option value="optional">Optional</option>
+      </select>
+    </fieldset>
+  
     <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
-
-      <div id="patchesd"><%= render :partial => "patches"%></div>
-
-      <%= submit_tag _("Update"), :onclick=>"$('#progress').show()", :action => 'install', :class => 'button' -%>
-      <%= link_to _("Back"), '/', :class=>"button" %>
+      <fieldset>
+   
+        <div id="patchesd"><%= render :partial => "patches"%></div>
+      </fieldset>
+      <fieldset>
+        <%= form_send_buttons :label => _("Update"), :onclick => "$('#progress').show()", :action => 'install' %>
+      </fieldset>
     <% end %>
+  
   <% end %>
   </div>
 
