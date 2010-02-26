@@ -39,7 +39,7 @@
    $("#tab_login")[0].style.display="block";
 
 
-   $("#userForm").validate({onsubmit: false})
+   $("#userForm").validate()
 
 
    $("#userForm").validate({
@@ -93,11 +93,11 @@
     </p>
     <p>
 	<label><%=_("Password")%></label>
-	<%= f.password_field :user_password, :onkeyup => "if (password_validation_enabled) $('#userForm').validate().element('#administrator_confirm_password');", :disabled => disabled, :onBlur=>"restoreBox()" %>
+	<%= f.password_field :user_password, :onkeyup => "if (password_validation_enabled) $('#userForm').validate().element('#user_user_password2');", :disabled => disabled %>
     </p>
     <p>
 	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password" %>
+	<%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
     </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
@@ -134,7 +134,7 @@
     </p>
     <p>
 	<label><%=_("UID Number")%></label>
-	<%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number"  %>
+	<%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
     </p>
     <p><label id="uid-error" class="error"></label><p>
     </fieldset>

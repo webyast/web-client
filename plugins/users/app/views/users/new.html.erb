@@ -55,15 +55,15 @@
     </p>
     <p>
 	<label><%=_("Login Name")%></label>
-	<%= f.text_field :uid, :class => "required" %>
+	<%= f.text_field :uid, :class => "required", :onkeyup => "$('#userForm').validate().element('#user_uid');" %>
     </p>
     <p>
 	<label><%=_("Password")%></label>
-	<%= f.password_field :user_password, :onkeyup => "if (password_validation_enabled) $('#userForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"%>
+	<%= f.password_field :user_password, :class => "required", :onkeyup => "$('#userForm').validate().element('#user_user_password');"%>
     </p>
     <p>
 	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required" %>
+	<%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
     </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
@@ -110,7 +110,7 @@
     <legend>Detailed User Data </legend>
     <p>
 	<label><%=_("UID Number")%></label>
-	<%= f.text_field :uid_number, :min => 1000, :class => "number"  %>
+	<%= f.text_field :uid_number, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
     </p>
     <p>
 	<label><%=_("Home Directory")%></label>
