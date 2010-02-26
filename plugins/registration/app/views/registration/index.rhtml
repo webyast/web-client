@@ -11,7 +11,15 @@
        <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>
        <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"$('#progress').show()", :class => "button" %></p>
      </fieldset>
-     <p><%= form_back_button %></p>
+
+     <fieldset>
+       <%= form_back_button %>
+       <%= if basesystem_in_process? then
+             ret = form_str_spacer
+             ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
+           end
+       %>
+     </fieldset>
   <% else %>
 
 <% form_tag form_target_save, { :onsubmit => "$('#progress').show()" } do -%>
@@ -33,8 +41,7 @@
 
     <p id="hidedetails" style="display: none">
       <%= link_to_function _("Hide Details") do |p|
-            p.visual_effect( :switch_off,   :argumentdetail, {:duration => 0} )
-            #p.visual_effect( :slide_up,   :argumentdetail, {:duration => 1} )
+            p.visual_effect( :switch_off, :argumentdetail, {:duration => 0} )
             p.visual_effect( :switch_off, :hidedetails,    {:duration => 0} )
             p.visual_effect( :switch_on,  :showdetails,    {:duration => 0} )
           end
@@ -43,8 +50,7 @@
 
     <p id="showdetails">
       <%= link_to_function _("Show Details") do |p|
-            p.visual_effect( :switch_on, :argumentdetail, {:duration => 0} )
-            #p.visual_effect( :slide_down, :argumentdetail, {:duration => 1} )
+            p.visual_effect( :switch_on,  :argumentdetail, {:duration => 0} )
             p.visual_effect( :switch_off, :showdetails,    {:duration => 0} )
             p.visual_effect( :switch_on,  :hidedetails,    {:duration => 0} )
           end
@@ -66,11 +72,12 @@
   <% end %>
 
 
-    <p><%= form_send_buttons %>
-       <%= if Basesystem.new.load_from_session(session).in_process? then
-             link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
-           end %>
-    </p>
+    <fieldset>
+      <%= form_send_buttons %>
+      <%= if basesystem_in_process? then
+            link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
+          end %>
+    </fieldset>
 
 <% end  %>
 

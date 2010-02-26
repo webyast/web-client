@@ -11,6 +11,11 @@ module ApplicationHelper
     ret + form_next_button(send_options)
   end
 
+  # query if basesystem is in process
+  def basesystem_in_process?
+    Basesystem.new.load_from_session(session).in_process?
+  end
+
   def form_str_spacer
     _(' or ')
   end
@@ -20,7 +25,7 @@ module ApplicationHelper
     if bs.completed?
       link_to _("Cancel"), :controller => "controlpanel"
     else
-      link_to "Back", :controller => "controlpanel", :action => "backstep"
+      link_to _("Back"), :controller => "controlpanel", :action => "backstep"
     end
   end
 
