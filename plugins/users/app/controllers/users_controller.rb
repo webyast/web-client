@@ -42,6 +42,7 @@ class UsersController < ApplicationController
       :groupname	=> nil,
       :cn		=> nil,
       :grouplist	=> [],
+      :allgroups	=> [],
       :home_directory	=> nil,
       :cn		=> nil,
       :uid		=> nil,
@@ -53,6 +54,15 @@ class UsersController < ApplicationController
       :id		=> nil
     )
     @user.grp_string = ""
+    @user.all_grps_string = ""
+    @user.allgroups.each do |group|
+       if counter == 0
+          @user.all_grps_string = group.cn
+       else
+          @user.all_grps_string += ",#{group.cn}"
+       end
+       counter += 1
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -160,7 +170,6 @@ class UsersController < ApplicationController
     @user.id = @user.uid
     @user.uid	= params["user"]["uid"] # 'uid' may have been changed
     @user.groupname = params["user"]["groupname"]
-    @user.gid_number="100" #FIXME: value from form
 
     @user.grouplist = []
     if params["user"]["grp_string"] != nil

@@ -21,7 +21,7 @@
 	if (allgroups[a]==mygroups[i]) found=true;
        }
        if (!found){
-	errmsg = mygroups[i]+" is not valid group!";
+	errmsg = mygroups[i]+" "+"is not valid group!" ;
        }
      }
      set_tab_focus("groups")
@@ -34,9 +34,11 @@
    function edit_user_validation(){
      valid=false;
      password_validation_enabled = true;
-     valid =  $('#userForm').validate().element('#user_user_password2') && $('#userForm').validate().element('#user_uid_number');
-     if (!valid){
-       set_tab_focus("login");
+     valid = $('#userForm').validate().element('#user_user_password2');
+     if (!valid) set_tab_focus("login");
+     if (!$('#userForm').validate().element('#user_uid_number')){
+       valid=false;
+       set_tab_focus("advanced");
      }
      valid = valid && groups_validation();
      return valid;

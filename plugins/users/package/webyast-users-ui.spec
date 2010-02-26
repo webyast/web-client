@@ -15,7 +15,7 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.5
+Version:        0.1.6
 Release:        0
 Summary:        YaST2 - Webclient - Users
 Source:         www.tar.bz2
@@ -67,6 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
+%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 /srv/www/yast/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
