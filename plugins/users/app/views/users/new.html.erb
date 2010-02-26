@@ -35,8 +35,8 @@
 
    function user_validation(){
      var valid = $('#userForm').valid();
-
-//     if (!groups_validation()) valid=false;
+     // if UID is invalidate, do Show Details (make it visible)
+     if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
      return valid;
    }
 
@@ -69,6 +69,23 @@
     <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
 
   </fieldset>
+<p id="hidedetails" style="display: none">
+    <%= link_to_function _("Hide Details") do |p|
+          p.visual_effect( :slide_up,   :argumentdetail, {:duration => 0} )
+          p.visual_effect( :switch_off, :hidedetails,    {:duration => 0} )
+          p.visual_effect( :switch_on,  :showdetails,    {:duration => 0} )
+        end
+    %>
+</p>
+ <p id="showdetails">
+    <%= link_to_function _("Show Details") do |p|
+          p.visual_effect( :slide_down, :argumentdetail, {:duration => 0} )
+          p.visual_effect( :switch_off, :showdetails,    {:duration => 0} )
+          p.visual_effect( :switch_on,  :hidedetails,    {:duration => 0} )
+        end
+    %>
+  </p>	
+<div id="argumentdetail" style="display: none">
   <fieldset class="wrapper with-background">
     <legend>Group Membership</legend>
     <p>
@@ -108,6 +125,7 @@
 	<%= f.text_field :login_shell %>
     </p>
    </fieldset>
+  </div>
    <p><%= link_to _('Cancel'), {:action => :index}%><%= f.submit _("Save"), :onclick=>"return user_validation();" %></p>
   </div> 
 <% end %>
