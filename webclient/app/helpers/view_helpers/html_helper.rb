@@ -210,6 +210,25 @@ EOF2
 EOF_PROGRESS
   end
 
+  # escape jQuery element selector name
+  # example usage:
+  #     <td id="my_table_item_<%= h my_id -%>" ...
+  #        then
+  #     jquery_id = h escape_jquery_selector(my_id)
+  #     remote_function(:update => "#my_table_item_#{jquery_id}", ... )
+  def escape_jquery_selector selector
+    escape = '@#;&,.+*~\':"!^$[]()=>|/% '
+    esc_prefix = '\\\\\\\\'
+
+    # create a copy, don't modify the parameter
+    ret = selector.dup
+
+    escape.each_char {|c|
+      ret.gsub!(c, esc_prefix + c)
+    }
+
+    ret
+  end
 end
 
 # vim: ft=ruby
