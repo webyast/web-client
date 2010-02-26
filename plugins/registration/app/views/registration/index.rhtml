@@ -39,23 +39,7 @@
   </fieldset>
   <% end %>
 
-    <p id="hidedetails" style="display: none">
-      <%= link_to_function _("Hide Details") do |p|
-            p.visual_effect( :switch_off, :argumentdetail, {:duration => 0} )
-            p.visual_effect( :switch_off, :hidedetails,    {:duration => 0} )
-            p.visual_effect( :switch_on,  :showdetails,    {:duration => 0} )
-          end
-      %>
-    </p>
-
-    <p id="showdetails">
-      <%= link_to_function _("Show Details") do |p|
-            p.visual_effect( :switch_on,  :argumentdetail, {:duration => 0} )
-            p.visual_effect( :switch_off, :showdetails,    {:duration => 0} )
-            p.visual_effect( :switch_on,  :hidedetails,    {:duration => 0} )
-          end
-      %>
-    </p>
+  <%= show_hide_elements :argumentdetail, { :show_msg => _("Show Details"), :hide_msg => _("Hide Details") } %>
 
   <% if @arguments_detail then %>
   <fieldset class="wrapper with-background width-75" id="argumentdetail" style="display: none">
@@ -70,7 +54,6 @@
     <% end %>
   </fieldset>
   <% end %>
-
 
     <fieldset>
       <%= form_send_buttons %>
