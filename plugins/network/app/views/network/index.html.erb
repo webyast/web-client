@@ -24,7 +24,7 @@
       });
 
       function focus_field(field_id) {
-        network_accordion.activate("#"+field_id);
+        $("#accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
         $("#"+field_id).focus();
       };
    <% end %>

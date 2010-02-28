@@ -1,16 +1,5 @@
    function set_tab_focus(tab){
-     user_accordion.activate("#tab_"+tab);
-     /*
-     var tabs=["login","groups","advanced"];
-       // Remove highlighting from tabs and highlight the right one
-       $('.tab-nav').find('a').removeClass('selected');
-       $(".t_"+tab).addClass("selected")
-     for (i=0;i<3;i++){
-	disp="none";
-	if (tab==tabs[i]) disp="block";
-       $("#tab_"+tabs[i])[0].style.display=disp;
-     }
-     */
+     $("#accordion").accordion('activate',$("#tab_"+tab).children("legend"));
    }
 
    function groups_validation(){
