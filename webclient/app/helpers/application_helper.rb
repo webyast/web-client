@@ -20,6 +20,10 @@ module ApplicationHelper
     _(' or ')
   end
 
+  def header_spacer
+    _(' - ')
+  end
+
   def form_back_button
     bs = Basesystem.new.load_from_session(session)
     if bs.completed?

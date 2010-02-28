@@ -44,10 +44,8 @@
    <% end %>
 <% end %>
 
-<div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
+<div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
 <div class="plugin-content grid_12">
-
-<h2><%= _("Settings") %></h2>
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
   <div id="accordion">
   <% @graphs.each do |group| %>
