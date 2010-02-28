@@ -48,7 +48,7 @@
   <h3><%= disabled ? _("Repository Properties") : _("Edit Repository Properties") -%></h3>
 <% end -%>
 
-<br>
+<br/>
 
 <% form_for(:repository, @repo, :url => { :action => (@adding ? 'create' : 'update'), :id => @repo.id }, :html => { :method => (@adding ? :post : :put), :id => 'repositoryForm', :onsubmit => "if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" } ) do |f| %>
   <%= f.error_messages %>
@@ -100,7 +100,7 @@
 
     </table>
 
-    <br>
+    <br/>
     <p>
       <% if !disabled -%>
 	<%= f.submit @adding ? _("Create") : _("Update") %>

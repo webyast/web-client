@@ -5,16 +5,20 @@ class RepositoriesController < ApplicationController
 
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
-  #don't add load_proxy as action for controller
-  hide_action :load_proxy
 
   # Initialize GetText and Content-Type.
   init_gettext 'yast_webclient_repositories'
 
   def index
-    @repos = load_proxy 'org.opensuse.yast.system.repositories', :all
+    begin
+      @repos = Repository.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Cannot read repository list.")
+      return
+    end
+
     return unless @repos
+    @permissions = Repository.permissions
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
   end
 
@@ -24,10 +28,17 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
-    return unless @repo
+    begin
+      @repo = Repository.find URI.escape(params[:id])
+      @permissions = Repository.permissions
 
-    @adding = false
+      return unless @repo
+
+      @adding = false
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      redirect_to :action => 'index' and return
+    end
   end
 
   def delete
@@ -36,8 +47,13 @@ class RepositoriesController < ApplicationController
       redirect_to :action => 'index' and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
-    return unless @repo
+    begin
+      @repo = Repository.find URI.escape(params[:id])
+      return unless @repo
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      redirect_to :action => 'index' and return
+    end
 
     @repo.id = URI.escape(@repo.id)
 
@@ -54,8 +70,18 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
-    return unless @repo
+    begin
+      @repo = Repository.find URI.escape(params[:id])
+      return unless @repo
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      redirect_to :action => 'index' and return
+    end
+
+    if params[:repository].blank?
+      flash[:error] = _("Cannot update repository '#{params[:id]}': missing parameters.")
+      redirect_to :action => 'index' and return
+    end
 
     repository = params[:repository]
 
@@ -72,13 +98,13 @@ class RepositoriesController < ApplicationController
       if @repo.save
         flash[:message] = _("Repository '#{@repo.name}' has been updated.")
       end
-    rescue ActiveResource::ServerError => ex
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
-        Rails.log.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
         err = Hash.from_xml ex.response.body
 
-        if !err['error']['description'].blank?
-          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        if !err['error']['message'].blank?
+          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
         else
           flash[:error] = _("Unknown backend error.")
         end
@@ -94,11 +120,8 @@ class RepositoriesController < ApplicationController
   end
 
   def add
-    # load only permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
-    @permissions = @client.permissions
-
-    @repo = @client.new
+    @repo = Repository.new
+    @permissions = Repository.permissions
 
     # add default properties
     defaults = {
@@ -119,12 +142,16 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    # load only permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
-    @permissions = @client.permissions
+    @permissions = Repository.permissions
 
-    @repo = @client.new
+    @repo = Repository.new
     repository = params[:repository]
+
+    if repository.blank?
+      flash[:error] = _('Missing repository parameters')
+      redirect_to :action => :add and return
+    end
+
     @repo.load(repository)
 
     @repo.id = URI.escape(@repo.id)
@@ -133,20 +160,22 @@ class RepositoriesController < ApplicationController
       if @repo.save
         flash[:message] = _("Repository '#{@repo.name}' has been added.")
       end
-    rescue ActiveResource::ServerError => ex
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
-        Rails.log.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        Rails.logger.error "Received error: #{ex.inspect}"
         err = Hash.from_xml ex.response.body
 
-        if !err['error']['description'].blank?
-          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        if !err['error']['message'].blank?
+          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
         else
           flash[:error] = _("Unknown backend error.")
         end
       rescue Exception => e
+          Rails.logger.error "Exception: #{e}"
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ex.response.body}")
       end
+      redirect_to :action => :add and return
     end
 
     redirect_to :action => :index and return
@@ -154,13 +183,19 @@ class RepositoriesController < ApplicationController
 
   def set_status
     if params[:id].blank?
+      render :text => _("Error: Missing repository id.") and return
+    end
+
+    if !params.has_key? :enabled
+      render :text => _("Error: Missing 'enabled' parameter.") and return
     end
 
     enabled = params[:enabled] == 'true'
     Rails.logger.debug "Setting repository status: '#{params[:id]}' => #{enabled}"
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    @repo = Repository.find URI.escape(params[:id])
     return unless @repo
+    @permissions = Repository.permissions
 
     enabled_orig = @repo.enabled
     @repo.enabled = enabled
@@ -170,13 +205,13 @@ class RepositoriesController < ApplicationController
 
     begin
       @repo.save
-    rescue ActiveResource::ServerError => ex
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
-        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        Rails.logger.error "Received error: #{ex}"
         err = Hash.from_xml ex.response.body
 
-        if !err['error']['description'].blank?
-          error_string = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        if !err['error']['message'].blank?
+          error_string = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
         else
           error_string = _("Unknown backend error.")
         end
@@ -195,4 +230,4 @@ class RepositoriesController < ApplicationController
 
   end
 
-  end
+end
