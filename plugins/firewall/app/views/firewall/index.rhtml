@@ -40,7 +40,7 @@
             autoHeight : false,
             navigation : true,
             collapsible: true,
-            header     : 'fieldset h4'
+            header     : 'fieldset legend'
         });
   });
 
@@ -62,7 +62,7 @@
   </div>
 
   <fieldset class="wrapper with-background no-min-height">
-      <h4><%= _("General settings") %></h4>
+      <legend><%= _("General settings") %></legend>
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
       <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
@@ -75,7 +75,7 @@
   </fieldset>
   <div id="accordion">
       <fieldset class="wrapper with-background">
-      <h4><%= _("Allowed services") %></h4>
+      <legend><%= _("Allowed services") %></legend>
       <div id="allowed_services">
           <% @firewall.fw_services.each do |service| %>
               <div class="<%= service.css_class %>">
@@ -86,7 +86,7 @@
       </div>
       </fieldset>
       <fieldset class="wrapper with-background">
-      <h4><%= _("Blocked services") %></h4>
+      <legend><%= _("Blocked services") %></legend>
       <div id="blocked_services">
           <% @firewall.fw_services.each do |service| %>
               <div class="<%= service.css_class %>">
