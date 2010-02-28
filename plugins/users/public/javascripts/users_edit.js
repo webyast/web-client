@@ -1,4 +1,6 @@
    function set_tab_focus(tab){
+     user_accordion.activate("#tab_"+tab);
+     /*
      var tabs=["login","groups","advanced"];
        // Remove highlighting from tabs and highlight the right one
        $('.tab-nav').find('a').removeClass('selected');
@@ -8,6 +10,7 @@
 	if (tab==tabs[i]) disp="block";
        $("#tab_"+tabs[i])[0].style.display=disp;
      }
+     */
    }
 
    function groups_validation(){
