@@ -6,54 +6,45 @@
 
   $(document).ready(function(){
 
-    $("ul#blocked_services li input, ul#allowed_services li input").fadeTo(0,0);
+    $("#blocked_services div input, #allowed_services div input").fadeTo(0,0);
 
-    $("ul#blocked_services li input").click( function(){
+    $("#blocked_services div input").click( function(){
         $(this).parent().hide("slow");
         $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "true");
-        $("ul#allowed_services li."+$(this).parent().attr("class")).show("slow");
+        $("#allowed_services div."+$(this).parent().attr("class")).show("slow");
     });
     
-    $("ul#allowed_services li input").click( function(){
+    $("#allowed_services div input").click( function(){
         $(this).parent().hide("slow");
         $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "false");
-        $("ul#blocked_services li."+$(this).parent().attr("class")).show("slow");
+        $("#blocked_services div."+$(this).parent().attr("class")).show("slow");
     });
     
-    $("ul#allowed_services li,ul#blocked_services li").mouseenter( function(){
+    $("#allowed_services div,#blocked_services div").mouseenter( function(){
         $(this).find("input").fadeTo(100,1);
     });
     
-    $("ul#allowed_services li,ul#blocked_services li").mouseleave( function(){
+    $("#allowed_services div,#blocked_services div").mouseleave( function(){
         $(this).find("input").fadeTo(100,0);
     });
     
-    $("ul#blocked_services li").filter( function(index) {
+    $("#blocked_services div").filter( function(index) {
         return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "true";
     }).hide();
 
-    $("ul#allowed_services li").filter( function(index) {
+    $("#allowed_services div").filter( function(index) {
         return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "false";
     }).hide();
 
-    $(".fw-services-list li h4").click(function(){
-        $(this).next("ul").slideToggle("slow");
-    });
+    $("#accordion").accordion({
+            autoHeight : false,
+            navigation : true,
+            collapsible: true,
+            header     : 'fieldset h4'
+        });
   });
 
   <% end -%>
-
-  <style type="text/css">
-    .plugin-content h4 {
-        background: #e9e7e7 no-repeat left center;
-    }
-    .plugin-content h4:hover {
-        background-color: #e3e2e2;
-    }
-    .plugin-content ul {
-        list-style-type: none;
-    }
-  </style>
 <% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
@@ -70,40 +61,42 @@
     <% end %>
   </div>
 
-  <fieldset id="" class="">
-      <label for="use_firewall"><%=_("Use Firewall")%></label>
+  <fieldset class="wrapper with-background no-min-height">
+      <h4><%= _("General settings") %></h4>
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
       <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
           <%=  "checked=\"checked\"" if @firewall.use_firewall %>
           <%=  "disabled=\"disabled\"" if disabled %> 
           />
+      <label for="use_firewall"><%=_("Use Firewall")%></label>
+      <% #don't use check_box helper as it generate also hidden opposite value
+      %>
   </fieldset>
-      <ul class="fw-services-list">
-          <li>
-              <h4><%= _("Allowed") %></h4>
-              <ul id="allowed_services">
-              <% @firewall.fw_services.each do |service| %>
-                  <li class="<%= service.css_class %>">
-                      <input type="button" value="Block" class="button"/>
-                      <%= service.name %>
-                  </li>
-              <% end %>
-              </ul>
-          </li>
-          <li>
-              <h4><%= _("Blocked") %></h4>
-              <ul id="blocked_services">
-              <% @firewall.fw_services.each do |service| %>
-                  <li class="<%= service.css_class %>">
-                      <input type="button" value="Allow" class="button"/>
-                      <%= service.name %>
-                  </li>
-              <% end %>
-              </ul>
-          </li>
-      </ul>
-  </fieldset>
+  <div id="accordion">
+      <fieldset class="wrapper with-background">
+      <h4><%= _("Allowed services") %></h4>
+      <div id="allowed_services">
+          <% @firewall.fw_services.each do |service| %>
+              <div class="<%= service.css_class %>">
+                  <input type="button" value="Block" class="button" id="label_<%= service.input_name%>"/>
+                  <label for="label_<%= service.input_name%>"><%= service.name %></label>
+              </div>
+          <% end %>
+      </div>
+      </fieldset>
+      <fieldset class="wrapper with-background">
+      <h4><%= _("Blocked services") %></h4>
+      <div id="blocked_services">
+          <% @firewall.fw_services.each do |service| %>
+              <div class="<%= service.css_class %>">
+                  <input type="button" value="Allow" class="button" id="label_<%= service.input_name%>"/>
+                  <label for="label_<%= service.input_name%>"><%= service.name %></label>
+              </div>
+          <% end %>
+      </div>
+      </fieldset>
+  </div>
   <fieldset>
       <%= form_send_buttons :disabled => disabled, :class => "button" %>
   </fieldset>
