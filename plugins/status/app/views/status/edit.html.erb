@@ -2,24 +2,13 @@
 
 <% content_for :head do %>
    <%= javascript_include_tag :defaults %>
-   <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
 
    <% javascript_tag do -%>
       // Sets a focus to a fieldID, switching to its tab first.
       // fieldID is like "value/CPU/CPU"
-      function focus_tabbed(fieldID) {
-	// show its fieldset and save ID
-	var fsID = $("#"+fieldID).closest('fieldset').attr('id');
-	$("#"+fsID).show()
-	// hide all other fieldsets
-	$("#"+fsID).siblings('fieldset').hide();
-	// Remove highlighting from tabs
-	$('.tab-nav').find('a').removeClass('selected');
-	var className = fsID
-	// highlight its tab
-	$('.'+className).addClass('selected');
-	// focus at last
-	$("#"+fieldID).focus();
+      function focus_field(fieldID) {
+        $("#accordion").accordion('activate',$("#"+fieldID).parent().parent().prev());
+        $("#"+fieldID).focus();
       }
 
       function validNumber(number) {
@@ -36,7 +25,7 @@
               <% limit_key = "value_#{group.id}_#{single_graph.headline}_#{line.label}" %>
               if (! validNumber($("#<%=limit_key%>")[0].value)) {
                 say_bad = "<%= _("Only numbers are valid !") %>"
-                focus_tabbed("<%=limit_key%>");
+                focus_field("<%=limit_key%>");
                 alert (say_bad);
                 return false;
               }
@@ -46,6 +35,12 @@
         $('#progress').show();
         return true;
       };
+      $(document).ready(function(){
+        $("#accordion").accordion({
+           navigation : true,
+           header     : 'fieldset legend'
+        });
+      });
    <% end %>
 <% end %>
 
@@ -54,48 +49,46 @@
 
 <h2><%= _("Settings") %></h2>
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
-<fieldset>
-  <ul class="tab-nav">
-    <!-- javascript adds tabs here -->
-  </ul>
-
+  <div id="accordion">
   <% @graphs.each do |group| %>
-    <fieldset id=<%= group.id %> class="ui-tab">
-      <legend><%= group.id %></legend>    
-      <br/>	
-      <p>Alarm, if</p>
-      <% group.single_graphs.each do |single_graph| %>
-        <% if group.single_graphs.size > 1 %>
-          <br/>	
-          <p><b><%= "#{single_graph.headline}" %></b></p>
+    <fieldset id=<%= group.id %> class="wrapper with-background">
+      <legend id="<%= group.id %>"><%= group.id %></legend>
+      <div>
+        <p>Alarm, if</p>
+        <% group.single_graphs.each do |single_graph| %>
+          <% if group.single_graphs.size > 1 %>
+            <p><b><%= "#{single_graph.headline}" %></b></p>
+          <% end %>
+          <% single_graph.lines.each do |line| %>
+            <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}" 
+               measurements = {_("undercuts") => "min", _("exceeds") => "max"}
+               if line.limits.max.to_i > 0
+                 val = line.limits.max.to_i
+                 measurement = "max"
+               elsif line.limits.min.to_i > 0
+                 val = line.limits.min.to_i
+                 measurement = "min"
+               else
+                 val = ""
+                 measurement = "max"
+               end
+            %>
+            <p>
+              <label for="#{limit_key}"><%="#{line.label}"%></label>
+              <%= select_tag("measurement/"+limit_key, options_for_select(measurements, measurement), :disabled => write_disabled)%>
+              <%=text_field_tag "value/"+limit_key, val, :disabled => write_disabled %>
+              <%= "#{group.y_label}" %>
+            </p>
+          <% end %>
         <% end %>
-        <% single_graph.lines.each do |line| %>
-          <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}" 
-             measurements = {_("undercuts") => "min", _("exceeds") => "max"}
-             if line.limits.max.to_i > 0
-               val = line.limits.max.to_i
-               measurement = "max"
-             elsif line.limits.min.to_i > 0
-               val = line.limits.min.to_i
-               measurement = "min"
-             else
-               val = ""
-               measurement = "max"
-             end
-          %>
-          <p>
-            <label for="#{limit_key}"><%="#{line.label}"%></label>
-            <%= select_tag("measurement/"+limit_key, options_for_select(measurements, measurement), :disabled => write_disabled)%>
-            <%=text_field_tag "value/"+limit_key, val, :disabled => write_disabled %>
-            <%= "#{group.y_label}" %>
-          </p>
-        <% end %>
-      <% end %>
+      </div>
     </fieldset>
   <% end %>
-</fieldset>
+  </div>
 <fieldset>
-    <%= form_send_buttons :disabled => write_disabled %>
+  <%= link_to _('Cancel'), {:action => :index}%>
+  <%= form_str_spacer %>
+  <%= form_next_button :disabled => write_disabled %>
 </fieldset>
 <% end %>
 </div>
