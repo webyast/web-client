@@ -1,3 +1,18 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :defaults %>
+  <% javascript_tag do -%>
+  $(document).ready(function(){
+    $("#accordion").accordion({
+       autoHeight : false,
+       navigation : true,
+       collapsible: true,
+       header     : 'fieldset legend'
+    });
+    $("#accordion").accordion('activate',false);
+  });
+  <% end %>
+<% end %>
+
 <div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="<%= _("register plugin") %>"/><%=_("Registration")%></div>
 
 <div class='plugin-content grid_12' style="padding-top: 8px">
@@ -22,50 +37,45 @@
      </fieldset>
   <% else %>
 
-<% form_tag form_target_save, { :onsubmit => "$('#progress').show()" } do -%>
+    <% form_tag form_target_save, { :onsubmit => "$('#progress').show()" } do -%>
 
-
-  <% if @arguments_mandatory then %>
-  <fieldset class="wrapper with-background width-75">
-    <legend><%= _("Mandatory Information") %></legend>
-    <% for argument in @arguments_mandatory %>
-      <p>
-        <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
-          <%= argument['description'] %>
-        </label>
-        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
-      </p>
-    <% end %>
+      <% if @arguments_mandatory then %>
+      <fieldset class="wrapper with-background width-75">
+        <legend><%= _("Mandatory Information") %></legend>
+        <% for argument in @arguments_mandatory %>
+          <p>
+            <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
+              <%= argument['description'] %>
+            </label>
+            <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+          </p>
+        <% end %>
+      </fieldset>
+      <% end %>
+    
+      <% if @arguments_detail then %>
+        <div id="accordion">
+          <fieldset class="wrapper with-background width-75" id="argumentdetail">
+            <legend><%= _("Details") %></legend>
+            <div style="display: none;">
+              <% for argument in @arguments_detail %>
+                <p>
+                  <label for="<%= 'registration_arg_'+argument['name'] %>" >
+                    <%= argument['description'] %>
+                  </label>
+                  <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+                </p>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
+      <% end %>
+    <% end  %>
+  <% end -%>
+  <fieldset>
+    <%= form_send_buttons %>
+    <%= if basesystem_in_process? then
+          link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
+        end %>
   </fieldset>
-  <% end %>
-
-  <%= show_hide_elements :argumentdetail, { :show_msg => _("Show Details"), :hide_msg => _("Hide Details") } %>
-
-  <% if @arguments_detail then %>
-  <fieldset class="wrapper with-background width-75" id="argumentdetail" style="display: none">
-    <legend><%= _("Details") %></legend>
-    <% for argument in @arguments_detail %>
-      <p>
-        <label for="<%= 'registration_arg_'+argument['name'] %>" >
-          <%= argument['description'] %>
-        </label>
-        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
-      </p>
-    <% end %>
-  </fieldset>
-  <% end %>
-
-    <fieldset>
-      <%= form_send_buttons %>
-      <%= if basesystem_in_process? then
-            link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
-          end %>
-    </fieldset>
-
-<% end  %>
-
-
-<% end -%>
-
 </div>
-
