@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Mon Mar  1 13:00:33 UTC 2010 - lslezak@suse.cz
+
+- html_helper.rb - escape_jquery_selector() replaced by safe_id(),
+  escaping jQuery selector doesn't help in some cases,
+  rather recode whole ID to string not containing any
+  HTML/Javascript problematic characters
+- 0.1.9
+
+-------------------------------------------------------------------
 Fri Feb 26 22:54:33 CET 2010 - jdsn@suse.de
 
 - add effect_helper.rb to easily show and hide elements 

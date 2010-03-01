@@ -12,8 +12,8 @@
 Name:           webyast-software-ui
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
-# escape_jquery_seletor helper
-PreReq:         yast2-webclient >= 0.1.8
+# safe_id helper
+PreReq:         yast2-webclient >= 0.1.9
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
