@@ -210,25 +210,35 @@ EOF2
 EOF_PROGRESS
   end
 
-  # escape jQuery element selector name
-  # example usage:
-  #     <td id="my_table_item_<%= h my_id -%>" ...
-  #        then
-  #     jquery_id = h escape_jquery_selector(my_id)
-  #     remote_function(:update => "#my_table_item_#{jquery_id}", ... )
-  def escape_jquery_selector selector
-    escape = '@#;&,.+*~\':"!^$[]()=>|/% '
-    esc_prefix = '\\\\\\\\'
+  # Encode an input string to a string which can be safely used as
+  # an HTML element id without escaping problematic symbols.
+  # The result contains only [a-zA-Z0-9_]* characters and can be used in jQuery
+  # selectors without escaping.
+  # Example:
+  #     my_id = safe_id id
 
-    # create a copy, don't modify the parameter
-    ret = selector.dup
+  #     <td id="my_table_item_<%= my_id -%>" ...
+  #     remote_function(:update => "#my_table_item_#{my_id}", ... )
+  #     $('#my_table_item_#{my_id}').hide()
+  def safe_id id
+    return nil if id.nil?
 
-    escape.each_char {|c|
-      ret.gsub!(c, esc_prefix + c)
-    }
+    require 'base64'
 
+    # encode using Base64 encoding, remove the padding at the end
+    Base64.encode64(id.to_s).match /^([^=]*)=*$/
+
+    # make one line string and replace symbols used in Base64
+    # to get string containing only [-a-zA-Z0-9_]* characters
+    # see http://en.wikipedia.org/wiki/Base64
+    # (esp. "modified Base64 for URL" paragraph)
+    ret = $1
+    ret.gsub!("\n", '')
+    ret.gsub!('+', '-')
+    ret.gsub!('/', '_')
     ret
   end
+
 end
 
 # vim: ft=ruby

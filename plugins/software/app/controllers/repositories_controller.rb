@@ -162,6 +162,7 @@ class RepositoriesController < ApplicationController
     @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
     return unless @repo
 
+    enabled_orig = @repo.enabled
     @repo.enabled = enabled
     @repo.id = URI.escape(@repo.id)
 
@@ -183,6 +184,11 @@ class RepositoriesController < ApplicationController
           # XML parsing has failed
           error_string = _("Unknown backend error.")
       end
+    end
+
+    # display the original value if an error occurred
+    if !error_string.blank?
+      @repo.enabled = enabled_orig
     end
 
     render :partial => 'repository_checkbox', :locals => {:error => error_string, :id => @repo.id, :enabled => @repo.enabled, :disabled => !@permissions[:write]}

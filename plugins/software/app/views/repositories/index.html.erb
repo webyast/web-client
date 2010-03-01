@@ -26,7 +26,7 @@
       <% @repos.each do |r| %>
 	<tr>
 	  <td align="center"><%= h r.priority -%></td>
-	  <td align="center" id="repo_cell_<%= h r.id -%>">
+	  <td align="center" id="repo_cell_<%= safe_id r.id -%>">
 	    <%= render :partial => 'repository_checkbox',
 	      :locals => { :id => r.id, :enabled => r.enabled, :disabled => disabled,
 	      :error => nil} %>

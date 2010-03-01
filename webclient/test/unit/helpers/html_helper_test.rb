@@ -4,16 +4,26 @@ class HtmlHelperTest < ActiveSupport::TestCase
   include ViewHelpers::HtmlHelper
 
   # test jQuery selector name escaping
-  def test_jquery_selector_escaping
-    # all problematic characters should be prefixed by double back slash
-    assert_equal "\\\\@\\\\#\\\\;\\\\&\\\\,\\\\.\\\\+\\\\*\\\\~\\\\'\\\\:\\\\\"\\\\!\\\\^\\\\$\\\\[\\\\]\\\\(\\\\)\\\\=\\\\>\\\\|\\\\/\\\\%\\\\ ",
-      escape_jquery_selector('@#;&,.+*~\':"!^$[]()=>|/% ')
+  def test_safe_id
 
-    # ASCII characters must not be changed
-    assert_equal "ASDFG123asdfg123", escape_jquery_selector("ASDFG123asdfg123")
+    # test nil behavior
+    assert_equal nil, safe_id(nil)
 
-    # when mixed escape only problematic symbols
-    assert_equal "asdf\\\\(\\\\)\\\\+-123", escape_jquery_selector("asdf()+-123")
+    # regexp for safe_id() result - only ASCII letters, numbers, '-' and '_'
+    r = /^[-a-zA-Z0-9_]*$/
+
+    # test empty input
+    assert_match r, safe_id('')
+
+    # test symbols
+    assert_match r, safe_id('!@#$%^&*()_+}{":?><\'')
+
+    # test some UTF-8 characters
+    assert_match r, safe_id('ěščřžýáíéůúÁŠČŘÝÁÍÉŮÚ')
+
+    # test plain ASCII
+    assert_match r, safe_id('plain ASCII input')
+
   end
 
 end
