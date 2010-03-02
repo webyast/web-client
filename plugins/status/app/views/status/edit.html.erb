@@ -51,6 +51,7 @@
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
+<fieldset>
 <h2><%= _("Settings") %></h2>
 
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
@@ -92,8 +93,9 @@
       <% end %>
     </fieldset>
   <% end %>
-  <p>
+</fieldset>
+<fieldset>
     <%= form_send_buttons :disabled => write_disabled %>
-  </p>
+</fieldset>
 <% end %>
 </div>

@@ -1,5 +1,5 @@
-<div class="plugin-content grid_12">
-<h3><%=_("New User")%></h3>
+<% content_for :head do %>
+
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
 <%= javascript_include_tag "users_edit.js" %>
   <style type="text/css">
@@ -44,6 +44,13 @@
     password_validation_enabled = false;
 
 </script>
+
+<% end %>
+
+<div class="plugin-content grid_12">
+<fieldset>
+<h3><%=_("New User")%></h3>
+</fieldset>
 <% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
@@ -84,7 +91,7 @@
           p.visual_effect( :switch_on,  :hidedetails,    {:duration => 0} )
         end
     %>
-  </p>	
+  </p>
 <div id="argumentdetail" style="display: none">
   <fieldset class="wrapper with-background">
     <legend>Group Membership</legend>
@@ -126,7 +133,11 @@
     </p>
    </fieldset>
   </div>
-   <p><%= link_to _('Cancel'), {:action => :index}%><%= f.submit _("Save"), :onclick=>"return user_validation();" %></p>
+    <p>
+      <%= link_to _('Cancel'), {:action => :index}%>
+      <%= form_str_spacer %>
+      <%= f.submit _("Save"), :onclick=>"return user_validation();" %>
+    </p>
   </div> 
 <% end %>
 

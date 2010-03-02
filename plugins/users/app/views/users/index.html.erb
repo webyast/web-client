@@ -1,7 +1,7 @@
+<% content_for :head do %>
+
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
 
-<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local Users")%></div>
-<div class="plugin-content grid_12">
  <style>
     .pad1_2em {
 	padding: 1em 2em;
@@ -40,8 +40,11 @@
  // default state
  $('.del_user').hide();
 });//document.ready
-
 </script>
+
+<% end %>
+<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local Users")%></div>
+<div class="plugin-content grid_12">
 
 <div id='qs_anchor' class='pad1_2em'></div>
 <div class='pad1_2em'>
@@ -68,14 +71,13 @@
 </table>
 </div>
 
-<% if @permissions[:useradd] %>
-<div class='pad1_2em'>
-  <%= link_to  _("New User..."), {:action => :new }, :class=>'button', :onclick=>"$('#progress').show()" -%>
-</p>
-<% end %>
+<fieldset>
+  <%= form_back_button -%>
+  <% if @permissions[:useradd] %>
+    <%= form_str_spacer %>
+    <%= link_to _("New User..."), {:action => :new}, :class=>'button', :onclick=>"$('#progress').show()" -%>
+  <% end %>
+</fieldset>
 </div>
-<p>
-<%= link_to _("Back"), '/', :class=>"button" -%>
-</p>
 </div>
 

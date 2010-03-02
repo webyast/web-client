@@ -27,7 +27,7 @@ $(document).ready(function() {initMenuBar();});
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
 
-
+<fieldset>
 <ul id="menu">
 <% if @graphs  %>
   <% @graphs.each do |group| %>
@@ -90,11 +90,10 @@ $(document).ready(function() {initMenuBar();});
     </li>
 <% end %>
 </ul>
-<p>
-<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
-</p>
-<p>
-<a href="/" class="button"><%=_("Back")%></a>
-</p>
+</fieldset>
+<fieldset>
+<%= form_back_button + form_str_spacer %>
+<%= link_to _("Edit Limits"), '/status/edit', :class => "button" %>
+</fieldset>
 </div>
 

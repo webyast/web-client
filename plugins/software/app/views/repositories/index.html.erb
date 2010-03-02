@@ -44,13 +44,18 @@
       </table>
   <% end %>
 
-  <br>
-  <%= link_to _("Back"), '/', :class=>"button", :onclick=>"$('#progress').show()" %>
+  <fieldset>
+  <%= form_back_button %>
 
   <% if !disabled %>
-    <%= link_to _("Add"), {:action => 'add'}, :class=>"button", :onclick=>"$('#progress').show()" %> <%= _("a new repository") %>
+    <%= form_str_spacer %>
+    <%= link_to   (_("Add") + " " + _("a new repository") ), 
+                  {:action => 'add'}, 
+                  :class=>"button", 
+                  :onclick=>"$('#progress').show()" 
+                  %>
   <% end %>
-
+  </fieldset>
   </div>
 
 <% end %>

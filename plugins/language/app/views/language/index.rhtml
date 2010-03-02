@@ -8,9 +8,9 @@
   options_for_select(LangHelper::LANGUAGES.invert.to_a.reject{|val| !(supported_languages.include?(val[1]))}.sort_by { |a| a[0].parameterize}, current_locale) %>
    </p>
 </fieldset>
-<div>
+<fieldset>
   <%= form_send_buttons %>
-</div>
+</fieldset>
 <% end -%>
 </div>
 
