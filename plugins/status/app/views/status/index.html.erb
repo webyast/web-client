@@ -92,8 +92,9 @@ $(document).ready(function() {initMenuBar();});
 </ul>
 </fieldset>
 <fieldset>
-<%= form_back_button + form_str_spacer %>
-<%= link_to _("Edit Limits"), '/status/edit', :class => "button" %>
+<%= link_to _("Back"), :controller => "controlpanel" %> 
+<%= form_str_spacer %>
+<%= link_to  _("Edit Limits"), '/status/edit', :class => "button" %>
 </fieldset>
 </div>
 
