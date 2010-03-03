@@ -84,10 +84,10 @@ $(document).ready(function() {initMenuBar();});
           <%= log.path %>
         </div>
       </ul>
-      <%  periodically_call_remote(:url => { :action => "ajax_log_custom", 
-                                   :id => log.id, :lines => default_lines }, :frequency => frequency, 
-                                   :update => log_id(log.id)) #currently due missing '=' disabled%>
     </li>
+    <%  periodically_call_remote(:url => { :action => "ajax_log_custom", 
+                                 :id => log.id, :lines => default_lines }, :frequency => frequency, 
+                                 :update => log_id(log.id)) #currently due missing '=' disabled %>
 <% end %>
 </ul>
 </fieldset>

@@ -51,10 +51,10 @@
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
-<fieldset>
-<h2><%= _("Settings") %></h2>
 
+<h2><%= _("Settings") %></h2>
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
+<fieldset>
   <ul class="tab-nav">
     <!-- javascript adds tabs here -->
   </ul>
@@ -62,11 +62,11 @@
   <% @graphs.each do |group| %>
     <fieldset id=<%= group.id %> class="ui-tab">
       <legend><%= group.id %></legend>    
-      <br>	
+      <br/>	
       <p>Alarm, if</p>
       <% group.single_graphs.each do |single_graph| %>
         <% if group.single_graphs.size > 1 %>
-          <br>	
+          <br/>	
           <p><b><%= "#{single_graph.headline}" %></b></p>
         <% end %>
         <% single_graph.lines.each do |line| %>
