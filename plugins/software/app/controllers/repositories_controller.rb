@@ -5,16 +5,14 @@ class RepositoriesController < ApplicationController
 
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
-  #don't add load_proxy as action for controller
-  hide_action :load_proxy
 
   # Initialize GetText and Content-Type.
   init_gettext 'yast_webclient_repositories'
 
   def index
-    @repos = load_proxy 'org.opensuse.yast.system.repositories', :all
+    @repos = Repository.find :all
     return unless @repos
+    @permissions = Repository.permissions
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
   end
 
@@ -24,7 +22,9 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    @repo = Repository.find URI.escape(params[:id])
+    @permissions = Repository.permissions
+
     return unless @repo
 
     @adding = false
@@ -36,7 +36,7 @@ class RepositoriesController < ApplicationController
       redirect_to :action => 'index' and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    @repo = Repository.find URI.escape(params[:id])
     return unless @repo
 
     @repo.id = URI.escape(@repo.id)
@@ -54,7 +54,7 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    @repo = Repository.find URI.escape(params[:id])
     return unless @repo
 
     repository = params[:repository]
@@ -94,11 +94,8 @@ class RepositoriesController < ApplicationController
   end
 
   def add
-    # load only permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
-    @permissions = @client.permissions
-
-    @repo = @client.new
+    @repo = Repository.new
+    @permissions = Repository.permissions
 
     # add default properties
     defaults = {
@@ -119,11 +116,9 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    # load only permissions
-    @client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.repositories')
-    @permissions = @client.permissions
+    @permissions = Repository.permissions
 
-    @repo = @client.new
+    @repo = Repository.new
     repository = params[:repository]
     @repo.load(repository)
 
@@ -159,8 +154,9 @@ class RepositoriesController < ApplicationController
     enabled = params[:enabled] == 'true'
     Rails.logger.debug "Setting repository status: '#{params[:id]}' => #{enabled}"
 
-    @repo = load_proxy 'org.opensuse.yast.system.repositories', URI.escape(params[:id])
+    @repo = Repository.find URI.escape(params[:id])
     return unless @repo
+    @permissions = Repository.permissions
 
     enabled_orig = @repo.enabled
     @repo.enabled = enabled
