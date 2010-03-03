@@ -17,7 +17,7 @@ class ServicesController < ApplicationController
   def show_status
 
     begin
-	@response = Service.find(:one, :from => params[:id].intern)
+	@response = Service.find(:one, :from => params[:id].intern, :params => { "custom" => params[:custom]})
     rescue ActiveResource::ResourceNotFound => e
 	Rails.logger.error "Resource not found: #{e.to_s}: #{e.response.body}"
 	render :text => _('(cannot read status)') and return
@@ -41,8 +41,7 @@ class ServicesController < ApplicationController
 
   # PUT /services/1.xml
   def execute
-
-    args	= { :execute => params[:id] }
+    args	= { :execute => params[:id], :custom => params[:custom] }
     response = Service.put(params[:service_id], args)
     # we get a hash with exit, stderr, stdout
     ret = Hash.from_xml(response.body)

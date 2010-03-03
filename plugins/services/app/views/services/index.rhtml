@@ -142,7 +142,7 @@ function select_status (val) {
 
 
 <%
-commands	= [ "start", "stop", "restart", "reload" ]
+commands	= [ "start", "stop", "restart", ]
 @services.each do |service| %>
   <li>
 
@@ -169,12 +169,14 @@ commands	= [ "start", "stop", "restart", "reload" ]
 		url	= {
 		    :id		=> cmd, 
 		    :action	=> "execute", 
-		    :service_id	=> service.name
+		    :service_id	=> service.name,
+		    :custom	=> service.custom
 		}
 		status_url	= {
 		    :controler	=> :services,
 		    :action	=> :show_status,
-		    :id		=> service.name 
+		    :id		=> service.name,
+		    :custom	=> service.custom
 		}
 		html_options	= {
 		    :class	=> "button"
@@ -199,9 +201,10 @@ commands	= [ "start", "stop", "restart", "reload" ]
 	url	= {
 	    :controller => :services,
 	    :id		=> service.name,
-	    :action	=> :show_status
+	    :action	=> :show_status,
+	    :custom	=> service.custom
 	}
-
+# FIXME toggle_service_info!
 	link_to_remote _('refresh status'), :update => "service_status_#{service.name}",
 	    :url => url,
 	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",

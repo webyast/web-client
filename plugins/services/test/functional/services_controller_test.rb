@@ -24,9 +24,8 @@ class ServicesControllerTest < ActionController::TestCase
       mock.resources  :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
       mock.get   "/services.xml?read_status=1", header, response_services, 200
-      mock.get   "/services/ntp.xml", header, response_ntp, 200
-      mock.post  "/services.xml", header, response_services, 200
-      mock.put	"/services/ntp.xml?execute=stop", header, response_ntp_stop, 200
+      mock.get   "/services/ntp.xml?custom=false", header, response_ntp, 200
+      mock.put	"/services/ntp.xml?custom=false&execute=stop", header, response_ntp_stop, 200
     end
   end
 
@@ -60,7 +59,7 @@ class ServicesControllerTest < ActionController::TestCase
   end
 
   def test_ntp_status
-    ret = get :show_status, {:id => 'ntp'}
+    ret = get :show_status, {:id => 'ntp', :custom => false}
     assert_response :success
     assert !ret.body.index("not running").nil? # fixture status is 3 = not running
   end
@@ -69,15 +68,15 @@ class ServicesControllerTest < ActionController::TestCase
     response_aaa = fixture("aaa.xml")
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.get   "/services/aaa.xml", header, response_aaa, 404
+      mock.get   "/services/aaa.xml?custom=false", header, response_aaa, 404
     end
-    ret = get :show_status, {:id => 'aaa'}
+    ret = get :show_status, {:id => 'aaa', :custom => false}
     assert_equal ret.body, '(cannot read status)'
     assert_response :success
   end
 
   def test_execute
-    put :execute, { :service_id => 'ntp', :id => 'stop'}
+    put :execute, { :service_id => 'ntp', :id => 'stop', :custom => false}
     assert assigns(:error_string), "success"
     assert assigns(:result_string), "Shutting down network time protocol daemon (NTPD)\n"
   end
