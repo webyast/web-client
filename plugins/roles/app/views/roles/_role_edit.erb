@@ -1,0 +1,11 @@
+<div>
+	<% Rails.logger.info "permissions #{permissions.inspect}" %>
+	<% permissions.each do |p| %>
+	<div><a class="button"> <%= p %> </a></div>
+	<% end %>
+</div>
+<div style="position=right">
+	<% permissions.each do |p| %>
+	<div><a onClick="" class="button"> <%= p %> </a></div>
+	<% end %>
+</div>

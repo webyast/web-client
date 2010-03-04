@@ -1,0 +1,22 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :defaults %>
+<% end %>
+
+<div class='plugin-icon'><img src='/icons/yast-permissions.png' alt="Roles module"/><%=_("Roles")%></div>
+
+<div class="plugin-content grid_12">
+	<% (@roles||[]).each  do |role| %>
+		<div>
+			<%= link_to role.name, "/roles/edit/#{role.name}", :class => "button" %>
+		</div>
+	<% end %>
+	<div onClick="$(\".new_role\").show();"> <a>Create new role</a> </div>
+	<div id="new_role" style="visibility=hidden">
+		<fieldset>
+  		<% form_tag '/roles/create', {:class => 'container'} do %>
+    	<label for="role_name"> Name </label><%= text_field_tag "role_name", ""%>
+			<%= submit_tag "create" %>
+			<% end %>
+		</fieldset>
+	</div>
+</div>
