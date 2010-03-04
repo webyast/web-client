@@ -22,12 +22,17 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = Repository.find URI.escape(params[:id])
-    @permissions = Repository.permissions
+    begin
+      @repo = Repository.find URI.escape(params[:id])
+      @permissions = Repository.permissions
 
-    return unless @repo
+      return unless @repo
 
-    @adding = false
+      @adding = false
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      redirect_to :action => 'index' and return
+    end
   end
 
   def delete
@@ -36,8 +41,13 @@ class RepositoriesController < ApplicationController
       redirect_to :action => 'index' and return
     end
 
-    @repo = Repository.find URI.escape(params[:id])
-    return unless @repo
+    begin
+      @repo = Repository.find URI.escape(params[:id])
+      return unless @repo
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      redirect_to :action => 'index' and return
+    end
 
     @repo.id = URI.escape(@repo.id)
 
@@ -54,8 +64,18 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :index and return
     end
 
-    @repo = Repository.find URI.escape(params[:id])
-    return unless @repo
+    begin
+      @repo = Repository.find URI.escape(params[:id])
+      return unless @repo
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      redirect_to :action => 'index' and return
+    end
+
+    if params[:repository].blank?
+      flash[:error] = _("Cannot update repository '#{params[:id]}': missing parameters.")
+      redirect_to :action => 'index' and return
+    end
 
     repository = params[:repository]
 
@@ -72,13 +92,13 @@ class RepositoriesController < ApplicationController
       if @repo.save
         flash[:message] = _("Repository '#{@repo.name}' has been updated.")
       end
-    rescue ActiveResource::ServerError => ex
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
-        Rails.log.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
         err = Hash.from_xml ex.response.body
 
-        if !err['error']['description'].blank?
-          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        if !err['error']['message'].blank?
+          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
         else
           flash[:error] = _("Unknown backend error.")
         end
@@ -120,6 +140,12 @@ class RepositoriesController < ApplicationController
 
     @repo = Repository.new
     repository = params[:repository]
+
+    if repository.blank?
+      flash[:error] = _('Missing repository parameters')
+      redirect_to :action => :add and return
+    end
+
     @repo.load(repository)
 
     @repo.id = URI.escape(@repo.id)
@@ -128,20 +154,22 @@ class RepositoriesController < ApplicationController
       if @repo.save
         flash[:message] = _("Repository '#{@repo.name}' has been added.")
       end
-    rescue ActiveResource::ServerError => ex
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
-        Rails.log.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        Rails.logger.error "Received error: #{ex.inspect}"
         err = Hash.from_xml ex.response.body
 
-        if !err['error']['description'].blank?
-          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        if !err['error']['message'].blank?
+          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
         else
           flash[:error] = _("Unknown backend error.")
         end
       rescue Exception => e
+          Rails.logger.error "Exception: #{e}"
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ex.response.body}")
       end
+      redirect_to :action => :add and return
     end
 
     redirect_to :action => :index and return
@@ -149,6 +177,11 @@ class RepositoriesController < ApplicationController
 
   def set_status
     if params[:id].blank?
+      render :text => _("Error: Missing repository id.") and return
+    end
+
+    if !params.has_key? :enabled
+      render :text => _("Error: Missing 'enabled' parameter.") and return
     end
 
     enabled = params[:enabled] == 'true'
@@ -166,13 +199,13 @@ class RepositoriesController < ApplicationController
 
     begin
       @repo.save
-    rescue ActiveResource::ServerError => ex
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
-        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        Rails.logger.error "Received error: #{ex}"
         err = Hash.from_xml ex.response.body
 
-        if !err['error']['description'].blank?
-          error_string = _("Cannot update repository '#{@repo.name}': #{err['error']['description']}")
+        if !err['error']['message'].blank?
+          error_string = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
         else
           error_string = _("Unknown backend error.")
         end
