@@ -65,7 +65,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories.xml", nil, @header))
     assert_response :success
     assert_valid_markup
-    assert_false flash.empty?
+    assert flash.empty?
   end
 
 
