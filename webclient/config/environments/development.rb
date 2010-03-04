@@ -21,7 +21,7 @@ require 'yast/rack/response_validator'
 config.middleware.use YaST::Rack::ResponseValidator
   STDERR.puts "Automatic html validation enabled"
 rescue LoadError
-  STDERR.puts "Automatic html validation disabled. Please install rubygem-tidy"
+  STDERR.puts "Automatic html validation disabled. Please install rubygem-tidy and rubygem-nokogiri"
 end
 
 
