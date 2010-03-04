@@ -21,8 +21,9 @@
    });
 
    $("#user_user_password").pstrength({
-     'displayMinChar'   : false,
-       'verdicts'               : [
+      'displayMinChar'	: true,
+      'minCharText'	: 'Password Strength:', 
+      'verdicts'	: [
             "<%= _("Weak") %>",
             "<%= _("Normal") %>",
             "<%= _("Medium") %>",
