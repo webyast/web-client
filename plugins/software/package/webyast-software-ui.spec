@@ -1,5 +1,5 @@
 #
-# spec file for package webyast-software-ui (Version 0.1.6)
+# spec file for package webyast-software-ui (Version 0.1.7)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -18,9 +18,9 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_cont
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.6
+Version:        0.1.7
 Release:        0
-Summary:        YaST2 - Webclient - Patch_Updates
+Summary:        YaST2 - Webclient - Software and Repository Management
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -32,10 +32,12 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle patches.
+YaST2 - Webclient - UI for YaST-webservice. This package contains patch installation
+and repository management modules.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
+    Ladislav Slezak <lslezak@suse.cz>
 
 %prep
 %setup -q -n www
