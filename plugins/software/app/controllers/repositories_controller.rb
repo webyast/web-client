@@ -10,7 +10,13 @@ class RepositoriesController < ApplicationController
   init_gettext 'yast_webclient_repositories'
 
   def index
-    @repos = Repository.find :all
+    begin
+      @repos = Repository.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Cannot read repository list.")
+      return
+    end
+
     return unless @repos
     @permissions = Repository.permissions
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
@@ -224,4 +230,4 @@ class RepositoriesController < ApplicationController
 
   end
 
-  end
+end

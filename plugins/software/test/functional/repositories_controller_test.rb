@@ -51,6 +51,24 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert flash.empty?
   end
 
+  def test_index_error
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
+          { :policy => "org.opensuse.yast.system.repositories"})
+      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
+
+      mock.get  "/repositories.xml", @header, nil, 404
+    end
+
+    get :index
+
+    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories.xml", nil, @header))
+    assert_response :success
+    assert_valid_markup
+    assert_false flash.empty?
+  end
+
+
   def test_show
     get :show, :id => 'Ruby'
 
