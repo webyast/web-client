@@ -1,5 +1,4 @@
 <div>
-	<% Rails.logger.info "permissions #{permissions.inspect}" %>
 	<% perm_id = permissions.collect { |p| p.id }.sort
 		 perm_id.each do |p| %>
 	<div><a class="button"> <%= p %> </a></div>
