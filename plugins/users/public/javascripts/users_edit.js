@@ -5,7 +5,7 @@
    function groups_validation(){
      var mygroups = [];
      if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
-     var allgroups = $("#user_all_grps_string")[0].value.split(",");
+     var allgroups = $("#all_grps_string")[0].value.split(",");
      errmsg="";
      for (i=0;i<mygroups.length;i++){
        var found=false;
@@ -22,6 +22,14 @@
      return (errmsg.length==0);
    }
 
+
+   function new_user_validation(){
+     var valid = $('#userForm').valid();
+     // if UID is invalidate, do Show Details (make it visible)
+     if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
+     valid = valid && groups_validation();
+     return valid;
+   }
 
    function edit_user_validation(){
      valid=false;
@@ -67,7 +75,7 @@
    if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
    _initializeDragContainer(mygroups,'ContainerUser');
 
-   var allgroups = $('#user_all_grps_string')[0].value.split(",").sort();
+   var allgroups = $('#all_grps_string')[0].value.split(",").sort();
    allgroups=allgroups.filter(_filter_all_groups);
    _initializeDragContainer(allgroups,'ContainerGroups');
 

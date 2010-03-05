@@ -39,13 +39,6 @@
 
  })
 
-   function user_validation(){
-     var valid = $('#userForm').valid();
-     // if UID is invalidate, do Show Details (make it visible)
-     if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
-     return valid;
-   }
-
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
 
@@ -60,7 +53,7 @@
   <%= f.error_messages %>
 
   <div id="accordion">
-    <fieldset class="wrapper with-background">
+    <fieldset id="tab_login" class="wrapper with-background">
       <legend> Basic User Data</legend>
       <div>
         <p>
@@ -83,12 +76,12 @@
         <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
       </div>
     </fieldset>
-    <fieldset class="wrapper with-background">
+    <fieldset id="tab_groups" class="wrapper with-background">
       <legend>Group Membership</legend>
       <div>
         <p>
           <label><%=_("Groups")%></label>
-          <%= f.text_field :grp_string %>
+          <%= f.text_field :grp_string, :onkeyup => "groups_validation();" %>
           <a href="#" class="button" onclick="open_groups_dialog();return false;">Manage Groups</a>
         </p>
         <p><label id="groups-error" class="error"></label><p>
@@ -100,12 +93,11 @@
           <div>
             <div class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
             <div class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
-          <div><%= f.hidden_field :all_grps_string %></div>
           </div>
         </div>
       </div>
     </fieldset>
-    <fieldset class="wrapper with-background">
+    <fieldset id="tab_advanced" class="wrapper with-background">
       <legend>Detailed User Data </legend>
       <div>
         <p>
@@ -130,7 +122,8 @@
   <fieldset>
     <%= link_to _('Cancel'), {:action => :index}%>
     <%= form_str_spacer %>
-    <%= f.submit _("Save"), :onclick=>"return user_validation();" %>
+    <%= f.submit _("Save"), :onclick=>"return new_user_validation();" %>
   </fieldset>
 <% end %>
+            <div><input type="hidden" id="all_grps_string" value="<%= @groups.all_grps_string %>" /></div>
 </div>

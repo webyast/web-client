@@ -16,15 +16,19 @@ class UsersControllerTest < ActionController::TestCase
     response_index  = fixture "users.xml"
     response_tester = fixture "tester.xml"
     response_users  = fixture "emptycn.xml"
+    response_groups  = fixture "groups.xml"
+
 
 #FIXME move to separate load fixture method
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users"
+      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups"
       mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
       mock.get   "/users.xml", header, response_index, 200
       mock.get   "/users/tester.xml", header, response_tester, 200
+      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
+      mock.get   "/groups/.xml", header, response_groups, 200
     end
   end
 
@@ -58,7 +62,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'input#user_id[value=tester]' # fallback for uid
     assert_select 'input#user_uid[value=tester]'
     assert_select 'input#user_cn[value=Tester Testerovic]'
-    assert_select 'input#user_grp_string[value=uucp,games,video]'
+    assert_select 'input#user_grp_string[value=uucp,games,messagebus]'
     assert_select 'input#user_groupname[value=users]'
   end
   
