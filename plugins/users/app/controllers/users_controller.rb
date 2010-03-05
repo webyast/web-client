@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @users = []
     begin
       @users = User.find :all
+#      @groups = Group.find
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
@@ -53,16 +54,18 @@ class UsersController < ApplicationController
       :type		=> "local",
       :id		=> nil
     )
-    @user.grp_string = ""
-    @user.all_grps_string = ""
-    @user.allgroups.each do |group|
+    @groups = Group.find()
+    @groups.all_grps_string = ""
+    counter = 0
+    @groups.allgroups.each do |group|
        if counter == 0
-          @user.all_grps_string = group.cn
+          @groups.all_grps_string = group.cn
        else
-          @user.all_grps_string += ",#{group.cn}"
+          @groups.all_grps_string += ",#{group.cn}"
        end
        counter += 1
     end
+    @user.grp_string = ""
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @user }
@@ -74,12 +77,15 @@ class UsersController < ApplicationController
   def edit
     return unless client_permissions
     @user = User.find(params[:id])
+    @groups = Group.find()
+
     #FIXME handle if id is invalid
 
     @user.type	= ""
     @user.id	= @user.uid # use id for storing index value (see update)
     @user.grp_string = ""
-    @user.all_grps_string = ""
+
+    @groups.all_grps_string = ""
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
@@ -100,11 +106,11 @@ class UsersController < ApplicationController
        counter += 1
     end
     counter = 0
-    @user.allgroups.each do |group|
+    @groups.allgroups.each do |group|
        if counter == 0
-          @user.all_grps_string = group.cn
+          @groups.all_grps_string = group.cn
        else
-          @user.all_grps_string += ",#{group.cn}"
+          @groups.all_grps_string += ",#{group.cn}"
        end
        counter += 1
     end
