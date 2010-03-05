@@ -52,7 +52,7 @@
         <% end %>
       </fieldset>
       <% end %>
-    
+
       <% if @arguments_detail then %>
         <div id="accordion">
           <fieldset class="wrapper with-background width-75" id="argumentdetail">
@@ -70,12 +70,14 @@
           </fieldset>
         </div>
       <% end %>
+
+      <fieldset>
+        <%= form_send_buttons %>
+          <%= if basesystem_in_process? then
+                link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
+              end %>
+      </fieldset>
+
     <% end  %>
   <% end -%>
-  <fieldset>
-    <%= form_send_buttons %>
-    <%= if basesystem_in_process? then
-          link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
-        end %>
-  </fieldset>
 </div>
