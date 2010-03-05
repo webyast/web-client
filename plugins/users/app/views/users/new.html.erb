@@ -68,12 +68,13 @@
           <label><%=_("Password")%></label>
           <%= f.password_field :user_password, :class => "required", :onkeyup => "$('#userForm').validate().element('#user_user_password');"%>
         </p>
+        <!-- this is a pre-generated placeholder for the validation message
+	     it is here so as not to interfere with passwd strength indicator -->
+        <p><label for="user_user_password" generated="true" class="error"></label><p>
         <p>
           <label><%=_("Confirm Password")%></label>
           <%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
         </p>
-        <!-- this is a pre-generated placeholder for the validation messages -->
-        <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
       </div>
     </fieldset>
     <fieldset id="tab_groups" class="wrapper with-background">
