@@ -25,9 +25,7 @@ class RolesController < ApplicationController
 		#permissions controller is not YastModel
     YastModel::Permission.site = YaST::ServiceResource::Session.site
     YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
-		permissions = YastModel::Permission.find :all
-		@permissions = permissions.collect do |p| p.id end
-		@permissions.sort
+		@permissions = YastModel::Permission.find :all, :params => { :with_description => "1" }
 		logger.info "permissions #{@permissions.inspect}"
 	end
 
