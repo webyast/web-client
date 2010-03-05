@@ -80,6 +80,8 @@
    _initializeDragContainer(allgroups,'ContainerGroups');
 
    $('#groups').dialog({ buttons: { 'Ok': function() { store_groups(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
+   $('#groups').dialog('option', 'width', 580);
+   $('#groups').dialog('option', 'position', 'center');
    $('#groups').dialog('open');
   }
 

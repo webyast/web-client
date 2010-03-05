@@ -8,22 +8,28 @@
          display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50%
     }
 
-    .GContainer {
+    .GContainerUser, .GContainerGroups {
         float: left;
         margin: 3px;
-        width: 100px;
         border: #669999 2px solid;
         padding: 5px;
      }
-
+     .GContainerUser {
+        width: 100px;
+     }
+     .GContainerGroups {
+        width: 400px;
+     }
      .GBox {
         border: #000 1px solid;
-        padding: 2px;
+        cursor: pointer;
+	display: block;
+	float: left;
+        font-family: verdana, tahoma, arial;
         font-size: 10px;
         margin-bottom: 5px;
+        padding: 2px;
         width: 94px;
-        cursor: pointer;
-        font-family: verdana, tahoma, arial;
      }
      #ContainerUser .GBox {
         background-color: #eee;
@@ -123,8 +129,8 @@
     
         <div id="groups" style="display:none;" title="Groups"> 
           <div>
-            <div class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
-            <div class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
+            <div class="GContainerUser" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
+            <div class="GContainerGroups" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
           </div>
         </div>
       </div>
@@ -154,5 +160,5 @@
         <%= f.submit _("Save"), :disabled => disabled, :onclick=>"return edit_user_validation();" %>
       </fieldset>
 <% end %>
-            <div><input type="hidden" id="all_grps_string" value="<%= @groups.all_grps_string %>" /></div>
+      <div><input type="hidden" id="all_grps_string" value="<%= @groups.all_grps_string %>" /></div>
 </div>
