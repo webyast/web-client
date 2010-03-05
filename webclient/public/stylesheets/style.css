@@ -407,6 +407,7 @@ ul.tab-nav {
 
 fieldset {
   border: none;
+  margin: 1em;
 }
 
 fieldset p {
@@ -424,11 +425,14 @@ fieldset p {
 
   fieldset.with-background {
     background-color: #eee;
-    margin: 1em;
   }
 
   fieldset.with-background select {
     background-color: #fff;
+  }
+
+  fieldset.wrapper {
+    -moz-box-shadow: none;
   }
  
 legend {
@@ -712,7 +716,9 @@ input {
 /* Password strength indicator */
 
 #password-strength {
-  border: 1px solid #aaa;
+   /* uncomment this if you want
+    a border around passwd strength bar
+  border: 1px solid #aaa;*/
   font-size: 0.8em;
   height: 5ex;
   padding: 0.3em;
