@@ -157,7 +157,7 @@
       <fieldset>
         <%= link_to _('Cancel'), {:action => :index}%>
         <%= form_str_spacer %>
-        <%= f.submit _("Save"), :disabled => disabled, :onclick=>"return edit_user_validation();" %>
+        <%= f.submit _("Save"), :disabled => disabled, :onclick=>"return edit_user_validation();", :class => "button" %>
       </fieldset>
 <% end %>
       <div><input type="hidden" id="all_grps_string" value="<%= @groups.all_grps_string %>" /></div>
