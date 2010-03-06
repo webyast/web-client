@@ -40,7 +40,7 @@
   <%= if @first_eula
         @first_basesystem_step ? "" : (form_back_button + form_str_spacer)
       else
-        (link_to "Back", :action => :show, :id => @prev_id) + form_str_spacer
+        (link_to _("Back"), :action => :show, :id => @prev_id) + form_str_spacer
       end %>
   <%= form_next_button %>
 </fieldset>
