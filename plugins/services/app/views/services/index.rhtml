@@ -1,52 +1,52 @@
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "jquery.quicksearch.js" %>
-
-<script type="text/javascript">
+<% javascript_tag do %>
 $(document).ready(function() {
 
-    $(".service-content").hide();
-
-    $("#services-list li").each (function(index) {
+    $("#services fieldset").each (function(index) {
 	if ($(this).is(":has(span.status_running)")) {
-	    $(this).find("h4").css('background-image', 'url("/images/green.png")');
+	    $(this).find("legend .service-icon").attr('class','service-icon running');
 	}
 	else if ($(this).is(":has(span.status_dead)")) {
-	    $(this).find("h4").css('background-image', 'url("/images/red.png")');
+	    $(this).find("legend .service-icon").attr('class','service-icon dead');
 	}
 	else {
-	    $(this).find("h4").css('background-image', 'url("/images/grey.png")');
+	    $(this).find("legend .service-icon").attr('class','service-icon unknown');
 	}
     });
 
-    $("#services-list h4").click(function(){
-	$(this).next(".service-content").slideToggle("slow");
-	$(this).closest("li").siblings().find(".service-content:visible").hide("fast");
-	$(".service_result").hide();
-    });
-
-    $('ul#services_ul li').quicksearch({
-	attached: 'ul#services_ul',
+    $('#services fieldset').quicksearch({
+	attached: '#services',
 	loaderText: '',
 	labelText: '<%= _("Quick Search")%>',
 	delay: 100
-    })
+    });
+
+    $("#services").accordion({
+       autoHeight : false,
+       navigation : true,
+       collapsible: true,
+       header     : 'fieldset legend'
+    });
+
+    $("#services").accordion('activate',false);
 })
 
 // adapt the status icon of given service
 function toggle_service_info (id) {
-    var heading	= $(id).closest('.service-content').siblings('h4');
+    var heading	= $(id).closest('.service-content').siblings('legend');
     if ($(id).is(':has(span.status_running)')) {
-	$(heading).css('background-image', 'url(/images/green.png)');
+	$(heading).find(".service-icon").attr('class','service-icon running');
 	$(id).siblings('a#start').hide();
 	$(id).siblings('a#stop').show();
     }
     else if ($(id).is(':has(span.status_dead)')) {
-	$(heading).css('background-image', 'url(/images/red.png)');
+	$(heading).find(".service-icon").attr('class','service-icon dead');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
     }
     else {
-	$(heading).css('background-image', 'url(/images/grey.png)');
+	$(heading).find(".service-icon").attr('class','service-icon unknown');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
     }
@@ -54,10 +54,10 @@ function toggle_service_info (id) {
 
 function select_status (val) {
     if (val == "all") {
-	$("#services_ul> li").show();
+	$("#services > fieldset").show();
     }
     else if (val == "not-running") {
-	$('#services_ul>li').each(function(index) {
+	$('#services > fieldset').each(function(index) {
 	    if ($(this).is(":has(span.status_not_running)")) {
 		$(this).show();
 	    } else {
@@ -66,7 +66,7 @@ function select_status (val) {
 	});
     }
     else if (val == "running") {
-	$('#services_ul>li').each(function(index) {
+	$('#services > fieldset').each(function(index) {
 	    if ($(this).is(":has(span.status_running)")) {
 		$(this).show();
 	    } else {
@@ -75,58 +75,25 @@ function select_status (val) {
 	});
     }
     else if (val == "dead") {
-	$('#services_ul>li').each(function(index) {
+	$('#services > fieldset').each(function(index) {
 	    if ($(this).is(":has(span.status_dead)")) {
 		$(this).show();
 	    } else {
 		$(this).hide();
 	    }
 	});
-    }
+    };
 }
-
-</script>
-
-<style type="text/css">
-
-.plugin-content h4 {
-    background: #e9e7e7 no-repeat left center;
-    padding: 7px 15px 7px 20px;
-    margin: 0;
-    margin-right: 15px;
-    font: bold;
-    border: solid 1px #c4c4c4;
-    border-bottom: none;
-    cursor: pointer;
-}
-.plugin-content h4:hover {
-    background-color: #e3e2e2;
-}
-
-.plugin-content ul {
-    list-style-type: none;
-}
-.service-content {
-    background: #f7f7f7;
-    margin: 0;
-    margin-right: 15px;
-    padding: 10px 15px 20px;
-    border-left: solid 1px #c4c4c4;
-    border-right: solid 1px #c4c4c4;
-}
-</style>
-
+<% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%= _("System Services") %></div>
 
-<div class="plugin-content grid_12" id="services-list">
+<div class="plugin-content grid_12">
 
 
 <% unless @permissions[:execute] %>
 <p style="padding: 10px"><%=_("You do not have permission to execute the services.")%></p>
 <% end %>
-
-<ul id="services_ul">
 
 <p>
     <label for="filter"><%=_("Filter services")%></label>
@@ -139,14 +106,13 @@ function select_status (val) {
     %>
     <%= observe_field("filter", :function => "select_status(value)") %>
 </p>
-
-
+<div id="services">
 <%
 commands	= [ "start", "stop", "restart", ]
 @services.each do |service| %>
-  <li>
+  <fieldset class="wrapper with-background">
 
-  <h4><%=h service.name %> <em style="position:absolute; left:25%"><%=h service.summary%></em></h4>
+  <legend><span class="service-icon"></span><%=service.name %> <em style="position:absolute; left:25%"><%=service.summary%></em></legend>
 
   <div class='service-content'>
 
@@ -215,9 +181,9 @@ commands	= [ "start", "stop", "restart", ]
 	<%= render :partial => 'result' %>
       </span>
   </div>
-  </li>
+  </fieldset>
 <% end %>
-</ul>
+</div>
 <fieldset>
 <%= form_back_button %>
 </fieldset>
