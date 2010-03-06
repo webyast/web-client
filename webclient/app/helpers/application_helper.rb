@@ -24,10 +24,18 @@ module ApplicationHelper
     _(' - ')
   end
 
-  def form_back_button
+  ##
+  # Generate a cancel link with common UI style.
+  # links to /controlpanel by default, developer can override
+  # @param [Hash] options options for a link_to Rails helper method
+  # @return [String] html part representing a cancel
+  def form_back_button (options={})
     bs = Basesystem.new.load_from_session(session)
     if bs.completed?
-      link_to _("Cancel"), :controller => "controlpanel"
+       if ! (options[:action] || options[:controller]) then
+           options[:controller] = "controlpanel"
+       end
+       link_to _("Cancel"), options
     else
       link_to _("Back"), :controller => "controlpanel", :action => "backstep"
     end
