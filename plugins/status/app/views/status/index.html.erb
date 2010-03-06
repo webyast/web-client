@@ -6,20 +6,17 @@
 <%= javascript_include_tag "plugin/jqplot.categoryAxisRenderer.js" %>
 <%= javascript_include_tag "plugin/jqplot.dateAxisRenderer.js" %>
 <%= javascript_include_tag "plugin/jqplot.canvasTextRenderer.js" %>
-
-<script type="text/javascript">
-
-function initMenuBar() {
-  $('#menu ul').hide();
-  $('#menu li a').click(
-    function() {
-        $(this).next().slideToggle('slow');
-      }
-    );
-  }
-$(document).ready(function() {initMenuBar();});
-
-</script>
+<% javascript_tag do %>
+$(document).ready(function() {
+  $("#accordion").accordion({
+      autoHeight : false,
+      navigation : true,
+      collapsible: true,
+      header     : 'fieldset legend'
+  });
+  $("#accordion").accordion('activate',false);
+});
+<% end %>
 <% end %>
 
 <%= javascript_include_tag :defaults %>
@@ -27,20 +24,21 @@ $(document).ready(function() {initMenuBar();});
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
 
-<fieldset>
-<ul id="menu">
+<div id="accordion">
 <% if @graphs  %>
   <% @graphs.each do |group| %>
-    <li>
+    <fieldset class="wrapper with-background">
       <% if limits_reached(group) %>
         <% status_icon = "<div class='status-icon error'></div>" %>
       <% else %>
          <% status_icon = "<div class='status-icon ok'></div>" %>
       <% end %>
+      <legend>
       <%=link_to_remote status_icon + group.id, :update => graph_id(group.id, group.single_graphs.first.headline),
         :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
         :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
-      <ul>
+      </legend>
+      <ul style="display: none;">
 
           <% group.single_graphs.each do |single_graph| %>
             <p>     
@@ -69,28 +67,29 @@ $(document).ready(function() {initMenuBar();});
             </p>
           <% end %>
       </ul>
-    </li>
+    </fieldset>
   <% end %>
 <% end %>
 <% @logs.each do |log| %>
-    <li>
+    <fieldset class="wrapper with-background">
       <% default_lines=50 %>
       <% frequency=15 %>
+      <legend>
       <%=link_to_remote "<div class='status-icon ok'></div>" + log.description, 
             :update => log_id(log.id),
             :url => { :action => "ajax_log_custom", :id => log.id, :lines => default_lines } %>
-      <ul>
+      </legend>
+      <ul style="display: none;">
         <div id="<%="log-#{log.id}-console"%>" >
           <%= log.path %>
         </div>
       </ul>
-    </li>
+    </fieldset>
     <%  periodically_call_remote(:url => { :action => "ajax_log_custom", 
                                  :id => log.id, :lines => default_lines }, :frequency => frequency, 
                                  :update => log_id(log.id)) #currently due missing '=' disabled %>
 <% end %>
-</ul>
-</fieldset>
+</div>
 <fieldset>
 <%= link_to _("Back"), :controller => "controlpanel" %> 
 <%= form_str_spacer %>
