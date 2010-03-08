@@ -165,13 +165,21 @@ class RegistrationController < ApplicationController
     @changed_services = []
     success = false
     begin
-      register = @client.create({:arguments=> { 'argument' => @arguments },
-                                 :options=>@options})
+      register = @client.create({ :arguments => { 'argument' => @arguments },
+                                  :options => @options })
       logger.debug "registration finished: #{register.to_xml}"
-      @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
-      @changed_services = register.changedservices if register.respond_to? :changedservices
-      flash[:notice] = _("Registration finished successfully.")
-      success = true
+
+      if register.respond_to?(:status) && register.status == "finished" then
+        @changed_repositories = register.changedrepos if register.respond_to? :changedrepos
+        @changed_services = register.changedservices if register.respond_to? :changedservices
+        flash[:notice] = _("Registration finished successfully.")
+        success = true
+      else
+        logger.error "Registration failed but backend returned success code."
+        # FIXME How to raise ClientError here???
+        #raise ActiveResource::ClientError
+        #raise(ActiveResource::ClientError.new(register))
+      end
 
       # inform about added services and its catalogs
       if @changed_services && @changed_services.kind_of?(Array) && @changed_services.size > 0 then
@@ -216,25 +224,23 @@ class RegistrationController < ApplicationController
       if no_services && no_repos
       then
         flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
-        #OLD flash[:warning] = _("No repositories were added or changed during the registration process (maybe due to a wrong registration code). If this system already has an update repository everything is fine. But without an update repository this system will not receive any updates. You may run the registration module again.")
       end
 
-
-    ## just for a test
-    # rescue ActiveResource::ServerError => e
-    #  logger.error "500500500500500500500500500500500"
-    #  logger.error e.inspect
-    #  flash[:error] = "500500500500500500500500500500500"
-
-    # FIXME - Need to catch a 404 from the rest_service, but nothing catches it - FIXME
-    #rescue ActiveResource::ResourceNotFound => e
-    #  logger.error "404404404404404404404404404404404"
-    #  logger.error e.inspect
-    #  flash[:error] = "404404404404404404404404404404404"
+    ##rescue ActiveResource::BadRequest => e
     rescue ActiveResource::ClientError => e
       arg_error_count = 0
       error = Hash.from_xml(e.response.body)["registration"]
-      if error && error["status"] == "missinginfo" && !error["missingarguments"].blank?
+      logger.debug "Error mode in registration process: #{error.inspect}"
+
+      unless error && error.kind_of?(Hash) && error["status"] then
+        flash[:error] = server_error_flash _("The registration server returned incomplete data.")
+        logger.error "Registration resulted in an error: Server returned incomplete data"
+        # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
+        redirect_success
+        return
+      end
+
+      if error["status"] == "missinginfo" && !error["missingarguments"].blank?
         logger.debug "missing arguments #{error["missingarguments"].inspect}"
         #compare this with already existing arguments
         missed_args = error["missingarguments"]
@@ -260,19 +266,50 @@ class RegistrationController < ApplicationController
         @arguments.concat(missed_args)
         flash[:error] = _("Please fill out missing entries.") if arg_error_count > 0
         logger.info "Registration is in needinfo - more information is required"
+
+      elsif error["status"] == "finished"
+        # status is "finished" but we are in rescure block - this does not fit
+        logger.error "Registration finished successfully (according to backend), but it returned an error (http status 4xx). Unknown registration status."
+
+      elsif error["status"] == "error"
+        e_exitcode = error["exitcode"] || 0
+        e_exitcode = e_exitcode.to_i
+        e_exitcode = 'unknown' if e_exitcode == 0
+
+        logger.error "Registration resulted in an error, ID: #{e_exitcode}."
+        case e_exitcode
+        when  2, 199 then
+          logger.error "Registration backend could not be initialized. Maybe due to network problem, SSL certificate issue or blocked by firewall."
+          flash[:error] = server_error_flash _("A connection to the registration server could not be established.")
+        when  3 then
+          logger.error "Registration data is conflicting. Contact your vendor."
+          flash[:error] = server_error_flash _("The transmitted registration data created a conflict.")
+        when 100..101 then
+          logger.error "Registration process did not find any products that can be registered."
+          flash[:error] = "<b>" + _("Registration can not be performed. There is no product installed that can be registered.") + "</b>"
+        when 99 then
+          logger.error "Registration backend sent no or invalid data. Maybe due to network problems or slow connection or too much load on registration server."
+          flash[:error] = server_error_flash _("Registration could not be completed in time.")
+        else
+          logger.error "Registration backend returned unknown error. Please run in debug mode and report a bug."
+          flash[:error] = server_error_flash _("The registration process was suddenly interrupted.")
+        end
+        redirect_success
+        return
       else
-        logger.error "error while registration: #{error.inspect}"
+        logger.debug "error while registration: #{error.inspect}"
         flash[:error] = server_error_flash _("The registration server returned invalid data.")
         logger.error "Registration resulted in an error: Server returned invalid data"
         # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
         redirect_success
         return
       end
-    rescue Exception => e
-      flash[:error] = server_error_flash _("The registration server was not reachable due to network or registration server problems.")
-      logger.error "Registration resulted in an error: Network problem"
-      redirect_success
-      return
+    # FIXME catch "execution expired"
+    #rescue Exception => e
+    #  flash[:error] = server_error_flash _("A connection to the registration server could not be established or it did not reply.")
+    #  logger.error "Registration resulted in an error: Network problem"
+    #  redirect_success
+    #  return
     end
 
     # redirect if the registration server is in needinfo but arguments list is empty
