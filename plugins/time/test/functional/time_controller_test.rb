@@ -4,13 +4,13 @@ require File.expand_path( File.join("test","validation_assert"), RailsParent.par
 require 'mocha'
 require 'yast_mock'
 
-class SystemtimeControllerTest < ActionController::TestCase
+class TimeControllerTest < ActionController::TestCase
   
   def setup
     Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
     Systemtime.instance_variable_set(:@permissions,nil) #reset permissions cache
-    SystemtimeController.any_instance.stubs(:login_required)
-    @controller = SystemtimeController.new
+    TimeController.any_instance.stubs(:login_required)
+    @controller = TimeController.new
     @request = ActionController::TestRequest.new
     # http://railsforum.com/viewtopic.php?id=1719
     @request.session[:account_id] = 1 # defined in fixtures
