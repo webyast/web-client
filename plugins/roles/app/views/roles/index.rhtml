@@ -1,0 +1,29 @@
+<% content_for :head do %>
+  <%= javascript_include_tag :defaults %>
+
+  <% javascript_tag do %>
+	  function showNew() {
+		  $("#new_role").css("visibility","visible");
+  	}
+  <% end %>
+<% end %>
+
+
+<div class='plugin-icon'><img src='/icons/yast-permissions.png' alt="Roles module"/><%=_("Roles")%></div>
+
+<div class="plugin-content grid_12">
+  <ul>
+	<% (@roles||[]).each  do |role| %>
+		<div>
+			<li> <%= link_to role.name, "/roles/edit/#{role.name}" %> </li>
+		</div>
+	<% end %>
+  </ul>
+	<div > <a href="#" onclick="showNew()">Create new role</a> </div>
+	<div id="new_role" style="visibility:hidden">
+  		<% form_tag '/roles/create', {:class => 'container'} do %>
+    	<label for="role_name"> Name </label><%= text_field_tag "role_name", ""%>
+			<%= submit_tag "create" %>
+			<% end %>
+	</div>
+</div>
