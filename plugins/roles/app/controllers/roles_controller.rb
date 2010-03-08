@@ -27,7 +27,8 @@ class RolesController < ApplicationController
     YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
 		@permissions = YastModel::Permission.find :all, :params => { :with_description => "1" }
 		logger.info "permissions #{@permissions.inspect}"
-	end
+		@role = Role.find params[:id]
+  end
 
 	def create
 		#TODO check name

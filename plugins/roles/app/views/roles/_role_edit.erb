@@ -1,16 +1,51 @@
-<div>
-	<% perm_id = permissions.collect { |p| p.id }.sort
-		 perm_id.each do |p| %>
-	<div><a class="button"> <%= p %> </a></div>
+  <% javascript_tag do %>
+	  function hide_descrs() {
+		  $("#descriptions > p").hide();
+  	}
+    function show_desc(id) {
+      hide_descrs();
+      $("#"+id+"-description").show();
+    }
+    function grant_perm(id) {
+      $("#"+id+"-g").css("display","list-item");
+      $("#"+id+"-a").css("display","none");
+    }
+    function revoke_perm(id){
+      $("#"+id+"-a").css("display","list-item");
+      $("#"+id+"-g").css("display","none");
+    }
+  <% end %>
+<div style="display:block;float:left;width:33%;">
+  <h3> <%= _("Permissions granted by role") %> </h3>
+  <ul>
+	<% perm_id = permissions.collect { |p| p.pretty_id }.sort
+		 perm_id.each do |p|
+     trp = p.tr(".","_")%>
+	  <li id="<%=trp%>-g" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "default" : "none" %>;"
+        onMouseOver="show_desc('<%=trp%>');">
+      <a href="#" onclick="revoke_perm('<%=trp%>');"><%= p %></a>
+    </li>
 	<% end %>
+  </ul>
 </div>
-<div style="position=right">
-	<% perm_id.each do |p| %>
-	<div><a onClick="" class="button"> <%= p %> </a></div>
+<div style="display:block;float:left;width:33%;">
+  <h3> <%= _("Available permissions") %> </h3>
+  <ul>
+	<% perm_id.each do |p| 
+     trp = p.tr(".","_")%>
+	  <li id="<%=trp%>-a" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "none" : "default" %>;"
+        onMouseOver="show_desc('<%=trp%>');">
+      <a href="#" onclick="grant_perm('<%=trp%>');"><%= p %></a>
+    </li>
 	<% end %>
+  </ul>
 </div>
-<div>
+<div id="descriptions" style="display:block;float:left;width:33%;">
+  <h3> <%= _("Description of permissions") %> </h3>
 	<% permissions.each do |p| %>
-		<p id="<%= "#{p.id}-description"%>"> <%= p.try(:description)||"" %></p>
+		<p id="<%= "#{p.pretty_id.tr(".","_")}-description"%>"> <%= p.try(:description)||"" %></p>
 	<% end %>
-<div>
+</div>
+  <% javascript_tag do %>
+      hide_descrs();
+  <% end %>
