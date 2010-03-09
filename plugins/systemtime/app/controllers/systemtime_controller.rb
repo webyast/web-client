@@ -105,6 +105,15 @@ class SystemtimeController < ApplicationController
       rescue Timeout::Error => e
         #do nothing as if you move time to future it throws this exception
         log.info "Time moved to future by NTP"
+      rescue Exception => e
+        ce = ClientException.new(e)
+        if ce.backend_exception_type == "NTP_ERROR"
+          flash[:error] = ce.message
+          redirect_to "/systemtime/index"
+          return false
+        else
+          raise e
+        end
       end
     when "none" 
     else
