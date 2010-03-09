@@ -29,7 +29,7 @@ class TimeController < ApplicationController
   # fields is filled. In case of errors redirect to help page, main page or just
   # show flash with partial problem.
   def index
-    @ntp_available = Ntp.available?
+    @ntp = Ntp.find :one
     @stime = Systemtime.find :one
     @permissions = Systemtime.permissions
   end
@@ -52,6 +52,7 @@ class TimeController < ApplicationController
       ntp = Ntp.find :one
       ntp.actions.synchronize = true
       ntp.actions.synchronize_utc = (t.utcstatus=="UTC")
+      ntp.actions.ntp_server = params[:ntp_server] unless params[:ntp_server].blank?
       begin 
         ntp.save #FIXME check return value
       rescue Timeout::Error => e
