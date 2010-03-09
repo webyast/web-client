@@ -40,7 +40,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "index"
@@ -52,7 +54,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "hh",
 	:password			=> "a",
-	:confirm_password		=> "b" }
+	:confirm_password		=> "b",
+	:test_mail_address		=> ""
+     }
     }
     assert_response :redirect
     assert flash[:error]
@@ -66,7 +70,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert flash[:warning]
@@ -82,7 +88,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
@@ -103,7 +111,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert flash[:error]
