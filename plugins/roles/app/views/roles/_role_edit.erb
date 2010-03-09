@@ -9,15 +9,27 @@
     function grant_perm(id) {
       $("#"+id+"-g").css("display","list-item");
       $("#"+id+"-a").css("display","none");
+      store_perms();
     }
     function revoke_perm(id){
       $("#"+id+"-a").css("display","list-item");
       $("#"+id+"-g").css("display","none");
+      store_perms();
+    }
+    function store_perms(){
+      hidden = $("#perm_list")[0];
+      hidden.value = "";
+      $("#granted_perms > li").filter( function(obj) { 
+         return $(this).css("display") == "list-item";
+      }).each ( function(obj) {
+        var newstr = $(this)[0].id;
+         hidden.value = hidden.value + "," + newstr.substring(0,newstr.length-2)
+      })
     }
   <% end %>
 <div style="display:block;float:left;width:33%;">
   <h3> <%= _("Permissions granted by role") %> </h3>
-  <ul>
+  <ul id="granted_perms">
 	<% perm_id = permissions.collect { |p| p.pretty_id }.sort
 		 perm_id.each do |p|
      trp = p.tr(".","_")%>
@@ -30,7 +42,7 @@
 </div>
 <div style="display:block;float:left;width:33%;">
   <h3> <%= _("Available permissions") %> </h3>
-  <ul>
+  <ul id="available_perms">
 	<% perm_id.each do |p| 
      trp = p.tr(".","_")%>
 	  <li id="<%=trp%>-a" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "none" : "default" %>;"
@@ -45,6 +57,12 @@
 	<% permissions.each do |p| %>
 		<p id="<%= "#{p.pretty_id.tr(".","_")}-description"%>"> <%= p.try(:description)||"" %></p>
 	<% end %>
+</div>
+<div>
+  <% form_tag "/roles/update/#{params[:id]}", {:class => 'container' } do %>
+    <%= hidden_field_tag 'perm_list',permissions.delete_if { |p| !(role.permissions.include?(p.id))}.collect{ |p| p.pretty_id.gsub(".","_")}.join(",") %>
+    <%= submit_tag _("Save") %>
+  <% end %>
 </div>
   <% javascript_tag do %>
       hide_descrs();

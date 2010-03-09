@@ -21,6 +21,16 @@ class RolesController < ApplicationController
   def update
   end
 
+  def update
+		@role = Role.find params[:id]
+    perms = params[:perm_list].gsub("_",".").split(",")
+    @role.permissions = perms.delete_if {|p| p.blank? }.collect{ |p| YastModel::Permission.deprettify_id p }
+    
+    logger.info "permissions is #{@role.permissions.inspect}"
+#    @role.save #doesn't work because stupid to_xml for array of string FIXME solve it
+    redirect_to "/roles/"
+  end
+
 	def edit
 		#permissions controller is not YastModel
     YastModel::Permission.site = YaST::ServiceResource::Session.site
