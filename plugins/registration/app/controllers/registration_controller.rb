@@ -3,9 +3,17 @@ require 'yast/service_resource'
 # = Registration controller
 # Provides all functionality, that handles system registration.
 
+#module Exceptions
+#  # custom Exception for registration logic errors
+#  class RegistrationLogicException < StandardError; end
+#end
+
 class RegistrationController < ApplicationController
   before_filter :login_required
   layout 'main'
+
+  # our own Exception for logic errors
+  class RegistrationController::RegistrationLogicException < StandardError; end
 
   def initialize
     @trans = {  'email' => _("Email"),
@@ -91,8 +99,9 @@ class RegistrationController < ApplicationController
   end
 
   def server_error_flash(msg)
-    error_old = _("Error occured while connecting to registration server.")
-    error_line1 = "<b>" + _("Registration did not finish.") + "</b>"
+    error_heading_old = _("Registration did not finish.")
+    error_heading =     _("Registration did not succeed.")
+    error_line1 = "<b>" + error_heading + "</b>"
     error_line2 = ( msg || "" ) + " " + _("This may be a temporary issue.")
     return error_line1 + "<p>" + error_line2 + "<br />" + try_again_msg + "</p>"
   end
@@ -175,10 +184,8 @@ class RegistrationController < ApplicationController
         flash[:notice] = _("Registration finished successfully.")
         success = true
       else
-        logger.error "Registration failed but backend returned success code."
-        # FIXME How to raise ClientError here???
-        #raise ActiveResource::ClientError
-        #raise(ActiveResource::ClientError.new(register))
+        logger.error "Registration is in success mode, but the backend returned no status information."
+        raise RegistrationLogicException
       end
 
       # inform about added services and its catalogs
@@ -226,18 +233,14 @@ class RegistrationController < ApplicationController
         flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
       end
 
-    ##rescue ActiveResource::BadRequest => e
     rescue ActiveResource::ClientError => e
       arg_error_count = 0
       error = Hash.from_xml(e.response.body)["registration"]
       logger.debug "Error mode in registration process: #{error.inspect}"
 
       unless error && error.kind_of?(Hash) && error["status"] then
-        flash[:error] = server_error_flash _("The registration server returned incomplete data.")
-        logger.error "Registration resulted in an error: Server returned incomplete data"
-        # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
-        redirect_success
-        return
+        logger.error "Registration is in error mode but no error status information is provided from the backend."
+        raise RegistrationLogicException
       end
 
       if error["status"] == "missinginfo" && !error["missingarguments"].blank?
@@ -269,7 +272,9 @@ class RegistrationController < ApplicationController
 
       elsif error["status"] == "finished"
         # status is "finished" but we are in rescure block - this does not fit
-        logger.error "Registration finished successfully (according to backend), but it returned an error (http status 4xx). Unknown registration status."
+        logger.error "Registration finished successfully (according to backend), but it returned an error (http status 4xx)."
+        logger.error "The registration status is unknown."
+        raise RegistrationController::RegistrationLogicException
 
       elsif error["status"] == "error"
         e_exitcode = error["exitcode"] || 0
@@ -279,37 +284,46 @@ class RegistrationController < ApplicationController
         logger.error "Registration resulted in an error, ID: #{e_exitcode}."
         case e_exitcode
         when  2, 199 then
+          # 2 and 199 means that even the initialization of the backend did not succeed
           logger.error "Registration backend could not be initialized. Maybe due to network problem, SSL certificate issue or blocked by firewall."
           flash[:error] = server_error_flash _("A connection to the registration server could not be established.")
         when  3 then
+          # 3 means that there is a conflict with the sent and the required data - it could not be solved by asking again
           logger.error "Registration data is conflicting. Contact your vendor."
           flash[:error] = server_error_flash _("The transmitted registration data created a conflict.")
+        when 99 then
+          # 99 is an internal error id for missing error status or missing exit codes
+          logger.error "Registration backend sent no or invalid data. Maybe network problem or slow connection or too much load on registration server."
+          raise RegistrationLogicException
         when 100..101 then
+          # 100 and 101 means that no product is installed that can be registered (100: no product, 101: FACTORY)
           logger.error "Registration process did not find any products that can be registered."
           flash[:error] = "<b>" + _("Registration can not be performed. There is no product installed that can be registered.") + "</b>"
-        when 99 then
-          logger.error "Registration backend sent no or invalid data. Maybe due to network problems or slow connection or too much load on registration server."
-          flash[:error] = server_error_flash _("Registration could not be completed in time.")
         else
-          logger.error "Registration backend returned unknown error. Please run in debug mode and report a bug."
-          flash[:error] = server_error_flash _("The registration process was suddenly interrupted.")
+          # unknown error
+          logger.error "Registration backend returned an unknown error. Please run in debug mode and report a bug."
+          raise RegistrationLogicException
         end
         redirect_success
         return
       else
         logger.debug "error while registration: #{error.inspect}"
-        flash[:error] = server_error_flash _("The registration server returned invalid data.")
         logger.error "Registration resulted in an error: Server returned invalid data"
-        # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
-        redirect_success
-        return
+        raise RegistrationLogicException
       end
-    # FIXME catch "execution expired"
-    #rescue Exception => e
-    #  flash[:error] = server_error_flash _("A connection to the registration server could not be established or it did not reply.")
-    #  logger.error "Registration resulted in an error: Network problem"
-    #  redirect_success
-    #  return
+
+    rescue RegistrationLogicException => e
+      flash[:error] = server_error_flash _("The registration server returned invalid or incomplete data.")
+      logger.error "Registration resulted in an error, registration server or SuseRegister backend returned invalid or incomplete data."
+      # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
+      redirect_success
+      return
+
+    rescue Exception => e
+      flash[:error] = server_error_flash _("A connection to the registration server could not be established or it did not reply.")
+      logger.error "Registration resulted in an error, execution of SuseRegister backend expired: Maybe network problem or severe configuration error."
+      redirect_success
+      return
     end
 
     # redirect if the registration server is in needinfo but arguments list is empty
