@@ -14,6 +14,7 @@ class MailController < ApplicationController
     @mail			= Mail.find :one
     @permissions		= Mail.permissions
     @mail.confirm_password	= @mail.password
+    @mail.test_mail_address	= ""
   end
 
   # PUT
@@ -31,7 +32,11 @@ class MailController < ApplicationController
 
     begin
       response = @mail.save
-      flash[:notice] = _('Mail settings have been written.')
+      notice	= _('Mail settings have been written.')
+      unless @mail.test_mail_address.empty?
+	notice += " " + _('Test mail was sent to %s.') % @mail.test_mail_address
+      end
+      flash[:notice] = notice
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
 	logger.warn e.inspect
@@ -58,7 +63,8 @@ class MailController < ApplicationController
 
       @administrator      = Administrator.find :one
       if @administrator && !@administrator.aliases.nil? && ! @administrator.empty?
-	flash[:warning]	= _("No outgoing mail server is set, but administrator has mail forwarders defined. Forwarding mails cannot work.")
+	flash[:warning]	= _("No outgoing mail server is set, but administrator has mail forwarders defined.
+Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration.") % ['<a href="/administrator">', '</a>', '<a href="/mail">', '</a>']
       end
     end
     redirect_success # redirect to next step

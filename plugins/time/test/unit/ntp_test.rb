@@ -17,6 +17,7 @@ class NtpTest < ActiveSupport::TestCase
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.services", { :execute => true, :read => true } #service is needed restart service
       mock.get  "/ntp.xml", @header, @response, 200
     end
   end
