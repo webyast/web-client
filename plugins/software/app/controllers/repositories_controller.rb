@@ -90,7 +90,7 @@ class RepositoriesController < ApplicationController
     @repo.enabled = repository[:enabled]
     @repo.keep_packages = repository[:keep_packages]
     @repo.url = repository[:url]
-    @repo.priority = repository[:priority].to_i
+    @repo.priority = repository[:priority]
 
     @repo.id = URI.escape(@repo.id)
 
@@ -104,13 +104,14 @@ class RepositoriesController < ApplicationController
         err = Hash.from_xml ex.response.body
 
         if !err['error']['message'].blank?
-          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
-        else
-          flash[:error] = _("Unknown backend error.")
+          Rails.logger.error "Cannot update repository '#{@repo.name}': #{err['error']['message']}"
         end
+
+        flash[:error] = _("Cannot update repository '#{@repo.name}'}")
       rescue Exception => e
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ex.response.body}")
+          Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
 
       redirect_to :action => :show, :id => params[:id] and return
@@ -166,14 +167,15 @@ class RepositoriesController < ApplicationController
         err = Hash.from_xml ex.response.body
 
         if !err['error']['message'].blank?
-          flash[:error] = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
-        else
-          flash[:error] = _("Unknown backend error.")
+          Rails.logger.error "Cannot create repository '#{@repo.name}': #{err['error']['message']}"
         end
+
+        flash[:error] = _("Cannot create repository '#{@repo.name}'")
       rescue Exception => e
           Rails.logger.error "Exception: #{e}"
           # XML parsing has failed, display complete response
-          flash[:error] = _("Unknown backend error: #{ex.response.body}")
+          flash[:error] = _("Unknown backend error")
+          Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
       redirect_to :action => :add and return
     end
@@ -211,10 +213,10 @@ class RepositoriesController < ApplicationController
         err = Hash.from_xml ex.response.body
 
         if !err['error']['message'].blank?
-          error_string = _("Cannot update repository '#{@repo.name}': #{err['error']['message']}")
-        else
-          error_string = _("Unknown backend error.")
+          Rails.logger.error "Cannot update repository '#{@repo.name}': #{err['error']['message']}"
         end
+
+        error_string = _("Cannot update repository '#{@repo.name}'")
       rescue Exception => e
           # XML parsing has failed
           error_string = _("Unknown backend error.")
