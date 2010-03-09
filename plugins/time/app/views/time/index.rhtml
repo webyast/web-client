@@ -81,7 +81,9 @@
 <fieldset class="wrapper smallfields with-background">
   <p>
     <label class="radio-right"><input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"     
-<%= "disabled=\"disabled\"" if disabled %>/> <%=_("Manually configure time")%></label>
+    <%= "disabled=\"disabled\"" if disabled%>
+    <%= "checked=\"checked\"" unless Ntp.available? %>
+/> <%=_("Manually configure time")%></label>
   </p>
     <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
     %>
@@ -95,9 +97,17 @@
   </p>
   <p>
     <label class="radio-right"><input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
-    <%=  "disabled=\"disabled\"" if disabled || !@ntp_available %>
+    <%=  "disabled=\"disabled\"" if disabled || !Ntp.available? %>
+    <%=  "checked=\"checked\"" if Ntp.available? %>
     > <%=_("Synchronize via Network Time Protocol (NTP)")%></label>
   </p>
+  <% if Ntp.available? && !(@ntp.server_defined?) %>
+  <p>
+    <label for="ntp_server"><%= _("NTP server") %></label>
+    <%= text_field_tag "ntp_server", ""%>
+  </p>
+  <% end %>
+
 </fieldset>
 <fieldset>
   <%= form_send_buttons :disabled => disabled, :class => "button" %>
