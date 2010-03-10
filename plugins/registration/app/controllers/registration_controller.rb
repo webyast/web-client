@@ -105,6 +105,100 @@ class RegistrationController < ApplicationController
     redirect_success
   end
 
+  def collect_missing_arguments(missed_args)
+    arg_error_count = 0
+    begin
+      @arguments.collect! do |argument|
+        missed_args.each do |missed_arg|
+          if missed_arg["name"] == argument["name"] then
+            if argument["value"] != missed_arg["value"] then
+              # flag error if value is rejected by registration server
+              argument["error"] = true if missed_arg["flag"] == "m"
+              arg_error_count += 1
+            end
+            argument["value"] = missed_arg["value"]
+            argument["flag"] = missed_arg["flag"]
+            argument["kind"] = missed_arg["kind"]
+            missed_args.reject! {|del_arg| del_arg["name"] == argument["name"] }
+            break
+          end
+        end
+        argument
+      end
+    rescue
+      logger.error "Registration process can not collect the argument details."
+    end
+
+    # add remaining arguments to the list
+    @arguments.concat(missed_args)
+    flash[:error] = _("Please fill out missing entries.") if arg_error_count > 0
+  end
+
+  def split_arguments
+    begin
+      # split arguments into two lists to show them separately and sort each list to show them in a unique order
+      @arguments_mandatory = sort_arguments( @arguments.select { |arg| (arg["flag"] == "m") if arg.kind_of?(Hash) } )
+      @arguments_detail    = sort_arguments( @arguments.select { |arg| (arg["flag"] != "m") if arg.kind_of?(Hash) } )
+    rescue
+      logger.error "Registration found invalid argument data. Nothing to display to the user."
+      @arguments_mandatory = []
+      @arguments_detail = []
+    end
+  end
+
+  def check_service_changes
+    begin
+      if @changed_services && @changed_services.kind_of?(Array) && @changed_services.size > 0 then
+        flash[:notice] += "<ul>"
+        @changed_services.each do |c|
+          if c.respond_to?(:name) && c.name && c.respond_to?(:status) && c.status == 'added' then
+            flash[:notice] += "<li>" + _("Service added:") + " #{c.name}</li>"
+          end
+          if c.respond_to?(:catalogs) && c.catalogs && c.catalogs.respond_to?(:catalog) && c.catalogs.catalog then
+            if c.catalogs.catalog.respond_to?(:name) && c.catalogs.catalog.respond_to?(:status) && c.catalogs.catalog.status == 'added' then
+              flash[:notice] += "<ul><li>" + _("Catalog enabled:") + " #{c.catalogs.catalog.name}</li></ul>"
+            elsif c.catalogs.catalog.kind_of?(Array) then
+              flash[:notice] += "<ul>"
+              c.catalogs.catalog.each do |s|
+                if s && s.respond_to?(:name) && s.respond_to?(:status) && s.status == 'added' then
+                  flash[:notice] += "<li>" + _("Catalog enabled:") + " #{s.name}</li>"
+                end
+              end
+              flash[:notice] += "</ul>"
+            end
+          end
+        end
+        flash[:notice] += "</ul>"
+      else
+        return false
+      end
+    rescue
+      logger.error "Registration could not check the services for changes."
+      return false
+    end
+    true
+  end
+
+  def check_repository_changes
+    begin
+      if @changed_repositories && @changed_repositories.kind_of?(Array) && @changed_repositories.size > 0 then
+        flash[:notice] += "<ul>"
+        @changed_repositories.each do |r|
+          if r.respond_to?(:name) && r.name && r.respond_to?(:status) && r.status == 'added' then
+            flash[:notice] += "<li>" + _("Repository added:") + " #{r.name}</li>"
+          end
+        end
+        flash[:notice] += "</ul>"
+      else
+        return false
+      end
+    rescue
+      logger.error "Registration could not check the repositories for changes."
+      return false
+    end
+    true
+  end
+
   public
 
   # Index handler. Loads information from backend and if success all required
@@ -187,53 +281,16 @@ class RegistrationController < ApplicationController
         return registration_logic_error
       end
 
-      # inform about added services and its catalogs
-      if @changed_services && @changed_services.kind_of?(Array) && @changed_services.size > 0 then
-        flash[:notice] += "<ul>"
-        @changed_services.each do |c|
-          if c.respond_to?(:name) && c.name && c.respond_to?(:status) && c.status == 'added' then
-            flash[:notice] += "<li>" + _("Service added:") + " #{c.name}</li>"
-          end
-          if c.respond_to?(:catalogs) && c.catalogs && c.catalogs.respond_to?(:catalog) && c.catalogs.catalog then
-            if c.catalogs.catalog.respond_to?(:name) && c.catalogs.catalog.respond_to?(:status) && c.catalogs.catalog.status == 'added' then
-              flash[:notice] += "<ul><li>" + _("Catalog enabled:") + " #{c.catalogs.catalog.name}</li></ul>"
-            elsif c.catalogs.catalog.kind_of?(Array) then
-              flash[:notice] += "<ul>"
-              c.catalogs.catalog.each do |s|
-                if s && s.respond_to?(:name) && s.respond_to?(:status) && s.status == 'added' then
-                  flash[:notice] += "<li>" + _("Catalog enabled:") + " #{s.name}</li>"
-                end
-              end
-              flash[:notice] += "</ul>"
-            end
-          end
-        end
-        flash[:notice] += "</ul>"
-      else
-        no_services = true
-      end
+      service_changes = check_service_changes
+      repository_changes = check_repository_changes
 
-      # inform about added repositories
-      if @changed_repositories && @changed_repositories.kind_of?(Array) && @changed_repositories.size > 0 then
-        flash[:notice] += "<ul>"
-        @changed_repositories.each do |r|
-          if r.respond_to?(:name) && r.name && r.respond_to?(:status) && r.status == 'added' then
-            flash[:notice] += "<li>" + _("Repository added:") + " #{r.name}</li>"
-          end
-        end
-        flash[:notice] += "</ul>"
-      else
-        no_repos = true
-      end
-
-      # display warning message if no repos are added/changed during registration (bnc#558854)
-      if no_services && no_repos
+      # display warning if no repos/services are added/changed during registration (bnc#558854)
+      if !service_changes && !repository_changes
       then
         flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
       end
 
     rescue ActiveResource::ClientError => e
-      arg_error_count = 0
       error = Hash.from_xml(e.response.body)["registration"]
       logger.debug "Error mode in registration process: #{error.inspect}"
 
@@ -244,30 +301,9 @@ class RegistrationController < ApplicationController
 
       if error["status"] == "missinginfo" && !error["missingarguments"].blank?
         logger.debug "missing arguments #{error["missingarguments"].inspect}"
-        #compare this with already existing arguments
-        missed_args = error["missingarguments"]
-        @arguments.collect! do |argument|
-          missed_args.each do |missed_arg|
-            if missed_arg["name"] == argument["name"] then
-              if argument["value"] != missed_arg["value"] then
-                # flag error if value is rejected by registration server
-                argument["error"] = true if missed_arg["flag"] == "m"
-                arg_error_count += 1
-              end
-              argument["value"] = missed_arg["value"]
-              argument["flag"] = missed_arg["flag"]
-              argument["kind"] = missed_arg["kind"]
-              missed_args.reject! {|del_arg| del_arg["name"] == argument["name"] }
-              break
-            end
-          end
-          argument
-        end
-
-        # add remaining arguments to the list
-        @arguments.concat(missed_args)
-        flash[:error] = _("Please fill out missing entries.") if arg_error_count > 0
         logger.info "Registration is in needinfo - more information is required"
+        # collect and merge the argument data
+        collect_missing_arguments error["missingarguments"]
 
       elsif error["status"] == "finished"
         # status is "finished" but we are in rescure block - this does not fit
@@ -318,25 +354,23 @@ class RegistrationController < ApplicationController
       return
     end
 
-    # redirect if the registration server is in needinfo but arguments list is empty
-    if !@arguments || @arguments.size < 1
-    then
-      flash[:error] = server_error_flash _("The registration server returned invalid data.")
-      logger.error "Registration resulted in an error: Logic issue, unspecified data requested by registration server"
-      redirect_success
-      return
-    end
-
-    # split in two lists to show them separately and sort each list to show it in a unique order
-    @arguments_mandatory = sort_arguments( @arguments.select { |arg| (arg["flag"] == "m") if arg.kind_of?(Hash) } )
-    @arguments_detail    = sort_arguments( @arguments.select { |arg| (arg["flag"] != "m") if arg.kind_of?(Hash) } )
-
-
     if success
       logger.info "Registration succeed"
       redirect_success
     else
       logger.info "Registration is not yet finished"
+
+      # split into madatory and detail arguments
+      split_arguments
+
+      if !@arguments_mandatory || @arguments_mandatory.size < 1 then
+        # redirect if the registration server is in needinfo but arguments list is empty
+        flash[:error] = server_error_flash _("The registration server returned invalid data.")
+        logger.error "Registration resulted in an error: Logic issue, unspecified data requested by registration server"
+        redirect_success
+        return
+      end
+
       respond_to do |format|
         format.html { render :action => "index" }
       end
