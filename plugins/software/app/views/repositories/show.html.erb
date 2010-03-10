@@ -103,10 +103,10 @@
       </table>
   </fieldset>
   <fieldset>
-    <%= link_to _('Back'), {:action => :index}, :onclick=>"$('#progress').show()"%>
+    <%= form_back_button :action => :index, :onclick=>"$('#progress').show()"%>
     <% if !disabled -%>
       <%= form_str_spacer %>
-      <%= f.submit @adding ? _("Create") : _("Update") %>
+      <%= form_next_button :label => (@adding ? _("Create") : _("Update")) %>
     <% end -%>
   </fieldset>
 <% end %>

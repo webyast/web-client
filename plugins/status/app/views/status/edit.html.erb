@@ -84,7 +84,7 @@
   <% end %>
   </div>
 <fieldset>
-  <%= link_to _('Cancel'), {:action => :index}%>
+  <%= form_back_button :action => :index%>
   <%= form_str_spacer %>
   <%= form_next_button :disabled => write_disabled %>
 </fieldset>
