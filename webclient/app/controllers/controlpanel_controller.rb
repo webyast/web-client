@@ -110,19 +110,11 @@ class ControlpanelController < ApplicationController
   # and if it should, then also redirects to that module.
   # TODO check if controller from config exists
   def need_redirect
-    bs = Basesystem.new.load_from_session(session)
-    if bs.initialized?
-      # session variable is used to find out, if basic system module is needed
-      return false if Bs.completed?
-      # error happen during basesystem, so show this page (prevent endless loop bnc#554989) 
-      render :action => "basesystem"
-      return true
-    else
-      bs = Basesystem.find session
-      return false if bs.completed?
-      logger.info "start basesystem setup"
-      redirect_to bs.current_step
-      return true
-    end
+    bs = Basesystem.find(session)
+    # session variable is used to find out, if basic system module is needed
+    return false if bs.completed?
+    # error happen during basesystem, so show this page (prevent endless loop bnc#554989) 
+    render :action => "basesystem"
+    return true
   end
 end

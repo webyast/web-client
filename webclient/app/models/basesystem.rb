@@ -21,9 +21,9 @@ class Basesystem < ActiveResource::Base
       session[:wizard_current] = FINISH_STEP
     else
       Rails.logger.debug "Basesystem steps: #{bs.steps.inspect}"
-      decoded_steps = bs.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : "#{step.controller}"  }
+      decoded_steps = bs.steps.collect { |step| step.respond_to?(:action) ? "#{step.controller}:#{step.action}" : "#{step.controller}"}
       session[:wizard_steps] = decoded_steps.join(",")
-      session[:wizard_current] = decoded_steps.first
+      session[:wizard_current] = decoded_steps.find(decoded_steps.first) { |s| s.include? bs.done }
     end
     bs.load_from_session session
     bs
@@ -41,6 +41,8 @@ class Basesystem < ActiveResource::Base
       return :controller => "controlpanel"
     else
       self.current_step = @steps[@steps.index(current)+1]
+      load(:finish => false,  :steps => [], :done => self.current_step[:controller]) #store advantage in setup
+      save #TODO check return value
       return redirect_hash
     end
   end
