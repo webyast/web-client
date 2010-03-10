@@ -28,11 +28,11 @@ class BasesystemTest < ActiveSupport::TestCase
     bs = Basesystem.find session
     assert !bs.completed?
     assert bs.first_step?
-    result = {:controller => "systemtime", :action => "index"}
+    result = {:controller => "time", :action => "index"}
     assert_equal  result,bs.current_step
     result = {:controller => "language", :action => "cool_action"}
     assert_equal  result,bs.next_step
-    result = {:controller => "systemtime", :action => "index"}
+    result = {:controller => "time", :action => "index"}
     assert_equal  result,bs.back_step
     bs.next_step
     assert bs.last_step?
@@ -41,7 +41,7 @@ class BasesystemTest < ActiveSupport::TestCase
   end
 
   def test_load_from_session
-    session = {:wizard_current => "systemtime", :wizard_steps => "systemtime" }
+    session = {:wizard_current => "time", :wizard_steps => "time" }
     bs = Basesystem.new.load_from_session session
     assert !bs.completed?
     assert bs.first_step?
@@ -72,17 +72,17 @@ class BasesystemTest < ActiveSupport::TestCase
   end
 
   def test_following_steps
-    session = {:wizard_current => "systemtime", :wizard_steps => "systemtime,language:show" }
+    session = {:wizard_current => "time", :wizard_steps => "time,language:show" }
     bs = Basesystem.new.load_from_session session
     steps = bs.following_steps
     assert_equal 1,steps.size
     assert_equal "language", steps[0][:controller]
     assert_equal "show", steps[0][:action]
-    session = {:wizard_current => "language:show", :wizard_steps => "systemtime,language:show" }
+    session = {:wizard_current => "language:show", :wizard_steps => "time,language:show" }
     bs = Basesystem.new.load_from_session session
     steps = bs.following_steps
     assert_equal 0,steps.size
-    session = {:wizard_current => "FINISH", :wizard_steps => "systemtime,language:show" }
+    session = {:wizard_current => "FINISH", :wizard_steps => "time,language:show" }
     bs = Basesystem.new.load_from_session session
     steps = bs.following_steps
     assert_equal 0,steps.size
