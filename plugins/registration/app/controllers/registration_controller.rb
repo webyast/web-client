@@ -3,17 +3,9 @@ require 'yast/service_resource'
 # = Registration controller
 # Provides all functionality, that handles system registration.
 
-#module Exceptions
-#  # custom Exception for registration logic errors
-#  class RegistrationLogicException < StandardError; end
-#end
-
 class RegistrationController < ApplicationController
   before_filter :login_required
   layout 'main'
-
-  # our own Exception for logic errors
-  class RegistrationController::RegistrationLogicException < StandardError; end
 
   def initialize
     @trans = {  'email' => _("Email"),
@@ -106,6 +98,13 @@ class RegistrationController < ApplicationController
     return error_line1 + "<p>" + error_line2 + "<br />" + try_again_msg + "</p>"
   end
 
+  def registration_logic_error
+    flash[:error] = server_error_flash _("The registration server returned invalid or incomplete data.")
+    logger.error "Registration resulted in an error, registration server or SuseRegister backend returned invalid or incomplete data."
+    # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
+    redirect_success
+  end
+
   public
 
   # Index handler. Loads information from backend and if success all required
@@ -185,7 +184,7 @@ class RegistrationController < ApplicationController
         success = true
       else
         logger.error "Registration is in success mode, but the backend returned no status information."
-        raise RegistrationLogicException
+        return registration_logic_error
       end
 
       # inform about added services and its catalogs
@@ -240,7 +239,7 @@ class RegistrationController < ApplicationController
 
       unless error && error.kind_of?(Hash) && error["status"] then
         logger.error "Registration is in error mode but no error status information is provided from the backend."
-        raise RegistrationLogicException
+        return registration_logic_error
       end
 
       if error["status"] == "missinginfo" && !error["missingarguments"].blank?
@@ -274,7 +273,7 @@ class RegistrationController < ApplicationController
         # status is "finished" but we are in rescure block - this does not fit
         logger.error "Registration finished successfully (according to backend), but it returned an error (http status 4xx)."
         logger.error "The registration status is unknown."
-        raise RegistrationController::RegistrationLogicException
+        return registration_logic_error
 
       elsif error["status"] == "error"
         e_exitcode = error["exitcode"] || 0
@@ -294,7 +293,7 @@ class RegistrationController < ApplicationController
         when 99 then
           # 99 is an internal error id for missing error status or missing exit codes
           logger.error "Registration backend sent no or invalid data. Maybe network problem or slow connection or too much load on registration server."
-          raise RegistrationLogicException
+          return registration_logic_error
         when 100..101 then
           # 100 and 101 means that no product is installed that can be registered (100: no product, 101: FACTORY)
           logger.error "Registration process did not find any products that can be registered."
@@ -302,22 +301,15 @@ class RegistrationController < ApplicationController
         else
           # unknown error
           logger.error "Registration backend returned an unknown error. Please run in debug mode and report a bug."
-          raise RegistrationLogicException
+          return registration_logic_error
         end
         redirect_success
         return
       else
         logger.debug "error while registration: #{error.inspect}"
         logger.error "Registration resulted in an error: Server returned invalid data"
-        raise RegistrationLogicException
+        return registration_logic_error
       end
-
-    rescue RegistrationLogicException => e
-      flash[:error] = server_error_flash _("The registration server returned invalid or incomplete data.")
-      logger.error "Registration resulted in an error, registration server or SuseRegister backend returned invalid or incomplete data."
-      # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
-      redirect_success
-      return
 
     rescue Exception => e
       flash[:error] = server_error_flash _("A connection to the registration server could not be established or it did not reply.")
