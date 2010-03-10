@@ -93,7 +93,7 @@ private
       settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
       @bug_url = ActiveSupport::JSON.decode(open(settings_url).read)
     rescue Exception => vendor_excp
-      @bug_url = "https://bugzilla.novell.com/enter_bug.cgi?classification=84&product=WebYaST&submit=Use+This+Product&component=WebYaST&format=guided"
+      @bug_url = "https://bugzilla.novell.com/enter_bug.cgi?product=WebYaST&format=guided"
       # there was a problem or the setting does not exist
       # Here we should handle this always as an error
       # the service should return a sane default if the
