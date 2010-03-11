@@ -1,14 +1,16 @@
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
+<% end %>
+<% content_for :before_script do %>
   <% javascript_tag do -%>
   $(document).ready(function(){
-    $("#accordion").accordion({
+    $(".accordion").accordion({
        autoHeight : false,
        navigation : true,
        collapsible: true,
        header     : 'fieldset legend'
     });
-    $("#accordion").accordion('activate',false);
+    $(".accordion").accordion('activate',false);
   });
   <% end %>
 <% end %>
@@ -54,7 +56,7 @@
       <% end %>
 
       <% if @arguments_detail then %>
-        <div id="accordion">
+        <div class="accordion">
           <fieldset class="wrapper with-background width-75" id="argumentdetail">
             <legend><%= _("Details") %></legend>
             <div style="display: none;">
