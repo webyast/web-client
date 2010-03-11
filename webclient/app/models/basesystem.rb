@@ -52,8 +52,7 @@ class Basesystem < ActiveResource::Base
   end
 
   def back_step
-    current_step if first_step?
-    self.current_step = @steps[@steps.index(current)-1]
+    self.current_step = @steps[@steps.index(current)-1] unless first_step?
     redirect_hash
   end
 
