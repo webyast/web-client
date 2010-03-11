@@ -194,4 +194,44 @@ protected
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password").
   filter_parameter_logging :password
+
+  # Translation mapping for ActiveResource validation errors
+  def error_mapping
+    # TODO: is it complete?
+    # ActiveRecord::Errors.default_error_messages defines more messages
+    # but it seems that they cannot be used with YaST model...
+    {
+      :blank => _("can't be blank"),
+      :inclusion => _("is out of allowed values"),
+      :empty => _("can't be empty"),
+      :invalid => _("is invalid")
+    }
+  end
+
+  private :error_mapping
+
+  # Create human readable error meesages from passed ActiveResource object
+  # This error message can be used either in flash or in a view
+  # Parameters:
+  #   obj => ActiveResource object
+  #   mapping => custom mapping of attribute name => translatable description,
+  #      e.g. { :name => _('Name')}
+  #      the mapping should match the labels used in the form
+  #   header => optional header
+  #
+  def generate_error_messages obj, mapping = {}, header = _('Invalid parameters:')
+    return '' if obj.errors.size == 0
+
+    emapping = error_mapping
+    ret = ''
+
+    obj.errors.each {|attr, msg|
+      attrib_name = mapping[attr.to_sym] || attr
+      err_msg = emapping[msg.to_sym] || ''
+
+      ret += "<li>#{attrib_name} #{err_msg}</li>"
+    }
+
+    "<p>#{header}</p><ul>#{ret}</ul>"
+  end
 end

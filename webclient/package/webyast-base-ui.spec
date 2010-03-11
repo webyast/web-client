@@ -1,5 +1,5 @@
 #
-# spec file for package webyast-base-ui (Version 0.1.9)
+# spec file for package webyast-base-ui (Version 0.1.x)
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -33,7 +33,7 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.11
+Version:        0.1.12
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
