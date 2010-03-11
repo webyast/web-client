@@ -22,14 +22,14 @@ $(document).ready(function() {
 	delay: 100
     });
 
-    $("#services").accordion({
+    $(".accordion").accordion({
        autoHeight : false,
        navigation : true,
        collapsible: true,
        header     : 'fieldset legend'
     });
 
-    $("#services").accordion('activate',false);
+    $(".accordion").accordion('activate',false);
 })
 
 // adapt the status icon of given service
@@ -106,7 +106,7 @@ function select_status (val) {
     %>
     <%= observe_field("filter", :function => "select_status(value)") %>
 </p>
-<div id="services">
+<div id="services" class="accordion">
 <%
 commands	= [ "start", "stop", "restart", ]
 @services.each do |service| %>
