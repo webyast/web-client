@@ -21,7 +21,7 @@
 	  // PackageKit does not accept some special characters in alias
 	  || /^[^`'"\\\[\]^$\{\}<>]*$/i.test(value);
 
-	}, "<%= _("Symbols <b>^${}[]&gt;&lt;`\\'\\\"\\\\</b> are not allowed in repository alias.") -%>");
+	}, "<%= _("Symbols <b>%s</b> are not allowed in repository alias.") % "^${}[]&gt;&lt;`\\'\\\"\\\\" -%>");
 
         // validate the form
 	$("#repositoryForm").validate()
