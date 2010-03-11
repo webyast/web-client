@@ -150,8 +150,8 @@ class RepositoriesControllerTest < ActionController::TestCase
   end
 
   def test_update
-    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => 'false', :priority => 50, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false'}
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
 
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
@@ -172,16 +172,14 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.put "/repositories/Ruby.xml", @header, nil, 404
     end
 
-    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => 'false', :priority => 50, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false'}
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
 
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :redirect
+    assert_response :success
     assert_valid_markup
-    assert_redirected_to :action => :show, :id => 'Ruby'
-    assert_false flash.empty?
   end
 
   def test_update_empty_error
@@ -194,16 +192,14 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.put "/repositories/Ruby.xml", @header, fixture("error_message_empty.xml"), 404
     end
 
-    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => 'false', :priority => 50, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false'}
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
 
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :redirect
+    assert_response :success
     assert_valid_markup
-    assert_redirected_to :action => :show, :id => 'Ruby'
-    assert_false flash.empty?
   end
 
 
@@ -217,21 +213,19 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.put "/repositories/Ruby.xml", @header, fixture("error_message.xml"), 404
     end
 
-    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => 'false', :priority => 50, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false'}
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
 
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :redirect
+    assert_response :success
     assert_valid_markup
-    assert_redirected_to :action => :show, :id => 'Ruby'
-    assert_false flash.empty?
   end
 
   def test_update_missing
-    put :update, :id => 'missing', :repository => { :name => 'New name', :autorefresh => 'false', :priority => 50, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false'}
+    put :update, :id => 'missing', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
 
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/missing.xml", nil, @header))
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/missing.xml", nil, @header))
@@ -255,8 +249,8 @@ class RepositoriesControllerTest < ActionController::TestCase
   end
 
   def test_create
-    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => 99, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false', :id => 'new_repo'}
+    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => '99', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0', :id => 'new_repo'}
 
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/new_repo.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/new_repo.xml", nil, @header))
@@ -275,8 +269,8 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.put "/repositories/new_repo.xml", @header, nil, 500
     end
 
-    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => 99, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false', :id => 'new_repo'}
+    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => '99', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0', :id => 'new_repo'}
 
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/new_repo.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/new_repo.xml", nil, @header))
@@ -296,8 +290,8 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.put "/repositories/new_repo.xml", @header, response_error_message, 404
     end
 
-    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => 99, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false', :id => 'new_repo'}
+    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => '99', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0', :id => 'new_repo'}
 
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/new_repo.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/new_repo.xml", nil, @header))
@@ -316,8 +310,8 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.put "/repositories/new_repo.xml", @header, fixture("error_message_empty.xml"), 404
     end
 
-    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => 99, :url => 'http://example.com',
-      :enabled => 'false', :keep_packages => 'false', :id => 'new_repo'}
+    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => '99', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0', :id => 'new_repo'}
 
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/new_repo.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/new_repo.xml", nil, @header))

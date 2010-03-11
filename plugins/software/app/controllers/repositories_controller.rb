@@ -9,6 +9,20 @@ class RepositoriesController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext 'yast_webclient_repositories'
 
+  def attribute_mapping
+    {
+      :id => _('Alias'),
+      :enabled 	=> _('Enabled'),
+      :autorefresh => _('Autorefresh'),
+      :name => _('Name'),
+      :url => _('URL'),
+      :priority => _('Priority'),
+      :keep_packages => _('Keep downloaded packages')
+    }
+  end
+
+  private :attribute_mapping
+
   def index
     begin
       @repos = Repository.find :all
@@ -72,6 +86,7 @@ class RepositoriesController < ApplicationController
 
     begin
       @repo = Repository.find URI.escape(params[:id])
+      @permissions = Repository.permissions
       return unless @repo
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Repository '#{params[:id]}' was not found.")
@@ -86,17 +101,35 @@ class RepositoriesController < ApplicationController
     repository = params[:repository]
 
     @repo.name = repository[:name]
-    @repo.autorefresh = repository[:autorefresh]
-    @repo.enabled = repository[:enabled]
-    @repo.keep_packages = repository[:keep_packages]
+    @repo.autorefresh = repository[:autorefresh] == '1'
+    @repo.enabled = repository[:enabled] == '1'
+    @repo.keep_packages = repository[:keep_packages] == '1'
     @repo.url = repository[:url]
     @repo.priority = repository[:priority]
+
+    if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
+      flash[:error] = _("Invalid priority")
+      render :show and return
+    end
+
+    @repo.priority = @repo.priority.to_i
 
     @repo.id = URI.escape(@repo.id)
 
     begin
       if @repo.save
         flash[:message] = _("Repository '#{@repo.name}' has been updated.")
+      else
+        if @repo.errors.size > 0
+          Rails.logger.error "Repository save failed: #{@repo.errors.full_messages}"
+          flash[:error] = generate_error_messages @repo, attribute_mapping
+          # clear the errors so they are also not displayed in the body
+          @repo.errors.clear
+        else
+          flash[:error] = _("Cannot update repository '#{@repo.name}': Unknown error")
+        end
+
+        render :show and return
       end
     rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
@@ -114,7 +147,7 @@ class RepositoriesController < ApplicationController
           Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
 
-      redirect_to :action => :show, :id => params[:id] and return
+      render :show and return
     end
 
     redirect_to :action => :index and return
@@ -153,8 +186,20 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :add and return
     end
 
-    @repo.load(repository)
+    @repo.name = repository[:name]
+    @repo.autorefresh = repository[:autorefresh] == '1'
+    @repo.enabled = repository[:enabled] == '1'
+    @repo.keep_packages = repository[:keep_packages] == '1'
+    @repo.url = repository[:url]
+    @repo.priority = repository[:priority]
 
+    if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
+      flash[:error] = _("Invalid priority")
+      @adding = true
+      render :show and return
+    end
+
+    @repo.priority = @repo.priority.to_i
     @repo.id = URI.escape(@repo.id)
 
     begin
