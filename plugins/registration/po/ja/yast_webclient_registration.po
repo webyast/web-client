@@ -1,66 +1,79 @@
-# translation of yast_webclient_registration.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2009-11-13 20:12+0900\n"
-"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-02 10:44\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr "セッションが正しくありません。ログインし直してください。"
+msgstr "セッションが無効です。再度ログインしてください。"
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr "登録に対する許可がありません"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr "登録理由が処理できません。"
+msgstr "登録の引数が検証できません。"
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "登録処理でエラーが発生しました。やり直してください。"
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr "登録処理が成功しました。"
+msgstr "登録が正しく完了しました。"
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "追加されたサービス:"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "有効にされたカタログ:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "追加されたリポジトリ:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
-msgstr "失われた項目を入力してください。"
+msgstr "未入力の項目に入力してください。"
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "登録サーバに対して接続する際にエラーが発生しました。"
+msgstr "登録サーバへの接続時にエラーが発生しました。"
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr "登録プラグイン"
+msgstr "プラグインの登録"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "登録"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "この表には登録に関する設定が示されています。"
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "このシステムは登録済みです"
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "変更されたリポジトリ"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "システムのGUID:"
 
-#: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "変更されたサービス"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "再度登録してください"
 
-#: app/views/registration/index.rhtml:57
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "詳細"
 

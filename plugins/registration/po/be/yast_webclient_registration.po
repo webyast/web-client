@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2006-01-04 08:58+0100\n"
 "Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
 "Language-Team: Belarusian <i18n@suse.de>\n"
@@ -14,28 +14,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid ""
+#| "An error occurred while connecting to the server.\n"
+#| "Details: %1\n"
+#| "\n"
+#| "Try again?"
+msgid "An error occurred during registration. Please try again."
+msgstr ""
+"Памылка пры падключэнні да сервера.\n"
+"Падрабязнасці: %1\n"
+"\n"
+"Спрабаваць яшчэ раз?"
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr ""
 
+#: app/controllers/registration_controller.rb:119
+#, fuzzy
+#| msgid "Service Start"
+msgid "Service added:"
+msgstr "Запусціць сервіс"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "Catalonia"
+msgid "Catalog enabled:"
+msgstr "Каталонія"
+
+#: app/controllers/registration_controller.rb:143
+#, fuzzy
+#| msgid "Repository"
+msgid "Repository added:"
+msgstr "Сховішча"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 #, fuzzy
 #| msgid ""
 #| "An error occurred while connecting to the server.\n"
@@ -53,31 +86,40 @@ msgstr ""
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr ""
 
-#: app/views/registration/index.rhtml:7
-#, fuzzy
-#| msgid "Save installation settings"
-msgid "This table gives registration settings."
-msgstr "Захаваць налады ўсталёўкі"
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr ""
 
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Add enabled repositories"
-msgid "Changed Repositories"
-msgstr "Дадаць уключаныя сховішчы"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr ""
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Add enabled repositories"
-msgid "Changed Services"
-msgstr "Дадаць уключаныя сховішчы"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr ""
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Save installation settings"
+#~ msgid "This table gives registration settings."
+#~ msgstr "Захаваць налады ўсталёўкі"
+
+#, fuzzy
+#~| msgid "Add enabled repositories"
+#~ msgid "Changed Repositories"
+#~ msgstr "Дадаць уключаныя сховішчы"
+
+#, fuzzy
+#~| msgid "Add enabled repositories"
+#~ msgid "Changed Services"
+#~ msgstr "Дадаць уключаныя сховішчы"
 
 #, fuzzy
 #~| msgid "&Cancel"

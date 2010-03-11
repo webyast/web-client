@@ -1,171 +1,99 @@
-# Vojtěch Zeisek <vojta.sc@seznam.cz>, 2009.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-10-08 14:49+0200\n"
-"Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
-"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Project-Id-Version: yast_webclient_network\n"
+"POT-Creation-Date: 2010-01-18 14:11+0100\n"
+"PO-Revision-Date: 2010-02-01 15:45\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr ""
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
-msgstr "Není nastaveno"
+msgstr "Není nakonfigurováno"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Manual Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
-msgstr "Ruční režim"
+msgstr "Ruční"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
-msgstr "Automatický režim"
+msgstr "Automatické"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:128
 msgid "Network settings have been written."
-msgstr "Nastavení bylo zapsáno."
+msgstr "Nastavení sítě byla zapsána."
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:132
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Neplatný formát adresy IP. Správný formát je nnn.nnn.nnn.nnn, kde nnn je hodnota v rozmezí 0 až 255."
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:141
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr ""
+msgstr "Neplatný formát předpony. Správný formát je /nn, kde nn je hodnota v rozmezí 0 až 32 (formát CIDR)."
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:147
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Neplatný formát výchozí trasy. Správný formát je nnn.nnn.nnn.nnn, kde nnn je hodnota v rozmezí 0 až 255."
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:153
 msgid "Name servers are required. There must be at least one specified."
-msgstr ""
+msgstr "Jsou požadovány názvové servery. Je třeba zadat alespoň jeden."
 
-#: app/views/network/index.html.erb:115
-#, fuzzy
-#| msgid "No valid request file specified."
+#: app/views/network/index.html.erb:159
 msgid "Hostname is required. It must be specified."
-msgstr "Nebyl zadán platný soubor požadavku."
+msgstr "Je požadován název hostitele. Je třeba jej zadat."
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:165
 msgid "Domain is required. It is not supported empty domain."
-msgstr ""
+msgstr "Je požadována doména. Prázdné domény nejsou podporovány."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:175
 msgid "Network"
 msgstr "Síť"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:184
 msgid "Interface"
 msgstr "Rozhraní"
 
-#: app/views/network/index.html.erb:145
-#, fuzzy
-#| msgid "Select Script"
+#: app/views/network/index.html.erb:189
 msgid "Select"
-msgstr "Vybrat skript"
+msgstr "Vybrat"
 
-#: app/views/network/index.html.erb:166
-#, fuzzy
-#| msgid "Configuration Mode"
+#: app/views/network/index.html.erb:210
 msgid "Configuration mode"
-msgstr "Konfigurace "
+msgstr "Režim konfigurace"
 
-#: app/views/network/index.html.erb:170
-#, fuzzy
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:214
 msgid "IP address"
-msgstr "IP adresa"
+msgstr "Adresa IP"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:218
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "Maska podsítě / Délka předpony"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:225
 msgid "Hostname"
-msgstr "Jméno hostitele"
+msgstr "Název hostitele"
 
-# as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:229
 msgid "Domain"
 msgstr "Doména"
 
-#: app/views/network/index.html.erb:189
-#, fuzzy
-#| msgid "Name Servers"
+#: app/views/network/index.html.erb:233
 msgid "Name servers"
-msgstr "Nameservery"
+msgstr "Názvové servery"
 
-#: app/views/network/index.html.erb:193
-#, fuzzy
-#| msgid "Search Domains"
+#: app/views/network/index.html.erb:237
 msgid "Search domains"
-msgstr "Vyhledávací domény"
+msgstr "Vyhledat domény"
 
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
+#: app/views/network/index.html.erb:245
 msgid "Default route"
-msgstr "Výchozí směrování"
+msgstr "Výchozí trasa"
 
-#, fuzzy
-#~| msgid "Do not start"
-#~ msgid "not set"
-#~ msgstr "Nespouštět"
-
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
-
-#~ msgid "Prefixlen"
-#~ msgstr "Předčíslí"
-
-#~ msgid "DNS"
-#~ msgstr "DNS"
-
-#~ msgid "Routing"
-#~ msgstr "Routování"
-
-#~ msgid "Save"
-#~ msgstr "Uložit"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"
-
-#~ msgid "Edit Network Device"
-#~ msgstr "Upravit síťová zařízení"
-
-#~ msgid "Configuration"
-#~ msgstr "Konfigurace"
-
-#~ msgid "Description"
-#~ msgstr "Popis"
-
-#~ msgid "MAC"
-#~ msgstr "MAC"
-
-#~ msgid "Device Name"
-#~ msgstr "Jméno zařízení"
-
-#~ msgid "Startup"
-#~ msgstr "Spuštění"
-
-#~ msgid "Update"
-#~ msgstr "Aktualizace"
-
-#~ msgid "Back"
-#~ msgstr "Zpět"

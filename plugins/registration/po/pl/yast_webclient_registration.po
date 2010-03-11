@@ -1,77 +1,79 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# Przemysław Bojczuk <pbojczuk@gmail.com>, 2009.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2009-11-08 16:31+0100\n"
-"Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
-"Language-Team:  <pl@li.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-03-09 15:19\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Niepoprawna sesja, proszę zalogować się ponownie."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr "Brak wymaganych zezwoleń na rejestrację"
+msgstr "Brak uprawnień do rejestracji"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr "Nie można zwe"
+msgstr "Nie można wyznaczyć parametrów dla rejestracji."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "Wystąpił błąd podczas rejestracji. Proszę spróbować ponownie."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr "Zakończono pomyślnie rejestrację."
+msgstr "Rejestracja zakończona powodzeniem."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "Dodana usługa:"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "Włączony katalog:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "Dodane repozytorium:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr "Proszę wypełnić brakujące wpisy."
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "Wystąpił błąd podczas połączenia z serwerem rejestrującym."
+msgstr "Wystąpił błąd podczas łączenia się z serwerem rejestracji."
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr "wtyczka do rejestracji"
+msgstr "zarejestruj wtyczkę"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "Rejestracja"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "Niniejsza tabela zawiera ustawienia rejestracyjne"
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "Ten system jest zarejestrowany"
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "Zmienione repozytoria"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "Numer GUID systemu:"
 
-#: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "Zmodyfikowane usługi"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "Zarejestruj ponownie"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
-msgstr "Szczegóły"
+msgstr "Szczegół"
 
-#~ msgid "Register"
-#~ msgstr "Zarejestruj"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Anuluj"

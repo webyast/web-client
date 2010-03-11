@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2005-08-18 21:16+0300\n"
 "Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -11,28 +11,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "An error occurred during registration. Please try again."
+msgstr "Възникнала е грешка по време на инсталацията."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr ""
 
+#: app/controllers/registration_controller.rb:119
+#, fuzzy
+#| msgid "Service"
+msgid "Service added:"
+msgstr "Услуга"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "enabled"
+msgid "Catalog enabled:"
+msgstr "разрешено"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
 msgstr ""
 
@@ -40,31 +63,41 @@ msgstr ""
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 #, fuzzy
 #| msgid "Administration"
 msgid "Registration"
 msgstr "Администриране"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
 msgstr ""
 
-#: app/views/registration/index.rhtml:29
+#: app/views/registration/index.rhtml:10
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Repositories"
-msgstr "&Промяна на позициите"
+#| msgid "System:"
+msgid "System's GUID:"
+msgstr "Система:"
 
-#: app/views/registration/index.rhtml:44
+#: app/views/registration/index.rhtml:11
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Services"
-msgstr "&Промяна на позициите"
+#| msgid "Administration"
+msgid "Register again"
+msgstr "Администриране"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Repositories"
+#~ msgstr "&Промяна на позициите"
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Services"
+#~ msgstr "&Промяна на позициите"
 
 # cancel button label
 #~ msgid "Cancel"

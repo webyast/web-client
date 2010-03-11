@@ -1,48 +1,46 @@
-# translation of yast_webclient_status.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-13 19:54+0900\n"
-"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"PO-Revision-Date: 2010-02-02 10:44\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr "セッションが正しくありません。ログインし直してください。"
+msgstr "セッションが無効です。再度ログインしてください。"
 
 #: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
-msgstr "ディスクの残り容量の制限を超過しました:"
+msgstr "ディスクの残り容量の制限を超過しました;"
 
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
 #: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
-msgstr "システム情報を表示するためのデータが見つかりません。"
+msgstr "システムステータスを表示するためのデータが見つかりません。"
 
 #: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
-msgstr "%s に対する制限が超過しています"
+msgstr "%s に対する制限を超過しています"
 
 #: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
-msgstr "制限の保存に失敗しました！"
+msgstr "制限の保存に失敗しました!"
 
 #: app/views/status/index.html.erb:23
 msgid "Status"
-msgstr "状態"
+msgstr "ステータス"
 
 #: app/views/status/index.html.erb:45
 msgid "Disk usage"
-msgstr "ディスク使用量"
+msgstr "ディスクの使用状況"
 
 #: app/views/status/index.html.erb:68
 msgid "Edit Limits"
@@ -54,19 +52,19 @@ msgstr "戻る"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
-msgstr "残り"
+msgstr "空き"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
-msgstr "使用"
+msgstr "使用領域"
 
 #: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
-msgstr "状態の制限を設定"
+msgstr "ステータス制限を設定"
 
 #: app/views/status/edit.html.erb:7
 msgid "Status Path"
-msgstr "状態パス"
+msgstr "ステータスパス"
 
 #: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
@@ -82,18 +80,13 @@ msgstr "保存"
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
-msgstr "状態情報を読み込む際に問題が発生しました。"
+msgstr "ステータス情報を読み込む際に問題が発生しました。"
 
 #: app/views/status/_status_summary.html.erb:6
 msgid "No status information available"
-msgstr "利用可能な状態情報がありません"
+msgstr "ステータス情報がありません"
 
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "システムは健全な状態です。"
 
-#~ msgid "Events"
-#~ msgstr "イベント"
-
-#~ msgid "These values have been evaluated the last 5 minutes."
-#~ msgstr "これらの値は直前の 5 分で計測されたものです。"

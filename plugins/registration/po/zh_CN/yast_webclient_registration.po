@@ -1,82 +1,79 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-01 11:12\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "会话无效，请重新登录。"
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr ""
+msgstr "没有注册许可权限"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr ""
+msgstr "无法评估注册自变量。"
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "注册期间发生错误。请重试。"
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr ""
+msgstr "注册已成功完成。"
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "已添加服务："
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "编目已启用："
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "已添加安装源："
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
-msgstr ""
+msgstr "请填写缺少项。"
 
-#: app/controllers/registration_controller.rb:126
-#, fuzzy
-#| msgid "An error occurred while reading from the installation source."
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "从安装源读取数据时出错。"
+msgstr "连接到注册服务器时发生错误。"
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr ""
+msgstr "注册插件"
 
-#: app/views/registration/index.rhtml:2
-#, fuzzy
-#| msgid "Administration"
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
-msgstr "管理"
+msgstr "注册"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "此系统已注册"
 
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Repositories"
-msgstr "读取安装源时出错："
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "系统的 GUID："
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Services"
-msgstr "变更过的简报"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "重新注册"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "细节"
 
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "取消"
