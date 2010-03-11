@@ -32,19 +32,25 @@
           ],
       });
 
-   $("#accordion").accordion({
-      navigation : true,
-      header     : 'fieldset legend'
-   });
 
  })
 
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
-
 </script>
-
 <% end %>
+
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+      $(".accordion").accordion({
+        navigation : true,
+        header     : 'fieldset legend'
+      });
+    });
+  <% end %>
+<% end %>
+
 <div class='plugin-icon'><img src='/icons/yast-users.png' alt="users module"/>
   <%=_("Local Users") + header_spacer + _("Add new user")%>
 </div>
@@ -52,7 +58,7 @@
 <% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
-  <div id="accordion">
+  <div class="accordion">
     <fieldset id="tab_login" class="wrapper with-background">
       <legend> Basic User Data</legend>
       <div>

@@ -3,7 +3,6 @@
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
   <% javascript_tag do -%>
-
   $(document).ready(function(){
 
     $("#blocked_services div input, #allowed_services div input").fadeTo(0,0);
@@ -35,16 +34,20 @@
     $("#allowed_services div").filter( function(index) {
         return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "false";
     }).hide();
-
-    $("#accordion").accordion({
-            autoHeight : false,
-            navigation : true,
-            collapsible: true,
-            header     : 'fieldset legend'
-        });
   });
-
   <% end -%>
+<% end %>
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+      $(".accordion").accordion({
+        autoHeight : false,
+        navigation : true,
+        collapsible: true,
+        header     : 'fieldset legend'
+      });
+    });
+  <% end %>
 <% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
@@ -73,7 +76,7 @@
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
   </fieldset>
-  <div id="accordion">
+  <div class="accordion">
       <fieldset class="wrapper with-background">
       <legend><%= _("Allowed services") %></legend>
       <div id="allowed_services">

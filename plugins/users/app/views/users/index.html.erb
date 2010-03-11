@@ -75,7 +75,7 @@
   <%= form_back_button -%>
   <% if @permissions[:useradd] %>
     <%= form_str_spacer %>
-    <%= link_to _("New User..."), {:action => :new}, :class=>'button', :onclick=>"$('#progress').show()" -%>
+    <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
   <% end %>
 </fieldset>
 </div>

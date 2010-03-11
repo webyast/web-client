@@ -16,15 +16,8 @@
       $('#default_route').example('Target address for outgoing IP data packages');
    <% end %>
    <% javascript_tag do -%>
-      $(document).ready(function(){
-        $("#accordion").accordion({
-          navigation : true,
-          header     : 'fieldset legend'
-        });
-      });
-
       function focus_field(field_id) {
-        $("#accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
+        $(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
         $("#"+field_id).focus();
       };
    <% end %>
@@ -134,6 +127,16 @@
       };
     <% end %>
 <% end %>
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+      $(".accordion").accordion({
+        navigation : true,
+        header     : 'fieldset legend'
+      });
+    });
+  <% end %>
+<% end %>
 <div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
 <div class='plugin-content grid_12'>
 
@@ -169,7 +172,7 @@
       <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
     </p>
   </fieldset>
-  <div id="accordion">
+  <div class="accordion">
     <fieldset id="ip-address" class="wrapper with-background">
       <legend>IP Address</legend>
       <div>

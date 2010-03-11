@@ -67,15 +67,22 @@
           ],
       });
 
-   $("#accordion").accordion({
-       navigation : true,
-       header     : 'fieldset legend'
-   });
  })
 
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
  </script>
+<% end %>
+
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+      $(".accordion").accordion({
+        navigation : true,
+        header     : 'fieldset legend'
+      });
+    });
+  <% end %>
 <% end %>
 
 <% disabled = ! @permissions[:usermodify] %>
@@ -88,7 +95,7 @@
 <% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put, :id => "userForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
 
-  <div id="accordion">
+  <div class="accordion">
     <fieldset id="tab_login" class="wrapper with-background">
       <legend><%= _("Login Settings") %></legend>
       <div>
@@ -119,7 +126,7 @@
         <p>
             <label><%=_("Groups")%></label>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
-            <a href="#" class="button" onclick="open_groups_dialog();return false;">Manage Groups</a>
+            <a href="" onClick="open_groups_dialog();return false;">Manage Groups</a>
         </p>
         <p><label id="groups-error" class="error"></label><p>
         <p>

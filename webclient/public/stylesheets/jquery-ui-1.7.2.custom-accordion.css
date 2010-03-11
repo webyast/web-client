@@ -21,7 +21,7 @@
 }
 
 .ui-accordion .ui-accordion-li-fix { display: inline; }
-.ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: .5em .5em .5em 2.2em; }
+.ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: 0; }
 
 
 .ui-accordion .ui-accordion-content { 
@@ -30,6 +30,11 @@
   background: none;
 }
 .ui-accordion .ui-accordion-content-active { display: block; }
+
+.ui-accordion .status-icon {
+  position: relative;
+  top: -2px;
+}
 
 /* Reset regular jquery-ui styles inside accordion */
 
