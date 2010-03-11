@@ -48,7 +48,7 @@ class NetworkController < ApplicationController
     if @conf_mode == "static"
       ipaddr = ifc.ipaddr
     else
-      ipaddr = "-/-"
+      ipaddr = "/"
     end
     @ip, @netmask = ipaddr.split "/"
     # when detect PREFIXLEN with leading "/"
