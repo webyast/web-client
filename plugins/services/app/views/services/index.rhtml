@@ -170,11 +170,10 @@ commands	= [ "start", "stop", "restart", ]
 	    :action	=> :show_status,
 	    :custom	=> service.custom
 	}
-# FIXME toggle_service_info!
 	link_to_remote _('refresh status'), :update => "service_status_#{service.name}",
 	    :url => url,
 	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
-	    :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show()"
+	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show()"
       %>
 
       <span class='service_result' id='service_result_<%=service.name%>'>

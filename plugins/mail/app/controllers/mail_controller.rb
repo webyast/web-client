@@ -67,6 +67,10 @@ class MailController < ApplicationController
 Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration.") % ['<a href="/administrator">', '</a>', '<a href="/mail">', '</a>']
       end
     end
+    if params.has_key?("send_mail")
+      redirect_to :action => "index"
+      return
+    end
     redirect_success # redirect to next step
   end
 

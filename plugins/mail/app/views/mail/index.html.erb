@@ -59,6 +59,7 @@
       <p>
         <label><%=_("Send test mail to")%></label>
         <%= f.text_field :test_mail_address, :disabled => disabled, :class => "email" %>
+	<%= f.submit _("Send Mail"), :name => "send_mail", :disabled => disabled %>
       </p>
     </fieldset> 
     <p>

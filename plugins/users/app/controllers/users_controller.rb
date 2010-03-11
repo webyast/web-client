@@ -129,7 +129,7 @@ class UsersController < ApplicationController
     dummy.grouplist = []
     if dummy.grp_string != nil
        dummy.grp_string.split(",").each do |groupname|
-	  group = { "cn" => groupname }
+	  group = { "cn" => groupname.strip }
 	  dummy.grouplist.push group
        end
     end
@@ -165,8 +165,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # PUT /users/1
   # PUT /users/1.xml
   def update
     return unless client_permissions
@@ -180,7 +178,7 @@ class UsersController < ApplicationController
     @user.grouplist = []
     if params["user"]["grp_string"] != nil
        params["user"]["grp_string"].split(",").each do |groupname|
-	  group = { "cn" => groupname }
+	  group = { "cn" => groupname.strip }
 	  @user.grouplist.push group
        end
     end
