@@ -17,7 +17,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/system_time_contro
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.7
+Version:        0.1.0
 Release:        0
 Summary:        YaST2 - Webclient - Permissions
 Source:         www.tar.bz2
