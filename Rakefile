@@ -34,7 +34,7 @@ task :fetch_po, [:lcn_dir] do |t, args|
   result = Hash.new()
 
   PROJECTS.each do |project|
-    system %(cd #{project} && #{env} #{$0} fetch_po #{args.lcn_dir})
+    system %(cd #{project} && #{env} #{$0} fetch_po[#{args.lcn_dir}])
     raise "Error on execute task fetch_po on #{project}" if $?.exitstatus != 0
 
     #collecting translation information
