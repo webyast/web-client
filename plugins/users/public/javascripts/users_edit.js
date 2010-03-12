@@ -100,5 +100,26 @@
   function moveItem(e,target){
    // this hack is for support both firefox and chrome
    var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
-    if(item.className=='GBox') $('#'+item.id).appendTo($('#'+target));
+    if(item.className=='GBox'){
+	 $('#'+item.id).appendTo($('#'+target));
+	 var u_size  = $('#ContainerUser')[0].childNodes.length;
+	 var u_width  = $('#ContainerUser')[0].clientWidth;
+	 var u_cols=(u_width-10)/100;
+
+	 var g_size = $('#ContainerGroups')[0].childNodes.length;
+	 var g_width  = $('#ContainerGroups')[0].clientWidth;
+	 var g_cols=(g_width-10)/100;
+	if ( target=="ContainerUser" && Math.ceil(u_size/u_cols)>Math.ceil(g_size/g_cols) && g_cols>1){
+	 u_cols+=1;
+	 g_cols-=1;
+	}
+	if (target=="ContainerGroups" && Math.ceil(u_size/u_cols)<Math.ceil(g_size/g_cols) && u_cols>1){
+	 u_cols-=1;
+	 g_cols+=1;
+	}
+	
+	 $('#ContainerUser')[0].style.cssText="width: "+u_cols*100+"px;";
+	 $('#ContainerGroups')[0].style.cssText="width: "+g_cols*100+"px;";
+	 
+    }
   }
