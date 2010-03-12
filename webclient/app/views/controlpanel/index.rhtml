@@ -29,8 +29,8 @@
     <% host = Host.find(session[:host]) rescue nil %>
     <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
   <div id="machine-controle" class="grid_3 omega">
+    <h4><%= _("System actions")%></h4>
     <ul>
-      <li><h4><%= _("System actions")%></h4></li>
       <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
 	    :confirm => _("Really reboot %s?") % host_name, :method => :put, :class => 'button' %></li>
       <li><%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
