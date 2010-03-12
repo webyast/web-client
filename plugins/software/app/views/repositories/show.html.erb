@@ -47,7 +47,7 @@
   <%= if @adding then
         _("Add a new repository")
       else
-        disabled ? _("Properties of") : _("Edit Properties of") + " "+@repo.name
+        disabled ? _("Properties of") : _("Edit Properties of") + " "+ h(@repo.name)
       end
       -%>
 </div>
@@ -101,6 +101,7 @@
       </tr>
   
       </table>
+    </div>
   </fieldset>
   <fieldset>
     <%= form_back_button :action => :index, :onclick=>"$('#progress').show()"%>

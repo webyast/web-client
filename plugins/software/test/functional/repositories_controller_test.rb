@@ -419,4 +419,56 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert flash.empty?
   end
 
+  def test_create_error_invalid_priority
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
+          { :policy => "org.opensuse.yast.system.repositories"})
+      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
+      mock.put "/repositories/new_repo.xml", @header, fixture("error_message_empty.xml"), 404
+    end
+
+    post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => 'asddf', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0', :id => 'new_repo'}
+
+    assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/new_repo.xml", nil, @header))
+    assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/new_repo.xml", nil, @header))
+
+    assert_response :success
+    assert_valid_markup
+  end
+
+  def test_update_invalid_priority
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => 'asdf', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
+
+    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
+    assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
+
+    assert_response :success
+    assert_valid_markup
+  end
+
+  def test_update_validation_failed
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
+          { :policy => "org.opensuse.yast.system.repositories"})
+      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
+      mock.get  "/repositories/Ruby.xml", @header, fixture("repository_Ruby.xml"), 200
+      # Content-Type is essential here, ActiveResource does not parse the response when the type is missing
+      mock.put "/repositories/Ruby.xml", @header, fixture("error_validation_failed.xml"), 422, 'Content-Type' => 'text/xml'
+    end
+
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
+      :enabled => '0', :keep_packages => '0'}
+
+    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
+    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
+
+    assert_response :success
+    assert_valid_markup
+
+    # check the rendered flash (a div with class 'flash-message')
+    assert_select 'div.flash-message', /Priority/
+  end
+
 end

@@ -200,7 +200,7 @@ class RepositoriesController < ApplicationController
     end
 
     @repo.priority = @repo.priority.to_i
-    @repo.id = URI.escape(@repo.id)
+    @repo.id = URI.escape(repository[:id] || '')
 
     begin
       if @repo.save
