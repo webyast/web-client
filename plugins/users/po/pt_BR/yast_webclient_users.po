@@ -1,33 +1,25 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-20 19:27-0300\n"
-"Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
-"Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
+"POT-Creation-Date: 2010-01-18 14:11+0100\n"
+"PO-Revision-Date: 2010-02-02 08:19\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-Country: BRAZIL\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: app/controllers/users_controller.rb:18
 msgid "Invalid session, please login again."
-msgstr "Sessão inválida, por favor conecte-se novamente."
+msgstr "Sessão inválida. Efetue login novamente."
 
 #: app/controllers/users_controller.rb:144
 msgid "User <i>%s</i> was successfully created."
-msgstr "O usuário <i>%s</i> foi criado com sucesso."
+msgstr "O usuário <i>%s</i> foi criado com êxito."
 
 #: app/controllers/users_controller.rb:148
 msgid "Empty UID value"
@@ -39,11 +31,11 @@ msgstr "UID: valor >= 1000 é válido somente para usuário local"
 
 #: app/controllers/users_controller.rb:197
 msgid "User <i>%s</i> was successfully updated."
-msgstr "O usuário <i>%s</i> foi atualizado com sucesso."
+msgstr "O usuário <i>%s</i> foi atualizado com êxito."
 
 #: app/controllers/users_controller.rb:218
 msgid "User <i>%s</i> was successfully removed."
-msgstr "O usuário <i>%s</i> foi removido com sucesso."
+msgstr "O usuário <i>%s</i> foi removido com êxito."
 
 #: app/controllers/users_controller.rb:220
 msgid "Error: Could not remove user <i>%s</i>."
@@ -51,16 +43,15 @@ msgstr "Erro: não foi possível remover o usuário <i>%s</i>."
 
 #: app/views/users/index.html.erb:1
 msgid "Local User"
-msgstr "Usuário local"
+msgstr "Usuário Local"
 
 #: app/views/users/index.html.erb:6
 msgid "Login"
-msgstr "Conectar"
+msgstr "Login"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
+#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11 app/views/users/new.html.erb:8
 msgid "Full Name"
-msgstr "Nome completo"
+msgstr "Nome Completo"
 
 #: app/views/users/index.html.erb:8
 msgid "Edit"
@@ -68,12 +59,11 @@ msgstr "Editar"
 
 #: app/views/users/index.html.erb:27
 msgid "<strong>[New User]</strong>"
-msgstr "<strong>[Novo usuário]</strong>"
+msgstr "<strong>[Novo Usuário]</strong>"
 
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
+#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43 app/views/users/new.html.erb:44
 msgid "Back"
-msgstr "Cancelar"
+msgstr "Voltar"
 
 #: app/views/users/edit.html.erb:1
 msgid "Edit user %s"
@@ -85,25 +75,24 @@ msgstr "Grupos"
 
 #: app/views/users/edit.html.erb:19
 msgid "Default Group"
-msgstr "Grupo padrão"
+msgstr "Grupo Padrão"
 
 #: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
 msgid "Home Directory"
-msgstr "Diretório home"
+msgstr "Diretório Pessoal"
 
 #: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
 msgid "Login Shell"
-msgstr "Shell de login"
+msgstr "Shell de Login"
 
 #: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
 msgid "Login Name"
-msgstr "Nome de login"
+msgstr "Nome de Login"
 
 #: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
 msgid "UID Number"
 msgstr "Número do UID"
 
-# password dialog title
 #: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
 msgid "Password"
 msgstr "Senha"
@@ -114,11 +103,11 @@ msgstr "Atualizar"
 
 #: app/views/users/new.html.erb:1
 msgid "New User"
-msgstr "Novo usuário"
+msgstr "Novo Usuário"
 
 #: app/views/users/new.html.erb:16
 msgid "Default Group (GID)"
-msgstr "Grupo padrão (GID)"
+msgstr "Grupo Padrão (GID)"
 
 #: app/views/users/new.html.erb:24
 msgid "Do not create home directory"
@@ -128,11 +117,3 @@ msgstr "Não criar diretório pessoal"
 msgid "Create"
 msgstr "Criar"
 
-#~ msgid "Edit User %s"
-#~ msgstr "Editar usuário %s"
-
-#~ msgid "User"
-#~ msgstr "Usuário"
-
-#~ msgid "do NOT create home directory"
-#~ msgstr "NÃO criar diretório home"

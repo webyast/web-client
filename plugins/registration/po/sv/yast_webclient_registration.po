@@ -1,82 +1,79 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2005-09-18 19:09+0200\n"
-"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-02 11:19\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "Ogiltig session. Logga in igen."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr ""
+msgstr "Det finns inga behörigheter för registreringen"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr ""
+msgstr "Det går inte att utvärdera argumenten för registreringen."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "Ett fel inträffade under registreringen. Försök igen."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr ""
+msgstr "Registreringen är slutförd."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "Tjänst som lagts till:"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "Aktiverad katalog:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "Arkiv som lagts till:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
-msgstr ""
+msgstr "Fyll i posterna som saknas."
 
-#: app/controllers/registration_controller.rb:126
-#, fuzzy
-#| msgid "An error occurred while reading from the installation source."
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "Ett fel uppstod vid läsning från installationskällan."
+msgstr "Ett fel uppstod vid anslutning till registreringsservern."
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr ""
+msgstr "insticksprogram för registrering"
 
-#: app/views/registration/index.rhtml:2
-#, fuzzy
-#| msgid "&Administration"
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
-msgstr "&Administration"
+msgstr "Registrering"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "Systemet är registrerat"
 
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Repositories"
-msgstr "Ändrade profiler"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "Systemets GUID:"
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Services"
-msgstr "Ändrade profiler"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "Registrera igen"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
-msgstr "Detaljer"
+msgstr "Detalj"
 
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"

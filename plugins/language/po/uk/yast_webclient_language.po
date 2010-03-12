@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_language.uk\n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2009-09-27 15:54-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -18,13 +18,15 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/language_controller.rb:27
+#: app/controllers/language_controller.rb:29
 msgid "No permissions for language module"
 msgstr "Немає дозволу для модуля мови"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/language_controller.rb:56
-msgid "Settings have been written."
+#: app/controllers/language_controller.rb:62
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Language settings have been written."
 msgstr "Параметри було збережено."
 
 # label for language selection
@@ -33,24 +35,27 @@ msgid "language plugin"
 msgstr "додаток мови"
 
 # label for language selection
-#: app/views/language/index.rhtml:2
+#: app/views/language/index.rhtml:1
 msgid "Language"
 msgstr "Мова"
 
-# label for language selection
-#: app/views/language/index.rhtml:9
+#: app/views/language/index.rhtml:6
 #, fuzzy
-#| msgid "First Language"
-msgid "First language"
-msgstr "Перша мова"
+#| msgid "Munda languages"
+msgid "webYaST language"
+msgstr "Мови мунда"
 
-#: app/views/language/index.rhtml:14
-msgid "Use UTF8 encoding"
-msgstr "Використовувати кодування UTF8"
+# label for language selection
+#, fuzzy
+#~| msgid "First Language"
+#~ msgid "First language"
+#~ msgstr "Перша мова"
 
-#: app/views/language/index.rhtml:19
-msgid "Set root locale"
-msgstr "Вказати локаль root"
+#~ msgid "Use UTF8 encoding"
+#~ msgstr "Використовувати кодування UTF8"
+
+#~ msgid "Set root locale"
+#~ msgstr "Вказати локаль root"
 
 #~ msgid "This table gives language settings description and current value for it"
 #~ msgstr "В цій таблиці подано опис параметрів мови і їх поточні значення"

@@ -1,62 +1,50 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: yast_webclient_status\n"
 "POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"PO-Revision-Date: 2010-02-01 11:12\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "会话无效，请重新登录。"
 
 #: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
-msgstr ""
+msgstr "已超过可用磁盘限制；"
 
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
 #: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "找不到显示系统状态的数据。"
 
 #: app/controllers/status_controller.rb:181
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for %s"
-msgstr "添加\"%s\"成功。\n"
+msgstr "已超出 %s 限制"
 
 #: app/controllers/status_controller.rb:229
-#, fuzzy
-#| msgid "Saving the changes failed"
 msgid "Saving limits failed!"
-msgstr "保存更改失败"
+msgstr "保存限制失败！"
 
 #: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "状态"
 
 #: app/views/status/index.html.erb:45
-#, fuzzy
-#| msgid "Disks"
 msgid "Disk usage"
-msgstr "磁盘"
+msgstr "磁盘使用情况"
 
 #: app/views/status/index.html.erb:68
 msgid "Edit Limits"
-msgstr ""
+msgstr "编辑限制"
 
 #: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
@@ -64,64 +52,41 @@ msgstr "后退"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
-msgstr ""
+msgstr "空闲"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-#, fuzzy
-#| msgid "Last used"
 msgid "used"
-msgstr "上次使用的"
+msgstr "已用"
 
 #: app/views/status/edit.html.erb:2
-#, fuzzy
-#| msgid "Configure Compiz Settings"
 msgid "Configure Status Limits"
-msgstr "配置 Compiz"
+msgstr "配置状态限制"
 
 #: app/views/status/edit.html.erb:7
-#, fuzzy
-#| msgid "Status: "
 msgid "Status Path"
-msgstr "状态："
+msgstr "状态路径"
 
 #: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
-msgstr ""
+msgstr "最小值"
 
 #: app/views/status/edit.html.erb:9
-#, fuzzy
-#| msgid "Maximum Memory"
 msgid "Maximum Value"
-msgstr "最大内存"
+msgstr "最大值"
 
 #: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "保存"
 
 #: app/views/status/_status_summary.html.erb:1
-#, fuzzy
-#| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
-msgstr "安装期间出错。"
+msgstr "装载状态信息时发生问题。"
 
 #: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
 msgid "No status information available"
-msgstr "没有可用信息。"
+msgstr "无状态信息可用"
 
 #: app/views/status/_status_summary.html.erb:14
-#, fuzzy
-#| msgid "Your system is up-to-date."
 msgid "Your system is healthy."
-msgstr "你的系统处于最新状态。"
+msgstr "您的系统运行状态良好。"
 
-#, fuzzy
-#~| msgid "Button Events"
-#~ msgid "Events"
-#~ msgstr "按钮事件"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Show details..."
-#~ msgstr "细节"

@@ -1,76 +1,79 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2005-07-31 14:37+0200\n"
-"Last-Translator: Klara Cihlarova <koty@seznam.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-01 15:45\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "Nepatná relace, přihlaste se znovu."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr ""
+msgstr "Nejsou žádná oprávnění pro registraci."
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr ""
+msgstr "Argumenty pro registraci nelze vyhodnotit."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "Při registraci došlo k chybě. Zkuste to znovu."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr ""
+msgstr "Registrace byla úspěšně dokončena."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "Přidaná služba:"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "Povolený katalog:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "Přidané úložiště:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
-msgstr ""
+msgstr "Vyplňte chybějící položky."
 
-#: app/controllers/registration_controller.rb:126
-#, fuzzy
-#| msgid "An error occurred while reading from the installation source."
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "Při čtení z instalačního zdroje došlo k chybě."
+msgstr "Při připojování k registračnímu serveru došlo k chybě."
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr ""
+msgstr "registrovat modul plug-in"
 
-#: app/views/registration/index.rhtml:2
-#, fuzzy
-#| msgid "Administration"
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
-msgstr "Administrace"
+msgstr "Registrace"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "Systém je zaregistrován"
 
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Repositories"
-msgstr "Chyba při čtení repozitářů:"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "GUID systému:"
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Services"
-msgstr "Změněné profily"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "Registrovat znovu"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "Podrobnosti"
 
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"

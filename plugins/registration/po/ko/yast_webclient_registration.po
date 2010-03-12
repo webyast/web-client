@@ -1,74 +1,79 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: entries\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2006-06-12 16:56+0100\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-01 09:34\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "세션이 잘못되었습니다. 다시 로그인하십시오."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr ""
+msgstr "등록 권한 없음"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr ""
+msgstr "등록 인수를 평가할 수 없습니다."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "등록하는 동안 오류가 발생했습니다. 다시 시도하십시오."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr ""
+msgstr "등록이 성공적으로 완료되었습니다."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "추가된 서비스:"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "활성화된 카탈로그:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "추가된 리포지토리:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
-msgstr ""
+msgstr "누락된 항목을 채우십시오."
 
-#: app/controllers/registration_controller.rb:126
-#, fuzzy
-#| msgid "An error occurred while reading from the installation source."
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "설치 소스로부터 읽는 도중 오류가 발생했습니다."
+msgstr "등록 서버에 연결하는 동안 오류가 발생했습니다."
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr ""
+msgstr "등록 플러그인"
 
-#: app/views/registration/index.rhtml:2
-#, fuzzy
-#| msgid "Administration"
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
-msgstr "관리"
+msgstr "등록"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "이 시스템이 등록됩니다."
 
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Repositories"
-msgstr "저장소 읽는 중 오류:"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "시스템의 GUID:"
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Services"
-msgstr "변경된 프로파일"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "다시 등록"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
-msgstr "자세히"
+msgstr "세부 사항"
 
-#~ msgid "Cancel"
-#~ msgstr "취소"

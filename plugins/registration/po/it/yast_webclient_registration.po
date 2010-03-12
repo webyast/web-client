@@ -1,68 +1,79 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2009-11-13 16:04+0100\n"
-"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-03 13:32\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Italian\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr "Sessione non valida, per favore effettua nuovamente il login."
+msgstr "Sessione non valida, eseguire di nuovo il login."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr "Nessun permesso per la registrazione"
+msgstr "Nessuna autorizzazione per la registrazione"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr "Gli argomenti per la registrazione non possono essere valutati."
+msgstr "Impossibile valutare gli argomenti per la registrazione."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "Errore durante la registrazione. Riprovare."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr "Registrazione terminata con successo."
+msgstr "Registrazione completata."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "Servizio aggiunto:"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "Catalogo abilitato:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "Archivio aggiunto:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
-msgstr "Per favore completa gli elementi mancanti."
+msgstr "Compilare le voci mancanti."
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "Si è verificato un errore durante la connessione al server di registrazione."
+msgstr "Errore durante la connessione al server di registrazione."
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr "plugin di registrazione"
+msgstr "registra plug-in"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "Registrazione"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "Questa tabella mostra le impostazioni di registrazione."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "Il sistema è registrato"
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "Repository modificati"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "GUID del sistema:"
 
-#: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "Servizi modificati"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "Ripeti registrazione"
 
-#: app/views/registration/index.rhtml:57
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "Dettaglio"
-
-#~ msgid "Register"
-#~ msgstr "Registra"
 

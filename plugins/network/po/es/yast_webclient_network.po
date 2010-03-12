@@ -1,163 +1,99 @@
-# translation of yast_webclient_network.es.po to Spanish
-# Carlos E. Robinson <carlos.e.r@opensuse.org>, 2009.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_network.es\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-10-29 13:45+0100\n"
-"Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
-"Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
+"Project-Id-Version: yast_webclient_network\n"
+"POT-Creation-Date: 2010-01-18 14:11+0100\n"
+"PO-Revision-Date: 2010-02-15 13:51\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Spanish\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Sin permisos para el módulo de red"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Sin configurar"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "Manual"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
-msgstr "Modo automático"
+msgstr "Automático"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:128
 msgid "Network settings have been written."
-msgstr "Se ha escrito la configuración."
+msgstr "Los valores de red ya se han escrito."
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:132
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
+msgstr "Formato de dirección IP no válido. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:97
-#, fuzzy
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:141
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
+msgstr "El formato del prefijo no es válido. El correcto es /nn, donde nn es un valor entre 0 y 32 (formato CIDR)."
 
-#: app/views/network/index.html.erb:103
-#, fuzzy
-#| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:147
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Formato de dirección IP inválida. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
+msgstr "Formato de ruta por defecto IP no válido. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:153
 msgid "Name servers are required. There must be at least one specified."
-msgstr ""
+msgstr "Se requieren los servidores de nombres. Hay que especificar uno como mínimo."
 
-#: app/views/network/index.html.erb:115
-#, fuzzy
-#| msgid "No valid request file specified."
+#: app/views/network/index.html.erb:159
 msgid "Hostname is required. It must be specified."
-msgstr "No se ha especificado ningún archivo de solicitud válido."
+msgstr "Se requiere un nombre de host. Hay que especificarlo."
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:165
 msgid "Domain is required. It is not supported empty domain."
-msgstr ""
+msgstr "Se requiere un dominio. No se admite un dominio vacío."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:175
 msgid "Network"
 msgstr "Red"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:184
 msgid "Interface"
 msgstr "Interfaz"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:189
 msgid "Select"
-msgstr "Seleccione"
+msgstr "Seleccionar"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:210
 msgid "Configuration mode"
 msgstr "Modo de configuración"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:214
 msgid "IP address"
 msgstr "Dirección IP"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:218
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "Máscara de subred/Longitud del prefijo"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:225
 msgid "Hostname"
-msgstr "Nombre de equipo"
+msgstr "Nombre de host"
 
-# as in Windows Authentication Domain
-#  msgid "Domain\n
-# CER, 2009, 11.2: ¿es eso cierto?
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:229
 msgid "Domain"
 msgstr "Dominio"
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:233
 msgid "Name servers"
 msgstr "Servidores de nombres"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:237
 msgid "Search domains"
 msgstr "Dominios de búsqueda"
 
-#: app/views/network/index.html.erb:201
+#: app/views/network/index.html.erb:245
 msgid "Default route"
 msgstr "Ruta por defecto"
 
-#~ msgid "not set"
-#~ msgstr "no configurado"
-
-#~ msgid "static"
-#~ msgstr "estática"
-
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
-
-#~ msgid "Prefixlen"
-#~ msgstr "Prefixlen"
-
-#~ msgid "DNS"
-#~ msgstr "DNS"
-
-#~ msgid "Routing"
-#~ msgstr "Rutado"
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Edit Network Device"
-#~ msgstr "Editar dispositivo de red"
-
-#~ msgid "Configuration"
-#~ msgstr "Configuración"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Description"
-#~ msgstr "Descripción"
-
-#~ msgid "MAC"
-#~ msgstr "MAC"
-
-#~ msgid "Device Name"
-#~ msgstr "Dispositivo"
-
-#~ msgid "Startup"
-#~ msgstr "Inicio"

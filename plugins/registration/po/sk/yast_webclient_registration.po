@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2003-09-24 10:40+0200\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@kde.org>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -18,28 +18,53 @@ msgstr ""
 "X-Generator: KBabel 1.2\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "An error occurred during registration. Please try again."
+msgstr "Počas inštalácie nastala chyba."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr ""
 
+#: app/controllers/registration_controller.rb:119
+#, fuzzy
+#| msgid "Service"
+msgid "Service added:"
+msgstr "Služba"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "Catalog: "
+msgid "Catalog enabled:"
+msgstr "Katalóg: "
+
+#: app/controllers/registration_controller.rb:143
+#, fuzzy
+#| msgid "Repository name:"
+msgid "Repository added:"
+msgstr "Názov repozitára:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 #, fuzzy
 #| msgid "Error occured while adding service '%s'."
 msgid "Error occured while connecting to registration server."
@@ -49,33 +74,43 @@ msgstr "Pri pridávané služby '%s' nastala chyba."
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 #, fuzzy
 #| msgid "Administration"
 msgid "Registration"
 msgstr "Administrácia"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
 msgstr ""
 
-#: app/views/registration/index.rhtml:29
+#: app/views/registration/index.rhtml:10
 #, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Repositories"
-msgstr "Chyba pri čítaní repozitárov:"
+#| msgid "System"
+msgid "System's GUID:"
+msgstr "Systém"
 
-#: app/views/registration/index.rhtml:44
+#: app/views/registration/index.rhtml:11
 #, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Services"
-msgstr "Chyba pri čítaní repozitárov:"
+#| msgid "Administration"
+msgid "Register again"
+msgstr "Administrácia"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:39
 #, fuzzy
 #| msgid "Details"
 msgid "Detail"
 msgstr "Detaily"
+
+#, fuzzy
+#~| msgid "Error reading repositories:"
+#~ msgid "Changed Repositories"
+#~ msgstr "Chyba pri čítaní repozitárov:"
+
+#, fuzzy
+#~| msgid "Error reading repositories:"
+#~ msgid "Changed Services"
+#~ msgstr "Chyba pri čítaní repozitárov:"
 
 # cancel button label
 #~ msgid "Cancel"

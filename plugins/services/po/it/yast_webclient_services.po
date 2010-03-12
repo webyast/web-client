@@ -1,23 +1,21 @@
-# translation of yast_webclient_services.po to italiano
-# Andrea Florio <andrea@opensuse.org>, 2009.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-29 11:19+0100\n"
-"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
-"Language-Team: italiano <translations@opensuse.org>\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2010-02-03 13:32\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Italian\n"
 
 #: app/controllers/services_controller.rb:11
 msgid "Invalid session, please login again."
-msgstr "Sessione non valida, per favore fai il login di nuovo."
+msgstr "Sessione non valida, eseguire di nuovo il login."
 
 #: app/controllers/services_controller.rb:34
 msgid "(cannot read status)"
@@ -25,7 +23,7 @@ msgstr "(impossibile leggere lo stato)"
 
 #: app/controllers/services_controller.rb:80
 msgid "success"
-msgstr "successo"
+msgstr "operazione riuscita"
 
 #: app/views/services/_status.rhtml:14
 msgid "(unknown)"
@@ -49,7 +47,7 @@ msgstr "(sconosciuto: %d)"
 
 #: app/views/services/_result.rhtml:5
 msgid "Service Call Result"
-msgstr "Risultato del servizio chiamato"
+msgstr "Risultato della chiamata del servizio"
 
 #: app/views/services/_result.rhtml:8
 msgid "Result"
@@ -60,22 +58,27 @@ msgid "Description"
 msgstr "Descrizione"
 
 #: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:102
 msgid "Back"
 msgstr "Indietro"
 
-#: app/views/services/index.rhtml:12
+#: app/views/services/index.rhtml:11
 msgid "Custom Services"
-msgstr "Servizi Clienti"
+msgstr "Servizi personalizzati"
 
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:13
 msgid "System Services"
-msgstr "Servizi di Sistema"
+msgstr "Servizi di sistema"
 
-#: app/views/services/index.rhtml:21
+#: app/views/services/index.rhtml:20
+msgid "No custom service is defined on target machine."
+msgstr "Nessun servizio personalizzato definito sul computer di destinazione."
+
+#: app/views/services/index.rhtml:22
 msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Non hai il permesso di eseguire il servizio. I link sono disabilitati."
+msgstr "L'utente non è autorizzato a eseguire i servizi. I collegamenti sono disabilitati."
 
-#: app/views/services/index.rhtml:93
+#: app/views/services/index.rhtml:94
 msgid "status"
 msgstr "stato"
+

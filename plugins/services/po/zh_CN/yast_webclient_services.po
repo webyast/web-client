@@ -1,110 +1,84 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_services\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2010-02-01 11:12\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/services_controller.rb:11
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "会话无效，请重新登录。"
 
 #: app/controllers/services_controller.rb:34
 msgid "(cannot read status)"
-msgstr ""
+msgstr "（无法读取状态）"
 
 #: app/controllers/services_controller.rb:80
-#, fuzzy
-#| msgid ""
-#| "Success:\n"
-#| "%s"
 msgid "success"
-msgstr ""
-"成功：\n"
-"%s"
+msgstr "成功"
 
 #: app/views/services/_status.rhtml:14
-#, fuzzy
-#| msgid "unknown"
 msgid "(unknown)"
-msgstr "未知"
+msgstr "（未知）"
 
 #: app/views/services/_status.rhtml:16
-#, fuzzy
-#| msgid "running"
 msgid "(running)"
-msgstr "正在运行"
+msgstr "（正在运行）"
 
 #: app/views/services/_status.rhtml:18
 msgid "(dead)"
-msgstr ""
+msgstr "（已终止）"
 
 #: app/views/services/_status.rhtml:20
-#, fuzzy
-#| msgid "not running"
 msgid "(not running)"
-msgstr "不在运行"
+msgstr "（未在运行）"
 
 #: app/views/services/_status.rhtml:22
-#, fuzzy
-#| msgid "unknown"
 msgid "(unknown: %d)"
-msgstr "未知"
+msgstr "（未知：%d）"
 
 #: app/views/services/_result.rhtml:5
-#, fuzzy
-#| msgid "Service unavailable"
 msgid "Service Call Result"
-msgstr "服务不可用"
+msgstr "服务调用结果"
 
 #: app/views/services/_result.rhtml:8
-#, fuzzy
-#| msgid "Connect Result"
 msgid "Result"
-msgstr "连接结果"
+msgstr "结果"
 
 #: app/views/services/_result.rhtml:12
 msgid "Description"
-msgstr "说明"
+msgstr "描述"
 
 #: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:102
 msgid "Back"
 msgstr "后退"
 
-#: app/views/services/index.rhtml:12
-#, fuzzy
-#| msgid "Novell Services"
+#: app/views/services/index.rhtml:11
 msgid "Custom Services"
-msgstr "Novell 服务"
+msgstr "自定义服务"
 
-#: app/views/services/index.rhtml:14
-#, fuzzy
-#| msgid "System Settings"
+#: app/views/services/index.rhtml:13
 msgid "System Services"
-msgstr "系统设置"
+msgstr "系统服务"
 
-#: app/views/services/index.rhtml:21
-#, fuzzy
-#| msgid "you have no permission to execute this command"
+#: app/views/services/index.rhtml:20
+msgid "No custom service is defined on target machine."
+msgstr "在目标计算机上未定义自定义服务。"
+
+#: app/views/services/index.rhtml:22
 msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "您没有执行此命令的许可权"
+msgstr "您没有执行服务的许可权限。链接已禁用。"
 
-#: app/views/services/index.rhtml:93
-#, fuzzy
-#| msgid "Status"
+#: app/views/services/index.rhtml:94
 msgid "status"
 msgstr "状态"
+

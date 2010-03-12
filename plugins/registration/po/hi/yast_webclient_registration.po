@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: Prasanth Kurian <prasanth.kurian@agreeya.com>\n"
 "Language-Team: Hindi <i18n@suse.de>\n"
@@ -15,28 +15,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "An error occurred during registration. Please try again."
+msgstr "इंस्टालेशन के दौरान कोई त्रुटि हुई।"
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr ""
 
+#: app/controllers/registration_controller.rb:119
+#, fuzzy
+#| msgid "SLP Services and more"
+msgid "Service added:"
+msgstr "SLP और अधिक सेवाएं"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "Catalog: "
+msgid "Catalog enabled:"
+msgstr "कैटालाग"
+
+#: app/controllers/registration_controller.rb:143
+#, fuzzy
+#| msgid "Repository: "
+msgid "Repository added:"
+msgstr "रिपोजिटरी"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
 msgstr ""
 
@@ -44,33 +69,43 @@ msgstr ""
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 #, fuzzy
 #| msgid "&Administration"
 msgid "Registration"
 msgstr "प्रशासन"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
 msgstr ""
 
-#: app/views/registration/index.rhtml:29
+#: app/views/registration/index.rhtml:10
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Repositories"
-msgstr "स्थिति बदलें"
+#| msgid "System:"
+msgid "System's GUID:"
+msgstr "सिस्टम"
 
-#: app/views/registration/index.rhtml:44
+#: app/views/registration/index.rhtml:11
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Services"
-msgstr "स्थिति बदलें"
+#| msgid "&Administration"
+msgid "Register again"
+msgstr "प्रशासन"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:39
 #, fuzzy
 #| msgid "&Details"
 msgid "Detail"
 msgstr "&विवरण "
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Repositories"
+#~ msgstr "स्थिति बदलें"
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Services"
+#~ msgstr "स्थिति बदलें"
 
 #~ msgid "Cancel"
 #~ msgstr "रद्द"

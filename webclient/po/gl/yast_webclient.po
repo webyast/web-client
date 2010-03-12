@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: yast_webclient.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
 "POT-Creation-Date: 2009-11-20 14:33+0100\n"
-"PO-Revision-Date: 2009-12-19 10:48+0100\n"
+"PO-Revision-Date: 2009-11-14 18:48+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,8 @@ msgid "You must accept all EULAs before using this product!"
 msgstr "Debe aceptar todos os EULAS antes de usar este produto!"
 
 #: app/controllers/application_controller.rb:57
-msgid ""
-"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
-"Non se pode redireccionar ao EULA. Asegúrese que o paquete yast2-webclient-"
-"eulas estea instalado"
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr "Non se pode redireccionar ao EULA. Asegúrese que o paquete yast2-webclient-eulas estea instalado"
 
 #: app/controllers/application_controller.rb:111
 msgid "Please login to continue"
@@ -39,9 +36,7 @@ msgstr "Non é posible conectarse ao host %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr ""
-"Asegúrese que o host está correndo e que o servizo web de YaST estase a "
-"executar."
+msgstr "Asegúrese que o host está correndo e que o servizo web de YaST estase a executar."
 
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
@@ -231,8 +226,7 @@ msgid "This is embarrasing...."
 msgstr "Isto é embarazoso..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid ""
-"We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
 msgstr "Desculpe, pero WebYaST aínda está en fase alfa e hai algúns problemas."
 
 #: app/views/shared/exception_trap.html.erb:12
@@ -242,8 +236,7 @@ msgstr "Problema: "
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr ""
-"Por favor, envíe un informe de erro para que poidamos arranxar o problema!"
+msgstr "Por favor, envíe un informe de erro para que poidamos arranxar o problema!"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
@@ -266,8 +259,10 @@ msgid "My Appliance"
 msgstr "O meu aplicativo"
 
 #: app/views/layouts/main.rhtml:56
+#, fuzzy
+#| msgid "Connected Host"
 msgid "Connected host:"
-msgstr "Host conectado:"
+msgstr "Host conectado"
 
 #: app/views/layouts/main.rhtml:57
 msgid "User:"
@@ -306,12 +301,8 @@ msgid "Base system setup"
 msgstr "Configuración básica do sistema"
 
 #: app/views/controlpanel/basesystem.rhtml:3
-msgid ""
-"Your system setup was not completed. Please continue with setting up the "
-"modules."
-msgstr ""
-"A configuración do seu sistema no foi completada. Por favor, continúe coa "
-"configuración dos módulos."
+msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgstr "A configuración do seu sistema no foi completada. Por favor, continúe coa configuración dos módulos."
 
 #: app/views/controlpanel/basesystem.rhtml:4
 msgid "Set up the system"
@@ -380,11 +371,8 @@ msgid "Permission %s is not granted for user %s"
 msgstr "O permiso %s non se concede ao usuario %s"
 
 #: lib/error_constructor.rb:18
-msgid ""
-"Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
-"Excepción do Policykit para o usuario %s e permiso %s (mensaxe sen "
-"traducir): %s"
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr "Excepción do Policykit para o usuario %s e permiso %s (mensaxe sen traducir): %s"
 
 #: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
@@ -395,12 +383,8 @@ msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "O sistema destino non é consistente: ficheiro %s perdido ou corrupto"
 
 #: lib/error_constructor.rb:26
-msgid ""
-"There is no predefined ntp server at /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
-"Non hai servidor predefinido en /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "Non hai servidor predefinido en /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:28
 msgid "Error occured during ntp synchronization: %s"
@@ -408,8 +392,7 @@ msgstr "Houbo un erro durante a sincronización ntp: %s"
 
 #: lib/error_constructor.rb:31
 msgid "Error while saving administrator settings: %s"
-msgstr ""
-"Ocorreu un erro mentres se gardaba a configuración do administrador: %s"
+msgstr "Ocorreu un erro mentres se gardaba a configuración do administrador: %s"
 
 #~ msgid "Langugage:"
 #~ msgstr "Idioma:"
