@@ -101,7 +101,10 @@
         %>
         <%= form_send_buttons :onclick => onclick_action %>
           <%= if basesystem_in_process? then
-                link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
+                skip_msg = _('Skip')
+                postpone_msg = _('Postpone')
+                connecting_or = ' ' + _('or') + ' '
+                connecting_or + link_to(postpone_msg, {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()")
               end %>
       </fieldset>
 
