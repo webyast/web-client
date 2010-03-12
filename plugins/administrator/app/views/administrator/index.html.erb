@@ -62,7 +62,7 @@
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset class="wrapper with-background" id="password">
-        <legend><%= _("Root User Password Setup") -%></legend>
+        <legend><%= _("Password Setup for User 'root'") -%></legend>
 	<p><label><%=_("Password")%></label>
 	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
 	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"  %>
@@ -75,7 +75,7 @@
     <p><label for="administrator_confirm_password" generated="true" class="error"></label></p>
     </fieldset>
     <fieldset class="wrapper with-background">
-        <legend><%= _("Root User Mail Setup") -%></legend>
+        <legend><%= _("Mail Setup for User 'root'") -%></legend>
 	<p>
 	<label><%=_("Forward mail to")%></label>
 	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>

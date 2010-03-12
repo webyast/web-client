@@ -7,7 +7,7 @@
       // Sets a focus to a fieldID, switching to its tab first.
       // fieldID is like "value/CPU/CPU"
       function focus_field(fieldID) {
-        $("#accordion").accordion('activate',$("#"+fieldID).parent().parent().prev());
+        $(".accordion").accordion('activate',$("#"+fieldID).parent().parent().prev());
         $("#"+fieldID).focus();
       }
 
@@ -35,19 +35,23 @@
         $('#progress').show();
         return true;
       };
-      $(document).ready(function(){
-        $("#accordion").accordion({
-           navigation : true,
-           header     : 'fieldset legend'
-        });
-      });
    <% end %>
+<% end %>
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+      $(".accordion").accordion({
+         navigation : true,
+         header     : 'fieldset legend'
+      });
+    });
+  <% end %>
 <% end %>
 
 <div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
 <div class="plugin-content grid_12">
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
-  <div id="accordion">
+  <div class="accordion">
   <% @graphs.each do |group| %>
     <fieldset id=<%= group.id %> class="wrapper with-background">
       <legend id="<%= group.id %>"><%= group.id %></legend>

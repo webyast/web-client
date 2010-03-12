@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2003-09-22 13:26+0200\n"
 "Last-Translator: Ain Vagula <avagula@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -10,28 +10,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "An error occurred during registration. Please try again."
+msgstr "Paigaldamise käigus tekkis viga."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr ""
 
+#: app/controllers/registration_controller.rb:119
+#, fuzzy
+#| msgid "Service Removed"
+msgid "Service added:"
+msgstr "Teenuse eemaldati"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "Catalog: "
+msgid "Catalog enabled:"
+msgstr "Kataloog: "
+
+#: app/controllers/registration_controller.rb:143
+#, fuzzy
+#| msgid "Repository: "
+msgid "Repository added:"
+msgstr "Hoidla: "
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
 msgstr ""
 
@@ -39,33 +64,45 @@ msgstr ""
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 #, fuzzy
 #| msgid "&Administration"
 msgid "Registration"
 msgstr "&Administreerimine"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
-
-#: app/views/registration/index.rhtml:29
+#: app/views/registration/index.rhtml:9
 #, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Repositories"
-msgstr "Viga hoidlate lugemisel:"
+#| msgid "The filename is required."
+msgid "This system is registered"
+msgstr "Faili nimi on vajalik."
 
-#: app/views/registration/index.rhtml:44
+#: app/views/registration/index.rhtml:10
 #, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Services"
-msgstr "Viga hoidlate lugemisel:"
+#| msgid "System:"
+msgid "System's GUID:"
+msgstr "Süsteem:"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:11
+#, fuzzy
+#| msgid "&Administration"
+msgid "Register again"
+msgstr "&Administreerimine"
+
+#: app/views/registration/index.rhtml:39
 #, fuzzy
 #| msgid "Details"
 msgid "Detail"
 msgstr "Üksikasjad"
+
+#, fuzzy
+#~| msgid "Error reading repositories:"
+#~ msgid "Changed Repositories"
+#~ msgstr "Viga hoidlate lugemisel:"
+
+#, fuzzy
+#~| msgid "Error reading repositories:"
+#~ msgid "Changed Services"
+#~ msgstr "Viga hoidlate lugemisel:"
 
 # cancel button label
 #~ msgid "Cancel"

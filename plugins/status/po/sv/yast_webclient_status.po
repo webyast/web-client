@@ -1,48 +1,38 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: yast_webclient_status\n"
 "POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2005-09-18 19:09+0200\n"
-"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2010-02-02 11:19\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "Ogiltig session. Logga in igen."
 
 #: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
-msgstr ""
+msgstr "Fria gränser för diskutrymme överskreds:"
 
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
 #: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "Inga data för att visa systemstatus hittades."
 
 #: app/controllers/status_controller.rb:181
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for %s"
-msgstr "Tillägg lyckades för %s.\n"
+msgstr "Gränser överskridna för %s"
 
 #: app/controllers/status_controller.rb:229
-#, fuzzy
-#| msgid "Saving the changes failed"
 msgid "Saving limits failed!"
-msgstr "Misslyckades med att spara ändringar"
+msgstr "Det gick inte att spara begränsningarna."
 
 #: app/views/status/index.html.erb:23
 msgid "Status"
@@ -50,11 +40,11 @@ msgstr "Status"
 
 #: app/views/status/index.html.erb:45
 msgid "Disk usage"
-msgstr ""
+msgstr "Diskanvändning"
 
 #: app/views/status/index.html.erb:68
 msgid "Edit Limits"
-msgstr ""
+msgstr "Redigera begränsningar"
 
 #: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
@@ -62,60 +52,41 @@ msgstr "Tillbaka"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
-msgstr ""
+msgstr "ledigt"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
-msgstr ""
+msgstr "använt"
 
 #: app/views/status/edit.html.erb:2
-#, fuzzy
-#| msgid "Configure Notifications..."
 msgid "Configure Status Limits"
-msgstr "Ställ in meddelanden..."
+msgstr "Konfigurera statusbegränsningar"
 
 #: app/views/status/edit.html.erb:7
-#, fuzzy
-#| msgid "Status: "
 msgid "Status Path"
-msgstr "Status: "
+msgstr "Statussökväg"
 
 #: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
-msgstr ""
+msgstr "Minimivärde"
 
 #: app/views/status/edit.html.erb:9
-#, fuzzy
-#| msgid "Maximum Memory"
 msgid "Maximum Value"
-msgstr "Maximalt minne"
+msgstr "Maxvärde"
 
 #: app/views/status/edit.html.erb:39
 msgid "Save"
 msgstr "Spara"
 
 #: app/views/status/_status_summary.html.erb:1
-#, fuzzy
-#| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
-msgstr "Ett fel uppstod under installationen."
+msgstr "Det inträffade ett problem när statusinformationen lästes in."
 
 #: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
 msgid "No status information available"
-msgstr "Ingen information tillgänglig."
+msgstr "Det finns ingen tillgänglig statusinformation"
 
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
-msgstr ""
+msgstr "Systemet fungerar som det ska."
 
-#, fuzzy
-#~| msgid "Button Events"
-#~ msgid "Events"
-#~ msgstr "Knapphändelser"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Show details..."
-#~ msgstr "Detaljer..."

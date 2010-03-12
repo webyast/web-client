@@ -1,23 +1,21 @@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# Alexander Melentiev <alex239@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-22 22:26+0400\n"
-"Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2010-02-02 12:00\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 1.0\n"
 
 #: app/controllers/services_controller.rb:11
 msgid "Invalid session, please login again."
-msgstr "Неверный сеанс, пожалуйста, войдите снова."
+msgstr "Неверный сеанс, войдите снова."
 
 #: app/controllers/services_controller.rb:34
 msgid "(cannot read status)"
@@ -25,7 +23,7 @@ msgstr "(невозможно прочесть состояние)"
 
 #: app/controllers/services_controller.rb:80
 msgid "success"
-msgstr "успешно"
+msgstr "успех"
 
 #: app/views/services/_status.rhtml:14
 msgid "(unknown)"
@@ -37,7 +35,7 @@ msgstr "(выполняется)"
 
 #: app/views/services/_status.rhtml:18
 msgid "(dead)"
-msgstr "(остановлена)"
+msgstr "(остановлено)"
 
 #: app/views/services/_status.rhtml:20
 msgid "(not running)"
@@ -60,22 +58,27 @@ msgid "Description"
 msgstr "Описание"
 
 #: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:102
 msgid "Back"
 msgstr "Назад"
 
-#: app/views/services/index.rhtml:12
+#: app/views/services/index.rhtml:11
 msgid "Custom Services"
-msgstr "Другие службы"
+msgstr "Пользовательские службы"
 
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:13
 msgid "System Services"
 msgstr "Системные службы"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "У вас нет прав для выполнения служб. Ссылки отключены."
+#: app/views/services/index.rhtml:20
+msgid "No custom service is defined on target machine."
+msgstr "На целевой машине не определены пользовательские службы."
 
-#: app/views/services/index.rhtml:93
+#: app/views/services/index.rhtml:22
+msgid "You do not have permission to execute the services. The links are disabled."
+msgstr "Отсутствуют разрешения на выполнение служб. Ссылки отключены."
+
+#: app/views/services/index.rhtml:94
 msgid "status"
 msgstr "состояние"
+

@@ -1,80 +1,79 @@
-# translation of yast_webclient_registration.po to Chinese Traditional
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# swyear <swyear@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2009-10-22 19:36+0800\n"
-"Last-Translator: swyear <swyear@gmail.com>\n"
-"Language-Team: Chinese Traditional <zh@li.org>\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
+"PO-Revision-Date: 2010-02-01 11:44\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr "不適用的工作階段，請重新登入。"
+msgstr "無效的工作階段，請重新登入。"
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
-msgstr "沒有註冊的權限"
+msgstr "無註冊許可權"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
-msgstr ""
+msgstr "無法評估註冊引數。"
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+msgid "An error occurred during registration. Please try again."
+msgstr "註冊時發生錯誤。請再試一次。"
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
-msgstr "註冊順利完成。"
+msgstr "成功完成註冊。"
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr "新增的服務︰"
+
+#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
+msgid "Catalog enabled:"
+msgstr "啟用的目錄︰"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr "新增的儲存庫："
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr "請填寫缺少的項目。"
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
-msgstr "連結到註冊伺服器時發生錯誤。"
+msgstr "連接到註冊伺服器時發生錯誤。"
 
 #: app/views/registration/index.rhtml:1
 msgid "register plugin"
-msgstr "註冊插件"
+msgstr "註冊外掛程式"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "註冊"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "此表格給定註冊設定。"
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr "此系統已註冊"
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "變更的套件庫"
+#: app/views/registration/index.rhtml:10
+msgid "System's GUID:"
+msgstr "系統 GUID︰"
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Services"
-msgstr "已變更的設定檔"
+#: app/views/registration/index.rhtml:11
+msgid "Register again"
+msgstr "重新註冊"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "詳細資料"
 
-#~ msgid "Register"
-#~ msgstr "註冊"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "取消"

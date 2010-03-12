@@ -1,39 +1,38 @@
-# Hermann-Josef Beckers <hj.beckers@onlinehome.de>, 2009.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: yast_webclient_status\n"
 "POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-12 18:56+0100\n"
-"Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
-"Language-Team: German <kde-i18n-de@kde.org>\n"
+"PO-Revision-Date: 2010-02-16 11:14\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
 
 #: app/controllers/status_controller.rb:15
 msgid "Invalid session, please login again."
-msgstr "Ungültige Sitzung, bitte melden Sie sich erneut an."
+msgstr "Ungültige Sitzung, melden Sie sich erneut an."
 
 #: app/controllers/status_controller.rb:33
 msgid "Disk free limits exceeded;"
-msgstr "Begrenzung des freien Plattenplatzes überschritten;"
+msgstr "Begrenzung des freien Datenträgers überschritten;"
 
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
 #: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr "Für die Anzeige des Systemstatus wurden keine Daten gefunden."
 
 #: app/controllers/status_controller.rb:181
 msgid "Limits exceeded for %s"
-msgstr "Grenzwerte überschritten für %f"
+msgstr "Grenzwerte überschritten für %s"
 
 #: app/controllers/status_controller.rb:229
 msgid "Saving limits failed!"
-msgstr "Speichern der Begrenzungen nicht erfolgreich!"
+msgstr "Grenzwerte konnten nicht gespeichert werden."
 
 #: app/views/status/index.html.erb:23
 msgid "Status"
@@ -41,11 +40,11 @@ msgstr "Status"
 
 #: app/views/status/index.html.erb:45
 msgid "Disk usage"
-msgstr "Plattenplatz-Benutzung"
+msgstr "Festplattenbelegung"
 
 #: app/views/status/index.html.erb:68
 msgid "Edit Limits"
-msgstr "Begrenzungen bearbeiten"
+msgstr "Grenzwerte bearbeiten"
 
 #: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 msgid "Back"
@@ -53,15 +52,15 @@ msgstr "Zurück"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "free"
-msgstr "frei"
+msgstr "Frei"
 
 #: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 msgid "used"
-msgstr "verwendet"
+msgstr "Belegt"
 
 #: app/views/status/edit.html.erb:2
 msgid "Configure Status Limits"
-msgstr "Status-Begrenzungen einrichten"
+msgstr "Status-Begrenzungen konfigurieren"
 
 #: app/views/status/edit.html.erb:7
 msgid "Status Path"
@@ -69,11 +68,11 @@ msgstr "Status-Pfad"
 
 #: app/views/status/edit.html.erb:8
 msgid "Minimum Value"
-msgstr "Minimalwert"
+msgstr "Mindestwert"
 
 #: app/views/status/edit.html.erb:9
 msgid "Maximum Value"
-msgstr "Maximalwert"
+msgstr "Höchstwert"
 
 #: app/views/status/edit.html.erb:39
 msgid "Save"
@@ -81,21 +80,13 @@ msgstr "Speichern"
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
-msgstr "Während des Ladens von Status-Informationen trat ein Fehler auf."
+msgstr "Beim Laden von Status-Informationen ist ein Fehler aufgetreten."
 
 #: app/views/status/_status_summary.html.erb:6
 msgid "No status information available"
-msgstr "Keine Status-Informationen verfügbar."
+msgstr "Keine Status-Informationen verfügbar"
 
 #: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
-msgstr "Ihr System ist auf dem neuesten Stand."
+msgstr "Ihr System ist in einem einwandfreien Zustand."
 
-#~ msgid "Events"
-#~ msgstr "Ereignisse"
-
-#~ msgid "These values have been evaluated the last 5 minutes."
-#~ msgstr "Diese Werte wurden in den letzten 5 Minuten ausgewertet."
-
-#~ msgid "Show details..."
-#~ msgstr "Details anzeigen ..."

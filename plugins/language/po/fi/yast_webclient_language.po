@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_language.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2009-10-29 20:56+0200\n"
 "Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
 "Language-Team: suomi <fi@li.org>\n"
@@ -14,13 +14,15 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/language_controller.rb:27
+#: app/controllers/language_controller.rb:29
 msgid "No permissions for language module"
 msgstr "Ei käyttöohjautta kieli-moduuliin"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/language_controller.rb:56
-msgid "Settings have been written."
+#: app/controllers/language_controller.rb:62
+#, fuzzy
+#| msgid "Settings have been written."
+msgid "Language settings have been written."
 msgstr "Asetukset tallennettiin."
 
 # label for language selection
@@ -29,19 +31,22 @@ msgid "language plugin"
 msgstr "kieli-liitännäinen"
 
 # label for language selection
-#: app/views/language/index.rhtml:2
+#: app/views/language/index.rhtml:1
 msgid "Language"
 msgstr "Kieli"
 
+#: app/views/language/index.rhtml:6
+#, fuzzy
+#| msgid "Munda languages"
+msgid "webYaST language"
+msgstr "mundakielet"
+
 # label for language selection
-#: app/views/language/index.rhtml:9
-msgid "First language"
-msgstr "Ensisijainen kieli"
+#~ msgid "First language"
+#~ msgstr "Ensisijainen kieli"
 
-#: app/views/language/index.rhtml:14
-msgid "Use UTF8 encoding"
-msgstr "Käytä UTF8-koodausta"
+#~ msgid "Use UTF8 encoding"
+#~ msgstr "Käytä UTF8-koodausta"
 
-#: app/views/language/index.rhtml:19
-msgid "Set root locale"
-msgstr "Aseta root-käyttäjän kieliasetus"
+#~ msgid "Set root locale"
+#~ msgstr "Aseta root-käyttäjän kieliasetus"
