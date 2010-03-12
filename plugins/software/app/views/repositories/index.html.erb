@@ -36,7 +36,7 @@
 	  <% unless disabled -%>
 	    <td><%= link_to image_tag('/images/delete.png', :alt => "delete"),
 	      {:action => 'delete', :id => r.id},
-	      {:confirm => _("Really delete repository '%s'?") % h(r.id), :method => :delete} %>
+	      {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete} %>
 	    </td>
 	  <% end -%>
 	</tr>
