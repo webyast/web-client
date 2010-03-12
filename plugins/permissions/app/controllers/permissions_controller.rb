@@ -122,7 +122,7 @@ class PermissionsController < ApplicationController
       rescue ActiveResource::ResourceInvalid => e
         error = Hash.from_xml(e.response.body)
         logger.info error.inspect
-        error["errors"][0].match(/^.*---\s*(.*)$/) #XXX ugly should be improved, if failed, then it is catched by default handler
+        error["errors"]["error"].match(/^\S+\s*(.*)$/) #XXX ugly should be improved, if failed, then it is catched by default handler
         logger.debug $1
         case $1
         when "INVALID" then
