@@ -533,15 +533,15 @@ input[type="button"] {
 .status-icon {
   display: block;
   width: 23px;
-  height: 23px;
+  height: 19px;
   background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
   float: left;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .bug-icon {
   display: block;
-  position: relative;
-  top: -3px;
   width: 23px;
   height: 23px;
   background: transparent url(images/bug.png) no-repeat scroll 0 0;
@@ -554,19 +554,19 @@ input[type="button"] {
 }
 
 .status-icon.ok {
-  background-position: 0 0;
+  background-position: 0 -3;
 }
 .status-icon.warning {
-  background-position: 0 -22px;
+  background-position: 0 -24px;
 }
 .status-icon.error {
-  background-position: 0 -44px;
+  background-position: 0 -46px;
 }
 .status-icon.optional {
-  background-position: 0 -66px;
+  background-position: 0 -68px;
 }
 .status-icon.unused {
-  background-position: 0 -88px;
+  background-position: 0 -89px;
 }
 .status-icon.none {
   background: transparent;
@@ -749,9 +749,36 @@ input {
 .password-strength-bar {
   height: 3px;
 }
-/* status icons for services module */
-.service-icon { width: 20px; height: 20px; display:block; float:left;}
-.service-icon.running { background-image: url(/images/green.png); }
-.service-icon.dead { background-image: url(/images/red.png); }
-.service-icon.unknown { background-image: url(/images/grey.png); }
+
+.list-fieldset {
+  border-color: #ddd #ccc #bbb;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #eee;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0 1px 3px #ccc;
+  -moz-box-shadow: none;
+
+  margin: 0.5em 1em 0.5em;
+}
+
+.list-fieldset-header,
+.ui-accordion .list-fieldset-header.ui-accordion-header {
+  font-weight: bold !important;
+  margin-bottom: 5px;
+  margin-top: 4px;
+}
+
+.list-fieldset select {
+  background-color: #fff;
+}
+
+.list-fieldset.alt-bg {
+  background-color: #ddd;
+}
 

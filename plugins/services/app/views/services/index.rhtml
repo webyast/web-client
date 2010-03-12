@@ -3,50 +3,43 @@
 <% javascript_tag do %>
 $(document).ready(function() {
 
-    $("#services fieldset").each (function(index) {
+    $("#services div.list-fieldset").each (function(index) {
 	if ($(this).is(":has(span.status_running)")) {
-	    $(this).find("legend .service-icon").attr('class','service-icon running');
+	    $(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon ok');
 	}
 	else if ($(this).is(":has(span.status_dead)")) {
-	    $(this).find("legend .service-icon").attr('class','service-icon dead');
+	    $(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon error');
 	}
 	else {
-	    $(this).find("legend .service-icon").attr('class','service-icon unknown');
+	    $(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon unused');
 	}
     });
 
-    $('#services fieldset').quicksearch({
+    $('#services div.list-fieldset').quicksearch({
 	attached: '#services',
 	loaderText: '',
 	labelText: '<%= _("Quick Search")%>',
 	delay: 100
     });
 
-    $(".accordion").accordion({
-       autoHeight : false,
-       navigation : true,
-       collapsible: true,
-       header     : 'fieldset legend'
-    });
-
-    $(".accordion").accordion('activate',false);
+    $('.accordion div.list-fieldset:even').addClass('alt-bg');
 })
 
 // adapt the status icon of given service
 function toggle_service_info (id) {
-    var heading	= $(id).closest('.service-content').siblings('legend');
+    var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
     if ($(id).is(':has(span.status_running)')) {
-	$(heading).find(".service-icon").attr('class','service-icon running');
+	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
 	$(id).siblings('a#start').hide();
 	$(id).siblings('a#stop').show();
     }
     else if ($(id).is(':has(span.status_dead)')) {
-	$(heading).find(".service-icon").attr('class','service-icon dead');
+	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
     }
     else {
-	$(heading).find(".service-icon").attr('class','service-icon unknown');
+	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
     }
@@ -54,10 +47,10 @@ function toggle_service_info (id) {
 
 function select_status (val) {
     if (val == "all") {
-	$("#services > fieldset").show();
+	$("#services > div.list-fieldset").show();
     }
     else if (val == "not-running") {
-	$('#services > fieldset').each(function(index) {
+	$('#services > div.list-fieldset').each(function(index) {
 	    if ($(this).is(":has(span.status_not_running)")) {
 		$(this).show();
 	    } else {
@@ -66,7 +59,7 @@ function select_status (val) {
 	});
     }
     else if (val == "running") {
-	$('#services > fieldset').each(function(index) {
+	$('#services > div.list-fieldset').each(function(index) {
 	    if ($(this).is(":has(span.status_running)")) {
 		$(this).show();
 	    } else {
@@ -75,7 +68,7 @@ function select_status (val) {
 	});
     }
     else if (val == "dead") {
-	$('#services > fieldset').each(function(index) {
+	$('#services > div.list-fieldset').each(function(index) {
 	    if ($(this).is(":has(span.status_dead)")) {
 		$(this).show();
 	    } else {
@@ -85,6 +78,20 @@ function select_status (val) {
     };
 }
 <% end %>
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+  $(document).ready(function(){
+    $(".accordion").accordion({
+       autoHeight : false,
+       navigation : true,
+       collapsible: true,
+       header     : 'div.list-fieldset div.list-fieldset-header'
+    });
+    $(".accordion").accordion('activate',false);
+  });
+  <% end %>
+<% end %>
+
 
 <div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%= _("System Services") %></div>
 
@@ -110,11 +117,11 @@ function select_status (val) {
 <%
 commands	= [ "start", "stop", "restart", ]
 @services.each do |service| %>
-  <fieldset class="wrapper with-background">
+  <div class="list-fieldset">
 
-  <legend><span class="service-icon"></span><%=service.name %> <em style="position:absolute; left:25%"><%=service.summary%></em></legend>
+  <div class="list-fieldset-header"><span class="service-icon"></span><%=service.name %> <em style="position:absolute; left:25%"><%=service.summary%></em></div>
 
-  <div class='service-content'>
+  <div class='service-content' style="display:none">
 
   <p class='description'>
     <i><%= service.description ? h(service.description) : _("Description for service is not available") %></i>
@@ -180,7 +187,7 @@ commands	= [ "start", "stop", "restart", ]
 	<%= render :partial => 'result' %>
       </span>
   </div>
-  </fieldset>
+  </div>
 <% end %>
 </div>
 <fieldset>
