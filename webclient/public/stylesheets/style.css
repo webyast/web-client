@@ -171,7 +171,8 @@ ul li {
 #login-dialogue,
 .dialoge-wrapper {
   width: 23em;
-  min-height: 17em; /* FIXME not working in IE6 */
+  /*min-height: 17em; FIXME not working in IE6 | not working anywhere, 
+  breaks host selection screen --bubli*/
   background: #999;
   margin: 10px auto;
   overflow: hidden;
@@ -485,7 +486,8 @@ form a {
 
 a.button,
 input.button,
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
   background: #eee url(images/button-bg-rollover.gif) repeat-x scroll left top;
   color: #333;
   font-size: 12px;
