@@ -10,7 +10,7 @@
      for (i=0;i<mygroups.length;i++){
        var found=false;
        for(a=0;a<allgroups.length;a++){
-	if (allgroups[a]==mygroups[i]) found=true;
+	if (allgroups[a]==mygroups[i].replace(/^\s*|\s*$/g,'')) found=true;
        }
        if (!found){
 	errmsg = mygroups[i]+" "+"is not valid group!" ;
