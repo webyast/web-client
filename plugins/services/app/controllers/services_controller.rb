@@ -37,6 +37,9 @@ class ServicesController < ApplicationController
     rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
+    # there's no sense in showing these in UI (bnc#587885)
+    killer_services	= [ "yastwc", "yastws", "dbus", "network", "lighttpd" ]
+    @services.reject! { |s| killer_services.include? s.name }
   end
 
   # PUT /services/1.xml
