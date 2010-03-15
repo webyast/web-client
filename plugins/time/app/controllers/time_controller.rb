@@ -57,7 +57,7 @@ class TimeController < ApplicationController
         ntp.save #FIXME check return value
       rescue Timeout::Error => e
         #do nothing as if you move time to future it throws this exception
-        log.info "Time moved to future by NTP"
+        logger.info "Time moved to future by NTP"
       end
     when "none" 
     else
@@ -71,7 +71,7 @@ class TimeController < ApplicationController
       flash[:notice] = _('Time settings have been written.')
     rescue Timeout::Error => e
       #do nothing as if you move time to future it throws this exception
-      log.debug "Time moved to future"
+      logger.debug "Time moved to future"
       flash[:notice] = _('Time settings have been written.')
     end
 
