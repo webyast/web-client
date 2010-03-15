@@ -24,6 +24,17 @@ protected
     flash[:error] = _("Session timeout");
     redirect_to '/logout' unless request.xhr?
   end
+
+  # helper to add details show link with details content as parameter
+  # Main usage is for flash message
+  #
+  # === usage ===
+  # flash[:error] = "Fatal error."+details("really interesting details")
+  def details(message, options={})
+    ret = "<br><a href=\"#\" onClick=\"$('.details',this.parentNode).css('display','block');\"><small>#{_('details')}</small></a>
+            <pre class=\"details\" style=\"display:none\"> #{message} </pre>"
+    ret
+  end
   
   include AuthenticatedSystem
   include ErrorConstructor
