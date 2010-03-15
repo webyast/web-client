@@ -23,7 +23,7 @@ $(document).ready(function() {
   backtrace = error.backtrace.join("\n") unless (error.nil? || error.backtrace.nil? || error.backtrace.blank?)
   %>
 
-<p><a href="#" id="details-link">Show details...</a><%= clippy(backtrace) %><p>
+<p><a href="#" id="details-link">Show details...</a><%= clippy("message: #{error.message}\n backtrace :\n #{backtrace}") %><p>
 
 <pre id="backtrace" style="display: none">
 <%= h backtrace  %>

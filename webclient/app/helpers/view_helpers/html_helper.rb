@@ -144,7 +144,8 @@ module ViewHelpers::HtmlHelper
         <div>
           <p><strong>Error message:</strong>#{err_message}</p>
           <p><span class="bug-icon"></span><a href="#{@bug_url}">Report bug</a></p>
-          <p><a href="#" id="error-#{error_id}-show-backtrace-link">Show details</a>#{clippy(backtrace_text)}</p></p>
+          <p><a href="#" id="error-#{error_id}-show-backtrace-link">Show details</a>
+          #{clippy("message: #{err_message}\n backtrace: #{backtrace_text}")}</p></p>
           <pre id="error-#{error_id}-backtrace" style="display: none">
           #{backtrace_text}
           </pre>
