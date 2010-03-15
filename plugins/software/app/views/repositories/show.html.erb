@@ -53,7 +53,6 @@
 </div>
 <div class='plugin-content grid_12'>
 <% form_for(:repository, @repo, :url => { :action => (@adding ? 'create' : 'update'), :id => @repo.id }, :html => { :method => (@adding ? :post : :put), :id => 'repositoryForm', :onsubmit => "if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" } ) do |f| %>
-  <%= f.error_messages %>
   <fieldset class="wrapper with-background">
     <div class="table">
       <table class="list" cellpadding="3" cellspacing="0">
