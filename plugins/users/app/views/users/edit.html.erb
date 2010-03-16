@@ -124,7 +124,7 @@
         <p>
             <label><%=_("Groups")%></label>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
-            <a href="" onClick="open_groups_dialog();return false;">Manage Groups</a>
+            <a href="#" class="button" onClick="open_groups_dialog();return false;">Manage Groups</a>
         </p>
         <p><label id="groups-error" class="error"></label><p>
         <p>
