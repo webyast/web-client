@@ -5,26 +5,26 @@
   <% javascript_tag do -%>
   $(document).ready(function(){
 
-    $("#blocked_services div input, #allowed_services div input").fadeTo(0,0);
+    $("#blocked_services div label span, #allowed_services div label span").fadeTo(0,0);
 
-    $("#blocked_services div input").click( function(){
-        $(this).parent().hide("slow");
+    $("#blocked_services div label").click( function(){
+        $(this).parent().hide();
         $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "true");
-        $("#allowed_services div."+$(this).parent().attr("class")).show("slow");
+        $("#allowed_services div."+$(this).parent().attr("class")).show();
     });
     
-    $("#allowed_services div input").click( function(){
-        $(this).parent().hide("slow");
+    $("#allowed_services div label").click( function(){
+        $(this).parent().hide();
         $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "false");
-        $("#blocked_services div."+$(this).parent().attr("class")).show("slow");
+        $("#blocked_services div."+$(this).parent().attr("class")).show();
     });
     
     $("#allowed_services div,#blocked_services div").mouseenter( function(){
-        $(this).find("input").fadeTo(100,1);
+        $(this).find("label span").fadeTo(100,1);
     });
     
     $("#allowed_services div,#blocked_services div").mouseleave( function(){
-        $(this).find("input").fadeTo(100,0);
+        $(this).find("label span").fadeTo(100,0);
     });
     
     $("#blocked_services div").filter( function(index) {
@@ -36,18 +36,6 @@
     }).hide();
   });
   <% end -%>
-<% end %>
-<% content_for :before_script do %>
-  <% javascript_tag do %>
-    $(document).ready(function(){
-      $(".accordion").accordion({
-        autoHeight : false,
-        navigation : true,
-        collapsible: true,
-        header     : 'fieldset legend'
-      });
-    });
-  <% end %>
 <% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
@@ -76,14 +64,13 @@
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
   </fieldset>
-  <div class="accordion">
+  <div>
       <fieldset class="wrapper with-background">
       <legend><%= _("Allowed services") %></legend>
       <div id="allowed_services">
           <% @firewall.fw_services.each do |service| %>
               <div class="<%= service.css_class %>">
-                  <input type="button" value="Block" class="button" id="label_<%= service.input_name%>"/>
-                  <label for="label_<%= service.input_name%>"><%= service.name %></label>
+                  <label><%= service.name %><span><%= " ("+_("Block")+") " %></span></label>
               </div>
           <% end %>
       </div>
@@ -93,8 +80,7 @@
       <div id="blocked_services">
           <% @firewall.fw_services.each do |service| %>
               <div class="<%= service.css_class %>">
-                  <input type="button" value="Allow" class="button" id="label_<%= service.input_name%>"/>
-                  <label for="label_<%= service.input_name%>"><%= service.name %></label>
+                  <label><%= service.name %><span><%= " ("+_("Allow")+") " %></span></label>
               </div>
           <% end %>
       </div>
