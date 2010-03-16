@@ -55,8 +55,16 @@ class ServicesController < ApplicationController
     @result_string << ret["stdout"] if ret["stdout"]
     @result_string << ret["stderr"] if ret["stderr"]
     @error_string = ret["exit"].to_s
-    if ret["exit"] == 0 || ret["exit"] == "0"
-       @error_string = _("success")
+
+    @error_string = case @error_string
+       when "0" then _("success")
+       when "1" then _("unspecified error")
+       when "2" then _("invalid or excess argument(s)")
+       when "3" then _("unimplemented feature")
+       when "4" then _("user had insufficient privilege")
+       when "5" then _("program is not installed")
+       when "6" then _("program is not configured")
+       when "7" then _("program is not runnning")
     end
     render(:partial =>'result', :params => params)
   end

@@ -16,7 +16,7 @@ PreReq:         webyast-users-ws >= 0.1.6
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.9
+Version:        0.1.10
 Release:        0
 Summary:        YaST2 - Webclient - Users
 Source:         www.tar.bz2
@@ -68,7 +68,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 %dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 /srv/www/yast/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
@@ -78,6 +77,6 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
-#/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/routes.rb
+/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 %doc COPYING
 

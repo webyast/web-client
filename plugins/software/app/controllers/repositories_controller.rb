@@ -121,10 +121,8 @@ class RepositoriesController < ApplicationController
         flash[:message] = _("Repository '#{@repo.name}' has been updated.")
       else
         if @repo.errors.size > 0
-          Rails.logger.error "Repository save failed: #{@repo.errors.full_messages}"
+          Rails.logger.error "Repository save failed: #{@repo.errors.errors.inspect}"
           flash[:error] = generate_error_messages @repo, attribute_mapping
-          # clear the errors so they are also not displayed in the body
-          @repo.errors.clear
         else
           flash[:error] = _("Cannot update repository '#{@repo.name}': Unknown error")
         end

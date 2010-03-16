@@ -17,7 +17,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controlle
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.8
+Version:        0.1.9
 Release:        0
 Summary:        YaST2 - Webclient - Services
 Source:         www.tar.bz2

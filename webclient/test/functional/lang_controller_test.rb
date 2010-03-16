@@ -26,4 +26,3 @@ class LangControllerTest < ActionController::TestCase
   end
 
 end
-  
