@@ -26,6 +26,8 @@
       function disable_static_config(abool) {
           $("#ip")[0].disabled = abool;
           $("#netmask")[0].disabled = abool;
+          $("#name")[0].disabled = abool;
+          $("#domain")[0].disabled = abool;
           $("#nameservers")[0].disabled = abool;
           $("#searchdomains")[0].disabled = abool;
           $("#default_route")[0].disabled = abool;
@@ -191,11 +193,11 @@
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>
-          <%=text_field_tag :name, @name, :disabled => write_disabled %>
+          <%=text_field_tag :name, @name, :disabled => static_disabled %>
         </p>
         <p>
           <label for="<%= :domain %>"><%=_("Domain")%></label>
-          <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
+          <%=text_field_tag :domain, @domain, :disabled => static_disabled %>
         </p>
         <p>
           <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
