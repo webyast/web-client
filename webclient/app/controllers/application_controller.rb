@@ -241,9 +241,9 @@ protected
       attrib_name = mapping[attr.to_sym] || attr
       err_msg = emapping[msg.to_sym] || ''
 
-      ret += "<li>#{attrib_name} #{err_msg}</li>"
+      ret += "<li>#{ERB::Util.html_escape attrib_name} #{ERB::Util.html_escape err_msg}</li>"
     }
 
-    "<p>#{header}</p><ul>#{ret}</ul>"
+    "<p>#{ERB::Util.html_escape header}</p><ul>#{ret}</ul>"
   end
 end
