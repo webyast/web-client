@@ -16,7 +16,7 @@ PreReq:         webyast-users-ws >= 0.1.6
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.9
+Version:        0.1.10
 Release:        0
 Summary:        YaST2 - Webclient - Users
 Source:         www.tar.bz2
