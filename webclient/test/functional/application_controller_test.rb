@@ -26,6 +26,11 @@ class TestController < ApplicationController
   def get_errors_without_mapping
     render :text => generate_error_messages(@obj)
   end
+
+#for test protected method details
+  def testing_details(msg,options={})
+    details msg,options
+  end
 end
 
 
@@ -57,5 +62,15 @@ class TestControllerTest < ActionController::TestCase
     # check that raw attribute names are included
     assert @response.body.match /url/
     assert @response.body.match /keep_packages/
+  end
+
+  DETAILS_PREFIX = '<br><a href="#" onClick="$(\'.details\',this.parentNode).css(\'display\',\'block\');"><small>details</small></a><pre class="details" style="display:none">'
+  DETAILS_SUFFIX = '</pre>'
+  TEST_DETAILS_STR = "my wonderfull details <br>&nbsp;"
+  TEST_DETAILS_RESULT = DETAILS_PREFIX+'my wonderfull details &lt;br&gt;&amp;nbsp;'+DETAILS_SUFFIX
+  def test_details
+    controller = TestController.new
+    assert_equal (DETAILS_PREFIX+"lest"+DETAILS_SUFFIX).gsub(/\s/,''), controller.testing_details("lest").gsub(/\s/,'')
+    assert_equal TEST_DETAILS_RESULT.gsub(/\s/,''), controller.testing_details(TEST_DETAILS_STR).gsub(/\s/,'') #test if result is expected except whitespace (which is ignored in html)
   end
 end
