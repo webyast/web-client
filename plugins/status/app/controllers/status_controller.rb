@@ -235,6 +235,17 @@ class StatusController < ApplicationController
           logger.error "No description for #{group_id}/#{graph_id} found."
         end
       end
+
+      #flatten the data of all lines to the same amount of entries
+      min_hash = data[:lines].min {|a,b| a[:values].size <=> b[:values].size }
+      count = min_hash[:values].size
+      data[:lines].each do |line|
+        #strip to the same length
+        while line[:values].size > count
+          line[:values].pop
+        end  
+      end
+
       logger.debug "Rendering #{data.inspect}"
 
       render :partial => "status_graph", :locals => { :data => data, :error => nil }
