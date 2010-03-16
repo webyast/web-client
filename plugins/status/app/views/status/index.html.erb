@@ -36,9 +36,9 @@
          <% status_icon = "<span class='status-icon ok'></span>" %>
       <% end %>
       <div class="list-fieldset-header">
-      <%=link_to_remote status_icon + group.id, :update => graph_id(group.id, group.single_graphs.first.headline),
+      <%=link_to_remote(status_icon + group.id, :update => graph_id(group.id, group.single_graphs.first.headline),
         :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
-        :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
+        :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )) unless group.single_graphs.blank? %>
       </div>
       <div style="display: none;">
 
