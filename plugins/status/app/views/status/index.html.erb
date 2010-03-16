@@ -1,4 +1,3 @@
-
 <% content_for :head do %>
 
 <!--[if IE]><%= javascript_include_tag "excanvas.js" %><![endif]-->
@@ -15,7 +14,7 @@
         autoHeight : false,
         navigation : true,
         collapsible: true,
-        header     : 'fieldset legend'
+        header     : 'div.list-fieldset div.list-fieldset-header'
       });
       $(".accordion").accordion('activate',false);
     });
@@ -30,17 +29,17 @@
 <div class="accordion">
 <% if @graphs  %>
   <% @graphs.each do |group| %>
-    <fieldset class="wrapper with-background">
+    <div class="list-fieldset">
       <% if limits_reached(group) %>
         <% status_icon = "<span class='status-icon error'></span>" %>
       <% else %>
          <% status_icon = "<span class='status-icon ok'></span>" %>
       <% end %>
-      <legend>
+      <div class="list-fieldset-header">
       <%=link_to_remote status_icon + group.id, :update => graph_id(group.id, group.single_graphs.first.headline),
         :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => group.single_graphs.first.headline },
         :complete => evaluate_next_graph(group.id, group.single_graphs, 1 )%>
-      </legend>
+      </div>
       <div style="display: none;">
 
           <% group.single_graphs.each do |single_graph| %>
@@ -70,24 +69,24 @@
             </p>
           <% end %>
       </div>
-    </fieldset>
+    </div>
   <% end %>
 <% end %>
 <% @logs.each do |log| %>
-    <fieldset class="wrapper with-background">
+    <div class="list-fieldset">
       <% default_lines=50 %>
       <% frequency=15 %>
-      <legend>
+      <div class="list-fieldset-header">
       <%=link_to_remote "<span class='status-icon none'></span>" + log.description, 
             :update => log_id(log.id),
             :url => { :action => "ajax_log_custom", :id => log.id, :lines => default_lines } %>
-      </legend>
+      </div>
       <ul style="display: none;">
         <div id="<%="log-#{log.id}-console"%>" >
           <%= log.path %>
         </div>
       </ul>
-    </fieldset>
+    </div>
     <%  periodically_call_remote(:url => { :action => "ajax_log_custom", 
                                  :id => log.id, :lines => default_lines }, :frequency => frequency, 
                                  :update => log_id(log.id)) #currently due missing '=' disabled %>
