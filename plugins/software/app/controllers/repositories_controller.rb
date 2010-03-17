@@ -50,7 +50,7 @@ class RepositoriesController < ApplicationController
 
       @adding = false
     rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
       redirect_to :action => 'index' and return
     end
   end
@@ -65,14 +65,14 @@ class RepositoriesController < ApplicationController
       @repo = Repository.find URI.escape(params[:id])
       return unless @repo
     rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
       redirect_to :action => 'index' and return
     end
 
     @repo.id = URI.escape(@repo.id)
 
     if @repo.destroy
-      flash[:message] = _("Repository '#{@repo.name}' has been deleted.")
+      flash[:message] = _("Repository '#{ERB::Util.html_escape @repo.name}' has been deleted.")
     end
 
     redirect_to :action => :index and return
@@ -89,12 +89,12 @@ class RepositoriesController < ApplicationController
       @permissions = Repository.permissions
       return unless @repo
     rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Repository '#{params[:id]}' was not found.")
+      flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
       redirect_to :action => 'index' and return
     end
 
     if params[:repository].blank?
-      flash[:error] = _("Cannot update repository '#{params[:id]}': missing parameters.")
+      flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape params[:id]}': missing parameters.")
       redirect_to :action => 'index' and return
     end
 
@@ -118,13 +118,13 @@ class RepositoriesController < ApplicationController
 
     begin
       if @repo.save
-        flash[:message] = _("Repository '#{@repo.name}' has been updated.")
+        flash[:message] = _("Repository '#{ERB::Util.html_escape @repo.name}' has been updated.")
       else
         if @repo.errors.size > 0
           Rails.logger.error "Repository save failed: #{@repo.errors.errors.inspect}"
           flash[:error] = generate_error_messages @repo, attribute_mapping
         else
-          flash[:error] = _("Cannot update repository '#{@repo.name}': Unknown error")
+          flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}': Unknown error")
         end
 
         render :show and return
@@ -138,10 +138,10 @@ class RepositoriesController < ApplicationController
           Rails.logger.error "Cannot update repository '#{@repo.name}': #{err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot update repository '#{@repo.name}'}")
+        flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}'}")
       rescue Exception => e
           # XML parsing has failed, display complete response
-          flash[:error] = _("Unknown backend error: #{ex.response.body}")
+          flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
           Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
 
@@ -202,7 +202,7 @@ class RepositoriesController < ApplicationController
 
     begin
       if @repo.save
-        flash[:message] = _("Repository '#{@repo.name}' has been added.")
+        flash[:message] = _("Repository '#{ERB::Util.html_escape @repo.name}' has been added.")
       end
     rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
@@ -210,10 +210,10 @@ class RepositoriesController < ApplicationController
         err = Hash.from_xml ex.response.body
 
         if !err['error']['message'].blank?
-          Rails.logger.error "Cannot create repository '#{@repo.name}': #{err['error']['message']}"
+          Rails.logger.error "Cannot create repository '#{ERB::Util.html_escape @repo.name}': #{ERB::Util.html_escape err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot create repository '#{@repo.name}'")
+        flash[:error] = _("Cannot create repository '#{ERB::Util.html_escape @repo.name}'")
       rescue Exception => e
           Rails.logger.error "Exception: #{e}"
           # XML parsing has failed, display complete response
@@ -259,7 +259,7 @@ class RepositoriesController < ApplicationController
           Rails.logger.error "Cannot update repository '#{@repo.name}': #{err['error']['message']}"
         end
 
-        error_string = _("Cannot update repository '#{@repo.name}'")
+        error_string = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}'")
       rescue Exception => e
           # XML parsing has failed
           error_string = _("Unknown backend error.")
