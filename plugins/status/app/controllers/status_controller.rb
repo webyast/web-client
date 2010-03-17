@@ -147,7 +147,23 @@ class StatusController < ApplicationController
       level = "ok"
       status = ""
       ActionController::Base.benchmark("Graphs data read from the server") do
-        graphs = Graphs.find(:all, :params => { :checklimits => true }) || []  
+        graphs = Graphs.find(:all, :params => { :checklimits => true, :background => true }) || []
+
+        # is it a background progress?
+        if graphs.size == 1 && graphs.first.respond_to?(:status)
+          bg_stat = graphs.first
+
+          Rails.logger.info "Received background status progress: #{bg_stat.progress}%%"
+
+          respond_to do |format|
+            format.html { render :partial  => 'status_progress', :locals => {:progress => bg_stat.progress} }
+            format.json  { render :json => {:progress => bg_stat.progress} }
+          end
+
+          return
+        end
+
+        # render
         graphs.each do |graph|
           label = limits_reached(graph)
           unless label.blank?
