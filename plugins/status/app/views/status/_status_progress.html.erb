@@ -1,0 +1,19 @@
+<div class="status_status">
+  <div style="float: left;">
+  <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %>
+  </div>
+
+  <div style="float: left; padding-left: 1em; padding-top:10px">
+    <%= _("Checking system status") -%>
+  </div>
+
+  <%= progress_bar(progress) -%>
+
+  <!-- refresh the status again after 5 seconds -->
+  <% javascript_tag do -%>
+    setTimeout(function() {
+      <%= remote_function(:update => "status_status",
+	:url => { :controller => :status, :action => :show_summary, :background => true }) %>
+    }, 5000);
+  <% end -%>
+</div>
