@@ -130,6 +130,7 @@
         <p>
             <label><%=_("Default Group")%></label>
             <%= f.text_field :groupname, :disabled => disabled %>
+            <a href="#" class="button" onClick="open_def_group_dialog();return false;">Select Default Group</a>
         </p>
    
       <%= render :partial => 'groups_dialog' %>

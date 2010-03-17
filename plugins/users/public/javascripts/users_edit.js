@@ -80,7 +80,6 @@
 	 mygroups = $('#user_grp_string')[0].value.split(",");
    _initializeDragContainer(mygroups,'ContainerUser');
 
-//   var allgroups = new Array();
    var allgroups = $('#all_grps_string')[0].value.split(",").sort();
    var filtered_groups=[];
    for (var i=0;i<allgroups.length;i++){
@@ -95,6 +94,17 @@
    $('#groups').dialog('open');
   }
 
+  // open popup to select default group
+  function open_def_group_dialog(){
+   var allgroups = $('#all_grps_string')[0].value.split(",").sort();
+   _initializeDragContainer(allgroups,'ContainerDefaultGroup');
+
+   $('#def_group').dialog();
+   $('#def_group').dialog('option', 'width', 480);
+   $('#def_group').dialog('option', 'position', 'center');
+   $('#def_group').dialog('open');
+  }
+
   // store groups from popup dialog
   function store_groups(dlg){
     var user = $('#ContainerUser')[0].childNodes;
@@ -107,11 +117,12 @@
     $(dlg).dialog('close');
   }
 
+
   function moveItem(e,target){
    // this hack is for support both firefox and chrome
    var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
     if(item.className=='GBox'){
-	 $('#'+item.id).appendTo($('#'+target));
+	 $("#"+item.parentNode.id+' #'+item.id).appendTo($('#'+target));
 	 var u_size  = $('#ContainerUser')[0].childNodes.length;
 	 var u_width  = $('#ContainerUser')[0].clientWidth;
 	 var u_cols=(u_width-10)/100;
@@ -133,3 +144,12 @@
 	 
     }
   }
+
+  function selectItem(e){
+   var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
+    if(item.className=='GBox'){
+    $('#user_groupname')[0].value=item.id;
+    $("#def_group").dialog('close');
+    }
+  }
+  
