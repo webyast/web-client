@@ -2,15 +2,21 @@
      $("#accordion").accordion('activate',$("#tab_"+tab).children("legend"));
    }
 
+  // using replace instead of trim() see bnc#580561
+  function _trim(word){
+//    return word.replace(/^s+/g,'').replace(/s+$/g,'');
+    return word.replace(/^\s*|\s*$/g,'');
+  }
+
    function groups_validation(){
      var mygroups = [];
-     if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+     if (_trim($('#user_grp_string')[0].value).length>0) mygroups = $('#user_grp_string')[0].value.split(",");
      var allgroups = $("#all_grps_string")[0].value.split(",");
      errmsg="";
      for (i=0;i<mygroups.length;i++){
        var found=false;
        for(a=0;a<allgroups.length;a++){
-	if (allgroups[a]==mygroups[i].replace(/^\s*|\s*$/g,'')) found=true;
+	if (allgroups[a]==_trim(mygroups[i])) found=true;
        }
        if (!found){
 	errmsg = mygroups[i]+" "+"is not valid group!" ;
@@ -52,32 +58,36 @@
    }
    for(var i=0;i<a_groups.length;i++){
      var div = document.createElement('div');
-     div.setAttribute('id', a_groups[i].trim());
+     div.setAttribute('id', _trim(a_groups[i]));
      div.setAttribute('class', 'GBox');
-     div.innerHTML=a_groups[i].trim();
+     div.innerHTML=_trim(a_groups[i]);
      container.appendChild(div);
    }
   }
 
-  function _filter_all_groups(group){
-   var mygroups=[];
-   if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+  function _find_in_all(group, mygroups){
    var found=false;
    for(i=0;i<mygroups.length;i++){
      if (mygroups[i]==group) found=true;
    }
-   return !found;
+   return found;
   }
 
   // open groups "popup" dialog
   function open_groups_dialog(){
    var mygroups=[];
-   if ($('#user_grp_string')[0].value.trim().length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+   if ( _trim($('#user_grp_string')[0].value).length>0 )
+	 mygroups = $('#user_grp_string')[0].value.split(",");
    _initializeDragContainer(mygroups,'ContainerUser');
 
+//   var allgroups = new Array();
    var allgroups = $('#all_grps_string')[0].value.split(",").sort();
-   allgroups=allgroups.filter(_filter_all_groups);
-   _initializeDragContainer(allgroups,'ContainerGroups');
+   var filtered_groups=[];
+   for (var i=0;i<allgroups.length;i++){
+     if (!_find_in_all(allgroups[i], mygroups))
+	 filtered_groups=filtered_groups.concat([allgroups[i]]);
+   }
+   _initializeDragContainer(filtered_groups,'ContainerGroups');
 
    $('#groups').dialog({ buttons: { 'Ok': function() { store_groups(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
    $('#groups').dialog('option', 'width', 580);

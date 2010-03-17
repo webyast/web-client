@@ -127,12 +127,9 @@
           <label><%=_("Default Group")%></label>
           <%= f.text_field :groupname %>
         </p>
-        <div id="groups" style="display:none;" title="Groups"> 
-          <div>
-            <div class="GContainerUser" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
-            <div class="GContainerGroups" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
-          </div>
-        </div>
+
+	<%= render :partial => 'groups_dialog' %>
+
       </div>
     </fieldset>
     <fieldset id="tab_advanced" class="wrapper with-background">
