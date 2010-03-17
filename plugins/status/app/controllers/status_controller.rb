@@ -88,18 +88,32 @@ class StatusController < ApplicationController
     end
     lines = params[:lines].to_i || DEFAULT_LINES
     pos_begin = params[:pos_begin].to_i || 0
-    log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
-    content = log.content.value if log
-    position = log.content.position.to_i if log
-    render :partial => 'status_log', :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }
+    begin 
+      log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
+      content = log.content.value if log
+      position = log.content.position.to_i if log
+      render(:partial => 'status_log', 
+             :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }) and return
+    rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && 
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
+           error_hash["error"]["type"] == "NO_PERM" || 
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
+           render :text => error_hash["error"]["description"] and return
+	else
+           raise error
+	end
+    end
   end
   
   def index
     client_permissions
     begin
-      @logs = Logs.find(:all) || {}
+      @logs = Logs.find(:all)
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
-      @graphs ||= []
+
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
       flash[:notice] = _("No data found for showing system status.") if @graphs.blank?
@@ -108,12 +122,14 @@ class StatusController < ApplicationController
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" ||
-           error_hash["error"]["type"] == "NO_PERM")
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            flash[:error] = error_hash["error"]["description"]
 	else
            raise error
 	end
+      ensure
+        @graphs ||= []
+        @logs ||= {}
     end
   end
 
@@ -150,7 +166,6 @@ class StatusController < ApplicationController
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "NO_PERM" ||
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
            status = error_hash["error"]["description"]
