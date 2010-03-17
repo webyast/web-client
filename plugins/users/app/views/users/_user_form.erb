@@ -1,0 +1,79 @@
+
+  <div class="accordion">
+
+    <fieldset id="tab_login" class="wrapper with-background">
+      <legend><%= _("Login Settings") %></legend>
+      <div>
+        <p>
+          <label><%=_("Login Name")%></label>
+          <%= f.text_field :uid, :disabled => disabled %>
+          <%= f.text_field :id, :class => "hidden" %>
+        </p>
+        <p>
+          <label><%=_("Full Name")%></label>
+          <%= f.text_field :cn , :disabled => disabled %>
+        </p>
+        <p>
+          <label><%=_("Password")%></label>
+          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled %>
+        </p>
+        <p>
+          <label><%=_("Confirm Password")%></label>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
+        </p>
+        <!-- this is a pre-generated placeholder for the validation messages -->
+        <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
+      </div>
+    </fieldset>
+
+    <fieldset id="tab_groups" class="wrapper with-background">
+      <legend><%=_("Groups")%></legend>
+      <div>
+        <p>
+            <label><%=_("Groups")%></label>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
+            <a href="#" class="button" onClick="open_groups_dialog();return false;">Manage Groups</a>
+        </p>
+        <p><label id="groups-error" class="error"></label><p>
+        <p>
+            <label><%=_("Default Group")%></label>
+            <%= f.text_field :groupname, :disabled => disabled %>
+            <a href="#" class="button" onClick="open_def_group_dialog();return false;">Select Default Group</a>
+        </p>
+   
+	 <div id="groups" style="display:none;" title="Groups">
+	    <div>
+	     <div class="GContainerUser" style="width: 100px;" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
+	     <div class="GContainerGroups" style="width: 400px;" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
+	    </div>
+	 </div>
+
+	 <div id="def_group" style="display:none;" title="Default Group">
+	    <div>
+	     <div class="GContainerGroups" style="width: 400px;" id="ContainerDefaultGroup" onclick="selectItem(event);"> </div>
+	    </div>
+	 </div>
+
+      </div>
+    </fieldset>
+
+    <fieldset id="tab_advanced" class="wrapper with-background">
+      <legend><%= _("Advanced") %></legend>
+      <div>
+        <p>
+            <label><%=_("Home Directory")%></label>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+        </p>
+        <p>
+            <label><%=_("Login Shell")%></label>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+        </p>
+        <p>
+            <label><%=_("UID Number")%></label>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
+        </p>
+        <p><label id="uid-error" class="error"></label><p>
+      </div>
+    </fieldset>
+
+  </div>
