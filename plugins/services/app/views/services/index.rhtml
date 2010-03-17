@@ -28,10 +28,18 @@ $(document).ready(function() {
 // adapt the status icon of given service
 function toggle_service_info (id) {
     var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
+
+    // hide enable/disable buttons if they should not be seen
+    $(id).siblings('a#enable').hide();
+    $(id).siblings('a#disable').hide();
+
     if ($(id).is(':has(span.status_running)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
 	$(id).siblings('a#start').hide();
 	$(id).siblings('a#stop').show();
+	if ($(id).is(':has(span.service_disabled)')) {
+	    $(id).siblings('a#enable').show();
+	}
     }
     else if ($(id).is(':has(span.status_dead)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
@@ -42,6 +50,9 @@ function toggle_service_info (id) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
 	$(id).siblings('a#stop').hide();
 	$(id).siblings('a#start').show();
+	if ($(id).is(':has(span.service_enabled)')) {
+	    $(id).siblings('a#disable').show();
+	}
     }
 }
 
@@ -192,25 +203,14 @@ commands	= [ "start", "stop", "restart", ]
      end %>
 
 
-      <span class='service_result' id='service_result_<%=service.name%>'>
-	<%= render :partial => 'result' %>
-      </span>
-
       <!-- only show enable/disable part when there's inconsistency, and not for custom services -->
-      <% if (!service.custom?) && ((service.enabled? && service.status != 0) || (!service.enabled? && service.status == 0)) %>
-
-	<p>
-	<span class='service_enabled' id='service_enabled_<%=service.name%>'>
-	  <% unless service.enabled.nil? %>
-	  <%= render :partial => 'enabled', :object => service.enabled %>
-	  <% end %>
-	</span>
+      <%
+      hide_enable = service.custom? || ((service.enabled? && service.status == 0) || (!service.enabled? && service.status != 0))
  
-        <%
-	if @permissions[:execute]
-	  [ "enable", "disable" ].each do |cmd|
-	%>
-	    <%=
+      if @permissions[:execute]
+	[ "enable", "disable" ].each do |cmd|
+      %>
+	<%=
 		url	= {
 		    :id		=> cmd, 
 		    :action	=> "execute", 
@@ -227,7 +227,7 @@ commands	= [ "start", "stop", "restart", ]
 		    :class	=> "button",
 		    :id		=> cmd
 		}
-		html_options[:style]	= "display: none" if (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
+		html_options[:style]	= "display: none" if hide_enable || (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
 		label = case cmd
 		  when "enable"	then _("Start on Boot")
 		  when "disable" then _("Do Not Start on Boot")
@@ -248,8 +248,12 @@ commands	= [ "start", "stop", "restart", ]
 	  end
         end
 	%>
-        </p>
-      <% end %> <!-- end of enable/disable part -->
+        </p> <!-- end of enable/disable part -->
+
+      <span class='service_result' id='service_result_<%=service.name%>'>
+	<%= render :partial => 'result' %>
+      </span>
+
   </div>
   </div>
 <% end %>

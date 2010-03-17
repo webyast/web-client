@@ -1,4 +1,21 @@
 <%
+# Show on-boot status if not in sync with current status
+if (enabled == "true" && status != 0) || (enabled == "false" && status == 0)
+classname	= "service_enabled"
+case enabled
+    when "true"
+	label	= _("Service will be started on boot.")
+    when "false"
+	label	= _("Service will not be started on boot.")
+	classname	= "service_disabled"
+end
+-%>
+<span class=<%=classname%> style="color: #ff9900;"><%=label%></span>
+<% end %>
+
+
+<%
+
 # Status values (see /etc/init.d/skeleton):
 #
 # 0 - service up and running
