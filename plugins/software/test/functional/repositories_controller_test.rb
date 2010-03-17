@@ -140,6 +140,28 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert_false flash.empty?
   end
 
+  def test_destroy_failed
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
+          { :policy => "org.opensuse.yast.system.repositories"})
+      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
+
+      mock.get  "/repositories/Ruby.xml", @header, fixture("repository_Ruby.xml"), 200
+      mock.delete "/repositories/Ruby.xml", @header, nil, 404
+    end
+
+    post :delete, :id => 'Ruby'
+
+    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
+    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:delete, "/repositories/Ruby.xml", nil, @header))
+
+    assert_response :redirect
+    assert_valid_markup
+    assert_redirected_to :action => :index
+    assert_false flash.empty?
+  end
+
+
   def test_update_empty_id
     put :update, :id => ''
 

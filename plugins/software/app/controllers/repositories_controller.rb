@@ -51,14 +51,14 @@ class RepositoriesController < ApplicationController
       @adding = false
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
-      redirect_to :action => 'index' and return
+      redirect_to :action => :index and return
     end
   end
 
   def delete
     if params[:id].blank?
       flash[:error] = _('Missing repository parameter')
-      redirect_to :action => 'index' and return
+      redirect_to :action => :index and return
     end
 
     begin
@@ -66,13 +66,17 @@ class RepositoriesController < ApplicationController
       return unless @repo
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
-      redirect_to :action => 'index' and return
+      redirect_to :action => :index and return
     end
 
     @repo.id = URI.escape(@repo.id)
 
-    if @repo.destroy
-      flash[:message] = _("Repository '#{ERB::Util.html_escape @repo.name}' has been deleted.")
+    begin
+      if @repo.destroy
+        flash[:message] = _("Repository '#{ERB::Util.html_escape @repo.name}' has been deleted.")
+      end
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Cannot remove repository '#{ERB::Util.html_escape params[:id]}'")
     end
 
     redirect_to :action => :index and return
@@ -90,12 +94,12 @@ class RepositoriesController < ApplicationController
       return unless @repo
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
-      redirect_to :action => 'index' and return
+      redirect_to :action => :index and return
     end
 
     if params[:repository].blank?
       flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape params[:id]}': missing parameters.")
-      redirect_to :action => 'index' and return
+      redirect_to :action => :index and return
     end
 
     repository = params[:repository]
