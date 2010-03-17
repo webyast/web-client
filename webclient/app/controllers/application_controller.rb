@@ -96,10 +96,26 @@ class ApplicationController < ActionController::Base
       render :status => 500, :partial => "shared/exception_trap", :locals => {:error => e} and return
     end
 
+    #case e
+    #when ActionController::InvalidAuthenticityToken
+    #  render :status => 500, :template => "shared/cookies_disabled"
+    #else
+    #  render :status => 500, :template => "shared/exception_trap", :locals => {:error => e}
+    #end
+
+    #Patch for Bug 560701 - [build 24.1] webYaST appears to crash after installing webclient patch
     case e
-    when ActionController::InvalidAuthenticityToken
+    when ActionController::InvalidAuthenticityToken then
+      Rails.logger.error "InvalidAuthenticityToken"
       render :status => 500, :template => "shared/cookies_disabled"
+    when ActiveResource::ServerError then
+      Rails.logger.error "ServerError"
+      render :status => 500, :template => "shared/exception_trap", :locals => {:error => e}
+    when ClientException then
+      Rails.logger.error "lighttpd is exited #{e}"
+      render :template => "shared/exception_trap_client_crash"
     else
+      Rails.logger.error "Uncaught error #{e}"
       render :status => 500, :template => "shared/exception_trap", :locals => {:error => e}
     end
 

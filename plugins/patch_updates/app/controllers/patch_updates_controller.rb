@@ -13,6 +13,15 @@ class PatchUpdatesController < ApplicationController
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
+    #Patch for Bug 560701 - [build 24.1] webYaST appears to crash after installing webclient patch
+    if (session[:client_id] != Process.pid && session[:client_id] != nil)
+       flash[:warning] = _("WebYaST Client is successfully restarted after patch installation!")
+       session[:client_id] = nil
+    end
+
+    #Store the client PID before install the webclient patch in CookieStore and check if the client is restarted  after patch installation.
+    session[:client_id] = Process.pid
+
     @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
