@@ -1,18 +1,16 @@
 <%
 # Show on-boot status if not in sync with current status
-if (enabled == "true" && status != 0) || (enabled == "false" && status == 0)
-classname	= "service_enabled"
-case enabled
-    when "true"
-	label	= _("Service will be started on boot.")
-    when "false"
-	label	= _("Service will not be started on boot.")
-	classname	= "service_disabled"
-end
+if (!custom) && ((enabled && status != 0) || (!enabled && status == 0))
+  classname	= "service_enabled"
+  if enabled
+    label	= _("Service will be started on boot.")
+  else
+    label	= _("Service will not be started on boot.")
+    classname	= "service_disabled"
+  end
 -%>
-<span class=<%=classname%> style="color: #ff9900;"><%=label%></span>
+  <span class=<%=classname%> style="color: #ff9900;"><%=label%></span>
 <% end %>
-
 
 <%
 

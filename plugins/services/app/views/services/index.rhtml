@@ -28,30 +28,34 @@ $(document).ready(function() {
 // adapt the status icon of given service
 function toggle_service_info (id) {
     var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
+    var buttons	= $(id).siblings('p.service-buttons');
 
     // hide enable/disable buttons if they should not be seen
-    $(id).siblings('a#enable').hide();
-    $(id).siblings('a#disable').hide();
+    $(buttons).find('a#enable').hide();
+    $(buttons).find('a#disable').hide();
 
     if ($(id).is(':has(span.status_running)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
-	$(id).siblings('a#start').hide();
-	$(id).siblings('a#stop').show();
+	$(buttons).find('a#start').hide();
+	$(buttons).find('a#stop').show();
 	if ($(id).is(':has(span.service_disabled)')) {
-	    $(id).siblings('a#enable').show();
+	    $(buttons).find('a#enable').show();
 	}
     }
     else if ($(id).is(':has(span.status_dead)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
-	$(id).siblings('a#stop').hide();
-	$(id).siblings('a#start').show();
+	$(buttons).find('a#stop').hide();
+	$(buttons).find('a#start').show();
+	if ($(id).is(':has(span.service_enabled)')) {
+	    $(buttons).find('a#disable').show();
+	}
     }
     else {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
-	$(id).siblings('a#stop').hide();
-	$(id).siblings('a#start').show();
+	$(buttons).find('a#stop').hide();
+	$(buttons).find('a#start').show();
 	if ($(id).is(':has(span.service_enabled)')) {
-	    $(id).siblings('a#disable').show();
+	    $(buttons).find('a#disable').show();
 	}
     }
 }
@@ -143,7 +147,7 @@ commands	= [ "start", "stop", "restart", ]
 
   <span class='service_status' id='service_status_<%=service.name%>'>
     <% unless service.status.nil? %>
-    <%= render :partial => 'status', :locals => { :status => service.status, :enabled => service.enabled } %>
+    <%= render :partial => 'status', :locals => { :status => service.status, :enabled => service.enabled?, :custom => service.custom? } %>
     <% end %>
   </span>
 
@@ -160,6 +164,7 @@ commands	= [ "start", "stop", "restart", ]
 	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show()"
   %>
 
+  <p class="service-buttons">
   <% commands.each do |cmd|
 	if @permissions[:execute] %>
 	    <%=
@@ -248,8 +253,7 @@ commands	= [ "start", "stop", "restart", ]
 	  end
         end
 	%>
-        </p> <!-- end of enable/disable part -->
-
+      </p>
       <span class='service_result' id='service_result_<%=service.name%>'>
 	<%= render :partial => 'result' %>
       </span>
