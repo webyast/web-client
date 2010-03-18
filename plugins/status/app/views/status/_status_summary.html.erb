@@ -14,3 +14,13 @@
     <%= button_to_remote _("start"), :update =>"status_status", :url => { :controller => :status, :action => :start_collectd} %>
   <% end %>
 </div>
+
+<%# TODO FIXME: make the automatic reload time user configurable %>
+<!-- refresh the status again after 1 minute (= 60*1000 milisecods)-->
+<% javascript_tag do -%>
+  setTimeout(function() {
+    $('#status_status').html('<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>')
+    <%= remote_function(:update => "status_status",
+      :url => { :controller => :status, :action => :show_summary, :background => true }) %>
+    }, 60*1000);
+<% end -%>
