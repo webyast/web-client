@@ -178,8 +178,32 @@ class StatusController < ApplicationController
   # POST /status/start_collectd
   # Starting collectd
   def start_collectd
-    logger.debug "Start collectd....."
-    show_summary
+    logger.debug "Starting collectd....."
+    result_string = ""
+    args = { :execute => "start", :custom => false }
+    begin
+      response = Service.put("collectd", args)
+      # we get a hash with exit, stderr, stdout
+      ret = Hash.from_xml(response.body)
+      ret = ret["hash"]
+      logger.debug "returns #{ret.inspect}"
+      if ret["exit"].blank? || ret["exit"].to_s != "0"
+        result_string << ret["stdout"] if ret["stdout"]
+        result_string << ret["stderr"] if ret["stderr"]
+      end
+    rescue ActiveResource::ServerError => error
+      error_hash = Hash.from_xml error.response.body
+      logger.warn error_hash.inspect
+      result_string = error_hash["error"]["description"]
+    end
+
+    unless result_string.blank?
+      render :partial => "status_summary", :locals => { :status => result_string, 
+                                                        :level => "error", :error => nil, 
+                                                        :restart_collectd => true}
+    else
+      show_summary
+    end
   end
 
   #
