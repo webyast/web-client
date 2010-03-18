@@ -97,10 +97,7 @@ class StatusController < ApplicationController
     rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
 	logger.warn error_hash.inspect
-	if error_hash["error"] && 
-          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "NO_PERM" || 
-           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
+	if error_hash["error"] && error_hash["error"]["type"] == "NO_PERM"
            render :text => error_hash["error"]["description"] and return
 	else
            raise error
@@ -155,11 +152,11 @@ class StatusController < ApplicationController
         end
       end
       level = "error" unless status.blank?
-      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
+      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
         level = "error"
-        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) } and return
+        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) , :restart_collectd => false} and return
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
         level = "error"
@@ -169,11 +166,20 @@ class StatusController < ApplicationController
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
            status = error_hash["error"]["description"]
-           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
+           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, 
+                                                             :restart_collectd => error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"}
 	else
-           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error) } 
+           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error),
+                                                             :restart_collectd => false } 
 	end
     end
+  end
+
+  # POST /status/start_collectd
+  # Starting collectd
+  def start_collectd
+    logger.debug "Start collectd....."
+    show_summary
   end
 
   #

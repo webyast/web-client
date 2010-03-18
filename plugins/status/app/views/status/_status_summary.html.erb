@@ -10,4 +10,7 @@
        <span><%= _("Your system is healthy.") %></span>
     <% end %>
   <% end %>
+  <% if restart_collectd %>
+    <%= button_to_remote _("start"), :update =>"status_status", :url => { :controller => :status, :action => :start_collectd} %>
+  <% end %>
 </div>
