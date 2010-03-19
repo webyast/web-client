@@ -134,7 +134,15 @@ class StatusController < ApplicationController
   # AJAX call for showing status overview
   #
   def show_summary
-    client_permissions
+    begin
+      client_permissions
+    rescue ActiveResource::UnauthorizedAccess => error
+      # handle unauthorized error - the session timed out
+      Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
+      render :partial => "status_summary", :locals => { :status => '', :level => 'error', :error => error }
+      return
+    end
+
     begin
       level = "ok"
       status = ""
