@@ -78,8 +78,11 @@ class PatchUpdatesController < ApplicationController
       flash.clear #no flash from load_proxy
     end
 
+    # don't refresh if there was an error
+    ref_timeout = error ? nil : refresh_timeout
+
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string, :refresh_timeout => ref_timeout } }
       format.json  { render :json => patches_summary }
     end    
   end
@@ -182,4 +185,24 @@ class PatchUpdatesController < ApplicationController
     end
     redirect_to({:controller=>"controlpanel", :action=>"index"})
   end
+
+  private
+
+  def refresh_timeout
+    timeout = ControlPanelConfig.read 'patch_status_timeout'
+    if timeout.nil?
+      # the default is 24 hours
+      timeout = 24*60*60
+      Rails.logger.warn "Cannot read 'patch_status_timeout' value, using default: #{timeout}"
+    end
+
+    if timeout.zero?
+      Rails.logger.info "Patch status autorefresh is disabled"
+    else
+      Rails.logger.info "Autorefresh patch status after #{timeout} seconds"
+    end
+
+    return timeout
+  end
+
 end

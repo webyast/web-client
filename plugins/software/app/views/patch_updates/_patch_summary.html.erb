@@ -40,15 +40,14 @@
       <%= button_to_remote _("Update All"), :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
     <% end %>
 
-  <% unless error -%>
-    <%# TODO FIXME: make the automatic reload time user configurable -%>
-    <!-- refresh the status again after 24 hours (= 24*60*60*1000 milisecods)-->
+  <% if refresh_timeout.to_i > 0 -%>
+    <!-- refresh the status again after a timeout -->
     <% javascript_tag do -%>
       setTimeout(function() {
 	$('#status_patches').html('<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>')
 	<%= remote_function(:update => "status_patches",
 	    :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
-      }, 24*60*60*1000);
+      }, <%= refresh_timeout.to_i * 1000 -%>);
     <% end -%>
   <% end -%>
 
