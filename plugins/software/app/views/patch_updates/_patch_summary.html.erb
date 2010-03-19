@@ -1,9 +1,16 @@
-<%= report_error(error, error_string) if error %>
+<% unauthorized =  error.class == ActiveResource::UnauthorizedAccess -%>
+<%= report_error(error, error_string) if error && !unauthorized %>
 
 <div class="status_patches">
   <% unless patch %>
       <div class="status-icon warning"></div>
-      <%= _("No information about patches available") %>
+      <% if unauthorized %>
+	<% link_to "controlpanel" do %>
+	  <%= _("Cannot read patch updates - you have been logged out.") %>
+	<% end %>
+      <% else %>
+	<%= _("No information about patches available") %>
+      <% end %>
   <% else %>
     <% label = [] %>
     <% link_to "patch_updates" do %>
@@ -33,14 +40,16 @@
       <%= button_to_remote _("Update All"), :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
     <% end %>
 
-  <%# TODO FIXME: make the automatic reload time user configurable %>
-  <!-- refresh the status again after 24 hours (= 24*60*60*1000 milisecods)-->
-  <% javascript_tag do -%>
-    setTimeout(function() {
-      $('#status_patches').html('<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>')
-      <%= remote_function(:update => "status_patches",
-	  :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+  <% unless error -%>
+    <%# TODO FIXME: make the automatic reload time user configurable -%>
+    <!-- refresh the status again after 24 hours (= 24*60*60*1000 milisecods)-->
+    <% javascript_tag do -%>
+      setTimeout(function() {
+	$('#status_patches').html('<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>')
+	<%= remote_function(:update => "status_patches",
+	    :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
       }, 24*60*60*1000);
+    <% end -%>
   <% end -%>
 
   <% end %>

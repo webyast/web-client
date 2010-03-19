@@ -31,9 +31,14 @@ class PatchUpdatesController < ApplicationController
   # this action is rendered as a partial, so it can't throw
   def show_summary
     error = nil
-    patch_updates = nil    
+    patch_updates = nil
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
+    rescue ActiveResource::UnauthorizedAccess => e
+      # handle unauthorized error - the session timed out
+      Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
+      error = e
+      error_string = ''
     rescue ActiveResource::ClientError => e
       error = ClientException.new(e)
       patch_updates = nil
