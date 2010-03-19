@@ -160,7 +160,7 @@ class StatusController < ApplicationController
         end
       end
       level = "error" unless status.blank?
-      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false, :refresh_timeout => refresh_timout }
+      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false, :refresh_timeout => refresh_timeout }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
         level = "error"
