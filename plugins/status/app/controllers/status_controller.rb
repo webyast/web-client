@@ -139,7 +139,7 @@ class StatusController < ApplicationController
     rescue ActiveResource::UnauthorizedAccess => error
       # handle unauthorized error - the session timed out
       Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
-      render :partial => "status_summary", :locals => { :status => '', :level => 'error', :error => error }
+      render :partial => "status_summary", :locals => { :status => '', :level => 'error', :error => error, :refresh_timeout => nil }
       return
     end
 
@@ -160,11 +160,11 @@ class StatusController < ApplicationController
         end
       end
       level = "error" unless status.blank?
-      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false }
+      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false, :refresh_timeout => refresh_timout }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
         level = "error"
-        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) , :restart_collectd => false} and return
+        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) , :restart_collectd => false, :refresh_timeout => nil} and return
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
         level = "error"
@@ -174,11 +174,11 @@ class StatusController < ApplicationController
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
            status = error_hash["error"]["description"]
-           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, 
+           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :refresh_timeout => nil,
                                                              :restart_collectd => error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"}
 	else
            render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error),
-                                                             :restart_collectd => false } 
+                                                              :refresh_timeout => nil, :restart_collectd => false }
 	end
     end
   end
@@ -376,6 +376,19 @@ class StatusController < ApplicationController
 
     flash[:notice] = _("Limits have been written.")
     redirect_to :controller=>"status", :action=>"index"
+  end
+
+  private
+
+  def refresh_timout
+    timeout = ControlPanelConfig.read 'system_status_timeout'
+    if timeout.nil?
+      timeout = 60
+      Rails.logger.warn "Cannot read 'system_status_timeout' value using default: #{timeout}"
+    end
+    Rails.logger.info "Autorefresh system status after #{timeout} seconds"
+
+    return timeout
   end
 
 end
