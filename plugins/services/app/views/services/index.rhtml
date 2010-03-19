@@ -38,25 +38,21 @@ function toggle_service_info (id) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
 	$(buttons).find('a#start').hide();
 	$(buttons).find('a#stop').show();
-	if ($(id).is(':has(span.service_disabled)')) {
-	    $(buttons).find('a#enable').show();
-	}
     }
     else if ($(id).is(':has(span.status_dead)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
 	$(buttons).find('a#stop').hide();
 	$(buttons).find('a#start').show();
-	if ($(id).is(':has(span.service_enabled)')) {
-	    $(buttons).find('a#disable').show();
-	}
     }
     else {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
 	$(buttons).find('a#stop').hide();
 	$(buttons).find('a#start').show();
-	if ($(id).is(':has(span.service_enabled)')) {
-	    $(buttons).find('a#disable').show();
-	}
+    }
+    if ($(id).is(':has(div.service_disabled)')) {
+	$(buttons).find('a#enable').show();
+    } else if ($(id).is(':has(div.service_enabled)')) {
+	$(buttons).find('a#disable').show();
     }
 }
 
@@ -208,11 +204,9 @@ commands	= [ "start", "stop", "restart", ]
      end %>
 
 
-      <!-- only show enable/disable part when there's inconsistency, and not for custom services -->
+      <!-- do not show enable/disable part for custom services -->
       <%
-      hide_enable = service.custom? || ((service.enabled? && service.status == 0) || (!service.enabled? && service.status != 0))
- 
-      if @permissions[:execute]
+      if @permissions[:execute] && !service.custom?
 	[ "enable", "disable" ].each do |cmd|
       %>
 	<%=
@@ -232,7 +226,7 @@ commands	= [ "start", "stop", "restart", ]
 		    :class	=> "button",
 		    :id		=> cmd
 		}
-		html_options[:style]	= "display: none" if hide_enable || (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
+		html_options[:style]	= "display: none" if (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
 		label = case cmd
 		  when "enable"	then _("Start on Boot")
 		  when "disable" then _("Do Not Start on Boot")

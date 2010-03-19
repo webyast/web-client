@@ -1,6 +1,6 @@
 <%
-# Show on-boot status if not in sync with current status
-if (!custom) && ((enabled && status != 0) || (!enabled && status == 0))
+# Show on-boot status if not custom service
+unless custom
   classname	= "service_enabled"
   if enabled
     label	= _("Service will be started on boot.")
@@ -9,7 +9,7 @@ if (!custom) && ((enabled && status != 0) || (!enabled && status == 0))
     classname	= "service_disabled"
   end
 -%>
-  <span class=<%=classname%> style="color: #ff9900;"><%=label%></span>
+  <div class=<%=classname%>><%=label%></div>
 <% end %>
 
 <%
