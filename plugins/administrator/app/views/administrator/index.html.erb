@@ -63,12 +63,12 @@
   <%= f.error_messages %>
     <fieldset class="wrapper with-background" id="password">
         <legend><%= _("Password Setup for User 'root'") -%></legend>
-	<p><label><%=_("Password")%></label>
+	<p><label><%=_("New Password")%></label>
 	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
-	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');", :onBlur=>"restoreBox()"  %>
+	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');" %>
 	</p>
 	<p>
-	<label><%=_("Confirm password")%></label>
+	<label><%=_("Confirm Password")%></label>
 	<%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
         </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
