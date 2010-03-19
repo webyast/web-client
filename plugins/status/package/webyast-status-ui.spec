@@ -12,11 +12,11 @@
 Name:           webyast-status-ui
 Provides:       yast2-webclient-status = %{version}
 Obsoletes:      yast2-webclient-status < %{version}
-PreReq:         yast2-webclient >= 0.0.2
+PreReq:         yast2-webclient >= 0.1.14
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.4
+Version:        0.1.5
 Release:        0
 Summary:        YaST2 - Webclient - status
 Source:         www.tar.bz2
