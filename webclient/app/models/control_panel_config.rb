@@ -28,7 +28,7 @@ class ControlPanelConfig
       return default_value
     rescue Exception => e
       Rails.logger.error "Cannot read /etc/webyast/control_panel.yml: #{e}"
-      return nil
+      return default_value
     end
   end
 end
