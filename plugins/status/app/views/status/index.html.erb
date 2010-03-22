@@ -43,32 +43,13 @@
          <%= group.id %>
       </div>
       <div style="display: none;">
-
           <% group.single_graphs.each do |single_graph| %>
             <p>     
               <h3><%= single_graph.headline %></h3>
             </p>
-            <p>
-              <% measurement_id = "measurement_" + group.id + "_" + single_graph.headline%>
-              <%= _("Show last") %> <select name="<%=measurement_id%>" id="<%=measurement_id%>">
-		<option value="5"><%= _("5 Minutes") %></option>
-		<option value="15"><%= _("15 Minutes") %></option>
-		<option value="30"><%= _("30 Minutes") %></option>
-		<option value="60"><%= _("1 Hour") %></option>
-		<option value="360"><%= _("6 Hours") %></option>
-		<option value="720"><%= _("12 Hours") %></option>
-              </select>
-              <%= observe_field(measurement_id,
-                :update => graph_id(group.id, single_graph.headline),
-                :frequency => 0.25,
-                :loading => "$('#progress').show()",
-                :url => { :action => "evaluate_values", :group_id => group.id, :graph_id => single_graph.headline },
-                :complete => "$('#progress').hide()",
-                :with => "'minutes=' + value" ) %>
-            </p>
-            <p>         
-              <%= graph(graph_id(group.id, single_graph.headline), 400, 300) %>
-            </p>
+            <div id='<%= graph_id(group.id, single_graph.headline) %>'>
+              <img src='/images/working.gif'>
+            </div>
           <% end %>
       </div>
     </div>
