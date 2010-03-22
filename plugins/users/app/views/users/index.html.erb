@@ -63,7 +63,7 @@
     <td align=center id="login"><%= h user.uid  -%></td>
     <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
     <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy) %></td>
+    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user %s?") % user.id ) %></td>
     <% end %>
   </tr>
   <% end %>
