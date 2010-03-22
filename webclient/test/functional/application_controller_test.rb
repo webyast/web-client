@@ -2,6 +2,16 @@ require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 require 'mocha'
 
+class FakeResponse
+  attr_reader :message
+  attr_reader :code
+
+  def initialize(code, message="")
+    @code = code
+    @message = message
+  end
+end
+
 # create a testing controller,
 # defining an ApplicationControllerTest class doesn't work
 class TestController < ApplicationController
@@ -30,6 +40,14 @@ class TestController < ApplicationController
 #for test protected method details
   def testing_details(msg,options={})
     details msg,options
+  end
+
+  def unauthorized
+    raise ActiveResource::UnauthorizedAccess.new(FakeResponse.new(401))
+  end
+
+  def redirect
+    redirect_success
   end
 end
 
@@ -72,5 +90,24 @@ class TestControllerTest < ActionController::TestCase
     controller = TestController.new
     assert_equal (DETAILS_PREFIX+"lest"+DETAILS_SUFFIX).gsub(/\s/,''), controller.testing_details("lest").gsub(/\s/,'')
     assert_equal TEST_DETAILS_RESULT.gsub(/\s/,''), controller.testing_details(TEST_DETAILS_STR).gsub(/\s/,'') #test if result is expected except whitespace (which is ignored in html)
+  end
+
+  def test_unathorized_redirection
+    get :unauthorized
+    assert_response :redirect
+    assert_redirected_to "/logout"
+  end
+  
+  def test_success_redirect_nonwizard
+    get :redirect
+    assert_response :redirect
+    assert_redirected_to "/controlpanel"
+  end
+
+  def test_success_redirect_wizard
+    Basesystem.any_instance.stubs(:in_process?).returns(true)
+    get :redirect
+    assert_response :redirect
+    assert_redirected_to "/controlpanel/nextstep?done=test"
   end
 end
