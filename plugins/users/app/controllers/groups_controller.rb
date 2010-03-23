@@ -94,6 +94,7 @@ public
       flash[:error] = _("Cannot read groups list.")
       return
     end
+    Rails.logger.debug( "Groups: " + @groups.inspect )
     return unless @groups
     @permissions = Group.permissions
   end
@@ -105,13 +106,15 @@ public
     # add default properties
     defaults = {
       :gid => 0,
-      :old_gid => 0,
+      :old_cn => "",
       :default_members => [],
       :members => [],
       :type => "local",
-      :cn => ""
+      :cn => "",
     }
     @group.load(defaults)
+    @group.members_string = @group.members.join(",")
+    @group.default_members_string = @group.default_members.join(",")
     @adding = true
     @user_names = load_user_names
     render :show
