@@ -3,247 +3,229 @@ require 'yast/service_resource'
 class GroupsController < ApplicationController
 
   before_filter :login_required
+  before_filter :load_permissions, :only => [:index,:add,:show]
   layout 'main'
-
-  private
-  def group_permissions
-    @permissions = Group.permissions
-  end
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_users"
 
-  public
-  def initialize
-  end
-
-  # GET /users
-  # GET /users.xml
-  def index
-    return unless group_permissions
-    @groups = []
-    begin
-      @groups = User.find :all
-#      @groups = Group.find
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @groups }
-    end
-  end
-
-  # GET /users/new
-  # GET /users/new.xml
-  def new
-    return unless group_permissions
-    @user = User.new( :id => :nil,
-      :groupname	=> nil,
-      :cn		=> nil,
-      :grouplist	=> [],
-      :allgroups	=> [],
-      :home_directory	=> nil,
-      :cn		=> nil,
-      :uid		=> nil,
-      :uid_number	=> nil,
-      :login_shell	=> "/bin/bash",
-      :user_password	=> nil,
-      :user_password2	=> nil,
-      :type		=> "local",
-      :id		=> nil
-    )
-    @groups = Group.find()
-    @groups.all_grps_string = ""
-    counter = 0
-    @groups.allgroups.each do |group|
-       if counter == 0
-          @groups.all_grps_string = group.cn
-       else
-          @groups.all_grps_string += ",#{group.cn}"
-       end
-       counter += 1
-    end
-    @user.grp_string = ""
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
-  end
-
-
-  # GET /users/1/edit
-  def edit
-    return unless group_permissions
-    @group = Group.new(
-     :cn  => "users",
-     :gid => 100
-    )
-#    @user = User.find(params[:id])
-#    @group = Group.find(params[:id])
-
-    #FIXME handle if id is invalid
-
-#    @user.type	= ""
-#    @user.id	= @user.uid # use id for storing index value (see update)
-#    @user.grp_string = ""
-
-#    @groups.all_grps_string = ""
-
-    # FIXME hack, this must be done properly
-    # (my keys in camelCase were transformed to under_scored)
-    # XXX this looks like code which do nothing!!!
-#    @user.uid_number	= @user.uid_number
-#    @user.home_directory	= @user.home_directory
-#    @user.login_shell	= @user.login_shell
-#    @user.user_password	= @user.user_password
-#    @user.user_password2= @user.user_password
-
-#    counter = 0
-#    @user.grouplist.each do |group|
-#       if counter == 0
-#          @user.grp_string = group.cn
-#       else
-#          @user.grp_string += ",#{group.cn}"
-#       end
-#       counter += 1
-#    end
-#    counter = 0
-#    @groups.allgroups.each do |group|
-#       if counter == 0
-#          @groups.all_grps_string = group.cn
-#       else
-#          @groups.all_grps_string += ",#{group.cn}"
-#       end
-#       counter += 1
-#    end
-  end
-
-
-  # POST /users
-  # POST /users.xml
-  def create
-    return unless group_permissions
-    dummy = User.new(params[:user])
-    #do not know, why this will not be assigned in the constructor
-    #(JR: because ActiveResource fills only known attributes, but whole gro_string stuff "smells" for me)
-    dummy.grp_string = params[:user][:grp_string] 
-
-    dummy.grouplist = []
-    if dummy.grp_string != nil
-       dummy.grp_string.split(",").each do |groupname|
-	  group = { "cn" => groupname.strip }
-	  dummy.grouplist.push group
-       end
-    end
-
-    @user = User.new(
-	:groupname	=> dummy.groupname,
-        :uid		=> dummy.uid,
-        :grouplist	=> dummy.grouplist,
-        :home_directory	=> dummy.home_directory,
-	:cn		=> dummy.cn,
-        :uid_number	=> dummy.uid_number,
-        :login_shell	=> dummy.login_shell,
-        :user_password	=> dummy.user_password,
-        :user_password2	=> dummy.user_password,
-        :type		=> "local"
-    )
-    @user.grp_string	= dummy.grp_string
-    @groups = Group.find()
-    @groups.all_grps_string = ""
-    counter = 0
-    @groups.allgroups.each do |group|
-       if counter == 0
-          @groups.all_grps_string = group.cn
-       else
-          @groups.all_grps_string += ",#{group.cn}"
-       end
-       counter += 1
-    end
-
-
-    response = true
-    begin
-        response = @user.save
-        rescue ActiveResource::ClientError => e
-          flash[:error] = YaST::ServiceResource.error(e)
-          response = false
-    end
-    respond_to do |format|
-      if response
-        flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
-        format.html { redirect_to :action => "index" }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-  # PUT /users/1.xml
-  def update
-    return unless group_permissions
-
-    # :id was not changed, so it can be used for find even after renaming
-    @user = User.find(params[:user][:id])
-    @user.id = @user.uid
-    @user.uid	= params["user"]["uid"] # 'uid' may have been changed
-    @user.groupname = params["user"]["groupname"]
-
-    @user.grouplist = []
-    if params["user"]["grp_string"] != nil
-       params["user"]["grp_string"].split(",").each do |groupname|
-	  group = { "cn" => groupname.strip }
-	  @user.grouplist.push group
-       end
-    end
-
-    @user.uid_number	= params["user"]["uid_number"]
-    @user.home_directory = params["user"]["home_directory"]
-    @user.cn = params["user"]["cn"]
-    @user.login_shell = params["user"]["login_shell"]
-    @user.user_password = params["user"]["user_password"]
-    @user.type = "local"
-
-    respond_to do |format|
-      response = true
-      begin
-        response = @user.save
-        rescue ActiveResource::ClientError => e
-          flash[:error] = YaST::ServiceResource.error(e)
-          response = false
-      end
-      if  response
-        flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
-        format.html { redirect_to :action => "index" }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.xml
-  def destroy
-    return unless group_permissions
-    @user = User.find(params[:id])
-    @user.id = @user.uid
-    @user.type = "local"
-
-    ret = @user.destroy
-
-    if ret.code_type == Net::HTTPOK
-	flash[:notice] = _("User <i>%s</i> was successfully removed.") % @user.uid
+private
+  def validate_group_id
+    if params[:id].blank?
+      flash[:error] = _('Missing group name parameter')
+      redirect_to :action => :index
+      false
     else
-	flash[:error] = _("Error: Could not remove user <i>%s</i>.") % @user.uid
+      true
+    end
+  end
+
+  def validate_group_params( redirect_action )
+    if params[:group] && (! params[:group].empty?)
+      true
+    else
+      flash[:error] = _('Missing group parameters')
+      redirect_to :action => redirect_action
+      false
+    end
+  end
+
+  def validate_group_name( redirect_action )
+    if params[:group] && params[:group][:cn] =~ /[a-z]+/
+      true
+    else
+      flash[:error] = _('Please enter a valid group name')
+      redirect_to :action => redirect_action
+      false
+    end
+  end
+
+  def validate_group_type( redirect_action )
+    if params[:group] && ["system","local"].include?( params[:group][:type] )
+      true
+    else
+      flash[:error] = _('Please enter a valid group type. Only "system" or "local" are allowed.')
+      redirect_to :action => redirect_action
+      false
+    end
+  end
+
+  def validate_members( redirect_action )
+    member = "[a-z]+"
+    if params[:group] && params[:group][:members] =~ /(#{member}(\.#{member})+)?/
+      true
+    else
+      flash[:error] = _('Please enter a valid list of members')
+      redirect_to :action => redirect_action
+      false
+    end
+  end
+
+  def load_permissions
+    @permissions = Group.permissions
+  end
+
+  def load_user_names
+    begin
+      users = User.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Cannot read users list.")
+      return
+    end
+    users.collect {|u| u.cn }
+  end
+
+  def load_group
+    begin
+      Group.find params[:id]
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Group named '#{params[:id]}' was not found.")
+      redirect_to :action => :index
+      nil
+    end
+  end
+
+
+public
+  def index
+    begin
+      @groups = Group.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Cannot read groups list.")
+      return
+    end
+    return unless @groups
+    @permissions = Group.permissions
+  end
+
+  def add
+    @group = Group.new
+    @permissions = Group.permissions
+
+    # add default properties
+    defaults = {
+      :gid => 0,
+      :old_gid => 0,
+      :default_members => [],
+      :members => [],
+      :type => "local",
+      :cn => ""
+    }
+    @group.load(defaults)
+    @adding = true
+    @user_names = load_user_names
+    render :show
+  end
+
+  def show
+    validate_group_id or return
+    @group = load_group or return
+    @adding = false
+    @user_names = load_user_names
+  end
+
+  def create
+    validate_group_params or return
+    validate_group_name( :add ) or return
+    validate_members( :add ) or return
+    validate_group_type( :add ) or return
+
+    @group = Group.new
+    group = params[:group]
+
+    @group.cn = group[:cn]
+    @group.old_cn = group[:cn]
+    @group.gid = 0              # just a placeholder, new gid will be alocated by yast call
+    @group.default_members = [] # default members cannot be set
+    @group.members = group[:members].split(",")
+    @group.type = group[:type]
+
+    begin
+      if @group.save
+        flash[:message] = _("Group '#{@group.cn}' has been added.")
+      end
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
+      begin
+        Rails.logger.error "Received error: #{ex.inspect}"
+        err = Hash.from_xml ex.response.body
+
+        if !err['error']['message'].blank?
+          Rails.logger.error "Cannot create group '#{@group.cn}': #{ERB::Util.html_escape err['error']['message']}"
+        end
+
+        flash[:error] = _("Cannot create group '#{@group.cn}'")
+      rescue Exception => e
+        Rails.logger.error "Exception: #{e}"
+        # XML parsing has failed, display complete response
+        flash[:error] = _("Unknown backend error")
+        Rails.logger.error "Unknown backend error: #{ex.response.body}"
+      end
+      redirect_to :action => :add and return
     end
 
-    respond_to do |format|
-      format.html { redirect_to :action => "index" }
-      format.xml  { head :ok }
+    redirect_to :action => :index and return
+  end
+
+
+  def update
+    validate_group_id or return
+    validate_group_params( :index ) or return
+    validate_group_name( :index ) or return
+    validate_members( :index ) or return
+    @group = load_group or return
+
+    group = params[:group]
+    @group.cn = group[:cn]
+    @group.gid = group[:gid]
+    @group.members = group[:members].split(",")
+
+    begin
+      if @group.save
+        flash[:message] = _("Group '#{@group.cn}' has been updated.")
+      else
+        if @group.errors.size > 0
+          Rails.logger.error "Group save failed: #{@repo.errors.errors.inspect}"
+          flash[:error] = generate_error_messages @repo, attribute_mapping
+        else
+          flash[:error] = _("Cannot update group '#{group.old_cn}': Unknown error")
+        end
+
+        render :show and return
+      end
+    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
+      begin
+        Rails.logger.error "Received ActiveResource::ServerError: #{ex.inspect}"
+        err = Hash.from_xml ex.response.body
+
+        if !err['error']['message'].blank?
+          Rails.logger.error "Cannot update group '#{@group.old_cn}': #{err['error']['message']}"
+        end
+
+        flash[:error] = _("Cannot update group '#{ERB::Util.html_escape @group.old_cn}'}")
+      rescue Exception => e
+          # XML parsing has failed, display complete response
+          flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
+          Rails.logger.error "Unknown backend error: #{ex.response.body}"
+      end
+
+      render :show and return
     end
+
+    redirect_to :action => :index and return
+  end
+
+  def destroy
+    validate_group_id or return
+    @group = load_group or return
+
+    begin
+      if @group.destroy
+        flash[:message] = _("Group '#{@group.cn}' has been deleted.")
+      end
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("Cannot remove group '#{@group.cn}'")
+    end
+
+    redirect_to :action => :index and return
   end
 end
