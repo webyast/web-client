@@ -35,6 +35,7 @@ class StatusControllerTest < ActionController::TestCase
       mock.get "/logs.xml", @header, @response_logs, 200
       mock.get "/logs/system.xml?lines=50&pos_begin=0", @header, @response_logs_system, 200
       mock.get "/graphs.xml?checklimits=true", @header, @response_graphs, 200
+      mock.get "/graphs.xml?background=true&checklimits=true", @header, @response_graphs, 200
       mock.get "/graphs.xml", @header, @response_graphs, 200
       mock.get "/graphs/Memory.xml", @header, @response_graphs_memory, 200
       mock.put "/graphs/Memory.xml", @header, @response_writing_limits, 200
@@ -96,7 +97,7 @@ class StatusControllerTest < ActionController::TestCase
       mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
       mock.get   "/logs.xml", @header, @response_logs, 200
-      mock.get   "/graphs.xml?checklimits=true", @header, response_graphs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 200
       mock.get   "/graphs.xml", @header, response_graphs, 200
       mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
