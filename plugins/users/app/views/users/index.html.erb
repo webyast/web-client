@@ -48,6 +48,7 @@
 
 <div id='qs_anchor' class='pad1_2em'></div>
 <div class='pad1_2em'>
+<%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
 <table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
   <thead>
     <tr>
@@ -74,8 +75,6 @@
 <fieldset>
   <%= form_back_button -%>
   <% if @permissions[:useradd] %>
-    <%= form_str_spacer %>
-    <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
   <% end %>
 </fieldset>
 </div>
