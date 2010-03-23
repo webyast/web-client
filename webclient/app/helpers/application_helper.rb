@@ -7,7 +7,7 @@ module ApplicationHelper
   # Example:
   #   <%= form_send_buttons :disabled => write_disabled %>
   def form_send_buttons (send_options={})
-    ret = Basesystem.new.load_from_session(session).first_step? ? "":(form_back_button+form_str_spacer)
+    ret = Basesystem.new.load_from_session(session).first_step? ? "":(form_cancel_button+form_str_spacer)
     ret + form_next_button(send_options)
   end
 
