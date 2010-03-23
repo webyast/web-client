@@ -35,15 +35,6 @@ class ControlpanelController < ApplicationController
     end
   end
 
-
-  # nextstep and backstep expect, that wizard session variables are set
-  def ensure_wizard
-    if !Basesystem.new.load_from_session(session).in_process?
-       redirect_to "/controlpanel"
-    end
-  end
-
-
   def nextstep
     bs = Basesystem.new.load_from_session(session)
     unless params[:done].blank?
@@ -67,6 +58,13 @@ class ControlpanelController < ApplicationController
   end
 
   protected
+
+  # nextstep and backstep expect, that wizard session variables are set
+  def ensure_wizard
+    if !Basesystem.new.load_from_session(session).in_process?
+       redirect_to "/controlpanel"
+    end
+  end
 
   # reads the shortcuts and returns the
   # hash with the data

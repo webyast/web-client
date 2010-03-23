@@ -76,7 +76,7 @@ private
     if ActionController::Routing.possible_controllers.include?("eulas") then
       redirect_to :controller => :eulas, :action => :next
     else
-      render :status => 501, :text => _("Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed")
+      render :status => 501, :text => _("Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed")
     end
     true
   end

@@ -222,12 +222,13 @@ class StatusController < ApplicationController
     group_id = params[:group_id]
     graph_id = params[:graph_id]
     till = Time.now
-    if params.has_key? "minutes"
-      from = till -  params[:minutes].to_i*60
-    else
-      from = till -  300 #last 5 minutes
-    end
     data = Hash.new
+    if  params.has_key? "minutes"
+      data[:minutes] = params[:minutes].to_i 
+    else
+      data[:minutes] = 5 #default last 5 minutes
+    end
+    from = till -  data[:minutes]*60
     
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
