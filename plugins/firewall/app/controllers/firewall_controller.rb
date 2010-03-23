@@ -22,8 +22,11 @@ public
     @firewall    = Firewall.find :one
     @firewall.fw_services.each do |s|
         s.css_class  = CGI_PREFIX+"-"+s.id.gsub(/^service:/,"service-")
+        # do not use translated name of the service, use service id instead
+        s.name       = s.id.gsub(/^service:/,"")
         s.input_name = CGI_PREFIX+"_"+s.id
     end
+    @firewall.fw_services.sort! {|x,y| x.name <=> y.name}
     Rails.logger.debug @firewall.inspect
     @permissions = Firewall.permissions
   end

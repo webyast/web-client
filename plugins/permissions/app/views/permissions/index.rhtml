@@ -115,7 +115,7 @@
             <% last_level = @grant_data[k][:level] %>
        <%= "  " * last_level %><ul>
        <%= "  " * (last_level+1) %><li>
-		  <input type="checkbox" name="<%= @grant_data[k][:path]" %> value="revoke" disabled="disabled">
+		  <input type="checkbox" name="<%= @grant_data[k][:path] %>" value="revoke" disabled="disabled">
 		  <%= @grant_data[k][:label] %>
             <% if k < @grant_data.size-1 && @grant_data[k+1][:level] == @grant_data[k][:level] %>
        <%= "  " * (last_level+1) %></li>

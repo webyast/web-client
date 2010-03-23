@@ -15,6 +15,7 @@ class MailController < ApplicationController
     @permissions		= Mail.permissions
     @mail.confirm_password	= @mail.password
     @mail.test_mail_address	= ""
+    @mail.test_mail_address	= params["email"] if params.has_key? "email"
   end
 
   # PUT
@@ -68,7 +69,7 @@ Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration.") % ['<a href=
       end
     end
     if params.has_key?("send_mail")
-      redirect_to :action => "index"
+      redirect_to :action => "index", :email => params["mail"]["test_mail_address"]
       return
     end
     redirect_success # redirect to next step

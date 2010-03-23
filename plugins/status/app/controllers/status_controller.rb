@@ -88,18 +88,29 @@ class StatusController < ApplicationController
     end
     lines = params[:lines].to_i || DEFAULT_LINES
     pos_begin = params[:pos_begin].to_i || 0
-    log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
-    content = log.content.value if log
-    position = log.content.position.to_i if log
-    render :partial => 'status_log', :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }
+    begin 
+      log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
+      content = log.content.value if log
+      position = log.content.position.to_i if log
+      render(:partial => 'status_log', 
+             :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }) and return
+    rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && error_hash["error"]["type"] == "NO_PERM"
+           render :text => error_hash["error"]["description"] and return
+	else
+           raise error
+	end
+    end
   end
   
   def index
     client_permissions
     begin
-      @logs = Logs.find(:all) || {}
+      @logs = Logs.find(:all)
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
-      @graphs ||= []
+
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
       flash[:notice] = _("No data found for showing system status.") if @graphs.blank?
@@ -108,12 +119,14 @@ class StatusController < ApplicationController
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" ||
-           error_hash["error"]["type"] == "NO_PERM")
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            flash[:error] = error_hash["error"]["description"]
 	else
            raise error
 	end
+      ensure
+        @graphs ||= []
+        @logs ||= {}
     end
   end
 
@@ -121,7 +134,15 @@ class StatusController < ApplicationController
   # AJAX call for showing status overview
   #
   def show_summary
-    client_permissions
+    begin
+      client_permissions
+    rescue ActiveResource::UnauthorizedAccess => error
+      # handle unauthorized error - the session timed out
+      Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
+      render :partial => "status_summary", :locals => { :status => '', :level => 'error', :error => error, :refresh_timeout => nil }
+      return
+    end
+
     begin
       level = "ok"
       status = ""
@@ -155,25 +176,57 @@ class StatusController < ApplicationController
         end
       end
       level = "error" unless status.blank?
-      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
+      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false, :refresh_timeout => refresh_timeout }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
         level = "error"
-        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) } and return
+        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) , :restart_collectd => false, :refresh_timeout => nil} and return
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
         level = "error"
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "NO_PERM" ||
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
            status = error_hash["error"]["description"]
-           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
+           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :refresh_timeout => nil,
+                                                             :restart_collectd => error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"}
 	else
-           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error) } 
+           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error),
+                                                              :refresh_timeout => nil, :restart_collectd => false }
 	end
+    end
+  end
+
+  # POST /status/start_collectd
+  # Starting collectd
+  def start_collectd
+    logger.debug "Starting collectd....."
+    result_string = ""
+    args = { :execute => "start", :custom => false }
+    begin
+      response = Service.put("collectd", args)
+      # we get a hash with exit, stderr, stdout
+      ret = Hash.from_xml(response.body)
+      ret = ret["hash"]
+      logger.debug "returns #{ret.inspect}"
+      if ret["exit"].blank? || ret["exit"].to_s != "0"
+        result_string << ret["stdout"] if ret["stdout"]
+        result_string << ret["stderr"] if ret["stderr"]
+      end
+    rescue ActiveResource::ServerError => error
+      error_hash = Hash.from_xml error.response.body
+      logger.warn error_hash.inspect
+      result_string = error_hash["error"]["description"]
+    end
+
+    unless result_string.blank?
+      render :partial => "status_summary", :locals => { :status => result_string, 
+                                                        :level => "error", :error => nil, 
+                                                        :restart_collectd => true}
+    else
+      show_summary
     end
   end
 
@@ -185,12 +238,13 @@ class StatusController < ApplicationController
     group_id = params[:group_id]
     graph_id = params[:graph_id]
     till = Time.now
-    if params.has_key? "minutes"
-      from = till -  params[:minutes].to_i*60
-    else
-      from = till -  300 #last 5 minutes
-    end
     data = Hash.new
+    if  params.has_key? "minutes"
+      data[:minutes] = params[:minutes].to_i 
+    else
+      data[:minutes] = 5 #default last 5 minutes
+    end
+    from = till -  data[:minutes]*60
     
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
@@ -251,6 +305,17 @@ class StatusController < ApplicationController
           logger.error "No description for #{group_id}/#{graph_id} found."
         end
       end
+
+      #flatten the data of all lines to the same amount of entries
+      min_hash = data[:lines].min {|a,b| a[:values].size <=> b[:values].size }
+      count = min_hash[:values].size
+      data[:lines].each do |line|
+        #strip to the same length
+        while line[:values].size > count
+          line[:values].pop
+        end  
+      end
+
       logger.debug "Rendering #{data.inspect}"
 
       render :partial => "status_graph", :locals => { :data => data, :error => nil }
@@ -328,6 +393,20 @@ class StatusController < ApplicationController
 
     flash[:notice] = _("Limits have been written.")
     redirect_to :controller=>"status", :action=>"index"
+  end
+
+  private
+
+  def refresh_timeout
+    timeout = ControlPanelConfig.read 'system_status_timeout', 60
+
+    if timeout.zero?
+      Rails.logger.info "System status autorefresh is disabled"
+    else
+      Rails.logger.info "Autorefresh system status after #{timeout} seconds"
+    end
+
+    return timeout
   end
 
 end

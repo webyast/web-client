@@ -1,4 +1,19 @@
 <%
+# Show on-boot status if not custom service
+unless custom
+  classname	= "service_enabled"
+  if enabled
+    label	= _("Service will be started on boot.")
+  else
+    label	= _("Service will not be started on boot.")
+    classname	= "service_disabled"
+  end
+-%>
+  <div class=<%=classname%>><%=label%></div>
+<% end %>
+
+<%
+
 # Status values (see /etc/init.d/skeleton):
 #
 # 0 - service up and running
@@ -30,4 +45,5 @@ case status
 	label	= _("status unknown: %d") % status
 end
 -%>
+<%=_("Current status of the service:")%>
 <span class=<%=classname%> style="color: <%=color%>"><%=label%></span>

@@ -33,13 +33,14 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.12
+Version:        0.1.15
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
 Source4:        webyast-ui
+Source5:	control_panel.yml
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
@@ -108,6 +109,10 @@ mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/pids
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sessions
 mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sockets
 
+# install YAML config file
+mkdir -p $RPM_BUILD_ROOT/etc/webyast/
+cp %SOURCE5 $RPM_BUILD_ROOT/etc/webyast/
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -161,6 +166,8 @@ chmod 600 db/*.sqlite* log/*
 %dir /etc/lighttpd/certs
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
 %{_sbindir}/rc%{service_name}
+%dir /etc/webyast/
+%config /etc/webyast/control_panel.yml
 
 %changelog  
 * Tue Nov 27 2008 schubi@suse.de  

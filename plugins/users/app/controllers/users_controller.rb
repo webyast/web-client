@@ -147,6 +147,18 @@ class UsersController < ApplicationController
         :type		=> "local"
     )
     @user.grp_string	= dummy.grp_string
+    @groups = Group.find()
+    @groups.all_grps_string = ""
+    counter = 0
+    @groups.allgroups.each do |group|
+       if counter == 0
+          @groups.all_grps_string = group.cn
+       else
+          @groups.all_grps_string += ",#{group.cn}"
+       end
+       counter += 1
+    end
+
 
     response = true
     begin

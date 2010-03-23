@@ -23,7 +23,11 @@ class ServicesController < ApplicationController
 	render :text => _('(cannot read status)') and return
     end
 
-    render(:partial =>'status', :object => @response.status, :params => params)
+    render(
+	:partial =>'status',
+	:locals	=> { :status => @response.status, :enabled => @response.enabled?, :custom => @response.custom? },
+	:params => params
+    )
   end
 
   # GET /services

@@ -31,9 +31,14 @@ class PatchUpdatesController < ApplicationController
   # this action is rendered as a partial, so it can't throw
   def show_summary
     error = nil
-    patch_updates = nil    
+    patch_updates = nil
     begin
       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
+    rescue ActiveResource::UnauthorizedAccess => e
+      # handle unauthorized error - the session timed out
+      Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
+      error = e
+      error_string = ''
     rescue ActiveResource::ClientError => e
       error = ClientException.new(e)
       patch_updates = nil
@@ -73,8 +78,11 @@ class PatchUpdatesController < ApplicationController
       flash.clear #no flash from load_proxy
     end
 
+    # don't refresh if there was an error
+    ref_timeout = error ? nil : refresh_timeout
+
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string, :refresh_timeout => ref_timeout } }
       format.json  { render :json => patches_summary }
     end    
   end
@@ -177,4 +185,20 @@ class PatchUpdatesController < ApplicationController
     end
     redirect_to({:controller=>"controlpanel", :action=>"index"})
   end
+
+  private
+
+  def refresh_timeout
+    # the default is 24 hours
+    timeout = ControlPanelConfig.read 'patch_status_timeout', 24*60*60
+
+    if timeout.zero?
+      Rails.logger.info "Patch status autorefresh is disabled"
+    else
+      Rails.logger.info "Autorefresh patch status after #{timeout} seconds"
+    end
+
+    return timeout
+  end
+
 end

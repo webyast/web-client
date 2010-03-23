@@ -34,7 +34,7 @@ $(document).ready(function() {
   };
 // Accordion: make area expandable by clicking anywhere in the collapsed part
   $(".ui-accordion-header").parent().click( function() {
-    if ($(this).is(":has(.ui-accordion-header.ui-state-default)")) {
+    if ($(this).is(":has(legend.ui-accordion-header.ui-state-default)")) {
       $(".accordion").accordion('activate',$(this).children(".ui-accordion-header.ui-state-default"));
     };
   });

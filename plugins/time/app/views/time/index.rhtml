@@ -13,20 +13,27 @@
   <!-- FIXME move javascript function outside of index -->
   <% javascript_tag do -%>
     function submitTime() {
-    if (!$("#timeconfig_manual")[0].checked){
-      $('#progress').show();
-      return true;
-    }
-    if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
-    alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
-    return false;
-    }
-    if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
-    alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
-    return false;
-    }
-    $('#progress').show();
-    return true;
+      if ($("#timeconfig_manual")[0].checked){
+        if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
+          alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
+          return false;
+        }
+        if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
+          alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
+          return false;
+        }
+      }
+      else if ($("#ntp_sync")[0].checked){
+        if (($("#ntp_server").size() > 0) &&
+            (!!$("#ntp_server")[0].value.match( /^\s*$/))) {
+          alert ("<%= _("Ntp server is not specified. Please specify one.") %>");
+          return false;
+        }
+      }
+      else {
+        $('#progress').show();
+        return true;
+      }
     };
   <% end -%>
   <% javascript_tag do -%>
@@ -48,7 +55,7 @@
 <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/><%=_("Time")%></div>
 
 <div class="plugin-content grid_12">
-  <% form_tag '/time/update', {:class => 'container', :onsubmit => "submitTime();"} do %>
+  <% form_tag '/time/update', {:class => 'container', :onsubmit => "return submitTime();"} do %>
     <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
     %>
   <fieldset id="" class="wrapper smallfields with-background">
@@ -96,7 +103,7 @@
     <%= text_field_tag "currenttime", @stime.time, :disabled=> "true"%>
   </p>
   <p>
-    <label class="radio-right"><input id="timeconfig" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
+    <label class="radio-right"><input id="ntp_sync" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
     <%=  "disabled=\"disabled\"" if disabled || !Ntp.available? %>
     <%=  "checked=\"checked\"" if Ntp.available? %>
     > <%=_("Synchronize via Network Time Protocol (NTP)")%></label>

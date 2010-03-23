@@ -13,12 +13,12 @@ Name:           webyast-software-ui
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
 # generate_error_messages helper
-PreReq:         yast2-webclient >= 0.1.12
+PreReq:         yast2-webclient >= 0.1.14
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.9
+Version:        0.1.10
 Release:        0
 Summary:        YaST2 - Webclient - Software and Repository Management
 Source:         www.tar.bz2

@@ -3,7 +3,10 @@
 <%= javascript_include_tag :defaults %>
 <% end %>
 
-<% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+<% display_patches = ControlPanelConfig.read 'display_patch_status', true %>
+<% display_status = ControlPanelConfig.read 'display_system_status', true %>
+
+<% if ActionController::Routing.possible_controllers.include?("patch_updates") && display_patches %>
   <% javascript_tag do -%>
     $(document).ready( function() {
     <%= remote_function(:update => "status_patches",
@@ -12,7 +15,7 @@
   <% end -%>
 <% end %>
 
-<% if ActionController::Routing.possible_controllers.include?("status") %>
+<% if ActionController::Routing.possible_controllers.include?("status") && display_status %>
   <% javascript_tag do -%>
     $(document).ready( function() {
     <%= remote_function(:update => "status_status",
@@ -41,7 +44,11 @@
 
   <div id="status_patches" class="grid_8">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
+      <% if display_patches %>
+	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
+      <% else %>
+	<div class="status-icon optional"></div><span><%= _("Patch status summary is disabled in the config file.") %></span>
+      <% end %>
     <% else %>
       <%= _("Patch plugin is not installed.") %>
     <% end %>
@@ -49,7 +56,11 @@
   <br/>
   <div id="status_status" class="grid_8">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
-      <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
+      <% if display_patches %>
+	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
+      <% else %>
+	<div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
+      <% end %>
     <% else %>
       <%= _("Status plugin is not installed.") %>
     <% end %>

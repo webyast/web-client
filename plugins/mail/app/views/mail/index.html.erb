@@ -27,6 +27,14 @@
 	email:	 "<%= _("Enter a valid e-mail address.") -%>"
       });
     });
+
+    $(document).ready(function() {
+      $("#mail_submit").attr("disabled","disabled"); 
+      $("#mail_test_mail_address").keyup(function () {
+	if ($("#mail_test_mail_address", "#mailForm").val() == "") $("#mail_submit").attr("disabled","disabled");
+	else $("#mail_submit", "#mailForm").removeAttr("disabled");
+      }); 
+    });
 </script>
 
 <% end %>
@@ -59,7 +67,7 @@
       <p>
         <label><%=_("Send test mail to")%></label>
         <%= f.text_field :test_mail_address, :disabled => disabled, :class => "email" %>
-	<%= f.submit _("Send Mail"), :name => "send_mail", :disabled => disabled %>
+	<%= f.submit _("Send Mail"), :name => "send_mail" %>
       </p>
     </fieldset> 
     <p>

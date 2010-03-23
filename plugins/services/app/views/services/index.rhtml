@@ -28,20 +28,31 @@ $(document).ready(function() {
 // adapt the status icon of given service
 function toggle_service_info (id) {
     var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
+    var buttons	= $(id).siblings('p.service-buttons');
+
+    // hide enable/disable buttons if they should not be seen
+    $(buttons).find('a#enable').hide();
+    $(buttons).find('a#disable').hide();
+
     if ($(id).is(':has(span.status_running)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
-	$(id).siblings('a#start').hide();
-	$(id).siblings('a#stop').show();
+	$(buttons).find('a#start').hide();
+	$(buttons).find('a#stop').show();
     }
     else if ($(id).is(':has(span.status_dead)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
-	$(id).siblings('a#stop').hide();
-	$(id).siblings('a#start').show();
+	$(buttons).find('a#stop').hide();
+	$(buttons).find('a#start').show();
     }
     else {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
-	$(id).siblings('a#stop').hide();
-	$(id).siblings('a#start').show();
+	$(buttons).find('a#stop').hide();
+	$(buttons).find('a#start').show();
+    }
+    if ($(id).is(':has(div.service_disabled)')) {
+	$(buttons).find('a#enable').show();
+    } else if ($(id).is(':has(div.service_enabled)')) {
+	$(buttons).find('a#disable').show();
     }
 }
 
@@ -132,10 +143,24 @@ commands	= [ "start", "stop", "restart", ]
 
   <span class='service_status' id='service_status_<%=service.name%>'>
     <% unless service.status.nil? %>
-    <%= render :partial => 'status', :object => service.status %>
+    <%= render :partial => 'status', :locals => { :status => service.status, :enabled => service.enabled?, :custom => service.custom? } %>
     <% end %>
   </span>
 
+  <%=
+	url	= {
+	    :controller => :services,
+	    :id		=> service.name,
+	    :action	=> :show_status,
+	    :custom	=> service.custom
+	}
+	link_to_remote _('(refresh)'), :update => "service_status_#{service.name}",
+	    :url => url,
+	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
+	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show()"
+  %>
+
+  <p class="service-buttons">
   <% commands.each do |cmd|
 	if @permissions[:execute] %>
 	    <%=
@@ -152,11 +177,19 @@ commands	= [ "start", "stop", "restart", ]
 		    :custom	=> service.custom
 		}
 		html_options	= {
-		    :class	=> "button"
+		    :class	=> "button",
+		    :id		=> cmd
 		}
 		html_options[:style]	= "display: none" if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0)
-		html_options[:id]	= cmd
-		link_to_remote cmd,
+
+		label = case cmd
+		  when "start" then _("Start")
+		  when "stop" then _("Stop")
+		  when "restart" then _("Restart")
+		  else cmd
+		end
+
+		link_to_remote label,
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
 		    :complete   => remote_function(:update => "service_status_#{service.name}",
@@ -170,22 +203,55 @@ commands	= [ "start", "stop", "restart", ]
 	end
      end %>
 
-     <%=
-	url	= {
-	    :controller => :services,
-	    :id		=> service.name,
-	    :action	=> :show_status,
-	    :custom	=> service.custom
-	}
-	link_to_remote _('refresh status'), :update => "service_status_#{service.name}",
-	    :url => url,
-	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
-	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show()"
-      %>
 
+      <!-- do not show enable/disable part for custom services -->
+      <%
+      if @permissions[:execute] && !service.custom?
+	[ "enable", "disable" ].each do |cmd|
+      %>
+	<%=
+		url	= {
+		    :id		=> cmd, 
+		    :action	=> "execute", 
+		    :service_id	=> service.name,
+		    :custom	=> service.custom
+		}
+		status_url	= {
+		    :controler	=> :services,
+		    :action	=> :show_status,
+		    :id		=> service.name,
+		    :custom	=> service.custom
+		}
+		html_options	= {
+		    :class	=> "button",
+		    :id		=> cmd
+		}
+		html_options[:style]	= "display: none" if (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
+		label = case cmd
+		  when "enable"	then _("Start on Boot")
+		  when "disable" then _("Do Not Start on Boot")
+		  else cmd
+		end
+
+		link_to_remote label,
+		    :url	=> url,
+		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
+		    :complete   => remote_function(:update => "service_status_#{service.name}",
+		        :url => status_url,
+			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show();"
+		    ),
+		    :html	=> html_options,
+		    :update	=> "service_result_#{service.name}"
+	    %>
+	<%
+	  end
+        end
+	%>
+      </p>
       <span class='service_result' id='service_result_<%=service.name%>'>
 	<%= render :partial => 'result' %>
       </span>
+
   </div>
   </div>
 <% end %>
