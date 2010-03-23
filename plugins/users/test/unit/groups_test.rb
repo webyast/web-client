@@ -19,9 +19,13 @@ class UsersControllerTest < ActiveSupport::TestCase
       # this is inadequate, :singular is per resource,
       # and does NOT depend on :policy
       # see yast-rest-service/plugins/network/config/resources/*
-      mock.resources({:"org.opensuse.yast.modules.yapi.groups" => "/groups"},
-          { :policy => "org.opensuse.yast.modules.yapi.groups"})
-      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
+      mock.resources({
+        :"org.opensuse.yast.modules.yapi.users" => "/users",
+        :"org.opensuse.yast.modules.yapi.groups" => "/groups" },
+        }, { :policy => "org.opensuse.yast.modules.yapi.users" })
+      mock.permissions( "org.opensuse.yast.modules.yapi.users", 
+                        { :userget  => true, :usersget  => true, :useradd  => true, :usermodify  => true, :userdelete  => true,
+                          :groupget => true, :groupsget => true, :groupadd => true, :groupmodify => true, :groupdelete => true } )
       mock.get  "/groups/users.xml", header, response_g_users, 200
       mock.get  "/groups/.xml", header, response_groups, 200
     end
@@ -37,7 +41,7 @@ class UsersControllerTest < ActiveSupport::TestCase
     assert_instance_of(Array, res)
   end
 
-  def test_find_tester
+  def test_find_users
     res = Group.find :users
     assert res
   end
