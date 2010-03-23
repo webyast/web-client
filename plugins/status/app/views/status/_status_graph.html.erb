@@ -18,7 +18,7 @@
     <% end %>
     title: '<%=data[:y_label]%>',
     legend: {show: true, location: 'ne'},
-    <% if data[:lines] == "true" %>
+    <% if data[:linegraph] == "true" %>
       seriesDefaults: {fill:false, showMarker: false},
     <% else %>
       seriesDefaults: {fill:true, showMarker: false},
