@@ -38,17 +38,16 @@
         <%= form_send_buttons :label => _("Update"), :onclick => "$('#progress').show()", :action => 'install' %>
       </fieldset>
     <% end %>
-  
+
+    <%= observe_field(:selector,
+      :frequency => 0.1,
+      :update => :patchesd,
+      :url => { :action => :load_filtered },
+      :with => "'value=' + value"
+    )
+    %>
   <% end %>
   </div>
 
 <% end %>
-
-<%= observe_field(:selector,
-  :frequency => 0.1,
-  :update => :patchesd,
-  :url => { :action => :load_filtered },
-  :with => "'value=' + value"
-)
-%>
 
