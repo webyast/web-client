@@ -398,7 +398,8 @@ class StatusController < ApplicationController
   private
 
   def refresh_timeout
-    timeout = ControlPanelConfig.read 'system_status_timeout', 60
+    # default refresh timeout is 5 minutes
+    timeout = ControlPanelConfig.read 'system_status_timeout', 5*60
 
     if timeout.zero?
       Rails.logger.info "System status autorefresh is disabled"
