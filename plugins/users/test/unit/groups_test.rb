@@ -19,15 +19,14 @@ class UsersControllerTest < ActiveSupport::TestCase
       # this is inadequate, :singular is per resource,
       # and does NOT depend on :policy
       # see yast-rest-service/plugins/network/config/resources/*
-      mock.resources({
-        :"org.opensuse.yast.modules.yapi.users" => "/users",
-        :"org.opensuse.yast.modules.yapi.groups" => "/groups" },
-        }, { :policy => "org.opensuse.yast.modules.yapi.users" })
+      mock.resources({ :"org.opensuse.yast.modules.yapi.users" => "/users",
+                       :"org.opensuse.yast.modules.yapi.groups" => "/groups" },
+                     { :policy => "org.opensuse.yast.modules.yapi.users" } )
       mock.permissions( "org.opensuse.yast.modules.yapi.users", 
                         { :userget  => true, :usersget  => true, :useradd  => true, :usermodify  => true, :userdelete  => true,
                           :groupget => true, :groupsget => true, :groupadd => true, :groupmodify => true, :groupdelete => true } )
       mock.get  "/groups/users.xml", header, response_g_users, 200
-      mock.get  "/groups/.xml", header, response_groups, 200
+      mock.get  "/groups.xml", header, response_groups, 200
     end
   end
 
@@ -39,10 +38,22 @@ class UsersControllerTest < ActiveSupport::TestCase
     res = Group.find :all
     assert res
     assert_instance_of(Array, res)
+    assert_not_nil res[0].cn
+    assert_not_nil res[0].old_cn
+    assert_not_nil res[0].gid
+    assert_not_nil res[0].group_type
+    assert_not_nil res[0].default_members
+    assert_not_nil res[0].members
   end
 
   def test_find_users
-    res = Group.find :users
+    res = Group.find "users"
     assert res
+    assert_not_nil res.cn
+    assert_not_nil res.old_cn
+    assert_not_nil res.gid
+    assert_not_nil res.group_type
+    assert_not_nil res.default_members
+    assert_not_nil res.members
   end
 end
