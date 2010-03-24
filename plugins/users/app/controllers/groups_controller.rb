@@ -1,13 +1,13 @@
 require 'yast/service_resource'
 
-class UsersController < ApplicationController
+class GroupsController < ApplicationController
 
   before_filter :login_required
   layout 'main'
 
   private
-  def client_permissions
-    @permissions = User.permissions
+  def group_permissions
+    @permissions = Group.permissions
   end
 
   # Initialize GetText and Content-Type.
@@ -20,10 +20,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    return unless client_permissions
-    @users = []
+    return unless group_permissions
+    @groups = []
     begin
-      @users = User.find :all
+      @groups = User.find :all
 #      @groups = Group.find
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
@@ -31,14 +31,14 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @users }
+      format.xml  { render :xml => @groups }
     end
   end
 
   # GET /users/new
   # GET /users/new.xml
   def new
-    return unless client_permissions
+    return unless group_permissions
     @user = User.new( :id => :nil,
       :groupname	=> nil,
       :cn		=> nil,
@@ -54,14 +54,16 @@ class UsersController < ApplicationController
       :type		=> "local",
       :id		=> nil
     )
-    @groups = Group.find :all
-    @all_grps_string = ""
-    @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
+    @groups = Group.find()
+    @groups.all_grps_string = ""
+    counter = 0
+    @groups.allgroups.each do |group|
+       if counter == 0
+          @groups.all_grps_string = group.cn
        else
-          @all_grps_string += ",#{group.cn}"
+          @groups.all_grps_string += ",#{group.cn}"
        end
+       counter += 1
     end
     @user.grp_string = ""
     respond_to do |format|
@@ -73,48 +75,56 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    return unless client_permissions
-    @user = User.find(params[:id])
-    @groups = Group.find(:all)
+    return unless group_permissions
+    @group = Group.new(
+     :cn  => "users",
+     :gid => 100
+    )
+#    @user = User.find(params[:id])
+#    @group = Group.find(params[:id])
 
     #FIXME handle if id is invalid
 
-    @user.type	= ""
-    @user.id	= @user.uid # use id for storing index value (see update)
-    @user.grp_string = ""
+#    @user.type	= ""
+#    @user.id	= @user.uid # use id for storing index value (see update)
+#    @user.grp_string = ""
 
-    @all_grps_string = ""
+#    @groups.all_grps_string = ""
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
     # XXX this looks like code which do nothing!!!
-    @user.uid_number	= @user.uid_number
-    @user.home_directory	= @user.home_directory
-    @user.login_shell	= @user.login_shell
-    @user.user_password	= @user.user_password
-    @user.user_password2= @user.user_password
+#    @user.uid_number	= @user.uid_number
+#    @user.home_directory	= @user.home_directory
+#    @user.login_shell	= @user.login_shell
+#    @user.user_password	= @user.user_password
+#    @user.user_password2= @user.user_password
 
-    @user.grouplist.each do |group|
-       if @user.grp_string.blank?
-          @user.grp_string = group.cn
-       else
-          @user.grp_string += ",#{group.cn}"
-       end
-    end
-    @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
-       else
-          @all_grps_string += ",#{group.cn}"
-       end
-    end
+#    counter = 0
+#    @user.grouplist.each do |group|
+#       if counter == 0
+#          @user.grp_string = group.cn
+#       else
+#          @user.grp_string += ",#{group.cn}"
+#       end
+#       counter += 1
+#    end
+#    counter = 0
+#    @groups.allgroups.each do |group|
+#       if counter == 0
+#          @groups.all_grps_string = group.cn
+#       else
+#          @groups.all_grps_string += ",#{group.cn}"
+#       end
+#       counter += 1
+#    end
   end
 
 
   # POST /users
   # POST /users.xml
   def create
-    return unless client_permissions
+    return unless group_permissions
     dummy = User.new(params[:user])
     #do not know, why this will not be assigned in the constructor
     #(JR: because ActiveResource fills only known attributes, but whole gro_string stuff "smells" for me)
@@ -142,13 +152,15 @@ class UsersController < ApplicationController
     )
     @user.grp_string	= dummy.grp_string
     @groups = Group.find()
-    @all_grps_string = ""
-    @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
+    @groups.all_grps_string = ""
+    counter = 0
+    @groups.allgroups.each do |group|
+       if counter == 0
+          @groups.all_grps_string = group.cn
        else
-          @all_grps_string += ",#{group.cn}"
+          @groups.all_grps_string += ",#{group.cn}"
        end
+       counter += 1
     end
 
 
@@ -171,7 +183,7 @@ class UsersController < ApplicationController
   end
   # PUT /users/1.xml
   def update
-    return unless client_permissions
+    return unless group_permissions
 
     # :id was not changed, so it can be used for find even after renaming
     @user = User.find(params[:user][:id])
@@ -216,7 +228,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    return unless client_permissions
+    return unless group_permissions
     @user = User.find(params[:id])
     @user.id = @user.uid
     @user.type = "local"

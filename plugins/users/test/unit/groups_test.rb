@@ -10,8 +10,7 @@ class UsersControllerTest < ActiveSupport::TestCase
 
   def setup
     # stub what the REST is supposed to return
-    response_index = fixture "users/users.xml"
-    response_tester = fixture "users/tester.xml"
+    response_g_users = fixture "groups/users.xml"
 
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
@@ -19,11 +18,10 @@ class UsersControllerTest < ActiveSupport::TestCase
       # this is inadequate, :singular is per resource,
       # and does NOT depend on :policy
       # see yast-rest-service/plugins/network/config/resources/*
-      mock.resources({:"org.opensuse.yast.modules.yapi.users" => "/users"},
-          { :policy => "org.opensuse.yast.modules.yapi.users"})
-      mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
-      mock.get  "/users.xml", header, response_index, 200
-      mock.get  "/users/tester.xml", header, response_tester, 200
+      mock.resources({:"org.opensuse.yast.modules.yapi.groups" => "/groups"},
+          { :policy => "org.opensuse.yast.modules.yapi.groups"})
+      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
+      mock.get  "/groups/users.xml", header, response_g_users, 200
     end
   end
 
@@ -31,13 +29,13 @@ class UsersControllerTest < ActiveSupport::TestCase
     ActiveResource::HttpMock.reset!
   end
 
-  def test_find_all
-    res = User.find :all
-    assert res
-  end
+#  def test_find_all
+#    res = Group.find :all
+#    assert res
+#  end
 
   def test_find_tester
-    res = User.find :tester
+    res = Group.find :users
     assert res
   end
 

@@ -1,7 +1,6 @@
 <% content_for :head do %>
-<%= javascript_include_tag :defaults %>
-<%= javascript_include_tag "digitalspaghetti.password.js" %>
-<%= javascript_include_tag "users_edit.js" %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "users_edit.js" %>
 
   <style type="text/css">
     label.error {
@@ -14,12 +13,14 @@
         border: #669999 2px solid;
         padding: 5px;
      }
+/*
      .GContainerUser {
         width: 100px;
      }
      .GContainerGroups {
         width: 400px;
      }
+*/
      .GBox {
         border: #000 1px solid;
         cursor: pointer;
@@ -36,11 +37,14 @@
      }
   </style>
 
-<script language='javascript'>
+ <script language='javascript'>
 
   $(document).ready(function(){
+   $("#tab_login")[0].style.display="block";
+
 
    $("#userForm").validate()
+
 
    $("#userForm").validate({
     rules: {
@@ -52,9 +56,9 @@
    });
 
    $("#user_user_password").pstrength({
-      'displayMinChar'      : true,
-      'minCharText'      : 'Password Strength:', 
-      'verdicts'      : [
+     'displayMinChar'        : true,
+     'minCharText'      : 'Password Strength:', 
+       'verdicts'                : [
             "<%= _("Weak") %>",
             "<%= _("Normal") %>",
             "<%= _("Medium") %>",
@@ -63,12 +67,8 @@
           ],
       });
 
-
  })
-
-    // start password validation workaround only when "Save" button has been pressed
-    password_validation_enabled = false;
-</script>
+ </script>
 <% end %>
 
 <% content_for :before_script do %>
@@ -82,21 +82,25 @@
   <% end %>
 <% end %>
 
-<div class='plugin-icon'><img src='/icons/yast-users.png' alt="users module"/>
-  <%=_("Local Users") + header_spacer + _("Add new user")%>
+<% disabled = ! @permissions[:usermodify] %>
+<div class='plugin-icon'><img src='/icons/yast-groups.png' alt="users module"/>
+  <%=_("Local Groups") + header_spacer + _("Edit group %s") % @group.cn %>
 </div>
+
 <div class="plugin-content grid_12">
-<% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
+
+<% form_for(:user, @group, :url => { :action => "update" }, :html => { :method => :put, :id => "userForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
+      <%= render :partial => 'group_form',
+      :locals => { :f => f, :disabled => disabled } %>
 
-      <%= render :partial => 'user_form',
-      :locals => { :f => f, :disabled => false } %>
-
-  <fieldset>
-    <%= form_back_button :action => :index%>
-    <%= form_str_spacer %>
-    <%= form_next_button :onclick=>"return new_user_validation();" %>
-  </fieldset>
+      <fieldset>
+        <%= form_back_button :action => :index%>
+        <%= form_str_spacer %>
+        <%= form_next_button :disabled => disabled, :onclick=>"return edit_user_validation();" %>
+      </fieldset>
 <% end %>
-            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
+<!--
+      <div><input type="hidden" id="all_grps_string" value="<%#= @groups.all_grps_string %>" /></div>
+-->
 </div>

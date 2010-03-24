@@ -1,0 +1,25 @@
+<div class='plugin-icon'><img src='/icons/yast-groups.png' alt="groups module"/>
+  <%=_("Local Groups") + header_spacer + _("Add new group")%>
+</div>
+<div class="plugin-content grid_12">
+<% form_for :group, :url => { :action => "create"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+  <%= f.error_messages %>
+
+  <fieldset>
+    <p>
+      <label><%=_("Group Name")%></label>
+      <%= f.text_field :cn %>
+    </p>
+    <p>
+      <label><%=_("Group ID")%></label>
+      <%= f.text_field :uid %>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <%= form_back_button :action => :index %>
+    <%= form_str_spacer %>
+    <%= form_next_button %>
+  </fieldset>
+<% end %>
+</div>
