@@ -125,6 +125,8 @@ public
     @group = load_group or return
     @adding = false
     @user_names = load_user_names
+    @group.members_string = @group.members.join(",")
+    @group.default_members_string = @group.default_members.join(",")
   end
 
   def create

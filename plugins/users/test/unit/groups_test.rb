@@ -47,7 +47,7 @@ class UsersControllerTest < ActiveSupport::TestCase
   end
 
   def test_find_users
-    res = Group.find "users"
+    res = Group.find :users
     assert res
     assert_not_nil res.cn
     assert_not_nil res.old_cn
