@@ -8,7 +8,7 @@
       end %>
 </div>
 <div class="plugin-content grid_12">
-<% form_for :group, :url => { :action => "create"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+<% form_for @group, :url => { :action => "create"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
   <fieldset>
