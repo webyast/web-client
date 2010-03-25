@@ -40,6 +40,16 @@ private
     end
   end
 
+  def validate_group_gid( redirect_action )
+    if params[:group] && params[:group][:gid] =~ /\d+/
+      true
+    else
+      flash[:error] = _('Please enter a valid GID')
+      redirect_to :action => redirect_action
+      false
+    end
+  end
+
   def validate_group_type( redirect_action )
     if params[:group] && ["system","local"].include?( params[:group][:group_type] )
       true
@@ -52,8 +62,7 @@ private
 
   def validate_members( redirect_action )
     member = "[a-z]+"
-								#FIXME: fix validation regexp
-    if params[:group] && params[:group][:members_string].split(",") #=~ /(#{member}(\.#{member})+)?/
+    if params[:group] && params[:group][:members_string] =~ /(#{member}( *, *#{member})+)?/
       true
     else
       flash[:error] = _('Please enter a valid list of members')
@@ -143,7 +152,7 @@ public
     @group.old_cn = group[:cn]
     @group.gid = 0              # just a placeholder, new gid will be alocated by yast call
     @group.default_members = [] # default members cannot be set
-    @group.members = group[:members_string].split(",")
+    @group.members = group[:members_string].split(",").collect {|cn| cn.strip}
     validate_members( :new ) or return
     @group.group_type = group[:group_type]
     validate_group_type( :new ) or return
@@ -185,8 +194,8 @@ public
 
     group = params[:group]
     @group.cn = group[:cn]
-    @group.gid = group[:gid]
-    @group.members = group[:members_string].split(",")
+    @group.gid = group[:gid].to_i
+    @group.members = group[:members_string].split(",").collect {|cn| cn.strip}
 
     begin
       if @group.save
