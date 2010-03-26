@@ -1,27 +1,28 @@
-    <fieldset id="tab_login" class="wrapper with-background">
-      <legend><%= _("Group Settings") %></legend>
-      <div>
-        <p>
-          <label><%=_("Group Name")%></label>
-          <%= f.text_field :gid, :disabled => disabled %>
-          <%= f.text_field :id, :class => "hidden" %>
-        </p>
-        <p>
-          <label><%=_("Group ID")%></label>
-          <%= f.text_field :cn , :disabled => disabled %>
-        </p>
-        <p>
-            <label><%=_("Users")%></label>
-            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
-            <a href="#" class="button" onClick="open_groups_dialog();return false;">Manage Users</a>
-        </p>
-        <p><label id="groups-error" class="error"></label><p>
-   
-	 <div id="groups" style="display:none;" title="Users">
-	    <div>
-	     <div class="GContainerUser" style="width: 100px;" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
-	     <div class="GContainerGroups" style="width: 400px;" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
-	    </div>
-	 </div>
-      </div>
-    </fieldset>
+  <fieldset>
+    <p>
+      <label><%=_("Group Name")%></label>
+      <%= f.text_field :cn, :disabled => false %>
+    </p>
+    <p>
+      <label><%=_("Group ID")%></label>
+      <%= f.text_field :gid, :disabled => false %>
+    </p>
+     <p>
+      <label><%=_("Group Type")%></label>
+      <%= f.text_field :group_type, :disabled => false %>
+    </p>
+    <p>
+      <label><%=_("Default members")%></label>
+      <%= f.text_field :default_members_string, :disabled => true %>
+    </p>
+    <p>
+      <label><%=_("Members")%></label>
+      <%= f.text_field :members_string, :disabled => false %>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <%= form_cancel_button :action => :index %>
+    <%= form_str_spacer %>
+    <%= form_next_button %>
+  </fieldset>

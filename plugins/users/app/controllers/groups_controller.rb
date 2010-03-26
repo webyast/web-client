@@ -167,7 +167,7 @@ public
         flash[:error] = _("Unknown backend error")
         Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
-      redirect_to :action => :add and return
+      redirect_to :action => :new and return
     end
 
     redirect_to :action => :index and return
@@ -175,6 +175,7 @@ public
 
 
   def update
+    params[:id]=params[:group][:cn]
     validate_group_id or return
     validate_group_params( :index ) or return
     validate_group_name( :index ) or return
@@ -184,7 +185,7 @@ public
     group = params[:group]
     @group.cn = group[:cn]
     @group.gid = group[:gid]
-    @group.members = group[:members].split(",")
+    @group.members = group[:members_string].split(",")
 
     begin
       if @group.save
@@ -224,6 +225,7 @@ public
   def destroy
     validate_group_id or return
     @group = load_group or return
+    @group.id = @group.cn
 
     begin
       if @group.destroy
