@@ -25,6 +25,16 @@ $(document).ready(function() {
     $('.accordion div.list-fieldset:even').addClass('alt-bg');
 })
 
+
+// check if given service needs to refresh state
+function update_state_needed (id, cmd) {
+
+    if ($(id).is(':has(span.status_running)') || $(id).is(':has(div.service_enabled)'))
+	return (cmd == "stop" || cmd == "disable");
+    else
+	return (cmd == "start" || cmd == "enable");
+}
+
 // adapt the status icon of given service
 function toggle_service_info (id) {
     var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
@@ -189,13 +199,44 @@ commands	= [ "start", "stop", "restart", ]
 		  else cmd
 		end
 
+		complete   	= remote_function(:update => "service_status_#{service.name}",
+                       :url => status_url,
+                       :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show();"
+                )
+
+		# dependent services must also update status
+		if (cmd == "start" || cmd == "restart")
+		  service.required_for_start.each do |required|
+		    complete	= complete + ";" + remote_function(
+			:update		=> "service_status_#{required}",
+			:url		=> {
+			    :controler	=> :services,
+			    :action	=> :show_status,
+			    :id		=> required
+			},
+			:condition	=> "update_state_needed ('#service_status_#{required}', '#{cmd}')",
+			:complete	=> "toggle_service_info ('#service_status_#{required}')"
+		    )
+		  end
+		elsif (cmd == "stop")
+		  service.required_for_stop.each do |required|
+		    complete	= complete + ";" + remote_function(
+			:update		=> "service_status_#{required}",
+			:url		=> {
+			    :controler	=> :services,
+			    :action	=> :show_status,
+			    :id		=> required
+			},
+			:condition	=> "update_state_needed ('#service_status_#{required}', '#{cmd}')",
+			:complete	=> "toggle_service_info ('#service_status_#{required}')"
+		    )
+		  end
+		end
+
 		link_to_remote label,
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
-		    :complete   => remote_function(:update => "service_status_#{service.name}",
-		        :url => status_url,
-			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show();"
-		    ),
+		    :complete   => complete,
 		    :html	=> html_options,
 		    :update	=> "service_result_#{service.name}"
 	    %>
@@ -233,13 +274,44 @@ commands	= [ "start", "stop", "restart", ]
 		  else cmd
 		end
 
+		complete   	= remote_function(:update => "service_status_#{service.name}",
+                       :url => status_url,
+                       :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show();"
+                )
+
+		# dependent services must also update status
+		if (cmd == "enable")
+		  service.required_for_start.each do |required|
+		    complete	= complete + ";" + remote_function(
+			:update		=> "service_status_#{required}",
+			:url		=> {
+			    :controler	=> :services,
+			    :action	=> :show_status,
+			    :id		=> required
+			},
+			:condition	=> "update_state_needed ('#service_status_#{required}', '#{cmd}')",
+			:complete	=> "toggle_service_info ('#service_status_#{required}')"
+		    )
+		  end
+		elsif (cmd == "disable")
+		  service.required_for_stop.each do |required|
+		    complete	= complete + ";" + remote_function(
+			:update		=> "service_status_#{required}",
+			:url		=> {
+			    :controler	=> :services,
+			    :action	=> :show_status,
+			    :id		=> required
+			},
+			:condition	=> "update_state_needed ('#service_status_#{required}', '#{cmd}')",
+			:complete	=> "toggle_service_info ('#service_status_#{required}')"
+		    )
+		  end
+		end
+
 		link_to_remote label,
 		    :url	=> url,
 		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
-		    :complete   => remote_function(:update => "service_status_#{service.name}",
-		        :url => status_url,
-			:complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show();"
-		    ),
+		    :complete   => complete,
 		    :html	=> html_options,
 		    :update	=> "service_result_#{service.name}"
 	    %>
