@@ -3,7 +3,7 @@ require 'yast/service_resource'
 class GroupsController < ApplicationController
 
   before_filter :login_required
-  before_filter :load_permissions, :only => [:index,:add,:show]
+  before_filter :load_permissions, :only => [:index,:add,:edit]
   layout 'main'
 
   # Initialize GetText and Content-Type.
@@ -41,7 +41,7 @@ private
   end
 
   def validate_group_type( redirect_action )
-    if params[:group] && ["system","local"].include?( params[:group][:type] )
+    if params[:group] && ["system","local"].include?( params[:group][:group_type] )
       true
     else
       flash[:error] = _('Please enter a valid group type. Only "system" or "local" are allowed.')
@@ -52,7 +52,8 @@ private
 
   def validate_members( redirect_action )
     member = "[a-z]+"
-    if params[:group] && params[:group][:members] =~ /(#{member}(\.#{member})+)?/
+								#FIXME: fix validation regexp
+    if params[:group] && params[:group][:members_string].split(",") #=~ /(#{member}(\.#{member})+)?/
       true
     else
       flash[:error] = _('Please enter a valid list of members')
@@ -99,7 +100,7 @@ public
     @permissions = Group.permissions
   end
 
-  def add
+  def new
     @group = Group.new
     @permissions = Group.permissions
 
@@ -109,7 +110,7 @@ public
       :old_cn => "",
       :default_members => [],
       :members => [],
-      :type => "local",
+      :group_type => "local",
       :cn => "",
     }
     @group.load(defaults)
@@ -117,10 +118,11 @@ public
     @group.default_members_string = @group.default_members.join(",")
     @adding = true
     @user_names = load_user_names
-    render :show
+    render :edit
   end
 
-  def show
+  def edit
+    @permissions = Group.permissions
     validate_group_id or return
     @group = load_group or return
     @adding = false
@@ -130,10 +132,8 @@ public
   end
 
   def create
-    validate_group_params or return
-    validate_group_name( :add ) or return
-    validate_members( :add ) or return
-    validate_group_type( :add ) or return
+    validate_group_params( :new ) or return
+    validate_group_name( :new ) or return
 
     @group = Group.new
     group = params[:group]
@@ -142,8 +142,10 @@ public
     @group.old_cn = group[:cn]
     @group.gid = 0              # just a placeholder, new gid will be alocated by yast call
     @group.default_members = [] # default members cannot be set
-    @group.members = group[:members].split(",")
-    @group.type = group[:type]
+    @group.members = group[:members_string].split(",")
+    validate_members( :new ) or return
+    @group.group_type = group[:group_type]
+    validate_group_type( :new ) or return
 
     begin
       if @group.save
@@ -195,7 +197,7 @@ public
           flash[:error] = _("Cannot update group '#{group.old_cn}': Unknown error")
         end
 
-        render :show and return
+        render :edit and return
       end
     rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
@@ -213,7 +215,7 @@ public
           Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
 
-      render :show and return
+      render :edit and return
     end
 
     redirect_to :action => :index and return

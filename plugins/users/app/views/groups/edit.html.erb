@@ -1,4 +1,6 @@
-<% disabled = ! ((@permissions[:groupadd] && @adding) || (@permissions[:groupmodify] && !@adding)) %>
+  <%= javascript_include_tag "group_members.js" %>
+<%
+ disabled = ! ((@permissions[:groupadd] && @adding) || (@permissions[:groupmodify] && !@adding)) %>
 <div class='plugin-icon'><img src='/icons/yast-groups.png' alt="groups module"/>
   <%=_("Groups") + header_spacer %>
   <%= if @adding
@@ -14,15 +16,15 @@
   <fieldset>
     <p>
       <label><%=_("Group Name")%></label>
-      <%= f.text_field :cn, :disabled => disabled %>
+      <%= f.text_field :cn, :disabled => false %>
     </p>
     <p>
       <label><%=_("Group ID")%></label>
-      <%= f.text_field :gid, :disabled => (disabled or @adding) %>
+      <%= f.text_field :gid, :disabled => false %>
     </p>
      <p>
       <label><%=_("Group Type")%></label>
-      <%= f.text_field :group_type, :disabled => true %>
+      <%= f.text_field :group_type, :disabled => false %>
     </p>
     <p>
       <label><%=_("Default members")%></label>
@@ -30,7 +32,7 @@
     </p>
     <p>
       <label><%=_("Members")%></label>
-      <%= f.text_field :members_string, :disabled => disabled %>
+      <%= f.text_field :members_string, :disabled => false %>
     </p>
   </fieldset>
 

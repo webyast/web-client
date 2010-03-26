@@ -11,18 +11,22 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   def setup
-    UsersController.any_instance.stubs(:login_required)
+    GroupsController.any_instance.stubs(:login_required)
     # stub what the REST is supposed to return
-    response_users  = fixture "groups/users.xml"
+    response_group_users  = fixture "groups/users.xml"
+    response_index  = fixture "groups/index.xml"
+    response_users  = fixture "users/users.xml"
 
 
 #FIXME move to separate load fixture method
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.resources  :"org.opensuse.yast.modules.yapi.groups" => "/groups"
+      mock.resources  :"org.opensuse.yast.modules.yapi.groups" => "/groups", "org.opensuse.yast.modules.yapi.users" => "/users"
       mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
-      mock.get   "/groups/users.xml", header, response_users, 200
+      mock.get   "/groups.xml", header, response_index, 200
+      mock.get   "/groups/users.xml", header, response_group_users, 200
+      mock.get	 "/users.xml", header, response_users, 200
     end
   end
 
@@ -37,22 +41,22 @@ class GroupsControllerTest < ActionController::TestCase
 #    assert assigns(:users)
 #  end
 
-#  def test_users_index
-#    get :index
-#    assert_response :success
-#    assert_valid_markup
-#    assert assigns(:users)
+  def test_users_index
+    get :index
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:groups)
 #    assert_select 'td#login', "tester"
 #    assert_select 'td#fullname', "Tester Testerovic"
 #    assert_select 'td#login', "tester"
 #    assert_select 'td#fullname', 2
-#  end
+  end
 
   def test_edit_users
     get :edit, {:id => "users"}
     assert_response :success
     assert_valid_markup
-#    assert assigns(:user)
+    assert assigns(:group)
 #    assert_select 'input#user_id[value=tester]' # fallback for uid
 #    assert_select 'input#user_uid[value=tester]'
 #    assert_select 'input#user_cn[value=Tester Testerovic]'

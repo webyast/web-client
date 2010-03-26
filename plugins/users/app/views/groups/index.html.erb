@@ -17,7 +17,7 @@
   <tbody>
   <% for group in @groups %>
   <tr class= <%= cycle('odd', 'even') -%> >
-    <td><%= link_to ( h group.cn || "-none-" ), {:action => :show, :id => group.cn} -%></td>
+    <td><%= link_to ( h group.cn || "-none-" ), {:action => :edit, :id => group.cn} -%></td>
     <td><%= h group.group_type %></td>
     <% if @permissions[:groupdelete] %>
     <td class="icon"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></td>
