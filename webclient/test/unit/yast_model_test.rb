@@ -97,4 +97,18 @@ def test_specified_policy
   assert perm[:synchronize], "permission is not granted #{perm.inspect}"
 end
 
+def test_save_complex_xml
+  begin
+    test = TestModel.find :one
+    assert_equal TEST_STRING,test.arg1
+    test.arg1 = {
+      :array => [ "a","b",["bc","g"]],
+      :hash => [ "e", :symbol ]
+    }
+    assert test.save
+  ensure
+    Rails.logger.debug ActiveResource::HttpMock.requests.inspect
+  end
+end
+
 end
