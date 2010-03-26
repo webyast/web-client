@@ -87,7 +87,25 @@ function select_status (val) {
 		$(this).hide();
 	    }
 	});
-    };
+    }
+    else if (val == "enabled") {
+	$('#services > div.list-fieldset').each(function(index) {
+	    if ($(this).is(":has(div.service_enabled)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
+    else if (val == "disabled") {
+	$('#services > div.list-fieldset').each(function(index) {
+	    if ($(this).is(":has(div.service_disabled)")) {
+		$(this).show();
+	    } else {
+		$(this).hide();
+	    }
+	});
+    }
 }
 <% end %>
 <% content_for :before_script do %>
@@ -121,6 +139,8 @@ function select_status (val) {
 	[ _("Running"), "running"],
 	[ _("Not Running"), "not-running"],
 	[ _("Dead"), "dead"],
+	[ _("Started on Boot"), "enabled"],
+	[ _("Not Started on Boot"), "disabled"],
     ])
     %>
     <%= observe_field("filter", :function => "select_status(value)") %>
