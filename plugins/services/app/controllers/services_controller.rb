@@ -36,14 +36,20 @@ class ServicesController < ApplicationController
 
     @permissions = Service.permissions
     @services = []
+    all_services	= []
     begin
-      @services	= Service.find(:all, :params => { :read_status => 1 })
+      all_services	= Service.find(:all, :params => { :read_status => 1 })
     rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
     # there's no sense in showing these in UI (bnc#587885)
     killer_services	= [ "yastwc", "yastws", "dbus", "network", "lighttpd" ]
-    @services.reject! { |s| killer_services.include? s.name }
+    all_services.each do |s|
+	# only leave dependent services that are shown in the UI
+	s.required_for_start.reject! { |rs| killer_services.include? rs }
+	s.required_for_stop.reject! { |rs| killer_services.include? rs }
+	@services.push s unless killer_services.include? s.name
+    end
   end
 
   # PUT /services/1.xml
