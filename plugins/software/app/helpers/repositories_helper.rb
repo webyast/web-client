@@ -50,7 +50,7 @@ module RepositoriesHelper
     html = <<-EOF
       <span id='repo_#{flag}_change_#{sid}' style='display: none'><b>#{change}</b></span>
       (<a onclick="switch_flag('#repo_#{flag}_link_#{sid}', '#repo_#{flag}_#{sid}', '#{value}', '#repo_#{flag}_change_#{sid}')"
-	id="repo_#{flag}_link_#{sid}">#{bool_cmd value}</a>)
+	id="repo_#{flag}_link_#{sid}">#{bool_cmd !value}</a>)
     EOF
 
     return form.hidden_field(flag, :id => "repo_#{flag}_#{sid}", :value => value) + html
