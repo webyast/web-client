@@ -2,7 +2,8 @@ require File.join(File.dirname(__FILE__),'..','test_helper')
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 require 'mocha'
 require 'yast_mock'
-class UsersControllerTest < ActiveSupport::TestCase
+
+class GroupsControllerTest < ActiveSupport::TestCase
   # return contents of a fixture file +file+
   def fixture(file)
     IO.read(File.join(File.dirname(__FILE__), "..", "fixtures", file))
