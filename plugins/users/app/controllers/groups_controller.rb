@@ -175,7 +175,7 @@ public
 
 
   def update
-    params[:id]=params[:group][:cn]
+    params[:id]=params[:group][:old_cn]
     validate_group_id or return
     validate_group_params( :index ) or return
     validate_group_name( :index ) or return
