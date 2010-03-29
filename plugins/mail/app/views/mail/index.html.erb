@@ -29,7 +29,9 @@
     });
 
     $(document).ready(function() {
-      $("#mail_submit").attr("disabled","disabled"); 
+      if ($("#mail_test_mail_address", "#mailForm").val() == "") {
+        $("#mail_submit").attr("disabled","disabled");
+      }
       $("#mail_test_mail_address").keyup(function () {
 	if ($("#mail_test_mail_address", "#mailForm").val() == "") $("#mail_submit").attr("disabled","disabled");
 	else $("#mail_submit", "#mailForm").removeAttr("disabled");
