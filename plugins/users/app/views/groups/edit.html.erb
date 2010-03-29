@@ -13,8 +13,34 @@
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
 
-      <%= render :partial => 'group_form',
-      :locals => { :f => f } %>
+  <fieldset>
+    <p>
+      <label><%=_("Group Name")%></label>
+      <%= f.text_field :cn, :disabled => false %>
+    </p>
+    <p>
+      <label><%=_("Group ID")%></label>
+      <%= f.text_field :gid, :disabled => false %>
+    </p>
+     <p>
+      <label><%=_("Group Type")%></label>
+      <%= f.text_field :group_type, :disabled => true %>
+    </p>
+    <p>
+      <label><%=_("Default members")%></label>
+      <%= f.text_field :default_members_string, :disabled => true %>
+    </p>
+    <p>
+      <label><%=_("Members")%></label>
+      <%= f.text_field :members_string, :disabled => false %>
+    </p>
+  </fieldset>
+
+  <fieldset>
+    <%= form_cancel_button :action => :index %>
+    <%= form_str_spacer %>
+    <%= form_next_button %>
+  </fieldset>
 
 <% end %>
 </div>
