@@ -69,7 +69,7 @@
 	</p>
 	<p>
 	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
+	<%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required", :onkeyup => "$('#adminForm').validate().element('#administrator_confirm_password');" %>
         </p>
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label></p>

@@ -1,6 +1,9 @@
 module ActiveResource
   module Formats
     module XmlFormat
+      #overwritten method of ActiveResource. Main problem of original method is
+      #that it doesn't support some cases like array of string, so you cannot simple replace
+      #one array with another one. Fixed version use same serialization as in BaseModel in Rest-service.
       def self.encode(hash,options={})
         XmlSerializer.serialize(hash,options)
       end
@@ -9,7 +12,8 @@ module ActiveResource
 end
 
 
-class XmlSerializer 
+class XmlSerializer
+  #create xml with respect to special cases
   def self.serialize(hash,options)
     root = options[:root]
     builder = options[:builder] || Builder::XmlMarkup.new(options)
