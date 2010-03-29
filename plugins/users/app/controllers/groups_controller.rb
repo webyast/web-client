@@ -91,6 +91,7 @@ public
   def index
     begin
       @groups = Group.find :all
+      @groups.sort! { |a,b| a.cn <=> b.cn }
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Cannot read groups list.")
       return
