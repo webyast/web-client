@@ -252,7 +252,7 @@ class RegistrationController < ApplicationController
 
     begin
       params.each do | key, value |
-        if key.starts_with? "registration_arg,"
+        if key.starts_with? "registration_arg_"
           argument = Hash.new
           argument["name"] = key[17, key.size-17]
           argument["value"] = value
