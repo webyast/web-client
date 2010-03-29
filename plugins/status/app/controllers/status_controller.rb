@@ -80,6 +80,18 @@ class StatusController < ApplicationController
   def initialize
   end
 
+  def confirm_status
+    if not params.has_key?(:url)
+      raise "Missing service URL for POST request"
+    end
+    base_path = params[:url][0..params[:url].rindex("/")-1]
+    base_name = params[:url][params[:url].rindex("/")+1..(params[:url].size-1) ]
+    res_resource = OpenStruct.new(:href => base_path, :singular? => true)
+    proxy = YaST::ServiceResource.class_for_resource(res_resource)
+    proxy.post(base_name)
+    redirect_to :controller => :controlpanel, :action => :index
+  end
+
   def ajax_log_custom
     # set the site to the view so it can load the log
     # dynamically
@@ -110,6 +122,7 @@ class StatusController < ApplicationController
     begin
       @logs = Logs.find(:all)
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
+      @plugins = Plugins.find(:all)
 
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
@@ -127,6 +140,7 @@ class StatusController < ApplicationController
       ensure
         @graphs ||= []
         @logs ||= {}
+        @plugins ||= []
     end
   end
 
@@ -176,6 +190,18 @@ class StatusController < ApplicationController
         end
       end
       level = "error" unless status.blank?
+
+      #Checking WebYaST service plugins
+      plugins = Plugins.find(:all)
+      plugins.each {|plugin|
+        level = plugin.level if plugin.level == "error" || (plugin.level == "warning" && level == "ok")
+        if status.blank?
+          status = plugin.short_description
+        else
+          status += "; " + plugin.short_description
+        end        
+      }
+
       render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false, :refresh_timeout => refresh_timeout }
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
