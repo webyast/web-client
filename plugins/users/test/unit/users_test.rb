@@ -2,6 +2,7 @@ require File.join(File.dirname(__FILE__),'..','test_helper')
 require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
 require 'mocha'
 require 'yast_mock'
+
 class UsersControllerTest < ActiveSupport::TestCase
   # return contents of a fixture file +file+
   def fixture(file)
@@ -10,8 +11,8 @@ class UsersControllerTest < ActiveSupport::TestCase
 
   def setup
     # stub what the REST is supposed to return
-    response_index = fixture "users.xml"
-    response_tester = fixture "tester.xml"
+    response_index = fixture "users/users.xml"
+    response_tester = fixture "users/tester.xml"
 
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|

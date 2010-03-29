@@ -1,0 +1,20 @@
+<%
+ disabled = ! ((@permissions[:groupadd] && @adding) || (@permissions[:groupmodify] && !@adding)) %>
+<div class='plugin-icon'><img src='/icons/yast-users.png' alt="groups module"/>
+  <%=_("Groups") + header_spacer %>
+  <%= if @adding
+         _("Add new group")
+      else
+         _("Modify group")
+      end %>
+</div>
+<div class="plugin-content grid_12">
+<% form_for :group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :old_cn %>
+
+      <%= render :partial => 'group_form',
+      :locals => { :f => f } %>
+
+<% end %>
+</div>

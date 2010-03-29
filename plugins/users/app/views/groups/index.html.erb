@@ -1,0 +1,36 @@
+<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Groups")%></div>
+<div class="plugin-content grid_12">
+
+<div>
+   <% if @permissions[:groupadd] %>
+     <%= link_to _("Add New Group"), :action => :new -%>
+   <% end %>
+<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th><%= h _("Group Name") %></th>
+      <th><%= h _("Type") %></th>
+      <th><%= h _("Action") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% for group in @groups %>
+  <tr class= <%= cycle('odd', 'even') -%> >
+    <td><%= link_to ( h group.cn || "-none-" ), {:action => :edit, :id => group.cn} -%></td>
+    <td><%= h group.group_type %></td>
+    <% if @permissions[:groupdelete] %>
+    <td class="icon"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></td>
+    <% end %>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+<fieldset>
+  <%= form_back_button -%>
+</fieldset>
+</div>
+</div>
+
