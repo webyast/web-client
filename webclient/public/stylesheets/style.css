@@ -522,7 +522,12 @@ input[type="button"] {
   input.button {
     padding: 2px 9px;
   }
-
+  input[type="submit"][disabled],
+  input[type="submit"][disabled]:hover {
+    color: #999;
+    background-position:0 0px;
+    text-shadow: 0 -1px 0 #bbb; 
+  }
 /* ==Status Icons ==*/
 /* -- HTML Example --
   <div class="status-icon ok"></div>
