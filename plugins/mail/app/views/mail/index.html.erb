@@ -2,7 +2,7 @@
   <%= javascript_include_tag :defaults %>
 
   <style type="text/css">
-    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
   </style>
 
 <script type="text/javascript">
@@ -47,7 +47,7 @@
 
   <% form_for(:mail, @mail, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show()" } ) do |f| %>
   <%= f.error_messages %>
-    <fieldset class="grid_12">
+    <fieldset  class="wrapper with-background">
       <p>
         <label for="<%= :smtp_server %>"><%=_("Outgoing mail server")%></label>
         <%=f.text_field :smtp_server, :disabled => disabled, :class => "smtp_server" %></p>
@@ -62,13 +62,18 @@
         <%= f.password_field :password, :disabled => disabled %></p>
       <p>
         <label><%=_("Confirm password")%></label>
-        <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_password" %>
+        <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_password", :onkeyup => "$('#mailForm').validate().element('#mail_confirm_password');" %>
       </p>
+      <!-- this is a pre-generated placeholder for the validation messages -->
+      <p><label for="mail_confirm_password" generated="true" class="error"></label></p>
+    </fieldset> 
+    <fieldset  class="wrapper with-background">
       <p>
         <label><%=_("Send test mail to")%></label>
         <%= f.text_field :test_mail_address, :disabled => disabled, :class => "email" %>
 	<%= f.submit _("Send Mail"), :name => "send_mail" %>
       </p>
+      <p><label for="mail_test_mail_address" generated="true" class="error"></label></p>
     </fieldset> 
     <p>
     <%= form_send_buttons :disabled => disabled %>

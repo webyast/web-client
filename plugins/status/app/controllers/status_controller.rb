@@ -261,6 +261,7 @@ class StatusController < ApplicationController
           logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
           graph_description = graph_descriptions.first
           data[:cummulated] = graph_description.cummulated
+          data[:linegraph] = graph_description.linegraph
           graph_description.lines.each do |line|
             original_metrics = available_metrics.select{|me| me.id[(me.host.size+1)..(me.id.size-1)] == line.metric_id}
             unless original_metrics.empty?
@@ -398,7 +399,8 @@ class StatusController < ApplicationController
   private
 
   def refresh_timeout
-    timeout = ControlPanelConfig.read 'system_status_timeout', 60
+    # default refresh timeout is 5 minutes
+    timeout = ControlPanelConfig.read 'system_status_timeout', 5*60
 
     if timeout.zero?
       Rails.logger.info "System status autorefresh is disabled"

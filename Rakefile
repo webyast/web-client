@@ -12,8 +12,13 @@ task :default => :test
   desc "Run #{task_name} task for all projects"
   task task_name do
     PROJECTS.each do |project|
-      system %(cd #{project} && #{env} #{$0} #{task_name})
-      raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+      puts "run into project #{project}"
+      Dir.chdir project do
+        if File.exist? "Rakefile" #avoid endless loop if directory doesn't contain Rakefile
+          system %(#{env} #{$0} #{task_name})
+          raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+        end
+      end
     end
   end
 end
@@ -34,8 +39,12 @@ task :fetch_po, [:lcn_dir] do |t, args|
   result = Hash.new()
 
   PROJECTS.each do |project|
-    system %(cd #{project} && #{env} #{$0} fetch_po[#{args.lcn_dir}])
-    raise "Error on execute task fetch_po on #{project}" if $?.exitstatus != 0
+      Dir.chdir project do
+        if File.exist? "Rakefile" #avoid endless loop if directory doesn't contain Rakefile
+          system %(#{env} #{$0} #{task_name})
+          raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+        end
+      end
 
     #collecting translation information
     Dir.glob("#{project}/**/*.po").each {|po_file|
@@ -107,7 +116,7 @@ task :doc do
   end
   plugins_names.each do |plugin|
     Dir.chdir("plugins/#{plugin}") do
-      system "rake doc:app"
+      system "rake doc:app" if File.exist? "Rakefile"
     end
     system "cp -r plugins/#{plugin}/doc/app doc/#{plugin}"
   end

@@ -97,4 +97,29 @@ def test_specified_policy
   assert perm[:synchronize], "permission is not granted #{perm.inspect}"
 end
 
+TEST_ARRAY = [ "a","b",["bc","g"]]
+TEST_HASH = { :e => :symbol }
+RESULT_HASH = { "e" => :symbol } #stupid hash key doesn't survive as symbol and it is always string
+def test_save_complex_xml
+  begin
+    test = TestModel.find :one
+    assert_equal TEST_STRING,test.arg1
+
+    test.arg1 = {
+      :array => TEST_ARRAY,
+      :hash => TEST_HASH
+    }
+    assert test.save
+    rq = ActiveResource::HttpMock.requests.find {
+        |r| r.method == :post && r.path == "/test.xml"}
+    assert rq #commit request send
+    assert rq.body
+    result = Hash.from_xml(rq.body)["test"]["arg1"]
+    assert_equal TEST_ARRAY, result["array"]
+    assert_equal RESULT_HASH, result["hash"]
+  ensure
+    Rails.logger.debug ActiveResource::HttpMock.requests.inspect
+  end
+end
+
 end

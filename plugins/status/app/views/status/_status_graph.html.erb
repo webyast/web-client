@@ -18,7 +18,11 @@
     <% end %>
     title: '<%=data[:y_label]%>',
     legend: {show: true, location: 'ne'},
-    seriesDefaults: {fill:true, showMarker: false},
+    <% if data[:linegraph] == "true" %>
+      seriesDefaults: {fill:false, showMarker: false},
+    <% else %>
+      seriesDefaults: {fill:true, showMarker: false},
+    <% end %>
     series: [
       <% data[:lines].each do |line| %>
         <% if  line[:limit_reached].blank?  %>

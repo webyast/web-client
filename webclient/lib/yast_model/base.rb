@@ -1,3 +1,6 @@
+#inject to ActiveResource xml serializer fix to_xml method
+require "yast_model/xml_fix.rb"
+
 # ==YastModel module
 # Extension to set correctly ActiveResource model for webyast purpose
 # (multiple hosts and multiple users)

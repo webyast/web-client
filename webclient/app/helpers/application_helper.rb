@@ -7,7 +7,7 @@ module ApplicationHelper
   # Example:
   #   <%= form_send_buttons :disabled => write_disabled %>
   def form_send_buttons (send_options={})
-    ret = Basesystem.new.load_from_session(session).first_step? ? "":(form_back_button+form_str_spacer)
+    ret = Basesystem.new.load_from_session(session).first_step? ? "":(form_cancel_button+form_str_spacer)
     ret + form_next_button(send_options)
   end
 
@@ -30,12 +30,20 @@ module ApplicationHelper
   # @param [Hash] options options for a link_to Rails helper method
   # @return [String] html part representing a cancel
   def form_back_button (options={})
+    form_label_back_button _("Back"), options
+  end
+
+  def form_cancel_button (options={})
+    form_label_back_button _("Cancel"), options
+  end
+
+  def form_label_back_button( label, options = {})
     bs = Basesystem.new.load_from_session(session)
     if bs.completed?
        if ! (options[:action] || options[:controller]) then
            options[:controller] = "controlpanel"
        end
-       link_to _("Cancel"), options
+       link_to label, options
     else
       link_to _("Back"), :controller => "controlpanel", :action => "backstep"
     end

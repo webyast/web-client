@@ -75,6 +75,70 @@
             return false;
         return true; //FIXME better check
       }
+
+      //RFC 952 [a-zA-Z0-9'-']
+      //cann't have any spaces
+      //cann't start with a hyphen '-'
+      //cann't start with a digit
+      //no periodic hyphen '-'
+      //must not end with a hyphen '-'
+
+      //vgorobets@suse.de TODO:
+      //upgrade to RFC1123
+
+      var valChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789";
+      var counter = 0;
+
+      function hostValidation(t,v){
+          var valhostname = "";
+          for (i=0; i < t.value.length; i++) {
+          x = t.value.charAt(i);
+             if (v.indexOf(x,0) != -1 && t.value !='-' && isNaN(t.value)) {
+                if(t.value[t.value.length-1] == t.value[t.value.length-2] && t.value[t.value.length-1] == "-") {
+						t.value = t.value.substring(0,t.value.length-1);
+                  addWarning("periodic");
+                }
+                valhostname += x;
+              } else {
+                addWarning(x); // put warning if character is invalid
+              }
+          }
+          t.value = valhostname;
+      }
+
+      function clearWarning(){
+         var replace_length = document.getElementById("warning").firstChild.nodeValue.length;
+         document.getElementById("warning").firstChild.replaceData(0, replace_length, ""); // 0 == at string beginning
+      }
+
+      function addWarning(message){
+         if(message == " ") {
+            message += "<%= _("whitespace - invalid character.") %>"
+         } else if (isNaN(message) == false) {
+            message += "<%= _(" - can not start with a digit.") %>"
+         } else if (message == "periodic") { 
+            message = "<%= _("periodic '-' is not allowed.") %>"
+         } else if (message == "endWithHyphen") { 
+				message = "<%= _("can not end with (-) hyphen.") %>"
+         } else {
+            if(message == '-') {
+               message = "<%= _("can not start with (-) hyphen.") %>"
+            } else {
+               message += "<%= _(" - is invalid character for hostname.") %>"
+            }
+         }
+         var replace_length = document.getElementById("warning").firstChild.nodeValue.length;
+         document.getElementById("warning").firstChild.replaceData(0, replace_length, message); // 0 == at string beginning
+      }
+
+      function endWithHyphen(t) {
+         if(t.value[t.value.length-1] == "-") {
+            t.value = t.value.substring(0,t.value.length-1);
+            focus_field("name");
+            addWarning("endWithHyphen");
+			}        
+      }
+
       function validDomain(domain){
         //not empty, suse doesn't support it
         if (domain.match(/^\s*$/))
@@ -193,7 +257,8 @@
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>
-          <%=text_field_tag :name, @name, :disabled => static_disabled %>
+          <%=text_field_tag(:name, @name, :onblur=>"endWithHyphen(this)", :onkeyup=>"hostValidation(this,valChar);", :onkeydown=>"clearWarning();", :disabled => static_disabled) %>
+          <span id="warning" style="font-weight:bold; margin-left:20px; color:#c00000">&nbsp;</span>
         </p>
         <p>
           <label for="<%= :domain %>"><%=_("Domain")%></label>
