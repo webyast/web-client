@@ -98,36 +98,51 @@
 	    <span style="float: right; margin-right: 5em"><%= prio_summary r.priority -%></span>
 	  </div>
 	  <div class='repository-content' style="display:none">
+	      <% sid = safe_id(r.id) %>
 	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
-		:html => { :method => :put, :id => 'repositoryForm_' + safe_id(r.id), :onsubmit =>
-		"if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" }
+		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit =>
+		"if ($('#repositoryForm_#{sid}').valid()) {$('#progress').show(); return true;} else return false;" }
 	      ) do |f| %>
 		<p><div style="min-width: 6em; float: left; margin-left: 1em">Alias: </div><i><%= h r.id %></i></p>
-		<p><div style="min-width: 6em; float: left; margin-left: 1em">Name: </div><%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
-		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div><%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
+
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">Name: </div>
+		  <%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
+
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div>
+		  <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
+
 		<p>Repository is currently <i><%= r.enabled ? _('enabled') : _('disabled') %></i>.
 		  <% if !disabled  %>
-		    <%= f.hidden_field :enabled, :id => "repo_enabled_" + safe_id(r.id), :value => r.enabled -%>
-		    <span id="repo_enabled_change_<%= safe_id(r.id) -%>"style="display: none"><b>Repository will be <%= r.enabled ? _('disabled') : _('enabled') %>.</b></span>
-		    (<a onclick="switch_flag('#<%= "repo_enable_" + safe_id(r.id) -%>', '#<%= "repo_enabled_" + safe_id(r.id) -%>', '<%= r.enabled -%>', '#repo_enabled_change_<%= safe_id(r.id) -%>')"
-			id="repo_enable_<%= safe_id(r.id) %>"><%= r.enabled ? _('disable') : _('enable') -%></a>)
+		    <%= f.hidden_field :enabled, :id => "repo_enabled_" + sid, :value => r.enabled -%>
+		    <span id="repo_enabled_change_<%= sid -%>"style="display: none">
+		      <b>Repository will be <%= r.enabled ? _('disabled') : _('enabled') %>.</b></span>
+		    (<a onclick="switch_flag('#repo_enable_<%= sid -%>', '#repo_enabled_<%= sid -%>', '<%= r.enabled -%>',
+			'#repo_enabled_change_<%= sid -%>')"
+			id="repo_enable_<%= sid -%>"><%= r.enabled ? _('disable') : _('enable') -%></a>)
 		  <% end %>
 		</p>
+
 		<p>Autorefresh is currently <i><%= r.autorefresh ? _('enabled') : _('disabled') %></i>.
 		  <% if !disabled  %>
-		    <%= f.hidden_field :autorefresh, :id => "repo_autorefresh_" + safe_id(r.id), :value => r.autorefresh -%>
-		    <span id="repo_autorefresh_change_<%= safe_id(r.id) -%>"style="display: none"><b>Autorefresh will be <%= r.autorefresh ? _('disabled') : _('enabled') %>.</b></span>
-		    (<a onclick="switch_flag('#<%= "repo_autorefresh_link_" + safe_id(r.id) -%>', '#<%= "repo_autorefresh_" + safe_id(r.id) -%>', '<%= r.autorefresh -%>', '#repo_autorefresh_change_<%= safe_id(r.id) -%>')"
-			id="repo_autorefresh_link_<%= safe_id(r.id) %>"><%= r.autorefresh ? _('disable') : _('enable') -%></a>)
+		    <%= f.hidden_field :autorefresh, :id => "repo_autorefresh_" + sid, :value => r.autorefresh -%>
+		    <span id="repo_autorefresh_change_<%= sid -%>"style="display: none">
+		      <b>Autorefresh will be <%= r.autorefresh ? _('disabled') : _('enabled') %>.</b></span>
+		    (<a onclick="switch_flag('#<%= "repo_autorefresh_link_" + sid -%>', '#repo_autorefresh_<%= sid -%>',
+			'<%= r.autorefresh -%>', '#repo_autorefresh_change_<%= sid -%>')"
+			id="repo_autorefresh_link_<%= sid -%>"><%= r.autorefresh ? _('disable') : _('enable') -%></a>)
 		  <% end %>
 		</p>
+
 		<p>Priority for packages: <%= prio_selector f, r.priority, disabled %></p>
+
 		<p>Keeping downloaded packages is currently <i><%= r.keep_packages ? _('enabled') : _('disabled') %>.</i>
 		  <% if !disabled  %>
-		    <%= f.hidden_field :keep_packages, :id => "repo_keep_packages_" + safe_id(r.id), :value => r.keep_packages -%>
-		    <span id="repo_keep_packages_change_<%= safe_id(r.id) -%>"style="display: none"><b>Keep packages option will be <%= r.keep_packages ? _('disabled') : _('enabled') %>.</b></span>
-		    (<a onclick="switch_flag('#<%= "repo_keep_packages_link_" + safe_id(r.id) -%>', '#<%= "repo_keep_packages_" + safe_id(r.id) -%>', '<%= r.keep_packages -%>', '#repo_keep_packages_change_<%= safe_id(r.id) -%>')"
-			id="repo_keep_packages_link_<%= safe_id(r.id) %>"><%= r.keep_packages ? _('disable') : _('enable') -%></a>)
+		    <%= f.hidden_field :keep_packages, :id => "repo_keep_packages_" + sid, :value => r.keep_packages -%>
+		    <span id="repo_keep_packages_change_<%= sid -%>"style="display: none">
+		      <b>Keep packages option will be <%= r.keep_packages ? _('disabled') : _('enabled') %>.</b></span>
+		    (<a onclick="switch_flag('#<%= "repo_keep_packages_link_" + sid -%>', '#repo_keep_packages_<%= sid -%>',
+			'<%= r.keep_packages -%>', '#repo_keep_packages_change_<%= sid -%>')"
+			id="repo_keep_packages_link_<%= sid -%>"><%= r.keep_packages ? _('disable') : _('enable') -%></a>)
 		  <% end %>
 		</p>
 
