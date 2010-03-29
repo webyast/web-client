@@ -26,6 +26,7 @@ class GroupsControllerTest < ActionController::TestCase
       mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
       mock.get   "/groups.xml", header, response_index, 200
       mock.get   "/groups/users.xml", header, response_group_users, 200
+      mock.delete   "/groups/users.xml", header, nil, 200
       mock.get	 "/users.xml", header, response_users, 200
     end
   end
@@ -34,34 +35,27 @@ class GroupsControllerTest < ActionController::TestCase
     ActiveResource::HttpMock.reset!
   end
 
-#  def test_empty_full_name
-#    get :index
-#    assert_response :success
-#    assert_valid_markup
-#    assert assigns(:users)
-#  end
-
-  def test_users_index
+  def test_groups_index
     get :index
     assert_response :success
     assert_valid_markup
     assert assigns(:groups)
-#    assert_select 'td#login', "tester"
-#    assert_select 'td#fullname', "Tester Testerovic"
-#    assert_select 'td#login', "tester"
-#    assert_select 'td#fullname', 2
   end
 
-  def test_edit_users
+  def test_edit_group
     get :edit, {:id => "users"}
     assert_response :success
     assert_valid_markup
     assert assigns(:group)
-#    assert_select 'input#user_id[value=tester]' # fallback for uid
-#    assert_select 'input#user_uid[value=tester]'
-#    assert_select 'input#user_cn[value=Tester Testerovic]'
-#    assert_select 'input#user_grp_string[value=uucp,games,messagebus]'
-#    assert_select 'input#user_groupname[value=users]'
+  end
+
+  def test_delete_group
+    post :destroy, {:id => "users"}
+    assert_response :redirect
+    assert_valid_markup
+    assert_redirected_to :action => :index
+    assert_valid_markup
+    assert_false flash.empty?
   end
   
 end
