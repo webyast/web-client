@@ -1,6 +1,6 @@
 <%
  disabled = ! ((@permissions[:groupadd] && @adding) || (@permissions[:groupmodify] && !@adding)) %>
-<div class='plugin-icon'><img src='/icons/yast-groups.png' alt="groups module"/>
+<div class='plugin-icon'><img src='/icons/yast-users.png' alt="groups module"/>
   <%=_("Groups") + header_spacer %>
   <%= if @adding
          _("Add new group")
