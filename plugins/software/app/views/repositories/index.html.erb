@@ -1,62 +1,147 @@
 <% content_for :head do %>
-<%= javascript_include_tag :defaults %>
-<% end %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery.quicksearch.js" %>
 
-<% if @permissions and @repos %>
+  <% javascript_tag do %>
+  $(document).ready(function(){
+    $(".accordion").accordion({
+       autoHeight : false,
+       navigation : true,
+       collapsible: true,
+       header     : 'div.list-fieldset div.list-fieldset-header'
+    });
+
+    $(".accordion").accordion('activate',false);
+
+    $('#repositories div.list-fieldset').quicksearch({
+	attached: '#repositories',
+	loaderText: '',
+	labelText: '<%= _("Quick Search") -%>',
+	delay: 100
+    });
+  });
+
+  function select_repositories (val) {
+    if (val == "all") {
+	$("#repositories > div.list-fieldset").show();
+    }
+    else if (val == "enabled") {
+      $("#repositories > div.list-fieldset.repository-enabled").show();
+      $("#repositories > div.list-fieldset.repository-disabled").hide();
+    }
+    else if (val == "disabled") {
+      $("#repositories > div.list-fieldset.repository-enabled").hide();
+      $("#repositories > div.list-fieldset.repository-disabled").show();
+    };
+   };
+
+  function switch_flag(link, field) {
+    // change the hidden field and the link text
+    if ($(field).val() == "true")
+    {
+	$(field).val("false");
+	$(link).text("<%= _("enable") -%>");
+    }
+    else
+    {
+	$(field).val("true");
+	$(link).text("<%= _("disable") -%>");
+    };
+
+    // display/hide the change text
+  };
+
+  <% end %>
+<% end %>
 
   <div class='plugin-icon'><img src='/icons/yast-online_update.png'/><%=_("Software Repositories") %></div>
   <div class='plugin-content grid_12'>
-  <div class="loading"></div>
-  <% disabled = !@permissions[:write] %>
-  <% if @repos.empty? %>
-    <h3><%=_("No software repository configured.") %></h3>
-  <% else %>
+    <div class="loading"></div>
+    <% disabled = !@permissions[:write] %>
+
     <h3><%=_("Configured software repositories") %></h3>
-      <table cellpadding="3px">
-	<tr>
-	  <th>Priority</th>
-	  <th>Enabled</th>
-	  <th>Name</th>
-	  <th>URL</th>
-	</tr>
 
-      <% # Sort by priority then by name -%>
-      <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+    <p>
+      <label for="filter"><%=  _("Filter repositories") %></label>
+      <%= select_tag "filter", options_for_select([
+	  [ _("All"), "all"],
+	  [ _("Enabled"), "enabled"],
+	  [ _("Disabled"), "disabled"]
+	])
+      %>
+      <%= observe_field("filter", :function => "select_repositories(value)") %>
+    </p>
 
+    <% # Sort by priority then by name -%>
+    <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+
+    <div id="repositories" class="accordion">
       <% @repos.each do |r| %>
-	<tr>
-	  <td align="center"><%= h r.priority -%></td>
-	  <td align="center" id="repo_cell_<%= safe_id r.id -%>">
-	    <%= render :partial => 'repository_checkbox',
-	      :locals => { :id => r.id, :enabled => r.enabled, :disabled => disabled,
-	      :error => nil} %>
-	  </td>
-	  <td><%= link_to (h r.name), :action => 'show', :id => r.id -%></td>
-	  <td><%= h r.url -%></td>
-	  <% unless disabled -%>
-	    <td><%= link_to image_tag('/images/delete.png', :alt => "delete"),
-	      {:action => 'delete', :id => r.id},
-	      {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete} %>
-	    </td>
-	  <% end -%>
-	</tr>
-      <% end  %>
-      </table>
-  <% end %>
+	<div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
+	  <div class="list-fieldset-header">
+	    <% #* TODO FIXME: do quick search only in name and URL => use quicksearch_content class-%>
+	    <span class="quicksearch_content">
+	      <div>
+		<div class="status-icon <%= r.enabled ? 'ok' : 'unused' %>"></div>
+		<%= h r.name %>
+	      </div>
+	      <small><%= h r.url %></small>
+	    </span>
+	    <span style="float: right; margin-right: 5em"><%= prio_summary r.priority -%></span>
+	  </div>
+	  <div class='repository-content' style="display:none">
+	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
+		:html => { :method => :put, :id => 'repositoryForm_' + safe_id(r.id), :onsubmit =>
+		"if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" }
+	      ) do |f| %>
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">Alias: </div><i><%= h r.id %></i></p>
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">Name: </div><%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div><%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
+		<p>Repository is currently <i><%= r.enabled ? _('enabled') : _('disabled') %></i>.
+		  <% if !disabled  %>
+		    <%= f.hidden_field :enabled, :id => "repo_enabled_" + safe_id(r.id), :value => r.enabled -%>
+		    (<a onclick="switch_flag('#<%= "repo_enable_" + safe_id(r.id) -%>', '#<%= "repo_enabled_" + safe_id(r.id) -%>')" id="repo_enable_<%= safe_id(r.id) %>"><%= r.enabled ? _('disable') : _('enable') -%></a>)
+		  <% end %>
+		</p>
+		<p>Autorefresh is currently <i><%= r.autorefresh ? _('enabled') : _('disabled') %></i>.
+		  <% if !disabled  %>
+		    <%= f.hidden_field :autorefresh, :id => "repo_autorefresh_" + safe_id(r.id), :value => r.autorefresh -%>
+		    (<a onclick="switch_flag('#<%= "repo_autorefresh_link_" + safe_id(r.id) -%>', '#<%= "repo_autorefresh_" + safe_id(r.id) -%>')" id="repo_autorefresh_link_<%= safe_id(r.id) %>"><%= r.autorefresh ? _('disable') : _('enable') -%></a>)
+		  <% end %>
+		</p>
+		<p>Priority for packages: <%= prio_selector f, r.priority, disabled %></p>
+		<p>Keeping downloaded packages is currently <i><%= r.keep_packages ? _('enabled') : _('disabled') %>.</i>
+		  <% if !disabled  %>
+		    <%= f.hidden_field :keep_packages, :id => "repo_keep_packages_" + safe_id(r.id), :value => r.keep_packages -%>
+		    (<a onclick="switch_flag('#<%= "repo_keep_packages_link_" + safe_id(r.id) -%>', '#<%= "repo_keep_packages_" + safe_id(r.id) -%>')" id="repo_keep_packages_link_<%= safe_id(r.id) %>"><%= r.keep_packages ? _('disable') : _('enable') -%></a>)
+		  <% end %>
+		</p>
 
-  <fieldset>
-  <%= form_back_button %>
+		<fieldset>
+		  <% if !disabled -%>
+		    <%= form_next_button :label => _("Save") %>
+		    <%= link_to _("Delete"),
+			  {:action => 'delete', :id => r.id},
+			  {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %>
+		  <% end -%>
+		</fieldset>
 
-  <% if !disabled %>
-    <%= form_str_spacer %>
-    <%= link_to   (_("Add") + " " + _("a new repository") ), 
-                  {:action => 'add'}, 
-                  :class=>"button", 
-                  :onclick=>"$('#progress').show()" 
-                  %>
-  <% end %>
-  </fieldset>
+	      <% end %>
+	  </div>
+	</div>
+      <% end %>
+    </div>
+
+    <fieldset>
+      <%= form_back_button %>
+
+      <% if !disabled %>
+	<%= form_str_spacer %>
+	<%= link_to   (_("Add") + " " + _("a new repository") ),
+	  {:action => 'add'},
+	  :class=>"button",
+	  :onclick=>"$('#progress').show()"
+      %>
+      <% end %>
+    </fieldset>
   </div>
-
-<% end %>
-
