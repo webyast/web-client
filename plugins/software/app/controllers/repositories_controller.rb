@@ -105,9 +105,9 @@ class RepositoriesController < ApplicationController
     repository = params[:repository]
 
     @repo.name = repository[:name]
-    @repo.autorefresh = repository[:autorefresh] == '1'
-    @repo.enabled = repository[:enabled] == '1'
-    @repo.keep_packages = repository[:keep_packages] == '1'
+    @repo.autorefresh = repository[:autorefresh] == 'true'
+    @repo.enabled = repository[:enabled] == 'true'
+    @repo.keep_packages = repository[:keep_packages] == 'true'
     @repo.url = repository[:url]
     @repo.priority = repository[:priority]
 

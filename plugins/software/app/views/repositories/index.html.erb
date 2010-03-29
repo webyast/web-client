@@ -35,20 +35,28 @@
     };
    };
 
-  function switch_flag(link, field) {
+  function switch_flag(link, field, deflt, changes) {
     // change the hidden field and the link text
     if ($(field).val() == "true")
     {
-	$(field).val("false");
-	$(link).text("<%= _("enable") -%>");
+      $(field).val("false");
+      $(link).text("<%= _("enable") -%>");
     }
     else
     {
-	$(field).val("true");
-	$(link).text("<%= _("disable") -%>");
+      $(field).val("true");
+      $(link).text("<%= _("disable") -%>");
     };
 
-    // display/hide the change text
+    // display/hide the changes text
+    if (deflt == $(field).val())
+    {
+      $(changes).hide();
+    }
+    else
+    {
+      $(changes).show();
+    };
   };
 
   <% end %>
@@ -100,20 +108,26 @@
 		<p>Repository is currently <i><%= r.enabled ? _('enabled') : _('disabled') %></i>.
 		  <% if !disabled  %>
 		    <%= f.hidden_field :enabled, :id => "repo_enabled_" + safe_id(r.id), :value => r.enabled -%>
-		    (<a onclick="switch_flag('#<%= "repo_enable_" + safe_id(r.id) -%>', '#<%= "repo_enabled_" + safe_id(r.id) -%>')" id="repo_enable_<%= safe_id(r.id) %>"><%= r.enabled ? _('disable') : _('enable') -%></a>)
+		    <span id="repo_enabled_change_<%= safe_id(r.id) -%>"style="display: none"><b>Repository will be <%= r.enabled ? _('disabled') : _('enabled') %>.</b></span>
+		    (<a onclick="switch_flag('#<%= "repo_enable_" + safe_id(r.id) -%>', '#<%= "repo_enabled_" + safe_id(r.id) -%>', '<%= r.enabled -%>', '#repo_enabled_change_<%= safe_id(r.id) -%>')"
+			id="repo_enable_<%= safe_id(r.id) %>"><%= r.enabled ? _('disable') : _('enable') -%></a>)
 		  <% end %>
 		</p>
 		<p>Autorefresh is currently <i><%= r.autorefresh ? _('enabled') : _('disabled') %></i>.
 		  <% if !disabled  %>
 		    <%= f.hidden_field :autorefresh, :id => "repo_autorefresh_" + safe_id(r.id), :value => r.autorefresh -%>
-		    (<a onclick="switch_flag('#<%= "repo_autorefresh_link_" + safe_id(r.id) -%>', '#<%= "repo_autorefresh_" + safe_id(r.id) -%>')" id="repo_autorefresh_link_<%= safe_id(r.id) %>"><%= r.autorefresh ? _('disable') : _('enable') -%></a>)
+		    <span id="repo_autorefresh_change_<%= safe_id(r.id) -%>"style="display: none"><b>Autorefresh will be <%= r.autorefresh ? _('disabled') : _('enabled') %>.</b></span>
+		    (<a onclick="switch_flag('#<%= "repo_autorefresh_link_" + safe_id(r.id) -%>', '#<%= "repo_autorefresh_" + safe_id(r.id) -%>', '<%= r.autorefresh -%>', '#repo_autorefresh_change_<%= safe_id(r.id) -%>')"
+			id="repo_autorefresh_link_<%= safe_id(r.id) %>"><%= r.autorefresh ? _('disable') : _('enable') -%></a>)
 		  <% end %>
 		</p>
 		<p>Priority for packages: <%= prio_selector f, r.priority, disabled %></p>
 		<p>Keeping downloaded packages is currently <i><%= r.keep_packages ? _('enabled') : _('disabled') %>.</i>
 		  <% if !disabled  %>
 		    <%= f.hidden_field :keep_packages, :id => "repo_keep_packages_" + safe_id(r.id), :value => r.keep_packages -%>
-		    (<a onclick="switch_flag('#<%= "repo_keep_packages_link_" + safe_id(r.id) -%>', '#<%= "repo_keep_packages_" + safe_id(r.id) -%>')" id="repo_keep_packages_link_<%= safe_id(r.id) %>"><%= r.keep_packages ? _('disable') : _('enable') -%></a>)
+		    <span id="repo_keep_packages_change_<%= safe_id(r.id) -%>"style="display: none"><b>Keep packages option will be <%= r.keep_packages ? _('disabled') : _('enabled') %>.</b></span>
+		    (<a onclick="switch_flag('#<%= "repo_keep_packages_link_" + safe_id(r.id) -%>', '#<%= "repo_keep_packages_" + safe_id(r.id) -%>', '<%= r.keep_packages -%>', '#repo_keep_packages_change_<%= safe_id(r.id) -%>')"
+			id="repo_keep_packages_link_<%= safe_id(r.id) %>"><%= r.keep_packages ? _('disable') : _('enable') -%></a>)
 		  <% end %>
 		</p>
 
