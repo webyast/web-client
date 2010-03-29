@@ -10,6 +10,7 @@
 
 
 Name:           webyast-base-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.basesystem)
 Provides:       yast2-webclient = %{version}
 Obsoletes:      yast2-webclient < %{version}
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-certificate

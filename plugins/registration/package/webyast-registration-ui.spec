@@ -10,6 +10,7 @@
 
 
 Name:           webyast-registration-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.registration.registration)
 Provides:       yast2-webclient-registration = %{version}
 Obsoletes:      yast2-webclient-registration < %{version}
 PreReq:         yast2-webclient

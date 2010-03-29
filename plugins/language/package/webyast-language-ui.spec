@@ -10,6 +10,7 @@
 
 
 Name:           webyast-language-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.language)
 Provides:       yast2-webclient-language = %{version}
 Obsoletes:      yast2-webclient-language < %{version}
 PreReq:         yast2-webclient >= 0.0.26

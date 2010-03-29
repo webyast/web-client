@@ -9,6 +9,8 @@
 #
 
 Name:		webyast-users-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.users)
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.groups)
 Provides:       yast2-webclient-users = %{version}
 Obsoletes:      yast2-webclient-users < %{version}
 PreReq:         yast2-webclient >= 0.0.2

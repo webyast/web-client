@@ -10,6 +10,10 @@
 
 
 Name:           webyast-status-ui
+Recommends:     WebYaST(org.opensuse.yast.system.status)
+Recommends:     WebYaST(org.opensuse.yast.system.metrics)
+Recommends:     WebYaST(org.opensuse.yast.system.logs)
+Recommends:     WebYaST(org.opensuse.yast.system.graphs)
 Provides:       yast2-webclient-status = %{version}
 Obsoletes:      yast2-webclient-status < %{version}
 PreReq:         yast2-webclient >= 0.1.14

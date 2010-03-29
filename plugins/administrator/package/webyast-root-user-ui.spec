@@ -10,6 +10,7 @@
 
 
 Name:           webyast-root-user-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.administrator)
 Provides:       yast2-webclient-administrator = %{version}
 Obsoletes:      yast2-webclient-administrator < %{version}
 PreReq:         yast2-webclient >= 0.0.2

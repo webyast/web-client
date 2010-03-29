@@ -10,6 +10,7 @@
 
 
 Name:           webyast-services-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.services)
 Provides:       yast2-webclient-services = %{version}
 Obsoletes:      yast2-webclient-services < %{version}
 PreReq:         yast2-webclient

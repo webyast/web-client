@@ -10,6 +10,7 @@
 
 
 Name:           webyast-reboot-ui
+Recommends:     WebYaST(org.opensuse.yast.system.system)
 Provides:       yast2-webclient-system = %{version}
 Obsoletes:      yast2-webclient-system < %{version}
 PreReq:         yast2-webclient >= 0.0.2
