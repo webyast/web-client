@@ -57,5 +57,14 @@ class GroupsControllerTest < ActionController::TestCase
     assert_valid_markup
     assert_false flash.empty?
   end
+
+  def test_rename_group
+    post :update, {"group" => {"cn"=>"new_name", "old_cn" => "users"} }
+    assert_response :redirect
+    assert_valid_markup
+    assert_redirected_to :action => :index
+    assert_valid_markup
+    assert_false flash.empty?
+  end
   
 end
