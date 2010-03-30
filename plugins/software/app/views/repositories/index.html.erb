@@ -127,7 +127,7 @@
 	      <% sid = safe_id(r.id) %>
 	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
 		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit =>
-		"if ($('#repositoryForm_#{sid}').valid()) {$('#progress').show(); return true;} else return false;" }
+		"if ($('#repositoryForm_#{sid}').valid()) {$('#progress_#{sid}').show(); return true;} else return false;" }
 	      ) do |f| %>
 
 		<% content_for :head do %>
@@ -172,6 +172,7 @@
 
 		<fieldset>
 		  <% if !disabled -%>
+		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
 		    <%= form_next_button :label => _("Save") %>
 		    <%= link_to _("Delete"),
 			  {:action => 'delete', :id => r.id},
