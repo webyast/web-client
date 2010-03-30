@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration\n"
-"POT-Creation-Date: 2009-11-20 14:35+0100\n"
-"PO-Revision-Date: 2010-02-01 09:34\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 07:52\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,67 +13,167 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: app/controllers/registration_controller.rb:11
+msgid "Email"
+msgstr "전자 메일"
+
+#: app/controllers/registration_controller.rb:12
+msgid "System name"
+msgstr "시스템 이름"
+
+#: app/controllers/registration_controller.rb:13
+msgid "SLES registration code"
+msgstr "SLES 등록 코드"
+
+#: app/controllers/registration_controller.rb:14
+msgid "SLED registration code"
+msgstr "SLED 등록 코드"
+
 #: app/controllers/registration_controller.rb:15
+msgid "Appliance registration code"
+msgstr "어플라이언스 등록 코드"
+
+#: app/controllers/registration_controller.rb:16
+msgid "WebYaST registration code"
+msgstr "WebYaST 등록 코드"
+
+#: app/controllers/registration_controller.rb:17
+msgid "Registration code"
+msgstr "등록 코드"
+
+#: app/controllers/registration_controller.rb:18
+msgid "Hostname"
+msgstr "호스트 이름"
+
+#: app/controllers/registration_controller.rb:19
+msgid "Device name"
+msgstr "장치 이름"
+
+#: app/controllers/registration_controller.rb:20
+msgid "Appliance name"
+msgstr "어플라이언스 이름"
+
+#: app/controllers/registration_controller.rb:21
+msgid "registration code"
+msgstr "등록 코드"
+
+#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
 msgstr "세션이 잘못되었습니다. 다시 로그인하십시오."
 
-#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
+#: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
 msgstr "등록 권한 없음"
 
-#: app/controllers/registration_controller.rb:68
-msgid "Arguments for registration cannot be evaluated."
-msgstr "등록 인수를 평가할 수 없습니다."
+#: app/controllers/registration_controller.rb:84
+msgid "Please try to register again later."
+msgstr "나중에 다시 등록해 보십시오."
 
-#: app/controllers/registration_controller.rb:69
-msgid "An error occurred during registration. Please try again."
-msgstr "등록하는 동안 오류가 발생했습니다. 다시 시도하십시오."
+#: app/controllers/registration_controller.rb:88
+msgid "Registration was skipped."
+msgstr "등록을 건너뛰었습니다."
 
-#: app/controllers/registration_controller.rb:111
-msgid "Registration finished successfully."
-msgstr "등록이 성공적으로 완료되었습니다."
+#: app/controllers/registration_controller.rb:94
+msgid "Registration did not finish."
+msgstr "등록이 완료되지 않았습니다."
 
-#: app/controllers/registration_controller.rb:119
-msgid "Service added:"
-msgstr "추가된 서비스:"
+#: app/controllers/registration_controller.rb:95
+msgid "Registration did not succeed."
+msgstr "등록에 성공하지 못했습니다."
 
-#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
-msgid "Catalog enabled:"
-msgstr "활성화된 카탈로그:"
+#: app/controllers/registration_controller.rb:97
+msgid "This may be a temporary issue."
+msgstr "이는 일시적인 문제일 수 있습니다."
 
-#: app/controllers/registration_controller.rb:143
-msgid "Repository added:"
-msgstr "추가된 리포지토리:"
+#: app/controllers/registration_controller.rb:102
+msgid "The registration server returned invalid or incomplete data."
+msgstr "등록 서버가 잘못되었거나 불완전한 데이터를 반환했습니다."
 
-#: app/controllers/registration_controller.rb:173
+#: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
 msgstr "누락된 항목을 채우십시오."
 
-#: app/controllers/registration_controller.rb:176
-msgid "Error occured while connecting to registration server."
-msgstr "등록 서버에 연결하는 동안 오류가 발생했습니다."
+#: app/controllers/registration_controller.rb:155
+msgid "Service added:"
+msgstr "추가된 서비스:"
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:159 app/controllers/registration_controller.rb:164
+msgid "Catalog enabled:"
+msgstr "활성화된 카탈로그:"
+
+#: app/controllers/registration_controller.rb:188
+msgid "Repository added:"
+msgstr "추가된 리포지토리:"
+
+#: app/controllers/registration_controller.rb:248
+msgid "This system is already registered."
+msgstr "이 시스템은 이미 등록되었습니다."
+
+#: app/controllers/registration_controller.rb:277
+msgid "Registration finished successfully."
+msgstr "등록이 성공적으로 완료되었습니다."
+
+#: app/controllers/registration_controller.rb:290
+msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
+msgstr "<p><b>등록 프로세스 중에 리포지토리가 수정되지 않았습니다.</b></p><p>잘못된 등록 코드를 사용했을 수 있습니다. 이 경우, 등록 프로세스를 다시 실행하여 업데이트 리포지토리를 가져오십시오.</p><p>이 시스템에 업데이트 리포지토리가 구성되었는지 확인하십시오. 그렇지 않으면 업데이트를 수신하지 않습니다.</p>"
+
+#: app/controllers/registration_controller.rb:324
+msgid "A connection to the registration server could not be established."
+msgstr "등록 서버에 연결할 수 없습니다."
+
+#: app/controllers/registration_controller.rb:328
+msgid "The transmitted registration data created a conflict."
+msgstr "전송된 등록 데이터에 충돌이 발생했습니다."
+
+#: app/controllers/registration_controller.rb:336
+msgid "Registration can not be performed. There is no product installed that can be registered."
+msgstr "등록할 수 없습니다. 등록할 수 있는 제품이 설치되지 않았습니다."
+
+#: app/controllers/registration_controller.rb:351
+msgid "A connection to the registration server could not be established or it did not reply."
+msgstr "등록 서버에 연결할 수 없거나 등록 서버가 응답하지 않습니다."
+
+#: app/controllers/registration_controller.rb:368
+msgid "The registration server returned invalid data."
+msgstr "등록 서버가 잘못된 데이터를 반환했습니다."
+
+#: app/views/registration/index.rhtml:16
 msgid "register plugin"
 msgstr "등록 플러그인"
 
-#: app/views/registration/index.rhtml:1
+#: app/views/registration/index.rhtml:16
 msgid "Registration"
 msgstr "등록"
 
-#: app/views/registration/index.rhtml:9
+#: app/views/registration/index.rhtml:24
+msgid "Registration Information"
+msgstr "등록 정보"
+
+#: app/views/registration/index.rhtml:25
 msgid "This system is registered"
 msgstr "이 시스템이 등록됩니다."
 
-#: app/views/registration/index.rhtml:10
-msgid "System's GUID:"
-msgstr "시스템의 GUID:"
+#: app/views/registration/index.rhtml:26
+msgid "System number (GUID)"
+msgstr "시스템 번호(GUID)"
 
-#: app/views/registration/index.rhtml:11
+#: app/views/registration/index.rhtml:27
 msgid "Register again"
 msgstr "다시 등록"
 
-#: app/views/registration/index.rhtml:39
-msgid "Detail"
-msgstr "세부 사항"
+#: app/views/registration/index.rhtml:34
+msgid "Next"
+msgstr "다음"
+
+#: app/views/registration/index.rhtml:44
+msgid "Mandatory Information"
+msgstr "필수 정보"
+
+#: app/views/registration/index.rhtml:59
+msgid "Details"
+msgstr "자세히"
+
+#: app/views/registration/index.rhtml:77
+msgid "Skip"
+msgstr "건너뛰기"
 

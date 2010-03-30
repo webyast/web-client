@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-01 15:45\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 07:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,107 +13,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "Neplatná relace, přihlaste se znovu."
-
-#: app/controllers/users_controller.rb:144
+#: app/controllers/users_controller.rb:160
 msgid "User <i>%s</i> was successfully created."
 msgstr "Uživatel <i>%s</i> byl úspěšně vytvořen."
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "Prázdná hodnota UID"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID: hodnota >= 1000 je platná pouze pro místní uživatele"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:204
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Uživatel <i>%s</i> byl úspěšně aktualizován."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:225
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Uživatel <i>%s</i> byl úspěšně odebrán."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:227
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Chyba: Uživatele<i>%s</i> nelze odebrat."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr "Místní uživatel"
+#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
+msgid "Weak"
+msgstr "Slabé"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Přihlášení"
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
+msgid "Normal"
+msgstr "Běžné"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11 app/views/users/new.html.erb:8
-msgid "Full Name"
-msgstr "Celé jméno"
+#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
+msgid "Medium"
+msgstr "Střední"
 
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "Upravit"
+#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
+msgid "Strong"
+msgstr "Silné"
 
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[Nový uživatel]</strong>"
+#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
+msgid "Very Strong"
+msgstr "Velmi silné"
 
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43 app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Zpět"
+#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46 app/views/users/new.html.erb:49
+msgid "Local Users"
+msgstr "Místní uživatelé"
 
-#: app/views/users/edit.html.erb:1
+#: app/views/users/edit.html.erb:83
 msgid "Edit user %s"
 msgstr "Upravit uživatele %s"
 
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "Skupiny"
+#: app/views/users/edit.html.erb:93
+msgid "Login Settings"
+msgstr "Nastavení přihlášení"
 
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "Výchozí skupina"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "Domovský adresář"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "Přihlašovací prostředí"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
 msgid "Login Name"
 msgstr "Přihlašovací jméno"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "Číslo UID"
+#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
+msgid "Full Name"
+msgstr "Celé jméno"
 
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
 msgid "Password"
 msgstr "Heslo"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Aktualizace"
+#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
+msgid "Confirm Password"
+msgstr "Potvrzení hesla"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr "Nový uživatel"
+#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120 app/views/users/new.html.erb:84
+msgid "Groups"
+msgstr "Skupiny"
 
-#: app/views/users/new.html.erb:16
+#: app/views/users/edit.html.erb:126
+msgid "Default Group"
+msgstr "Výchozí skupina"
+
+#: app/views/users/edit.html.erb:139
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+msgid "Home Directory"
+msgstr "Domovský adresář"
+
+#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+msgid "Login Shell"
+msgstr "Přihlašovací prostředí"
+
+#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+msgid "UID Number"
+msgstr "Číslo UID"
+
+#: app/views/users/index.html.erb:32
+msgid "Type user name or login ..."
+msgstr "Zadejte uživatelské jméno nebo login..."
+
+#: app/views/users/index.html.erb:35
+msgid "Filter:"
+msgstr "Filtr:"
+
+#: app/views/users/index.html.erb:78
+msgid "New User..."
+msgstr "Nový uživatel..."
+
+#: app/views/users/new.html.erb:49
+msgid "Add new user"
+msgstr "Přidat nového uživatele"
+
+#: app/views/users/new.html.erb:90
 msgid "Default Group (GID)"
 msgstr "Výchozí skupina (GID)"
 
-#: app/views/users/new.html.erb:24
+#: app/views/users/new.html.erb:113
 msgid "Do not create home directory"
 msgstr "Nevytvářet domovský adresář"
-
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "Vytvořit"
 

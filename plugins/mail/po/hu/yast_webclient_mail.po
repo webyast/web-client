@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient mail 1.0.0\n"
-"POT-Creation-Date: 2010-03-10 15:10+0100\n"
-"PO-Revision-Date: 2010-03-11 11:41+0100\n"
+"POT-Creation-Date: 2010-03-18 14:33+0100\n"
+"PO-Revision-Date: 2010-03-24 15:36+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,27 +15,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/mail_controller.rb:28
+#: app/controllers/mail_controller.rb:29
 msgid "Passwords do not match."
 msgstr "A jelszavak nem egyeznek."
 
-#: app/controllers/mail_controller.rb:35
+#: app/controllers/mail_controller.rb:36
 msgid "Mail settings have been written."
 msgstr "A levelezőbeállítások mentése megtörtént."
 
-#: app/controllers/mail_controller.rb:37
+#: app/controllers/mail_controller.rb:38
 msgid "Test mail was sent to %s."
 msgstr "A tesztlevél elküldve a következőnek: %s."
 
-#: app/controllers/mail_controller.rb:49
+#: app/controllers/mail_controller.rb:50
 msgid "Error while saving mail settings: %s"
 msgstr "Hiba történt a levelezés beállításainak mentése közben: %s"
 
-#: app/controllers/mail_controller.rb:66
-msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
+#: app/controllers/mail_controller.rb:67
+msgid ""
+"No outgoing mail server is set, but administrator has mail forwarders "
+"defined.\n"
+"Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
 msgstr ""
-"Nincs kimenő levelezőkiszolgáló beállítva, de az adminisztrátor beállított levéltovábbítást. \nMódosítsa az  %s<i>adminisztrátor</i>%s vagy a %s<i>"
-"levelezés</i>%s beállításait."
+"Nincs kimenő levelezőkiszolgáló beállítva, de az adminisztrátor beállított "
+"levéltovábbítást. \n"
+"Módosítsa az  %s<i>adminisztrátor</i>%s vagy a %s<i>levelezés</i>%s "
+"beállításait."
 
 #: app/views/mail/index.html.erb:19
 msgid "Enter a valid domain name or an IP address."
@@ -89,4 +94,6 @@ msgstr "Jelszó megerősítése"
 msgid "Send test mail to"
 msgstr "Tesztlevél küldése a következőnek: "
 
-
+#: app/views/mail/index.html.erb:62
+msgid "Send Mail"
+msgstr "Levélküldés"

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-01 11:44\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-24 15:28\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,107 +13,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "無效的工作階段，請重新登入。"
-
-#: app/controllers/users_controller.rb:144
+#: app/controllers/users_controller.rb:160
 msgid "User <i>%s</i> was successfully created."
 msgstr "使用者 <i>%s</i> 已成功建立。"
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "空白的 UID 值"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID：值 >= 1000 僅適用於本地使用者"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:204
 msgid "User <i>%s</i> was successfully updated."
 msgstr "使用者 <i>%s</i> 已成功更新。"
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:225
 msgid "User <i>%s</i> was successfully removed."
 msgstr "使用者 <i>%s</i> 已成功移除。"
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:227
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "錯誤：無法移除使用者 <i>%s</i>。"
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
+#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
+msgid "Weak"
+msgstr "弱"
+
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
+msgid "Normal"
+msgstr "一般"
+
+#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
+msgid "Medium"
+msgstr "中等"
+
+#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
+msgid "Strong"
+msgstr "嚴密"
+
+#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
+msgid "Very Strong"
+msgstr "非常嚴密"
+
+#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46 app/views/users/new.html.erb:49
+msgid "Local Users"
 msgstr "本地使用者"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "登入"
-
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11 app/views/users/new.html.erb:8
-msgid "Full Name"
-msgstr "全名"
-
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "編輯"
-
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[新使用者]</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43 app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "上一步"
-
-#: app/views/users/edit.html.erb:1
+#: app/views/users/edit.html.erb:83
 msgid "Edit user %s"
 msgstr "編輯使用者 %s"
 
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "群組"
+#: app/views/users/edit.html.erb:93
+msgid "Login Settings"
+msgstr "登入設定"
 
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "預設群組"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "主目錄"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "登入外圍程序"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
 msgid "Login Name"
 msgstr "登入名稱"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "UID 編號"
+#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
+msgid "Full Name"
+msgstr "全名"
 
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
 msgid "Password"
 msgstr "密碼"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "更新"
+#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
+msgid "Confirm Password"
+msgstr "確認密碼"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr "新使用者"
+#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120 app/views/users/new.html.erb:84
+msgid "Groups"
+msgstr "群組"
 
-#: app/views/users/new.html.erb:16
+#: app/views/users/edit.html.erb:126
+msgid "Default Group"
+msgstr "預設群組"
+
+#: app/views/users/edit.html.erb:139
+msgid "Advanced"
+msgstr "進階"
+
+#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+msgid "Home Directory"
+msgstr "主目錄"
+
+#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+msgid "Login Shell"
+msgstr "登入外圍程序"
+
+#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+msgid "UID Number"
+msgstr "UID 編號"
+
+#: app/views/users/index.html.erb:32
+msgid "Type user name or login ..."
+msgstr "輸入使用者名稱或登入名稱..."
+
+#: app/views/users/index.html.erb:35
+msgid "Filter:"
+msgstr "過濾器："
+
+#: app/views/users/index.html.erb:78
+msgid "New User..."
+msgstr "新使用者..."
+
+#: app/views/users/new.html.erb:49
+msgid "Add new user"
+msgstr "新增新的使用者"
+
+#: app/views/users/new.html.erb:90
 msgid "Default Group (GID)"
 msgstr "預設群組 (GID)"
 
-#: app/views/users/new.html.erb:24
+#: app/views/users/new.html.erb:113
 msgid "Do not create home directory"
 msgstr "不要建立主目錄"
-
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "建立"
 

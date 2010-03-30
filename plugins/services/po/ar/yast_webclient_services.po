@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-03 07:42\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 08:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,72 +13,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "جلسة عمل غير صالحة، الرجاء الدخول مرة أخرى."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(تعذرت قراءة الحالة)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:56
 msgid "success"
 msgstr "نجاح"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(غير معروف)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(قيد التشغيل)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(متوقف)"
-
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(ليس قيد التشغيل)"
-
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(غير معروف: %d)"
-
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "نتيجة استدعاء الخدمة"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "النتيجة"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:13
 msgid "Description"
 msgstr "الوصف"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "الخلف"
+#: app/views/services/index.rhtml:21
+msgid "Quick Search"
+msgstr "بحث سريع"
 
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "الخدمات المخصصة"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:89
 msgid "System Services"
 msgstr "خدمات النظام"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "لم يتم تحديد خدمة مخصصة على الجهاز الهدف."
+#: app/views/services/index.rhtml:95
+msgid "You do not have permission to execute the services."
+msgstr "ليس لديك إذن للتصديق."
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "ليس لديك إذن لتنفيذ هذه الخدمات. تم تعطيل الارتباطات."
+#: app/views/services/index.rhtml:99
+msgid "Filter services"
+msgstr "بدء الخدمات"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "الحالة"
+#: app/views/services/index.rhtml:101
+msgid "All"
+msgstr "الكل"
+
+#: app/views/services/index.rhtml:102
+msgid "Running"
+msgstr "قيد التشغيل"
+
+#: app/views/services/index.rhtml:103
+msgid "Not Running"
+msgstr "ليس قيد التشغيل"
+
+#: app/views/services/index.rhtml:104
+msgid "Dead"
+msgstr "قراءة"
+
+#: app/views/services/index.rhtml:120
+msgid "Description for service is not available"
+msgstr "وصف الخدمة غير متاح"
+
+#: app/views/services/index.rhtml:173
+msgid "refresh status"
+msgstr "ت&جديد الحالة ..."
+
+#: app/views/services/_status.rhtml:16
+msgid "status unknown"
+msgstr "الحالة غير معروفة"
+
+#: app/views/services/_status.rhtml:18
+msgid "running"
+msgstr "(قيد التشغيل)"
+
+#: app/views/services/_status.rhtml:22
+msgid "dead"
+msgstr "قراءة"
+
+#: app/views/services/_status.rhtml:26
+msgid "not running"
+msgstr "(ليس قيد التشغيل)"
+
+#: app/views/services/_status.rhtml:30
+msgid "status unknown: %d"
+msgstr "الحالة غير معروفة: %d"
 

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-10 15:10+0100\n"
-"PO-Revision-Date: 2010-03-11 11:46+0100\n"
+"POT-Creation-Date: 2010-03-18 14:33+0100\n"
+"PO-Revision-Date: 2010-03-24 15:45+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,37 @@ msgstr ""
 msgid "(cannot read status)"
 msgstr "(az állapot nem olvasható be)"
 
-#: app/controllers/services_controller.rb:56
+#: app/controllers/services_controller.rb:64
 msgid "success"
 msgstr "sikeres"
+
+#: app/controllers/services_controller.rb:65
+msgid "unspecified error"
+msgstr "meghatározatlan hiba"
+
+#: app/controllers/services_controller.rb:66
+msgid "invalid or excess argument(s)"
+msgstr "érvénytelen vagy felesleges paraméter(ek)"
+
+#: app/controllers/services_controller.rb:67
+msgid "unimplemented feature"
+msgstr "Nem implementált funkció"
+
+#: app/controllers/services_controller.rb:68
+msgid "user had insufficient privilege"
+msgstr "a felhasználónak nincs elegendő jogosultsága"
+
+#: app/controllers/services_controller.rb:69
+msgid "program is not installed"
+msgstr "a program nincs telepítve"
+
+#: app/controllers/services_controller.rb:70
+msgid "program is not configured"
+msgstr "a program nincs beállítva"
+
+#: app/controllers/services_controller.rb:71
+msgid "program is not runnning"
+msgstr "a program nem fut"
 
 #: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
@@ -30,7 +58,7 @@ msgstr "Szolgáltatáshívás eredménye"
 msgid "Result"
 msgstr "Eredmény"
 
-#: app/views/services/_result.rhtml:13
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Leírás"
 
@@ -38,61 +66,93 @@ msgstr "Leírás"
 msgid "Quick Search"
 msgstr "Gyorskeresés"
 
-#: app/views/services/index.rhtml:89
+#: app/views/services/index.rhtml:111
 msgid "System Services"
 msgstr "Rendszerszolgáltatások"
 
-#: app/views/services/index.rhtml:95
+#: app/views/services/index.rhtml:117
 msgid "You do not have permission to execute the services."
 msgstr "Nincs megfelelő jogosultsága a szolgáltatás indításához."
 
-#: app/views/services/index.rhtml:99
+#: app/views/services/index.rhtml:121
 msgid "Filter services"
 msgstr "Szolgáltatások szűrése"
 
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:123
 msgid "All"
 msgstr "Összes"
 
-#: app/views/services/index.rhtml:102
+#: app/views/services/index.rhtml:124
 msgid "Running"
 msgstr "Futó"
 
-#: app/views/services/index.rhtml:103
+#: app/views/services/index.rhtml:125
 msgid "Not Running"
 msgstr "Nem futó"
 
-#: app/views/services/index.rhtml:104
+#: app/views/services/index.rhtml:126
 msgid "Dead"
 msgstr "Elhalt"
 
-#: app/views/services/index.rhtml:120
+#: app/views/services/index.rhtml:142
 msgid "Description for service is not available"
 msgstr "A szolgáltatáshoz nem tartozik leírás"
 
-#: app/views/services/index.rhtml:174
-msgid "refresh status"
-msgstr "állapot frissítése"
+#: app/views/services/index.rhtml:161
+msgid "(refresh)"
+msgstr "(frissítés)"
 
-#: app/views/services/_status.rhtml:16
+#: app/views/services/index.rhtml:190
+msgid "Start"
+msgstr "Indítás"
+
+#: app/views/services/index.rhtml:191
+msgid "Stop"
+msgstr "Leállítás"
+
+#: app/views/services/index.rhtml:192
+msgid "Restart"
+msgstr "Újraindítás"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr "Indítás rendszerindításkor"
+
+#: app/views/services/index.rhtml:238
+msgid "Do Not Start on Boot"
+msgstr "Ne induljon rendszerindításkor"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "A szolgáltatás elindul rendszerindításkor."
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "A szolgáltatás nem indul el rendszerindításkor."
+
+#: app/views/services/_status.rhtml:31
 msgid "status unknown"
 msgstr "ismeretlen állapot"
 
-#: app/views/services/_status.rhtml:18
+#: app/views/services/_status.rhtml:33
 msgid "running"
 msgstr "futó"
 
-#: app/views/services/_status.rhtml:22
+#: app/views/services/_status.rhtml:37
 msgid "dead"
 msgstr "elhalt"
 
-#: app/views/services/_status.rhtml:26
+#: app/views/services/_status.rhtml:41
 msgid "not running"
 msgstr "nem fut"
 
-#: app/views/services/_status.rhtml:30
+#: app/views/services/_status.rhtml:45
 msgid "status unknown: %d"
 msgstr "ismeretlen állapot: %d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "A szolgáltatás jelenleg állapota:"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Érvénytelen munkamenet, lépjen be újra."

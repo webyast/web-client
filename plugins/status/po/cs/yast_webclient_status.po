@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-01 15:45\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-25 07:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,80 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "Neplatná relace, přihlaste se znovu."
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "Limit volného místa na disku překročen;"
-
-#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:105
 msgid "No data found for showing system status."
 msgstr "Nebyla nalezena žádná data pro zobrazení stavu systému."
 
-#: app/controllers/status_controller.rb:181
-msgid "Limits exceeded for %s"
-msgstr "Byly překročeny limity pro %s"
+#: app/controllers/status_controller.rb:134
+msgid "Limits exceeded for "
+msgstr "Byly překročeny limity pro "
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
-msgstr "Uložení limitů selhalo."
+#: app/controllers/status_controller.rb:208
+msgid "exceeded"
+msgstr "překročeno"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:222
+msgid "undercut"
+msgstr "nedosaženo"
+
+#: app/controllers/status_controller.rb:313
+msgid "Limits have been written."
+msgstr "Limity byly zapsány."
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "Platná jsou pouze čísla!"
+
+#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Stav"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "Využití disku"
+#: app/views/status/edit.html.erb:47
+msgid "Settings"
+msgstr "Nastavení"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:62
+msgid "undercuts"
+msgstr "nedosaženo"
+
+#: app/views/status/edit.html.erb:62
+msgid "exceeds"
+msgstr "překročeno"
+
+#: app/views/status/index.html.erb:49
+msgid "Show last"
+msgstr "Zobrazit posledních"
+
+#: app/views/status/index.html.erb:50
+msgid "5 Minutes"
+msgstr "5 minut"
+
+#: app/views/status/index.html.erb:51
+msgid "15 Minutes"
+msgstr "15 minut"
+
+#: app/views/status/index.html.erb:52
+msgid "30 Minutes"
+msgstr "30 minut"
+
+#: app/views/status/index.html.erb:53
+msgid "1 Hour"
+msgstr "1 hodinu"
+
+#: app/views/status/index.html.erb:54
+msgid "6 Hours"
+msgstr "6 hodin"
+
+#: app/views/status/index.html.erb:55
+msgid "12 Hours"
+msgstr "12 hodin"
+
+#: app/views/status/index.html.erb:96
 msgid "Edit Limits"
 msgstr "Úprava limitů"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Zpět"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "volné"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "použito"
-
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "Konfigurovat limity stavů"
-
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "Cesta stavu"
-
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "Minimální hodnota"
-
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "Maximální hodnota"
-
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Uložit"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "Při načítání informací o stavu nastal problém."
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr "Při načítání informací o stavu nastal problém."
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
-msgstr "Nejsou k dispozici žádné informace o stavu."
-
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:10
 msgid "Your system is healthy."
 msgstr "Systém je v pořádku."
 

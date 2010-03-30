@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-01 11:44\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-24 15:28\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,53 +13,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/administrator_controller.rb:35 app/views/administrator/index.html.erb:65
+#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "輸入有效的電子郵件地址。"
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "密碼不符。"
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
 msgstr "已經寫入管理員設定。"
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
 msgstr "儲存管理員設定時出錯：%s"
+
+#: app/controllers/administrator_controller.rb:74
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr "設定了郵件別名，但未設定外送郵件伺服器 (%s<i>change</i>%s)。"
 
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "管理員設定"
 
-#: app/views/administrator/index.html.erb:73
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "密碼不符。"
 
-#: app/views/administrator/index.html.erb:74
+#: app/views/administrator/index.html.erb:37
 msgid "A password is required."
 msgstr "需要密碼。"
 
-#: app/views/administrator/index.html.erb:90 app/views/administrator/index.html.erb:94
-#: app/views/administrator/index.html.erb:106
+#: app/views/administrator/index.html.erb:44
+msgid "Weak"
+msgstr "弱"
+
+#: app/views/administrator/index.html.erb:45
+msgid "Normal"
+msgstr "一般"
+
+#: app/views/administrator/index.html.erb:46
+msgid "Medium"
+msgstr "中等"
+
+#: app/views/administrator/index.html.erb:47
+msgid "Strong"
+msgstr "嚴密"
+
+#: app/views/administrator/index.html.erb:48
+msgid "Very Strong"
+msgstr "非常嚴密"
+
+#: app/views/administrator/index.html.erb:65
+msgid "Root User Password Setup"
+msgstr "Root 使用者密碼設定"
+
+#: app/views/administrator/index.html.erb:66
 msgid "Password"
 msgstr "密碼"
 
-#: app/views/administrator/index.html.erb:98 app/views/administrator/index.html.erb:102
-#: app/views/administrator/index.html.erb:111
+#: app/views/administrator/index.html.erb:71
 msgid "Confirm password"
 msgstr "確認密碼"
 
-#: app/views/administrator/index.html.erb:113
-msgid "Save Password"
-msgstr "儲存密碼"
+#: app/views/administrator/index.html.erb:78
+msgid "Root User Mail Setup"
+msgstr "Root 使用者郵件設定"
 
-#: app/views/administrator/index.html.erb:118
+#: app/views/administrator/index.html.erb:80
 msgid "Forward mail to"
 msgstr "轉寄郵件至"
 
-#: app/views/administrator/index.html.erb:120
-msgid "Save Mail"
-msgstr "儲存郵件"
+#: app/views/administrator/index.html.erb:83
+msgid "Save Mail Only"
+msgstr "僅儲存郵件"
 

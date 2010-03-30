@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-01 11:12\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-24 15:11\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,80 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "会话无效，请重新登录。"
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "已超过可用磁盘限制；"
-
-#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:105
 msgid "No data found for showing system status."
 msgstr "找不到显示系统状态的数据。"
 
-#: app/controllers/status_controller.rb:181
-msgid "Limits exceeded for %s"
-msgstr "已超出 %s 限制"
+#: app/controllers/status_controller.rb:134
+msgid "Limits exceeded for "
+msgstr "已超出限制"
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
-msgstr "保存限制失败！"
+#: app/controllers/status_controller.rb:208
+msgid "exceeded"
+msgstr "超出"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:222
+msgid "undercut"
+msgstr "低于"
+
+#: app/controllers/status_controller.rb:313
+msgid "Limits have been written."
+msgstr "限制已写入。"
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "仅数字有效！"
+
+#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "状态"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "磁盘使用情况"
+#: app/views/status/edit.html.erb:47
+msgid "Settings"
+msgstr "设置"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:62
+msgid "undercuts"
+msgstr "低于"
+
+#: app/views/status/edit.html.erb:62
+msgid "exceeds"
+msgstr "超出"
+
+#: app/views/status/index.html.erb:49
+msgid "Show last"
+msgstr "显示最后"
+
+#: app/views/status/index.html.erb:50
+msgid "5 Minutes"
+msgstr "5 分钟"
+
+#: app/views/status/index.html.erb:51
+msgid "15 Minutes"
+msgstr "15 分钟"
+
+#: app/views/status/index.html.erb:52
+msgid "30 Minutes"
+msgstr "30 分钟"
+
+#: app/views/status/index.html.erb:53
+msgid "1 Hour"
+msgstr "1 小时"
+
+#: app/views/status/index.html.erb:54
+msgid "6 Hours"
+msgstr "6 小时"
+
+#: app/views/status/index.html.erb:55
+msgid "12 Hours"
+msgstr "12 小时"
+
+#: app/views/status/index.html.erb:96
 msgid "Edit Limits"
 msgstr "编辑限制"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "后退"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "空闲"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "已用"
-
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "配置状态限制"
-
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "状态路径"
-
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "最小值"
-
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "最大值"
-
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "保存"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "装载状态信息时发生问题。"
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr "装载状态信息时发生问题。"
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
-msgstr "无状态信息可用"
-
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:10
 msgid "Your system is healthy."
 msgstr "您的系统运行状态良好。"
 

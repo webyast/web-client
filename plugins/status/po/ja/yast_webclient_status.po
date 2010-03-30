@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-02 10:44\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-24 14:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,80 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "セッションが無効です。再度ログインしてください。"
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "ディスクの残り容量の制限を超過しました;"
-
-#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:105
 msgid "No data found for showing system status."
 msgstr "システムステータスを表示するためのデータが見つかりません。"
 
-#: app/controllers/status_controller.rb:181
-msgid "Limits exceeded for %s"
-msgstr "%s に対する制限を超過しています"
+#: app/controllers/status_controller.rb:134
+msgid "Limits exceeded for "
+msgstr "制限を超過しています"
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
-msgstr "制限の保存に失敗しました!"
+#: app/controllers/status_controller.rb:208
+msgid "exceeded"
+msgstr "大きすぎます"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:222
+msgid "undercut"
+msgstr "未満"
+
+#: app/controllers/status_controller.rb:313
+msgid "Limits have been written."
+msgstr "制限はすでに保存されています。"
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "数値のみが有効です!"
+
+#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "ステータス"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "ディスクの使用状況"
+#: app/views/status/edit.html.erb:47
+msgid "Settings"
+msgstr "設定"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:62
+msgid "undercuts"
+msgstr "小さすぎます"
+
+#: app/views/status/edit.html.erb:62
+msgid "exceeds"
+msgstr "大きすぎます"
+
+#: app/views/status/index.html.erb:49
+msgid "Show last"
+msgstr "直前の表示"
+
+#: app/views/status/index.html.erb:50
+msgid "5 Minutes"
+msgstr "5分"
+
+#: app/views/status/index.html.erb:51
+msgid "15 Minutes"
+msgstr "15分"
+
+#: app/views/status/index.html.erb:52
+msgid "30 Minutes"
+msgstr "30分"
+
+#: app/views/status/index.html.erb:53
+msgid "1 Hour"
+msgstr "1時間"
+
+#: app/views/status/index.html.erb:54
+msgid "6 Hours"
+msgstr "6時間"
+
+#: app/views/status/index.html.erb:55
+msgid "12 Hours"
+msgstr "12時間"
+
+#: app/views/status/index.html.erb:96
 msgid "Edit Limits"
 msgstr "制限の編集"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "戻る"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "空き"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "使用領域"
-
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "ステータス制限を設定"
-
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "ステータスパス"
-
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "最小値"
-
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "最大値"
-
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "保存"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "ステータス情報を読み込む際に問題が発生しました。"
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr "ステータス情報を読み込む際に問題が発生しました。"
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
-msgstr "ステータス情報がありません"
-
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:10
 msgid "Your system is healthy."
 msgstr "システムは健全な状態です。"
 

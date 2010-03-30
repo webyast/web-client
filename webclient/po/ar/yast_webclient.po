@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-17 08:53\n"
+"POT-Creation-Date: 2010-03-11 15:43+0100\n"
+"PO-Revision-Date: 2010-03-25 08:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,25 +13,133 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:23
+#: app/helpers/application_helper.rb:20
+msgid " or "
+msgstr " أو "
+
+#: app/helpers/application_helper.rb:24
+msgid " - "
+msgstr " - "
+
+#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "الخلف"
+
+#: app/helpers/application_helper.rb:46
+msgid "Next"
+msgstr "التالي"
+
+#: app/helpers/application_helper.rb:47
+msgid "Save"
+msgstr "حفظ"
+
+#: app/helpers/application_helper.rb:48
+msgid "Finish"
+msgstr "إنهاء"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
+
+#: app/helpers/view_helpers/html_helper.rb:133
+msgid "Unknown error"
+msgstr "خطأ غير معروف"
+
+#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "لا تتوفر أية معلومات."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "حدثت مشكلة عند استرداد المعلومات من الخادم."
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+msgid "Hide Details"
+msgstr "تفاصيل الحلقة"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+msgid "Show Details"
+msgstr "اظهر التفاصيل"
+
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "إضافة"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "تحرير"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "حذف"
+
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr "يجب تحديد المضيف"
+
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr "لم يتم تحديد الدخول"
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr "لم يتم تحديد كلمة السر"
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "قام المضيف بحظر المستخدم %s. يتعذر الدخول حتى %s"
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr "دخول غير صحيح. تحقق من اسم المستخدم وكلمة السر."
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr "تم إخراجك."
+
+#: app/controllers/application_controller.rb:24
 msgid "Session timeout"
 msgstr "مهلة جلسة العمل"
 
-#: app/controllers/application_controller.rb:57
+#: app/controllers/application_controller.rb:64
 msgid "You must accept all EULAs before using this product!"
 msgstr "يجب قبول كافة اتفاقيات EULA قبل استخدام هذا المنتج!"
 
-#: app/controllers/application_controller.rb:61
+#: app/controllers/application_controller.rb:68
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "تعذرت إعادة التوجيه إلى EULA. تأكد من تثبيت حزمة yast2-webclient-eulas"
 
-#: app/controllers/application_controller.rb:115
+#: app/controllers/application_controller.rb:123
 msgid "Please login to continue"
 msgstr "الرجاء الدخول للمتابعة"
 
-#: app/controllers/application_controller.rb:122
+#: app/controllers/application_controller.rb:130
 msgid "You must logout before you can login"
 msgstr "يجب الخروج أولاً حتى يتسنى لك الدخول"
+
+#: app/controllers/application_controller.rb:204
+msgid "can't be blank"
+msgstr "لا يمكن أن يكون فارغًا"
+
+#: app/controllers/application_controller.rb:205
+msgid "is out of allowed values"
+msgstr "خارج نطاق القيم المسموح بها"
+
+#: app/controllers/application_controller.rb:206
+msgid "can't be empty"
+msgstr "لا يمكن أن يكون عنوان URL فارغًا."
+
+#: app/controllers/application_controller.rb:207
+msgid "is invalid"
+msgstr "غير صالح"
+
+#: app/controllers/application_controller.rb:222
+msgid "Invalid parameters:"
+msgstr "معلمات غير صالحة:"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -52,30 +160,6 @@ msgstr "لم يتم العثور على المضيف '%s'."
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
 msgstr "الرجاء التحقق من عنوان URL للمضيف مرة أخرى."
-
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr "يجب تحديد المضيف"
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr "لم يتم تحديد الدخول"
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr "لم يتم تحديد كلمة السر"
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "قام المضيف بحظر المستخدم %s. يتعذر الدخول حتى %s"
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr "دخول غير صحيح. تحقق من اسم المستخدم وكلمة السر."
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr "تم إخراجك."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -129,61 +213,33 @@ msgstr "المضيف|تم الإنشاء في"
 msgid "Host|Updated at"
 msgstr "المضيف|تم التحديث في"
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr " أو "
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "هذا الأمر محير حقًا..."
 
-#: app/helpers/application_helper.rb:21 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "إلغاء"
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but there are some problems."
+msgstr "إننا نأسف لذلك، لكن حدثت بعض المشاكل."
 
-#: app/helpers/application_helper.rb:29
-msgid "Next"
-msgstr "التالي"
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "المشكلة:"
 
-#: app/helpers/application_helper.rb:30
-msgid "Save"
-msgstr "حفظ"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "الرجاء تقديم تقرير بالخطأ حتى يتسنى لنا حل هذه المشكلة!."
 
-#: app/helpers/application_helper.rb:31
-msgid "Finish"
-msgstr "إنهاء"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "(report link)"
+msgstr "(ارتباط التقرير)"
 
-#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "إضافة"
+#: app/views/shared/exception_trap.html.erb:19
+msgid "Don't forget to include the bug details."
+msgstr "لا تنس تضمين تفاصيل الخطأ."
 
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "تحرير"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "حذف"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "هل أنت متأكد؟"
-
-#: app/helpers/view_helpers/html_helper.rb:132
-msgid "Unknown error"
-msgstr "خطأ غير معروف"
-
-#: app/helpers/view_helpers/html_helper.rb:136 app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "لا تتوفر أية معلومات."
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr "حدثت مشكلة عند استرداد المعلومات من الخادم."
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "الرجاء اختيار خدمة:"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr "هل تريد حذف المضيف %s بالفعل؟"
+#: app/views/shared/backendexception_trap.html.erb:4
+msgid "Problem occured on target machine."
+msgstr "حدثت مشكلة في الجهاز الهدف."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -209,13 +265,13 @@ msgstr "الوصف"
 msgid "Ok"
 msgstr "موافق"
 
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "الخلف"
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "الرجاء اختيار خدمة:"
 
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "الفهرس"
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "هل تريد حذف المضيف %s بالفعل؟"
 
 #: app/views/hosts/new.html.erb:4
 msgid "New WebYaST Host"
@@ -225,89 +281,9 @@ msgstr "مضيف WebYaST الجديد"
 msgid "Create"
 msgstr "إنشاء"
 
-#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
-msgid "This is embarrasing...."
-msgstr "هذا الأمر محير حقًا..."
-
-#: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "نأسف لذلك، ولكن لا يزال WebYaST في المراحل الأولية وتوجد بعض المشكلات."
-
-#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
-msgid "Problem:"
-msgstr "المشكلة:"
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "Please Report a bug so we can fix the problem!."
-msgstr "الرجاء تقديم تقرير بالخطأ حتى يتسنى لنا حل هذه المشكلة!."
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "(report link)"
-msgstr "(ارتباط التقرير)"
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "Don't forget to include the bug details."
-msgstr "لا تنس تضمين تفاصيل الخطأ."
-
-#: app/views/shared/backendexception_trap.html.erb:4
-msgid "Problem occured on target machine."
-msgstr "حدثت مشكلة في الجهاز الهدف."
-
-#: app/views/layouts/main.rhtml:34
-msgid "WebYaST"
-msgstr "WebYaST"
-
-#: app/views/layouts/main.rhtml:48
-msgid "My Appliance"
-msgstr "جهازي"
-
-#: app/views/layouts/main.rhtml:56
-msgid "Connected host:"
-msgstr "المضيف المتصل:"
-
-#: app/views/layouts/main.rhtml:57
-msgid "User:"
-msgstr "المستخدم:"
-
-#: app/views/layouts/main.rhtml:60
-msgid "Control panel"
-msgstr "لوحة التحكم"
-
-#: app/views/layouts/main.rhtml:61
-msgid "Logout"
-msgstr "خروج"
-
-#: app/views/layouts/main.rhtml:94
-msgid "...Wait..."
-msgstr "...انتظار..."
-
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
-msgid "Login"
-msgstr "دخول"
-
-#: app/views/sessions/new.rhtml:6
-msgid "Enter login credentials for host %s."
-msgstr "أدخل صلاحيات الدخول للمضيف %s."
-
-#: app/views/sessions/new.rhtml:10
-msgid "Username:"
-msgstr "اسم المستخدم:"
-
-#: app/views/sessions/new.rhtml:13
-msgid "Password:"
-msgstr "كلمة السر:"
-
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "إعداد النظام الأساسي"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "لم يكتمل إعداد النظام. الرجاء المتابعة لإعداد الوحدات النمطية."
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "إعداد النظام"
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "الفهرس"
 
 #: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:61
 msgid "Configuration"
@@ -353,9 +329,69 @@ msgstr "تحميل معلومات النظام"
 msgid "Status plugin is not installed."
 msgstr "لم يتم تثبيت أداة الحالة الإضافية."
 
-#: app/views/controlpanel/index.rhtml:93
+#: app/views/controlpanel/index.rhtml:91
 msgid "Show all modules"
 msgstr "إظهار كافة الوحدات النمطية"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "إعداد النظام الأساسي"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr "لم يكتمل إعداد النظام. الرجاء المتابعة لإعداد الوحدات النمطية."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "إعداد النظام"
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:48
+msgid "My Appliance"
+msgstr "جهازي"
+
+#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+msgid "Language:"
+msgstr "اللغة"
+
+#: app/views/layouts/main.rhtml:60
+msgid "Connected host:"
+msgstr "المضيف المتصل:"
+
+#: app/views/layouts/main.rhtml:61
+msgid "User:"
+msgstr "المستخدم:"
+
+#: app/views/layouts/main.rhtml:64
+msgid "Control panel"
+msgstr "لوحة التحكم"
+
+#: app/views/layouts/main.rhtml:65
+msgid "Logout"
+msgstr "خروج"
+
+#: app/views/layouts/main.rhtml:100
+msgid "...Wait..."
+msgstr "...انتظار..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "دخول"
+
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr "أدخل صلاحيات الدخول للمضيف %s."
+
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "اسم المستخدم:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "كلمة السر:"
 
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
@@ -366,30 +402,34 @@ msgid "Service %s is not running on the target machine"
 msgstr "خدمة %s ليست قيد التشغيل في الجهاز الهدف"
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr "إعداد إذن مقطوع على خدمة rest. يمكن إصلاحه بواسطة اسكربت grantwebyastrights. "
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "لم يتم منح إذن %s للمستخدم %s"
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "استثناء Policy kit للمستخدم %s والإذن %s (رسالة غير مترجمة): %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "تم تسجيل خروج المستخدم من الجهاز الهدف. الرجاء الدخول مرة أخرى."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "النظام الهدف غير متناسق: الملف مفقود أو تالف %s"
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "لا يوجد خادم محدد مسبقًا لـ ntp على /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:28
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "حدث خطأ أثناء مزامنة ntp: %s"
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "حدث خطأ أثناء حفظ إعدادات المسؤول: %s"
 

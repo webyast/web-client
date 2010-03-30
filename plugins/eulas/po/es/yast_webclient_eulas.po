@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_eulas\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-15 13:51\n"
+"POT-Creation-Date: 2010-03-11 15:47+0100\n"
+"PO-Revision-Date: 2010-03-24 12:28\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,36 +13,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/eulas_controller.rb:78
+#: app/controllers/eulas_controller.rb:72
 msgid "You cannot reject a license once it has been accepted!"
 msgstr "No es posible rechazar una licencia una vez que se ha aceptado."
 
-#: app/controllers/eulas_controller.rb:81
+#: app/controllers/eulas_controller.rb:75
 msgid "You must accept all licences before using this product!"
 msgstr "Debe aceptar todas las licencias antes de usar este producto."
 
-#: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
-#: app/views/eulas/no_licenses.erb:1
+#: app/views/eulas/no_licenses.erb:1 app/views/eulas/show.html.erb:2 app/views/eulas/all_accepted.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "Aceptar acuerdo de licencia de usuario final"
-
-#: app/views/eulas/show.html.erb:4
-msgid "Available translations:"
-msgstr "Traducciones disponibles:"
-
-#: app/views/eulas/show.html.erb:22
-msgid "Yes, I agree to the license agreement."
-msgstr "Sí, acepto el acuerdo de licencia."
-
-#: app/views/eulas/show.html.erb:28
-msgid "No, I do not agree."
-msgstr "No, no lo acepto."
-
-#: app/views/eulas/all_accepted.erb:2
-msgid "All licenses have already been accepted"
-msgstr "Ya se han aceptado todas las licencias"
 
 #: app/views/eulas/no_licenses.erb:2
 msgid "There are no licenses to accept."
 msgstr "No hay licencias que aceptar."
+
+#: app/views/eulas/show.html.erb:8
+msgid "Available translations:"
+msgstr "Traducciones disponibles:"
+
+#: app/views/eulas/show.html.erb:26
+msgid "Yes, I agree to the license agreement."
+msgstr "Sí, acepto el acuerdo de licencia."
+
+#: app/views/eulas/show.html.erb:32
+msgid "No, I do not agree."
+msgstr "No, no lo acepto."
+
+#: app/views/eulas/show.html.erb:43
+msgid "Back"
+msgstr "Atrás"
+
+#: app/views/eulas/all_accepted.erb:2
+msgid "All licenses have already been accepted"
+msgstr "Ya se han aceptado todas las licencias"
 

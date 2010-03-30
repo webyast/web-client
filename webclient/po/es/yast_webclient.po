@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-15 13:51\n"
+"POT-Creation-Date: 2010-03-11 15:43+0100\n"
+"PO-Revision-Date: 2010-03-24 12:28\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,25 +13,133 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:23
+#: app/helpers/application_helper.rb:20
+msgid " or "
+msgstr " o "
+
+#: app/helpers/application_helper.rb:24
+msgid " - "
+msgstr " - "
+
+#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Atrás"
+
+#: app/helpers/application_helper.rb:46
+msgid "Next"
+msgstr "Siguiente"
+
+#: app/helpers/application_helper.rb:47
+msgid "Save"
+msgstr "Guardar"
+
+#: app/helpers/application_helper.rb:48
+msgid "Finish"
+msgstr "Finalizar"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr "¿Seguro?"
+
+#: app/helpers/view_helpers/html_helper.rb:133
+msgid "Unknown error"
+msgstr "Error desconocido"
+
+#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "No hay información disponible."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Error al recuperar información desde el servidor"
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+msgid "Hide Details"
+msgstr "Ocultar detalles"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+msgid "Show Details"
+msgstr "Mostrar detalles"
+
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Añadir"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Editar"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Suprimir"
+
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr "Debe especificar el host."
+
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr "No se ha especificado una entrada."
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr "No se ha especificado ninguna contraseña."
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "El host ha bloqueado al usuario %s. No podrá entrar hasta %s"
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr "Entrada incorrecta. Verifique su nombre de usuario y contraseña."
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr "La sesión ha finalizado."
+
+#: app/controllers/application_controller.rb:24
 msgid "Session timeout"
 msgstr "Tiempo límite de sesión"
 
-#: app/controllers/application_controller.rb:57
+#: app/controllers/application_controller.rb:64
 msgid "You must accept all EULAs before using this product!"
 msgstr "Debe aceptar todos los acuerdos licencia de usuario final antes de usar este producto."
 
-#: app/controllers/application_controller.rb:61
+#: app/controllers/application_controller.rb:68
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "No es posible redirigir al acuerdo de licencia de usuario final. Asegúrese de que el paquete yast2-webclient-eulas esté instalado."
 
-#: app/controllers/application_controller.rb:115
+#: app/controllers/application_controller.rb:123
 msgid "Please login to continue"
 msgstr "Entre para continuar."
 
-#: app/controllers/application_controller.rb:122
+#: app/controllers/application_controller.rb:130
 msgid "You must logout before you can login"
 msgstr "Debe salir de la sesión para poder entrar."
+
+#: app/controllers/application_controller.rb:204
+msgid "can't be blank"
+msgstr "no puede estar vacío"
+
+#: app/controllers/application_controller.rb:205
+msgid "is out of allowed values"
+msgstr "está fuera de los valores permitidos"
+
+#: app/controllers/application_controller.rb:206
+msgid "can't be empty"
+msgstr "no puede estar vacío"
+
+#: app/controllers/application_controller.rb:207
+msgid "is invalid"
+msgstr "no es válido"
+
+#: app/controllers/application_controller.rb:222
+msgid "Invalid parameters:"
+msgstr "Parámetros no válidos:"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -52,30 +160,6 @@ msgstr "No es posible encontrar el host '%s'."
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
 msgstr "Vuelva a comprobar la dirección URL del host."
-
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr "Debe especificar el host."
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr "No se ha especificado una entrada."
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr "No se ha especificado ninguna contraseña."
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "El host ha bloqueado al usuario %s. No podrá entrar hasta %s"
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr "Entrada incorrecta. Verifique su nombre de usuario y contraseña."
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr "La sesión ha finalizado."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -129,61 +213,33 @@ msgstr "Host|Creado el"
 msgid "Host|Updated at"
 msgstr "Host|Actualizado el"
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr " o "
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "Esto es embarazoso...."
 
-#: app/helpers/application_helper.rb:21 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Cancelar"
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but there are some problems."
+msgstr "Lo sentimos, pero hay problemas."
 
-#: app/helpers/application_helper.rb:29
-msgid "Next"
-msgstr "Siguiente"
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "Problema:"
 
-#: app/helpers/application_helper.rb:30
-msgid "Save"
-msgstr "Guardar"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "Cree un informe del error para que podamos solucionar el problema."
 
-#: app/helpers/application_helper.rb:31
-msgid "Finish"
-msgstr "Finalizar"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "(report link)"
+msgstr "(enlace del informe)"
 
-#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Añadir"
+#: app/views/shared/exception_trap.html.erb:19
+msgid "Don't forget to include the bug details."
+msgstr "No olvide incluir los detalles del error."
 
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Editar"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Suprimir"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "¿Seguro?"
-
-#: app/helpers/view_helpers/html_helper.rb:132
-msgid "Unknown error"
-msgstr "Error desconocido"
-
-#: app/helpers/view_helpers/html_helper.rb:136 app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "No hay información disponible."
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr "Error al recuperar información desde el servidor"
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "Elija un servicio:"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr "¿Seguro que desea suprimir el host %s?"
+#: app/views/shared/backendexception_trap.html.erb:4
+msgid "Problem occured on target machine."
+msgstr "El problema se ha producido en la máquina de destino."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -209,13 +265,13 @@ msgstr "Descripción"
 msgid "Ok"
 msgstr "Aceptar"
 
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Atrás"
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Elija un servicio:"
 
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Índice"
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "¿Seguro que desea suprimir el host %s?"
 
 #: app/views/hosts/new.html.erb:4
 msgid "New WebYaST Host"
@@ -225,89 +281,9 @@ msgstr "Nuevo host WebYaST"
 msgid "Create"
 msgstr "Crear"
 
-#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
-msgid "This is embarrasing...."
-msgstr "Esto es embarazoso...."
-
-#: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "Lo sentimos, pero WebYaST está todavía en estado alfa y hay algunos problemas."
-
-#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
-msgid "Problem:"
-msgstr "Problema:"
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "Please Report a bug so we can fix the problem!."
-msgstr "Cree un informe del error para que podamos solucionar el problema."
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "(report link)"
-msgstr "(enlace del informe)"
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "Don't forget to include the bug details."
-msgstr "No olvide incluir los detalles del error."
-
-#: app/views/shared/backendexception_trap.html.erb:4
-msgid "Problem occured on target machine."
-msgstr "El problema se ha producido en la máquina de destino."
-
-#: app/views/layouts/main.rhtml:34
-msgid "WebYaST"
-msgstr "WebYaST"
-
-#: app/views/layouts/main.rhtml:48
-msgid "My Appliance"
-msgstr "Mi dispositivo"
-
-#: app/views/layouts/main.rhtml:56
-msgid "Connected host:"
-msgstr "Host conectado:"
-
-#: app/views/layouts/main.rhtml:57
-msgid "User:"
-msgstr "Usuario:"
-
-#: app/views/layouts/main.rhtml:60
-msgid "Control panel"
-msgstr "Panel de control"
-
-#: app/views/layouts/main.rhtml:61
-msgid "Logout"
-msgstr "Salir de la sesión"
-
-#: app/views/layouts/main.rhtml:94
-msgid "...Wait..."
-msgstr "...Espere..."
-
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
-msgid "Login"
-msgstr "Entrar"
-
-#: app/views/sessions/new.rhtml:6
-msgid "Enter login credentials for host %s."
-msgstr "Introduzca las credenciales de entrada para el host %s."
-
-#: app/views/sessions/new.rhtml:10
-msgid "Username:"
-msgstr "Nombre de usuario:"
-
-#: app/views/sessions/new.rhtml:13
-msgid "Password:"
-msgstr "Contraseña:"
-
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "Configuración básica del sistema"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "La configuración del sistema no se ha completado. Continúe configurando los módulos."
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Configurar el sistema"
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Índice"
 
 #: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:61
 msgid "Configuration"
@@ -353,9 +329,69 @@ msgstr "Cargando información del sistema"
 msgid "Status plugin is not installed."
 msgstr "El módulo auxiliar (plug-in) de estado no se ha instalado."
 
-#: app/views/controlpanel/index.rhtml:93
+#: app/views/controlpanel/index.rhtml:91
 msgid "Show all modules"
 msgstr "Mostrar todos los módulos"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Configuración básica del sistema"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr "La configuración inicial del sistema no se ha completado. Continúe configurando los módulos."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "Configurar el sistema"
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:48
+msgid "My Appliance"
+msgstr "Mi dispositivo"
+
+#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+msgid "Language:"
+msgstr "Idioma:"
+
+#: app/views/layouts/main.rhtml:60
+msgid "Connected host:"
+msgstr "Host conectado:"
+
+#: app/views/layouts/main.rhtml:61
+msgid "User:"
+msgstr "Usuario:"
+
+#: app/views/layouts/main.rhtml:64
+msgid "Control panel"
+msgstr "Panel de control"
+
+#: app/views/layouts/main.rhtml:65
+msgid "Logout"
+msgstr "Salir de la sesión"
+
+#: app/views/layouts/main.rhtml:100
+msgid "...Wait..."
+msgstr "...Espere..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "Entrar"
+
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr "Introduzca las credenciales de entrada para el host %s."
+
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "Nombre de usuario:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "Contraseña:"
 
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
@@ -366,30 +402,34 @@ msgid "Service %s is not running on the target machine"
 msgstr "El servicio %s no se está ejecutando en la máquina de destino."
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr "Configuración de permiso defectuosa en servicio REST. El guión grantwebyastrights lo puede arreglar."
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "El permiso %s no se le ha concedido al usuario %s."
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Excepción de kit de directivas para el usuario %s y permiso %s (mensaje sin traducir): %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "No hay ningún usuario conectado a la máquina de destino. Entre de nuevo."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "El sistema destino no es coherente: no se encuentra el archivo %s o está dañado"
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "No hay servidor ntp predefinido en /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:28
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Error al sincronizar ntp: %s"
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Error al guardar los valores de configuración del administrador: %s"
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-02 11:19\n"
+"POT-Creation-Date: 2010-03-11 15:43+0100\n"
+"PO-Revision-Date: 2010-03-25 09:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,25 +13,133 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/application_controller.rb:23
+#: app/helpers/application_helper.rb:20
+msgid " or "
+msgstr " eller "
+
+#: app/helpers/application_helper.rb:24
+msgid " - "
+msgstr " - "
+
+#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Tillbaka"
+
+#: app/helpers/application_helper.rb:46
+msgid "Next"
+msgstr "Nästa"
+
+#: app/helpers/application_helper.rb:47
+msgid "Save"
+msgstr "Spara"
+
+#: app/helpers/application_helper.rb:48
+msgid "Finish"
+msgstr "Slutför"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr "Är du säker?"
+
+#: app/helpers/view_helpers/html_helper.rb:133
+msgid "Unknown error"
+msgstr "Okänt fel"
+
+#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "Det finns ingen tillgänglig information"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Det inträffade ett problem när informationen hämtades från servern."
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+msgid "Hide Details"
+msgstr "Dölj information"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+msgid "Show Details"
+msgstr "Visa information"
+
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Lägg till"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Redigera"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Ta bort"
+
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr "Du måste ange värden"
+
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr "Ingen inloggning har angetts"
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr "Inget lösenord har angetts"
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Värden har blockerat användaren %s. Användaren kan inte logga in tills %s"
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr "Felaktig inloggning. Kontrollera användarnamn och lösenord."
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr "Du är utloggad."
+
+#: app/controllers/application_controller.rb:24
 msgid "Session timeout"
 msgstr "Sessionstimeout"
 
-#: app/controllers/application_controller.rb:57
+#: app/controllers/application_controller.rb:64
 msgid "You must accept all EULAs before using this product!"
 msgstr "Du måste acceptera alla EULA-avtal innan du kan använda produkten."
 
-#: app/controllers/application_controller.rb:61
+#: app/controllers/application_controller.rb:68
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "Det går inte att dirigera till EULA. Kontrollera att paketet yast2-webclient-eulas är installerat"
 
-#: app/controllers/application_controller.rb:115
+#: app/controllers/application_controller.rb:123
 msgid "Please login to continue"
 msgstr "Logga in om du vill fortsätta"
 
-#: app/controllers/application_controller.rb:122
+#: app/controllers/application_controller.rb:130
 msgid "You must logout before you can login"
 msgstr "Du måsta logga ut innan du kan logga in"
+
+#: app/controllers/application_controller.rb:204
+msgid "can't be blank"
+msgstr "får inte vara tomt"
+
+#: app/controllers/application_controller.rb:205
+msgid "is out of allowed values"
+msgstr "är utanför intervallet för tillåtna värden"
+
+#: app/controllers/application_controller.rb:206
+msgid "can't be empty"
+msgstr "kan inte vara tomt"
+
+#: app/controllers/application_controller.rb:207
+msgid "is invalid"
+msgstr "är ogiltig"
+
+#: app/controllers/application_controller.rb:222
+msgid "Invalid parameters:"
+msgstr "Ogiltiga parametrar:"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -52,30 +160,6 @@ msgstr "Värden %s hittades inte."
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
 msgstr "Kontrollera värd-URL."
-
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr "Du måste ange värden"
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr "Ingen inloggning har angetts"
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr "Inget lösenord har angetts"
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "Värden har blockerat användaren %s. Användaren kan inte logga in tills %s"
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr "Felaktig inloggning. Kontrollera användarnamn och lösenord."
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr "Du är utloggad."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -129,61 +213,33 @@ msgstr "Värd|Skapad den"
 msgid "Host|Updated at"
 msgstr "Värd|Uppdaterad den"
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr " eller "
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "Det här är lite pinsamt..."
 
-#: app/helpers/application_helper.rb:21 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Avbryt"
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but there are some problems."
+msgstr "Tyvärr har det uppstått vissa problem."
 
-#: app/helpers/application_helper.rb:29
-msgid "Next"
-msgstr "Nästa"
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "Problem:"
 
-#: app/helpers/application_helper.rb:30
-msgid "Save"
-msgstr "Spara"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "Hjälp oss genom att rapportera buggen så att vi kan åtgärda problemet."
 
-#: app/helpers/application_helper.rb:31
-msgid "Finish"
-msgstr "Slutför"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "(report link)"
+msgstr "(rapportlänk)"
 
-#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Lägg till"
+#: app/views/shared/exception_trap.html.erb:19
+msgid "Don't forget to include the bug details."
+msgstr "Glöm inte att ange information om buggen."
 
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Redigera"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Ta bort"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "Är du säker?"
-
-#: app/helpers/view_helpers/html_helper.rb:132
-msgid "Unknown error"
-msgstr "Okänt fel"
-
-#: app/helpers/view_helpers/html_helper.rb:136 app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "Det finns ingen tillgänglig information"
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr "Det inträffade ett problem när informationen hämtades från servern."
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "Välj en tjänst:"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr "Vill du ta bort värden %s?"
+#: app/views/shared/backendexception_trap.html.erb:4
+msgid "Problem occured on target machine."
+msgstr "Problemet inträffade på målmaskinen."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -209,13 +265,13 @@ msgstr "Beskrivning"
 msgid "Ok"
 msgstr "OK"
 
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Tillbaka"
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Välj en tjänst:"
 
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Index"
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "Vill du ta bort värden %s?"
 
 #: app/views/hosts/new.html.erb:4
 msgid "New WebYaST Host"
@@ -225,89 +281,9 @@ msgstr "Ny WebYaST-värd"
 msgid "Create"
 msgstr "Skapa"
 
-#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
-msgid "This is embarrasing...."
-msgstr "Det här är lite pinsamt..."
-
-#: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "Vi ber om ursäkt men WebYaST är en alfaversion och kan innehålla problem."
-
-#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
-msgid "Problem:"
-msgstr "Problem:"
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "Please Report a bug so we can fix the problem!."
-msgstr "Hjälp oss genom att rapportera buggen så att vi kan åtgärda problemet."
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "(report link)"
-msgstr "(rapportlänk)"
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "Don't forget to include the bug details."
-msgstr "Glöm inte att ange information om buggen."
-
-#: app/views/shared/backendexception_trap.html.erb:4
-msgid "Problem occured on target machine."
-msgstr "Problemet inträffade på målmaskinen."
-
-#: app/views/layouts/main.rhtml:34
-msgid "WebYaST"
-msgstr "WebYaST"
-
-#: app/views/layouts/main.rhtml:48
-msgid "My Appliance"
-msgstr "Min enhet"
-
-#: app/views/layouts/main.rhtml:56
-msgid "Connected host:"
-msgstr "Ansluten till värden:"
-
-#: app/views/layouts/main.rhtml:57
-msgid "User:"
-msgstr "Användare:"
-
-#: app/views/layouts/main.rhtml:60
-msgid "Control panel"
-msgstr "Kontrollpanel"
-
-#: app/views/layouts/main.rhtml:61
-msgid "Logout"
-msgstr "Logga ut"
-
-#: app/views/layouts/main.rhtml:94
-msgid "...Wait..."
-msgstr "...vänta..."
-
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
-msgid "Login"
-msgstr "Logga in"
-
-#: app/views/sessions/new.rhtml:6
-msgid "Enter login credentials for host %s."
-msgstr "Ange inloggningsinformationen för värden %s."
-
-#: app/views/sessions/new.rhtml:10
-msgid "Username:"
-msgstr "Användarnamn:"
-
-#: app/views/sessions/new.rhtml:13
-msgid "Password:"
-msgstr "Lösenord:"
-
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "Grundläggande systeminstallation"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "Systeminstallationen slutfördes inte. Fortsätt att installera modulerna."
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Installera systemet"
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Index"
 
 #: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:61
 msgid "Configuration"
@@ -353,9 +329,69 @@ msgstr "Läser in systeminformation"
 msgid "Status plugin is not installed."
 msgstr "Statusinsticksprogrammet är inte installerat."
 
-#: app/views/controlpanel/index.rhtml:93
+#: app/views/controlpanel/index.rhtml:91
 msgid "Show all modules"
 msgstr "Visa alla moduler"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Grundläggande systeminstallation"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr "Systeminstallationen slutfördes inte. Fortsätt att installera modulerna."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "Installera systemet"
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:48
+msgid "My Appliance"
+msgstr "Min enhet"
+
+#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+msgid "Language:"
+msgstr "Språk:"
+
+#: app/views/layouts/main.rhtml:60
+msgid "Connected host:"
+msgstr "Ansluten till värden:"
+
+#: app/views/layouts/main.rhtml:61
+msgid "User:"
+msgstr "Användare:"
+
+#: app/views/layouts/main.rhtml:64
+msgid "Control panel"
+msgstr "Kontrollpanel"
+
+#: app/views/layouts/main.rhtml:65
+msgid "Logout"
+msgstr "Logga ut"
+
+#: app/views/layouts/main.rhtml:100
+msgid "...Wait..."
+msgstr "...vänta..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "Logga in"
+
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr "Ange inloggningsinformationen för värden %s."
+
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "Användarnamn:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "Lösenord:"
 
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
@@ -366,30 +402,34 @@ msgid "Service %s is not running on the target machine"
 msgstr "Tjänsten %s körs inte på målmaskinen"
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr "En behörighetskonfiguration för resttjänsten avbröts. Detta kan rättas till med skriptet grantwebyastrights."
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "Behörigheten %s har inte beviljats för användaren %s"
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "PolicyKit-undantag för användaren %s och behörigheten %s (ej översatt meddelande): %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "En användare är utloggad från målmaskinen. Logga in igen."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Målsystemet är inkonsekvent: Saknad eller korrupt fil %s"
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Det finns ingen fördefinierad ntp-server vid /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:28
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Ett fel inträffade vid ntp-synkronisering: %s"
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Ett fel inträffade när administratörsinställningarna sparades: %s"
 

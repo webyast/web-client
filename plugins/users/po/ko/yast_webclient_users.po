@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-01 09:34\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 07:52\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,107 +13,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "세션이 잘못되었습니다. 다시 로그인하십시오."
-
-#: app/controllers/users_controller.rb:144
+#: app/controllers/users_controller.rb:160
 msgid "User <i>%s</i> was successfully created."
 msgstr "사용자 <i>%s</i>이(가) 성공적으로 생성되었습니다."
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "비어 있는 UID 값"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID: 1000보다 크거나 같은 값은 로컬 사용자의 경우에만 유효합니다."
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:204
 msgid "User <i>%s</i> was successfully updated."
 msgstr "사용자 <i>%s</i>이(가) 성공적으로 업데이트되었습니다."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:225
 msgid "User <i>%s</i> was successfully removed."
 msgstr "사용자 <i>%s</i>이(가) 성공적으로 제거되었습니다."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:227
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "오류: 사용자 <i>%s</i>을(를) 제거할 수 없습니다."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
+#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
+msgid "Weak"
+msgstr "약함"
+
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
+msgid "Normal"
+msgstr "일반"
+
+#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
+msgid "Medium"
+msgstr "보통"
+
+#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
+msgid "Strong"
+msgstr "강함"
+
+#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
+msgid "Very Strong"
+msgstr "매우 강함"
+
+#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46 app/views/users/new.html.erb:49
+msgid "Local Users"
 msgstr "로컬 사용자"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "로그인"
-
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11 app/views/users/new.html.erb:8
-msgid "Full Name"
-msgstr "전체 이름"
-
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "편집"
-
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[새 사용자]</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43 app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "뒤로"
-
-#: app/views/users/edit.html.erb:1
+#: app/views/users/edit.html.erb:83
 msgid "Edit user %s"
 msgstr "사용자 %s 편집"
 
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "그룹"
+#: app/views/users/edit.html.erb:93
+msgid "Login Settings"
+msgstr "로그인 설정"
 
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "기본 그룹"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "홈 디렉토리"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "로그인 셸"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
 msgid "Login Name"
 msgstr "로그인 이름"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "UID 번호"
+#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
+msgid "Full Name"
+msgstr "전체 이름"
 
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
 msgid "Password"
 msgstr "비밀번호"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "업데이트"
+#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
+msgid "Confirm Password"
+msgstr "비밀번호 확인"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr "새 사용자"
+#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120 app/views/users/new.html.erb:84
+msgid "Groups"
+msgstr "그룹"
 
-#: app/views/users/new.html.erb:16
+#: app/views/users/edit.html.erb:126
+msgid "Default Group"
+msgstr "기본 그룹"
+
+#: app/views/users/edit.html.erb:139
+msgid "Advanced"
+msgstr "고급"
+
+#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+msgid "Home Directory"
+msgstr "홈 디렉토리"
+
+#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+msgid "Login Shell"
+msgstr "로그인 셸"
+
+#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+msgid "UID Number"
+msgstr "UID 번호"
+
+#: app/views/users/index.html.erb:32
+msgid "Type user name or login ..."
+msgstr "사용자 이름 또는 로그인 입력..."
+
+#: app/views/users/index.html.erb:35
+msgid "Filter:"
+msgstr "필터:"
+
+#: app/views/users/index.html.erb:78
+msgid "New User..."
+msgstr "새 사용자..."
+
+#: app/views/users/new.html.erb:49
+msgid "Add new user"
+msgstr "새 사용자 추가"
+
+#: app/views/users/new.html.erb:90
 msgid "Default Group (GID)"
 msgstr "기본 그룹(GID)"
 
-#: app/views/users/new.html.erb:24
+#: app/views/users/new.html.erb:113
 msgid "Do not create home directory"
 msgstr "홈 디렉토리를 생성하지 않음"
-
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "생성"
 

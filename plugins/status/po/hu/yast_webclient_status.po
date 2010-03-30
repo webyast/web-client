@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-10 15:10+0100\n"
-"PO-Revision-Date: 2010-03-11 11:24+0100\n"
+"POT-Creation-Date: 2010-03-18 14:33+0100\n"
+"PO-Revision-Date: 2010-03-24 15:45+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,23 +14,23 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:105
+#: app/controllers/status_controller.rb:116
 msgid "No data found for showing system status."
 msgstr "Nem található adat a rendszerállapot megjelenítéséhez."
 
-#: app/controllers/status_controller.rb:134
+#: app/controllers/status_controller.rb:147
 msgid "Limits exceeded for "
 msgstr "Ennek a határértéknek a tállépése: "
 
-#: app/controllers/status_controller.rb:208
+#: app/controllers/status_controller.rb:253
 msgid "exceeded"
 msgstr "túllépett"
 
-#: app/controllers/status_controller.rb:222
+#: app/controllers/status_controller.rb:267
 msgid "undercut"
 msgstr "alatti"
 
-#: app/controllers/status_controller.rb:313
+#: app/controllers/status_controller.rb:369
 msgid "Limits have been written."
 msgstr "A határértékek mentése befejeződött."
 
@@ -38,59 +38,51 @@ msgstr "A határértékek mentése befejeződött."
 msgid "Only numbers are valid !"
 msgstr "Csak a számok érvényesek !"
 
-#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
 msgid "Status"
 msgstr "Állapot"
 
-#: app/views/status/edit.html.erb:47
+#: app/views/status/edit.html.erb:51
 msgid "Settings"
 msgstr "Beállítások"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "undercuts"
 msgstr "alattiak"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "exceeds"
 msgstr "túllépettek"
 
-#: app/views/status/edit.html.erb:87
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:53
 msgid "Show last"
 msgstr "Utolsó megjelenítése"
 
-#: app/views/status/index.html.erb:50
+#: app/views/status/index.html.erb:54
 msgid "5 Minutes"
 msgstr "5 perc"
 
-#: app/views/status/index.html.erb:51
+#: app/views/status/index.html.erb:55
 msgid "15 Minutes"
 msgstr "15 perc"
 
-#: app/views/status/index.html.erb:52
+#: app/views/status/index.html.erb:56
 msgid "30 Minutes"
 msgstr "30 perc"
 
-#: app/views/status/index.html.erb:53
+#: app/views/status/index.html.erb:57
 msgid "1 Hour"
 msgstr "1 óra"
 
-#: app/views/status/index.html.erb:54
+#: app/views/status/index.html.erb:58
 msgid "6 Hours"
 msgstr "6 óra"
 
-#: app/views/status/index.html.erb:55
+#: app/views/status/index.html.erb:59
 msgid "12 Hours"
 msgstr "12 óra"
 
-#: app/views/status/index.html.erb:94
-msgid "Back"
-msgstr "Vissza"
-
-#: app/views/status/index.html.erb:96
+#: app/views/status/index.html.erb:100
 msgid "Edit Limits"
 msgstr "Határértékek szerkesztése"
 
@@ -105,6 +97,16 @@ msgstr "Hiba történt az állapotinformáció betöltése közben."
 #: app/views/status/_status_summary.html.erb:10
 msgid "Your system is healthy."
 msgstr "A rendszer stabil."
+
+#: app/views/status/_status_summary.html.erb:14
+msgid "start"
+msgstr "indítás"
+
+#~ msgid "Cancel"
+#~ msgstr "Mégsem"
+
+#~ msgid "Back"
+#~ msgstr "Vissza"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Érvénytelen munkamenet, lépjen be újra."

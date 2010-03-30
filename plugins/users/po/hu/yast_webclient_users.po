@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-10 15:10+0100\n"
-"PO-Revision-Date: 2010-03-11 11:21+0100\n"
+"POT-Creation-Date: 2010-03-18 14:33+0100\n"
+"PO-Revision-Date: 2010-03-24 15:46+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,101 +18,92 @@ msgstr ""
 msgid "User <i>%s</i> was successfully created."
 msgstr "A(z) <i>%s</i> felhasználó sikeresen létrejött."
 
-#: app/controllers/users_controller.rb:204
+#: app/controllers/users_controller.rb:202
 msgid "User <i>%s</i> was successfully updated."
 msgstr "A(z) <i>%s</i> felhasználó frissítése megtörtént."
 
-#: app/controllers/users_controller.rb:225
+#: app/controllers/users_controller.rb:223
 msgid "User <i>%s</i> was successfully removed."
 msgstr "A(z) <i>%s</i> felhasználó eltávolítása megtörtént."
 
-#: app/controllers/users_controller.rb:227
+#: app/controllers/users_controller.rb:225
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Hiba: A(z) <i>%s</i> felhasználó nem távolítható el."
 
-#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
-msgid "Weak"
-msgstr "Gyenge"
-
-#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
-msgid "Normal"
-msgstr "Normál"
-
-#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
-msgid "Medium"
-msgstr "Közepes"
-
-#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
-msgid "Strong"
-msgstr "Erős"
-
-#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
-msgid "Very Strong"
-msgstr "Nagyon erős"
-
-#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46
-#: app/views/users/new.html.erb:49
-msgid "Local Users"
-msgstr "Helyi felhasználók"
-
-#: app/views/users/edit.html.erb:83
-msgid "Edit user %s"
-msgstr "%s felhasználó szerkesztése"
-
-#: app/views/users/edit.html.erb:93
+#: app/views/users/_user_form.erb:5
 msgid "Login Settings"
 msgstr "Bejelentkezési beállítások"
 
-#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
+#: app/views/users/_user_form.erb:8
 msgid "Login Name"
 msgstr "Bejelentkezési név"
 
-#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
+#: app/views/users/_user_form.erb:13
 msgid "Full Name"
 msgstr "Teljes név"
 
 # password dialog title
-#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
+#: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "Jelszó"
 
 # password dialog title
-#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
+#: app/views/users/_user_form.erb:21
 msgid "Confirm Password"
 msgstr "Jelszó megerősítése"
 
-#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120
-#: app/views/users/new.html.erb:84
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Csoportok"
 
-#: app/views/users/edit.html.erb:126
+#: app/views/users/_user_form.erb:39
 msgid "Default Group"
 msgstr "Alapértelmezett csoport"
 
-#: app/views/users/edit.html.erb:139
+#: app/views/users/_user_form.erb:61
 msgid "Advanced"
 msgstr "Haladó"
 
-#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+#: app/views/users/_user_form.erb:64
 msgid "Home Directory"
 msgstr "Saját könyvtár"
 
-#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+#: app/views/users/_user_form.erb:68
 msgid "Login Shell"
 msgstr "Parancsértelmező"
 
-#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+#: app/views/users/_user_form.erb:72
 msgid "UID Number"
 msgstr "UID száma"
 
-#: app/views/users/edit.html.erb:158 app/views/users/new.html.erb:124
-msgid "Cancel"
-msgstr "Mégsem"
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "Gyenge"
 
-#: app/views/users/edit.html.erb:160 app/views/users/new.html.erb:126
-msgid "Save"
-msgstr "Mentés"
+#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normál"
+
+#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:60
+msgid "Medium"
+msgstr "Közepes"
+
+#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "Erős"
+
+#: app/views/users/edit.html.erb:67 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr "Nagyon erős"
+
+#: app/views/users/edit.html.erb:88 app/views/users/index.html.erb:46
+#: app/views/users/new.html.erb:86
+msgid "Local Users"
+msgstr "Helyi felhasználók"
+
+#: app/views/users/edit.html.erb:88
+msgid "Edit user %s"
+msgstr "%s felhasználó szerkesztése"
 
 #: app/views/users/index.html.erb:32
 msgid "Type user name or login ..."
@@ -123,20 +114,27 @@ msgid "Filter:"
 msgstr "Szűrő:"
 
 #: app/views/users/index.html.erb:78
-msgid "New User..."
-msgstr "Új felhasználó..."
+msgid "Add New User"
+msgstr "Új felhasználó hozzáadása"
 
-#: app/views/users/new.html.erb:49
+#: app/views/users/new.html.erb:86
 msgid "Add new user"
 msgstr "Új felhasználó hozzáadása"
 
-#: app/views/users/new.html.erb:90
-msgid "Default Group (GID)"
-msgstr "Alapértelmezett csoport (GID)"
+#~ msgid "Cancel"
+#~ msgstr "Mégsem"
 
-#: app/views/users/new.html.erb:113
-msgid "Do not create home directory"
-msgstr "NE hozzon létre saját könyvtárat"
+#~ msgid "Save"
+#~ msgstr "Mentés"
+
+#~ msgid "New User..."
+#~ msgstr "Új felhasználó..."
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "Alapértelmezett csoport (GID)"
+
+#~ msgid "Do not create home directory"
+#~ msgstr "NE hozzon létre saját könyvtárat"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Érvénytelen munkamenet, lépjen be újra."

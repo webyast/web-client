@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-01 15:45\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 07:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,72 +13,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Neplatná relace, přihlaste se znovu."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(nelze zjistit stav)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:56
 msgid "success"
 msgstr "úspěch"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(neznámé)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(běží)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(mrtvý)"
-
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(neběží)"
-
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(neznámé: %d)"
-
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Výsledek volání služby"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Výsledek"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:13
 msgid "Description"
 msgstr "Popis"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "Zpět"
+#: app/views/services/index.rhtml:21
+msgid "Quick Search"
+msgstr "Rychlé vyhledávání"
 
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "Vlastní služby"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:89
 msgid "System Services"
 msgstr "Systémové služby"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "V cílovém počítači není definována žádná vlastní služba."
+#: app/views/services/index.rhtml:95
+msgid "You do not have permission to execute the services."
+msgstr "Nemáte oprávnění ke spuštění služeb."
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Nemáte dostatečná oprávnění pro spouštění služeb. Odkazy jsou zakázané."
+#: app/views/services/index.rhtml:99
+msgid "Filter services"
+msgstr "Filtrovat služby"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "stav"
+#: app/views/services/index.rhtml:101
+msgid "All"
+msgstr "Vše"
+
+#: app/views/services/index.rhtml:102
+msgid "Running"
+msgstr "Spuštěno"
+
+#: app/views/services/index.rhtml:103
+msgid "Not Running"
+msgstr "Nespuštěno"
+
+#: app/views/services/index.rhtml:104
+msgid "Dead"
+msgstr "Neaktivní"
+
+#: app/views/services/index.rhtml:120
+msgid "Description for service is not available"
+msgstr "Popis služby není k dispozici"
+
+#: app/views/services/index.rhtml:173
+msgid "refresh status"
+msgstr "obnovit stav"
+
+#: app/views/services/_status.rhtml:16
+msgid "status unknown"
+msgstr "neznámý stav"
+
+#: app/views/services/_status.rhtml:18
+msgid "running"
+msgstr "spuštěno"
+
+#: app/views/services/_status.rhtml:22
+msgid "dead"
+msgstr "neaktivní"
+
+#: app/views/services/_status.rhtml:26
+msgid "not running"
+msgstr "nespuštěno"
+
+#: app/views/services/_status.rhtml:30
+msgid "status unknown: %d"
+msgstr "neznámý stav: %d"
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-15 12:19\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-25 08:04\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,80 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "Ongeldige sessie, meld u opnieuw aan."
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "Limieten van vrije ruimte op schijf overschreden;"
-
-#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:105
 msgid "No data found for showing system status."
 msgstr "Geen gegevens gevonden om de systeemstatus weer te geven."
 
-#: app/controllers/status_controller.rb:181
-msgid "Limits exceeded for %s"
-msgstr "De limieten voor %s zijn overschreden"
+#: app/controllers/status_controller.rb:134
+msgid "Limits exceeded for "
+msgstr "Limieten overschreden voor "
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
-msgstr "Opslaan van limieten is mislukt!"
+#: app/controllers/status_controller.rb:208
+msgid "exceeded"
+msgstr "overschreden"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:222
+msgid "undercut"
+msgstr "onder de ondergrens vallen"
+
+#: app/controllers/status_controller.rb:313
+msgid "Limits have been written."
+msgstr "Limieten zijn opgeslagen."
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "Alleen getallen zijn geldig!"
+
+#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "Schijfgebruik"
+#: app/views/status/edit.html.erb:47
+msgid "Settings"
+msgstr "Instellingen"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:62
+msgid "undercuts"
+msgstr "valt onder de ondergrens van"
+
+#: app/views/status/edit.html.erb:62
+msgid "exceeds"
+msgstr "overschrijdt"
+
+#: app/views/status/index.html.erb:49
+msgid "Show last"
+msgstr "Laatste weergeven"
+
+#: app/views/status/index.html.erb:50
+msgid "5 Minutes"
+msgstr "5 minuten"
+
+#: app/views/status/index.html.erb:51
+msgid "15 Minutes"
+msgstr "15 minuten"
+
+#: app/views/status/index.html.erb:52
+msgid "30 Minutes"
+msgstr "30 minuten"
+
+#: app/views/status/index.html.erb:53
+msgid "1 Hour"
+msgstr "1 uur"
+
+#: app/views/status/index.html.erb:54
+msgid "6 Hours"
+msgstr "6 uur"
+
+#: app/views/status/index.html.erb:55
+msgid "12 Hours"
+msgstr "12 uur"
+
+#: app/views/status/index.html.erb:96
 msgid "Edit Limits"
 msgstr "Bewerkingslimieten"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Terug"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "vrij"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "gebruikt"
-
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "Statuslimieten configureren"
-
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "Statuspad"
-
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "Minimale waarde"
-
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "Maximale waarde"
-
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Opslaan"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "Er is een probleem opgetreden tijdens de laden van de statusinformatie."
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr "Er is een probleem opgetreden tijdens de laden van de statusinformatie."
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
-msgstr "Geen statusinformatie beschikbaar."
-
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:10
 msgid "Your system is healthy."
 msgstr "Uw systeem is gezond."
 

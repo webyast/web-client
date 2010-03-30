@@ -1,0 +1,258 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yast_webclient_software\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 07:52\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:65
+msgid "Alias"
+msgstr "별칭"
+
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/show.html.erb:74
+msgid "Enabled"
+msgstr "활성화됨"
+
+#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:79
+msgid "Autorefresh"
+msgstr "자동 새로 고침"
+
+#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:84
+#: app/views/patch_updates/_patches.html.erb:14
+msgid "Name"
+msgstr "이름"
+
+#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:89
+msgid "URL"
+msgstr "URL"
+
+#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:94
+msgid "Priority"
+msgstr "우선 순위"
+
+#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:99
+msgid "Keep downloaded packages"
+msgstr "다운로드된 패키지 유지"
+
+#: app/controllers/repositories_controller.rb:30
+msgid "Cannot read repository list."
+msgstr "리포지토리 목록을 읽을 수 없습니다."
+
+#: app/controllers/repositories_controller.rb:41 app/controllers/repositories_controller.rb:60
+#: app/controllers/repositories_controller.rb:83
+msgid "Missing repository parameter"
+msgstr "누락된 리포지토리 파라미터"
+
+#: app/controllers/repositories_controller.rb:111 app/controllers/repositories_controller.rb:197
+msgid "Invalid priority"
+msgstr "잘못된 우선 순위"
+
+#: app/controllers/repositories_controller.rb:185
+msgid "Missing repository parameters"
+msgstr "누락된 리포지토리 파라미터"
+
+#: app/controllers/repositories_controller.rb:222
+msgid "Unknown backend error"
+msgstr "알 수 없는 백엔드 오류"
+
+#: app/controllers/repositories_controller.rb:233
+msgid "Error: Missing repository id."
+msgstr "오류: 리포지토리 ID가 없습니다."
+
+#: app/controllers/repositories_controller.rb:237
+msgid "Error: Missing 'enabled' parameter."
+msgstr "오류: '활성화된' 파라미터가 없습니다."
+
+#: app/controllers/repositories_controller.rb:267
+msgid "Unknown backend error."
+msgstr "알 수 없는 백엔드 오류입니다."
+
+#: app/controllers/patch_updates_controller.rb:40 app/controllers/patch_updates_controller.rb:43
+#: app/views/patch_updates/_patch_progress.html.erb:1
+msgid "A problem occured when loading patch information."
+msgstr "패치 정보를 로드하는 동안 문제가 발생했습니다."
+
+#: app/controllers/patch_updates_controller.rb:97
+msgid "Installing all patches..."
+msgstr "모든 패치 설치 중..."
+
+#: app/controllers/patch_updates_controller.rb:105
+msgid "Installation stopped"
+msgstr "설치 중지됨"
+
+#: app/controllers/patch_updates_controller.rb:142
+msgid "Installation finished"
+msgstr "설치 완료됨"
+
+#: app/controllers/patch_updates_controller.rb:144
+msgid "%s installed."
+msgstr "%s이(가) 설치되었습니다."
+
+#: app/controllers/patch_updates_controller.rb:173
+msgid "Patch has been installed."
+msgstr "패치가 설치되었습니다."
+
+#: app/views/repositories/index.html.erb:7 app/views/repositories/show.html.erb:45
+msgid "Software Repositories"
+msgstr "소프트웨어 리포지토리"
+
+#: app/views/repositories/index.html.erb:12
+msgid "No software repository configured."
+msgstr "소프트웨어 리포지토리가 구성되지 않았습니다."
+
+#: app/views/repositories/index.html.erb:14
+msgid "Configured software repositories"
+msgstr "구성된 소프트웨어 리포지토리"
+
+#: app/views/repositories/index.html.erb:39
+msgid "Really delete repository '%s'?"
+msgstr "%s 리포지토리를 삭제하시겠습니까?"
+
+#: app/views/repositories/index.html.erb:52
+msgid "Add"
+msgstr "추가"
+
+#: app/views/repositories/index.html.erb:52
+msgid "a new repository"
+msgstr "새 리포지토리"
+
+#: app/views/repositories/show.html.erb:16
+msgid "Enter a valid repository URL."
+msgstr "유효한 리포지토리 URL을 입력합니다."
+
+#: app/views/repositories/show.html.erb:24
+msgid "Symbols <b>%s</b> are not allowed in repository alias."
+msgstr "<b>%s</b> 기호는 리포지토리 별칭에서 허용되지 않습니다."
+
+#: app/views/repositories/show.html.erb:31
+msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
+msgstr "0(가장 높은 우선 순위)에서 200(가장 낮은 우선 순위) 사이의 숫자를 입력합니다."
+
+#: app/views/repositories/show.html.erb:32
+msgid "Priority must be a positive number."
+msgstr "우선 순위는 양수여야 합니다."
+
+#: app/views/repositories/show.html.erb:33
+msgid "Priority must be less than 200."
+msgstr "우선 순위는 200보다 작아야 합니다."
+
+#: app/views/repositories/show.html.erb:34
+msgid "This value cannot be empty."
+msgstr "이 값은 비워둘 수 없습니다."
+
+#: app/views/repositories/show.html.erb:48
+msgid "Add a new repository"
+msgstr "새 리포지토리 추가"
+
+#: app/views/repositories/show.html.erb:50
+msgid "Properties of"
+msgstr "속성"
+
+#: app/views/repositories/show.html.erb:50
+msgid "Edit Properties of"
+msgstr "속성 편집"
+
+#: app/views/repositories/show.html.erb:61
+msgid "Repository"
+msgstr "리포지토리"
+
+#: app/views/repositories/show.html.erb:109
+msgid "Create"
+msgstr "생성"
+
+#: app/views/repositories/show.html.erb:109 app/views/patch_updates/index.html.erb:38
+msgid "Update"
+msgstr "업데이트"
+
+#: app/views/patch_updates/_patch_installation.html.erb:7
+msgid "An error occured while installing patches."
+msgstr "패치를 설치하는 동안 오류가 발생했습니다."
+
+#: app/views/patch_updates/_patch_installation.html.erb:19
+msgid "Stop"
+msgstr "중지"
+
+#: app/views/patch_updates/_patch_installation.html.erb:19
+msgid "Are you sure?"
+msgstr "계속하시겠습니까?"
+
+#: app/views/patch_updates/index.html.erb:11
+msgid "Updates"
+msgstr "업데이트"
+
+#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:28
+msgid "Your system is up to date."
+msgstr "시스템이 최신 상태입니다."
+
+#: app/views/patch_updates/index.html.erb:21
+msgid "Updates available"
+msgstr "업데이트 사용 가능"
+
+#: app/views/patch_updates/_patch_progress.html.erb:5
+msgid "Refreshing package cache"
+msgstr "패키지 캐시를 새로 고치는 중"
+
+#: app/views/patch_updates/_patch_progress.html.erb:6
+msgid "Starting package manager"
+msgstr "패키지 관리자 시작 중"
+
+#: app/views/patch_updates/_patch_progress.html.erb:7
+msgid "Waiting for the package manager lock"
+msgstr "패키지 관리자 잠금 대기 중"
+
+#: app/views/patch_updates/_patch_progress.html.erb:8 app/views/patch_updates/_patch_progress.html.erb:18
+msgid "Evaluating available patches"
+msgstr "사용 가능한 패치 평가 중"
+
+#: app/views/patch_updates/_patch_progress.html.erb:9
+msgid "Finished reading patches"
+msgstr "패치 읽기 완료됨"
+
+#: app/views/patch_updates/_patches.html.erb:11
+msgid "Check"
+msgstr "확인"
+
+#: app/views/patch_updates/_patches.html.erb:13
+msgid "Kind"
+msgstr "종류"
+
+#: app/views/patch_updates/_patches.html.erb:15
+msgid "Summary"
+msgstr "요약"
+
+#: app/views/patch_updates/_patches.html.erb:17 app/views/patch_updates/_patches.html.erb:20
+msgid "Source"
+msgstr "원본"
+
+#: app/views/patch_updates/_patches.html.erb:18
+msgid "Install"
+msgstr "설치"
+
+#: app/views/patch_updates/_patch_summary.html.erb:6
+msgid "No information about patches available"
+msgstr "사용 가능한 패치 관련 정보가 없습니다."
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+msgid "Security Updates: %d"
+msgstr "보안 업데이트: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr "중요 업데이트: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr "선택적 업데이트: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:33
+msgid "Updating all. Are you sure?"
+msgstr "모두 업데이트 중입니다. 계속하시겠습니까?"
+

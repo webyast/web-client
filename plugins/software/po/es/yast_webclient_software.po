@@ -1,0 +1,258 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yast_webclient_software\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-24 12:28\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:65
+msgid "Alias"
+msgstr "Alias"
+
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/show.html.erb:74
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:79
+msgid "Autorefresh"
+msgstr "Actualización automática"
+
+#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:84
+#: app/views/patch_updates/_patches.html.erb:14
+msgid "Name"
+msgstr "Nombre"
+
+#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:89
+msgid "URL"
+msgstr "URL"
+
+#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:94
+msgid "Priority"
+msgstr "Prioridad"
+
+#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:99
+msgid "Keep downloaded packages"
+msgstr "Conservar paquetes descargados"
+
+#: app/controllers/repositories_controller.rb:30
+msgid "Cannot read repository list."
+msgstr "No es posible leer la lista de repositorios."
+
+#: app/controllers/repositories_controller.rb:41 app/controllers/repositories_controller.rb:60
+#: app/controllers/repositories_controller.rb:83
+msgid "Missing repository parameter"
+msgstr "Falta un parámetro del repositorio"
+
+#: app/controllers/repositories_controller.rb:111 app/controllers/repositories_controller.rb:197
+msgid "Invalid priority"
+msgstr "Prioridad no válida"
+
+#: app/controllers/repositories_controller.rb:185
+msgid "Missing repository parameters"
+msgstr "Faltan parámetros del repositorio"
+
+#: app/controllers/repositories_controller.rb:222
+msgid "Unknown backend error"
+msgstr "Error desconocido del sistema de apoyo"
+
+#: app/controllers/repositories_controller.rb:233
+msgid "Error: Missing repository id."
+msgstr "Error: falta el ID del repositorio."
+
+#: app/controllers/repositories_controller.rb:237
+msgid "Error: Missing 'enabled' parameter."
+msgstr "Error: falta el parámetro \"habilitado\"."
+
+#: app/controllers/repositories_controller.rb:267
+msgid "Unknown backend error."
+msgstr "Error desconocido del sistema de apoyo."
+
+#: app/controllers/patch_updates_controller.rb:40 app/controllers/patch_updates_controller.rb:43
+#: app/views/patch_updates/_patch_progress.html.erb:1
+msgid "A problem occured when loading patch information."
+msgstr "Error al cargar la información del parche."
+
+#: app/controllers/patch_updates_controller.rb:97
+msgid "Installing all patches..."
+msgstr "Instalando todos los parches..."
+
+#: app/controllers/patch_updates_controller.rb:105
+msgid "Installation stopped"
+msgstr "Instalación detenida"
+
+#: app/controllers/patch_updates_controller.rb:142
+msgid "Installation finished"
+msgstr "Instalación finalizada"
+
+#: app/controllers/patch_updates_controller.rb:144
+msgid "%s installed."
+msgstr "%s instalado."
+
+#: app/controllers/patch_updates_controller.rb:173
+msgid "Patch has been installed."
+msgstr "Se ha instalado el parche."
+
+#: app/views/repositories/index.html.erb:7 app/views/repositories/show.html.erb:45
+msgid "Software Repositories"
+msgstr "Repositorios de software"
+
+#: app/views/repositories/index.html.erb:12
+msgid "No software repository configured."
+msgstr "No se ha configurado ningún repositorio de software."
+
+#: app/views/repositories/index.html.erb:14
+msgid "Configured software repositories"
+msgstr "Repositorios de software configurados"
+
+#: app/views/repositories/index.html.erb:39
+msgid "Really delete repository '%s'?"
+msgstr "¿Seguro que desea suprimir el repositorio %s?"
+
+#: app/views/repositories/index.html.erb:52
+msgid "Add"
+msgstr "Añadir"
+
+#: app/views/repositories/index.html.erb:52
+msgid "a new repository"
+msgstr "un repositorio nuevo"
+
+#: app/views/repositories/show.html.erb:16
+msgid "Enter a valid repository URL."
+msgstr "Introduzca una URL de repositorio válida."
+
+#: app/views/repositories/show.html.erb:24
+msgid "Symbols <b>%s</b> are not allowed in repository alias."
+msgstr "Los símbolos <b>%s</b> no se permiten en los alias del repositorio."
+
+#: app/views/repositories/show.html.erb:31
+msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
+msgstr "Introduzca un número entre el 0 (la prioridad más alta) y el 200 (la prioridad más baja)."
+
+#: app/views/repositories/show.html.erb:32
+msgid "Priority must be a positive number."
+msgstr "La prioridad debe ser un número positivo."
+
+#: app/views/repositories/show.html.erb:33
+msgid "Priority must be less than 200."
+msgstr "La prioridad debe ser menor que 200."
+
+#: app/views/repositories/show.html.erb:34
+msgid "This value cannot be empty."
+msgstr "Este valor no puede estar vacío."
+
+#: app/views/repositories/show.html.erb:48
+msgid "Add a new repository"
+msgstr "Añadir un repositorio nuevo"
+
+#: app/views/repositories/show.html.erb:50
+msgid "Properties of"
+msgstr "Propiedades de"
+
+#: app/views/repositories/show.html.erb:50
+msgid "Edit Properties of"
+msgstr "Editar propiedades de"
+
+#: app/views/repositories/show.html.erb:61
+msgid "Repository"
+msgstr "Repositorio"
+
+#: app/views/repositories/show.html.erb:109
+msgid "Create"
+msgstr "Crear"
+
+#: app/views/repositories/show.html.erb:109 app/views/patch_updates/index.html.erb:38
+msgid "Update"
+msgstr "Actualizar"
+
+#: app/views/patch_updates/_patch_installation.html.erb:7
+msgid "An error occured while installing patches."
+msgstr "Error al instalar los parches."
+
+#: app/views/patch_updates/_patch_installation.html.erb:19
+msgid "Stop"
+msgstr "Detener"
+
+#: app/views/patch_updates/_patch_installation.html.erb:19
+msgid "Are you sure?"
+msgstr "¿Seguro?"
+
+#: app/views/patch_updates/index.html.erb:11
+msgid "Updates"
+msgstr "Actualizaciones"
+
+#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:28
+msgid "Your system is up to date."
+msgstr "El sistema está actualizado."
+
+#: app/views/patch_updates/index.html.erb:21
+msgid "Updates available"
+msgstr "Actualizaciones disponibles"
+
+#: app/views/patch_updates/_patch_progress.html.erb:5
+msgid "Refreshing package cache"
+msgstr "Actualizando caché de paquetes"
+
+#: app/views/patch_updates/_patch_progress.html.erb:6
+msgid "Starting package manager"
+msgstr "Iniciando el gestor de paquetes"
+
+#: app/views/patch_updates/_patch_progress.html.erb:7
+msgid "Waiting for the package manager lock"
+msgstr "Esperando a que se bloquee el gestor de paquetes"
+
+#: app/views/patch_updates/_patch_progress.html.erb:8 app/views/patch_updates/_patch_progress.html.erb:18
+msgid "Evaluating available patches"
+msgstr "Evaluando los parches disponibles"
+
+#: app/views/patch_updates/_patch_progress.html.erb:9
+msgid "Finished reading patches"
+msgstr "Finalizada la lectura de los parches"
+
+#: app/views/patch_updates/_patches.html.erb:11
+msgid "Check"
+msgstr "Comprobar"
+
+#: app/views/patch_updates/_patches.html.erb:13
+msgid "Kind"
+msgstr "Clase"
+
+#: app/views/patch_updates/_patches.html.erb:15
+msgid "Summary"
+msgstr "Resumen"
+
+#: app/views/patch_updates/_patches.html.erb:17 app/views/patch_updates/_patches.html.erb:20
+msgid "Source"
+msgstr "Origen"
+
+#: app/views/patch_updates/_patches.html.erb:18
+msgid "Install"
+msgstr "Instalar"
+
+#: app/views/patch_updates/_patch_summary.html.erb:6
+msgid "No information about patches available"
+msgstr "No hay información disponible sobre parches"
+
+#: app/views/patch_updates/_patch_summary.html.erb:19
+msgid "Security Updates: %d"
+msgstr "Actualizaciones de seguridad: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:22
+msgid "Important Updates: %d"
+msgstr "Actualizaciones importantes: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:25
+msgid "Optional Updates: %d"
+msgstr "Actualizaciones opcionales: %d"
+
+#: app/views/patch_updates/_patch_summary.html.erb:33
+msgid "Updating all. Are you sure?"
+msgstr "Actualizar todo. ¿Seguro?"
+

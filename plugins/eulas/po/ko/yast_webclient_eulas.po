@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_eulas\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-01 09:34\n"
+"POT-Creation-Date: 2010-03-11 15:47+0100\n"
+"PO-Revision-Date: 2010-03-25 07:52\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,36 +13,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/eulas_controller.rb:78
+#: app/controllers/eulas_controller.rb:72
 msgid "You cannot reject a license once it has been accepted!"
 msgstr "라이센스는 동의하고 나면 거부할 수 없습니다."
 
-#: app/controllers/eulas_controller.rb:81
+#: app/controllers/eulas_controller.rb:75
 msgid "You must accept all licences before using this product!"
 msgstr "이 제품을 사용하기 전에 모든 라이센스에 동의해야 합니다."
 
-#: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
-#: app/views/eulas/no_licenses.erb:1
+#: app/views/eulas/no_licenses.erb:1 app/views/eulas/show.html.erb:2 app/views/eulas/all_accepted.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "최종 사용자 사용권 계약에 동의"
-
-#: app/views/eulas/show.html.erb:4
-msgid "Available translations:"
-msgstr "사용 가능한 변환:"
-
-#: app/views/eulas/show.html.erb:22
-msgid "Yes, I agree to the license agreement."
-msgstr "동의함"
-
-#: app/views/eulas/show.html.erb:28
-msgid "No, I do not agree."
-msgstr "동의 안 함"
-
-#: app/views/eulas/all_accepted.erb:2
-msgid "All licenses have already been accepted"
-msgstr "모든 라이센스에 이미 동의했습니다."
 
 #: app/views/eulas/no_licenses.erb:2
 msgid "There are no licenses to accept."
 msgstr "동의할 라이센스가 없습니다."
+
+#: app/views/eulas/show.html.erb:8
+msgid "Available translations:"
+msgstr "사용 가능한 변환:"
+
+#: app/views/eulas/show.html.erb:26
+msgid "Yes, I agree to the license agreement."
+msgstr "동의함"
+
+#: app/views/eulas/show.html.erb:32
+msgid "No, I do not agree."
+msgstr "동의 안 함"
+
+#: app/views/eulas/show.html.erb:43
+msgid "Back"
+msgstr "뒤로"
+
+#: app/views/eulas/all_accepted.erb:2
+msgid "All licenses have already been accepted"
+msgstr "모든 라이센스에 이미 동의했습니다."
 

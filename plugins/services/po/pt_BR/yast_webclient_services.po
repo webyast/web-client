@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-02 08:19\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-24 14:45\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,72 +13,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Sessão inválida. Efetue login novamente."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(impossível ler o status)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:56
 msgid "success"
 msgstr "êxito"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(desconhecido)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(em execução)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(expirado)"
-
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(não está em execução)"
-
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(desconhecido: %d)"
-
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Resultado da Chamada do Serviço"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Resultado"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:13
 msgid "Description"
 msgstr "Descrição"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "Voltar"
+#: app/views/services/index.rhtml:21
+msgid "Quick Search"
+msgstr "Pesquisa Rápida"
 
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "Serviços Personalizados"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:89
 msgid "System Services"
 msgstr "Serviços do Sistema"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "Nenhum serviço personalizado está definido na máquina de destino."
+#: app/views/services/index.rhtml:95
+msgid "You do not have permission to execute the services."
+msgstr "Você não tem permissão para executar os serviços."
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Você não tem permissão para executar os serviços. Os links estão desabilitados."
+#: app/views/services/index.rhtml:99
+msgid "Filter services"
+msgstr "Filtrar serviços"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "status"
+#: app/views/services/index.rhtml:101
+msgid "All"
+msgstr "Tudo"
+
+#: app/views/services/index.rhtml:102
+msgid "Running"
+msgstr "Em Execução"
+
+#: app/views/services/index.rhtml:103
+msgid "Not Running"
+msgstr "Não Está em Execução"
+
+#: app/views/services/index.rhtml:104
+msgid "Dead"
+msgstr "Eliminado"
+
+#: app/views/services/index.rhtml:120
+msgid "Description for service is not available"
+msgstr "Descrição do serviço não disponível"
+
+#: app/views/services/index.rhtml:173
+msgid "refresh status"
+msgstr "atualizar status"
+
+#: app/views/services/_status.rhtml:16
+msgid "status unknown"
+msgstr "status desconhecido"
+
+#: app/views/services/_status.rhtml:18
+msgid "running"
+msgstr "em execução"
+
+#: app/views/services/_status.rhtml:22
+msgid "dead"
+msgstr "eliminado"
+
+#: app/views/services/_status.rhtml:26
+msgid "not running"
+msgstr "não está em execução"
+
+#: app/views/services/_status.rhtml:30
+msgid "status unknown: %d"
+msgstr "status desconhecido: %d"
 

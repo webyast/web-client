@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-03 07:42\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 08:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,107 +13,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "جلسة عمل غير صالحة، الرجاء الدخول مرة أخرى."
-
-#: app/controllers/users_controller.rb:144
+#: app/controllers/users_controller.rb:160
 msgid "User <i>%s</i> was successfully created."
 msgstr "تم إنشاء مستخدم <i>%s</i> بنجاح."
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "قيمة معرف المستخدم فارغة"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "معرف المستخدم: القيمة >= 1000 صالحة للمستخدم المحلي فقط"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:204
 msgid "User <i>%s</i> was successfully updated."
 msgstr "تم تحديث مستخدم <i>%s</i> بنجاح."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:225
 msgid "User <i>%s</i> was successfully removed."
 msgstr "تمت إزالة مستخدم <i>%s</i> بنجاح."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:227
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "خطأ: تعذرت إزالة مستخدم <i>%s</i>."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr "مستخدم محلي"
+#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
+msgid "Weak"
+msgstr "وايك"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "دخول"
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
+msgid "Normal"
+msgstr "عادي"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11 app/views/users/new.html.erb:8
-msgid "Full Name"
-msgstr "الاسم الكامل"
+#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
+msgid "Medium"
+msgstr "متوسط"
 
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "تحرير"
+#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
+msgid "Strong"
+msgstr "الأغنية"
 
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[مستخدم جديد]</strong>"
+#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
+msgid "Very Strong"
+msgstr "قوي جدًا"
 
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43 app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "الخلف"
+#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46 app/views/users/new.html.erb:49
+msgid "Local Users"
+msgstr "مستخدمون محليون"
 
-#: app/views/users/edit.html.erb:1
+#: app/views/users/edit.html.erb:83
 msgid "Edit user %s"
 msgstr "تحرير مستخدم %s"
 
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "المجموعات"
+#: app/views/users/edit.html.erb:93
+msgid "Login Settings"
+msgstr "إعدادات الدخول"
 
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "المجموعة الافتراضية"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "الدليل الرئيسي"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "برنامج الواجهة شل الخاص بالدخول"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
 msgid "Login Name"
 msgstr "اسم الدخول"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "رقم معرف المستخدم"
+#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
+msgid "Full Name"
+msgstr "الاسم الكامل"
 
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
 msgid "Password"
 msgstr "كلمة السر"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "تحديث"
+#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
+msgid "Confirm Password"
+msgstr "تأكيد كلمة السر"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
+#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120 app/views/users/new.html.erb:84
+msgid "Groups"
+msgstr "المجموعات"
+
+#: app/views/users/edit.html.erb:126
+msgid "Default Group"
+msgstr "المجموعة الافتراضية"
+
+#: app/views/users/edit.html.erb:139
+msgid "Advanced"
+msgstr "خيارات متقدمة"
+
+#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+msgid "Home Directory"
+msgstr "الدليل الرئيسي"
+
+#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+msgid "Login Shell"
+msgstr "برنامج الواجهة شل الخاص بالدخول"
+
+#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+msgid "UID Number"
+msgstr "رقم معرف المستخدم"
+
+#: app/views/users/index.html.erb:32
+msgid "Type user name or login ..."
+msgstr "اكتب اسم المستخدم أو تسجيل الدخول..."
+
+#: app/views/users/index.html.erb:35
+msgid "Filter:"
+msgstr "المرشح:"
+
+#: app/views/users/index.html.erb:78
+msgid "New User..."
 msgstr "مستخدم جديد"
 
-#: app/views/users/new.html.erb:16
+#: app/views/users/new.html.erb:49
+msgid "Add new user"
+msgstr "إضافة مستخدم جديد"
+
+#: app/views/users/new.html.erb:90
 msgid "Default Group (GID)"
 msgstr "المجموعة الافتراضية (GID)"
 
-#: app/views/users/new.html.erb:24
+#: app/views/users/new.html.erb:113
 msgid "Do not create home directory"
 msgstr "عدم إنشاء دليل رئيسي"
-
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "إنشاء"
 

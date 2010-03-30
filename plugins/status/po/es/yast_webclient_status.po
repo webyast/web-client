@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-15 13:51\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-24 12:28\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,80 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "Sesión no válida, entre de nuevo."
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "Se han excedido los límites de espacio libre en disco;"
-
-#: app/controllers/status_controller.rb:135 app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:105
 msgid "No data found for showing system status."
 msgstr "No se han encontrado datos para mostrar el estado del sistema."
 
-#: app/controllers/status_controller.rb:181
-msgid "Limits exceeded for %s"
-msgstr "Se ha superado el límite para %s"
+#: app/controllers/status_controller.rb:134
+msgid "Limits exceeded for "
+msgstr "Se ha superado el límite para "
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
-msgstr "Error al guardar los límites."
+#: app/controllers/status_controller.rb:208
+msgid "exceeded"
+msgstr "ha superado"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:222
+msgid "undercut"
+msgstr "están por debajo de"
+
+#: app/controllers/status_controller.rb:313
+msgid "Limits have been written."
+msgstr "Se han escrito los límites."
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "Sólo son válidos los números."
+
+#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
 msgid "Status"
 msgstr "Estado"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "Uso de disco"
+#: app/views/status/edit.html.erb:47
+msgid "Settings"
+msgstr "Configuración"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:62
+msgid "undercuts"
+msgstr "está por debajo de"
+
+#: app/views/status/edit.html.erb:62
+msgid "exceeds"
+msgstr "supera"
+
+#: app/views/status/index.html.erb:49
+msgid "Show last"
+msgstr "Mostrar últimos"
+
+#: app/views/status/index.html.erb:50
+msgid "5 Minutes"
+msgstr "5 minutos"
+
+#: app/views/status/index.html.erb:51
+msgid "15 Minutes"
+msgstr "15 minutos"
+
+#: app/views/status/index.html.erb:52
+msgid "30 Minutes"
+msgstr "30 minutos"
+
+#: app/views/status/index.html.erb:53
+msgid "1 Hour"
+msgstr "1 hora"
+
+#: app/views/status/index.html.erb:54
+msgid "6 Hours"
+msgstr "6 horas"
+
+#: app/views/status/index.html.erb:55
+msgid "12 Hours"
+msgstr "12 horas"
+
+#: app/views/status/index.html.erb:96
 msgid "Edit Limits"
 msgstr "Editar límites"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Atrás"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "libre"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "en uso"
-
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "Configurar los límites de estado"
-
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "Vía del estado"
-
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "Valor mínimo"
-
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "Valor máximo"
-
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Guardar"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "Error al cargar la información de estado."
 
 #: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr "Error al cargar la información de estado"
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
-msgstr "No hay información de estado disponible."
-
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:10
 msgid "Your system is healthy."
 msgstr "El sistema está saludable."
 

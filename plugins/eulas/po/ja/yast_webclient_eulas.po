@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_eulas\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-02 10:44\n"
+"POT-Creation-Date: 2010-03-11 15:47+0100\n"
+"PO-Revision-Date: 2010-03-24 14:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,36 +13,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/eulas_controller.rb:78
+#: app/controllers/eulas_controller.rb:72
 msgid "You cannot reject a license once it has been accepted!"
 msgstr "いったん同意した使用許諾契約を拒否することはできません！"
 
-#: app/controllers/eulas_controller.rb:81
+#: app/controllers/eulas_controller.rb:75
 msgid "You must accept all licences before using this product!"
 msgstr "この製品を使用する前に、すべての使用許諾契約(EULA)に同意しなければなりません！"
 
-#: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
-#: app/views/eulas/no_licenses.erb:1
+#: app/views/eulas/no_licenses.erb:1 app/views/eulas/show.html.erb:2 app/views/eulas/all_accepted.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr "エンドユーザライセンス契約に同意する"
-
-#: app/views/eulas/show.html.erb:4
-msgid "Available translations:"
-msgstr "利用可能な翻訳:"
-
-#: app/views/eulas/show.html.erb:22
-msgid "Yes, I agree to the license agreement."
-msgstr "はい、ライセンス契約に同意します。"
-
-#: app/views/eulas/show.html.erb:28
-msgid "No, I do not agree."
-msgstr "いいえ、同意しません。"
-
-#: app/views/eulas/all_accepted.erb:2
-msgid "All licenses have already been accepted"
-msgstr "すべての使用許諾契約がすでに同意されています"
 
 #: app/views/eulas/no_licenses.erb:2
 msgid "There are no licenses to accept."
 msgstr "同意する使用許諾契約がありません。"
+
+#: app/views/eulas/show.html.erb:8
+msgid "Available translations:"
+msgstr "利用可能な翻訳:"
+
+#: app/views/eulas/show.html.erb:26
+msgid "Yes, I agree to the license agreement."
+msgstr "はい、ライセンス契約に同意します。"
+
+#: app/views/eulas/show.html.erb:32
+msgid "No, I do not agree."
+msgstr "いいえ、同意しません。"
+
+#: app/views/eulas/show.html.erb:43
+msgid "Back"
+msgstr "戻る"
+
+#: app/views/eulas/all_accepted.erb:2
+msgid "All licenses have already been accepted"
+msgstr "すべての使用許諾契約がすでに同意されています"
 

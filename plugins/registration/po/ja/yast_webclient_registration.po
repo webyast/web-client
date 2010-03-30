@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration\n"
-"POT-Creation-Date: 2009-11-20 14:35+0100\n"
-"PO-Revision-Date: 2010-02-02 10:44\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-24 14:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,67 +13,167 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: app/controllers/registration_controller.rb:11
+msgid "Email"
+msgstr "電子メール"
+
+#: app/controllers/registration_controller.rb:12
+msgid "System name"
+msgstr "システム名"
+
+#: app/controllers/registration_controller.rb:13
+msgid "SLES registration code"
+msgstr "SLES登録コード"
+
+#: app/controllers/registration_controller.rb:14
+msgid "SLED registration code"
+msgstr "SLED登録コード"
+
 #: app/controllers/registration_controller.rb:15
+msgid "Appliance registration code"
+msgstr "装置登録コード"
+
+#: app/controllers/registration_controller.rb:16
+msgid "WebYaST registration code"
+msgstr "WebYaST登録コード"
+
+#: app/controllers/registration_controller.rb:17
+msgid "Registration code"
+msgstr "登録コード"
+
+#: app/controllers/registration_controller.rb:18
+msgid "Hostname"
+msgstr "ホスト名"
+
+#: app/controllers/registration_controller.rb:19
+msgid "Device name"
+msgstr "デバイス名"
+
+#: app/controllers/registration_controller.rb:20
+msgid "Appliance name"
+msgstr "装置名"
+
+#: app/controllers/registration_controller.rb:21
+msgid "registration code"
+msgstr "登録コード"
+
+#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
 msgstr "セッションが無効です。再度ログインしてください。"
 
-#: app/controllers/registration_controller.rb:39 app/controllers/registration_controller.rb:89
+#: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
 msgstr "登録に対する許可がありません"
 
-#: app/controllers/registration_controller.rb:68
-msgid "Arguments for registration cannot be evaluated."
-msgstr "登録の引数が検証できません。"
+#: app/controllers/registration_controller.rb:84
+msgid "Please try to register again later."
+msgstr "後で、もう一度登録してみてください。"
 
-#: app/controllers/registration_controller.rb:69
-msgid "An error occurred during registration. Please try again."
-msgstr "登録処理でエラーが発生しました。やり直してください。"
+#: app/controllers/registration_controller.rb:88
+msgid "Registration was skipped."
+msgstr "登録がスキップされました。"
 
-#: app/controllers/registration_controller.rb:111
-msgid "Registration finished successfully."
-msgstr "登録が正しく完了しました。"
+#: app/controllers/registration_controller.rb:94
+msgid "Registration did not finish."
+msgstr "登録は終了しませんでした。"
 
-#: app/controllers/registration_controller.rb:119
-msgid "Service added:"
-msgstr "追加されたサービス:"
+#: app/controllers/registration_controller.rb:95
+msgid "Registration did not succeed."
+msgstr "登録は成功しませんでした。"
 
-#: app/controllers/registration_controller.rb:123 app/controllers/registration_controller.rb:128
-msgid "Catalog enabled:"
-msgstr "有効にされたカタログ:"
+#: app/controllers/registration_controller.rb:97
+msgid "This may be a temporary issue."
+msgstr "これは一時的な問題である可能性があります。"
 
-#: app/controllers/registration_controller.rb:143
-msgid "Repository added:"
-msgstr "追加されたリポジトリ:"
+#: app/controllers/registration_controller.rb:102
+msgid "The registration server returned invalid or incomplete data."
+msgstr "登録サーバが無効または不完全なデータを返しました。"
 
-#: app/controllers/registration_controller.rb:173
+#: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
 msgstr "未入力の項目に入力してください。"
 
-#: app/controllers/registration_controller.rb:176
-msgid "Error occured while connecting to registration server."
-msgstr "登録サーバへの接続時にエラーが発生しました。"
+#: app/controllers/registration_controller.rb:155
+msgid "Service added:"
+msgstr "追加されたサービス:"
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:159 app/controllers/registration_controller.rb:164
+msgid "Catalog enabled:"
+msgstr "有効にされたカタログ:"
+
+#: app/controllers/registration_controller.rb:188
+msgid "Repository added:"
+msgstr "追加されたリポジトリ:"
+
+#: app/controllers/registration_controller.rb:248
+msgid "This system is already registered."
+msgstr "このシステムはすでに登録済みです"
+
+#: app/controllers/registration_controller.rb:277
+msgid "Registration finished successfully."
+msgstr "登録が正しく完了しました。"
+
+#: app/controllers/registration_controller.rb:290
+msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
+msgstr "<p><b>登録処理中にリポジトリが変更されませんでした。</b></p><p>誤った登録コードが使用された可能性があります。その場合は、再度登録処理を試み、リポジトリを更新してください。</p><p>このシステムで更新リポジトリが設定されているかどうか確認してください。そうでない場合、更新は受け入れられません。</p>"
+
+#: app/controllers/registration_controller.rb:324
+msgid "A connection to the registration server could not be established."
+msgstr "登録サ―バへの接続を確立できませんでした。"
+
+#: app/controllers/registration_controller.rb:328
+msgid "The transmitted registration data created a conflict."
+msgstr "転送された登録データにより競合が発生しました。"
+
+#: app/controllers/registration_controller.rb:336
+msgid "Registration can not be performed. There is no product installed that can be registered."
+msgstr "登録が実行できません。登録可能な製品がインストールされていません。"
+
+#: app/controllers/registration_controller.rb:351
+msgid "A connection to the registration server could not be established or it did not reply."
+msgstr "登録サーバへの接続が確立できないか、または登録サーバが返信しませんでした。"
+
+#: app/controllers/registration_controller.rb:368
+msgid "The registration server returned invalid data."
+msgstr "登録サーバは無効なデータを返しました。"
+
+#: app/views/registration/index.rhtml:16
 msgid "register plugin"
 msgstr "プラグインの登録"
 
-#: app/views/registration/index.rhtml:1
+#: app/views/registration/index.rhtml:16
 msgid "Registration"
 msgstr "登録"
 
-#: app/views/registration/index.rhtml:9
+#: app/views/registration/index.rhtml:24
+msgid "Registration Information"
+msgstr "登録情報"
+
+#: app/views/registration/index.rhtml:25
 msgid "This system is registered"
 msgstr "このシステムは登録済みです"
 
-#: app/views/registration/index.rhtml:10
-msgid "System's GUID:"
-msgstr "システムのGUID:"
+#: app/views/registration/index.rhtml:26
+msgid "System number (GUID)"
+msgstr "システム番号(GUID)"
 
-#: app/views/registration/index.rhtml:11
+#: app/views/registration/index.rhtml:27
 msgid "Register again"
 msgstr "再度登録してください"
 
-#: app/views/registration/index.rhtml:39
-msgid "Detail"
-msgstr "詳細"
+#: app/views/registration/index.rhtml:34
+msgid "Next"
+msgstr "次へ"
+
+#: app/views/registration/index.rhtml:44
+msgid "Mandatory Information"
+msgstr "必須情報"
+
+#: app/views/registration/index.rhtml:59
+msgid "Details"
+msgstr "詳細情報"
+
+#: app/views/registration/index.rhtml:77
+msgid "Skip"
+msgstr "スキップ"
 

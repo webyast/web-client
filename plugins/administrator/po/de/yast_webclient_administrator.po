@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-02-16 11:14\n"
+"POT-Creation-Date: 2010-03-11 15:45+0100\n"
+"PO-Revision-Date: 2010-03-24 12:00\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,53 +13,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/administrator_controller.rb:35 app/views/administrator/index.html.erb:65
+#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Gültige E-Mail-Adresse eingeben."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Die Passwörter stimmen nicht überein."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
 msgstr "Administrator-Einstellungen wurden geschrieben."
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
 msgstr "Fehler beim Speichern der Administratoreinstellungen: %s"
+
+#: app/controllers/administrator_controller.rb:74
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr "E-Mail-Alias wurde festgelegt, aber der Server für ausgehende E-Mails ist nicht konfiguriert (%s<i>change</i>%s)."
 
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "Administratoreinstellungen"
 
-#: app/views/administrator/index.html.erb:73
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "Die Passwörter stimmen nicht überein."
 
-#: app/views/administrator/index.html.erb:74
+#: app/views/administrator/index.html.erb:37
 msgid "A password is required."
 msgstr "Es ist ein Passwort erforderlich."
 
-#: app/views/administrator/index.html.erb:90 app/views/administrator/index.html.erb:94
-#: app/views/administrator/index.html.erb:106
+#: app/views/administrator/index.html.erb:44
+msgid "Weak"
+msgstr "Schwach"
+
+#: app/views/administrator/index.html.erb:45
+msgid "Normal"
+msgstr "Normal"
+
+#: app/views/administrator/index.html.erb:46
+msgid "Medium"
+msgstr "Mittel"
+
+#: app/views/administrator/index.html.erb:47
+msgid "Strong"
+msgstr "Stark"
+
+#: app/views/administrator/index.html.erb:48
+msgid "Very Strong"
+msgstr "Sehr stark"
+
+#: app/views/administrator/index.html.erb:65
+msgid "Root User Password Setup"
+msgstr "Einrichtung des Root-Benutzerpassworts"
+
+#: app/views/administrator/index.html.erb:66
 msgid "Password"
 msgstr "Passwort"
 
-#: app/views/administrator/index.html.erb:98 app/views/administrator/index.html.erb:102
-#: app/views/administrator/index.html.erb:111
+#: app/views/administrator/index.html.erb:71
 msgid "Confirm password"
 msgstr "Passwort bestätigen"
 
-#: app/views/administrator/index.html.erb:113
-msgid "Save Password"
-msgstr "Passwort speichern"
+#: app/views/administrator/index.html.erb:78
+msgid "Root User Mail Setup"
+msgstr "E-Mail Einrichtung für Root-Benutzer"
 
-#: app/views/administrator/index.html.erb:118
+#: app/views/administrator/index.html.erb:80
 msgid "Forward mail to"
 msgstr "E-Mail weiterleiten an"
 
-#: app/views/administrator/index.html.erb:120
-msgid "Save Mail"
-msgstr "E-Mail speichern"
+#: app/views/administrator/index.html.erb:83
+msgid "Save Mail Only"
+msgstr "E-Mail nur speichern"
 

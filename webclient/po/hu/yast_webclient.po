@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-10 15:10+0100\n"
-"PO-Revision-Date: 2010-03-11 10:33+0100\n"
+"POT-Creation-Date: 2010-03-18 14:33+0100\n"
+"PO-Revision-Date: 2010-03-24 15:35+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,23 +23,23 @@ msgid " - "
 msgstr " - "
 
 # cancel button label
-#: app/helpers/application_helper.rb:30 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:52
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: app/helpers/application_helper.rb:32 app/views/hosts/edit.html.erb:39
+#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Vissza"
 
-#: app/helpers/application_helper.rb:38
+#: app/helpers/application_helper.rb:46
 msgid "Next"
 msgstr "Következő"
 
-#: app/helpers/application_helper.rb:39
+#: app/helpers/application_helper.rb:47
 msgid "Save"
 msgstr "Mentés"
 
-#: app/helpers/application_helper.rb:40
+#: app/helpers/application_helper.rb:48
 msgid "Finish"
 msgstr "Befejezés"
 
@@ -112,24 +112,52 @@ msgstr "Kijelentkezett."
 msgid "Session timeout"
 msgstr "Munkamenet-időtúllépés"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:75
 msgid "You must accept all EULAs before using this product!"
 msgstr "A termék használata előtt el kell fogadnia a licencszerződést!"
 
-#: app/controllers/application_controller.rb:68
+#: app/controllers/application_controller.rb:79
 msgid ""
 "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr ""
 "Nem működik az átirányítás a licencszerződéshez. Ellenőrizze, hogy a yast2-"
 "webclient-eulas csomag telepítve van"
 
-#: app/controllers/application_controller.rb:123
+#: app/controllers/application_controller.rb:95
+msgid ""
+"You're not allowed to do this. If you have to do this action, please contact "
+"system administrator"
+msgstr ""
+"Ez a művelet nem engedélyezett. Amennyiben ezt a műveletet el kell végeznie, "
+"vegye fel a kapcsolatot a rendszergazdával"
+
+#: app/controllers/application_controller.rb:135
 msgid "Please login to continue"
 msgstr "Lépjen be a folytatáshoz"
 
-#: app/controllers/application_controller.rb:130
+#: app/controllers/application_controller.rb:142
 msgid "You must logout before you can login"
 msgstr "Belépés előtt ki kell jelentkeznie"
+
+#: app/controllers/application_controller.rb:216
+msgid "can't be blank"
+msgstr "nem lehet üres"
+
+#: app/controllers/application_controller.rb:217
+msgid "is out of allowed values"
+msgstr "a megengedett értékeken kívül esik"
+
+#: app/controllers/application_controller.rb:218
+msgid "can't be empty"
+msgstr "nem lehet üres"
+
+#: app/controllers/application_controller.rb:219
+msgid "is invalid"
+msgstr "érvénytelen"
+
+#: app/controllers/application_controller.rb:234
+msgid "Invalid parameters:"
+msgstr "érvénytelen paraméterek:"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -243,15 +271,15 @@ msgstr "YaST webszolgáltatás szerkesztése"
 msgid "YaST-Web-Service"
 msgstr "YaST webszolgáltatás"
 
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
 msgstr "Név"
 
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29
 msgid "Url"
 msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
 msgstr "Leírás"
 
@@ -267,11 +295,15 @@ msgstr "Válasszon szolgáltatást:"
 msgid "Really delete host %s ?"
 msgstr "Valóban törli a(z) %s gépet?"
 
-#: app/views/hosts/new.html.erb:4
+#: app/views/hosts/new.html.erb:9
 msgid "New WebYaST Host"
 msgstr "Új WebYaST számítógép"
 
-#: app/views/hosts/new.html.erb:47
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr "URL"
+
+#: app/views/hosts/new.html.erb:53
 msgid "Create"
 msgstr "Létrehozás"
 
@@ -288,7 +320,7 @@ msgstr "Beállítások"
 msgid "Status"
 msgstr "Állapot"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:32
 msgid "System actions"
 msgstr "Rendszerműveletek"
 
@@ -342,38 +374,38 @@ msgstr ""
 "A kezdeti rendszerbeállítás nem teljes. Folytassa a modulok beállításával.."
 
 #: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Rendszerbeállítás"
+msgid "Continue initial system setup"
+msgstr "Rendszerbeállítás folytatása"
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:35
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:48
+#: app/views/layouts/main.rhtml:49
 msgid "My Appliance"
 msgstr "Saját berendezés"
 
-#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:55 app/views/layouts/main.rhtml:59
 msgid "Language:"
 msgstr "Nyelv:"
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:61
 msgid "Connected host:"
 msgstr "Csatlakozás:"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:62
 msgid "User:"
 msgstr "Felhasználó:"
 
-#: app/views/layouts/main.rhtml:64
+#: app/views/layouts/main.rhtml:65
 msgid "Control panel"
 msgstr "Vezérlőpult"
 
-#: app/views/layouts/main.rhtml:65
+#: app/views/layouts/main.rhtml:66
 msgid "Logout"
 msgstr "Kijelentkezés"
 
-#: app/views/layouts/main.rhtml:100
+#: app/views/layouts/main.rhtml:101
 msgid "...Wait..."
 msgstr "...Várakozás..."
 
@@ -443,3 +475,5 @@ msgstr "Hiba történt az ntp-szinkronizáció közben: %s"
 msgid "Error while saving administrator settings: %s"
 msgstr "Hiba történt az adminisztrációs beállítások kiírása közben: %s"
 
+#~ msgid "Set up the system"
+#~ msgstr "Rendszerbeállítás"

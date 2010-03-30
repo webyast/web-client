@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-02 12:00\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 08:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,72 +13,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Неверный сеанс, войдите снова."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(невозможно прочесть состояние)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:56
 msgid "success"
 msgstr "успех"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(неизвестно)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(выполняется)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(остановлено)"
-
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(не выполняется)"
-
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(неизвестно: %d)"
-
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Результат вызова службы"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Результат"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:13
 msgid "Description"
 msgstr "Описание"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "Назад"
+#: app/views/services/index.rhtml:21
+msgid "Quick Search"
+msgstr "Быстрый поиск"
 
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "Пользовательские службы"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:89
 msgid "System Services"
 msgstr "Системные службы"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "На целевой машине не определены пользовательские службы."
+#: app/views/services/index.rhtml:95
+msgid "You do not have permission to execute the services."
+msgstr "У Вас нет разрешения на выполнение сервисов."
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Отсутствуют разрешения на выполнение служб. Ссылки отключены."
+#: app/views/services/index.rhtml:99
+msgid "Filter services"
+msgstr "Сервисы фильтров"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "состояние"
+#: app/views/services/index.rhtml:101
+msgid "All"
+msgstr "Все"
+
+#: app/views/services/index.rhtml:102
+msgid "Running"
+msgstr "Выполняется"
+
+#: app/views/services/index.rhtml:103
+msgid "Not Running"
+msgstr "Не выполняется"
+
+#: app/views/services/index.rhtml:104
+msgid "Dead"
+msgstr "Отключено"
+
+#: app/views/services/index.rhtml:120
+msgid "Description for service is not available"
+msgstr "Описание сервиса недоступно"
+
+#: app/views/services/index.rhtml:173
+msgid "refresh status"
+msgstr "обновить состояние"
+
+#: app/views/services/_status.rhtml:16
+msgid "status unknown"
+msgstr "состояние неизвестно"
+
+#: app/views/services/_status.rhtml:18
+msgid "running"
+msgstr "выполняется"
+
+#: app/views/services/_status.rhtml:22
+msgid "dead"
+msgstr "отключено"
+
+#: app/views/services/_status.rhtml:26
+msgid "not running"
+msgstr "не выполняется"
+
+#: app/views/services/_status.rhtml:30
+msgid "status unknown: %d"
+msgstr "состояние неизвестно: %d"
 

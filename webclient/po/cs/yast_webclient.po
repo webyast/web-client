@@ -1,39 +1,145 @@
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
-# Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-01-18 14:11+0100\n"
-"PO-Revision-Date: 2010-03-15 13:41+0100\n"
-"Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
-"Language-Team: Czech <opensuse-translation@opensuse.org>\n"
+"POT-Creation-Date: 2010-03-11 15:43+0100\n"
+"PO-Revision-Date: 2010-03-25 07:18\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/application_controller.rb:23
+#: app/helpers/application_helper.rb:20
+msgid " or "
+msgstr " nebo "
+
+#: app/helpers/application_helper.rb:24
+msgid " - "
+msgstr " - "
+
+#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Zpět"
+
+#: app/helpers/application_helper.rb:46
+msgid "Next"
+msgstr "Další"
+
+#: app/helpers/application_helper.rb:47
+msgid "Save"
+msgstr "Uložit"
+
+#: app/helpers/application_helper.rb:48
+msgid "Finish"
+msgstr "Dokončit"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr "Jste si jisti?"
+
+#: app/helpers/view_helpers/html_helper.rb:133
+msgid "Unknown error"
+msgstr "Neznámá chyba"
+
+#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "Nejsou k dispozici žádné informace."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Při načítání informací ze serveru došlo k chybě."
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+msgid "Hide Details"
+msgstr "Skrýt podrobnosti"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+msgid "Show Details"
+msgstr "Zobrazit podrobnosti"
+
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Přidat"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Upravit"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Smazat"
+
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr "Je třeba zadat hostitele."
+
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr "Nebylo zadáno přihlašovací jméno."
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr "Nebylo zadáno žádné heslo."
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Hostitel zablokoval uživatele %s. Nebude se moci přihlásit do %s"
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr "Nesprávné přihlašovací údaje. Zkontrolujte uživatelské jméno a heslo."
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr "Byli jste odhlášeni."
+
+#: app/controllers/application_controller.rb:24
 msgid "Session timeout"
 msgstr "Vypršení časového limitu relace"
 
-#: app/controllers/application_controller.rb:57
+#: app/controllers/application_controller.rb:64
 msgid "You must accept all EULAs before using this product!"
 msgstr "Než začnete používat tento produkt, je třeba přijmout všechny smlouvy EULA."
 
-#: app/controllers/application_controller.rb:61
+#: app/controllers/application_controller.rb:68
 msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
 msgstr "Nelze přesměrovat na smlouvu EULA. Ujistěte se, zda je nainstalován balíček yast2-webclient-eulas."
 
-#: app/controllers/application_controller.rb:115
+#: app/controllers/application_controller.rb:123
 msgid "Please login to continue"
 msgstr "Chcete-li pokračovat, přihlaste se."
 
-#: app/controllers/application_controller.rb:122
+#: app/controllers/application_controller.rb:130
 msgid "You must logout before you can login"
 msgstr "Před přihlášením je třeba se odhlásit."
+
+#: app/controllers/application_controller.rb:204
+msgid "can't be blank"
+msgstr "nesmí být prázdné"
+
+#: app/controllers/application_controller.rb:205
+msgid "is out of allowed values"
+msgstr "je mimo povolené hodnoty"
+
+#: app/controllers/application_controller.rb:206
+msgid "can't be empty"
+msgstr "nemůže být prázdné"
+
+#: app/controllers/application_controller.rb:207
+msgid "is invalid"
+msgstr "je neplatné"
+
+#: app/controllers/application_controller.rb:222
+msgid "Invalid parameters:"
+msgstr "Neplatné parametry:"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -55,30 +161,6 @@ msgstr "Hostitele „%s“ nelze nalézt."
 msgid "Please double-check the host URL."
 msgstr "Důkladně zkontrolujte adresu URL hostitele."
 
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr "Je třeba zadat hostitele."
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr "Nebylo zadáno přihlašovací jméno."
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr "Nebylo zadáno žádné heslo."
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "Hostitel zablokoval uživatele %s. Nebude se moci přihlásit do %s"
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr "Nesprávné přihlašovací údaje. Zkontrolujte uživatelské jméno a heslo."
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr "Byli jste odhlášeni."
-
 #: app/models/account.rb:-
 msgid "account"
 msgstr "účet"
@@ -97,15 +179,15 @@ msgstr "Účet|Aktualizován:"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token"
-msgstr "Účet|Zapamatovat token"
+msgstr "Účet|Token Zapamatovat"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token expires at"
-msgstr "Účet|Zapamatovat token, vyprší::"
+msgstr "Účet|Token Zapamatovat vyprší:"
 
 #: app/models/account.rb:-
 msgid "Account|Salt"
-msgstr "Účet|Hodnota soli"
+msgstr "Účet|Hodnota Salt"
 
 #: app/models/host.rb:-
 msgid "host"
@@ -131,61 +213,33 @@ msgstr "Hostitel|Vytvořen:"
 msgid "Host|Updated at"
 msgstr "Hostitel|Aktualizován:"
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr " nebo "
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "Toto je nepříjemné..."
 
-#: app/helpers/application_helper.rb:21 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Zrušit"
+#: app/views/shared/exception_trap.html.erb:10
+msgid "We are sorry, but there are some problems."
+msgstr "Je nám líto, ale vyskytly se potíže."
 
-#: app/helpers/application_helper.rb:29
-msgid "Next"
-msgstr "Další"
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "Problém:"
 
-#: app/helpers/application_helper.rb:30
-msgid "Save"
-msgstr "Uložit"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "Nahlaste chybu, abychom mohli problém opravit."
 
-#: app/helpers/application_helper.rb:31
-msgid "Finish"
-msgstr "Dokončit"
+#: app/views/shared/exception_trap.html.erb:18
+msgid "(report link)"
+msgstr "(odkaz hlášení)"
 
-#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Přidat"
+#: app/views/shared/exception_trap.html.erb:19
+msgid "Don't forget to include the bug details."
+msgstr "Nezapomeňte připojit podrobnosti o chybě."
 
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Upravit"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Smazat"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "Jste si jisti?"
-
-#: app/helpers/view_helpers/html_helper.rb:132
-msgid "Unknown error"
-msgstr "Neznámá chyba"
-
-#: app/helpers/view_helpers/html_helper.rb:136 app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "Nejsou k dispozici žádné informace."
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr "Při načítání informací ze serveru došlo k chybě."
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "Zvolte službu:"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr "Opravdu chcete odstranit hostitele %s ?"
+#: app/views/shared/backendexception_trap.html.erb:4
+msgid "Problem occured on target machine."
+msgstr "K chybě došlo v cílovém počítači."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -211,13 +265,13 @@ msgstr "Popis"
 msgid "Ok"
 msgstr "OK"
 
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Zpět"
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Zvolte službu:"
 
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Index"
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "Opravdu chcete odstranit hostitele %s ?"
 
 #: app/views/hosts/new.html.erb:4
 msgid "New WebYaST Host"
@@ -227,89 +281,9 @@ msgstr "Nový hostitel služby WebYaST"
 msgid "Create"
 msgstr "Vytvořit"
 
-#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
-msgid "This is embarrasing...."
-msgstr "Toto je nepříjemné..."
-
-#: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "Omlouváme se, ale služba WebYaST je stále v alfa verzi a obsahuje určité problémy."
-
-#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
-msgid "Problem:"
-msgstr "Problém:"
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "Please Report a bug so we can fix the problem!."
-msgstr "Nahlaste chybu, abychom mohli problém opravit."
-
-#: app/views/shared/exception_trap.html.erb:18
-msgid "(report link)"
-msgstr "(odkaz hlášení)"
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "Don't forget to include the bug details."
-msgstr "Nezapomeňte připojit podrobnosti o chybě."
-
-#: app/views/shared/backendexception_trap.html.erb:4
-msgid "Problem occured on target machine."
-msgstr "K chybě došlo v cílovém počítači."
-
-#: app/views/layouts/main.rhtml:34
-msgid "WebYaST"
-msgstr "WebYaST"
-
-#: app/views/layouts/main.rhtml:48
-msgid "My Appliance"
-msgstr "Moje softwarové zařízení"
-
-#: app/views/layouts/main.rhtml:56
-msgid "Connected host:"
-msgstr "Připojený hostitel:"
-
-#: app/views/layouts/main.rhtml:57
-msgid "User:"
-msgstr "Uživatel:"
-
-#: app/views/layouts/main.rhtml:60
-msgid "Control panel"
-msgstr "Ovládací panel"
-
-#: app/views/layouts/main.rhtml:61
-msgid "Logout"
-msgstr "Odhlásit se"
-
-#: app/views/layouts/main.rhtml:94
-msgid "...Wait..."
-msgstr "...Čekejte..."
-
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
-msgid "Login"
-msgstr "Přihlášení"
-
-#: app/views/sessions/new.rhtml:6
-msgid "Enter login credentials for host %s."
-msgstr "Zadejte přihlašovací pověření pro hostitele %s."
-
-#: app/views/sessions/new.rhtml:10
-msgid "Username:"
-msgstr "Uživatelské jméno:"
-
-#: app/views/sessions/new.rhtml:13
-msgid "Password:"
-msgstr "Heslo:"
-
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "Základní nastavení systému"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "Nastavení systému nebylo dokončeno. Pokračujte nastavením modulů."
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Nastavit systém"
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Index"
 
 #: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:61
 msgid "Configuration"
@@ -355,9 +329,69 @@ msgstr "Načítání systémových informací"
 msgid "Status plugin is not installed."
 msgstr "Modul plug-in stavu není nainstalován."
 
-#: app/views/controlpanel/index.rhtml:93
+#: app/views/controlpanel/index.rhtml:91
 msgid "Show all modules"
 msgstr "Zobrazit všechny moduly"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Základní nastavení systému"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr "Počáteční nastavení systému nebylo dokončeno. Pokračujte nastavením modulů."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "Nastavit systém"
+
+#: app/views/layouts/main.rhtml:34
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:48
+msgid "My Appliance"
+msgstr "Moje zařízení"
+
+#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+msgid "Language:"
+msgstr "Jazyk:"
+
+#: app/views/layouts/main.rhtml:60
+msgid "Connected host:"
+msgstr "Připojený hostitel:"
+
+#: app/views/layouts/main.rhtml:61
+msgid "User:"
+msgstr "Uživatel:"
+
+#: app/views/layouts/main.rhtml:64
+msgid "Control panel"
+msgstr "Ovládací panel"
+
+#: app/views/layouts/main.rhtml:65
+msgid "Logout"
+msgstr "Odhlásit se"
+
+#: app/views/layouts/main.rhtml:100
+msgid "...Wait..."
+msgstr "...Čekejte..."
+
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+msgid "Login"
+msgstr "Přihlášení"
+
+#: app/views/sessions/new.rhtml:6
+msgid "Enter login credentials for host %s."
+msgstr "Zadejte přihlašovací pověření pro hostitele %s."
+
+#: app/views/sessions/new.rhtml:10
+msgid "Username:"
+msgstr "Uživatelské jméno:"
+
+#: app/views/sessions/new.rhtml:13
+msgid "Password:"
+msgstr "Heslo:"
 
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
@@ -368,31 +402,34 @@ msgid "Service %s is not running on the target machine"
 msgstr "Služba %s není v cílovém počítači spuštěna."
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr "Poškozené nastavení oprávnění rest-service. Může být opraveno skriptem grantwebyasrights."
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr "Oprávnění %s není uděleno uživateli %s."
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Výjimka z balíčku zásad pro uživatele %s a oprávnění %s (nepřeložená zpráva): %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "Uživatel již není přihlášen k cílovému počítači. Přihlaste se znovu."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Cílový systém není konzistentní: chybějící nebo poškozený soubor %s"
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "V umístění /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS není nastaven žádný server NTP."
 
-#: lib/error_constructor.rb:28
+#: lib/error_constructor.rb:29
 msgid "Error occured during ntp synchronization: %s"
 msgstr "Při synchronizaci NTP došlo k chybě: %s"
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Při ukládání nastavení správce došlo k chybě: %s"
-
 

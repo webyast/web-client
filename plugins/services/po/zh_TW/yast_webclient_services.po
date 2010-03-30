@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-01 11:44\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-24 15:28\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,72 +13,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "無效的工作階段，請重新登入。"
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(無法讀取狀態)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:56
 msgid "success"
 msgstr "成功"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(未知)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(執行中)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(停止)"
-
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(尚未執行)"
-
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(未知︰%d)"
-
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "服務呼叫結果"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "結果"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:13
 msgid "Description"
 msgstr "描述"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "上一步"
+#: app/views/services/index.rhtml:21
+msgid "Quick Search"
+msgstr "快速搜尋"
 
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "自定服務"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:89
 msgid "System Services"
 msgstr "系統服務"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "目標機器上未定義自定服務。"
+#: app/views/services/index.rhtml:95
+msgid "You do not have permission to execute the services."
+msgstr "您無權執行這些服務。"
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "您沒有執行服務的許可。連結已停用。"
+#: app/views/services/index.rhtml:99
+msgid "Filter services"
+msgstr "過濾服務"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "狀態"
+#: app/views/services/index.rhtml:101
+msgid "All"
+msgstr "全部"
+
+#: app/views/services/index.rhtml:102
+msgid "Running"
+msgstr "執行中"
+
+#: app/views/services/index.rhtml:103
+msgid "Not Running"
+msgstr "尚未執行"
+
+#: app/views/services/index.rhtml:104
+msgid "Dead"
+msgstr "停止"
+
+#: app/views/services/index.rhtml:120
+msgid "Description for service is not available"
+msgstr "服務描述不可用"
+
+#: app/views/services/index.rhtml:173
+msgid "refresh status"
+msgstr "重新整理狀態"
+
+#: app/views/services/_status.rhtml:16
+msgid "status unknown"
+msgstr "狀態不明"
+
+#: app/views/services/_status.rhtml:18
+msgid "running"
+msgstr "執行中"
+
+#: app/views/services/_status.rhtml:22
+msgid "dead"
+msgstr "停止"
+
+#: app/views/services/_status.rhtml:26
+msgid "not running"
+msgstr "尚未執行"
+
+#: app/views/services/_status.rhtml:30
+msgid "status unknown: %d"
+msgstr "狀態不明︰%d"
 

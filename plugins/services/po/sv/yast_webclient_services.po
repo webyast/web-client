@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2010-02-02 11:19\n"
+"POT-Creation-Date: 2010-03-11 15:46+0100\n"
+"PO-Revision-Date: 2010-03-25 09:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,72 +13,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Ogiltig session. Logga in igen."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(det går inte att läsa status)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:56
 msgid "success"
 msgstr "lyckades"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(okänd)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(körs)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(död)"
-
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(körs inte)"
-
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(okänd: %d)"
-
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Resultat från servicesamtal"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Resultat"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:13
 msgid "Description"
 msgstr "Beskrivning"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "Tillbaka"
+#: app/views/services/index.rhtml:21
+msgid "Quick Search"
+msgstr "Snabbsökning"
 
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "Anpassade tjänster"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:89
 msgid "System Services"
 msgstr "Systemtjänster"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "Det finns ingen anpassad tjänst angiven på målmaskinen."
+#: app/views/services/index.rhtml:95
+msgid "You do not have permission to execute the services."
+msgstr "Du har inte behörighet att köra dessa tjänster."
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Du har inte behörighet att utföra tjänsterna. Länkarna är inaktiverade."
+#: app/views/services/index.rhtml:99
+msgid "Filter services"
+msgstr "Filtrera tjänster"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "status"
+#: app/views/services/index.rhtml:101
+msgid "All"
+msgstr "Alla"
+
+#: app/views/services/index.rhtml:102
+msgid "Running"
+msgstr "Körs"
+
+#: app/views/services/index.rhtml:103
+msgid "Not Running"
+msgstr "Körs inte"
+
+#: app/views/services/index.rhtml:104
+msgid "Dead"
+msgstr "Inaktiv"
+
+#: app/views/services/index.rhtml:120
+msgid "Description for service is not available"
+msgstr "Det finns ingen beskrivning för tjänsten"
+
+#: app/views/services/index.rhtml:173
+msgid "refresh status"
+msgstr "uppdatera status"
+
+#: app/views/services/_status.rhtml:16
+msgid "status unknown"
+msgstr "status okänd"
+
+#: app/views/services/_status.rhtml:18
+msgid "running"
+msgstr "körs"
+
+#: app/views/services/_status.rhtml:22
+msgid "dead"
+msgstr "inaktiv"
+
+#: app/views/services/_status.rhtml:26
+msgid "not running"
+msgstr "körs inte"
+
+#: app/views/services/_status.rhtml:30
+msgid "status unknown: %d"
+msgstr "status okänd: %d"
 
