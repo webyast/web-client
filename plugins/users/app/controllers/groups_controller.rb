@@ -95,7 +95,6 @@ private
     end
   end
 
-
 public
   def index
     begin
@@ -197,6 +196,7 @@ public
     @group.gid = group[:gid].to_i
     @group.members = group[:members_string].split(",").collect {|cn| cn.strip}
     @permissions = Group.permissions
+    @group.id = @group.old_cn # set id, so ActiveResource can use it for saving
 
     begin
       if @group.save
