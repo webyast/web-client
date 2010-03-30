@@ -10,6 +10,7 @@
 
 
 Name:           webyast-licenses-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.eulas)
 Provides:       yast2-webclient-eulas = %{version}
 Obsoletes:      yast2-webclient-eulas < %{version}
 PreReq:         yast2-webclient >= 0.0.2

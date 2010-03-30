@@ -10,6 +10,7 @@
 
 
 Name:           yast2-webclient-security
+Recommends:     WebYaST(org.opensuse.yast.system.security)
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/security_controller.rb
 License:	GPL v2 only

@@ -54,16 +54,14 @@ class UsersController < ApplicationController
       :type		=> "local",
       :id		=> nil
     )
-    @groups = Group.find()
-    @groups.all_grps_string = ""
-    counter = 0
-    @groups.allgroups.each do |group|
-       if counter == 0
-          @groups.all_grps_string = group.cn
+    @groups = Group.find :all
+    @all_grps_string = ""
+    @groups.each do |group|
+       if @all_grps_string.blank?
+          @all_grps_string = group.cn
        else
-          @groups.all_grps_string += ",#{group.cn}"
+          @all_grps_string += ",#{group.cn}"
        end
-       counter += 1
     end
     @user.grp_string = ""
     respond_to do |format|
@@ -77,7 +75,7 @@ class UsersController < ApplicationController
   def edit
     return unless client_permissions
     @user = User.find(params[:id])
-    @groups = Group.find()
+    @groups = Group.find(:all)
 
     #FIXME handle if id is invalid
 
@@ -85,7 +83,7 @@ class UsersController < ApplicationController
     @user.id	= @user.uid # use id for storing index value (see update)
     @user.grp_string = ""
 
-    @groups.all_grps_string = ""
+    @all_grps_string = ""
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
@@ -96,23 +94,19 @@ class UsersController < ApplicationController
     @user.user_password	= @user.user_password
     @user.user_password2= @user.user_password
 
-    counter = 0
     @user.grouplist.each do |group|
-       if counter == 0
+       if @user.grp_string.blank?
           @user.grp_string = group.cn
        else
           @user.grp_string += ",#{group.cn}"
        end
-       counter += 1
     end
-    counter = 0
-    @groups.allgroups.each do |group|
-       if counter == 0
-          @groups.all_grps_string = group.cn
+    @groups.each do |group|
+       if @all_grps_string.blank?
+          @all_grps_string = group.cn
        else
-          @groups.all_grps_string += ",#{group.cn}"
+          @all_grps_string += ",#{group.cn}"
        end
-       counter += 1
     end
   end
 
@@ -148,15 +142,13 @@ class UsersController < ApplicationController
     )
     @user.grp_string	= dummy.grp_string
     @groups = Group.find()
-    @groups.all_grps_string = ""
-    counter = 0
-    @groups.allgroups.each do |group|
-       if counter == 0
-          @groups.all_grps_string = group.cn
+    @all_grps_string = ""
+    @groups.each do |group|
+       if @all_grps_string.blank?
+          @all_grps_string = group.cn
        else
-          @groups.all_grps_string += ",#{group.cn}"
+          @all_grps_string += ",#{group.cn}"
        end
-       counter += 1
     end
 
 

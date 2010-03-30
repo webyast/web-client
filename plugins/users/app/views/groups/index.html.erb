@@ -1,0 +1,74 @@
+<% content_for :head do %>
+
+<%= javascript_include_tag "jquery.quicksearch.js"-%>
+
+ <style>
+    .pad1_2em {
+	padding: 1em 2em;
+    }
+    tr {
+	border: solid 1px #ddd;
+    }
+    label, .qs_input {
+	width: auto !important;
+    }
+ </style>
+
+ <% javascript_tag do %>
+ jQuery.expr[':'].Contains = function(a, i, m) {
+  return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+ };
+
+ $(document).ready(function(){
+
+ $('table tbody tr').quicksearch({
+        attached: 'div#qs_anchor',
+	inputText: '<%= _("Type group name ...")%>',
+	inputClass: 'qs_input',
+        loaderText: '',
+        labelText: '<%= _("Filter:")%>',
+	stripeRowClass: ['odd', 'even'],
+        delay: 100
+ });
+
+});//document.ready
+<% end %>
+
+<% end %>
+<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Groups")%></div>
+<div class="plugin-content grid_12">
+
+<div id='qs_anchor' class='pad1_2em'></div>
+<div>
+   <% if @permissions[:groupadd] %>
+     <%= link_to _("Add New Group"), :action => :new -%>
+   <% end %>
+<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
+  <thead>
+    <tr>
+      <th><%= h _("Group Name") %></th>
+      <th><%= h _("Type") %></th>
+      <th><%= h _("Action") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% for group in @groups %>
+  <tr class= <%= cycle('odd', 'even') -%> >
+    <td><%= link_to ( h group.cn || "-none-" ), {:action => :edit, :id => group.cn} -%></td>
+    <td><%= h group.group_type %></td>
+    <% if @permissions[:groupdelete] %>
+    <td class="icon"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></td>
+    <% end %>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+<fieldset>
+  <%= form_back_button -%>
+</fieldset>
+</div>
+</div>
+

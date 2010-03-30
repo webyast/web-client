@@ -14,6 +14,7 @@
 #
 
 Name:           yast2-webclient-samba-server
+Recommends:     WebYaST(org.opensuse.yast.system.sambashares)
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/controllers/sambserver_controller.rb
 License:	GPL v2 only

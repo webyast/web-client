@@ -10,6 +10,7 @@
 
 
 Name:           webyast-base-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.basesystem)
 Provides:       yast2-webclient = %{version}
 Obsoletes:      yast2-webclient < %{version}
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-certificate
@@ -33,7 +34,7 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.15
+Version:        0.1.16
 Release:        0
 Summary:        YaST2 - Webclient 
 Source:         www.tar.bz2

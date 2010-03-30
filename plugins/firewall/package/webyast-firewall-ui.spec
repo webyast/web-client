@@ -10,6 +10,7 @@
 
 
 Name:           webyast-firewall-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.firewall)
 PreReq:         webyast-base-ui
 License:        GPL v2 only
 Group:          Productivity/Networking/Web/Utilities

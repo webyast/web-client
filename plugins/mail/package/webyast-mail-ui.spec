@@ -10,13 +10,14 @@
 
 
 Name:           webyast-mail-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.mailsettings)
 Provides:       yast2-webclient-mailsettings = %{version}
 Obsoletes:      yast2-webclient-mailsettings < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.11
+Version:        0.1.13
 Release:        0
 Summary:        YaST2 - Webclient - Mail Settings
 Source:         www.tar.bz2

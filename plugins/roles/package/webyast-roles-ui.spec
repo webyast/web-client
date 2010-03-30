@@ -10,6 +10,7 @@
 
 
 Name:           webyast-roles-ui
+Recommends:     WebYaST(org.opensuse.yast.roles)
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on

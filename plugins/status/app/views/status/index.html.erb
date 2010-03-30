@@ -27,7 +27,7 @@
 <div class="plugin-content grid_12">
 
 <div class="accordion">
-<% if @graphs  %>
+<% if @graphs %>
   <% @graphs.each do |group| %>
     <div class="list-fieldset">
       <div class="list-fieldset-header" 
@@ -52,6 +52,39 @@
             </div>
           <% end %>
       </div>
+    </div>
+  <% end %>
+<% end %>
+<% if @plugins %>
+  <% @plugins.each do |plugin| %>
+    <div class="list-fieldset">
+      <div class="list-fieldset-header" 
+         <span class="status-icon <%= plugin.level %>"></span>
+         <%= plugin.short_description %>
+      </div>
+      <ul style="display: none;">
+        <div id="<%=plugin.message_id%>" >
+          <p>     
+            <%= plugin.long_description %>
+          </p>     
+          <% unless plugin.confirmation_host.blank? || plugin.confirmation_link.blank? %>
+            <% if plugin.confirmation_host == "client" %>
+              <% unless plugin.confirmation_label.blank? %>
+                <%= button_to plugin.confirmation_label, url_for(plugin.confirmation_link) %>
+              <% else %>
+                <%= link_to plugin.confirmation_link, url_for(plugin.confirmation_link) %>
+              <% end %>
+            <% end %>
+            <% if plugin.confirmation_host == "service" %>
+              <% unless plugin.confirmation_label.blank? %>
+                <%= button_to plugin.confirmation_label, {:action => :confirm_status, :url => plugin.confirmation_link, :param => plugin.confirmation_label} %>
+              <% else %>
+                <%= link_to "<service>"+plugin.confirmation_link, {:action => :confirm_status, :url => plugin.confirmation_link} %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </ul>
     </div>
   <% end %>
 <% end %>

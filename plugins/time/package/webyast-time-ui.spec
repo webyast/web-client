@@ -10,6 +10,8 @@
 
 
 Name:           webyast-time-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.time)
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.ntp)
 Provides:       yast2-webclient-systemtime = %{version}
 Obsoletes:      yast2-webclient-systemtime < %{version}
 PreReq:         yast2-webclient >= 0.0.2

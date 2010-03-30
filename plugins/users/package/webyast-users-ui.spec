@@ -9,6 +9,8 @@
 #
 
 Name:		webyast-users-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.users)
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.groups)
 Provides:       yast2-webclient-users = %{version}
 Obsoletes:      yast2-webclient-users < %{version}
 PreReq:         yast2-webclient >= 0.0.2
@@ -16,7 +18,7 @@ PreReq:         webyast-users-ws >= 0.1.6
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.16
+Version:        0.1.17
 Release:        0
 Summary:        YaST2 - Webclient - Users
 Source:         www.tar.bz2

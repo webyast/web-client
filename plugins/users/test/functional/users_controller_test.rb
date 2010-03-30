@@ -13,10 +13,10 @@ class UsersControllerTest < ActionController::TestCase
   def setup
     UsersController.any_instance.stubs(:login_required)
     # stub what the REST is supposed to return
-    response_index  = fixture "users.xml"
-    response_tester = fixture "tester.xml"
-    response_users  = fixture "emptycn.xml"
-    response_groups  = fixture "groups.xml"
+    response_index  = fixture "users/users.xml"
+    response_tester = fixture "users/tester.xml"
+    response_users  = fixture "users/emptycn.xml"
+    response_groups  = fixture "groups/groups.xml"
 
 
 #FIXME move to separate load fixture method
@@ -28,7 +28,7 @@ class UsersControllerTest < ActionController::TestCase
       mock.get   "/users.xml", header, response_index, 200
       mock.get   "/users/tester.xml", header, response_tester, 200
       mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
-      mock.get   "/groups/.xml", header, response_groups, 200
+      mock.get   "/groups.xml", header, response_groups, 200
     end
   end
 

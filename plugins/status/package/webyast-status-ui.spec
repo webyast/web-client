@@ -10,13 +10,17 @@
 
 
 Name:           webyast-status-ui
+Recommends:     WebYaST(org.opensuse.yast.system.status)
+Recommends:     WebYaST(org.opensuse.yast.system.metrics)
+Recommends:     WebYaST(org.opensuse.yast.system.logs)
+Recommends:     WebYaST(org.opensuse.yast.system.graphs)
 Provides:       yast2-webclient-status = %{version}
 Obsoletes:      yast2-webclient-status < %{version}
 PreReq:         yast2-webclient >= 0.1.14
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.6
+Version:        0.1.7
 Release:        0
 Summary:        YaST2 - Webclient - status
 Source:         www.tar.bz2

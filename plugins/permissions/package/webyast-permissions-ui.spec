@@ -10,6 +10,7 @@
 
 
 Name:           webyast-permissions-ui
+Recommends:     WebYaST(org.opensuse.yast.webservice.permissions)
 Provides:       yast2-webclient-permissions = %{version}
 Obsoletes:      yast2-webclient-permissions < %{version}
 PreReq:         yast2-webclient

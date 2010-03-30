@@ -10,6 +10,10 @@
 
 
 Name:           webyast-network-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.routes)
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.interfaces)
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.hostname)
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.dns)
 Provides:       yast2-webclient-network = %{version}
 Obsoletes:      yast2-webclient-network < %{version}
 License:	GPL v2 only

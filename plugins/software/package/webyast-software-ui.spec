@@ -10,6 +10,8 @@
 
 
 Name:           webyast-software-ui
+Recommends:     WebYaST(org.opensuse.yast.system.repositories)
+Recommends:     WebYaST(org.opensuse.yast.system.patches)
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
 # generate_error_messages helper

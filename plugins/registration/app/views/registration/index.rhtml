@@ -67,7 +67,7 @@
             <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
               <%= argument['description'] %>
             </label>
-            <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+            <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
           </p>
         <% end %>
       </fieldset>
@@ -83,7 +83,7 @@
                   <label for="<%= 'registration_arg_'+argument['name'] %>" >
                     <%= argument['description'] %>
                   </label>
-                  <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+                  <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
                 </p>
               <% end %>
             </div>
