@@ -22,13 +22,13 @@
     <input type="radio" name="accepted" value="true" 
       <%= @eula.accepted ? 'checked="checked"' : "" %>
       <%= @eula.accepted ? 'readonly="readonly"' : "" %>
-      >
+      />
     <%= _("Yes, I agree to the license agreement.") %>
     <br/>
     <input type="radio" name="accepted" value="false" 
       <%= @eula.accepted ? "" : 'checked="checked"' %>
       <%= @eula.accepted ? 'readonly="readonly"' : '' %>
-      >
+      />
     <%= _("No, I do not agree.") %>
     <br/>
   <% end -%>
