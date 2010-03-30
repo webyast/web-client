@@ -37,11 +37,12 @@ task :fetch_po, [:lcn_dir] do |t, args|
   #remove translation statistik
   File.delete(File.join("pot", "translation_status.yaml")) if File.exist?("pot/translation_status.yaml")
   result = Hash.new()
+  task_name = "fetch_po"
 
   PROJECTS.each do |project|
       Dir.chdir project do
         if File.exist? "Rakefile" #avoid endless loop if directory doesn't contain Rakefile
-          system %(#{env} #{$0} #{task_name})
+          system %(#{env} #{$0} #{task_name}[#{args.lcn_dir}] )
           raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
         end
       end
