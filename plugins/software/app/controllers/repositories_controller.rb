@@ -28,7 +28,9 @@ class RepositoriesController < ApplicationController
       @repos = Repository.find :all
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Cannot read repository list.")
-      return
+      @repos = []
+      @permissions = {}
+      render :index and return
     end
 
     return unless @repos
