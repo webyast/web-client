@@ -1,62 +1,200 @@
 <% content_for :head do %>
-<%= javascript_include_tag :defaults %>
-<% end %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery.quicksearch.js" %>
 
-<% if @permissions and @repos %>
+  <style type="text/css">
+    label.error { float: none; color: red; padding-left: 6.5em; vertical-align: top; width: 70%; text-align: left }
+  </style>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      // define a custom validation function for repository URL
+      jQuery.validator.addMethod("repo_url", function(value, element) {
+	return this.optional(element)
+	// modified regexp from jQuery validation: accept any protocol, not only http(s) and ftp
+	|| /^([a-zA-Z]+):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
+
+      }, "<%= _("Enter a valid repository URL.") -%>");
+
+      // define a custom validation function for repository alias
+      jQuery.validator.addMethod("repo_alias", function(value, element) {
+	return this.optional(element)
+	// PackageKit does not accept some special characters in alias
+	|| /^[^`'"\\\[\]^$\{\}<>]*$/i.test(value);
+
+      }, "<%= _("Symbols <b>%s</b> are not allowed in repository alias.") % "^${}[]&gt;&lt;`\\'\\\"\\\\" -%>");
+
+      // set custom translatable messages
+      $.extend($.validator.messages, {
+	required: "<%= _("This value cannot be empty.") -%>"
+      });
+    });
+
+    $(document).ready(function(){
+      $(".accordion").accordion({
+	 autoHeight : false,
+	 navigation : true,
+	 collapsible: true,
+	 header     : 'div.list-fieldset div.list-fieldset-header'
+      });
+
+      $(".accordion").accordion('activate',false);
+
+      $('#repositories div.list-fieldset').quicksearch({
+	  attached: '#repositories',
+	  loaderText: '',
+	  labelText: '<%= _("Quick Search") -%>',
+	  delay: 100
+      });
+    });
+
+    function select_repositories (val) {
+      if (val == "all") {
+	  $("#repositories > div.list-fieldset").show();
+      }
+      else if (val == "enabled") {
+	$("#repositories > div.list-fieldset.repository-enabled").show();
+	$("#repositories > div.list-fieldset.repository-disabled").hide();
+      }
+      else if (val == "disabled") {
+	$("#repositories > div.list-fieldset.repository-enabled").hide();
+	$("#repositories > div.list-fieldset.repository-disabled").show();
+      };
+     };
+
+    function switch_flag(link, field, deflt, changes) {
+      // change the hidden field and the link text
+      if ($(field).val() == "true")
+      {
+	$(field).val("false");
+	$(link).text("<%= _("enable") -%>");
+      }
+      else
+      {
+	$(field).val("true");
+	$(link).text("<%= _("disable") -%>");
+      };
+
+      // display/hide the changes text
+      if (deflt == $(field).val())
+      {
+	$(changes).hide();
+      }
+      else
+      {
+	$(changes).show();
+      };
+    };
+  </script>
+<% end %>
 
   <div class='plugin-icon'><img src='/icons/yast-online_update.png'/><%=_("Software Repositories") %></div>
   <div class='plugin-content grid_12'>
-  <div class="loading"></div>
-  <% disabled = !@permissions[:write] %>
-  <% if @repos.empty? %>
-    <h3><%=_("No software repository configured.") %></h3>
-  <% else %>
+    <div class="loading"></div>
+    <% disabled = !@permissions[:write] %>
+
     <h3><%=_("Configured software repositories") %></h3>
-      <table cellpadding="3px">
-	<tr>
-	  <th>Priority</th>
-	  <th>Enabled</th>
-	  <th>Name</th>
-	  <th>URL</th>
-	</tr>
 
-      <% # Sort by priority then by name -%>
-      <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+    <p>
+      <label for="filter"><%=  _("Filter repositories") %></label>
+      <%= select_tag "filter", options_for_select([
+	  [ _("All"), "all"],
+	  [ _("Enabled"), "enabled"],
+	  [ _("Disabled"), "disabled"]
+	])
+      %>
+      <%= observe_field("filter", :function => "select_repositories(value)") %>
+    </p>
 
+    <% # Sort by priority then by name -%>
+    <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+
+    <div id="repositories" class="accordion">
       <% @repos.each do |r| %>
-	<tr>
-	  <td align="center"><%= h r.priority -%></td>
-	  <td align="center" id="repo_cell_<%= safe_id r.id -%>">
-	    <%= render :partial => 'repository_checkbox',
-	      :locals => { :id => r.id, :enabled => r.enabled, :disabled => disabled,
-	      :error => nil} %>
-	  </td>
-	  <td><%= link_to (h r.name), :action => 'show', :id => r.id -%></td>
-	  <td><%= h r.url -%></td>
-	  <% unless disabled -%>
-	    <td><%= link_to image_tag('/images/delete.png', :alt => "delete"),
-	      {:action => 'delete', :id => r.id},
-	      {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete} %>
-	    </td>
-	  <% end -%>
-	</tr>
-      <% end  %>
-      </table>
-  <% end %>
+	<div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
+	  <div class="list-fieldset-header">
+	    <% #* TODO FIXME: do quick search only in name and URL => use quicksearch_content class-%>
+	    <span class="quicksearch_content">
+	      <div>
+		<div class="status-icon <%= r.enabled ? 'ok' : 'unused' %>"></div>
+		<%= h r.name %>
+	      </div>
+	      <small><%= h r.url %></small>
+	    </span>
+	    <span style="float: right; margin-right: 5em"><%= prio_summary r.priority -%></span>
+	  </div>
+	  <div class='repository-content' style="display:none">
+	      <% sid = safe_id(r.id) %>
+	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
+		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit =>
+		"if ($('#repositoryForm_#{sid}').valid()) {$('#progress_#{sid}').show(); return true;} else return false;" }
+	      ) do |f| %>
 
-  <fieldset>
-  <%= form_back_button %>
+		<% content_for :head do %>
+		  <script type="text/javascript">
+		      $(document).ready(function(){
+			// validate the form
+			$("#repositoryForm_<%= sid -%>").validate()
+		      });
+		  </script>
+		<% end %>
 
-  <% if !disabled %>
-    <%= form_str_spacer %>
-    <%= link_to   (_("Add") + " " + _("a new repository") ), 
-                  {:action => 'add'}, 
-                  :class=>"button", 
-                  :onclick=>"$('#progress').show()" 
-                  %>
-  <% end %>
-  </fieldset>
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">Alias: </div><i><%= h r.id %></i></p>
+
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">Name: </div>
+		  <%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
+
+		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div>
+		  <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
+
+		<p>Repository is currently <i><%= bool_status r.enabled %></i>.
+		  <% if !disabled  %>
+		    <%= hidden_field_with_link f, sid, :enabled, r.enabled,
+		      _("Repository will be %s.") % bool_status(!r.enabled) -%>
+		  <% end %>
+		</p>
+
+		<p>Autorefresh is currently <i><%= bool_status r.autorefresh %></i>.
+		  <% if !disabled  %>
+		    <%= hidden_field_with_link f, sid, :autorefresh, r.autorefresh,
+		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh) -%>
+		  <% end %>
+		</p>
+
+		<p>Priority for packages: <%= prio_selector f, r.priority, disabled %></p>
+
+		<p>Keeping downloaded packages is currently <i><%= bool_status r.keep_packages %>.</i>
+		  <% if !disabled  %>
+		    <%= hidden_field_with_link f, sid, :keep_packages, r.keep_packages,
+		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages) -%>
+		  <% end %>
+		</p>
+
+		<fieldset>
+		  <% if !disabled -%>
+		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
+		    <%= form_next_button :label => _("Save") %>
+		    <%= link_to _("Delete"),
+			  {:action => 'delete', :id => r.id},
+			  {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %>
+		  <% end -%>
+		</fieldset>
+
+	      <% end %>
+	  </div>
+	</div>
+      <% end %>
+    </div>
+
+    <fieldset>
+      <%= form_back_button %>
+
+      <% if !disabled %>
+	<%= form_str_spacer %>
+	<%= link_to   (_("Add") + " " + _("a new repository") ),
+	  {:action => 'add'},
+	  :onclick=>"$('#progress').show()"
+      %>
+      <% end %>
+    </fieldset>
   </div>
-
-<% end %>
-
