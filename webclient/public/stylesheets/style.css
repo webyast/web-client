@@ -450,6 +450,22 @@ label {
   margin: 0.2em 0.5em;
 }
 
+/* make error messages show up right of the label, bnc#592282 */
+input.error {
+  float: left;
+}
+
+label.error {
+  float: left;
+  text-align: left;
+  vertical-align: middle;
+  display: none;
+  color: red;
+  padding: 0 0 0 0;
+  margin: 2px;
+}
+
+
   label.radio-right {
     display:block;
     float:left;
