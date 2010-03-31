@@ -27,15 +27,10 @@
   $(this).find(".del_user").hide();
  });
 
- $('table tbody tr').quicksearch({
-        attached: 'div#qs_anchor',
-	inputText: '<%= _("Type user name or login ...")%>',
-	inputClass: 'qs_input',
-        loaderText: '',
-        labelText: '<%= _("Filter:")%>',
-	stripeRowClass: ['odd', 'even'],
-        delay: 100
- });
+  $('input#users_search').quicksearch('table tbody tr', {
+    stripeRows: ['odd', 'even'],
+    delay: 100
+  });
 
  // default state
  $('.del_user').hide();
@@ -46,7 +41,11 @@
 <div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Users")%></div>
 <div class="plugin-content grid_12">
 
-<div id='qs_anchor' class='pad1_2em'></div>
+<form action="#" id="quicksearch" class="pad1_2em">
+  <label><%= _("Filter:") %></label>
+  <input type="text" id="users_search"></input>
+</form>
+
 <div class='pad1_2em'>
 <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
 <table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
