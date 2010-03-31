@@ -21,15 +21,10 @@
 
  $(document).ready(function(){
 
- $('table tbody tr').quicksearch({
-        attached: 'div#qs_anchor',
-	inputText: '<%= _("Type group name ...")%>',
-	inputClass: 'qs_input',
-        loaderText: '',
-        labelText: '<%= _("Filter:")%>',
-	stripeRowClass: ['odd', 'even'],
-        delay: 100
- });
+  $('input#groups_search').quicksearch('table tbody tr', {
+    stripeRows: ['odd', 'even'],
+    delay: 100
+  });
 
 });//document.ready
 <% end %>
@@ -38,7 +33,11 @@
 <div class='plugin-icon'><img src='/icons/yast-groups.png'/><%=_("Groups")%></div>
 <div class="plugin-content grid_12">
 
-<div id='qs_anchor' class='pad1_2em'></div>
+<form action="#" id="quicksearch" class="pad1_2em">
+  <label><%= _("Filter:") %></label>
+  <input type="text" id="groups_search"></input>
+</form>
+
 <div>
    <% if @permissions[:groupadd] %>
      <%= link_to _("Add New Group"), :action => :new -%>
