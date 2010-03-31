@@ -116,7 +116,7 @@
       <% @repos.each do |r| %>
 	<div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
 	  <div class="list-fieldset-header">
-	    <% # do quick search only in name and URL => use quicksearch_content class- %>
+	    <% # do quick search only in name and URL => use quicksearch_content class -%>
 	    <span class="quicksearch_content">
 	      <div>
 		<div class="status-icon <%= r.enabled ? 'ok' : 'unused' %>"></div>
