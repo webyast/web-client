@@ -55,6 +55,10 @@
 
 <% disabled = ! @permissions[:write] %>
 
+<% if disabled %>
+<p style="padding: 10px"><%=_("You do not have permission to modify the settings.")%></p>
+<% end %>
+
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset class="wrapper with-background" id="password">
