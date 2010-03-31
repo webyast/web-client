@@ -170,7 +170,7 @@ public
           Rails.logger.error "Cannot create group '#{@group.cn}': #{ERB::Util.html_escape err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot create group '#{@group.cn}'")
+        flash[:error] = _("Cannot create group '#{@group.cn}' : #{ERB::Util.html_escape err['error']['message']}")
       rescue Exception => e
         Rails.logger.error "Exception: #{e}"
         # XML parsing has failed, display complete response
@@ -196,6 +196,7 @@ public
     @group.cn = group[:cn]
     @group.gid = group[:gid].to_i
     @group.members = group[:members_string].split(",").collect {|cn| cn.strip}
+    @permissions = Group.permissions
 
     begin
       if @group.save
@@ -219,7 +220,7 @@ public
           Rails.logger.error "Cannot update group '#{@group.old_cn}': #{err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot update group '#{ERB::Util.html_escape @group.old_cn}'}")
+        flash[:error] = _("Cannot update group '#{ERB::Util.html_escape @group.old_cn}' : #{ERB::Util.html_escape err['error']['message']}")
       rescue Exception => e
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
@@ -242,7 +243,8 @@ public
         flash[:message] = _("Group '#{@group.cn}' has been deleted.")
       end
     rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Cannot remove group '#{@group.cn}'")
+      err = Hash.from_xml e.response.body
+      flash[:error] = _("Cannot remove group '#{@group.cn}' : #{ERB::Util.html_escape err['error']['message']}")
     end
 
     redirect_to :action => :index and return
