@@ -158,23 +158,23 @@
 		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div>
 		  <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
 
-		<p>Repository is currently <i><%= bool_status r.enabled %></i>.
+		<p><%= _("Repository is currently") %><i><%= bool_status r.enabled %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :enabled, r.enabled,
 		      _("Repository will be %s.") % bool_status(!r.enabled, {}) -%>
 		  <% end %>
 		</p>
 
-		<p>Autorefresh is currently <i><%= bool_status r.autorefresh %></i>.
+		<p><%= _("Autorefresh is currently") %><i><%= bool_status r.autorefresh %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :autorefresh, r.autorefresh,
 		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh, {}) -%>
 		  <% end %>
 		</p>
 
-		<p>Priority for packages: <%= prio_selector f, r.priority, disabled %></p>
+		<p><%= _("Priority for packages:") %> <%= prio_selector f, r.priority, disabled %></p>
 
-		<p>Keeping downloaded packages is currently <i><%= bool_status r.keep_packages %>.</i>
+		<p><%= _("Keeping downloaded packages is currently") %><i><%= bool_status r.keep_packages %>.</i>
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :keep_packages, r.keep_packages,
 		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages, {}) -%>
