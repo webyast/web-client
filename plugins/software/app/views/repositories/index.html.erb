@@ -40,10 +40,8 @@
 
       $(".accordion").accordion('activate',false);
 
-      $('#repositories div.list-fieldset').quicksearch({
-	  attached: '#repositories',
-	  loaderText: '',
-	  labelText: '<%= _("Quick Search") -%>',
+      $('input#repo_search').quicksearch('#repositories div.list-fieldset', {
+	  selector: 'span.quicksearch_content',
 	  delay: 100
       });
     });
@@ -106,6 +104,11 @@
       <%= observe_field("filter", :function => "select_repositories(value)") %>
     </p>
 
+    <form action="#" id="quicksearch">
+      <label><%= _("Quick Search") %></label>
+      <input type="text" id="repo_search"></input>
+    </form>
+
     <% # Sort by priority then by name -%>
     <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
 
@@ -113,7 +116,7 @@
       <% @repos.each do |r| %>
 	<div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
 	  <div class="list-fieldset-header">
-	    <% #* TODO FIXME: do quick search only in name and URL => use quicksearch_content class-%>
+	    <% # do quick search only in name and URL => use quicksearch_content class- %>
 	    <span class="quicksearch_content">
 	      <div>
 		<div class="status-icon <%= r.enabled ? 'ok' : 'unused' %>"></div>
