@@ -28,13 +28,41 @@
 
 	// set custom translatable messages
 	$.extend($.validator.messages, {
-	  digits: "<%= _("Enter a number in range 0 (the highest priority) to 200 (the lowest priority).") -%>",
-	  min: "<%= _("Priority must be a positive number.") -%>",
-	  max: "<%= _("Priority must be less than 200.") -%>",
 	  required: "<%= _("This value cannot be empty.") -%>"
 	});
      });
 
+    // toggle the enable/disable link text after clicking it
+    // and update the hidden field
+    function toggle_flag(link, field, enabled_text, disabled_text) {
+      // change the hidden field, link text and hide/show the status
+      if ($(field).val() == "true")
+      {
+	$(field).val("false");
+	$(link).text("<%= _("enable") -%>");
+	$(enabled_text).hide();
+	$(disabled_text).show();
+      }
+      else
+      {
+	$(field).val("true");
+	$(link).text("<%= _("disable") -%>");
+	$(enabled_text).show();
+	$(disabled_text).hide();
+      };
+    };
+
+    // update the icon if enabled status is changed
+    function update_icon() {
+      if ($('#repo_enabled').val() == 'true')
+      {
+	$('#status_icon').removeClass('unused').addClass('ok');
+      }
+      else
+      {
+	$('#status_icon').removeClass('ok').addClass('unused');
+      }
+    };
 
   </script>
 <% end %>
@@ -44,69 +72,49 @@
 <div class='plugin-icon'><img src='/icons/yast-online_update.png'/>
   <%= _("Software Repositories") %>
   <%= header_spacer %>
-  <%= if @adding then
-        _("Add a new repository")
-      else
-        disabled ? _("Properties of") : _("Edit Properties of") + " "+ h(@repo.name)
-      end
-      -%>
+  <%= _("Add a new repository") %>
 </div>
+
 <div class='plugin-content grid_12'>
-<% form_for(:repository, @repo, :url => { :action => (@adding ? 'create' : 'update'), :id => @repo.id }, :html => { :method => (@adding ? :post : :put), :id => 'repositoryForm', :onsubmit => "if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" } ) do |f| %>
+
+<% form_for(:repository, @repo, :url => { :action => 'create', :id => @repo.id }, :html => { :method => :post, :id => 'repositoryForm',
+    :onsubmit => "if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" } ) do |f| %>
   <fieldset class="wrapper with-background">
-    <div class="table">
-      <table class="list" cellpadding="3" cellspacing="0">
-      <tr>
-   	<th class="full" colspan="2"><%=_("Repository")%></th>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%=_("Alias")-%></strong></td>
-  	<% if @adding -%>
-  	  <td class="last"><%= f.text_field :id, :disabled => disabled, :class => 'repo_alias required' -%></td>
-  	<% else -%>
-  	  <td class="last"><strong><%= h @repo.id -%></strong></td>
-  	<% end -%>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%=_("Enabled")-%></strong></td>
-  	<td class="last"><%= f.check_box :enabled, :disabled => disabled -%></td>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%=_("Autorefresh")-%></strong></td>
-  	<td class="last"><%= f.check_box :autorefresh, :disabled => disabled -%></td>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%= _("Name") -%></strong></td>
-  	<td class="last"><%= f.text_field :name, :disabled => disabled, :class => 'required' -%></td>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%= _("URL") -%></strong></td>
-  	<td class="last"><%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></td>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%=_("Priority")-%></strong></td>
-  	<td class="last"><%= f.text_field :priority, :disabled => disabled, :min => 0, :max => 200, :class => 'digits' -%></td>
-      </tr>
-  
-      <tr>
-  	<td class="first" width="120"><strong><%=_("Keep downloaded packages")-%></strong></td>
-  	<td class="last"><%= f.check_box :keep_packages, :disabled => disabled -%></td>
-      </tr>
-  
-      </table>
-    </div>
+    <div id="status_icon" class="status-icon <%= @repo.enabled ? 'ok' : 'unused' %>"></div>
+    <span style="padding-bottom: 8px; vertical-align: 50%; font-weight: bold"><%= _("New Repository") %></span>
+
+    <p><div style="min-width: 6em; float: left;">Alias: </div>
+    <%= f.text_field :id, :disabled => disabled, :class => 'repo_alias required' -%></p>
+
+    <p><div style="min-width: 6em; float: left;">Name: </div>
+    <%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
+
+    <p><div style="min-width: 6em; float: left;">URL: </div>
+    <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
+
+    <p onclick="update_icon();"><%= hidden_field_with_toggle_link f, :enabled, @repo.enabled,
+	_("Repository will be %s.") % "<i>#{bool_status(true)}</i>",
+	_("Repository will be %s.") % "<i>#{bool_status(false)}</i>" -%>
+    </p>
+
+    <p><%= hidden_field_with_toggle_link f, :autorefresh, @repo.autorefresh,
+	_("Autorefresh will be %s.")% "<i>#{bool_status(true)}</i>",
+	_("Autorefresh will be %s.")% "<i>#{bool_status(false)}</i>" -%>
+    </p>
+
+    <p><%= _("Priority for packages:") %><%= prio_selector f, @repo.priority, disabled %></p>
+
+    <p><%= hidden_field_with_toggle_link f, :keep_packages, @repo.keep_packages,
+	_("Keep packages option will be %s.")% "<i>#{bool_status(true)}</i>",
+	_("Keep packages option will be %s.")% "<i>#{bool_status(false)}</i>" -%>
+    </p>
   </fieldset>
+
   <fieldset>
     <%= form_back_button :action => :index, :onclick=>"$('#progress').show()"%>
     <% if !disabled -%>
       <%= form_str_spacer %>
-      <%= form_next_button :label => (@adding ? _("Create") : _("Update")) %>
+      <%= form_next_button :label => _("Save") %>
     <% end -%>
   </fieldset>
 <% end %>
