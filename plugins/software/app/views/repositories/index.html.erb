@@ -109,6 +109,14 @@
       <input type="text" id="repo_search"></input>
     </form>
 
+    <% if !disabled %>
+      <fieldset>
+	<%= link_to   (_("Add") + " " + _("a new repository") ),
+	  {:action => 'add'},
+	  :onclick=>"$('#progress').show()" %>
+      </fieldset>
+    <% end %>
+
     <% # Sort by priority then by name -%>
     <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
 
@@ -191,13 +199,5 @@
 
     <fieldset>
       <%= form_back_button %>
-
-      <% if !disabled %>
-	<%= form_str_spacer %>
-	<%= link_to   (_("Add") + " " + _("a new repository") ),
-	  {:action => 'add'},
-	  :onclick=>"$('#progress').show()"
-      %>
-      <% end %>
     </fieldset>
   </div>
