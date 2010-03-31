@@ -41,8 +41,15 @@ module RepositoriesHelper
     return val ? _('enable') : _('disable')
   end
 
-  def bool_status val
-    return val ? _('enabled') : _('disabled')
+  def bool_status val, opts = {:colors => {true => 'green', false => 'red'} }
+    colors = opts[:colors] || {}
+    ret = val ? _('enabled') : _('disabled')
+
+    if colors[val]
+      ret = "<span style='color: #{colors[val]}'>#{ret}</span>"
+    end
+
+    return ret
   end
 
   def hidden_field_with_link form, sid, flag, value, change

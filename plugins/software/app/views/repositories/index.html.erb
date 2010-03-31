@@ -153,14 +153,14 @@
 		<p>Repository is currently <i><%= bool_status r.enabled %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :enabled, r.enabled,
-		      _("Repository will be %s.") % bool_status(!r.enabled) -%>
+		      _("Repository will be %s.") % bool_status(!r.enabled, {}) -%>
 		  <% end %>
 		</p>
 
 		<p>Autorefresh is currently <i><%= bool_status r.autorefresh %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :autorefresh, r.autorefresh,
-		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh) -%>
+		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh, {}) -%>
 		  <% end %>
 		</p>
 
@@ -169,7 +169,7 @@
 		<p>Keeping downloaded packages is currently <i><%= bool_status r.keep_packages %>.</i>
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :keep_packages, r.keep_packages,
-		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages) -%>
+		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages, {}) -%>
 		  <% end %>
 		</p>
 
