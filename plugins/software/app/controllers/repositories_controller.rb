@@ -7,7 +7,7 @@ class RepositoriesController < ApplicationController
   layout 'main'
 
   # Initialize GetText and Content-Type.
-  init_gettext 'yast_webclient_repositories'
+  init_gettext 'yast_webclient_software'
 
   def attribute_mapping
     {
