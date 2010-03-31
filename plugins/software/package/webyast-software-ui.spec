@@ -14,13 +14,13 @@ Recommends:     WebYaST(org.opensuse.yast.system.repositories)
 Recommends:     WebYaST(org.opensuse.yast.system.patches)
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
-# generate_error_messages helper
-PreReq:         yast2-webclient >= 0.1.14
+# updated jQuery quicksearch plugin
+PreReq:         yast2-webclient >= 0.1.17
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.13
+Version:        0.1.14
 Release:        0
 Summary:        YaST2 - Webclient - Software and Repository Management
 Source:         www.tar.bz2
