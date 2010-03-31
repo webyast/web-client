@@ -26,7 +26,7 @@ CTEST_RESPONSE = <<EOF
     </arg1>
     <arg1>
       <value type="array">
-        <value> test </value>
+        <value>test</value>
       </value>
     </arg1>
   </arg1>
@@ -156,9 +156,11 @@ def test_save_deep_array_xml
     assert test.arg1[0].value
     assert !test.arg1[1].value
     assert !test.actions.action1.active
+    assert_equal "test", test.arg1[2].value[0]
 
     test.arg1[0].value = false
     test.actions.action1.active = true
+    test.arg1[2].value = ["lest","zvest"]
     assert test.save
     rq = ActiveResource::HttpMock.requests.find {
         |r| r.method == :post && r.path == "/ctest.xml"}
@@ -168,6 +170,8 @@ def test_save_deep_array_xml
     puts result
     assert_equal true, result["actions"]["action1"]["active"]
     assert_equal false, result["arg1"][0]["value"]
+    assert_equal "lest", result["arg1"][2]["value"][0]
+    assert_equal "zvest", result["arg1"][2]["value"][1]
   ensure
     Rails.logger.debug ActiveResource::HttpMock.requests.inspect
   end

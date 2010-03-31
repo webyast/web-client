@@ -1,62 +1,38 @@
-module ActiveResource
-  module Formats
-    module XmlFormat
-      #overwritten method of ActiveResource. Main problem of original method is
-      #that it doesn't support some cases like array of string, so you cannot simple replace
-      #one array with another one. Fixed version use same serialization as in BaseModel in Rest-service.
-      def self.encode(hash,options={})
-        XmlSerializer.serialize(hash,options)
-      end
+class Array
+  def to_xml(options = {})
+    require 'builder' unless defined?(Builder)
+
+    options = options.dup
+    options[:root]     ||= all? { |e| e.is_a?(first.class) && first.class.to_s != "Hash" } ? first.class.to_s.underscore.pluralize : "array"
+    options[:children] ||= options[:root].singularize
+    options[:indent]   ||= 2
+    options[:builder]  ||= Builder::XmlMarkup.new(:indent => options[:indent])
+
+    root     = options.delete(:root).to_s
+    children = options.delete(:children)
+
+    if !options.has_key?(:dasherize) || options[:dasherize]
+      root = root.dasherize
     end
-  end
-end
 
+    options[:builder].instruct! unless options.delete(:skip_instruct)
 
-class XmlSerializer
-  #create xml with respect to special cases
-  def self.serialize(hash,options)
-    root = options[:root]
-    builder = options[:builder] || Builder::XmlMarkup.new(options)
-    builder.instruct! unless options[:skip_instruct]
-    serialize_value(root,hash,builder)
-  end
+    opts = options.merge({ :root => children })
 
-  protected
-  #place for all types for special serializing
-  def self.serialize_value(name,value,builder)
-    if value.is_a? Array
-      builder.tag!(name,{:type => "array"}) do
-        value.each do |v|
-          serialize_value(name,v,builder)
-        end
-      end
-    elsif value.is_a? Hash
-    builder.tag!(name) do
-        value.each do |k,v|
-          serialize_value(k,v,builder)
-        end
-      end
+    xml = options[:builder]
+    if empty?
+      xml.tag!(root, options[:skip_types] ? {} : {:type => "array"})
     else
-      type = XML_TYPE_NAMES[value.class.to_s]
-      opts = {}
-      opts[:type] = type if type
-      #NOTE: can be optimalized for primitive types like boolean or numbers to avoid XML escaping
-      builder.tag!(name,value.to_s,opts)
+      xml.tag!(root, options[:skip_types] ? {} : {:type => "array"}) {
+        yield xml if block_given?
+        each do |e|
+          if e.respond_to? :to_xml
+            e.to_xml(opts.merge({ :skip_instruct => true }))
+          else
+            xml.tag!(children,e.to_s)
+          end
+        end
+      }
     end
   end
-
-  XML_TYPE_NAMES = { #type conversion
-      "Symbol"     => "symbol",
-      "Fixnum"     => "integer",
-      "Bignum"     => "integer",
-      "BigDecimal" => "decimal",
-      "Float"      => "float",
-      "TrueClass"  => "boolean",
-      "FalseClass" => "boolean",
-      "Date"       => "date",
-      "DateTime"   => "datetime",
-      "Time"       => "datetime",
-      "ActiveSupport::TimeWithZone" => "datetime"
-    } unless defined?(XML_TYPE_NAMES)
-
 end
