@@ -25,16 +25,6 @@ class ControlpanelController < ApplicationController
     end
   end
 
-  # this action allows to retrieve the shortcuts
-  # as a resource
-  def shortcuts
-    respond_to do |format|
-      format.html { } 
-      format.xml  { render :xml => shortcuts_data.to_xml, :location => "none" }
-      format.json { render :json => shortcuts_data.to_json, :location => "none" }
-    end
-  end
-
   def nextstep
     bs = Basesystem.new.load_from_session(session)
     unless params[:done].blank?
