@@ -68,36 +68,6 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert flash.empty?
   end
 
-
-  def test_show
-    get :show, :id => 'Ruby'
-
-    assert_response :success
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
-    assert_valid_markup
-    assert_not_nil assigns(:repo)
-    assert flash.empty?
-  end
-
-  def test_show_missing
-    get :show, :id => 'missing'
-
-    assert_response :redirect
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/missing.xml", nil, @header))
-    assert_valid_markup
-    assert_redirected_to :action => :index
-    assert_false flash.empty?
-  end
-
-  def test_show_empty_id
-    get :show, :id => ''
-
-    assert_response :redirect
-    assert_valid_markup
-    assert_redirected_to :action => :index
-    assert_false flash.empty?
-  end
-
   def test_add
     get :add
 
@@ -200,8 +170,9 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :success
-    assert_valid_markup
+    assert_response :redirect
+    assert_redirected_to :action => "index"
+    assert_false flash.empty?
   end
 
   def test_update_empty_error
@@ -220,8 +191,9 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :success
-    assert_valid_markup
+    assert_response :redirect
+    assert_redirected_to :action => "index"
+    assert_false flash.empty?
   end
 
 
@@ -241,8 +213,9 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :success
-    assert_valid_markup
+    assert_response :redirect
+    assert_redirected_to :action => "index"
+    assert_false flash.empty?
   end
 
   def test_update_missing
@@ -353,94 +326,6 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert_false flash.empty?
   end
 
-  def test_set_status_no_params
-    post :set_status, :id => 'missing'
-
-    assert_response :success
-    assert_valid_markup
-    assert flash.empty?
-  end
-
-  def test_set_status_no_id
-    post :set_status
-
-    assert_response :success
-    assert_valid_markup
-    assert flash.empty?
-  end
-
-  def test_set_status
-    put :set_status, :id => 'Ruby', :enabled => 'false'
-
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
-
-    assert_response :success
-    assert_valid_markup
-    assert flash.empty?
-  end
-
-  def test_set_status_failed_empty_response
-    ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
-          { :policy => "org.opensuse.yast.system.repositories"})
-      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
-
-      mock.get  "/repositories/Ruby.xml", @header, fixture("repository_Ruby.xml"), 200
-      mock.put "/repositories/Ruby.xml", @header, nil, 404
-    end
-
-    put :set_status, :id => 'Ruby', :enabled => 'false'
-
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
-
-    assert_response :success
-    assert_valid_markup
-    assert flash.empty?
-  end
-
-
-  def test_set_status_failed
-    ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
-          { :policy => "org.opensuse.yast.system.repositories"})
-      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
-
-      mock.get  "/repositories/Ruby.xml", @header, fixture("repository_Ruby.xml"), 200
-      mock.put "/repositories/Ruby.xml", @header, fixture("error_message.xml"), 404
-    end
-
-    put :set_status, :id => 'Ruby', :enabled => 'false'
-
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
-
-    assert_response :success
-    assert_valid_markup
-    assert flash.empty?
-  end
-
-  def test_set_status_failed_empty_error
-    ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
-          { :policy => "org.opensuse.yast.system.repositories"})
-      mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
-
-      mock.get  "/repositories/Ruby.xml", @header, fixture("repository_Ruby.xml"), 200
-      mock.put "/repositories/Ruby.xml", @header, fixture("error_message_empty.xml"), 404
-    end
-
-    put :set_status, :id => 'Ruby', :enabled => 'false'
-
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
-    assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
-
-    assert_response :success
-    assert_valid_markup
-    assert flash.empty?
-  end
-
   def test_create_error_invalid_priority
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources({:"org.opensuse.yast.system.repositories" => "/repositories"},
@@ -450,7 +335,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     end
 
     post :create, :repository => { :name => 'New repo', :autorefresh => 'true', :priority => 'asddf', :url => 'http://example.com',
-      :enabled => '0', :keep_packages => '0', :id => 'new_repo'}
+      :enabled => 'false', :keep_packages => 'false', :id => 'new_repo'}
 
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/new_repo.xml", nil, @header))
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/new_repo.xml", nil, @header))
@@ -460,14 +345,14 @@ class RepositoriesControllerTest < ActionController::TestCase
   end
 
   def test_update_invalid_priority
-    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => 'asdf', :url => 'http://example.com',
-      :enabled => '0', :keep_packages => '0'}
+    put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => 'false', :priority => 'asdf', :url => 'http://example.com',
+      :enabled => 'false', :keep_packages => 'false'}
 
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert !ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :success
-    assert_valid_markup
+    assert_response :redirect
+    assert_false flash.empty?
   end
 
   def test_update_validation_failed
@@ -486,11 +371,10 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:get, "/repositories/Ruby.xml", nil, @header))
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
-    assert_response :success
-    assert_valid_markup
-
-    # check the rendered flash (a div with class 'flash-message')
-    assert_select 'div.flash-message', /Priority/
+    assert_response :redirect
+    assert_redirected_to :action => "index"
+    assert_false flash.empty?
+    assert_match(/Priority/, flash[:error])
   end
 
 end

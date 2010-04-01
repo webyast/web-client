@@ -117,14 +117,14 @@
       </fieldset>
     <% end %>
 
-    <% # Sort by priority then by name -%>
+    <%# Sort by priority then by name %>
     <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
 
     <div id="repositories" class="accordion">
       <% @repos.each do |r| %>
 	<div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
 	  <div class="list-fieldset-header">
-	    <% # do quick search only in name and URL => use quicksearch_content class -%>
+	    <%# do quick search only in name and URL => use quicksearch_content class %>
 	    <span class="quicksearch_content">
 	      <div>
 		<div class="status-icon <%= r.enabled ? 'ok' : 'unused' %>"></div>
@@ -158,14 +158,14 @@
 		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div>
 		  <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
 
-		<p><%= _("Repository is currently") %><i><%= bool_status r.enabled %></i>.
+		<p><%= _("Repository is currently") %> <i><%= bool_status r.enabled %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :enabled, r.enabled,
 		      _("Repository will be %s.") % bool_status(!r.enabled, {}) -%>
 		  <% end %>
 		</p>
 
-		<p><%= _("Autorefresh is currently") %><i><%= bool_status r.autorefresh %></i>.
+		<p><%= _("Autorefresh is currently") %> <i><%= bool_status r.autorefresh %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :autorefresh, r.autorefresh,
 		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh, {}) -%>
@@ -174,7 +174,7 @@
 
 		<p><%= _("Priority for packages:") %> <%= prio_selector f, r.priority, disabled %></p>
 
-		<p><%= _("Keeping downloaded packages is currently") %><i><%= bool_status r.keep_packages %>.</i>
+		<p><%= _("Keeping downloaded packages is currently") %> <i><%= bool_status r.keep_packages %>.</i>
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :keep_packages, r.keep_packages,
 		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages, {}) -%>

@@ -96,7 +96,7 @@ class RepositoriesController < ApplicationController
 
     if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
       flash[:error] = _("Invalid priority")
-      render :show and return
+      redirect_to :action => :index and return
     end
 
     @repo.priority = @repo.priority.to_i
@@ -113,8 +113,6 @@ class RepositoriesController < ApplicationController
         else
           flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}': Unknown error")
         end
-
-        render :show and return
       end
     rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
@@ -131,8 +129,6 @@ class RepositoriesController < ApplicationController
           flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
           Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
-
-      render :show and return
     end
 
     redirect_to :action => :index and return
@@ -176,8 +172,8 @@ class RepositoriesController < ApplicationController
 
     if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
       flash[:error] = _("Invalid priority")
-      @adding = true
-      render :show and return
+      @repo.priority = 99
+      render :add and return
     end
 
     @repo.priority = @repo.priority.to_i
