@@ -97,7 +97,7 @@ class StatusControllerTest < ActionController::TestCase
   def test_show_summary_limit_reached
     response_graphs = fixture "graphs_limits_reached.xml"
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
+      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs", :"org.opensuse.yast.system.plugins" => "/plugins"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
       mock.get   "/logs.xml", @header, @response_logs, 200
       mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 200
@@ -140,7 +140,7 @@ class StatusControllerTest < ActionController::TestCase
     response_logs = fixture "logs.xml"
 
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
+      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs", :"org.opensuse.yast.system.plugins" => "/plugins"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
       mock.get   "/logs.xml", @header, response_logs, 200
       mock.get   "/graphs.xml?checklimits=true", @header, response_graphs, 503
@@ -162,7 +162,7 @@ class StatusControllerTest < ActionController::TestCase
     response_logs = fixture "logs.xml"
 
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs"
+      mock.resources  :"org.opensuse.yast.system.logs" => "/logs", :"org.opensuse.yast.system.metrics" => "/metrics", :"org.opensuse.yast.system.graphs" => "/graphs", :"org.opensuse.yast.system.plugins" => "/plugins"
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
       mock.get   "/logs.xml", @header, response_logs, 200
       mock.get   "/graphs.xml?checklimits=true", @header, response_graphs, 503

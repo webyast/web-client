@@ -121,11 +121,10 @@ class StatusController < ApplicationController
   
   def index
     client_permissions
+    @logs = Logs.find(:all)
+    @plugins = translate_plugin_message(Plugins.find(:all))
     begin
-      @logs = Logs.find(:all)
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
-      @plugins = translate_plugin_message(Plugins.find(:all))
-
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
       flash[:notice] = _("No data found for showing system status.") if @graphs.blank?
@@ -141,8 +140,6 @@ class StatusController < ApplicationController
 	end
       ensure
         @graphs ||= []
-        @logs ||= {}
-        @plugins ||= []
     end
   end
 
@@ -159,10 +156,13 @@ class StatusController < ApplicationController
       return
     end
 
-    begin
-      level = "ok"
-      status = ""
-      ActionController::Base.benchmark("Graphs data read from the server") do
+    level = "ok"
+    status = ""
+    ret_error = nil
+    restart_collectd = false
+    refresh = true
+    ActionController::Base.benchmark("Graphs data read from the server") do
+      begin
         graphs = Graphs.find(:all, :params => { :checklimits => true, :background => true }) || []
 
         # is it a background progress?
@@ -190,8 +190,32 @@ class StatusController < ApplicationController
             end
           end
         end
+        level = "error" unless status.blank?
+
+      rescue ActiveResource::ClientError => error
+	logger.warn error.inspect
+        level = "error"
+        ret_error = ClientException.new(error)
+        refresh = false
+      rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+        level = "error"
+        refresh = false
+	logger.warn error_hash.inspect
+	if error_hash["error"] && 
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
+           level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
+           if status.blank?
+             status = error_hash["error"]["description"]
+           else
+             status += "; " + error_hash["error"]["description"]
+           end
+           restart_collectd = true if error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"
+	else
+           ret_error = ClientException.new(error)
+	end
       end
-      level = "error" unless status.blank?
 
       #Checking WebYaST service plugins
       plugins = translate_plugin_message(Plugins.find(:all))
@@ -203,28 +227,11 @@ class StatusController < ApplicationController
           status += "; " + plugin.short_description
         end        
       }
+    end #benchmark
 
-      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :restart_collectd => false, :refresh_timeout => refresh_timeout }
-      rescue ActiveResource::ClientError => error
-	logger.warn error.inspect
-        level = "error"
-        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) , :restart_collectd => false, :refresh_timeout => nil} and return
-      rescue ActiveResource::ServerError => error
-	error_hash = Hash.from_xml error.response.body
-        level = "error"
-	logger.warn error_hash.inspect
-	if error_hash["error"] && 
-          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
-           level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
-           status = error_hash["error"]["description"]
-           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil, :refresh_timeout => nil,
-                                                             :restart_collectd => error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"}
-	else
-           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error),
-                                                              :refresh_timeout => nil, :restart_collectd => false }
-	end
-    end
+    render(:partial => "status_summary", 
+           :locals => { :status => status, :level => level, :error => ret_error, 
+                        :restart_collectd => restart_collectd, :refresh_timeout => (refresh ? refresh_timeout : nil) })
   end
 
   # POST /status/start_collectd
