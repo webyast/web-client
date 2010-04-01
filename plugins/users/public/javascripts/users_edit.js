@@ -152,4 +152,25 @@
     $("#def_group").dialog('close');
     }
   }
-  
+ 
+function propose_home(){
+ var login    = $("#user_uid")[0].value;
+ var home     = $("#user_home_directory")[0].value;
+
+  home = "/home/"+login;
+
+ $("#user_home_directory")[0].value = home;
+}
+
+function propose_login(){
+ var fullname = $("#user_cn")[0].value;
+ var login    = $("#user_uid")[0].value;
+
+ if (login.length==0){
+  login = fullname.replace(/\s/g, '').toLowerCase();
+  propose_home();
+ }
+
+ $("#user_uid")[0].value = login;
+} 
+
