@@ -45,6 +45,7 @@ class FirewallControllerTest < ActionController::TestCase
   end
 
   def test_commit_wizard
+    Basesystem.stubs(:installed?).returns(true)
     session[:wizard_current] = "test"
     session[:wizard_steps] = "firewall,language"
     post :update, { :use_firewall => "true",
