@@ -21,7 +21,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.14
 Release:        0
-Summary:        YaST2 - Webclient - Services
+Summary:        Webyast - system services management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -33,7 +33,8 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle services.
+Webyast - Plugin provides UI for handling system services.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>

@@ -19,7 +19,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.14
 Release:        0
-Summary:        YaST2 - Webclient - Mail Settings
+Summary:        Webyast - Mail Settings UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -33,7 +33,8 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for for system mail settings
+Webyast - Plugin provides UI for system mail settings
+
 Authors:
 --------
     Jiri Suchomel <jsuchome@novell.com>

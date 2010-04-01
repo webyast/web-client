@@ -19,7 +19,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.4
 Release:        0
-Summary:        YaST2 - Webclient - System
+Summary:        Webyast - reboot/shutdown UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -33,10 +33,12 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for rebooting/shuting down the system.
+Webyast - Plugin provides UI for rebooting/shuting down the system.
+
 Authors:
 --------
     Ladislav Slezak <lslezak@novell.com>
+
 %prep
 %setup -q -n www
 

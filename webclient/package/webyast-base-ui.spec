@@ -36,7 +36,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.18
 Release:        0
-Summary:        YaST2 - Webclient 
+Summary:        Webyast - base UI for system management
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc
@@ -56,7 +56,8 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - Web client for REST based YaST interface.
+Webyast - Provides core web client for webyast service.
+Without plugins has only very limited configuration options.
 
 Authors:
 --------
@@ -64,6 +65,7 @@ Authors:
     Bjoern Geuken <bgeuken@suse.de>
     Stefan Schubert <schubi@opensuse.org>
     Klaus Kaempf <kkaempf@opensuse.org>
+    Josef Reidinger <jreidinger@suse.cz>
 
 %prep
 %setup -q -n www

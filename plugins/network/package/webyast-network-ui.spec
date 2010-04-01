@@ -21,7 +21,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.15
 Release:        0
-Summary:        YaST2 - Webclient - network
+Summary:        Webyast - network UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -38,11 +38,13 @@ Conflicts:      yast2-webservice-network < 0.0.3
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice to set up networking.
+Webyast - Plugin provides UI for networking set up.
+
 Authors:
 --------
     Michal Zugec <mzugec@suse.cz>
     Martin Vidner <mvidner@suse.cz>
+
 %prep
 %setup -q -n www
 

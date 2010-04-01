@@ -19,7 +19,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.1
 Release:        0
-Summary:        YaST2 - Webclient - Registration
+Summary:        Webyast - Registration UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -31,7 +31,8 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order register the system.
+Webyast - Plugin provides UI for registration of the system.
+
 Authors:
 --------
     Stefan Schubert <schubi@novell.com>

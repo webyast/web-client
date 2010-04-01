@@ -20,7 +20,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.3
 Release:        0
-Summary:        YaST2 - Webclient - Permissions
+Summary:        Webyast - Permissions UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -32,7 +32,8 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle user permissions. (PolKit permissions)
+Webyast - Plugin provides UI for review of user permissions.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>

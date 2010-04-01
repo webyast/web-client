@@ -21,7 +21,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.20
 Release:        0
-Summary:        YaST2 - Webclient - Users
+Summary:        Webyast - users management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -33,7 +33,8 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle users settings.
+Webyast - Plugin provides UI for handling users management.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>

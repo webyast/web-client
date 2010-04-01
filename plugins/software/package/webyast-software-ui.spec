@@ -22,7 +22,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.16
 Release:        0
-Summary:        YaST2 - Webclient - Software and Repository Management
+Summary:        Webyast - Software and Repository Management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -34,8 +34,9 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice. This package contains patch installation
+WEbyast - Plugin provides UI for software management. This package contains patch installation
 and repository management modules.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
