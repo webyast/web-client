@@ -65,6 +65,7 @@ class EulasControllerTest < ActionController::TestCase
   end
 
   def test_eula_step_in_wizard
+    Basesystem.stubs(:installed?).returns(true)
     session[:wizard_current] = "test"
     session[:wizard_steps] = "systemtime,eulas,language"
     get :index

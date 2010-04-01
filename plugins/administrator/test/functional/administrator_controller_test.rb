@@ -76,6 +76,7 @@ class AdministratorControllerTest < ActionController::TestCase
   end
 
   def test_commit_with_aliases_wizard # goes to next step without warning, because mail config should follow
+    Basesystem.stubs(:installed?).returns(true)
     session[:wizard_current] = "administrator"
     session[:wizard_steps] = "administrator,mail"
     post :update, { :administrator => {:aliases => "aa@bb.com", :password => "", :confirm_password => "" } }

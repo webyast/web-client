@@ -99,12 +99,14 @@ class TestControllerTest < ActionController::TestCase
   end
   
   def test_success_redirect_nonwizard
+    Basesystem.stubs(:installed?).returns(true)
     get :redirect
     assert_response :redirect
     assert_redirected_to "/controlpanel"
   end
 
   def test_success_redirect_wizard
+    Basesystem.stubs(:installed?).returns(true)
     Basesystem.any_instance.stubs(:in_process?).returns(true)
     get :redirect
     assert_response :redirect

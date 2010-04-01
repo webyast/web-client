@@ -23,7 +23,20 @@ class BasesystemTest < ActiveSupport::TestCase
     ActiveResource::HttpMock.reset!
   end
 
+  def test_not_installed
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      # this is inadequate, :singular is per resource,
+      # and does NOT depend on :policy
+      # see yast-rest-service/plugins/network/config/resources/*
+      mock.resources :"org.opensuse.yast.test" => "/test"
+      mock.permissions "org.opensuse.yast.test", {}
+    end
+    assert !Basesystem.installed?
+  end
+
   def test_initialize
+    assert Basesystem.installed?
     session = {}
     bs = Basesystem.find session
     assert !bs.completed?

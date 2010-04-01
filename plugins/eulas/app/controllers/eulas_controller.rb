@@ -47,7 +47,7 @@ public
     @prev_id = prev_in_range( (1..@eula_count), @eula_id)
     @last_eula = @eula_id == @eula_count
     @first_eula= @eula_id == 1
-    @first_basesystem_step = Basesystem.new.load_from_session(session).first_step?
+    @first_basesystem_step = Basesystem.installed? && Basesystem.new.load_from_session(session).first_step?
     eula_params = params[:eula_lang] ? { :lang => params[:eula_lang] } : {:lang => current_locale}
     @eula = Eulas.find @eula_id, :params => eula_params
   end

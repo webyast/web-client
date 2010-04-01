@@ -58,9 +58,9 @@ class MailController < ApplicationController
     smtp_server	= params["mail"]["smtp_server"]
 
     # check if mail forwarning for root is configured
-    if (smtp_server.nil? || smtp_server.empty?) &&
-       # during initial workflow, only warn if administrator configuration does not follow
-       !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "administrator" }
+    if smtp_server.blank? && # during initial workflow, only warn if administrator configuration does not follow
+       (!Basesystem.installed? ||
+       !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "administrator" })
 
       @administrator      = Administrator.find :one
       if @administrator && !@administrator.aliases.nil? && ! @administrator.empty?
