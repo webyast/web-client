@@ -127,7 +127,7 @@ function select_status (val) {
 
 
 <% unless @permissions[:execute] %>
-<p style="padding: 10px"><%=_("You do not have permission to execute the services.")%></p>
+<p class="missing-permissions"><%=_("You do not have permission to execute the services.")%></p>
 <% end %>
 
 <p>
