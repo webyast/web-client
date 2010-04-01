@@ -150,7 +150,7 @@ class RepositoriesControllerTest < ActionController::TestCase
 
     assert_response :redirect
     assert_valid_markup
-    assert_redirected_to :action => :index
+    assert_redirected_to :action => :index, :show => 'Ruby'
     assert_false flash.empty?
   end
 
@@ -171,7 +171,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :action => "index", :show => 'Ruby'
     assert_false flash.empty?
   end
 
@@ -192,7 +192,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :action => "index", :show => 'Ruby'
     assert_false flash.empty?
   end
 
@@ -214,7 +214,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :action => "index", :show => 'Ruby'
     assert_false flash.empty?
   end
 
@@ -372,7 +372,7 @@ class RepositoriesControllerTest < ActionController::TestCase
     assert ActiveResource::HttpMock.requests.include?(ActiveResource::Request.new(:put, "/repositories/Ruby.xml", nil, @header))
 
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :action => "index", :show => 'Ruby'
     assert_false flash.empty?
     assert_match(/Priority/, flash[:error])
   end
