@@ -55,9 +55,7 @@
 
 <% disabled = ! @permissions[:write] %>
 
-<% if disabled %>
-<p style="padding: 10px"><%=_("You do not have permission to modify the settings.")%></p>
-<% end %>
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
