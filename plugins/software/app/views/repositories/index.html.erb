@@ -28,9 +28,7 @@
       $.extend($.validator.messages, {
 	required: "<%= _("This value cannot be empty.") -%>"
       });
-    });
 
-    $(document).ready(function(){
       $(".accordion").accordion({
 	 autoHeight : false,
 	 navigation : true,
@@ -46,6 +44,49 @@
       });
     });
 
+
+    // disable all submit buttons after submitting a form
+    // avoid double submit by accident
+    function disable_forms() {
+      // disable submit buttons
+      $(':submit').attr('disabled', 'disabled');
+      // make all input elements (text fields...) read only
+      $(':input').attr('readonly', 'readonly');
+      // disable all delete buttons
+      $('a.button').attr('onclick','return false;');
+      $('a.button').attr('href','');
+    };
+
+    // onsubmit handler
+    function form_handler(sid) {
+      if ($('#repositoryForm_' + sid).valid())
+      {
+	disable_forms();
+	$('#progress_' + sid).show();
+	return true;
+      }
+      else
+      {
+	return false;
+      }
+    }
+
+    // onclick handler for "delete" link parent
+    function delete_handler(elem, progress)
+    {
+      // if there are two childrens then the delete was confirmed
+      // (rails create a dynanic form there)
+      if (elem.childNodes.length == 2)
+      {
+	elem.onclick="";
+	elem.childNodes[0].onclick="return false;";
+	elem.childNodes[0].href="";
+	disable_forms();
+	$(progress).show();
+      }
+    }
+
+    // handler for the filter element
     function select_repositories (val) {
       if (val == "all") {
 	  $("#repositories > div.list-fieldset").show();
@@ -137,8 +178,7 @@
 	  <div class='repository-content' style="display:none">
 	      <% sid = safe_id(r.id) %>
 	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
-		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit =>
-		"if ($('#repositoryForm_#{sid}').valid()) {$('#progress_#{sid}').show(); return true;} else return false;" }
+		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit => "form_handler('#{sid}')" }
 	      ) do |f| %>
 
 		<% content_for :head do %>
@@ -185,9 +225,9 @@
 		  <% if !disabled -%>
 		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
 		    <%= form_next_button :label => _("Save") %>
-		    <%= link_to _("Delete"),
-			  {:action => 'delete', :id => r.id},
-			  {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %>
+		    <span onclick="delete_handler(this, '#progress_<%= sid -%>');"><%= link_to _("Delete"),
+			    {:action => 'delete', :id => r.id},
+			    {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %></span>
 		  <% end -%>
 		</fieldset>
 
