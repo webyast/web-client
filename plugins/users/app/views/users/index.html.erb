@@ -21,20 +21,22 @@
 
  $(document).ready(function(){
 
- $('.row').mouseenter(function() {
-  $(this).find(".del_user").show();
- }).mouseleave(function() {
-  $(this).find(".del_user").hide();
- });
 
   $('input#users_search').quicksearch('table tbody tr', {
     stripeRows: ['odd', 'even'],
     delay: 100
   });
 
- // default state
- $('.del_user').hide();
 });//document.ready
+
+function disable(which){
+ if (which.childNodes.length == 2 && which.childNodes[0].firstChild.alt == "delete"){
+  which.onclick="";
+  which.removeChild(which.childNodes[1]);
+  which.removeChild(which.childNodes[0]);
+  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
+ }
+}
 <% end %>
 
 <% end %>
@@ -63,7 +65,7 @@
     <td align=center id="login"><%= h user.uid  -%></td>
     <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
     <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user %s?") % user.id ) %></td>
+    <td class="icon" width="10%"><div onclick="disable(this);"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user %s?") % user.id ) %></div></td>
     <% end %>
   </tr>
   <% end %>

@@ -27,6 +27,15 @@
   });
 
 });//document.ready
+
+function disable(which){
+ if (which.childNodes.length == 2 && which.childNodes[0].firstChild.alt == "delete"){
+  which.onclick="";
+  which.removeChild(which.childNodes[1]);
+  which.removeChild(which.childNodes[0]);
+  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
+ }
+}
 <% end %>
 
 <% end %>
@@ -57,7 +66,7 @@
     <td><%= link_to ( h group.cn || "-none-" ), {:action => :edit, :id => group.cn} -%></td>
     <td><%= h group.group_type %></td>
     <% if @permissions[:groupdelete] %>
-    <td class="icon"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></td>
+    <td class="icon"><div onclick="disable(this);"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></div></td>
     <% end %>
   </tr>
   <% end %>
