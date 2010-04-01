@@ -1,0 +1,5 @@
+<!-- partial expects @permissions hash as argument -->
+
+<% unless permissions[:write] %>
+<p class='missing-permissions'><%=_("You do not have permissions to modify the settings.")%></p>
+<% end %>
