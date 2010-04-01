@@ -92,10 +92,12 @@
     <div class="list-fieldset">
       <% default_lines=50 %>
       <% frequency=15 %>
-      <div class="list-fieldset-header">
-      <%=link_to_remote "<span class='status-icon none'></span>" + log.description, 
-            :update => log_id(log.id),
-            :url => { :action => "ajax_log_custom", :id => log.id, :lines => default_lines } %>
+      <div class="list-fieldset-header"
+           onclick="<%= remote_function(:update   => log_id(log.id),
+                                        :url => { :action => "ajax_log_custom", 
+                                        :id => log.id, :lines => default_lines }) %>">
+         <span class='status-icon none'></span>
+         <%= log.description %>
       </div>
       <ul style="display: none;">
         <div id="<%="log-#{log.id}-console"%>" >
