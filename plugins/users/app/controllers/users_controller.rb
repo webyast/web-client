@@ -141,16 +141,6 @@ class UsersController < ApplicationController
         :type		=> "local"
     )
     @user.grp_string	= dummy.grp_string
-    @groups = Group.find()
-    @all_grps_string = ""
-    @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
-       else
-          @all_grps_string += ",#{group.cn}"
-       end
-    end
-
 
     response = true
     begin
