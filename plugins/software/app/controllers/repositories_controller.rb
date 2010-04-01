@@ -35,6 +35,10 @@ class RepositoriesController < ApplicationController
 
     return unless @repos
     @permissions = Repository.permissions
+
+    @show = params["show"]
+    Rails.logger.debug "Displaying repository #{@show}" unless @show.blank?
+
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
   end
 
@@ -82,7 +86,7 @@ class RepositoriesController < ApplicationController
 
     if params[:repository].blank?
       flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape params[:id]}': missing parameters.")
-      redirect_to :action => :index and return
+      redirect_to :action => :index, :show => params[:id] and return
     end
 
     repository = params[:repository]
@@ -96,7 +100,7 @@ class RepositoriesController < ApplicationController
 
     if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
       flash[:error] = _("Invalid priority")
-      redirect_to :action => :index and return
+      redirect_to :action => :index, :show => params[:id] and return
     end
 
     @repo.priority = @repo.priority.to_i
@@ -131,7 +135,7 @@ class RepositoriesController < ApplicationController
       end
     end
 
-    redirect_to :action => :index and return
+    redirect_to :action => :index, :show => params[:id] and return
   end
 
   def add
@@ -202,7 +206,7 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :add and return
     end
 
-    redirect_to :action => :index and return
+    redirect_to :action => :index, :show => repository[:id] and return
   end
 
 end
