@@ -22,7 +22,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.8
 Release:        0
-Summary:        Webyast - system status UI
+Summary:        WebYaST - system status UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch

@@ -19,7 +19,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.10
 Release:        0
-Summary:        Webyast - Administrator ui
+Summary:        WebYaST - Administrator UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch

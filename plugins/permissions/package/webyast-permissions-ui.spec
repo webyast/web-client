@@ -20,7 +20,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.3
 Release:        0
-Summary:        Webyast - Permissions UI
+Summary:        WebYaST - Permissions UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch

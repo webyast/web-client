@@ -19,7 +19,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.0.4
 Release:        0
-Summary:        Webyast - reboot/shutdown UI
+Summary:        WebYaST - reboot/shutdown UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch

@@ -22,7 +22,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.16
 Release:        0
-Summary:        Webyast - Software and Repository Management UI
+Summary:        WebYaST - Software and Repository Management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch

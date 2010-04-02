@@ -36,7 +36,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.18
 Release:        0
-Summary:        Webyast - base UI for system management
+Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
 Source1:        cleanurl-v5.lua
 Source2:        yastwc

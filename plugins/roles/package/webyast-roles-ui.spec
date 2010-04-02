@@ -16,7 +16,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.0
 Release:        0
-Summary:        Webyast - Roles management UI
+Summary:        WebYaST - Roles management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
