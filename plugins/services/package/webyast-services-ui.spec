@@ -19,7 +19,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controlle
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.14
+Version:        0.1.15
 Release:        0
 Summary:        Webyast - system services management UI
 Source:         www.tar.bz2
@@ -33,7 +33,7 @@ BuildArch:      noarch
 
 
 %description
-Webyast - Plugin provides UI for handling system services.
+WebYaST - Plugin providing UI for handling of system services.
 
 Authors:
 --------

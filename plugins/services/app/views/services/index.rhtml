@@ -113,7 +113,10 @@ function select_status (val) {
        autoHeight : false,
        navigation : true,
        collapsible: true,
-       header     : 'div.list-fieldset div.list-fieldset-header'
+       header     : 'div.list-fieldset div.list-fieldset-header',
+       change: function(event, ui) {
+	    $('#service_result_' + $(ui.oldHeader).attr("name")).hide();
+	}
     });
     $(".accordion").accordion('activate',false);
   });
@@ -155,7 +158,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 @services.each do |service| %>
   <div class="list-fieldset">
 
-  <div class="list-fieldset-header"><span class="service-icon"></span><%=h service.name %> <em style="position:absolute; left:25%"><%= h service.summary%></em></div>
+  <div class="list-fieldset-header" name=<%=service.name%>><span class="service-icon"></span><%=h service.name %><em style="position:absolute; left:25%"><%= h service.summary%></em></div>
 
   <div class='service-content' style="display:none">
 
