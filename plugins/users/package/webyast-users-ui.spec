@@ -19,7 +19,7 @@ PreReq:         webyast-users-ws >= 0.1.6
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.22
+Version:        0.1.23
 Release:        0
 Summary:        Webyast - users management UI
 Source:         www.tar.bz2
