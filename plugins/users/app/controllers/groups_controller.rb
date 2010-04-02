@@ -127,6 +127,15 @@ public
     @group.default_members_string = @group.default_members.join(",")
     @adding = true
     @user_names = load_user_names
+    @users = User.find(:all)
+    @all_users_string = ""
+        @users.each do |user|
+       if @all_users_string.blank?
+          @all_users_string = user.uid
+       else
+          @all_users_string += ",#{user.uid}"
+       end
+    end
     render :edit
   end
 
@@ -138,6 +147,16 @@ public
     @user_names = load_user_names
     @group.members_string = @group.members.join(",")
     @group.default_members_string = @group.default_members.join(",")
+
+    @users = User.find(:all)
+    @all_users_string = ""
+        @users.each do |user|
+       if @all_users_string.blank?
+          @all_users_string = user.uid
+       else
+          @all_users_string += ",#{user.uid}"
+       end
+    end
   end
 
   def create
