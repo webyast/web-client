@@ -13,7 +13,7 @@ class StatusController < ApplicationController
 
   private
   def client_permissions
-    @permissions = Status.permissions
+    @permissions = Logs.permissions #each model return same permissions as it share policy
   end
 
   #
