@@ -8,7 +8,11 @@
          _("Modify group")
       end %>
 </div>
+
 <div class="plugin-content grid_12">
+
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
+
 <% form_for :group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>

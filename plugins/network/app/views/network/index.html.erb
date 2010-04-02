@@ -206,6 +206,8 @@
 <div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
 <div class='plugin-content grid_12'>
 
+<%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
+
 <% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
 
