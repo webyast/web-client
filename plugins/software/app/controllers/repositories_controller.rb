@@ -182,6 +182,7 @@ class RepositoriesController < ApplicationController
     if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
       flash[:error] = _("Invalid priority")
       @repo.priority = 99
+      @repo_urls = []
       render :add and return
     end
 
