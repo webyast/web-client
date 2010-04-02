@@ -34,7 +34,7 @@ BuildArch:      noarch
 
 
 %description
-WEbyast - Plugin provides UI for software management. This package contains patch installation
+WebYaST - Plugin providing UI for software management. This package contains patch installation
 and repository management modules.
 
 Authors:

@@ -29,7 +29,7 @@ BuildArch:      noarch
 
 
 %description
-Webyast - Plugin provides UI for firewall settings service.
+WebYaST - Plugin providing UI for firewall settings.
 
 Authors:
 --------

@@ -33,7 +33,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provides UI for rebooting/shuting down the system.
+WebYaST - Plugin providing UI for rebooting/shuting down the system.
 
 Authors:
 --------

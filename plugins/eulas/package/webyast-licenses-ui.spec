@@ -33,7 +33,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provides UI for license management service.
+WebYaST - Plugin providing UI for license management.
 
 Authors:
 --------

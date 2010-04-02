@@ -38,7 +38,7 @@ Conflicts:      yast2-webservice-network < 0.0.3
 
 
 %description
-Webyast - Plugin provides UI for networking set up.
+WebYaST - Plugin providing UI for network configuration
 
 Authors:
 --------

@@ -34,7 +34,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provides UI for handling timezone, time and date.
+WebYaST - Plugin providing UI for handling of time zone, system time and date.
 
 Authors:
 --------

@@ -33,7 +33,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provide UI for administrator settings.
+WebYaST - Plugin providing UI for administrator settings.
 
 Authors:
 --------

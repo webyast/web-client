@@ -36,7 +36,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provides UI for monitoring and status of system.
+WebYaST - Plugin providing UI for system status and monitoring
 
 Authors:
 --------

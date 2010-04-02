@@ -31,7 +31,7 @@ BuildArch:      noarch
 
 
 %description
-Webyast - Plugin provides UI for registration of the system.
+WebYaST - Plugin providing UI for system registration.
 
 Authors:
 --------

@@ -33,7 +33,7 @@ BuildArch:      noarch
 
 
 %description
-Webyast - Plugin provides UI for handling users management.
+WebYaST - Plugin providing UI for user management.
 
 Authors:
 --------

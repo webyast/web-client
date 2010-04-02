@@ -32,7 +32,7 @@ BuildArch:      noarch
 
 
 %description
-Webyast - Plugin provides UI for review of user permissions.
+WebYaST - Plugin providing UI for review of user permissions.
 
 Authors:
 --------

@@ -56,7 +56,7 @@ BuildArch:      noarch
 
 
 %description
-Webyast - Provides core web client for webyast service.
+WebYaST - Provides core web client for WebYaST service.
 Without plugins has only very limited configuration options.
 
 Authors:

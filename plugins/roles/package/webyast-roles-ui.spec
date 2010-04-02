@@ -30,7 +30,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provides UI for handling roles.
+WebYaST - Plugin providing UI for roles management.
 
 Authors:
 --------

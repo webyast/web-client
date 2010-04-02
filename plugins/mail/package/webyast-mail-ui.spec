@@ -33,7 +33,7 @@ BuildRequires:  yast2-webclient
 
 
 %description
-Webyast - Plugin provides UI for system mail settings
+WebYaST - Plugin providing UI for system mail settings
 
 Authors:
 --------
