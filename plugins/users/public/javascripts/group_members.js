@@ -1,12 +1,11 @@
 
   // using replace instead of trim() see bnc#580561
   function _trim(word){
-//    return word.replace(/^s+/g,'').replace(/s+$/g,'');
     return word.replace(/^\s*|\s*$/g,'');
   }
 
 
-  // fill user and groups containers
+  // fill members and group containers
   function _initializeDragContainer(a_groups,containername){
    var container=document.getElementById(containername);
    while(container.hasChildNodes()){
@@ -44,14 +43,14 @@
    }
    _initializeDragContainer(filtered_groups,'ContainerGroups');
 
-   $('#members').dialog({ buttons: { 'Ok': function() { store_groups(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
+   $('#members').dialog({ buttons: { 'Ok': function() { store_users(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
    $('#members').dialog('option', 'width', 580);
    $('#members').dialog('option', 'position', 'center');
    $('#members').dialog('open');
   }
 
-  // store groups from popup dialog
-  function store_groups(dlg){
+  // store members from popup dialog
+  function store_users(dlg){
     var user = $('#ContainerUser')[0].childNodes;
     var groups="";
     for (i=0;i<user.length;i++){
@@ -90,11 +89,3 @@
     }
   }
 
-  function selectItem(e){
-   var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
-    if(item.className=='GBox'){
-    $('#user_groupname')[0].value=item.id;
-    $("#def_group").dialog('close');
-    }
-  }
-  
