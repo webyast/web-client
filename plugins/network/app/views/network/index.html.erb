@@ -7,6 +7,7 @@
    <%= javascript_include_tag "jquery.example.js" %>
 
    <% javascript_tag do %>
+    $(document).ready(function(){
       $('#ip').example('Address of this machine (e.g. 192.168.0.18)');
       $('#netmask').example('Address shared with other machines (e.g. 255.255.255.0)');
       $('#name').example('Name of this machine in the network (e.g. mycomputer)');
@@ -14,6 +15,7 @@
       $('#nameservers').example('IP address of machine which translates hostnames in IP addresses');
       $('#searchdomains').example('Domain name where hostname searching starts ');
       $('#default_route').example('Target address for outgoing IP data packages');
+    });
    <% end %>
    <% javascript_tag do -%>
       function focus_field(field_id) {
