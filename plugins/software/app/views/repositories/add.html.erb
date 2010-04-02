@@ -64,6 +64,38 @@
       }
     };
 
+    // check whether the repository already exists
+    function check_duplicate()
+    {
+      var repos = <%= @repo_urls.map{|u| escape_javascript u}.to_json -%>;
+      var url = $('#repository_url').val();
+
+      for (var i = 0; i < repos.length; i++)
+      {
+	 if (url == repos[i])
+	 {
+	   return confirm('<%= _("A repository with this URL already exists.\\nCreate a duplicate?") -%>');
+	 };
+      };
+
+      return true;
+    };
+
+    // submit handler for the form
+    function submit_handler()
+    {
+      if ($('#repositoryForm').valid())
+      {
+	if (check_duplicate() == false) return false;
+	$('#progress').show();
+	return true;
+      }
+      else
+      {
+	return false;
+      }
+    };
+
   </script>
 <% end %>
 
@@ -78,7 +110,7 @@
 <div class='plugin-content grid_12'>
 
 <% form_for(:repository, @repo, :url => { :action => 'create', :id => @repo.id }, :html => { :method => :post, :id => 'repositoryForm',
-    :onsubmit => "if ($('#repositoryForm').valid()) {$('#progress').show(); return true;} else return false;" } ) do |f| %>
+    :onsubmit => "return submit_handler();" } ) do |f| %>
   <fieldset class="wrapper with-background">
     <div id="status_icon" class="status-icon <%= @repo.enabled ? 'ok' : 'unused' %>"></div>
     <span style="padding-bottom: 8px; vertical-align: 50%; font-weight: bold"><%= _("New Repository") %></span>

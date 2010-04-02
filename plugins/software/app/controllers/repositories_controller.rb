@@ -154,6 +154,11 @@ class RepositoriesController < ApplicationController
     }
 
     @repo.load(defaults)
+
+    # load URLs of all existing repositories
+    repos = Repository.find :all
+    @repo_urls = repos.map {|r| r.url}
+    @repo_urls.reject! {|u| u.blank? }
   end
 
   def create
