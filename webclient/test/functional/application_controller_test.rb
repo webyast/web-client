@@ -53,6 +53,15 @@ class TestController < ApplicationController
   def ensure_logout
     super
   end
+
+  def crash_action
+    crash
+  end
+
+  private
+    def crash
+      raise "exception"
+    end
 end
 
 
@@ -123,5 +132,12 @@ class TestControllerTest < ActionController::TestCase
     get :redirect
     assert_response :redirect
     assert_redirected_to "/controlpanel/nextstep?done=test"
+  end
+
+  def test_exception_trap_common
+    get :crash_action
+    assert_response 500
+    assert @response.body.include? "WebYaST" #test if response is not rails handler but our styled one
+    assert @response.body.include? "bugzilla.novell.com" #test if points to our bugzilla
   end
 end
