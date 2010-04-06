@@ -5,12 +5,26 @@ require 'mocha'
 class FakeResponse
   attr_reader :message
   attr_reader :code
+  attr_reader :body
 
   def initialize(code, message="")
     @code = code
     @message = message
+    @body = message
   end
 end
+
+NO_PERMISSION_BODY = <<EOF
+<error>
+  <type>NO_PERM</type>
+  <description>
+    Permission to allow org.opensuse.yast.system.status.read is not available for user jreidinger
+  </description>
+  <permission>org.opensuse.yast.system.status.read</permission>
+  <user>jreidinger</user>
+  <bug>false</bug>
+</error>
+EOF
 
 # create a testing controller,
 # defining an ApplicationControllerTest class doesn't work
@@ -44,6 +58,11 @@ class TestController < ApplicationController
 
   def unauthorized
     raise ActiveResource::UnauthorizedAccess.new(FakeResponse.new(401))
+  end
+
+  def no_permission
+    raise ActiveResource::ServerError.new(
+        FakeResponse.new(503,NO_PERMISSION_BODY))
   end
 
   def redirect
@@ -139,5 +158,12 @@ class TestControllerTest < ActionController::TestCase
     assert_response 500
     assert @response.body.include? "WebYaST" #test if response is not rails handler but our styled one
     assert @response.body.include? "bugzilla.novell.com" #test if points to our bugzilla
+  end
+
+  def test_exception_trap_no_permission
+    get :no_permission
+    assert_response :redirect
+    assert_redirected_to "/controlpanel"
+    assert flash
   end
 end
