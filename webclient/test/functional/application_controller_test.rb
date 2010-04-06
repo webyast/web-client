@@ -73,6 +73,10 @@ class TestController < ApplicationController
     super
   end
 
+  def ensure_login
+    super
+  end
+
   def crash_action
     crash
   end
@@ -129,6 +133,14 @@ class TestControllerTest < ActionController::TestCase
     get :ensure_logout
     assert_response :redirect
     assert_redirected_to "/"
+    assert flash
+  end
+
+  def test_ensure_logout
+    TestController.any_instance.stubs(:logged_in?).returns false
+    get :ensure_login
+    assert_response :redirect
+    assert_redirected_to "/session/new"
     assert flash
   end
 
