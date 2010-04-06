@@ -47,7 +47,7 @@ function disable(which){
   <input type="text" id="groups_search"></input>
 </form>
 
-<div>
+<div class='pad1_2em'>
    <% if @permissions[:groupadd] %>
      <%= link_to _("Add New Group"), :action => :new -%>
    <% end %>
