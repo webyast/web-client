@@ -41,13 +41,7 @@ protected
 #hide actions because our routing table has automatic action mapping
   hide_action :construct_error
 
-  begin
-    require 'gettext_rails'
-  rescue Exception => e
-    $stderr.puts "gettext_rails not found!"
-    exit
-  end
-
+  require 'gettext_rails'
 public
   helper :all # include all helpers, all the time
 
@@ -110,7 +104,7 @@ private
       # Here we should handle this always as an error
       # the service should return a sane default if the
       # url is not configured
-      logger.warn "Can't get vendor bug reporting url, Using Novell"
+      logger.warn "Can't get vendor bug reporting url, Using Novell. Exception: #{vendor_excp.inspect}"
     end
     
     # for ajax request render a different template, much less verbose

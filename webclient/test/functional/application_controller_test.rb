@@ -49,6 +49,10 @@ class TestController < ApplicationController
   def redirect
     redirect_success
   end
+
+  def ensure_logout
+    super
+  end
 end
 
 
@@ -90,6 +94,14 @@ class TestControllerTest < ActionController::TestCase
     controller = TestController.new
     assert_equal (DETAILS_PREFIX+"lest"+DETAILS_SUFFIX).gsub(/\s/,''), controller.testing_details("lest").gsub(/\s/,'')
     assert_equal TEST_DETAILS_RESULT.gsub(/\s/,''), controller.testing_details(TEST_DETAILS_STR).gsub(/\s/,'') #test if result is expected except whitespace (which is ignored in html)
+  end
+
+  def test_ensure_logout
+    TestController.any_instance.stubs(:logged_in?).returns true
+    get :ensure_logout
+    assert_response :redirect
+    assert_redirected_to "/"
+    assert flash
   end
 
   def test_unathorized_redirection
