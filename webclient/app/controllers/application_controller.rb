@@ -65,16 +65,6 @@ private
     end
   end
 
-  def eulaexception_trap
-    flash[:error] = _("You must accept all EULAs before using this product!")
-    if ActionController::Routing.possible_controllers.include?("eulas") then
-      redirect_to :controller => :eulas, :action => :next
-    else
-      render :status => 501, :text => _("Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed")
-    end
-    true
-  end
-
   def exception_trap(error)
     logger.error "***" + error.to_s
     logger.error error.backtrace.join "\n"
@@ -91,8 +81,6 @@ private
       redirect_to :controller => :controlpanel
       return
     end
-    
-    eulaexception_trap(e) and return if e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
     
     # get the vendor settings
     begin
