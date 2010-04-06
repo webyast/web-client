@@ -41,8 +41,15 @@ module RepositoriesHelper
     return val ? _('enable') : _('disable')
   end
 
-  def bool_status val
-    return val ? _('enabled') : _('disabled')
+  def bool_status val, opts = {:colors => {true => 'green', false => 'red'} }
+    colors = opts[:colors] || {}
+    ret = val ? _('enabled') : _('disabled')
+
+    if colors[val]
+      ret = "<span style='color: #{colors[val]}'>#{ret}</span>"
+    end
+
+    return ret
   end
 
   def hidden_field_with_link form, sid, flag, value, change
@@ -55,5 +62,17 @@ module RepositoriesHelper
 
     return form.hidden_field(flag, :id => "repo_#{flag}_#{sid}", :value => value) + html
 
+  end
+
+  def hidden_field_with_toggle_link form, flag, value, enabled_text, disabled_text
+
+    html = <<-EOF
+      <span id='repo_#{flag}_enabled' #{value ? '' : "style='display: none'"}>#{enabled_text}</span>
+      <span id='repo_#{flag}_disabled' #{value ? "style='display: none'" : ''}>#{disabled_text}</span>
+      (<a onclick="toggle_flag('#repo_#{flag}_link', '#repo_#{flag}', '#repo_#{flag}_enabled', '#repo_#{flag}_disabled')"
+	id="repo_#{flag}_link">#{bool_cmd !value}</a>)
+    EOF
+
+    return form.hidden_field(flag, :id => "repo_#{flag}", :value => value) + html
   end
 end

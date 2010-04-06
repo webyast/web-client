@@ -15,11 +15,9 @@ $(document).ready(function() {
 	}
     });
 
-    $('#services div.list-fieldset').quicksearch({
-	attached: '#services',
-	loaderText: '',
-	labelText: '<%= _("Quick Search")%>',
-	delay: 100
+    $('input#service_search').quicksearch('#services div.list-fieldset', {
+      selector: '.quicksearch_content',
+      delay: 100
     });
 
     $('.accordion div.list-fieldset:even').addClass('alt-bg');
@@ -115,7 +113,10 @@ function select_status (val) {
        autoHeight : false,
        navigation : true,
        collapsible: true,
-       header     : 'div.list-fieldset div.list-fieldset-header'
+       header     : 'div.list-fieldset div.list-fieldset-header',
+       change: function(event, ui) {
+	    $('#service_result_' + $(ui.oldHeader).attr("name")).hide();
+	}
     });
     $(".accordion").accordion('activate',false);
   });
@@ -129,7 +130,7 @@ function select_status (val) {
 
 
 <% unless @permissions[:execute] %>
-<p style="padding: 10px"><%=_("You do not have permission to execute the services.")%></p>
+<p class="missing-permissions"><%=_("You do not have permission to execute the services.")%></p>
 <% end %>
 
 <p>
@@ -145,24 +146,34 @@ function select_status (val) {
     %>
     <%= observe_field("filter", :function => "select_status(value)") %>
 </p>
+
+<form action="#" id="quicksearch">
+  <label><%= _("Quick Search") %></label>
+  <input type="text" id="service_search"></input>
+</form>
+
 <div id="services" class="accordion">
 <%
 commands	= [ "start", "stop", "restart", "enable", "disable"]
 @services.each do |service| %>
   <div class="list-fieldset">
 
-  <div class="list-fieldset-header"><span class="service-icon"></span><%=service.name %> <em style="position:absolute; left:25%"><%=service.summary%></em></div>
+  <div class="list-fieldset-header" name=<%=service.name%>><span class="service-icon"></span><%=h service.name %><em style="position:absolute; left:25%"><%= h service.summary%></em></div>
 
   <div class='service-content' style="display:none">
 
-  <p class='description'>
+  <p class='description quicksearch_content'>
     <i><%= service.description ? h(service.description) : _("Description for service is not available") %></i>
-  </p> 
+    <!-- This is a workaround for quicksearch plugin - it can search in _one_ element
+      so we add the service name and summary here again and make it hidden so it is also
+      searched but not displayed -->
+    <div style="display: none"><%= h(service.name)+h(service.summary) -%></div>
+  </p>
 
   <img src="/images/working.gif" height="12" width="12" border="0"
-    id="service_progress_<%=service.name%>" style="display: none" alt='working...'/>
+    id="service_progress_<%=h service.name%>" style="display: none" alt='working...'/>
 
-  <span class='service_status' id='service_status_<%=service.name%>'>
+  <span class='service_status' id='service_status_<%= h service.name%>'>
     <% unless service.status.nil? %>
     <%= render :partial => 'status', :locals => { :status => service.status, :enabled => service.enabled?, :custom => service.custom? } %>
     <% end %>

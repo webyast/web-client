@@ -19,7 +19,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.2
 Release:        0
-Summary:        YaST2 - Webclient - Eulas
+Summary:        WebYaST - license management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -33,11 +33,13 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle accepting EULAs.
+WebYaST - Plugin providing UI for license management.
+
 Authors:
 --------
     Martin Kudlvasr <mkudlvasr@suse.cz>
     Josef Reidinger <jreidinger@suse.cz>
+
 %prep
 %setup -q -n www
 

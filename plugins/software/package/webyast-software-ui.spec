@@ -14,15 +14,15 @@ Recommends:     WebYaST(org.opensuse.yast.system.repositories)
 Recommends:     WebYaST(org.opensuse.yast.system.patches)
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
-# generate_error_messages helper
-PreReq:         yast2-webclient >= 0.1.14
+# updated jQuery quicksearch plugin
+PreReq:         yast2-webclient >= 0.1.17
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.13
+Version:        0.1.17
 Release:        0
-Summary:        YaST2 - Webclient - Software and Repository Management
+Summary:        WebYaST - Software and Repository Management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -34,8 +34,9 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice. This package contains patch installation
+WebYaST - Plugin providing UI for software management. This package contains patch installation
 and repository management modules.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
@@ -61,12 +62,12 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_patch_updates
+%find_lang yast_webclient_software
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_patch_updates.lang
+%files -f yast_webclient_software.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor

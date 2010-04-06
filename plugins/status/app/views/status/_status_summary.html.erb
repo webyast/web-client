@@ -17,7 +17,7 @@
     <% end %>
   <% end %>
   <% if restart_collectd %>
-    <%= button_to_remote _("start"), :update =>"status_status", :url => { :controller => :status, :action => :start_collectd} %>
+    <%= button_to_remote _("Start collectd"), :update =>"status_status", :url => { :controller => :status, :action => :start_collectd} %>
   <% end %>
 </div>
 

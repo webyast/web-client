@@ -27,6 +27,7 @@ class UsersControllerTest < ActionController::TestCase
       mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
       mock.get   "/users.xml", header, response_index, 200
       mock.get   "/users/tester.xml", header, response_tester, 200
+      mock.put   "/users/tester.xml", header, nil, 200
       mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
       mock.get   "/groups.xml", header, response_groups, 200
     end
@@ -65,5 +66,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'input#user_grp_string[value=uucp,games,messagebus]'
     assert_select 'input#user_groupname[value=users]'
   end
-  
+
+  def test_update_user
+   post :update, {:user => { :id => "tester", :cn => "Tester Testerovic" }} 
+    assert_response :redirect
+    assert_valid_markup
+    assert_redirected_to :action => :index
+    assert_valid_markup
+    assert_false flash.empty?
+  end  
+
 end

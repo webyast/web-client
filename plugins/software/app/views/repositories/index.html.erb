@@ -1,3 +1,6 @@
+<%# Sort by priority then by name %>
+<% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "jquery.quicksearch.js" %>
@@ -28,9 +31,7 @@
       $.extend($.validator.messages, {
 	required: "<%= _("This value cannot be empty.") -%>"
       });
-    });
 
-    $(document).ready(function(){
       $(".accordion").accordion({
 	 autoHeight : false,
 	 navigation : true,
@@ -38,16 +39,63 @@
 	 header     : 'div.list-fieldset div.list-fieldset-header'
       });
 
-      $(".accordion").accordion('activate',false);
+      $(".accordion").accordion('activate', false);
 
-      $('#repositories div.list-fieldset').quicksearch({
-	  attached: '#repositories',
-	  loaderText: '',
-	  labelText: '<%= _("Quick Search") -%>',
+     <%# if show filter is present then simulate click on the header %>
+     <%# to unfold the repository content %>
+     <% if !@show.blank? && @repos.find{|x| x.id == @show} %>
+       $('#repo_header_<%= safe_id(@show) -%>').click()
+     <% end %>
+
+      $('input#repo_search').quicksearch('#repositories div.list-fieldset', {
+	  selector: 'span.quicksearch_content',
 	  delay: 100
       });
     });
 
+
+    // disable all submit buttons after submitting a form
+    // avoid double submit by accident
+    function disable_forms() {
+      // disable submit buttons
+      $(':submit').attr('disabled', 'disabled');
+      // make all input elements (text fields...) read only
+      $(':input').attr('readonly', 'readonly');
+      // disable all delete buttons
+      $('a.button').attr('onclick','return false;');
+      $('a.button').attr('href','');
+    };
+
+    // onsubmit handler
+    function form_handler(sid) {
+      if ($('#repositoryForm_' + sid).valid())
+      {
+	disable_forms();
+	$('#progress_' + sid).show();
+	return true;
+      }
+      else
+      {
+	return false;
+      }
+    }
+
+    // onclick handler for "delete" link parent
+    function delete_handler(elem, progress)
+    {
+      // if there are two childrens then the delete was confirmed
+      // (rails create a dynanic form there)
+      if (elem.childNodes.length == 2)
+      {
+	elem.onclick="";
+	elem.childNodes[0].onclick="return false;";
+	elem.childNodes[0].href="";
+	disable_forms();
+	$(progress).show();
+      }
+    }
+
+    // handler for the filter element
     function select_repositories (val) {
       if (val == "all") {
 	  $("#repositories > div.list-fieldset").show();
@@ -106,14 +154,25 @@
       <%= observe_field("filter", :function => "select_repositories(value)") %>
     </p>
 
-    <% # Sort by priority then by name -%>
-    <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
+    <form action="#" id="quicksearch">
+      <label><%= _("Quick Search") %></label>
+      <input type="text" id="repo_search"></input>
+    </form>
+
+    <% if !disabled %>
+      <fieldset>
+	<%= link_to   (_("Add New Repository") ),
+	  {:action => 'add'},
+	  :onclick=>"$('#progress').show()" %>
+      </fieldset>
+    <% end %>
 
     <div id="repositories" class="accordion">
       <% @repos.each do |r| %>
+	<% sid = safe_id(r.id) %>
 	<div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
-	  <div class="list-fieldset-header">
-	    <% #* TODO FIXME: do quick search only in name and URL => use quicksearch_content class-%>
+	  <div class="list-fieldset-header" id="repo_header_<%= sid -%>">
+	    <%# do quick search only in name and URL => use quicksearch_content class %>
 	    <span class="quicksearch_content">
 	      <div>
 		<div class="status-icon <%= r.enabled ? 'ok' : 'unused' %>"></div>
@@ -124,10 +183,8 @@
 	    <span style="float: right; margin-right: 5em"><%= prio_summary r.priority -%></span>
 	  </div>
 	  <div class='repository-content' style="display:none">
-	      <% sid = safe_id(r.id) %>
 	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
-		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit =>
-		"if ($('#repositoryForm_#{sid}').valid()) {$('#progress_#{sid}').show(); return true;} else return false;" }
+		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit => "form_handler('#{sid}')" }
 	      ) do |f| %>
 
 		<% content_for :head do %>
@@ -147,26 +204,26 @@
 		<p><div style="min-width: 6em; float: left; margin-left: 1em">URL: </div>
 		  <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
 
-		<p>Repository is currently <i><%= bool_status r.enabled %></i>.
+		<p><%= _("Repository is currently") %> <i><%= bool_status r.enabled %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :enabled, r.enabled,
-		      _("Repository will be %s.") % bool_status(!r.enabled) -%>
+		      _("Repository will be %s.") % bool_status(!r.enabled, {}) -%>
 		  <% end %>
 		</p>
 
-		<p>Autorefresh is currently <i><%= bool_status r.autorefresh %></i>.
+		<p><%= _("Autorefresh is currently") %> <i><%= bool_status r.autorefresh %></i>.
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :autorefresh, r.autorefresh,
-		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh) -%>
+		      _("Autorefresh will be %s.") % bool_status(!r.autorefresh, {}) -%>
 		  <% end %>
 		</p>
 
-		<p>Priority for packages: <%= prio_selector f, r.priority, disabled %></p>
+		<p><%= _("Priority for packages:") %> <%= prio_selector f, r.priority, disabled %></p>
 
-		<p>Keeping downloaded packages is currently <i><%= bool_status r.keep_packages %>.</i>
+		<p><%= _("Keeping downloaded packages is currently") %> <i><%= bool_status r.keep_packages %>.</i>
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :keep_packages, r.keep_packages,
-		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages) -%>
+		      _("Keep packages option will be %s.") % bool_status(!r.keep_packages, {}) -%>
 		  <% end %>
 		</p>
 
@@ -174,9 +231,9 @@
 		  <% if !disabled -%>
 		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
 		    <%= form_next_button :label => _("Save") %>
-		    <%= link_to _("Delete"),
-			  {:action => 'delete', :id => r.id},
-			  {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %>
+		    <span onclick="delete_handler(this, '#progress_<%= sid -%>');"><%= link_to _("Delete"),
+			    {:action => 'delete', :id => r.id},
+			    {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %></span>
 		  <% end -%>
 		</fieldset>
 
@@ -188,13 +245,5 @@
 
     <fieldset>
       <%= form_back_button %>
-
-      <% if !disabled %>
-	<%= form_str_spacer %>
-	<%= link_to   (_("Add") + " " + _("a new repository") ),
-	  {:action => 'add'},
-	  :onclick=>"$('#progress').show()"
-      %>
-      <% end %>
     </fieldset>
   </div>

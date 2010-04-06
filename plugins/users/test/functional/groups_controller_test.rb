@@ -27,6 +27,7 @@ class GroupsControllerTest < ActionController::TestCase
       mock.get   "/groups.xml", header, response_index, 200
       mock.get   "/groups/users.xml", header, response_group_users, 200
       mock.delete   "/groups/users.xml", header, nil, 200
+      mock.put   "/groups/users.xml", header, nil, 200
       mock.get	 "/users.xml", header, response_users, 200
     end
   end

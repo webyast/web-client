@@ -15,7 +15,7 @@ class NtpTest < ActiveSupport::TestCase
     ActiveResource::HttpMock.set_authentication
     @header = ActiveResource::HttpMock.authentication_header
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp"
+      mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
       mock.permissions "org.opensuse.yast.modules.yapi.services", { :execute => true, :read => true } #service is needed restart service
       mock.get  "/ntp.xml", @header, @response, 200

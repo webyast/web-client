@@ -21,32 +21,33 @@
 
  $(document).ready(function(){
 
- $('.row').mouseenter(function() {
-  $(this).find(".del_user").show();
- }).mouseleave(function() {
-  $(this).find(".del_user").hide();
- });
 
- $('table tbody tr').quicksearch({
-        attached: 'div#qs_anchor',
-	inputText: '<%= _("Type user name or login ...")%>',
-	inputClass: 'qs_input',
-        loaderText: '',
-        labelText: '<%= _("Filter:")%>',
-	stripeRowClass: ['odd', 'even'],
-        delay: 100
- });
+  $('input#users_search').quicksearch('table tbody tr', {
+    stripeRows: ['odd', 'even'],
+    delay: 100
+  });
 
- // default state
- $('.del_user').hide();
 });//document.ready
+
+function disable(which){
+ if (which.childNodes.length == 2 && which.childNodes[0].firstChild.alt == "delete"){
+  which.onclick="";
+  which.removeChild(which.childNodes[1]);
+  which.removeChild(which.childNodes[0]);
+  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
+ }
+}
 <% end %>
 
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Users")%></div>
 <div class="plugin-content grid_12">
 
-<div id='qs_anchor' class='pad1_2em'></div>
+<form action="#" id="quicksearch" class="pad1_2em">
+  <label><%= _("Filter:") %></label>
+  <input type="text" id="users_search"></input>
+</form>
+
 <div class='pad1_2em'>
 <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
 <table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
@@ -64,7 +65,7 @@
     <td align=center id="login"><%= h user.uid  -%></td>
     <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
     <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user %s?") % user.id ) %></td>
+    <td class="icon" width="10%"><div onclick="disable(this);"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user '%s'?") % user.id + "\n" + _("Home directory will be deleted as well.") ) %></div></td>
     <% end %>
   </tr>
   <% end %>

@@ -72,7 +72,6 @@ module YastModel
     # Sets new site to model, together with path of interface on target machine and password for user
     # also invalidates old permissions
     def set_site
-      @permissions = nil #reset permission as it can be for each site and for each user different
       self.site = YaST::ServiceResource::Session.site
       self.password = YaST::ServiceResource::Session.auth_token
       YastModel::Resource.site = self.site  #dynamic set site
@@ -111,7 +110,7 @@ module YastModel
     # Note: it lazy loads permissions so first call for site take more time
     # Note: it is class method, because user, password and site is also on class level
     def permissions
-      return @permissions if @permissions
+      set_site #set site which sets also policy if model has a policy
       YastModel::Permission.site = YaST::ServiceResource::Session.site
       YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
       permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }

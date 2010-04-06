@@ -82,6 +82,8 @@
 
 <div class="plugin-content grid_12">
 
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
+
 <% form_for(:user, @user, :url => { :action => "update" }, :html => { :method => :put, :id => "userForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
       <%= render :partial => 'user_form',

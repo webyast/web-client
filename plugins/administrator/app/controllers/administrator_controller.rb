@@ -14,7 +14,7 @@ class AdministratorController < ApplicationController
     @administrator	= Administrator.find :one
     @permissions	= Administrator.permissions
     @administrator.confirm_password	= ""
-    params[:firstboot]	= 1 if Basesystem.new.load_from_session(session).in_process?
+    params[:firstboot]	= 1 if Basesystem.installed? && Basesystem.new.load_from_session(session).in_process?
   end
 
   # PUT
@@ -68,7 +68,8 @@ class AdministratorController < ApplicationController
 
     # check if mail is configured; during initial workflow, only warn if mail configuration does not follow
     if admin["aliases"] != "" &&
-       !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "mail" }
+        (!Basesystem.installed? ||
+         !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "mail" })
       @mail       = Mail.find :one
       if @mail && (@mail.smtp_server.nil? || @mail.smtp_server.empty?)
 	flash[:warning] = _("Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s).") % ['<a href="/mail">', '</a>']

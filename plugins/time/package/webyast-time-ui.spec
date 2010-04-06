@@ -20,7 +20,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.5
 Release:        0
-Summary:        YaST2 - Webclient - SystemTime
+Summary:        WebYaST - time management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -29,16 +29,18 @@ BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
-%define plugin_name systemtime
+%define plugin_name time
 #
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
+WebYaST - Plugin providing UI for handling of time zone, system time and date.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
     Josef Reidinger <jreidinger@suse.cz>
+
 %prep
 %setup -q -n www
 
@@ -58,12 +60,12 @@ rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 # search locale files
-%find_lang yast_webclient_systemtime
+%find_lang yast_webclient_time
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_systemtime.lang
+%files -f yast_webclient_time.lang
 %defattr(-,root,root)
 %dir /srv/www/%{pkg_user}
 %dir /srv/www/%{pkg_user}/vendor

@@ -47,6 +47,8 @@
 
 <% disabled = ! @permissions[:write] %>
 
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
+
   <% form_for(:mail, @mail, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show()" } ) do |f| %>
   <%= f.error_messages %>
     <fieldset  class="wrapper with-background">
