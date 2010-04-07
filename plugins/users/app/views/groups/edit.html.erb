@@ -55,11 +55,6 @@
       <label><%=_("Group ID")%></label>
       <%= f.text_field :gid, :disabled => false %>
     </p>
-     <p>
-      <label><%=_("Group Type")%></label>
-      <%= f.text_field :group_type, :disabled => true %>
-      <%= f.hidden_field :group_type %>
-    </p>
     <p>
       <label><%=_("Default members")%></label>
       <%= f.text_field :default_members_string, :disabled => true %>
@@ -69,7 +64,7 @@
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
       <a href="#" class="button" onClick="open_users_dialog();return false;">Manage Memebers</a>
     </p>
-    <p><label id="users-error" class="error"></label><p>
+    <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label><p>
   </fieldset>
 
   <div id="members" style="display:none;" title="Members">

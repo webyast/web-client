@@ -60,7 +60,7 @@ function disable(which){
 
 <form action="#" id="quicksearch" class="pad1_2em">
   <label><%= _("Filter:") %></label>
-  <input type="text" id="groups_search"></input>
+  <input type="text" id="groups_search"/>
 </form>
 
 <div class='pad1_2em'>
@@ -80,7 +80,6 @@ function disable(which){
 <% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
-  <fieldset>
     <p>
       <div class="label"><%=_("Group Name")%></div>
       <%= f.text_field :cn, :disabled => false %>
@@ -88,11 +87,6 @@ function disable(which){
     <p>
       <div class="label"><%=_("Group ID")%></div>
       <%= f.text_field :gid, :disabled => false %>
-    </p>
-     <p>
-      <div class="label"><%=_("Group Type")%></div>
-      <%= f.text_field :group_type, :disabled => true %>
-      <%= f.hidden_field :group_type %>
     </p>
     <p>
       <div class="label"><%=_("Default members")%></div>
@@ -102,8 +96,7 @@ function disable(which){
       <div class="label"><%=_("Members")%></div>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
     </p>
-    <p><label id="users-error" class="error"></label><p>
-  </fieldset>
+    <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
     <%= form_next_button :label => _("Save") %>
      <% if @permissions[:groupdelete] %>
      <span onclick="disable(this);"><%= link_to _("Delete"),
@@ -123,6 +116,5 @@ function disable(which){
   <%= form_back_button -%>
 </fieldset>
 <%= link_to "Manage Users", "controller" => "users" %>
-</div>
 </div>
 
