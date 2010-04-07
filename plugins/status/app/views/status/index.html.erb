@@ -67,6 +67,11 @@
           <p>     
             <%= plugin.long_description %>
           </p>     
+	  <% unless plugin.details.blank? %>
+          <p>     
+            <%= plugin.details %>
+          </p>     
+	  <% end %>
           <% unless plugin.confirmation_host.blank? || plugin.confirmation_link.blank? %>
             <% if plugin.confirmation_host == "client" %>
               <% unless plugin.confirmation_label.blank? %>
