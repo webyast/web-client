@@ -89,9 +89,9 @@
     }
   }
 
-   function members_validation(){
+   function members_validation(which){
      var mygroups = [];
-     if (_trim($('#group_members_string')[0].value).length>0) mygroups = $('#group_members_string')[0].value.split(",");
+     if (_trim(which.value).length>0) mygroups = which.value.split(",");
      var allgroups = $("#all_users_string")[0].value.split(",");
      errmsg="";
      for (i=0;i<mygroups.length;i++){
@@ -103,8 +103,8 @@
         errmsg = mygroups[i]+" "+"is not valid user!" ;
        }
      }
-     $("#users-error")[0].innerHTML = errmsg;
-     $("#users-error")[0].style.display= (errmsg.length==0) ? "none" : "block";
+     which.parentNode.parentNode.getElementsByClassName("error")[0].innerHTML = errmsg;
+     which.parentNode.parentNode.getElementsByClassName("error")[0].style.display= (errmsg.length==0) ? "none" : "block";
      return (errmsg.length==0);
    }
 

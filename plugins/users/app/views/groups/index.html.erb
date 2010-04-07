@@ -1,4 +1,5 @@
 <% content_for :head do %>
+<%= javascript_include_tag "group_members.js" %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
 
@@ -71,7 +72,6 @@ function disable(which){
      </span>
     </div>
     <div class='group-content' style="display:none">
-
 <% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
@@ -95,7 +95,7 @@ function disable(which){
     </p>
     <p>
       <label><%=_("Members")%></label>
-      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation();" %>
+      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
     </p>
     <p><label id="users-error" class="error"></label><p>
   </fieldset>
@@ -110,6 +110,7 @@ function disable(which){
 
  </div>
 </div>
+    <div><input type="hidden" id="all_users_string" value="<%= @all_users_string %>" /></div>
 
 <fieldset>
   <%= form_back_button -%>
