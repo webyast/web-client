@@ -35,6 +35,33 @@
         return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "false";
     }).hide();
   });
+
+  function validateNeededServices() {
+    var use_firewall_old = <%= @firewall.use_firewall ? "true" : "false" %>;
+    var needed_services = <%= @needed_services_js %>;
+    var confirm_text = <%= "\""+_("Some of needed services are going to be blocked. WebYaST may not be usable anymore.")+"\"" %>;
+    function isBlockedAndWasntBlocked(service) {
+      var is_blocked  = ( $("#fw_services_values input[name='"+service.input_name+"']")[0].value == 'false' );
+      var was_allowed = service.allowed;
+      return is_blocked && (was_allowed || ! use_firewall_old);
+    }
+    function someBlocked(services) {
+      for each (s in services) { if ( isBlockedAndWasntBlocked(s) ) { return true } };
+      return false;
+    }
+    function blockedNames(services) {
+      return services.filter( isBlockedAndWasntBlocked ).map( function(s) { return s.name });
+    }
+    if ( $("#use_firewall")[0].checked ) {
+      var some_blocked = someBlocked(needed_services);
+      if ( some_blocked ) {
+        result = confirm(confirm_text + "\n(" + blockedNames(needed_services).join(", ") + ")");
+        return result;
+      } 
+    } else {
+      return true;
+    }
+  }
   <% end -%>
 <% end %>
 
@@ -44,7 +71,7 @@
 
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
-  <% form_tag '/firewall/update', {:class => 'container'} do %>
+  <% form_tag '/firewall/update', {:class => 'container', :onsubmit => "return validateNeededServices()" } do %>
   <div id="fw_services_values">
     <% @firewall.fw_services.each do |service| %>
       <input type="hidden" 
