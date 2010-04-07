@@ -91,7 +91,9 @@ function disable(which){
 </form>
 
 <div class='pad1_2em'>
+<% if @permissions[:useradd] %>
 <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
+<% end %>
 
  <div id="users" class="accordion">
  <% disabled = ! @permissions[:usermodify] %>
@@ -174,8 +176,6 @@ function disable(which){
 
 <fieldset>
   <%= form_back_button -%>
-  <% if @permissions[:useradd] %>
-  <% end %>
 </fieldset>
 <%= link_to _("Manage Groups"), "controller" => "groups" %>
 </div>
