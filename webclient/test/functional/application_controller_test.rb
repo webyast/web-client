@@ -5,12 +5,26 @@ require 'mocha'
 class FakeResponse
   attr_reader :message
   attr_reader :code
+  attr_reader :body
 
   def initialize(code, message="")
     @code = code
     @message = message
+    @body = message
   end
 end
+
+NO_PERMISSION_BODY = <<EOF
+<error>
+  <type>NO_PERM</type>
+  <description>
+    Permission to allow org.opensuse.yast.system.status.read is not available for user jreidinger
+  </description>
+  <permission>org.opensuse.yast.system.status.read</permission>
+  <user>jreidinger</user>
+  <bug>false</bug>
+</error>
+EOF
 
 # create a testing controller,
 # defining an ApplicationControllerTest class doesn't work
@@ -46,9 +60,31 @@ class TestController < ApplicationController
     raise ActiveResource::UnauthorizedAccess.new(FakeResponse.new(401))
   end
 
+  def no_permission
+    raise ActiveResource::ServerError.new(
+        FakeResponse.new(503,NO_PERMISSION_BODY))
+  end
+
   def redirect
     redirect_success
   end
+
+  def ensure_logout
+    super
+  end
+
+  def ensure_login
+    super
+  end
+
+  def crash_action
+    crash
+  end
+
+  private
+    def crash
+      raise "exception"
+    end
 end
 
 
@@ -92,6 +128,22 @@ class TestControllerTest < ActionController::TestCase
     assert_equal TEST_DETAILS_RESULT.gsub(/\s/,''), controller.testing_details(TEST_DETAILS_STR).gsub(/\s/,'') #test if result is expected except whitespace (which is ignored in html)
   end
 
+  def test_ensure_logout
+    TestController.any_instance.stubs(:logged_in?).returns true
+    get :ensure_logout
+    assert_response :redirect
+    assert_redirected_to "/"
+    assert flash
+  end
+
+  def test_ensure_logout
+    TestController.any_instance.stubs(:logged_in?).returns false
+    get :ensure_login
+    assert_response :redirect
+    assert_redirected_to "/session/new"
+    assert flash
+  end
+
   def test_unathorized_redirection
     get :unauthorized
     assert_response :redirect
@@ -111,5 +163,19 @@ class TestControllerTest < ActionController::TestCase
     get :redirect
     assert_response :redirect
     assert_redirected_to "/controlpanel/nextstep?done=test"
+  end
+
+  def test_exception_trap_common
+    get :crash_action
+    assert_response 500
+    assert @response.body.include? "WebYaST" #test if response is not rails handler but our styled one
+    assert @response.body.include? "bugzilla.novell.com" #test if points to our bugzilla
+  end
+
+  def test_exception_trap_no_permission
+    get :no_permission
+    assert_response :redirect
+    assert_redirected_to "/controlpanel"
+    assert flash
   end
 end
