@@ -21,10 +21,20 @@
 
  $(document).ready(function(){
 
-  $('input#groups_search').quicksearch('table tbody tr', {
-    stripeRows: ['odd', 'even'],
-    delay: 100
+  $('input#groups_search').quicksearch('div.list-fieldset', {
+          selector: 'span.quicksearch_content',
+          delay: 100
   });
+
+      $(".accordion").accordion({
+         autoHeight : false,
+         navigation : true,
+         collapsible: true,
+         header     : 'div.list-fieldset div.list-fieldset-header'
+      });
+
+      $(".accordion").accordion('activate', false);
+
 
 });//document.ready
 
@@ -51,27 +61,54 @@ function disable(which){
    <% if @permissions[:groupadd] %>
      <%= link_to _("Add New Group"), :action => :new -%>
    <% end %>
-<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th><%= h _("Group Name") %></th>
-      <th><%= h _("Type") %></th>
-      <th><%= h _("Action") %></th>
-    </tr>
-  </thead>
+ <div id="groups" class="accordion">
 
-  <tbody>
   <% for group in @groups %>
-  <tr class= <%= cycle('odd', 'even') -%> >
-    <td><%= link_to ( h group.cn || "-none-" ), {:action => :edit, :id => group.cn} -%></td>
-    <td><%= h group.group_type %></td>
-    <% if @permissions[:groupdelete] %>
-    <td class="icon"><div onclick="disable(this);"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></div></td>
-    <% end %>
-  </tr>
+   <div class="list-fieldset">
+    <div class="list-fieldset-header">
+     <span class="quicksearch_content">
+       <%= h group.cn || "-none-" %>
+     </span>
+    </div>
+    <div class='group-content' style="display:none">
+
+<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :old_cn %>
+  <fieldset>
+    <p>
+      <label><%=_("Group Name")%></label>
+      <%= f.text_field :cn, :disabled => false %>
+    </p>
+    <p>
+      <label><%=_("Group ID")%></label>
+      <%= f.text_field :gid, :disabled => false %>
+    </p>
+     <p>
+      <label><%=_("Group Type")%></label>
+      <%= f.text_field :group_type, :disabled => true %>
+      <%= f.hidden_field :group_type %>
+    </p>
+    <p>
+      <label><%=_("Default members")%></label>
+      <%= f.text_field :default_members_string, :disabled => true %>
+    </p>
+    <p>
+      <label><%=_("Members")%></label>
+      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation();" %>
+    </p>
+    <p><label id="users-error" class="error"></label><p>
+  </fieldset>
+<% end %>
+
+     <% if @permissions[:groupdelete] %>
+      <div onclick="disable(this);"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></div>
+     <% end %>
+    </div>
+   </div>
   <% end %>
-  </tbody>
-</table>
+
+ </div>
 </div>
 
 <fieldset>
