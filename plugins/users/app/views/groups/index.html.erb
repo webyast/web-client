@@ -13,6 +13,11 @@
     label, .qs_input {
 	width: auto !important;
     }
+    .label { 
+	min-width: 10em;
+	float: left;
+	margin-left: 1em
+    }
  </style>
 
  <% javascript_tag do %>
@@ -77,33 +82,35 @@ function disable(which){
   <%= f.hidden_field :old_cn %>
   <fieldset>
     <p>
-      <label><%=_("Group Name")%></label>
+      <div class="label"><%=_("Group Name")%></div>
       <%= f.text_field :cn, :disabled => false %>
     </p>
     <p>
-      <label><%=_("Group ID")%></label>
+      <div class="label"><%=_("Group ID")%></div>
       <%= f.text_field :gid, :disabled => false %>
     </p>
      <p>
-      <label><%=_("Group Type")%></label>
+      <div class="label"><%=_("Group Type")%></div>
       <%= f.text_field :group_type, :disabled => true %>
       <%= f.hidden_field :group_type %>
     </p>
     <p>
-      <label><%=_("Default members")%></label>
+      <div class="label"><%=_("Default members")%></div>
       <%= f.text_field :default_members_string, :disabled => true %>
     </p>
     <p>
-      <label><%=_("Members")%></label>
+      <div class="label"><%=_("Members")%></div>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
     </p>
     <p><label id="users-error" class="error"></label><p>
   </fieldset>
-<% end %>
-
+    <%= form_next_button :label => _("Save") %>
      <% if @permissions[:groupdelete] %>
-      <div onclick="disable(this);"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></div>
+     <span onclick="disable(this);"><%= link_to _("Delete"),
+                            {:action => 'destroy', :id => group.cn},
+                            {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %></span>
      <% end %>
+<% end %>
     </div>
    </div>
   <% end %>
