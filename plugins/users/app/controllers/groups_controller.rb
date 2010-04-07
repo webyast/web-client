@@ -100,6 +100,11 @@ public
     begin
       @groups = Group.find :all
       @groups.sort! { |a,b| a.cn <=> b.cn }
+      @groups.each do |group|
+       group.members_string = group.members.join(",")
+       group.default_members_string = group.default_members.join(",")
+      end
+
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Cannot read groups list.")
       return
