@@ -12,6 +12,11 @@
     label, .qs_input {
 	width: auto !important;
     }
+    .label {
+        min-width: 10em;
+        float: left;
+        margin-left: 1em
+    }
  </style>
 
  <% javascript_tag do %>
@@ -21,11 +26,20 @@
 
  $(document).ready(function(){
 
+      $(".accordion").accordion({
+         autoHeight : false,
+         navigation : true,
+         collapsible: true,
+         header     : 'div.list-fieldset div.list-fieldset-header'
+      });
 
-  $('input#users_search').quicksearch('table tbody tr', {
-    stripeRows: ['odd', 'even'],
-    delay: 100
+      $(".accordion").accordion('activate', false);
+
+  $('input#users_search').quicksearch('div.list-fieldset', {
+          selector: 'span.quicksearch_content',
+          delay: 100
   });
+
 
 });//document.ready
 
@@ -50,27 +64,46 @@ function disable(which){
 
 <div class='pad1_2em'>
 <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
-<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th>Login</th>
-      <th>Real Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
 
-  <tbody>
+ <div id="users" class="accordion">
+ <% disabled = ! @permissions[:usermodify] %>
   <% for user in @users %>
-  <tr class= <%= cycle('odd', 'even') -%> >
-    <td align=center id="login"><%= h user.uid  -%></td>
-    <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
-    <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><div onclick="disable(this);"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user '%s'?") % user.id + "\n" + _("Home directory will be deleted as well.") ) %></div></td>
+   <div class="list-fieldset">
+
+    <div class="list-fieldset-header">
+     <span class="quicksearch_content">
+      <%= h user.uid -%> (<%= h user.cn || "-none-" -%>)
+     </span>
+    </div>
+
+    <div class='user-content' style="display:none">
+     <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "userForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+      <%= f.error_messages %>
+
+      <div>
+        <p>
+          <div class="label"><%=_("Full Name")%></div>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login();" %>
+        </p>
+        <p>
+          <div class="label"><%=_("Login Name")%></div>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "propose_home();" %>
+          <%= f.text_field :id, :class => "hidden" %>
+        </p>
+      </div>
+
+     <% if @permissions[:userdelete] %>
+      <span onclick="disable(this);"><%= link_to _("Delete"),
+                            {:action => 'destroy', :id => user.uid},
+                            {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %></span>
+     <% end %>
+    </div>
+
     <% end %>
-  </tr>
+   </div>
   <% end %>
-  </tbody>
-</table>
+ </div>
+
 </div>
 
 <fieldset>
