@@ -20,7 +20,7 @@ PreReq:         yast2-webclient >= 0.1.14
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.10
+Version:        0.1.11
 Release:        0
 Summary:        WebYaST - system status UI
 Source:         www.tar.bz2
