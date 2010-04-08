@@ -2,7 +2,7 @@
 module RepositoriesHelper
   def prio_mapping
     {
-      0 => _("Highest"),
+      1 => _("Highest"),
       50 => _("Higher"),
       99 => _("Default"),
       150 => _("Low"),
@@ -12,7 +12,7 @@ module RepositoriesHelper
 
   def prio_summary priority
     mapping = {
-      0 => _("Highest priority"),
+      1 => _("Highest priority"),
       50 => _("Higher priority"),
       99 => '',
       150 => _("Low priority"),
