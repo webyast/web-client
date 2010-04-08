@@ -6,12 +6,18 @@ $(document).ready(function() {
     $("#services div.list-fieldset").each (function(index) {
 	if ($(this).is(":has(span.status_running)")) {
 	    $(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon ok');
+	    if ($(this).is(":has(div.service_disabled)")) {
+		$(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon ok-unused');
+	    }
 	}
 	else if ($(this).is(":has(span.status_dead)")) {
 	    $(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon error');
 	}
 	else {
 	    $(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon unused');
+	    if ($(this).is(":has(div.service_enabled)")) {
+		$(this).find(".list-fieldset-header .service-icon").attr('class','service-icon status-icon unused-ok');
+	    }
 	}
     });
 
@@ -37,6 +43,10 @@ function toggle_service_info (id) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
 	$(buttons).find('a#start').hide();
 	$(buttons).find('a#stop').show();
+	// running, but disabled: not ok
+	if ($(id).is(':has(div.service_disabled)')) {
+	    $(heading).find(".service-icon").attr('class','service-icon status-icon ok-unused');
+	}
     }
     else if ($(id).is(':has(span.status_dead)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
@@ -47,6 +57,10 @@ function toggle_service_info (id) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
 	$(buttons).find('a#stop').hide();
 	$(buttons).find('a#start').show();
+	// not running, but enabled: not unused
+	if ($(id).is(':has(div.service_enabled)')) {
+	    $(heading).find(".service-icon").attr('class','service-icon status-icon unused-ok');
+	}
     }
     if ($(id).is(':has(div.service_disabled)')) {
 	$(buttons).find('a#enable').show();
