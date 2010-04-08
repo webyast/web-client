@@ -45,11 +45,21 @@
 });//document.ready
 
 function disable(which){
- if (which.childNodes.length == 2 && which.childNodes[0].firstChild.alt == "delete"){
+ if (which.childNodes.length == 2 && which.childNodes[0].firstChild.nodeValue == "Delete"){
   which.onclick="";
-  which.removeChild(which.childNodes[1]);
-  which.removeChild(which.childNodes[0]);
-  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
+  which.childNodes[0].onclick="return false;";
+  which.childNodes[0].href="";
+  // use the same method like repositories
+  $(':submit').attr('disabled', 'disabled');
+  $(':input').attr('readonly', 'readonly');
+  // FIXME: "buttton" has no action but looks like enabled
+  $('a.button').attr('onclick','return false;');
+  $('a.button').attr('href','');
+
+
+//  which.removeChild(which.childNodes[1]);
+//  which.removeChild(which.childNodes[0]);
+//  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
  }
 }
 <% end %>
