@@ -140,8 +140,23 @@ protected
         ActionController::Base.init_gettext(domainname, opt)
       else
         #load default no vendor translation available
-        logger.info "Loading standard textdomain #{domainname}"
-        ActionController::Base.init_gettext(domainname, options)
+        locale_path = ""
+        #searching in RAILS_ROOT
+        mo_files = Dir.glob(File.join(RAILS_ROOT, "**", "#{domainname}.mo"))
+        if mo_files.size > 0
+          locale_path = File.dirname(File.dirname(File.dirname(mo_files.first)))
+        else
+          # trying plugin directory in the git 
+          mo_files = Dir.glob(File.join(RAILS_ROOT, "..", "**", "#{domainname}.mo"))
+          locale_path = File.dirname(File.dirname(File.dirname(mo_files.first))) if mo_files.size > 0
+        end
+        unless locale_path.blank?
+          logger.info "Loading standard textdomain #{domainname} from #{locale_path}"
+          opt = {:locale_path => locale_path}.merge(options)
+          ActionController::Base.init_gettext(domainname, opt)
+        else
+          logger.error "Cannot find translation for #{domainname}"
+        end
       end
     else
       #load default if the path has been given
