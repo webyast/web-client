@@ -2,10 +2,6 @@ class Ntp < ActiveResource::Base
   extend YastModel::Base
   model_interface :"org.opensuse.yast.modules.yapi.ntp"
 
-  def server_defined?
-    !(actions.respond_to?(:ntp_server))
-  end
-
   def available?
      ret = actions.respond_to? :synchronize
      Rails.logger.info "ntp available : #{ret}"
@@ -14,10 +10,9 @@ class Ntp < ActiveResource::Base
 
   def Ntp.available? #class method
     begin
-      unless Ntp.permissions[:available] &&
-          Ntp.permissions[:synchronize] &&
+      unless Ntp.permissions[:synchronize] &&
           Service.permissions[:execute] #for ntp service start
-        Rails.logger.info "ntp doesn't have permissions available :  #{Ntp.permissions[:available]} synchronize: #{Ntp.permissions[:synchronize]}"
+        Rails.logger.info "ntp doesn't have permissions synchronize: #{Ntp.permissions[:synchronize]} Service: #{Service.permissions[:execute]}"
         return false
       end
       ntp = Ntp.find :one
