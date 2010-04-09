@@ -1,6 +1,7 @@
 <% content_for :head do %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
+<%= javascript_include_tag "users_edit.js" %>
 
  <style>
     .pad1_2em {
@@ -83,11 +84,11 @@ function disable(which){
       <div>
         <p>
           <div class="label"><%=_("Full Name")%></div>
-          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login();" %>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this);" %>
         </p>
         <p>
           <div class="label"><%=_("Login Name")%></div>
-          <%= f.text_field :uid, :disabled => disabled, :onblur => "propose_home();" %>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "propose_home(this);" %>
           <%= f.text_field :id, :class => "hidden" %>
         </p>
         <p>
@@ -98,9 +99,6 @@ function disable(which){
           <div class="label"><%=_("Confirm Password")%></div>
           <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
         </p>
-      </div>
-
-      <div>
         <p>
             <div class="label"><%=_("Groups")%></div>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
@@ -111,9 +109,6 @@ function disable(which){
             <div class="label"><%=_("Default Group")%></div>
             <%= f.text_field :groupname, :disabled => disabled %>
         </p>
-     </div>
-
-      <div>
         <p>
             <div class="label"><%=_("Home Directory")%></div>
             <%= f.text_field :home_directory, :disabled => disabled %>
@@ -144,7 +139,6 @@ function disable(which){
   <% end %>
  </div>
 
-</div>
 
 <fieldset>
   <%= form_back_button -%>
