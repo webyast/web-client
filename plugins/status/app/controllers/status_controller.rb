@@ -287,6 +287,8 @@ class StatusController < ApplicationController
         available_metrics = Metrics.find(:all)
         data[:y_scale] = graph.y_scale.to_f
         data[:y_label] = graph.y_label
+        data[:y_max] = graph.y_max
+        data[:y_decimal_places] = graph.y_decimal_places
         data[:graph_id] = graph_id
         data[:group_id] = group_id
         data[:lines] = []

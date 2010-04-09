@@ -55,12 +55,24 @@
          <%= "," if counter < data[:limits].size %>
       <% end %>
     ],
-    axes: {
+      axes: {
         xaxis: { renderer:$.jqplot.DateAxisRenderer,
-                 tickOptions:{formatString:'%X'},
+                 <% if data[:minutes]==5 %>
+                   tickOptions:{formatString:'%X'},
+                 <% else %>
+                   tickOptions:{formatString:'%H:%M'},
+                 <% end %>
                  numberTicks:7},
         yaxis: { min: 0,
-                 numberTicks:7}
+                 <% if data[:y_max] %>
+                   max: <%= data[:y_max] %>,
+                 <% end %>
+                 <% if data[:y_decimal_places] %>
+                   tickOptions:{formatString:'%.<%=data[:y_decimal_places]%>f'},
+                 <% else %>
+                   tickOptions:{formatString:'%.0f'},
+                 <% end %>
+                 numberTicks:5}
     }
   });
 <% end %>
