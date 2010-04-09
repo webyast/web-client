@@ -90,6 +90,43 @@ function disable(which){
           <%= f.text_field :uid, :disabled => disabled, :onblur => "propose_home();" %>
           <%= f.text_field :id, :class => "hidden" %>
         </p>
+        <p>
+          <div class="label"><%=_("Password")%></div>
+          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled %>
+        </p>
+        <p>
+          <div class="label"><%=_("Confirm Password")%></div>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
+        </p>
+      </div>
+
+      <div>
+        <p>
+            <div class="label"><%=_("Groups")%></div>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
+        </p>
+        <p>
+            <label id="groups-error" class="error"></label><p>
+        <p>
+            <div class="label"><%=_("Default Group")%></div>
+            <%= f.text_field :groupname, :disabled => disabled %>
+        </p>
+     </div>
+
+      <div>
+        <p>
+            <div class="label"><%=_("Home Directory")%></div>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+        </p>
+        <p>
+            <div class="label"><%=_("Login Shell")%></div>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+        </p>
+        <p>
+            <div class="label"><%=_("UID Number")%></div>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
+        </p>
+        <p><label id="uid-error" class="error"></label><p>
       </div>
 
      <% if @permissions[:userdelete] %>
