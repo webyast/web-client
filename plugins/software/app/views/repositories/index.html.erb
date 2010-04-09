@@ -219,8 +219,6 @@
 		  <% end %>
 		</p>
 
-		<p><%= _("Priority for packages:") %> <%= prio_selector f, r.priority, disabled %></p>
-
 		<p><%= _("Keeping downloaded packages is currently") %> <i><%= bool_status r.keep_packages %>.</i>
 		  <% if !disabled  %>
 		    <%= hidden_field_with_link f, sid, :keep_packages, r.keep_packages,
