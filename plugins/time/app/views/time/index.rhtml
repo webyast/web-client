@@ -3,12 +3,44 @@
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
   <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
+  <style type="text/css">
+	 label.error {
+		float:none;
+		display:inline;
+		font-weight:bold;
+		color:#990000;
+		padding-left:.5em;
+		vertical-align:middle;
+	 }
+	 label.valid { 
+		background: url('../images/checked.gif') no-repeat;
+		padding:0px 0px 0px 18px;
+		vertical-align:middle; 
+		margin-left:5px;
+	 }
+  </style>
 
   <% javascript_tag do -%>
     $(document).ready( function() {
     $("#date_date").datepicker( { dateFormat: 'dd/mm/yy'} );
     });
   <% end -%>
+
+  <%= javascript_include_tag "validation.js" %>
+  <script type="text/javascript">
+	 $(document).ready(function() {
+		validateDomainName("ntp_server");
+		$("#timeForm").validate({ 
+		  //rules: {
+			// ntp_server: {required: true},
+		  //},
+		  messages: {
+			 ntp_server: "Please enter valid domain name or IP address for NTP server"
+		  },
+		  success: "valid"
+		});
+	 });
+  </script>
 
   <!-- FIXME move javascript function outside of index -->
   <% javascript_tag do -%>
@@ -56,7 +88,7 @@
 
 <div class="plugin-content grid_12">
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
-  <% form_tag '/time/update', {:class => 'container', :onsubmit => "return submitTime();"} do %>
+  <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
     <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
     %>
   <fieldset id="" class="wrapper smallfields with-background">
@@ -112,11 +144,16 @@
   <% if Ntp.available? %>
   <p>
     <label for="ntp_server"><%= _("NTP server") %></label>
-    <%=
+    <!--<%=
       options = {}
       options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
       text_field_tag "ntp_server", @ntp.actions.ntp_server || "", options
-    %>
+    %>-->
+	 <%= 
+		options = {}
+      options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
+		text_field_tag ("ntp_server", @ntp.actions.ntp_server || "", options={:title=>"Test", :class=>"ntp_server"})  
+	 %>
   </p>
   <% end %>
 
