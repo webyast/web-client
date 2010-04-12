@@ -31,16 +31,22 @@
 	 $(document).ready(function() {
 		validateDomainName("ntp_server");
 		$("#timeForm").validate({ 
-		  //rules: {
-			// ntp_server: {required: true},
-		  //},
-		  messages: {
-			 ntp_server: "Please enter valid domain name or IP address for NTP server"
+		  rules:{
+			 ntp_server: {
+				required: "#ntp_sync:checked",
+				ntp_server: true
+			 }
 		  },
-		  success: "valid"
+		  success: "valid",
+		  messages: {
+			 ntp_server: {
+				 required: "This field is required",
+				 ntp_server: "Enter a valid domain name or an IP address"
+			 }
+		  }
 		});
 	 });
-  </script>
+</script>
 
   <!-- FIXME move javascript function outside of index -->
   <% javascript_tag do -%>
@@ -58,7 +64,7 @@
       else if ($("#ntp_sync")[0].checked){
         if (($("#ntp_server").size() > 0) &&
             (!!$("#ntp_server")[0].value.match( /^\s*$/))) {
-          alert ("<%= _("Ntp server is not specified. Please specify one.") %>");
+				<!-- alert ("<%= _("Ntp server is not specified. Please specify one.") %>"); -->
           return false;
         }
       }
@@ -79,8 +85,6 @@
         $("#date_date")[0].disabled = true;
         $("#currenttime")[0].disabled = true;
     }
-
-
   <% end -%>
 <% end %>
 
@@ -152,7 +156,7 @@
 	 <%= 
 		options = {}
       options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
-		text_field_tag ("ntp_server", @ntp.actions.ntp_server || "", options={:title=>"Test", :class=>"ntp_server"})  
+		text_field_tag ("ntp_server", @ntp.actions.ntp_server || "", options={:class=>"ntp_server"})  
 	 %>
   </p>
   <% end %>
@@ -171,3 +175,4 @@
   :url => { :action => :timezones_for_region },
   :with => "'disabled=' + "+ (disabled ? "true":"false")+" + '&value=' +value") %>
 
+ 
