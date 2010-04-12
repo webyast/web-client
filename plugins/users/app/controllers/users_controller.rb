@@ -27,13 +27,7 @@ class UsersController < ApplicationController
       @users.each do |user|
        user.user_password2 = user.user_password
        user.uid_number	= user.uid_number
-       user.grouplist.each do |group|
-          if user.grp_string.blank?
-             user.grp_string = group.cn
-          else
-             user.grp_string += ",#{group.cn}"
-          end
-       end
+       user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
       end
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)

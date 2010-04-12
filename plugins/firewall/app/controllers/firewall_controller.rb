@@ -9,10 +9,18 @@ class FirewallController < ApplicationController
 
   init_gettext "yast_webclient_firewall"
 
+  NEEDED_SERVICES=["service:webyast","service:webyast-ui"]
+
 private
 
   def checkbox_true?(name)
     params[name] == "true"
+  end
+
+  def service_to_js(service)
+    return ("{ input_name: '"+service.input_name+
+            "', name: '"+service.name+
+            "', allowed: " + (service.allowed ? "true" : "false") + "}")
   end
 
 public
@@ -29,6 +37,8 @@ public
     @firewall.fw_services.sort! {|x,y| x.name <=> y.name}
     Rails.logger.debug @firewall.inspect
     @permissions = Firewall.permissions
+    needed_services = @firewall.fw_services.find_all{|s| NEEDED_SERVICES.include? s.id}
+    @needed_services_js = "["+needed_services.collect{|s| service_to_js s}.join(",")+"]"
   end
 
   def update
