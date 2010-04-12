@@ -61,13 +61,6 @@
           return false;
         }
       }
-      else if ($("#ntp_sync")[0].checked){
-        if (($("#ntp_server").size() > 0) &&
-            (!!$("#ntp_server")[0].value.match( /^\s*$/))) {
-				<!-- alert ("<%= _("Ntp server is not specified. Please specify one.") %>"); -->
-          return false;
-        }
-      }
       else {
         $('#progress').show();
         return true;
@@ -93,8 +86,7 @@
 <div class="plugin-content grid_12">
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
-    <% #TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>
-    %>
+    <%#TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>%>
   <fieldset id="" class="wrapper smallfields with-background">
     <p>
       <label for="region"><%=_("Region")%></label>
@@ -109,12 +101,11 @@
       </span>
   </p>
   <% unless @stime.utcstatus.nil? %>
-  <% # I can't get this cobe-ing checkbox line up with the rest of the fields otherwise, grr
-     # 4em, because labels are 5em wide | -bubli
+  <%# I can't get this cobe-ing checkbox line up with the rest of the fields otherwise, grr
+      4em, because labels are 5em wide | -bubli
   %>
   <p style="position: relative; left: 4em;">
-      <% #don't use check_box helper as it generate also hidden opposite value
-      %>
+      <%# don't use check_box helper as it generate also hidden opposite value %>
       <input type="checkbox" name="utc" id="utc" value="true" 
       <%=  "checked=\"checked\"" if @stime.utcstatus %>
              <%=  "disabled=\"disabled\"" if disabled %> />
