@@ -9,7 +9,7 @@
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
         <div class="status-icon error"></div>
-      <% elsif patch[:optional] > 0%>
+      <% elsif patch[:optional] > 0 || !registered%>
         <div class="status-icon warning"></div>
       <% else %>
         <div class="status-icon ok"></div>
@@ -23,6 +23,9 @@
       <% end %>
       <% if patch[:optional] > 0 %>
 	<% label << _("Optional Updates: %d") % patch[:optional] %>
+      <% end %>
+      <% unless registered %>
+        <% label << _("Your system is NOT registered") %>
       <% end %>
       <% if label.empty? %>
 	<% label << _("Your system is up to date.") %>

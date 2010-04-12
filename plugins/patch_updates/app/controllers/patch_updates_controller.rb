@@ -7,13 +7,29 @@ class PatchUpdatesController < ApplicationController
   layout 'main'
   include ProxyLoader
 
+private
+
+  def check_registration
+    registration = nil
+    begin
+      registration = load_proxy 'org.opensuse.yast.modules.registration.registration'
+    rescue
+      registration = nil
+    end
+    return true if registration && registration.respond_to?('guid')
+    return false
+  end  
+
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_patch_updates"
+
+public
 
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
     @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    flash[:warning] = _("Your system is NOT registered. Please run registration in order to get updates.") unless check_registration
     logger.debug "Available patches: #{@patch_updates.inspect}"
   end
 
@@ -43,7 +59,7 @@ class PatchUpdatesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error } }
+      format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :registered => check_registration } }
       format.json  { render :json => patches_summary }
     end    
   end
@@ -97,6 +113,8 @@ class PatchUpdatesController < ApplicationController
       begin
         patch_updates[0].save
         logger.debug "updated #{patch_updates[0].name}"
+      rescue ActiveResource::ResourceNotFound => e
+        flash[:error] = YaST::ServiceResource.error(e)
       rescue ActiveResource::ClientError => e
         error = e
       end        
@@ -140,6 +158,8 @@ class PatchUpdatesController < ApplicationController
         update.save
         logger.debug "updated #{patch_id}"
         flash[:notice] = _("Patch has been installed.")
+      rescue ActiveResource::ResourceNotFound => e
+        flash[:error] = YaST::ServiceResource.error(e)
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
       end        
