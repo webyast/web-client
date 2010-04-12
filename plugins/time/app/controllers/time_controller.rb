@@ -50,7 +50,7 @@ class TimeController < ApplicationController
       #start ntp service
       ntp = Ntp.find :one
       ntp.actions.synchronize = true
-      ntp.actions.synchronize_utc = (t.utcstatus=="UTC")
+      ntp.actions.synchronize_utc = t.utcstatus
       ntp.actions.ntp_server = params[:ntp_server] unless params[:ntp_server].blank?
       begin 
         ntp.save #FIXME check return value
