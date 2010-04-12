@@ -19,23 +19,15 @@
 // 
 //     }, "<%= _("Enter a valid domain name or an IP address.") -%>");
   
-	 $(document).ready(function() {
-		validateDomainName("smtp_server"); 
-		$("#mailForm").validate({
-		  smtp_server: {required:true},
-		  messages: {
-			 smtp_server: "Please enter valid domain name or IP address for SMTP server"
-		  },
-		  success: "valid"
-		});
-	 });
-  
     $(document).ready(function() {
+		validateDomainNameWithPortNumber("smtp_server");
+		//validateDomainName("smtp_server"); 
       $("#mailForm").validate()
        // make the error message translatable - override the default messsage
        $.extend($.validator.messages, {
-	 equalTo: "<%= _("The passwords do not match.") -%>",
-	 email:	 "<%= _("Enter a valid e-mail address.") -%>"
+		  equalTo: "<%= _("The passwords do not match.") -%>",
+		  email:	 "<%= _("Enter a valid e-mail address.") -%>",
+		  smtp_server: "<%= _("Please enter valid domain name or IP address for SMTP server") -%>" 
        });
     });
 
@@ -65,7 +57,7 @@
     <fieldset  class="wrapper with-background">
       <p>
         <label for="<%= :smtp_server %>"><%=_("Outgoing mail server")%></label>
-        <%=f.text_field :smtp_server, :disabled => disabled, :title=>"Please enter valid domain name or IP address for SMTP server", :class => "smtp_server" %></p>
+        <%=f.text_field :smtp_server, :disabled => disabled, :class => "smtp_server" %></p>
       <p>
         <label><%=_("Use secure connection (TLS)")%></label>
         <%= f.select :transport_layer_security, [ [_("Never"), "no" ], [_("If available"), "yes"], [_("Always"), "must"]], :disabled => disabled %></p>
