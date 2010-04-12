@@ -1,6 +1,7 @@
 <% content_for :head do %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
+<%= javascript_include_tag "digitalspaghetti.password.js" %>
 <%= javascript_include_tag "users_edit.js" %>
 
  <style>
@@ -26,6 +27,32 @@
  };
 
  $(document).ready(function(){
+
+ for(var i=0;i<$('.edit_user').length;i++){
+  var id=$('.edit_user')[i].id;
+   $("#"+id).validate()
+
+   $("#"+id).validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
+    }
+   });
+
+   $("#"+id+" #user_user_password").pstrength({
+      'displayMinChar'      : true,
+      'minCharText'      : 'Password Strength:', 
+      'verdicts'      : [
+            "<%= _("Weak") %>",
+            "<%= _("Normal") %>",
+            "<%= _("Medium") %>",
+            "<%= _("Strong") %>",
+            "<%= _("Very Strong") %>"
+          ],
+      });
+ }
 
       $(".accordion").accordion({
          autoHeight : false,
@@ -78,7 +105,7 @@ function disable(which){
     </div>
 
     <div class='user-content' style="display:none">
-     <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "userForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+     <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
       <%= f.error_messages %>
 
       <div>
@@ -93,18 +120,23 @@ function disable(which){
         </p>
         <p>
           <div class="label"><%=_("Password")%></div>
-          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled %>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled %>
         </p>
         <p>
           <div class="label"><%=_("Confirm Password")%></div>
-          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password2');" %>
+        </p>
+        <!-- this is a pre-generated placeholder for the validation messages -->
+        <p>
+	  <label for="user_user_password2" generated="true" class="error"></label>
         </p>
         <p>
             <div class="label"><%=_("Groups")%></div>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
         </p>
         <p>
-            <label id="groups-error" class="error"></label><p>
+            <label id="groups-error" class="error"></label>
+	</p>
         <p>
             <div class="label"><%=_("Default Group")%></div>
             <%= f.text_field :groupname, :disabled => disabled %>
