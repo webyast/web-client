@@ -5,27 +5,18 @@
     label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50% }
   </style>
 
+<%= javascript_include_tag "validation.js" %>
 <script type="text/javascript">
-    // define custom validation function for SMTP server validation
-    jQuery.validator.addMethod("smtp_server", function(value, element) {
-      return this.optional(element)
-        // FQDN: http://regexlib.com/REDetails.aspx?regexp_id=391
-        || /^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$/.test(value)
-        // IPv4: http://regexlib.com/REDetails.aspx?regexp_id=32
-        || /^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$/.test(value)
-        // IPv6: http://regexlib.com/REDetails.aspx?regexp_id=906 + allow lowercase hexa letters (a-f)
-        || /^(^(([0-9A-Fa-f]{1,4}(((:[0-9A-Fa-f]{1,4}){5}::[0-9A-Fa-f]{1,4})|((:[0-9A-Fa-f]{1,4}){4}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,1})|((:[0-9A-Fa-f]{1,4}){3}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,2})|((:[0-9A-Fa-f]{1,4}){2}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,3})|(:[0-9A-Fa-f]{1,4}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,4})|(::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,5})|(:[0-9A-Fa-f]{1,4}){7}))$|^(::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,6})$)|^::$)|^((([0-9A-Fa-f]{1,4}(((:[0-9A-Fa-f]{1,4}){3}::([0-9A-Fa-f]{1,4}){1})|((:[0-9A-Fa-f]{1,4}){2}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,1})|((:[0-9A-Fa-f]{1,4}){1}::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,2})|(::[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,3})|((:[0-9A-Fa-f]{1,4}){0,5})))|([:]{2}[0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4}){0,4})):|::)((25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{0,2})\.){3}(25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{0,2})$$/.test(value);
-
-    }, "<%= _("Enter a valid domain name or an IP address.") -%>");
-
+  
     $(document).ready(function() {
+      validateDomainNameWithPortNumber("smtp_server");
       $("#mailForm").validate()
-
-      // make the error message translatable - override the default messsage
-      $.extend($.validator.messages, {
-	equalTo: "<%= _("The passwords do not match.") -%>",
-	email:	 "<%= _("Enter a valid e-mail address.") -%>"
-      });
+       // make the error message translatable - override the default messsage
+       $.extend($.validator.messages, {
+		  equalTo: "<%= _("The passwords do not match.") -%>",
+		  email:	 "<%= _("Enter a valid e-mail address.") -%>",
+		  smtp_server: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
+       });
     });
 
     $(document).ready(function() {
@@ -46,6 +37,8 @@
 <div class='plugin-content grid_12'>
 
 <% disabled = ! @permissions[:write] %>
+
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
   <% form_for(:mail, @mail, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show()" } ) do |f| %>
   <%= f.error_messages %>

@@ -18,9 +18,9 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.5
+Version:        0.1.7
 Release:        0
-Summary:        YaST2 - Webclient - SystemTime
+Summary:        WebYaST - time management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -34,11 +34,13 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle time and date.
+WebYaST - Plugin providing UI for handling of time zone, system time and date.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
     Josef Reidinger <jreidinger@suse.cz>
+
 %prep
 %setup -q -n www
 

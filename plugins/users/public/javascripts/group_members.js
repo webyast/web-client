@@ -1,12 +1,11 @@
 
   // using replace instead of trim() see bnc#580561
   function _trim(word){
-//    return word.replace(/^s+/g,'').replace(/s+$/g,'');
     return word.replace(/^\s*|\s*$/g,'');
   }
 
 
-  // fill user and groups containers
+  // fill members and group containers
   function _initializeDragContainer(a_groups,containername){
    var container=document.getElementById(containername);
    while(container.hasChildNodes()){
@@ -29,14 +28,14 @@
    return found;
   }
 
-  // open groups "popup" dialog
-  function open_members_dialog(){
+  // open members "popup" dialog
+  function open_users_dialog(){
    var mygroups=[];
-   if ( _trim($('#all_grps_string')[0].value).length>0 )
-	 mygroups = $('#user_grp_string')[0].value.split(",");
+   if ( _trim($('#group_members_string')[0].value).length>0 )
+	 mygroups = $('#group_members_string')[0].value.split(",");
    _initializeDragContainer(mygroups,'ContainerUser');
 
-   var allgroups = $('#all_grps_string')[0].value.split(",").sort();
+   var allgroups = $('#all_users_string')[0].value.split(",").sort();
    var filtered_groups=[];
    for (var i=0;i<allgroups.length;i++){
      if (!_find_in_all(allgroups[i], mygroups))
@@ -44,32 +43,21 @@
    }
    _initializeDragContainer(filtered_groups,'ContainerGroups');
 
-   $('#members').dialog({ buttons: { 'Ok': function() { store_groups(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
+   $('#members').dialog({ buttons: { 'Ok': function() { store_users(this); }, 'Cancel': function() { $(this).dialog('close'); } } });
    $('#members').dialog('option', 'width', 580);
    $('#members').dialog('option', 'position', 'center');
    $('#members').dialog('open');
   }
 
-  // open popup to select default group
-  function open_def_group_dialog(){
-   var allgroups = $('#all_grps_string')[0].value.split(",").sort();
-   _initializeDragContainer(allgroups,'ContainerDefaultGroup');
-
-   $('#def_group').dialog();
-   $('#def_group').dialog('option', 'width', 480);
-   $('#def_group').dialog('option', 'position', 'center');
-   $('#def_group').dialog('open');
-  }
-
-  // store groups from popup dialog
-  function store_groups(dlg){
+  // store members from popup dialog
+  function store_users(dlg){
     var user = $('#ContainerUser')[0].childNodes;
     var groups="";
     for (i=0;i<user.length;i++){
      groups+=user[i].innerHTML;
      if (i<user.length-1) groups+=",";
     }
-    $('#user_grp_string')[0].value=groups;
+    $('#group_members_string')[0].value=groups;
     $(dlg).dialog('close');
   }
 
@@ -101,11 +89,22 @@
     }
   }
 
-  function selectItem(e){
-   var item = (typeof(e.srcElement) != "undefined") ? e.srcElement : e.originalTarget;
-    if(item.className=='GBox'){
-    $('#user_groupname')[0].value=item.id;
-    $("#def_group").dialog('close');
-    }
-  }
-  
+   function members_validation(which){
+     var mygroups = [];
+     if (_trim(which.value).length>0) mygroups = which.value.split(",");
+     var allgroups = $("#all_users_string")[0].value.split(",");
+     errmsg="";
+     for (i=0;i<mygroups.length;i++){
+       var found=false;
+       for(a=0;a<allgroups.length;a++){
+        if (allgroups[a]==_trim(mygroups[i])) found=true;
+       }
+       if (!found){
+        errmsg = mygroups[i]+" "+"is not valid user!" ;
+       }
+     }
+     which.parentNode.parentNode.getElementsByClassName("error")[0].innerHTML = errmsg;
+     which.parentNode.parentNode.getElementsByClassName("error")[0].style.display= (errmsg.length==0) ? "none" : "block";
+     return (errmsg.length==0);
+   }
+

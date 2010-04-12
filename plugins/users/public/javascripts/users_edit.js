@@ -152,4 +152,33 @@
     $("#def_group").dialog('close');
     }
   }
-  
+
+function findById(where, id){
+ var node=null;
+ for(var i=0;i<where.length;i++){
+  if (where[i].id==id) node=where[i];
+ } 
+ return node;
+}
+ 
+function propose_home(which){
+ var login    = findById(which.parentNode.getElementsByTagName('input'), "user_uid").value;
+ var home     = findById(which.parentNode.getElementsByTagName('input'), "user_home_directory").value;
+
+  home = "/home/"+login;
+
+ findById(which.parentNode.getElementsByTagName('input'), "user_home_directory").value = home;
+}
+
+function propose_login(which){
+ var fullname = findById(which.parentNode.getElementsByTagName('input'), "user_cn").value;
+ var login    = findById(which.parentNode.getElementsByTagName('input'), "user_uid").value;
+
+ if (login.length==0){
+  login = fullname.replace(/\s/g, '').toLowerCase();
+  findById(which.parentNode.getElementsByTagName('input'), "user_uid").value = login;
+  propose_home(which);
+ }
+
+} 
+

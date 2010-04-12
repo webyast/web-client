@@ -2,6 +2,10 @@ class Basesystem < ActiveResource::Base
   extend YastModel::Base
   model_interface :'org.opensuse.yast.modules.basesystem'
 
+  def self.installed?
+    YastModel::Resource.interfaces_available? :'org.opensuse.yast.modules.basesystem'
+  end
+
   def load_from_session(session)
     @session = session
     @steps = @session[:wizard_steps].try(:split,",")

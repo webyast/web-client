@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 protected
   def redirect_success
     logger.debug session.inspect
-    if Basesystem.new.load_from_session(session).in_process?
+    if Basesystem.installed? && Basesystem.new.load_from_session(session).in_process?
       logger.debug "wizard redirect DONE"
       redirect_to :controller => "controlpanel", :action => "nextstep", :done => self.controller_name
     else
@@ -41,13 +41,7 @@ protected
 #hide actions because our routing table has automatic action mapping
   hide_action :construct_error
 
-  begin
-    require 'gettext_rails'
-  rescue Exception => e
-    $stderr.puts "gettext_rails not found!"
-    exit
-  end
-
+  require 'gettext_rails'
 public
   helper :all # include all helpers, all the time
 
@@ -71,16 +65,6 @@ private
     end
   end
 
-  def eulaexception_trap
-    flash[:error] = _("You must accept all EULAs before using this product!")
-    if ActionController::Routing.possible_controllers.include?("eulas") then
-      redirect_to :controller => :eulas, :action => :next
-    else
-      render :status => 501, :text => _("Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed")
-    end
-    true
-  end
-
   def exception_trap(error)
     logger.error "***" + error.to_s
     logger.error error.backtrace.join "\n"
@@ -98,8 +82,6 @@ private
       return
     end
     
-    eulaexception_trap(e) and return if e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
-    
     # get the vendor settings
     begin
       settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
@@ -110,7 +92,7 @@ private
       # Here we should handle this always as an error
       # the service should return a sane default if the
       # url is not configured
-      logger.warn "Can't get vendor bug reporting url, Using Novell"
+      logger.warn "Can't get vendor bug reporting url, Using Novell. Exception: #{vendor_excp.inspect}"
     end
     
     # for ajax request render a different template, much less verbose
@@ -158,8 +140,23 @@ protected
         ActionController::Base.init_gettext(domainname, opt)
       else
         #load default no vendor translation available
-        logger.info "Loading standard textdomain #{domainname}"
-        ActionController::Base.init_gettext(domainname, options)
+        locale_path = ""
+        #searching in RAILS_ROOT
+        mo_files = Dir.glob(File.join(RAILS_ROOT, "**", "#{domainname}.mo"))
+        if mo_files.size > 0
+          locale_path = File.dirname(File.dirname(File.dirname(mo_files.first)))
+        else
+          # trying plugin directory in the git 
+          mo_files = Dir.glob(File.join(RAILS_ROOT, "..", "**", "#{domainname}.mo"))
+          locale_path = File.dirname(File.dirname(File.dirname(mo_files.first))) if mo_files.size > 0
+        end
+        unless locale_path.blank?
+          logger.info "Loading standard textdomain #{domainname} from #{locale_path}"
+          opt = {:locale_path => locale_path}.merge(options)
+          ActionController::Base.init_gettext(domainname, opt)
+        else
+          logger.error "Cannot find translation for #{domainname}"
+        end
       end
     else
       #load default if the path has been given

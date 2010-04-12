@@ -16,7 +16,7 @@ Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
 Version:        0.1.0
 Release:        0
-Summary:        YaST2 - Webclient - Roles
+Summary:        WebYaST - Roles management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -30,10 +30,12 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle roles.
+WebYaST - Plugin providing UI for roles management.
+
 Authors:
 --------
     Josef Reidinger <jreidinger@suse.cz>
+
 %prep
 %setup -q -n www
 

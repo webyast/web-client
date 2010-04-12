@@ -8,7 +8,7 @@ class PatchUpdatesController < ApplicationController
   include ProxyLoader
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_patch_updates"
+  init_gettext "yast_webclient_software"
 
   # GET /patch_updates
   # GET /patch_updates.xml

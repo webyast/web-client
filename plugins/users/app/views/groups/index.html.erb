@@ -1,4 +1,5 @@
 <% content_for :head do %>
+<%= javascript_include_tag "group_members.js" %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
 
@@ -12,6 +13,11 @@
     label, .qs_input {
 	width: auto !important;
     }
+    .label { 
+	min-width: 10em;
+	float: left;
+	margin-left: 1em
+    }
  </style>
 
  <% javascript_tag do %>
@@ -21,55 +27,104 @@
 
  $(document).ready(function(){
 
- $('table tbody tr').quicksearch({
-        attached: 'div#qs_anchor',
-	inputText: '<%= _("Type group name ...")%>',
-	inputClass: 'qs_input',
-        loaderText: '',
-        labelText: '<%= _("Filter:")%>',
-	stripeRowClass: ['odd', 'even'],
-        delay: 100
- });
+  $('input#groups_search').quicksearch('div.list-fieldset', {
+          selector: 'span.quicksearch_content',
+          delay: 100
+  });
+
+      $(".accordion").accordion({
+         autoHeight : false,
+         navigation : true,
+         collapsible: true,
+         header     : 'div.list-fieldset div.list-fieldset-header'
+      });
+
+      $(".accordion").accordion('activate', false);
+
 
 });//document.ready
+
+function disable(which){
+ if (which.childNodes.length == 2 && which.childNodes[0].firstChild.nodeValue == "Delete"){
+  which.onclick="";
+  which.childNodes[0].onclick="return false;";
+  which.childNodes[0].href="";
+  // use the same method like repositories
+  $(':submit').attr('disabled', 'disabled');
+  $(':input').attr('readonly', 'readonly');
+  // FIXME: "buttton" has no action but looks like enabled
+  $('a.button').attr('onclick','return false;');
+  $('a.button').attr('href','');
+
+
+//  which.removeChild(which.childNodes[1]);
+//  which.removeChild(which.childNodes[0]);
+//  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
+ }
+}
 <% end %>
 
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-groups.png'/><%=_("Groups")%></div>
 <div class="plugin-content grid_12">
 
-<div id='qs_anchor' class='pad1_2em'></div>
-<div>
+<form action="#" id="quicksearch" class="pad1_2em">
+  <label><%= _("Filter:") %></label>
+  <input type="text" id="groups_search"/>
+</form>
+
+<div class='pad1_2em'>
    <% if @permissions[:groupadd] %>
      <%= link_to _("Add New Group"), :action => :new -%>
    <% end %>
-<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th><%= h _("Group Name") %></th>
-      <th><%= h _("Type") %></th>
-      <th><%= h _("Action") %></th>
-    </tr>
-  </thead>
+ <div id="groups" class="accordion">
 
-  <tbody>
   <% for group in @groups %>
-  <tr class= <%= cycle('odd', 'even') -%> >
-    <td><%= link_to ( h group.cn || "-none-" ), {:action => :edit, :id => group.cn} -%></td>
-    <td><%= h group.group_type %></td>
-    <% if @permissions[:groupdelete] %>
-    <td class="icon"><%= html_delete_link(group.cn, :destroy, _("Are you sure to delete group '%s'?") % group.cn ) %></td>
-    <% end %>
-  </tr>
+   <div class="list-fieldset">
+    <div class="list-fieldset-header">
+     <span class="quicksearch_content">
+       <%= h group.cn || "-none-" %>
+     </span>
+    </div>
+    <div class='group-content' style="display:none">
+<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :old_cn %>
+    <p>
+      <div class="label"><%=_("Group Name")%></div>
+      <%= f.text_field :cn, :disabled => false %>
+    </p>
+    <p>
+      <div class="label"><%=_("Group ID")%></div>
+      <%= f.text_field :gid, :disabled => false %>
+    </p>
+    <p>
+      <div class="label"><%=_("Default members")%></div>
+      <%= f.text_field :default_members_string, :disabled => true %>
+    </p>
+    <p>
+      <div class="label"><%=_("Members")%></div>
+      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
+    </p>
+    <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
+    <%= form_next_button :label => _("Save") %>
+     <% if @permissions[:groupdelete] %>
+     <span onclick="disable(this);"><%= link_to _("Delete"),
+                            {:action => 'destroy', :id => group.cn},
+                            {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %></span>
+     <% end %>
+<% end %>
+    </div>
+   </div>
   <% end %>
-  </tbody>
-</table>
+
+ </div>
 </div>
+    <div><input type="hidden" id="all_users_string" value="<%= @all_users_string %>" /></div>
 
 <fieldset>
   <%= form_back_button -%>
 </fieldset>
 <%= link_to "Manage Users", "controller" => "users" %>
-</div>
 </div>
 

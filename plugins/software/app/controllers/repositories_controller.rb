@@ -7,7 +7,7 @@ class RepositoriesController < ApplicationController
   layout 'main'
 
   # Initialize GetText and Content-Type.
-  init_gettext 'yast_webclient_repositories'
+  init_gettext 'yast_webclient_software'
 
   def attribute_mapping
     {
@@ -35,26 +35,11 @@ class RepositoriesController < ApplicationController
 
     return unless @repos
     @permissions = Repository.permissions
+
+    @show = params["show"]
+    Rails.logger.debug "Displaying repository #{@show}" unless @show.blank?
+
     Rails.logger.debug "Available repositories: #{@repos.inspect}"
-  end
-
-  def show
-    if params[:id].blank?
-      flash[:error] = _('Missing repository parameter')
-      redirect_to :action => :index and return
-    end
-
-    begin
-      @repo = Repository.find URI.escape(params[:id])
-      @permissions = Repository.permissions
-
-      return unless @repo
-
-      @adding = false
-    rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Repository '#{ERB::Util.html_escape params[:id]}' was not found.")
-      redirect_to :action => :index and return
-    end
   end
 
   def delete
@@ -101,7 +86,7 @@ class RepositoriesController < ApplicationController
 
     if params[:repository].blank?
       flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape params[:id]}': missing parameters.")
-      redirect_to :action => :index and return
+      redirect_to :action => :index, :show => params[:id] and return
     end
 
     repository = params[:repository]
@@ -115,7 +100,7 @@ class RepositoriesController < ApplicationController
 
     if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
       flash[:error] = _("Invalid priority")
-      render :show and return
+      redirect_to :action => :index, :show => params[:id] and return
     end
 
     @repo.priority = @repo.priority.to_i
@@ -132,8 +117,6 @@ class RepositoriesController < ApplicationController
         else
           flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}': Unknown error")
         end
-
-        render :show and return
       end
     rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
@@ -150,11 +133,9 @@ class RepositoriesController < ApplicationController
           flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
           Rails.logger.error "Unknown backend error: #{ex.response.body}"
       end
-
-      render :show and return
     end
 
-    redirect_to :action => :index and return
+    redirect_to :action => :index, :show => params[:id] and return
   end
 
   def add
@@ -174,9 +155,10 @@ class RepositoriesController < ApplicationController
 
     @repo.load(defaults)
 
-    @adding = true
-
-    render :show
+    # load URLs of all existing repositories
+    repos = Repository.find :all
+    @repo_urls = repos.map {|r| r.url}
+    @repo_urls.reject! {|u| u.blank? }
   end
 
   def create
@@ -191,16 +173,17 @@ class RepositoriesController < ApplicationController
     end
 
     @repo.name = repository[:name]
-    @repo.autorefresh = repository[:autorefresh] == '1'
-    @repo.enabled = repository[:enabled] == '1'
-    @repo.keep_packages = repository[:keep_packages] == '1'
+    @repo.autorefresh = repository[:autorefresh] == 'true'
+    @repo.enabled = repository[:enabled] == 'true'
+    @repo.keep_packages = repository[:keep_packages] == 'true'
     @repo.url = repository[:url]
     @repo.priority = repository[:priority]
 
     if !@repo.priority.blank? && !@repo.priority.match(/^[0-9]+$/)
       flash[:error] = _("Invalid priority")
-      @adding = true
-      render :show and return
+      @repo.priority = 99
+      @repo_urls = []
+      render :add and return
     end
 
     @repo.priority = @repo.priority.to_i
@@ -229,56 +212,7 @@ class RepositoriesController < ApplicationController
       redirect_to :action => :add and return
     end
 
-    redirect_to :action => :index and return
-  end
-
-  def set_status
-    if params[:id].blank?
-      render :text => _("Error: Missing repository id.") and return
-    end
-
-    if !params.has_key? :enabled
-      render :text => _("Error: Missing 'enabled' parameter.") and return
-    end
-
-    enabled = params[:enabled] == 'true'
-    Rails.logger.debug "Setting repository status: '#{params[:id]}' => #{enabled}"
-
-    @repo = Repository.find URI.escape(params[:id])
-    return unless @repo
-    @permissions = Repository.permissions
-
-    enabled_orig = @repo.enabled
-    @repo.enabled = enabled
-    @repo.id = URI.escape(@repo.id)
-
-    error_string = ''
-
-    begin
-      @repo.save
-    rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
-      begin
-        Rails.logger.error "Received error: #{ex}"
-        err = Hash.from_xml ex.response.body
-
-        if !err['error']['message'].blank?
-          Rails.logger.error "Cannot update repository '#{@repo.name}': #{err['error']['message']}"
-        end
-
-        error_string = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}'")
-      rescue Exception => e
-          # XML parsing has failed
-          error_string = _("Unknown backend error.")
-      end
-    end
-
-    # display the original value if an error occurred
-    if !error_string.blank?
-      @repo.enabled = enabled_orig
-    end
-
-    render :partial => 'repository_checkbox', :locals => {:error => error_string, :id => @repo.id, :enabled => @repo.enabled, :disabled => !@permissions[:write]}
-
+    redirect_to :action => :index, :show => repository[:id] and return
   end
 
 end

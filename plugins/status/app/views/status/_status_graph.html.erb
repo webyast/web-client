@@ -4,11 +4,17 @@
 
 <% if data %>
   $.jqplot('<%=graph_id(data[:group_id], data[:graph_id])+"_graph"%>',  [
+  <% counter = 0 %>
   <% data[:lines].each do |line| %>
-    <%= line[:values].inspect %>,
+    <%= line[:values].inspect %>
+    <% counter += 1 %>
+    <%= "," if counter < data[:lines].size || data[:limits].size > 0%>
   <% end %>
+  <% counter = 0 %>
   <% data[:limits].each do |line| %>
-    <%= line[:values].inspect %>,
+    <%= line[:values].inspect %>
+    <% counter += 1 %>
+    <%= "," if counter < data[:limits].size %>
   <% end %>
    ], {
     <% if data[:cummulated] == "true" %>
@@ -24,14 +30,18 @@
       seriesDefaults: {fill:true, showMarker: false},
     <% end %>
     series: [
+      <% counter = 0 %>
       <% data[:lines].each do |line| %>
         <% if  line[:limit_reached].blank?  %>
-          {label: '<%=line[:label]%>'}, 
+          {label: '<%=line[:label]%>'}
         <% else %>
           {label: '<%=line[:label] + " " + line[:limit_reached]%>',
-           color: '#FF0000'}, 
+           color: '#FF0000'}
         <% end %>
+        <% counter += 1 %>
+        <%= "," if counter < data[:lines].size || data[:limits].size > 0 %>
       <% end %>
+      <% counter = 0 %>
       <% data[:limits].each do |line| %>
         {fill:false, 
          <% unless line[:reached].blank? %>
@@ -40,16 +50,37 @@
            color:'#5FAB78',
          <% end %>
          lineWidth: 1,
-         label: '<%= line[:label] + " " + line[:reached]  %>'},
+         label: '<%= line[:label] + " " + line[:reached]  %>'}
+         <% counter += 1 %>
+         <%= "," if counter < data[:limits].size %>
       <% end %>
     ],
-    axes: {
+      axes: {
         xaxis: { renderer:$.jqplot.DateAxisRenderer,
-                 tickOptions:{formatString:'%X'},
+                 <% if data[:minutes]==5 %>
+                   tickOptions:{formatString:'%X'},
+                 <% else %>
+                   tickOptions:{formatString:'%H:%M'},
+                 <% end %>
                  numberTicks:7},
         yaxis: { min: 0,
-                 numberTicks:7}
-    }
+                 <% if data[:y_max] %>
+                   max: <%= data[:y_max] %>,
+                 <% end %>
+                 <% if data[:y_decimal_places] %>
+                   tickOptions:{formatString:'%.<%=data[:y_decimal_places]%>f'},
+                 <% else %>
+                   tickOptions:{formatString:'%.0f'},
+                 <% end %>
+                 numberTicks:5}
+    },
+    cursor: {  
+      showVerticalLine:false,
+      showHorizontalLine:false,
+      showCursorLegend:false,
+      showTooltip: true,
+      zoom:true
+    } 
   });
 <% end %>
 

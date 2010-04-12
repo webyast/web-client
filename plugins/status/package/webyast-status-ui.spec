@@ -20,9 +20,9 @@ PreReq:         yast2-webclient >= 0.1.14
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.8
+Version:        0.1.13
 Release:        0
-Summary:        YaST2 - Webclient - status
+Summary:        WebYaST - system status UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -36,11 +36,13 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for monitoring and status
+WebYaST - Plugin providing UI for system status and monitoring
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
     Josef Reidinger <jreidinger@suse.cz>
+
 %prep
 %setup -q -n www
 

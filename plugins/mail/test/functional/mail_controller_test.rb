@@ -81,6 +81,7 @@ class MailControllerTest < ActionController::TestCase
 
   # smtp server empty, admin will be in the sequence: no warning
   def test_commit_empty_server_wizard
+    Basesystem.stubs(:installed?).returns(true)
     session[:wizard_current] = "mail"
     session[:wizard_steps] = "mail,administrator"
     post :update, { :mail => {

@@ -48,17 +48,23 @@ class TimeController < ApplicationController
       t.load_time params
     when "ntp_sync"
       #start ntp service
-      Service.put("ntp", {:execute => "start" })
       ntp = Ntp.find :one
       ntp.actions.synchronize = true
-      ntp.actions.synchronize_utc = (t.utcstatus=="UTC")
+      ntp.actions.synchronize_utc = t.utcstatus
       ntp.actions.ntp_server = params[:ntp_server] unless params[:ntp_server].blank?
       begin 
         ntp.save #FIXME check return value
       rescue Timeout::Error => e
         #do nothing as if you move time to future it throws this exception
         logger.info "Time moved to future by NTP"
+      rescue ActiveResource::ServerError => e
+        ce = ClientException.new e
+        if ce.backend_exception_type == "NTP_ERROR"
+          flash[:error] = ce.message
+          redirect_to :action => "index" and return
+        end
       end
+      Service.put("ntp", {:execute => "start" })
     when "none" 
     else
       logger.error "Unknown value for timeconfig #{params[:timeconfig]}"

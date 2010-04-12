@@ -13,14 +13,15 @@ Name:           webyast-services-ui
 Recommends:     WebYaST(org.opensuse.yast.modules.yapi.services)
 Provides:       yast2-webclient-services = %{version}
 Obsoletes:      yast2-webclient-services < %{version}
-PreReq:         yast2-webclient
+# updated jQuery quicksearch plugin
+PreReq:         yast2-webclient >= 0.1.17
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.13
+Version:        0.1.16
 Release:        0
-Summary:        YaST2 - Webclient - Services
+Summary:        WebYaST - system services management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -32,7 +33,8 @@ BuildArch:      noarch
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice in order to handle services.
+WebYaST - Plugin providing UI for handling of system services.
+
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>

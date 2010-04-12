@@ -95,12 +95,25 @@ private
     end
   end
 
-
 public
   def index
     begin
       @groups = Group.find :all
       @groups.sort! { |a,b| a.cn <=> b.cn }
+      @groups.each do |group|
+       group.members_string = group.members.join(",")
+       group.default_members_string = group.default_members.join(",")
+      end
+    @users = User.find(:all)
+    @all_users_string = ""
+        @users.each do |user|
+       if @all_users_string.blank?
+          @all_users_string = user.uid
+       else
+          @all_users_string += ",#{user.uid}"
+       end
+    end
+
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Cannot read groups list.")
       return
@@ -128,6 +141,15 @@ public
     @group.default_members_string = @group.default_members.join(",")
     @adding = true
     @user_names = load_user_names
+    @users = User.find(:all)
+    @all_users_string = ""
+        @users.each do |user|
+       if @all_users_string.blank?
+          @all_users_string = user.uid
+       else
+          @all_users_string += ",#{user.uid}"
+       end
+    end
     render :edit
   end
 
@@ -139,6 +161,16 @@ public
     @user_names = load_user_names
     @group.members_string = @group.members.join(",")
     @group.default_members_string = @group.default_members.join(",")
+
+    @users = User.find(:all)
+    @all_users_string = ""
+        @users.each do |user|
+       if @all_users_string.blank?
+          @all_users_string = user.uid
+       else
+          @all_users_string += ",#{user.uid}"
+       end
+    end
   end
 
   def create
@@ -170,7 +202,7 @@ public
           Rails.logger.error "Cannot create group '#{@group.cn}': #{ERB::Util.html_escape err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot create group '#{@group.cn}'")
+        flash[:error] = _("Cannot create group '#{@group.cn}' : #{ERB::Util.html_escape err['error']['message']}")
       rescue Exception => e
         Rails.logger.error "Exception: #{e}"
         # XML parsing has failed, display complete response
@@ -196,6 +228,8 @@ public
     @group.cn = group[:cn]
     @group.gid = group[:gid].to_i
     @group.members = group[:members_string].split(",").collect {|cn| cn.strip}
+    @permissions = Group.permissions
+    @group.id = @group.old_cn # set id, so ActiveResource can use it for saving
 
     begin
       if @group.save
@@ -219,7 +253,7 @@ public
           Rails.logger.error "Cannot update group '#{@group.old_cn}': #{err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot update group '#{ERB::Util.html_escape @group.old_cn}'}")
+        flash[:error] = _("Cannot update group '#{ERB::Util.html_escape @group.old_cn}' : #{ERB::Util.html_escape err['error']['message']}")
       rescue Exception => e
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
@@ -242,7 +276,8 @@ public
         flash[:message] = _("Group '#{@group.cn}' has been deleted.")
       end
     rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Cannot remove group '#{@group.cn}'")
+      err = Hash.from_xml e.response.body
+      flash[:error] = _("Cannot remove group '#{@group.cn}' : #{ERB::Util.html_escape err['error']['message']}")
     end
 
     redirect_to :action => :index and return

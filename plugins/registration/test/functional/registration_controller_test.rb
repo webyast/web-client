@@ -73,6 +73,9 @@ class RegistrationControllerTest < ActionController::TestCase
     @proxy = Proxy.new
     @proxy.permissions = @permissions
     @proxy.result = @result
+#FIXME rewritte tests to more robust way with real xml mockup (see other test suites)
+#workaround for Testing availability of basesystem
+    YastModel::Resource.stubs(:interfaces_available?).returns true
   end
   
   def test_access_index

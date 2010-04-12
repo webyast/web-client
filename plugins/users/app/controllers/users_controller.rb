@@ -24,7 +24,17 @@ class UsersController < ApplicationController
     @users = []
     begin
       @users = User.find :all
-#      @groups = Group.find
+      @users.each do |user|
+       user.user_password2 = user.user_password
+       user.uid_number	= user.uid_number
+       user.grouplist.each do |group|
+          if user.grp_string.blank?
+             user.grp_string = group.cn
+          else
+             user.grp_string += ",#{group.cn}"
+          end
+       end
+      end
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
     end
@@ -141,16 +151,6 @@ class UsersController < ApplicationController
         :type		=> "local"
     )
     @user.grp_string	= dummy.grp_string
-    @groups = Group.find()
-    @all_grps_string = ""
-    @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
-       else
-          @all_grps_string += ",#{group.cn}"
-       end
-    end
-
 
     response = true
     begin

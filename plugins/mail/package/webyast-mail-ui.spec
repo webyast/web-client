@@ -17,9 +17,9 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.13
+Version:        0.1.16
 Release:        0
-Summary:        YaST2 - Webclient - Mail Settings
+Summary:        WebYaST - Mail Settings UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
@@ -33,7 +33,8 @@ BuildRequires:  yast2-webclient
 
 
 %description
-YaST2 - Webclient - UI for YaST-webservice for for system mail settings
+WebYaST - Plugin providing UI for system mail settings
+
 Authors:
 --------
     Jiri Suchomel <jsuchome@novell.com>

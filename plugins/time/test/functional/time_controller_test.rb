@@ -90,6 +90,7 @@ class TimeControllerTest < ActionController::TestCase
       mock.get   "/ntp.xml", @header, @response_ntp, 200
       mock.put	"/services/ntp.xml?execute=stop", @header, response_ntp_stop, 200
     end
+    Basesystem.stubs(:installed?).returns(true)
     session[:wizard_current] = "test"
     session[:wizard_steps] = "systemtime,language"
     post :update, { :currenttime => "12:18:00", :date => { :date => "2009-07-02" }, :timeconfig => "manual"}

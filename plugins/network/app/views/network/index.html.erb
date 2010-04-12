@@ -7,6 +7,7 @@
    <%= javascript_include_tag "jquery.example.js" %>
 
    <% javascript_tag do %>
+    $(document).ready(function(){
       $('#ip').example('Address of this machine (e.g. 192.168.0.18)');
       $('#netmask').example('Address shared with other machines (e.g. 255.255.255.0)');
       $('#name').example('Name of this machine in the network (e.g. mycomputer)');
@@ -14,6 +15,7 @@
       $('#nameservers').example('IP address of machine which translates hostnames in IP addresses');
       $('#searchdomains').example('Domain name where hostname searching starts ');
       $('#default_route').example('Target address for outgoing IP data packages');
+    });
    <% end %>
    <% javascript_tag do -%>
       function focus_field(field_id) {
@@ -197,6 +199,7 @@
   <% javascript_tag do %>
     $(document).ready(function(){
       $(".accordion").accordion({
+        autoHeight : false,
         navigation : true,
         header     : 'fieldset legend'
       });
@@ -205,6 +208,8 @@
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
 <div class='plugin-content grid_12'>
+
+<%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
 
 <% form_tag("/network", :method => "get") do %>
   <!-- (collection, value, text, selected) -->
@@ -250,6 +255,10 @@
           <label for="<%= :netmask %>"><%=_("Subnet mask / Prefixlen")%></label>
           <%=text_field_tag :netmask, @netmask, :disabled => static_disabled %>
         </p>
+        <p>
+          <label for="<%= :default_route %>"><%=_("Default route")%></label>
+          <%=text_field_tag :default_route, @default_route, :disabled => static_disabled %>
+        </p>
       </div>
     </fieldset>
     <fieldset id="dns" class="wrapper with-background">
@@ -271,16 +280,6 @@
         <p>
           <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
           <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => static_disabled %>
-        </p>
-      </div>
-    </fieldset>
-  
-    <fieldset id="routing" class="wrapper with-background">
-      <legend>Routing</legend>
-      <div>
-        <p>
-          <label for="<%= :default_route %>"><%=_("Default route")%></label>
-          <%=text_field_tag :default_route, @default_route, :disabled => static_disabled %>
         </p>
       </div>
     </fieldset>

@@ -1,6 +1,8 @@
 <% content_for :head do %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
+<%= javascript_include_tag "digitalspaghetti.password.js" %>
+<%= javascript_include_tag "users_edit.js" %>
 
  <style>
     .pad1_2em {
@@ -12,6 +14,11 @@
     label, .qs_input {
 	width: auto !important;
     }
+    .label {
+        min-width: 10em;
+        float: left;
+        margin-left: 1em
+    }
  </style>
 
  <% javascript_tag do %>
@@ -21,63 +28,156 @@
 
  $(document).ready(function(){
 
- $('.row').mouseenter(function() {
-  $(this).find(".del_user").show();
- }).mouseleave(function() {
-  $(this).find(".del_user").hide();
- });
+ for(var i=0;i<$('.edit_user').length;i++){
+  var id=$('.edit_user')[i].id;
+   $("#"+id).validate()
 
- $('table tbody tr').quicksearch({
-        attached: 'div#qs_anchor',
-	inputText: '<%= _("Type user name or login ...")%>',
-	inputClass: 'qs_input',
-        loaderText: '',
-        labelText: '<%= _("Filter:")%>',
-	stripeRowClass: ['odd', 'even'],
-        delay: 100
- });
+   $("#"+id).validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
+    }
+   });
 
- // default state
- $('.del_user').hide();
+   $("#"+id+" #user_user_password").pstrength({
+      'displayMinChar'      : true,
+      'minCharText'      : 'Password Strength:', 
+      'verdicts'      : [
+            "<%= _("Weak") %>",
+            "<%= _("Normal") %>",
+            "<%= _("Medium") %>",
+            "<%= _("Strong") %>",
+            "<%= _("Very Strong") %>"
+          ],
+      });
+ }
+
+      $(".accordion").accordion({
+         autoHeight : false,
+         navigation : true,
+         collapsible: true,
+         header     : 'div.list-fieldset div.list-fieldset-header'
+      });
+
+      $(".accordion").accordion('activate', false);
+
+  $('input#users_search').quicksearch('div.list-fieldset', {
+          selector: 'span.quicksearch_content',
+          delay: 100
+  });
+
+
 });//document.ready
+
+function disable(which){
+ if (which.childNodes.length == 2 && which.childNodes[0].firstChild.alt == "delete"){
+  which.onclick="";
+  which.removeChild(which.childNodes[1]);
+  which.removeChild(which.childNodes[0]);
+  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
+ }
+}
 <% end %>
 
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Users")%></div>
 <div class="plugin-content grid_12">
 
-<div id='qs_anchor' class='pad1_2em'></div>
+<form action="#" id="quicksearch" class="pad1_2em">
+  <label><%= _("Filter:") %></label>
+  <input type="text" id="users_search"/>
+</form>
+
 <div class='pad1_2em'>
 <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
-<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th>Login</th>
-      <th>Real Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
 
-  <tbody>
+ <div id="users" class="accordion">
+ <% disabled = ! @permissions[:usermodify] %>
   <% for user in @users %>
-  <tr class= <%= cycle('odd', 'even') -%> >
-    <td align=center id="login"><%= h user.uid  -%></td>
-    <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
-    <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user %s?") % user.id ) %></td>
+   <div class="list-fieldset">
+
+    <div class="list-fieldset-header">
+     <span class="quicksearch_content">
+      <%= h user.uid -%> (<%= h user.cn || "-none-" -%>)
+     </span>
+    </div>
+
+    <div class='user-content' style="display:none">
+     <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+      <%= f.error_messages %>
+
+      <div>
+        <p>
+          <div class="label"><%=_("Full Name")%></div>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this);" %>
+        </p>
+        <p>
+          <div class="label"><%=_("Login Name")%></div>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "propose_home(this);" %>
+          <%= f.text_field :id, :class => "hidden" %>
+        </p>
+        <p>
+          <div class="label"><%=_("Password")%></div>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled %>
+        </p>
+        <p>
+          <div class="label"><%=_("Confirm Password")%></div>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password2');" %>
+        </p>
+        <!-- this is a pre-generated placeholder for the validation messages -->
+        <p>
+	  <label for="user_user_password2" generated="true" class="error"></label>
+        </p>
+        <p>
+            <div class="label"><%=_("Groups")%></div>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
+        </p>
+        <p>
+            <label id="groups-error" class="error"></label>
+	</p>
+        <p>
+            <div class="label"><%=_("Default Group")%></div>
+            <%= f.text_field :groupname, :disabled => disabled %>
+        </p>
+        <p>
+            <div class="label"><%=_("Home Directory")%></div>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+        </p>
+        <p>
+            <div class="label"><%=_("Login Shell")%></div>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+        </p>
+        <p>
+            <div class="label"><%=_("UID Number")%></div>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
+        </p>
+        <p>
+            <label id="uid-error" class="error"></label>
+        </p>
+      </div>
+
+     <%= form_next_button :label => _("Save") %>
+     <% if @permissions[:userdelete] %>
+      <span onclick="disable(this);"><%= link_to _("Delete"),
+                            {:action => 'destroy', :id => user.uid},
+                            {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %></span>
+     <% end %>
+    </div>
+
     <% end %>
-  </tr>
+   </div>
   <% end %>
-  </tbody>
-</table>
-</div>
+ </div>
+
 
 <fieldset>
   <%= form_back_button -%>
   <% if @permissions[:useradd] %>
   <% end %>
 </fieldset>
-<%= link_to "Manage Groups", "controller" => "groups" %>
+<%= link_to _("Manage Groups"), "controller" => "groups" %>
 </div>
 </div>
 

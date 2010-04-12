@@ -5,6 +5,7 @@
 <%= javascript_include_tag "plugin/jqplot.categoryAxisRenderer.js" %>
 <%= javascript_include_tag "plugin/jqplot.dateAxisRenderer.js" %>
 <%= javascript_include_tag "plugin/jqplot.canvasTextRenderer.js" %>
+<%= javascript_include_tag "plugin/jqplot.cursor.js" %>
 <% end %>
 
 <% content_for :before_script do %>
@@ -66,6 +67,33 @@
         <div id="<%=plugin.message_id%>" >
           <p>     
             <%= plugin.long_description %>
+            <% unless plugin.details.blank? %>
+              <a href="#" id="<%='detail_link_'+plugin.message_id%>">(<%=_("details")%>)</a>
+              <div id="<%='detail_'+plugin.message_id%>" >
+                <div>
+                  <%= plugin.details %>
+                </div>
+              </div>
+
+              <script type="text/javascript">
+              $(document).ready(
+                   function() {
+                     // define a dialog
+                     $('#<%='detail_'+plugin.message_id%>').dialog(
+                     {
+               	      bgiframe: true,
+    	              autoOpen: false,
+            	      height: 'auto',
+                      title: "<%= _("Details")%>",
+                      modal: true
+                     });
+                     // open detail popup
+                     $('#<%='detail_link_'+plugin.message_id%>').click( function() {
+                       $('#<%='detail_'+plugin.message_id%>').dialog('open');
+                     });
+                  });
+              </script>
+            <% end %>
           </p>     
           <% unless plugin.confirmation_host.blank? || plugin.confirmation_link.blank? %>
             <% if plugin.confirmation_host == "client" %>
@@ -92,10 +120,12 @@
     <div class="list-fieldset">
       <% default_lines=50 %>
       <% frequency=15 %>
-      <div class="list-fieldset-header">
-      <%=link_to_remote "<span class='status-icon none'></span>" + log.description, 
-            :update => log_id(log.id),
-            :url => { :action => "ajax_log_custom", :id => log.id, :lines => default_lines } %>
+      <div class="list-fieldset-header"
+           onclick="<%= remote_function(:update   => log_id(log.id),
+                                        :url => { :action => "ajax_log_custom", 
+                                        :id => log.id, :lines => default_lines }) %>">
+         <span class='status-icon none'></span>
+         <%= log.description %>
       </div>
       <ul style="display: none;">
         <div id="<%="log-#{log.id}-console"%>" >
@@ -109,9 +139,10 @@
 <% end %>
 </div>
 <fieldset>
-<%= form_back_button %> 
-<%= form_str_spacer %>
+<p>
 <%= link_to  _("Edit Limits"), '/status/edit' %>
+</p>
+<%= form_back_button %> 
 </fieldset>
 </div>
 

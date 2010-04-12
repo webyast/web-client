@@ -8,7 +8,7 @@ require 'yaml'
 
 class ControlpanelController < ApplicationController
   before_filter :ensure_login
-  before_filter :ensure_wizard, :only => [:nextstep, :backstep]
+  before_filter :ensure_wizard, :only => [:nextstep, :backstep, :thisstep]
 
   def index
     return false if need_redirect
@@ -22,16 +22,6 @@ class ControlpanelController < ApplicationController
         @shortcut_groups[group] ||= Array.new
         @shortcut_groups[group] << data
       end
-    end
-  end
-
-  # this action allows to retrieve the shortcuts
-  # as a resource
-  def shortcuts
-    respond_to do |format|
-      format.html { } 
-      format.xml  { render :xml => shortcuts_data.to_xml, :location => "none" }
-      format.json { render :json => shortcuts_data.to_json, :location => "none" }
     end
   end
 
@@ -61,7 +51,7 @@ class ControlpanelController < ApplicationController
 
   # nextstep and backstep expect, that wizard session variables are set
   def ensure_wizard
-    if !Basesystem.new.load_from_session(session).in_process?
+    unless Basesystem.installed? && Basesystem.new.load_from_session(session).in_process?
        redirect_to "/controlpanel"
     end
   end
@@ -108,6 +98,7 @@ class ControlpanelController < ApplicationController
   # and if it should, then also redirects to that module.
   # TODO check if controller from config exists
   def need_redirect
+    return false unless Basesystem.installed?
     first_run = !(Basesystem.new.load_from_session(session).initialized)
     logger.debug "first run of basesystem: #{first_run}.\n Session: #{session.inspect}."
     bs = Basesystem.find(session)
