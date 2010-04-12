@@ -128,12 +128,9 @@ function disable(which){
             <div class="label"><%=_("UID Number")%></div>
             <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
         </p>
-        <p>
-            <label id="uid-error" class="error"></label>
-        </p>
+        <p><label id="uid-error" class="error"></label><p>
       </div>
 
-     <%= form_next_button :label => _("Save") %>
      <% if @permissions[:userdelete] %>
       <span onclick="disable(this);"><%= link_to _("Delete"),
                             {:action => 'destroy', :id => user.uid},
