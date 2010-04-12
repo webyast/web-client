@@ -27,10 +27,10 @@ module PluginTranslation
         ret.confirmation_label = _("register")
       when "MAIL_SENT"
         ret.short_description = _("Mail configuration test not confirmed")
-        translated = _("During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again.") #Need this double for generating the pot files.
-        pattern = "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again."
+        translated = _("While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again.") #Need this double for generating the pot files.
+        pattern = "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
         ret.long_description = translated % extract_params(plugin.long_description,pattern)
-        ret.details = plugin.details.blank? ? "" : _("It was not possible to retrieve full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator.")
+        ret.details = plugin.details.blank? ? "" : _("It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator.")
         ret.confirmation_label = _("Test mail received")
       else
         RAILS_DEFAULT_LOGGER.warn "Not known message-id #{plugin.message_id}"
