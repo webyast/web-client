@@ -217,7 +217,7 @@
 
 <!--  temporally disabled - 2009-10-26 rlihm
   <fieldset id="interface_set" class="">
-    <legend><%= _("Interface")%></legend>
+    <legend><span><%= _("Interface")%></span></legend>
     <p>
       <%= select_tag(:interface, options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
     </p>
@@ -237,7 +237,7 @@
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
   
   <fieldset id="general-settings" class="wrapper with-background no-min-height">
-    <legend>General settings</legend>
+    <legend><span>General settings</span></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
       <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
@@ -245,7 +245,7 @@
   </fieldset>
   <div class="accordion">
     <fieldset id="ip-address" class="wrapper with-background">
-      <legend>IP Address</legend>
+      <legend><span>IP Address</span></legend>
       <div>
         <p>
           <label for="<%= :ip %>"><%=_("IP address")%></label>
@@ -262,7 +262,7 @@
       </div>
     </fieldset>
     <fieldset id="dns" class="wrapper with-background">
-      <legend>DNS</legend>
+      <legend><span>DNS</span></legend>
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>
