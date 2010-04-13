@@ -90,7 +90,7 @@
       :locals => { :f => f, :disabled => disabled } %>
 
       <fieldset>
-        <%= form_back_button :action => :index%>
+        <%= form_cancel_button :action => :index%>
         <%= form_str_spacer %>
         <%= form_next_button :disabled => disabled, :onclick=>"return edit_user_validation();" %>
       </fieldset>
