@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-24 15:11\n"
+"POT-Creation-Date: 2010-03-30 15:01+0200\n"
+"PO-Revision-Date: 2010-04-07 11:31\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:105
+#: app/controllers/status_controller.rb:131
 msgid "No data found for showing system status."
 msgstr "找不到显示系统状态的数据。"
 
-#: app/controllers/status_controller.rb:134
+#: app/controllers/status_controller.rb:187
 msgid "Limits exceeded for "
 msgstr "已超出限制"
 
-#: app/controllers/status_controller.rb:208
+#: app/controllers/status_controller.rb:307
 msgid "exceeded"
 msgstr "超出"
 
-#: app/controllers/status_controller.rb:222
+#: app/controllers/status_controller.rb:321
 msgid "undercut"
 msgstr "低于"
 
-#: app/controllers/status_controller.rb:313
+#: app/controllers/status_controller.rb:423
 msgid "Limits have been written."
 msgstr "限制已写入。"
 
@@ -37,51 +37,23 @@ msgstr "限制已写入。"
 msgid "Only numbers are valid !"
 msgstr "仅数字有效！"
 
-#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
 msgid "Status"
 msgstr "状态"
 
-#: app/views/status/edit.html.erb:47
+#: app/views/status/edit.html.erb:51
 msgid "Settings"
 msgstr "设置"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "undercuts"
 msgstr "低于"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "exceeds"
 msgstr "超出"
 
-#: app/views/status/index.html.erb:49
-msgid "Show last"
-msgstr "显示最后"
-
-#: app/views/status/index.html.erb:50
-msgid "5 Minutes"
-msgstr "5 分钟"
-
-#: app/views/status/index.html.erb:51
-msgid "15 Minutes"
-msgstr "15 分钟"
-
-#: app/views/status/index.html.erb:52
-msgid "30 Minutes"
-msgstr "30 分钟"
-
-#: app/views/status/index.html.erb:53
-msgid "1 Hour"
-msgstr "1 小时"
-
-#: app/views/status/index.html.erb:54
-msgid "6 Hours"
-msgstr "6 小时"
-
-#: app/views/status/index.html.erb:55
-msgid "12 Hours"
-msgstr "12 小时"
-
-#: app/views/status/index.html.erb:96
+#: app/views/status/index.html.erb:114
 msgid "Edit Limits"
 msgstr "编辑限制"
 
@@ -89,11 +61,79 @@ msgstr "编辑限制"
 msgid "A problem occured when loading status information."
 msgstr "装载状态信息时发生问题。"
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_graph.html.erb:60
+msgid "Show last"
+msgstr "显示最后"
+
+#: app/views/status/_status_graph.html.erb:61
+msgid "5 Minutes"
+msgstr "5 分钟"
+
+#: app/views/status/_status_graph.html.erb:62
+msgid "15 Minutes"
+msgstr "15 分钟"
+
+#: app/views/status/_status_graph.html.erb:63
+msgid "30 Minutes"
+msgstr "30 分钟"
+
+#: app/views/status/_status_graph.html.erb:64
+msgid "1 Hour"
+msgstr "1 小时"
+
+#: app/views/status/_status_graph.html.erb:65
+msgid "6 Hours"
+msgstr "6 小时"
+
+#: app/views/status/_status_graph.html.erb:66
+msgid "12 Hours"
+msgstr "12 小时"
+
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
 msgstr "装载状态信息时发生问题。"
 
-#: app/views/status/_status_summary.html.erb:10
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "无法读取系统状态 － 您已注销。"
+
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "您的系统运行状态良好。"
+
+#: app/views/status/_status_summary.html.erb:20
+msgid "start"
+msgstr "启动"
+
+#: app/views/status/_status_summary.html.erb:28
+msgid "Loading system information"
+msgstr "正在装载系统信息"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr "正在检查系统状态"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "缺少注册信息"
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "请注册您的系统以获取更新。"
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "注册"
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "邮件配置测试未确认"
+
+#: lib/plugin_translation.rb:30
+msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
+msgstr "在邮件配置过程中，已将测试邮件发送至 %s。邮件是否已发送到此地址？<br>如果是，请按按钮确认。否则，请重新检查您的邮件配置，甚至检查“/var/log/mail”文件。"
+
+#: lib/plugin_translation.rb:33
+msgid "Test mail received"
+msgstr "测试邮件已收到"
 

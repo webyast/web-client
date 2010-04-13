@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-24 13:02\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 10:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,37 @@ msgstr ""
 msgid "(cannot read status)"
 msgstr "(impossible de lire l'état)"
 
-#: app/controllers/services_controller.rb:56
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "succès"
+
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr "erreur non spécifiée"
+
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
+msgstr "argument(s) incorrect(s) ou excessif(s)"
+
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr "fonctionnalité non implémentée"
+
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr "l'utilisateur n'a pas les privilèges nécessaires"
+
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr "le programme n'est pas installé"
+
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr "le programme n'est pas configuré"
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr "le programme n'est pas en cours d'exécution"
 
 #: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
@@ -29,7 +57,7 @@ msgstr "Résultat de l'appel au service"
 msgid "Result"
 msgstr "Résultat"
 
-#: app/views/services/_result.rhtml:13
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Description"
 
@@ -37,59 +65,99 @@ msgstr "Description"
 msgid "Quick Search"
 msgstr "Recherche rapide"
 
-#: app/views/services/index.rhtml:89
+#: app/views/services/index.rhtml:126
 msgid "System Services"
 msgstr "Services système"
 
-#: app/views/services/index.rhtml:95
+#: app/views/services/index.rhtml:132
 msgid "You do not have permission to execute the services."
 msgstr "Vous n'avez pas l'autorisation requise pour exécuter les services."
 
-#: app/views/services/index.rhtml:99
+#: app/views/services/index.rhtml:136
 msgid "Filter services"
 msgstr "Filtrer les services"
 
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:138
 msgid "All"
 msgstr "Tout"
 
-#: app/views/services/index.rhtml:102
+#: app/views/services/index.rhtml:139
 msgid "Running"
 msgstr "Démarré"
 
-#: app/views/services/index.rhtml:103
+#: app/views/services/index.rhtml:140
 msgid "Not Running"
 msgstr "Non démarré"
 
-#: app/views/services/index.rhtml:104
+#: app/views/services/index.rhtml:141
 msgid "Dead"
 msgstr "Mort"
 
-#: app/views/services/index.rhtml:120
+#: app/views/services/index.rhtml:142
+msgid "Started on Boot"
+msgstr "Lancé au démarrage"
+
+#: app/views/services/index.rhtml:143
+msgid "Not Started on Boot"
+msgstr "Non lancé au démarrage"
+
+#: app/views/services/index.rhtml:159
 msgid "Description for service is not available"
 msgstr "La description du service n'est pas disponible"
 
-#: app/views/services/index.rhtml:173
-msgid "refresh status"
-msgstr "rafraîchir l'état"
+#: app/views/services/index.rhtml:178
+msgid "(refresh)"
+msgstr "(rafraîchir)"
 
-#: app/views/services/_status.rhtml:16
+#: app/views/services/index.rhtml:209
+msgid "Start"
+msgstr "Lancer"
+
+#: app/views/services/index.rhtml:210
+msgid "Stop"
+msgstr "Arrêter"
+
+#: app/views/services/index.rhtml:211
+msgid "Restart"
+msgstr "Redémarrer"
+
+#: app/views/services/index.rhtml:212
+msgid "Start on Boot"
+msgstr "Lancer au démarrage"
+
+#: app/views/services/index.rhtml:213
+msgid "Do Not Start on Boot"
+msgstr "Ne pas lancer au démarrage"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "Le service sera lancé au démarrage."
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "Le service ne sera pas lancé au démarrage."
+
+#: app/views/services/_status.rhtml:31
 msgid "status unknown"
 msgstr "état inconnu"
 
-#: app/views/services/_status.rhtml:18
+#: app/views/services/_status.rhtml:33
 msgid "running"
 msgstr "démarré"
 
-#: app/views/services/_status.rhtml:22
+#: app/views/services/_status.rhtml:37
 msgid "dead"
 msgstr "mort"
 
-#: app/views/services/_status.rhtml:26
+#: app/views/services/_status.rhtml:41
 msgid "not running"
 msgstr "non démarré"
 
-#: app/views/services/_status.rhtml:30
+#: app/views/services/_status.rhtml:45
 msgid "status unknown: %d"
 msgstr "état inconnu : %d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "État actuel du service :"
 

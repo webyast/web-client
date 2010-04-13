@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-25 09:19\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 08:13\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,115 +13,196 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/users_controller.rb:160
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr "Det saknas en gruppnamnsparameter"
+
+#: app/controllers/groups_controller.rb:27
+msgid "Missing group parameters"
+msgstr "Saknade grupparametrar"
+
+#: app/controllers/groups_controller.rb:37
+msgid "Please enter a valid group name"
+msgstr "Ange ett giltigt gruppnamn"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr "Ange ett giltigt GID"
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr "Ange en giltig grupptyp. Endast \"system\" eller \"lokal\" är tillåtna."
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr "Ange en giltig lista med medlemmar"
+
+#: app/controllers/groups_controller.rb:82
+msgid "Cannot read users list."
+msgstr "Det går inte att läsa användarlistan."
+
+#: app/controllers/groups_controller.rb:105
+msgid "Cannot read groups list."
+msgstr "Det går inte att läsa grupplistan."
+
+#: app/controllers/groups_controller.rb:177
+msgid "Unknown backend error"
+msgstr "Okänt fel vid bakände"
+
+#: app/controllers/users_controller.rb:164
 msgid "User <i>%s</i> was successfully created."
 msgstr "Användaren <i>%s</i> skapades."
 
-#: app/controllers/users_controller.rb:204
+#: app/controllers/users_controller.rb:206
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Användaren <i>%s</i> uppdaterades."
 
-#: app/controllers/users_controller.rb:225
+#: app/controllers/users_controller.rb:227
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Användaren <i>%s</i> togs bort."
 
-#: app/controllers/users_controller.rb:227
+#: app/controllers/users_controller.rb:229
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Fel: Det gick inte att ta bort användaren <i>%s</i>."
 
-#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
-msgid "Weak"
-msgstr "Svagt"
-
-#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
-msgid "Normal"
-msgstr "Normalt"
-
-#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
-msgid "Medium"
-msgstr "Mellan"
-
-#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
-msgid "Strong"
-msgstr "Starkt"
-
-#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
-msgid "Very Strong"
-msgstr "Mycket starkt"
-
-#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46 app/views/users/new.html.erb:49
-msgid "Local Users"
-msgstr "Lokala användare"
-
-#: app/views/users/edit.html.erb:83
-msgid "Edit user %s"
-msgstr "Redigera användaren %s"
-
-#: app/views/users/edit.html.erb:93
-msgid "Login Settings"
-msgstr "Inloggningsinställningar"
-
-#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
-msgid "Login Name"
-msgstr "Inloggningsnamn"
-
-#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
-msgid "Full Name"
-msgstr "Fullständigt namn"
-
-#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
-msgid "Password"
-msgstr "Lösenord"
-
-#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
-msgid "Confirm Password"
-msgstr "Bekräfta lösenord"
-
-#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120 app/views/users/new.html.erb:84
+#: app/views/groups/edit.html.erb:4 app/views/groups/index.html.erb:38
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Grupper"
 
-#: app/views/users/edit.html.erb:126
+#: app/views/groups/edit.html.erb:6
+msgid "Add new group"
+msgstr "Lägg till ny grupp"
+
+#: app/views/groups/edit.html.erb:8
+msgid "Modify group"
+msgstr "Ändra grupp"
+
+#: app/views/groups/edit.html.erb:18 app/views/groups/index.html.erb:49
+msgid "Group Name"
+msgstr "Gruppnamn"
+
+#: app/views/groups/edit.html.erb:22
+msgid "Group ID"
+msgstr "Grupp-ID"
+
+#: app/views/groups/edit.html.erb:26
+msgid "Group Type"
+msgstr "Grupptyp"
+
+#: app/views/groups/edit.html.erb:30
+msgid "Default members"
+msgstr "Standardmedlemmar"
+
+#: app/views/groups/edit.html.erb:34
+msgid "Members"
+msgstr "Medlemmar"
+
+#: app/views/groups/index.html.erb:26
+msgid "Type group name ..."
+msgstr "Ange gruppnamn..."
+
+#: app/views/groups/index.html.erb:29 app/views/users/index.html.erb:35
+msgid "Filter:"
+msgstr "Filter:"
+
+#: app/views/groups/index.html.erb:44
+msgid "Add New Group"
+msgstr "Lägg till ny grupp"
+
+#: app/views/groups/index.html.erb:50
+msgid "Type"
+msgstr "Typ"
+
+#: app/views/groups/index.html.erb:51
+msgid "Action"
+msgstr "Åtgärd"
+
+#: app/views/groups/index.html.erb:61
+msgid "Are you sure to delete group '%s'?"
+msgstr "Vill du ta bort gruppen %s?"
+
+#: app/views/users/_user_form.erb:5
+msgid "Login Settings"
+msgstr "Inloggningsinställningar"
+
+#: app/views/users/_user_form.erb:8
+msgid "Login Name"
+msgstr "Inloggningsnamn"
+
+#: app/views/users/_user_form.erb:13
+msgid "Full Name"
+msgstr "Fullständigt namn"
+
+#: app/views/users/_user_form.erb:17
+msgid "Password"
+msgstr "Lösenord"
+
+#: app/views/users/_user_form.erb:21
+msgid "Confirm Password"
+msgstr "Bekräfta lösenord"
+
+#: app/views/users/_user_form.erb:39
 msgid "Default Group"
 msgstr "Standardgrupp"
 
-#: app/views/users/edit.html.erb:139
+#: app/views/users/_user_form.erb:61
 msgid "Advanced"
 msgstr "Avancerat"
 
-#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+#: app/views/users/_user_form.erb:64
 msgid "Home Directory"
 msgstr "Hemkatalog"
 
-#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+#: app/views/users/_user_form.erb:68
 msgid "Login Shell"
 msgstr "Inloggningsskal"
 
-#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+#: app/views/users/_user_form.erb:72
 msgid "UID Number"
 msgstr "UID-nummer"
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "Svagt"
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normalt"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+msgid "Medium"
+msgstr "Mellan"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "Starkt"
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr "Mycket starkt"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:46 app/views/users/new.html.erb:86
+msgid "Local Users"
+msgstr "Lokala användare"
+
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr "Redigera användaren %s"
 
 #: app/views/users/index.html.erb:32
 msgid "Type user name or login ..."
 msgstr "Ange användar- eller inloggningsnamn..."
 
-#: app/views/users/index.html.erb:35
-msgid "Filter:"
-msgstr "Filter:"
-
-#: app/views/users/index.html.erb:78
-msgid "New User..."
-msgstr "Ny användare..."
-
-#: app/views/users/new.html.erb:49
-msgid "Add new user"
+#: app/views/users/index.html.erb:51
+msgid "Add New User"
 msgstr "Lägg till ny användare"
 
-#: app/views/users/new.html.erb:90
-msgid "Default Group (GID)"
-msgstr "Standardgrupp (GID)"
+#: app/views/users/index.html.erb:67
+msgid "Are you sure to delete user %s?"
+msgstr "Vill du ta bort användaren %s?"
 
-#: app/views/users/new.html.erb:113
-msgid "Do not create home directory"
-msgstr "Skapa inte hemkatalog"
+#: app/views/users/new.html.erb:86
+msgid "Add new user"
+msgstr "Lägg till ny användare"
 

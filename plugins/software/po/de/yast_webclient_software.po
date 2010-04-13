@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_software\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-24 12:00\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 10:04\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,32 +13,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:65
+#: app/helpers/repositories_helper.rb:5
+msgid "Highest"
+msgstr "Höchste"
+
+#: app/helpers/repositories_helper.rb:6
+msgid "Higher"
+msgstr "Höhere"
+
+#: app/helpers/repositories_helper.rb:7
+msgid "Default"
+msgstr "Standard"
+
+#: app/helpers/repositories_helper.rb:8
+msgid "Low"
+msgstr "Niedrige"
+
+#: app/helpers/repositories_helper.rb:9
+msgid "Lowest"
+msgstr "Niedrigste"
+
+#: app/helpers/repositories_helper.rb:15
+msgid "Highest priority"
+msgstr "Höchste Priorität"
+
+#: app/helpers/repositories_helper.rb:16
+msgid "Higher priority"
+msgstr "Höhere Priorität"
+
+#: app/helpers/repositories_helper.rb:18
+msgid "Low priority"
+msgstr "Niedrige  Priorität"
+
+#: app/helpers/repositories_helper.rb:19
+msgid "Lowest priority"
+msgstr "Niedrigste Priorität"
+
+#: app/helpers/repositories_helper.rb:24
+msgid "Custom priority"
+msgstr "Benutzerdefinierte Priorität"
+
+#: app/helpers/repositories_helper.rb:29
+msgid "Custom"
+msgstr "Benutzerdefiniert"
+
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:70
+msgid "enable"
+msgstr "aktivieren"
+
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:75
+msgid "disable"
+msgstr "deaktivieren"
+
+#: app/helpers/repositories_helper.rb:45
+msgid "enabled"
+msgstr "aktiviert"
+
+#: app/helpers/repositories_helper.rb:45
+msgid "disabled"
+msgstr "deaktiviert"
+
+#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:64
 msgid "Alias"
 msgstr "Alias"
 
-#: app/controllers/repositories_controller.rb:15 app/views/repositories/show.html.erb:74
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:102
+#: app/views/repositories/show.html.erb:73
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:79
+#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:78
 msgid "Autorefresh"
 msgstr "Automatische Aktualisierung"
 
-#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:84
+#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:83
 #: app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "Name"
 
-#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:89
+#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:88
 msgid "URL"
 msgstr "URL"
 
-#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:94
+#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:93
 msgid "Priority"
 msgstr "Priorität"
 
-#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:99
+#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:98
 msgid "Keep downloaded packages"
 msgstr "Heruntergeladene Pakete beibehalten"
 
@@ -46,91 +107,127 @@ msgstr "Heruntergeladene Pakete beibehalten"
 msgid "Cannot read repository list."
 msgstr "Repository-Liste kann nicht gelesen werden."
 
-#: app/controllers/repositories_controller.rb:41 app/controllers/repositories_controller.rb:60
-#: app/controllers/repositories_controller.rb:83
+#: app/controllers/repositories_controller.rb:43 app/controllers/repositories_controller.rb:62
+#: app/controllers/repositories_controller.rb:89
 msgid "Missing repository parameter"
 msgstr "Repository-Parameter fehlt"
 
-#: app/controllers/repositories_controller.rb:111 app/controllers/repositories_controller.rb:197
+#: app/controllers/repositories_controller.rb:117 app/controllers/repositories_controller.rb:201
 msgid "Invalid priority"
 msgstr "Ungültige Priorität"
 
-#: app/controllers/repositories_controller.rb:185
+#: app/controllers/repositories_controller.rb:189
 msgid "Missing repository parameters"
 msgstr "Repository-Parameter fehlen"
 
-#: app/controllers/repositories_controller.rb:222
+#: app/controllers/repositories_controller.rb:226
 msgid "Unknown backend error"
 msgstr "Unbekannter Backend-Fehler"
 
-#: app/controllers/repositories_controller.rb:233
+#: app/controllers/repositories_controller.rb:237
 msgid "Error: Missing repository id."
 msgstr "Fehler: Repository-ID fehlt."
 
-#: app/controllers/repositories_controller.rb:237
+#: app/controllers/repositories_controller.rb:241
 msgid "Error: Missing 'enabled' parameter."
 msgstr "Fehler: Parameter \"Aktiviert\" fehlt."
 
-#: app/controllers/repositories_controller.rb:267
+#: app/controllers/repositories_controller.rb:271
 msgid "Unknown backend error."
 msgstr "Unbekannter Backend-Fehler."
 
-#: app/controllers/patch_updates_controller.rb:40 app/controllers/patch_updates_controller.rb:43
+#: app/controllers/patch_updates_controller.rb:45 app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
 msgid "A problem occured when loading patch information."
 msgstr "Beim Laden der Patch-Informationen ist ein Fehler aufgetreten."
 
-#: app/controllers/patch_updates_controller.rb:97
+#: app/controllers/patch_updates_controller.rb:105
 msgid "Installing all patches..."
 msgstr "Alle Patches werden installiert..."
 
-#: app/controllers/patch_updates_controller.rb:105
+#: app/controllers/patch_updates_controller.rb:113
 msgid "Installation stopped"
 msgstr "Installation angehalten"
 
-#: app/controllers/patch_updates_controller.rb:142
+#: app/controllers/patch_updates_controller.rb:150
 msgid "Installation finished"
 msgstr "Installation abgeschlossen"
 
-#: app/controllers/patch_updates_controller.rb:144
+#: app/controllers/patch_updates_controller.rb:152
 msgid "%s installed."
 msgstr "%s installiert."
 
-#: app/controllers/patch_updates_controller.rb:173
+#: app/controllers/patch_updates_controller.rb:181
 msgid "Patch has been installed."
 msgstr "Der Patch wurde installiert."
 
-#: app/views/repositories/index.html.erb:7 app/views/repositories/show.html.erb:45
-msgid "Software Repositories"
-msgstr "Software-Repositorys"
-
-#: app/views/repositories/index.html.erb:12
-msgid "No software repository configured."
-msgstr "Kein Software-Repository konfiguriert."
-
-#: app/views/repositories/index.html.erb:14
-msgid "Configured software repositories"
-msgstr "Konfigurierte Software-Repositorys"
-
-#: app/views/repositories/index.html.erb:39
-msgid "Really delete repository '%s'?"
-msgstr "Repository \"%s\" wirklich löschen?"
-
-#: app/views/repositories/index.html.erb:52
-msgid "Add"
-msgstr "Hinzufügen"
-
-#: app/views/repositories/index.html.erb:52
-msgid "a new repository"
-msgstr "ein neues Repository"
-
-#: app/views/repositories/show.html.erb:16
+#: app/views/repositories/index.html.erb:17 app/views/repositories/show.html.erb:16
 msgid "Enter a valid repository URL."
 msgstr "Geben Sie eine gültige Repository-URL ein."
 
-#: app/views/repositories/show.html.erb:24
+#: app/views/repositories/index.html.erb:25 app/views/repositories/show.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
 msgstr "Im Repository-Alias sind keine <b>%s</b>-Symbole zulässig."
+
+#: app/views/repositories/index.html.erb:29 app/views/repositories/show.html.erb:34
+msgid "This value cannot be empty."
+msgstr "Dieser Wert darf nicht leer sein."
+
+#: app/views/repositories/index.html.erb:46
+msgid "Quick Search"
+msgstr "Schnellsuche"
+
+#: app/views/repositories/index.html.erb:91 app/views/repositories/show.html.erb:45
+msgid "Software Repositories"
+msgstr "Software-Repositorys"
+
+#: app/views/repositories/index.html.erb:96
+msgid "Configured software repositories"
+msgstr "Konfigurierte Software-Repositorys"
+
+#: app/views/repositories/index.html.erb:99
+msgid "Filter repositories"
+msgstr "Filterrepositorys"
+
+#: app/views/repositories/index.html.erb:101
+msgid "All"
+msgstr "Alle"
+
+#: app/views/repositories/index.html.erb:103
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: app/views/repositories/index.html.erb:153
+msgid "Repository will be %s."
+msgstr "Repository wird %s."
+
+#: app/views/repositories/index.html.erb:160
+msgid "Autorefresh will be %s."
+msgstr "Automatische Aktualisierung wird %s."
+
+#: app/views/repositories/index.html.erb:169
+msgid "Keep packages option will be %s."
+msgstr "Option 'Pakete beibehalten' wird %s."
+
+#: app/views/repositories/index.html.erb:176
+msgid "Save"
+msgstr "Speichern"
+
+#: app/views/repositories/index.html.erb:177
+msgid "Delete"
+msgstr "Löschen"
+
+#: app/views/repositories/index.html.erb:179
+msgid "Really delete repository '%s'?"
+msgstr "Repository \"%s\" wirklich löschen?"
+
+#: app/views/repositories/index.html.erb:194
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: app/views/repositories/index.html.erb:194
+msgid "a new repository"
+msgstr "ein neues Repository"
 
 #: app/views/repositories/show.html.erb:31
 msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
@@ -144,10 +241,6 @@ msgstr "Die Priorität muss als positive Zahl angegeben werden."
 msgid "Priority must be less than 200."
 msgstr "Die Priorität muss kleiner als 200 sein."
 
-#: app/views/repositories/show.html.erb:34
-msgid "This value cannot be empty."
-msgstr "Dieser Wert darf nicht leer sein."
-
 #: app/views/repositories/show.html.erb:48
 msgid "Add a new repository"
 msgstr "Neues Repository hinzufügen"
@@ -160,7 +253,7 @@ msgstr "Eigenschaften von"
 msgid "Edit Properties of"
 msgstr "Eigenschaften bearbeiten von"
 
-#: app/views/repositories/show.html.erb:61
+#: app/views/repositories/show.html.erb:60
 msgid "Repository"
 msgstr "Repository"
 
@@ -188,7 +281,7 @@ msgstr "Sind Sie sicher?"
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:28
+#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:35
 msgid "Your system is up to date."
 msgstr "Ihr System ist auf dem neuesten Stand."
 
@@ -236,23 +329,35 @@ msgstr "Quelle"
 msgid "Install"
 msgstr "Installieren"
 
-#: app/views/patch_updates/_patch_summary.html.erb:6
+#: app/views/patch_updates/_patch_summary.html.erb:9
+msgid "Cannot read patch updates - you have been logged out."
+msgstr "Patch-Aktualisierungen können nicht gelesen werden - Sie wurden abgemeldet."
+
+#: app/views/patch_updates/_patch_summary.html.erb:12
 msgid "No information about patches available"
 msgstr "Keine Informationen zu Patches verfügbar"
 
-#: app/views/patch_updates/_patch_summary.html.erb:19
+#: app/views/patch_updates/_patch_summary.html.erb:26
 msgid "Security Updates: %d"
 msgstr "Sicherheitsaktualisierungen: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:22
+#: app/views/patch_updates/_patch_summary.html.erb:29
 msgid "Important Updates: %d"
 msgstr "Wichtige Aktualisierungen: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:25
+#: app/views/patch_updates/_patch_summary.html.erb:32
 msgid "Optional Updates: %d"
 msgstr "Optionale Aktualisierungen: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:33
+#: app/views/patch_updates/_patch_summary.html.erb:40
+msgid "Update All"
+msgstr "Alle aktualisieren"
+
+#: app/views/patch_updates/_patch_summary.html.erb:40
 msgid "Updating all. Are you sure?"
 msgstr "Alles wird aktualisiert. Sind Sie sicher?"
+
+#: app/views/patch_updates/_patch_summary.html.erb:47
+msgid "Loading patch information"
+msgstr "Patch-Informationen werden geladen"
 

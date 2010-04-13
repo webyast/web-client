@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-25 07:52\n"
+"POT-Creation-Date: 2010-03-30 15:01+0200\n"
+"PO-Revision-Date: 2010-04-07 10:17\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:105
+#: app/controllers/status_controller.rb:131
 msgid "No data found for showing system status."
 msgstr "시스템 상태를 표시하는 데이터가 없습니다."
 
-#: app/controllers/status_controller.rb:134
+#: app/controllers/status_controller.rb:187
 msgid "Limits exceeded for "
 msgstr "한도 초과됨"
 
-#: app/controllers/status_controller.rb:208
+#: app/controllers/status_controller.rb:307
 msgid "exceeded"
 msgstr "초과됨"
 
-#: app/controllers/status_controller.rb:222
+#: app/controllers/status_controller.rb:321
 msgid "undercut"
 msgstr "언더컷"
 
-#: app/controllers/status_controller.rb:313
+#: app/controllers/status_controller.rb:423
 msgid "Limits have been written."
 msgstr "한도가 기록되었습니다."
 
@@ -37,51 +37,23 @@ msgstr "한도가 기록되었습니다."
 msgid "Only numbers are valid !"
 msgstr "숫자만 사용할 수 있습니다."
 
-#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
 msgid "Status"
 msgstr "상태"
 
-#: app/views/status/edit.html.erb:47
+#: app/views/status/edit.html.erb:51
 msgid "Settings"
 msgstr "설정"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "undercuts"
 msgstr "언더컷"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "exceeds"
 msgstr "초과"
 
-#: app/views/status/index.html.erb:49
-msgid "Show last"
-msgstr "마지막 표시"
-
-#: app/views/status/index.html.erb:50
-msgid "5 Minutes"
-msgstr "5분"
-
-#: app/views/status/index.html.erb:51
-msgid "15 Minutes"
-msgstr "15분"
-
-#: app/views/status/index.html.erb:52
-msgid "30 Minutes"
-msgstr "30분"
-
-#: app/views/status/index.html.erb:53
-msgid "1 Hour"
-msgstr "1시간"
-
-#: app/views/status/index.html.erb:54
-msgid "6 Hours"
-msgstr "6시간"
-
-#: app/views/status/index.html.erb:55
-msgid "12 Hours"
-msgstr "12시간"
-
-#: app/views/status/index.html.erb:96
+#: app/views/status/index.html.erb:114
 msgid "Edit Limits"
 msgstr "제한 편집"
 
@@ -89,11 +61,79 @@ msgstr "제한 편집"
 msgid "A problem occured when loading status information."
 msgstr "상태 정보를 로드하는 동안 문제가 발생했습니다."
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_graph.html.erb:60
+msgid "Show last"
+msgstr "마지막 표시"
+
+#: app/views/status/_status_graph.html.erb:61
+msgid "5 Minutes"
+msgstr "5분"
+
+#: app/views/status/_status_graph.html.erb:62
+msgid "15 Minutes"
+msgstr "15분"
+
+#: app/views/status/_status_graph.html.erb:63
+msgid "30 Minutes"
+msgstr "30분"
+
+#: app/views/status/_status_graph.html.erb:64
+msgid "1 Hour"
+msgstr "1시간"
+
+#: app/views/status/_status_graph.html.erb:65
+msgid "6 Hours"
+msgstr "6시간"
+
+#: app/views/status/_status_graph.html.erb:66
+msgid "12 Hours"
+msgstr "12시간"
+
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
 msgstr "상태 정보를 로드하는 동안 문제가 발생했습니다."
 
-#: app/views/status/_status_summary.html.erb:10
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "시스템 상태를 읽을 수 없음 - 사용자가 로그아웃했습니다."
+
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "시스템 상태가 양호합니다."
+
+#: app/views/status/_status_summary.html.erb:20
+msgid "start"
+msgstr "시작"
+
+#: app/views/status/_status_summary.html.erb:28
+msgid "Loading system information"
+msgstr "시스템 정보 로드 중"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr "시스템 상태 확인 중"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "등록이 없습니다."
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "업데이트하려면 시스템을 등록하십시오."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "등록"
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "메일 구성 테스트가 확인되지 않았습니다."
+
+#: lib/plugin_translation.rb:30
+msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
+msgstr "메일을 구성하는 동안 테스트 메일이 %s(으)로 전송되었습니다. 메일이 이 주소로 전달되었습니까?<br> 이 경우 버튼을 눌러 확인하십시오. 그렇지 않으면 '/var/log/mail' 파일도 포함하여 메일 구성을 다시 확인하십시오."
+
+#: lib/plugin_translation.rb:33
+msgid "Test mail received"
+msgstr "테스트 메일이 수신되었습니다."
 

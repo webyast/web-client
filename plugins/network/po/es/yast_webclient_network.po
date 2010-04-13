@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-24 12:28\n"
+"POT-Creation-Date: 2010-03-30 10:00+0200\n"
+"PO-Revision-Date: 2010-04-07 13:30\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -29,71 +29,95 @@ msgstr "Automático"
 msgid "Network settings have been written."
 msgstr "Los valores de red ya se han escrito."
 
-#: app/views/network/index.html.erb:93
+#: app/views/network/index.html.erb:116
+msgid "whitespace - invalid character."
+msgstr "no es válido usar un espacio en blanco más guión (-)."
+
+#: app/views/network/index.html.erb:118
+msgid " - can not start with a digit."
+msgstr " - no puede empezar por un dígito."
+
+#: app/views/network/index.html.erb:120
+msgid "periodic '-' is not allowed."
+msgstr "no se permiten guiones (-) periódicos."
+
+#: app/views/network/index.html.erb:122
+msgid "can not end with (-) hyphen."
+msgstr "no puede terminar en guión (-=."
+
+#: app/views/network/index.html.erb:125
+msgid "can not start with (-) hyphen."
+msgstr "no puede empezar por un guión (-)."
+
+#: app/views/network/index.html.erb:127
+msgid " - is invalid character for hostname."
+msgstr " el guión (-) no es un carácter válido para el nombre de host."
+
+#: app/views/network/index.html.erb:152
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Formato de dirección IP no válido. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:161
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "El formato del prefijo no es válido. El correcto es /nn, donde nn es un valor entre 0 y 32 (formato CIDR)."
 
-#: app/views/network/index.html.erb:108
+#: app/views/network/index.html.erb:167
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Formato de ruta por defecto IP no válido. El correcto es nnn.nnn.nnn.nnn, siendo nnn un número entre 0 y 255."
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:173
 msgid "Name servers are required. There must be at least one specified."
 msgstr "Se requieren los servidores de nombres. Hay que especificar uno como mínimo."
 
-#: app/views/network/index.html.erb:120
+#: app/views/network/index.html.erb:179
 msgid "Hostname is required. It must be specified."
 msgstr "Se requiere un nombre de host. Hay que especificarlo."
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:185
 msgid "Domain is required. An empty domain is not supported."
 msgstr "Se requiere el dominio. No se admiten dominios vacíos."
 
-#: app/views/network/index.html.erb:137
+#: app/views/network/index.html.erb:206
 msgid "Network"
 msgstr "Red"
 
-#: app/views/network/index.html.erb:146
+#: app/views/network/index.html.erb:215
 msgid "Interface"
 msgstr "Interfaz"
 
-#: app/views/network/index.html.erb:151
+#: app/views/network/index.html.erb:220
 msgid "Select"
 msgstr "Seleccionar"
 
-#: app/views/network/index.html.erb:168
+#: app/views/network/index.html.erb:237
 msgid "Configuration mode"
 msgstr "Modo de configuración"
 
-#: app/views/network/index.html.erb:177
+#: app/views/network/index.html.erb:246
 msgid "IP address"
 msgstr "Dirección IP"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:250
 msgid "Subnet mask / Prefixlen"
 msgstr "Máscara de subred/Longitud del prefijo"
 
-#: app/views/network/index.html.erb:190
+#: app/views/network/index.html.erb:259
 msgid "Hostname"
 msgstr "Nombre de host"
 
-#: app/views/network/index.html.erb:194
+#: app/views/network/index.html.erb:264
 msgid "Domain"
 msgstr "Dominio"
 
-#: app/views/network/index.html.erb:198
+#: app/views/network/index.html.erb:268
 msgid "Name servers"
 msgstr "Servidores de nombres"
 
-#: app/views/network/index.html.erb:202
+#: app/views/network/index.html.erb:272
 msgid "Search domains"
 msgstr "Dominios de búsqueda"
 
-#: app/views/network/index.html.erb:212
+#: app/views/network/index.html.erb:282
 msgid "Default route"
 msgstr "Ruta por defecto"
 

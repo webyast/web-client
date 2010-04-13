@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-11 15:43+0100\n"
-"PO-Revision-Date: 2010-03-24 15:28\n"
+"POT-Creation-Date: 2010-03-30 10:00+0200\n"
+"PO-Revision-Date: 2010-04-08 10:58\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,23 +21,24 @@ msgstr " 或 "
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "取消"
-
-#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "上一步"
 
-#: app/helpers/application_helper.rb:46
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "取消"
+
+#: app/helpers/application_helper.rb:54
 msgid "Next"
 msgstr "下一步"
 
-#: app/helpers/application_helper.rb:47
+#: app/helpers/application_helper.rb:55
 msgid "Save"
 msgstr "儲存"
 
-#: app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:56
 msgid "Finish"
 msgstr "完成"
 
@@ -105,39 +106,43 @@ msgstr "您已經登出。"
 msgid "Session timeout"
 msgstr "工作階段逾時"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:75
 msgid "You must accept all EULAs before using this product!"
 msgstr "使用此產品前必須接受所有 EULA！"
 
-#: app/controllers/application_controller.rb:68
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr "無法重新導向到 EULA。請確定已安裝 yast2-webclient-eulas 套件"
+#: app/controllers/application_controller.rb:79
+msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
+msgstr "無法重新導向到 EULA。請確定已安裝 webyast-licenses-ui 套件"
 
-#: app/controllers/application_controller.rb:123
+#: app/controllers/application_controller.rb:95
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr "您不允許執行此動作。如果一定要執行，請聯絡系統管理員"
+
+#: app/controllers/application_controller.rb:135
 msgid "Please login to continue"
 msgstr "請登入以繼續"
 
-#: app/controllers/application_controller.rb:130
+#: app/controllers/application_controller.rb:142
 msgid "You must logout before you can login"
 msgstr "您必須先登出，然後才能登入"
 
-#: app/controllers/application_controller.rb:204
+#: app/controllers/application_controller.rb:216
 msgid "can't be blank"
 msgstr "不能留空"
 
-#: app/controllers/application_controller.rb:205
+#: app/controllers/application_controller.rb:217
 msgid "is out of allowed values"
 msgstr "超出允許範圍"
 
-#: app/controllers/application_controller.rb:206
+#: app/controllers/application_controller.rb:218
 msgid "can't be empty"
 msgstr "不能為空白"
 
-#: app/controllers/application_controller.rb:207
+#: app/controllers/application_controller.rb:219
 msgid "is invalid"
 msgstr "無效"
 
-#: app/controllers/application_controller.rb:222
+#: app/controllers/application_controller.rb:234
 msgid "Invalid parameters:"
 msgstr "無效的參數︰"
 
@@ -249,15 +254,15 @@ msgstr "編輯 YaST Web 服務"
 msgid "YaST-Web-Service"
 msgstr "YaST Web 服務"
 
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
 msgstr "名稱"
 
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
 msgstr "描述"
 
@@ -273,11 +278,15 @@ msgstr "請選擇一項服務："
 msgid "Really delete host %s ?"
 msgstr "確定要刪除主機 %s 嗎？"
 
-#: app/views/hosts/new.html.erb:4
+#: app/views/hosts/new.html.erb:9
 msgid "New WebYaST Host"
 msgstr "新 WebYaST 主機"
 
-#: app/views/hosts/new.html.erb:47
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr "URL"
+
+#: app/views/hosts/new.html.erb:53
 msgid "Create"
 msgstr "建立"
 
@@ -285,51 +294,59 @@ msgstr "建立"
 msgid "Index"
 msgstr "索引"
 
-#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:61
+#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "組態"
 
-#: app/views/controlpanel/index.rhtml:24
+#: app/views/controlpanel/index.rhtml:27
 msgid "Status"
 msgstr "狀態"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:35
 msgid "System actions"
 msgstr "系統動作"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
 msgstr "重新開機"
 
-#: app/views/controlpanel/index.rhtml:35
+#: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
 msgstr "確定要將 %s 重新開機？"
 
-#: app/views/controlpanel/index.rhtml:36
+#: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
 msgstr "關閉"
 
-#: app/views/controlpanel/index.rhtml:37
+#: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
 msgstr "確定要關閉 %s？"
 
-#: app/views/controlpanel/index.rhtml:44
+#: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
 msgstr "正在載入修補程式資訊"
 
-#: app/views/controlpanel/index.rhtml:46
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr "組態檔案中已停用修補程式狀態摘要。"
+
+#: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
 msgstr "未安裝修正外掛程式。"
 
-#: app/views/controlpanel/index.rhtml:52
+#: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
 msgstr "正在載入系統資訊"
 
-#: app/views/controlpanel/index.rhtml:54
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr "組態檔案中已停用系統狀態摘要。"
+
+#: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
 msgstr "未安裝狀態外掛程式。"
 
-#: app/views/controlpanel/index.rhtml:91
+#: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
 msgstr "顯示所有模組"
 
@@ -342,38 +359,38 @@ msgid "Your initial system setup was not completed. Please continue with setting
 msgstr "您的啟始系統設定未完成。請繼續接著設定模組。"
 
 #: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "設定系統"
+msgid "Continue initial system setup"
+msgstr "繼續進行啟始系統設定"
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:48
+#: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
 msgstr "我的裝置"
 
-#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
 msgid "Language:"
 msgstr "語言︰"
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
 msgstr "連接的主機︰"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
 msgstr "使用者："
 
-#: app/views/layouts/main.rhtml:64
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "控制台"
 
-#: app/views/layouts/main.rhtml:65
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "登出"
 
-#: app/views/layouts/main.rhtml:100
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr "...等待..."
 

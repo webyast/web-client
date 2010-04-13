@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_mail\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-25 07:18\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 11:43\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/mail_controller.rb:28
+#: app/controllers/mail_controller.rb:29
 msgid "Passwords do not match."
 msgstr "Hesla se neshodují."
 
-#: app/controllers/mail_controller.rb:35
+#: app/controllers/mail_controller.rb:36
 msgid "Mail settings have been written."
 msgstr "Nastavení pošty byla zapsána."
 
-#: app/controllers/mail_controller.rb:37
+#: app/controllers/mail_controller.rb:38
 msgid "Test mail was sent to %s."
 msgstr "Testovací e-mail byl odeslán na adresu %s."
 
-#: app/controllers/mail_controller.rb:49
+#: app/controllers/mail_controller.rb:50
 msgid "Error while saving mail settings: %s"
 msgstr "Při zápisu nastavení pošty došlo k chybě: %s"
 
-#: app/controllers/mail_controller.rb:66
+#: app/controllers/mail_controller.rb:67
 msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
 msgstr "Není nastaven server odchozí pošty, ale správce definoval servery pro předávání.\nZměňte konfiguraci %s<i>správce</i>%s nebo %s<i>pošty</i>%s."
 
@@ -45,43 +45,47 @@ msgstr "Hesla se neshodují."
 msgid "Enter a valid e-mail address."
 msgstr "Zadejte platnou e-mailovou adresu."
 
-#: app/views/mail/index.html.erb:34
+#: app/views/mail/index.html.erb:44
 msgid "Mail Settings"
 msgstr "Nastavení pošty"
 
-#: app/views/mail/index.html.erb:44
+#: app/views/mail/index.html.erb:54
 msgid "Outgoing mail server"
 msgstr "Server odchozí pošty"
 
-#: app/views/mail/index.html.erb:47
+#: app/views/mail/index.html.erb:57
 msgid "Use secure connection (TLS)"
 msgstr "Použít zabezpečené připojení (TSL)"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "Never"
 msgstr "Nikdy"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "If available"
 msgstr "Je-li k dispozici"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "Always"
 msgstr "Vždy"
 
-#: app/views/mail/index.html.erb:50
+#: app/views/mail/index.html.erb:60
 msgid "User name"
 msgstr "Uživatelské jméno"
 
-#: app/views/mail/index.html.erb:53
+#: app/views/mail/index.html.erb:63
 msgid "Password"
 msgstr "Heslo"
 
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:66
 msgid "Confirm password"
 msgstr "Potvrzení hesla"
 
-#: app/views/mail/index.html.erb:60
+#: app/views/mail/index.html.erb:74
 msgid "Send test mail to"
 msgstr "Odeslat testovací e-mail na adresu"
+
+#: app/views/mail/index.html.erb:76
+msgid "Send Mail"
+msgstr "Odeslat poštu"
 

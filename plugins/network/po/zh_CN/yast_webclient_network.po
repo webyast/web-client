@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-24 15:11\n"
+"POT-Creation-Date: 2010-03-30 10:00+0200\n"
+"PO-Revision-Date: 2010-04-07 11:31\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -29,71 +29,95 @@ msgstr "自动"
 msgid "Network settings have been written."
 msgstr "网络设置已写入。"
 
-#: app/views/network/index.html.erb:93
+#: app/views/network/index.html.erb:116
+msgid "whitespace - invalid character."
+msgstr "空格 － 无效字符。"
+
+#: app/views/network/index.html.erb:118
+msgid " - can not start with a digit."
+msgstr " － 不能以数字开头。"
+
+#: app/views/network/index.html.erb:120
+msgid "periodic '-' is not allowed."
+msgstr "不允许循环使用“-”字符。"
+
+#: app/views/network/index.html.erb:122
+msgid "can not end with (-) hyphen."
+msgstr "不能以连字符 (-) 结尾。"
+
+#: app/views/network/index.html.erb:125
+msgid "can not start with (-) hyphen."
+msgstr "不能以连字符 (-) 开头。"
+
+#: app/views/network/index.html.erb:127
+msgid " - is invalid character for hostname."
+msgstr " － 是无效的主机名字符。"
+
+#: app/views/network/index.html.erb:152
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "IP 地址格式无效。正确格式为 nnn.nnn.nnn.nnn，其中 nnn 介于 0 到 255 之间。"
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:161
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "前缀格式无效。正确格式为 /nn，其中 nn 介于 0-32（CIDR 格式）之间。"
 
-#: app/views/network/index.html.erb:108
+#: app/views/network/index.html.erb:167
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "默认路由格式无效。正确格式为 nnn.nnn.nnn.nnn，其中 nnn 介于 0 到 255 之间。"
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:173
 msgid "Name servers are required. There must be at least one specified."
 msgstr "需要名称服务器。必须至少指定一台。"
 
-#: app/views/network/index.html.erb:120
+#: app/views/network/index.html.erb:179
 msgid "Hostname is required. It must be specified."
 msgstr "需要主机名。必须指定主机名。"
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:185
 msgid "Domain is required. An empty domain is not supported."
 msgstr "需要域。不支持空的域。"
 
-#: app/views/network/index.html.erb:137
+#: app/views/network/index.html.erb:206
 msgid "Network"
 msgstr "网络"
 
-#: app/views/network/index.html.erb:146
+#: app/views/network/index.html.erb:215
 msgid "Interface"
 msgstr "接口"
 
-#: app/views/network/index.html.erb:151
+#: app/views/network/index.html.erb:220
 msgid "Select"
 msgstr "选择"
 
-#: app/views/network/index.html.erb:168
+#: app/views/network/index.html.erb:237
 msgid "Configuration mode"
 msgstr "配置模式"
 
-#: app/views/network/index.html.erb:177
+#: app/views/network/index.html.erb:246
 msgid "IP address"
 msgstr "IP 地址"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:250
 msgid "Subnet mask / Prefixlen"
 msgstr "子网掩码/Prefixlen"
 
-#: app/views/network/index.html.erb:190
+#: app/views/network/index.html.erb:259
 msgid "Hostname"
 msgstr "主机名"
 
-#: app/views/network/index.html.erb:194
+#: app/views/network/index.html.erb:264
 msgid "Domain"
 msgstr "域"
 
-#: app/views/network/index.html.erb:198
+#: app/views/network/index.html.erb:268
 msgid "Name servers"
 msgstr "名称服务器"
 
-#: app/views/network/index.html.erb:202
+#: app/views/network/index.html.erb:272
 msgid "Search domains"
 msgstr "搜索域"
 
-#: app/views/network/index.html.erb:212
+#: app/views/network/index.html.erb:282
 msgid "Default route"
 msgstr "默认路由"
 

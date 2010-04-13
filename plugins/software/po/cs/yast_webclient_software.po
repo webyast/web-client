@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_software\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-25 07:18\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 11:43\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,32 +13,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:65
+#: app/helpers/repositories_helper.rb:5
+msgid "Highest"
+msgstr "Nejvyšší"
+
+#: app/helpers/repositories_helper.rb:6
+msgid "Higher"
+msgstr "Vysoký"
+
+#: app/helpers/repositories_helper.rb:7
+msgid "Default"
+msgstr "Výchozí"
+
+#: app/helpers/repositories_helper.rb:8
+msgid "Low"
+msgstr "Nízký"
+
+#: app/helpers/repositories_helper.rb:9
+msgid "Lowest"
+msgstr "Nejnižší"
+
+#: app/helpers/repositories_helper.rb:15
+msgid "Highest priority"
+msgstr "Nejvyšší priorita"
+
+#: app/helpers/repositories_helper.rb:16
+msgid "Higher priority"
+msgstr "Vysoká priorita"
+
+#: app/helpers/repositories_helper.rb:18
+msgid "Low priority"
+msgstr "Nízká priorita"
+
+#: app/helpers/repositories_helper.rb:19
+msgid "Lowest priority"
+msgstr "Nejnižší priorita"
+
+#: app/helpers/repositories_helper.rb:24
+msgid "Custom priority"
+msgstr "Vlastní priorita"
+
+#: app/helpers/repositories_helper.rb:29
+msgid "Custom"
+msgstr "Vlastní"
+
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:70
+msgid "enable"
+msgstr "zapnout"
+
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:75
+msgid "disable"
+msgstr "vypnout"
+
+#: app/helpers/repositories_helper.rb:45
+msgid "enabled"
+msgstr "zapnuto"
+
+#: app/helpers/repositories_helper.rb:45
+msgid "disabled"
+msgstr "vypnuto"
+
+#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:64
 msgid "Alias"
 msgstr "Alias"
 
-#: app/controllers/repositories_controller.rb:15 app/views/repositories/show.html.erb:74
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:102
+#: app/views/repositories/show.html.erb:73
 msgid "Enabled"
 msgstr "Zapnuto"
 
-#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:79
+#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:78
 msgid "Autorefresh"
 msgstr "Automatické obnovení"
 
-#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:84
+#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:83
 #: app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "Název"
 
-#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:89
+#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:88
 msgid "URL"
 msgstr "URL"
 
-#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:94
+#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:93
 msgid "Priority"
 msgstr "Priorita"
 
-#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:99
+#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:98
 msgid "Keep downloaded packages"
 msgstr "Zachovat stažené balíčky"
 
@@ -46,91 +107,127 @@ msgstr "Zachovat stažené balíčky"
 msgid "Cannot read repository list."
 msgstr "Nelze načíst seznam úložišť."
 
-#: app/controllers/repositories_controller.rb:41 app/controllers/repositories_controller.rb:60
-#: app/controllers/repositories_controller.rb:83
+#: app/controllers/repositories_controller.rb:43 app/controllers/repositories_controller.rb:62
+#: app/controllers/repositories_controller.rb:89
 msgid "Missing repository parameter"
 msgstr "Chybí parametr úložiště"
 
-#: app/controllers/repositories_controller.rb:111 app/controllers/repositories_controller.rb:197
+#: app/controllers/repositories_controller.rb:117 app/controllers/repositories_controller.rb:201
 msgid "Invalid priority"
 msgstr "Neplatná priorita"
 
-#: app/controllers/repositories_controller.rb:185
+#: app/controllers/repositories_controller.rb:189
 msgid "Missing repository parameters"
 msgstr "Chybí parametry úložiště"
 
-#: app/controllers/repositories_controller.rb:222
+#: app/controllers/repositories_controller.rb:226
 msgid "Unknown backend error"
 msgstr "Neznámá chyba systému backend"
 
-#: app/controllers/repositories_controller.rb:233
+#: app/controllers/repositories_controller.rb:237
 msgid "Error: Missing repository id."
 msgstr "Chyba: Chybí id úložiště."
 
-#: app/controllers/repositories_controller.rb:237
+#: app/controllers/repositories_controller.rb:241
 msgid "Error: Missing 'enabled' parameter."
 msgstr "Chyba: Chybí parametr „enabled“."
 
-#: app/controllers/repositories_controller.rb:267
+#: app/controllers/repositories_controller.rb:271
 msgid "Unknown backend error."
 msgstr "Neznámá chyba systému backend."
 
-#: app/controllers/patch_updates_controller.rb:40 app/controllers/patch_updates_controller.rb:43
+#: app/controllers/patch_updates_controller.rb:45 app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
 msgid "A problem occured when loading patch information."
 msgstr "Při načítání informací o opravě došlo k chybě."
 
-#: app/controllers/patch_updates_controller.rb:97
+#: app/controllers/patch_updates_controller.rb:105
 msgid "Installing all patches..."
 msgstr "Instalace všech oprav..."
 
-#: app/controllers/patch_updates_controller.rb:105
+#: app/controllers/patch_updates_controller.rb:113
 msgid "Installation stopped"
 msgstr "Instalace zastavena"
 
-#: app/controllers/patch_updates_controller.rb:142
+#: app/controllers/patch_updates_controller.rb:150
 msgid "Installation finished"
 msgstr "Instalace dokončena"
 
-#: app/controllers/patch_updates_controller.rb:144
+#: app/controllers/patch_updates_controller.rb:152
 msgid "%s installed."
 msgstr "Nainstalováno: %s"
 
-#: app/controllers/patch_updates_controller.rb:173
+#: app/controllers/patch_updates_controller.rb:181
 msgid "Patch has been installed."
 msgstr "Oprava byla nainstalována."
 
-#: app/views/repositories/index.html.erb:7 app/views/repositories/show.html.erb:45
-msgid "Software Repositories"
-msgstr "Úložiště softwaru"
-
-#: app/views/repositories/index.html.erb:12
-msgid "No software repository configured."
-msgstr "Žádné úložiště softwaru nebylo nakonfigurováno."
-
-#: app/views/repositories/index.html.erb:14
-msgid "Configured software repositories"
-msgstr "Nakonfigurovaná úložiště softwaru"
-
-#: app/views/repositories/index.html.erb:39
-msgid "Really delete repository '%s'?"
-msgstr "Opravdu chcete úložiště „%s“ odstranit?"
-
-#: app/views/repositories/index.html.erb:52
-msgid "Add"
-msgstr "Přidat"
-
-#: app/views/repositories/index.html.erb:52
-msgid "a new repository"
-msgstr "nové úložiště"
-
-#: app/views/repositories/show.html.erb:16
+#: app/views/repositories/index.html.erb:17 app/views/repositories/show.html.erb:16
 msgid "Enter a valid repository URL."
 msgstr "Zadejte platnou adresu URL úložiště."
 
-#: app/views/repositories/show.html.erb:24
+#: app/views/repositories/index.html.erb:25 app/views/repositories/show.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
 msgstr "V aliasu úložiště nejsou povoleny znaky <b>%s</b>."
+
+#: app/views/repositories/index.html.erb:29 app/views/repositories/show.html.erb:34
+msgid "This value cannot be empty."
+msgstr "Tato hodnota nesmí být prázdná."
+
+#: app/views/repositories/index.html.erb:46
+msgid "Quick Search"
+msgstr "Rychlé vyhledávání"
+
+#: app/views/repositories/index.html.erb:91 app/views/repositories/show.html.erb:45
+msgid "Software Repositories"
+msgstr "Úložiště softwaru"
+
+#: app/views/repositories/index.html.erb:96
+msgid "Configured software repositories"
+msgstr "Nakonfigurovaná úložiště softwaru"
+
+#: app/views/repositories/index.html.erb:99
+msgid "Filter repositories"
+msgstr "Filtrovat úložiště"
+
+#: app/views/repositories/index.html.erb:101
+msgid "All"
+msgstr "Vše"
+
+#: app/views/repositories/index.html.erb:103
+msgid "Disabled"
+msgstr "Vypnuto"
+
+#: app/views/repositories/index.html.erb:153
+msgid "Repository will be %s."
+msgstr "Možnost Úložiště má hodnotu %s."
+
+#: app/views/repositories/index.html.erb:160
+msgid "Autorefresh will be %s."
+msgstr "Možnost Automatické obnovení má hodnotu %s."
+
+#: app/views/repositories/index.html.erb:169
+msgid "Keep packages option will be %s."
+msgstr "Možnost Zachovat balíčky má hodnotu %s."
+
+#: app/views/repositories/index.html.erb:176
+msgid "Save"
+msgstr "Uložit"
+
+#: app/views/repositories/index.html.erb:177
+msgid "Delete"
+msgstr "Odstranit"
+
+#: app/views/repositories/index.html.erb:179
+msgid "Really delete repository '%s'?"
+msgstr "Opravdu chcete úložiště „%s“ odstranit?"
+
+#: app/views/repositories/index.html.erb:194
+msgid "Add"
+msgstr "Přidat"
+
+#: app/views/repositories/index.html.erb:194
+msgid "a new repository"
+msgstr "nové úložiště"
 
 #: app/views/repositories/show.html.erb:31
 msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
@@ -144,10 +241,6 @@ msgstr "Priorita musí být kladné číslo."
 msgid "Priority must be less than 200."
 msgstr "Priorita musí být nižší než 200."
 
-#: app/views/repositories/show.html.erb:34
-msgid "This value cannot be empty."
-msgstr "Tato hodnota nesmí být prázdná."
-
 #: app/views/repositories/show.html.erb:48
 msgid "Add a new repository"
 msgstr "Přidat nové úložiště"
@@ -160,7 +253,7 @@ msgstr "Vlastnosti"
 msgid "Edit Properties of"
 msgstr "Upravit vlastnosti"
 
-#: app/views/repositories/show.html.erb:61
+#: app/views/repositories/show.html.erb:60
 msgid "Repository"
 msgstr "Úložiště"
 
@@ -188,7 +281,7 @@ msgstr "Jste si jisti?"
 msgid "Updates"
 msgstr "Aktualizace"
 
-#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:28
+#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:35
 msgid "Your system is up to date."
 msgstr "Systém je aktuální."
 
@@ -236,23 +329,35 @@ msgstr "Zdroj"
 msgid "Install"
 msgstr "Nainstalovat"
 
-#: app/views/patch_updates/_patch_summary.html.erb:6
+#: app/views/patch_updates/_patch_summary.html.erb:9
+msgid "Cannot read patch updates - you have been logged out."
+msgstr "Aktualizace oprav nelze číst – byli jste odhlášeni."
+
+#: app/views/patch_updates/_patch_summary.html.erb:12
 msgid "No information about patches available"
 msgstr "Nejsou k dispozici žádné informace o opravách."
 
-#: app/views/patch_updates/_patch_summary.html.erb:19
+#: app/views/patch_updates/_patch_summary.html.erb:26
 msgid "Security Updates: %d"
 msgstr "Aktualizace zabezpečení: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:22
+#: app/views/patch_updates/_patch_summary.html.erb:29
 msgid "Important Updates: %d"
 msgstr "Důležité aktualizace: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:25
+#: app/views/patch_updates/_patch_summary.html.erb:32
 msgid "Optional Updates: %d"
 msgstr "Volitelné aktualizace: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:33
+#: app/views/patch_updates/_patch_summary.html.erb:40
+msgid "Update All"
+msgstr "Aktualizovat vše"
+
+#: app/views/patch_updates/_patch_summary.html.erb:40
 msgid "Updating all. Are you sure?"
 msgstr "Aktualizovat vše. Jste si jisti?"
+
+#: app/views/patch_updates/_patch_summary.html.erb:47
+msgid "Loading patch information"
+msgstr "Načítání informací o opravě"
 

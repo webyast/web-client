@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-24 12:28\n"
+"POT-Creation-Date: 2010-03-30 15:01+0200\n"
+"PO-Revision-Date: 2010-04-07 13:30\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:105
+#: app/controllers/status_controller.rb:131
 msgid "No data found for showing system status."
 msgstr "No se han encontrado datos para mostrar el estado del sistema."
 
-#: app/controllers/status_controller.rb:134
+#: app/controllers/status_controller.rb:187
 msgid "Limits exceeded for "
 msgstr "Se ha superado el límite para "
 
-#: app/controllers/status_controller.rb:208
+#: app/controllers/status_controller.rb:307
 msgid "exceeded"
 msgstr "ha superado"
 
-#: app/controllers/status_controller.rb:222
+#: app/controllers/status_controller.rb:321
 msgid "undercut"
 msgstr "están por debajo de"
 
-#: app/controllers/status_controller.rb:313
+#: app/controllers/status_controller.rb:423
 msgid "Limits have been written."
 msgstr "Se han escrito los límites."
 
@@ -37,51 +37,23 @@ msgstr "Se han escrito los límites."
 msgid "Only numbers are valid !"
 msgstr "Sólo son válidos los números."
 
-#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
 msgid "Status"
 msgstr "Estado"
 
-#: app/views/status/edit.html.erb:47
+#: app/views/status/edit.html.erb:51
 msgid "Settings"
 msgstr "Configuración"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "undercuts"
 msgstr "está por debajo de"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "exceeds"
 msgstr "supera"
 
-#: app/views/status/index.html.erb:49
-msgid "Show last"
-msgstr "Mostrar últimos"
-
-#: app/views/status/index.html.erb:50
-msgid "5 Minutes"
-msgstr "5 minutos"
-
-#: app/views/status/index.html.erb:51
-msgid "15 Minutes"
-msgstr "15 minutos"
-
-#: app/views/status/index.html.erb:52
-msgid "30 Minutes"
-msgstr "30 minutos"
-
-#: app/views/status/index.html.erb:53
-msgid "1 Hour"
-msgstr "1 hora"
-
-#: app/views/status/index.html.erb:54
-msgid "6 Hours"
-msgstr "6 horas"
-
-#: app/views/status/index.html.erb:55
-msgid "12 Hours"
-msgstr "12 horas"
-
-#: app/views/status/index.html.erb:96
+#: app/views/status/index.html.erb:114
 msgid "Edit Limits"
 msgstr "Editar límites"
 
@@ -89,11 +61,79 @@ msgstr "Editar límites"
 msgid "A problem occured when loading status information."
 msgstr "Error al cargar la información de estado."
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_graph.html.erb:60
+msgid "Show last"
+msgstr "Mostrar últimos"
+
+#: app/views/status/_status_graph.html.erb:61
+msgid "5 Minutes"
+msgstr "5 minutos"
+
+#: app/views/status/_status_graph.html.erb:62
+msgid "15 Minutes"
+msgstr "15 minutos"
+
+#: app/views/status/_status_graph.html.erb:63
+msgid "30 Minutes"
+msgstr "30 minutos"
+
+#: app/views/status/_status_graph.html.erb:64
+msgid "1 Hour"
+msgstr "1 hora"
+
+#: app/views/status/_status_graph.html.erb:65
+msgid "6 Hours"
+msgstr "6 horas"
+
+#: app/views/status/_status_graph.html.erb:66
+msgid "12 Hours"
+msgstr "12 horas"
+
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
 msgstr "Error al cargar la información de estado"
 
-#: app/views/status/_status_summary.html.erb:10
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "No es posible leer el estado del sistema. Ha salido de la sesión."
+
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "El sistema está saludable."
+
+#: app/views/status/_status_summary.html.erb:20
+msgid "start"
+msgstr "iniciar"
+
+#: app/views/status/_status_summary.html.erb:28
+msgid "Loading system information"
+msgstr "Cargando información del sistema"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr "Comprobando estado del sistema"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "Falta el registro"
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "Registre el sistema para poder obtener actualizaciones"
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "registrar"
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "Prueba de configuración de correo no confirmada"
+
+#: lib/plugin_translation.rb:30
+msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
+msgstr "Durante la configuración del correo, el correo de prueba se envió a %s . ¿Se ha entregado correctamente este correo en esta dirección?<br> Si es así, confírmelo presionando el botón. Si no es así, vuelva a comprobar la configuración, incluido el archivo /var/log/mail."
+
+#: lib/plugin_translation.rb:33
+msgid "Test mail received"
+msgstr "Correo de prueba recibido"
 

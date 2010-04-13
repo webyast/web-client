@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-11 15:43+0100\n"
-"PO-Revision-Date: 2010-03-24 14:45\n"
+"POT-Creation-Date: 2010-03-30 10:00+0200\n"
+"PO-Revision-Date: 2010-04-07 13:51\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,23 +21,24 @@ msgstr " ou "
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Voltar"
 
-#: app/helpers/application_helper.rb:46
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/helpers/application_helper.rb:54
 msgid "Next"
 msgstr "Avançar"
 
-#: app/helpers/application_helper.rb:47
+#: app/helpers/application_helper.rb:55
 msgid "Save"
 msgstr "Gravar"
 
-#: app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:56
 msgid "Finish"
 msgstr "Concluir"
 
@@ -105,39 +106,43 @@ msgstr "Você foi desconectado."
 msgid "Session timeout"
 msgstr "Tempo de espera da sessão"
 
-#: app/controllers/application_controller.rb:64
+#: app/controllers/application_controller.rb:75
 msgid "You must accept all EULAs before using this product!"
 msgstr "Você deve aceitar todos os EULAs antes de usar este produto!"
 
-#: app/controllers/application_controller.rb:68
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr "Impossível redirecionar para o EULA. Verifique se o pacote yast2-webclient-eulas está instalado"
+#: app/controllers/application_controller.rb:79
+msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
+msgstr "Impossível redirecionar para o EULA. Verifique se o pacote webyast-licenses-ui está instalado"
 
-#: app/controllers/application_controller.rb:123
+#: app/controllers/application_controller.rb:95
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr "Você não tem permissão para isso. Se tiver que executar essa ação, entre em contato com o administrador do sistema"
+
+#: app/controllers/application_controller.rb:135
 msgid "Please login to continue"
 msgstr "Efetue login para continuar"
 
-#: app/controllers/application_controller.rb:130
+#: app/controllers/application_controller.rb:142
 msgid "You must logout before you can login"
 msgstr "Você deve efetuar logout antes do login"
 
-#: app/controllers/application_controller.rb:204
+#: app/controllers/application_controller.rb:216
 msgid "can't be blank"
 msgstr "não pode ficar em branco"
 
-#: app/controllers/application_controller.rb:205
+#: app/controllers/application_controller.rb:217
 msgid "is out of allowed values"
 msgstr "está fora dos valores permitidos"
 
-#: app/controllers/application_controller.rb:206
+#: app/controllers/application_controller.rb:218
 msgid "can't be empty"
 msgstr "não pode estar vazio"
 
-#: app/controllers/application_controller.rb:207
+#: app/controllers/application_controller.rb:219
 msgid "is invalid"
 msgstr "é inválido"
 
-#: app/controllers/application_controller.rb:222
+#: app/controllers/application_controller.rb:234
 msgid "Invalid parameters:"
 msgstr "Parâmetros inválidos:"
 
@@ -249,15 +254,15 @@ msgstr "Editando o YaST-Web-Service"
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
 msgstr "Nome"
 
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
 msgstr "Descrição"
 
@@ -273,11 +278,15 @@ msgstr "Escolha um serviço:"
 msgid "Really delete host %s ?"
 msgstr "Deseja realmente apagar o host %s ?"
 
-#: app/views/hosts/new.html.erb:4
+#: app/views/hosts/new.html.erb:9
 msgid "New WebYaST Host"
 msgstr "Novo Host WebYaST"
 
-#: app/views/hosts/new.html.erb:47
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr "URL"
+
+#: app/views/hosts/new.html.erb:53
 msgid "Create"
 msgstr "Criar"
 
@@ -285,51 +294,59 @@ msgstr "Criar"
 msgid "Index"
 msgstr "Índice"
 
-#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:61
+#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "Configuração"
 
-#: app/views/controlpanel/index.rhtml:24
+#: app/views/controlpanel/index.rhtml:27
 msgid "Status"
 msgstr "Status"
 
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:35
 msgid "System actions"
 msgstr "Ações do sistema"
 
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
 msgstr "Reinicializar"
 
-#: app/views/controlpanel/index.rhtml:35
+#: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
 msgstr "Deseja realmente reinicializar %s?"
 
-#: app/views/controlpanel/index.rhtml:36
+#: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
 msgstr "Encerrar"
 
-#: app/views/controlpanel/index.rhtml:37
+#: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
 msgstr "Deseja realmente encerrar %s?"
 
-#: app/views/controlpanel/index.rhtml:44
+#: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
 msgstr "Carregando as informações do patch"
 
-#: app/views/controlpanel/index.rhtml:46
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr "O resumo de status do patch está desabilitado no arquivo de configuração."
+
+#: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
 msgstr "O plug-in do patch não está instalado."
 
-#: app/views/controlpanel/index.rhtml:52
+#: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
 msgstr "Carregando as informações do sistema"
 
-#: app/views/controlpanel/index.rhtml:54
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr "O resumo de status do sistema está desabilitado no arquivo de configuração."
+
+#: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
 msgstr "O plug-in de status não está instalado."
 
-#: app/views/controlpanel/index.rhtml:91
+#: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
 msgstr "Mostrar todos os módulos"
 
@@ -342,38 +359,38 @@ msgid "Your initial system setup was not completed. Please continue with setting
 msgstr "Sua configuração do sistema inicial não foi concluída. Continue com a configuração dos módulos."
 
 #: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Configurar o sistema"
+msgid "Continue initial system setup"
+msgstr "Continuar a configuração do sistema inicial"
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:48
+#: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
 msgstr "Minha Aplicação"
 
-#: app/views/layouts/main.rhtml:54 app/views/layouts/main.rhtml:58
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
 msgid "Language:"
 msgstr "Idioma:"
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
 msgstr "Host conectado:"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
 msgstr "Usuário:"
 
-#: app/views/layouts/main.rhtml:64
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "Painel de controle"
 
-#: app/views/layouts/main.rhtml:65
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "Logout"
 
-#: app/views/layouts/main.rhtml:100
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr "...Aguarde..."
 

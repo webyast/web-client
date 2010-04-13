@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-24 14:23\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 10:42\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,115 +13,196 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/users_controller.rb:160
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr "グループ名パラメータが不足しています"
+
+#: app/controllers/groups_controller.rb:27
+msgid "Missing group parameters"
+msgstr "グループパラメータが不足しています"
+
+#: app/controllers/groups_controller.rb:37
+msgid "Please enter a valid group name"
+msgstr "有効なグループ名を入力してください"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr "有効なGIDを入力してください"
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr "有効なグループタイプを入力してください。「システム」または「ローカル」だけが認められています。"
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr "有効なメンバーのリストを入力してください"
+
+#: app/controllers/groups_controller.rb:82
+msgid "Cannot read users list."
+msgstr "ユーザリストを読み込めません。"
+
+#: app/controllers/groups_controller.rb:105
+msgid "Cannot read groups list."
+msgstr "グループリストを読み込めません。"
+
+#: app/controllers/groups_controller.rb:177
+msgid "Unknown backend error"
+msgstr "未知のバックエンドエラー"
+
+#: app/controllers/users_controller.rb:164
 msgid "User <i>%s</i> was successfully created."
 msgstr "ユーザ <i>%s</i> の作成に成功しました。"
 
-#: app/controllers/users_controller.rb:204
+#: app/controllers/users_controller.rb:206
 msgid "User <i>%s</i> was successfully updated."
 msgstr "ユーザ <i>%s</i> の更新に成功しました。"
 
-#: app/controllers/users_controller.rb:225
+#: app/controllers/users_controller.rb:227
 msgid "User <i>%s</i> was successfully removed."
 msgstr "ユーザ <i>%s</i> の削除に成功しました。"
 
-#: app/controllers/users_controller.rb:227
+#: app/controllers/users_controller.rb:229
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "エラー:ユーザ <i>%s</i> を削除できませんでした。"
 
-#: app/views/users/edit.html.erb:62 app/views/users/new.html.erb:27
-msgid "Weak"
-msgstr "弱い"
-
-#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:28
-msgid "Normal"
-msgstr "通常"
-
-#: app/views/users/edit.html.erb:64 app/views/users/new.html.erb:29
-msgid "Medium"
-msgstr "中"
-
-#: app/views/users/edit.html.erb:65 app/views/users/new.html.erb:30
-msgid "Strong"
-msgstr "強い"
-
-#: app/views/users/edit.html.erb:66 app/views/users/new.html.erb:31
-msgid "Very Strong"
-msgstr "非常に強い"
-
-#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:46 app/views/users/new.html.erb:49
-msgid "Local Users"
-msgstr "ローカルユーザ"
-
-#: app/views/users/edit.html.erb:83
-msgid "Edit user %s"
-msgstr "ユーザ %s の編集"
-
-#: app/views/users/edit.html.erb:93
-msgid "Login Settings"
-msgstr "ログインの設定"
-
-#: app/views/users/edit.html.erb:96 app/views/users/new.html.erb:64
-msgid "Login Name"
-msgstr "ログイン名"
-
-#: app/views/users/edit.html.erb:101 app/views/users/new.html.erb:60
-msgid "Full Name"
-msgstr "氏名"
-
-#: app/views/users/edit.html.erb:105 app/views/users/new.html.erb:68
-msgid "Password"
-msgstr "パスワード"
-
-#: app/views/users/edit.html.erb:109 app/views/users/new.html.erb:75
-msgid "Confirm Password"
-msgstr "パスワードの確認"
-
-#: app/views/users/edit.html.erb:117 app/views/users/edit.html.erb:120 app/views/users/new.html.erb:84
+#: app/views/groups/edit.html.erb:4 app/views/groups/index.html.erb:38
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "グループ"
 
-#: app/views/users/edit.html.erb:126
+#: app/views/groups/edit.html.erb:6
+msgid "Add new group"
+msgstr "新しいグループを追加します"
+
+#: app/views/groups/edit.html.erb:8
+msgid "Modify group"
+msgstr "グループの変更"
+
+#: app/views/groups/edit.html.erb:18 app/views/groups/index.html.erb:49
+msgid "Group Name"
+msgstr "グループ名"
+
+#: app/views/groups/edit.html.erb:22
+msgid "Group ID"
+msgstr "グループID"
+
+#: app/views/groups/edit.html.erb:26
+msgid "Group Type"
+msgstr "グループの種類"
+
+#: app/views/groups/edit.html.erb:30
+msgid "Default members"
+msgstr "デフォルトギア"
+
+#: app/views/groups/edit.html.erb:34
+msgid "Members"
+msgstr "メンバー"
+
+#: app/views/groups/index.html.erb:26
+msgid "Type group name ..."
+msgstr "グループ名を入力..."
+
+#: app/views/groups/index.html.erb:29 app/views/users/index.html.erb:35
+msgid "Filter:"
+msgstr "フィルタ:"
+
+#: app/views/groups/index.html.erb:44
+msgid "Add New Group"
+msgstr "新しいグループの追加"
+
+#: app/views/groups/index.html.erb:50
+msgid "Type"
+msgstr "種類"
+
+#: app/views/groups/index.html.erb:51
+msgid "Action"
+msgstr "アクション"
+
+#: app/views/groups/index.html.erb:61
+msgid "Are you sure to delete group '%s'?"
+msgstr "本当にグループ%sを削除してもよろしいですか？"
+
+#: app/views/users/_user_form.erb:5
+msgid "Login Settings"
+msgstr "ログインの設定"
+
+#: app/views/users/_user_form.erb:8
+msgid "Login Name"
+msgstr "ログイン名"
+
+#: app/views/users/_user_form.erb:13
+msgid "Full Name"
+msgstr "氏名"
+
+#: app/views/users/_user_form.erb:17
+msgid "Password"
+msgstr "パスワード"
+
+#: app/views/users/_user_form.erb:21
+msgid "Confirm Password"
+msgstr "パスワードの確認"
+
+#: app/views/users/_user_form.erb:39
 msgid "Default Group"
 msgstr "デフォルトグループ"
 
-#: app/views/users/edit.html.erb:139
+#: app/views/users/_user_form.erb:61
 msgid "Advanced"
 msgstr "拡張"
 
-#: app/views/users/edit.html.erb:142 app/views/users/new.html.erb:109
+#: app/views/users/_user_form.erb:64
 msgid "Home Directory"
 msgstr "ホームディレクトリ"
 
-#: app/views/users/edit.html.erb:146 app/views/users/new.html.erb:117
+#: app/views/users/_user_form.erb:68
 msgid "Login Shell"
 msgstr "ログインシェル"
 
-#: app/views/users/edit.html.erb:150 app/views/users/new.html.erb:105
+#: app/views/users/_user_form.erb:72
 msgid "UID Number"
 msgstr "UID番号"
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "弱い"
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "通常"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+msgid "Medium"
+msgstr "中"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "強い"
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr "非常に強い"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:46 app/views/users/new.html.erb:86
+msgid "Local Users"
+msgstr "ローカルユーザ"
+
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr "ユーザ %s の編集"
 
 #: app/views/users/index.html.erb:32
 msgid "Type user name or login ..."
 msgstr "ユーザ名を入力するかまたはログインしてください ..."
 
-#: app/views/users/index.html.erb:35
-msgid "Filter:"
-msgstr "フィルタ:"
+#: app/views/users/index.html.erb:51
+msgid "Add New User"
+msgstr "新しいユーザの追加"
 
-#: app/views/users/index.html.erb:78
-msgid "New User..."
-msgstr "新規ユーザ..."
+#: app/views/users/index.html.erb:67
+msgid "Are you sure to delete user %s?"
+msgstr "本当にユーザ%sを削除してもよろしいですか？"
 
-#: app/views/users/new.html.erb:49
+#: app/views/users/new.html.erb:86
 msgid "Add new user"
 msgstr "新規ユーザの追加"
-
-#: app/views/users/new.html.erb:90
-msgid "Default Group (GID)"
-msgstr "デフォルトグループ(GID)"
-
-#: app/views/users/new.html.erb:113
-msgid "Do not create home directory"
-msgstr "ホームディレクトリを作成しません"
 

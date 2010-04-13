@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_software\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-25 09:19\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 08:13\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,32 +13,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:65
+#: app/helpers/repositories_helper.rb:5
+msgid "Highest"
+msgstr "Högsta"
+
+#: app/helpers/repositories_helper.rb:6
+msgid "Higher"
+msgstr "Högre"
+
+#: app/helpers/repositories_helper.rb:7
+msgid "Default"
+msgstr "Standard"
+
+#: app/helpers/repositories_helper.rb:8
+msgid "Low"
+msgstr "Låg"
+
+#: app/helpers/repositories_helper.rb:9
+msgid "Lowest"
+msgstr "Lägsta"
+
+#: app/helpers/repositories_helper.rb:15
+msgid "Highest priority"
+msgstr "Högsta prioritet"
+
+#: app/helpers/repositories_helper.rb:16
+msgid "Higher priority"
+msgstr "Högre prioritet"
+
+#: app/helpers/repositories_helper.rb:18
+msgid "Low priority"
+msgstr "Låg prioritet"
+
+#: app/helpers/repositories_helper.rb:19
+msgid "Lowest priority"
+msgstr "Lägsta prioritet"
+
+#: app/helpers/repositories_helper.rb:24
+msgid "Custom priority"
+msgstr "Egen prioritering"
+
+#: app/helpers/repositories_helper.rb:29
+msgid "Custom"
+msgstr "Egen"
+
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:70
+msgid "enable"
+msgstr "aktivera"
+
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:75
+msgid "disable"
+msgstr "inaktivera"
+
+#: app/helpers/repositories_helper.rb:45
+msgid "enabled"
+msgstr "aktiverad"
+
+#: app/helpers/repositories_helper.rb:45
+msgid "disabled"
+msgstr "inaktiverad"
+
+#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:64
 msgid "Alias"
 msgstr "Alias"
 
-#: app/controllers/repositories_controller.rb:15 app/views/repositories/show.html.erb:74
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:102
+#: app/views/repositories/show.html.erb:73
 msgid "Enabled"
 msgstr "Aktiverad"
 
-#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:79
+#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:78
 msgid "Autorefresh"
 msgstr "Automatisk uppdatering"
 
-#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:84
+#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:83
 #: app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "Namn"
 
-#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:89
+#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:88
 msgid "URL"
 msgstr "Webbadress"
 
-#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:94
+#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:93
 msgid "Priority"
 msgstr "Prioritet"
 
-#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:99
+#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:98
 msgid "Keep downloaded packages"
 msgstr "Spara hämtade paket"
 
@@ -46,91 +107,127 @@ msgstr "Spara hämtade paket"
 msgid "Cannot read repository list."
 msgstr "Det går inte att läsa listan över lagringsplatser."
 
-#: app/controllers/repositories_controller.rb:41 app/controllers/repositories_controller.rb:60
-#: app/controllers/repositories_controller.rb:83
+#: app/controllers/repositories_controller.rb:43 app/controllers/repositories_controller.rb:62
+#: app/controllers/repositories_controller.rb:89
 msgid "Missing repository parameter"
 msgstr "Det saknas en parameter för lagringsplats"
 
-#: app/controllers/repositories_controller.rb:111 app/controllers/repositories_controller.rb:197
+#: app/controllers/repositories_controller.rb:117 app/controllers/repositories_controller.rb:201
 msgid "Invalid priority"
 msgstr "Ogiltig prioritet"
 
-#: app/controllers/repositories_controller.rb:185
+#: app/controllers/repositories_controller.rb:189
 msgid "Missing repository parameters"
 msgstr "Saknade parametrar för lagringsplats"
 
-#: app/controllers/repositories_controller.rb:222
+#: app/controllers/repositories_controller.rb:226
 msgid "Unknown backend error"
 msgstr "Okänt backend-fel"
 
-#: app/controllers/repositories_controller.rb:233
+#: app/controllers/repositories_controller.rb:237
 msgid "Error: Missing repository id."
 msgstr "Fel: ID för lagringsplats saknas."
 
-#: app/controllers/repositories_controller.rb:237
+#: app/controllers/repositories_controller.rb:241
 msgid "Error: Missing 'enabled' parameter."
 msgstr "Fel: Parameter för aktivering saknas."
 
-#: app/controllers/repositories_controller.rb:267
+#: app/controllers/repositories_controller.rb:271
 msgid "Unknown backend error."
 msgstr "Okänt backend-fel."
 
-#: app/controllers/patch_updates_controller.rb:40 app/controllers/patch_updates_controller.rb:43
+#: app/controllers/patch_updates_controller.rb:45 app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
 msgid "A problem occured when loading patch information."
 msgstr "Ett fel inträffade när korrigeringsinformationen lästes in."
 
-#: app/controllers/patch_updates_controller.rb:97
+#: app/controllers/patch_updates_controller.rb:105
 msgid "Installing all patches..."
 msgstr "Installerar alla korrigeringar..."
 
-#: app/controllers/patch_updates_controller.rb:105
+#: app/controllers/patch_updates_controller.rb:113
 msgid "Installation stopped"
 msgstr "Installationen avbröts"
 
-#: app/controllers/patch_updates_controller.rb:142
+#: app/controllers/patch_updates_controller.rb:150
 msgid "Installation finished"
 msgstr "Installationen är slutförd"
 
-#: app/controllers/patch_updates_controller.rb:144
+#: app/controllers/patch_updates_controller.rb:152
 msgid "%s installed."
 msgstr "%s har installerats."
 
-#: app/controllers/patch_updates_controller.rb:173
+#: app/controllers/patch_updates_controller.rb:181
 msgid "Patch has been installed."
 msgstr "Korrigeringen har installerats."
 
-#: app/views/repositories/index.html.erb:7 app/views/repositories/show.html.erb:45
-msgid "Software Repositories"
-msgstr "Lagringsplats för programvara"
-
-#: app/views/repositories/index.html.erb:12
-msgid "No software repository configured."
-msgstr "Ingen lagringsplats för programvara har konfigurerats."
-
-#: app/views/repositories/index.html.erb:14
-msgid "Configured software repositories"
-msgstr "Konfigurerade lagringsplatser för programvara"
-
-#: app/views/repositories/index.html.erb:39
-msgid "Really delete repository '%s'?"
-msgstr "Vill du ta bort lagringsplatsen %s?"
-
-#: app/views/repositories/index.html.erb:52
-msgid "Add"
-msgstr "Lägg till"
-
-#: app/views/repositories/index.html.erb:52
-msgid "a new repository"
-msgstr "lägg till ny lagringsplats"
-
-#: app/views/repositories/show.html.erb:16
+#: app/views/repositories/index.html.erb:17 app/views/repositories/show.html.erb:16
 msgid "Enter a valid repository URL."
 msgstr "Ange en giltig webbadress till en lagringsplats."
 
-#: app/views/repositories/show.html.erb:24
+#: app/views/repositories/index.html.erb:25 app/views/repositories/show.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
 msgstr "Symbolerna <b>%s</b> är inte tillåtna i ett alias till en lagringsplats."
+
+#: app/views/repositories/index.html.erb:29 app/views/repositories/show.html.erb:34
+msgid "This value cannot be empty."
+msgstr "Detta värde får inte vara tomt."
+
+#: app/views/repositories/index.html.erb:46
+msgid "Quick Search"
+msgstr "Snabbsökning"
+
+#: app/views/repositories/index.html.erb:91 app/views/repositories/show.html.erb:45
+msgid "Software Repositories"
+msgstr "Lagringsplats för programvara"
+
+#: app/views/repositories/index.html.erb:96
+msgid "Configured software repositories"
+msgstr "Konfigurerade lagringsplatser för programvara"
+
+#: app/views/repositories/index.html.erb:99
+msgid "Filter repositories"
+msgstr "Filtrera arkiv"
+
+#: app/views/repositories/index.html.erb:101
+msgid "All"
+msgstr "Alla"
+
+#: app/views/repositories/index.html.erb:103
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+#: app/views/repositories/index.html.erb:153
+msgid "Repository will be %s."
+msgstr "Lagringsplats kommer att vara %s."
+
+#: app/views/repositories/index.html.erb:160
+msgid "Autorefresh will be %s."
+msgstr "Automatisk uppdatering kommer att vara %s."
+
+#: app/views/repositories/index.html.erb:169
+msgid "Keep packages option will be %s."
+msgstr "Alternativ för att behålla paket kommer att vara %s."
+
+#: app/views/repositories/index.html.erb:176
+msgid "Save"
+msgstr "Spara"
+
+#: app/views/repositories/index.html.erb:177
+msgid "Delete"
+msgstr "Ta bort"
+
+#: app/views/repositories/index.html.erb:179
+msgid "Really delete repository '%s'?"
+msgstr "Vill du ta bort lagringsplatsen %s?"
+
+#: app/views/repositories/index.html.erb:194
+msgid "Add"
+msgstr "Lägg till"
+
+#: app/views/repositories/index.html.erb:194
+msgid "a new repository"
+msgstr "lägg till ny lagringsplats"
 
 #: app/views/repositories/show.html.erb:31
 msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
@@ -144,10 +241,6 @@ msgstr "Prioriteten måste vara ett positivt tal."
 msgid "Priority must be less than 200."
 msgstr "Prioriteten måste vara mindre än 200."
 
-#: app/views/repositories/show.html.erb:34
-msgid "This value cannot be empty."
-msgstr "Detta värde får inte vara tomt."
-
 #: app/views/repositories/show.html.erb:48
 msgid "Add a new repository"
 msgstr "Lägg till ny lagringsplats"
@@ -160,7 +253,7 @@ msgstr "Egenskaper för"
 msgid "Edit Properties of"
 msgstr "Redigera egenskaper för"
 
-#: app/views/repositories/show.html.erb:61
+#: app/views/repositories/show.html.erb:60
 msgid "Repository"
 msgstr "Lagringsplats"
 
@@ -188,7 +281,7 @@ msgstr "Är du säker?"
 msgid "Updates"
 msgstr "Uppdateringar"
 
-#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:28
+#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:35
 msgid "Your system is up to date."
 msgstr "Systemet är uppdaterat."
 
@@ -236,23 +329,35 @@ msgstr "Källa"
 msgid "Install"
 msgstr "Installera"
 
-#: app/views/patch_updates/_patch_summary.html.erb:6
+#: app/views/patch_updates/_patch_summary.html.erb:9
+msgid "Cannot read patch updates - you have been logged out."
+msgstr "Det går inte att läsa korrigeringsuppdateringarna. Du har loggats ut."
+
+#: app/views/patch_updates/_patch_summary.html.erb:12
 msgid "No information about patches available"
 msgstr "Det finns ingen tillgänglig information om korrigeringar"
 
-#: app/views/patch_updates/_patch_summary.html.erb:19
+#: app/views/patch_updates/_patch_summary.html.erb:26
 msgid "Security Updates: %d"
 msgstr "Säkerhetsuppdateringar: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:22
+#: app/views/patch_updates/_patch_summary.html.erb:29
 msgid "Important Updates: %d"
 msgstr "Viktiga uppdateringar: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:25
+#: app/views/patch_updates/_patch_summary.html.erb:32
 msgid "Optional Updates: %d"
 msgstr "Valfria uppdateringar: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:33
+#: app/views/patch_updates/_patch_summary.html.erb:40
+msgid "Update All"
+msgstr "Uppdatera alla"
+
+#: app/views/patch_updates/_patch_summary.html.erb:40
 msgid "Updating all. Are you sure?"
 msgstr "Alla kommer att uppdateras. Vill du fortsätta?"
+
+#: app/views/patch_updates/_patch_summary.html.erb:47
+msgid "Loading patch information"
+msgstr "Läser in korrigeringsinformation"
 

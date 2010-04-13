@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-24 15:28\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 10:58\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,37 @@ msgstr ""
 msgid "(cannot read status)"
 msgstr "(無法讀取狀態)"
 
-#: app/controllers/services_controller.rb:56
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "成功"
+
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr "未指定的錯誤"
+
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
+msgstr "無效或多餘的引數"
+
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr "未執行的功能"
+
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr "使用者沒有足夠的權限"
+
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr "未安裝程式"
+
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr "未設定程式組態"
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr "程式未執行"
 
 #: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
@@ -29,7 +57,7 @@ msgstr "服務呼叫結果"
 msgid "Result"
 msgstr "結果"
 
-#: app/views/services/_result.rhtml:13
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "描述"
 
@@ -37,59 +65,99 @@ msgstr "描述"
 msgid "Quick Search"
 msgstr "快速搜尋"
 
-#: app/views/services/index.rhtml:89
+#: app/views/services/index.rhtml:126
 msgid "System Services"
 msgstr "系統服務"
 
-#: app/views/services/index.rhtml:95
+#: app/views/services/index.rhtml:132
 msgid "You do not have permission to execute the services."
 msgstr "您無權執行這些服務。"
 
-#: app/views/services/index.rhtml:99
+#: app/views/services/index.rhtml:136
 msgid "Filter services"
 msgstr "過濾服務"
 
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:138
 msgid "All"
 msgstr "全部"
 
-#: app/views/services/index.rhtml:102
+#: app/views/services/index.rhtml:139
 msgid "Running"
 msgstr "執行中"
 
-#: app/views/services/index.rhtml:103
+#: app/views/services/index.rhtml:140
 msgid "Not Running"
 msgstr "尚未執行"
 
-#: app/views/services/index.rhtml:104
+#: app/views/services/index.rhtml:141
 msgid "Dead"
 msgstr "停止"
 
-#: app/views/services/index.rhtml:120
+#: app/views/services/index.rhtml:142
+msgid "Started on Boot"
+msgstr "開機時啟動"
+
+#: app/views/services/index.rhtml:143
+msgid "Not Started on Boot"
+msgstr "開機時未啟動"
+
+#: app/views/services/index.rhtml:159
 msgid "Description for service is not available"
 msgstr "服務描述不可用"
 
-#: app/views/services/index.rhtml:173
-msgid "refresh status"
-msgstr "重新整理狀態"
+#: app/views/services/index.rhtml:178
+msgid "(refresh)"
+msgstr "(重新整理)"
 
-#: app/views/services/_status.rhtml:16
+#: app/views/services/index.rhtml:209
+msgid "Start"
+msgstr "啟動"
+
+#: app/views/services/index.rhtml:210
+msgid "Stop"
+msgstr "停止"
+
+#: app/views/services/index.rhtml:211
+msgid "Restart"
+msgstr "重新啟動"
+
+#: app/views/services/index.rhtml:212
+msgid "Start on Boot"
+msgstr "開機時啟動"
+
+#: app/views/services/index.rhtml:213
+msgid "Do Not Start on Boot"
+msgstr "開機時不啟動"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "服務將於開機時啟動。"
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "開機時不會啟動服務。"
+
+#: app/views/services/_status.rhtml:31
 msgid "status unknown"
 msgstr "狀態不明"
 
-#: app/views/services/_status.rhtml:18
+#: app/views/services/_status.rhtml:33
 msgid "running"
 msgstr "執行中"
 
-#: app/views/services/_status.rhtml:22
+#: app/views/services/_status.rhtml:37
 msgid "dead"
 msgstr "停止"
 
-#: app/views/services/_status.rhtml:26
+#: app/views/services/_status.rhtml:41
 msgid "not running"
 msgstr "尚未執行"
 
-#: app/views/services/_status.rhtml:30
+#: app/views/services/_status.rhtml:45
 msgid "status unknown: %d"
 msgstr "狀態不明︰%d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "服務的目前狀態︰"
 

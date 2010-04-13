@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-25 08:23\n"
+"POT-Creation-Date: 2010-03-30 15:01+0200\n"
+"PO-Revision-Date: 2010-04-08 11:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:105
+#: app/controllers/status_controller.rb:131
 msgid "No data found for showing system status."
 msgstr "لم يتم العثور على بيانات لإظهار حالة النظام."
 
-#: app/controllers/status_controller.rb:134
+#: app/controllers/status_controller.rb:187
 msgid "Limits exceeded for "
 msgstr "تم تجاوز الحدود لـ"
 
-#: app/controllers/status_controller.rb:208
+#: app/controllers/status_controller.rb:307
 msgid "exceeded"
 msgstr "تم تخطيه"
 
-#: app/controllers/status_controller.rb:222
+#: app/controllers/status_controller.rb:321
 msgid "undercut"
 msgstr "تحت"
 
-#: app/controllers/status_controller.rb:313
+#: app/controllers/status_controller.rb:423
 msgid "Limits have been written."
 msgstr "تمت كتابة إعدادات الوقت."
 
@@ -37,51 +37,23 @@ msgstr "تمت كتابة إعدادات الوقت."
 msgid "Only numbers are valid !"
 msgstr "الأرقام فقط هي الصالحة!"
 
-#: app/views/status/edit.html.erb:47 app/views/status/index.html.erb:24
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
 msgid "Status"
 msgstr "الحالة"
 
-#: app/views/status/edit.html.erb:47
+#: app/views/status/edit.html.erb:51
 msgid "Settings"
 msgstr "الإعدادات"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "undercuts"
 msgstr "يقل عن"
 
-#: app/views/status/edit.html.erb:62
+#: app/views/status/edit.html.erb:66
 msgid "exceeds"
 msgstr "يتجاوز"
 
-#: app/views/status/index.html.erb:49
-msgid "Show last"
-msgstr "إظهار الأخير"
-
-#: app/views/status/index.html.erb:50
-msgid "5 Minutes"
-msgstr "٥ دقائق"
-
-#: app/views/status/index.html.erb:51
-msgid "15 Minutes"
-msgstr "15 دقيقة"
-
-#: app/views/status/index.html.erb:52
-msgid "30 Minutes"
-msgstr "30 دقيقة"
-
-#: app/views/status/index.html.erb:53
-msgid "1 Hour"
-msgstr "ساعة واحدة"
-
-#: app/views/status/index.html.erb:54
-msgid "6 Hours"
-msgstr "٦ ساعات"
-
-#: app/views/status/index.html.erb:55
-msgid "12 Hours"
-msgstr "١٢ ساعة"
-
-#: app/views/status/index.html.erb:96
+#: app/views/status/index.html.erb:114
 msgid "Edit Limits"
 msgstr "تحرير الحدود"
 
@@ -89,11 +61,79 @@ msgstr "تحرير الحدود"
 msgid "A problem occured when loading status information."
 msgstr "حدثت مشكلة عند تحميل معلومات الحالة."
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_graph.html.erb:60
+msgid "Show last"
+msgstr "إظهار الأخير"
+
+#: app/views/status/_status_graph.html.erb:61
+msgid "5 Minutes"
+msgstr "٥ دقائق"
+
+#: app/views/status/_status_graph.html.erb:62
+msgid "15 Minutes"
+msgstr "15 دقيقة"
+
+#: app/views/status/_status_graph.html.erb:63
+msgid "30 Minutes"
+msgstr "30 دقيقة"
+
+#: app/views/status/_status_graph.html.erb:64
+msgid "1 Hour"
+msgstr "ساعة واحدة"
+
+#: app/views/status/_status_graph.html.erb:65
+msgid "6 Hours"
+msgstr "٦ ساعات"
+
+#: app/views/status/_status_graph.html.erb:66
+msgid "12 Hours"
+msgstr "١٢ ساعة"
+
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
 msgstr "حدثت مشكلة عند تحميل معلومات الحالة."
 
-#: app/views/status/_status_summary.html.erb:10
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "لا يمكن قراءة حالة النظام - لقد تم إخراجك."
+
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "النظام بحالة جيدة."
+
+#: app/views/status/_status_summary.html.erb:20
+msgid "start"
+msgstr "بدء"
+
+#: app/views/status/_status_summary.html.erb:28
+msgid "Loading system information"
+msgstr "تحميل معلومات النظام"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr "فحص حالة النظام"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "التسجيل مفقود"
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "الرجاء تسجيل النظام الخاص بك للحصول على التحديثات."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "تسجيل"
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "اختبار تكوين البريد غير مؤكد"
+
+#: lib/plugin_translation.rb:30
+msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
+msgstr "أثناء تكوين البريد، تم إرسال بريد اختباري إلى %s. هل تم تسليم البريد إلى هذا العنوان؟<br> إذا تم التسليم، قم بتأكيده من خلال الضغط على الزر. وبخلاف ذلك، قم بفحص تكوين البريد مرة أخرى، وكذلك الملف '/var/log/mail'."
+
+#: lib/plugin_translation.rb:33
+msgid "Test mail received"
+msgstr "تم استلام البريد الاختباري"
 

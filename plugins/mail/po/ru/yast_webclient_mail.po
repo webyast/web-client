@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_mail\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-25 08:23\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 12:14\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/mail_controller.rb:28
+#: app/controllers/mail_controller.rb:29
 msgid "Passwords do not match."
 msgstr "Пароли не совпадают."
 
-#: app/controllers/mail_controller.rb:35
+#: app/controllers/mail_controller.rb:36
 msgid "Mail settings have been written."
 msgstr "Параметры почты записаны."
 
-#: app/controllers/mail_controller.rb:37
+#: app/controllers/mail_controller.rb:38
 msgid "Test mail was sent to %s."
 msgstr "Тестовое почтовое сообщение было отправлено %s."
 
-#: app/controllers/mail_controller.rb:49
+#: app/controllers/mail_controller.rb:50
 msgid "Error while saving mail settings: %s"
 msgstr "Ошибка при сохранении параметров почты: %s"
 
-#: app/controllers/mail_controller.rb:66
+#: app/controllers/mail_controller.rb:67
 msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
 msgstr "Не задан сервер исходящих сообщений, но администратор настроил пересылку почты.\nИзменить настройки %s<i>администратора</i>%s или %s<i>почты</i>%s."
 
@@ -45,43 +45,47 @@ msgstr "Пароли не совпадают."
 msgid "Enter a valid e-mail address."
 msgstr "Введите действительный адрес электронной почты."
 
-#: app/views/mail/index.html.erb:34
+#: app/views/mail/index.html.erb:44
 msgid "Mail Settings"
 msgstr "Параметры почты"
 
-#: app/views/mail/index.html.erb:44
+#: app/views/mail/index.html.erb:54
 msgid "Outgoing mail server"
 msgstr "Сервер исходящей почты"
 
-#: app/views/mail/index.html.erb:47
+#: app/views/mail/index.html.erb:57
 msgid "Use secure connection (TLS)"
 msgstr "Использовать защищенное подключение (TLS)"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "Never"
 msgstr "Никогда"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "If available"
 msgstr "Если доступно"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "Always"
 msgstr "Всегда"
 
-#: app/views/mail/index.html.erb:50
+#: app/views/mail/index.html.erb:60
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: app/views/mail/index.html.erb:53
+#: app/views/mail/index.html.erb:63
 msgid "Password"
 msgstr "Пароль"
 
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:66
 msgid "Confirm password"
 msgstr "Подтвердить пароль"
 
-#: app/views/mail/index.html.erb:60
+#: app/views/mail/index.html.erb:74
 msgid "Send test mail to"
 msgstr "Отправить тестовое сообщение"
+
+#: app/views/mail/index.html.erb:76
+msgid "Send Mail"
+msgstr "Отправить почту"
 

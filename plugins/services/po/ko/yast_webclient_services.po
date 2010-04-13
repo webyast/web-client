@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-25 07:52\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-07 10:17\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,37 @@ msgstr ""
 msgid "(cannot read status)"
 msgstr "(상태를 읽을 수 없음)"
 
-#: app/controllers/services_controller.rb:56
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "성공"
+
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr "알 수 없는 오류"
+
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
+msgstr "잘못되었거나 초과한 인수"
+
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr "구현되지 않은 기능"
+
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr "사용자 권한이 충분하지 않습니다."
+
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr "프로그램이 설치되지 않았습니다."
+
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr "프로그램이 구성되지 않았습니다."
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr "프로그램이 실행 중이 아닙니다."
 
 #: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
@@ -29,7 +57,7 @@ msgstr "서비스 호출 결과"
 msgid "Result"
 msgstr "결과"
 
-#: app/views/services/_result.rhtml:13
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "설명"
 
@@ -37,59 +65,99 @@ msgstr "설명"
 msgid "Quick Search"
 msgstr "빠른 검색"
 
-#: app/views/services/index.rhtml:89
+#: app/views/services/index.rhtml:126
 msgid "System Services"
 msgstr "시스템 서비스"
 
-#: app/views/services/index.rhtml:95
+#: app/views/services/index.rhtml:132
 msgid "You do not have permission to execute the services."
 msgstr "서비스를 실행할 권한이 없습니다."
 
-#: app/views/services/index.rhtml:99
+#: app/views/services/index.rhtml:136
 msgid "Filter services"
 msgstr "필터 서비스"
 
-#: app/views/services/index.rhtml:101
+#: app/views/services/index.rhtml:138
 msgid "All"
 msgstr "모두"
 
-#: app/views/services/index.rhtml:102
+#: app/views/services/index.rhtml:139
 msgid "Running"
 msgstr "실행 중"
 
-#: app/views/services/index.rhtml:103
+#: app/views/services/index.rhtml:140
 msgid "Not Running"
 msgstr "실행 중이 아님"
 
-#: app/views/services/index.rhtml:104
+#: app/views/services/index.rhtml:141
 msgid "Dead"
 msgstr "오류"
 
-#: app/views/services/index.rhtml:120
+#: app/views/services/index.rhtml:142
+msgid "Started on Boot"
+msgstr "부팅 시 시작됨"
+
+#: app/views/services/index.rhtml:143
+msgid "Not Started on Boot"
+msgstr "부팅 시 시작되지 않음"
+
+#: app/views/services/index.rhtml:159
 msgid "Description for service is not available"
 msgstr "서비스 설명을 사용할 수 없습니다."
 
-#: app/views/services/index.rhtml:173
-msgid "refresh status"
-msgstr "상태 새로 고침"
+#: app/views/services/index.rhtml:178
+msgid "(refresh)"
+msgstr "(새로 고침)"
 
-#: app/views/services/_status.rhtml:16
+#: app/views/services/index.rhtml:209
+msgid "Start"
+msgstr "시작"
+
+#: app/views/services/index.rhtml:210
+msgid "Stop"
+msgstr "중지"
+
+#: app/views/services/index.rhtml:211
+msgid "Restart"
+msgstr "다시 시작"
+
+#: app/views/services/index.rhtml:212
+msgid "Start on Boot"
+msgstr "부팅 시 시작"
+
+#: app/views/services/index.rhtml:213
+msgid "Do Not Start on Boot"
+msgstr "부팅 시 시작 안 함"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "서비스가 부팅 시 시작됩니다."
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "서비스가 부팅 시 시작되지 않습니다."
+
+#: app/views/services/_status.rhtml:31
 msgid "status unknown"
 msgstr "알 수 없는 상태"
 
-#: app/views/services/_status.rhtml:18
+#: app/views/services/_status.rhtml:33
 msgid "running"
 msgstr "실행 중"
 
-#: app/views/services/_status.rhtml:22
+#: app/views/services/_status.rhtml:37
 msgid "dead"
 msgstr "오류"
 
-#: app/views/services/_status.rhtml:26
+#: app/views/services/_status.rhtml:41
 msgid "not running"
 msgstr "실행 중이 아님"
 
-#: app/views/services/_status.rhtml:30
+#: app/views/services/_status.rhtml:45
 msgid "status unknown: %d"
 msgstr "알 수 없는 상태: %d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "서비스의 현재 상태:"
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_mail\n"
-"POT-Creation-Date: 2010-03-11 15:46+0100\n"
-"PO-Revision-Date: 2010-03-23 11:47\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 10:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/mail_controller.rb:28
+#: app/controllers/mail_controller.rb:29
 msgid "Passwords do not match."
 msgstr "Hasła nie zgadzają się."
 
-#: app/controllers/mail_controller.rb:35
+#: app/controllers/mail_controller.rb:36
 msgid "Mail settings have been written."
 msgstr "Ustawienia poczty zostały zapisane."
 
-#: app/controllers/mail_controller.rb:37
+#: app/controllers/mail_controller.rb:38
 msgid "Test mail was sent to %s."
 msgstr "Wiadomość testowa została wysłana do %s."
 
-#: app/controllers/mail_controller.rb:49
+#: app/controllers/mail_controller.rb:50
 msgid "Error while saving mail settings: %s"
 msgstr "Błąd podczas zapisywania ustawień poczty: %s"
 
-#: app/controllers/mail_controller.rb:66
+#: app/controllers/mail_controller.rb:67
 msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
 msgstr "Nie ustawiono serwera poczty wychodzącej, ale administrator zdefiniował pośredników poczty.\nProszę zmienić konfigurację %s <i>administratora</i> %s lub %s <i>poczty elektronicznej</i> %s."
 
@@ -45,43 +45,47 @@ msgstr "Te hasła się nie zgadzają."
 msgid "Enter a valid e-mail address."
 msgstr "Proszę podać prawidłowy adres e-mail."
 
-#: app/views/mail/index.html.erb:34
+#: app/views/mail/index.html.erb:44
 msgid "Mail Settings"
 msgstr "Ustawienia poczty"
 
-#: app/views/mail/index.html.erb:44
+#: app/views/mail/index.html.erb:54
 msgid "Outgoing mail server"
 msgstr "Serwer poczty wychodzącej"
 
-#: app/views/mail/index.html.erb:47
+#: app/views/mail/index.html.erb:57
 msgid "Use secure connection (TLS)"
 msgstr "Używaj połączenia bezpiecznego (TLS)"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "Never"
 msgstr "Nigdy"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "If available"
 msgstr "Jeśli dostępne"
 
-#: app/views/mail/index.html.erb:48
+#: app/views/mail/index.html.erb:58
 msgid "Always"
 msgstr "Zawsze"
 
-#: app/views/mail/index.html.erb:50
+#: app/views/mail/index.html.erb:60
 msgid "User name"
 msgstr "Nazwa użytkownika"
 
-#: app/views/mail/index.html.erb:53
+#: app/views/mail/index.html.erb:63
 msgid "Password"
 msgstr "Hasło"
 
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:66
 msgid "Confirm password"
 msgstr "Potwierdzenie hasła"
 
-#: app/views/mail/index.html.erb:60
+#: app/views/mail/index.html.erb:74
 msgid "Send test mail to"
 msgstr "Wyślij wiadomość testową do"
+
+#: app/views/mail/index.html.erb:76
+msgid "Send Mail"
+msgstr "Wyślij e-mail"
 

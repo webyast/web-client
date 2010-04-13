@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-25 08:23\n"
+"POT-Creation-Date: 2010-03-30 10:00+0200\n"
+"PO-Revision-Date: 2010-04-08 11:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -29,71 +29,95 @@ msgstr "تلقائي"
 msgid "Network settings have been written."
 msgstr "تمت كتابة إعدادات الشبكة."
 
-#: app/views/network/index.html.erb:93
+#: app/views/network/index.html.erb:116
+msgid "whitespace - invalid character."
+msgstr "المسافة الفاصلة - حرف غير صالح."
+
+#: app/views/network/index.html.erb:118
+msgid " - can not start with a digit."
+msgstr " - لا يمكن أن يبدأ برقم."
+
+#: app/views/network/index.html.erb:120
+msgid "periodic '-' is not allowed."
+msgstr "دوري '-' غير مسموح به."
+
+#: app/views/network/index.html.erb:122
+msgid "can not end with (-) hyphen."
+msgstr "لا يمكن أن ينتهي بواصلة (-)."
+
+#: app/views/network/index.html.erb:125
+msgid "can not start with (-) hyphen."
+msgstr "لا يمكن أن يبدأ بواصلة (-)."
+
+#: app/views/network/index.html.erb:127
+msgid " - is invalid character for hostname."
+msgstr " - هي حرف غير صالح لاسم المضيف."
+
+#: app/views/network/index.html.erb:152
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "تنسيق عنوان IP غير صالح. والتنسيق الصحيح هو nnn.nnn.nnn.nnn لـ nnn بين 0 و255."
 
-#: app/views/network/index.html.erb:102
+#: app/views/network/index.html.erb:161
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "تنسيق البادئة غير صالح. والتنسيق الصحيح هو /nn حيث تقع nn بين 0-32 (تنسيق CIDR)."
 
-#: app/views/network/index.html.erb:108
+#: app/views/network/index.html.erb:167
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "تنسيق التوجيه الافتراضي غير صالح. والتنسيق الصحيح هو nnn.nnn.nnn.nnn لـ nnn بين 0 و255."
 
-#: app/views/network/index.html.erb:114
+#: app/views/network/index.html.erb:173
 msgid "Name servers are required. There must be at least one specified."
 msgstr "خوادم الأسماء مطلوبة. يجب أن يكون هناك اسم واحد محدد على الأقل."
 
-#: app/views/network/index.html.erb:120
+#: app/views/network/index.html.erb:179
 msgid "Hostname is required. It must be specified."
 msgstr "اسم المضيف مطلوب. يجب تحديده."
 
-#: app/views/network/index.html.erb:126
+#: app/views/network/index.html.erb:185
 msgid "Domain is required. An empty domain is not supported."
 msgstr "المجال مطلوب. لا يتم دعم مجال فارغ."
 
-#: app/views/network/index.html.erb:137
+#: app/views/network/index.html.erb:206
 msgid "Network"
 msgstr "الشبكة"
 
-#: app/views/network/index.html.erb:146
+#: app/views/network/index.html.erb:215
 msgid "Interface"
 msgstr "الواجهة"
 
-#: app/views/network/index.html.erb:151
+#: app/views/network/index.html.erb:220
 msgid "Select"
 msgstr "تحديد"
 
-#: app/views/network/index.html.erb:168
+#: app/views/network/index.html.erb:237
 msgid "Configuration mode"
 msgstr "وضع التكوين"
 
-#: app/views/network/index.html.erb:177
+#: app/views/network/index.html.erb:246
 msgid "IP address"
 msgstr "عنوان IP"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:250
 msgid "Subnet mask / Prefixlen"
 msgstr "قناع الشبكة الفرعية / Prefixlen"
 
-#: app/views/network/index.html.erb:190
+#: app/views/network/index.html.erb:259
 msgid "Hostname"
 msgstr "اسم المضيف"
 
-#: app/views/network/index.html.erb:194
+#: app/views/network/index.html.erb:264
 msgid "Domain"
 msgstr "المجال"
 
-#: app/views/network/index.html.erb:198
+#: app/views/network/index.html.erb:268
 msgid "Name servers"
 msgstr "خوادم الأسماء"
 
-#: app/views/network/index.html.erb:202
+#: app/views/network/index.html.erb:272
 msgid "Search domains"
 msgstr "نطاقات البحث"
 
-#: app/views/network/index.html.erb:212
+#: app/views/network/index.html.erb:282
 msgid "Default route"
 msgstr "التوجيه الافتراضي"
 
