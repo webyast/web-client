@@ -67,7 +67,7 @@
         <div id="<%=plugin.message_id%>" >
           <p>     
             <%= plugin.long_description %>
-            <% unless plugin.details.blank? %>
+            <% if (plugin.respond_to?(:details) && !plugin.details.blank?) %>
               <a href="#" id="<%='detail_link_'+plugin.message_id%>">(<%=_("details")%>)</a>
               <div id="<%='detail_'+plugin.message_id%>" >
                 <div>
