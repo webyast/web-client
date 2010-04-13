@@ -26,7 +26,7 @@ module ErrorConstructor
       if error["output"]=="NOSERVERS" #special value indicates that there is no predefined ntp server
         problem = _("There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS")
       end
-      return _("Error occured during ntp synchronization: %s") %problem
+      return _("Error occurred during ntp synchronization: %s") %problem
     when "ADMINISTRATOR_ERROR"
       problem = error["output"]
       return _("Error while saving administrator settings: %s") %problem
