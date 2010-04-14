@@ -41,6 +41,7 @@
      valid=false;
      password_validation_enabled = true;
      valid = $('#userForm').validate().element('#user_user_password2');
+     valid = valid && $('#userForm').validate().element('#user_uid');
      if (!valid) set_tab_focus("login");
      if (!$('#userForm').validate().element('#user_uid_number')){
        valid=false;
@@ -167,7 +168,7 @@ function propose_home(which){
 
   home = "/home/"+login;
 
- findById(which.parentNode.getElementsByTagName('input'), "user_home_directory").value = home;
+ if (login.length>0) findById(which.parentNode.getElementsByTagName('input'), "user_home_directory").value = home;
 }
 
 function propose_login(which){

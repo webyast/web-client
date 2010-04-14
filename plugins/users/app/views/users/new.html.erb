@@ -101,7 +101,7 @@
         </p>
         <p>
           <div class="label"><%=_("Login Name")%></div>
-          <%= f.text_field :uid, :disabled => disabled, :onblur => "propose_home(this.parentNode.parentNode.parentNode);" %>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#userForm').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode);", :class => "required" %>
           <%= f.text_field :id, :class => "hidden" %>
         </p>
         <p>
