@@ -1,5 +1,6 @@
 <% content_for :head do %>
 <%= javascript_include_tag "group_members.js" %>
+<%= javascript_include_tag "select_dialog.js" %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
 
@@ -25,7 +26,29 @@
   return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
  };
 
- $(document).ready(function(){
+  function select_users_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'users',
+      title : '<%= _('Select Members') %>',
+      selected_title : '<%= _('Selected Members') %>',
+      unselected_title : '<%= _('Available Members') %>',
+      tooltip : '<%= _('Click user names to select/unselect members') %>',
+      loadItems : function (dialogId) { 
+        return $('#groupForm_'+dialogId+' #group_members_string')[0].value.split(",")
+      },
+      storeItems : function (dialogId, items) { 
+        $('#groupForm_'+dialogId+' #group_members_string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_users_string')[0].value.split(",") 
+      }
+    });
+    return open_dialog;
+  }
+
+  $(document).ready(function(){
+  
+    select_users_open = select_users_dialog();
 
   $('input#groups_search').quicksearch('div.list-fieldset', {
           selector: 'span.quicksearch_content',
@@ -87,7 +110,7 @@ function disable(which){
      </span>
     </div>
     <div class='group-content' style="display:none">
-<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm_"+group.old_cn, :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
     <p>
@@ -105,6 +128,7 @@ function disable(which){
     <p>
       <div class="label"><%=_("Members")%></div>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
+      <a href="#" class="button" onClick="select_users_open('<%= group.old_cn%>');return false;"><%= _("Manage Members") %></a>
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
     <%= form_next_button :label => _("Save") %>
