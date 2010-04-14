@@ -78,7 +78,6 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/public
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
