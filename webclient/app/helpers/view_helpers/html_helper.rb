@@ -94,6 +94,8 @@ module ViewHelpers::HtmlHelper
 
     # clipboard icon for a predefined text
     def clippy(text, bgcolor='#FFFFFF')
+      text.gsub! "\"","''" #replace quotes in text as it breaks output (bnc#596023)
+      text.gsub! "&","%28" #escape & which is special in FlashVars (bnc#596023)
   html = <<-EOF
     <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
             width="110"
