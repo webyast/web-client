@@ -37,19 +37,6 @@
      return valid;
    }
 
-   function edit_user_validation(){
-     valid=false;
-     password_validation_enabled = true;
-     valid = $('#userForm').validate().element('#user_user_password2');
-     if (!valid) set_tab_focus("login");
-     if (!$('#userForm').validate().element('#user_uid_number')){
-       valid=false;
-       set_tab_focus("advanced");
-     }
-     valid = valid && groups_validation();
-     return valid;
-   }
-
   // fill user and groups containers
   function _initializeDragContainer(a_groups,containername){
    var container=document.getElementById(containername);
@@ -152,6 +139,12 @@
     $("#def_group").dialog('close');
     }
   }
+
+function validate_login(){
+ var login    = $("#user_uid")[0].value;
+
+ return false;
+}
  
 function propose_home(){
  var login    = $("#user_uid")[0].value;
@@ -159,7 +152,7 @@ function propose_home(){
 
   home = "/home/"+login;
 
- $("#user_home_directory")[0].value = home;
+ if (login.length>0) $("#user_home_directory")[0].value = home;
 }
 
 function propose_login(){
@@ -168,9 +161,23 @@ function propose_login(){
 
  if (login.length==0){
   login = fullname.replace(/\s/g, '').toLowerCase();
+  $("#user_uid")[0].value = login;
   propose_home();
  }
 
- $("#user_uid")[0].value = login;
 } 
+
+   function edit_user_validation(){
+     valid=false;
+     password_validation_enabled = true;
+     valid = $('#userForm').validate().element('#user_user_password2');
+     valid = valid && $('#userForm').validate().element('#user_uid');
+     if (!valid) set_tab_focus("login");
+     if (!$('#userForm').validate().element('#user_uid_number')){
+       valid=false;
+       set_tab_focus("advanced");
+     }
+     valid = valid && groups_validation();
+     return valid;
+   }
 
