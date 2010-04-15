@@ -178,4 +178,28 @@ class TestControllerTest < ActionController::TestCase
     assert_redirected_to "/controlpanel"
     assert flash
   end
+
+  #
+  # bnc#581250
+  #
+  
+  test "redirect after succesful save" do
+  end
+  
+  # it is critical, because in exception trap should not never raise another exception!!!
+  test "exception traps" do
+  end
+  
+  test "vendor extension for locale" do
+  end
+  
+  test "locale if domain is not specified" do
+  end
+  
+  test "vendor bugzilla" do
+  end
+  
+  test "locale loading" do
+  end
+  
 end
