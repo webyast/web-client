@@ -48,7 +48,8 @@ public
     @last_eula = @eula_id == @eula_count
     @first_eula= @eula_id == 1
     @first_basesystem_step = Basesystem.installed? && Basesystem.new.load_from_session(session).first_step?
-    eula_params = params[:eula_lang] ? { :lang => params[:eula_lang] } : {:lang => current_locale}
+    lang_param  = params[:eula] ? params[:eula][:text_lang] : params[:eula_lang]
+    eula_params = lang_param ? { :lang => lang_param } : {:lang => current_locale}
     @eula = Eulas.find @eula_id, :params => eula_params
   end
 
@@ -56,8 +57,8 @@ public
     @eula                 = Eulas.find @eula_id
     @eula.text            = ""
     @eula.available_langs = []
-    @eula.id              = @eula_id # XXX Why is this not set by the load_proxy !!!!
-    accepted = (params[:accepted] == "true") || (params[:accepted] == true)
+    @eula.id              = @eula_id
+    accepted = params[:eula] && params[:eula][:accepted] == "true"
     if accepted
       unless @eula.accepted
         @eula.accepted = accepted
@@ -76,6 +77,6 @@ public
       next_id = @eula_id
     end
     
-    redirect_to :action => :show, :id => next_id, :eula_lang => params[:eula_lang]
+    redirect_to :action => :show, :id => next_id, :eula_lang => (params[:eula] && params[:eula][:text_lang] || current_locale)
   end
 end
