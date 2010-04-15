@@ -36,20 +36,11 @@ function setBadBrowser(c_name,value,expiredays)
 
 if(badBrowser() && getBadBrowser('browserWarning') != 'seen' ){
     $(function(){
-            $("<div id='browserWarning'>You are using an unsupported browser. Please switch to <a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>. Thanks!&nbsp;&nbsp;&nbsp;[<a href='#' id='warningClose'>close</a>] </div> ")
-                .css({
-                    backgroundColor: '#fcfdde',
-                        'width': '100%',
-                        'border-top': 'solid 1px #000',
-                        'border-bottom': 'solid 1px #000',
-                        'text-align': 'center',
-                        padding:'5px 0px 5px 0px'
-                })
-                .prependTo("body");		
-            $('#warningClose').click(function(){
-                setBadBrowser('browserWarning','seen');
-                $('#browserWarning').slideUp('slow');
-                return false;
-	    });
-    });	
+      $("#browserWarning").show();
+      $('#warningClose').click(function(){
+        setBadBrowser('browserWarning','seen');
+        $('#browserWarning').slideUp('slow');
+        return false;
+      });
+    });
 }

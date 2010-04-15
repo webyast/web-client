@@ -36,13 +36,20 @@
   <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
-
-  <noscript>
-    <div id="no_js_warning">
-      JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (<a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>).
+    <div id='browserWarning' style="display: none">
+      <%= ( _("You are using an unsupported browser. Please switch to %sFireFox 3.5 or better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]") %
+            ["<a href='http://getfirefox.com'>","</a>",
+             "<a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>", "</a>",
+             "<a href='#' id='warningClose'>", "</a>"] ) %>
     </div>
-  </noscript>
-
+    <noscript>
+      <div id="no_js_warning">
+        <%= ( _("JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (%sFireFox 3.5%s or %sInternet Explorer 8%s).") %
+            ["<a href='http://getfirefox.com'>","</a>",
+             "<a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>", "</a>"] ) %>
+      </div>
+    </noscript>
+  
     <div id="header">
       
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
