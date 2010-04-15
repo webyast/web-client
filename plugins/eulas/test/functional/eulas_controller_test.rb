@@ -48,9 +48,9 @@ class EulasControllerTest < ActionController::TestCase
   def test_eula_step
     get :index
     assert_redirected_to "/eulas/show/1"
-    get :show, {:id => 1, "lang" => "de"}
+    get :show, :id => 1, "eula_lang" => "de"
     assert_response :success
-    post :update, "accepted" => "false", "id" => "1"
+    post :update, :eula => {"accepted" => "false"}, "id" => "1"
     assert_redirected_to "/eulas/show/1"
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
@@ -60,7 +60,7 @@ class EulasControllerTest < ActionController::TestCase
       mock.get  "/eulas/1.xml", header, @sles_eula_response, 200
       mock.put  "/eulas/1.xml", header, @sles_eula_accepted_response, 200
     end
-    post :update, {"accepted" => "true", "id" => "1"}
+    post :update, :eula => {"accepted" => "true"}, "id" => "1"
     assert_redirected_to :controller => "controlpanel", :action => "index"
   end
 
@@ -69,7 +69,7 @@ class EulasControllerTest < ActionController::TestCase
     session[:wizard_current] = "test"
     session[:wizard_steps] = "systemtime,eulas,language"
     get :index
-    post :update, "accepted" => "false", "id" => "1"
+    post :update, :eula => {"accepted" => "false"}, "id" => "1"
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
       mock.resources :"org.opensuse.yast.modules.eulas" => "/eulas"
@@ -78,7 +78,7 @@ class EulasControllerTest < ActionController::TestCase
       mock.get  "/eulas/1.xml", header, @sles_eula_response, 200
       mock.put  "/eulas/1.xml", header, @sles_eula_accepted_response, 200
     end
-    post :update, {"accepted" => "true", "id" => "1"}
+    post :update, :eula => {"accepted" => "true"}, "id" => "1"
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
   end
 end

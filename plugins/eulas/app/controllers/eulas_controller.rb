@@ -77,6 +77,6 @@ public
       next_id = @eula_id
     end
     
-    redirect_to :action => :show, :id => next_id, :eula_lang => (params[:eula] && params[:eula][:text_lang] || current_locale)
+    redirect_to :action => :show, :id => next_id, :eula_lang => (params[:eula] && params[:eula][:text_lang] || nil)
   end
 end
