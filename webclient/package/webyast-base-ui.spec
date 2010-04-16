@@ -145,7 +145,8 @@ cd /srv/www/yast
 RAILS_ENV=production rake db:migrate
 chgrp lighttpd db db/*.sqlite* log log/*
 chown lighttpd db db/*.sqlite* log log/*
-chmod 700 db log
+chmod 700 log
+chmod 755 db
 chmod 600 db/*.sqlite* log/*
 
 %preun
