@@ -36,7 +36,14 @@
    $("#tab_login")[0].style.display="block";
 
 
-   $("#userForm").validate()
+   $("#userForm").validate();
+
+   // make the error message translatable - override the default messsage
+   $.extend($.validator.messages, {
+     equalTo:  "<%= _("The passwords do not match.") -%>",
+     required: "<%= _("This field is required.") -%>"
+   });
+
 
 
    $("#userForm").validate({
