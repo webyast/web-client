@@ -1,7 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-require 'mocha'
-
 class AccountTest < ActiveSupport::TestCase
   
   def setup

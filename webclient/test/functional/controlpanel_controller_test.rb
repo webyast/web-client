@@ -1,9 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-require 'mocha'
-
-require 'yast_mock'
-
 class ControlpanelControllerTest < ActionController::TestCase
 
   def simulate_running_basesystem

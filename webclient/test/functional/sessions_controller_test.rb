@@ -1,9 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-require 'mocha'
-
-require 'active_resource/http_mock'
-
 # Re-raise errors caught by the controller.
 require 'sessions_controller'
 class SessionsController; def rescue_action(e) raise e end; end

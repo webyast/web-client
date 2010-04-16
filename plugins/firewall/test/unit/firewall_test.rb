@@ -1,6 +1,4 @@
 require File.join(File.dirname(__FILE__),'..','test_helper')
-require 'mocha'
-require 'yast_mock'
 
 class FirewallTest < ActiveSupport::TestCase
   # return contents of a fixture file +file+

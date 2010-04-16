@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'mocha'
 
 class LangController < ApplicationController
 end

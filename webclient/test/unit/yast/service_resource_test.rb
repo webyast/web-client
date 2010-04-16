@@ -3,7 +3,6 @@
 #
 require File.join(File.dirname(__FILE__), '..', '..', 'test_helper')
 require File.join(File.dirname(__FILE__), '..', '..', '..', 'lib', 'yast', 'service_resource')
-require 'active_resource/http_mock'
 
 class Item < ActiveResource::Base
   self.site = "http:://localhost:8080"  

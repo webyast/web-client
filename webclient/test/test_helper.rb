@@ -1,6 +1,9 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require 'yast_mock' #extension of httpmock for testing rest service
+require 'mocha' #stubbing staff
+require File.join(File.dirname(__FILE__),'validation_assert') #validation of html
 
 class ActiveSupport::TestCase
   def load_xml_response(file)

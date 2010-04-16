@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'yast_mock'
 
 class YastModelTest < ActiveSupport::TestCase
 

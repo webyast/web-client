@@ -1,7 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
-require 'mocha'
-
 class FakeResponse
   attr_reader :message
   attr_reader :code
