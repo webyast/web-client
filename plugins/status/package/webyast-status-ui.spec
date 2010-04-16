@@ -26,7 +26,7 @@ Summary:        WebYaST - system status UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
-BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 BuildRequires:  ruby
 BuildRequires:  yast2-webclient
 

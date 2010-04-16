@@ -23,7 +23,7 @@ Summary:        WebYaST - Registration UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
-BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 
 #
 %define pkg_user yast
