@@ -44,7 +44,7 @@
 				 ntp_server: "Enter a valid domain name or an IP address"
 			 }
 		  }
-		});
+		}).form();
 	 });
 </script>
 
@@ -72,11 +72,13 @@
       if ( !<%= disabled %> ){
         $("#date_date")[0].disabled = false;
         $("#currenttime")[0].disabled = false;
+        $("#timeForm").valid();
       }
     };
     function disable() {
         $("#date_date")[0].disabled = true;
         $("#currenttime")[0].disabled = true;
+        $("#timeForm").valid();
     }
   <% end -%>
 <% end %>
