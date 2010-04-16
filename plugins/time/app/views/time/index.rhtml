@@ -30,23 +30,68 @@
   <script type="text/javascript">
 	 $(document).ready(function() {
 		validateDomainName("ntp_server");
+		validateTime("currenttime");
+		validateDate("date_date");
+
 		$("#timeForm").validate({ 
 		  rules:{
 			 ntp_server: {
 				required: "#ntp_sync:checked",
 				ntp_server: true
+			 },
+			 currenttime: {
+				required:true,
+				currenttime: true
+			 },
+			 date_date:{
+				required:true,
+				date_date: true
 			 }
 		  },
 		  success: "valid",
 		  messages: {
 			 ntp_server: {
-				 required: "This field is required",
-				 ntp_server: "Enter a valid domain name or an IP address"
+				 required: "<%= _("This field is required") -%>",
+				 ntp_server: "<%= _("Enter a valid domain name or an IP address") -%>"
+			 },
+			 currenttime: {
+				required: "<%= _("This field is required") -%>",
+				currenttime: "<%= _("Invalid time format. Correct one is hh:mm:ss") -%>"
+			 },
+			 date_date:{
+				required: "<%= _("This field is required") -%>",
+				date_date: "<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>"
 			 }
 		  }
-		}).form();
-    $("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change
-	 });
+		});
+
+		$("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
+		$("#currenttime").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
+		$("#date_date").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
+
+		
+
+		// allows to switch between radio buttons and disable validation if #timeconfig_manual is checked
+		$('#timeconfig_manual').click(function() {
+		  var settings = $('#timeForm').validate().settings;
+		  delete settings.rules.ntp_server;
+		  delete settings.messages.ntp_server;
+		  $('#ntp_server').val("");
+		  $('#ntp_server').attr("disabled","disabled");
+		  $('#currenttime').focus();
+// 		  $('#date_date').attr("disabled","disabled");
+		  clearAllErrorMessages("timeForm");
+		});
+
+		// enable form validation for #ntp_server if #ntp_sync is checked
+		$('#ntp_sync').click(function() {
+		  var settings = $('#timeForm').validate().settings;
+		  settings.rules.ntp_server = {required: true};
+		  settings.messages.ntp_server = "<%= _("This field is required") -%>";
+		  settings.messages.ntp_server = {ntp_server: "<%= _("Enter a valid domain name or an IP address") -%>"};
+		  $('#ntp_server').removeAttr("disabled");
+		});
+  });
 </script>
 
   <!-- FIXME move javascript function outside of index -->
@@ -57,10 +102,10 @@
           alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
           return false;
         }
-        if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
+        <!--if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
           alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
           return false;
-        }
+        }-->
       }
       else {
         $('#progress').show();
@@ -73,13 +118,13 @@
       if ( !<%= disabled %> ){
         $("#date_date")[0].disabled = false;
         $("#currenttime")[0].disabled = false;
-        $("#timeForm").valid();
+<!--         $("#timeForm").valid();  -->
       }
     };
     function disable() {
         $("#date_date")[0].disabled = true;
         $("#currenttime")[0].disabled = true;
-        $("#timeForm").valid();
+<!--         $("#timeForm").valid();  -->
     }
   <% end -%>
 <% end %>
@@ -89,6 +134,7 @@
 <div class="plugin-content grid_12">
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
+<!--   <#%# form_tag '/time/update', {:id => "timeForm", :class => 'container'} do #%#> -->
     <%#TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>%>
   <fieldset id="" class="wrapper smallfields with-background">
     <p>
@@ -118,10 +164,12 @@
 </fieldset>
 <fieldset class="wrapper smallfields with-background">
   <p>
-    <label class="radio-right"><input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"     
-    <%= "disabled=\"disabled\"" if disabled%>
-    <%= "checked=\"checked\"" unless Ntp.available? %>
-/> <%=_("Manually configure time")%></label>
+    <label class="radio-right">
+	 <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"     
+		<%= "disabled=\"disabled\"" if disabled%>
+		<%= "checked=\"checked\"" unless Ntp.available? %>/>
+		<%=_("Manually configure time")%>
+	 </label>
   </p>
     <% #TODO for tooltip _("Manual time configuration table, where user selects data and time for target machine")
     %>
@@ -142,11 +190,6 @@
   <% if Ntp.available? %>
   <p>
     <label for="ntp_server"><%= _("NTP server") %></label>
-    <!--<%=
-      options = {}
-      options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
-      text_field_tag "ntp_server", @ntp.actions.ntp_server || "", options
-    %>-->
 	 <%= 
 		options = {}
       options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
