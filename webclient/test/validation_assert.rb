@@ -21,7 +21,7 @@ class ActionController::TestCase
       return
     end
 
-    fail("Tidy is not available") unless system("which tidy &>/dev/null")
+    fail("Tidy is not available, install 'tidy'") unless system("which tidy &>/dev/null")
 
     Open3.popen3('tidy -e') do |stdin, stdout, stderr|
       # write the markup to tidy
