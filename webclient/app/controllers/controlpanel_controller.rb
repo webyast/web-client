@@ -23,6 +23,9 @@ class ControlpanelController < ApplicationController
         @shortcut_groups[group] << data
       end
     end
+    @shortcut_groups.each do |group,val|
+      val.sort! { |g1,g2| g1['title'] <=> g2['title'] }
+    end
   end
 
   def nextstep
