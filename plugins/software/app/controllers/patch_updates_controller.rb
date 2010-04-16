@@ -136,6 +136,8 @@ class PatchUpdatesController < ApplicationController
       begin
         patch_updates[0].save
         logger.debug "updated #{patch_updates[0].name}"
+      rescue ActiveResource::ResourceNotFound => e
+        flash[:error] = YaST::ServiceResource.error(e)
       rescue ActiveResource::ClientError => e
         error = e
       end        
@@ -179,6 +181,8 @@ class PatchUpdatesController < ApplicationController
         update.save
         logger.debug "updated #{patch_id}"
         flash[:notice] = _("Patch has been installed.")
+      rescue ActiveResource::ResourceNotFound => e
+        flash[:error] = YaST::ServiceResource.error(e)
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
       end        
