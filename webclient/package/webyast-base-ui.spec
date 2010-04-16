@@ -34,7 +34,7 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.23
+Version:        0.1.24
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -50,10 +50,16 @@ BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-s
 BuildRequires:  tidy
 # we require the lighttpd user to be present when building the rpm
 BuildRequires:  lighttpd
-BuildArch:      noarch  
+BuildArch:      noarch
+BuildRequires:  rubygem-test-unit rubygem-mocha
 %define service_name yastwc
 #
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-base-ui package
 
 %description
 WebYaST - Provides core web client for WebYaST service.
@@ -67,11 +73,21 @@ Authors:
     Klaus Kaempf <kkaempf@opensuse.org>
     Josef Reidinger <jreidinger@suse.cz>
 
+%description testsuite
+This package contains complete testsuite for webyast-base-ui package.
+It is only needed for verifying the functionality of the package
+and it is not needed at runtime.
+
 %prep
 %setup -q -n www
 
 %build
 env LANG=en rake makemo
+
+%check
+# run the testsuite
+RAILS_ENV=test rake db:migrate
+RAILS_ENV=test rake test
 
 %install
 
@@ -171,6 +187,10 @@ chmod 600 db/*.sqlite* log/*
 %{_sbindir}/rc%{service_name}
 %dir /etc/webyast/
 %config /etc/webyast/control_panel.yml
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/test
 
 %changelog  
 * Tue Nov 27 2008 schubi@suse.de  
