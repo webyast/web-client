@@ -134,8 +134,6 @@
 	_("Autorefresh will be %s.")% "<i>#{bool_status(false)}</i>" -%>
     </p>
 
-    <p><%= _("Priority for packages:") %> <%= prio_selector f, @repo.priority, disabled %></p>
-
     <p><%= hidden_field_with_toggle_link f, :keep_packages, @repo.keep_packages,
 	_("Keep packages option will be %s.")% "<i>#{bool_status(true)}</i>",
 	_("Keep packages option will be %s.")% "<i>#{bool_status(false)}</i>" -%>
