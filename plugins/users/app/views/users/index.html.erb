@@ -19,6 +19,9 @@
         float: left;
         margin-left: 1em
     }
+    #password-strength {
+	left: 0em;
+    }
  </style>
 
  <% javascript_tag do %>
@@ -115,56 +118,68 @@ function disable(which){
     <div class='user-content' style="display:none">
      <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
       <%= f.error_messages %>
+	<table border=0>
 
-      <div>
-        <p>
+	<tr><td>
           <div class="label"><%=_("Full Name")%></div>
+	</td><td>
           <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this);" %>
-        </p>
-        <p>
+	</td></tr>
+
+	<tr><td>
           <div class="label"><%=_("Login Name")%></div>
+	</td><td>
           <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+user.uid+"').validate().element('#user_uid') && propose_home(this);", :class => "required" %>
           <%= f.text_field :id, :class => "hidden" %>
-        </p>
-        <p>
+	</td></tr>
+
+	<tr><td>
           <div class="label"><%=_("Password")%></div>
+	</td><td>
           <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled %>
-        </p>
-        <p>
+	</td></tr>
+
+	<tr><td>
           <div class="label"><%=_("Confirm Password")%></div>
+	</td><td>
           <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password2');" %>
-        </p>
-        <!-- this is a pre-generated placeholder for the validation messages -->
-        <p>
 	  <label for="user_user_password2" generated="true" class="error"></label>
-        </p>
-        <p>
+	</td></tr>
+
+	<tr><td>
             <div class="label"><%=_("Groups")%></div>
+	</td><td>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
-        </p>
-        <p>
             <label id="groups-error" class="error"></label>
-	</p>
-        <p>
+	</td></tr>
+
+	<tr><td>
             <div class="label"><%=_("Default Group")%></div>
+	</td><td>
             <%= f.text_field :groupname, :disabled => disabled %>
-        </p>
-        <p>
+	</td></tr>
+
+	<tr><td>
             <div class="label"><%=_("Home Directory")%></div>
+	</td><td>
             <%= f.text_field :home_directory, :disabled => disabled %>
-        </p>
-        <p>
+	</td></tr>
+
+
+	<tr><td>
             <div class="label"><%=_("Login Shell")%></div>
+	</td><td>
             <%= f.text_field :login_shell, :disabled => disabled %>
-        </p>
-        <p>
+	</td></tr>
+
+	<tr><td>
             <div class="label"><%=_("UID Number")%></div>
+	</td><td>
             <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
-        </p>
-        <p>
             <label id="uid-error" class="error"></label>
-        </p>
-      </div>
+	</td></tr>
+
+	</table>
 
      <%= form_next_button :label => _("Save") %>
      <% if @permissions[:userdelete] %>
