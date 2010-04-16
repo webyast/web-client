@@ -1,5 +1,6 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
+require File.dirname(__FILE__) + '/../test_helper'
 
 class PrivateRoutingTest < ActionController::TestCase
   test "plugin private routing" do
