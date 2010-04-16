@@ -45,6 +45,7 @@
 			 }
 		  }
 		}).form();
+    $("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change
 	 });
 </script>
 
