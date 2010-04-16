@@ -32,6 +32,12 @@ BuildRequires:  yast2-webclient
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-reboot-ui package
+
 %description
 WebYaST - Plugin providing UI for rebooting/shuting down the system.
 
@@ -39,12 +45,20 @@ Authors:
 --------
     Ladislav Slezak <lslezak@novell.com>
 
+%description testsuite
+This package contains complete testsuite for webyast-reboot-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
+
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -85,5 +99,10 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+
 
 %changelog

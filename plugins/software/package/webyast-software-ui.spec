@@ -33,6 +33,12 @@ BuildArch:      noarch
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-software-ui package
+
 %description
 WebYaST - Plugin providing UI for software management. This package contains patch installation
 and repository management modules.
@@ -42,6 +48,11 @@ Authors:
     Stefan Schubert <schubi@opensuse.org>
     Ladislav Slezak <lslezak@suse.cz>
 
+%description testsuite
+This package contains complete testsuite for webyast-software-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
+
 %prep
 %setup -q -n www
 
@@ -49,6 +60,9 @@ Authors:
 rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -84,6 +98,11 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+
 
 %changelog
 

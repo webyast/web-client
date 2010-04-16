@@ -30,6 +30,12 @@ BuildArch:      noarch
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-registration-ui package
+
 %description
 WebYaST - Plugin providing UI for system registration.
 
@@ -38,12 +44,20 @@ Authors:
     Stefan Schubert <schubi@novell.com>
     J. Daniel Schmidt <jdsn@novell.com>
 
+%description testsuite
+This package contains complete testsuite for webyast-registration-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
+
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -81,5 +95,10 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+
 
 

@@ -31,11 +31,22 @@ BuildArch:      noarch
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-language-ui package
+
 %description
 YaST2 - Webclient - UI for YaST-webservice in order to handle language settings.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
+
+%description testsuite
+This package contains complete testsuite for webyast-language-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
 
 %prep
 %setup -q -n www
@@ -43,6 +54,9 @@ Authors:
 %build
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -80,3 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+

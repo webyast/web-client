@@ -37,6 +37,12 @@ Conflicts:      yast2-webservice-network < 0.0.3
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-network-ui package
+
 %description
 WebYaST - Plugin providing UI for network configuration
 
@@ -45,12 +51,20 @@ Authors:
     Michal Zugec <mzugec@suse.cz>
     Martin Vidner <mvidner@suse.cz>
 
+%description testsuite
+This package contains complete testsuite for webyast-network-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
+
 %prep
 %setup -q -n www
 
 %build
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -90,5 +104,10 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+
 
 %changelog
