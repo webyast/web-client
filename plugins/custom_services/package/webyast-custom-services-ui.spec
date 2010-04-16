@@ -22,6 +22,7 @@ Summary:        YaST2 - Webclient - Custom Services
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
 
 Requires:	yast2-webclient-services
 

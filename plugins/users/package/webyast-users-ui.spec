@@ -25,6 +25,7 @@ Summary:        WebYaST - users management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
 
 #
 %define pkg_user yast

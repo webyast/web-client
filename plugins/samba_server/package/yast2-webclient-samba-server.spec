@@ -26,6 +26,7 @@ Summary:        YaST2 - Webclient - Samba Server
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
 BuildRequires:  ruby
 BuildRequires:  yast2-webclient
 
