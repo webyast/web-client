@@ -28,6 +28,12 @@
 
  $(document).ready(function(){
 
+// make the error message translatable - override the default messsage
+   $.extend($.validator.messages, {
+     equalTo:  "<%= _(" The passwords do not match.") -%>",
+     required: "<%= _("This field is required.") -%>"
+   });
+
  for(var i=0;i<$('.edit_user').length;i++){
   var id=$('.edit_user')[i].id;
    $("#"+id).validate()
