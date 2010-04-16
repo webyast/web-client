@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient software 1.0.0\n"
-"POT-Creation-Date: 2010-03-18 14:33+0100\n"
-"PO-Revision-Date: 2010-03-24 16:13+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-04-16 09:31+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,39 +15,97 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.0\n"
 
+#: app/helpers/repositories_helper.rb:5
+msgid "Highest"
+msgstr "Legmagasabb"
+
+#: app/helpers/repositories_helper.rb:6
+msgid "Higher"
+msgstr "Magasabb"
+
+#: app/helpers/repositories_helper.rb:7
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: app/helpers/repositories_helper.rb:8
+msgid "Low"
+msgstr "Alacsony"
+
+#: app/helpers/repositories_helper.rb:9
+msgid "Lowest"
+msgstr "Legalacsonyabb"
+
+#: app/helpers/repositories_helper.rb:15
+msgid "Highest priority"
+msgstr "Legmagasabb prioritás"
+
+#: app/helpers/repositories_helper.rb:16
+msgid "Higher priority"
+msgstr "Magasabb prioritás"
+
+#: app/helpers/repositories_helper.rb:18
+msgid "Low priority"
+msgstr "Alacsony prioritás"
+
+#: app/helpers/repositories_helper.rb:19
+msgid "Lowest priority"
+msgstr "Alacsonyabb prioritás"
+
+#: app/helpers/repositories_helper.rb:24
+msgid "Custom priority"
+msgstr "Egyedi prioritás"
+
+#: app/helpers/repositories_helper.rb:29
+msgid "Custom"
+msgstr "Egyedi"
+
+#: app/helpers/repositories_helper.rb:41
+#: app/views/repositories/index.html.erb:119
+#: app/views/repositories/add.html.erb:42
+msgid "enable"
+msgstr "engedélyezés"
+
+#: app/helpers/repositories_helper.rb:41
+#: app/views/repositories/index.html.erb:124
+#: app/views/repositories/add.html.erb:49
+msgid "disable"
+msgstr "letiltás"
+
+#: app/helpers/repositories_helper.rb:46
+msgid "enabled"
+msgstr "engedélyezett"
+
+#: app/helpers/repositories_helper.rb:46
+msgid "disabled"
+msgstr "letiltott"
+
 #: app/controllers/repositories_controller.rb:14
-#: app/views/repositories/show.html.erb:64
 msgid "Alias"
 msgstr "Álnév"
 
 #: app/controllers/repositories_controller.rb:15
-#: app/views/repositories/show.html.erb:73
+#: app/views/repositories/index.html.erb:151
 msgid "Enabled"
 msgstr "Engedélyezett"
 
 #: app/controllers/repositories_controller.rb:16
-#: app/views/repositories/show.html.erb:78
 msgid "Autorefresh"
 msgstr "Automatikus frissítés"
 
 #: app/controllers/repositories_controller.rb:17
-#: app/views/repositories/show.html.erb:83
 #: app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "Név"
 
 #: app/controllers/repositories_controller.rb:18
-#: app/views/repositories/show.html.erb:88
 msgid "URL"
 msgstr "URL"
 
 #: app/controllers/repositories_controller.rb:19
-#: app/views/repositories/show.html.erb:93
 msgid "Priority"
 msgstr "Prioritás"
 
 #: app/controllers/repositories_controller.rb:20
-#: app/views/repositories/show.html.erb:98
 msgid "Keep downloaded packages"
 msgstr "Letöltött csomagok megtartása"
 
@@ -55,142 +113,158 @@ msgstr "Letöltött csomagok megtartása"
 msgid "Cannot read repository list."
 msgstr "A telepítési források listája nem olvasható."
 
-#: app/controllers/repositories_controller.rb:41
-#: app/controllers/repositories_controller.rb:60
-#: app/controllers/repositories_controller.rb:87
+#: app/controllers/repositories_controller.rb:47
+#: app/controllers/repositories_controller.rb:74
 msgid "Missing repository parameter"
 msgstr "Hiányzó telepítési forrás paraméter"
 
-#: app/controllers/repositories_controller.rb:115
-#: app/controllers/repositories_controller.rb:199
+#: app/controllers/repositories_controller.rb:102
+#: app/controllers/repositories_controller.rb:183
 msgid "Invalid priority"
 msgstr "Érvénytelen prioritás"
 
-#: app/controllers/repositories_controller.rb:187
+#: app/controllers/repositories_controller.rb:171
 msgid "Missing repository parameters"
 msgstr "Hiányzó telepítési forrás paraméterek"
 
-#: app/controllers/repositories_controller.rb:224
+#: app/controllers/repositories_controller.rb:209
 msgid "Unknown backend error"
 msgstr "Ismeretlen rendszerhiba."
 
-#: app/controllers/repositories_controller.rb:235
-msgid "Error: Missing repository id."
-msgstr "Hiba: Hiányzó telepítési forrás azonosító"
-
-#: app/controllers/repositories_controller.rb:239
-msgid "Error: Missing 'enabled' parameter."
-msgstr "Hiba: Hiányzó 'engedélyezett' paraméter."
-
-#: app/controllers/repositories_controller.rb:269
-msgid "Unknown backend error."
-msgstr "Ismeretlen rendszerhiba."
-
-#: app/controllers/patch_updates_controller.rb:40
-#: app/controllers/patch_updates_controller.rb:43
+#: app/controllers/patch_updates_controller.rb:45
+#: app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
 msgid "A problem occured when loading patch information."
 msgstr "Hiba történt a javítási információ betöltése közben."
 
-#: app/controllers/patch_updates_controller.rb:97
+#: app/controllers/patch_updates_controller.rb:105
 msgid "Installing all patches..."
 msgstr "Összes frissítés telepítése..."
 
-#: app/controllers/patch_updates_controller.rb:105
+#: app/controllers/patch_updates_controller.rb:113
 msgid "Installation stopped"
 msgstr "A telepítés megállt"
 
-#: app/controllers/patch_updates_controller.rb:142
+#: app/controllers/patch_updates_controller.rb:150
 msgid "Installation finished"
 msgstr "A telepítés befejeződött"
 
-#: app/controllers/patch_updates_controller.rb:144
+#: app/controllers/patch_updates_controller.rb:152
 msgid "%s installed."
 msgstr "A(z) %s telepítése befejeződött."
 
-#: app/controllers/patch_updates_controller.rb:173
+#: app/controllers/patch_updates_controller.rb:181
 msgid "Patch has been installed."
 msgstr "A javítás telepítése befejeződött."
 
-#: app/views/repositories/index.html.erb:7
-#: app/views/repositories/show.html.erb:45
-msgid "Software Repositories"
-msgstr "Telepítési források"
-
-#: app/views/repositories/index.html.erb:12
-msgid "No software repository configured."
-msgstr "Nincs beállított telepítési forrás."
-
-#: app/views/repositories/index.html.erb:14
-msgid "Configured software repositories"
-msgstr "Beállított telepítési források"
-
-#: app/views/repositories/index.html.erb:39
-msgid "Really delete repository '%s'?"
-msgstr "Valóban törli a(z) '%s' telepítési forrást?"
-
-#: app/views/repositories/index.html.erb:52
-msgid "Add"
-msgstr "Hozzáadás"
-
-#: app/views/repositories/index.html.erb:52
-msgid "a new repository"
-msgstr "új telepítési forrás"
-
-#: app/views/repositories/show.html.erb:16
+#: app/views/repositories/index.html.erb:20
+#: app/views/repositories/add.html.erb:16
 msgid "Enter a valid repository URL."
 msgstr "Adjon meg egy érvényes telepítési forrás URL-t."
 
-#: app/views/repositories/show.html.erb:24
+#: app/views/repositories/index.html.erb:28
+#: app/views/repositories/add.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
 msgstr ""
 "A <b>%s</b> szimbólumok használata telepítési forrás álnévként nem "
 "engedélyezett."
 
-#: app/views/repositories/show.html.erb:31
-msgid ""
-"Enter a number in range 0 (the highest priority) to 200 (the lowest "
-"priority)."
-msgstr ""
-"Adjon meg egy számot 0 (legmagasabb prioritás) és 200 (legalacsonyabb "
-"prioritás) között."
-
-#: app/views/repositories/show.html.erb:32
-msgid "Priority must be a positive number."
-msgstr "A prioritásnak pozitív számnak kell lennie."
-
-#: app/views/repositories/show.html.erb:33
-msgid "Priority must be less than 200."
-msgstr "A prioritás értékének kisebbnek kell lennie, mint 200."
-
-#: app/views/repositories/show.html.erb:34
+#: app/views/repositories/index.html.erb:32
+#: app/views/repositories/add.html.erb:31
 msgid "This value cannot be empty."
 msgstr "Az értéket meg kell adni."
 
-#: app/views/repositories/show.html.erb:48
+#: app/views/repositories/index.html.erb:140
+#: app/views/repositories/add.html.erb:105
+msgid "Software Repositories"
+msgstr "Telepítési források"
+
+#: app/views/repositories/index.html.erb:145
+msgid "Configured software repositories"
+msgstr "Beállított telepítési források"
+
+#: app/views/repositories/index.html.erb:148
+msgid "Filter repositories"
+msgstr "Telepítési források szűrése"
+
+#: app/views/repositories/index.html.erb:150
+msgid "All"
+msgstr "Összes"
+
+#: app/views/repositories/index.html.erb:152
+msgid "Disabled"
+msgstr "Letiltott"
+
+#: app/views/repositories/index.html.erb:159
+msgid "Quick Search"
+msgstr "Gyorskereső"
+
+#: app/views/repositories/index.html.erb:165
+msgid "Add New Repository"
+msgstr "Új telepítési forrás hozzáadása"
+
+#: app/views/repositories/index.html.erb:208
+msgid "Repository is currently"
+msgstr "A telepítési forrás jelenleg "
+
+#: app/views/repositories/index.html.erb:211
+#: app/views/repositories/add.html.erb:128
+#: app/views/repositories/add.html.erb:129
+msgid "Repository will be %s."
+msgstr "A telepítési forrás %s lesz."
+
+#: app/views/repositories/index.html.erb:215
+msgid "Autorefresh is currently"
+msgstr "Az automatikus frissítés jelenleg"
+
+#: app/views/repositories/index.html.erb:218
+#: app/views/repositories/add.html.erb:133
+#: app/views/repositories/add.html.erb:134
+msgid "Autorefresh will be %s."
+msgstr "Az automatikus frissítés %s lesz."
+
+#: app/views/repositories/index.html.erb:222
+msgid "Keeping downloaded packages is currently"
+msgstr "Letöltött csomagok megtartása jelenleg "
+
+#: app/views/repositories/index.html.erb:225
+#: app/views/repositories/add.html.erb:140
+#: app/views/repositories/add.html.erb:141
+msgid "Keep packages option will be %s."
+msgstr "Csomagok megőrzése %s lesz."
+
+#: app/views/repositories/index.html.erb:232
+#: app/views/repositories/add.html.erb:149
+msgid "Save"
+msgstr "Mentés"
+
+#: app/views/repositories/index.html.erb:233
+msgid "Delete"
+msgstr "Törlés"
+
+#: app/views/repositories/index.html.erb:235
+msgid "Really delete repository '%s'?"
+msgstr "Valóban törli a(z) '%s' telepítési forrást?"
+
+#: app/views/repositories/add.html.erb:77
+msgid ""
+"A repository with this URL already exists.\n"
+"Create a duplicate?"
+msgstr ""
+"Ezzel az URL-lel már van egy telepítési forrás.\n"
+"Másolatot készít róla?"
+
+#: app/views/repositories/add.html.erb:107
 msgid "Add a new repository"
 msgstr "Új telepítési forrás felvétele"
 
-#: app/views/repositories/show.html.erb:50
-msgid "Properties of"
-msgstr "Tulajdonságok: "
+#: app/views/repositories/add.html.erb:116
+msgid "New Repository"
+msgstr "Új telepítési forrás"
 
-#: app/views/repositories/show.html.erb:50
-msgid "Edit Properties of"
-msgstr "Tulajdonságok szerkesztése: "
-
-#: app/views/repositories/show.html.erb:60
-msgid "Repository"
-msgstr "Telepítési forrás"
-
-#: app/views/repositories/show.html.erb:109
-msgid "Create"
-msgstr "Létrehozás"
-
-#: app/views/repositories/show.html.erb:109
-#: app/views/patch_updates/index.html.erb:38
-msgid "Update"
-msgstr "Frissítés"
+#: app/views/repositories/add.html.erb:137
+msgid "Priority for packages:"
+msgstr "Csomagprioritások:"
 
 #: app/views/patch_updates/_patch_installation.html.erb:7
 msgid "An error occured while installing patches."
@@ -209,13 +283,17 @@ msgid "Updates"
 msgstr "Frissítések"
 
 #: app/views/patch_updates/index.html.erb:16
-#: app/views/patch_updates/_patch_summary.html.erb:28
+#: app/views/patch_updates/_patch_summary.html.erb:35
 msgid "Your system is up to date."
 msgstr "A rendszer naprakész."
 
 #: app/views/patch_updates/index.html.erb:21
 msgid "Updates available"
 msgstr "Frissítések érhetők el"
+
+#: app/views/patch_updates/index.html.erb:38
+msgid "Update"
+msgstr "Frissítés"
 
 #: app/views/patch_updates/_patch_progress.html.erb:5
 msgid "Refreshing package cache"
@@ -259,29 +337,77 @@ msgstr "Forrás"
 msgid "Install"
 msgstr "Telepítés"
 
-#: app/views/patch_updates/_patch_summary.html.erb:6
+#: app/views/patch_updates/_patch_summary.html.erb:9
+msgid "Cannot read patch updates - you have been logged out."
+msgstr "Nem olvashatók a javítások - nincs bejelentkezve."
+
+#: app/views/patch_updates/_patch_summary.html.erb:12
 msgid "No information about patches available"
 msgstr "Nem áll rendelkezésre információ az elérhető javításokról"
 
-#: app/views/patch_updates/_patch_summary.html.erb:19
+#: app/views/patch_updates/_patch_summary.html.erb:26
 msgid "Security Updates: %d"
 msgstr "Biztonsági frissítés: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:22
+#: app/views/patch_updates/_patch_summary.html.erb:29
 msgid "Important Updates: %d"
 msgstr "Fontos frissítések: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:25
+#: app/views/patch_updates/_patch_summary.html.erb:32
 msgid "Optional Updates: %d"
 msgstr "Opcionális frissítések: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:33
+#: app/views/patch_updates/_patch_summary.html.erb:40
 msgid "Update All"
 msgstr "Összes frissítése"
 
-#: app/views/patch_updates/_patch_summary.html.erb:33
+#: app/views/patch_updates/_patch_summary.html.erb:40
 msgid "Updating all. Are you sure?"
 msgstr "Összes frissítése. Biztos benne?"
+
+#: app/views/patch_updates/_patch_summary.html.erb:47
+msgid "Loading patch information"
+msgstr "A javítási információjának betöltése."
+
+#~ msgid "Error: Missing repository id."
+#~ msgstr "Hiba: Hiányzó telepítési forrás azonosító"
+
+#~ msgid "Error: Missing 'enabled' parameter."
+#~ msgstr "Hiba: Hiányzó 'engedélyezett' paraméter."
+
+#~ msgid "Unknown backend error."
+#~ msgstr "Ismeretlen rendszerhiba."
+
+#~ msgid "Add"
+#~ msgstr "Hozzáadás"
+
+#~ msgid "a new repository"
+#~ msgstr "új telepítési forrás"
+
+#~ msgid ""
+#~ "Enter a number in range 0 (the highest priority) to 200 (the lowest "
+#~ "priority)."
+#~ msgstr ""
+#~ "Adjon meg egy számot 0 (legmagasabb prioritás) és 200 (legalacsonyabb "
+#~ "prioritás) között."
+
+#~ msgid "Priority must be a positive number."
+#~ msgstr "A prioritásnak pozitív számnak kell lennie."
+
+#~ msgid "Priority must be less than 200."
+#~ msgstr "A prioritás értékének kisebbnek kell lennie, mint 200."
+
+#~ msgid "Properties of"
+#~ msgstr "Tulajdonságok: "
+
+#~ msgid "Edit Properties of"
+#~ msgstr "Tulajdonságok szerkesztése: "
+
+#~ msgid "Create"
+#~ msgstr "Létrehozás"
+
+#~ msgid "No software repository configured."
+#~ msgstr "Nincs beállított telepítési forrás."
 
 #~ msgid "Back"
 #~ msgstr "Vissza"

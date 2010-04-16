@@ -4,15 +4,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 14:33+0100\n"
-"PO-Revision-Date: 2010-03-24 15:35+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-16 09:07+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: app/helpers/application_helper.rb:20
 msgid " or "
@@ -22,24 +23,25 @@ msgstr " vagy "
 msgid " - "
 msgstr " - "
 
-# cancel button label
-#: app/helpers/application_helper.rb:38 app/views/hosts/new.html.erb:52
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: app/helpers/application_helper.rb:40 app/views/hosts/edit.html.erb:39
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Vissza"
 
-#: app/helpers/application_helper.rb:46
-msgid "Next"
-msgstr "Következő"
+# cancel button label
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "Mégsem"
 
-#: app/helpers/application_helper.rb:47
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "Mentés"
 
-#: app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "Következő"
+
+#: app/helpers/application_helper.rb:56
 msgid "Finish"
 msgstr "Befejezés"
 
@@ -112,18 +114,7 @@ msgstr "Kijelentkezett."
 msgid "Session timeout"
 msgstr "Munkamenet-időtúllépés"
 
-#: app/controllers/application_controller.rb:75
-msgid "You must accept all EULAs before using this product!"
-msgstr "A termék használata előtt el kell fogadnia a licencszerződést!"
-
 #: app/controllers/application_controller.rb:79
-msgid ""
-"Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
-"Nem működik az átirányítás a licencszerződéshez. Ellenőrizze, hogy a yast2-"
-"webclient-eulas csomag telepítve van"
-
-#: app/controllers/application_controller.rb:95
 msgid ""
 "You're not allowed to do this. If you have to do this action, please contact "
 "system administrator"
@@ -131,31 +122,31 @@ msgstr ""
 "Ez a művelet nem engedélyezett. Amennyiben ezt a műveletet el kell végeznie, "
 "vegye fel a kapcsolatot a rendszergazdával"
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "Lépjen be a folytatáshoz"
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "Belépés előtt ki kell jelentkeznie"
 
-#: app/controllers/application_controller.rb:216
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "nem lehet üres"
 
-#: app/controllers/application_controller.rb:217
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
 msgstr "a megengedett értékeken kívül esik"
 
-#: app/controllers/application_controller.rb:218
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "nem lehet üres"
 
-#: app/controllers/application_controller.rb:219
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
 msgstr "érvénytelen"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
 msgstr "érvénytelen paraméterek:"
 
@@ -233,6 +224,10 @@ msgstr "Számítógép|Létrehozás itt: "
 msgid "Host|Updated at"
 msgstr "Számítógép|Frissítés itt: "
 
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "Nyelvválasztás"
+
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
@@ -262,6 +257,10 @@ msgstr "Ne felejtse le csatolni a hiba részleteit."
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
 msgstr "Hiba történt a célgépen."
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "Nincs jogosultsága a beállítások módosítására."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -312,53 +311,61 @@ msgid "Index"
 msgstr "Index"
 
 #: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
+#: app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "Beállítások"
 
-#: app/views/controlpanel/index.rhtml:24
+#: app/views/controlpanel/index.rhtml:27
 msgid "Status"
 msgstr "Állapot"
 
-#: app/views/controlpanel/index.rhtml:32
+#: app/views/controlpanel/index.rhtml:35
 msgid "System actions"
 msgstr "Rendszerműveletek"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
 msgstr "Újraindítás"
 
-#: app/views/controlpanel/index.rhtml:35
+#: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
 msgstr "Valóban újraindítja a(z) %s gépet?"
 
-#: app/views/controlpanel/index.rhtml:36
+#: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
 msgstr "Lekapcsolás"
 
-#: app/views/controlpanel/index.rhtml:37
+#: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
 msgstr "Valóban leállítja a(z) %s gépet?"
 
-#: app/views/controlpanel/index.rhtml:44
+#: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
 msgstr "Javítási információk betöltése"
 
-#: app/views/controlpanel/index.rhtml:46
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr "A javítás állapotösszegző le van tiltva a konfigurációs fájlban."
+
+#: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
 msgstr "A javítás bővítmény nincs telepítve."
 
-#: app/views/controlpanel/index.rhtml:52
+#: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
 msgstr "Rendszerinformáció betöltése"
 
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr "A rendszerállapot-összegző le van tiltva a konfigurációs fájlban."
+
 # modules/inst_target_part.ycp:676
-#: app/views/controlpanel/index.rhtml:54
+#: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
 msgstr "Az állapotbővítmény nincs telepítve."
 
-#: app/views/controlpanel/index.rhtml:91
+#: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
 msgstr "Összes modul megjelenítése"
 
@@ -377,35 +384,35 @@ msgstr ""
 msgid "Continue initial system setup"
 msgstr "Rendszerbeállítás folytatása"
 
-#: app/views/layouts/main.rhtml:35
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:49
+#: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
 msgstr "Saját berendezés"
 
-#: app/views/layouts/main.rhtml:55 app/views/layouts/main.rhtml:59
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
 msgid "Language:"
 msgstr "Nyelv:"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
 msgstr "Csatlakozás:"
 
-#: app/views/layouts/main.rhtml:62
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
 msgstr "Felhasználó:"
 
-#: app/views/layouts/main.rhtml:65
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "Vezérlőpult"
 
-#: app/views/layouts/main.rhtml:66
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "Kijelentkezés"
 
-#: app/views/layouts/main.rhtml:101
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr "...Várakozás..."
 
@@ -468,12 +475,22 @@ msgstr ""
 "fájlban, a NETCONFIG_NTP_STATIC_SERVERS paraméternél."
 
 #: lib/error_constructor.rb:29
-msgid "Error occured during ntp synchronization: %s"
-msgstr "Hiba történt az ntp-szinkronizáció közben: %s"
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "Hiba történt az NTP-szinkronizáció közben: %s"
 
 #: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Hiba történt az adminisztrációs beállítások kiírása közben: %s"
+
+#~ msgid "You must accept all EULAs before using this product!"
+#~ msgstr "A termék használata előtt el kell fogadnia a licencszerződést!"
+
+#~ msgid ""
+#~ "Cannot redirect to EULA. Make sure webyast-licenses-ui package is "
+#~ "installed"
+#~ msgstr ""
+#~ "Nem működik az átirányítás a licencszerződéshez (EULA). Ellenőrizze, hogy "
+#~ "a webyast-licenses-ui csomag telepítve van"
 
 #~ msgid "Set up the system"
 #~ msgstr "Rendszerbeállítás"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 14:33+0100\n"
-"PO-Revision-Date: 2010-03-24 15:32+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-16 09:05+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 # clients/lan_ISDN.ycp:1014 clients/lan_ISDN.ycp:1032
 #: app/controllers/administrator_controller.rb:32
-#: app/views/administrator/index.html.erb:28
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Adjon meg érvényes e-mailcímet."
 
@@ -33,7 +33,7 @@ msgstr "Adminisztrátori beállítások mentése megtörtént."
 msgid "Error while saving administrator settings: %s"
 msgstr "Hiba történt az adminisztrátori beállítások mentése közben: %s"
 
-#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:75
 msgid ""
 "Mail alias was set but outgoing mail server is not configured (%s<i>change</"
 "i>%s)."
@@ -46,56 +46,60 @@ msgstr ""
 msgid "Administrator Settings"
 msgstr "Adminisztrátori beállítások"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "A jelszavak nem egyeznek."
 
-#: app/views/administrator/index.html.erb:37
+#: app/views/administrator/index.html.erb:33
 msgid "A password is required."
 msgstr "A jelszó megadása kötelező."
 
-#: app/views/administrator/index.html.erb:44
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "Jelszó erőssége:"
+
+#: app/views/administrator/index.html.erb:40
 msgid "Weak"
 msgstr "Gyenge"
 
-#: app/views/administrator/index.html.erb:45
+#: app/views/administrator/index.html.erb:41
 msgid "Normal"
 msgstr "Normál"
 
-#: app/views/administrator/index.html.erb:46
+#: app/views/administrator/index.html.erb:42
 msgid "Medium"
 msgstr "Közepes"
 
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:43
 msgid "Strong"
 msgstr "Erős"
 
-#: app/views/administrator/index.html.erb:48
+#: app/views/administrator/index.html.erb:44
 msgid "Very Strong"
 msgstr "Nagyon erős"
 
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:63
 msgid "Password Setup for User 'root'"
 msgstr "'root' felhasználó jelszóbeállítása"
 
 # password dialog title
-#: app/views/administrator/index.html.erb:66
-msgid "Password"
-msgstr "Jelszó"
+#: app/views/administrator/index.html.erb:64
+msgid "New Password"
+msgstr "Új jelszó"
 
-#: app/views/administrator/index.html.erb:71
-msgid "Confirm password"
+#: app/views/administrator/index.html.erb:69
+msgid "Confirm Password"
 msgstr "Jelszó megerősítése"
 
-#: app/views/administrator/index.html.erb:78
+#: app/views/administrator/index.html.erb:76
 msgid "Mail Setup for User 'root'"
 msgstr "'root' felhasználó levelezésbeállítása"
 
-#: app/views/administrator/index.html.erb:80
-msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:78
+msgid "Forward system mail to"
 msgstr "Levéltovábbítás ide:"
 
-#: app/views/administrator/index.html.erb:83
+#: app/views/administrator/index.html.erb:81
 msgid "Save Mail Only"
 msgstr "Csak a levelezés mentése"
 

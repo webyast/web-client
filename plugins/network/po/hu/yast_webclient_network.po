@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-18 14:33+0100\n"
-"PO-Revision-Date: 2010-03-11 11:43+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-01 14:40+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,31 @@ msgstr "Automatikus"
 msgid "Network settings have been written."
 msgstr "A hálózati beállítások mentése befejeződött."
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr "whitespace - hibás karakter."
+
+#: app/views/network/index.html.erb:120
+msgid " - can not start with a digit."
+msgstr " - nem kezdődhet számmal."
+
+#: app/views/network/index.html.erb:122
+msgid "periodic '-' is not allowed."
+msgstr "ismétlődő '-' nem engedélyezett."
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr "nem lehet befejezni elválasztójellel (-)."
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr "nrm kezpődhet elválasztójellel (-)."
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr " - érvénytelen karakter a gépnévhez."
+
+#: app/views/network/index.html.erb:154
 msgid ""
 "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn "
 "between 0 and 255."
@@ -38,7 +62,7 @@ msgstr ""
 "Hibás IP-cím formátum. A megfelelő formátum: nnn.nnn.nnn.nnn, ahol nnn 0 és "
 "255 közé esik."
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:163
 msgid ""
 "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR "
 "format)."
@@ -46,7 +70,7 @@ msgstr ""
 "Hibás prefixum. A megfelelő formátum: nn, ahol nn 0 és 32 közé esik (CIDR "
 "formátum)."
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 msgid ""
 "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn "
 "between 0 and 255."
@@ -54,62 +78,62 @@ msgstr ""
 "Hibás alapértelmezett útválasztó. A megfelelő formátum: nnn.nnn.nnn.nnn, "
 "ahol nnn 0 és 255 közé esik."
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr "A névkiszolgáló érvénytelen. Legalább egyet meg kell adnia."
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
 msgstr "Szükséges gépnevet megadni."
 
-#: app/views/network/index.html.erb:121
+#: app/views/network/index.html.erb:187
 msgid "Domain is required. An empty domain is not supported."
 msgstr "Szükséges tartománynevet megadni. Nem támogatott az üres tartománynév."
 
-#: app/views/network/index.html.erb:142
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "Hálózat"
 
-#: app/views/network/index.html.erb:151
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "Csatoló"
 
-#: app/views/network/index.html.erb:156
+#: app/views/network/index.html.erb:226
 msgid "Select"
 msgstr "Kijelölés"
 
-#: app/views/network/index.html.erb:173
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
 msgstr "Beállítás módja"
 
-#: app/views/network/index.html.erb:182
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "IP-cím"
 
-#: app/views/network/index.html.erb:186
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr "Hálózati maszk / előtag nélküli"
 
-#: app/views/network/index.html.erb:195
+#: app/views/network/index.html.erb:260
+msgid "Default route"
+msgstr "Alapértelmezett útvonal"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "Gépnév"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:199
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "Tartomány"
 
-#: app/views/network/index.html.erb:203
+#: app/views/network/index.html.erb:278
 msgid "Name servers"
 msgstr "Névkiszolgálók"
 
-#: app/views/network/index.html.erb:207
+#: app/views/network/index.html.erb:282
 msgid "Search domains"
 msgstr "Tartományok keresése:"
-
-#: app/views/network/index.html.erb:217
-msgid "Default route"
-msgstr "Alapértelmezett útvonal"
 
 #~ msgid "No permissions for network module"
 #~ msgstr "Nincs jogosultság a hálózati modulhoz"
