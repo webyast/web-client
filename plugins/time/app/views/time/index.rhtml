@@ -31,7 +31,6 @@
 	 $(document).ready(function() {
 		validateDomainName("ntp_server");
 		validateTime("currenttime");
-		validateDate("date_date");
 
 		$("#timeForm").validate({ 
 		  rules:{
@@ -42,10 +41,6 @@
 			 currenttime: {
 				required:true,
 				currenttime: true
-			 },
-			 date_date:{
-				required:true,
-				date_date: true
 			 }
 		  },
 		  success: "valid",
@@ -57,19 +52,12 @@
 			 currenttime: {
 				required: "<%= _("This field is required") -%>",
 				currenttime: "<%= _("Invalid time format. Correct one is hh:mm:ss") -%>"
-			 },
-			 date_date:{
-				required: "<%= _("This field is required") -%>",
-				date_date: "<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>"
 			 }
 		  }
 		});
 
 		$("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
 		$("#currenttime").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
-		$("#date_date").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
-
-		
 
 		// allows to switch between radio buttons and disable validation if #timeconfig_manual is checked
 		$('#timeconfig_manual').click(function() {
@@ -79,8 +67,7 @@
 		  $('#ntp_server').val("");
 		  $('#ntp_server').attr("disabled","disabled");
 		  $('#currenttime').focus();
-// 		  $('#date_date').attr("disabled","disabled");
-		  clearAllErrorMessages("timeForm");
+// 		  clearAllErrorMessages("timeForm");
 		});
 
 		// enable form validation for #ntp_server if #ntp_sync is checked
@@ -97,20 +84,12 @@
   <!-- FIXME move javascript function outside of index -->
   <% javascript_tag do -%>
     function submitTime() {
-      if ($("#timeconfig_manual")[0].checked){
-        if (!$("#date_date")[0].value.match( /^\d{2}\/\d{2}\/\d{4}$/)){
-          alert ("<%= _("Invalid date format. Correct one is dd/mm/yyyy") %>");
-          return false;
-        }
-        <!--if (!$("#currenttime")[0].value.match( /^\d{2}:\d{2}:\d{2}$/)) {
-          alert ("<%= _("Invalid time format. Correct one is hh:mm:ss") %>");
-          return false;
-        }-->
-      }
-      else {
-        $('#progress').show();
-        return true;
-      }
+		var valid = getElementsByClass("error valid", "timeForm", "label");
+		var errors = getElementsByClass("error", "timeForm", "label");
+		if(valid.length == errors.length ) {
+		  $('#progress').show();
+		  return true;
+		}
     };
   <% end -%>
   <% javascript_tag do -%>
@@ -133,8 +112,8 @@
 
 <div class="plugin-content grid_12">
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
-  <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
-<!--   <#%# form_tag '/time/update', {:id => "timeForm", :class => 'container'} do #%#> -->
+  <!--<#%# form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do #%#>-->
+	 <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
     <%#TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>%>
   <fieldset id="" class="wrapper smallfields with-background">
     <p>
