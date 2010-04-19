@@ -1,6 +1,15 @@
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 class TimeControllerTest < ActionController::TestCase
+
+  def services_fixtures
+    git_loc = File.join(File.dirname(__FILE__),"..","..","..","services","test","fixtures","ntp.xml")
+    if File.exists? git_loc
+      IO.read git_loc
+    else
+      IO.read File.join( RailsParent.parent, "vendor", "plugins", "services", "test", "fixtures", "ntp.xml" )
+    end
+  end
   
   def setup
     Ntp.instance_variable_set(:@permissions,nil) #reset permissions cache
@@ -74,7 +83,7 @@ class TimeControllerTest < ActionController::TestCase
   end
 
   def test_commit_wizard
-    response_ntp_stop = IO.read(File.join(File.dirname(__FILE__),"..","..","..","services","test","fixtures","ntp.xml"))
+    response_ntp_stop = services_fixtures
     #add mock for services to stop ntp
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
@@ -105,8 +114,8 @@ class TimeControllerTest < ActionController::TestCase
   end
 
   def test_ntp
-    response_ntp_stop = IO.read(File.join(File.dirname(__FILE__),"..","..","..","services","test","fixtures","ntp.xml"))
     #add mock for services to stop ntp
+    response_ntp_stop = services_fixtures
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
@@ -135,7 +144,7 @@ class TimeControllerTest < ActionController::TestCase
 
 #test that controller survive time change by ntp model
   def test_ntp_timeout
-    response_ntp_stop = IO.read(File.join(File.dirname(__FILE__),"..","..","..","services","test","fixtures","ntp.xml"))
+    response_ntp_stop = services_fixtures
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }

@@ -38,6 +38,7 @@ BuildRequires:  yast2-webclient
 Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
 Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+BuildRequires: webyast-services-ui-testsuite
 Summary:  Testsuite for webyast-time-ui package
 
 %description
