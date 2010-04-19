@@ -46,12 +46,12 @@ function getElementsByClass(searchClass, domNode, tagName) {
 }
 
 //remove all error messages from the input form
-function clearAllErrorMessages(form) {
-  var errors = getElementsByClass("error", form, "label");
-  for(i=0; i<errors.length; i++) {
-	 $(errors[i]).remove();
-  }
-}
+// function clearAllErrorMessages(form) {
+//   var errors = getElementsByClass("error", form, "label");
+//   for(i=0; i<errors.length; i++) {
+// 	 $(errors[i]).remove();
+//   }
+// }
 
 function validateDomainName(domain)
 {
