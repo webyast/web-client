@@ -14,7 +14,7 @@ Recommends:     WebYaST(org.opensuse.yast.modules.yapi.time)
 Recommends:     WebYaST(org.opensuse.yast.modules.yapi.ntp)
 Provides:       yast2-webclient-systemtime = %{version}
 Obsoletes:      yast2-webclient-systemtime < %{version}
-PreReq:         yast2-webclient >= 0.0.2
+Requires(pre):  yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
@@ -24,8 +24,8 @@ Summary:        WebYaST - time management UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
-BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
-BuildRequires:  ruby tidy
+BuildRequires:  rubygem-webyast-rake-tasks
+BuildRequires:  ruby
 BuildRequires:  yast2-webclient
 
 #
@@ -38,7 +38,7 @@ BuildRequires:  yast2-webclient
 Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
 Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
-BuildRequires: webyast-services-ui-testsuite
+BuildRequires: webyast-services-ui-testsuite tidy
 Summary:  Testsuite for webyast-time-ui package
 
 %description
