@@ -44,6 +44,15 @@
 	    "<%= _("Very Strong") %>"
 	  ],
       });
+
+
+      $("#adminForm input").keypress(function(e){
+	if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+	    $("input#default_submit").click();
+	    return false;
+	}
+      });
+
     });
 
     // start password validation workaround only when "Save" button has been pressed
@@ -84,7 +93,7 @@
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_aliases" generated="true" class="error"></label></p>
     </fieldset>
-    <p><%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :disabled => disabled %>
+    <p><%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :id => "default_submit", :disabled => disabled %>
     </p>
   <% end %>
 </div>
