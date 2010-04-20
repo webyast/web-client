@@ -25,19 +25,15 @@
 		  if($("#"+ field_id).parents('fieldset').attr("id") == "ip-address")
 		  {
 			 if($('#ip-tab').attr('aria-expanded') =="true") {
-				alert("donn't slide");
 				$("#"+field_id).focus();
 			 } else {
-				alert("slide");
 				$(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
 				$("#"+field_id).focus();
 			 }
 		  } else if($("#"+ field_id).parents('fieldset').attr("id") == "dns") {
 			 if($('#dns-tab').attr('aria-expanded') =="true") {
-				alert("donn't slide");
 				$("#"+field_id).focus();
 			 } else {
-				alert("slide");
 				$(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
 				$("#"+field_id).focus();
 			 }  
