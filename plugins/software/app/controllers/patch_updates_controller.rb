@@ -18,7 +18,11 @@ class PatchUpdatesController < ApplicationController
     rescue ActiveResource::ServerError => e
       ce = ClientException.new e
       if ce.backend_exception_type ==  "PACKAGEKIT_ERROR"
-        flash[:error] = ce.message
+        if ce.message.match /Repository (.*) needs to be signed/
+          flash[:error] = _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % $1
+        else
+          flash[:error] = ce.message
+        end
         @patch_updates = []
         @error = true
       else

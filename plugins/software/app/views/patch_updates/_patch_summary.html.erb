@@ -1,4 +1,7 @@
 <% unauthorized =  error.class == ActiveResource::UnauthorizedAccess -%>
+<% error_string.match /Repository (.*) needs to be signed/ -%>
+<% unsigned_repo = $1 -%>
+<% error = nil unless unsigned_repo.blank? %>
 <%= report_error(error, error_string) if error && !unauthorized %>
 
 <div class="status_patches">
@@ -9,7 +12,11 @@
 	  <%= _("Cannot read patch updates - you have been logged out.") %>
 	<% end %>
       <% else %>
-	<%= _("No information about patches available") %>
+	<% if unsigned_repo.blank? %>
+	  <%= _("No information about patches available") %>
+	<% else %>
+	  <%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
+	<% end %>
       <% end %>
   <% else %>
     <% label = [] %>
