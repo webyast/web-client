@@ -4,10 +4,6 @@
 <%= javascript_include_tag "users_edit.js" %>
 
   <style type="text/css">
-    label.error {
-         display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50%
-    }
-
     .GContainerUser, .GContainerGroups {
         float: left;
         margin: 3px;
@@ -107,13 +103,13 @@
 	<tr><td>
           <div class="label"><%=_("Full Name")%></div>
 	</td><td>
-          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this.parentNode.parentNode);" %>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this.parentNode.parentNode.parentNode.parentNode.parentNode);" %>
 	</td></tr>
 
 	<tr><td>
           <div class="label"><%=_("Login Name")%></div>
 	</td><td>
-          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#userForm').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode);", :class => "required" %>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#userForm').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode.parentNode.parentNode);", :class => "required" %>
           <%= f.text_field :id, :class => "hidden" %>
 	</td></tr>
 
@@ -139,9 +135,9 @@
 	<tr><td>
             <div class="label"><%=_("Groups")%></div>
 	</td><td>
-            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
             <a href="#" class="button" onClick="open_groups_dialog();return false;">Manage Groups</a>
-        <div class="label" id="groups-error" class="error"></div>
+            <label class="label" id="groups-error" class="error"></label>
 	<td></tr>
 
 	<tr><td>
@@ -193,7 +189,7 @@
   <fieldset>
     <%= form_back_button :action => :index%>
     <%= form_str_spacer %>
-    <%= form_next_button :onclick=>"return new_user_validation();" %>
+    <%= form_next_button :onclick=>"return new_user_validation(this);" %>
   </fieldset>
 <% end %>
             <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>

@@ -149,7 +149,7 @@ function disable(which){
 	<tr><td>
             <div class="label"><%=_("Groups")%></div>
 	</td><td>
-            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation();" %>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
             <label id="groups-error" class="error"></label>
 	</td></tr>
 
@@ -175,13 +175,13 @@ function disable(which){
 	<tr><td>
             <div class="label"><%=_("UID Number")%></div>
 	</td><td>
-            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_uid_number');"  %>
             <label id="uid-error" class="error"></label>
 	</td></tr>
 
 	</table>
 
-     <%= form_next_button :label => _("Save") %>
+     <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '#form_"+user.uid+"');"  %>
      <% if @permissions[:userdelete] %>
       <span onclick="disable(this);"><%= link_to _("Delete"),
                             {:action => 'destroy', :id => user.uid},
@@ -200,5 +200,6 @@ function disable(which){
 </fieldset>
 <%= link_to _("Manage Groups"), "controller" => "groups" %>
 </div>
+            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
 </div>
 
