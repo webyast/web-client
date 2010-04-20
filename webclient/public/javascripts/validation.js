@@ -45,14 +45,6 @@ function getElementsByClass(searchClass, domNode, tagName) {
   return elements;
 }
 
-//remove all error messages from the input form
-// function clearAllErrorMessages(form) {
-//   var errors = getElementsByClass("error", form, "label");
-//   for(i=0; i<errors.length; i++) {
-// 	 $(errors[i]).remove();
-//   }
-// }
-
 function validateDomainName(domain)
 {
 	 jQuery.validator.addMethod(domain, function(value, element) {
@@ -63,6 +55,17 @@ function validateDomainName(domain)
 		  || regExp.test(value)
         || ip4.test(value)
         || ip6.test(value);
+	 });
+}
+
+//Cannot enter valid domain bnc#598102
+//use host name regexp instead of domain name (match: suse, suse.de, stealth.suse.de, www.stealth.suse.de)
+function validateDomainNameWithAndWithoutTLD(domain)
+{
+	 jQuery.validator.addMethod(domain, function(value, element) {
+		var regExp = new RegExp("^"+host+"$");
+		return this.optional(element) 
+		  || regExp.test(value)
 	 });
 }
 
@@ -144,7 +147,6 @@ function validateTime(ctime) {
 }
 
 function validateDate(cdate) {
-  alert("date");
   jQuery.validator.addMethod(cdate, function(value, element) {
     var regExp = new RegExp(date);
 	 return this.optional(element) 

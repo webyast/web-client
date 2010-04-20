@@ -19,10 +19,29 @@
     });
    <% end %>
 
+	<!-- Slide and focus the field with error if accordion tab is closed (prevent the slideDown of opened tab)-->
    <% javascript_tag do -%>
-      function focus_field(field_id) {
-        $(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
-        $("#"+field_id).focus();
+		function focus_field(field_id) {
+		  if($("#"+ field_id).parents('fieldset').attr("id") == "ip-address")
+		  {
+			 if($('#ip-tab').attr('aria-expanded') =="true") {
+				alert("donn't slide");
+				$("#"+field_id).focus();
+			 } else {
+				alert("slide");
+				$(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
+				$("#"+field_id).focus();
+			 }
+		  } else if($("#"+ field_id).parents('fieldset').attr("id") == "dns") {
+			 if($('#dns-tab').attr('aria-expanded') =="true") {
+				alert("donn't slide");
+				$("#"+field_id).focus();
+			 } else {
+				alert("slide");
+				$(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
+				$("#"+field_id).focus();
+			 }  
+		  }
       };
    <% end %>
 
@@ -70,7 +89,6 @@
 		{
 			var ipValid = getElementsByClass("error valid", "ip-address", "label");
 			var ipErrors = getElementsByClass("error", "ip-address", "label");
-		 
 			var dnsValid = getElementsByClass("error valid", "dns", "label");
 			var dnsErrors = getElementsByClass("error", "dns", "label");
 
@@ -82,6 +100,7 @@
 				focus_field("ip");
 			} else if (ipValid.length == ipErrors.length && dnsValid.length == dnsErrors.length) {
 				$('#progress').show();
+				return true;
 			}
 		}
 	</script>
@@ -90,13 +109,12 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 	  validateIPv4("ip");
-	  //accept prefixlen and common subnet mask format e.g. 255.255.255.0
-	  validateSubnetMask("netmask");
+	  validateSubnetMask("netmask"); //accept prefixlen and common subnet mask format e.g. 255.255.255.0
 	  validateDefaultRoute("default_route");
-
-	  validateDomainName("domain");
+	  validateDomainNameWithAndWithoutTLD("domain");
 	  validateIPv4("nameservers");
-	  validateDomainName("searchdomains");
+	  validateDomainNameWithAndWithoutTLD("searchdomains");
+
 		$("#dnsForm").validate({ 
 		  onblur: true,
 		  rules:{
@@ -112,11 +130,9 @@
 				default_route: true,
 				required:true
 			 },
-
 			 name: { 
 				required: true,
 			 },
-
 			 domain: {
 				domain: true,
 				required:true
@@ -220,7 +236,6 @@
       //upgrade to RFC1123
 
       var valChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789";
-      var counter = 0;
 
       function hostValidation(t,v){
           var valhostname = "";
@@ -237,13 +252,10 @@
               }
           }
           t.value = valhostname;
-			 
       }
 
       function clearWarning(){
 			$("#dns").find("label[for='name']").filter('[class=error]').text("");
-<!--          var replace_length = document.getElementById("warning").firstChild.nodeValue.length; -->
-<!--          document.getElementById("warning").firstChild.replaceData(0, replace_length, ""); // 0 == at string beginning -->
       }
 
       function addWarning(message){
@@ -265,9 +277,7 @@
 			
 			$("#dns").find("label[for='name']").filter('[class=error valid]').removeClass("valid").addClass("error");
 			$("#dns").find("label[for='name']").filter('[class=error]').text(message);
-<!--          var replace_length = document.getElementById("warning").firstChild.nodeValue.length; -->
-<!--          document.getElementById("warning").firstChild.replaceData(0, replace_length, message); // 0 == at string beginning -->
-	 }
+		}
 
       function endWithHyphen(t) {
          if(t.value[t.value.length-1] == "-") {
@@ -283,10 +293,6 @@
             return false;
         return true; //FIXME better check
       }
-
-<!-- 		function validateNetwork() { $('#progress').show(); } -->
-
-
     <% end %>
 <% end %>
 <% content_for :before_script do %>
@@ -325,7 +331,7 @@
 <% end %>
 
 
-<% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put} do |n| %>
+<% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return switchAccordionTab();"} do |n| %>
 <%= n.error_messages %>
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
   
@@ -339,7 +345,7 @@
   </fieldset>
   <div class="accordion">
     <fieldset id="ip-address" class="wrapper with-background">
-      <legend><span>IP Address</span></legend>
+      <legend id="ip-tab"><span>IP Address</span></legend>
       <div>
         <p>
           <label for="<%= :ip %>"><%=_("IP address")%></label>
@@ -356,7 +362,7 @@
       </div>
     </fieldset>
     <fieldset id="dns" class="wrapper with-background">
-      <legend><span>DNS</span></legend>
+      <legend id="dns-tab"><span>DNS</span></legend>
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>
@@ -380,7 +386,7 @@
     </fieldset>
   </div>
   <fieldset>
-    <%= form_send_buttons :onclick=>"switchAccordionTab()", :disabled => write_disabled %>
+    <%= form_send_buttons :disabled => write_disabled %>
   </fieldset>
 <% end %>
 </div>
