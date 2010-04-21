@@ -56,7 +56,8 @@
 	 autoHeight : false,
 	 navigation : true,
 	 collapsible: true,
-	 header     : 'div.list-fieldset div.list-fieldset-header'
+	 header     : 'div.list-fieldset div.list-fieldset-header',
+     animated : false
       });
 
       $(".accordion").accordion('activate', false);
@@ -64,7 +65,7 @@
      <%# if show filter is present then simulate click on the header %>
      <%# to unfold the repository content %>
      <% if !@show.blank? && @repos.find{|x| x.id == @show} %>
-       $('#repo_header_<%= safe_id(@show) -%>').click()
+       $('#repo_header_<%= safe_id(@show) -%>').click();
      <% end %>
 
       $('input#repo_search').quicksearch('#repositories div.list-fieldset', {

@@ -150,7 +150,8 @@ function select_status (val) {
        header     : 'div.list-fieldset div.list-fieldset-header',
        change: function(event, ui) {
 	    $('#service_result_' + $(ui.oldHeader).attr("name")).hide();
-	}
+	},
+       animated   : false
     });
     $(".accordion").accordion('activate',false);
   });
