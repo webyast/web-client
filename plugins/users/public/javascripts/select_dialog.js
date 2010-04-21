@@ -18,17 +18,16 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 */
+var update = function (obj1,obj2) {
+  var new_obj = new Object();
+  for (var i in obj1) { new_obj[i] = obj1[i] };
+  for (var i in obj2) { new_obj[i] = obj2[i] };
+  return new_obj;
+}
+
+var getContents = function (item) { return item.innerHTML; };
 
 function select_many_dialog( kvargs ) {
-  function getContents(item) { return item.innerHTML; };
-  
-  var update = function (obj1,obj2) {
-    var new_obj = new Object();
-    for (var i in obj1) { new_obj[i] = obj1[i] };
-    for (var i in obj2) { new_obj[i] = obj2[i] };
-    return new_obj;
-  }
-  
   var include = function (arr,item) { 
     return arr.indexOf(item) == (-1) ? false : true; 
   }
@@ -115,6 +114,55 @@ function select_many_dialog( kvargs ) {
     $('#unselected-'+kind).children().click( function () { setSelected( this.getAttribute('value'), true ) } );
     $('#selected-'+kind  ).children().click( function () { setSelected( this.getAttribute('value'), false) } );
     // call the dialog
+    $('#select-'+kind+'-dialog').dialog('open');
+  };
+  return open_dialog;
+};
+
+function select_one_dialog( kvargs ) {
+   // load settings from parameters of default
+  var default_settings = {
+    kind           : "items",
+    title          : "Select item",
+    tooltip : "Click item to select it."
+  };
+  // preferably use settings from arguments
+  var settings = update(default_settings, kvargs );
+  var kind = settings.kind;
+  // create a basic dialog html
+  var d;
+  d  = '<div id="select-one-' + kind + '-dialog\" style="display:none;" title="'+settings.title+'">\n';
+  d += '  <input type="hidden" id="select-' + kind + '-current-id" value=""/>\n';
+  d += '  <div class="dialog-container">\n';
+  d += '    <div id="available-' + kind + '"/>\n';
+  d += '  </div>\n';
+  d += '  <div class="select-tooltip">'+settings.tooltip+'</div>\n';
+  d += '</div>';
+  $("body").append(d);
+  
+  // say that the html is a dialog
+  $("#select-one-"+kind+"-dialog").dialog({
+    autoOpen : false,
+    width : 350,
+    height: 350,
+    modal : true
+  });
+
+  var renderItem = function(item) {
+    return ('<span class="select-dialog-item" value="'+item+'">'+item+'</span>');
+  };
+
+  var itemClick = function(item) {
+    settings.storeItem( getContents( item ) );
+    $("select-one-"+kind+"-dialog").dialog('close');
+  };
+ 
+  // create function for opening the dialog
+  var open_dialog = function (dialogId) {
+    var all_items     = settings.allItems();
+    $('#available-'+kind).empty();
+    $('#available-'+kind).append( all_items.map( renderItem ) );
+    $('#available-'+kind).children().click( function () { itemClick( this ) } );
     $('#select-'+kind+'-dialog').dialog('open');
   };
   return open_dialog;
