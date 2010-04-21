@@ -40,32 +40,17 @@
     });
    <% end %>
 
-	<!-- Slide and focus the field with error if accordion tab is closed (prevent the slideDown of opened tab)-->
    <% javascript_tag do -%>
-		function focus_field_accordion(field_id) {
-		  if($("#"+ field_id).parents('fieldset').attr("id") == "ip-address")
-		  {
-			 if($('#ip-tab').attr('aria-expanded') =="true") {
-				$("#"+field_id).focus();
-			 } else {
-				$(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
-				$("#"+field_id).focus();
-			 }
-		  } else if($("#"+ field_id).parents('fieldset').attr("id") == "dns") {
-			 if($('#dns-tab').attr('aria-expanded') =="true") {
-				$("#"+field_id).focus();
-			 } else {
-				$(".accordion").accordion('activate',$("#"+field_id).parent().parent().prev());
-				$("#"+field_id).focus();
-			 }  
-		  }
-      };
-      function focus_field_tabs(field_id) {
+      // Slide and focus the field with error if accordion/tab section  is closed 
+      // (prevent the slideDown of opened tab)
+      function focus_field(field_id) {
         var fragment_id = $("#"+ field_id).parents('fieldset').attr("id");
-        $(".fieldset-group").tabs('select',"#"+fragment_id);
+        if ($("#"+fragment_id+" legend").attr('aria-expanded') != 'true') {
+           $(".fieldset-group.ui-accordion").accordion('activate', "#"+fragment_id+" legend");
+        };
+        $(".fieldset-group.ui-tabs").tabs('select',"#"+fragment_id);
         $("#"+field_id).focus();
       };
-      focus_field = focus_field_tabs;
    <% end %>
 
    <% javascript_tag do -%>
@@ -322,6 +307,7 @@
   <% javascript_tag do %>
     $(document).ready(function(){
 /*
+      // commenting/uncommenting these few lines is all it takes to switch from tebs to accordion
       $(".fieldset-group").accordion({
         autoHeight : false,
         navigation : true,
