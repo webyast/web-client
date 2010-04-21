@@ -1,5 +1,5 @@
 /*
-*
+* Source: jrails plugin
 * jRails ajax extras
 * version 0.1
 * <aaron@ennerchi.com> | http://www.ennerchi.com
