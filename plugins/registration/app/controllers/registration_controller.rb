@@ -91,11 +91,16 @@ class RegistrationController < ApplicationController
   def client_guid
     begin
       status = @client.find
-      @guid = status.guid unless status.guid.blank?
+    rescue
+      logger.debug "Registration could not find registration information: system is unregistered."
+    end
+
+    begin
+      @guid = status.guid if (status.respond_to?('guid') && !status.guid.blank?)
+      @config_error = true if (status.respond_to?('configerror') && status.configerror == 'true')
       logger.debug "found GUID: #{@guid}"
     rescue
-      @guid = nil
-      logger.debug "no GUID found"
+      logger.error "Registration could neither read guid nor detect a configuration error."
     end
 
     return @guid
@@ -124,6 +129,12 @@ class RegistrationController < ApplicationController
     logger.error "Registration resulted in an error, registration server or SuseRegister backend returned invalid or incomplete data."
     # success: allow users to skip registration in case of an error (bnc#578684) (bnc#579463)
     redirect_success
+  end
+
+  def registration_backend_error
+    logger.error "Registration could not read the configuration. Most likely the backend is not installed correctly. Please check the package dependencies."
+    flash[:error] = _("Could not read the registration configuration.") + "<br>" + _("The registration backend is not installed correctly") +
+                    " " + _("Please refer to your support contact.")
   end
 
   def collect_missing_arguments(missed_args)
@@ -222,14 +233,18 @@ class RegistrationController < ApplicationController
 
   public
 
-  # Index handler. Loads information from backend and if success all required
-  # fields are filled. In case of errors redirect to help page, main page or just
-  # show flash with partial problem.
   def index
     return unless client_permissions
     return unless register_permissions
 
-    if !client_guid
+    client_guid
+    if @config_error
+      registration_backend_error
+      redirect_success
+      return
+    end
+
+    if !@guid
       @arguments = []
       @nexttarget = 'update'
       register
@@ -264,8 +279,15 @@ class RegistrationController < ApplicationController
     return unless client_permissions
     return unless register_permissions
 
+    client_guid
+    if @config_error
+      registration_backend_error
+      redirect_success
+      return
+    end
+
     # redirect in case of interrupted basesetup
-    if client_guid && !@reregister
+    if @guid && !@reregister
       flash[:notice] = _("This system is already registered.")
       redirect_success
       return
