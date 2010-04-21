@@ -315,7 +315,7 @@
 <% content_for :before_script do %>
   <% javascript_tag do %>
     $(document).ready(function(){
-      $(".accordion").accordion({
+      $(".fieldset-group").accordion({
         autoHeight : false,
         navigation : true,
         header     : 'fieldset legend',
@@ -360,7 +360,7 @@
       <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
     </p>
   </fieldset>
-  <div class="accordion">
+  <div class="fieldset-group">
     <fieldset id="ip-address" class="wrapper with-background">
       <legend id="ip-tab"><span>IP Address</span></legend>
       <div>
