@@ -89,6 +89,7 @@ class RegistrationController < ApplicationController
   init_gettext "yast_webclient_registration"  # textdomain, options(:charset, :content_type)
 
   def client_guid
+    # handle config error in backend (bnc#592620)
     begin
       status = @client.find
     rescue
