@@ -92,7 +92,6 @@ class PatchUpdatesController < ApplicationController
         return
       else
         patches_summary = { :security => 0, :important => 0, :optional => 0}
-
         [:security, :important, :optional].each do |patch_type|
           patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
         end
@@ -127,7 +126,7 @@ class PatchUpdatesController < ApplicationController
     logger.debug "Start installation of all patches"
 
     respond_to do |format|
-      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true }}
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true, :message => "" }}
     end    
   end
 
@@ -135,7 +134,7 @@ class PatchUpdatesController < ApplicationController
     logger.debug "Stopping installation of all patches"
 
     respond_to do |format|
-      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false }}
+      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false, :message => "" }}
     end    
   end
 
@@ -147,7 +146,8 @@ class PatchUpdatesController < ApplicationController
     error = nil
     patch_updates = nil    
     begin
-      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+      client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+      patch_updates = client.find :all
     rescue Exception => e
       error = e
       patch_updates = nil
@@ -155,11 +155,27 @@ class PatchUpdatesController < ApplicationController
 
     flash.clear #no flash from load_proxy
     last_patch = ""
+    message_string = ""
     unless patch_updates.blank?
       #installing the first available patch
       logger.info "Installing patch :#{patch_updates[0].name}"
       begin
-        patch_updates[0].save
+        ret = client.create({:repo=>nil,
+                             :kind=>nil,
+                             :name=>nil,
+                             :arch=>nil,
+                             :version=>nil,
+                             :summary=>nil,
+                             :resolvable_id=>patch_updates[0].resolvable_id})
+        if ret.respond_to?(:messages) && !ret.messages.blank?
+           ret.messages.each { |message|
+             if ["system", "application", "session"].include?(message.kind)
+               message_string += _("<p>A restart of the %s is needed.</p>") % message.kind
+             else
+               message_string += "<p><b>#{message.kind}:</b>#{message.details}</p>"
+             end
+           }
+        end
         logger.debug "updated #{patch_updates[0].name}"
       rescue ActiveResource::ResourceNotFound => e
         flash[:error] = YaST::ServiceResource.error(e)
@@ -174,9 +190,9 @@ class PatchUpdatesController < ApplicationController
 
     respond_to do |format|
       if last_patch.blank?
-        format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false }}
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false, :message => "" }}
       else
-        format.html { render :partial => "patch_installation", :locals => { :patch => _("%s installed.") % last_patch , :error => error }}
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("%s installed.") % last_patch , :error => error, :message => message_string }}
       end
     end    
   end
@@ -193,25 +209,49 @@ class PatchUpdatesController < ApplicationController
         update_array << value
       end
     }
+    flash_string = ""
+    message_string = ""
     update_array.each do |patch_id|
-      update = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches').new(
-                             :repo=>nil, 
-                             :kind=>nil, 
-                             :name=>nil, 
-                             :arch=>nil, 
-                             :version=>nil,
-                             :summary=>nil, 
-                             :resolvable_id=>patch_id)
       begin
-        update.save
+        client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
+        ret = client.create({:repo=>nil,
+                             :kind=>nil,
+                             :name=>nil,
+                             :arch=>nil,
+                             :version=>nil,
+                             :summary=>nil,
+                             :resolvable_id=>patch_id})
+        if ret.respond_to?(:messages) && !ret.messages.blank?
+           ret.messages.each { |message|
+             if ["system", "application", "session"].include?(message.kind)
+               message_string += _("<p>A restart of the %s is needed.</p>") % message.kind
+             else
+               message_string += "<p><b>#{message.kind}:</b>#{message.details}</p>"
+             end
+           }
+        end
         logger.debug "updated #{patch_id}"
-        flash[:notice] = _("Patch has been installed.")
+        unless message_string.blank?
+          flash[:error] = _("Patch has been installed. ") + message_string 
+        else
+          flash[:notice] = _("Patch has been installed. ")
+        end
       rescue ActiveResource::ResourceNotFound => e
         flash[:error] = YaST::ServiceResource.error(e)
       rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
+        redirect_to({:controller=>"controlpanel", :action=>"index"}) and return
       end        
     end
+    unless message_string.blank?
+      #show all messages again
+      if update_array.size > 1       
+        flash[:error] = _("All Patches have been installed. ") + message_string 
+      else
+        flash[:error] = _("Patch has been installed. ") + message_string 
+      end
+    end
+  
     redirect_to({:controller=>"controlpanel", :action=>"index"})
   end
 

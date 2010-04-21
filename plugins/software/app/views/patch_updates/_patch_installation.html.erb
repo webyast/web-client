@@ -37,6 +37,31 @@
       <% end %>
       <span><%= patch %></span>
     <% end %>
+    <% unless message.empty? %>
+      <div id="patch_message" >
+        <div>
+          <%= message %>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        $(document).ready(
+           function() {
+             // define a dialog
+             $('#patch_message').dialog(
+               {
+                  bgiframe: true,
+                  autoOpen: false,
+                  height: 'auto',
+                  title: "<%= _("Patch Installation")%>",
+                  modal: false
+                });
+             // open detail popup
+             $('#patch_message').dialog('open');
+           });
+      </script>
+    <% end %>
+
     <% if !defined?(go_on) or go_on %>
       <%= button_to_remote _("Stop"), :update =>"status_patches", :url=>{ :controller => :patch_updates, :action => :stop_install_all}, :confirm => _("Are you sure?") %>
     <% end %>
