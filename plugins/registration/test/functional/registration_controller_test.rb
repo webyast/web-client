@@ -60,12 +60,15 @@ class RegistrationControllerTest < ActionController::TestCase
     def fill_success
       @status = "finished"
       @exitcode = 0
-      @changed_repositories = []
+      @changed_repositories = [ { "name"=>"foobar_example_com", "url"=>"http://foobar.example.com",
+                                  "type"=>"rpm-md", "alias"=>"foobar_example_com", "status"=>"added" },
+                                { "name"=>"barfoo_example_com", "url"=>"http://barfoo.example.com",
+                                  "type"=>"yast2", "alias"=>"barfoo_example_com", "status"=>"added" } ]
       @changed_services = [ { "name"=>"nu_novell_com", "url"=>"https://nu.novell.com", "type"=>"nu", "alias"=>"nu_novell_com", "status"=>"added",
                               "catalogs" => {
                                 "catalog" => [ { "name"=>"SLES11-SP1-Pool", "alias"=>"nu_novell_com:SLES11-SP1-Pool", "status"=>"added"},
                                                {"name"=>"SLES11-SP1-Updates", "alias"=>"nu_novell_com:SLES11-SP1-Updates", "status"=>"added"} 
-                                             ] } 
+                                             ] }
                             } ]
     end
 
@@ -95,7 +98,7 @@ class RegistrationControllerTest < ActionController::TestCase
 #workaround for Testing availability of basesystem
     YastModel::Resource.stubs(:interfaces_available?).returns true
   end
-  
+
   def test_access_index
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
     @proxy.result.fill_missing
@@ -125,9 +128,9 @@ class RegistrationControllerTest < ActionController::TestCase
   def test_register
     YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
     @proxy.result.fill_success
-    post :update, {"registration_arg,Registration Name"=>"registrationName", "registration_arg,System Name"=>"systemName", "registration_arg,Email"=>"email" }
+    post :update, {"registration_arg_Registration Name"=>"registrationName", "registration_arg_System Name"=>"systemName", "registration_arg_Email"=>"email" }
     assert_response :redirect
-    assert_redirected_to :action => "index"
+    assert_redirected_to :controller => :controlpanel, :action => "index"
   end
 
   def test_register_in_basesystem
@@ -136,9 +139,12 @@ class RegistrationControllerTest < ActionController::TestCase
     session[:wizard_current] = "test"
     session[:wizard_steps] = "language,registration"
 
-    post :update, {"registration_arg,Registration Name"=>"registrationName", "registration_arg,System Name"=>"systemName", "registration_arg,Email"=>"email" }
+    post :update, {"registration_arg_Registration Name"=>"registrationName", "registration_arg_System Name"=>"systemName", "registration_arg_Email"=>"email" }
     assert_response :redirect
-    assert_redirected_to :controller => "controlpanel", :action => "nextstep"
+    #assert_redirected_to :controller => :controlpanel,  :action => "nextstep"
+    #assert_redirected_to :controller => "controlpanel", :action => "nextstep"
+    assert_redirected_to :controller => :controlpanel, :action => :nextstep, :done => :registration
+    #assert_redirected_to '/controlpanel/nextstep?done=registration'
   end
 
   def test_register_with_false_arguments
