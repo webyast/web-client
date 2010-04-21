@@ -53,7 +53,7 @@
 
   function select_groups_dialog() {
     var open_dialog = select_many_dialog({
-      kind : 'users',
+      kind : 'groups',
       title : '<%= _('Select Groups') %>',
       selected_title : '<%= _('Selected Groups') %>',
       unselected_title : '<%= _('Available Groups') %>',
@@ -69,11 +69,28 @@
       }
     });
     return open_dialog;
-  }
+  };
+  
+  function select_default_group_dialog() {
+    var open_dialog = select_one_dialog({
+      kind : 'group',
+      title : '<%= _('Select Default Group') %>',
+      tooltip : '<%= _('Click a group name to choose users default group') %>',
+      allItems : function (dialogId) {
+        return $('#all_grps_string')[0].value.split(",")
+      },
+      storeItem : function (dialogId, item) {
+        $('#form_'+dialogId+' #user_groupname')[0].value = item;
+      }
+    });
+    return open_dialog;
+  };
 
- $(document).ready(function(){
+  $(document).ready(function(){
 
     select_groups_open = select_groups_dialog();
+
+    select_default_group_open = select_default_group_dialog();
 
 // make the error message translatable - override the default messsage
    $.extend($.validator.messages, {
@@ -207,6 +224,7 @@ function disable(which){
             <div class="label"><%=_("Default Group")%></div>
 	</td><td colspan=2>
             <%= f.text_field :groupname, :disabled => disabled %>
+            <%= link_to _("Select Default Group"), {}, :href => "#", :onClick => "select_default_group_open('"+user.uid.to_s+"');return false;", :class => "button" %>
 	</td></tr>
 
 	<tr><td>

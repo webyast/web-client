@@ -100,8 +100,11 @@
   <% javascript_tag do %>
     $(document).ready(function(){
       $(".accordion").accordion({
+        autoHeight : false,
         navigation : true,
-        header     : 'fieldset legend'
+        header     : 'fieldset legend',
+        animated   : false,
+        collapsible: true
       });
     });
   <% end %>

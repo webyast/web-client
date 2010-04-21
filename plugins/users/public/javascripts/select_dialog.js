@@ -69,8 +69,8 @@ function select_many_dialog( kvargs ) {
   // say that the html is a dialog
   $("#select-"+kind+"-dialog").dialog({
     autoOpen : false,
-    width : 350,
-    height: 350,
+    width : 600,
+    height: 400,
     modal : true,
     buttons : {
       'Ok': function() {
@@ -143,8 +143,8 @@ function select_one_dialog( kvargs ) {
   // say that the html is a dialog
   $("#select-one-"+kind+"-dialog").dialog({
     autoOpen : false,
-    width : 350,
-    height: 350,
+    width : 600,
+    height: 400,
     modal : true
   });
 
@@ -152,18 +152,18 @@ function select_one_dialog( kvargs ) {
     return ('<span class="select-dialog-item" value="'+item+'">'+item+'</span>');
   };
 
-  var itemClick = function(item) {
-    settings.storeItem( getContents( item ) );
-    $("select-one-"+kind+"-dialog").dialog('close');
+  var itemClick = function(dialogId,item) {
+    settings.storeItem( dialogId, getContents( item ) );
+    $("#select-one-"+kind+"-dialog").dialog('close');
   };
  
   // create function for opening the dialog
   var open_dialog = function (dialogId) {
     var all_items     = settings.allItems();
     $('#available-'+kind).empty();
-    $('#available-'+kind).append( all_items.map( renderItem ) );
-    $('#available-'+kind).children().click( function () { itemClick( this ) } );
-    $('#select-'+kind+'-dialog').dialog('open');
+    $('#available-'+kind).append( all_items.map( renderItem ).join("\n") );
+    $('#available-'+kind).children().click( function () { itemClick( dialogId, this ) } );
+    $('#select-one-'+kind+'-dialog').dialog('open');
   };
   return open_dialog;
 };

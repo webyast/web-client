@@ -34,7 +34,7 @@
       unselected_title : '<%= _('Available Members') %>',
       tooltip : '<%= _('Click user names to select/unselect members') %>',
       loadItems : function (dialogId) { 
-        if return $('#groupForm_'+dialogId+' #group_members_string')[0].value.split(",")
+        return $('#groupForm_'+dialogId+' #group_members_string')[0].value.split(",")
       },
       storeItems : function (dialogId, items) { 
         $('#groupForm_'+dialogId+' #group_members_string')[0].value = items.join(",");
@@ -44,7 +44,7 @@
       }
     });
     return open_dialog;
-  }
+  };
 
   $(document).ready(function(){
   
