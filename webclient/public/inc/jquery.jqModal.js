@@ -1,5 +1,5 @@
 /*
- * jqModal - Minimalist Modaling with jQuery
+ * Source: jqModal - Minimalist Modaling with jQuery
  *   (http://dev.iceburg.net/jquery/jqModal/)
  *
  * Copyright (c) 2007,2008 Brice Burgess <bhb@iceburg.net>

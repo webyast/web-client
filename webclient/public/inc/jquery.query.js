@@ -1,5 +1,5 @@
 ﻿/**
- * jQuery.query - Query String Modification and Creation for jQuery
+ * Source: jQuery.query - Query String Modification and Creation for jQuery
  * Written by Blair Mitchelmore (blair DOT mitchelmore AT gmail DOT com)
  * Licensed under the WTFPL (http://sam.zoy.org/wtfpl/).
  * Date: 2009/02/08

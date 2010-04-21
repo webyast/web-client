@@ -1,3 +1,4 @@
+# Source: jrails plugin
 module ActionView
 	module Helpers
 		

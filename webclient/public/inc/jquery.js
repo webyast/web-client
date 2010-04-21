@@ -1,5 +1,5 @@
 /*
- * jQuery JavaScript Library v1.3.2
+ * Source: jQuery JavaScript Library v1.3.2
  * http://jquery.com/
  *
  * Copyright (c) 2009 John Resig

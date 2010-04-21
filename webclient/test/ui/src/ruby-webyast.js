@@ -1,4 +1,4 @@
-/*
+/* Source: Selenium
  * This is a custom output formatter for Selenium IDE
  * 
  * Use 'Options->Options...->Formats->Add' menu item in Selenium IDE for loading the file.

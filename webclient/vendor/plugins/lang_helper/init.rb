@@ -1,3 +1,4 @@
+# Source: Documentation for ruby-gettext_rails
 # init.rb - a sample script for Ruby on Rails
 #
 # Copyright (C) 2005-2008 Masao Mutoh

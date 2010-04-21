@@ -1,3 +1,4 @@
+/* Source jquery quicksearch plugin */
 jQuery(function ($) {
 	$.fn.quicksearch = function (target, opt) {
 		

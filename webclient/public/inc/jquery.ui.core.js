@@ -1,5 +1,5 @@
 /*
- * jQuery UI 1.7.1
+ * Source: jQuery UI 1.7.1
  *
  * Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT (MIT-LICENSE.txt)

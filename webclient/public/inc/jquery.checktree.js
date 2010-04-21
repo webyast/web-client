@@ -1,5 +1,5 @@
 /**
-    Project: CheckTree jQuery Plugin
+    Source: Project: CheckTree jQuery Plugin
     Version: 0.22
     Project Website: http://static.geewax.org/checktree/
     Author: JJ Geewax <jj@geewax.org>

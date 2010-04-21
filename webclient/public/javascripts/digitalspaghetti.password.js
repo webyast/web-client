@@ -1,4 +1,5 @@
-/* @projectDescription jQuery Password Strength Plugin - A jQuery plugin to provide accessibility functions
+/* Source: jquery password strength plugin
+ * @projectDescription jQuery Password Strength Plugin - A jQuery plugin to provide accessibility functions
  * @author Tane Piper (digitalspaghetti@gmail.com)
  * @version 2.0
  * @website: http://digitalspaghetti.me.uk/digitalspaghetti
