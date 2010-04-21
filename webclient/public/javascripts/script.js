@@ -18,6 +18,18 @@
 #++
 */
 
+/* add tabs navigation needed by jquery-tabs to fieldset-groups */
+function addTabsNavigation(fragment_sel_str,title_sel_str) {
+  var fragments = $(fragment_sel_str).children();
+  $(fragment_sel_str).prepend("<ul></ul>");
+  fragments.each ( function(index,fragment) {
+    var fragment_id = fragment.id;
+    var fragment_title = $("#"+fragment_id).children().slice(0,1).find(title_sel_str)[0].innerHTML;
+    $("#"+fragment_id).children().slice(0,1).hide();
+    $(fragment_sel_str+" ul").append('<li><a href="#'+fragment_id+'"><span>'+fragment_title+'</span></a></li>');
+  });
+}
+
 $(document).ready(function() {
   
   // Change BG Colour on mouseover and change it back on mouse out

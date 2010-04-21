@@ -42,7 +42,7 @@
 
 	<!-- Slide and focus the field with error if accordion tab is closed (prevent the slideDown of opened tab)-->
    <% javascript_tag do -%>
-		function focus_field(field_id) {
+		function focus_field_accordion(field_id) {
 		  if($("#"+ field_id).parents('fieldset').attr("id") == "ip-address")
 		  {
 			 if($('#ip-tab').attr('aria-expanded') =="true") {
@@ -60,6 +60,12 @@
 			 }  
 		  }
       };
+      function focus_field_tabs(field_id) {
+        var fragment_id = $("#"+ field_id).parents('fieldset').attr("id");
+        $(".fieldset-group").tabs('select',"#"+fragment_id);
+        $("#"+field_id).focus();
+      };
+      focus_field = focus_field_tabs;
    <% end %>
 
    <% javascript_tag do -%>
@@ -102,7 +108,7 @@
 	</style>
 
 	<script type="text/javascript">
-		function switchAccordionTab()
+		function switchFieldsetGroupTab()
 		{
 			var ipValid = getElementsByClass("error valid", "ip-address", "label");
 			var ipErrors = getElementsByClass("error", "ip-address", "label");
@@ -315,13 +321,18 @@
 <% content_for :before_script do %>
   <% javascript_tag do %>
     $(document).ready(function(){
+/*
       $(".fieldset-group").accordion({
         autoHeight : false,
         navigation : true,
         header     : 'fieldset legend',
         collapsible: true
       });
+*/
+      addTabsNavigation(".fieldset-group", "span");
+      $(".fieldset-group").tabs();
     });
+
   <% end %>
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
@@ -347,8 +358,7 @@
 
 <% end %>
 
-
-<% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return switchAccordionTab();"} do |n| %>
+<% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return switchFieldsetGroupTab();"} do |n| %>
 <%= n.error_messages %>
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
   
