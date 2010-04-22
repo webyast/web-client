@@ -41,7 +41,7 @@ class RegistrationControllerTest < ActionController::TestCase
 
   class Result
     attr_accessor :status, :exitcode, :saved,
-      :missingarguments, :changed_services, :changed_repositories
+      :missingarguments, :changed_services, :changed_repositories, :guid
 
     def fill_missing
       @status = 'missinginfo'
@@ -70,6 +70,10 @@ class RegistrationControllerTest < ActionController::TestCase
                                                {"name"=>"SLES11-SP1-Updates", "alias"=>"nu_novell_com:SLES11-SP1-Updates", "status"=>"added"} 
                                              ] }
                             } ]
+    end
+
+    def fill_already_registered
+      @guid = "1234567890"
     end
 
     def save
@@ -154,6 +158,17 @@ class RegistrationControllerTest < ActionController::TestCase
     get :index
 
     assert_response :redirect
+    assert_valid_markup
+  end
+
+  def test_already_registered
+    YaST::ServiceResource.stubs(:proxy_for).with('org.opensuse.yast.modules.registration.registration').returns(@proxy)
+    YaST::ServiceResource.proxy_for('org.opensuse.yast.modules.registration.registration').stubs(:find).returns(@result)
+    @proxy.result.fill_already_registered
+
+    get :index
+
+    assert_response 200
     assert_valid_markup
   end
 
