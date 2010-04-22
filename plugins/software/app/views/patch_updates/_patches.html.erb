@@ -25,7 +25,7 @@
         $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));      
     };
   <% end %>
-<table class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
+<table summary="" class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr>
     <th class="first checkbox" width=8% >
       <input type="checkbox" name="All" onclick="check_all()" id="All" style="float: left;"></input>
@@ -50,7 +50,7 @@
 %>
   <% @patch_updates.each do |patch_update| %>
     <tr>
-      <td class="checkbox"><input type="checkbox"id=<%= "patch_#{patch_update.resolvable_id}" %> name=<%="patch_#{patch_update.resolvable_id}" %> value=<%=patch_update.resolvable_id%> ></td>
+      <td class="checkbox"><input type="checkbox" id=<%= "patch_#{patch_update.resolvable_id}" %> name=<%="patch_#{patch_update.resolvable_id}" %> value=<%=patch_update.resolvable_id%> /></td>
 
       <% if kinds.has_key?(patch_update.kind) %>
         <td class="icon" ><%= image_tag(kinds[patch_update.kind]) %> </td>
