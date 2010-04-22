@@ -20,10 +20,15 @@
 # you may find current contact information at www.novell.com
 #++
 %>
-<% unauthorized =  error.class == ActiveResource::UnauthorizedAccess -%>
-<% error_string.match /Repository (.*) needs to be signed/ -%>
-<% unsigned_repo = $1 -%>
-<% error = nil unless unsigned_repo.blank? %>
+<%
+  unauthorized = error.class == ActiveResource::UnauthorizedAccess
+  unsigned_repo = nil
+  if !error_string.blank?
+    error_string.match /Repository (.*) needs to be signed/
+    unsigned_repo = $1
+  end
+  error = nil unless unsigned_repo.blank?
+-%>
 <%= report_error(error, error_string) if error && !unauthorized %>
 
 <div class="status_patches">
