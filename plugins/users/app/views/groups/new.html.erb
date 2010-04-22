@@ -19,6 +19,7 @@
 # you may find current contact information at www.novell.com
 -->
 <%= javascript_include_tag "group_members.js" %>
+<%= javascript_include_tag "select_dialog.js" %>
 
   <style type="text/css">
     label.error {
@@ -47,22 +48,44 @@
      }
   </style>
 
+<script language="javascript">
+
+  function select_users_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'users',
+      title : '<%= _('Select Members') %>',
+      selected_title : '<%= _('Selected Members') %>',
+      unselected_title : '<%= _('Available Members') %>',
+      tooltip : '<%= _('Click user names to select/unselect members') %>',
+      loadItems : function (dialogId) { 
+        return $('#groupForm_'+dialogId+' #group_members_string')[0].value.split(",");
+      },
+      storeItems : function (dialogId, items) { 
+        $('#groupForm_'+dialogId+' #group_members_string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_users_string')[0].value.split(",");
+      }
+    });
+    return open_dialog;
+  }
+
+  $(document).ready(function(){
+    select_users_open = select_users_dialog();
+  }  
+</script>
 <%
  disabled = ! ((@permissions[:groupadd] && @adding) || (@permissions[:groupmodify] && !@adding)) %>
 <div class='plugin-icon'><img src='/icons/yast-groups.png' alt="groups module"/>
   <%=_("Groups") + header_spacer %>
-  <%= if @adding
-         _("Add new group")
-      else
-         _("Modify group")
-      end %>
+  <%= _("Add new group") %>
 </div>
 
 <div class="plugin-content grid_12">
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
-<% form_for :group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm", :autocomplete => :off}  do |f| %>
+<% form_for :group, :url => { :action => "create" }, :html => { :id => "form_new", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
 
@@ -82,7 +105,7 @@
     <p>
       <label><%=_("Members")%></label>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
-      <a href="#" class="button" onClick="open_users_dialog();return false;">Manage Memebers</a>
+      <a href="#" class="button" onClick="select_users_open('new');return false;">Manage Memebers</a>
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label><p>
   </fieldset>

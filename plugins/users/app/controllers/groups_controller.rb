@@ -171,7 +171,7 @@ public
           @all_users_string += ",#{user.uid}"
        end
     end
-    render :edit
+    render :new
   end
 
   def edit
