@@ -188,6 +188,8 @@ case "$1" in
     fi
 
 	echo -n "Starting yastwc "
+  #generate deployment specific secret key (bnc#598834)
+  sed -i 's/f05944f2fa89ced61528d66622c2f5f4dded5912a1276890d2907d012c416f3a32f22dbd22f24614346c1360380dbf71a6fcbbc0e32b2d0cc6812afc623d6c41/'`cd /srv/www/yast/ && rake -s secret`/ /srv/www/yast/config/initializers/session_store.rb
 	startproc -p $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG 
 
 	# Remember status and be verbose
