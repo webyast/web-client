@@ -51,7 +51,7 @@ function findById(where, id){
        }
      }
      set_tab_focus("groups")
-     var error = findById(which.parentNode.getElementsByTagName('label'), "groups-error");
+     var error = findById(which.parentNode.parentNode.parentNode.getElementsByTagName('label'), "groups-error");
      error.innerHTML = errmsg;
      error.style.display= (errmsg.length==0) ? "none" : "block";
      return (errmsg.length==0);
