@@ -23,6 +23,7 @@
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
+<%= javascript_include_tag "select_dialog.js" %>
 <%= javascript_include_tag "users_edit.js" %>
 
  <style>
@@ -50,7 +51,29 @@
   return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
  };
 
+  function select_groups_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'users',
+      title : '<%= _('Select Groups') %>',
+      selected_title : '<%= _('Selected Groups') %>',
+      unselected_title : '<%= _('Available Groups') %>',
+      tooltip : '<%= _('Click group names to select/unselect groups') %>',
+      loadItems : function (dialogId) { 
+        return $('#form_'+dialogId+' #user_grp_string')[0].value.split(",")
+      },
+      storeItems : function (dialogId, items) { 
+        $('#form_'+dialogId+' #user_grp_string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_grps_string')[0].value.split(",") 
+      }
+    });
+    return open_dialog;
+  }
+
  $(document).ready(function(){
+
+    select_groups_open = select_groups_dialog();
 
 // make the error message translatable - override the default messsage
    $.extend($.validator.messages, {
@@ -171,6 +194,7 @@ function disable(which){
             <div class="label"><%=_("Groups")%></div>
 	</td><td>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
+            <a href="#" class="button" onClick="select_groups_open('<%= user.uid%>');return false;"><%= _("Manage Groups") %></a>
             <label id="groups-error" class="error"></label>
 	</td></tr>
 
