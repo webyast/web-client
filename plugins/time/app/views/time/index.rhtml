@@ -136,7 +136,7 @@
   <!--<#%# form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do #%#>-->
 	 <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
     <%#TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>%>
-  <fieldset id="" class="wrapper smallfields with-background">
+  <fieldset class="wrapper smallfields with-background">
     <p>
       <label for="region"><%=_("Region")%></label>
         <%= select_tag "region", options_for_select(@stime.regions, @stime.region.name), :disabled => disabled %>
@@ -182,10 +182,12 @@
     <%= text_field_tag "currenttime", @stime.time, :disabled=> "true"%>
   </p>
   <p>
-    <label class="radio-right"><input id="ntp_sync" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
-    <%=  "disabled=\"disabled\"" if disabled || !Ntp.available? %>
-    <%=  "checked=\"checked\"" if Ntp.available? %>
-    > <%=_("Synchronize via Network Time Protocol (NTP)")%></label>
+    <label class="radio-right">
+		<input id="ntp_sync" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
+		<%=  "disabled=\"disabled\"" if disabled || !Ntp.available? %>
+		<%=  "checked=\"checked\"" if Ntp.available? %> />
+		<%=_("Synchronize via Network Time Protocol (NTP)")%>
+	 </label>
   </p>
   <% if Ntp.available? %>
   <p>
