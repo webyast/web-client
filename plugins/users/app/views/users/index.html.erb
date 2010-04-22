@@ -22,6 +22,8 @@
 <% content_for :head do %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
+<%= javascript_include_tag "digitalspaghetti.password.js" %>
+<%= javascript_include_tag "users_edit.js" %>
 
  <style>
     .pad1_2em {
@@ -91,10 +93,11 @@
 
       $(".accordion").accordion('activate', false);
 
-  $('input#users_search').quicksearch('table tbody tr', {
-    stripeRows: ['odd', 'even'],
-    delay: 100
+  $('input#users_search').quicksearch('div.list-fieldset', {
+          selector: 'span.quicksearch_content',
+          delay: 100
   });
+
 
 });//document.ready
 
@@ -118,25 +121,13 @@ function disable(which){
 </form>
 
 <div class='pad1_2em'>
+<% if @permissions[:useradd] %>
 <%= link_to _("Add New User"), :action => :new, :onclick=>"$('#progress').show()" -%>
-<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th>Login</th>
-      <th>Real Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+<% end %>
 
-  <tbody>
+ <div id="users" class="accordion">
+ <% disabled = ! @permissions[:usermodify] %>
   <% for user in @users %>
-<<<<<<< HEAD
-  <tr class= <%= cycle('odd', 'even') -%> >
-    <td align=center id="login"><%= h user.uid  -%></td>
-    <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
-    <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><div onclick="disable(this);"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user '%s'?") % user.id + "\n" + _("Home directory will be deleted as well.") ) %></div></td>
-=======
    <div class="list-fieldset">
 
     <div class="list-fieldset-header">
@@ -219,18 +210,14 @@ function disable(which){
      <% end %>
     </div>
 
->>>>>>> users-gagarin3
     <% end %>
-  </tr>
+   </div>
   <% end %>
-  </tbody>
-</table>
-</div>
+ </div>
+
 
 <fieldset>
   <%= form_back_button -%>
-  <% if @permissions[:useradd] %>
-  <% end %>
 </fieldset>
 <%= link_to _("Manage Groups"), "controller" => "groups" %>
 </div>
