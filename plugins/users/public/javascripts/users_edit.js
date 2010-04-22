@@ -24,9 +24,17 @@
 
   // using replace instead of trim() see bnc#580561
   function _trim(word){
-//    return word.replace(/^s+/g,'').replace(/s+$/g,'');
     return word.replace(/^\s*|\s*$/g,'');
   }
+
+function findById(where, id){
+ var node=null;
+ for(var i=0;i<where.length;i++){
+  if (where[i].id==id) node=where[i];
+ }
+ return node;
+}
+
 
    function groups_validation(which){
      var mygroups = _trim(findById(which.parentNode.getElementsByTagName('input'), "user_grp_string").value);
