@@ -54,10 +54,10 @@
       unselected_title : '<%= _('Available Members') %>',
       tooltip : '<%= _('Click user names to select/unselect members') %>',
       loadItems : function (dialogId) { 
-        return $('#groupForm_'+dialogId+' #group_members_string')[0].value.split(",")
+        return $('#groupForm_'+dialogId+' .members-string')[0].value.split(",")
       },
       storeItems : function (dialogId, items) { 
-        $('#groupForm_'+dialogId+' #group_members_string')[0].value = items.join(",");
+        $('#groupForm_'+dialogId+' .members-string')[0].value = items.join(",");
       },
       allItems : function (dialogId) { 
         return $('#all_users_string')[0].value.split(",") 
@@ -144,7 +144,7 @@ function disable(which){
     </p>
     <p>
       <div class="label"><%=_("Members")%></div>
-      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
+      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);", :class => "members-string"%>
       <a href="#" class="button" onClick="select_users_open('<%= group.old_cn%>');return false;"><%= _("Manage Members") %></a>
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>

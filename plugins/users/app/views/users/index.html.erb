@@ -59,10 +59,10 @@
       unselected_title : '<%= _('Available Groups') %>',
       tooltip : '<%= _('Click group names to select/unselect groups') %>',
       loadItems : function (dialogId) { 
-        return $('#form_'+dialogId+' #user_grp_string')[0].value.split(",")
+        return $('#form_'+dialogId+' .grp-string')[0].value.split(",")
       },
       storeItems : function (dialogId, items) { 
-        $('#form_'+dialogId+' #user_grp_string')[0].value = items.join(",");
+        $('#form_'+dialogId+' .grp-string')[0].value = items.join(",");
       },
       allItems : function (dialogId) { 
         return $('#all_grps_string')[0].value.split(",") 
@@ -80,7 +80,7 @@
         return $('#all_grps_string')[0].value.split(",")
       },
       storeItem : function (dialogId, item) {
-        $('#form_'+dialogId+' #user_groupname')[0].value = item;
+        $('#form_'+dialogId+' .groupname')[0].value = item;
       }
     });
     return open_dialog;
@@ -111,7 +111,7 @@
     }
    });
 
-   $("#"+id+" #user_user_password").pstrength({
+   $("#"+id+" .user-password").pstrength({
       'displayMinChar'      : true,
       'minCharText'      : "<%= _("Password Strength:") %>", 
       'verdicts'      : [
@@ -120,7 +120,7 @@
             "<%= _("Medium") %>",
             "<%= _("Strong") %>",
             "<%= _("Very Strong") %>"
-          ],
+          ]
       });
  }
 
@@ -198,7 +198,7 @@ function disable(which){
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
 	</td><td colspan=2>
-          <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled %>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled, :class => "user-password" %>
 	</td></tr>
 
 	<tr><td>
@@ -211,7 +211,7 @@ function disable(which){
 	<tr><td rowspan=2>
             <div class="label"><%=_("Groups")%></div>
 	</td><td>
-            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);", :class => "grp-string" %>
 	</td><td rowspan=2>
             <a href="#" class="button" onClick="select_groups_open('<%= user.uid%>');return false;"><%= _("Manage Groups") %></a>
 	</td></tr>
@@ -223,7 +223,7 @@ function disable(which){
 	<tr><td>
             <div class="label"><%=_("Default Group")%></div>
 	</td><td colspan=2>
-            <%= f.text_field :groupname, :disabled => disabled %>
+            <%= f.text_field :groupname, :disabled => disabled, :class => "groupname" %>
             <%= link_to _("Select Default Group"), {}, :href => "#", :onClick => "select_default_group_open('"+user.uid.to_s+"');return false;", :class => "button" %>
 	</td></tr>
 

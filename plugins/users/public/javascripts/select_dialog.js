@@ -18,14 +18,48 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 */
-var update = function (obj1,obj2) {
+
+// add Array map method, if we don't have any
+if (!Array.prototype.map)
+{
+  Array.prototype.map = function(fun /*, thisp*/)
+  {
+    var len = this.length;
+    if (typeof fun != "function")
+      throw new TypeError();
+
+    var res = new Array(len);
+    var thisp = arguments[1];
+    for (var i = 0; i < len; i++)
+    {
+      if (i in this)
+        res[i] = fun.call(thisp, this[i], i, this);
+    }
+    return res;
+  };
+};
+
+// add Array indexOf method, if we don't have any
+if(!Array.prototype.indexOf){
+  Array.prototype.indexOf = function(obj){
+    for(var i=0; i<this.length; i++){
+      if(this[i]==obj){
+        return i;
+      }
+    };
+    return -1;
+  }
+};
+
+
+function update (obj1,obj2) {
   var new_obj = new Object();
   for (var i in obj1) { new_obj[i] = obj1[i] };
   for (var i in obj2) { new_obj[i] = obj2[i] };
   return new_obj;
-}
+};
 
-var getContents = function (item) { return item.innerHTML; };
+function getContents(item) { return item.innerHTML; };
 
 function select_many_dialog( kvargs ) {
   var include = function (arr,item) { 
