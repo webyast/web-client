@@ -17,7 +17,7 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.13
+Version:        0.1.14
 Release:        0
 Summary:        WebYaST - Administrator UI
 Source:         www.tar.bz2
@@ -25,7 +25,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 BuildRequires:  ruby tidy
-BuildRequires:  yast2-webclient webyast-mail-ui
+BuildRequires:  yast2-webclient
 
 #
 %define pkg_user yast
