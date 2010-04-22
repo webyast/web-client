@@ -24,10 +24,6 @@
 <%= javascript_include_tag "users_edit.js" %>
 
   <style type="text/css">
-    label.error {
-         display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50%
-    }
-
     .GContainerUser, .GContainerGroups {
         float: left;
         margin: 3px;
@@ -54,6 +50,9 @@
      #ContainerUser .GBox {
         background-color: #eee;
      }
+    #password-strength {
+	left: 0em;
+    }
   </style>
 
 <script language='javascript'>
@@ -115,13 +114,100 @@
 <% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
-      <%= render :partial => 'user_form',
-      :locals => { :f => f, :disabled => false } %>
+  <div class="accordion">
+
+    <fieldset id="tab_login" class="wrapper with-background">
+      <legend><%= _("Login Settings") %></legend>
+	<table>
+	<tr><td>
+          <div class="label"><%=_("Full Name")%></div>
+	</td><td>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this.parentNode.parentNode.parentNode.parentNode.parentNode);" %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Login Name")%></div>
+	</td><td>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#userForm').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode.parentNode.parentNode);", :class => "required" %>
+          <%= f.text_field :id, :class => "hidden" %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Password")%></div>
+	</td><td>
+          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Confirm Password")%></div>
+	</td><td>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
+        <!-- this is a pre-generated placeholder for the validation messages -->
+        <div class="label" for="administrator_confirm_password" generated="true" class="error"></div>
+	</td></tr>
+	</table>
+    </fieldset>
+
+    <fieldset id="tab_groups" class="wrapper with-background">
+      <legend><%=_("Groups")%></legend>
+	<table>
+	<tr><td>
+            <div class="label"><%=_("Groups")%></div>
+	</td><td>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
+            <a href="#" class="button" onClick="open_groups_dialog();return false;">Manage Groups</a>
+            <label class="label" id="groups-error" class="error"></label>
+	<td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Default Group")%></div>
+	</td><td>
+            <%= f.text_field :groupname, :disabled => disabled %>
+            <a href="#" class="button" onClick="open_def_group_dialog();return false;">Select Default Group</a>
+	<td></tr>
+	</table>
+	 <div id="groups" style="display:none;" title="Groups">
+	    <div>
+	     <div class="GContainerUser" style="width: 100px;" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
+	     <div class="GContainerGroups" style="width: 400px;" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
+	    </div>
+	 </div>
+
+	 <div id="def_group" style="display:none;" title="Default Group">
+	    <div>
+	     <div class="GContainerGroups" style="width: 400px;" id="ContainerDefaultGroup" onclick="selectItem(event);"> </div>
+	    </div>
+	 </div>
+    </fieldset>
+
+    <fieldset id="tab_advanced" class="wrapper with-background">
+      <legend><%= _("Advanced") %></legend>
+	<table>
+	<tr><td>
+            <div class="label"><%=_("Home Directory")%></div>
+	</td><td>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+	<td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Login Shell")%></div>
+	</td><td>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+	<td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("UID Number")%></div>
+	</td><td>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
+        <div class="label" id="uid-error" class="error"></div>
+	<td></tr>
+	</table>
+    </fieldset>
 
   <fieldset>
     <%= form_cancel_button :action => :index%>
     <%= form_str_spacer %>
-    <%= form_next_button :onclick=>"return new_user_validation();" %>
+    <%= form_next_button :onclick=>"return new_user_validation(this);" %>
   </fieldset>
 <% end %>
             <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>

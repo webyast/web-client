@@ -28,9 +28,9 @@
     return word.replace(/^\s*|\s*$/g,'');
   }
 
-   function groups_validation(){
-     var mygroups = [];
-     if (_trim($('#user_grp_string')[0].value).length>0) mygroups = $('#user_grp_string')[0].value.split(",");
+   function groups_validation(which){
+     var mygroups = _trim(findById(which.parentNode.getElementsByTagName('input'), "user_grp_string").value);
+     if (mygroups.length>0) mygroups = mygroups.split(",");
      var allgroups = $("#all_grps_string")[0].value.split(",");
      errmsg="";
      for (i=0;i<mygroups.length;i++){
@@ -43,17 +43,32 @@
        }
      }
      set_tab_focus("groups")
-     $("#groups-error")[0].innerHTML = errmsg;
-     $("#groups-error")[0].style.display= (errmsg.length==0) ? "none" : "block";
+     var error = findById(which.parentNode.getElementsByTagName('label'), "groups-error");
+     error.innerHTML = errmsg;
+     error.style.display= (errmsg.length==0) ? "none" : "block";
      return (errmsg.length==0);
    }
 
 
-   function new_user_validation(){
+   function new_user_validation(which){
      var valid = $('#userForm').valid();
      // if UID is invalidate, do Show Details (make it visible)
      if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
-     valid = valid && groups_validation();
+     valid = valid && groups_validation(which.parentNode);
+     return valid;
+   }
+
+   function edit_user_validation(which, form){
+     valid=false;
+     password_validation_enabled = true;
+     valid = $(form).validate().element('#user_user_password2');
+     valid = valid && $(form).validate().element('#user_uid');
+     if (!valid) set_tab_focus("login");
+     if (!$(form).validate().element('#user_uid_number')){
+       valid=false;
+       set_tab_focus("advanced");
+     }
+     valid = valid && groups_validation(which);
      return valid;
    }
 
@@ -172,7 +187,7 @@ function propose_home(){
 
   home = "/home/"+login;
 
- if (login.length>0) $("#user_home_directory")[0].value = home;
+ if (login.length>0) findById(which.parentNode.getElementsByTagName('input'), "user_home_directory").value = home;
 }
 
 function propose_login(){

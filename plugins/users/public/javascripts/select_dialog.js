@@ -18,6 +18,7 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 */
+
 function select_many_dialog( kvargs ) {
   function getContents(item) { return item.innerHTML; };
   

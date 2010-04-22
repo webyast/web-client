@@ -33,6 +33,14 @@
     label, .qs_input {
 	width: auto !important;
     }
+    .label {
+        min-width: 10em;
+        float: left;
+        margin-left: 1em
+    }
+    #password-strength {
+	left: 0em;
+    }
  </style>
 
  <% javascript_tag do %>
@@ -42,6 +50,46 @@
 
  $(document).ready(function(){
 
+// make the error message translatable - override the default messsage
+   $.extend($.validator.messages, {
+     equalTo:  "<%= _(" The passwords do not match.") -%>",
+     required: "<%= _("This field is required.") -%>"
+   });
+
+ for(var i=0;i<$('.edit_user').length;i++){
+  var id=$('.edit_user')[i].id;
+   $("#"+id).validate()
+
+   $("#"+id).validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
+    }
+   });
+
+   $("#"+id+" #user_user_password").pstrength({
+      'displayMinChar'      : true,
+      'minCharText'      : "<%= _("Password Strength:") %>", 
+      'verdicts'      : [
+            "<%= _("Weak") %>",
+            "<%= _("Normal") %>",
+            "<%= _("Medium") %>",
+            "<%= _("Strong") %>",
+            "<%= _("Very Strong") %>"
+          ],
+      });
+ }
+
+      $(".accordion").accordion({
+         autoHeight : false,
+         navigation : true,
+         collapsible: true,
+         header     : 'div.list-fieldset div.list-fieldset-header'
+      });
+
+      $(".accordion").accordion('activate', false);
 
   $('input#users_search').quicksearch('table tbody tr', {
     stripeRows: ['odd', 'even'],
@@ -82,11 +130,96 @@ function disable(which){
 
   <tbody>
   <% for user in @users %>
+<<<<<<< HEAD
   <tr class= <%= cycle('odd', 'even') -%> >
     <td align=center id="login"><%= h user.uid  -%></td>
     <td align=center width="65%" id="fullname"><%= link_to ( h user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
     <% if @permissions[:userdelete] %>
     <td class="icon" width="10%"><div onclick="disable(this);"><%= html_delete_link(user.uid, :destroy, _("Are you sure to delete user '%s'?") % user.id + "\n" + _("Home directory will be deleted as well.") ) %></div></td>
+=======
+   <div class="list-fieldset">
+
+    <div class="list-fieldset-header">
+     <span class="quicksearch_content">
+      <%= h user.uid -%> (<%= h user.cn || "-none-" -%>)
+     </span>
+    </div>
+
+    <div class='user-content' style="display:none">
+     <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+      <%= f.error_messages %>
+	<table border=0>
+
+	<tr><td>
+          <div class="label"><%=_("Full Name")%></div>
+	</td><td>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this);" %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Login Name")%></div>
+	</td><td>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+user.uid+"').validate().element('#user_uid') && propose_home(this);", :class => "required" %>
+          <%= f.text_field :id, :class => "hidden" %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Password")%></div>
+	</td><td>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Confirm Password")%></div>
+	</td><td>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password2');" %>
+	  <label for="user_user_password2" generated="true" class="error"></label>
+	</td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Groups")%></div>
+	</td><td>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
+            <label id="groups-error" class="error"></label>
+	</td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Default Group")%></div>
+	</td><td>
+            <%= f.text_field :groupname, :disabled => disabled %>
+	</td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Home Directory")%></div>
+	</td><td>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+	</td></tr>
+
+
+	<tr><td>
+            <div class="label"><%=_("Login Shell")%></div>
+	</td><td>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+	</td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("UID Number")%></div>
+	</td><td>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_uid_number');"  %>
+            <label id="uid-error" class="error"></label>
+	</td></tr>
+
+	</table>
+
+     <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '#form_"+user.uid+"');"  %>
+     <% if @permissions[:userdelete] %>
+      <span onclick="disable(this);"><%= link_to _("Delete"),
+                            {:action => 'destroy', :id => user.uid},
+                            {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %></span>
+     <% end %>
+    </div>
+
+>>>>>>> users-gagarin3
     <% end %>
   </tr>
   <% end %>
@@ -101,5 +234,6 @@ function disable(which){
 </fieldset>
 <%= link_to _("Manage Groups"), "controller" => "groups" %>
 </div>
+            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
 </div>
 
