@@ -140,13 +140,18 @@
 <% content_for :before_script do %>
   <% javascript_tag do %>
     $(document).ready(function(){
-      $(".accordion").accordion({
+      // to switch from tabs to accordion, just uncomment this and comment the lower tabs section
+      /*
+      $(".fieldset-group").accordion({
         autoHeight : false,
         navigation : true,
         header     : 'fieldset legend',
         animated   : false,
         collapsible: true
       });
+      */
+      addTabsNavigation(".fieldset-group", "span");
+      $(".fieldset-group").tabs();
     });
   <% end %>
 <% end %>
@@ -159,10 +164,10 @@
 <% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
   <%= f.error_messages %>
 
-  <div class="accordion">
+  <div class="fieldset-group">
 
     <fieldset id="tab_login" class="wrapper with-background">
-      <legend><%= _("Login Settings") %></legend>
+      <legend><span><%= _("Login Settings") %></span></legend>
 	<table>
 	<tr><td>
           <div class="label"><%=_("Full Name")%></div>
@@ -194,7 +199,7 @@
     </fieldset>
 
     <fieldset id="tab_groups" class="wrapper with-background">
-      <legend><%=_("Groups")%></legend>
+      <legend><span><%=_("Groups")%></span></legend>
 	<table border=0>
 	<tr><td rowspan=2>
             <div class="label"><%=_("Groups")%></div>
@@ -231,7 +236,7 @@
     </fieldset>
 
     <fieldset id="tab_advanced" class="wrapper with-background">
-      <legend><%= _("Advanced") %></legend>
+      <legend><span><%= _("Advanced") %></span></legend>
 	<table>
 	<tr><td>
             <div class="label"><%=_("Home Directory")%></div>
