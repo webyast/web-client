@@ -38,7 +38,6 @@ Version:        0.1.26
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
-Source1:        cleanurl-v5.lua
 Source2:        yastwc
 Source4:        webyast-ui
 Source5:	control_panel.yml
@@ -112,9 +111,6 @@ rm -f $RPM_BUILD_ROOT/srv/www/yast/COPYING
 #
 
 # configure lighttpd web service
-mkdir -p $RPM_BUILD_ROOT/etc/lighttpd
-install -m 0644 %SOURCE1 $RPM_BUILD_ROOT/etc/lighttpd
-
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd/certs
 
 # firewall service definition, bnc#545627
@@ -181,7 +177,6 @@ chmod 600 db/*.sqlite* log/*
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
 %attr(-,lighttpd,root) /srv/www/yast/public/javascripts
-%config /etc/lighttpd/cleanurl-v5.lua  
 %config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
 %dir /etc/lighttpd/certs
 %config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
