@@ -185,13 +185,13 @@ function disable(which){
 	<tr><td>
           <div class="label"><%=_("Full Name")%></div>
 	</td><td colspan=2>
-          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this);" %>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this.parentNode.parentNode);" %>
 	</td></tr>
 
 	<tr><td>
           <div class="label"><%=_("Login Name")%></div>
 	</td><td colspan=2>
-          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+user.uid+"').validate().element('#user_uid') && propose_home(this);", :class => "required" %>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+user.uid+"').validate().element('#user_uid');", :class => "required" %>
           <%= f.text_field :id, :class => "hidden" %>
 	</td></tr>
 
