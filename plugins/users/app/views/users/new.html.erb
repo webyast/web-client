@@ -22,6 +22,7 @@
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
 <%= javascript_include_tag "users_edit.js" %>
+<%= javascript_include_tag "select_dialog.js" %>
 
   <style type="text/css">
     .GContainerUser, .GContainerGroups {
@@ -57,7 +58,47 @@
 
 <script language='javascript'>
 
+  function select_groups_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'groups',
+      title : '<%= _('Select Groups') %>',
+      selected_title : '<%= _('Selected Groups') %>',
+      unselected_title : '<%= _('Available Groups') %>',
+      tooltip : '<%= _('Click group names to select/unselect groups') %>',
+      loadItems : function (dialogId) { 
+        return $('#userForm #user_grp_string')[0].value.split(",")
+      },
+      storeItems : function (dialogId, items) { 
+        $('#userForm #user_grp_string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_grps_string')[0].value.split(",") 
+      }
+    });
+    return open_dialog;
+  };
+  
+  function select_default_group_dialog() {
+    var open_dialog = select_one_dialog({
+      kind : 'group',
+      title : '<%= _('Select Default Group') %>',
+      tooltip : '<%= _('Click a group name to choose users default group') %>',
+      allItems : function (dialogId) {
+        return $('#all_grps_string')[0].value.split(",")
+      },
+      storeItem : function (dialogId, item) {
+        $('#userForm #user_groupname')[0].value = item;
+      }
+    });
+    return open_dialog;
+  };
+
   $(document).ready(function(){
+
+    select_groups_open = select_groups_dialog();
+
+    select_default_group_open = select_default_group_dialog();
+
 
    $("#userForm").validate();
 
@@ -154,12 +195,16 @@
 
     <fieldset id="tab_groups" class="wrapper with-background">
       <legend><%=_("Groups")%></legend>
-	<table>
-	<tr><td>
+	<table border=0>
+	<tr><td rowspan=2>
             <div class="label"><%=_("Groups")%></div>
 	</td><td>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
-            <a href="#" class="button" onClick="open_groups_dialog();return false;">Manage Groups</a>
+	</td><td rowspan=2>
+            <a href="#" class="button" onClick="select_groups_open('new');return false;">Manage Groups</a>
+	<td></tr>
+
+	<tr><td>
             <label class="label" id="groups-error" class="error"></label>
 	<td></tr>
 
@@ -167,7 +212,8 @@
             <div class="label"><%=_("Default Group")%></div>
 	</td><td>
             <%= f.text_field :groupname, :disabled => disabled %>
-            <a href="#" class="button" onClick="open_def_group_dialog();return false;">Select Default Group</a>
+	</td><td>
+            <a href="#" class="button" onClick="select_default_group_open('new');return false;">Select Default Group</a>
 	<td></tr>
 	</table>
 	 <div id="groups" style="display:none;" title="Groups">
