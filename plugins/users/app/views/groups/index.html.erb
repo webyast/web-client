@@ -136,7 +136,7 @@ function disable(which){
     </p>
     <p>
       <div class="label"><%=_("Group ID")%></div>
-      <%= f.text_field :gid, :disabled => false %>
+      <%= f.text_field :gid, :disabled => false, :class => "number", :onkeyup => "$('#groupForm_"+group.old_cn+"').validate().element('#group_gid');"%>
     </p>
     <p>
       <div class="label"><%=_("Default members")%></div>
