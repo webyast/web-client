@@ -46,7 +46,7 @@
 
 <%= javascript_include_tag :defaults %>
 
-<div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status")%></div>
+<div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content grid_12">
 
 <div class="accordion">
@@ -71,7 +71,7 @@
               <h3><%= single_graph.headline %></h3>
             </p>
             <div id='<%= graph_id(group.id, single_graph.headline) %>'>
-              <img src='/images/working.gif'>
+              <img alt="monitoring" src='/images/working.gif' />
             </div>
           <% end %>
       </div>
@@ -81,11 +81,10 @@
 <% if @plugins %>
   <% @plugins.each do |plugin| %>
     <div class="list-fieldset">
-      <div class="list-fieldset-header" 
+      <div class="list-fieldset-header">
          <span class="status-icon <%= plugin.level %>"></span>
          <%= plugin.short_description %>
       </div>
-      <ul style="display: none;">
         <div id="<%=plugin.message_id%>" >
           <p>     
             <%= plugin.long_description %>
@@ -134,7 +133,6 @@
             <% end %>
           <% end %>
         </div>
-      </ul>
     </div>
   <% end %>
 <% end %>
@@ -149,11 +147,9 @@
          <span class='status-icon none'></span>
          <%= log.description %>
       </div>
-      <ul style="display: none;">
         <div id="<%="log-#{log.id}-console"%>" >
           <%= log.path %>
         </div>
-      </ul>
     </div>
     <%  periodically_call_remote(:url => { :action => "ajax_log_custom", 
                                  :id => log.id, :lines => default_lines }, :frequency => frequency, 

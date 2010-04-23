@@ -70,7 +70,7 @@
   <% end %>
 <% end %>
 
-<div class='plugin-icon'><img src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
+<div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
 <div class="plugin-content grid_12">
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
   <div class="accordion">
