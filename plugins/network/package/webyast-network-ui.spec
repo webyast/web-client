@@ -41,7 +41,7 @@ Conflicts:      yast2-webservice-network < 0.0.3
 %package testsuite
 Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
-Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit tidy
 Summary:  Testsuite for webyast-network-ui package
 
 %description

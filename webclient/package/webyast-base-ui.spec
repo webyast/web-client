@@ -58,7 +58,7 @@ BuildRequires:  rubygem-test-unit rubygem-mocha
 %package testsuite
 Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
-Requires: rubygem-mocha rubygem-test-unit
+Requires: rubygem-mocha rubygem-test-unit tidy
 Summary:  Testsuite for webyast-base-ui package
 
 %description

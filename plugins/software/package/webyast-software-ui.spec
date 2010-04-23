@@ -38,7 +38,7 @@ BuildRequires:  tidy
 %package testsuite
 Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
-Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit tidy
 Summary:  Testsuite for webyast-software-ui package
 
 %description
