@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-30 15:01+0200\n"
-"PO-Revision-Date: 2010-04-08 11:43\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-19 15:43\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/status_controller.rb:131
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr "Nebyla nalezena žádná data pro zobrazení stavu systému."
 
@@ -21,15 +21,15 @@ msgstr "Nebyla nalezena žádná data pro zobrazení stavu systému."
 msgid "Limits exceeded for "
 msgstr "Byly překročeny limity pro "
 
-#: app/controllers/status_controller.rb:307
+#: app/controllers/status_controller.rb:316
 msgid "exceeded"
 msgstr "překročeno"
 
-#: app/controllers/status_controller.rb:321
+#: app/controllers/status_controller.rb:330
 msgid "undercut"
 msgstr "nedosaženo"
 
-#: app/controllers/status_controller.rb:423
+#: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
 msgstr "Limity byly zapsány."
 
@@ -37,7 +37,7 @@ msgstr "Limity byly zapsány."
 msgid "Only numbers are valid !"
 msgstr "Platná jsou pouze čísla!"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Stav"
 
@@ -53,7 +53,15 @@ msgstr "nedosaženo"
 msgid "exceeds"
 msgstr "překročeno"
 
-#: app/views/status/index.html.erb:114
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr "podrobnosti"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "Úprava limitů"
 
@@ -61,31 +69,31 @@ msgstr "Úprava limitů"
 msgid "A problem occured when loading status information."
 msgstr "Při načítání informací o stavu nastal problém."
 
-#: app/views/status/_status_graph.html.erb:60
+#: app/views/status/_status_graph.html.erb:91
 msgid "Show last"
 msgstr "Zobrazit posledních"
 
-#: app/views/status/_status_graph.html.erb:61
+#: app/views/status/_status_graph.html.erb:92
 msgid "5 Minutes"
 msgstr "5 minut"
 
-#: app/views/status/_status_graph.html.erb:62
+#: app/views/status/_status_graph.html.erb:93
 msgid "15 Minutes"
 msgstr "15 minut"
 
-#: app/views/status/_status_graph.html.erb:63
+#: app/views/status/_status_graph.html.erb:94
 msgid "30 Minutes"
 msgstr "30 minut"
 
-#: app/views/status/_status_graph.html.erb:64
+#: app/views/status/_status_graph.html.erb:95
 msgid "1 Hour"
 msgstr "1 hodinu"
 
-#: app/views/status/_status_graph.html.erb:65
+#: app/views/status/_status_graph.html.erb:96
 msgid "6 Hours"
 msgstr "6 hodin"
 
-#: app/views/status/_status_graph.html.erb:66
+#: app/views/status/_status_graph.html.erb:97
 msgid "12 Hours"
 msgstr "12 hodin"
 
@@ -102,8 +110,8 @@ msgid "Your system is healthy."
 msgstr "Systém je v pořádku."
 
 #: app/views/status/_status_summary.html.erb:20
-msgid "start"
-msgstr "spustit"
+msgid "Start collectd"
+msgstr "Spustit program collectd"
 
 #: app/views/status/_status_summary.html.erb:28
 msgid "Loading system information"
@@ -130,10 +138,14 @@ msgid "Mail configuration test not confirmed"
 msgstr "Test konfigurace pošty nebyl potvrzen."
 
 #: lib/plugin_translation.rb:30
-msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
-msgstr "V průběhu konfigurace pošty byla odeslána testovací zpráva na adresu %s. Byla zpráva na danou adresu doručena?<br> Pokud ano, potvrďte to stisknutím tlačítka. V opačném případě znovu zkontrolujte nastavení pošty, včetně souboru /var/log/mail."
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "Při konfiguraci pošty byla odeslána testovací zpráva na adresu %s. Byla zpráva na danou adresu doručena?<br>Pokud ano, potvrďte to stisknutím tlačítka. V opačném případě znovu zkontrolujte nastavení pošty."
 
 #: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "Nebylo možné načíst úplný název hostitele pro daný počítač. Pokud poštu nelze doručit, konzultujte konfiguraci sítě nebo pošty se správcem sítě."
+
+#: lib/plugin_translation.rb:34
 msgid "Test mail received"
 msgstr "Testovací pošta byla doručena."
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-08 10:26\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-20 11:17\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,84 +41,80 @@ msgstr "Entrez une liste de membres valide"
 msgid "Cannot read users list."
 msgstr "Impossible de lire la liste des utilisateurs."
 
-#: app/controllers/groups_controller.rb:105
+#: app/controllers/groups_controller.rb:118
 msgid "Cannot read groups list."
 msgstr "Impossible de lire la liste des groupes."
 
-#: app/controllers/groups_controller.rb:177
+#: app/controllers/groups_controller.rb:209
 msgid "Unknown backend error"
 msgstr "Erreur d'interface dorsale inconnue"
 
-#: app/controllers/users_controller.rb:164
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr "L'utilisateur <i>%s</i> a été créé avec succès."
 
-#: app/controllers/users_controller.rb:206
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "L'utilisateur <i>%s</i> a été mis à jour avec succès."
 
-#: app/controllers/users_controller.rb:227
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "L'utilisateur <i>%s</i> a été supprimé avec succès."
 
-#: app/controllers/users_controller.rb:229
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Erreur : impossible de supprimer l'utilisateur <i>%s</i>."
 
-#: app/views/groups/edit.html.erb:4 app/views/groups/index.html.erb:38
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
 #: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Groupes"
 
-#: app/views/groups/edit.html.erb:6
+#: app/views/groups/edit.html.erb:35
 msgid "Add new group"
 msgstr "Ajouter un nouveau groupe"
 
-#: app/views/groups/edit.html.erb:8
+#: app/views/groups/edit.html.erb:37
 msgid "Modify group"
 msgstr "Modifier groupe"
 
-#: app/views/groups/edit.html.erb:18 app/views/groups/index.html.erb:49
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
 msgid "Group Name"
 msgstr "Nom du groupe"
 
-#: app/views/groups/edit.html.erb:22
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
 msgid "Group ID"
 msgstr "ID du groupe"
 
-#: app/views/groups/edit.html.erb:26
-msgid "Group Type"
-msgstr "Type de groupe"
-
-#: app/views/groups/edit.html.erb:30
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
 msgid "Default members"
 msgstr "Membres par défaut"
 
-#: app/views/groups/edit.html.erb:34
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
 msgid "Members"
 msgstr "Membres"
 
-#: app/views/groups/index.html.erb:26
-msgid "Type group name ..."
-msgstr "Entrez un nom de groupe..."
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+msgid "Processing ..."
+msgstr "Traitement..."
 
-#: app/views/groups/index.html.erb:29 app/views/users/index.html.erb:35
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
 msgid "Filter:"
 msgstr "Filtre :"
 
-#: app/views/groups/index.html.erb:44
+#: app/views/groups/index.html.erb:78
 msgid "Add New Group"
 msgstr "Ajouter un nouveau groupe"
 
-#: app/views/groups/index.html.erb:50
-msgid "Type"
-msgstr "Type"
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Enregistrer"
 
-#: app/views/groups/index.html.erb:51
-msgid "Action"
-msgstr "Action"
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Supprimer"
 
-#: app/views/groups/index.html.erb:61
+#: app/views/groups/index.html.erb:114
 msgid "Are you sure to delete group '%s'?"
 msgstr "Êtes-vous sûr de vouloir supprimer le groupe '%s' ?"
 
@@ -127,12 +123,12 @@ msgid "Login Settings"
 msgstr "Paramètres de login"
 
 #: app/views/users/_user_form.erb:8
-msgid "Login Name"
-msgstr "Nom de login"
-
-#: app/views/users/_user_form.erb:13
 msgid "Full Name"
 msgstr "Nom complet"
+
+#: app/views/users/_user_form.erb:12
+msgid "Login Name"
+msgstr "Nom de login"
 
 #: app/views/users/_user_form.erb:17
 msgid "Password"
@@ -182,25 +178,29 @@ msgstr "Fort"
 msgid "Very Strong"
 msgstr "Très fort"
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:46 app/views/users/new.html.erb:86
-msgid "Local Users"
-msgstr "Utilisateurs locaux"
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+msgid "Users"
+msgstr "Utilisateurs"
 
 #: app/views/users/edit.html.erb:80
 msgid "Edit user %s"
 msgstr "Modifier l'utilisateur %s"
 
-#: app/views/users/index.html.erb:32
-msgid "Type user name or login ..."
-msgstr "Saisissez le nom d'utilisateur ou le login..."
-
-#: app/views/users/index.html.erb:51
+#: app/views/users/index.html.erb:52
 msgid "Add New User"
 msgstr "Ajouter un nouvel utilisateur"
 
-#: app/views/users/index.html.erb:67
-msgid "Are you sure to delete user %s?"
-msgstr "Êtes-vous sûr de vouloir supprimer l'utilisateur %s ?"
+#: app/views/users/index.html.erb:68
+msgid "Are you sure to delete user '%s'?"
+msgstr "Voulez-vous vraiment supprimer l'utilisateur '%s' ?"
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "Le répertoire privé sera également supprimé."
+
+#: app/views/users/index.html.erb:81
+msgid "Manage Groups"
+msgstr "Gérer les groupes"
 
 #: app/views/users/new.html.erb:86
 msgid "Add new user"

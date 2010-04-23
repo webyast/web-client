@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-08 11:43\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-19 15:43\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,84 +41,80 @@ msgstr "Zadejte platný seznam členů."
 msgid "Cannot read users list."
 msgstr "Seznam uživatelů nelze přečíst."
 
-#: app/controllers/groups_controller.rb:105
+#: app/controllers/groups_controller.rb:118
 msgid "Cannot read groups list."
 msgstr "Seznam skupin nelze přečíst."
 
-#: app/controllers/groups_controller.rb:177
+#: app/controllers/groups_controller.rb:209
 msgid "Unknown backend error"
 msgstr "Neznámá chyba systému back-end"
 
-#: app/controllers/users_controller.rb:164
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr "Uživatel <i>%s</i> byl úspěšně vytvořen."
 
-#: app/controllers/users_controller.rb:206
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Uživatel <i>%s</i> byl úspěšně aktualizován."
 
-#: app/controllers/users_controller.rb:227
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Uživatel <i>%s</i> byl úspěšně odebrán."
 
-#: app/controllers/users_controller.rb:229
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Chyba: Uživatele<i>%s</i> nelze odebrat."
 
-#: app/views/groups/edit.html.erb:4 app/views/groups/index.html.erb:38
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
 #: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Skupiny"
 
-#: app/views/groups/edit.html.erb:6
+#: app/views/groups/edit.html.erb:35
 msgid "Add new group"
 msgstr "Přidat novou skupinu"
 
-#: app/views/groups/edit.html.erb:8
+#: app/views/groups/edit.html.erb:37
 msgid "Modify group"
 msgstr "Upravit skupinu"
 
-#: app/views/groups/edit.html.erb:18 app/views/groups/index.html.erb:49
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
 msgid "Group Name"
 msgstr "Název skupiny"
 
-#: app/views/groups/edit.html.erb:22
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
 msgid "Group ID"
 msgstr "ID Skupiny"
 
-#: app/views/groups/edit.html.erb:26
-msgid "Group Type"
-msgstr "Typ skupiny"
-
-#: app/views/groups/edit.html.erb:30
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
 msgid "Default members"
 msgstr "Výchozí členové"
 
-#: app/views/groups/edit.html.erb:34
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
 msgid "Members"
 msgstr "Členové"
 
-#: app/views/groups/index.html.erb:26
-msgid "Type group name ..."
-msgstr "Zadat název skupiny..."
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+msgid "Processing ..."
+msgstr "Zpracování..."
 
-#: app/views/groups/index.html.erb:29 app/views/users/index.html.erb:35
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
 msgid "Filter:"
 msgstr "Filtr:"
 
-#: app/views/groups/index.html.erb:44
+#: app/views/groups/index.html.erb:78
 msgid "Add New Group"
 msgstr "Přidat novou skupinu"
 
-#: app/views/groups/index.html.erb:50
-msgid "Type"
-msgstr "Typ"
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Uložit"
 
-#: app/views/groups/index.html.erb:51
-msgid "Action"
-msgstr "Akce"
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Odstranit"
 
-#: app/views/groups/index.html.erb:61
+#: app/views/groups/index.html.erb:114
 msgid "Are you sure to delete group '%s'?"
 msgstr "Opravdu chcete odstranit skupinu %s?"
 
@@ -127,12 +123,12 @@ msgid "Login Settings"
 msgstr "Nastavení přihlášení"
 
 #: app/views/users/_user_form.erb:8
-msgid "Login Name"
-msgstr "Přihlašovací jméno"
-
-#: app/views/users/_user_form.erb:13
 msgid "Full Name"
 msgstr "Celé jméno"
+
+#: app/views/users/_user_form.erb:12
+msgid "Login Name"
+msgstr "Přihlašovací jméno"
 
 #: app/views/users/_user_form.erb:17
 msgid "Password"
@@ -182,25 +178,29 @@ msgstr "Silné"
 msgid "Very Strong"
 msgstr "Velmi silné"
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:46 app/views/users/new.html.erb:86
-msgid "Local Users"
-msgstr "Místní uživatelé"
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+msgid "Users"
+msgstr "Uživatelé"
 
 #: app/views/users/edit.html.erb:80
 msgid "Edit user %s"
 msgstr "Upravit uživatele %s"
 
-#: app/views/users/index.html.erb:32
-msgid "Type user name or login ..."
-msgstr "Zadejte uživatelské jméno nebo login..."
-
-#: app/views/users/index.html.erb:51
+#: app/views/users/index.html.erb:52
 msgid "Add New User"
 msgstr "Přidat nového uživatele"
 
-#: app/views/users/index.html.erb:67
-msgid "Are you sure to delete user %s?"
+#: app/views/users/index.html.erb:68
+msgid "Are you sure to delete user '%s'?"
 msgstr "Opravdu chcete odstranit uživatele %s?"
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "Bude vymazán i domovský adresář."
+
+#: app/views/users/index.html.erb:81
+msgid "Manage Groups"
+msgstr "Spravovat skupiny"
 
 #: app/views/users/new.html.erb:86
 msgid "Add new user"

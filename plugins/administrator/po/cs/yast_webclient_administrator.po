@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-08 11:43\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-19 15:43\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Zadejte platnou e-mailovou adresu."
 
@@ -29,7 +29,7 @@ msgstr "Nastavení správce byla zapsána."
 msgid "Error while saving administrator settings: %s"
 msgstr "Při ukládání nastavení správce došlo k chybě: %s"
 
-#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:75
 msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
 msgstr "Alias pošty je nastaven, ale nebyl nakonfigurován server odchozí pošty (%s<i>změna</i>%s)."
 
@@ -37,55 +37,59 @@ msgstr "Alias pošty je nastaven, ale nebyl nakonfigurován server odchozí poš
 msgid "Administrator Settings"
 msgstr "Nastavení správce"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Hesla se neshodují."
 
-#: app/views/administrator/index.html.erb:37
+#: app/views/administrator/index.html.erb:33
 msgid "A password is required."
 msgstr "Je vyžadováno heslo."
 
-#: app/views/administrator/index.html.erb:44
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "Síla hesla:"
+
+#: app/views/administrator/index.html.erb:40
 msgid "Weak"
 msgstr "Slabé"
 
-#: app/views/administrator/index.html.erb:45
+#: app/views/administrator/index.html.erb:41
 msgid "Normal"
 msgstr "Běžné"
 
-#: app/views/administrator/index.html.erb:46
+#: app/views/administrator/index.html.erb:42
 msgid "Medium"
 msgstr "Střední"
 
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:43
 msgid "Strong"
 msgstr "Silné"
 
-#: app/views/administrator/index.html.erb:48
+#: app/views/administrator/index.html.erb:44
 msgid "Very Strong"
 msgstr "Velmi silné"
 
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:63
 msgid "Password Setup for User 'root'"
 msgstr "Nastavení hesla pro uživatele root"
 
-#: app/views/administrator/index.html.erb:66
+#: app/views/administrator/index.html.erb:64
 msgid "New Password"
 msgstr "Nové heslo"
 
-#: app/views/administrator/index.html.erb:71
+#: app/views/administrator/index.html.erb:69
 msgid "Confirm Password"
 msgstr "Potvrdit heslo"
 
-#: app/views/administrator/index.html.erb:78
+#: app/views/administrator/index.html.erb:76
 msgid "Mail Setup for User 'root'"
 msgstr "Nastavení pošty pro uživatele root"
 
-#: app/views/administrator/index.html.erb:80
+#: app/views/administrator/index.html.erb:78
 msgid "Forward system mail to"
 msgstr "Předat poštu systému dál"
 
-#: app/views/administrator/index.html.erb:83
+#: app/views/administrator/index.html.erb:81
 msgid "Save Mail Only"
 msgstr "Ukládat pouze poštu"
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-07 10:17\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-21 15:11\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "유효한 전자 메일 주소를 입력하십시오."
 
@@ -29,7 +29,7 @@ msgstr "관리자 설정이 기록되었습니다."
 msgid "Error while saving administrator settings: %s"
 msgstr "관리자 설정을 저장하는 동안 오류 발생: %s"
 
-#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:75
 msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
 msgstr "메일 별칭이 설정되었지만 보내는 메일 서버가 구성되지 않았습니다(%s<i>변경</i>%s)."
 
@@ -37,55 +37,59 @@ msgstr "메일 별칭이 설정되었지만 보내는 메일 서버가 구성되
 msgid "Administrator Settings"
 msgstr "관리자 설정"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "비밀번호가 일치하지 않습니다."
 
-#: app/views/administrator/index.html.erb:37
+#: app/views/administrator/index.html.erb:33
 msgid "A password is required."
 msgstr "비밀번호를 입력해야 합니다."
 
-#: app/views/administrator/index.html.erb:44
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "비밀번호 강도:"
+
+#: app/views/administrator/index.html.erb:40
 msgid "Weak"
 msgstr "약함"
 
-#: app/views/administrator/index.html.erb:45
+#: app/views/administrator/index.html.erb:41
 msgid "Normal"
 msgstr "일반"
 
-#: app/views/administrator/index.html.erb:46
+#: app/views/administrator/index.html.erb:42
 msgid "Medium"
 msgstr "보통"
 
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:43
 msgid "Strong"
 msgstr "강함"
 
-#: app/views/administrator/index.html.erb:48
+#: app/views/administrator/index.html.erb:44
 msgid "Very Strong"
 msgstr "매우 강함"
 
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:63
 msgid "Password Setup for User 'root'"
 msgstr "'루트' 사용자에 대한 비밀번호 설정"
 
-#: app/views/administrator/index.html.erb:66
+#: app/views/administrator/index.html.erb:64
 msgid "New Password"
 msgstr "새 비밀번호"
 
-#: app/views/administrator/index.html.erb:71
+#: app/views/administrator/index.html.erb:69
 msgid "Confirm Password"
 msgstr "비밀번호 확인"
 
-#: app/views/administrator/index.html.erb:78
+#: app/views/administrator/index.html.erb:76
 msgid "Mail Setup for User 'root'"
 msgstr "'루트' 사용자에 대한 메일 설정"
 
-#: app/views/administrator/index.html.erb:80
+#: app/views/administrator/index.html.erb:78
 msgid "Forward system mail to"
 msgstr "다음으로 시스템 메일 전달"
 
-#: app/views/administrator/index.html.erb:83
+#: app/views/administrator/index.html.erb:81
 msgid "Save Mail Only"
 msgstr "메일만 저장"
 

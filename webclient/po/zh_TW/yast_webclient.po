@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-08 10:58\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-21 15:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr " 或 "
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "上一步"
@@ -30,13 +30,13 @@ msgstr "上一步"
 msgid "Cancel"
 msgstr "取消"
 
-#: app/helpers/application_helper.rb:54
-msgid "Next"
-msgstr "下一步"
-
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "儲存"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "下一步"
 
 #: app/helpers/application_helper.rb:56
 msgid "Finish"
@@ -106,43 +106,35 @@ msgstr "您已經登出。"
 msgid "Session timeout"
 msgstr "工作階段逾時"
 
-#: app/controllers/application_controller.rb:75
-msgid "You must accept all EULAs before using this product!"
-msgstr "使用此產品前必須接受所有 EULA！"
-
 #: app/controllers/application_controller.rb:79
-msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
-msgstr "無法重新導向到 EULA。請確定已安裝 webyast-licenses-ui 套件"
-
-#: app/controllers/application_controller.rb:95
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
 msgstr "您不允許執行此動作。如果一定要執行，請聯絡系統管理員"
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "請登入以繼續"
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "您必須先登出，然後才能登入"
 
-#: app/controllers/application_controller.rb:216
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "不能留空"
 
-#: app/controllers/application_controller.rb:217
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
 msgstr "超出允許範圍"
 
-#: app/controllers/application_controller.rb:218
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "不能為空白"
 
-#: app/controllers/application_controller.rb:219
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
 msgstr "無效"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
 msgstr "無效的參數︰"
 
@@ -218,6 +210,10 @@ msgstr "主機|建立時間"
 msgid "Host|Updated at"
 msgstr "主機|更新時間"
 
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "語言選擇"
+
 #: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "真是不好意思..."
@@ -245,6 +241,10 @@ msgstr "別忘了包含錯誤詳細資料。"
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
 msgstr "目標機器上發生問題。"
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "您無權執行修改這些設定。"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -443,7 +443,7 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "在 /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS 中沒有預先定義 NTP 伺服器"
 
 #: lib/error_constructor.rb:29
-msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
 msgstr "NTP 同步時發生錯誤：%s"
 
 #: lib/error_constructor.rb:32

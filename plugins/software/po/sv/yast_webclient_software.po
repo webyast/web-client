@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_software\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-08 08:13\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-04-20 09:47\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -57,49 +57,49 @@ msgstr "Egen prioritering"
 msgid "Custom"
 msgstr "Egen"
 
-#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:70
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:119
+#: app/views/repositories/add.html.erb:42
 msgid "enable"
 msgstr "aktivera"
 
-#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:75
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:124
+#: app/views/repositories/add.html.erb:49
 msgid "disable"
 msgstr "inaktivera"
 
-#: app/helpers/repositories_helper.rb:45
+#: app/helpers/repositories_helper.rb:46
 msgid "enabled"
 msgstr "aktiverad"
 
-#: app/helpers/repositories_helper.rb:45
+#: app/helpers/repositories_helper.rb:46
 msgid "disabled"
 msgstr "inaktiverad"
 
-#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:64
+#: app/controllers/repositories_controller.rb:14
 msgid "Alias"
 msgstr "Alias"
 
-#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:102
-#: app/views/repositories/show.html.erb:73
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:151
 msgid "Enabled"
 msgstr "Aktiverad"
 
-#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:78
+#: app/controllers/repositories_controller.rb:16
 msgid "Autorefresh"
 msgstr "Automatisk uppdatering"
 
-#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:83
-#: app/views/patch_updates/_patches.html.erb:14
+#: app/controllers/repositories_controller.rb:17 app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "Namn"
 
-#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:88
+#: app/controllers/repositories_controller.rb:18
 msgid "URL"
 msgstr "Webbadress"
 
-#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:93
+#: app/controllers/repositories_controller.rb:19
 msgid "Priority"
 msgstr "Prioritet"
 
-#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:98
+#: app/controllers/repositories_controller.rb:20
 msgid "Keep downloaded packages"
 msgstr "Spara hämtade paket"
 
@@ -107,34 +107,21 @@ msgstr "Spara hämtade paket"
 msgid "Cannot read repository list."
 msgstr "Det går inte att läsa listan över lagringsplatser."
 
-#: app/controllers/repositories_controller.rb:43 app/controllers/repositories_controller.rb:62
-#: app/controllers/repositories_controller.rb:89
+#: app/controllers/repositories_controller.rb:47 app/controllers/repositories_controller.rb:74
 msgid "Missing repository parameter"
 msgstr "Det saknas en parameter för lagringsplats"
 
-#: app/controllers/repositories_controller.rb:117 app/controllers/repositories_controller.rb:201
+#: app/controllers/repositories_controller.rb:102 app/controllers/repositories_controller.rb:183
 msgid "Invalid priority"
 msgstr "Ogiltig prioritet"
 
-#: app/controllers/repositories_controller.rb:189
+#: app/controllers/repositories_controller.rb:171
 msgid "Missing repository parameters"
 msgstr "Saknade parametrar för lagringsplats"
 
-#: app/controllers/repositories_controller.rb:226
+#: app/controllers/repositories_controller.rb:209
 msgid "Unknown backend error"
 msgstr "Okänt backend-fel"
-
-#: app/controllers/repositories_controller.rb:237
-msgid "Error: Missing repository id."
-msgstr "Fel: ID för lagringsplats saknas."
-
-#: app/controllers/repositories_controller.rb:241
-msgid "Error: Missing 'enabled' parameter."
-msgstr "Fel: Parameter för aktivering saknas."
-
-#: app/controllers/repositories_controller.rb:271
-msgid "Unknown backend error."
-msgstr "Okänt backend-fel."
 
 #: app/controllers/patch_updates_controller.rb:45 app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
@@ -161,109 +148,100 @@ msgstr "%s har installerats."
 msgid "Patch has been installed."
 msgstr "Korrigeringen har installerats."
 
-#: app/views/repositories/index.html.erb:17 app/views/repositories/show.html.erb:16
+#: app/views/repositories/index.html.erb:20 app/views/repositories/add.html.erb:16
 msgid "Enter a valid repository URL."
 msgstr "Ange en giltig webbadress till en lagringsplats."
 
-#: app/views/repositories/index.html.erb:25 app/views/repositories/show.html.erb:24
+#: app/views/repositories/index.html.erb:28 app/views/repositories/add.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
 msgstr "Symbolerna <b>%s</b> är inte tillåtna i ett alias till en lagringsplats."
 
-#: app/views/repositories/index.html.erb:29 app/views/repositories/show.html.erb:34
+#: app/views/repositories/index.html.erb:32 app/views/repositories/add.html.erb:31
 msgid "This value cannot be empty."
 msgstr "Detta värde får inte vara tomt."
 
-#: app/views/repositories/index.html.erb:46
-msgid "Quick Search"
-msgstr "Snabbsökning"
-
-#: app/views/repositories/index.html.erb:91 app/views/repositories/show.html.erb:45
+#: app/views/repositories/index.html.erb:140 app/views/repositories/add.html.erb:105
 msgid "Software Repositories"
 msgstr "Lagringsplats för programvara"
 
-#: app/views/repositories/index.html.erb:96
+#: app/views/repositories/index.html.erb:145
 msgid "Configured software repositories"
 msgstr "Konfigurerade lagringsplatser för programvara"
 
-#: app/views/repositories/index.html.erb:99
+#: app/views/repositories/index.html.erb:148
 msgid "Filter repositories"
 msgstr "Filtrera arkiv"
 
-#: app/views/repositories/index.html.erb:101
+#: app/views/repositories/index.html.erb:150
 msgid "All"
 msgstr "Alla"
 
-#: app/views/repositories/index.html.erb:103
+#: app/views/repositories/index.html.erb:152
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: app/views/repositories/index.html.erb:153
+#: app/views/repositories/index.html.erb:159
+msgid "Quick Search"
+msgstr "Snabbsökning"
+
+#: app/views/repositories/index.html.erb:165
+msgid "Add New Repository"
+msgstr "Lägg till nytt arkiv"
+
+#: app/views/repositories/index.html.erb:208
+msgid "Repository is currently"
+msgstr "Arkivet är för närvarande"
+
+#: app/views/repositories/index.html.erb:211 app/views/repositories/add.html.erb:128
+#: app/views/repositories/add.html.erb:129
 msgid "Repository will be %s."
 msgstr "Lagringsplats kommer att vara %s."
 
-#: app/views/repositories/index.html.erb:160
+#: app/views/repositories/index.html.erb:215
+msgid "Autorefresh is currently"
+msgstr "Automatisk uppdatering är för närvarande"
+
+#: app/views/repositories/index.html.erb:218 app/views/repositories/add.html.erb:133
+#: app/views/repositories/add.html.erb:134
 msgid "Autorefresh will be %s."
 msgstr "Automatisk uppdatering kommer att vara %s."
 
-#: app/views/repositories/index.html.erb:169
+#: app/views/repositories/index.html.erb:222
+msgid "Keeping downloaded packages is currently"
+msgstr "Spara hämtade paket är för närvarande"
+
+#: app/views/repositories/index.html.erb:225 app/views/repositories/add.html.erb:140
+#: app/views/repositories/add.html.erb:141
 msgid "Keep packages option will be %s."
 msgstr "Alternativ för att behålla paket kommer att vara %s."
 
-#: app/views/repositories/index.html.erb:176
+#: app/views/repositories/index.html.erb:232 app/views/repositories/add.html.erb:149
 msgid "Save"
 msgstr "Spara"
 
-#: app/views/repositories/index.html.erb:177
+#: app/views/repositories/index.html.erb:233
 msgid "Delete"
 msgstr "Ta bort"
 
-#: app/views/repositories/index.html.erb:179
+#: app/views/repositories/index.html.erb:235
 msgid "Really delete repository '%s'?"
 msgstr "Vill du ta bort lagringsplatsen %s?"
 
-#: app/views/repositories/index.html.erb:194
-msgid "Add"
-msgstr "Lägg till"
+#: app/views/repositories/add.html.erb:77
+msgid "A repository with this URL already exists.\nCreate a duplicate?"
+msgstr "Det finns redan ett arkiv med denna URL.\nSkapa en kopia?"
 
-#: app/views/repositories/index.html.erb:194
-msgid "a new repository"
-msgstr "lägg till ny lagringsplats"
-
-#: app/views/repositories/show.html.erb:31
-msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
-msgstr "Ange en siffra mellan 0 (högsta prioritet) och 200 (lägsta prioritet)."
-
-#: app/views/repositories/show.html.erb:32
-msgid "Priority must be a positive number."
-msgstr "Prioriteten måste vara ett positivt tal."
-
-#: app/views/repositories/show.html.erb:33
-msgid "Priority must be less than 200."
-msgstr "Prioriteten måste vara mindre än 200."
-
-#: app/views/repositories/show.html.erb:48
+#: app/views/repositories/add.html.erb:107
 msgid "Add a new repository"
 msgstr "Lägg till ny lagringsplats"
 
-#: app/views/repositories/show.html.erb:50
-msgid "Properties of"
-msgstr "Egenskaper för"
+#: app/views/repositories/add.html.erb:116
+msgid "New Repository"
+msgstr "Nytt arkiv"
 
-#: app/views/repositories/show.html.erb:50
-msgid "Edit Properties of"
-msgstr "Redigera egenskaper för"
-
-#: app/views/repositories/show.html.erb:60
-msgid "Repository"
-msgstr "Lagringsplats"
-
-#: app/views/repositories/show.html.erb:109
-msgid "Create"
-msgstr "Skapa"
-
-#: app/views/repositories/show.html.erb:109 app/views/patch_updates/index.html.erb:38
-msgid "Update"
-msgstr "Uppdatera"
+#: app/views/repositories/add.html.erb:137
+msgid "Priority for packages:"
+msgstr "Prioritet för paket:"
 
 #: app/views/patch_updates/_patch_installation.html.erb:7
 msgid "An error occured while installing patches."
@@ -288,6 +266,10 @@ msgstr "Systemet är uppdaterat."
 #: app/views/patch_updates/index.html.erb:21
 msgid "Updates available"
 msgstr "Det finns tillgängliga uppdateringar"
+
+#: app/views/patch_updates/index.html.erb:38
+msgid "Update"
+msgstr "Uppdatera"
 
 #: app/views/patch_updates/_patch_progress.html.erb:5
 msgid "Refreshing package cache"

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-08 11:43\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-19 15:43\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr " nebo "
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Zpět"
@@ -30,13 +30,13 @@ msgstr "Zpět"
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: app/helpers/application_helper.rb:54
-msgid "Next"
-msgstr "Další"
-
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "Uložit"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "Další"
 
 #: app/helpers/application_helper.rb:56
 msgid "Finish"
@@ -106,43 +106,35 @@ msgstr "Byli jste odhlášeni."
 msgid "Session timeout"
 msgstr "Vypršení časového limitu relace"
 
-#: app/controllers/application_controller.rb:75
-msgid "You must accept all EULAs before using this product!"
-msgstr "Než začnete používat tento produkt, je třeba přijmout všechny smlouvy EULA."
-
 #: app/controllers/application_controller.rb:79
-msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
-msgstr "Nelze přesměrovat na smlouvu EULA. Ujistěte se, zda je nainstalován balíček webyast-licenses-ui."
-
-#: app/controllers/application_controller.rb:95
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
 msgstr "Nemáte povolení tuto akci provést. Pokud provedení této akce vyžadujete, obraťte se na správce systému."
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "Chcete-li pokračovat, přihlaste se."
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "Před přihlášením je třeba se odhlásit."
 
-#: app/controllers/application_controller.rb:216
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "nesmí být prázdné"
 
-#: app/controllers/application_controller.rb:217
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
 msgstr "je mimo povolené hodnoty"
 
-#: app/controllers/application_controller.rb:218
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "nemůže být prázdné"
 
-#: app/controllers/application_controller.rb:219
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
 msgstr "je neplatné"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
 msgstr "Neplatné parametry:"
 
@@ -218,6 +210,10 @@ msgstr "Hostitel|Vytvořen:"
 msgid "Host|Updated at"
 msgstr "Hostitel|Aktualizován:"
 
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "Výběr jazyka"
+
 #: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "Toto je nepříjemné..."
@@ -245,6 +241,10 @@ msgstr "Nezapomeňte připojit podrobnosti o chybě."
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
 msgstr "K chybě došlo v cílovém počítači."
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "Nemáte oprávnění změnit nastavení."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -443,7 +443,7 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "V umístění /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS není nastaven žádný server NTP."
 
 #: lib/error_constructor.rb:29
-msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
 msgstr "Při synchronizaci NTP došlo k chybě: %s"
 
 #: lib/error_constructor.rb:32

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-08 10:26\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-20 11:17\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Saisissez une adresse électronique valide."
 
@@ -29,7 +29,7 @@ msgstr "Les paramètres de l'administrateur ont été écrits."
 msgid "Error while saving administrator settings: %s"
 msgstr "Erreur lors de l'enregistrement des paramètres de l'administrateur : %s"
 
-#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:75
 msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
 msgstr "Alias de messagerie défini mais serveur de messagerie sortant non configuré (%s<i>change</i>%s)."
 
@@ -37,55 +37,59 @@ msgstr "Alias de messagerie défini mais serveur de messagerie sortant non confi
 msgid "Administrator Settings"
 msgstr "Paramètres de l'administrateur"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Les mots de passe ne correspondent pas."
 
-#: app/views/administrator/index.html.erb:37
+#: app/views/administrator/index.html.erb:33
 msgid "A password is required."
 msgstr "Mot de passe requis."
 
-#: app/views/administrator/index.html.erb:44
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "Niveau de sécurité du mot de passe :"
+
+#: app/views/administrator/index.html.erb:40
 msgid "Weak"
 msgstr "Faible"
 
-#: app/views/administrator/index.html.erb:45
+#: app/views/administrator/index.html.erb:41
 msgid "Normal"
 msgstr "Normal"
 
-#: app/views/administrator/index.html.erb:46
+#: app/views/administrator/index.html.erb:42
 msgid "Medium"
 msgstr "Moyen"
 
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:43
 msgid "Strong"
 msgstr "Fort"
 
-#: app/views/administrator/index.html.erb:48
+#: app/views/administrator/index.html.erb:44
 msgid "Very Strong"
 msgstr "Très fort"
 
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:63
 msgid "Password Setup for User 'root'"
 msgstr "Définition de mot de passe pour utilisateur 'root'"
 
-#: app/views/administrator/index.html.erb:66
+#: app/views/administrator/index.html.erb:64
 msgid "New Password"
 msgstr "Nouveau mot de passe"
 
-#: app/views/administrator/index.html.erb:71
+#: app/views/administrator/index.html.erb:69
 msgid "Confirm Password"
 msgstr "Confirmer le mot de passe"
 
-#: app/views/administrator/index.html.erb:78
+#: app/views/administrator/index.html.erb:76
 msgid "Mail Setup for User 'root'"
 msgstr "Définition de messagerie pour utilisateur 'root'"
 
-#: app/views/administrator/index.html.erb:80
+#: app/views/administrator/index.html.erb:78
 msgid "Forward system mail to"
 msgstr "Transférer le message système à"
 
-#: app/views/administrator/index.html.erb:83
+#: app/views/administrator/index.html.erb:81
 msgid "Save Mail Only"
 msgstr "Enregistrer courrier électronique uniquement"
 

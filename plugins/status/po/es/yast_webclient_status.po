@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-30 15:01+0200\n"
-"PO-Revision-Date: 2010-04-07 13:30\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-20 10:31\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:131
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr "No se han encontrado datos para mostrar el estado del sistema."
 
@@ -21,15 +21,15 @@ msgstr "No se han encontrado datos para mostrar el estado del sistema."
 msgid "Limits exceeded for "
 msgstr "Se ha superado el límite para "
 
-#: app/controllers/status_controller.rb:307
+#: app/controllers/status_controller.rb:316
 msgid "exceeded"
 msgstr "ha superado"
 
-#: app/controllers/status_controller.rb:321
+#: app/controllers/status_controller.rb:330
 msgid "undercut"
 msgstr "están por debajo de"
 
-#: app/controllers/status_controller.rb:423
+#: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
 msgstr "Se han escrito los límites."
 
@@ -37,7 +37,7 @@ msgstr "Se han escrito los límites."
 msgid "Only numbers are valid !"
 msgstr "Sólo son válidos los números."
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Estado"
 
@@ -53,7 +53,15 @@ msgstr "está por debajo de"
 msgid "exceeds"
 msgstr "supera"
 
-#: app/views/status/index.html.erb:114
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr "detalles"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Detalles"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "Editar límites"
 
@@ -61,31 +69,31 @@ msgstr "Editar límites"
 msgid "A problem occured when loading status information."
 msgstr "Error al cargar la información de estado."
 
-#: app/views/status/_status_graph.html.erb:60
+#: app/views/status/_status_graph.html.erb:91
 msgid "Show last"
 msgstr "Mostrar últimos"
 
-#: app/views/status/_status_graph.html.erb:61
+#: app/views/status/_status_graph.html.erb:92
 msgid "5 Minutes"
 msgstr "5 minutos"
 
-#: app/views/status/_status_graph.html.erb:62
+#: app/views/status/_status_graph.html.erb:93
 msgid "15 Minutes"
 msgstr "15 minutos"
 
-#: app/views/status/_status_graph.html.erb:63
+#: app/views/status/_status_graph.html.erb:94
 msgid "30 Minutes"
 msgstr "30 minutos"
 
-#: app/views/status/_status_graph.html.erb:64
+#: app/views/status/_status_graph.html.erb:95
 msgid "1 Hour"
 msgstr "1 hora"
 
-#: app/views/status/_status_graph.html.erb:65
+#: app/views/status/_status_graph.html.erb:96
 msgid "6 Hours"
 msgstr "6 horas"
 
-#: app/views/status/_status_graph.html.erb:66
+#: app/views/status/_status_graph.html.erb:97
 msgid "12 Hours"
 msgstr "12 horas"
 
@@ -102,8 +110,8 @@ msgid "Your system is healthy."
 msgstr "El sistema está saludable."
 
 #: app/views/status/_status_summary.html.erb:20
-msgid "start"
-msgstr "iniciar"
+msgid "Start collectd"
+msgstr "Iniciar collectd"
 
 #: app/views/status/_status_summary.html.erb:28
 msgid "Loading system information"
@@ -130,10 +138,14 @@ msgid "Mail configuration test not confirmed"
 msgstr "Prueba de configuración de correo no confirmada"
 
 #: lib/plugin_translation.rb:30
-msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
-msgstr "Durante la configuración del correo, el correo de prueba se envió a %s . ¿Se ha entregado correctamente este correo en esta dirección?<br> Si es así, confírmelo presionando el botón. Si no es así, vuelva a comprobar la configuración, incluido el archivo /var/log/mail."
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "Durante la configuración del correo, se envió un correo de prueba a %s. ¿Se ha entregado este correo en esta dirección?<br> Si es así, confírmelo presionando el botón. Si no es así, vuelva a comprobar la configuración del correo."
 
 #: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "No es posible recuperar el nombre de host completo del equipo. Si el correo no se ha podido entregar, póngase en contacto con el administrador de red para comprobar la configuración de red o del correo."
+
+#: lib/plugin_translation.rb:34
 msgid "Test mail received"
 msgstr "Correo de prueba recibido"
 

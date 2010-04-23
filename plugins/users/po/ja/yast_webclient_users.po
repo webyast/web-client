@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-08 10:42\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-21 08:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -41,84 +41,80 @@ msgstr "有効なメンバーのリストを入力してください"
 msgid "Cannot read users list."
 msgstr "ユーザリストを読み込めません。"
 
-#: app/controllers/groups_controller.rb:105
+#: app/controllers/groups_controller.rb:118
 msgid "Cannot read groups list."
 msgstr "グループリストを読み込めません。"
 
-#: app/controllers/groups_controller.rb:177
+#: app/controllers/groups_controller.rb:209
 msgid "Unknown backend error"
 msgstr "未知のバックエンドエラー"
 
-#: app/controllers/users_controller.rb:164
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr "ユーザ <i>%s</i> の作成に成功しました。"
 
-#: app/controllers/users_controller.rb:206
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "ユーザ <i>%s</i> の更新に成功しました。"
 
-#: app/controllers/users_controller.rb:227
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "ユーザ <i>%s</i> の削除に成功しました。"
 
-#: app/controllers/users_controller.rb:229
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "エラー:ユーザ <i>%s</i> を削除できませんでした。"
 
-#: app/views/groups/edit.html.erb:4 app/views/groups/index.html.erb:38
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
 #: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "グループ"
 
-#: app/views/groups/edit.html.erb:6
+#: app/views/groups/edit.html.erb:35
 msgid "Add new group"
 msgstr "新しいグループを追加します"
 
-#: app/views/groups/edit.html.erb:8
+#: app/views/groups/edit.html.erb:37
 msgid "Modify group"
 msgstr "グループの変更"
 
-#: app/views/groups/edit.html.erb:18 app/views/groups/index.html.erb:49
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
 msgid "Group Name"
 msgstr "グループ名"
 
-#: app/views/groups/edit.html.erb:22
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
 msgid "Group ID"
 msgstr "グループID"
 
-#: app/views/groups/edit.html.erb:26
-msgid "Group Type"
-msgstr "グループの種類"
-
-#: app/views/groups/edit.html.erb:30
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
 msgid "Default members"
 msgstr "デフォルトギア"
 
-#: app/views/groups/edit.html.erb:34
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
 msgid "Members"
 msgstr "メンバー"
 
-#: app/views/groups/index.html.erb:26
-msgid "Type group name ..."
-msgstr "グループ名を入力..."
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+msgid "Processing ..."
+msgstr "処理中..."
 
-#: app/views/groups/index.html.erb:29 app/views/users/index.html.erb:35
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
 msgid "Filter:"
 msgstr "フィルタ:"
 
-#: app/views/groups/index.html.erb:44
+#: app/views/groups/index.html.erb:78
 msgid "Add New Group"
 msgstr "新しいグループの追加"
 
-#: app/views/groups/index.html.erb:50
-msgid "Type"
-msgstr "種類"
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "保存"
 
-#: app/views/groups/index.html.erb:51
-msgid "Action"
-msgstr "アクション"
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "削除"
 
-#: app/views/groups/index.html.erb:61
+#: app/views/groups/index.html.erb:114
 msgid "Are you sure to delete group '%s'?"
 msgstr "本当にグループ%sを削除してもよろしいですか？"
 
@@ -127,12 +123,12 @@ msgid "Login Settings"
 msgstr "ログインの設定"
 
 #: app/views/users/_user_form.erb:8
-msgid "Login Name"
-msgstr "ログイン名"
-
-#: app/views/users/_user_form.erb:13
 msgid "Full Name"
 msgstr "氏名"
+
+#: app/views/users/_user_form.erb:12
+msgid "Login Name"
+msgstr "ログイン名"
 
 #: app/views/users/_user_form.erb:17
 msgid "Password"
@@ -182,25 +178,29 @@ msgstr "強い"
 msgid "Very Strong"
 msgstr "非常に強い"
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:46 app/views/users/new.html.erb:86
-msgid "Local Users"
-msgstr "ローカルユーザ"
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+msgid "Users"
+msgstr "ユーザ"
 
 #: app/views/users/edit.html.erb:80
 msgid "Edit user %s"
 msgstr "ユーザ %s の編集"
 
-#: app/views/users/index.html.erb:32
-msgid "Type user name or login ..."
-msgstr "ユーザ名を入力するかまたはログインしてください ..."
-
-#: app/views/users/index.html.erb:51
+#: app/views/users/index.html.erb:52
 msgid "Add New User"
 msgstr "新しいユーザの追加"
 
-#: app/views/users/index.html.erb:67
-msgid "Are you sure to delete user %s?"
-msgstr "本当にユーザ%sを削除してもよろしいですか？"
+#: app/views/users/index.html.erb:68
+msgid "Are you sure to delete user '%s'?"
+msgstr "本当にユーザ「%s」を削除してもよろしいですか?"
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "ホームディレクトリも同様に削除されます。"
+
+#: app/views/users/index.html.erb:81
+msgid "Manage Groups"
+msgstr "グループの管理"
 
 #: app/views/users/new.html.erb:86
 msgid "Add new user"

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-08 10:42\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-21 08:19\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr "または"
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "戻る"
@@ -30,13 +30,13 @@ msgstr "戻る"
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: app/helpers/application_helper.rb:54
-msgid "Next"
-msgstr "次へ"
-
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "保存"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "次へ"
 
 #: app/helpers/application_helper.rb:56
 msgid "Finish"
@@ -106,43 +106,35 @@ msgstr "ログアウトしました。"
 msgid "Session timeout"
 msgstr "セッションのタイムアウト:"
 
-#: app/controllers/application_controller.rb:75
-msgid "You must accept all EULAs before using this product!"
-msgstr "この製品を使用する前に、すべての使用許諾契約(EULA)に同意しなければなりません！"
-
 #: app/controllers/application_controller.rb:79
-msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
-msgstr "使用許諾契約(EULA)にリダイレクトできません。 webyast-licenses-uiパッケージがインストールされているかどうかご確認ください。"
-
-#: app/controllers/application_controller.rb:95
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
 msgstr "これを行う権限がありません。この操作を行う必要がある場合は、システム管理者にご連絡ください。"
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "続行するにはログインしてください"
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "ログインの前にログアウトしなければなりません"
 
-#: app/controllers/application_controller.rb:216
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "空白にすることはできません"
 
-#: app/controllers/application_controller.rb:217
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
 msgstr "使用可能でない値です。"
 
-#: app/controllers/application_controller.rb:218
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "空白を指定することはできません"
 
-#: app/controllers/application_controller.rb:219
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
 msgstr "無効です"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
 msgstr "無効なパラメータ:"
 
@@ -218,6 +210,10 @@ msgstr "ホスト|作成先"
 msgid "Host|Updated at"
 msgstr "ホスト|更新先"
 
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "言語選択"
+
 #: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "申し訳ありません...."
@@ -245,6 +241,10 @@ msgstr "バグの詳細説明を忘れずにお願いいたします。"
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
 msgstr "ターゲットマシンで問題が発生しました。"
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "この設定を変更するためのパーミッションがありません。"
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -443,8 +443,8 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "/etc/sysconfig/network/config内のNETCONFIG_NTP_STATIC_SERVERSには、 事前設定されたNTPサーバがありません。"
 
 #: lib/error_constructor.rb:29
-msgid "Error occured during ntp synchronization: %s"
-msgstr "NTPの同期処理時にエラーが発生しました: %s"
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "NTPによる同期処理時にエラーが発生しました: %s"
 
 #: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"

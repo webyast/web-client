@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-08 10:19\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-19 15:51\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,23 +13,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/status_controller.rb:129
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr "Brak danych do wyświetlenia stanu systemu."
 
-#: app/controllers/status_controller.rb:185
+#: app/controllers/status_controller.rb:187
 msgid "Limits exceeded for "
 msgstr "Przekroczono limity dla "
 
-#: app/controllers/status_controller.rb:305
+#: app/controllers/status_controller.rb:316
 msgid "exceeded"
 msgstr "przekroczony"
 
-#: app/controllers/status_controller.rb:319
+#: app/controllers/status_controller.rb:330
 msgid "undercut"
 msgstr "poniżej"
 
-#: app/controllers/status_controller.rb:421
+#: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
 msgstr "Limity zostały zapisane."
 
@@ -37,7 +37,7 @@ msgstr "Limity zostały zapisane."
 msgid "Only numbers are valid !"
 msgstr "Dopuszczalne są tylko liczby!"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Stan"
 
@@ -53,7 +53,15 @@ msgstr "jest poniżej"
 msgid "exceeds"
 msgstr "przekracza"
 
-#: app/views/status/index.html.erb:114
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr "szczegóły"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Szczegóły"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "Edycja limitów"
 
@@ -61,31 +69,31 @@ msgstr "Edycja limitów"
 msgid "A problem occured when loading status information."
 msgstr "Wystąpił błąd podczas wczytywania informacji o stanie."
 
-#: app/views/status/_status_graph.html.erb:60
+#: app/views/status/_status_graph.html.erb:91
 msgid "Show last"
 msgstr "Pokaż ostatnie"
 
-#: app/views/status/_status_graph.html.erb:61
+#: app/views/status/_status_graph.html.erb:92
 msgid "5 Minutes"
 msgstr "5 minut"
 
-#: app/views/status/_status_graph.html.erb:62
+#: app/views/status/_status_graph.html.erb:93
 msgid "15 Minutes"
 msgstr "15 minut"
 
-#: app/views/status/_status_graph.html.erb:63
+#: app/views/status/_status_graph.html.erb:94
 msgid "30 Minutes"
 msgstr "30 minut"
 
-#: app/views/status/_status_graph.html.erb:64
+#: app/views/status/_status_graph.html.erb:95
 msgid "1 Hour"
 msgstr "1 godzinę"
 
-#: app/views/status/_status_graph.html.erb:65
+#: app/views/status/_status_graph.html.erb:96
 msgid "6 Hours"
 msgstr "6 godzin"
 
-#: app/views/status/_status_graph.html.erb:66
+#: app/views/status/_status_graph.html.erb:97
 msgid "12 Hours"
 msgstr "12 godzin"
 
@@ -102,8 +110,8 @@ msgid "Your system is healthy."
 msgstr "System jest zdrowy."
 
 #: app/views/status/_status_summary.html.erb:20
-msgid "start"
-msgstr "uruchom"
+msgid "Start collectd"
+msgstr "Uruchom program collectd"
 
 #: app/views/status/_status_summary.html.erb:28
 msgid "Loading system information"
@@ -112,4 +120,32 @@ msgstr "Wczytywanie informacji o systemie"
 #: app/views/status/_status_progress.html.erb:7
 msgid "Checking system status"
 msgstr "Sprawdzanie stanu systemu"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "Brak rejestracji"
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "Proszę zarejestrować swój system, aby otrzymywać uaktualnienia."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "rejestruj"
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "Test konfiguracji poczty niepotwierdzony"
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "Podczas konfiguracji poczty wysłano wiadomość testową do %s . Czy poczta została dostarczona na ten adres?<br>Jeśli tak, proszę to potwierdzić, naciskając przycisk. W przeciwnym przypadku proszę ponownie sprawdzić konfigurację poczty."
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "Pobranie pełnej nazwy komputera nie było możliwe. Jeśli poczta nie została dostarczona, trzeba skonsultować konfigurację sieci i/lub poczty z administratorem sieci."
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr "Wiadomość testowa została odebrana"
 

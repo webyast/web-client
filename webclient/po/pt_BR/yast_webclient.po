@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-07 13:51\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-22 12:14\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr " ou "
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Voltar"
@@ -30,13 +30,13 @@ msgstr "Voltar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: app/helpers/application_helper.rb:54
-msgid "Next"
-msgstr "Avançar"
-
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "Gravar"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "Avançar"
 
 #: app/helpers/application_helper.rb:56
 msgid "Finish"
@@ -106,43 +106,35 @@ msgstr "Você foi desconectado."
 msgid "Session timeout"
 msgstr "Tempo de espera da sessão"
 
-#: app/controllers/application_controller.rb:75
-msgid "You must accept all EULAs before using this product!"
-msgstr "Você deve aceitar todos os EULAs antes de usar este produto!"
-
 #: app/controllers/application_controller.rb:79
-msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
-msgstr "Impossível redirecionar para o EULA. Verifique se o pacote webyast-licenses-ui está instalado"
-
-#: app/controllers/application_controller.rb:95
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
 msgstr "Você não tem permissão para isso. Se tiver que executar essa ação, entre em contato com o administrador do sistema"
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "Efetue login para continuar"
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "Você deve efetuar logout antes do login"
 
-#: app/controllers/application_controller.rb:216
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "não pode ficar em branco"
 
-#: app/controllers/application_controller.rb:217
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
 msgstr "está fora dos valores permitidos"
 
-#: app/controllers/application_controller.rb:218
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "não pode estar vazio"
 
-#: app/controllers/application_controller.rb:219
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
 msgstr "é inválido"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
 msgstr "Parâmetros inválidos:"
 
@@ -218,6 +210,10 @@ msgstr "Host|Criado à(s)"
 msgid "Host|Updated at"
 msgstr "Host|Atualizado à(s)"
 
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "Seleção de Idioma"
+
 #: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "Isto é constrangedor..."
@@ -245,6 +241,10 @@ msgstr "Não se esqueça de incluir os detalhes do bug."
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
 msgstr "Ocorreu um problema na máquina de destino."
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "Você não tem permissão para modificar as configurações."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -443,8 +443,8 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "Não existe servidor NTP predefinido em /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
 #: lib/error_constructor.rb:29
-msgid "Error occured during ntp synchronization: %s"
-msgstr "Ocorreu um erro durante a sincronização do NTP: %s"
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "Erro durante a sincronização de ntp: %s"
 
 #: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"

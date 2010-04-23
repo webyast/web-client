@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_software\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-07 11:31\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-04-20 10:44\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -57,49 +57,49 @@ msgstr "自定义优先级"
 msgid "Custom"
 msgstr "自定义"
 
-#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:70
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:119
+#: app/views/repositories/add.html.erb:42
 msgid "enable"
 msgstr "启用"
 
-#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:75
+#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:124
+#: app/views/repositories/add.html.erb:49
 msgid "disable"
 msgstr "禁用"
 
-#: app/helpers/repositories_helper.rb:45
+#: app/helpers/repositories_helper.rb:46
 msgid "enabled"
 msgstr "已启用"
 
-#: app/helpers/repositories_helper.rb:45
+#: app/helpers/repositories_helper.rb:46
 msgid "disabled"
 msgstr "已禁用"
 
-#: app/controllers/repositories_controller.rb:14 app/views/repositories/show.html.erb:64
+#: app/controllers/repositories_controller.rb:14
 msgid "Alias"
 msgstr "别名"
 
-#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:102
-#: app/views/repositories/show.html.erb:73
+#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:151
 msgid "Enabled"
 msgstr "已启用"
 
-#: app/controllers/repositories_controller.rb:16 app/views/repositories/show.html.erb:78
+#: app/controllers/repositories_controller.rb:16
 msgid "Autorefresh"
 msgstr "自动刷新"
 
-#: app/controllers/repositories_controller.rb:17 app/views/repositories/show.html.erb:83
-#: app/views/patch_updates/_patches.html.erb:14
+#: app/controllers/repositories_controller.rb:17 app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "名称"
 
-#: app/controllers/repositories_controller.rb:18 app/views/repositories/show.html.erb:88
+#: app/controllers/repositories_controller.rb:18
 msgid "URL"
 msgstr "URL"
 
-#: app/controllers/repositories_controller.rb:19 app/views/repositories/show.html.erb:93
+#: app/controllers/repositories_controller.rb:19
 msgid "Priority"
 msgstr "优先级"
 
-#: app/controllers/repositories_controller.rb:20 app/views/repositories/show.html.erb:98
+#: app/controllers/repositories_controller.rb:20
 msgid "Keep downloaded packages"
 msgstr "保留已下载的包"
 
@@ -107,34 +107,21 @@ msgstr "保留已下载的包"
 msgid "Cannot read repository list."
 msgstr "无法读取安装源列表。"
 
-#: app/controllers/repositories_controller.rb:43 app/controllers/repositories_controller.rb:62
-#: app/controllers/repositories_controller.rb:89
+#: app/controllers/repositories_controller.rb:47 app/controllers/repositories_controller.rb:74
 msgid "Missing repository parameter"
 msgstr "缺少安装源参数"
 
-#: app/controllers/repositories_controller.rb:117 app/controllers/repositories_controller.rb:201
+#: app/controllers/repositories_controller.rb:102 app/controllers/repositories_controller.rb:183
 msgid "Invalid priority"
 msgstr "无效优先级"
 
-#: app/controllers/repositories_controller.rb:189
+#: app/controllers/repositories_controller.rb:171
 msgid "Missing repository parameters"
 msgstr "缺少安装源参数"
 
-#: app/controllers/repositories_controller.rb:226
+#: app/controllers/repositories_controller.rb:209
 msgid "Unknown backend error"
 msgstr "未知后端错误"
-
-#: app/controllers/repositories_controller.rb:237
-msgid "Error: Missing repository id."
-msgstr "错误：缺少安装源 ID。"
-
-#: app/controllers/repositories_controller.rb:241
-msgid "Error: Missing 'enabled' parameter."
-msgstr "错误：缺少“已启用”参数。"
-
-#: app/controllers/repositories_controller.rb:271
-msgid "Unknown backend error."
-msgstr "未知后端错误。"
 
 #: app/controllers/patch_updates_controller.rb:45 app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
@@ -161,109 +148,100 @@ msgstr "已安装 %s。"
 msgid "Patch has been installed."
 msgstr "增补程序已安装。"
 
-#: app/views/repositories/index.html.erb:17 app/views/repositories/show.html.erb:16
+#: app/views/repositories/index.html.erb:20 app/views/repositories/add.html.erb:16
 msgid "Enter a valid repository URL."
 msgstr "输入有效的安装源 URL。"
 
-#: app/views/repositories/index.html.erb:25 app/views/repositories/show.html.erb:24
+#: app/views/repositories/index.html.erb:28 app/views/repositories/add.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
 msgstr "安装源别名中不允许出现 <b>%s</b> 符号。"
 
-#: app/views/repositories/index.html.erb:29 app/views/repositories/show.html.erb:34
+#: app/views/repositories/index.html.erb:32 app/views/repositories/add.html.erb:31
 msgid "This value cannot be empty."
 msgstr "此值不能为空。"
 
-#: app/views/repositories/index.html.erb:46
-msgid "Quick Search"
-msgstr "快速搜索"
-
-#: app/views/repositories/index.html.erb:91 app/views/repositories/show.html.erb:45
+#: app/views/repositories/index.html.erb:140 app/views/repositories/add.html.erb:105
 msgid "Software Repositories"
 msgstr "软件安装源"
 
-#: app/views/repositories/index.html.erb:96
+#: app/views/repositories/index.html.erb:145
 msgid "Configured software repositories"
 msgstr "已配置软件安装源"
 
-#: app/views/repositories/index.html.erb:99
+#: app/views/repositories/index.html.erb:148
 msgid "Filter repositories"
 msgstr "过滤器安装源"
 
-#: app/views/repositories/index.html.erb:101
+#: app/views/repositories/index.html.erb:150
 msgid "All"
 msgstr "全部"
 
-#: app/views/repositories/index.html.erb:103
+#: app/views/repositories/index.html.erb:152
 msgid "Disabled"
 msgstr "已禁用"
 
-#: app/views/repositories/index.html.erb:153
+#: app/views/repositories/index.html.erb:159
+msgid "Quick Search"
+msgstr "快速搜索"
+
+#: app/views/repositories/index.html.erb:165
+msgid "Add New Repository"
+msgstr "添加新安装源"
+
+#: app/views/repositories/index.html.erb:208
+msgid "Repository is currently"
+msgstr "安装源目前"
+
+#: app/views/repositories/index.html.erb:211 app/views/repositories/add.html.erb:128
+#: app/views/repositories/add.html.erb:129
 msgid "Repository will be %s."
 msgstr "安装源为 %s。"
 
-#: app/views/repositories/index.html.erb:160
+#: app/views/repositories/index.html.erb:215
+msgid "Autorefresh is currently"
+msgstr "自动刷新目前"
+
+#: app/views/repositories/index.html.erb:218 app/views/repositories/add.html.erb:133
+#: app/views/repositories/add.html.erb:134
 msgid "Autorefresh will be %s."
 msgstr "自动刷新将为 %s。"
 
-#: app/views/repositories/index.html.erb:169
+#: app/views/repositories/index.html.erb:222
+msgid "Keeping downloaded packages is currently"
+msgstr "保留已下载的包目前"
+
+#: app/views/repositories/index.html.erb:225 app/views/repositories/add.html.erb:140
+#: app/views/repositories/add.html.erb:141
 msgid "Keep packages option will be %s."
 msgstr "保留包选项将为 %s。"
 
-#: app/views/repositories/index.html.erb:176
+#: app/views/repositories/index.html.erb:232 app/views/repositories/add.html.erb:149
 msgid "Save"
 msgstr "保存"
 
-#: app/views/repositories/index.html.erb:177
+#: app/views/repositories/index.html.erb:233
 msgid "Delete"
 msgstr "删除"
 
-#: app/views/repositories/index.html.erb:179
+#: app/views/repositories/index.html.erb:235
 msgid "Really delete repository '%s'?"
 msgstr "是否确实要删除安装源“%s”？"
 
-#: app/views/repositories/index.html.erb:194
-msgid "Add"
-msgstr "添加"
+#: app/views/repositories/add.html.erb:77
+msgid "A repository with this URL already exists.\nCreate a duplicate?"
+msgstr "已存在此 URL 的安装源。\n创建重复的安装源吗？"
 
-#: app/views/repositories/index.html.erb:194
-msgid "a new repository"
-msgstr "新安装源"
-
-#: app/views/repositories/show.html.erb:31
-msgid "Enter a number in range 0 (the highest priority) to 200 (the lowest priority)."
-msgstr "请输入范围 0（最高优先级）到 200（最低优先级）之间的值。"
-
-#: app/views/repositories/show.html.erb:32
-msgid "Priority must be a positive number."
-msgstr "优先级必须是正数。"
-
-#: app/views/repositories/show.html.erb:33
-msgid "Priority must be less than 200."
-msgstr "优先级必须少于 200。"
-
-#: app/views/repositories/show.html.erb:48
+#: app/views/repositories/add.html.erb:107
 msgid "Add a new repository"
 msgstr "添加新安装源"
 
-#: app/views/repositories/show.html.erb:50
-msgid "Properties of"
-msgstr "属性"
+#: app/views/repositories/add.html.erb:116
+msgid "New Repository"
+msgstr "新建安装源"
 
-#: app/views/repositories/show.html.erb:50
-msgid "Edit Properties of"
-msgstr "编辑属性"
-
-#: app/views/repositories/show.html.erb:60
-msgid "Repository"
-msgstr "安装源"
-
-#: app/views/repositories/show.html.erb:109
-msgid "Create"
-msgstr "创建"
-
-#: app/views/repositories/show.html.erb:109 app/views/patch_updates/index.html.erb:38
-msgid "Update"
-msgstr "更新"
+#: app/views/repositories/add.html.erb:137
+msgid "Priority for packages:"
+msgstr "包优先级："
 
 #: app/views/patch_updates/_patch_installation.html.erb:7
 msgid "An error occured while installing patches."
@@ -288,6 +266,10 @@ msgstr "您的系统处于最新状态。"
 #: app/views/patch_updates/index.html.erb:21
 msgid "Updates available"
 msgstr "更新可用"
+
+#: app/views/patch_updates/index.html.erb:38
+msgid "Update"
+msgstr "更新"
 
 #: app/views/patch_updates/_patch_progress.html.erb:5
 msgid "Refreshing package cache"

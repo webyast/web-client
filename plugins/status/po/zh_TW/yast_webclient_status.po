@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-03-30 15:01+0200\n"
-"PO-Revision-Date: 2010-04-08 10:58\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-21 15:23\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:131
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr "找不到可顯示系統狀態的資料。"
 
@@ -21,15 +21,15 @@ msgstr "找不到可顯示系統狀態的資料。"
 msgid "Limits exceeded for "
 msgstr "超出限制"
 
-#: app/controllers/status_controller.rb:307
+#: app/controllers/status_controller.rb:316
 msgid "exceeded"
 msgstr "超過"
 
-#: app/controllers/status_controller.rb:321
+#: app/controllers/status_controller.rb:330
 msgid "undercut"
 msgstr "低於"
 
-#: app/controllers/status_controller.rb:423
+#: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
 msgstr "已經寫入限制。"
 
@@ -37,7 +37,7 @@ msgstr "已經寫入限制。"
 msgid "Only numbers are valid !"
 msgstr "只有數字才是有效值！"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:26
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "狀態"
 
@@ -53,7 +53,15 @@ msgstr "低於"
 msgid "exceeds"
 msgstr "超過"
 
-#: app/views/status/index.html.erb:114
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr "詳細資料"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "詳細資料"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "編輯限制"
 
@@ -61,31 +69,31 @@ msgstr "編輯限制"
 msgid "A problem occured when loading status information."
 msgstr "載入狀態資訊時發生問題。"
 
-#: app/views/status/_status_graph.html.erb:60
+#: app/views/status/_status_graph.html.erb:91
 msgid "Show last"
 msgstr "顯示最後"
 
-#: app/views/status/_status_graph.html.erb:61
+#: app/views/status/_status_graph.html.erb:92
 msgid "5 Minutes"
 msgstr "5 分鐘"
 
-#: app/views/status/_status_graph.html.erb:62
+#: app/views/status/_status_graph.html.erb:93
 msgid "15 Minutes"
 msgstr "15 分鐘"
 
-#: app/views/status/_status_graph.html.erb:63
+#: app/views/status/_status_graph.html.erb:94
 msgid "30 Minutes"
 msgstr "30 分鐘"
 
-#: app/views/status/_status_graph.html.erb:64
+#: app/views/status/_status_graph.html.erb:95
 msgid "1 Hour"
 msgstr "1 小時"
 
-#: app/views/status/_status_graph.html.erb:65
+#: app/views/status/_status_graph.html.erb:96
 msgid "6 Hours"
 msgstr "6 小時"
 
-#: app/views/status/_status_graph.html.erb:66
+#: app/views/status/_status_graph.html.erb:97
 msgid "12 Hours"
 msgstr "12 小時"
 
@@ -102,8 +110,8 @@ msgid "Your system is healthy."
 msgstr "您的系統狀態良好。"
 
 #: app/views/status/_status_summary.html.erb:20
-msgid "start"
-msgstr "啟動"
+msgid "Start collectd"
+msgstr "啟動 collectd"
 
 #: app/views/status/_status_summary.html.erb:28
 msgid "Loading system information"
@@ -130,10 +138,14 @@ msgid "Mail configuration test not confirmed"
 msgstr "未確認郵件組態測試"
 
 #: lib/plugin_translation.rb:30
-msgid "During Mail configuration, test mail was sent to %s . Was the mail delivered to this address?<br> If so, confirm it by pressing the button. Otherwise, check your mail confiuration again, even the '/var/log/mail' file."
-msgstr "設定郵件組態期間，會將測試郵件傳送到 %s。郵件是否已傳送到此地址？<br>如果是，請按下按鈕確認，否則，請再次檢查您的郵件組態，甚至是 /var/log/mail 檔案。"
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "設定郵件期間，會將測試郵件傳送到 %s。郵件是否已傳送到此地址？<br>如果是，請按下按鈕確認，否則，請再次檢查您的郵件組態。"
 
 #: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "無法取回機器的完整主機名稱。如果無法傳送郵件，請向網路管理員諮詢關於網路和/或郵件組態的資訊。"
+
+#: lib/plugin_translation.rb:34
 msgid "Test mail received"
 msgstr "收到測試郵件"
 

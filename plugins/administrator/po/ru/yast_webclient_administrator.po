@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-08 12:14\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-22 15:24\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Введите действительный адрес электронной почты."
 
@@ -29,7 +29,7 @@ msgstr "Настройки администратора записаны."
 msgid "Error while saving administrator settings: %s"
 msgstr "Ошибка при сохранении настроек администратора: %s"
 
-#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:75
 msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
 msgstr "Почтовый псевдоним задан, но почтовый сервер не сконфигурирован (%s<i>изменить</i>%s)."
 
@@ -37,55 +37,59 @@ msgstr "Почтовый псевдоним задан, но почтовый с
 msgid "Administrator Settings"
 msgstr "Настройки администратора"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Пароли не совпадают."
 
-#: app/views/administrator/index.html.erb:37
+#: app/views/administrator/index.html.erb:33
 msgid "A password is required."
 msgstr "Необходим пароль."
 
-#: app/views/administrator/index.html.erb:44
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "Надежность пароля"
+
+#: app/views/administrator/index.html.erb:40
 msgid "Weak"
 msgstr "Слабый"
 
-#: app/views/administrator/index.html.erb:45
+#: app/views/administrator/index.html.erb:41
 msgid "Normal"
 msgstr "Обычный"
 
-#: app/views/administrator/index.html.erb:46
+#: app/views/administrator/index.html.erb:42
 msgid "Medium"
 msgstr "Средний"
 
-#: app/views/administrator/index.html.erb:47
+#: app/views/administrator/index.html.erb:43
 msgid "Strong"
 msgstr "Сильный"
 
-#: app/views/administrator/index.html.erb:48
+#: app/views/administrator/index.html.erb:44
 msgid "Very Strong"
 msgstr "Очень сильный"
 
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:63
 msgid "Password Setup for User 'root'"
 msgstr "Установка пароля для пользователя root"
 
-#: app/views/administrator/index.html.erb:66
+#: app/views/administrator/index.html.erb:64
 msgid "New Password"
 msgstr "Новый пароль"
 
-#: app/views/administrator/index.html.erb:71
+#: app/views/administrator/index.html.erb:69
 msgid "Confirm Password"
 msgstr "Подтверждение пароля"
 
-#: app/views/administrator/index.html.erb:78
+#: app/views/administrator/index.html.erb:76
 msgid "Mail Setup for User 'root'"
 msgstr "Настройка почты для пользователя root"
 
-#: app/views/administrator/index.html.erb:80
+#: app/views/administrator/index.html.erb:78
 msgid "Forward system mail to"
 msgstr "Пересылать системную почту на"
 
-#: app/views/administrator/index.html.erb:83
+#: app/views/administrator/index.html.erb:81
 msgid "Save Mail Only"
 msgstr "Сохранить только почту"
 

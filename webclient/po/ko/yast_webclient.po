@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"POT-Creation-Date: 2010-03-30 10:00+0200\n"
-"PO-Revision-Date: 2010-04-07 10:17\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-21 15:11\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr " 또는"
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:48
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "뒤로"
@@ -30,13 +30,13 @@ msgstr "뒤로"
 msgid "Cancel"
 msgstr "취소"
 
-#: app/helpers/application_helper.rb:54
-msgid "Next"
-msgstr "다음"
-
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "저장"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "다음"
 
 #: app/helpers/application_helper.rb:56
 msgid "Finish"
@@ -106,43 +106,35 @@ msgstr "로그아웃되었습니다."
 msgid "Session timeout"
 msgstr "세션 시간 제한"
 
-#: app/controllers/application_controller.rb:75
-msgid "You must accept all EULAs before using this product!"
-msgstr "이 제품을 사용하기 전에 모든 EULA에 동의해야 합니다."
-
 #: app/controllers/application_controller.rb:79
-msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
-msgstr "EULA로 리디렉션할 수 없습니다. webyast-licenses-ui 패키지가 설치되었는지 확인하십시오."
-
-#: app/controllers/application_controller.rb:95
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
 msgstr "이 작업을 수행할 수 없습니다. 이 작업을 수행해야 할 경우 시스템 관리자에게 문의하십시오."
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "계속하려면 로그인하십시오."
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "로그인하기 전에 먼저 로그아웃해야 합니다."
 
-#: app/controllers/application_controller.rb:216
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "비워둘 수 없습니다."
 
-#: app/controllers/application_controller.rb:217
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
 msgstr "허용된 값을 벗어납니다."
 
-#: app/controllers/application_controller.rb:218
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "비워둘 수 없습니다."
 
-#: app/controllers/application_controller.rb:219
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
 msgstr "잘못되었습니다."
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
 msgstr "잘못된 파라미터:"
 
@@ -218,6 +210,10 @@ msgstr "호스트|생성 시간"
 msgid "Host|Updated at"
 msgstr "호스트|업데이트 시간"
 
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "언어 선택"
+
 #: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "죄송합니다만..."
@@ -245,6 +241,10 @@ msgstr "버그 세부 내역을 포함해야 합니다."
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
 msgstr "대상 시스템에서 문제가 발생했습니다."
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "설정을 수정할 수 있는 권한이 없습니다."
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -443,7 +443,7 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "/etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS에서 사전 정의된 NTP 서버가 없습니다."
 
 #: lib/error_constructor.rb:29
-msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
 msgstr "NTP 동기화 중 오류 발생: %s"
 
 #: lib/error_constructor.rb:32
