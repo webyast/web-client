@@ -52,12 +52,12 @@
   <% end %>
 </fieldset>
 <fieldset id="" class="">
+  <%= form_next_button + form_str_spacer %>
   <%= if @first_eula
-        @first_basesystem_step ? "" : (form_back_button + form_str_spacer)
+        @first_basesystem_step ? "" : (form_back_button )
       else
-        (link_to _("Back"), :action => :show, :id => @prev_id) + form_str_spacer
+        (link_to _("Back"), :action => :show, :id => @prev_id)
       end %>
-  <%= form_next_button %>
 </fieldset>
 <% end -%>
 </div>
