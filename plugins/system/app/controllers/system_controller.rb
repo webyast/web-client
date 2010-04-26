@@ -39,8 +39,9 @@ class SystemController < ApplicationController
 		else
 		    flash[:error] = _("Cannot reboot the machine!")
 		end
-	    rescue Exception => e
-		flash[:error] = _("Cannot reboot the machine!")
+	    rescue ActiveResource::ResourceNotFound => e #FIXME system returns 404 in case of error. use 422 and proper formated xml
+        logger.warn "Cannot reboot: #{e.inspect}"
+		    flash[:error] = _("Cannot reboot the machine!")
 	    end
 	else
 	    flash[:error] = 'Reboot request is accepted only via PUT method!'
@@ -59,8 +60,9 @@ class SystemController < ApplicationController
 		else
 		    flash[:error] = _("Cannot shutdown the machine!")
 		end
-	    rescue Exception => e
-		flash[:error] = _("Cannot shutdown the machine!")
+	    rescue ActiveResource::ResourceNotFound => e #FIXME system returns 404 in case of error. use 422 and proper formated xml
+        logger.warn "Cannot shutdown: #{e.inspect}"
+		    flash[:error] = _("Cannot shutdown the machine!")
 	    end
 	else
 	    flash[:error] = 'Shutdown request is accepted only via PUT method!'
