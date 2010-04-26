@@ -57,9 +57,8 @@ rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
 
-# currently there is not testsuite implemented
-#%check
-#%webyast_ui_check
+%check
+%webyast_ui_check
 
 %install
 
@@ -89,7 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 %doc COPYING
 
-%files testsuite
-%defattr(-,root,root)
-%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+#currently no tests available
+#%files testsuite
+#%defattr(-,root,root)
+#%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
 
