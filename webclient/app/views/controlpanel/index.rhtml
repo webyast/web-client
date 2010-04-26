@@ -100,7 +100,7 @@
         <% line_counter +=1 %>
         <div class="highlight-bg list-row">
       <% end %>
-      <% link_to ({:href => data['url']}, {:class => "controlpanel-shortcut"}) do %>
+      <% link_to (data['url'], {:class => "controlpanel-shortcut"}) do %>
         <%= image_tag(data['icon']) %>
         <div>
           <%= data['title'] %>
@@ -113,8 +113,6 @@
   <% end %>
 
 </div>
-
-
 
 <div class="nav-buttons">
   <a href="controlpanel/show_all"><%= _("Show all modules") %></a>
