@@ -293,15 +293,24 @@ ul li {
   margin-top: 0;
   text-indent: 10px;
 }
-.list-row div div,
-.list-row div a {
-  float: left;
-  margin: 0 25px 0 0;
-  width: 75px;
-  
+.list-row .controlpanel-shortcut {
+  float : left;
+  margin: 0 5px;
+  border: 2px solid transparent;
+  width : 100px;
+  height: 8em;
+  padding: 1em 5px 0;
   text-align: center;
 }
-.list-row {
+.list-row .controlpanel-shortcut:hover {
+  border-color: #999;
+  background: #eee;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+ .list-row {
   border-bottom: 1px dotted #ccc;
 }
 .list-row.overview {
@@ -315,21 +324,7 @@ ul li {
   .list-row.overview > div {
    border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
   }
-    .list-row div a {
-      display: block;
-      padding: 1em 5px 0;
-      margin: 0 5px;
-      border: 2px solid transparent;
-      height: 8em;
-    }
-    .list-row div a:hover {
-      border-color: #999;
-      background: #eee;
-      text-decoration: none;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-    }
-    
+   
 ul.list-2level-inline,
 ul.list-2level-inline ul {
   list-style: none outside;
@@ -524,7 +519,7 @@ form a {
 }
 
 /* == Helper Styles ======================================================= */
-.grey-bg {
+.highlight-bg:hover {
   background-color: #f6f6f6;
 }
 
@@ -741,8 +736,9 @@ input {
 }
 
 
-.nav_buttons{
+.nav-buttons{
     margin: 1em;
+    clear: both;
 }
 
 .example{
