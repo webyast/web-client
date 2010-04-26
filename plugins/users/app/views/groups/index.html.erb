@@ -88,20 +88,6 @@
 
 });//document.ready
 
-function disable(which){
- if (which.childNodes.length == 2 && which.childNodes[0].firstChild.nodeValue == "Delete"){
-  which.onclick="";
-  which.childNodes[0].onclick="return false;";
-  which.childNodes[0].href="";
-  // use the same method like repositories
-  $(':submit').attr('disabled', 'disabled');
-  $(':input').attr('readonly', 'readonly');
-  // FIXME: "buttton" has no action but looks like enabled
-  $('a.button').attr('onclick','return false;');
-  $('a.button').attr('href','');
-
- }
-}
 <% end %>
 
 <% end %>
@@ -150,7 +136,7 @@ function disable(which){
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
     <%= form_next_button :label => _("Save") %>
      <% if @permissions[:groupdelete] %>
-     <span onclick="disable(this);"><%= link_to _("Delete"),
+     <span><%= link_to _("Delete"),
                             {:action => 'destroy', :id => group.cn},
                             {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %></span>
      <% end %>
