@@ -185,7 +185,7 @@
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
 	</td><td>
-          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled %>
+          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled, :required => true %>
 	</td></tr>
 
 	<tr><td>

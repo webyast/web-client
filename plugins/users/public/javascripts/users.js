@@ -112,10 +112,20 @@ function def_group_validation(which){
 }
 
 function new_user_validation(which){
-  var valid = $('#userForm').valid();
-  // if UID is invalidate, do Show Details (make it visible)
-  if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
-  valid = valid && groups_validation(which.parentNode);
+  var valid = true;
+  if (valid && ($('#userForm').validate().element('#user_uid')==false || $('#userForm').validate().element('#user_user_password')==false)){
+	$(".fieldset-group.ui-tabs").tabs('select',"#tab_login");
+	valid = false;
+  }
+  if (valid && (groups_validation($('#user_grp_string')[0])==false || def_group_validation($('#user_groupname')[0])==false)){
+	$(".fieldset-group.ui-tabs").tabs('select',"#tab_groups");
+	valid = false;
+  }
+  if (valid && $('#userForm').validate().element('#user_uid_number')==false){
+	$(".fieldset-group.ui-tabs").tabs('select',"#tab_advanced");
+	valid = false;
+  }
+
   return valid;
 }
 
