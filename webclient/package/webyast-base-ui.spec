@@ -17,10 +17,16 @@ Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-
 PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 >= 2.3.4
 PreReq:         rubygem-gettext_rails
+
 %if 0%{?suse_version} == 0 || %suse_version > 1110
 # 11.2 or newer
+
+# since 11.3, they are in a separate subpackage
+Requires:       sysvinit-tools
+%else
 # Require startproc respecting -p, bnc#559534#c44
 Requires:       sysvinit > 2.86-215.2
+%endif
 # Require lighttpd whose postun does not mass kill, bnc#559534#c19
 # (Updating it later does not work because postun uses the old
 # version.)
