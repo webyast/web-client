@@ -24,6 +24,16 @@ function _trim(word){
   return word.replace(/^\s*|\s*$/g,'');
 }
 
+function _getElementsByClassName(node, classname)  {
+    if(!node) node = document.getElementsByTagName("body")[0];
+    var a = [];
+    var re = new RegExp('\\b' + classname + '\\b');
+    var els = node.getElementsByTagName("*");
+    for(var i=0,j=els.length; i<j; i++)
+        if(re.test(els[i].className))a.push(els[i]);
+    return a;
+}
+
 function members_validation(which){
   var mygroups = [];
   if (_trim(which.value).length>0) mygroups = which.value.split(",");
@@ -38,8 +48,8 @@ function members_validation(which){
      errmsg = mygroups[i]+" "+"is not valid user!" ;
     }
   }
-  which.parentNode.parentNode.getElementsByClassName("error")[0].innerHTML = errmsg;
-  which.parentNode.parentNode.getElementsByClassName("error")[0].style.display= (errmsg.length==0) ? "none" : "block";
+  _getElementsByClassName(which.parentNode.parentNode, 'error')[0].innerHTML = errmsg;
+  _getElementsByClassName(which.parentNode.parentNode, 'error')[0].style.display= (errmsg.length==0) ? "none" : "block";
   return (errmsg.length==0);
 }
 
