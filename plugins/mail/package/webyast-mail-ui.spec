@@ -17,7 +17,7 @@ PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.17
+Version:        0.1.18
 Release:        0
 Summary:        WebYaST - Mail Settings UI
 Source:         www.tar.bz2
@@ -26,6 +26,7 @@ BuildArch:      noarch
 BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 BuildRequires:  ruby tidy
 BuildRequires:  yast2-webclient webyast-root-user-ui
+Requires:	webyast-root-user-ui
 
 #
 %define pkg_user yast
