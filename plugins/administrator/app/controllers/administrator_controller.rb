@@ -88,7 +88,7 @@ class AdministratorController < ApplicationController
     end
 
     # check if mail is configured; during initial workflow, only warn if mail configuration does not follow
-    if admin["aliases"] != "" &&
+    if admin["aliases"] != "" && (defined?(Mail) == 'constant' && Mail.class == Class) &&
         (!Basesystem.installed? ||
          !Basesystem.new.load_from_session(session).following_steps.any? { |h| h[:controller] == "mail" })
       @mail       = Mail.find :one
