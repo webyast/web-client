@@ -57,8 +57,9 @@ rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
 
-%check
-%webyast_ui_check
+# currently there is not testsuite implemented
+#%check
+#%webyast_ui_check
 
 %install
 
