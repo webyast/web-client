@@ -179,6 +179,7 @@ chmod 600 db/*.sqlite* log/*
 /srv/www/yast/INSTALL
 /srv/www/yast/script  
 /srv/www/yast/config  
+%config /srv/www/yast/config/initializers/session_store.rb
 /srv/www/yast/start.sh
 %doc README* COPYING  
 %attr(-,lighttpd,lighttpd) /srv/www/yast/log  
