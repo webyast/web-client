@@ -210,16 +210,21 @@
 	<td></tr>
 
 	<tr><td>
-            <label class="label" id="groups-error" class="error"></label>
+            <label class="label error" id="groups-error" ></label>
+	<td></tr>
+
+	<tr><td rowspan=2>
+            <div class="label"><%=_("Default Group")%></div>
+	</td><td>
+            <%= f.text_field :groupname, :disabled => disabled, :onkeyup => "def_group_validation(this);" %>
+	</td><td rowspan=2>
+            <a href="#" class="button" onClick="select_default_group_open('new');return false;">Select Default Group</a>
 	<td></tr>
 
 	<tr><td>
-            <div class="label"><%=_("Default Group")%></div>
-	</td><td>
-            <%= f.text_field :groupname, :disabled => disabled %>
-	</td><td>
-            <a href="#" class="button" onClick="select_default_group_open('new');return false;">Select Default Group</a>
+            <label class="label error" id="def-group-error" ></label>
 	<td></tr>
+
 	</table>
 	 <div id="groups" style="display:none;" title="Groups">
 	    <div>

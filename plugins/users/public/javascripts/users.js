@@ -89,6 +89,27 @@ function groups_validation(which){
   return (errmsg.length==0);
 }
 
+function def_group_validation(which){
+  var mygroup = _trim(findById(which.parentNode.getElementsByTagName('input'), "user_groupname").value);
+  var allgroups = $("#all_grps_string")[0].value.split(",");
+  errmsg="";
+
+   if (mygroup.length>0){
+    var found=false;
+    for(a=0;a<allgroups.length;a++){
+     if (allgroups[a]==_trim(mygroup)) found=true;
+    }
+    if (!found){
+     errmsg = mygroup+" "+"is not valid group!" ;
+    }
+   }
+
+  set_tab_focus("groups")
+  var error = findById(which.parentNode.parentNode.parentNode.getElementsByTagName('label'), "def-group-error");
+  error.innerHTML = errmsg;
+  error.style.display= (errmsg.length==0) ? "none" : "block";
+  return (errmsg.length==0);
+}
 
 function new_user_validation(which){
   var valid = $('#userForm').valid();

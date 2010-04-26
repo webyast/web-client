@@ -220,11 +220,16 @@ function disable(which){
             <label id="groups-error" class="error">error</label>
 	</td></tr>
 
-	<tr><td>
+	<tr><td rowspan=2>
             <div class="label"><%=_("Default Group")%></div>
-	</td><td colspan=2>
-            <%= f.text_field :groupname, :disabled => disabled, :class => "groupname" %>
+	</td><td>
+            <%= f.text_field :groupname, :disabled => disabled, :class => "groupname", :onkeyup => "def_group_validation(this);" %>
+	</td><td rowspan=2>
             <%= link_to _("Select Default Group"), {}, :href => "#", :onClick => "select_default_group_open('"+user.uid.to_s+"');return false;", :class => "button" %>
+	</td></tr>
+
+	<tr><td>
+            <label id="def-group-error" class="error">error</label>
 	</td></tr>
 
 	<tr><td>
