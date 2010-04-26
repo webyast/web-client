@@ -116,10 +116,19 @@ private
     end
   end
 
+  def load_groups
+    begin
+      Group.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("No groups found.")
+      []
+    end
+  end
+
 public
   def index
     begin
-      @groups = Group.find :all
+      @groups = load_groups
       @groups.sort! { |a,b| a.cn <=> b.cn }
       @groups.each do |group|
        group.members_string = group.members.join(",")
