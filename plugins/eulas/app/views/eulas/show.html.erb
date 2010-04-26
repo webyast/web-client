@@ -19,6 +19,20 @@
 # you may find current contact information at www.novell.com
 -->
 
+<% content_for :head do %>
+  <style>
+    .eula-text-area {
+      width: 45em;
+      height: 30em;
+      background-color: white;
+      overflow: auto;
+      border: 2px inset #CCC;
+      font-size: 1.1em;
+      white-space: pre;
+      font-family: courier, serif;
+    } 
+  </style>
+<% end %>
 <div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="eula module"/>
 <%=_("Licence Agreement")-%> - <%= @eula.name -%>
 </div>
@@ -34,7 +48,7 @@
                @eula.available_langs.map {|lang| [language_name(lang),lang]}, 
                :onchange => "location.href='" + (url_for :controller => "eulas", :id => @eula_id, :action => :show) + "?eula_lang=' + value"
       %>
-  <%= f.text_area :text, :cols => 95, :rows => 30, :readonly => true %>
+  <div class="eula-text-area"><%= @eula.text %></div>
   <% if @eula.only_show %>
   <%=  f.hidden_field :accepted, :true %>
   <% else %>
