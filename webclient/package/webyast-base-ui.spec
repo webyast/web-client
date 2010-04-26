@@ -21,6 +21,7 @@ PreReq:         rubygem-gettext_rails
 %if 0%{?suse_version} == 0 || %suse_version > 1110
 # 11.2 or newer
 
+%if 0%{?suse_version} > 1120
 # since 11.3, they are in a separate subpackage
 Requires:       sysvinit-tools
 %else
