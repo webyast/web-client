@@ -59,9 +59,14 @@ class ActionController::TestCase
         warns = $1.to_i
         errors = $2.to_i
         unless (errors == 0 and warns == 0)
-          File.open("tidy-failed.html","w+") do
-            |file|
-            file.puts markup
+          filename = ENV["TIDY_FAILED_FILE"].blank? ? "tidy-failed.html" : ENV["TIDY_FAILED_FILE"]
+          begin
+            File.open(filename,"w+") do
+              |file|
+              file.puts markup
+            end
+          rescue Exception => e
+            puts "WARNING: Cannot save tidy output: #{e.message}.\nUse TIDY_FAILED_FILE variable to override the default location."
           end
         end
         assert (errors == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")} \n
