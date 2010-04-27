@@ -58,7 +58,6 @@ BuildRequires:  tidy
 BuildRequires:  lighttpd
 BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
-%define service_name yastwc
 #
 
 %package testsuite
@@ -100,11 +99,11 @@ RAILS_ENV=test rake test
 #
 # Install all web and frontend parts.
 #
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/log
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
-cp -a * $RPM_BUILD_ROOT/srv/www/yast
-rm -rf $RPM_BUILD_ROOT/srv/www/yast/log/*
-rm -f $RPM_BUILD_ROOT/srv/www/yast/COPYING
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/log
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp
+cp -a * $RPM_BUILD_ROOT/%{webyast_ui_dir}
+rm -rf $RPM_BUILD_ROOT/%{webyast_ui_dir}/log/*
+rm -f $RPM_BUILD_ROOT/%{webyast_ui_dir}/COPYING
 
 #
 # init script
@@ -113,8 +112,8 @@ rm -f $RPM_BUILD_ROOT/srv/www/yast/COPYING
     %{buildroot}%{_sbindir}
 
 %{__install} -D -m 0755 %SOURCE2 \
-    %{buildroot}%{_sysconfdir}/init.d/%{service_name}
-%{__ln_s} -f %{_sysconfdir}/init.d/%{service_name} %{buildroot}%{_sbindir}/rc%{service_name}
+    %{buildroot}%{_sysconfdir}/init.d/%{webyast_ui_service}
+%{__ln_s} -f %{_sysconfdir}/init.d/%{webyast_ui_service} %{buildroot}%{_sbindir}/rc%{webyast_ui_service}
 #
 
 # configure lighttpd web service
@@ -125,11 +124,11 @@ mkdir -p $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
 install -m 0644 %SOURCE4 $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
 
 #  create empty tmp directory
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/cache
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/pids
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sessions
-mkdir -p $RPM_BUILD_ROOT/srv/www/yast/tmp/sockets
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp/cache
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp/pids
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp/sessions
+mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp/sockets
 
 # install YAML config file
 mkdir -p $RPM_BUILD_ROOT/etc/webyast/
@@ -139,56 +138,56 @@ cp %SOURCE5 $RPM_BUILD_ROOT/etc/webyast/
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%fillup_and_insserv %{service_name}
+%fillup_and_insserv %{webyast_ui_service}
 
 #
-# create database 
+# create database
 #
-cd /srv/www/yast
+cd %{webyast_ui_dir}
 RAILS_ENV=production rake db:migrate
-chgrp lighttpd db db/*.sqlite* log log/*
-chown lighttpd db db/*.sqlite* log log/*
+chgrp %{webyast_ui_user} db db/*.sqlite* log log/*
+chown %{webyast_ui_user} db db/*.sqlite* log log/*
 chmod 700 log
 chmod 755 db
 chmod 600 db/*.sqlite* log/*
 
 %preun
-%stop_on_removal %{service_name}
+%stop_on_removal %{webyast_ui_service}
 
 %postun
-%restart_on_update %{service_name}
+%restart_on_update %{webyast_ui_service}
 %{insserv_cleanup}
 
 # restart yastwc on lighttpd update (bnc#559534)
 %triggerin -- lighttpd
-%restart_on_update %{service_name}
+%restart_on_update %{webyast_ui_service}
 
-%files 
+%files
 %defattr(-,root,root)
-%dir /srv/www/yast 
-/srv/www/yast/locale
-/srv/www/yast/po
-/srv/www/yast/vendor
-/srv/www/yast/app  
-/srv/www/yast/db  
-/srv/www/yast/doc  
-/srv/www/yast/lib  
-/srv/www/yast/public  
-/srv/www/yast/Rakefile  
-/srv/www/yast/README*  
-/srv/www/yast/INSTALL
-/srv/www/yast/script  
-/srv/www/yast/config  
-%config /srv/www/yast/config/initializers/session_store.rb
-/srv/www/yast/start.sh
-%doc README* COPYING  
-%attr(-,lighttpd,lighttpd) /srv/www/yast/log  
-%attr(-,lighttpd,lighttpd) /srv/www/yast/tmp
-%attr(-,lighttpd,root) /srv/www/yast/public/javascripts
+%dir %{webyast_ui_dir}
+%{webyast_ui_dir}/locale
+%{webyast_ui_dir}/po
+%{webyast_ui_dir}/vendor
+%{webyast_ui_dir}/app
+%{webyast_ui_dir}/db
+%{webyast_ui_dir}/doc
+%{webyast_ui_dir}/lib
+%{webyast_ui_dir}/public
+%{webyast_ui_dir}/Rakefile
+%{webyast_ui_dir}/README*
+%{webyast_ui_dir}/INSTALL
+%{webyast_ui_dir}/script
+%{webyast_ui_dir}/config
+%config %{webyast_ui_dir}/config/initializers/session_store.rb
+%{webyast_ui_dir}/start.sh
+%doc README* COPYING
+%attr(-,%{webyast_ui_user},%{webyast_ui_user}) %{webyast_ui_dir}/log
+%attr(-,%{webyast_ui_user},%{webyast_ui_user}) %{webyast_ui_dir}/tmp
+%attr(-,%{webyast_ui_user},root) %{webyast_ui_dir}/public/javascripts
 %config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
 %dir /etc/lighttpd/certs
-%config(noreplace)  %{_sysconfdir}/init.d/%{service_name}
-%{_sbindir}/rc%{service_name}
+%config(noreplace)  %{_sysconfdir}/init.d/%{webyast_ui_service}
+%{_sbindir}/rc%{webyast_ui_service}
 %dir /etc/webyast/
 %config /etc/webyast/control_panel.yml
 
@@ -196,6 +195,6 @@ chmod 600 db/*.sqlite* log/*
 %defattr(-,root,root)
 %{webyast_ui_dir}/test
 
-%changelog  
-* Tue Nov 27 2008 schubi@suse.de  
-- initial  
+%changelog
+* Tue Nov 27 2008 schubi@suse.de
+- initial
