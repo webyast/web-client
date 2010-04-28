@@ -72,14 +72,14 @@
        <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"$('#progress').show()", :class => "button" %></p>
      </fieldset>
 
-     <fieldset>
+     <div class="nav-buttons">
        <%= form_back_button %>
        <%= if basesystem_in_process? then
              ret = form_str_spacer
              ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
            end
        %>
-     </fieldset>
+     </div>
   <% else %>
 
     <% form_tag form_target_save, { :id => "registrationform", :onsubmit => "$('#progress').show()" } do -%>
