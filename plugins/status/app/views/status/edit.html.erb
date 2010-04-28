@@ -64,7 +64,9 @@
       $(".accordion").accordion({
          navigation : true,
          header     : 'fieldset legend',
-         animated   : false
+         animated   : false,
+         collapsible: true,
+         autoHeight : false
       });
     });
   <% end %>
@@ -78,11 +80,10 @@
     <fieldset id="<%= group.id %>">
       <legend id="<%= group.id %>"><%= group.id %></legend>
       <div>
-        <p>Alarm, if</p>
         <% group.single_graphs.each do |single_graph| %>
-          <% if group.single_graphs.size > 1 %>
-            <p><b><%= "#{single_graph.headline}" %></b></p>
-          <% end %>
+          <% group_name = (group.single_graphs.size > 1) ? single_graph.headline : "" %>
+          <label>Alarm, if <%= group_name %></label>
+          <fieldset class="small-labels">
           <% single_graph.lines.each do |line| %>
             <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}" 
                measurements = {_("undercuts") => "min", _("exceeds") => "max"}
@@ -104,6 +105,7 @@
               <%= "#{group.y_label}" %>
             </p>
           <% end %>
+          </fieldset>
         <% end %>
       </div>
     </fieldset>

@@ -659,6 +659,10 @@ fieldset label {
   margin: 0.2em 0.5em;
 }
 
+fieldset.small-labels label {
+  width: 5em;
+}
+
 legend {
   font-weight: bold;
 }
@@ -690,6 +694,19 @@ label.radio-right {
     width:auto !important;
     line-height: 1.5em;
     margin-bottom: 1em;
+}
+
+fieldset fieldset {
+  background-color: transparent;
+  border: none;
+  margin: 0em;
+  border: 0px none transparent;
+  -moz-box-shadow: none;
+  padding: 0px;
+}
+
+fieldset fieldset p {
+  margin-top: 0px;
 }
 
 /* == Helper Styles ======================================================= */
@@ -761,8 +778,7 @@ label.radio-right {
   background-color: #f9f9f9;
 }
 
-.plugin-content form > p,
-.plugin-content form > fieldset {
+.plugin-content form > p {
   margin-left: 1em;
   margin-right: 1em;
 }
