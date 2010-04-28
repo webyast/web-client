@@ -160,12 +160,12 @@
     </p>
   </fieldset>
 
-  <fieldset>
+  <div class="nav-buttons">
     <%= form_back_button :action => :index, :onclick=>"$('#progress').show()"%>
     <% if !disabled -%>
       <%= form_str_spacer %>
       <%= form_next_button :label => _("Save") %>
     <% end -%>
-  </fieldset>
+  </div>
 <% end %>
 </div>

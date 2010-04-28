@@ -114,7 +114,8 @@
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_aliases" generated="true" class="error"></label></p>
     </fieldset>
-    <p><%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :id => "default_submit", :disabled => disabled %>
-    </p>
+    <div class="nav-buttons">
+      <%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :id => "default_submit", :disabled => disabled %>
+    </div>
   <% end %>
 </div>

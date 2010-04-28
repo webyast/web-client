@@ -130,12 +130,16 @@
       <a href="#" class="button" onClick="select_users_open('<%= group.old_cn%>');return false;"><%= _("Manage Members") %></a>
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
-    <%= form_next_button :label => _("Save") %>
-     <% if @permissions[:groupdelete] %>
-     <span><%= link_to _("Delete"),
-                            {:action => 'destroy', :id => group.cn},
-                            {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %></span>
-     <% end %>
+    <div class="nav-buttons">
+      <%= form_next_button :label => _("Save") %>
+      <% if @permissions[:groupdelete] %>
+      <span>
+        <%= link_to _("Delete"),
+                    {:action => 'destroy', :id => group.cn},
+                    {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %>
+      </span>
+      <% end %>
+    </div>
 <% end %>
     </div>
    </div>
@@ -145,9 +149,9 @@
 </div>
     <div><input type="hidden" id="all_users_string" value="<%= @all_users_string %>" /></div>
 
-<fieldset>
-  <%= form_back_button -%>
-</fieldset>
+  <div class="nav-buttons">
+    <%= form_back_button -%>
+  </div>
 <%= link_to "Manage Users", "controller" => "users" %>
 </div>
 

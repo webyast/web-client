@@ -323,7 +323,7 @@
   <% end %>
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
-<div class='plugin-content grid_12'>
+<div class='plugin-content grid_12 mkudlvasr-new-forms'>
 
 <%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
 
@@ -399,9 +399,9 @@
       </div>
     </fieldset>
   </div>
-  <fieldset>
+  <div class="nav-buttons">
     <%= form_send_buttons :disabled => write_disabled %>
-  </fieldset>
+  </div>
 <% end %>
 </div>
 

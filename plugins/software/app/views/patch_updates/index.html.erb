@@ -33,10 +33,10 @@
   <div class='plugin-content grid_12'>
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
-    <fieldset>
-      <h3><%=_("Your system is up to date.") unless @error%></h3>
+    <h3><%=_("Your system is up to date.") unless @error%></h3>
+    <div class="nav-buttons">
       <%= form_back_button %>
-    </fieldset>
+    </div>
   <% else %>
     <fieldset>
       <h3><%=_("Updates available") %></h3>
@@ -55,9 +55,9 @@
    
         <div id="patchesd"><%= render :partial => "patches"%></div>
       </fieldset>
-      <fieldset>
+      <div class="nav-buttons">
         <%= form_send_buttons :label => _("Update"), :onclick => "$('#progress').show()", :action => 'install' %>
-      </fieldset>
+      </div>
     <% end %>
 
     <%= observe_field(:selector,

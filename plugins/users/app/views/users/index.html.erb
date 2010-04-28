@@ -268,13 +268,16 @@ function disable(which){
        </table>
       </fieldset>
 </div>
-
-     <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
-     <% if @permissions[:userdelete] %>
-      <span onclick="disable(this);"><%= link_to _("Delete"),
-                            {:action => 'destroy', :id => user.uid},
-                            {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %></span>
-     <% end %>
+     <div class="nav-buttons">
+       <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
+       <% if @permissions[:userdelete] %>
+         <span onclick="disable(this);">
+           <%= link_to _("Delete"),
+                       {:action => 'destroy', :id => user.uid},
+                       {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %>
+         </span>
+       <% end %>
+     </div>
 <script language="javascript">
    addTabsNavigation(".tabs_<%= user.uid %>", "span");
    $(".tabs_<%= user.uid %>").tabs();
@@ -287,10 +290,11 @@ function disable(which){
  </div>
 
 
-<fieldset>
-  <%= form_back_button -%>
-</fieldset>
-<%= link_to _("Manage Groups"), "controller" => "groups" %>
+  <div class="nav-buttons">
+    <%= form_back_button -%>
+    <%= form_str_spacer %>
+    <%= link_to _("Manage Groups"), "controller" => "groups" %>
+  </div>
 </div>
             <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
 </div>

@@ -65,13 +65,13 @@
   <%= f.hidden_field :text_lang %>
   <% end %>
 </fieldset>
-<fieldset id="" class="">
+<div class="nav-buttons">
   <%= form_next_button %>
   <%= if @first_eula
         @first_basesystem_step ? "" : (form_str_spacer + form_back_button )
       else
         form_str_spacer + (link_to _("Back"), :action => :show, :id => @prev_id)
       end %>
-</fieldset>
+</div>
 <% end -%>
 </div>

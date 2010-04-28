@@ -182,11 +182,11 @@
     </form>
 
     <% if !disabled %>
-      <fieldset>
+      <div class="nav-buttons">
 	<%= link_to   (_("Add New Repository") ),
 	  {:action => 'add'},
 	  :onclick=>"$('#progress').show()" %>
-      </fieldset>
+      </div>
     <% end %>
 
     <div id="repositories" class="accordion">
@@ -247,7 +247,7 @@
 		  <% end %>
 		</p>
 
-		<fieldset>
+		<div class="nav-buttons">
 		  <% if !disabled -%>
 		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
 		    <%= form_next_button :label => _("Save") %>
@@ -255,7 +255,7 @@
 			    {:action => 'delete', :id => r.id},
 			    {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %></span>
 		  <% end -%>
-		</fieldset>
+		</div>
 
 	      <% end %>
 	  </div>
@@ -263,7 +263,7 @@
       <% end %>
     </div>
 
-    <fieldset>
+    <div class="nav-buttons">
       <%= form_back_button %>
-    </fieldset>
+    </div>
   </div>

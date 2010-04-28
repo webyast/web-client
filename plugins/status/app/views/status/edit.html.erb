@@ -109,10 +109,10 @@
     </fieldset>
   <% end %>
   </div>
-<fieldset>
-  <%= form_next_button :disabled => write_disabled %>
-  <%= form_str_spacer %>
-  <%= form_back_button :action => :index%>
-</fieldset>
+  <div class="nav-buttons">
+    <%= form_next_button :disabled => write_disabled %>
+    <%= form_str_spacer %>
+    <%= form_back_button :action => :index%>
+  </div>
 <% end %>
 </div>

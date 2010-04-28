@@ -116,7 +116,7 @@
         </div>
       <% end %>
 
-      <fieldset>
+      <div class="nav-buttons">
         <% if @arguments_mandatory.kind_of?(Array) && !@arguments_mandatory.select{ |p|  p["name"]=="email" }.empty?
              onclick_action = "return $('#registrationform').validate().element('#registration_arg_email');"
            else
@@ -130,8 +130,7 @@
                 connecting_or = ' ' + _('or') + ' '
                 connecting_or + link_to(postpone_msg, {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()")
               end %>
-      </fieldset>
-
+      </div>
     <% end  %>
   <% end -%>
 </div>
