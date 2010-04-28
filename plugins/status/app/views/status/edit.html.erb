@@ -72,7 +72,7 @@
 
 <div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
 <div class="plugin-content grid_12">
-<% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();" ,:class => 'tab-form'} ) do %>
+<% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();"} ) do %>
   <div class="accordion">
   <% @graphs.each do |group| %>
     <fieldset id=<%= group.id %> class="wrapper with-background">

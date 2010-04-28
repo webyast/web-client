@@ -616,46 +616,6 @@ ul.list-2level-inline a {
   min-width: 250px;
 }
 
-.tab-form fieldset {
-  clear: left;
-  margin-top: 1em;
-}
-
-ul.tab-nav {
-  list-style: none inside;
-  padding: 0;
-  overflow: hidden;
-}
-
-.tab-nav li {
-  float: left;
-  min-width: 7em;
-  text-align: center;
-  padding: 0;
-  margin-right: 1px;
-}
-
-.tab-nav li a {
-  display: block;
-  width: 100%;
-  background-color: #eee;
-  padding: 0.5em 0;
-    
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-}
-  
-.tab-nav li a:hover {
-  text-decoration: none;
-}
-
-.tab-nav li a.selected {
-  background-color: #7a7a7a;
-  color: #fff;
-}
-
 /* == Text Styles ======================================================= */
 
 .notifications {
@@ -671,8 +631,10 @@ ul.tab-nav {
 /* == Form Styles ======================================================= */
 
 fieldset {
+  background-color: #eee;
   border: none;
   margin: 1em;
+  -moz-box-shadow: none;
 }
 
 fieldset p {
@@ -688,18 +650,18 @@ fieldset.smallfields input[type="text"] {
   width: 10em;
 }
 
-fieldset.with-background {
-  background-color: #eee;
-}
-
-fieldset.with-background select {
+fieldset select {
   background-color: #fff;
 }
 
-fieldset.wrapper {
-  -moz-box-shadow: none;
+fieldset label {
+  display: block; 
+  float: left;
+  width: 11em; 
+  text-align: right;
+  margin: 0.2em 0.5em;
 }
- 
+
 legend {
   font-weight: bold;
 }
@@ -707,14 +669,6 @@ legend {
 /* IE8: bnc#592301 */
 legend span {
   margin-left: 2px;
-}
-
-label {
-  display: block; 
-  float: left;
-  width: 11em; 
-  text-align: right;
-  margin: 0.2em 0.5em;
 }
 
 /* make error messages show up right of the label, bnc#592282 */
