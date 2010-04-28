@@ -350,7 +350,7 @@
 <!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
   
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
-  <fieldset id="general-settings" class="wrapper with-background no-min-height">
+  <fieldset id="general-settings">
     <legend><span>General settings</span></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
@@ -358,7 +358,7 @@
     </p>
   </fieldset>
   <div class="fieldset-group">
-    <fieldset id="ip-address" class="wrapper with-background">
+    <fieldset id="ip-address">
       <legend id="ip-tab"><span>IP Address</span></legend>
       <div>
         <p>
@@ -375,7 +375,7 @@
         </p>
       </div>
     </fieldset>
-    <fieldset id="dns" class="wrapper with-background">
+    <fieldset id="dns">
       <legend id="dns-tab"><span>DNS</span></legend>
       <div>
         <p>

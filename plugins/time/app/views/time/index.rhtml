@@ -135,7 +135,7 @@
   <!--<#%# form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do #%#>-->
 	 <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>
     <%#TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>%>
-  <fieldset class="wrapper smallfields with-background">
+  <fieldset class="smallfields">
     <p>
       <label for="region"><%=_("Region")%></label>
         <%= select_tag "region", options_for_select(@stime.regions, @stime.region.name), :disabled => disabled %>
@@ -161,7 +161,7 @@
   </p>
   <% end %>
 </fieldset>
-<fieldset class="wrapper smallfields with-background">
+<fieldset class="smallfields">
   <p>
     <label class="radio-right">
 	 <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"     

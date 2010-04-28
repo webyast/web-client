@@ -75,7 +75,7 @@
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();"} ) do %>
   <div class="accordion">
   <% @graphs.each do |group| %>
-    <fieldset id=<%= group.id %> class="wrapper with-background">
+    <fieldset id="<%= group.id %>">
       <legend id="<%= group.id %>"><%= group.id %></legend>
       <div>
         <p>Alarm, if</p>

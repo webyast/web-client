@@ -89,7 +89,7 @@
 
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
-    <fieldset class="wrapper with-background" id="password">
+    <fieldset id="password">
         <legend><%= _("Password Setup for User 'root'") -%></legend>
 	<p><label><%=_("New Password")%></label>
 	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
@@ -102,7 +102,7 @@
     <!-- this is a pre-generated placeholder for the validation messages -->
     <p><label for="administrator_confirm_password" generated="true" class="error"></label></p>
     </fieldset>
-    <fieldset class="wrapper with-background">
+    <fieldset>
         <legend><%= _("Mail Setup for User 'root'") -%></legend>
 	<p>
 	<label><%=_("Forward system mail to")%></label>

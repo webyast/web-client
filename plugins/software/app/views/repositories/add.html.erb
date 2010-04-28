@@ -131,7 +131,7 @@
 
 <% form_for(:repository, @repo, :url => { :action => 'create', :id => @repo.id }, :html => { :method => :post, :id => 'repositoryForm',
     :onsubmit => "return submit_handler();" } ) do |f| %>
-  <fieldset class="wrapper with-background">
+  <fieldset>
     <div id="status_icon" class="status-icon <%= @repo.enabled ? 'ok' : 'unused' %>"></div>
     <span style="padding-bottom: 8px; vertical-align: 50%; font-weight: bold"><%= _("New Repository") %></span>
 

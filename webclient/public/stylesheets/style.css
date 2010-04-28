@@ -289,11 +289,6 @@ ul li {
 
 /* == Basic Styles ======================================================== */
 
-/* Empty ? */
-/*.wrapper {
-  
-}*/
-
 #login-wrapper ul {
   list-style: none outside;
   margin: 0;
@@ -424,12 +419,12 @@ ul li {
   padding: 0.3em;
 }
 
-.wrapper, .plugin-content, #status-wrapper {
+.plugin-content, #status-wrapper {
   background-color: #fff;
   min-height: 5em;
 }
 
-.wrapper, #status-wrapper, .plugin-content {
+#status-wrapper, .plugin-content {
   border-color: #ddd #ccc #bbb;
   border-style: solid;
   border-width: 1px;
@@ -559,15 +554,9 @@ ul.list-2level-inline a {
   min-width: 250px;
 }
 
-/*div {
-  display:block;
-} */
-
 .list-row div div, .list-row div a {
  text-align:center;
 }
-
-
 
 ul.list-2level-inline, ul.list-2level-inline ul {
   list-style: none outside;
@@ -634,7 +623,14 @@ fieldset {
   background-color: #eee;
   border: none;
   margin: 1em;
+  border-color: #ddd #ccc #bbb;
+  border-style: solid;
+  border-width: 1px;
   -moz-box-shadow: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
 
 fieldset p {
@@ -759,16 +755,6 @@ label.radio-right {
   background: transparent;
 }
 /* ==/Status Icons ==*/
-
-.width-50 {
-  width: 50%;
-}
-.width-65 {
-  width: 65%;
-}
-.width-75 {
-  width: 75%;
-}
 
 .alt-bg {
   background-color: #f9f9f9;
@@ -907,9 +893,6 @@ tr.even {
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-
-  -webkit-box-shadow: 0 1px 3px #ccc;
-  -moz-box-shadow: none;
 
   margin: 0.5em 1em 0.5em;
 }

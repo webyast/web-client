@@ -65,7 +65,7 @@
   <% form_target_save = '/registration/' + (@nexttarget.kind_of?(String) ? @nexttarget : 'skip') %>
 
   <% if @showstatus then %>
-     <fieldset class="wrapper with-background width-75">
+     <fieldset>
        <legend><%= _("Registration Information") %></legend>
        <p><strong><%= _("This system is registered") %></strong></p>
        <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>
@@ -85,7 +85,7 @@
     <% form_tag form_target_save, { :id => "registrationform", :onsubmit => "$('#progress').show()" } do -%>
 
       <% if !@arguments_mandatory.blank? then %>
-      <fieldset class="wrapper with-background width-75">
+      <fieldset>
         <legend><%= _("Mandatory Information") %></legend>
         <% for argument in @arguments_mandatory %>
           <p>
@@ -100,7 +100,7 @@
 
       <% if !@arguments_detail.blank? then %>
         <div class="accordion">
-          <fieldset class="wrapper with-background width-75" id="argumentdetail">
+          <fieldset id="argumentdetail">
             <legend><%= _("Details") %></legend>
             <div style="display: none;">
               <% for argument in @arguments_detail %>

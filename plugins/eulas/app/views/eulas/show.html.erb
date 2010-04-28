@@ -42,7 +42,7 @@
             :url => { :action => :update, :id => @eula_id }, 
             :html=> { :method => :put} 
            ) do |f|  -%>
-<fieldset class="wrapper with-background">
+<fieldset>
   <%= _("Available translations:") -%>
   <%= f.select :text_lang, 
                @eula.available_langs.map {|lang| [language_name(lang),lang]}, 

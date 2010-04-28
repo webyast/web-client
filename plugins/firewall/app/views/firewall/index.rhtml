@@ -96,7 +96,7 @@
     <% end %>
   </div>
 
-  <fieldset class="wrapper with-background no-min-height">
+  <fieldset>
       <legend><%= _("General settings") %></legend>
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
@@ -108,28 +108,26 @@
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
   </fieldset>
-  <div>
-      <fieldset class="wrapper with-background">
-      <legend><%= _("Allowed services") %></legend>
-      <div id="allowed_services">
-          <% @firewall.fw_services.each do |service| %>
-              <div class="<%= service.css_class %>">
-                  <label><%= service.name %><span><%= " ("+_("Block")+") " %></span></label>
-              </div>
-          <% end %>
-      </div>
-      </fieldset>
-      <fieldset class="wrapper with-background">
-      <legend><%= _("Blocked services") %></legend>
-      <div id="blocked_services">
-          <% @firewall.fw_services.each do |service| %>
-              <div class="<%= service.css_class %>">
-                  <label><%= service.name %><span><%= " ("+_("Allow")+") " %></span></label>
-              </div>
-          <% end %>
-      </div>
-      </fieldset>
+  <fieldset>
+  <legend><%= _("Allowed services") %></legend>
+  <div id="allowed_services">
+      <% @firewall.fw_services.each do |service| %>
+          <div class="<%= service.css_class %>">
+              <label><%= service.name %><span><%= " ("+_("Block")+") " %></span></label>
+          </div>
+      <% end %>
   </div>
+  </fieldset>
+  <fieldset>
+  <legend><%= _("Blocked services") %></legend>
+  <div id="blocked_services">
+      <% @firewall.fw_services.each do |service| %>
+          <div class="<%= service.css_class %>">
+              <label><%= service.name %><span><%= " ("+_("Allow")+") " %></span></label>
+          </div>
+      <% end %>
+  </div>
+  </fieldset>
   <div class="nav-buttons">
       <%= form_send_buttons :disabled => disabled, :class => "button" %>
   </div>
