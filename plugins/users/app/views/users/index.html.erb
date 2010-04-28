@@ -196,7 +196,7 @@ function disable(which){
           <div class="label"><%=_("Login Name")%></div>
 	</td><td colspan=2>
           <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+user.uid+"').validate().element('#user_uid');", :class => "required" %>
-          <%= f.text_field :id, :class => "hidden" %>
+          <%= f.hidden_field :id %>
 	</td></tr>
 
 	<tr><td>
