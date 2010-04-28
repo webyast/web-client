@@ -197,9 +197,10 @@ function disable(which){
 
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
-	</td><td colspan=2>
+	</td><td colspan=2 rowspan=2>
           <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled, :class => "user-password" %>
 	</td></tr>
+	<tr><td>&nbsp;</td></tr>
 
 	<tr><td>
           <div class="label"><%=_("Confirm Password")%></div>
