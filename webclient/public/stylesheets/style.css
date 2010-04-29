@@ -31,7 +31,6 @@ BG Grey:            #fcfcfc     Body-BG
 
 /* == Basic setup  ======================================================== */
 
-
 /* html, */ /* unnecessary property, causes inheritance  */
 body {
 
@@ -45,11 +44,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* ?????????? */
-/*div {
-  display: block;
-}*/
 
 /* Heading 1 to Heading 6 (1 being the highest level, 6 being the lowest). Headings should be used in order and h1 used just once. */
 /* http://www.htmldog.com/examples/headings1.html */
@@ -152,9 +146,7 @@ input {
 }
 
 /* breaks button background in IE8 (Groups and users module) */
-/*input {
-    vertical-align: top;
-}*/
+/*input { vertical-align: top; }*/
 
 input.button:hover, input[type="button"]:hover, input[type="submit"]:hover {
   background-position:0 -22px;
@@ -280,11 +272,6 @@ ul li {
   font-size: 0.7em;
 }
 
-/* empty */
-/*#login-wrapper ul * {
-
-}*/
-
 #login-wrapper li {
   float: left;
   margin: 0 0.5em;
@@ -292,11 +279,6 @@ ul li {
 #login-wrapper ul em {
   font-weight: bold;
 }
-
-/* empty??? */
-/*#login-wrapper li a {
-  
-}*/
 
 #login-wrapper li a:hover {
   color: #06c;
@@ -363,12 +345,6 @@ ul li {
   text-align: left;
 }
 
-/*  #status-wrapper, */
-/* empty?? */
-/*  #favorites {
-  }*/
- 
-/* !!! If this properties were used  in status move to separate CSS file inside of status module !!! */
 #status_patches {
   margin: 0;
   /*margin-left: 2em;*/ /*taken from yast.css*/
@@ -405,11 +381,6 @@ ul li {
   margin: 10px;
 }
      
-/*taken from yast.css*/
-/*#status_status {
-  margin-left: 2em;
-}*/
-   
 #status-wrapper #machine-controle ul {
   list-style: none outside;
   margin: 10px 0;
@@ -451,12 +422,51 @@ ul li {
   clear: left;
   overflow: hidden;
   padding: 1em 0;
+  border-bottom: 1px dotted #eee;
 }
 
 .list-row h3 {
   margin-top: 0;
   text-indent: 10px;
 }
+
+.list-row div div,
+.list-row div a {
+  float: left;
+  margin: 0 25px 0 0;
+  width: 75px;
+  text-align: center;
+}
+
+.list-row.overview {
+  border-color: transparent;
+}
+
+.list-row.overview > div { /* get child of *.overview */
+  overflow: hidden;
+  padding: 1em 0;
+}
+
+.list-row.overview > div {
+  border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
+}
+
+.list-row div a {
+  display: block;
+  padding: 1em 5px 0;
+  margin: 0 5px;
+  border: 2px solid transparent;
+  height: 8em;
+}
+
+.list-row div a:hover {
+  border-color: #999;
+  background: #eee;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
 .list-row .controlpanel-shortcut {
   float : left;
   margin: 0 5px;
@@ -474,52 +484,6 @@ ul li {
   -webkit-border-radius: 5px;
 }
 
- .list-row {
-  border-bottom: 1px dotted #ccc;
-}
-.list-row.overview {
-  border-color: transparent;
-}
-
-.list-row.overview > div { /* get child of *.overview */
-    overflow: hidden;
-    padding: 1em 0;
-    
-  }
-
-.list-row.overview > div {
-   border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
-}
-   
-.list-row div a {
-  display: block;
-  padding: 1em 5px 0;
-  margin: 0 5px;
-  border: 2px solid transparent;
-  height: 8em;
-}
-
-.list-row div a:hover {
-  border-color: #999;
-  background: #eee;
-  text-decoration: none;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-/*ul.list-2level-inline,
-ul.list-2level-inline ul {*/
-/* ======= */
-
-/*.list-row.overview > div {*/ /* get child of *.overview */
-/*   overflow: hidden; */
-/*   padding: 1em 0; */
-/* } */
-
-/*.list-row.overview > div {
-  border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
-/* }*/ 
-    
 ul.list-2level-inline, ul.list-2level-inline ul {
   list-style: none outside;
   margin: 0.5em 0 1em;
@@ -567,11 +531,62 @@ ul.list-2level-inline a {
   min-width: 250px;
 }
 
-/* Tabed Contend */
-/* empty ???? */
-/*.tab-form {
-  
-}*/
+/*div {
+  display:block;
+} */
+
+.list-row div div, .list-row div a {
+ text-align:center;
+}
+
+
+
+ul.list-2level-inline, ul.list-2level-inline ul {
+  list-style: none outside;
+  margin: 0.5em 0 1em;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul.list-2level-inline {
+  margin: 1em 0 2em;
+}
+
+ul.list-2level-inline a {
+  text-decoration: underline;
+}
+
+.list-2level-inline ul li {
+  float: left;
+  margin-right: 0.5em;
+}
+    
+.list-2level-inline + p {
+  clear: left;
+}
+    
+.list-2level-inline ul li strong,
+.list-2level-inline ul li span {
+  display: block;
+}
+
+.list-2level-inline ul li strong {
+  color: #666;
+  min-width: 75px;
+}
+
+.list-2level-inline ul li span {
+  color: #666;
+}
+
+.list-2level-inline ul li span.li-url {
+  min-width: 150px;
+}
+
+.list-2level-inline ul li span.li-descr {
+  min-width: 250px;
+}
 
 .tab-form fieldset {
   clear: left;
@@ -839,14 +854,7 @@ tr.even {
   color: #666;
 }
 
-/*input {
-    vertical-align: top;
-}*/
-
-
-/* .nav-buttons{ */
-
-.nav_buttons{
+.nav-buttons{
    margin: 1em;
    clear: both;
 }
