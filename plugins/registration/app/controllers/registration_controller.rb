@@ -171,10 +171,12 @@ class RegistrationController < ApplicationController
     begin
       # split arguments into two lists to show them separately and sort each list to show them in a unique order
       @arguments_mandatory = sort_arguments( @arguments.select { |arg| (arg["flag"] == "m") if arg.kind_of?(Hash) } )
-      @arguments_detail    = sort_arguments( @arguments.select { |arg| (arg["flag"] != "m") if arg.kind_of?(Hash) } )
+      @arguments_automatic = sort_arguments( @arguments.select { |arg| (arg["flag"] == "a") if arg.kind_of?(Hash) } )
+      @arguments_detail    = sort_arguments( @arguments.select { |arg| ( (arg["flag"] != "m") && (arg["flag"] != "a") ) if arg.kind_of?(Hash) } )
     rescue
       logger.error "Registration found invalid argument data. Nothing to display to the user."
       @arguments_mandatory = []
+      @arguments_automatic = []
       @arguments_detail = []
     end
   end
@@ -407,7 +409,7 @@ class RegistrationController < ApplicationController
       # split into madatory and detail arguments
       split_arguments
 
-      if !@arguments_mandatory || @arguments_mandatory.size < 1 then
+      if @arguments_mandatory.blank? && @arguments_detail.blank? then
         # redirect if the registration server is in needinfo but arguments list is empty
         flash[:error] = server_error_flash _("The registration server returned invalid data.")
         logger.error "Registration resulted in an error: Logic issue, unspecified data requested by registration server"
