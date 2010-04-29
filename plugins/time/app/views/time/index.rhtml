@@ -99,15 +99,14 @@
 		  settings.messages.ntp_server = {ntp_server: "<%= _("Enter a valid domain name or an IP address") -%>"};
 		  $('#ntp_server').removeAttr("disabled");
 		});
+    $("#timeForm").valid(); //initial check
   });
 </script>
 
   <!-- FIXME move javascript function outside of index -->
   <% javascript_tag do -%>
     function submitTime() {
-		var valid = getElementsByClass("error valid", "timeForm", "label");
-		var errors = getElementsByClass("error", "timeForm", "label");
-		if(valid.length == errors.length ) {
+		if($("timeForm").valid() ) {
 		  $('#progress').show();
 		  return true;
 		}
