@@ -106,8 +106,9 @@
   <!-- FIXME move javascript function outside of index -->
   <% javascript_tag do -%>
     function submitTime() {
-		if($("timeForm").valid() ) {
+		if($("#timeForm").valid() ) {
 		  $('#progress').show();
+      $("#timeForm *").disable(); //disable all elements after submit
 		  return true;
 		}
     };
