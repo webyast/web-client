@@ -180,8 +180,12 @@ function disable(which){
     <div class='user-content' style="display:none">
      <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
       <%= f.error_messages %>
-	<table border=0>
 
+      <div class="fieldset-group tabs_<%= user.uid %>">
+
+      <fieldset id="tab_login_<%= user.uid %>" class="wrapper with-background">
+       <legend><span><%= _("Login Settings") %></span></legend>
+       <table border=0>
 	<tr><td>
           <div class="label"><%=_("Full Name")%></div>
 	</td><td colspan=2>
@@ -208,7 +212,12 @@ function disable(which){
           <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#form_"+user.uid+" #user_user_password", :onkeyup => "$('#form_"+user.uid+"').validate().element('#form_"+user.uid+" #user_user_password2');" %>
 	  <label for="user_user_password2" generated="true" class="error"></label>
 	</td></tr>
+      </table>
+     </fieldset>
 
+      <fieldset id="tab_groups_<%= user.uid %>" class="wrapper with-background">
+      <legend><span><%=_("Groups")%></span></legend>
+      <table>
 	<tr><td rowspan=2>
             <div class="label"><%=_("Groups")%></div>
 	</td><td>
@@ -232,13 +241,17 @@ function disable(which){
 	<tr><td>
             <label id="def-group-error" class="error">error</label>
 	</td></tr>
+       </table>
+      </fieldset>
 
+      <fieldset id="tab_advanced_<%= user.uid %>" class="wrapper with-background">
+      <legend><span><%= _("Advanced") %></span></legend>
+      <table>
 	<tr><td>
             <div class="label"><%=_("Home Directory")%></div>
 	</td><td colspan=2>
             <%= f.text_field :home_directory, :disabled => disabled %>
 	</td></tr>
-
 
 	<tr><td>
             <div class="label"><%=_("Login Shell")%></div>
@@ -252,15 +265,20 @@ function disable(which){
             <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_uid_number');"  %>
             <label id="uid-error" class="error"></label>
 	</td></tr>
+       </table>
+      </fieldset>
+</div>
 
-	</table>
-
-     <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '#form_"+user.uid+"');"  %>
+     <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
      <% if @permissions[:userdelete] %>
       <span onclick="disable(this);"><%= link_to _("Delete"),
                             {:action => 'destroy', :id => user.uid},
                             {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %></span>
      <% end %>
+<script language="javascript">
+   addTabsNavigation(".tabs_<%= user.uid %>", "span");
+   $(".tabs_<%= user.uid %>").tabs();
+</script>
     </div>
 
     <% end %>
