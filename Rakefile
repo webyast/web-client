@@ -8,7 +8,7 @@ desc 'Run all tests by default'
 task :default => :test
 
 
-%w(makemo updatepot test test:ui rdoc pgem package release install install_policies check_syntax package-local buildrpm buildrpm-local test:test:rcov).each do |task_name|
+%w(license:report makemo updatepot test test:ui rdoc pgem package release install install_policies check_syntax package-local buildrpm buildrpm-local test:test:rcov).each do |task_name|
   desc "Run #{task_name} task for all projects"
   task task_name do
     PROJECTS.each do |project|
