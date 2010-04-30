@@ -209,7 +209,7 @@ class StatusControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_valid_markup
-    assert_tag "collectd is not running on the target machine"
+    assert_tag "Showing system status is disabled."
   end
 
   #call for edit limits
