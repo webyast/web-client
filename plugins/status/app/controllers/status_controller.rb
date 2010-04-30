@@ -156,7 +156,7 @@ class StatusController < ApplicationController
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            if error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"
-             flash[:error] = _("Showing system status is disabled.")
+             flash[:error] = _("Status not available.")
            else
              flash[:error] = error_hash["error"]["description"]
            end
@@ -233,7 +233,7 @@ class StatusController < ApplicationController
              level = "warning"  #it is a warning only
              error_string = error_hash["error"]["description"]
            else
-             error_string = _("Showing system status is disabled")
+             error_string = _("Status not available")
            end
            if status.blank?
              status = error_string

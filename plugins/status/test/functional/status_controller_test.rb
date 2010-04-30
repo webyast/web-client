@@ -209,7 +209,7 @@ class StatusControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_valid_markup
-    assert_tag "Showing system status is disabled."
+    assert_tag "Status not available."
   end
 
   #call for edit limits
