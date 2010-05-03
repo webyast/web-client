@@ -178,7 +178,7 @@ function disable(which){
     </div>
 
     <div class='user-content' style="display:none">
-     <% form_for (user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+     <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
       <%= f.error_messages %>
 
       <div class="fieldset-group tabs_<%= user.uid %>">
