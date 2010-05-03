@@ -22,8 +22,8 @@
 
 <!--   <title><%= controller.action_name %></title> -->
 <% content_for :head do %>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.checktree.js"></script>
-  <link rel="stylesheet" href="/inc/checktree/checktree.css" type="text/css" media="screen" title="default" charset="utf-8" />
+  <%= javascript_include_tag "jquery.checktree.js" %>
+  <%= stylesheet_link_tag "checktree" %>
 
   <script type="text/javascript">
   $(document).ready(function(){
