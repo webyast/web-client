@@ -125,10 +125,6 @@
       <%= f.text_field :gid, :disabled => false %>
     </p>
     <p>
-      <div class="label"><%=_("Default members")%></div>
-      <%= f.text_field :default_members_string, :disabled => true %>
-    </p>
-    <p>
       <div class="label"><%=_("Members")%></div>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);", :class => "members-string"%>
       <a href="#" class="button" onClick="select_users_open('<%= group.old_cn%>');return false;"><%= _("Manage Members") %></a>

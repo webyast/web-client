@@ -132,7 +132,6 @@ public
       @groups.sort! { |a,b| a.cn <=> b.cn }
       @groups.each do |group|
        group.members_string = group.members.join(",")
-       group.default_members_string = group.default_members.join(",")
       end
     @users = User.find(:all)
     @all_users_string = ""
@@ -161,14 +160,12 @@ public
     defaults = {
       :gid => 0,
       :old_cn => "",
-      :default_members => [],
       :members => [],
       :group_type => "local",
       :cn => "",
     }
     @group.load(defaults)
     @group.members_string = @group.members.join(",")
-    @group.default_members_string = @group.default_members.join(",")
     @adding = true
     @user_names = load_user_names
     @users = User.find(:all)
@@ -190,7 +187,6 @@ public
     @adding = false
     @user_names = load_user_names
     @group.members_string = @group.members.join(",")
-    @group.default_members_string = @group.default_members.join(",")
 
     @users = User.find(:all)
     @all_users_string = ""
@@ -212,8 +208,6 @@ public
 
     @group.cn = group[:cn]
     @group.old_cn = group[:cn]
-    @group.gid = 0              # just a placeholder, new gid will be alocated by yast call
-    @group.default_members = [] # default members cannot be set
     @group.members = group[:members_string].split(",").collect {|cn| cn.strip}
     validate_members( :new ) or return
     @group.group_type = group[:group_type]
