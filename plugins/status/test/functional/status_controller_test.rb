@@ -116,6 +116,17 @@ class StatusControllerTest < ActionController::TestCase
     assert_tag "Registration is missing; Mail configuration test not confirmed"
   end
 
+  #testing show summary AJAX call; Host is not available
+  def test_show_summary
+    Logs.stubs(:permissions).raises(Errno::ECONNREFUSED)
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
+    assert_tag :tag =>"div",
+               :attributes => { :class => "status-icon error" }
+    assert_tag "Can't connect to host"
+  end
+
   #testing show summary AJAX call; limit CPU user reached
   def test_show_summary_limit_reached
     response_graphs = fixture "graphs_limits_reached.xml"

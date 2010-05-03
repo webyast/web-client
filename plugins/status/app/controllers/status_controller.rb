@@ -174,6 +174,14 @@ class StatusController < ApplicationController
   def show_summary
     begin
       client_permissions
+    rescue Errno::ECONNREFUSED => e #connection to service has been lost, but still trying
+      status = _("Can't connect to host")
+      host = Host.find(session[:host]) rescue nil
+      status = _("Can't connect to host %s.") % host.name if host #this string is already translated int webclient
+      render(:partial => "status_summary", 
+             :locals => { :status => status, :level => 'error', :error => nil, 
+                          :refresh_timeout =>  refresh_timeout })
+      return
     rescue ActiveResource::UnauthorizedAccess => error
       # handle unauthorized error - the session timed out
       Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
