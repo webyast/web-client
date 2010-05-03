@@ -171,37 +171,48 @@ class RegistrationController < ApplicationController
     begin
       # split arguments into two lists to show them separately and sort each list to show them in a unique order
       @arguments_mandatory = sort_arguments( @arguments.select { |arg| (arg["flag"] == "m") if arg.kind_of?(Hash) } )
-      @arguments_detail    = sort_arguments( @arguments.select { |arg| (arg["flag"] != "m") if arg.kind_of?(Hash) } )
+      @arguments_automatic = sort_arguments( @arguments.select { |arg| (arg["flag"] == "a") if arg.kind_of?(Hash) } )
+      @arguments_detail    = sort_arguments( @arguments.select { |arg| ( (arg["flag"] != "m") && (arg["flag"] != "a") ) if arg.kind_of?(Hash) } )
     rescue
       logger.error "Registration found invalid argument data. Nothing to display to the user."
       @arguments_mandatory = []
+      @arguments_automatic = []
       @arguments_detail = []
     end
+  end
+
+  def sources_changes_flash(msg='')
+    # use an own type for this message
+    # because it needs to be displayed and bypass the UI-expert-filter (bnc600842)
+    ftype = :repoinfo
+    flash[ftype] ||= ''
+    flash[ftype] += msg
   end
 
   def check_service_changes
     begin
       if @changed_services && @changed_services.kind_of?(Array) && @changed_services.size > 0 then
-        flash[:notice] += "<ul>"
+        flash_msg = "<ul>"
         @changed_services.each do |c|
           if c.respond_to?(:name) && c.name && c.respond_to?(:status) && c.status == 'added' then
-            flash[:notice] += "<li>" + _("Service added:") + " #{c.name}</li>"
+            flash_msg += "<li>" + _("Service added:") + " #{c.name}</li>"
           end
           if c.respond_to?(:catalogs) && c.catalogs && c.catalogs.respond_to?(:catalog) && c.catalogs.catalog then
             if c.catalogs.catalog.respond_to?(:name) && c.catalogs.catalog.respond_to?(:status) && c.catalogs.catalog.status == 'added' then
-              flash[:notice] += "<ul><li>" + _("Catalog enabled:") + " #{c.catalogs.catalog.name}</li></ul>"
+              flash_msg += "<ul><li>" + _("Catalog enabled:") + " #{c.catalogs.catalog.name}</li></ul>"
             elsif c.catalogs.catalog.kind_of?(Array) then
-              flash[:notice] += "<ul>"
+              flash_msg += "<ul>"
               c.catalogs.catalog.each do |s|
                 if s && s.respond_to?(:name) && s.respond_to?(:status) && s.status == 'added' then
-                  flash[:notice] += "<li>" + _("Catalog enabled:") + " #{s.name}</li>"
+                  flash_msg += "<li>" + _("Catalog enabled:") + " #{s.name}</li>"
                 end
               end
-              flash[:notice] += "</ul>"
+              flash_msg += "</ul>"
             end
           end
         end
-        flash[:notice] += "</ul>"
+        flash_msg += "</ul>"
+        sources_changes_flash flash_msg
       else
         return false
       end
@@ -215,13 +226,14 @@ class RegistrationController < ApplicationController
   def check_repository_changes
     begin
       if @changed_repositories && @changed_repositories.kind_of?(Array) && @changed_repositories.size > 0 then
-        flash[:notice] += "<ul>"
+        flash_msg = "<ul>"
         @changed_repositories.each do |r|
           if r.respond_to?(:name) && r.name && r.respond_to?(:status) && r.status == 'added' then
-            flash[:notice] += "<li>" + _("Repository added:") + " #{r.name}</li>"
+            flash_msg += "<li>" + _("Repository added:") + " #{r.name}</li>"
           end
         end
-        flash[:notice] += "</ul>"
+        flash_msg += "</ul>"
+        sources_changes_flash flash_msg
       else
         return false
       end
@@ -289,7 +301,7 @@ class RegistrationController < ApplicationController
 
     # redirect in case of interrupted basesetup
     if @guid && !@reregister
-      flash[:notice] = _("This system is already registered.")
+      flash[:warning] = _("This system is already registered.")
       redirect_success
       return
     end
@@ -325,11 +337,8 @@ class RegistrationController < ApplicationController
         return registration_logic_error
       end
 
-      service_changes = check_service_changes
-      repository_changes = check_repository_changes
-
       # display warning if no repos/services are added/changed during registration (bnc#558854)
-      if !service_changes && !repository_changes
+      if !check_service_changes && !check_repository_changes
       then
         flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
       end
@@ -407,7 +416,7 @@ class RegistrationController < ApplicationController
       # split into madatory and detail arguments
       split_arguments
 
-      if !@arguments_mandatory || @arguments_mandatory.size < 1 then
+      if @arguments_mandatory.blank? && @arguments_detail.blank? then
         # redirect if the registration server is in needinfo but arguments list is empty
         flash[:error] = server_error_flash _("The registration server returned invalid data.")
         logger.error "Registration resulted in an error: Logic issue, unspecified data requested by registration server"

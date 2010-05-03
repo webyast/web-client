@@ -91,21 +91,21 @@
 <div id="favorites" class="wrapper grid_12">
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
-  <div class="list-row overview">
+  <div class="overview">
     <% @shortcuts.each do |name, data| %>
       <% if line_counter*5 == shortcuts_counter %>
         <% if line_counter > 0 %>
           </div>
         <% end %>
         <% line_counter +=1 %>
-        <div class="highlight-bg">
+        <div class="highlight-bg list-row">
       <% end %>
-      <p>
-      <% link_to (data['url']) do %>
+      <% link_to (data['url'], {:class => "controlpanel-shortcut"}) do %>
         <%= image_tag(data['icon']) %>
-        <%= data['title'] %>
+        <div>
+          <%= data['title'] %>
+        </div>
       <% end %>
-      </p>
       <% shortcuts_counter +=1 %>
     <% end %>
     <% if line_counter*5 != shortcuts_counter-1 %>
@@ -114,10 +114,8 @@
 
 </div>
 
-
-
-<fieldset>
+<div class="nav-buttons">
   <a href="controlpanel/show_all"><%= _("Show all modules") %></a>
-</fieldset>
+</div>
 
 </div>

@@ -33,6 +33,9 @@
        animated   : false
     });
     $(".accordion").accordion('activate',false);
+    <% if @arguments_mandatory.blank? %>
+      $(".accordion").accordion('activate', "#argumentdetail legend");
+    <% end %>
   });
   <% end %>
 
@@ -81,7 +84,7 @@
 
     <% form_tag form_target_save, { :id => "registrationform", :onsubmit => "$('#progress').show()" } do -%>
 
-      <% if @arguments_mandatory then %>
+      <% if !@arguments_mandatory.blank? then %>
       <fieldset class="wrapper with-background width-75">
         <legend><%= _("Mandatory Information") %></legend>
         <% for argument in @arguments_mandatory %>
@@ -95,7 +98,7 @@
       </fieldset>
       <% end %>
 
-      <% if @arguments_detail then %>
+      <% if !@arguments_detail.blank? then %>
         <div class="accordion">
           <fieldset class="wrapper with-background width-75" id="argumentdetail">
             <legend><%= _("Details") %></legend>
@@ -116,7 +119,6 @@
       <fieldset>
         <% if @arguments_mandatory.kind_of?(Array) && !@arguments_mandatory.select{ |p|  p["name"]=="email" }.empty?
              onclick_action = "return $('#registrationform').validate().element('#registration_arg_email');"
-             # FIXME FIXME - this does not work yet
            else
              onclick_action = "return true;"
            end

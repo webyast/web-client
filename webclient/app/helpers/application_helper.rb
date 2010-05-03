@@ -25,8 +25,9 @@ module ApplicationHelper
   # Example:
   #   <%= form_send_buttons :disabled => write_disabled %>
   def form_send_buttons (send_options={})
-    ret = Basesystem.new.load_from_session(session).first_step? ? "":(form_next_button(send_options)+form_str_spacer)
-    ret + form_cancel_button
+    ret =  form_next_button(send_options)
+    ret += form_str_spacer + form_cancel_button unless Basesystem.new.load_from_session(session).first_step?
+    ret
   end
 
   # query if basesystem is in process

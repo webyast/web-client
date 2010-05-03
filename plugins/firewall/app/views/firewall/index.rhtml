@@ -65,15 +65,11 @@
       var is_blocked  = ( $("#fw_services_values input[name='"+service.input_name+"']")[0].value == 'false' );
       return is_blocked && (service.allowed || ! use_firewall_old);
     }
-    function someBlocked(services) {
-      for each (s in services) { if ( isBlockedAndWasAllowed(s) ) { return true } };
-      return false;
-    }
     function blockedNames(services) {
       return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
     }
     if ( $("#use_firewall")[0].checked ) {
-      if ( someBlocked(needed_services) ) {
+      if ( needed_services.some( isBlockedAndWasAllowed ) ) {
         return confirm( confirm_text.replace("%s", blockedNames(needed_services).join(", ")) );
       } 
     } else {

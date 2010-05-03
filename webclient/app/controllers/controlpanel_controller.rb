@@ -56,6 +56,7 @@ class ControlpanelController < ApplicationController
         return
       end
     end
+    flash.keep #at first keep all flash because first call of flash load it from session and mark all flash messages as used
     flash.discard :notice #don't show success notice in basesystem (bnc#582803)
     redirect_to bs.next_step
   end

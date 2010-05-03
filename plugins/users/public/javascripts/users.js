@@ -112,25 +112,41 @@ function def_group_validation(which){
 }
 
 function new_user_validation(which){
-  var valid = $('#userForm').valid();
-  // if UID is invalidate, do Show Details (make it visible)
-  if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
-  valid = valid && groups_validation(which.parentNode);
+  var valid = true;
+  if (valid && ($('#userForm').validate().element('#user_uid')==false || $('#userForm').validate().element('#user_user_password')==false)){
+	$(".fieldset-group.ui-tabs").tabs('select',"#tab_login");
+	valid = false;
+  }
+  if (valid && (groups_validation($('#user_grp_string')[0])==false || def_group_validation($('#user_groupname')[0])==false)){
+	$(".fieldset-group.ui-tabs").tabs('select',"#tab_groups");
+	valid = false;
+  }
+  if (valid && $('#userForm').validate().element('#user_uid_number')==false){
+	$(".fieldset-group.ui-tabs").tabs('select',"#tab_advanced");
+	valid = false;
+  }
+
   return valid;
 }
 
-function edit_user_validation(which, form){
-  valid=false;
-  password_validation_enabled = true;
-  valid = $(form).validate().element('#user_user_password2');
-  valid = valid && $(form).validate().element('#user_uid');
-  if (!valid) set_tab_focus("login");
-  if (!$(form).validate().element('#user_uid_number')){
-    valid=false;
-    set_tab_focus("advanced");
+function edit_user_validation(which, username){
+  var valid = true;
+  var form = '#form_'+username;
+  if (valid && ($(form).validate().element(form+' #user_uid')==false || $(form).validate().element(form+' #user_user_password')==false || $(form).validate().element(form+' #user_user_password2')==false)){
+	$(".tabs_"+username).tabs('select',"#tab_login_"+username);
+	valid = false;
   }
-  valid = valid && groups_validation(which);
+  if (valid && (groups_validation($(form+' #user_grp_string')[0])==false || def_group_validation($(form+' #user_groupname')[0])==false)){
+	$(".tabs_"+username).tabs('select',"#tab_groups_"+username);
+	valid = false;
+  }
+  if (valid && $(form).validate().element(form+' #user_uid_number')==false){
+	$(".tabs_"+username).tabs('select',"#tab_advanced_"+username);
+	valid = false;
+  }
+
   return valid;
+
 }
 
 

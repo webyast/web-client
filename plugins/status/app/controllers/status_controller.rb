@@ -155,7 +155,11 @@ class StatusController < ApplicationController
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
-           flash[:error] = error_hash["error"]["description"]
+           if error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"
+             flash[:error] = _("Status not available.")
+           else
+             flash[:error] = error_hash["error"]["description"]
+           end
 	else
            raise error
 	end
@@ -180,7 +184,6 @@ class StatusController < ApplicationController
     level = "ok"
     status = ""
     ret_error = nil
-    restart_collectd = false
     refresh = true
     ActionController::Base.benchmark("Graphs data read from the server") do
       begin
@@ -226,13 +229,17 @@ class StatusController < ApplicationController
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
-           level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
-           if status.blank?
-             status = error_hash["error"]["description"]
+           if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR"
+             level = "warning"  #it is a warning only
+             error_string = error_hash["error"]["description"]
            else
-             status += "; " + error_hash["error"]["description"]
+             error_string = _("Status not available")
            end
-           restart_collectd = true if error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"
+           if status.blank?
+             status = error_string
+           else
+             status += "; " + error_string
+           end
 	else
            ret_error = ClientException.new(error)
 	end
@@ -252,38 +259,7 @@ class StatusController < ApplicationController
 
     render(:partial => "status_summary", 
            :locals => { :status => status, :level => level, :error => ret_error, 
-                        :restart_collectd => restart_collectd, :refresh_timeout => (refresh ? refresh_timeout : nil) })
-  end
-
-  # POST /status/start_collectd
-  # Starting collectd
-  def start_collectd
-    logger.debug "Starting collectd....."
-    result_string = ""
-    args = { :execute => "start", :custom => false }
-    begin
-      response = Service.put("collectd", args)
-      # we get a hash with exit, stderr, stdout
-      ret = Hash.from_xml(response.body)
-      ret = ret["hash"]
-      logger.debug "returns #{ret.inspect}"
-      if ret["exit"].blank? || ret["exit"].to_s != "0"
-        result_string << ret["stdout"] if ret["stdout"]
-        result_string << ret["stderr"] if ret["stderr"]
-      end
-    rescue ActiveResource::ServerError => error
-      error_hash = Hash.from_xml error.response.body
-      logger.warn error_hash.inspect
-      result_string = error_hash["error"]["description"]
-    end
-
-    unless result_string.blank?
-      render :partial => "status_summary", :locals => { :status => result_string, 
-                                                        :level => "error", :error => nil, 
-                                                        :restart_collectd => true}
-    else
-      show_summary
-    end
+                        :refresh_timeout => (refresh ? refresh_timeout : nil) })
   end
 
   #
