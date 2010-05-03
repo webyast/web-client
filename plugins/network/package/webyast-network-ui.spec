@@ -33,8 +33,8 @@ PreReq:         yast2-webclient >= 0.0.2
 Conflicts:      yast2-webservice-network < 0.0.3
 
 #
-%define pkg_user yast
 %define plugin_name network
+%define plugin_dir %{webyast_ui_dir}/vendor/plugins/%{plugin_name}
 #
 
 
@@ -61,7 +61,7 @@ and it is not needed at runtime.
 %setup -q -n www
 
 %build
-export RAILS_PARENT=/srv/www/yast
+export RAILS_PARENT=%{webyast_ui_dir}
 env LANG=en rake makemo
 
 %check
@@ -72,12 +72,13 @@ env LANG=en rake makemo
 #
 # Install all web and frontend parts.
 #
-mkdir -p $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-cp -a * $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
+mkdir -p $RPM_BUILD_ROOT/%{plugin_dir}
+cp -a * $RPM_BUILD_ROOT/%{plugin_dir}
+rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 
 # remove .po files (no longer needed)
-rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
+
 # search locale files
 %find_lang yast_webclient_network
 
@@ -86,29 +87,30 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f yast_webclient_network.lang
 %defattr(-,root,root)
-%dir /srv/www/%{pkg_user}
-%dir /srv/www/%{pkg_user}/vendor
-%dir /srv/www/%{pkg_user}/vendor/plugins
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/lib
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config/rails_parent.rb
+%dir %{webyast_ui_dir}
+%dir %{webyast_ui_dir}/vendor
+%dir %{webyast_ui_dir}/vendor/plugins
+%dir %{plugin_dir}
+%dir %{plugin_dir}/config
+%dir %{plugin_dir}/doc
+%dir %{plugin_dir}/locale
+%{plugin_dir}/README
+%{plugin_dir}/Rakefile
+%{plugin_dir}/init.rb
+%{plugin_dir}/install.rb
+%{plugin_dir}/uninstall.rb
+%{plugin_dir}/shortcuts.yml
+%{plugin_dir}/app
+%{plugin_dir}/lib
+%{plugin_dir}/tasks
+%{plugin_dir}/config/rails_parent.rb
+%{plugin_dir}/doc/README_FOR_APP
+
 %doc COPYING
 
 %files testsuite
 %defattr(-,root,root)
-%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+%{plugin_dir}/test
 
 
 %changelog

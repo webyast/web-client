@@ -26,8 +26,8 @@ BuildArch:      noarch
 BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks tidy
 
 #
-%define pkg_user yast
 %define plugin_name registration
+%define plugin_dir %{webyast_ui_dir}/vendor/plugins/%{plugin_name}
 #
 
 
@@ -65,12 +65,13 @@ env LANG=en rake makemo
 #
 # Install all web and frontend parts.
 #
-mkdir -p $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-cp -a * $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-rm -f $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/COPYING
+mkdir -p $RPM_BUILD_ROOT/%{plugin_dir}
+cp -a * $RPM_BUILD_ROOT/%{plugin_dir}
+rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 
 # remove .po files (no longer needed)
-rm -rf $RPM_BUILD_ROOT/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
+rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
+
 # search locale files
 %find_lang yast_webclient_registration
 
@@ -79,27 +80,28 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f yast_webclient_registration.lang
 %defattr(-,root,root)
-%dir /srv/www/%{pkg_user}
-%dir /srv/www/%{pkg_user}/vendor
-%dir /srv/www/%{pkg_user}/vendor/plugins
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc
-%dir /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/README
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/Rakefile
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/init.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/install.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/uninstall.rb
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/app
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/tasks
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
-/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
+%dir %{webyast_ui_dir}
+%dir %{webyast_ui_dir}/vendor
+%dir %{webyast_ui_dir}/vendor/plugins
+%dir %{plugin_dir}
+%dir %{plugin_dir}/doc
+%dir %{plugin_dir}/locale
+%{plugin_dir}/README
+%{plugin_dir}/Rakefile
+%{plugin_dir}/init.rb
+%{plugin_dir}/install.rb
+%{plugin_dir}/uninstall.rb
+%{plugin_dir}/shortcuts.yml
+%{plugin_dir}/app
+%{plugin_dir}/tasks
+%{plugin_dir}/config
+%{plugin_dir}/doc/README_FOR_APP
+
 %doc COPYING
 
 %files testsuite
 %defattr(-,root,root)
-%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+%{plugin_dir}/test
 
 
 
