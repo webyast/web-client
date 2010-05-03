@@ -69,12 +69,40 @@ h5 {
 
 a {
   color: #333;
+  font-weight:bold;
   text-decoration: none;
+  font-size:11px;
+  border-bottom:1px dotted #8e908b;
 }
 a:hover {
-  color: #666;
-  text-decoration: underline;
+  color: #444;
+  font-size:11px;
+/*   text-decoration: underline; */
+  border-bottom:2px solid #1e90ff;
 }
+
+a.action-link {
+ color: #333;
+/*  color:#8e908b; */
+ font-size:13px;
+ font-weight:bold;
+ text-decoration:none;
+/*  border-bottom:2px solid #666; */
+}
+
+a.action-link:hover {
+/*  color:#1e90ff; */
+ color:#333;
+ font-size:13px;
+/*  color:#a0a0a0; */
+ font-weight:bold;
+/*  border-bottom:3px solid #1C94C4; */
+/*  border-bottom:2px dotted #D84630; */
+ border-bottom:2px solid red;
+/*  Studio: #8e908b */
+/*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2); */
+}
+
 
 /* Taken from yast.css */
 /*a {

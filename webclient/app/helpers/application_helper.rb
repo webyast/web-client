@@ -48,22 +48,22 @@ module ApplicationHelper
   # links to /controlpanel by default, developer can override
   # @param [Hash] options options for a link_to Rails helper method
   # @return [String] html part representing a cancel
-  def form_back_button (options={})
-    form_label_back_button _("Back"), options
+  def form_back_button (options={}, html_options = {:class=>"action-link"})
+    form_label_back_button _("Back"), options, html_options
   end
 
-  def form_cancel_button (options={})
-    form_label_back_button _("Cancel"), options
+  def form_cancel_button (options={}, html_options = {:class=>"action-link"})
+    form_label_back_button _("Cancel"), options, html_options
   end
 
-  def form_label_back_button( label, options = {})
+  def form_label_back_button( label, options = {}, html_options = {:class=>"action-link"})
     if (!Basesystem.installed?) || Basesystem.new.load_from_session(session).completed?
        if ! (options[:action] || options[:controller]) then
            options[:controller] = "controlpanel"
        end
-       link_to label, options
+       link_to label, options, html_options
     else
-      link_to _("Back"), :controller => "controlpanel", :action => "backstep"
+      link_to _("Back"), :controller => "controlpanel", :action => "backstep", :class=>"action-link"
     end
   end
 
