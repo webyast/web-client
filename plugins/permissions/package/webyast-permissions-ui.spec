@@ -96,6 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %{plugin_dir}/app
 %{plugin_dir}/tasks
 %{plugin_dir}/config
+%{plugin_dir}/public
 %doc COPYING
 
 %files testsuite
