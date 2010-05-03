@@ -55,21 +55,21 @@ class UsersController < ApplicationController
     begin
       @users = load_users
       @users.each do |user|
-       user.user_password2 = user.user_password
-       user.uid_number	= user.uid_number
-       user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
-    @groups = Group.find :all
-    @all_grps_string = ""
-    @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
-       else
-          @all_grps_string += ",#{group.cn}"
-       end
-    end
+        user.user_password2 = user.user_password
+        user.uid_number	= user.uid_number
+        user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
+        @groups = Group.find :all
+        @all_grps_string = ""
+        @groups.each do |group|
+          if @all_grps_string.blank?
+            @all_grps_string = group.cn
+          else
+            @all_grps_string += ",#{group.cn}"
+          end
+        end
       end
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
     end
 
     respond_to do |format|
