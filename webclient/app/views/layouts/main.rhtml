@@ -28,29 +28,25 @@
       #             stylesheet directory and cache cannot be created.
       %>
 
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.timers.js"></script>
-
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
-
-  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
-  <!-- browser detection -->
-   <script type="text/javascript" charset="utf-8" src="/javascripts/jqbrowser-compressed.js"></script>
-   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.badbrowser.js"></script>
-
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>
-
-  <script type="text/javascript" charset="utf-8" src="/inc/shortcut.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
-  <!-- custom page scripts and css -->
-  <script type="text/javascript" charset="utf-8" src="/javascripts/browser_fixes.js"></script>
+  <%= javascript_include_tag 	"jquery",
+				"jquery.query", #FIXME write reason
+				"jquery.timers",
+				"jquery.ui.custom",
+				"jquery.validate",
+				"jqbrowser-compressed", #our browser detection extension
+				"jquery.badbrowser", #original browser detection plugin
+				"jquery.jqModal",
+				"jquery.ui.core",
+				"jquery.ui.tabs", #FIXME looks like already include in ui.core
+				"shortcut.js",
+				"yast.widgets",
+				"yast.helpers",
+				"/javascripts/browser_fixes"
+  %>
   <%= yield :before_script %>
-  <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/javascripts/application.js"></script>
+  <%= javascript_include_tag	"script",
+				"application" #FIXME it can be problem if plugin also have own application specific js
+  %>
   <%= yield :head %>
 
   <title><%= _("WebYaST") %></title>
