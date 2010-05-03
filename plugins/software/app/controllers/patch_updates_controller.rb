@@ -31,6 +31,28 @@ class PatchUpdatesController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_software"
 
+private
+
+  #
+  # Create message output, given from PackageKit
+  #
+  def create_messages(messages)
+    ret=[]
+    messages.each { |message|
+      case message.kind
+        when "system"
+          ret << _("<p>Please reboot your system.</p>") % message.kind
+        when "session"
+          ret << _("<p>Please logout and login again.</p>") % message.kind
+        else
+          ret << "<p><b>#{message.kind}:</b>#{message.details}</p>"
+      end
+    }
+    ret
+  end
+
+public
+
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
@@ -155,7 +177,7 @@ class PatchUpdatesController < ApplicationController
 
     flash.clear #no flash from load_proxy
     last_patch = ""
-    message_string = ""
+    message_array = []
     unless patch_updates.blank?
       #installing the first available patch
       logger.info "Installing patch :#{patch_updates[0].name}"
@@ -167,15 +189,7 @@ class PatchUpdatesController < ApplicationController
                              :version=>nil,
                              :summary=>nil,
                              :resolvable_id=>patch_updates[0].resolvable_id})
-        if ret.respond_to?(:messages) && !ret.messages.blank?
-           ret.messages.each { |message|
-             if ["system", "application", "session"].include?(message.kind)
-               message_string += _("<p>A restart of the %s is needed.</p>") % message.kind
-             else
-               message_string += "<p><b>#{message.kind}:</b>#{message.details}</p>"
-             end
-           }
-        end
+        message_array=create_messages(ret.messages) if ret.respond_to?(:messages) && !ret.messages.blank?
         logger.debug "updated #{patch_updates[0].name}"
       rescue ActiveResource::ResourceNotFound => e
         flash[:error] = YaST::ServiceResource.error(e)
@@ -192,7 +206,7 @@ class PatchUpdatesController < ApplicationController
       if last_patch.blank?
         format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false, :message => "" }}
       else
-        format.html { render :partial => "patch_installation", :locals => { :patch => _("%s installed.") % last_patch , :error => error, :message => message_string }}
+        format.html { render :partial => "patch_installation", :locals => { :patch => _("%s installed.") % last_patch , :error => error, :message => message_array.uniq.to_s }}
       end
     end    
   end
@@ -210,7 +224,7 @@ class PatchUpdatesController < ApplicationController
       end
     }
     flash_string = ""
-    message_string = ""
+    message_array = []
     update_array.each do |patch_id|
       begin
         client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
@@ -221,18 +235,10 @@ class PatchUpdatesController < ApplicationController
                              :version=>nil,
                              :summary=>nil,
                              :resolvable_id=>patch_id})
-        if ret.respond_to?(:messages) && !ret.messages.blank?
-           ret.messages.each { |message|
-             if ["system", "application", "session"].include?(message.kind)
-               message_string += _("<p>A restart of the %s is needed.</p>") % message.kind
-             else
-               message_string += "<p><b>#{message.kind}:</b>#{message.details}</p>"
-             end
-           }
-        end
+        message_array=create_messages(ret.messages) if ret.respond_to?(:messages) && !ret.messages.blank?
         logger.debug "updated #{patch_id}"
-        unless message_string.blank?
-          flash[:error] = _("Patch has been installed. ") + message_string 
+        unless message_array.blank?
+          flash[:warning] = _("Patch has been installed. ") + message_array.uniq.to_s
         else
           flash[:notice] = _("Patch has been installed. ")
         end
@@ -243,12 +249,12 @@ class PatchUpdatesController < ApplicationController
         redirect_to({:controller=>"controlpanel", :action=>"index"}) and return
       end        
     end
-    unless message_string.blank?
+    unless message_array.blank?
       #show all messages again
       if update_array.size > 1       
-        flash[:error] = _("All Patches have been installed. ") + message_string 
+        flash[:warning] = _("All Patches have been installed. ") + message_array.uniq.to_s 
       else
-        flash[:error] = _("Patch has been installed. ") + message_string 
+        flash[:warning] = _("Patch has been installed. ") + message_array.uniq.to_s 
       end
     end
   
