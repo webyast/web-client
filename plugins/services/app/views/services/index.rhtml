@@ -195,7 +195,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 
   <div class="list-fieldset-header" name=<%=service.name%>><span class="service-icon"></span><%=h service.name %><em style="position:absolute; left:25%"><%= h service.summary%></em></div>
 
-  <div class='service-content' style="display:none">
+  <div class='service-content' style="display:none; padding-left: 1em;">
 
   <p class='description quicksearch_content'>
     <i><%= service.description ? h(service.description) : _("Description for service is not available") %></i>
