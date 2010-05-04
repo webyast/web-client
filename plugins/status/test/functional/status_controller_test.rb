@@ -40,9 +40,11 @@ class StatusControllerTest < ActionController::TestCase
     @response_graphs = fixture "graphs.xml"
     @response_plugins = fixture "plugins.xml"
     @response_graphs_memory = fixture "graphs_memory.xml"
+    @response_graphs_disk = fixture "graphs_disk.xml"
     @response_metrics_memory_free = fixture "waerden+memory+memory-free.xml"
     @response_metrics_memory_used = fixture "waerden+memory+memory-used.xml"
     @response_metrics_memory_cached = fixture "waerden+memory+memory-used.xml"
+    @response_metrics_df_root = fixture "waerden+df+df-root.xml"
     @response_metrics = fixture "metrics.xml"
     @response_writing_limits = fixture "memory_write.xml"
     ActiveResource::HttpMock.set_authentication
@@ -60,12 +62,15 @@ class StatusControllerTest < ActionController::TestCase
       mock.get "/graphs.xml?checklimits=true", @header, @response_graphs, 200
       mock.get "/graphs.xml?background=true&checklimits=true", @header, @response_graphs, 200
       mock.get "/graphs.xml", @header, @response_graphs, 200
+      mock.get "/graphs/Disk.xml", @header, @response_graphs_disk, 200
       mock.get "/graphs/Memory.xml", @header, @response_graphs_memory, 200
       mock.put "/graphs/Memory.xml", @header, @response_writing_limits, 200
       mock.get "/metrics.xml", @header, @response_metrics, 200
       mock.get "/metrics/waerden+memory+memory-free.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_free, 200
       mock.get "/metrics/waerden+memory+memory-used.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_used, 200
       mock.get "/metrics/waerden+memory+memory-cached.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_cached, 200
+      mock.get "/metrics/waerden+df+df-root.xml?start=1264006320&stop=1264006620", @header, @response_metrics_df_root, 200
+      mock.post "/mail/state.xml", @header, nil, 200
     end
   end
 
@@ -149,7 +154,7 @@ class StatusControllerTest < ActionController::TestCase
     assert_valid_markup
     assert_tag :tag =>"div",
                :attributes => { :class => "status-icon error" }
-    assert_tag "Limits exceeded for CPU/CPU-0/user; Registration is missing; Mail configuration test not confirmed"
+    assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Registration is missing; Mail configuration test not confirmed"
   end
 
   #testing evaluate_values AJAX call
@@ -162,12 +167,40 @@ class StatusControllerTest < ActionController::TestCase
                :attributes => { :type => "text/javascript" }
   end
 
+  #testing evaluate_values AJAX call
+  def test_show_evaluate_values_with_other_id
+    Time.stubs(:now).returns(Time.at(1264006620))
+    get :evaluate_values,  { :group_id => "Disk", :graph_id => "root" } 
+    assert_response :success
+    assert_valid_markup
+    assert_tag :tag =>"script",
+               :attributes => { :type => "text/javascript" }
+  end
+
+  #testing confirming status
+  def test_confirm_status
+    post :confirm_status, { :param=>"Test mail received", :url=>"/mail/state", } 
+    assert_response :redirect
+  end
+
+  #testing confirming status without param
+  def test_confirm_status_without_param
+    post :confirm_status, { } 
+    assert_response 500
+  end
+
   #testing  call ajax_log_custom
   def test_show_ajax_log_custom
-    get :ajax_log_custom,  { :id => "system", :lines => "50" } 
+    get :ajax_log_custom, { :id => "system", :lines => "50" } 
     assert_response :success
     assert_valid_markup
     assert_tag "\nJan 28 12:04:27 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\nJan 28 12:04:28 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\n\n"
+  end
+
+  #testing  call ajax_log_custom
+  def test_show_ajax_log_custom_without_params
+    get :ajax_log_custom, { } 
+    assert_response 500
   end
 
 
