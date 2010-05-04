@@ -133,7 +133,7 @@ public
       @groups.each do |group|
        group.members_string = group.members.join(",")
       end
-    @users = User.find(:all)
+    @users = User.find(:all, :params => { :attributes => "uid"})
     @all_users_string = ""
         @users.each do |user|
        if @all_users_string.blank?
