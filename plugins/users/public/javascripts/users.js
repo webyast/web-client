@@ -34,6 +34,45 @@ function _getElementsByClassName(node, classname)  {
     return a;
 }
 
+
+
+ // disable all submit buttons after submitting a form
+ // avoid double submit by accident
+ function disable_forms() {
+   // disable submit buttons
+   $(':submit').attr('disabled', 'disabled');
+   // make all input elements (text fields...) read only
+   $(':input').attr('readonly', 'readonly');
+   // disable all delete buttons
+   $('a.button').attr('onclick','return false;');
+   $('a.button').attr('href','');
+   $('a.button').attr('disabled', 'disabled');
+ }
+
+ // onsubmit handler
+ function form_handler(sid) {
+   if ($('#form_' + sid).valid())
+   {
+     disable_forms();
+     $('#progress_' + sid).show();
+     return true;
+   }
+   else
+   {
+     return false;
+   }
+ }
+
+// delete button handler
+function delete_handler(which){
+ if (which.childElementCount == 2 && which.children[0].firstChild.textContent == "Delete"){
+  which.childNodes[0].onclick="return false;";
+  which.childNodes[0].href="";
+  disable_forms();
+  $('#progress').show();
+ }
+}
+
 function members_validation(which){
   var mygroups = [];
   if (_trim(which.value).length>0) mygroups = which.value.split(",");
@@ -113,7 +152,7 @@ function def_group_validation(which){
 
 function new_user_validation(which){
   var valid = true;
-  if (valid && ($('#userForm').validate().element('#user_uid')==false || $('#userForm').validate().element('#user_user_password')==false)){
+  if (valid && ($('#form_').validate().element('#user_uid')==false || $('#form_').validate().element('#user_user_password')==false)){
 	$(".fieldset-group.ui-tabs").tabs('select',"#tab_login");
 	valid = false;
   }
@@ -121,7 +160,7 @@ function new_user_validation(which){
 	$(".fieldset-group.ui-tabs").tabs('select',"#tab_groups");
 	valid = false;
   }
-  if (valid && $('#userForm').validate().element('#user_uid_number')==false){
+  if (valid && $('#form_').validate().element('#user_uid_number')==false){
 	$(".fieldset-group.ui-tabs").tabs('select',"#tab_advanced");
 	valid = false;
   }

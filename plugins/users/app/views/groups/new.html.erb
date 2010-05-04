@@ -85,7 +85,7 @@
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
-<% form_for :group, :url => { :action => "create" }, :html => { :id => "form_new", :autocomplete => :off}  do |f| %>
+<% form_for :group, :url => { :action => "create" }, :html => { :id => "form_", :autocomplete => :off, :onsubmit => "form_handler('')"}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
 

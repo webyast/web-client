@@ -66,10 +66,10 @@
       unselected_title : '<%= _('Available Groups') %>',
       tooltip : '<%= _('Click group names to select/unselect groups') %>',
       loadItems : function (dialogId) { 
-        return $('#userForm #user_grp_string')[0].value.split(",")
+        return $('#form_ #user_grp_string')[0].value.split(",")
       },
       storeItems : function (dialogId, items) { 
-        $('#userForm #user_grp_string')[0].value = items.join(",");
+        $('#form_ #user_grp_string')[0].value = items.join(",");
       },
       allItems : function (dialogId) { 
         return $('#all_grps_string')[0].value.split(",") 
@@ -87,7 +87,7 @@
         return $('#all_grps_string')[0].value.split(",")
       },
       storeItem : function (dialogId, item) {
-        $('#userForm #user_groupname')[0].value = item;
+        $('#form_ #user_groupname')[0].value = item;
       }
     });
     return open_dialog;
@@ -100,7 +100,7 @@
     select_default_group_open = select_default_group_dialog();
 
 
-   $("#userForm").validate();
+   $("#form_").validate();
 
 // make the error message translatable - override the default messsage
    $.extend($.validator.messages, {
@@ -108,7 +108,7 @@
      required: "<%= _("This field is required.") -%>"
    });
 
-   $("#userForm").validate({
+   $("#form_").validate({
     rules: {
       user_password: "required",
       user_password2: {
@@ -161,7 +161,7 @@
   <%=_("Users") + header_spacer + _("Add new user")%>
 </div>
 <div class="plugin-content grid_12">
-<% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
+<% form_for :user, :url => { :action => "create"}, :html => { :id => "form_", :autocomplete => :off, :onsubmit => "form_handler('')",}  do |f| %>
   <%= f.error_messages %>
 
   <div class="fieldset-group">
@@ -178,21 +178,21 @@
 	<tr><td>
           <div class="label"><%=_("Login Name")%></div>
 	</td><td>
-          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#userForm').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode.parentNode.parentNode);", :class => "required" %>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode.parentNode.parentNode);", :class => "required" %>
           <%= f.hidden_field :id %>
 	</td></tr>
 
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
 	</td><td colspan=2 rowspan=2>
-          <%= f.password_field :user_password, :onkeyup => "$('#userForm').validate().element('#user_user_password');", :disabled => disabled, :required => true %>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_').validate().element('#user_user_password');", :disabled => disabled, :required => true %>
 	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 
 	<tr><td>
           <div class="label"><%=_("Confirm Password")%></div>
 	</td><td>
-          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#form_').validate().element('#user_user_password2');" %>
         <!-- this is a pre-generated placeholder for the validation messages -->
         <div class="label" for="administrator_confirm_password" generated="true" class="error"></div>
 	</td></tr>
@@ -259,7 +259,7 @@
 	<tr><td>
             <div class="label"><%=_("UID Number")%></div>
 	</td><td>
-            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#form_').validate().element('#user_uid_number');"  %>
         <div class="label" id="uid-error" class="error"></div>
 	<td></tr>
 	</table>

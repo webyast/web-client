@@ -142,14 +142,6 @@
 
 });//document.ready
 
-function disable(which){
- if (which.childNodes.length == 2 && which.childNodes[0].firstChild.alt == "delete"){
-  which.onclick="";
-  which.removeChild(which.childNodes[1]);
-  which.removeChild(which.childNodes[0]);
-  which.appendChild( document.createTextNode("<%= _("Processing ...") %>") );
- }
-}
 <% end %>
 
 <% end %>
@@ -178,7 +170,7 @@ function disable(which){
     </div>
 
     <div class='user-content' style="display:none">
-     <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+     <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "form_handler('#{user.uid}')", :autocomplete => :off } ) do |f| %>
       <%= f.error_messages %>
 
       <div class="fieldset-group tabs_<%= user.uid %>">
@@ -271,7 +263,7 @@ function disable(which){
      <div class="nav-buttons">
        <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
        <% if @permissions[:userdelete] %>
-         <span onclick="disable(this);">
+         <span onclick="delete_handler(this);">
            <%= link_to _("Delete"),
                        {:action => 'destroy', :id => user.uid},
                        {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %>

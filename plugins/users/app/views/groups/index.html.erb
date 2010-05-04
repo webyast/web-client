@@ -54,10 +54,10 @@
       unselected_title : '<%= _('Available Members') %>',
       tooltip : '<%= _('Click user names to select/unselect members') %>',
       loadItems : function (dialogId) { 
-        return $('#groupForm_'+dialogId+' .members-string')[0].value.split(",")
+        return $('#form_'+dialogId+' .members-string')[0].value.split(",")
       },
       storeItems : function (dialogId, items) { 
-        $('#groupForm_'+dialogId+' .members-string')[0].value = items.join(",");
+        $('#form_'+dialogId+' .members-string')[0].value = items.join(",");
       },
       allItems : function (dialogId) { 
         return $('#all_users_string')[0].value.split(",") 
@@ -113,7 +113,7 @@
      </span>
     </div>
     <div class='group-content' style="display:none">
-<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "groupForm_"+group.old_cn, :autocomplete => :off}  do |f| %>
+<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "form_"+group.old_cn, :autocomplete => :off, :onsubmit => "form_handler('#{group.old_cn}')"}  do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :old_cn %>
     <p>
@@ -133,7 +133,7 @@
     <div class="nav-buttons">
       <%= form_next_button :label => _("Save") %>
       <% if @permissions[:groupdelete] %>
-      <span>
+      <span onclick="delete_handler(this);">
         <%= link_to _("Delete"),
                     {:action => 'destroy', :id => group.cn},
                     {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %>
