@@ -47,6 +47,8 @@ class EulasControllerTest < ActionController::TestCase
       mock.permissions "org.opensuse.yast.modules.eulas", { :read => true, :write => true }
       mock.get  "/eulas.xml", header, @eulas_response, 200
       mock.get  "/eulas/1.xml", header, @sles_eula_response, 200
+      mock.get  "/eulas/1.xml?lang=en_US", header, @sles_eula_response, 200
+      mock.get  "/eulas/1.xml?lang=en", header, @sles_eula_response, 200
       mock.get  "/eulas/1.xml?lang=de", header, @sles_eula_de_response, 200
     end
   end
@@ -65,7 +67,7 @@ class EulasControllerTest < ActionController::TestCase
   def test_eula_step
     get :index
     assert_redirected_to "/eulas/show/1"
-    get :show, :id => 1, "eula_lang" => "de"
+    get :show, :id => 1
     assert_response :success
     post :update, :eula => {"accepted" => "false"}, "id" => "1"
     assert_redirected_to "/eulas/show/1"
