@@ -16,22 +16,16 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 
-require 'test_helper'
-begin
-  require 'fakeweb'
-rescue LoadError
-  puts "fakeweb not found, skipping two_session_test"
-  exit 0
-end
-
-FakeWeb.allow_net_connect = false
+require File.join(File.dirname(__FILE__), '..','test_helper')
 
 class TwoSessionsTest < ActionController::IntegrationTest
   private
 
-  def load_fakeweb_uri(username)
+  def set_mock_uri(username)
     page = File.read(Rails.root.join("test", "fixtures", "ws-responses", "login-#{username}.curl"))
-    FakeWeb.register_uri(:post, "https://localhost/login.xml", :response => page)
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.post "/login.xml", {"Authorization"=>"Basic Og=="}, page, 200
+    end
   end
 
   public
@@ -68,7 +62,7 @@ class TwoSessionsTest < ActionController::IntegrationTest
   end
 
   def login(username)
-    load_fakeweb_uri username
+    set_mock_uri username
     open_session do |sess|
       sess.extend(CustomDsl)
       # hostid 2 is localhost in the fixtures
