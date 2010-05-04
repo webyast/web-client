@@ -26,6 +26,15 @@
 <%= javascript_include_tag "select_dialog.js" %>
 <%= javascript_include_tag "users.js" %>
 
+<!-- if no groups, disable validation
+-->
+<% if @permissions[:groupsget] != true %>
+<script language="javascript">
+function groups_validation(which){ return true; }
+function def_group_validation(which){ return true; }
+</script>
+<% end %>       
+
  <style type="text/css">
     .pad1_2em {
 	padding: 1em 2em;
@@ -215,7 +224,9 @@
 	</td><td>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);", :class => "grp-string" %>
 	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
             <a href="#" class="button" onClick="select_groups_open('<%= user.uid%>');return false;"><%= _("Manage Groups") %></a>
+	<% end %>
 	</td></tr>
 
 	<tr><td>
@@ -227,7 +238,9 @@
 	</td><td>
             <%= f.text_field :groupname, :disabled => disabled, :class => "groupname", :onkeyup => "def_group_validation(this);" %>
 	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
             <%= link_to _("Select Default Group"), {}, :href => "#", :onClick => "select_default_group_open('"+user.uid.to_s+"');return false;", :class => "button" %>
+	<% end %>
 	</td></tr>
 
 	<tr><td>

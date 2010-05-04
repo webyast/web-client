@@ -24,6 +24,15 @@
 <%= javascript_include_tag "users.js" %>
 <%= javascript_include_tag "select_dialog.js" %>
 
+<!-- if no groups, disable validation
+-->
+<% if @permissions[:groupsget] != true %>
+<script language="javascript">
+function groups_validation(which){ return true; }
+function def_group_validation(which){ return true; }
+</script>
+<% end %>       
+
   <style type="text/css">
     .GContainerUser, .GContainerGroups {
         float: left;
@@ -207,7 +216,9 @@
 	</td><td>
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
 	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
             <a href="#" class="button" onClick="select_groups_open('new');return false;">Manage Groups</a>
+        <% end %>
 	<td></tr>
 
 	<tr><td>
@@ -219,7 +230,9 @@
 	</td><td>
             <%= f.text_field :groupname, :disabled => disabled, :onkeyup => "def_group_validation(this);" %>
 	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
             <a href="#" class="button" onClick="select_default_group_open('new');return false;">Select Default Group</a>
+        <% end %>
 	<td></tr>
 
 	<tr><td>
@@ -227,18 +240,6 @@
 	<td></tr>
 
 	</table>
-	 <div id="groups" style="display:none;" title="Groups">
-	    <div>
-	     <div class="GContainerUser" style="width: 100px;" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </div>
-	     <div class="GContainerGroups" style="width: 400px;" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </div>
-	    </div>
-	 </div>
-
-	 <div id="def_group" style="display:none;" title="Default Group">
-	    <div>
-	     <div class="GContainerGroups" style="width: 400px;" id="ContainerDefaultGroup" onclick="selectItem(event);"> </div>
-	    </div>
-	 </div>
     </fieldset>
 
     <fieldset id="tab_advanced">

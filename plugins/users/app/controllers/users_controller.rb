@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   private
   def client_permissions
     @permissions = User.permissions
+    @permissions.merge!(Group.permissions)
   end
 
   # Initialize GetText and Content-Type.
@@ -58,8 +59,11 @@ class UsersController < ApplicationController
         user.user_password2 = user.user_password
         user.uid_number	= user.uid_number
         user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
-        @groups = Group.find :all
         @all_grps_string = ""
+	@groups = []
+        if @permissions[:groupsget] == true
+          @groups = Group.find :all
+        end
         @groups.each do |group|
           if @all_grps_string.blank?
             @all_grps_string = group.cn
@@ -97,8 +101,11 @@ class UsersController < ApplicationController
       :type		=> "local",
       :id		=> nil
     )
-    @groups = Group.find :all
     @all_grps_string = ""
+    @groups = []
+    if @permissions[:groupsget] == true
+      @groups = Group.find :all
+    end
     @groups.each do |group|
        if @all_grps_string.blank?
           @all_grps_string = group.cn
