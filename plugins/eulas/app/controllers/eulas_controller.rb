@@ -68,7 +68,9 @@ public
     @prev_id = prev_in_range( (1..@eula_count), @eula_id)
     @last_eula = @eula_id == @eula_count
     @first_eula= @eula_id == 1
-    @first_basesystem_step = Basesystem.installed? && Basesystem.new.load_from_session(session).first_step?
+    basesystem = Basesystem.installed? && Basesystem.new.load_from_session(session)
+    @first_basesystem_step = basesystem ? basesystem.first_step? : false
+    @basesystem_completed = basesystem ? basesystem.completed? : true
     lang_param  = params[:eula] ? params[:eula][:text_lang] : params[:eula_lang]
     eula_params = lang_param ? { :lang => lang_param } : {:lang => current_locale}
     @eula = Eulas.find @eula_id, :params => eula_params
@@ -81,23 +83,17 @@ public
     @eula.id              = @eula_id
     accepted = params[:eula] && params[:eula][:accepted] == "true"
     if accepted
-      unless @eula.accepted
-        @eula.accepted = accepted
-        @eula.save # do not save again if there is no change
-      end
+      @eula.accepted = accepted
+      @eula.save # do not save again if there is no change
       if @eula_count == @eula_id
         redirect_success
         return
       end
       next_id = next_in_range( (1..@eula_count), @eula_id)
-    elsif @eula.accepted
-      flash[:error] = _("You cannot reject a license once it has been accepted!")
-      next_id = @eula_id
     else
       flash[:error] = _("You must accept all licences before using this product!")
       next_id = @eula_id
     end
-    
     redirect_to :action => :show, :id => next_id, :eula_lang => (params[:eula] && params[:eula][:text_lang] || nil)
   end
 end

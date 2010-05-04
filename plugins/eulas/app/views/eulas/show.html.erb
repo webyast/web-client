@@ -43,23 +43,26 @@
             :html=> { :method => :put} 
            ) do |f|  -%>
 <fieldset>
+  <p>
   <%= _("Available translations:") -%>
   <%= f.select :text_lang, 
                @eula.available_langs.map {|lang| [language_name(lang),lang]}, 
                :onchange => "location.href='" + (url_for :controller => "eulas", :id => @eula_id, :action => :show) + "?eula_lang=' + value"
       %>
+  </p>
+  <p>
   <div class="eula-text-area"><%= @eula.text %></div>
+  </p>
   <% if @eula.only_show %>
   <%=  f.hidden_field :accepted, :true %>
   <% else %>
-       <div>
-  <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => @eula.accepted %>
+  <p>
+  <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => @basesystem_completed, :disabled => @basesystem_completed %>
   <%=  _("Yes, I agree to the license agreement.") %>
-       </div>
-       <div>
-  <%=  f.radio_button :accepted, :false, :checked => (! @eula.accepted), :readonly => @eula.accepted %>
+  <p></p>
+  <%=  f.radio_button :accepted, :false, :checked => (! @eula.accepted), :readonly => @basesystem_completed, :disabled => @basesystem_completed %>
   <%=  _("No, I do not agree.") %>
-       </div>
+  </p>
   <% end -%>
   <% unless @eula.text_lang == 'en' then %>
   <%= f.hidden_field :text_lang %>
