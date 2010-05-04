@@ -93,10 +93,10 @@
       </div>
     </div>
     
-    <div id="content" class="container_12">
+    <div id="content">
       
       <!-- here both flash and dynamic notifications should be added -->
-      <div id="flash-messages" class="grid_12 alpha">
+      <div id="flash-messages" class="alpha">
         <div id="language_selection"></div>
         <!-- show the flash messages -->
       
@@ -114,7 +114,7 @@
             end
           %>
         
-          <div class="flash-message <%= flash_style %> ui-corner-all grid_12">
+          <div class="flash-message <%= flash_style %> ui-corner-all">
             <p><span class="ui-icon <%= flash_icon %>"></span><strong><%= message %></strong></p>
           </div>
           <% flash.delete flash_type -%>
@@ -128,7 +128,7 @@
       <%= yield %>
     </div>
 
-    <div id="footer" class="container_12">
+    <div id="footer">
       <div class="copy">&copy; 2009,2010 Novell, Inc.</div>
     </div>
 

@@ -47,7 +47,7 @@
 <div id="status-wrapper" class="plugin-content">
 
   <div id="status">
-  <div id="status_patches" class="grid_8">
+  <div id="status_patches">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
       <% if display_patches %>
 	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
@@ -58,7 +58,7 @@
       <%= _("Patch plugin is not installed.") %>
     <% end %>
   </div>
-  <div id="status_status" class="grid_8">
+  <div id="status_status">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
       <% if display_patches %>
 	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
@@ -74,7 +74,7 @@
 <% if ActionController::Routing.possible_controllers.include?("system") %>
     <% host = Host.find(session[:host]) rescue nil %>
     <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
-  <div id="machine-controle" class="grid_3 omega">
+  <div id="machine-controle" class="omega">
     <h4><%= _("System actions")%></h4>
     <ul>
       <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
