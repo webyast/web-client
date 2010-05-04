@@ -130,7 +130,7 @@
 
 <div class='plugin-icon'><img src='/icons/yast-ntp-client.png' alt="time module"/><%=_("Time")%></div>
 
-<div class="plugin-content grid_12">
+<div class="plugin-content">
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <!--<#%# form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do #%#>-->
 	 <% form_tag '/time/update', {:id => "timeForm", :class => 'container', :onsubmit => "return submitTime();"} do %>

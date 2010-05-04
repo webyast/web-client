@@ -73,7 +73,7 @@
 <% end %>
 
 <div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
-<div class="plugin-content grid_12">
+<div class="plugin-content">
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();"} ) do %>
   <div class="accordion">
   <% @graphs.each do |group| %>

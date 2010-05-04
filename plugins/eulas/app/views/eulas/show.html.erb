@@ -37,7 +37,7 @@
 <%=_("Licence Agreement")-%> - <%= @eula.name -%>
 </div>
 
-<div class="plugin-content grid_12" id="eula">
+<div class="plugin-content" id="eula">
 <% form_for(:eula, 
             :url => { :action => :update, :id => @eula_id }, 
             :html=> { :method => :put} 

@@ -30,7 +30,7 @@
 
   </style>
   <div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %></div>
-  <div class='plugin-content grid_12'>
+  <div class='plugin-content'>
   <div class="loading"></div>
   <% if @patch_updates.empty? %>
     <h3><%=_("Your system is up to date.") unless @error%></h3>

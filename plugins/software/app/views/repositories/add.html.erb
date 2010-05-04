@@ -127,7 +127,7 @@
   <%= _("Add a new repository") %>
 </div>
 
-<div class='plugin-content grid_12'>
+<div class='plugin-content'>
 
 <% form_for(:repository, @repo, :url => { :action => 'create', :id => @repo.id }, :html => { :method => :post, :id => 'repositoryForm',
     :onsubmit => "return submit_handler();" } ) do |f| %>
