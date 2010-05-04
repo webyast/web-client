@@ -137,8 +137,9 @@
     <%#TODO tooltip for form <div> _("Table for settings timezone for target machine.")  </div>%>
   <fieldset class="smallfields">
     <p>
-      <label for="region"><%=_("Region")%></label>
-        <%= select_tag "region", options_for_select(@stime.regions, @stime.region.name), :disabled => disabled %>
+      <label for="region"><%=_("Region")%></label> 
+        <!-- 300px is good enough for all our region and time zone names -->
+        <%= select_tag "region", options_for_select(@stime.regions, @stime.region.name), :disabled => disabled, :style => "width: 300px;" %>
     </p>
     <p>
       <label for="timezone"><%=_("Timezone")%></label>
