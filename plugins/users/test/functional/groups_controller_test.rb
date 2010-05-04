@@ -40,8 +40,9 @@ class GroupsControllerTest < ActionController::TestCase
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
       mock.resources  :"org.opensuse.yast.modules.yapi.groups" => "/groups", "org.opensuse.yast.modules.yapi.users" => "/users"
-      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => true, :write => true }
       mock.get   "/groups.xml", header, response_index, 200
+      mock.permissions "org.opensuse.yast.modules.yapi.users", { :usersget => true, :write => true }
       mock.get   "/groups/users.xml", header, response_group_users, 200
       mock.delete   "/groups/users.xml", header, nil, 200
       mock.put   "/groups/users.xml", header, nil, 200
@@ -59,6 +60,31 @@ class GroupsControllerTest < ActionController::TestCase
 #   FIXME: commented because it freezes test
 #    assert_valid_markup
 #    assert assigns(:groups)
+    assert_select '#all_users_string[value="tester,mzugec"]'
+  end
+
+  def test_groups_index_no_permissions
+    # stub what the REST is supposed to return
+    response_group_users  = fixture "groups/users.xml"
+    response_index  = fixture "groups/index.xml"
+    response_users  = fixture "users/users.xml"
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources  :"org.opensuse.yast.modules.yapi.groups" => "/groups", "org.opensuse.yast.modules.yapi.users" => "/users"
+      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => true, :write => true }
+      mock.get   "/groups.xml", header, response_index, 200
+      mock.permissions "org.opensuse.yast.modules.yapi.users", { :usersget => false, :write => true }
+      mock.get   "/groups/users.xml", header, response_group_users, 200
+      mock.delete   "/groups/users.xml", header, nil, 200
+      mock.put   "/groups/users.xml", header, nil, 200
+      mock.get	 "/users.xml?attributes=uid", header, response_users, 200
+    end
+    get :index
+    assert_response :success
+#   FIXME: commented because it freezes test
+#    assert_valid_markup
+#    assert assigns(:groups)
+    assert_select '#all_users_string[value=""]'
   end
 
   def test_delete_group

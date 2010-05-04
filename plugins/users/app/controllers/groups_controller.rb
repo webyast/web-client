@@ -94,14 +94,18 @@ private
 
   def load_permissions
     @permissions = Group.permissions
+    @permissions.merge!(User.permissions)
   end
 
   def load_user_names
+    users = []
+    if @permissions[:usersget] == true
     begin
       users = User.find :all
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Cannot read users list.")
       return
+    end
     end
     users.collect {|u| u.cn }
   end
@@ -128,13 +132,17 @@ private
 public
   def index
     begin
+      return unless load_permissions
       @groups = load_groups
       @groups.sort! { |a,b| a.cn <=> b.cn }
       @groups.each do |group|
        group.members_string = group.members.join(",")
       end
-    @users = User.find(:all, :params => { :attributes => "uid"})
     @all_users_string = ""
+    @users = []
+    if @permissions[:usersget] == true
+      @users = User.find(:all, :params => { :attributes => "uid"})
+    end
         @users.each do |user|
        if @all_users_string.blank?
           @all_users_string = user.uid
@@ -168,8 +176,11 @@ public
     @group.members_string = @group.members.join(",")
     @adding = true
     @user_names = load_user_names
-    @users = User.find(:all)
     @all_users_string = ""
+    @users = []
+    if @permissions[:usersget] == true
+      @users = User.find(:all)
+    end
         @users.each do |user|
        if @all_users_string.blank?
           @all_users_string = user.uid

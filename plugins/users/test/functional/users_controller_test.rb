@@ -45,7 +45,7 @@ class UsersControllerTest < ActionController::TestCase
       mock.get   "/users.xml", header, response_index, 200
       mock.get   "/users/tester.xml", header, response_tester, 200
       mock.put   "/users/tester.xml", header, nil, 200
-      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :read => true, :write => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => true }
       mock.get   "/groups.xml", header, response_groups, 200
     end
   end
@@ -66,23 +66,25 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
 #    assert_valid_markup
     assert assigns(:users)
-#    assert_select 'td#login', "tester"
-#    assert_select 'td#fullname', "Tester Testerovic"
-#    assert_select 'td#login', "tester"
-#    assert_select 'td#fullname', 2
+    assert_select '#all_grps_string[value="ntp,utmp,video,disk,nobody,polkituser,mail,nogroup,lp,pulse,news,www,pulse-rt,uucp,at,kmem,pulse-access,shadow,maildrop,ntadmin,root,suse-ncc,dialout,ftp,bin,gdm,audio,games,postfix,man,users,messagebus,lighttpd,daemon,xok,haldaemon,yastws,floppy,cdrom,sys,trusted,wheel,uuidd,console,public,modem,sshd,sfcb,tty"]'
   end
 
-#  def test_edit_user
-#    get :edit, {:id => "tester"}
-#    assert_response :success
-#    assert_valid_markup
-#    assert assigns(:user)
-#    assert_select 'input#user_id[value=tester]' # fallback for uid
-#    assert_select 'input#user_uid[value=tester]'
-#    assert_select 'input#user_cn[value=Tester Testerovic]'
-#    assert_select 'input#user_grp_string[value=uucp,games,messagebus]'
-#    assert_select 'input#user_groupname[value=users]'
-#  end
+  def test_users_index_no_groupsget_permission
+    response_index  = fixture "users/users.xml"
+    response_groups  = fixture "groups/groups.xml"
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups"
+      mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
+      mock.get   "/users.xml", header, response_index, 200
+      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => false }
+      mock.get   "/groups.xml", header, response_groups, 200
+    end
+    get :index
+    assert_response :success
+    assert assigns(:users)
+    assert_select '#all_grps_string[value=""]'
+  end
 
   def test_update_user
    post :update, {:user => { :id => "tester", :cn => "Tester Testerovic" }} 
