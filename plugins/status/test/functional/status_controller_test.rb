@@ -122,7 +122,7 @@ class StatusControllerTest < ActionController::TestCase
   end
 
   #testing show summary AJAX call; Host is not available
-  def test_show_summary
+  def test_show_summary_not_available
     Logs.stubs(:permissions).raises(Errno::ECONNREFUSED)
     get :show_summary
     assert_response :success
@@ -197,12 +197,43 @@ class StatusControllerTest < ActionController::TestCase
     assert_tag "\nJan 28 12:04:27 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\nJan 28 12:04:28 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\n\n"
   end
 
-  #testing  call ajax_log_custom
+  #testing  call ajax_log_custom 
   def test_show_ajax_log_custom_without_params
     get :ajax_log_custom, { } 
     assert_response 500
   end
 
+  #testing  call ajax_log_custom which returns a permission error
+  def test_show_ajax_log_custom_no_permission
+    response_logs = fixture "no_permission.xml"
+
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => false, :writelimits => false }
+      mock.get "/logs/system.xml?lines=50&pos_begin=0", @header, response_logs, 503
+    end
+
+    get :ajax_log_custom, { :id => "system", :lines => "50" } 
+    assert_response :success
+    assert_valid_markup
+    assert_tag "You have no permissions"
+  end
+
+  #testing  call ajax_log_custom which returns an unknown error
+  def test_show_ajax_log_custom_unknown_error
+    response_logs = fixture "out_sync_error.xml"
+
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => false, :writelimits => false }
+      mock.get "/logs/system.xml?lines=50&pos_begin=0", @header, response_logs, 503
+    end
+
+    get :ajax_log_custom, { :id => "system", :lines => "50" } 
+    assert_response 500
+  end
 
   # status module must survive collectd out of sync
   def test_collectd_out_of_sync
@@ -254,6 +285,30 @@ class StatusControllerTest < ActionController::TestCase
     assert_response :success
     assert_valid_markup
     assert_tag "Status not available."
+  end
+
+  # status raise an exception if an unknown service error has happened
+  def test_collectd_service_other_error
+    response_graphs = fixture "no_permission.xml"
+    response_metrics = fixture "no_permission.xml"
+    response_logs = fixture "logs.xml"
+
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, response_logs, 200
+      mock.get   "/graphs.xml?checklimits=true", @header, response_graphs, 503
+      mock.get   "/graphs.xml", @header, response_graphs, 503
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, response_metrics, 503
+    end
+
+    get :index
+    assert_response 302
   end
 
   #call for edit limits
