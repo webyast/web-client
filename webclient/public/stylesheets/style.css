@@ -60,13 +60,6 @@ h3 {
 /* Same size of h4 and h5 ??? */
 h4, h5 { font-size: 1em; }
 
-/*h4 {
-  font-size: 1em;
-}
-h5 {
-  font-size: 1em;
-}*/
-
 a {
   color: #333;
   font-weight:bold;
@@ -104,22 +97,6 @@ a.action-link:hover {
 /*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2); */
 }
 
-
-/* Taken from yast.css */
-/*a {
-  color: #000000;
-  text-decoration: none;
-}*/
-
-/*a:hover {
-  color: blue;
-  text-decoration: underline
-}*/
-
-/* ????? */
-/*form a {
-  color: #0000CD;
-}*/
 
 /* CSS properties for all input elements  */
 a.button, input.button, input[type="submit"], input[type="button"] {
@@ -193,18 +170,8 @@ input[type="text"]:focus {
   color: #69c;
 }
 
-/*input:focus {
-  border: 1px solid #69c;
-  color: #69c;
-}*/
-
 input[disabled] {
   background-color: #eee;
-}
-
-select.aligned-inputs,
-input.aligned-inputs {
-  width: 100%;
 }
 
 img {
@@ -226,11 +193,6 @@ ul li {
   text-align: center;
   position:relative;
 }
-
-/* Why they are empty? */
-/*#header h1,
-#header img {
-}*/
 
 #header * {
   color: #444;
@@ -257,6 +219,7 @@ ul li {
   font-size: 1.7em;
   color: #666;
   margin-bottom: 0.5em;
+  clear: both;
 }
 
 /* #content { */
@@ -308,7 +271,7 @@ ul li {
   color: #06c;
 }
 
-#login-dialogue, .dialoge-wrapper {
+#login-dialogue {
   width: 23em;
   /*min-height: 17em; FIXME not working in IE6 | not working anywhere, 
   breaks host selection screen --bubli*/
@@ -328,25 +291,7 @@ ul li {
   float: right;
 }
 
-.dialoge-wrapper input[type="text"] {
-  width: 25em;
-}
-
-.dialoge-wrapper label {
-  width: 5em;
-}
-
-.dialogue-footer {
-  margin: 0;
-  padding-top: 15px;
-  text-align: center;
-}
-
-.dialoge-wrapper {
-    min-width: 500px;
-}
-
-#login-dialogue form, .dialoge-sub-wrapper {
+#login-dialogue form {
   display: block;
   background: #fefefe;
   padding: 15px;
@@ -358,7 +303,7 @@ ul li {
   width: 97%;
 }
 
-#login-dialogue h2, .dialoge-wrapper h2 {
+#login-dialogue h2 {
   margin: 0 !important;
   color: #69c;
 }
@@ -367,6 +312,11 @@ ul li {
   display: block;
   margin: 0 0 0.2em;
   text-align: left;
+}
+
+#status {
+  float: left;
+  width: 60%;
 }
 
 #status_patches {
@@ -390,14 +340,14 @@ ul li {
 }
 
 #status-wrapper #machine-controle {
-  display: block;
+  width: 25%;
+  float: right;
   min-height: 110px;
   height: 100%;
   overflow: hidden;
   border-left: 1px solid #ccc;
   background-color: #eee;
   background: #fcfcfc url(/stylesheets/images/gradient-light-short.png) repeat-x scroll left bottom;
-  float: right;
 }
 
 #status-wrapper #status_patches,
@@ -680,7 +630,10 @@ fieldset fieldset p {
 
 .plugin-content {
   float: left;
-  clear: left;
+  clear: both;
+  width: 95%;
+  max-width: 960px;
+  min-width: 640px;
 }
 
 /* ========================= Table ========================== */

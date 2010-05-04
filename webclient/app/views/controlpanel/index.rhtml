@@ -44,7 +44,32 @@
 
   <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
 
-<div id="status-wrapper" class="grid_12">
+<div id="status-wrapper" class="plugin-content">
+
+  <div id="status">
+  <div id="status_patches" class="grid_8">
+    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+      <% if display_patches %>
+	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
+      <% else %>
+	<div class="status-icon optional"></div><span><%= _("Patch status summary is disabled in the config file.") %></span>
+      <% end %>
+    <% else %>
+      <%= _("Patch plugin is not installed.") %>
+    <% end %>
+  </div>
+  <div id="status_status" class="grid_8">
+    <% if ActionController::Routing.possible_controllers.include?("status") %>
+      <% if display_patches %>
+	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
+      <% else %>
+	<div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
+      <% end %>
+    <% else %>
+      <%= _("Status plugin is not installed.") %>
+    <% end %>
+  </div>
+  </div>
 
 <% if ActionController::Routing.possible_controllers.include?("system") %>
     <% host = Host.find(session[:host]) rescue nil %>
@@ -60,35 +85,11 @@
   </div>
 <% end %>
 
-  <div id="status_patches" class="grid_8">
-    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-      <% if display_patches %>
-	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
-      <% else %>
-	<div class="status-icon optional"></div><span><%= _("Patch status summary is disabled in the config file.") %></span>
-      <% end %>
-    <% else %>
-      <%= _("Patch plugin is not installed.") %>
-    <% end %>
-  </div>
-  <br/>
-  <div id="status_status" class="grid_8">
-    <% if ActionController::Routing.possible_controllers.include?("status") %>
-      <% if display_patches %>
-	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
-      <% else %>
-	<div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
-      <% end %>
-    <% else %>
-      <%= _("Status plugin is not installed.") %>
-    <% end %>
-  </div>
-
 </div>
 
 
 <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
-<div id="favorites" class="wrapper grid_12">
+<div id="favorites" class="plugin-content">
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
   <div class="overview">
