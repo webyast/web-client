@@ -177,7 +177,7 @@ end
     assert_valid_markup
     assert_tag :tag =>"div",
                :attributes => { :class => "status-icon error" }
-    assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Registration is missing; Mail configuration test not confirmed"
+    assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Disk/root/free; Registration is missing; Mail configuration test not confirmed"
   end
 
   #testing show summary AJAX call; progress
