@@ -24,6 +24,18 @@ require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 class StatusControllerTest < ActionController::TestCase
 
+class FakeResponse
+  attr_reader :message
+  attr_reader :code
+  attr_reader :body
+
+  def initialize(code, message="")
+    @code = code
+    @message = message
+    @body = message
+  end
+end
+
   # return contents of a fixture file +file+
   def fixture(file)
     IO.read(File.join(File.dirname(__FILE__), "..", "fixtures", file))
@@ -132,6 +144,17 @@ class StatusControllerTest < ActionController::TestCase
     assert_tag "Can't connect to host"
   end
 
+  #testing show summary AJAX call; no permissions
+  def test_show_summary_no_permission
+    Logs.stubs(:permissions).raises(ActiveResource::UnauthorizedAccess.new(FakeResponse.new(401)))
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
+    assert_tag :tag =>"div",
+               :attributes => { :class => "status-icon warning" }
+    assert_tag "Cannot read system status - you have been logged out."
+  end
+
   #testing show summary AJAX call; limit CPU user reached
   def test_show_summary_limit_reached
     response_graphs = fixture "graphs_limits_reached.xml"
@@ -155,6 +178,32 @@ class StatusControllerTest < ActionController::TestCase
     assert_tag :tag =>"div",
                :attributes => { :class => "status-icon error" }
     assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Registration is missing; Mail configuration test not confirmed"
+  end
+
+  #testing show summary AJAX call; progress
+  def test_show_summary_progress
+    response_graphs = fixture "graphs_progress.xml"
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 200
+      mock.get   "/graphs.xml", @header, response_graphs, 200
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
+    end
+
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
+    assert_tag :tag =>"div",
+               :attributes => { :class => "progress_bar" }
+    assert_tag :tag =>"div",
+               :attributes => { :class => "progress_bar_progress", :style => "width: 80%; height: 1.4em;" }
   end
 
   #testing evaluate_values AJAX call
