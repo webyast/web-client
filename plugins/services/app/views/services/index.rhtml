@@ -158,11 +158,16 @@ function select_status (val) {
   <% end %>
 <% end %>
 
+<!-- borrowed from users, until it is public -->
+<style type="text/css">
+    .pad1_2em { padding: 1em 2em; }
+</style>
 
 <div class='plugin-icon'><img src='/icons/yast-system.png' alt=''/><%= _("System Services") %></div>
 
 <div class="plugin-content grid_12">
 
+<div id="heading" class="pad1_2em">
 
 <% unless @permissions[:execute] %>
 <p class="missing-permissions"><%=_("You do not have permission to execute the services.")%></p>
@@ -186,6 +191,8 @@ function select_status (val) {
   <label><%= _("Quick Search") %></label>
   <input type="text" id="service_search">
 </form>
+
+</div>
 
 <div id="services" class="accordion">
 <%
