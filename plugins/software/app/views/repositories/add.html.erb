@@ -164,7 +164,7 @@
     <%= form_back_button :action => :index, :onclick=>"$('#progress').show()"%>
     <% if !disabled -%>
       <%= form_str_spacer %>
-      <%= form_next_button :label => _("Save") %>
+      <%= submit_tag _("Save") %>
     <% end -%>
   </div>
 <% end %>
