@@ -185,16 +185,12 @@ end
     response_graphs = fixture "graphs_progress.xml"
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
-          :"org.opensuse.yast.system.metrics" => "/metrics",
-          :"org.opensuse.yast.system.graphs" => "/graphs",
-          :"org.opensuse.yast.system.plugins" => "/plugins"},
+                       :"org.opensuse.yast.system.graphs" => "/graphs"},
           { :policy => "org.opensuse.yast.system.status" })
       mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
       mock.get   "/logs.xml", @header, @response_logs, 200
       mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 200
       mock.get   "/graphs.xml", @header, response_graphs, 200
-      mock.get   "/plugins.xml", @header, @response_plugins, 200
-      mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
 
     get :show_summary
@@ -204,6 +200,103 @@ end
                :attributes => { :class => "progress_bar" }
     assert_tag :tag =>"div",
                :attributes => { :class => "progress_bar_progress", :style => "width: 80%; height: 1.4em;" }
+  end
+
+  #testing show summary AJAX call; Client Error
+  def test_show_summary_client_error
+    response_graphs = fixture "graphs_progress.xml"
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+                      :"org.opensuse.yast.system.plugins" => "/plugins",
+                      :"org.opensuse.yast.system.graphs" => "/graphs"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 400
+      mock.get   "/graphs.xml", @header, response_graphs, 400
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+    end
+
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
+  end
+
+  #testing show summary AJAX call; Server Error
+  def test_show_summary_server_error_1
+    response_graphs = fixture "out_sync_error.xml"
+    response_metrics = fixture "out_sync_error.xml"
+    response_logs = fixture "logs.xml"
+
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, response_logs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 503
+      mock.get   "/graphs.xml", @header, response_graphs, 503
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, response_metrics, 503
+    end
+
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
+    assert_tag "Collectd is out of sync. Status information can be expected at Wed Jan 20 22:34:38 2010.; Registration is missing; Mail configuration test not confirmed"
+  end
+
+  #testing show summary AJAX call; Server Error
+  def test_show_summary_server_error_2
+    response_graphs = fixture "service_not_running.xml"
+    response_metrics = fixture "service_not_running.xml"
+    response_logs = fixture "logs.xml"
+
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, response_logs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 503
+      mock.get   "/graphs.xml", @header, response_graphs, 503
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, response_metrics, 503
+    end
+
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
+    assert_tag "Status not available; Registration is missing; Mail configuration test not confirmed"
+  end
+
+  #testing show summary AJAX call; Server Error with no information
+  def test_show_summary_server_error_3
+    response_graphs = fixture "graphs_progress.xml"
+    response_metrics = fixture "graphs_progress.xml"
+    response_logs = fixture "logs.xml"
+
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, response_logs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 503
+      mock.get   "/graphs.xml", @header, response_graphs, 503
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, response_metrics, 503
+    end
+
+    get :show_summary
+    assert_response :success
+    assert_valid_markup
   end
 
   #testing evaluate_values AJAX call
