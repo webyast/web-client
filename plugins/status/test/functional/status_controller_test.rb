@@ -300,14 +300,38 @@ end
   end
 
   #testing evaluate_values AJAX call
-  def test_show_evaluate_values
+  def test_show_evaluate_values_1
     Time.stubs(:now).returns(Time.at(1264006620))
-    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory" } 
+    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory", :minutes => "5" } 
     assert_response :success
     assert_valid_markup
     assert_tag :tag =>"script",
                :attributes => { :type => "text/javascript" }
   end
+
+  #testing evaluate_values AJAX call
+  def test_show_evaluate_values_wrong_id
+    Time.stubs(:now).returns(Time.at(1264006620))
+    response_graphs = fixture "graphs_disk.xml"
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs/Memory.xml", @header, response_graphs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, @response_graphs, 200
+      mock.get   "/graphs.xml", @header, @response_graphs, 200
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
+    end
+    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory", :minutes => "5" } 
+    assert_response :success
+    assert_valid_markup
+  end
+
 
   #testing evaluate_values AJAX call
   def test_show_evaluate_values_with_other_id
@@ -317,6 +341,30 @@ end
     assert_valid_markup
     assert_tag :tag =>"script",
                :attributes => { :type => "text/javascript" }
+  end
+
+  #testing evaluate_values AJAX call
+  def test_show_evaluate_values_with_invalid_id
+    Time.stubs(:now).returns(Time.at(1264006620))
+    response_graphs = fixture "graphs_limits_reached.xml"
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml?background=true&checklimits=true", @header, response_graphs, 200
+      mock.get "/graphs/not_found.xml", @header, response_graphs, 404
+      mock.get   "/graphs.xml", @header, response_graphs, 200
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
+    end
+
+    get :evaluate_values,  { :group_id => "not_found", :graph_id => "not_found" } 
+    assert_response :success
+    assert_valid_markup
   end
 
   #testing confirming status
