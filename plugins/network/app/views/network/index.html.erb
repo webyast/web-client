@@ -21,7 +21,6 @@
 
 <%
   write_disabled = ! @permissions[:write]
-  static_disabled = write_disabled || @conf_mode != "static"
 %>
 
 <% content_for :head do %>
@@ -37,6 +36,7 @@
       $('#nameservers').example('IP address of machine which translates hostnames in IP addresses');
       $('#searchdomains').example('Domain name where hostname searching starts ');
       $('#default_route').example('Target address for outgoing IP data packages');
+      hide_static_config();
     });
    <% end %>
 
@@ -54,15 +54,13 @@
    <% end %>
 
    <% javascript_tag do -%>
-      function disable_static_config(abool) {
-          $.each(["#ip", "#netmask",
-                  "#name", "#domain",
-                  "#nameservers", "#searchdomains",
-                  "#default_route"], function(idx, val) {
-              $(val)[0].disabled = abool;
-          });
+      function hide_static_config() {
+            if ($("#conf_mode").val() == "static"){
+              $(".fieldset-group").show();
+            } else {
+              $(".fieldset-group").hide();
+            }
       }
-
    <% end -%>
 
 <!-- 	TODO move all stylesheets to public css file -->
@@ -320,34 +318,15 @@
 
 <%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
 
-<% form_tag("/network", :method => "get") do %>
-  <!-- (collection, value, text, selected) -->
-
-
-<!--  temporally disabled - 2009-10-26 rlihm
-  <fieldset id="interface_set" class="">
-    <legend><span><%= _("Interface")%></span></legend>
-    <p>
-      <%= select_tag(:interface, options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
-    </p>
-    <p>
-      <%= submit_tag(_("Select"), :class => "button") %>
-    </p>
-  </fieldset>
-   -->
-
-<% end %>
-
 <% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return switchFieldsetGroupTab();"} do |n| %>
 <%= n.error_messages %>
-<!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
   
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
   <fieldset id="general-settings">
     <legend><span>General settings</span></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
-      <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
+      <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled, :onchange => "hide_static_config();")%>
     </p>
   </fieldset>
   <div class="fieldset-group">
@@ -356,15 +335,15 @@
       <div>
         <p>
           <label for="<%= :ip %>"><%=_("IP address")%></label>
-          <%=text_field_tag :ip, @ip, :disabled => static_disabled %>
+          <%=text_field_tag :ip, @ip, :disabled => write_disabled %>
         </p>
         <p>
           <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
-          <%=text_field_tag :netmask, @netmask, :disabled => static_disabled %>
+          <%=text_field_tag :netmask, @netmask, :disabled => write_disabled %>
         </p>
         <p>
           <label for="<%= :default_route %>"><%=_("Default route")%></label>
-          <%=text_field_tag :default_route, @default_route, :disabled => static_disabled %>
+          <%=text_field_tag :default_route, @default_route, :disabled => write_disabled %>
         </p>
       </div>
     </fieldset>
@@ -373,21 +352,21 @@
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>
-          <%=text_field_tag(:name, @name, :onblur=>"endWithHyphen(this);clearWarning();", :onkeyup=>"hostValidation(this,valChar);", :onkeydown=>"clearWarning();", :disabled => static_disabled) %>
+          <%=text_field_tag(:name, @name, :onblur=>"endWithHyphen(this);clearWarning();", :onkeyup=>"hostValidation(this,valChar);", :onkeydown=>"clearWarning();", :disabled => write_disabled) %>
 <!--           <span id="warning" style="font-weight:bold; margin-left:20px; color:#c00000">&nbsp;</span> -->
 			 <label class="error" for="name" generated="true">&nbsp;</label>
         </p>
         <p>
           <label for="<%= :domain %>"><%=_("Domain")%></label>
-          <%=text_field_tag :domain, @domain, :disabled => static_disabled %>
+          <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
         </p>
         <p>
           <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
-          <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => static_disabled %>
+          <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
         </p>
         <p>
           <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
-          <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => static_disabled %>
+          <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => write_disabled %>
         </p>
       </div>
     </fieldset>
@@ -397,10 +376,3 @@
   </div>
 <% end %>
 </div>
-
-<% javascript_tag do -%>
-   $('#conf_mode').delayedObserver(0.25, function(element, value) {
-     disabled = <%= write_disabled %> || value != "static";
-     disable_static_config(disabled);
-   })
-<% end -%>
