@@ -317,8 +317,8 @@ ul li {
 }
 
 #status {
-  float: left;
-  width: 60%;
+  width: 70%;
+  display: inline-block;
 }
 
 #status_patches {
@@ -341,6 +341,19 @@ ul li {
   margin-top: 0;
 }
 
+#machine-controle {
+  width: 25%;
+  float: right;
+  height: 100%;
+  display: inline-block;
+}
+
+#machine-controle a {
+  text-align: center;
+  margin: 10px 10px 0;
+  display: block;
+}
+
 #status-wrapper #machine-controle {
   width: 25%;
   float: right;
@@ -352,8 +365,7 @@ ul li {
   background: #fcfcfc url(/stylesheets/images/gradient-light-short.png) repeat-x scroll left bottom;
 }
 
-#status-wrapper #status_patches,
-#status-wrapper #status_status {
+#status_patches, #status_status {
   margin: 10px;
 }
      
@@ -634,6 +646,7 @@ fieldset fieldset p {
   float: left;
   clear: both;
   width: 100%;
+  min-height: 100px;
 }
 
 /* ========================= Table ========================== */

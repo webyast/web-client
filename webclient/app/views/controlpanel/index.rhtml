@@ -42,12 +42,11 @@
   <% end -%>
 <% end %>
 
-  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
-
-<div id="status-wrapper" class="plugin-content">
 
   <div id="status">
-  <div id="status_patches">
+  <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
+  <div class="plugin-content">
+    <div id="status_patches">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
       <% if display_patches %>
 	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
@@ -57,8 +56,8 @@
     <% else %>
       <%= _("Patch plugin is not installed.") %>
     <% end %>
-  </div>
-  <div id="status_status">
+    </div>
+    <div id="status_status">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
       <% if display_patches %>
 	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
@@ -68,24 +67,24 @@
     <% else %>
       <%= _("Status plugin is not installed.") %>
     <% end %>
+    </div>
   </div>
   </div>
 
 <% if ActionController::Routing.possible_controllers.include?("system") %>
     <% host = Host.find(session[:host]) rescue nil %>
     <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
-  <div id="machine-controle" class="omega">
-    <h4><%= _("System actions")%></h4>
-    <ul>
-      <li><%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
-	    :confirm => _("Really reboot %s?") % host_name, :method => :put, :class => 'button' %></li>
-      <li><%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
-	    :confirm => _("Really shutdown %s?") % host_name, :method => :put, :class => 'button' %></li>
-    </ul>
+  
+  <div id="machine-controle">
+    <h3><%= image_tag("/icons/yast-system.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("System actions")%></h3>
+    <div class="plugin-content">
+      <%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'},
+	    :confirm => _("Really reboot %s?") % host_name, :method => :put, :class => 'button' %>
+      <%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'},
+	    :confirm => _("Really shutdown %s?") % host_name, :method => :put, :class => 'button' %>
+    </div>
   </div>
 <% end %>
-
-</div>
 
 
 <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
