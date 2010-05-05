@@ -37,9 +37,8 @@ EOF
 </error>
 EOF
 
-    # only 503 exceptions are backend exceptions
     server_error = ActiveResource::ServerError.new("message")
-    server_error.stubs(:response).returns(response.new('503', body))
+    server_error.stubs(:response).returns(response.new('403', body))
     client_exception = ClientException.new(server_error)
     assert client_exception.backend_exception?
     #assert_equal "", client_exception.message

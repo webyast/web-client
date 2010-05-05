@@ -74,8 +74,12 @@ class ClientException < Exception
   # if the exception was produced because another exception
   # happened at the server side
   def backend_exception?
-    @excpt and @excpt.is_a?(ActiveResource::ServerError) and
-      @excpt.response.code.to_s =~ /.*503.*|.*500.*/
+    if (@excpt && 
+      (@excpt.is_a?(ActiveResource::ServerError) || @excpt.is_a?(ActiveResource::ForbiddenAccess)))
+      code = @excpt.response.code.to_s
+      return true if (code.include? "503" or code.include? "403")
+    end
+    false
   end
 
   # if the exception is discarded to be a bug, like
