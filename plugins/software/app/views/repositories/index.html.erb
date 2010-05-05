@@ -250,7 +250,7 @@
 		<div class="nav-buttons">
 		  <% if !disabled -%>
 		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-		    <%= form_next_button :label => _("Save") %>
+		    <%= submit_tag _("Save") %>
 		    <span onclick="delete_handler(this, '#progress_<%= sid -%>');"><%= link_to _("Delete"),
 			    {:action => 'delete', :id => r.id},
 			    {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %></span>
