@@ -18,7 +18,7 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
-
+<% disabled = ! @permissions[:write] %>
 <% content_for :head do %>
   <style>
     .eula-text-area {
@@ -44,23 +44,16 @@
            ) do |f|  -%>
 <fieldset>
   <p>
-  <%= _("Available translations:") -%>
-  <%= f.select :text_lang, 
-               @eula.available_langs.map {|lang| [language_name(lang),lang]}, 
-               :onchange => "location.href='" + (url_for :controller => "eulas", :id => @eula_id, :action => :show) + "?eula_lang=' + value"
-      %>
-  </p>
-  <p>
   <div class="eula-text-area"><%= @eula.text %></div>
   </p>
   <% if @eula.only_show %>
   <%=  f.hidden_field :accepted, :true %>
   <% else %>
   <p>
-  <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => @basesystem_completed, :disabled => @basesystem_completed %>
+  <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => disabled, :disabled => disabled %>
   <%=  _("Yes, I agree to the license agreement.") %>
   <p></p>
-  <%=  f.radio_button :accepted, :false, :checked => (! @eula.accepted), :readonly => @basesystem_completed, :disabled => @basesystem_completed %>
+  <%=  f.radio_button :accepted, :false, :checked => (! @eula.accepted), :readonly => disabled, :disabled => disabled %>
   <%=  _("No, I do not agree.") %>
   </p>
   <% end -%>
@@ -69,7 +62,7 @@
   <% end %>
 </fieldset>
 <div class="nav-buttons">
-  <%= form_next_button %>
+  <%= form_next_button :disabled => disabled %>
   <%= if @first_eula
         @first_basesystem_step ? "" : (form_str_spacer + form_back_button )
       else

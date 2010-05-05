@@ -71,9 +71,8 @@ public
     basesystem = Basesystem.installed? && Basesystem.new.load_from_session(session)
     @first_basesystem_step = basesystem ? basesystem.first_step? : false
     @basesystem_completed = basesystem ? basesystem.completed? : true
-    lang_param  = params[:eula] ? params[:eula][:text_lang] : params[:eula_lang]
-    eula_params = lang_param ? { :lang => lang_param } : {:lang => current_locale}
-    @eula = Eulas.find @eula_id, :params => eula_params
+    @eula = Eulas.find @eula_id, :params => {:lang => current_locale}
+    @permissions = Eulas.permissions
   end
 
   def update
@@ -94,6 +93,6 @@ public
       flash[:error] = _("You must accept all licences before using this product!")
       next_id = @eula_id
     end
-    redirect_to :action => :show, :id => next_id, :eula_lang => (params[:eula] && params[:eula][:text_lang] || nil)
+    redirect_to :action => :show, :id => next_id
   end
 end
