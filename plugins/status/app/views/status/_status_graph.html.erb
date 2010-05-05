@@ -22,9 +22,9 @@
 %>
 <%= report_error(error, _("A problem occured when loading status information.")) if error %>
 
+<% if data %>
 <script type="text/javascript">
 
-<% if data %>
   $.jqplot('<%=graph_id(data[:group_id], data[:graph_id])+"_graph"%>',  [
   <% counter = 0 %>
   <% data[:lines].each do |line| %>
@@ -104,8 +104,6 @@
       zoom:true
     } 
   });
-<% end %>
-
 </script>
 
 <p>
@@ -131,5 +129,7 @@
    <div id='<%= graph_id(data[:group_id], data[:graph_id])+"_graph" %>' style='width:400px;height:300px;float:left;'></div>
    <br style='clear: both'>
 </p>
+<% end %>
+
 
 
