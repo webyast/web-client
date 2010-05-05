@@ -55,19 +55,12 @@
 
    <% javascript_tag do -%>
       function disable_static_config(abool) {
-          $("#ip")[0].disabled = abool;
-          $("#netmask")[0].disabled = abool;
-          $("#name")[0].disabled = abool;
-          $("#domain")[0].disabled = abool;
-          $("#nameservers")[0].disabled = abool;
-          $("#searchdomains")[0].disabled = abool;
-          $("#default_route")[0].disabled = abool;
-// TODO fix and use this
-//          $.each(["#ip", "#netmask",
-//                  "#nameservers", "#searchdomains",
-//                  "#default_route"], function() {
-//              $(this)[0].disabled = abool;
-//          });
+          $.each(["#ip", "#netmask",
+                  "#name", "#domain",
+                  "#nameservers", "#searchdomains",
+                  "#default_route"], function(idx, val) {
+              $(val)[0].disabled = abool;
+          });
       }
 
    <% end -%>
