@@ -509,9 +509,51 @@ end
     assert assigns(:graphs)
   end
 
+  #call for edit limits
+  def test_edit_error
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml", @header, @response_graphs, 503
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
+    end
+    get :edit
+    assert_response 302
+    assert_valid_markup
+    assert_response :redirect
+    assert_redirected_to :controller => "status", :action => "index"
+  end
+
   #writing limits
   def test_commit_limits
     put :save,  {"value/Memory/Memory/cached"=>"", "measurement/CPU/CPU-0/user"=>"max", "value/CPU/CPU-0/user"=>"", "value/CPU/CPU-1/user"=>"", "value/Network/eth0/received"=>"", "measurement/CPU/CPU-1/idle"=>"max", "measurement/CPU/CPU-0/idle"=>"max", "measurement/Network/eth0/sent"=>"max", "value/CPU/CPU-1/idle"=>"", "measurement/Network/eth0/received"=>"max", "measurement/Memory/Memory/free"=>"min", "measurement/Memory/Memory/used"=>"max", "value/Memory/Memory/used"=>"", "value/CPU/CPU-0/idle"=>"", "value/Network/eth0/sent"=>"", "value/Memory/Memory/free"=>"40", "measurement/Memory/Memory/cached"=>"max", "measurement/CPU/CPU-1/user"=>"max"}
+    assert_response :redirect
+    assert_redirected_to :controller => "status", :action => "index"
+  end
+
+  #writing limits with error
+  def test_commit_limits_error
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources({:"org.opensuse.yast.system.logs" => "/logs",
+          :"org.opensuse.yast.system.metrics" => "/metrics",
+          :"org.opensuse.yast.system.graphs" => "/graphs",
+          :"org.opensuse.yast.system.plugins" => "/plugins"},
+          { :policy => "org.opensuse.yast.system.status" })
+      mock.permissions "org.opensuse.yast.system.status", { :read => true, :writelimits => true }
+      mock.get   "/logs.xml", @header, @response_logs, 200
+      mock.get   "/graphs.xml", @header, @response_graphs, 503
+      mock.get   "/plugins.xml", @header, @response_plugins, 200
+      mock.get   "/metrics.xml", @header, @response_metrics, 200
+    end
+    put :save,  {"value/Memory/Memory/cached"=>"", "measurement/CPU/CPU-0/user"=>"max", "value/CPU/CPU-0/user"=>"", "value/CPU/CPU-1/user"=>"", "value/Network/eth0/received"=>"", "measurement/CPU/CPU-1/idle"=>"max", "measurement/CPU/CPU-0/idle"=>"max", "measurement/Network/eth0/sent"=>"max", "value/CPU/CPU-1/idle"=>"", "measurement/Network/eth0/received"=>"max", "measurement/Memory/Memory/free"=>"min", "measurement/Memory/Memory/used"=>"max", "value/Memory/Memory/used"=>"", "value/CPU/CPU-0/idle"=>"", "value/Network/eth0/sent"=>"", "value/Memory/Memory/free"=>"40", "measurement/Memory/Memory/cached"=>"max", "measurement/CPU/CPU-1/user"=>"max"}
+    assert_response 302
+    assert_valid_markup
     assert_response :redirect
     assert_redirected_to :controller => "status", :action => "index"
   end
