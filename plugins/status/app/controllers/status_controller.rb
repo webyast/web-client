@@ -239,14 +239,9 @@ class StatusController < ApplicationController
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR"
              level = "warning"  #it is a warning only
-             error_string = error_hash["error"]["description"]
+             status = error_hash["error"]["description"]
            else
-             error_string = _("Status not available")
-           end
-           if status.blank?
-             status = error_string
-           else
-             status += "; " + error_string
+             status = _("Status not available")
            end
 	else
            ret_error = ClientException.new(error)
