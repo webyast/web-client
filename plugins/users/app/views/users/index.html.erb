@@ -274,7 +274,7 @@ function def_group_validation(which){ return true; }
       </fieldset>
 </div>
      <div class="nav-buttons">
-       <%= form_next_button :label => _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
+       <%= submit_tag _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
        <% if @permissions[:userdelete] %>
          <span onclick="delete_handler(this);">
            <%= link_to _("Delete"),

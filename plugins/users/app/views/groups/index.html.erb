@@ -137,7 +137,7 @@ function members_validation(which){ return true; }
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
     <div class="nav-buttons">
-      <%= form_next_button :label => _("Save") %>
+      <%= submit_tag _("Save") %>
       <% if @permissions[:groupdelete] %>
       <span onclick="delete_handler(this);">
         <%= link_to _("Delete"),

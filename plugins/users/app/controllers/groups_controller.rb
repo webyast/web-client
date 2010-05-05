@@ -157,7 +157,6 @@ public
     end
     Rails.logger.debug( "Groups: " + @groups.inspect )
     return unless @groups
-    @permissions = Group.permissions
   end
 
   def new
