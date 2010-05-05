@@ -209,7 +209,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
     <!-- This is a workaround for quicksearch plugin - it can search in _one_ element
       so we add the service name and summary here again and make it hidden so it is also
       searched but not displayed -->
-    <div style="display: none"><%= h(service.name)+h(service.summary) -%></div>
+    <span style="display: none"><%= h(service.name)+h(service.summary) -%></span>
   </p>
 
   <img src="/images/working.gif" height="12" width="12" border="0"
