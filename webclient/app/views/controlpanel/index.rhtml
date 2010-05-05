@@ -49,7 +49,7 @@
     <div id="status_patches">
     <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
       <% if display_patches %>
-	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>
+	<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>
       <% else %>
 	<div class="status-icon optional"></div><span><%= _("Patch status summary is disabled in the config file.") %></span>
       <% end %>
@@ -60,7 +60,7 @@
     <div id="status_status">
     <% if ActionController::Routing.possible_controllers.include?("status") %>
       <% if display_patches %>
-	<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading system information") %>
+	<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading system information") %>
       <% else %>
 	<div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
       <% end %>

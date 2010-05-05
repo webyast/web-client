@@ -212,7 +212,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
     <span style="display: none"><%= h(service.name)+h(service.summary) -%></span>
   </p>
 
-  <img src="/images/working.gif" height="12" width="12" border="0"
+  <img src="/images/working.gif" class="small-working-icon"
     id="service_progress_<%=h service.name%>" style="display: none" alt='working...'/>
 
   <span class='service_status' id='service_status_<%= h service.name%>'>

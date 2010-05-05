@@ -78,7 +78,7 @@
     <!-- refresh the status again after a timeout -->
     <% javascript_tag do -%>
       setTimeout(function() {
-	$('#status_patches').html('<%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :border=>"0") %> <%= _("Loading patch information") %>')
+	$('#status_patches').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>')
 	<%= remote_function(:update => "status_patches",
 	    :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
       }, <%= refresh_timeout.to_i * 1000 -%>);
