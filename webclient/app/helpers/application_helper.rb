@@ -63,7 +63,7 @@ module ApplicationHelper
        end
        link_to label, options, html_options
     else
-      link_to _("Back"), :controller => "controlpanel", :action => "backstep", :class=>"action-link"
+      link_to _("Back"), {:controller => "controlpanel", :action => "backstep"}, :class=>"action-link"
     end
   end
 
