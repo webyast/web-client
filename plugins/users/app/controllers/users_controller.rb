@@ -35,15 +35,6 @@ class UsersController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_users"
 
-  def load_users
-    begin
-      User.find :all
-    rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("No users found.")
-      []
-    end
-  end
-
   public
   def initialize
   end
@@ -54,7 +45,17 @@ class UsersController < ApplicationController
     return unless client_permissions
     @users = []
     begin
-      @users = load_users
+      @users = []
+    begin
+      @users = User.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("No users found.")
+    rescue Exception => e
+      flash[:error] = _("Backend error: #{ERB::Util.html_escape e.message}")
+      Rails.logger.error "Backend error: #{ERB::Util.html_escape e.response.body}"
+      redirect_to "/" and return
+    end
+
       @users.each do |user|
         user.user_password2 = user.user_password
         user.uid_number	= user.uid_number

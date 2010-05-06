@@ -57,9 +57,8 @@ class GroupsControllerTest < ActionController::TestCase
   def test_groups_index
     get :index
     assert_response :success
-#   FIXME: commented because it freezes test
-#    assert_valid_markup
-#    assert assigns(:groups)
+    assert_valid_markup
+    assert assigns(:groups)
     assert_select '#all_users_string[value="tester,mzugec"]'
   end
 
@@ -81,9 +80,8 @@ class GroupsControllerTest < ActionController::TestCase
     end
     get :index
     assert_response :success
-#   FIXME: commented because it freezes test
-#    assert_valid_markup
-#    assert assigns(:groups)
+    assert_valid_markup
+    assert assigns(:groups)
     assert_select '#all_users_string[value=""]'
   end
 
