@@ -133,7 +133,7 @@ protected
   def ensure_login
     unless logged_in?
       flash[:notice] = _("Please login to continue")
-      redirect_to new_session_path
+      redirect_to :controller => "session", :action => "new", :hostid => "localhost" #redirect by default to locahost appliance (bnc#602807)
     end
   end
 
