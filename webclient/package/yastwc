@@ -197,8 +197,8 @@ case "$1" in
 	
 	# print the URL of the server
 	if test "$?" -eq 0; then
-	    IFC=eth0
-	    IP=`LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
+	    IFC=`LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8`
+            IP=`LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
 	    if [ -n "$IP" ]; then
 		echo -e "\t${done}The WebYaST client service is running at https://$IP:54984/${norm}\n"
 	    else
