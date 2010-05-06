@@ -36,19 +36,6 @@ function _getElementsByClassName(node, classname)  {
 
 
 
- // disable all submit buttons after submitting a form
- // avoid double submit by accident
- function disable_forms() {
-   // disable submit buttons
-   $(':submit').attr('disabled', 'disabled');
-   // make all input elements (text fields...) read only
-   $(':input').attr('readonly', 'readonly');
-   // disable all delete buttons
-   $('a.button').attr('onclick','return false;');
-   $('a.button').attr('href','');
-   $('a.button').attr('disabled', 'disabled');
- }
-
  // onsubmit handler
  function form_handler(sid) {
    if ($('#form_' + sid).valid())

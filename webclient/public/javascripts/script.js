@@ -30,6 +30,19 @@ function addTabsNavigation(fragment_sel_str,title_sel_str) {
   });
 }
 
+ // disable all submit buttons after submitting a form
+ // avoid double submit by accident
+ function disable_forms() {
+   // disable submit buttons
+   $(':submit').attr('disabled', 'disabled');
+   // make all input elements (text fields...) read only
+   $(':input').attr('readonly', 'readonly');
+   // disable all delete buttons
+   $('a.button').attr('onclick','return false;');
+   $('a.button').attr('href','');
+   $('a.button').attr('disabled', 'disabled');
+ }
+
 $(document).ready(function() {
   
    // Change BG Colour on mouseover and change it back on mouse out

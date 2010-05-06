@@ -107,7 +107,7 @@
     function submitTime() {
 		if($("#timeForm").valid() ) {
 		  $('#progress').show();
-      $("#timeForm *").attr('readonly','readonly'); //disable all elements after submit
+      disable_forms();
 		  return true;
 		}
     };
