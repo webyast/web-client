@@ -154,10 +154,6 @@ public
     rescue ActiveResource::ResourceNotFound => e
       flash[:error] = _("Cannot read groups list.")
       return
-    rescue Exception => e
-      flash[:error] = _("Backend error: #{ERB::Util.html_escape e.message}")
-      Rails.logger.error "Backend error: #{ERB::Util.html_escape e.response.body}"
-      redirect_to "/"
     end
     Rails.logger.debug( "Groups: " + @groups.inspect )
     return unless @groups
