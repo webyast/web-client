@@ -51,18 +51,15 @@ $(document).ready(function() {
 
 
 // adapt the status icon of given service
-function toggle_service_info (id) {
-    var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
-    var buttons	= $(id).siblings('p.service-buttons');
+function toggle_service_info (name) {
 
-    // hide enable/disable buttons if they should not be seen
-    $(buttons).find('a#enable').hide();
-    $(buttons).find('a#disable').hide();
+    var id	= '#service_status_' + name;
+    var heading	= $(id).closest('.service-content').siblings('div.list-fieldset-header');
 
     if ($(id).is(':has(span.status_running)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon ok');
-	$(buttons).find('a#start').hide();
-	$(buttons).find('a#stop').show();
+	$('a#start_' + name).hide();
+	$('a#stop_' + name).show();
 	// running, but disabled: not ok
 	if ($(id).is(':has(div.service_disabled)')) {
 	    $(heading).find(".service-icon").attr('class','service-icon status-icon ok-unused');
@@ -70,22 +67,26 @@ function toggle_service_info (id) {
     }
     else if ($(id).is(':has(span.status_dead)')) {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon error');
-	$(buttons).find('a#stop').hide();
-	$(buttons).find('a#start').show();
+	$('a#stop_' + name).hide();
+	$('a#start_' + name).show();
     }
     else {
 	$(heading).find(".service-icon").attr('class','service-icon status-icon unused');
-	$(buttons).find('a#stop').hide();
-	$(buttons).find('a#start').show();
+	$('a#stop_' + name).hide();
+	$('a#start_' + name).show();
 	// not running, but enabled: not unused
 	if ($(id).is(':has(div.service_enabled)')) {
 	    $(heading).find(".service-icon").attr('class','service-icon status-icon unused-ok');
 	}
     }
+    // hide enable/disable buttons if they should not be seen
+    // explicitely check if some status is present, custom services do not have it
     if ($(id).is(':has(div.service_disabled)')) {
-	$(buttons).find('a#enable').show();
+	$('a#disable_' + name).hide();
+	$('a#enable_' + name).show();
     } else if ($(id).is(':has(div.service_enabled)')) {
-	$(buttons).find('a#disable').show();
+	$('a#enable_' + name).hide();
+	$('a#disable_' + name).show();
     }
 }
 
@@ -140,12 +141,20 @@ function select_status (val) {
     }
 }
 
+// hide the buttons and current state while the action is performed
 function disable_buttons (s) {
+
+    $('#service_progress_' + s).show();
+    $('#service_status_' + s).hide();
+    $('#service_result_' + s).hide();
     $('#service_refresh_' + s).hide();
     $('a.button').attr('disabled', 'disabled');
 }
 
+// show the results and enable buttons back
 function enable_buttons (s) {
+    $('#service_progress_' + s).hide();
+    $('#service_status_' + s).show();
     $('#service_refresh_' + s).show();
     $('a.button').removeAttr('disabled');
 }
@@ -242,8 +251,8 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 	}
 	link_to_remote _('(refresh)'), :update => "service_status_#{service.name}",
 	    :url => url,
-	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide(); disable_buttons('#{service.name}');",
-	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show(); enable_buttons ('#{service.name}');"
+	    :loading  => "disable_buttons('#{service.name}');",
+	    :complete => "toggle_service_info ('#{service.name}'); enable_buttons ('#{service.name}');"
   %>
   </span>
 
@@ -266,7 +275,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 		}
 		html_options	= {
 		    :class	=> "button",
-		    :id		=> cmd
+		    :id		=> cmd + "_" + service.name
 		}
 		html_options[:style]	= "display: none" if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0) ||
 							     (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
@@ -282,7 +291,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 
 		complete   	= remote_function(:update => "service_status_#{service.name}",
                        :url => status_url,
-                       :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show(); enable_buttons('#{service.name}')"
+                       :complete => "toggle_service_info ('#{service.name}'); $('#service_result_#{service.name}').show(); enable_buttons('#{service.name}')"
                 )
 
 		# dependent services must also update status
@@ -295,7 +304,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 			    :action	=> :show_status,
 			    :id		=> required
 			},
-			:complete	=> "toggle_service_info ('#service_status_#{required}')"
+			:complete	=> "toggle_service_info ('#{required}')"
 		    )
 		  end
 		elsif (cmd == "stop" || cmd == "disable")
@@ -307,14 +316,14 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 			    :action	=> :show_status,
 			    :id		=> required
 			},
-			:complete	=> "toggle_service_info ('#service_status_#{required}')"
+			:complete	=> "toggle_service_info ('#{required}')"
 		    )
 		  end
 		end
 
 		link_to_remote label,
 		    :url	=> url,
-		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide(); disable_buttons('#{service.name}');",
+		    :loading	=> "disable_buttons('#{service.name}');",
 		    :complete   => complete,
 		    :html	=> html_options,
 		    :update	=> "service_result_#{service.name}"
