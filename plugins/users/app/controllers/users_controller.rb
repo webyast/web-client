@@ -72,8 +72,6 @@ class UsersController < ApplicationController
           end
         end
       end
-    rescue ActiveResource::ClientError => e
-      flash[:error] = YaST::ServiceResource.error(e)
     end
 
     respond_to do |format|
