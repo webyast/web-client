@@ -47,7 +47,7 @@
   <div class="eula-text-area"><%= @eula.text %></div>
   </p>
   <% if @eula.only_show %>
-  <%=  f.hidden_field :accepted, :true %>
+  <%=  hidden_field_tag :accepted, "true" %>
   <% else %>
   <p>
   <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => disabled, :disabled => disabled %>
