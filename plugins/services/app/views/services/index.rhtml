@@ -139,6 +139,17 @@ function select_status (val) {
 	});
     }
 }
+
+function disable_buttons (s) {
+    $('#service_refresh_' + s).hide();
+    $('a.button').attr('disabled', 'disabled');
+}
+
+function enable_buttons (s) {
+    $('#service_refresh_' + s).show();
+    $('a.button').removeAttr('disabled');
+}
+
 <% end %>
 <% content_for :before_script do %>
   <% javascript_tag do %>
@@ -221,6 +232,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
     <% end %>
   </span>
 
+  <span id='service_refresh_<%= h service.name%>'>
   <%=
 	url	= {
 	    :controller => :services,
@@ -230,9 +242,10 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 	}
 	link_to_remote _('(refresh)'), :update => "service_status_#{service.name}",
 	    :url => url,
-	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
-	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show()"
+	    :loading  => "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide(); disable_buttons('#{service.name}');",
+	    :complete => "$('#service_progress_#{service.name}').hide(); toggle_service_info ('#service_status_#{service.name}'); $('#service_status_#{service.name}').show(); enable_buttons ('#{service.name}');"
   %>
+  </span>
 
   <p class="service-buttons">
   <% commands.each do |cmd|
@@ -269,7 +282,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 
 		complete   	= remote_function(:update => "service_status_#{service.name}",
                        :url => status_url,
-                       :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show();"
+                       :complete => "$('#service_progress_#{service.name}').hide(); $('#service_status_#{service.name}').show(); toggle_service_info ('#service_status_#{service.name}'); $('#service_result_#{service.name}').show(); enable_buttons('#{service.name}')"
                 )
 
 		# dependent services must also update status
@@ -301,7 +314,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 
 		link_to_remote label,
 		    :url	=> url,
-		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide();",
+		    :loading	=> "$('#service_progress_#{service.name}').show(); $('#service_status_#{service.name}').hide(); $('#service_result_#{service.name}').hide(); disable_buttons('#{service.name}');",
 		    :complete   => complete,
 		    :html	=> html_options,
 		    :update	=> "service_result_#{service.name}"
