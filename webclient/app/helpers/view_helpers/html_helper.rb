@@ -260,6 +260,20 @@ EOF_PROGRESS
     ret
   end
 
+  # JavaScript String, makes a JS literal from a string value,
+  # typically from a translated string.
+  #
+  # Usage:
+  #
+  #   alert(<%= jss _("These are 'quotes'.") -%>);
+  #
+  # That works correctly if the text gets translated
+  # to 'Toto jsou "uvozovky".'
+  # (see also https://bugzilla.novell.com/show_bug.cgi?id=604224)
+  def jss(s)
+    "\"#{escape_javascript s}\""
+  end
+
 end
 
 # vim: ft=ruby

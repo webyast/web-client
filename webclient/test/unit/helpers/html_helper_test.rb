@@ -20,6 +20,8 @@ require File.dirname(__FILE__) + '/../../test_helper'
 
 class HtmlHelperTest < ActiveSupport::TestCase
   include ViewHelpers::HtmlHelper
+  # for escape_javascript. in real code, ApplicationController says helper :all
+  include ActionView::Helpers::JavaScriptHelper
 
   # test jQuery selector name escaping
   def test_safe_id
@@ -44,4 +46,9 @@ class HtmlHelperTest < ActiveSupport::TestCase
 
   end
 
+  def test_jss
+    assert_equal '""', jss("")
+    assert_equal '"Hello"', jss("Hello")
+    assert_equal '"Hello \"quoted\" world"', jss("Hello \"quoted\" world")
+  end
 end
