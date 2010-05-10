@@ -1,17 +1,19 @@
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
+# Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-19 15:43\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2010-03-15 13:41+0100\n"
+"Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
+"Language-Team: Czech <opensuse-translation@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: app/helpers/application_helper.rb:20
 msgid " or "
@@ -19,7 +21,7 @@ msgstr " nebo "
 
 #: app/helpers/application_helper.rb:24
 msgid " - "
-msgstr " - "
+msgstr ""
 
 #: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
@@ -50,7 +52,8 @@ msgstr "Jste si jisti?"
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
-#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Nejsou k dispozici žádné informace."
 
@@ -59,14 +62,19 @@ msgid "There was a problem retrieving information from the server."
 msgstr "Při načítání informací ze serveru došlo k chybě."
 
 #: app/helpers/view_helpers/effect_helper.rb:32
+#, fuzzy
+#| msgid "Details"
 msgid "Hide Details"
-msgstr "Skrýt podrobnosti"
+msgstr "Podrobnosti"
 
 #: app/helpers/view_helpers/effect_helper.rb:33
+#, fuzzy
+#| msgid "Details"
 msgid "Show Details"
-msgstr "Zobrazit podrobnosti"
+msgstr "Podrobnosti"
 
-#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
 msgid "Add"
 msgstr "Přidat"
 
@@ -107,8 +115,10 @@ msgid "Session timeout"
 msgstr "Vypršení časového limitu relace"
 
 #: app/controllers/application_controller.rb:79
+#, fuzzy
+#| msgid "Your account is disabled. Please contact your System administrator"
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
-msgstr "Nemáte povolení tuto akci provést. Pokud provedení této akce vyžadujete, obraťte se na správce systému."
+msgstr "Váš účet je deaktivovaný, Prosím kontaktujte vašeho administrátora systému."
 
 #: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
@@ -120,23 +130,27 @@ msgstr "Před přihlášením je třeba se odhlásit."
 
 #: app/controllers/application_controller.rb:213
 msgid "can't be blank"
-msgstr "nesmí být prázdné"
+msgstr ""
 
 #: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
-msgstr "je mimo povolené hodnoty"
+msgstr ""
 
 #: app/controllers/application_controller.rb:215
 msgid "can't be empty"
-msgstr "nemůže být prázdné"
+msgstr ""
 
 #: app/controllers/application_controller.rb:216
+#, fuzzy
+#| msgid "Given URI is invalid"
 msgid "is invalid"
-msgstr "je neplatné"
+msgstr "Zadaná adresa URI je neplatná"
 
 #: app/controllers/application_controller.rb:231
+#, fuzzy
+#| msgid "Invalid package file"
 msgid "Invalid parameters:"
-msgstr "Neplatné parametry:"
+msgstr "Neplatný soubor balíčku"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -176,15 +190,15 @@ msgstr "Účet|Aktualizován:"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token"
-msgstr "Účet|Token Zapamatovat"
+msgstr "Účet|Zapamatovat token"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token expires at"
-msgstr "Účet|Token Zapamatovat vyprší:"
+msgstr "Účet|Zapamatovat token, vyprší::"
 
 #: app/models/account.rb:-
 msgid "Account|Salt"
-msgstr "Účet|Hodnota Salt"
+msgstr "Účet|Hodnota soli"
 
 #: app/models/host.rb:-
 msgid "host"
@@ -211,18 +225,24 @@ msgid "Host|Updated at"
 msgstr "Hostitel|Aktualizován:"
 
 #: app/views/main/_select_language.html.erb:18
+#, fuzzy
+#| msgid "Clear Package Selection"
 msgid "Language Selection"
-msgstr "Výběr jazyka"
+msgstr "Smazat výběr"
 
-#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
+#: app/views/shared/exception_trap.html.erb:8
+#: app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "Toto je nepříjemné..."
 
 #: app/views/shared/exception_trap.html.erb:10
+#, fuzzy
+#| msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
 msgid "We are sorry, but there are some problems."
-msgstr "Je nám líto, ale vyskytly se potíže."
+msgstr "Omlouváme se, ale služba WebYaST je stále v alfa verzi a obsahuje určité problémy."
 
-#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
+#: app/views/shared/exception_trap.html.erb:12
+#: app/views/shared/backendexception_trap.html.erb:6
 msgid "Problem:"
 msgstr "Problém:"
 
@@ -244,7 +264,7 @@ msgstr "K chybě došlo v cílovém počítači."
 
 #: app/views/shared/_missing_write_permissions.html.erb:1
 msgid "You do not have permissions to modify the settings."
-msgstr "Nemáte oprávnění změnit nastavení."
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
@@ -283,8 +303,10 @@ msgid "New WebYaST Host"
 msgstr "Nový hostitel služby WebYaST"
 
 #: app/views/hosts/new.html.erb:41
+#, fuzzy
+#| msgid "URI"
 msgid "URL"
-msgstr "Adresa URL"
+msgstr "Adresa URI"
 
 #: app/views/hosts/new.html.erb:53
 msgid "Create"
@@ -294,7 +316,8 @@ msgstr "Vytvořit"
 msgid "Index"
 msgstr "Index"
 
-#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:72
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "Konfigurace"
 
@@ -328,7 +351,7 @@ msgstr "Načítání informací o opravě"
 
 #: app/views/controlpanel/index.rhtml:50
 msgid "Patch status summary is disabled in the config file."
-msgstr "Souhrn stavu opravy je v vypnut v konfiguračním souboru."
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
@@ -340,7 +363,7 @@ msgstr "Načítání systémových informací"
 
 #: app/views/controlpanel/index.rhtml:62
 msgid "System status summary is disabled in the config file."
-msgstr "Souhrn stavu systému je vypnut v konfiguračním souboru."
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
@@ -355,12 +378,16 @@ msgid "Base system setup"
 msgstr "Základní nastavení systému"
 
 #: app/views/controlpanel/basesystem.rhtml:3
+#, fuzzy
+#| msgid "Your system setup was not completed. Please continue with setting up the modules."
 msgid "Your initial system setup was not completed. Please continue with setting up the modules."
-msgstr "Počáteční nastavení systému nebylo dokončeno. Pokračujte nastavením modulů."
+msgstr "Nastavení systému nebylo dokončeno. Pokračujte nastavením modulů."
 
 #: app/views/controlpanel/basesystem.rhtml:4
+#, fuzzy
+#| msgid "Base system setup"
 msgid "Continue initial system setup"
-msgstr "Pokračovat v počátečním nastavení systému"
+msgstr "Základní nastavení systému"
 
 #: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
@@ -368,11 +395,14 @@ msgstr "WebYaST"
 
 #: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
-msgstr "Moje zařízení"
+msgstr "Moje softwarové zařízení"
 
+# label for language selection
 #: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#, fuzzy
+#| msgid "Language"
 msgid "Language:"
-msgstr "Jazyk:"
+msgstr "Jazyk"
 
 #: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
@@ -420,7 +450,7 @@ msgstr "Služba %s není v cílovém počítači spuštěna."
 
 #: lib/error_constructor.rb:16
 msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
-msgstr "Poškozené nastavení oprávnění rest-service. Může být opraveno skriptem grantwebyasrights."
+msgstr ""
 
 #: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
@@ -443,6 +473,8 @@ msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETC
 msgstr "V umístění /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS není nastaven žádný server NTP."
 
 #: lib/error_constructor.rb:29
+#, fuzzy
+#| msgid "Error occured during ntp synchronization: %s"
 msgid "Error occurred during ntp synchronization: %s"
 msgstr "Při synchronizaci NTP došlo k chybě: %s"
 
@@ -450,3 +482,11 @@ msgstr "Při synchronizaci NTP došlo k chybě: %s"
 msgid "Error while saving administrator settings: %s"
 msgstr "Při ukládání nastavení správce došlo k chybě: %s"
 
+#~ msgid "You must accept all EULAs before using this product!"
+#~ msgstr "Než začnete používat tento produkt, je třeba přijmout všechny smlouvy EULA."
+
+#~ msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+#~ msgstr "Nelze přesměrovat na smlouvu EULA. Ujistěte se, zda je nainstalován balíček yast2-webclient-eulas."
+
+#~ msgid "Set up the system"
+#~ msgstr "Nastavit systém"

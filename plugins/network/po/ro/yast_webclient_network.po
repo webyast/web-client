@@ -1,183 +1,140 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: openSUSE\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-09-24 15:58+0200\n"
-"Last-Translator: Oprea Lucian <oprea_luci@yahoo.com>\n"
-"Language-Team: Romanian <i18n@suse.de>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-30 16:32+0300\n"
+"Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
+"Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea.luci@gmail.com><strainu10@gmail.com><traduceri@suseromania.ro>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Nu există permisiuni pentru modulul de reţea"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Neconfigurat"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Manual Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "Mod manual"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
 msgstr "Mod automat"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
-msgstr "Setările au fost scrise."
+msgstr "Setările de reţea au fost scrise."
 
-#: app/views/network/index.html.erb:88
-msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr "spaţii albe - caractere invalide."
+
+#: app/views/network/index.html.erb:120
+#| msgid "The VM's name cannot start with a digit."
+msgid " - can not start with a digit."
+msgstr " - nu poate începe cu o cifră."
+
+#: app/views/network/index.html.erb:122
+#| msgid "The option 'flush' is not allowed"
+msgid "periodic '-' is not allowed."
+msgstr "semnul '-' nu este permis."
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr "nu se poate termina cu (-) cratimă."
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr "nu poate începe cu (-) cratimă."
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr " - este caracter invalid pentru numele gazdei."
+
+#: app/views/network/index.html.erb:154
+msgid ""
+"Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between "
+"0 and 255."
 msgstr ""
+"Formatul adresei IP este invalid. Corect este nnn.nnn.nnn.nnn pentru nnn "
+"între 0 şi 255."
 
-#: app/views/network/index.html.erb:97
-msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:163
+msgid ""
+"Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR "
+"format)."
 msgstr ""
+"Formatul prefixului este invalid. Corect este /nn unde nn este cuprins între "
+"0-32 (format CIDR)."
 
-#: app/views/network/index.html.erb:103
-msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:169
+msgid ""
+"Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn "
+"between 0 and 255."
 msgstr ""
+"Formatul implicit al rutei este invalid. Corect este nnn.nnn.nnn.nnn pentru "
+"nnn între 0 şi 255."
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
+"Serverele de nume sunt necesare. Trebuie să existe cel puţin unul specificat."
 
-#: app/views/network/index.html.erb:115
-#, fuzzy
-#| msgid "No valid request file specified."
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
-msgstr "Nu a fost specificat nici un fișier cerere valid."
+msgstr "Numele gazdă este necesar. Acesta trebuie să fie specificat."
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
-msgstr ""
+#: app/views/network/index.html.erb:187
+#| msgid "Domain is required. It is not supported empty domain."
+msgid "Domain is required. An empty domain is not supported."
+msgstr "Un domeniu este necesar. Un domeniu gol nu este acceptat."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
-msgstr "Rețea"
+msgstr "Reţea"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
-msgstr "Interfață"
+msgstr "Interfaţă"
 
-#: app/views/network/index.html.erb:145
-#, fuzzy
-#| msgid "Select Script"
+#: app/views/network/index.html.erb:226
 msgid "Select"
-msgstr "Selectează script"
+msgstr "Selectaţi"
 
-#: app/views/network/index.html.erb:166
-#, fuzzy
-#| msgid "Configuration Mode"
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
 msgstr "Mod de configurare"
 
-#: app/views/network/index.html.erb:170
-#, fuzzy
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "Adresă IP"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "Mască de reţea / Lunprefix"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+msgid "Default route"
+msgstr "Rută implicită"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "Nume gazdă"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "Domeniu"
 
-#: app/views/network/index.html.erb:189
-#, fuzzy
-#| msgid "Name Servers"
+#: app/views/network/index.html.erb:278
 msgid "Name servers"
 msgstr "Servere de nume"
 
-#: app/views/network/index.html.erb:193
-#, fuzzy
+#: app/views/network/index.html.erb:282
 #| msgid "Search Domains"
 msgid "Search domains"
-msgstr "Domenii de căutare"
-
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "Rută implicită"
-
-#, fuzzy
-#~| msgid "Do not start"
-#~ msgid "not set"
-#~ msgstr "Nu porni automat"
-
-#, fuzzy
-#~| msgid "Static"
-#~ msgid "static"
-#~ msgstr "Static"
-
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
-
-#~ msgid "Prefixlen"
-#~ msgstr "Prefixlen"
-
-#~ msgid "DNS"
-#~ msgstr "DNS"
-
-#~ msgid "Routing"
-#~ msgstr "Rutare"
-
-#~ msgid "Save"
-#~ msgstr "Salvează"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Renunță"
-
-#~ msgid "Edit Network Device"
-#~ msgstr "Editaţi dispozitivul de rețea."
-
-#~ msgid "Configuration"
-#~ msgstr "Configurare"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Description"
-#~ msgstr "Descriere"
-
-#~ msgid "MAC"
-#~ msgstr "MAC"
-
-#~ msgid "Device Name"
-#~ msgstr "Nume dispozitiv"
-
-#~ msgid "Startup"
-#~ msgstr "Pornire"
-
-#~ msgid "Update"
-#~ msgstr "Actualizare"
-
-#~ msgid "Back"
-#~ msgstr "Înapoi"
+msgstr "Caută în domeniile"

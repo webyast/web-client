@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.hu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-16 09:17+0200\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-05 16:10+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,131 +14,145 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
 msgstr "Nem található adat a rendszerállapot megjelenítéséhez."
 
-#: app/controllers/status_controller.rb:187
+#: app/controllers/status_controller.rb:159
+#| msgid "No status information available"
+msgid "Status not available."
+msgstr "Nincs elérhető állapotinformáció."
+
+#: app/controllers/status_controller.rb:178
+msgid "Can't connect to host"
+msgstr "Nem tud kapcsolódni a géphez"
+
+#: app/controllers/status_controller.rb:180
+msgid "Can't connect to host %s."
+msgstr "Nem tud kapcsolódni a(z) %s géphez."
+
+#: app/controllers/status_controller.rb:219
 msgid "Limits exceeded for "
 msgstr "Ennek a határértéknek a tállépése: "
 
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:244
+#| msgid "No status information available"
+msgid "Status not available"
+msgstr "Az állapot nem érhető el"
+
+#: app/controllers/status_controller.rb:321
 msgid "exceeded"
 msgstr "túllépett"
 
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:335
 msgid "undercut"
 msgstr "alatti"
 
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:437
 msgid "Limits have been written."
 msgstr "A határértékek mentése befejeződött."
 
-#: app/views/status/edit.html.erb:27
+#: app/views/status/edit.html.erb:48
 msgid "Only numbers are valid !"
 msgstr "Csak a számok érvényesek !"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
 msgid "Status"
 msgstr "Állapot"
 
-#: app/views/status/edit.html.erb:51
+#: app/views/status/edit.html.erb:75
 msgid "Settings"
 msgstr "Beállítások"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "undercuts"
 msgstr "alattiak"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "exceeds"
 msgstr "túllépettek"
 
-#: app/views/status/index.html.erb:71
+#: app/views/status/index.html.erb:92
 msgid "details"
 msgstr "részletek"
 
-#: app/views/status/index.html.erb:87
+#: app/views/status/index.html.erb:108
 msgid "Details"
 msgstr "Részletek"
 
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:161
 msgid "Edit Limits"
 msgstr "Határértékek szerkesztése"
 
-#: app/views/status/_status_graph.html.erb:1
+#: app/views/status/_status_graph.html.erb:2
 msgid "A problem occured when loading status information."
 msgstr "Hiba történt az állapotinformáció betöltése közben."
 
-#: app/views/status/_status_graph.html.erb:91
+#: app/views/status/_status_graph.html.erb:92
 msgid "Show last"
 msgstr "Utolsó megjelenítése"
 
-#: app/views/status/_status_graph.html.erb:92
+#: app/views/status/_status_graph.html.erb:93
 msgid "5 Minutes"
 msgstr "5 perc"
 
-#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/_status_graph.html.erb:94
 msgid "15 Minutes"
 msgstr "15 perc"
 
-#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/_status_graph.html.erb:95
 msgid "30 Minutes"
 msgstr "30 perc"
 
-#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/_status_graph.html.erb:96
 msgid "1 Hour"
 msgstr "1 óra"
 
-#: app/views/status/_status_graph.html.erb:96
+#: app/views/status/_status_graph.html.erb:97
 msgid "6 Hours"
 msgstr "6 óra"
 
-#: app/views/status/_status_graph.html.erb:97
+#: app/views/status/_status_graph.html.erb:98
 msgid "12 Hours"
 msgstr "12 óra"
 
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:3
 msgid "An problem occured when loading status information."
 msgstr "Hiba történt az állapotinformáció betöltése közben."
 
-#: app/views/status/_status_summary.html.erb:12
+#: app/views/status/_status_summary.html.erb:13
 msgid "Cannot read system status - you have been logged out."
 msgstr "A rendszerállapot nem olvasható - nincs bejelentkezve."
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:16
 msgid "Your system is healthy."
 msgstr "A rendszer stabil."
 
-#: app/views/status/_status_summary.html.erb:20
-msgid "Start collectd"
-msgstr "collectd indítása"
-
-#: app/views/status/_status_summary.html.erb:28
+#: app/views/status/_status_summary.html.erb:26
 msgid "Loading system information"
 msgstr "Rendszerinformáció betöltése"
 
-#: app/views/status/_status_progress.html.erb:7
+#: app/views/status/_status_progress.html.erb:8
 msgid "Checking system status"
 msgstr "Rendszerinformáció ellenőrzése"
 
-#: lib/plugin_translation.rb:25
+#: lib/plugin_translation.rb:46
 msgid "Registration is missing"
-msgstr "HIányzik a regisztráció"
+msgstr "Hiányzik a regisztráció"
 
-#: lib/plugin_translation.rb:26
+#: lib/plugin_translation.rb:47
 msgid "Please register your system in order to get updates."
 msgstr "Regisztrálja a rendszert, hogy megkapja a frissítéseket."
 
-#: lib/plugin_translation.rb:27
+#: lib/plugin_translation.rb:48
 msgid "register"
 msgstr "regisztráció"
 
-#: lib/plugin_translation.rb:29
+#: lib/plugin_translation.rb:50
 msgid "Mail configuration test not confirmed"
 msgstr "A levelezés beállításának vizsgálata nincs ellenőrizve"
 
-#: lib/plugin_translation.rb:30
+#: lib/plugin_translation.rb:51
 msgid ""
 "While configuring mail, a test mail was sent to %s . Was the mail delivered "
 "to this address?<br>If so, confirm it by pressing the button. Otherwise "
@@ -146,10 +160,9 @@ msgid ""
 msgstr ""
 "A levelezés beállításakor egy próbalevél került elküldésre a következő "
 "címre: %s. Megérkezett ez a levél?<br> Amennyiben igen, akkor nyomja meg a "
-"gombot. Ellenkező esetben ellenőrizze újra a levelezési beállításokat, vagy "
-"a  '/var/log/mail' fájlt."
+"gombot. Ellenkező esetben ellenőrizze újra a levelezési beállításokat."
 
-#: lib/plugin_translation.rb:33
+#: lib/plugin_translation.rb:54
 msgid ""
 "It was not possible to retrieve the full hostname of the machine. If the "
 "mail could not be delivered, consult the network and/or mail configuration "
@@ -159,9 +172,12 @@ msgstr ""
 "meg, akkor beszéljen a hálózattal és/vagy a levelezőrendszerrel foglalkozó "
 "rendszergazdával."
 
-#: lib/plugin_translation.rb:34
+#: lib/plugin_translation.rb:55
 msgid "Test mail received"
 msgstr "A tesztlevél megérkezett"
+
+#~ msgid "Start collectd"
+#~ msgstr "collectd indítása"
 
 #~ msgid "start"
 #~ msgstr "indítás"
@@ -204,9 +220,6 @@ msgstr "A tesztlevél megérkezett"
 
 #~ msgid "Save"
 #~ msgstr "Mentés"
-
-#~ msgid "No status information available"
-#~ msgstr "Nincs elérhető állapotinformáció"
 
 #~ msgid "Events"
 #~ msgstr "Események"

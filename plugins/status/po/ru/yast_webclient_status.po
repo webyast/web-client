@@ -1,151 +1,180 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# Alexander Melentiev <alex239@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-22 15:24\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Report-Msgid-Bugs-To: translation@suse.de\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-05 00:40+0400\n"
+"Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
+"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
 msgstr "Нет данных для отображения состояния системы."
 
-#: app/controllers/status_controller.rb:187
+#: app/controllers/status_controller.rb:159
+msgid "Status not available."
+msgstr "Статус недоступен."
+
+#: app/controllers/status_controller.rb:178
+msgid "Can't connect to host"
+msgstr "Невозможно подключиться к узлу"
+
+#: app/controllers/status_controller.rb:180
+msgid "Can't connect to host %s."
+msgstr "Невозможно подключиться к узлу %s."
+
+#: app/controllers/status_controller.rb:219
 msgid "Limits exceeded for "
 msgstr "Превышены ограничения для "
 
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:244
+msgid "Status not available"
+msgstr "Статус недоступен"
+
+#: app/controllers/status_controller.rb:321
 msgid "exceeded"
-msgstr "превышено"
+msgstr "превышение"
 
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:335
 msgid "undercut"
-msgstr "ниже заданных ограничений"
+msgstr "недобор"
 
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:437
 msgid "Limits have been written."
-msgstr "Ограничения записаны."
+msgstr "Ограничения были записаны."
 
-#: app/views/status/edit.html.erb:27
+#: app/views/status/edit.html.erb:48
 msgid "Only numbers are valid !"
-msgstr "Можно вводить только числа."
+msgstr "Можно указывать только числа!"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
 msgid "Status"
 msgstr "Состояние"
 
-#: app/views/status/edit.html.erb:51
+#: app/views/status/edit.html.erb:75
 msgid "Settings"
 msgstr "Настройки"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "undercuts"
-msgstr "ниже заданных ограничений"
+msgstr "недобор"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "exceeds"
-msgstr "превышает"
+msgstr "превышение"
 
-#: app/views/status/index.html.erb:71
+#: app/views/status/index.html.erb:92
 msgid "details"
 msgstr "Подробности"
 
-#: app/views/status/index.html.erb:87
+#: app/views/status/index.html.erb:108
 msgid "Details"
 msgstr "Подробности"
 
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:161
 msgid "Edit Limits"
-msgstr "Изменить ограничения"
+msgstr "Редактировать ограничения"
 
-#: app/views/status/_status_graph.html.erb:1
+#: app/views/status/_status_graph.html.erb:2
 msgid "A problem occured when loading status information."
-msgstr "Проблема при загрузке данных о состоянии."
-
-#: app/views/status/_status_graph.html.erb:91
-msgid "Show last"
-msgstr "Показать последний"
+msgstr "При загрузке сведений о состоянии произошла ошибка."
 
 #: app/views/status/_status_graph.html.erb:92
+msgid "Show last"
+msgstr "Показать последние"
+
+#: app/views/status/_status_graph.html.erb:93
 msgid "5 Minutes"
 msgstr "5 минут"
 
-#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/_status_graph.html.erb:94
 msgid "15 Minutes"
 msgstr "15 минут"
 
-#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/_status_graph.html.erb:95
 msgid "30 Minutes"
 msgstr "30 минут"
 
-#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/_status_graph.html.erb:96
 msgid "1 Hour"
 msgstr "1 час"
 
-#: app/views/status/_status_graph.html.erb:96
+#: app/views/status/_status_graph.html.erb:97
 msgid "6 Hours"
 msgstr "6 часов"
 
-#: app/views/status/_status_graph.html.erb:97
+#: app/views/status/_status_graph.html.erb:98
 msgid "12 Hours"
 msgstr "12 часов"
 
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:3
 msgid "An problem occured when loading status information."
-msgstr "Ошибка при загрузке информации о состоянии."
+msgstr "При загрузке сведений о состоянии произошла ошибка."
 
-#: app/views/status/_status_summary.html.erb:12
+#: app/views/status/_status_summary.html.erb:13
 msgid "Cannot read system status - you have been logged out."
-msgstr "Не удалось прочитать данные о состоянии системы — вы вышли из системы."
+msgstr "Невозможно получить сведения о состоянии: вы вышли из системы."
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:16
 msgid "Your system is healthy."
-msgstr "Ваша система работоспособна."
+msgstr "Ваша система здорова."
 
-#: app/views/status/_status_summary.html.erb:20
-msgid "Start collectd"
-msgstr "Запустить collectd"
-
-#: app/views/status/_status_summary.html.erb:28
+#: app/views/status/_status_summary.html.erb:26
 msgid "Loading system information"
-msgstr "Загрузка системной информации"
+msgstr "Загрузка сведений о системе"
 
-#: app/views/status/_status_progress.html.erb:7
+#: app/views/status/_status_progress.html.erb:8
 msgid "Checking system status"
-msgstr "Проверка состояния системы..."
+msgstr "Проверка состояния системы"
 
-#: lib/plugin_translation.rb:25
+#: lib/plugin_translation.rb:46
 msgid "Registration is missing"
-msgstr "Отсутствует регистрация"
+msgstr "Регистрация отсутствует."
 
-#: lib/plugin_translation.rb:26
+#: lib/plugin_translation.rb:47
 msgid "Please register your system in order to get updates."
-msgstr "Зарегистрируйте свою систему, чтобы получать обновления."
+msgstr "Для получения обновлений зарегистрируйте систему."
 
-#: lib/plugin_translation.rb:27
+#: lib/plugin_translation.rb:48
 msgid "register"
-msgstr "зарегистрировать"
+msgstr "Регистрировать"
 
-#: lib/plugin_translation.rb:29
+#: lib/plugin_translation.rb:50
 msgid "Mail configuration test not confirmed"
-msgstr "Тест настройки почты не подтвержден"
+msgstr "Проверка настроек почты не выполнена"
 
-#: lib/plugin_translation.rb:30
-msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr "Во время настройки почты по адресу %s было отправлено тестовое сообщение. Было ли оно доставлено по этому адресу?<br> Если да, подтвердите это, нажав кнопку. В противном случае повторно проверьте конфигурацию почты."
+#: lib/plugin_translation.rb:51
+msgid ""
+"While configuring mail, a test mail was sent to %s . Was the mail delivered "
+"to this address?<br>If so, confirm it by pressing the button. Otherwise "
+"check your mail configuration again."
+msgstr ""
+"При настройке почты по адресу %s было отправлено тестовое письмо. Дошло ли "
+"оно?<br>Если да, то нажмите кнопку. В противном случае проверьте ещё раз "
+"настройки почты."
 
-#: lib/plugin_translation.rb:33
-msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr "Не удалось получить полное имя хоста компьютера. Если не удается доставить почту, проверьте конфигурацию сети и почты у администратора сети."
+#: lib/plugin_translation.rb:54
+msgid ""
+"It was not possible to retrieve the full hostname of the machine. If the "
+"mail could not be delivered, consult the network and/or mail configuration "
+"with your network administrator."
+msgstr ""
+"Невозможно получить полное имя машины. Если почта не доставляется, обсудите "
+"настройку сети и/или почты с вашим системным администратором."
 
-#: lib/plugin_translation.rb:34
+#: lib/plugin_translation.rb:55
 msgid "Test mail received"
-msgstr "Тестовое сообщение получено"
+msgstr "Тестовое письмо получено"
 
+#~ msgid "Start collectd"
+#~ msgstr "Запустить collectd"
+
+#~ msgid "start"
+#~ msgstr "Запустить"

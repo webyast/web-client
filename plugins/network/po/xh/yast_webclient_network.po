@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: base\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -14,114 +14,138 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr ""
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Akwenziwanga Lubumbeko "
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgid "Manual Mode"
 msgid "Manual"
 msgstr "Imo Yokusebenza Yokwenza Ngesandla"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgid "Automatic Mode"
 msgid "Automatic"
 msgstr "Imo Yokusebenza Ezenzekelayo"
 
-#: app/controllers/network_controller.rb:105
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr ""
+
+#: app/views/network/index.html.erb:120
+#, fuzzy
+#| msgid "The VM's name cannot start with a digit."
+msgid " - can not start with a digit."
+msgstr "Igama le-VM alikwazi kuqalisa ngomvo."
+
+#: app/views/network/index.html.erb:122
+#, fuzzy
+#| msgid "The option 'flush' is not allowed"
+msgid "periodic '-' is not allowed."
+msgstr "Isikhethwa 'sokukhupha' asivumelekanga"
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr ""
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
 msgstr "Akukho fayili yokucela ixeliweyo isebenzisekayo."
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
 msgstr ""
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "Umsebenzi wothungelwano"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "Indawo"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:226
 #, fuzzy
 #| msgid "Select Script"
 msgid "Select"
 msgstr "Khetha Iskripti"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:243
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "Ubumbeko"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:252
 #, fuzzy
 #| msgid "Own Address"
 msgid "IP address"
 msgstr "Idilesi Yakho"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "Indla eHlala ikhona"
+
+#: app/views/network/index.html.erb:269
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Amagama Omamkeli"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Ummandla wolawulo\n"
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:278
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "Igama Leseva"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:282
 msgid "Search domains"
 msgstr ""
-
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "Indla eHlala ikhona"
 
 #, fuzzy
 #~| msgid "Do not start"

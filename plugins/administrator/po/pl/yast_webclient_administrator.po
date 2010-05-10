@@ -4,92 +4,98 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-19 15:51\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2010-05-03 16:30+0200\n"
+"PO-Revision-Date: 2010-04-29 10:57+0100\n"
+"Last-Translator: Mirek Rogoziński <miroslaw.rogozinski@opensuse.biz>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/administrator_controller.rb:32 app/views/administrator/index.html.erb:24
+#: app/controllers/administrator_controller.rb:53
+#: app/views/administrator/index.html.erb:45
 msgid "Enter a valid e-mail address."
 msgstr "Proszę podać prawidłowy adres e-mail."
 
-#: app/controllers/administrator_controller.rb:40
+#: app/controllers/administrator_controller.rb:61
 msgid "Passwords do not match."
 msgstr "Hasła nie zgadzają się."
 
-#: app/controllers/administrator_controller.rb:53
+#: app/controllers/administrator_controller.rb:74
 msgid "Administrator settings have been written."
 msgstr "Zapisano ustawienia administratora."
 
-#: app/controllers/administrator_controller.rb:63
+#: app/controllers/administrator_controller.rb:84
 msgid "Error while saving administrator settings: %s"
 msgstr "Wystąpił błąd podczas zapisu ustawień administratora: %s"
 
-#: app/controllers/administrator_controller.rb:75
+#: app/controllers/administrator_controller.rb:96
 msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
-msgstr "Alias adresu e-mail został ustawiony, ale nie skonfigurowano serwera poczty wychodzącej (%s <i>proszę zmienić</i> %s)."
+msgstr "Alias dla poczty został ustawiony, ale serwer poczty wychodzącej nie został skonfigurowany (%s<i>zmień</i>%s)."
 
-#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:22
 msgid "Administrator Settings"
 msgstr "Ustawienia administratora"
 
-#: app/views/administrator/index.html.erb:32
+#: app/views/administrator/index.html.erb:53
 msgid "The passwords do not match."
 msgstr "Hasła nie zgadzają się."
 
-#: app/views/administrator/index.html.erb:33
+#: app/views/administrator/index.html.erb:54
 msgid "A password is required."
 msgstr "Wymagane jest hasło."
 
-#: app/views/administrator/index.html.erb:38
+#: app/views/administrator/index.html.erb:59
 msgid "Password Strength:"
-msgstr "Siła hasła:"
+msgstr ""
 
-#: app/views/administrator/index.html.erb:40
+#: app/views/administrator/index.html.erb:61
 msgid "Weak"
 msgstr "Słabe"
 
-#: app/views/administrator/index.html.erb:41
+#: app/views/administrator/index.html.erb:62
 msgid "Normal"
 msgstr "Normalne"
 
-#: app/views/administrator/index.html.erb:42
+#: app/views/administrator/index.html.erb:63
 msgid "Medium"
 msgstr "Średnie"
 
-#: app/views/administrator/index.html.erb:43
-msgid "Strong"
-msgstr "Mocne"
-
-#: app/views/administrator/index.html.erb:44
-msgid "Very Strong"
-msgstr "Bardzo mocne"
-
-#: app/views/administrator/index.html.erb:63
-msgid "Password Setup for User 'root'"
-msgstr "Konfiguracja hasła użytkownika \"root\""
-
 #: app/views/administrator/index.html.erb:64
+msgid "Strong"
+msgstr "Silne"
+
+#: app/views/administrator/index.html.erb:65
+msgid "Very Strong"
+msgstr "Bardzo silne"
+
+#: app/views/administrator/index.html.erb:93
+msgid "Password Setup for User 'root'"
+msgstr "Konfiguracja hasła dla użytkownika 'root'"
+
+#: app/views/administrator/index.html.erb:94
 msgid "New Password"
 msgstr "Nowe hasło"
 
-#: app/views/administrator/index.html.erb:69
+#: app/views/administrator/index.html.erb:99
 msgid "Confirm Password"
 msgstr "Potwierdzenie hasła"
 
-#: app/views/administrator/index.html.erb:76
+#: app/views/administrator/index.html.erb:106
 msgid "Mail Setup for User 'root'"
-msgstr "Konfiguracja poczty użytkownika \"root\""
+msgstr "Ustawienia poczty użytkownika 'root'"
 
-#: app/views/administrator/index.html.erb:78
+#: app/views/administrator/index.html.erb:108
 msgid "Forward system mail to"
-msgstr "Przekazuj pocztę systemową do"
+msgstr "Przekaż pocztę systemową do"
 
-#: app/views/administrator/index.html.erb:81
+#: app/views/administrator/index.html.erb:111
 msgid "Save Mail Only"
-msgstr "Zapisz tylko pocztę"
+msgstr "Tylko zapisz pocztę"
 
+#~ msgid "Save Password"
+#~ msgstr "Zapisz hasło"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Niepoprawna sesja, proszę ponownie sie zalogować."

@@ -1,45 +1,46 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# translation of yast_webclient_status.po to Japanese
+# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-21 08:19\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2010-04-15 22:29+0900\n"
+"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
+"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
-msgstr "システムステータスを表示するためのデータが見つかりません。"
+msgstr "システム情報を表示するためのデータが見つかりません。"
 
 #: app/controllers/status_controller.rb:187
 msgid "Limits exceeded for "
-msgstr "制限を超過しています"
+msgstr "以下のものに対する制限が超過しています "
 
 #: app/controllers/status_controller.rb:316
 msgid "exceeded"
-msgstr "大きすぎます"
+msgstr "超過"
 
 #: app/controllers/status_controller.rb:330
 msgid "undercut"
-msgstr "未満"
+msgstr "削減"
 
 #: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
-msgstr "制限はすでに保存されています。"
+msgstr "制限を書き込みました。"
 
 #: app/views/status/edit.html.erb:27
 msgid "Only numbers are valid !"
-msgstr "数値のみが有効です!"
+msgstr "数字だけを指定してください！"
 
 #: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
-msgstr "ステータス"
+msgstr "状態"
 
 #: app/views/status/edit.html.erb:51
 msgid "Settings"
@@ -47,11 +48,11 @@ msgstr "設定"
 
 #: app/views/status/edit.html.erb:66
 msgid "undercuts"
-msgstr "小さすぎます"
+msgstr "削減"
 
 #: app/views/status/edit.html.erb:66
 msgid "exceeds"
-msgstr "大きすぎます"
+msgstr "超過"
 
 #: app/views/status/index.html.erb:71
 msgid "details"
@@ -67,43 +68,43 @@ msgstr "制限の編集"
 
 #: app/views/status/_status_graph.html.erb:1
 msgid "A problem occured when loading status information."
-msgstr "ステータス情報を読み込む際に問題が発生しました。"
+msgstr "状態情報を読み込む際に問題が発生しました。"
 
 #: app/views/status/_status_graph.html.erb:91
 msgid "Show last"
-msgstr "直前の表示"
+msgstr "以下の間隔の最新を表示"
 
 #: app/views/status/_status_graph.html.erb:92
 msgid "5 Minutes"
-msgstr "5分"
+msgstr "5 分"
 
 #: app/views/status/_status_graph.html.erb:93
 msgid "15 Minutes"
-msgstr "15分"
+msgstr "15 分"
 
 #: app/views/status/_status_graph.html.erb:94
 msgid "30 Minutes"
-msgstr "30分"
+msgstr "30 分"
 
 #: app/views/status/_status_graph.html.erb:95
 msgid "1 Hour"
-msgstr "1時間"
+msgstr "1 時間"
 
 #: app/views/status/_status_graph.html.erb:96
 msgid "6 Hours"
-msgstr "6時間"
+msgstr "6 時間"
 
 #: app/views/status/_status_graph.html.erb:97
 msgid "12 Hours"
-msgstr "12時間"
+msgstr "12 時間"
 
 #: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
-msgstr "ステータス情報を読み込む際に問題が発生しました。"
+msgstr "状態情報を読み込む際に問題が発生しました。"
 
 #: app/views/status/_status_summary.html.erb:12
 msgid "Cannot read system status - you have been logged out."
-msgstr "システムの状態を読み込めません - ログアウトしました。"
+msgstr "システム情報を読み込めません - ログアウトしました。"
 
 #: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
@@ -111,7 +112,7 @@ msgstr "システムは健全な状態です。"
 
 #: app/views/status/_status_summary.html.erb:20
 msgid "Start collectd"
-msgstr "collectdの起動"
+msgstr "collectd の開始"
 
 #: app/views/status/_status_summary.html.erb:28
 msgid "Loading system information"
@@ -119,15 +120,15 @@ msgstr "システム情報を読み込んでいます"
 
 #: app/views/status/_status_progress.html.erb:7
 msgid "Checking system status"
-msgstr "システムステータスを確認しています"
+msgstr "システム状態を確認しています"
 
 #: lib/plugin_translation.rb:25
 msgid "Registration is missing"
-msgstr "登録が見つかりません"
+msgstr "登録がありません"
 
 #: lib/plugin_translation.rb:26
 msgid "Please register your system in order to get updates."
-msgstr "更新を取得するにはシステムを登録してください。"
+msgstr "更新を受けるため、お使いのシステムを登録してください。"
 
 #: lib/plugin_translation.rb:27
 msgid "register"
@@ -135,17 +136,16 @@ msgstr "登録"
 
 #: lib/plugin_translation.rb:29
 msgid "Mail configuration test not confirmed"
-msgstr "メール設定テストの確認が行われていません。"
+msgstr "メール設定のテストは確認していません"
 
 #: lib/plugin_translation.rb:30
 msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr "メール設定中に、テストメールが %s に送信されました。このアドレスにメールは配信されましたか?<br>配信された場合は、ボタンを押して確認してください。配信されていない場合は、メール設定を再度確認してください。"
+msgstr "メールを設定する際に、テストメールを %s 宛に送信しました。このアドレスにメールが届きましたか？<br>届いている場合は、確認ボタンを押してください。そうでない場合は、メールの設定を確認してください。"
 
 #: lib/plugin_translation.rb:33
 msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr "コンピュータの完全ホスト名を取得できませんでした。メールを配信できない場合は、ネットワークおよび/またはメールの設定について、ネットワーク管理者に相談してください。"
+msgstr "お使いのマシンの完全修飾ホスト名を取得することができません。メールが配信できなかった場合、ご利用のネットワークの管理者に対して、ネットワークやメールの設定を確認してください。"
 
 #: lib/plugin_translation.rb:34
 msgid "Test mail received"
 msgstr "テストメールを受信しました"
-

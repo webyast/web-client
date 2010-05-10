@@ -1,95 +1,210 @@
-# Krešimir Jozić <kjozic@gmail.com>, 2009.
+# Krešimir Jozić <kjozic@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:35+0100\n"
-"PO-Revision-Date: 2009-11-13 19:57+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-05-02 11:38+0200\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
-"Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: app/controllers/registration_controller.rb:11
+msgid "Email"
+msgstr "E-pošta"
+
+#: app/controllers/registration_controller.rb:12
+msgid "System name"
+msgstr "Naziv sustava"
+
+#: app/controllers/registration_controller.rb:13
+msgid "SLES registration code"
+msgstr "SLES registracijski kod"
+
+#: app/controllers/registration_controller.rb:14
+msgid "SLED registration code"
+msgstr "SLED registracijski kod"
 
 #: app/controllers/registration_controller.rb:15
+msgid "Appliance registration code"
+msgstr "Registracijski kod prilagođene distrubucije"
+
+# dialog title for ftp installation
+#: app/controllers/registration_controller.rb:16
+msgid "WebYaST registration code"
+msgstr "WebYaST registracijski kod"
+
+#: app/controllers/registration_controller.rb:17
+msgid "Registration code"
+msgstr "Registracijski kod"
+
+#: app/controllers/registration_controller.rb:18
+msgid "Hostname"
+msgstr "Naziv računala"
+
+#: app/controllers/registration_controller.rb:19
+msgid "Device name"
+msgstr "Naziv uređaja"
+
+#: app/controllers/registration_controller.rb:20
+msgid "Appliance name"
+msgstr "Naziv prilagođene distribucije"
+
+#: app/controllers/registration_controller.rb:21
+msgid "registration code"
+msgstr "registracijski kod"
+
+#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
 msgstr "Invalidna sesija, molimo vas da se ponovo prijavite."
 
-#: app/controllers/registration_controller.rb:39
-#: app/controllers/registration_controller.rb:89
+#: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
 msgstr "Nema dozvola za registraciju"
 
-#: app/controllers/registration_controller.rb:68
-msgid "Arguments for registration cannot be evaluated."
-msgstr "Argumenti za registraciju ne mogu biti provjereni."
+#: app/controllers/registration_controller.rb:84
+msgid "Please try to register again later."
+msgstr "Molimo vas da se pokušate registrirati kasnije."
 
-#: app/controllers/registration_controller.rb:69
-#, fuzzy
-#| msgid "Error occured while connecting to registration server."
-msgid "An error occurred during registration. Please try again."
-msgstr "Dogodila se greška prilikom spajanja na poslužitelj za registraciju."
+#: app/controllers/registration_controller.rb:88
+msgid "Registration was skipped."
+msgstr "Registracija je preskočena."
 
-#: app/controllers/registration_controller.rb:111
-msgid "Registration finished successfully."
-msgstr "Registracija je uspješno završena."
+#: app/controllers/registration_controller.rb:94
+msgid "Registration did not finish."
+msgstr "Registracija nije završena."
 
-#: app/controllers/registration_controller.rb:119
-#, fuzzy
-#| msgid "SLP Services and more"
-msgid "Service added:"
-msgstr "SLP servisi i više"
+#: app/controllers/registration_controller.rb:95
+msgid "Registration did not succeed."
+msgstr "Registracija nije uspjela."
 
-#: app/controllers/registration_controller.rb:123
-#: app/controllers/registration_controller.rb:128
-#, fuzzy
-#| msgid "Catalog: "
-msgid "Catalog enabled:"
-msgstr "Katalog:"
+#: app/controllers/registration_controller.rb:97
+msgid "This may be a temporary issue."
+msgstr "Ovo je možda privremeni problem."
 
-#: app/controllers/registration_controller.rb:143
-#, fuzzy
-#| msgid "Repository: "
-msgid "Repository added:"
-msgstr "Repozitorij:"
+#: app/controllers/registration_controller.rb:102
+msgid "The registration server returned invalid or incomplete data."
+msgstr "Poslužitelj za registraciju vratio je neispravne ili nepotpune podatke."
 
-#: app/controllers/registration_controller.rb:173
+#: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
 msgstr "Molimo vas da popunite unose koji nedostaju."
 
-#: app/controllers/registration_controller.rb:176
-msgid "Error occured while connecting to registration server."
-msgstr "Dogodila se greška prilikom spajanja na poslužitelj za registraciju."
+#: app/controllers/registration_controller.rb:155
+msgid "Service added:"
+msgstr "Dodani servis:"
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:159
+#: app/controllers/registration_controller.rb:164
+msgid "Catalog enabled:"
+msgstr "Katalog omogućen:"
+
+#: app/controllers/registration_controller.rb:188
+msgid "Repository added:"
+msgstr "Dodani repozitorij:"
+
+#: app/controllers/registration_controller.rb:248
+msgid "This system is already registered."
+msgstr "Sustav je već registriran."
+
+#: app/controllers/registration_controller.rb:277
+msgid "Registration finished successfully."
+msgstr "Registracija je uspješno završena."
+
+#: app/controllers/registration_controller.rb:290
+msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
+msgstr ""
+"<p><b>Repozitoriji nisu promijenjeni prilikom procesa registracije.</b></p><p>Vjerojatno je upotrijebljen krivi registracijski kod. Ako se to dogodilo, molimo da ponovno pokušate registraciju da biste dohvatili repozitorij za dogradnje.</p><p>Molimo vas da osigurate da sustav ima podešen repozitorij za dogradnje, inače sustav neće biti u mogućnosti primati "
+"dogradnje.</p>"
+
+#: app/controllers/registration_controller.rb:324
+msgid "A connection to the registration server could not be established."
+msgstr "Ne može se uspostaviti veza sa poslužiteljem za registraciju."
+
+#: app/controllers/registration_controller.rb:328
+msgid "The transmitted registration data created a conflict."
+msgstr "Poslani registracijski podaci uzrokovali su konflikt."
+
+#: app/controllers/registration_controller.rb:336
+msgid "Registration can not be performed. There is no product installed that can be registered."
+msgstr "Registracija se ne može obaviti. Nema proizvoda koji se može registrirati."
+
+#: app/controllers/registration_controller.rb:351
+msgid "A connection to the registration server could not be established or it did not reply."
+msgstr "Ne može se uspostaviti veza sa poslužiteljem za registraciju ili poslužitelj ne odgovara."
+
+#: app/controllers/registration_controller.rb:368
+msgid "The registration server returned invalid data."
+msgstr "Poslužitelj za registraciju vratio je neispravne podatke."
+
+#: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
+msgid "Please enter a valid Email address."
+msgstr "Molimo unesite ispravnu adresu e-pošte."
+
+#: app/views/registration/index.rhtml:36
 msgid "register plugin"
 msgstr "umetak za registraciju"
 
-#: app/views/registration/index.rhtml:1
+#: app/views/registration/index.rhtml:36
 msgid "Registration"
 msgstr "Registracija"
 
-#: app/views/registration/index.rhtml:9
+#: app/views/registration/index.rhtml:44
+msgid "Registration Information"
+msgstr "Informacije o registraciji"
+
+#: app/views/registration/index.rhtml:45
 msgid "This system is registered"
-msgstr ""
+msgstr "Ovaj sustav je registriran"
 
-#: app/views/registration/index.rhtml:10
-#, fuzzy
-#| msgid "System:"
-msgid "System's GUID:"
-msgstr "Sustav:"
+#: app/views/registration/index.rhtml:46
+msgid "System number (GUID)"
+msgstr "Broj sustava (GUID)"
 
-#: app/views/registration/index.rhtml:11
-#, fuzzy
-#| msgid "Registration"
+#: app/views/registration/index.rhtml:47
 msgid "Register again"
-msgstr "Registracija"
+msgstr "Registriraj ponovo"
 
-#: app/views/registration/index.rhtml:39
-msgid "Detail"
-msgstr "Detalj"
+#: app/views/registration/index.rhtml:54
+msgid "Next"
+msgstr "Dalje"
+
+#: app/views/registration/index.rhtml:64
+msgid "Mandatory Information"
+msgstr "Obavezne informacije"
+
+#: app/views/registration/index.rhtml:79
+msgid "Details"
+msgstr "Detalji"
+
+#: app/views/registration/index.rhtml:104
+msgid "Skip"
+msgstr "Preskoči"
+
+#: app/views/registration/index.rhtml:105
+msgid "Postpone"
+msgstr "Odgodi"
+
+#: app/views/registration/index.rhtml:106
+msgid "or"
+msgstr "ili"
+
+#~ msgid "Arguments for registration cannot be evaluated."
+#~ msgstr "Argumenti za registraciju ne mogu biti provjereni."
+
+#~| msgid "Error occured while connecting to registration server."
+#~ msgid "An error occurred during registration. Please try again."
+#~ msgstr "Dogodila se greška prilikom registriranja. Molimo pokušajte ponovno."
+
+#~ msgid "Error occured while connecting to registration server."
+#~ msgstr "Dogodila se greška prilikom spajanja na poslužitelj za registraciju."
+
+#~ msgid "Detail"
+#~ msgstr "Detalj"
 
 #~ msgid "This table gives registration settings."
 #~ msgstr "Ova tablica daje postavke registracije."

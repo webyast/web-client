@@ -1,160 +1,84 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Vytautas Paulius <vytautas39@gmail.com>, 2009.
+# Mindaugas Baranauskas <embar@users.berlios.de>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:33+0100\n"
-"PO-Revision-Date: 2001-10-18 09:54+0200\n"
-"Last-Translator: Jonas Gocentas <jonasgocentas@florida.usa.com>\n"
-"Language-Team: Lithuanian <i18n@suse.de>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-01-04 13:21+0200\n"
+"Last-Translator: Mindaugas Baranauskas <embar@users.berlios.de>\n"
+"Language-Team: Lithuanian <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/application_controller.rb:53
-msgid "You must accept all EULAs before using this product!"
-msgstr ""
-
-#: app/controllers/application_controller.rb:57
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
-
-#: app/controllers/application_controller.rb:111
-msgid "Please login to continue"
-msgstr ""
-
-#: app/controllers/application_controller.rb:118
-msgid "You must logout before you can login"
-msgstr ""
-
-#: app/controllers/hosts_controller.rb:25
-#, fuzzy
-#| msgid "Connected to: %s"
-msgid "Can't connect to host %s."
-msgstr "Prisijungta prie: %s"
-
-#: app/controllers/hosts_controller.rb:26
-msgid "Make sure the host is up and that the YaST web service is running."
-msgstr ""
-
-#: app/controllers/hosts_controller.rb:28
-msgid "Please select a host to connect to."
-msgstr ""
-
-#: app/controllers/hosts_controller.rb:31
-#, fuzzy
-#| msgid "The job was not found."
-msgid "The host '%s' cannot be found."
-msgstr "Užduotis nerasta."
-
-#: app/controllers/hosts_controller.rb:32
-msgid "Please double-check the host URL."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:51
-#, fuzzy
-#| msgid "you need to specify resource types and names"
-msgid "You need to specify the host"
-msgstr "jums reikia nurodyti resursų tipus ir pavadinimus"
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "account"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Login"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Created at"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Updated at"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Remember token"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Remember token expires at"
-msgstr ""
-
-#: app/models/account.rb:-
-msgid "Account|Salt"
-msgstr ""
-
-#: app/models/host.rb:-
-msgid "host"
-msgstr ""
-
-#: app/models/host.rb:-
-#, fuzzy
-#| msgid "Host Names"
-msgid "Host|Name"
-msgstr "Kompiuterių vardai"
-
-#: app/models/host.rb:-
-msgid "Host|Url"
-msgstr ""
-
-#: app/models/host.rb:-
-#, fuzzy
-#| msgid "Description"
-msgid "Host|Description"
-msgstr "Aprašymas"
-
-#: app/models/host.rb:-
-msgid "Host|Created at"
-msgstr ""
-
-#: app/models/host.rb:-
-msgid "Host|Updated at"
-msgstr ""
-
-#: app/helpers/application_helper.rb:15
+#: app/helpers/application_helper.rb:20
 msgid " or "
+msgstr " arba "
+
+#: app/helpers/application_helper.rb:24
+msgid " - "
 msgstr ""
+
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Atgal"
 
 # cancel button label
-#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
 msgid "Cancel"
 msgstr "Atšaukti"
 
-#: app/helpers/application_helper.rb:28
+#: app/helpers/application_helper.rb:52
 msgid "Save"
-msgstr "Išsaugoti"
+msgstr "Įrašyti"
 
-#: app/helpers/application_helper.rb:30
+#: app/helpers/application_helper.rb:55
 msgid "Next"
 msgstr "Kitas"
+
+#: app/helpers/application_helper.rb:56
+#, fuzzy
+#| msgid "Finnish"
+msgid "Finish"
+msgstr "Suomių"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr "Ar jūs įsitikinęs(usi)?"
+
+#: app/helpers/view_helpers/html_helper.rb:133
+msgid "Unknown error"
+msgstr "Nežinomas klaida"
+
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "Informacija neprieinama"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "Kilo nesklandumų gaunant informaciją iš serverio."
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+#, fuzzy
+#| msgid "Details"
+msgid "Hide Details"
+msgstr "Detalės"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+#, fuzzy
+#| msgid "Details"
+msgid "Show Details"
+msgstr "Detalės"
 
 #: app/helpers/view_helpers/label_helper.rb:6
 #: app/views/hosts/index.html.erb:33
@@ -162,63 +86,208 @@ msgid "Add"
 msgstr "Pridėti"
 
 #: app/helpers/view_helpers/label_helper.rb:10
-#, fuzzy
-#| msgid "&Edit"
 msgid "Edit"
-msgstr "&Keisti"
+msgstr "Keisti"
 
 #: app/helpers/view_helpers/label_helper.rb:14
 msgid "Delete"
 msgstr "Trinti"
 
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr ""
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr "Reikia nurodyti pagrindinį kompiuterį"
 
-#: app/helpers/view_helpers/html_helper.rb:132
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr "Nenurodytas prisijungimo vardas"
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr "Nenurodytas slaptažodis"
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Pagrindinis kompiuteris užblokavo vartotoją %s. Jis negalės prisijungti iki %s"
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr "Prisijungti nepavyko. Pasitikrinkite savo vartotojo vardą ir slaptažodį."
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr "Jūs dabar atsijungęs(usi)."
+
+#: app/controllers/application_controller.rb:24
 #, fuzzy
-#| msgid "Unknown error\n"
-msgid "Unknown error"
-msgstr "Nežinomas klaida\n"
+#| msgid "Session active:"
+msgid "Session timeout"
+msgstr "Sesija aktyvi:"
 
-#: app/helpers/view_helpers/html_helper.rb:136
-#: app/views/shared/exception_trap.html.erb:22
+#: app/controllers/application_controller.rb:79
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr ""
+
+#: app/controllers/application_controller.rb:117
+msgid "Please login to continue"
+msgstr "Prašome prisijungti, kad galėtumėte tęsti"
+
+#: app/controllers/application_controller.rb:124
+msgid "You must logout before you can login"
+msgstr "Jūs turite atsijungti, kad galėtumėte vėl prisijungti."
+
+#: app/controllers/application_controller.rb:213
+msgid "can't be blank"
+msgstr ""
+
+#: app/controllers/application_controller.rb:214
+msgid "is out of allowed values"
+msgstr ""
+
+#: app/controllers/application_controller.rb:215
+msgid "can't be empty"
+msgstr ""
+
+#: app/controllers/application_controller.rb:216
+msgid "is invalid"
+msgstr ""
+
+#: app/controllers/application_controller.rb:231
 #, fuzzy
-#| msgid "No information available."
-msgid "No information available"
-msgstr "Informacija neprieinama."
+#| msgid "Invalid LDAP URL query parameter '%s'"
+msgid "Invalid parameters:"
+msgstr "Klaidingas LDAP URL užklausos parametras „%s“"
 
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
+#: app/controllers/hosts_controller.rb:25
+msgid "Can't connect to host %s."
+msgstr "Prisijungta prie pagrindinio kompiuterio %s."
+
+#: app/controllers/hosts_controller.rb:26
+msgid "Make sure the host is up and that the YaST web service is running."
+msgstr "Įsitikinkite, kad pagrindinis kompiuteris yra įjungtas ir kad YaST žiniatinklio paslauga paleista."
+
+#: app/controllers/hosts_controller.rb:28
+msgid "Please select a host to connect to."
+msgstr "Prašome pasirinkti tiekėją, kad galėtumėte prisijungti."
+
+#: app/controllers/hosts_controller.rb:31
+msgid "The host '%s' cannot be found."
+msgstr "Nepavyksta rasti pagrindinio kompiuterio „%s“."
+
+#: app/controllers/hosts_controller.rb:32
+msgid "Please double-check the host URL."
 msgstr ""
 
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
+#: app/models/account.rb:-
+msgid "account"
+msgstr "paskyra"
+
+#: app/models/account.rb:-
+msgid "Account|Login"
+msgstr "Paskyra|Prisijungti"
+
+#: app/models/account.rb:-
+msgid "Account|Created at"
+msgstr "Paskyra|Sukurta"
+
+#: app/models/account.rb:-
+msgid "Account|Updated at"
+msgstr "Paskyra|Atnaujinta"
+
+#: app/models/account.rb:-
+msgid "Account|Remember token"
+msgstr "Paskyra|Prisiminti prisijungimą."
+
+#: app/models/account.rb:-
+msgid "Account|Remember token expires at"
+msgstr "Paskyra|Nepamirškite, kad prisijungimas pasibaigs"
+
+#: app/models/account.rb:-
+msgid "Account|Salt"
 msgstr ""
 
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
+#: app/models/host.rb:-
+msgid "host"
+msgstr "pagrindinis kompiuteris"
+
+#: app/models/host.rb:-
+msgid "Host|Name"
+msgstr "Pagrindinis kompiuteris|Vardas"
+
+#: app/models/host.rb:-
+msgid "Host|Url"
+msgstr "Pagrindinis kompiuteris|Url"
+
+#: app/models/host.rb:-
+msgid "Host|Description"
+msgstr "Pagrindinis kompiuteris|Aprašymas"
+
+#: app/models/host.rb:-
+msgid "Host|Created at"
+msgstr "Pagrindinis kompiuteris|Sukurta"
+
+#: app/models/host.rb:-
+msgid "Host|Updated at"
+msgstr "Pagrindinis kompiuteris|Atnaujinta"
+
+#: app/views/main/_select_language.html.erb:18
+#, fuzzy
+#| msgid "Language and Keyboard Layout Selection"
+msgid "Language Selection"
+msgstr "Kalbos ir klaviatūros išdėstymo pasirinkimas"
+
+#: app/views/shared/exception_trap.html.erb:8
+#: app/views/shared/backendexception_trap.html.erb:2
+msgid "This is embarrasing...."
+msgstr "Tai nepatogu..."
+
+#: app/views/shared/exception_trap.html.erb:10
+#, fuzzy
+#| msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid "We are sorry, but there are some problems."
+msgstr "Mes atsiprašome, bet Žiniatinklio YaST yra alfa stadijoje, todėl gali pasitaikyti nesklandumų."
+
+#: app/views/shared/exception_trap.html.erb:12
+#: app/views/shared/backendexception_trap.html.erb:6
+msgid "Problem:"
+msgstr "Problema:"
+
+#: app/views/shared/exception_trap.html.erb:18
+msgid "Please Report a bug so we can fix the problem!."
+msgstr "Prašome pranešti apie riktą, kad mes galėtume jį ištaisyti!"
+
+#: app/views/shared/exception_trap.html.erb:18
+msgid "(report link)"
+msgstr "(pranešimo nuoroda)"
+
+#: app/views/shared/exception_trap.html.erb:19
+msgid "Don't forget to include the bug details."
+msgstr "Nepamirškite aprašyti rikto detalių."
+
+#: app/views/shared/backendexception_trap.html.erb:4
+msgid "Problem occured on target machine."
+msgstr "Nesklandumai paskirties kompiuteryje."
+
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
 msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
-msgstr ""
+msgstr "Keičiama YaST žiniatinklio paslauga"
 
 #: app/views/hosts/edit.html.erb:22
-#, fuzzy
-#| msgid "Web Server"
 msgid "YaST-Web-Service"
-msgstr "Žiniatinklio serveris"
+msgstr "YaST žiniatinklio paslauga"
 
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:29
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
 msgstr "Aprašymas"
 
@@ -226,91 +295,138 @@ msgstr "Aprašymas"
 msgid "Ok"
 msgstr "Gerai"
 
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Atgal"
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Prašome pasirinkti paslaugą:"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "Ar tikrai pašalinti pagrindinį kompiuterį %s?"
+
+#: app/views/hosts/new.html.erb:9
+msgid "New WebYaST Host"
+msgstr "Naujas Žiniatinklio YaST pagrindinis kompiuteris"
+
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:53
+msgid "Create"
+msgstr "Sukurti"
 
 #: app/views/hosts/show.html.erb:7
-#, fuzzy
-#| msgid "&Index"
 msgid "Index"
-msgstr "&Sąrašas"
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
 msgstr ""
 
-#: app/views/hosts/new.html.erb:47
-msgid "Create"
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
+msgid "Configuration"
+msgstr "Konfigūracija"
+
+#: app/views/controlpanel/index.rhtml:27
+msgid "Status"
+msgstr "Būsena"
+
+#: app/views/controlpanel/index.rhtml:35
+msgid "System actions"
+msgstr "Sistemos veiksmai"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:37
+msgid "Reboot"
+msgstr "Perkrauti"
+
+#: app/views/controlpanel/index.rhtml:38
+msgid "Really reboot %s?"
+msgstr "Tikrai perkrauti %s?"
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Shutdown"
+msgstr "Išjungti"
+
+#: app/views/controlpanel/index.rhtml:40
+msgid "Really shutdown %s?"
+msgstr "Tikrai išjungti %s?"
+
+#: app/views/controlpanel/index.rhtml:48
+msgid "Loading patch information"
+msgstr "Įkeliama pataisos informacija"
+
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:8
-#: app/views/shared/backendexception_trap.html.erb:2
-msgid "This is embarrasing...."
+#: app/views/controlpanel/index.rhtml:53
+msgid "Patch plugin is not installed."
+msgstr "Pataisos papildinys neįdiegtas."
+
+#: app/views/controlpanel/index.rhtml:60
+msgid "Loading system information"
+msgstr "Įkeliama sistemos informacija"
+
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
 msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr ""
+#: app/views/controlpanel/index.rhtml:65
+msgid "Status plugin is not installed."
+msgstr "Būsenos papildinys neįdiegtas."
 
-#: app/views/shared/exception_trap.html.erb:12
-#: app/views/shared/backendexception_trap.html.erb:6
+#: app/views/controlpanel/index.rhtml:102
+msgid "Show all modules"
+msgstr "Rodyti visus modulius"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Pagrindinės sistemos sąranka"
+
+#: app/views/controlpanel/basesystem.rhtml:3
 #, fuzzy
-#| msgid "Problem: "
-msgid "Problem:"
-msgstr "Problema: "
+#| msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr "Jūsų sistemos sąranka neužbaigta. Prašome baigti konfigūruoti modulius."
 
-#: app/views/shared/exception_trap.html.erb:18
-msgid "Please Report a bug so we can fix the problem!."
-msgstr ""
+#: app/views/controlpanel/basesystem.rhtml:4
+#, fuzzy
+#| msgid "Base system setup"
+msgid "Continue initial system setup"
+msgstr "Pagrindinės sistemos sąranka"
 
-#: app/views/shared/exception_trap.html.erb:18
-msgid "(report link)"
-msgstr ""
-
-#: app/views/shared/exception_trap.html.erb:19
-msgid "Don't forget to include the bug details."
-msgstr ""
-
-#: app/views/shared/backendexception_trap.html.erb:4
-msgid "Problem occured on target machine."
-msgstr ""
-
-#: app/views/layouts/main.rhtml:34
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
-msgstr ""
+msgstr "Žiniatinklio YaST"
 
-#: app/views/layouts/main.rhtml:48
-#, fuzzy
-#| msgid "Applied"
+#: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
-msgstr "Pritaikyta"
+msgstr "Mano aparatas"
 
-#: app/views/layouts/main.rhtml:56
+# label for language selection
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
 #, fuzzy
-#| msgid "Connected To"
+#| msgid "Language"
+msgid "Language:"
+msgstr "Kalba"
+
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
-msgstr "Prijungtas prie"
+msgstr "Prijungtas pagrindinis kompiuteris:"
 
-#: app/views/layouts/main.rhtml:57
-#, fuzzy
-#| msgid "Username: "
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
-msgstr "Vartotojo vardas: "
+msgstr "Vartotojas:"
 
-#: app/views/layouts/main.rhtml:60
-#, fuzzy
-#| msgid "Control Center"
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "Valdymo centras"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
-msgstr "Išsiregistruoti"
+msgstr "Atsijungti"
 
-#: app/views/layouts/main.rhtml:93
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
-msgstr ""
+msgstr "...Palaukite..."
 
 #: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
@@ -321,135 +437,58 @@ msgid "Enter login credentials for host %s."
 msgstr ""
 
 #: app/views/sessions/new.rhtml:10
-#, fuzzy
-#| msgid "Username: "
 msgid "Username:"
-msgstr "Vartotojo vardas: "
+msgstr "Vartotojo vardas:"
 
 # password dialog title
 #: app/views/sessions/new.rhtml:13
 msgid "Password:"
 msgstr "Slaptažodis:"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-#, fuzzy
-#| msgid "Base System"
-msgid "Base system setup"
-msgstr "Bazinė sistema"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:4
-#, fuzzy
-#| msgid "Reboot the system now?"
-msgid "Set up the system"
-msgstr "Perkrauti sistemą?"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
-msgid "Configuration"
-msgstr "Konfigūracija"
-
-#: app/views/controlpanel/index.rhtml:24
-msgid "Status"
-msgstr "Būsena"
-
-#: app/views/controlpanel/index.rhtml:33
-#, fuzzy
-#| msgid "System Settings"
-msgid "System actions"
-msgstr "Sistemos nustatymai"
-
-# reboot button label
-#: app/views/controlpanel/index.rhtml:34
-msgid "Reboot"
-msgstr "Perkrauti"
-
-#: app/views/controlpanel/index.rhtml:35
-msgid "Really reboot %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:36
-msgid "Shutdown"
-msgstr "Išjungti"
-
-#: app/views/controlpanel/index.rhtml:37
-msgid "Really shutdown %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:44
-#, fuzzy
-#| msgid "Looking for CPU information..."
-msgid "Loading patch information"
-msgstr "Gaunama CPU informacijos..."
-
-#: app/views/controlpanel/index.rhtml:46
-#, fuzzy
-#| msgid "not installed"
-msgid "Patch plugin is not installed."
-msgstr "neįdiegta"
-
-#: app/views/controlpanel/index.rhtml:52
-#, fuzzy
-#| msgid "System Information"
-msgid "Loading system information"
-msgstr "Sistemos informacija"
-
-#: app/views/controlpanel/index.rhtml:54
-msgid "Status plugin is not installed."
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:93
-#, fuzzy
-#| msgid "Show Loaded Modules"
-msgid "Show all modules"
-msgstr "Rodyti įkeltus modulius"
-
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
-msgstr ""
+msgstr "Paskirties kompiuteryje paslauga %s negalima"
 
 #: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
-msgstr ""
+msgstr "Paskirties kompiuteryje nepaleista paslauga %s"
 
 #: lib/error_constructor.rb:16
-#, fuzzy
-#| msgid "Action '%1' is not allowed for service '%2'."
-msgid "Permission %s is not granted for user %s"
-msgstr "Veiksmas „%1“ neleidžiamas paslaugai „%2“."
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr ""
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:17
+msgid "Permission %s is not granted for user %s"
+msgstr "Leidimas %s nesuteiktas vartotojui %s"
+
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr ""
+msgstr "Vartotojas nebėra prisijungęs paskirties kompiuteryje. Prašome prisijungti iš naujo."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
+msgstr "Paskirties sistema nėra vientisa: rinkmenos %s nėra arba ji sugadinta"
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
+msgstr "Rinkmenoje /etc/sysconfig/network/config nėra nurodytas ntp serveris - NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:28
-msgid "Error occured during ntp synchronization: %s"
-msgstr ""
-
-#: lib/error_constructor.rb:31
-msgid "Error while saving administrator settings: %s"
-msgstr ""
-
-# label for language selection
+#: lib/error_constructor.rb:29
 #, fuzzy
-#~| msgid "Language"
-#~ msgid "Langugage:"
-#~ msgstr "Kalba"
+#| msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "ntp sinchronizacijos metu įvyko klaida: %s"
+
+#: lib/error_constructor.rb:32
+msgid "Error while saving administrator settings: %s"
+msgstr "Įrašant administratoriaus nuostatas įvyko klaida: %s"
+
+#~ msgid "You must accept all EULAs before using this product!"
+#~ msgstr "Prieš naudodami šį produktą privalote sutikti su visomis galutinio vartotojo licencijų sutarčių sąlygomis!"
 
 #, fuzzy
 #~| msgid "Name: "

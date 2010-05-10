@@ -1,129 +1,274 @@
 # translation of yast_webclient_users.fi.po to suomi
 # Jyri Palokangas <jyri.palokangas@opensuse.org>, 2009.
+# Jyri Palokangas <jmp@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-10-22 20:54+0300\n"
-"Last-Translator: Jyri Palokangas <jyri.palokangas@opensuse.org>\n"
-"Language-Team: suomi <fi@li.org>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-05-04 16:20+0300\n"
+"Last-Translator: Jyri Palokangas <jmp@opensuse.org>\n"
+"Language-Team: TRANSLATIONS <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "Epäkelpo istunto, kirjaudu uudestaan."
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr "Ryhmän nimen parametri puuttuu"
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:27
+#| msgid "Missing argument for "
+msgid "Missing group parameters"
+msgstr "Ryhmän parametri(t) puuttuu"
+
+#: app/controllers/groups_controller.rb:37
+#| msgid "Please enter server name below"
+msgid "Please enter a valid group name"
+msgstr "Anna kelpaava ryhmän nimi"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr "Anna kelpaava GID"
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+"Anna kelpaava ryhmän tyyppi. Vain \"system\" tai \"local\" ovat sallittuja."
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr "Anna kelpaava luettelo jäsenistä"
+
+#: app/controllers/groups_controller.rb:82
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr "Käyttäjien luetteloa ei voi lukea."
+
+#: app/controllers/groups_controller.rb:118
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr "Ryhmien luetteloa ei voi lukea"
+
+#: app/controllers/groups_controller.rb:209
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "Tuntematon taustaosan virhe"
+
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr "Käyttäjä <i>%s</i> luotiin onnistuneesti."
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "Tyhjä UID arvo"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID: arvo >= 1000 kelpaa vain paikalliselle käyttäjälle"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Käyttäjä <i>%s</i> päivitettiin onnistuneesti."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Käyttäjä <i>%s</i> poistettiin onnistuneesti."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Virhe: Käyttäjän <i>%s</i> poistaminen epäonnistui."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr "Paikallinen käyttäjä"
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+msgid "Groups"
+msgstr "Ryhmät"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Kirjautumisnimi"
+#: app/views/groups/edit.html.erb:35
+#| msgid "Unknown group"
+msgid "Add new group"
+msgstr "Lisää uusi ryhmä"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
+#: app/views/groups/edit.html.erb:37
+#| msgid "Downloading groups"
+msgid "Modify group"
+msgstr "Muokkaa ryhmää"
+
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#| msgid "Group name"
+msgid "Group Name"
+msgstr "Ryhmän nimi"
+
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#| msgid "Group"
+msgid "Group ID"
+msgstr "Ryhmä ID"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#| msgid "Default Schemes"
+msgid "Default members"
+msgstr "Oletusjäsenet"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+#| msgid "Numbers"
+msgid "Members"
+msgstr "Jäsenet"
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "Prosessoidaan..."
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "Suodin:"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr "Lisää uusi ryhmä"
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Tallenna"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Poista"
+
+#: app/views/groups/index.html.erb:114
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete group '%s'?"
+msgstr "Oletko varma että haluat poistaa ryhmän 's'?"
+
+#: app/views/users/_user_form.erb:5
+#| msgid "Wifi Settings"
+msgid "Login Settings"
+msgstr "Kirjautumisasetukset"
+
+#: app/views/users/_user_form.erb:8
 msgid "Full Name"
 msgstr "Täydellinen nimi"
 
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "Muokkaa"
+#: app/views/users/_user_form.erb:12
+msgid "Login Name"
+msgstr "Kirjautumisnimi"
 
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[Uusi käyttäjä]</strong>"
+# password dialog title
+#: app/views/users/_user_form.erb:17
+msgid "Password"
+msgstr "Salasana"
 
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Takaisin"
+#: app/views/users/_user_form.erb:21
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "Vahvista salasana"
 
-#: app/views/users/edit.html.erb:1
-#, fuzzy
+#: app/views/users/_user_form.erb:39
+msgid "Default Group"
+msgstr "Oletusryhmä"
+
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "Lisäasetukset"
+
+#: app/views/users/_user_form.erb:64
+msgid "Home Directory"
+msgstr "Kotihakemisto"
+
+#: app/views/users/_user_form.erb:68
+msgid "Login Shell"
+msgstr "Kirjautumiskonsoli"
+
+#: app/views/users/_user_form.erb:72
+msgid "UID Number"
+msgstr "UID numero"
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "Heikko"
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normaali"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#| msgid "Media"
+msgid "Medium"
+msgstr "Keskitasoinen"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "Vahva"
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#| msgid "Very fast"
+msgid "Very Strong"
+msgstr "Erittäin vahva"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#| msgid "User"
+msgid "Users"
+msgstr "Käyttäjät"
+
+#: app/views/users/edit.html.erb:80
 #| msgid "Edit User %s"
 msgid "Edit user %s"
 msgstr "Muokkaa käyttäjää %s"
 
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "Ryhmät"
+#: app/views/users/index.html.erb:52
+#| msgid "New User"
+msgid "Add New User"
+msgstr "Lisää uusi käyttäjä"
 
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "Oletusryhmä"
+#: app/views/users/index.html.erb:68
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete user '%s'?"
+msgstr "Oletko varma että haluat poistaa käyttäjän '%s'?"
 
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "Kotihakemisto"
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "Myös kotihakemistot poistetaan"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "Kirjautumiskonsoli"
+#: app/views/users/index.html.erb:81
+#| msgid "manage backups"
+msgid "Manage Groups"
+msgstr "Hallitse ryhmiä"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
-msgid "Login Name"
-msgstr "Kirjautumisnimi"
+#: app/views/users/new.html.erb:86
+#| msgid "New User"
+msgid "Add new user"
+msgstr "Lisää uusi käyttäjä"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "UID numero"
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Epäkelpo istunto, kirjaudu uudestaan."
 
-# password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
-msgid "Password"
-msgstr "Salasana"
+#~ msgid "Empty UID value"
+#~ msgstr "Tyhjä UID arvo"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Päivitys"
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID: arvo >= 1000 kelpaa vain paikalliselle käyttäjälle"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr "Uusi käyttäjä"
+#~ msgid "Local User"
+#~ msgstr "Paikallinen käyttäjä"
 
-#: app/views/users/new.html.erb:16
-msgid "Default Group (GID)"
-msgstr "Oletusryhmä (GID)"
+#~ msgid "Login"
+#~ msgstr "Kirjautumisnimi"
 
-#: app/views/users/new.html.erb:24
+#~ msgid "Edit"
+#~ msgstr "Muokkaa"
+
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "<strong>[Uusi käyttäjä]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Takaisin"
+
+#~ msgid "Update"
+#~ msgstr "Päivitys"
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "Oletusryhmä (GID)"
+
 #, fuzzy
-#| msgid "do NOT create home directory"
-msgid "Do not create home directory"
-msgstr "ÄLÄ LUO tyhjää kotihakemistoa"
+#~| msgid "do NOT create home directory"
+#~ msgid "Do not create home directory"
+#~ msgstr "ÄLÄ LUO tyhjää kotihakemistoa"
 
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "Luo"
-
-#~ msgid "User"
-#~ msgstr "Käyttäjä"
+#~ msgid "Create"
+#~ msgstr "Luo"

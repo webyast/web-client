@@ -1,13 +1,11 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_software\n"
+"Project-Id-Version: entries\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2010-04-21 15:11\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2006-06-12 16:56+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,207 +13,297 @@ msgstr ""
 
 #: app/helpers/repositories_helper.rb:5
 msgid "Highest"
-msgstr "가장 높음"
+msgstr ""
 
 #: app/helpers/repositories_helper.rb:6
 msgid "Higher"
-msgstr "높음"
+msgstr ""
 
 #: app/helpers/repositories_helper.rb:7
 msgid "Default"
-msgstr "기본값"
+msgstr "기본"
 
 #: app/helpers/repositories_helper.rb:8
 msgid "Low"
 msgstr "낮음"
 
 #: app/helpers/repositories_helper.rb:9
+#, fuzzy
+#| msgid "Lower"
 msgid "Lowest"
-msgstr "가장 낮음"
+msgstr "낮음"
 
 #: app/helpers/repositories_helper.rb:15
 msgid "Highest priority"
-msgstr "가장 높은 우선순위"
+msgstr ""
 
 #: app/helpers/repositories_helper.rb:16
+#, fuzzy
+#| msgid "Priority"
 msgid "Higher priority"
-msgstr "높은 우선순위"
+msgstr "우선순위"
 
 #: app/helpers/repositories_helper.rb:18
+#, fuzzy
+#| msgid "Priority"
 msgid "Low priority"
-msgstr "낮은 우선순위"
+msgstr "우선순위"
 
 #: app/helpers/repositories_helper.rb:19
+#, fuzzy
+#| msgid "Priority"
 msgid "Lowest priority"
-msgstr "가장 낮은 우선순위"
+msgstr "우선순위"
 
 #: app/helpers/repositories_helper.rb:24
+#, fuzzy
+#| msgid "Priority"
 msgid "Custom priority"
-msgstr "사용자 지정 우선순위"
+msgstr "우선순위"
 
 #: app/helpers/repositories_helper.rb:29
 msgid "Custom"
-msgstr "사용자 지정"
+msgstr ""
 
-#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:119
+#: app/helpers/repositories_helper.rb:41
+#: app/views/repositories/index.html.erb:119
 #: app/views/repositories/add.html.erb:42
+#, fuzzy
+#| msgid "enabled"
 msgid "enable"
-msgstr "활성화"
+msgstr "사용함"
 
-#: app/helpers/repositories_helper.rb:41 app/views/repositories/index.html.erb:124
+#: app/helpers/repositories_helper.rb:41
+#: app/views/repositories/index.html.erb:124
 #: app/views/repositories/add.html.erb:49
+#, fuzzy
+#| msgid "Disable"
 msgid "disable"
-msgstr "비활성화"
+msgstr "사용 안함"
 
 #: app/helpers/repositories_helper.rb:46
 msgid "enabled"
-msgstr "활성화"
+msgstr "사용함"
 
+#  translators: service status radio button label
+#  translators: server module status
 #: app/helpers/repositories_helper.rb:46
+#, fuzzy
+#| msgid "Disabled"
 msgid "disabled"
 msgstr "비활성화"
 
+#  Translators: table column headings
 #: app/controllers/repositories_controller.rb:14
 msgid "Alias"
-msgstr "별칭"
+msgstr "별명"
 
-#: app/controllers/repositories_controller.rb:15 app/views/repositories/index.html.erb:151
+#: app/controllers/repositories_controller.rb:15
+#: app/views/repositories/index.html.erb:151
 msgid "Enabled"
-msgstr "활성화됨"
+msgstr "활성화"
 
 #: app/controllers/repositories_controller.rb:16
 msgid "Autorefresh"
 msgstr "자동 새로 고침"
 
-#: app/controllers/repositories_controller.rb:17 app/views/patch_updates/_patches.html.erb:14
+# src/isdn/complex.ycp:266 src/modem/complex.ycp:207
+# src/provider/complex.ycp:186
+#: app/controllers/repositories_controller.rb:17
+#: app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "이름"
 
 #: app/controllers/repositories_controller.rb:18
+#, fuzzy
+#| msgid "URI"
 msgid "URL"
-msgstr "URL"
+msgstr "URI"
 
 #: app/controllers/repositories_controller.rb:19
 msgid "Priority"
-msgstr "우선 순위"
+msgstr "우선순위"
 
 #: app/controllers/repositories_controller.rb:20
+#, fuzzy
+#| msgid "Updated package"
 msgid "Keep downloaded packages"
-msgstr "다운로드된 패키지 유지"
+msgstr "꾸러미 업데이트됨"
 
 #: app/controllers/repositories_controller.rb:30
+#, fuzzy
+#| msgid "Cannot write repository configuration"
 msgid "Cannot read repository list."
-msgstr "리포지토리 목록을 읽을 수 없습니다."
+msgstr "저장소 구성을 기록할 수 없음"
 
-#: app/controllers/repositories_controller.rb:47 app/controllers/repositories_controller.rb:74
+#: app/controllers/repositories_controller.rb:47
+#: app/controllers/repositories_controller.rb:74
+#, fuzzy
+#| msgid "Setting repository data"
 msgid "Missing repository parameter"
-msgstr "누락된 리포지토리 파라미터"
+msgstr "저장소 데이터 설정 중"
 
-#: app/controllers/repositories_controller.rb:102 app/controllers/repositories_controller.rb:183
+#: app/controllers/repositories_controller.rb:102
+#: app/controllers/repositories_controller.rb:183
+#, fuzzy
+#| msgid "Invalid capability %s."
 msgid "Invalid priority"
-msgstr "잘못된 우선 순위"
+msgstr "잘못된 %s 기능설정 입니다."
 
 #: app/controllers/repositories_controller.rb:171
+#, fuzzy
+#| msgid "Disabling repository '%s'."
 msgid "Missing repository parameters"
-msgstr "누락된 리포지토리 파라미터"
+msgstr "'%s' 저장소를 비활성화 합니다."
 
 #: app/controllers/repositories_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
 msgid "Unknown backend error"
-msgstr "알 수 없는 백엔드 오류"
+msgstr "알 수 없는 오류\n"
 
-#: app/controllers/patch_updates_controller.rb:45 app/controllers/patch_updates_controller.rb:48
+#: app/controllers/patch_updates_controller.rb:45
+#: app/controllers/patch_updates_controller.rb:48
 #: app/views/patch_updates/_patch_progress.html.erb:1
+#, fuzzy
+#| msgid "Downloading update information"
 msgid "A problem occured when loading patch information."
-msgstr "패치 정보를 로드하는 동안 문제가 발생했습니다."
+msgstr "업데이트 정보 다운로드 중"
 
+#  progress stages
 #: app/controllers/patch_updates_controller.rb:105
+#, fuzzy
+#| msgid "Installing updates..."
 msgid "Installing all patches..."
-msgstr "모든 패치 설치 중..."
+msgstr "업데이트 설치 중..."
 
+# /usr/share/applications/YaST2/sw_source.desktop
 #: app/controllers/patch_updates_controller.rb:113
+#, fuzzy
+#| msgid "Installation Source"
 msgid "Installation stopped"
-msgstr "설치 중지됨"
+msgstr "설치 소스"
 
 #: app/controllers/patch_updates_controller.rb:150
+#, fuzzy
+#| msgid "Installation"
 msgid "Installation finished"
-msgstr "설치 완료됨"
+msgstr "오픈수세 설치"
 
 #: app/controllers/patch_updates_controller.rb:152
+#, fuzzy
+#| msgid "not installed"
 msgid "%s installed."
-msgstr "%s이(가) 설치되었습니다."
+msgstr "설치되지 않음"
 
 #: app/controllers/patch_updates_controller.rb:181
+#, fuzzy
+#| msgid "Package '%s' has been installed"
 msgid "Patch has been installed."
-msgstr "패치가 설치되었습니다."
+msgstr "'%s' 꾸러미 설치됨"
 
-#: app/views/repositories/index.html.erb:20 app/views/repositories/add.html.erb:16
+#: app/views/repositories/index.html.erb:20
+#: app/views/repositories/add.html.erb:16
+#, fuzzy
+#| msgid "Enabled repository"
 msgid "Enter a valid repository URL."
-msgstr "유효한 리포지토리 URL을 입력합니다."
+msgstr "저장소 활성화됨"
 
-#: app/views/repositories/index.html.erb:28 app/views/repositories/add.html.erb:24
+#: app/views/repositories/index.html.erb:28
+#: app/views/repositories/add.html.erb:24
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
-msgstr "<b>%s</b> 기호는 리포지토리 별칭에서 허용되지 않습니다."
+msgstr ""
 
-#: app/views/repositories/index.html.erb:32 app/views/repositories/add.html.erb:31
+#: app/views/repositories/index.html.erb:32
+#: app/views/repositories/add.html.erb:31
+#, fuzzy
+#| msgid "The idmapd section name may not be empty."
 msgid "This value cannot be empty."
-msgstr "이 값은 비워둘 수 없습니다."
+msgstr "idmapd 섹션 이름은 비어있으면 안됩니다."
 
-#: app/views/repositories/index.html.erb:140 app/views/repositories/add.html.erb:105
+#: app/views/repositories/index.html.erb:140
+#: app/views/repositories/add.html.erb:105
+#, fuzzy
+#| msgid "Software sources"
 msgid "Software Repositories"
-msgstr "소프트웨어 리포지토리"
+msgstr "소프트웨어 소스"
 
 #: app/views/repositories/index.html.erb:145
+#, fuzzy
+#| msgid "Got list of repositories"
 msgid "Configured software repositories"
-msgstr "구성된 소프트웨어 리포지토리"
+msgstr "저장소 목록 가져왔음"
 
 #: app/views/repositories/index.html.erb:148
+#, fuzzy
+#| msgid "Got list of repositories"
 msgid "Filter repositories"
-msgstr "필터 리포지토리"
+msgstr "저장소 목록 가져왔음"
 
 #: app/views/repositories/index.html.erb:150
+#, fuzzy
+#| msgid "all"
 msgid "All"
-msgstr "모두"
+msgstr "전체"
 
+#  translators: service status radio button label
+#  translators: server module status
 #: app/views/repositories/index.html.erb:152
 msgid "Disabled"
 msgstr "비활성화"
 
 #: app/views/repositories/index.html.erb:159
+#, fuzzy
+#| msgid "Search"
 msgid "Quick Search"
-msgstr "빠른 검색"
+msgstr "검색"
 
 #: app/views/repositories/index.html.erb:165
+#, fuzzy
+#| msgid "Repository"
 msgid "Add New Repository"
-msgstr "새 리포지토리 추가"
+msgstr "저장소"
 
 #: app/views/repositories/index.html.erb:208
+#, fuzzy
+#| msgid "Repository '%s' is invalid."
 msgid "Repository is currently"
-msgstr "현재 리포지토리 상태"
+msgstr "'%s' 저장소는 잘못되었습니다."
 
-#: app/views/repositories/index.html.erb:211 app/views/repositories/add.html.erb:128
+#: app/views/repositories/index.html.erb:211
+#: app/views/repositories/add.html.erb:128
 #: app/views/repositories/add.html.erb:129
+#, fuzzy
+#| msgid "Repository name:"
 msgid "Repository will be %s."
-msgstr "리포지토리가 %s입니다."
+msgstr "저장소 이름:"
 
 #: app/views/repositories/index.html.erb:215
+#, fuzzy
+#| msgid "Autorefresh disabled."
 msgid "Autorefresh is currently"
-msgstr "현재 자동 새로 고침 상태"
+msgstr "자동 새로고침 사용안함."
 
-#: app/views/repositories/index.html.erb:218 app/views/repositories/add.html.erb:133
+#: app/views/repositories/index.html.erb:218
+#: app/views/repositories/add.html.erb:133
 #: app/views/repositories/add.html.erb:134
+#, fuzzy
+#| msgid "Autorefresh disabled."
 msgid "Autorefresh will be %s."
-msgstr "자동 새로 고침이 %s입니다."
+msgstr "자동 새로고침 사용안함."
 
 #: app/views/repositories/index.html.erb:222
 msgid "Keeping downloaded packages is currently"
-msgstr "현재 다운로드된 패키지 유지 상태"
+msgstr ""
 
-#: app/views/repositories/index.html.erb:225 app/views/repositories/add.html.erb:140
+#: app/views/repositories/index.html.erb:225
+#: app/views/repositories/add.html.erb:140
 #: app/views/repositories/add.html.erb:141
 msgid "Keep packages option will be %s."
-msgstr "패키지 유지 옵션이 %s입니다."
+msgstr ""
 
-#: app/views/repositories/index.html.erb:232 app/views/repositories/add.html.erb:149
+#: app/views/repositories/index.html.erb:232
+#: app/views/repositories/add.html.erb:149
 msgid "Save"
 msgstr "저장"
 
@@ -224,46 +312,61 @@ msgid "Delete"
 msgstr "삭제"
 
 #: app/views/repositories/index.html.erb:235
+#, fuzzy
+#| msgid "Removing repository '%s'"
 msgid "Really delete repository '%s'?"
-msgstr "%s 리포지토리를 삭제하시겠습니까?"
+msgstr "'%s' 저장소 제거 중"
 
 #: app/views/repositories/add.html.erb:77
-msgid "A repository with this URL already exists.\nCreate a duplicate?"
-msgstr "이 URL을 가진 리포지토리가 이미 있습니다.\n사본을 만드시겠습니까?"
+msgid ""
+"A repository with this URL already exists.\n"
+"Create a duplicate?"
+msgstr ""
 
 #: app/views/repositories/add.html.erb:107
+#, fuzzy
+#| msgid "Adding repository '%s'"
 msgid "Add a new repository"
-msgstr "새 리포지토리 추가"
+msgstr "'%s' 저장소 추가 중"
 
 #: app/views/repositories/add.html.erb:116
+#, fuzzy
+#| msgid "Repository"
 msgid "New Repository"
-msgstr "새 리포지토리"
+msgstr "저장소"
 
 #: app/views/repositories/add.html.erb:137
 msgid "Priority for packages:"
-msgstr "패키지 우선순위:"
+msgstr ""
 
 #: app/views/patch_updates/_patch_installation.html.erb:7
+#, fuzzy
+#| msgid "An error occurred during the installation."
 msgid "An error occured while installing patches."
-msgstr "패치를 설치하는 동안 오류가 발생했습니다."
+msgstr "설치 도중 오류가 발생 했습니다."
 
 #: app/views/patch_updates/_patch_installation.html.erb:19
 msgid "Stop"
-msgstr "중지"
+msgstr ""
 
 #: app/views/patch_updates/_patch_installation.html.erb:19
 msgid "Are you sure?"
-msgstr "계속하시겠습니까?"
+msgstr ""
 
 #: app/views/patch_updates/index.html.erb:11
 msgid "Updates"
 msgstr "업데이트"
 
-#: app/views/patch_updates/index.html.erb:16 app/views/patch_updates/_patch_summary.html.erb:35
+#: app/views/patch_updates/index.html.erb:16
+#: app/views/patch_updates/_patch_summary.html.erb:35
+#, fuzzy
+#| msgid "Your system is up-to-date."
 msgid "Your system is up to date."
-msgstr "시스템이 최신 상태입니다."
+msgstr "귀하의 시스템은 최신입니다."
 
 #: app/views/patch_updates/index.html.erb:21
+#, fuzzy
+#| msgid "No Updates Available"
 msgid "Updates available"
 msgstr "업데이트 사용 가능"
 
@@ -273,39 +376,49 @@ msgstr "업데이트"
 
 #: app/views/patch_updates/_patch_progress.html.erb:5
 msgid "Refreshing package cache"
-msgstr "패키지 캐시를 새로 고치는 중"
+msgstr "꾸러미 캐시 새로 고치는 중"
 
 #: app/views/patch_updates/_patch_progress.html.erb:6
+#, fuzzy
+#| msgid "Starting card manager..."
 msgid "Starting package manager"
-msgstr "패키지 관리자 시작 중"
+msgstr "카드 관리자 시작 중..."
 
 #: app/views/patch_updates/_patch_progress.html.erb:7
+#, fuzzy
+#| msgid "Waiting for PackageKit service"
 msgid "Waiting for the package manager lock"
-msgstr "패키지 관리자 잠금 대기 중"
+msgstr "꾸러미킷 서비스 기다리는 중"
 
-#: app/views/patch_updates/_patch_progress.html.erb:8 app/views/patch_updates/_patch_progress.html.erb:18
+#: app/views/patch_updates/_patch_progress.html.erb:8
+#: app/views/patch_updates/_patch_progress.html.erb:18
 msgid "Evaluating available patches"
-msgstr "사용 가능한 패치 평가 중"
+msgstr ""
 
 #: app/views/patch_updates/_patch_progress.html.erb:9
+#, fuzzy
+#| msgid "Finished generating profile for %s."
 msgid "Finished reading patches"
-msgstr "패치 읽기 완료됨"
+msgstr "%s 프로파일 만들기를 완료했습니다."
 
 #: app/views/patch_updates/_patches.html.erb:11
+#, fuzzy
+#| msgid "DNS Check"
 msgid "Check"
-msgstr "확인"
+msgstr "DNS 확인"
 
 #: app/views/patch_updates/_patches.html.erb:13
 msgid "Kind"
-msgstr "종류"
+msgstr ""
 
 #: app/views/patch_updates/_patches.html.erb:15
 msgid "Summary"
 msgstr "요약"
 
-#: app/views/patch_updates/_patches.html.erb:17 app/views/patch_updates/_patches.html.erb:20
+#: app/views/patch_updates/_patches.html.erb:17
+#: app/views/patch_updates/_patches.html.erb:20
 msgid "Source"
-msgstr "원본"
+msgstr "소스"
 
 #: app/views/patch_updates/_patches.html.erb:18
 msgid "Install"
@@ -313,33 +426,44 @@ msgstr "설치"
 
 #: app/views/patch_updates/_patch_summary.html.erb:9
 msgid "Cannot read patch updates - you have been logged out."
-msgstr "패치 업데이트를 읽을 수 없음 - 사용자가 로그아웃했습니다."
+msgstr ""
 
 #: app/views/patch_updates/_patch_summary.html.erb:12
+#, fuzzy
+#| msgid "No information about battery and AC status available"
 msgid "No information about patches available"
-msgstr "사용 가능한 패치 관련 정보가 없습니다."
+msgstr "배터리와 AC 사용 상태에 대한 정보가 없습니다."
 
 #: app/views/patch_updates/_patch_summary.html.erb:26
+#, fuzzy
+#| msgid "Security update"
 msgid "Security Updates: %d"
-msgstr "보안 업데이트: %d"
+msgstr "보안 업데이트"
 
 #: app/views/patch_updates/_patch_summary.html.erb:29
+#, fuzzy
+#| msgid "Important update"
 msgid "Important Updates: %d"
-msgstr "중요 업데이트: %d"
+msgstr "중요 업데이트"
 
 #: app/views/patch_updates/_patch_summary.html.erb:32
+#, fuzzy
+#| msgid "Additonal updates done."
 msgid "Optional Updates: %d"
-msgstr "선택적 업데이트: %d"
+msgstr "추가 업데이트 완료."
 
 #: app/views/patch_updates/_patch_summary.html.erb:40
+#, fuzzy
+#| msgid "Update"
 msgid "Update All"
-msgstr "모두 업데이트"
+msgstr "업데이트"
 
 #: app/views/patch_updates/_patch_summary.html.erb:40
 msgid "Updating all. Are you sure?"
-msgstr "모두 업데이트 중입니다. 계속하시겠습니까?"
+msgstr ""
 
 #: app/views/patch_updates/_patch_summary.html.erb:47
+#, fuzzy
+#| msgid "Downloading update information"
 msgid "Loading patch information"
-msgstr "패치 정보 로드 중"
-
+msgstr "업데이트 정보 다운로드 중"

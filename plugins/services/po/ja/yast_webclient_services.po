@@ -1,53 +1,54 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# translation of yast_webclient_services.po to Japanese
+# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2010-04-21 08:19\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2010-04-15 21:50+0900\n"
+"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
+"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
-msgstr "(ステータスを読み取れません)"
+msgstr "(状態を読み取れません)"
 
 #: app/controllers/services_controller.rb:70
 msgid "success"
-msgstr "成功しました"
+msgstr "成功"
 
 #: app/controllers/services_controller.rb:71
 msgid "unspecified error"
-msgstr "原因不明のエラー"
+msgstr "明記されていないエラー"
 
 #: app/controllers/services_controller.rb:72
 msgid "invalid or excess argument(s)"
-msgstr "無効な引数か、または引数が多すぎます"
+msgstr "正しくないか、もしくは多すぎるパラメータ"
 
 #: app/controllers/services_controller.rb:73
 msgid "unimplemented feature"
-msgstr "この機能はまだ実装されていません"
+msgstr "実装されていない機能"
 
 #: app/controllers/services_controller.rb:74
 msgid "user had insufficient privilege"
-msgstr "ユーザの権利が不十分です"
+msgstr "ユーザ特権が不足しています"
 
 #: app/controllers/services_controller.rb:75
 msgid "program is not installed"
-msgstr "プログラムはインストールされていません"
+msgstr "プログラムがインストールされていません"
 
 #: app/controllers/services_controller.rb:76
 msgid "program is not configured"
-msgstr "プログラムは設定されていません"
+msgstr "プログラムが設定されていません"
 
 #: app/controllers/services_controller.rb:77
 msgid "program is not runnning"
-msgstr "プログラムが実行されていません"
+msgstr "プログラムが起動していません"
 
 #: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
@@ -67,19 +68,19 @@ msgstr "システムサービス"
 
 #: app/views/services/index.rhtml:147
 msgid "You do not have permission to execute the services."
-msgstr "このサービスを実行するためのパーミッションがありません。"
+msgstr "サービスを実行するための許可がありません。"
 
 #: app/views/services/index.rhtml:151
 msgid "Filter services"
-msgstr "サービスをフィルタする"
+msgstr "フィルタサービス"
 
 #: app/views/services/index.rhtml:153
 msgid "All"
-msgstr "すべて"
+msgstr "全て"
 
 #: app/views/services/index.rhtml:154
 msgid "Running"
-msgstr "稼働中"
+msgstr "実行中"
 
 #: app/views/services/index.rhtml:155
 msgid "Not Running"
@@ -87,7 +88,7 @@ msgstr "実行していません"
 
 #: app/views/services/index.rhtml:156
 msgid "Dead"
-msgstr "無応答です"
+msgstr "無応答"
 
 #: app/views/services/index.rhtml:157
 msgid "Started on Boot"
@@ -99,11 +100,11 @@ msgstr "起動時には開始しない"
 
 #: app/views/services/index.rhtml:165
 msgid "Quick Search"
-msgstr "クィック検索"
+msgstr "簡易検索"
 
 #: app/views/services/index.rhtml:180
 msgid "Description for service is not available"
-msgstr "サービスの説明が利用できません。"
+msgstr "サービスの説明がありません"
 
 #: app/views/services/index.rhtml:203
 msgid "(refresh)"
@@ -111,7 +112,7 @@ msgstr "(更新)"
 
 #: app/views/services/index.rhtml:234
 msgid "Start"
-msgstr "開始"
+msgstr "起動"
 
 #: app/views/services/index.rhtml:235
 msgid "Stop"
@@ -123,11 +124,11 @@ msgstr "再起動"
 
 #: app/views/services/index.rhtml:237
 msgid "Start on Boot"
-msgstr "起動時に開始"
+msgstr "起動時に開始する"
 
 #: app/views/services/index.rhtml:238
 msgid "Do Not Start on Boot"
-msgstr "起動時には開始しません"
+msgstr "起動時に開始しない"
 
 #: app/views/services/_status.rhtml:6
 msgid "Service will be started on boot."
@@ -135,7 +136,7 @@ msgstr "サービスは起動時に開始します。"
 
 #: app/views/services/_status.rhtml:8
 msgid "Service will not be started on boot."
-msgstr "サービスは起動時には開始しません。"
+msgstr "サービスは起動時に開始しません。"
 
 #: app/views/services/_status.rhtml:31
 msgid "status unknown"
@@ -143,11 +144,11 @@ msgstr "状態不明"
 
 #: app/views/services/_status.rhtml:33
 msgid "running"
-msgstr "稼働中"
+msgstr "実行中"
 
 #: app/views/services/_status.rhtml:37
 msgid "dead"
-msgstr "無応答です"
+msgstr "無応答"
 
 #: app/views/services/_status.rhtml:41
 msgid "not running"
@@ -159,5 +160,4 @@ msgstr "状態不明: %d"
 
 #: app/views/services/_status.rhtml:48
 msgid "Current status of the service:"
-msgstr "サービスの現在の状態:"
-
+msgstr "現在のサービス状態:"

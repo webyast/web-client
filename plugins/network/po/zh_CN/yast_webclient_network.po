@@ -1,16 +1,21 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_network\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 10:44\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/network_controller.rb:64
@@ -18,64 +23,76 @@ msgid "Not configured"
 msgstr "未配置"
 
 #: app/controllers/network_controller.rb:64
+#, fuzzy
+#| msgid "Manual Mode"
 msgid "Manual"
-msgstr "手动"
+msgstr "手动方式"
 
 #: app/controllers/network_controller.rb:64
+#, fuzzy
+#| msgid "Automatic Mode"
 msgid "Automatic"
-msgstr "自动"
+msgstr "自动方式"
 
 #: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
-msgstr "网络设置已写入。"
+msgstr ""
 
 #: app/views/network/index.html.erb:118
+#, fuzzy
+#| msgid "The search text contains invalid characters"
 msgid "whitespace - invalid character."
-msgstr "空格 － 无效字符。"
+msgstr "搜索文字包括了无效的字符"
 
 #: app/views/network/index.html.erb:120
+#, fuzzy
+#| msgid "The VM's name cannot start with a digit."
 msgid " - can not start with a digit."
-msgstr " － 不能以数字开头。"
+msgstr "VM 的名称不能以数字开头。"
 
 #: app/views/network/index.html.erb:122
+#, fuzzy
+#| msgid "The option 'flush' is not allowed"
 msgid "periodic '-' is not allowed."
-msgstr "不允许循环使用“-”字符。"
+msgstr "不允许选项\"flush\""
 
 #: app/views/network/index.html.erb:124
 msgid "can not end with (-) hyphen."
-msgstr "不能以连字符 (-) 结尾。"
+msgstr ""
 
 #: app/views/network/index.html.erb:127
 msgid "can not start with (-) hyphen."
-msgstr "不能以连字符 (-) 开头。"
+msgstr ""
 
 #: app/views/network/index.html.erb:129
 msgid " - is invalid character for hostname."
-msgstr " － 是无效的主机名字符。"
+msgstr ""
 
 #: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "IP 地址格式无效。正确格式为 nnn.nnn.nnn.nnn，其中 nnn 介于 0 到 255 之间。"
+msgstr ""
 
 #: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "前缀格式无效。正确格式为 /nn，其中 nn 介于 0-32（CIDR 格式）之间。"
+msgstr ""
 
 #: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "默认路由格式无效。正确格式为 nnn.nnn.nnn.nnn，其中 nnn 介于 0 到 255 之间。"
+msgstr ""
 
 #: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
-msgstr "需要名称服务器。必须至少指定一台。"
+msgstr ""
 
 #: app/views/network/index.html.erb:181
+#, fuzzy
+#| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
-msgstr "需要主机名。必须指定主机名。"
+msgstr "未指定有效的请求文件。"
 
 #: app/views/network/index.html.erb:187
 msgid "Domain is required. An empty domain is not supported."
-msgstr "需要域。不支持空的域。"
+msgstr ""
 
 #: app/views/network/index.html.erb:210
 msgid "Network"
@@ -86,38 +103,111 @@ msgid "Interface"
 msgstr "接口"
 
 #: app/views/network/index.html.erb:226
+#, fuzzy
+#| msgid "Select item"
 msgid "Select"
-msgstr "选择"
+msgstr "选择项目"
 
 #: app/views/network/index.html.erb:243
+#, fuzzy
+#| msgid "Configuration"
 msgid "Configuration mode"
-msgstr "配置模式"
+msgstr "配置"
 
 #: app/views/network/index.html.erb:252
+#, fuzzy
+#| msgid "IP Address:"
 msgid "IP address"
-msgstr "IP 地址"
+msgstr "IP 地址："
 
 #: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
-msgstr "子网掩码/Prefixlen"
+msgstr ""
 
 #: app/views/network/index.html.erb:260
+#, fuzzy
+#| msgid "Default Route"
 msgid "Default route"
 msgstr "默认路由"
 
 #: app/views/network/index.html.erb:269
+#, fuzzy
+#| msgid "Host Names"
 msgid "Hostname"
 msgstr "主机名"
 
+# as in Windows Authentication Domain
 #: app/views/network/index.html.erb:274
+#, fuzzy
+#| msgid "Domain\n"
 msgid "Domain"
-msgstr "域"
+msgstr "域\n"
 
 #: app/views/network/index.html.erb:278
+#, fuzzy
+#| msgid "Name Server"
 msgid "Name servers"
 msgstr "名称服务器"
 
 #: app/views/network/index.html.erb:282
+#, fuzzy
+#| msgid "Searching details"
 msgid "Search domains"
-msgstr "搜索域"
+msgstr "搜索细节"
 
+#, fuzzy
+#~| msgid "Do not start"
+#~ msgid "not set"
+#~ msgstr "不启动"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#, fuzzy
+#~| msgid "Dial Prefix"
+#~ msgid "Prefixlen"
+#~ msgstr "拨号前缀"
+
+#, fuzzy
+#~| msgid "DSL"
+#~ msgid "DNS"
+#~ msgstr "DSL"
+
+#~ msgid "Save"
+#~ msgstr "保存"
+
+# cancel button label
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#, fuzzy
+#~| msgid "Network Servers"
+#~ msgid "Edit Network Device"
+#~ msgstr "网络服务器"
+
+#~ msgid "Configuration"
+#~ msgstr "配置"
+
+#~ msgid "Description"
+#~ msgstr "说明"
+
+#, fuzzy
+#~| msgid "DMA"
+#~ msgid "MAC"
+#~ msgstr "DMA"
+
+#, fuzzy
+#~| msgid "Device"
+#~ msgid "Device Name"
+#~ msgstr "设备"
+
+#, fuzzy
+#~| msgid "Start-Up"
+#~ msgid "Startup"
+#~ msgstr "启动"
+
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#~ msgid "Back"
+#~ msgstr "后退"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -17,82 +17,180 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr ""
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr ""
 
-# include/cups/ui.ycp:2577 include/cups/ui.ycp:2598
-#: app/views/services/_status.rhtml:14
-#, fuzzy
-#| msgid "unknown"
-msgid "(unknown)"
-msgstr "bilinmeyen"
-
-#: app/views/services/_status.rhtml:16
-#, fuzzy
-#| msgid "Warning"
-msgid "(running)"
-msgstr "Uyarı"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
 msgstr ""
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
 msgstr ""
 
-# include/cups/ui.ycp:2577 include/cups/ui.ycp:2598
-#: app/views/services/_status.rhtml:22
-#, fuzzy
-#| msgid "unknown"
-msgid "(unknown: %d)"
-msgstr "bilinmeyen"
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr ""
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
+
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr ""
+
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr ""
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr ""
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Tanım"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr ""
-
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr ""
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:141
 msgid "System Services"
 msgstr ""
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
 msgstr ""
 
-#: app/views/services/index.rhtml:22
-msgid "You do not have permission to execute the services. The links are disabled."
+#: app/views/services/index.rhtml:151
+msgid "Filter services"
+msgstr ""
+
+#: app/views/services/index.rhtml:153
+msgid "All"
+msgstr ""
+
+#: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "Warning"
+msgid "Running"
+msgstr "Uyarı"
+
+#: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "Warning"
+msgid "Not Running"
+msgstr "Uyarı"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr ""
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search"
+msgid "Quick Search"
+msgstr "Ara"
+
+#: app/views/services/index.rhtml:180
+msgid "Description for service is not available"
+msgstr ""
+
+#: app/views/services/index.rhtml:203
+msgid "(refresh)"
+msgstr ""
+
+# window title for kernel loading (see txt_load_kernel)
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Starting..."
+msgid "Start"
+msgstr "Başlatılıyor..."
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
 msgstr ""
 
 # clients/lan_inetd_custom.ycp:748
-#: app/views/services/index.rhtml:94
+#: app/views/services/index.rhtml:236
 #, fuzzy
 #| msgid "Status"
-msgid "status"
+msgid "Restart"
 msgstr "Durum"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:238
+msgid "Do Not Start on Boot"
+msgstr ""
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+# include/cups/ui.ycp:2577 include/cups/ui.ycp:2598
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown"
+msgstr "bilinmeyen"
+
+#: app/views/services/_status.rhtml:33
+#, fuzzy
+#| msgid "Warning"
+msgid "running"
+msgstr "Uyarı"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr ""
+
+#: app/views/services/_status.rhtml:41
+#, fuzzy
+#| msgid "Warning"
+msgid "not running"
+msgstr "Uyarı"
+
+# include/cups/ui.ycp:2577 include/cups/ui.ycp:2598
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown: %d"
+msgstr "bilinmeyen"
+
+#: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "Current user:"
+msgid "Current status of the service:"
+msgstr "Aktif kullanıcı:"
+
+# include/cups/ui.ycp:2577 include/cups/ui.ycp:2598
+#, fuzzy
+#~| msgid "unknown"
+#~ msgid "(unknown)"
+#~ msgstr "bilinmeyen"

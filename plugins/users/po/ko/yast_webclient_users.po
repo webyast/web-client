@@ -1,110 +1,140 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_users\n"
+"Project-Id-Version: yast_webclient_users.ko\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-21 15:11\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2010-03-09 16:06+0900\n"
+"Last-Translator: Yunseok Choi <xein@naver.com>\n"
+"Language-Team: Korean <xein@naver.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: app/controllers/groups_controller.rb:15
 msgid "Missing group name parameter"
-msgstr "누락된 그룹 이름 파라미터"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
 msgid "Missing group parameters"
-msgstr "누락된 그룹 파라미터"
+msgstr "인수가 없음"
 
 #: app/controllers/groups_controller.rb:37
 msgid "Please enter a valid group name"
-msgstr "올바른 그룹 이름을 입력하십시오."
+msgstr ""
 
 #: app/controllers/groups_controller.rb:47
 msgid "Please enter a valid GID"
-msgstr "올바른 GID를 입력하십시오."
+msgstr ""
 
 #: app/controllers/groups_controller.rb:57
 msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "올바른 그룹 유형을 입력하십시오. \"시스템\" 또는 \"로컬\"만 허용됩니다."
+msgstr ""
 
 #: app/controllers/groups_controller.rb:68
 msgid "Please enter a valid list of members"
-msgstr "올바른 구성원 목록을 입력하십시오."
+msgstr ""
 
 #: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
 msgid "Cannot read users list."
-msgstr "사용자 목록을 읽을 수 없습니다."
+msgstr "%1 파일로 부터 읽을 수 없습니다."
 
 #: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
 msgid "Cannot read groups list."
-msgstr "그룹 목록을 읽을 수 없습니다."
+msgstr "%1 파일로 부터 읽을 수 없습니다."
 
 #: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
 msgid "Unknown backend error"
-msgstr "알 수 없는 백엔드 오류"
+msgstr "알 수 없는 오류\n"
 
 #: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
-msgstr "사용자 <i>%s</i>이(가) 성공적으로 생성되었습니다."
+msgstr "사용자 <i>%s</i> 생성에 성공했습니다."
 
 #: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
-msgstr "사용자 <i>%s</i>이(가) 성공적으로 업데이트되었습니다."
+msgstr "사용자 <i>%s</i> 업데이트에 성공했습니다."
 
 #: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
-msgstr "사용자 <i>%s</i>이(가) 성공적으로 제거되었습니다."
+msgstr "사용자 <i>%s</i> 제거에 성공했습니다."
 
 #: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "오류: 사용자 <i>%s</i>을(를) 제거할 수 없습니다."
+msgstr "오류: 사용자 <i>%s</i> 를 제거할 수 없습니다."
 
+#  table header
 #: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
 #: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "그룹"
 
 #: app/views/groups/edit.html.erb:35
+#, fuzzy
+#| msgid "Unknown group"
 msgid "Add new group"
-msgstr "새 그룹 추가"
+msgstr "알 수 없는 그룹"
 
 #: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Downloading groups"
 msgid "Modify group"
-msgstr "그룹 수정"
+msgstr "그룹 다운로드 중"
 
+#  table header
 #: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Group name"
 msgid "Group Name"
 msgstr "그룹 이름"
 
+#  table header
 #: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
 msgid "Group ID"
-msgstr "그룹 ID"
+msgstr "그룹"
 
+#  push button
 #: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
 msgid "Default members"
-msgstr "기본 구성원"
+msgstr "기본 전원관리계획"
 
 #: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+#, fuzzy
+#| msgid "Numbers"
 msgid "Members"
-msgstr "구성원"
+msgstr "번호"
 
 #: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
 msgid "Processing ..."
-msgstr "처리 중..."
+msgstr "프로세서 %1"
 
+#  label for text field showing the filter (e.g. *.bak)
 #: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
 msgid "Filter:"
-msgstr "필터:"
+msgstr "거르개"
 
 #: app/views/groups/index.html.erb:78
 msgid "Add New Group"
-msgstr "새 그룹 추가"
+msgstr ""
 
 #: app/views/groups/index.html.erb:110
 msgid "Save"
@@ -115,28 +145,37 @@ msgid "Delete"
 msgstr "삭제"
 
 #: app/views/groups/index.html.erb:114
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
 msgid "Are you sure to delete group '%s'?"
-msgstr "그룹 '%s'을(를) 삭제하시겠습니까?"
+msgstr "정말 \"%s\" 를 영구히 삭제 하시겠습니까?"
 
 #: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Wifi Settings"
 msgid "Login Settings"
-msgstr "로그인 설정"
+msgstr "Wifi 설정"
 
+# src/isdn/complex.ycp:266 src/modem/complex.ycp:207
+# src/provider/complex.ycp:186
 #: app/views/users/_user_form.erb:8
 msgid "Full Name"
-msgstr "전체 이름"
+msgstr "이름"
 
 #: app/views/users/_user_form.erb:12
 msgid "Login Name"
 msgstr "로그인 이름"
 
+# password dialog title
 #: app/views/users/_user_form.erb:17
 msgid "Password"
-msgstr "비밀번호"
+msgstr "열쇠글"
 
 #: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
 msgid "Confirm Password"
-msgstr "비밀번호 확인"
+msgstr "열쇠글 확인(_C):"
 
 #: app/views/users/_user_form.erb:39
 msgid "Default Group"
@@ -152,7 +191,7 @@ msgstr "홈 디렉토리"
 
 #: app/views/users/_user_form.erb:68
 msgid "Login Shell"
-msgstr "로그인 셸"
+msgstr "로그인 쉘"
 
 #: app/views/users/_user_form.erb:72
 msgid "UID Number"
@@ -160,49 +199,103 @@ msgstr "UID 번호"
 
 #: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
 msgid "Weak"
-msgstr "약함"
+msgstr ""
 
 #: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
 msgid "Normal"
-msgstr "일반"
+msgstr "보통"
 
 #: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
 msgid "Medium"
-msgstr "보통"
+msgstr "매체"
 
 #: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
 msgid "Strong"
-msgstr "강함"
+msgstr ""
 
 #: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
 msgid "Very Strong"
-msgstr "매우 강함"
+msgstr ""
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "New User"
 msgid "Users"
-msgstr "사용자"
+msgstr "새로운 사용자"
 
 #: app/views/users/edit.html.erb:80
 msgid "Edit user %s"
 msgstr "사용자 %s 편집"
 
 #: app/views/users/index.html.erb:52
+#, fuzzy
+#| msgid "New User"
 msgid "Add New User"
-msgstr "새 사용자 추가"
+msgstr "새로운 사용자"
 
 #: app/views/users/index.html.erb:68
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
 msgid "Are you sure to delete user '%s'?"
-msgstr "사용자 '%s'을(를) 삭제하시겠습니까?"
+msgstr "정말 \"%s\" 를 영구히 삭제 하시겠습니까?"
 
 #: app/views/users/index.html.erb:68
 msgid "Home directory will be deleted as well."
-msgstr "홈 디렉토리도 삭제됩니다."
+msgstr ""
 
 #: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "manage backups"
 msgid "Manage Groups"
-msgstr "그룹 관리"
+msgstr "관리 백업"
 
 #: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "New User"
 msgid "Add new user"
-msgstr "새 사용자 추가"
+msgstr "새로운 사용자"
 
+#~ msgid "Invalid session, please login again."
+#~ msgstr "잘못된 세션입니다. 다시 로그인 해주세요."
+
+#~| msgid "Empty CA name."
+#~ msgid "Empty UID value"
+#~ msgstr "빈 UID 값"
+
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID: value >= 1000 은 로컬 사용자 전용으로 올바릅니다."
+
+#~| msgid "Local Network"
+#~ msgid "Local User"
+#~ msgstr "로컬 사용자"
+
+#~ msgid "Login"
+#~ msgstr "로그인"
+
+#~| msgid "&Edit"
+#~ msgid "Edit"
+#~ msgstr "편집"
+
+#~| msgid "You are <strong>online</strong>"
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "<strong>[새로운 사용자]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "뒤로"
+
+#~ msgid "Update"
+#~ msgstr "업데이트"
+
+#~| msgid "Default route ok."
+#~ msgid "Default Group (GID)"
+#~ msgstr "기본 그룹 (GID)"
+
+#~| msgid "Cannot create directory %1: %2."
+#~ msgid "Do not create home directory"
+#~ msgstr "홈 디렉토리를 만들지 않음"
+
+#~ msgid "Create"
+#~ msgstr "생성"

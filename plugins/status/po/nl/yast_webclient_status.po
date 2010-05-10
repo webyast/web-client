@@ -1,151 +1,235 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# translation of yast_webclient_status.nl.po to Dutch
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# Freek de Kruijf <freek@opensuse.org>, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-22 12:39\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Project-Id-Version: yast_webclient_status.nl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-03 17:57+0200\n"
+"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
+"Language-Team: Dutch <yast-nl-l10n@lists.sf.kovoks.nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
-msgstr "Geen gegevens gevonden om de systeemstatus weer te geven."
+msgstr "Voor het tonen van de systeemstatus zijn geen gegevens voorhanden."
 
-#: app/controllers/status_controller.rb:187
+#: app/controllers/status_controller.rb:159
+#| msgid "No status information available"
+msgid "Status not available."
+msgstr "Status niet beschikbaar."
+
+#: app/controllers/status_controller.rb:178
+msgid "Can't connect to host"
+msgstr "Kan niet verbinden naar host"
+
+#: app/controllers/status_controller.rb:180
+msgid "Can't connect to host %s."
+msgstr "Kan niet verbinden naar host %s."
+
+#: app/controllers/status_controller.rb:219
 msgid "Limits exceeded for "
-msgstr "Limieten overschreden voor "
+msgstr "Limieten zijn overschreden voor "
 
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:244
+#| msgid "No status information available"
+msgid "Status not available"
+msgstr "Status niet beschikbaar"
+
+#: app/controllers/status_controller.rb:321
 msgid "exceeded"
 msgstr "overschreden"
 
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:335
 msgid "undercut"
-msgstr "onder de ondergrens vallen"
+msgstr "onderbenut"
 
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:437
 msgid "Limits have been written."
-msgstr "Limieten zijn opgeslagen."
+msgstr "Limieten zijn weggeschreven."
 
-#: app/views/status/edit.html.erb:27
+#: app/views/status/edit.html.erb:48
 msgid "Only numbers are valid !"
-msgstr "Alleen getallen zijn geldig!"
+msgstr "Alleen nummers zijn geldig !"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+# /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/edit.html.erb:51
+#: app/views/status/edit.html.erb:75
 msgid "Settings"
 msgstr "Instellingen"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "undercuts"
-msgstr "valt onder de ondergrens van"
+msgstr "onderbenut"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "exceeds"
-msgstr "overschrijdt"
+msgstr "overschreden"
 
-#: app/views/status/index.html.erb:71
+#: app/views/status/index.html.erb:92
 msgid "details"
 msgstr "details"
 
-#: app/views/status/index.html.erb:87
+#: app/views/status/index.html.erb:108
 msgid "Details"
 msgstr "Details"
 
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:161
 msgid "Edit Limits"
 msgstr "Bewerkingslimieten"
 
-#: app/views/status/_status_graph.html.erb:1
+#: app/views/status/_status_graph.html.erb:2
 msgid "A problem occured when loading status information."
-msgstr "Er is een probleem opgetreden tijdens de laden van de statusinformatie."
-
-#: app/views/status/_status_graph.html.erb:91
-msgid "Show last"
-msgstr "Laatste weergeven"
+msgstr ""
+"Er is een probleem opgetreden tijdens de laden van de statusinformatie."
 
 #: app/views/status/_status_graph.html.erb:92
+msgid "Show last"
+msgstr "Laatste tonen"
+
+#: app/views/status/_status_graph.html.erb:93
 msgid "5 Minutes"
 msgstr "5 minuten"
 
-#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/_status_graph.html.erb:94
 msgid "15 Minutes"
 msgstr "15 minuten"
 
-#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/_status_graph.html.erb:95
 msgid "30 Minutes"
 msgstr "30 minuten"
 
-#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/_status_graph.html.erb:96
 msgid "1 Hour"
 msgstr "1 uur"
 
-#: app/views/status/_status_graph.html.erb:96
-msgid "6 Hours"
-msgstr "6 uur"
-
 #: app/views/status/_status_graph.html.erb:97
+msgid "6 Hours"
+msgstr "6 uren"
+
+#: app/views/status/_status_graph.html.erb:98
 msgid "12 Hours"
-msgstr "12 uur"
+msgstr "12 uren"
 
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:3
 msgid "An problem occured when loading status information."
-msgstr "Er is een probleem opgetreden tijdens de laden van de statusinformatie."
+msgstr ""
+"Er is een probleem opgetreden tijdens de laden van de statusinformatie."
 
-#: app/views/status/_status_summary.html.erb:12
+#: app/views/status/_status_summary.html.erb:13
 msgid "Cannot read system status - you have been logged out."
 msgstr "Kan systeemstatus niet lezen - u bent afgemeld."
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:16
 msgid "Your system is healthy."
 msgstr "Uw systeem is gezond."
 
-#: app/views/status/_status_summary.html.erb:20
-msgid "Start collectd"
-msgstr "collectd starten"
-
-#: app/views/status/_status_summary.html.erb:28
+#: app/views/status/_status_summary.html.erb:26
 msgid "Loading system information"
-msgstr "Systeeminformatie laden"
+msgstr "Laden van systeeminformatie"
 
-#: app/views/status/_status_progress.html.erb:7
+#: app/views/status/_status_progress.html.erb:8
 msgid "Checking system status"
 msgstr "Systeemstatus controleren"
 
-#: lib/plugin_translation.rb:25
+#: lib/plugin_translation.rb:46
 msgid "Registration is missing"
 msgstr "Registratie ontbreekt"
 
-#: lib/plugin_translation.rb:26
+#: lib/plugin_translation.rb:47
 msgid "Please register your system in order to get updates."
-msgstr "Registreer uw systeem om updates te kunnen ontvangen."
+msgstr "Gaarne uw systeem registreren zodat u het kunt bijwerken."
 
-#: lib/plugin_translation.rb:27
+#: lib/plugin_translation.rb:48
 msgid "register"
 msgstr "registreren"
 
-#: lib/plugin_translation.rb:29
+#: lib/plugin_translation.rb:50
 msgid "Mail configuration test not confirmed"
-msgstr "Mailconfiguratietest niet bevestigd"
+msgstr "Test van de e-mailconfiguratie heeft nog geen OK opgeleverd"
 
-#: lib/plugin_translation.rb:30
-msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr "Tijdens het configureren van de mail is een testmail verzonden naar %s. Is de mail afgeleverd op dit adres?<br> Indien dat zo is, druk dan op de knop om te bevestigen. Als dat niet zo is, controleer dan de mailconfiguratie opnieuw."
+#: lib/plugin_translation.rb:51
+msgid ""
+"While configuring mail, a test mail was sent to %s . Was the mail delivered "
+"to this address?<br>If so, confirm it by pressing the button. Otherwise "
+"check your mail configuration again."
+msgstr ""
+"Bij de e-mailconfiguratie is er een test-e-mail verzonden naar %s. Is het "
+"bericht op dit adres afgeleverd?<br>Zo ja, bevestig dat dan door op de knop "
+"te drukken. In het andere geval dient u de e-mailconfiguratie nog eens te "
+"controleren."
 
-#: lib/plugin_translation.rb:33
-msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr "Kan de volledige hostnaam van de machine niet ophalen. Als de e-mail niet kan worden afgeleverd, moet u uw netwerk- en/of e-mailconfiguratie controleren samen met uw netwerkbeheerder."
+#: lib/plugin_translation.rb:54
+msgid ""
+"It was not possible to retrieve the full hostname of the machine. If the "
+"mail could not be delivered, consult the network and/or mail configuration "
+"with your network administrator."
+msgstr ""
+"Het was niet mogelijk om de volledige hostname van de machine op te halen. "
+"Als de e-mail niet afgeleverd kon worden, bekijk dan de netwerk- en/of de e-"
+"mailconfiguration met uw netwerkbeheerder."
 
-#: lib/plugin_translation.rb:34
+#: lib/plugin_translation.rb:55
 msgid "Test mail received"
-msgstr "Testmail ontvangen"
+msgstr "Test-e-mail ontvangen"
 
+#~ msgid "Start collectd"
+#~ msgstr "Collectd opstarten"
+
+#~ msgid "start"
+#~ msgstr "starten"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Ongeldige sessie, gaarne opnieuw aanmelden."
+
+#~ msgid "Disk free limits exceeded;"
+#~ msgstr "Limieten van vrije ruimte op schijf overschreden;"
+
+#~ msgid "Saving limits failed!"
+#~ msgstr "Opslaan van limieten is mislukt!"
+
+#~ msgid "Disk usage"
+#~ msgstr "Schijfgebruik"
+
+#~ msgid "Back"
+#~ msgstr "Terug"
+
+#~ msgid "free"
+#~ msgstr "vrij"
+
+#~ msgid "used"
+#~ msgstr "gebruikt"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "statuslimieten configureren"
+
+# /usr/lib/YaST2/clients/lan_inetd_custom.ycp:754
+#~ msgid "Status Path"
+#~ msgstr "Statuspad"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Minimum waarde"
+
+#~ msgid "Maximum Value"
+#~ msgstr "Maximale waarde"
+
+#~ msgid "Save"
+#~ msgstr "Opslaan"
+
+#~ msgid "Events"
+#~ msgstr "Gebeurtenissen"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Deze waarden zijn in de laatste 5 minuten geëvalueerd."

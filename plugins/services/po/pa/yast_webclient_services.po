@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2009-10-10 22:48+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -18,79 +18,213 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "ਗਲਤ ਸ਼ੈਸ਼ਨ, ਫੇਰ ਲਾਗਇਨ ਕਰੋ ਜੀ"
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(ਹਾਲਤ ਪੜ੍ਹੀ ਨਹੀਂ ਜਾ ਸਕਦੀ)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "ਸਫ਼ਲ"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(ਅਣਜਾਣ)"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(ਚੱਲ ਰਿਹਾ ਹੈ)"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
 msgstr ""
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(ਚੱਲ ਨਹੀਂ ਰਿਹਾ)"
-
-#: app/views/services/_status.rhtml:22
+#: app/controllers/services_controller.rb:72
 #, fuzzy
-#| msgid "(unknown)"
-msgid "(unknown: %d)"
-msgstr "(ਅਣਜਾਣ)"
+#| msgid "invalid argument syntax"
+msgid "invalid or excess argument(s)"
+msgstr "ਗਲਤ ਆਰਗੂਮਿੰਟ ਸੰਟੈਕਸ"
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:73
+#, fuzzy
+#| msgid "not yet implemented"
+msgid "unimplemented feature"
+msgstr "ਹਾਲ਼ੇ ਬਣਾਇਆ ਨਹੀਂ ਗਿਆ ਹੈ।"
+
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
+
+#: app/controllers/services_controller.rb:75
+#, fuzzy
+#| msgid "not installed"
+msgid "program is not installed"
+msgstr "ਇੰਸਟਾਲ ਨਹੀਂ ਹਨ"
+
+#: app/controllers/services_controller.rb:76
+#, fuzzy
+#| msgid "Not configured"
+msgid "program is not configured"
+msgstr "ਸੰਰਚਿਤ ਨਹੀਂ"
+
+#: app/controllers/services_controller.rb:77
+#, fuzzy
+#| msgid "The hypervisor is not running."
+msgid "program is not runnning"
+msgstr "ਹਾਇਪਰਵਿਜ਼ਰ ਨਹੀਂ ਚੱਲ ਰਿਹਾ ਹੈ।"
+
+#: app/views/services/_result.rhtml:6
 #, fuzzy
 #| msgid "Service unavailable"
 msgid "Service Call Result"
 msgstr "ਸਰਵਿਸ ਅਣ-ਉਪਲੱਬਧ"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "ਨਤੀਜੇ"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "ਪਿੱਛੇ"
-
-#: app/views/services/index.rhtml:11
-#, fuzzy
-#| msgid "Novell Services"
-msgid "Custom Services"
-msgstr "ਨੋਵਲ ਸਰਵਿਸਾਂ"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:141
 msgid "System Services"
 msgstr "ਸਿਸਟਮ ਸਰਵਿਸਾਂ"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr ""
-
-#: app/views/services/index.rhtml:22
+#: app/views/services/index.rhtml:147
 #, fuzzy
 #| msgid "you have no permission to execute this command"
-msgid "You do not have permission to execute the services. The links are disabled."
+msgid "You do not have permission to execute the services."
 msgstr "ਤੁਹਾਨੂੰ ਇਹ ਕਮਾਂਡ ਚਲਾਉਣ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਹੈ"
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "ਹਾਲਤ"
+#: app/views/services/index.rhtml:151
+#, fuzzy
+#| msgid "inetd service"
+msgid "Filter services"
+msgstr "inetd ਸਰਵਿਸ"
+
+#: app/views/services/index.rhtml:153
+#, fuzzy
+#| msgid "all"
+msgid "All"
+msgstr "ਸਭ"
+
+#: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "running"
+msgid "Running"
+msgstr "ਚੱਲ ਰਿਹਾ ਹੈ"
+
+#: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "not running"
+msgid "Not Running"
+msgstr "ਚੱਲ ਨਹੀਂ ਰਿਹਾ"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr ""
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search"
+msgid "Quick Search"
+msgstr "ਖੋਜ"
+
+#: app/views/services/index.rhtml:180
+#, fuzzy
+#| msgid "The action for service '%1' may not be empty."
+msgid "Description for service is not available"
+msgstr "ਸਰਵਿਸ '%1' ਲਈ ਕਾਰਵਾਈ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦੀ ਹੈ।"
+
+#: app/views/services/index.rhtml:203
+#, fuzzy
+#| msgid "Refresh"
+msgid "(refresh)"
+msgstr "ਤਾਜ਼ਾ"
+
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Start-Up"
+msgid "Start"
+msgstr "ਸ਼ੁਰੂ"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr ""
+
+#: app/views/services/index.rhtml:236
+msgid "Restart"
+msgstr "ਮੁੜ-ਚਾਲੂ"
+
+#: app/views/services/index.rhtml:237
+#, fuzzy
+#| msgid "Start Konqueror"
+msgid "Start on Boot"
+msgstr "ਕੋਨਿਊਕਰੋਰ ਚਾਲੂ ਕਰੋ"
+
+#: app/views/services/index.rhtml:238
+#, fuzzy
+#| msgid "Do Not Start"
+msgid "Do Not Start on Boot"
+msgstr "ਨਾ ਸ਼ੁਰੂ ਕਰੋ"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown"
+msgstr "ਅਣਜਾਣ"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "ਚੱਲ ਰਿਹਾ ਹੈ"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr ""
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "ਚੱਲ ਨਹੀਂ ਰਿਹਾ"
+
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "(unknown)"
+msgid "status unknown: %d"
+msgstr "(ਅਣਜਾਣ)"
+
+#: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "lock-down status for the search area"
+msgid "Current status of the service:"
+msgstr "ਖੋਜ ਖੇਤਰ ਲਈ ਹਾਲਤ ਲਾਕ-ਡਾਊਨ"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "ਗਲਤ ਸ਼ੈਸ਼ਨ, ਫੇਰ ਲਾਗਇਨ ਕਰੋ ਜੀ"
+
+#~ msgid "(unknown)"
+#~ msgstr "(ਅਣਜਾਣ)"
+
+#~ msgid "(running)"
+#~ msgstr "(ਚੱਲ ਰਿਹਾ ਹੈ)"
+
+#~ msgid "(not running)"
+#~ msgstr "(ਚੱਲ ਨਹੀਂ ਰਿਹਾ)"
+
+#~ msgid "Back"
+#~ msgstr "ਪਿੱਛੇ"
+
+#, fuzzy
+#~| msgid "Novell Services"
+#~ msgid "Custom Services"
+#~ msgstr "ਨੋਵਲ ਸਰਵਿਸਾਂ"
+
+#~ msgid "status"
+#~ msgstr "ਹਾਲਤ"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:33+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2001-07-17 16:27+0200\n"
 "Last-Translator: James Ogley <ogley@suse.co.uk>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -11,21 +11,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/application_controller.rb:53
-msgid "You must accept all EULAs before using this product!"
+#: app/helpers/application_helper.rb:20
+msgid " or "
 msgstr ""
 
-#: app/controllers/application_controller.rb:57
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+#: app/helpers/application_helper.rb:24
+msgid " - "
 msgstr ""
 
-#: app/controllers/application_controller.rb:111
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Back"
+
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "Cancel"
+
+#: app/helpers/application_helper.rb:52
+msgid "Save"
+msgstr "Save"
+
+#: app/helpers/application_helper.rb:55
+#, fuzzy
+#| msgid "&Next"
+msgid "Next"
+msgstr "&Next"
+
+#: app/helpers/application_helper.rb:56
+#, fuzzy
+#| msgid "Finnish"
+msgid "Finish"
+msgstr "Finnish"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:133
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Unknown error\n"
+
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
+#, fuzzy
+#| msgid "No information available."
+msgid "No information available"
+msgstr "No information available."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr ""
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+#, fuzzy
+#| msgid "Details"
+msgid "Hide Details"
+msgstr "Details"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+#, fuzzy
+#| msgid "Details"
+msgid "Show Details"
+msgstr "Details"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Add"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+#, fuzzy
+#| msgid "&Edit"
+msgid "Edit"
+msgstr "&Edit"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Delete"
+
+#: app/controllers/sessions_controller.rb:49
+#, fuzzy
+#| msgid "you need to specify resource types and names"
+msgid "You need to specify the host"
+msgstr "you need to specify resource types and names"
+
+#: app/controllers/sessions_controller.rb:52
+#, fuzzy
+#| msgid "No valid key file specified."
+msgid "No login specified"
+msgstr "No valid key file specified."
+
+#: app/controllers/sessions_controller.rb:55
+#, fuzzy
+#| msgid "No valid key file specified."
+msgid "No password specified"
+msgstr "No valid key file specified."
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:97
+#, fuzzy
+#| msgid "Login failure. Please check username and password and try again"
+msgid "Login incorrect. Check your username and password."
+msgstr "ogin failure. Please check username and password and try again"
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr ""
+
+#: app/controllers/application_controller.rb:24
+#, fuzzy
+#| msgid "Session active:"
+msgid "Session timeout"
+msgstr "Session active:"
+
+#: app/controllers/application_controller.rb:79
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr ""
+
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:118
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/application_controller.rb:213
+msgid "can't be blank"
+msgstr ""
+
+#: app/controllers/application_controller.rb:214
+msgid "is out of allowed values"
+msgstr ""
+
+#: app/controllers/application_controller.rb:215
+msgid "can't be empty"
+msgstr ""
+
+#: app/controllers/application_controller.rb:216
+#, fuzzy
+#| msgid "Given URL is invalid."
+msgid "is invalid"
+msgstr "Given URL is invalid."
+
+#: app/controllers/application_controller.rb:231
+#, fuzzy
+#| msgid "Invalid LDAP URL query parameter '%s'"
+msgid "Invalid parameters:"
+msgstr "Invalid LDAP URL query parameter '%s'"
 
 # %s is FTP or HTTP
 #: app/controllers/hosts_controller.rb:25
@@ -57,38 +196,6 @@ msgstr "Host %s was not found."
 #| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
 msgstr "%s does not exist, please double-check the path."
-
-#: app/controllers/sessions_controller.rb:51
-#, fuzzy
-#| msgid "you need to specify resource types and names"
-msgid "You need to specify the host"
-msgstr "you need to specify resource types and names"
-
-#: app/controllers/sessions_controller.rb:54
-#, fuzzy
-#| msgid "No valid key file specified."
-msgid "No login specified"
-msgstr "No valid key file specified."
-
-#: app/controllers/sessions_controller.rb:57
-#, fuzzy
-#| msgid "No valid key file specified."
-msgid "No password specified"
-msgstr "No valid key file specified."
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:99
-#, fuzzy
-#| msgid "Login failure. Please check username and password and try again"
-msgid "Login incorrect. Check your username and password."
-msgstr "ogin failure. Please check username and password and try again"
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr ""
 
 #: app/models/account.rb:-
 msgid "account"
@@ -146,111 +253,11 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr ""
-
-#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Cancel"
-
-#: app/helpers/application_helper.rb:28
-msgid "Save"
-msgstr "Save"
-
-#: app/helpers/application_helper.rb:30
+#: app/views/main/_select_language.html.erb:18
 #, fuzzy
-#| msgid "&Next"
-msgid "Next"
-msgstr "&Next"
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Add"
-
-#: app/helpers/view_helpers/label_helper.rb:10
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&Edit"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Delete"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr ""
-
-#: app/helpers/view_helpers/html_helper.rb:132
-#, fuzzy
-#| msgid "Unknown error\n"
-msgid "Unknown error"
-msgstr "Unknown error\n"
-
-#: app/helpers/view_helpers/html_helper.rb:136
-#: app/views/shared/exception_trap.html.erb:22
-#, fuzzy
-#| msgid "No information available."
-msgid "No information available"
-msgstr "No information available."
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr ""
-
-#: app/views/hosts/index.html.erb:6
-#, fuzzy
-#| msgid "Please choose the CCW bus interface."
-msgid "Please choose a service:"
-msgstr "Please choose the CCW bus interface."
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:22
-msgid "YaST-Web-Service"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
-msgid "Name"
-msgstr "Name"
-
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
-msgid "Url"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
-msgid "Description"
-msgstr "Description"
-
-#: app/views/hosts/edit.html.erb:38
-msgid "Ok"
-msgstr "Ok"
-
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Back"
-
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Index"
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
-msgstr ""
-
-#: app/views/hosts/new.html.erb:47
-#, fuzzy
-#| msgid "Created On: "
-msgid "Create"
-msgstr "Created On: "
+#| msgid "Clear Package Selection"
+msgid "Language Selection"
+msgstr "Clear Package Selection"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
@@ -258,7 +265,7 @@ msgid "This is embarrasing...."
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid "We are sorry, but there are some problems."
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:12
@@ -284,39 +291,183 @@ msgstr ""
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:22
+msgid "YaST-Web-Service"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
+msgid "Name"
+msgstr "Name"
+
+#: app/views/hosts/edit.html.erb:29
+msgid "Url"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
+msgid "Description"
+msgstr "Description"
+
+#: app/views/hosts/edit.html.erb:38
+msgid "Ok"
+msgstr "Ok"
+
+#: app/views/hosts/index.html.erb:6
+#, fuzzy
+#| msgid "Please choose the CCW bus interface."
+msgid "Please choose a service:"
+msgstr "Please choose the CCW bus interface."
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:9
+msgid "New WebYaST Host"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:53
+#, fuzzy
+#| msgid "Created On: "
+msgid "Create"
+msgstr "Created On: "
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Index"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
+msgid "Configuration"
+msgstr "Configuration"
+
+#: app/views/controlpanel/index.rhtml:27
+msgid "Status"
+msgstr "Status"
+
+#: app/views/controlpanel/index.rhtml:35
+#, fuzzy
+#| msgid "System Information"
+msgid "System actions"
+msgstr "System Information"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:37
+msgid "Reboot"
+msgstr "Reboot"
+
+#: app/views/controlpanel/index.rhtml:38
+msgid "Really reboot %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Shutdown"
+msgstr "Shutdown"
+
+#: app/views/controlpanel/index.rhtml:40
+msgid "Really shutdown %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:48
+#, fuzzy
+#| msgid "Switch information"
+msgid "Loading patch information"
+msgstr "Switch information"
+
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:53
+#, fuzzy
+#| msgid "The configuration is not initialized."
+msgid "Patch plugin is not installed."
+msgstr "The configuration is not initialised."
+
+#: app/views/controlpanel/index.rhtml:60
+#, fuzzy
+#| msgid "System Information"
+msgid "Loading system information"
+msgstr "System Information"
+
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:65
+#, fuzzy
+#| msgid "ERROR: module %s is not installed.\n"
+msgid "Status plugin is not installed."
+msgstr "ERROR: module %s is not installed.\n"
+
+#: app/views/controlpanel/index.rhtml:102
+#, fuzzy
+#| msgid "Show Loaded Modules"
+msgid "Show all modules"
+msgstr "Show Loaded Modules"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Continue initial system setup"
+msgstr ""
+
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:48
+#: app/views/layouts/main.rhtml:50
 #, fuzzy
 #| msgid "Applied"
 msgid "My Appliance"
 msgstr "Applied"
 
-#: app/views/layouts/main.rhtml:56
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#, fuzzy
+#| msgid "Language"
+msgid "Language:"
+msgstr "Language"
+
+#: app/views/layouts/main.rhtml:62
 #, fuzzy
 #| msgid "Connected To"
 msgid "Connected host:"
 msgstr "Connected To"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:63
 #, fuzzy
 #| msgid "Username: "
 msgid "User:"
 msgstr "Username: "
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:66
 #, fuzzy
 #| msgid "Control Center"
 msgid "Control panel"
 msgstr "Control Centre"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "Logout"
 
-#: app/views/layouts/main.rhtml:93
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr ""
 
@@ -340,82 +491,6 @@ msgstr "Username: "
 msgid "Password:"
 msgstr "Password:"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:4
-#, fuzzy
-#| msgid "Reboot the system now?"
-msgid "Set up the system"
-msgstr "Reboot the system now?"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
-msgid "Configuration"
-msgstr "Configuration"
-
-#: app/views/controlpanel/index.rhtml:24
-msgid "Status"
-msgstr "Status"
-
-#: app/views/controlpanel/index.rhtml:33
-#, fuzzy
-#| msgid "System Information"
-msgid "System actions"
-msgstr "System Information"
-
-# reboot button label
-#: app/views/controlpanel/index.rhtml:34
-msgid "Reboot"
-msgstr "Reboot"
-
-#: app/views/controlpanel/index.rhtml:35
-msgid "Really reboot %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:36
-msgid "Shutdown"
-msgstr "Shutdown"
-
-#: app/views/controlpanel/index.rhtml:37
-msgid "Really shutdown %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:44
-#, fuzzy
-#| msgid "Switch information"
-msgid "Loading patch information"
-msgstr "Switch information"
-
-#: app/views/controlpanel/index.rhtml:46
-#, fuzzy
-#| msgid "The configuration is not initialized."
-msgid "Patch plugin is not installed."
-msgstr "The configuration is not initialised."
-
-#: app/views/controlpanel/index.rhtml:52
-#, fuzzy
-#| msgid "System Information"
-msgid "Loading system information"
-msgstr "System Information"
-
-#: app/views/controlpanel/index.rhtml:54
-#, fuzzy
-#| msgid "ERROR: module %s is not installed.\n"
-msgid "Status plugin is not installed."
-msgstr "ERROR: module %s is not installed.\n"
-
-#: app/views/controlpanel/index.rhtml:93
-#, fuzzy
-#| msgid "Show Loaded Modules"
-msgid "Show all modules"
-msgstr "Show Loaded Modules"
-
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
@@ -425,43 +500,47 @@ msgid "Service %s is not running on the target machine"
 msgstr ""
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr ""
+
+#: lib/error_constructor.rb:17
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "Action '%1' is not allowed for service '%2'."
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:28
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
-msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
 msgstr "An error occurred during the installation."
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Error while closing old shadow file: %m"
 
 #, fuzzy
-#~| msgid "Language"
-#~ msgid "Langugage:"
-#~ msgstr "Language"
+#~| msgid "Reboot the system now?"
+#~ msgid "Set up the system"
+#~ msgstr "Reboot the system now?"
 
 #, fuzzy
 #~| msgid "Name: "

@@ -1,69 +1,88 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_users\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 09:47\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2005-09-18 19:09+0200\n"
+"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
+"Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/groups_controller.rb:15
 msgid "Missing group name parameter"
-msgstr "Det saknas en gruppnamnsparameter"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
 msgid "Missing group parameters"
-msgstr "Saknade grupparametrar"
+msgstr "Argument saknas för "
 
 #: app/controllers/groups_controller.rb:37
+#, fuzzy
+#| msgid "Please enter server name below"
 msgid "Please enter a valid group name"
-msgstr "Ange ett giltigt gruppnamn"
+msgstr "Ange servernamn nedan"
 
 #: app/controllers/groups_controller.rb:47
 msgid "Please enter a valid GID"
-msgstr "Ange ett giltigt GID"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:57
 msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "Ange en giltig grupptyp. Endast \"system\" eller \"lokal\" är tillåtna."
+msgstr ""
 
 #: app/controllers/groups_controller.rb:68
 msgid "Please enter a valid list of members"
-msgstr "Ange en giltig lista med medlemmar"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
 msgid "Cannot read users list."
-msgstr "Det går inte att läsa användarlistan."
+msgstr "Det går inte att läsa från filen %1."
 
 #: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
 msgid "Cannot read groups list."
-msgstr "Det går inte att läsa grupplistan."
+msgstr "Det går inte att läsa från filen %1."
 
 #: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
 msgid "Unknown backend error"
-msgstr "Okänt fel vid bakände"
+msgstr "Okänt fel\n"
 
 #: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
-msgstr "Användaren <i>%s</i> skapades."
+msgstr ""
 
 #: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
-msgstr "Användaren <i>%s</i> uppdaterades."
+msgstr ""
 
 #: app/controllers/users_controller.rb:217
+#, fuzzy
+#| msgid "Repository %s has been sucessfully modified."
 msgid "User <i>%s</i> was successfully removed."
-msgstr "Användaren <i>%s</i> togs bort."
+msgstr "Arkivet %s har ändrats."
 
 #: app/controllers/users_controller.rb:219
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Fel: Det gick inte att ta bort användaren <i>%s</i>."
+msgstr "Fel: Kunde inte läsa profil %s: %s.\n"
 
 #: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
 #: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
@@ -72,39 +91,51 @@ msgstr "Grupper"
 
 #: app/views/groups/edit.html.erb:35
 msgid "Add new group"
-msgstr "Lägg till ny grupp"
+msgstr ""
 
 #: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Modified resources"
 msgid "Modify group"
-msgstr "Ändra grupp"
+msgstr "Ändrade resurser"
 
 #: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Name"
 msgid "Group Name"
-msgstr "Gruppnamn"
+msgstr "Namn"
 
 #: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
 msgid "Group ID"
-msgstr "Grupp-ID"
+msgstr "Grupper"
 
 #: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
 msgid "Default members"
-msgstr "Standardmedlemmar"
+msgstr "Standardscheman"
 
 #: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
 msgid "Members"
-msgstr "Medlemmar"
+msgstr ""
 
 #: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
 msgid "Processing ..."
-msgstr "Bearbetar..."
+msgstr "Processor %1"
 
 #: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
 msgid "Filter:"
-msgstr "Filter:"
+msgstr "Filter"
 
 #: app/views/groups/index.html.erb:78
 msgid "Add New Group"
-msgstr "Lägg till ny grupp"
+msgstr ""
 
 #: app/views/groups/index.html.erb:110
 msgid "Save"
@@ -116,93 +147,164 @@ msgstr "Ta bort"
 
 #: app/views/groups/index.html.erb:114
 msgid "Are you sure to delete group '%s'?"
-msgstr "Vill du ta bort gruppen %s?"
+msgstr ""
 
 #: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Monitor Settings"
 msgid "Login Settings"
-msgstr "Inloggningsinställningar"
+msgstr "Bildskärmsinställningar"
 
 #: app/views/users/_user_form.erb:8
+#, fuzzy
+#| msgid "Name"
 msgid "Full Name"
-msgstr "Fullständigt namn"
+msgstr "Namn"
 
 #: app/views/users/_user_form.erb:12
+#, fuzzy
+#| msgid "Login"
 msgid "Login Name"
-msgstr "Inloggningsnamn"
+msgstr "Inloggning"
 
+# password dialog title
 #: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "Lösenord"
 
 #: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
 msgid "Confirm Password"
-msgstr "Bekräfta lösenord"
+msgstr "_Bekräfta lösenord"
 
 #: app/views/users/_user_form.erb:39
+#, fuzzy
+#| msgid "Default Route"
 msgid "Default Group"
-msgstr "Standardgrupp"
+msgstr "Standardrutt"
 
 #: app/views/users/_user_form.erb:61
 msgid "Advanced"
 msgstr "Avancerat"
 
 #: app/views/users/_user_form.erb:64
+#, fuzzy
+#| msgid "Directory\n"
 msgid "Home Directory"
-msgstr "Hemkatalog"
+msgstr "Katalog\n"
 
 #: app/views/users/_user_form.erb:68
+#, fuzzy
+#| msgid "Login"
 msgid "Login Shell"
-msgstr "Inloggningsskal"
+msgstr "Inloggning"
 
 #: app/views/users/_user_form.erb:72
 msgid "UID Number"
-msgstr "UID-nummer"
+msgstr ""
 
 #: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
 msgid "Weak"
-msgstr "Svagt"
+msgstr ""
 
 #: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
 msgid "Normal"
-msgstr "Normalt"
+msgstr "Normal"
 
 #: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
 msgid "Medium"
-msgstr "Mellan"
+msgstr "Media"
 
 #: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
 msgid "Strong"
-msgstr "Starkt"
+msgstr ""
 
 #: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
 msgid "Very Strong"
-msgstr "Mycket starkt"
+msgstr ""
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "Create New User?"
 msgid "Users"
-msgstr "Användare"
+msgstr "Skapa ny användare?"
 
 #: app/views/users/edit.html.erb:80
 msgid "Edit user %s"
-msgstr "Redigera användaren %s"
+msgstr ""
 
 #: app/views/users/index.html.erb:52
+#, fuzzy
+#| msgid "Create New User?"
 msgid "Add New User"
-msgstr "Lägg till ny användare"
+msgstr "Skapa ny användare?"
 
 #: app/views/users/index.html.erb:68
+#, fuzzy
+#| msgid "Do you really want to delete the %1 scheme?"
 msgid "Are you sure to delete user '%s'?"
-msgstr "Vill du ta bort användaren '%s'?"
+msgstr "Vill du verkligen ta bort schemat %1?"
 
 #: app/views/users/index.html.erb:68
 msgid "Home directory will be deleted as well."
-msgstr "Hemkatalogen tas också bort."
+msgstr ""
 
 #: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "manage backups"
 msgid "Manage Groups"
-msgstr "Hantera grupper"
+msgstr "hantera säkerhetskopior"
 
 #: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "Create New User?"
 msgid "Add new user"
-msgstr "Lägg till ny användare"
+msgstr "Skapa ny användare?"
 
+#, fuzzy
+#~| msgid "Empty CA name."
+#~ msgid "Empty UID value"
+#~ msgstr "CA-namnet är tomt."
+
+#, fuzzy
+#~| msgid "Local Network"
+#~ msgid "Local User"
+#~ msgstr "Lokalt nätverk"
+
+#~ msgid "Login"
+#~ msgstr "Inloggning"
+
+#, fuzzy
+#~| msgid "&Edit"
+#~ msgid "Edit"
+#~ msgstr "R&edigera"
+
+#, fuzzy
+#~| msgid "You are <strong>online</strong>"
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "Du är <strong>ansluten</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Tillbaka"
+
+#~ msgid "Update"
+#~ msgstr "Uppdatera"
+
+#, fuzzy
+#~| msgid "Default route ok."
+#~ msgid "Default Group (GID)"
+#~ msgstr "Standardrutt OK."
+
+#, fuzzy
+#~| msgid "Cannot create directory %1: %2."
+#~ msgid "Do not create home directory"
+#~ msgstr "Det gick inte att skapa katalogen %1: %2."
+
+#, fuzzy
+#~| msgid "Created On: "
+#~ msgid "Create"
+#~ msgstr "Skapad den: "

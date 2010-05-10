@@ -1,41 +1,50 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_status\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 10:44\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
-msgstr "找不到显示系统状态的数据。"
+msgstr ""
 
 #: app/controllers/status_controller.rb:187
+#, fuzzy
+#| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for "
-msgstr "已超出限制"
+msgstr "添加\"%s\"成功。\n"
 
 #: app/controllers/status_controller.rb:316
+#, fuzzy
+#| msgid "Needed"
 msgid "exceeded"
-msgstr "超出"
+msgstr "需要"
 
 #: app/controllers/status_controller.rb:330
 msgid "undercut"
-msgstr "低于"
+msgstr ""
 
 #: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
-msgstr "限制已写入。"
+msgstr ""
 
 #: app/views/status/edit.html.erb:27
 msgid "Only numbers are valid !"
-msgstr "仅数字有效！"
+msgstr ""
 
 #: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
@@ -47,13 +56,17 @@ msgstr "设置"
 
 #: app/views/status/edit.html.erb:66
 msgid "undercuts"
-msgstr "低于"
+msgstr ""
 
 #: app/views/status/edit.html.erb:66
+#, fuzzy
+#| msgid "Needs"
 msgid "exceeds"
-msgstr "超出"
+msgstr "需要"
 
 #: app/views/status/index.html.erb:71
+#, fuzzy
+#| msgid "Details"
 msgid "details"
 msgstr "细节"
 
@@ -63,89 +76,171 @@ msgstr "细节"
 
 #: app/views/status/index.html.erb:143
 msgid "Edit Limits"
-msgstr "编辑限制"
+msgstr ""
 
 #: app/views/status/_status_graph.html.erb:1
+#, fuzzy
+#| msgid "An error occurred during the installation."
 msgid "A problem occured when loading status information."
-msgstr "装载状态信息时发生问题。"
+msgstr "安装期间出错。"
 
 #: app/views/status/_status_graph.html.erb:91
+#, fuzzy
+#| msgid "Show caps"
 msgid "Show last"
-msgstr "显示最后"
+msgstr "显示盖子"
 
 #: app/views/status/_status_graph.html.erb:92
+#, fuzzy
+#| msgid " Minutes"
 msgid "5 Minutes"
-msgstr "5 分钟"
+msgstr " 分钟"
 
 #: app/views/status/_status_graph.html.erb:93
+#, fuzzy
+#| msgid " Minutes"
 msgid "15 Minutes"
-msgstr "15 分钟"
+msgstr " 分钟"
 
 #: app/views/status/_status_graph.html.erb:94
+#, fuzzy
+#| msgid "30 minutes"
 msgid "30 Minutes"
 msgstr "30 分钟"
 
 #: app/views/status/_status_graph.html.erb:95
+#, fuzzy
+#| msgid " Hours"
 msgid "1 Hour"
-msgstr "1 小时"
+msgstr " 小时"
 
 #: app/views/status/_status_graph.html.erb:96
+#, fuzzy
+#| msgid " Hours"
 msgid "6 Hours"
-msgstr "6 小时"
+msgstr " 小时"
 
 #: app/views/status/_status_graph.html.erb:97
+#, fuzzy
+#| msgid " Hours"
 msgid "12 Hours"
-msgstr "12 小时"
+msgstr " 小时"
 
 #: app/views/status/_status_summary.html.erb:2
+#, fuzzy
+#| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
-msgstr "装载状态信息时发生问题。"
+msgstr "安装期间出错。"
 
 #: app/views/status/_status_summary.html.erb:12
 msgid "Cannot read system status - you have been logged out."
-msgstr "无法读取系统状态 － 您已注销。"
+msgstr ""
 
 #: app/views/status/_status_summary.html.erb:15
+#, fuzzy
+#| msgid "Your system is up-to-date."
 msgid "Your system is healthy."
-msgstr "您的系统运行状态良好。"
+msgstr "你的系统处于最新状态。"
 
 #: app/views/status/_status_summary.html.erb:20
+#, fuzzy
+#| msgid "Start VPN connection"
 msgid "Start collectd"
-msgstr "启动已收集"
+msgstr "启动 VPN 连接"
 
 #: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "Downloading update information"
 msgid "Loading system information"
-msgstr "正在装载系统信息"
+msgstr "正在下载更新信息"
 
 #: app/views/status/_status_progress.html.erb:7
+#, fuzzy
+#| msgid "Checking signatures"
 msgid "Checking system status"
-msgstr "正在检查系统状态"
+msgstr "正在检查签名"
 
 #: lib/plugin_translation.rb:25
+#, fuzzy
+#| msgid "Required file is missing: "
 msgid "Registration is missing"
-msgstr "缺少注册信息"
+msgstr "找不到所需文件："
 
 #: lib/plugin_translation.rb:26
+#, fuzzy
+#| msgid "Please restart your system as soon as possible."
 msgid "Please register your system in order to get updates."
-msgstr "请注册您的系统以获取更新。"
+msgstr "请尽快重启你的系统。"
 
 #: lib/plugin_translation.rb:27
 msgid "register"
-msgstr "注册"
+msgstr ""
 
 #: lib/plugin_translation.rb:29
+#, fuzzy
+#| msgid "The configuration is not initialized."
 msgid "Mail configuration test not confirmed"
-msgstr "邮件配置测试未确认"
+msgstr "配置未初始化。"
 
 #: lib/plugin_translation.rb:30
 msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr "在邮件配置过程中，已将测试邮件发送至 %s。邮件是否已发送到此地址？<br>如果是，请按按钮确认。否则，请重新检查您的邮件配置。"
+msgstr ""
 
 #: lib/plugin_translation.rb:33
 msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr "无法获取完整的计算机主机名。如果邮件无法递送，请向网络管理员咨询有关网络和/或邮件配置问题。"
+msgstr ""
 
 #: lib/plugin_translation.rb:34
 msgid "Test mail received"
-msgstr "测试邮件已收到"
+msgstr ""
 
+#, fuzzy
+#~| msgid "Saving the changes failed"
+#~ msgid "Saving limits failed!"
+#~ msgstr "保存更改失败"
+
+#, fuzzy
+#~| msgid "Disks"
+#~ msgid "Disk usage"
+#~ msgstr "磁盘"
+
+#~ msgid "Back"
+#~ msgstr "后退"
+
+#, fuzzy
+#~| msgid "Last used"
+#~ msgid "used"
+#~ msgstr "上次使用的"
+
+#, fuzzy
+#~| msgid "Configure Compiz Settings"
+#~ msgid "Configure Status Limits"
+#~ msgstr "配置 Compiz"
+
+#, fuzzy
+#~| msgid "Status: "
+#~ msgid "Status Path"
+#~ msgstr "状态："
+
+#, fuzzy
+#~| msgid "Maximum Memory"
+#~ msgid "Maximum Value"
+#~ msgstr "最大内存"
+
+#~ msgid "Save"
+#~ msgstr "保存"
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "没有可用信息。"
+
+#, fuzzy
+#~| msgid "Button Events"
+#~ msgid "Events"
+#~ msgstr "按钮事件"
+
+#, fuzzy
+#~| msgid "Details..."
+#~ msgid "Show details..."
+#~ msgstr "细节"

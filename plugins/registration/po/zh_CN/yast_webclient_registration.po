@@ -1,177 +1,233 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_registration\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-07 11:31\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/registration_controller.rb:11
+#, fuzzy
+#| msgid "Emails"
 msgid "Email"
 msgstr "电子邮件"
 
 #: app/controllers/registration_controller.rb:12
+#, fuzzy
+#| msgid "System update"
 msgid "System name"
-msgstr "系统名称"
+msgstr "系统升级"
 
 #: app/controllers/registration_controller.rb:13
+#, fuzzy
+#| msgid "Administration"
 msgid "SLES registration code"
-msgstr "SLES 注册代码"
+msgstr "管理"
 
 #: app/controllers/registration_controller.rb:14
+#, fuzzy
+#| msgid "Administration"
 msgid "SLED registration code"
-msgstr "SLED 注册代码"
+msgstr "管理"
 
 #: app/controllers/registration_controller.rb:15
+#, fuzzy
+#| msgid "Application Browser"
 msgid "Appliance registration code"
-msgstr "设备注册代码"
+msgstr "应用程序浏览器"
 
 #: app/controllers/registration_controller.rb:16
+#, fuzzy
+#| msgid "YaST installation source"
 msgid "WebYaST registration code"
-msgstr "WebYaST 注册代码"
+msgstr "YaST 安装源"
 
 #: app/controllers/registration_controller.rb:17
+#, fuzzy
+#| msgid "Administration"
 msgid "Registration code"
-msgstr "注册代码"
+msgstr "管理"
 
 #: app/controllers/registration_controller.rb:18
+#, fuzzy
+#| msgid "Host Names"
 msgid "Hostname"
 msgstr "主机名"
 
 #: app/controllers/registration_controller.rb:19
+#, fuzzy
+#| msgid "Modem device name"
 msgid "Device name"
-msgstr "设备名"
+msgstr "调制解调器设备名称"
 
 #: app/controllers/registration_controller.rb:20
 msgid "Appliance name"
-msgstr "设备名"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:21
+#, fuzzy
+#| msgid "Administration"
 msgid "registration code"
-msgstr "注册代码"
+msgstr "管理"
 
 #: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
-msgstr "会话无效，请重新登录。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
-msgstr "没有注册许可权限"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:84
+#, fuzzy
+#| msgid "Please connect to the internet."
 msgid "Please try to register again later."
-msgstr "请尝试稍后再次注册。"
+msgstr "请连接到因特网。"
 
 #: app/controllers/registration_controller.rb:88
+#, fuzzy
+#| msgid "Administration"
 msgid "Registration was skipped."
-msgstr "已跳过注册。"
+msgstr "管理"
 
 #: app/controllers/registration_controller.rb:94
+#, fuzzy
+#| msgid "Administration"
 msgid "Registration did not finish."
-msgstr "注册未完成。"
+msgstr "管理"
 
 #: app/controllers/registration_controller.rb:95
 msgid "Registration did not succeed."
-msgstr "注册未成功。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:97
 msgid "This may be a temporary issue."
-msgstr "这可能是临时性问题。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:102
 msgid "The registration server returned invalid or incomplete data."
-msgstr "注册服务器返回的数据无效或不完整。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
-msgstr "请填写缺少项。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:155
+#, fuzzy
+#| msgid "Service pack"
 msgid "Service added:"
-msgstr "已添加服务："
+msgstr "服务包"
 
-#: app/controllers/registration_controller.rb:159 app/controllers/registration_controller.rb:164
+#: app/controllers/registration_controller.rb:159
+#: app/controllers/registration_controller.rb:164
+#, fuzzy
+#| msgid "Catalog: "
 msgid "Catalog enabled:"
-msgstr "编目已启用："
+msgstr "编目："
 
 #: app/controllers/registration_controller.rb:188
+#, fuzzy
+#| msgid "Repository name:"
 msgid "Repository added:"
-msgstr "已添加安装源："
+msgstr "安装源名称："
 
 #: app/controllers/registration_controller.rb:248
+#, fuzzy
+#| msgid "A system restart is required"
 msgid "This system is already registered."
-msgstr "此系统已注册。"
+msgstr "需要系统重启"
 
 #: app/controllers/registration_controller.rb:277
 msgid "Registration finished successfully."
-msgstr "注册已成功完成。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:290
 msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
-msgstr "<p><b>安装源在注册过程中未修改。</b></p><p>很可能使用的注册代码错误。如果是这样，请尝试再次注册来更新安装源。</p><p>请确保该系统配置了更新安装源，否则它不会接收更新。</p>"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:324
+#, fuzzy
+#| msgid "Authorisation could not be obtained"
 msgid "A connection to the registration server could not be established."
-msgstr "无法建立与注册服务器的连接。"
+msgstr "无法获得授权"
 
 #: app/controllers/registration_controller.rb:328
 msgid "The transmitted registration data created a conflict."
-msgstr "传输的注册数据造成了冲突。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:336
 msgid "Registration can not be performed. There is no product installed that can be registered."
-msgstr "无法执行注册。没有安装可注册的产品。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:351
 msgid "A connection to the registration server could not be established or it did not reply."
-msgstr "无法建立与注册服务器的连接，或者它没有答复。"
+msgstr ""
 
 #: app/controllers/registration_controller.rb:368
 msgid "The registration server returned invalid data."
-msgstr "注册服务器返回无效数据。"
+msgstr ""
 
 #: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
+#, fuzzy
+#| msgid "`%s' is not a valid ip address."
 msgid "Please enter a valid Email address."
-msgstr "请输入有效的电子邮件地址。"
+msgstr "`%s'不是有效的 IP 地址。"
 
 #: app/views/registration/index.rhtml:36
 msgid "register plugin"
-msgstr "注册插件"
+msgstr ""
 
 #: app/views/registration/index.rhtml:36
+#, fuzzy
+#| msgid "Administration"
 msgid "Registration"
-msgstr "注册"
+msgstr "管理"
 
 #: app/views/registration/index.rhtml:44
+#, fuzzy
+#| msgid "Getting information"
 msgid "Registration Information"
-msgstr "注册信息"
+msgstr "正在获取信息"
 
 #: app/views/registration/index.rhtml:45
+#, fuzzy
+#| msgid "A system restart is required"
 msgid "This system is registered"
-msgstr "此系统已注册"
+msgstr "需要系统重启"
 
 #: app/views/registration/index.rhtml:46
+#, fuzzy
+#| msgid "System:"
 msgid "System number (GUID)"
-msgstr "系统编号 (GUID)"
+msgstr "系统："
 
 #: app/views/registration/index.rhtml:47
+#, fuzzy
+#| msgid "Administration"
 msgid "Register again"
-msgstr "重新注册"
+msgstr "管理"
 
 #: app/views/registration/index.rhtml:54
 msgid "Next"
 msgstr "下一步"
 
 #: app/views/registration/index.rhtml:64
+#, fuzzy
+#| msgid "Memory Information"
 msgid "Mandatory Information"
-msgstr "必需信息"
+msgstr "内存信息"
 
 #: app/views/registration/index.rhtml:79
 msgid "Details"
@@ -179,13 +235,45 @@ msgstr "细节"
 
 #: app/views/registration/index.rhtml:104
 msgid "Skip"
-msgstr "跳过"
+msgstr ""
 
 #: app/views/registration/index.rhtml:105
+#, fuzzy
+#| msgid "Poststop"
 msgid "Postpone"
-msgstr "延迟"
+msgstr "后停止"
 
 #: app/views/registration/index.rhtml:106
+#, fuzzy
+#| msgid "r"
 msgid "or"
-msgstr "或"
+msgstr "r"
 
+#, fuzzy
+#~| msgid "An error occurred during the installation."
+#~ msgid "An error occurred during registration. Please try again."
+#~ msgstr "安装期间出错。"
+
+#, fuzzy
+#~| msgid "An error occurred while reading from the installation source."
+#~ msgid "Error occured while connecting to registration server."
+#~ msgstr "从安装源读取数据时出错。"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgid "Detail"
+#~ msgstr "细节"
+
+#, fuzzy
+#~| msgid "Error reading repositories:"
+#~ msgid "Changed Repositories"
+#~ msgstr "读取安装源时出错："
+
+#, fuzzy
+#~| msgid "Changed profiles"
+#~ msgid "Changed Services"
+#~ msgstr "变更过的简报"
+
+# cancel button label
+#~ msgid "Cancel"
+#~ msgstr "取消"

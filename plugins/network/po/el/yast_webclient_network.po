@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-08-24 17:53+0300\n"
 "Last-Translator: Hellenic SuSE Translation Team <hstg@billg.gr>\n"
 "Language-Team: Hellenic-Ελληνικά-Greek <hstg@billg.gr>\n"
@@ -12,116 +12,140 @@ msgstr ""
 "X-Generator: KBabel 1.10\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr ""
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Δεν έχει ρυθμιστεί"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgid "Manual Mode"
 msgid "Manual"
 msgstr "Χειροκίνητη Κατάσταση"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgid "Automatic Mode"
 msgid "Automatic"
 msgstr "Αυτόματο Κατάσταση"
 
-#: app/controllers/network_controller.rb:105
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr ""
+
+#: app/views/network/index.html.erb:120
+#, fuzzy
+#| msgid "The VM's name cannot start with a digit."
+msgid " - can not start with a digit."
+msgstr "ΤΟ όνομα της VM δε μπορεί να ξεκινά με έναν αριθμό."
+
+#: app/views/network/index.html.erb:122
+#, fuzzy
+#| msgid "The option 'flush' is not allowed"
+msgid "periodic '-' is not allowed."
+msgstr "Η επιλογή 'flush' δεν επιτρέπεται"
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr ""
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
 msgstr "Δεν καθορίστηκε έγκυρο αρχείο αίτησης."
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
 msgstr ""
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "Δίκτυο"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "Διεπαφή δικτύου"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:226
 #, fuzzy
 #| msgid "Select Script"
 msgid "Select"
 msgstr "Επιλέξτε Σενάριο"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:243
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "Ρύθμιση"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:252
 #, fuzzy
 #| msgid "Own Address"
 msgid "IP address"
 msgstr "Τοπική διεύθυνση"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "Προεπιλεγμένη Ανακατεύθυνση"
+
+#: app/views/network/index.html.erb:269
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Ονόματα Κόμβων"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Περιοχή\n"
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:278
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "Διακομιστής Ονομάτων"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:282
 #, fuzzy
 #| msgid "Search Index"
 msgid "Search domains"
 msgstr "Ευρετήριο Έρευνας"
-
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "Προεπιλεγμένη Ανακατεύθυνση"
 
 #, fuzzy
 #~| msgid "Do not start"

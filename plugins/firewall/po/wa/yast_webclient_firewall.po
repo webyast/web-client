@@ -1,33 +1,58 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translation into the walloon language.
+# Copyright (C) 2007 SUSE Linux Products GmbH.
+# Pablo Saratxaga <pablo@walon.org>, 2001, 2004.
+# Jean Cayron <jean.cayron@gmail.com>, 2007.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient firewall 1.0.0\n"
-"POT-Creation-Date: 2010-01-27 18:01+0100\n"
-"PO-Revision-Date: 2010-01-27 18:01+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: yast memory\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2004-04-05 17:37+0200\n"
+"Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
+"Language-Team: Walloon <i18n@suse.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/views/firewall/index.rhtml:3
+#: app/controllers/firewall_controller.rb:51
+msgid "Firewall settings have been written."
+msgstr ""
+
+#: app/views/firewall/index.rhtml:42
+msgid "Some of needed services are going to be blocked. WebYaST may not be usable anymore."
+msgstr ""
+
+#: app/views/firewall/index.rhtml:68
 msgid "Firewall"
 msgstr ""
 
-#: app/views/firewall/index.rhtml:9
+#: app/views/firewall/index.rhtml:86
+#, fuzzy
+#| msgid "General Settings"
+msgid "General settings"
+msgstr "Apontiaedjes djenerås"
+
+#: app/views/firewall/index.rhtml:93
 msgid "Use Firewall"
 msgstr ""
 
-#: app/views/firewall/index.rhtml:21
-msgid "Service"
+#: app/views/firewall/index.rhtml:99
+#, fuzzy
+#| msgid "All SLP Services"
+msgid "Allowed services"
+msgstr "Tos les siervices SLP"
+
+#: app/views/firewall/index.rhtml:103
+msgid "Block"
 msgstr ""
 
-#: app/views/firewall/index.rhtml:22
-msgid "Allowed"
+#: app/views/firewall/index.rhtml:109
+#, fuzzy
+#| msgid "Build Service"
+msgid "Blocked services"
+msgstr "Build Service"
+
+#: app/views/firewall/index.rhtml:113
+msgid "Allow"
 msgstr ""

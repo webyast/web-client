@@ -1,151 +1,225 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# translation of yast_webclient_status.es.po to Spanish
+# Carlos E. Robinson <carlos.e.r@opensuse.org>, 2009.
+# Carlos E. Robinson M. <carlos.e.r@opensuse.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_status\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 10:31\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Project-Id-Version: yast_webclient_status.es\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-04 09:38+0200\n"
+"Last-Translator: Carlos E. Robinson M. <carlos.e.r@opensuse.org>\n"
+"Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Spanish\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
-msgstr "No se han encontrado datos para mostrar el estado del sistema."
+msgstr "No se encontró datos para mostrar el estado del sistema."
 
-#: app/controllers/status_controller.rb:187
+#: app/controllers/status_controller.rb:159
+#| msgid "No status information available"
+msgid "Status not available."
+msgstr "El estado no está disponible."
+
+#: app/controllers/status_controller.rb:178
+msgid "Can't connect to host"
+msgstr "No se pudo conectar al equipo"
+
+#: app/controllers/status_controller.rb:180
+msgid "Can't connect to host %s."
+msgstr "No se pudo conectar al equipo %s."
+
+#: app/controllers/status_controller.rb:219
 msgid "Limits exceeded for "
-msgstr "Se ha superado el límite para "
+msgstr "Límites excedidos para "
 
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:244
+#| msgid "No status information available"
+msgid "Status not available"
+msgstr "El estado no está disponible"
+
+#: app/controllers/status_controller.rb:321
 msgid "exceeded"
-msgstr "ha superado"
+msgstr "excedido"
 
-#: app/controllers/status_controller.rb:330
+# Cer: no estoy seguro
+#: app/controllers/status_controller.rb:335
 msgid "undercut"
-msgstr "están por debajo de"
+msgstr "inferiores"
 
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:437
 msgid "Limits have been written."
-msgstr "Se han escrito los límites."
+msgstr "Los límites han sido escritos."
 
-#: app/views/status/edit.html.erb:27
+#: app/views/status/edit.html.erb:48
 msgid "Only numbers are valid !"
-msgstr "Sólo son válidos los números."
+msgstr "¡Sólo son válidos los números!"
 
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
 msgid "Status"
 msgstr "Estado"
 
-#: app/views/status/edit.html.erb:51
+#: app/views/status/edit.html.erb:75
 msgid "Settings"
 msgstr "Configuración"
 
-#: app/views/status/edit.html.erb:66
+# Cer: no estoy seguro
+#: app/views/status/edit.html.erb:89
 msgid "undercuts"
-msgstr "está por debajo de"
+msgstr "superiores"
 
-#: app/views/status/edit.html.erb:66
+#: app/views/status/edit.html.erb:89
 msgid "exceeds"
-msgstr "supera"
+msgstr "Excede"
 
-#: app/views/status/index.html.erb:71
+#: app/views/status/index.html.erb:92
 msgid "details"
 msgstr "detalles"
 
-#: app/views/status/index.html.erb:87
+#: app/views/status/index.html.erb:108
 msgid "Details"
 msgstr "Detalles"
 
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:161
 msgid "Edit Limits"
 msgstr "Editar límites"
 
-#: app/views/status/_status_graph.html.erb:1
+#: app/views/status/_status_graph.html.erb:2
 msgid "A problem occured when loading status information."
-msgstr "Error al cargar la información de estado."
-
-#: app/views/status/_status_graph.html.erb:91
-msgid "Show last"
-msgstr "Mostrar últimos"
+msgstr "Ocurrió un problema al cargar información de estado."
 
 #: app/views/status/_status_graph.html.erb:92
+msgid "Show last"
+msgstr "Mostrar el último"
+
+#: app/views/status/_status_graph.html.erb:93
 msgid "5 Minutes"
 msgstr "5 minutos"
 
-#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/_status_graph.html.erb:94
 msgid "15 Minutes"
 msgstr "15 minutos"
 
-#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/_status_graph.html.erb:95
 msgid "30 Minutes"
 msgstr "30 minutos"
 
-#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/_status_graph.html.erb:96
 msgid "1 Hour"
 msgstr "1 hora"
 
-#: app/views/status/_status_graph.html.erb:96
+#: app/views/status/_status_graph.html.erb:97
 msgid "6 Hours"
 msgstr "6 horas"
 
-#: app/views/status/_status_graph.html.erb:97
+#: app/views/status/_status_graph.html.erb:98
 msgid "12 Hours"
 msgstr "12 horas"
 
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:3
 msgid "An problem occured when loading status information."
-msgstr "Error al cargar la información de estado"
+msgstr "Se ha producido un problema mientras se cargaba la información de estado."
 
-#: app/views/status/_status_summary.html.erb:12
+#: app/views/status/_status_summary.html.erb:13
 msgid "Cannot read system status - you have been logged out."
-msgstr "No es posible leer el estado del sistema. Ha salido de la sesión."
+msgstr "No se puede leer el estado del sistema -  se le ha echado fuera."
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:16
 msgid "Your system is healthy."
-msgstr "El sistema está saludable."
+msgstr "Su sistema está saludable."
 
-#: app/views/status/_status_summary.html.erb:20
-msgid "Start collectd"
-msgstr "Iniciar collectd"
-
-#: app/views/status/_status_summary.html.erb:28
+#: app/views/status/_status_summary.html.erb:26
 msgid "Loading system information"
 msgstr "Cargando información del sistema"
 
-#: app/views/status/_status_progress.html.erb:7
+#: app/views/status/_status_progress.html.erb:8
 msgid "Checking system status"
 msgstr "Comprobando estado del sistema"
 
-#: lib/plugin_translation.rb:25
+#: lib/plugin_translation.rb:46
 msgid "Registration is missing"
 msgstr "Falta el registro"
 
-#: lib/plugin_translation.rb:26
+#: lib/plugin_translation.rb:47
 msgid "Please register your system in order to get updates."
-msgstr "Registre el sistema para poder obtener actualizaciones"
+msgstr "Por favor registre el sistema para poder recibir actualizaciones."
 
-#: lib/plugin_translation.rb:27
+#: lib/plugin_translation.rb:48
 msgid "register"
-msgstr "registrar"
+msgstr "registro"
 
-#: lib/plugin_translation.rb:29
+#: lib/plugin_translation.rb:50
 msgid "Mail configuration test not confirmed"
-msgstr "Prueba de configuración de correo no confirmada"
+msgstr "No se ha confirmado el correo de prueba de la configuración"
 
-#: lib/plugin_translation.rb:30
-msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr "Durante la configuración del correo, se envió un correo de prueba a %s. ¿Se ha entregado este correo en esta dirección?<br> Si es así, confírmelo presionando el botón. Si no es así, vuelva a comprobar la configuración del correo."
+#: lib/plugin_translation.rb:51
+msgid ""
+"While configuring mail, a test mail was sent to %s . Was the mail delivered "
+"to this address?<br>If so, confirm it by pressing the button. Otherwise "
+"check your mail configuration again."
+msgstr ""
+"Durante la prueba de la configuración de correo, se envió un correo de "
+"prueba a %s . ¿Se recibió el correo en esta dirección?<br> En caso "
+"afirmativo, confírmelo pulsando el botón. En caso contrario, compruebe de "
+"nuevo su configuración."
 
-#: lib/plugin_translation.rb:33
-msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr "No es posible recuperar el nombre de host completo del equipo. Si el correo no se ha podido entregar, póngase en contacto con el administrador de red para comprobar la configuración de red o del correo."
+#: lib/plugin_translation.rb:54
+msgid ""
+"It was not possible to retrieve the full hostname of the machine. If the "
+"mail could not be delivered, consult the network and/or mail configuration "
+"with your network administrator."
+msgstr ""
+"No fue posible obtener el nombre completo de la máquina. Si el correo no "
+"pudo entregarse, consulte la configuración de la red y/o el correo con su "
+"administrador de red."
 
-#: lib/plugin_translation.rb:34
+#: lib/plugin_translation.rb:55
 msgid "Test mail received"
 msgstr "Correo de prueba recibido"
+
+#~ msgid "Start collectd"
+#~ msgstr "Iniciar collectd"
+
+#~ msgid "start"
+#~ msgstr "iniciado"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Sesión inválida, por favor entre de nuevo."
+
+#~ msgid "Disk usage"
+#~ msgstr "Uso de disco"
+
+#~ msgid "Back"
+#~ msgstr "Atrás"
+
+#~ msgid "free"
+#~ msgstr "libre"
+
+#~ msgid "used"
+#~ msgstr "usado"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "Configurar los límites de estado"
+
+#~ msgid "Status Path"
+#~ msgstr "Camino del estado"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Valor mínimo"
+
+#~ msgid "Maximum Value"
+#~ msgstr "Valor máximo"
+
+#~ msgid "Save"
+#~ msgstr "Guardar"
+
+#~ msgid "Events"
+#~ msgstr "Eventos"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Estos valores han sido evaluados los últimos 5 minutos."
 

@@ -1,65 +1,75 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# Hermann-Josef Beckers <hj.beckers@onlinehome.de>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_users\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 13:23\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2009-11-21 13:02+0100\n"
+"Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: app/controllers/groups_controller.rb:15
 msgid "Missing group name parameter"
-msgstr "Gruppennamen-Parameter fehlt"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
 msgid "Missing group parameters"
-msgstr "Gruppenparameter fehlen"
+msgstr "Fehlendes Argument für "
 
 #: app/controllers/groups_controller.rb:37
+#, fuzzy
+#| msgid "Please enter server name below"
 msgid "Please enter a valid group name"
-msgstr "Geben Sie einen gültigen Gruppennamen ein"
+msgstr "Geben Sie den Namen des Servers ein"
 
 #: app/controllers/groups_controller.rb:47
 msgid "Please enter a valid GID"
-msgstr "Geben Sie eine gültige Gruppen-ID ein"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:57
 msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "Geben Sie einen gültigen Gruppentyp ein. Nur \"system\" oder \"local\" sind zulässig."
+msgstr ""
 
 #: app/controllers/groups_controller.rb:68
 msgid "Please enter a valid list of members"
-msgstr "Geben Sie eine gültige Mitgliederliste ein"
+msgstr ""
 
 #: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
 msgid "Cannot read users list."
-msgstr "Benutzerliste kann nicht gelesen werden."
+msgstr "Datei %1 kann nicht gelesen werden."
 
 #: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
 msgid "Cannot read groups list."
-msgstr "Gruppenliste kann nicht gelesen werden."
+msgstr "Datei %1 kann nicht gelesen werden."
 
 #: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
 msgid "Unknown backend error"
-msgstr "Unbekannter Backend-Fehler"
+msgstr "Unbekannter Fehler\n"
 
 #: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
-msgstr "Benutzer <i>%s</i> wurde erstellt."
+msgstr "Benutzer <i>%s</i> wurde erfolgreich hinzugefügt."
 
 #: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
-msgstr "Benutzer <i>%s</i> wurde aktualisiert."
+msgstr "Benutzer <i>'%s</i> wurde erfolgreich aktualisiert."
 
 #: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
-msgstr "Benutzer <i>%s</i> wurde entfernt."
+msgstr "Benutzer <i>%s</i> wurde erfolgreich entfernt."
 
 #: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
@@ -71,40 +81,54 @@ msgid "Groups"
 msgstr "Gruppen"
 
 #: app/views/groups/edit.html.erb:35
+#, fuzzy
+#| msgid "Unknown group"
 msgid "Add new group"
-msgstr "Neue Gruppe hinzufügen"
+msgstr "Unbekannte Gruppe"
 
 #: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Downloading groups"
 msgid "Modify group"
-msgstr "Gruppe ändern"
+msgstr "Lade Gruppen herunter"
 
 #: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Profile Name"
 msgid "Group Name"
-msgstr "Gruppenname"
+msgstr "Profilname"
 
 #: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
 msgid "Group ID"
-msgstr "Gruppen-ID"
+msgstr "Gruppen"
 
 #: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
 msgid "Default members"
-msgstr "Standardmitglieder"
+msgstr "Standardschemen"
 
 #: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
 msgid "Members"
-msgstr "Mitglieder"
+msgstr ""
 
 #: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
 msgid "Processing ..."
-msgstr "Wird verarbeitet..."
+msgstr "Prozessor %1"
 
 #: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
 msgid "Filter:"
-msgstr "Filter:"
+msgstr "Filter"
 
 #: app/views/groups/index.html.erb:78
 msgid "Add New Group"
-msgstr "Neue Gruppe hinzufügen"
+msgstr ""
 
 #: app/views/groups/index.html.erb:110
 msgid "Save"
@@ -115,12 +139,16 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: app/views/groups/index.html.erb:114
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
 msgid "Are you sure to delete group '%s'?"
-msgstr "Wollen Sie die Gruppe '%s' wirklich löschen?"
+msgstr "Wollen Sie \"%s\" wirklich dauerhaft löschen?"
 
 #: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Wifi Settings"
 msgid "Login Settings"
-msgstr "Anmeldeeinstellungen"
+msgstr "Funk-Einstellungen"
 
 #: app/views/users/_user_form.erb:8
 msgid "Full Name"
@@ -128,19 +156,21 @@ msgstr "Vollständiger Name"
 
 #: app/views/users/_user_form.erb:12
 msgid "Login Name"
-msgstr "Anmeldungsname"
+msgstr "Anmelde-Name"
 
 #: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "Passwort"
 
 #: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
 msgid "Confirm Password"
-msgstr "Passwort bestätigen"
+msgstr "_Passwort bestätigen:"
 
 #: app/views/users/_user_form.erb:39
 msgid "Default Group"
-msgstr "Standardgruppe"
+msgstr "Standard-Gruppe"
 
 #: app/views/users/_user_form.erb:61
 msgid "Advanced"
@@ -148,11 +178,11 @@ msgstr "Erweitert"
 
 #: app/views/users/_user_form.erb:64
 msgid "Home Directory"
-msgstr "Home-Verzeichnis"
+msgstr "Start-Verzeichnis"
 
 #: app/views/users/_user_form.erb:68
 msgid "Login Shell"
-msgstr "Anmeldungs-Shell"
+msgstr "Anmelde-Shell"
 
 #: app/views/users/_user_form.erb:72
 msgid "UID Number"
@@ -160,25 +190,32 @@ msgstr "UID-Nummer"
 
 #: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
 msgid "Weak"
-msgstr "Schwach"
+msgstr ""
 
 #: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
 msgid "Normal"
 msgstr "Normal"
 
 #: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
 msgid "Medium"
-msgstr "Mittel"
+msgstr "Medien"
 
 #: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
 msgid "Strong"
-msgstr "Stark"
+msgstr ""
 
 #: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#, fuzzy
+#| msgid "Very fast"
 msgid "Very Strong"
-msgstr "Sehr stark"
+msgstr "Sehr schnell"
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "User"
 msgid "Users"
 msgstr "Benutzer"
 
@@ -187,22 +224,71 @@ msgid "Edit user %s"
 msgstr "Benutzer %s bearbeiten"
 
 #: app/views/users/index.html.erb:52
+#, fuzzy
+#| msgid "New User"
 msgid "Add New User"
-msgstr "Neuen Benutzer hinzufügen"
+msgstr "Neuer Benutzer"
 
 #: app/views/users/index.html.erb:68
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
 msgid "Are you sure to delete user '%s'?"
-msgstr "Sind Sie sicher, dass Benutzer '%s' gelöscht werden soll?"
+msgstr "Wollen Sie \"%s\" wirklich dauerhaft löschen?"
 
 #: app/views/users/index.html.erb:68
 msgid "Home directory will be deleted as well."
-msgstr "Home-Verzeichnis wird ebenfalls gelöscht."
+msgstr ""
 
 #: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "manage backups"
 msgid "Manage Groups"
-msgstr "Gruppen verwalten"
+msgstr "Sicherungen verwalten"
 
 #: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "New User"
 msgid "Add new user"
-msgstr "Neuen Benutzer hinzufügen"
+msgstr "Neuer Benutzer"
 
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Ungültige Sitzung, bitte melden Sie sich erneut an."
+
+#~ msgid "Empty UID value"
+#~ msgstr "Leerer UID-Wert."
+
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID: Wert >= 1000 ist nur für lokale Benutzer gültig"
+
+#~ msgid "Local User"
+#~ msgstr "Lokaler Benutzer"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "Edit"
+#~ msgstr "Bearbeiten"
+
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr " <strong>[Neuer Benutzer]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Zurück"
+
+#~ msgid "Update"
+#~ msgstr "Aktualisierung"
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "Standard-Gruppe (GID)"
+
+#~ msgid "Do not create home directory"
+#~ msgstr "Kein Startverzeichnis erstellen"
+
+#~ msgid "Create"
+#~ msgstr "Erstellen"
+
+#~ msgid "Edit User %s"
+#~ msgstr "Benutzer %s bearbeiten"
+
+#~ msgid "do NOT create home directory"
+#~ msgstr "Start-Verzeichnis NICHT erstellen"

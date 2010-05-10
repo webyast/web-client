@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: desktop-translations 20090902\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,123 +9,143 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr ""
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr ""
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgctxt "Name(plasma.desktop)"
 #| msgid "Plasma Manual"
 msgid "Manual"
 msgstr "Санадҳои Plasma"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgctxt "Name(autostart.desktop)"
 #| msgid "Autostart"
 msgid "Automatic"
 msgstr "Худоғозӣ"
 
-#: app/controllers/network_controller.rb:105
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr ""
+
+#: app/views/network/index.html.erb:120
+msgid " - can not start with a digit."
+msgstr ""
+
+#: app/views/network/index.html.erb:122
+msgid "periodic '-' is not allowed."
+msgstr ""
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr ""
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
 msgstr ""
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 #, fuzzy
 #| msgctxt "Name(remote.desktop)"
 #| msgid "Network"
 msgid "Network"
 msgstr "Шабакаи Интернет"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 #, fuzzy
 #| msgctxt "Name(solid-device-DvbInterface.desktop)"
 #| msgid "Dvb Interface"
 msgid "Interface"
 msgstr "Воситаҳои шабака"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:226
 #, fuzzy
 #| msgctxt "Name(KCharSelect.desktop)"
 #| msgid "KCharSelect"
 msgid "Select"
 msgstr "KИнтихобгари Аломатҳо"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:243
 #, fuzzy
 #| msgctxt "Name(kcmodule.desktop)"
 #| msgid "KDE Configuration Module"
 msgid "Configuration mode"
 msgstr "Модули танзимшавандаи KDE"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:252
 #, fuzzy
 #| msgctxt "Name(solid-device-NetworkInterface.desktop)"
 #| msgid "Hw Address"
 msgid "IP address"
 msgstr "Суроғаи Hw"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+#, fuzzy
+#| msgctxt "Name(default_blue.jpg.desktop)"
+#| msgid "Default Blue"
+msgid "Default route"
+msgstr "Синий по умолчанию"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr ""
 
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr ""
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:278
 #, fuzzy
 #| msgctxt "Name(kwalletd.desktop)"
 #| msgid "Wallet Server"
 msgid "Name servers"
 msgstr "Сервер Freeciv"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:282
 #, fuzzy
 #| msgctxt "Name(searchbar.desktop)"
 #| msgid "Search Bar"
 msgid "Search domains"
 msgstr "Панели ҷустуҷӯӣ"
-
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgctxt "Name(default_blue.jpg.desktop)"
-#| msgid "Default Blue"
-msgid "Default route"
-msgstr "Синий по умолчанию"
 
 #, fuzzy
 #~| msgctxt "Name(entry.desktop)"

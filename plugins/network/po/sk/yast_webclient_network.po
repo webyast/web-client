@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-09-25 08:24+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-19 15:46+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -20,162 +20,114 @@ msgstr ""
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Bez povolení pre sieťový modul"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Nenastavené"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Manual Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "Ručný režim"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
 msgstr "Automatický režim"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
-msgstr "Nastavenia boli zapísané."
+msgstr "Sieťové nastavenia boli zapísané."
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr "prázdne miesto - neplatný znak."
+
+#: app/views/network/index.html.erb:120
+msgid " - can not start with a digit."
+msgstr " - nedá sa spustiť číslicou."
+
+#: app/views/network/index.html.erb:122
+msgid "periodic '-' is not allowed."
+msgstr "periodická '-' nie je povolená."
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr "nedá sa ukončiť (-) pomlčkou."
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr "nedá sa spustiť (-) pomlčkou."
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr " - je neplatný znak pre hostiteľa."
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Neplatný formát IP adresy. Správny je nnn.nnn.nnn.nnn pre nnn medzi 0 a 255."
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr ""
+msgstr "Neplatný formát predvoľby. Správny je /nn, kde nn je medzi 0-32 (CIDR formát)."
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Neplatný formát štandardného smerovania. Správny je nnn.nnn.nnn.nnn pre nnn medzi 0 a 255."
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
-msgstr ""
+msgstr "Názvové servery sú vyžadované. Musí byť zadaný aspoň jeden."
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
-msgstr ""
+msgstr "Je vyžadovaný názov hostiteľa. Musí byť zadaný."
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
-msgstr ""
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
+msgstr "Je vyžadovaná doména. Nie je podporovaná prázdna doména."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "Sieť"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "Rozhranie"
 
-#: app/views/network/index.html.erb:145
-#, fuzzy
-#| msgid "Select item"
+#: app/views/network/index.html.erb:226
 msgid "Select"
-msgstr "Vybrať položku"
+msgstr "Vybrať"
 
-#: app/views/network/index.html.erb:166
-#, fuzzy
-#| msgid "Configuration Mode"
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
 msgstr "Režim konfigurácie"
 
-#: app/views/network/index.html.erb:170
-#, fuzzy
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "IP adresa"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "Maska podsiete / predvoľba"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+msgid "Default route"
+msgstr "Štandardné smerovanie"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "Hostiteľ"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "Doména"
 
-#: app/views/network/index.html.erb:189
-#, fuzzy
-#| msgid "Name Servers"
+#: app/views/network/index.html.erb:278
 msgid "Name servers"
 msgstr "Názvové servery"
 
-#: app/views/network/index.html.erb:193
-#, fuzzy
-#| msgid "Search Domains"
+#: app/views/network/index.html.erb:282
 msgid "Search domains"
 msgstr "Hľadať domény"
 
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "Štandardné smerovanie"
-
-#, fuzzy
-#~| msgid "Do not start"
-#~ msgid "not set"
-#~ msgstr "Nespúšťať"
-
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
-
-#, fuzzy
-#~| msgid "Dial Prefix"
-#~ msgid "Prefixlen"
-#~ msgstr "Predvoľba"
-
-#~ msgid "DNS"
-#~ msgstr "DNS"
-
-#~ msgid "Routing"
-#~ msgstr "Smerovanie"
-
-#~ msgid "Save"
-#~ msgstr "Uložiť"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Zrušiť"
-
-#~ msgid "Edit Network Device"
-#~ msgstr "Upraviť zariadenie siete"
-
-#~ msgid "Configuration"
-#~ msgstr "Nastavenie"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Description"
-#~ msgstr "Popis"
-
-#~ msgid "MAC"
-#~ msgstr "MAC"
-
-#~ msgid "Device Name"
-#~ msgstr "Názov zariadenia"
-
-#~ msgid "Startup"
-#~ msgstr "Spustenie"
-
-#~ msgid "Update"
-#~ msgstr "Aktualizácia"
-
-#~ msgid "Back"
-#~ msgstr "Nazad"
+#~ msgid "No permissions for network module"
+#~ msgstr "Bez povolení pre sieťový modul"

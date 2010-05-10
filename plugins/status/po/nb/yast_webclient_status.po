@@ -1,125 +1,201 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
+# Olav Pettershagen <olav.pet@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2005-08-11 20:37+0200\n"
-"Last-Translator: Olav Pettershagen <olav.pet@online.no>\n"
-"Language-Team:  <nb@li.org>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2009-12-28 18:17+0100\n"
+"Last-Translator: Olav Pettershagen <olav.pet@gmail.com>\n"
+"Language-Team: Norwegian Bokmål <opensuse-translation@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr ""
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "Ingen data for visning av systemstatus funnet."
 
-#: app/controllers/status_controller.rb:181
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
-msgstr "Lagt til for \"%s\".\n"
+#: app/controllers/status_controller.rb:187
+msgid "Limits exceeded for "
+msgstr "Grenser overskredet for "
 
-#: app/controllers/status_controller.rb:229
-#, fuzzy
-#| msgid "Saving the changes failed"
-msgid "Saving limits failed!"
-msgstr "Endringene kunne ikke lagres"
+#: app/controllers/status_controller.rb:316
+msgid "exceeded"
+msgstr "over grenser"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr "under grenser"
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr "Grenser er lagret."
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "Bare tall er gyldige !"
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr ""
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "Innstillinger"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
+msgstr "under grenser"
+
+#: app/views/status/edit.html.erb:66
+msgid "exceeds"
+msgstr "over grenser"
+
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr "detaljer"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Detaljer"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
-msgstr ""
+msgstr "Rediger grenser"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Tilbake"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "Det oppstod en feil under lasting av statusinformasjon."
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr ""
+#: app/views/status/_status_graph.html.erb:91
+msgid "Show last"
+msgstr "Vis siste"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-#, fuzzy
-#| msgid "Last used"
-msgid "used"
-msgstr "Sist brukt"
+#: app/views/status/_status_graph.html.erb:92
+msgid "5 Minutes"
+msgstr "5 minutter"
 
-#: app/views/status/edit.html.erb:2
-#, fuzzy
-#| msgid "Configure IP Settings"
-msgid "Configure Status Limits"
-msgstr "Velg IP-innstillinger"
+#: app/views/status/_status_graph.html.erb:93
+msgid "15 Minutes"
+msgstr "15 minutter"
 
-#: app/views/status/edit.html.erb:7
-#, fuzzy
-#| msgid "Status: "
-msgid "Status Path"
-msgstr "Status: "
+#: app/views/status/_status_graph.html.erb:94
+msgid "30 Minutes"
+msgstr "30 minutter"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr ""
+#: app/views/status/_status_graph.html.erb:95
+msgid "1 Hour"
+msgstr "1 time"
 
-#: app/views/status/edit.html.erb:9
-#, fuzzy
-#| msgid "Maximum Memory"
-msgid "Maximum Value"
-msgstr "Maksimalt minne"
+#: app/views/status/_status_graph.html.erb:96
+msgid "6 Hours"
+msgstr "6 timer"
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Lagre"
+#: app/views/status/_status_graph.html.erb:97
+msgid "12 Hours"
+msgstr "12 timer"
 
-#: app/views/status/_status_summary.html.erb:1
-#, fuzzy
-#| msgid "An error occurred during the installation."
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
-msgstr "Det oppstod en feil under installasjonen."
+msgstr "Det oppstod en feil under lasting av statusinformasjon."
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "Ingen informasjon tilgjengelig."
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "Kan ikke lese systemstatus - du har blitt logget ut."
 
-#: app/views/status/_status_summary.html.erb:14
-#, fuzzy
-#| msgid "Your system is up-to-date."
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
-msgstr "Systemet er oppdatert."
+msgstr "Systemet er i orden."
 
-#, fuzzy
+#: app/views/status/_status_summary.html.erb:20
+msgid "Start collectd"
+msgstr "Start collectd"
+
+#: app/views/status/_status_summary.html.erb:28
+msgid "Loading system information"
+msgstr "Laster systeminformasjon"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr "Kontrollerer systemstatus"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "Registrering mangler"
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "Registrer systemet for å hente oppdateringer."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "registrer"
+
+# %s is either BOOTP or DHCP
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "Test av e-postoppsett ikke bekreftet"
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "Da e-postsystemet ble satt opp, ble en testmelding sendt til %s. Ble meldingen levert til denne adressen?<br>Hvis ja, bekreft ved å trykke på knappen. Hvis ikke, må du kontrollere e-postoppsettet på nytt."
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "Det var ikke mulig å hente fullstendig vertsnavn for maskinen. Hvis meldingen ikke ble levert, kontroller nettverket og/eller e-postoppsettet sammen med nettverksadministratoren."
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr "Testmelding mottatt"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Ugyldig økt, logg inn på nytt."
+
+#~ msgid "Disk free limits exceeded;"
+#~ msgstr "Grensene for ledig diskplass overskredet;"
+
+#~ msgid "Saving limits failed!"
+#~ msgstr "Grenser kunne ikke lagres!"
+
+#~ msgid "Disk usage"
+#~ msgstr "Brukt plass på disk"
+
+#~ msgid "Back"
+#~ msgstr "Tilbake"
+
+#~ msgid "free"
+#~ msgstr "ledig"
+
+#~ msgid "used"
+#~ msgstr "brukt"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "Sett opp statusgrenser"
+
+#~ msgid "Status Path"
+#~ msgstr "Statusfilsti"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Minimumsverdi"
+
+#~ msgid "Maximum Value"
+#~ msgstr "Maksimumsverdi"
+
+#~ msgid "Save"
+#~ msgstr "Lagre"
+
+#~ msgid "No status information available"
+#~ msgstr "Ingen statusinformasjon tilgjengelig."
+
 #~| msgid "Even"
 #~ msgid "Events"
 #~ msgstr "Lik"
 
-#, fuzzy
 #~| msgid "Show details"
 #~ msgid "Show details..."
 #~ msgstr "Vis detaljer"

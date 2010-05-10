@@ -1,208 +1,290 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# Alexander Melentiev <alex239@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-22 15:24\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Report-Msgid-Bugs-To: translation@suse.de\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-05 00:39+0400\n"
+"Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
+"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/groups_controller.rb:15
+#: app/controllers/groups_controller.rb:36
 msgid "Missing group name parameter"
-msgstr "Отсутствует параметр имени группы"
+msgstr "Отсутствует имя группы"
 
-#: app/controllers/groups_controller.rb:27
+#: app/controllers/groups_controller.rb:48
 msgid "Missing group parameters"
 msgstr "Отсутствуют параметры группы"
 
-#: app/controllers/groups_controller.rb:37
+#: app/controllers/groups_controller.rb:58
 msgid "Please enter a valid group name"
-msgstr "Введите допустимое имя группы"
-
-#: app/controllers/groups_controller.rb:47
-msgid "Please enter a valid GID"
-msgstr "Введите допустимый GID"
-
-#: app/controllers/groups_controller.rb:57
-msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "Введите допустимый тип группы. Допустимы только типы \"system\" или \"local\"."
+msgstr "Введите имя группы"
 
 #: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid GID"
+msgstr "Введите GID"
+
+#: app/controllers/groups_controller.rb:78
+msgid ""
+"Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr "Введите тип группы. Разрешены только \"system\" или \"local\"."
+
+#: app/controllers/groups_controller.rb:89
 msgid "Please enter a valid list of members"
-msgstr "Введите допустимый список членов"
+msgstr "Введите список членов"
 
-#: app/controllers/groups_controller.rb:82
+#: app/controllers/groups_controller.rb:103
 msgid "Cannot read users list."
-msgstr "Невозможно прочитать список пользователей."
+msgstr "Невозможно прочесть список пользователей."
 
-#: app/controllers/groups_controller.rb:118
+#: app/controllers/groups_controller.rb:123
+msgid "No groups found."
+msgstr "Групп не обнаружено."
+
+#: app/controllers/groups_controller.rb:147
 msgid "Cannot read groups list."
-msgstr "Невозможно прочитать список групп."
+msgstr "Невозможно прочесть список групп."
 
-#: app/controllers/groups_controller.rb:209
+#: app/controllers/groups_controller.rb:233
 msgid "Unknown backend error"
-msgstr "Неизвестная внутренняя ошибка"
+msgstr "Неизвестная ошибка фонового механизма"
 
-#: app/controllers/users_controller.rb:154
+#: app/controllers/users_controller.rb:41
+msgid "No users found."
+msgstr "Пользователей не обнаружено."
+
+#: app/controllers/users_controller.rb:197
 msgid "User <i>%s</i> was successfully created."
 msgstr "Пользователь <i>%s</i> успешно создан."
 
-#: app/controllers/users_controller.rb:196
+#: app/controllers/users_controller.rb:239
 msgid "User <i>%s</i> was successfully updated."
-msgstr "Пользователь <i>%s</i> успешно обновлен."
+msgstr "Пользователь <i>%s</i> успешно обновлён."
 
-#: app/controllers/users_controller.rb:217
+#: app/controllers/users_controller.rb:260
 msgid "User <i>%s</i> was successfully removed."
-msgstr "Пользователь <i>%s</i> успешно удален."
+msgstr "Пользователь <i>%s</i> успешно удалён."
 
-#: app/controllers/users_controller.rb:219
+#: app/controllers/users_controller.rb:262
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Ошибка. Невозможно удалить пользователя <i>%s</i>."
+msgstr "Ошибка: Невозможно удалить пользователя <i>%s</i>."
 
-#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
-#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+#: app/views/groups/index.html.erb:52 app/views/groups/new.html.erb:56
+msgid "Select Members"
+msgstr "Выберите членов"
+
+#: app/views/groups/index.html.erb:53 app/views/groups/new.html.erb:57
+msgid "Selected Members"
+msgstr "Выбранные члены"
+
+#: app/views/groups/index.html.erb:54 app/views/groups/new.html.erb:58
+msgid "Available Members"
+msgstr "Доступные члены"
+
+#: app/views/groups/index.html.erb:55 app/views/groups/new.html.erb:59
+msgid "Click user names to select/unselect members"
+msgstr "Выбирайте членов, кликая по именам пользователей"
+
+#: app/views/groups/index.html.erb:94 app/views/groups/new.html.erb:80
+#: app/views/users/index.html.erb:219 app/views/users/index.html.erb:222
+#: app/views/users/new.html.erb:203 app/views/users/new.html.erb:206
 msgid "Groups"
 msgstr "Группы"
 
-#: app/views/groups/edit.html.erb:35
-msgid "Add new group"
-msgstr "Добавить новую группу"
-
-#: app/views/groups/edit.html.erb:37
-msgid "Modify group"
-msgstr "Изменить группу"
-
-#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
-msgid "Group Name"
-msgstr "Имя группы"
-
-#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
-msgid "Group ID"
-msgstr "ID группы"
-
-#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
-msgid "Default members"
-msgstr "Члены по умолчанию"
-
-#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
-msgid "Members"
-msgstr "Члены"
-
-#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
-msgid "Processing ..."
-msgstr "Выполняется обработка..."
-
-#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#: app/views/groups/index.html.erb:98 app/views/users/index.html.erb:160
 msgid "Filter:"
 msgstr "Фильтр:"
 
-#: app/views/groups/index.html.erb:78
+#: app/views/groups/index.html.erb:104
 msgid "Add New Group"
 msgstr "Добавить новую группу"
 
-#: app/views/groups/index.html.erb:110
+#: app/views/groups/index.html.erb:120 app/views/groups/new.html.erb:94
+msgid "Group Name"
+msgstr "Имя группы"
+
+#: app/views/groups/index.html.erb:124
+msgid "Group ID"
+msgstr "ID группы"
+
+#: app/views/groups/index.html.erb:128 app/views/groups/new.html.erb:98
+msgid "Members"
+msgstr "Члены"
+
+#: app/views/groups/index.html.erb:130
+msgid "Manage Members"
+msgstr "Управление членами"
+
+#: app/views/groups/index.html.erb:134 app/views/users/index.html.erb:272
 msgid "Save"
 msgstr "Сохранить"
 
-#: app/views/groups/index.html.erb:112
+#: app/views/groups/index.html.erb:137 app/views/users/index.html.erb:275
 msgid "Delete"
 msgstr "Удалить"
 
-#: app/views/groups/index.html.erb:114
+#: app/views/groups/index.html.erb:139
 msgid "Are you sure to delete group '%s'?"
-msgstr "Вы действительно хотите удалить группу %s?"
+msgstr "Уверены, что хотите удалить группу '%s'?"
 
-#: app/views/users/_user_form.erb:5
-msgid "Login Settings"
-msgstr "Настройки входа в систему"
+#: app/views/groups/new.html.erb:81
+msgid "Add new group"
+msgstr "Добавить новую группу"
 
-#: app/views/users/_user_form.erb:8
-msgid "Full Name"
-msgstr "Полное имя"
+#: app/views/users/index.html.erb:57 app/views/users/new.html.erb:64
+msgid "Select Groups"
+msgstr "Выберите группы"
 
-#: app/views/users/_user_form.erb:12
-msgid "Login Name"
-msgstr "Имя для входа"
+#: app/views/users/index.html.erb:58 app/views/users/new.html.erb:65
+msgid "Selected Groups"
+msgstr "Выбранные группы"
 
-#: app/views/users/_user_form.erb:17
-msgid "Password"
-msgstr "Пароль"
+#: app/views/users/index.html.erb:59 app/views/users/new.html.erb:66
+msgid "Available Groups"
+msgstr "Доступные группы"
 
-#: app/views/users/_user_form.erb:21
-msgid "Confirm Password"
-msgstr "Подтвердить пароль"
+#: app/views/users/index.html.erb:60 app/views/users/new.html.erb:67
+msgid "Click group names to select/unselect groups"
+msgstr "Выбирайте группы, кликая по именам групп"
 
-#: app/views/users/_user_form.erb:39
-msgid "Default Group"
-msgstr "Группа по умолчанию"
+#: app/views/users/index.html.erb:77 app/views/users/index.html.erb:238
+#: app/views/users/new.html.erb:84
+msgid "Select Default Group"
+msgstr "Выберите группу по умолчанию"
 
-#: app/views/users/_user_form.erb:61
-msgid "Advanced"
-msgstr "Дополнительно"
+#: app/views/users/index.html.erb:78 app/views/users/new.html.erb:85
+msgid "Click a group name to choose users default group"
+msgstr "Нажмите на имя группы, чтобы выбрать группу пользователей по умолчанию"
 
-#: app/views/users/_user_form.erb:64
-msgid "Home Directory"
-msgstr "Домашний каталог"
+#: app/views/users/index.html.erb:97
+msgid " The passwords do not match."
+msgstr " Пароли не совпадают."
 
-#: app/views/users/_user_form.erb:68
-msgid "Login Shell"
-msgstr "Оболочка входа"
+#: app/views/users/index.html.erb:98 app/views/users/new.html.erb:108
+msgid "This field is required."
+msgstr "Это поле обязательно."
 
-#: app/views/users/_user_form.erb:72
-msgid "UID Number"
-msgstr "Номер PID"
+#: app/views/users/index.html.erb:116 app/views/users/new.html.erb:122
+msgid "Password Strength:"
+msgstr "Сложность пароля:"
 
-#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+#: app/views/users/index.html.erb:118 app/views/users/new.html.erb:124
 msgid "Weak"
 msgstr "Слабый"
 
-#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+#: app/views/users/index.html.erb:119 app/views/users/new.html.erb:125
 msgid "Normal"
-msgstr "Обычный"
+msgstr "Нормальный"
 
-#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#: app/views/users/index.html.erb:120 app/views/users/new.html.erb:126
 msgid "Medium"
 msgstr "Средний"
 
-#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+#: app/views/users/index.html.erb:121 app/views/users/new.html.erb:127
 msgid "Strong"
 msgstr "Сильный"
 
-#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#: app/views/users/index.html.erb:122 app/views/users/new.html.erb:128
 msgid "Very Strong"
 msgstr "Очень сильный"
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+#: app/views/users/index.html.erb:150
+msgid "Processing ..."
+msgstr "Обработка..."
+
+#: app/views/users/index.html.erb:156 app/views/users/new.html.erb:161
 msgid "Users"
 msgstr "Пользователи"
 
-#: app/views/users/edit.html.erb:80
-msgid "Edit user %s"
-msgstr "Изменить пользователя %s"
-
-#: app/views/users/index.html.erb:52
+#: app/views/users/index.html.erb:166
 msgid "Add New User"
 msgstr "Добавить нового пользователя"
 
-#: app/views/users/index.html.erb:68
-msgid "Are you sure to delete user '%s'?"
-msgstr "Удалить пользователя %s?"
+#: app/views/users/index.html.erb:187 app/views/users/new.html.erb:170
+msgid "Login Settings"
+msgstr "Настройки входа"
 
-#: app/views/users/index.html.erb:68
-msgid "Home directory will be deleted as well."
-msgstr "Будет также удален личный каталог."
+#: app/views/users/index.html.erb:190 app/views/users/new.html.erb:173
+msgid "Full Name"
+msgstr "Полное имя"
 
-#: app/views/users/index.html.erb:81
+#: app/views/users/index.html.erb:196 app/views/users/new.html.erb:179
+msgid "Login Name"
+msgstr "Логин"
+
+#: app/views/users/index.html.erb:203 app/views/users/new.html.erb:186
+msgid "Password"
+msgstr "Пароль"
+
+#: app/views/users/index.html.erb:210 app/views/users/new.html.erb:193
+msgid "Confirm Password"
+msgstr "Подтверждение пароля"
+
+#: app/views/users/index.html.erb:226 app/views/users/index.html.erb:296
 msgid "Manage Groups"
 msgstr "Управление группами"
 
-#: app/views/users/new.html.erb:86
+#: app/views/users/index.html.erb:234 app/views/users/new.html.erb:218
+msgid "Default Group"
+msgstr "Группа по умолчанию"
+
+#: app/views/users/index.html.erb:248 app/views/users/new.html.erb:245
+msgid "Advanced"
+msgstr "Дополнительно"
+
+#: app/views/users/index.html.erb:251 app/views/users/new.html.erb:248
+msgid "Home Directory"
+msgstr "Домашний каталог"
+
+#: app/views/users/index.html.erb:257 app/views/users/new.html.erb:254
+msgid "Login Shell"
+msgstr "Оболочка входа"
+
+#: app/views/users/index.html.erb:263 app/views/users/new.html.erb:260
+msgid "UID Number"
+msgstr "UID"
+
+#: app/views/users/index.html.erb:277
+msgid "Are you sure to delete user '%s'?"
+msgstr "Уверены, что хотите удалить пользователя 's'?"
+
+#: app/views/users/new.html.erb:107
+msgid "The passwords do not match."
+msgstr "Пароли не совпадают."
+
+#: app/views/users/new.html.erb:161
 msgid "Add new user"
 msgstr "Добавить нового пользователя"
 
+#~ msgid "Default members"
+#~ msgstr "Члены по умолчанию"
+
+#~ msgid "Edit user %s"
+#~ msgstr "Редактировать пользователя %s"
+
+#~ msgid "Modify group"
+#~ msgstr "Изменить группу"
+
+#~ msgid "Home directory will be deleted as well."
+#~ msgstr "Домашний каталог будет также удалён."
+
+#~ msgid "Group Type"
+#~ msgstr "Тип группы"
+
+#~ msgid "Type group name ..."
+#~ msgstr "Введите имя группы..."
+
+#~ msgid "Type"
+#~ msgstr "Тип"
+
+#~ msgid "Action"
+#~ msgstr "Действие"
+
+#~ msgid "Type user name or login ..."
+#~ msgstr "Введите имя пользователя или логин..."

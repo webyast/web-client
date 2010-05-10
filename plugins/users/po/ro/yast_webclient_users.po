@@ -1,142 +1,233 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: openSUSE\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-09-24 16:14+0200\n"
-"Last-Translator: Oprea Lucian <oprea_luci@yahoo.com>\n"
-"Language-Team: Romanian <i18n@suse.de>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-30 16:32+0300\n"
+"Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
+"Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea.luci@gmail.com><strainu10@gmail.com><traduceri@suseromania.ro>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "Sesiune invalidă, vă rugăm să vă reconectaţi."
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr "Lipseşte numele parametrului de grup"
 
-#: app/controllers/users_controller.rb:144
-#, fuzzy
-#| msgid "Repository '%s' has been sucessfully enabled."
-msgid "User <i>%s</i> was successfully created."
-msgstr "Sursa de instalare '%s' a fost activată cu succes."
+#: app/controllers/groups_controller.rb:27
+#| msgid "Missing argument for "
+msgid "Missing group parameters"
+msgstr "Lipsesc parametri grupului"
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "Valoare UID vidă"
+#: app/controllers/groups_controller.rb:37
+#| msgid "Please enter server name below"
+msgid "Please enter a valid group name"
+msgstr "Vă rugăm să introduceţi un nume de grup valid"
 
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID: valoarea >= 1000 este validă doar pentru utilizatorul local"
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr "Vă rugăm să introduceţi un GID valid"
 
-#: app/controllers/users_controller.rb:197
-#, fuzzy
-#| msgid "Repository '%s' has been sucessfully disabled."
-msgid "User <i>%s</i> was successfully updated."
-msgstr "Sursa de instalare '%s' a fost dezactivată cu succes."
-
-#: app/controllers/users_controller.rb:218
-msgid "User <i>%s</i> was successfully removed."
+#: app/controllers/groups_controller.rb:57
+msgid ""
+"Please enter a valid group type. Only \"system\" or \"local\" are allowed."
 msgstr ""
+"Vă rugăm să introduceţi un tip de grup valid. Sunt permise doar \"system\" "
+"sau \"local\"."
 
-#: app/controllers/users_controller.rb:220
-#, fuzzy
-#| msgid "Error: Could not read profile %s: %s.\n"
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr "Vă rugăm să introduceţi o listă validă de membri"
+
+#: app/controllers/groups_controller.rb:82
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr "Nu pot să citesc lista de utilizatori."
+
+#: app/controllers/groups_controller.rb:118
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr "Nu pot să citesc lista de grupuri."
+
+#: app/controllers/groups_controller.rb:209
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "Eroare backend necunoscută"
+
+#: app/controllers/users_controller.rb:154
+msgid "User <i>%s</i> was successfully created."
+msgstr "Utilizatorul <i>%s</i> a fost creat cu succes."
+
+#: app/controllers/users_controller.rb:196
+msgid "User <i>%s</i> was successfully updated."
+msgstr "Utilizatorul <i>%s</i> a fost actualizat cu succes."
+
+#: app/controllers/users_controller.rb:217
+msgid "User <i>%s</i> was successfully removed."
+msgstr "Utilizatorul <i>%s</i> a fost şters cu succes."
+
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Eroare: Nu pot citi profilul %s: %s.\n"
+msgstr "Eroare: Nu s-a putut şterge utilizatorul <i>%s</i>."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr "Utilizator local"
-
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Autentificare"
-
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
-msgid "Full Name"
-msgstr "Nume complet"
-
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "Editează"
-
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[Utilizator nou]</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Înapoi"
-
-#: app/views/users/edit.html.erb:1
-#, fuzzy
-#| msgid "Edit User %s"
-msgid "Edit user %s"
-msgstr "Editaţi utilizatorul %s"
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Grupuri"
 
-#: app/views/users/edit.html.erb:19
+#: app/views/groups/edit.html.erb:35
+msgid "Add new group"
+msgstr "Adaugă un grup nou"
+
+#: app/views/groups/edit.html.erb:37
+#| msgid "Modified resources"
+msgid "Modify group"
+msgstr "Modifică grup"
+
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#| msgid "Full Name"
+msgid "Group Name"
+msgstr "Nume grup"
+
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#| msgid "Groups"
+msgid "Group ID"
+msgstr "ID-ul grupului"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#| msgid "Default Schemes"
+msgid "Default members"
+msgstr "Membrii impliciţi"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+#| msgid "Numbers"
+msgid "Members"
+msgstr "Membri"
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "Se procesează ..."
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "Filtru:"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr "Filtru:"
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Salvează"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Şterge"
+
+#: app/views/groups/index.html.erb:114
+msgid "Are you sure to delete group '%s'?"
+msgstr "Sunteţi sigur că doriţi să ştergeţi grupul '%s'?"
+
+#: app/views/users/_user_form.erb:5
+#| msgid "Monitor Settings"
+msgid "Login Settings"
+msgstr "Setări autentificare"
+
+#: app/views/users/_user_form.erb:8
+msgid "Full Name"
+msgstr "Nume complet"
+
+#: app/views/users/_user_form.erb:12
+msgid "Login Name"
+msgstr "Nume de autentificare:"
+
+# password dialog title
+#: app/views/users/_user_form.erb:17
+msgid "Password"
+msgstr "Parolă"
+
+#: app/views/users/_user_form.erb:21
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "Confirmaţi parola"
+
+#: app/views/users/_user_form.erb:39
 msgid "Default Group"
 msgstr "Grup implicit"
 
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#, fuzzy
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "Director acasă"
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "Avansat"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#, fuzzy
+#: app/views/users/_user_form.erb:64
+msgid "Home Directory"
+msgstr "Director Home"
+
+#: app/views/users/_user_form.erb:68
 #| msgid "Login"
 msgid "Login Shell"
 msgstr "Shell de autentificare"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
-msgid "Login Name"
-msgstr "Nume de autentificare"
-
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
+#: app/views/users/_user_form.erb:72
 msgid "UID Number"
 msgstr "Număr UID"
 
-# password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
-msgid "Password"
-msgstr "Parolă"
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "Slabă"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Actualizare"
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normal"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr "Utilizator nou"
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#| msgid "Media"
+msgid "Medium"
+msgstr "Medie"
 
-#: app/views/users/new.html.erb:16
-msgid "Default Group (GID)"
-msgstr "Grup implicit (GID)"
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "Puternică"
 
-#: app/views/users/new.html.erb:24
-#, fuzzy
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "NU crea directorul acasă"
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr "Foarte puternică"
 
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "Crează"
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#| msgid "New User"
+msgid "Users"
+msgstr "Utilizatori"
 
-#~ msgid "User"
-#~ msgstr "Utilizator"
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr "Editează utilizatorul %s"
+
+#: app/views/users/index.html.erb:52
+#| msgid "New User"
+msgid "Add New User"
+msgstr "Adaugă un utilizator nou"
+
+#: app/views/users/index.html.erb:68
+#| msgid "Do you really want to delete the %1 scheme?"
+msgid "Are you sure to delete user '%s'?"
+msgstr "Sunteţi sigur că doriţi să ştergeţi utilizatorul '%s'?"
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "Şi directorul home va fi şters."
+
+#: app/views/users/index.html.erb:81
+#| msgid "manage backups"
+msgid "Manage Groups"
+msgstr "Administrează grupuri"
+
+#: app/views/users/new.html.erb:86
+#| msgid "New User"
+msgid "Add new user"
+msgstr "Adaugă un utilizator nou"

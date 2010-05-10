@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:33+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -14,21 +14,154 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: app/controllers/application_controller.rb:53
-msgid "You must accept all EULAs before using this product!"
+#: app/helpers/application_helper.rb:20
+msgid " or "
 msgstr ""
 
-#: app/controllers/application_controller.rb:57
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+#: app/helpers/application_helper.rb:24
+msgid " - "
 msgstr ""
 
-#: app/controllers/application_controller.rb:111
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "પાછળ"
+
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "રદ કરો "
+
+#: app/helpers/application_helper.rb:52
+msgid "Save"
+msgstr "સાચવો"
+
+#: app/helpers/application_helper.rb:55
+#, fuzzy
+#| msgid "&Next"
+msgid "Next"
+msgstr "&પાછી"
+
+#: app/helpers/application_helper.rb:56
+#, fuzzy
+#| msgid "Finnish"
+msgid "Finish"
+msgstr "ફિનિશ"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:133
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "અપરિચિત ભૂલ\n"
+
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
+#, fuzzy
+#| msgid "No information available."
+msgid "No information available"
+msgstr "કોઈ મદદ ઉપલબ્ધ નથી."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr ""
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+#, fuzzy
+#| msgid "&Details"
+msgid "Hide Details"
+msgstr "&વિગતો"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+#, fuzzy
+#| msgid "&Details"
+msgid "Show Details"
+msgstr "&વિગતો"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "ઉમેરો"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+#, fuzzy
+#| msgid "&Edit"
+msgid "Edit"
+msgstr "&સંપાદન કરો"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "કાઢી નાંખો"
+
+#: app/controllers/sessions_controller.rb:49
+#, fuzzy
+#| msgid "you need to specify resource types and names"
+msgid "You need to specify the host"
+msgstr "તમારે સ્ત્રોતના પ્રકારો અને નામો નિર્દિષ્ટ કરવા જરૂરી છે "
+
+#: app/controllers/sessions_controller.rb:52
+#, fuzzy
+#| msgid "No valid key file specified."
+msgid "No login specified"
+msgstr "કોઈ માન્ય કી ફાઈલ જણાવાઈ નથી."
+
+#: app/controllers/sessions_controller.rb:55
+#, fuzzy
+#| msgid "No valid key file specified."
+msgid "No password specified"
+msgstr "કોઈ માન્ય કી ફાઈલ જણાવાઈ નથી."
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr ""
+
+#: app/controllers/application_controller.rb:24
+msgid "Session timeout"
+msgstr ""
+
+#: app/controllers/application_controller.rb:79
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr ""
+
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr ""
 
-#: app/controllers/application_controller.rb:118
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/application_controller.rb:213
+msgid "can't be blank"
+msgstr ""
+
+#: app/controllers/application_controller.rb:214
+msgid "is out of allowed values"
+msgstr ""
+
+#: app/controllers/application_controller.rb:215
+msgid "can't be empty"
+msgstr ""
+
+#: app/controllers/application_controller.rb:216
+msgid "is invalid"
+msgstr ""
+
+#: app/controllers/application_controller.rb:231
+#, fuzzy
+#| msgid "Invalid LDAP URL query parameter '%s'"
+msgid "Invalid parameters:"
+msgstr "અમાન્ય LDAP URL ક્વેરિ પારમિતિ '%s'"
 
 #: app/controllers/hosts_controller.rb:25
 #, fuzzy
@@ -59,36 +192,6 @@ msgstr "%s હોસ્ટ મળ્યું નથી."
 #| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
 msgstr "%s અસ્તિત્વમાં નથી, મહેરબાની કરીને માર્ગની ખાતરી કરો."
-
-#: app/controllers/sessions_controller.rb:51
-#, fuzzy
-#| msgid "you need to specify resource types and names"
-msgid "You need to specify the host"
-msgstr "તમારે સ્ત્રોતના પ્રકારો અને નામો નિર્દિષ્ટ કરવા જરૂરી છે "
-
-#: app/controllers/sessions_controller.rb:54
-#, fuzzy
-#| msgid "No valid key file specified."
-msgid "No login specified"
-msgstr "કોઈ માન્ય કી ફાઈલ જણાવાઈ નથી."
-
-#: app/controllers/sessions_controller.rb:57
-#, fuzzy
-#| msgid "No valid key file specified."
-msgid "No password specified"
-msgstr "કોઈ માન્ય કી ફાઈલ જણાવાઈ નથી."
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr ""
 
 #: app/models/account.rb:-
 msgid "account"
@@ -146,109 +249,11 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr ""
-
-#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "રદ કરો "
-
-#: app/helpers/application_helper.rb:28
-msgid "Save"
-msgstr "સાચવો"
-
-#: app/helpers/application_helper.rb:30
+#: app/views/main/_select_language.html.erb:18
 #, fuzzy
-#| msgid "&Next"
-msgid "Next"
-msgstr "&પાછી"
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "ઉમેરો"
-
-#: app/helpers/view_helpers/label_helper.rb:10
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&સંપાદન કરો"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "કાઢી નાંખો"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr ""
-
-#: app/helpers/view_helpers/html_helper.rb:132
-#, fuzzy
-#| msgid "Unknown error\n"
-msgid "Unknown error"
-msgstr "અપરિચિત ભૂલ\n"
-
-#: app/helpers/view_helpers/html_helper.rb:136
-#: app/views/shared/exception_trap.html.erb:22
-#, fuzzy
-#| msgid "No information available."
-msgid "No information available"
-msgstr "કોઈ મદદ ઉપલબ્ધ નથી."
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr ""
-
-#: app/views/hosts/index.html.erb:6
-#, fuzzy
-#| msgid "Please choose the CCW bus interface."
-msgid "Please choose a service:"
-msgstr "CCW બસ ઇન્ટરફેસ પસંદ કરવા વિનંતી."
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:22
-msgid "YaST-Web-Service"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
-msgid "Name"
-msgstr "નામ"
-
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
-msgid "Url"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
-msgid "Description"
-msgstr "વર્ણન"
-
-#: app/views/hosts/edit.html.erb:38
-msgid "Ok"
-msgstr "બરોબર"
-
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "પાછળ"
-
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "અનુક્રમ"
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
-msgstr ""
-
-#: app/views/hosts/new.html.erb:47
-msgid "Create"
-msgstr ""
+#| msgid "Language and Keyboard Layout Selection"
+msgid "Language Selection"
+msgstr "ભાષા અને કીબોર્ડના લેઆઉટની પસંદગી"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
@@ -256,7 +261,7 @@ msgid "This is embarrasing...."
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid "We are sorry, but there are some problems."
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:12
@@ -280,37 +285,176 @@ msgstr ""
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:22
+msgid "YaST-Web-Service"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
+msgid "Name"
+msgstr "નામ"
+
+#: app/views/hosts/edit.html.erb:29
+msgid "Url"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
+msgid "Description"
+msgstr "વર્ણન"
+
+#: app/views/hosts/edit.html.erb:38
+msgid "Ok"
+msgstr "બરોબર"
+
+#: app/views/hosts/index.html.erb:6
+#, fuzzy
+#| msgid "Please choose the CCW bus interface."
+msgid "Please choose a service:"
+msgstr "CCW બસ ઇન્ટરફેસ પસંદ કરવા વિનંતી."
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:9
+msgid "New WebYaST Host"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:53
+msgid "Create"
+msgstr ""
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "અનુક્રમ"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
+msgid "Configuration"
+msgstr "કન્ફિગરેશન"
+
+#: app/views/controlpanel/index.rhtml:27
+msgid "Status"
+msgstr "સ્થિતિ"
+
+#: app/views/controlpanel/index.rhtml:35
+#, fuzzy
+#| msgid "System Information"
+msgid "System actions"
+msgstr "સિસ્ટમ માહિતી"
+
+#: app/views/controlpanel/index.rhtml:37
+msgid "Reboot"
+msgstr "ફરીથી બૂટ કરો"
+
+#: app/views/controlpanel/index.rhtml:38
+msgid "Really reboot %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Shutdown"
+msgstr "બંધ કરો"
+
+#: app/views/controlpanel/index.rhtml:40
+msgid "Really shutdown %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:48
+#, fuzzy
+#| msgid "Switch information"
+msgid "Loading patch information"
+msgstr "સ્વીચ ની માહિતી"
+
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:53
+#, fuzzy
+#| msgid "The configuration is not initialized."
+msgid "Patch plugin is not installed."
+msgstr "કન્ફિગ્યુરેશન ઈનીશીયલાઈઝ થયું નથી."
+
+#: app/views/controlpanel/index.rhtml:60
+#, fuzzy
+#| msgid "System Information"
+msgid "Loading system information"
+msgstr "સિસ્ટમ માહિતી"
+
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:65
+msgid "Status plugin is not installed."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:102
+#, fuzzy
+#| msgid "Show Loaded Modules"
+msgid "Show all modules"
+msgstr "લોડ થયેલા મોડ્યૂલ્સ દર્શાવો"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Continue initial system setup"
+msgstr ""
+
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:48
+#: app/views/layouts/main.rhtml:50
 #, fuzzy
 #| msgid "Applied"
 msgid "My Appliance"
 msgstr "અમલમાં કરેલ"
 
-#: app/views/layouts/main.rhtml:56
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#, fuzzy
+#| msgid "Language"
+msgid "Language:"
+msgstr "ભાષા"
+
+#: app/views/layouts/main.rhtml:62
 #, fuzzy
 #| msgid "Connected To"
 msgid "Connected host:"
 msgstr "થી જોડાયેલ"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:66
 #, fuzzy
 #| msgid "Control Center"
 msgid "Control panel"
 msgstr "નિયંત્રણ કેન્દ્ર"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "લોગઆઉટ"
 
-#: app/views/layouts/main.rhtml:93
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr ""
 
@@ -332,79 +476,6 @@ msgstr ""
 msgid "Password:"
 msgstr "પાસવર્ડ:"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:4
-#, fuzzy
-#| msgid "Reboot the system now?"
-msgid "Set up the system"
-msgstr "હમણા સિસ્ટમ રિબૂટ કરવું છે?"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
-msgid "Configuration"
-msgstr "કન્ફિગરેશન"
-
-#: app/views/controlpanel/index.rhtml:24
-msgid "Status"
-msgstr "સ્થિતિ"
-
-#: app/views/controlpanel/index.rhtml:33
-#, fuzzy
-#| msgid "System Information"
-msgid "System actions"
-msgstr "સિસ્ટમ માહિતી"
-
-#: app/views/controlpanel/index.rhtml:34
-msgid "Reboot"
-msgstr "ફરીથી બૂટ કરો"
-
-#: app/views/controlpanel/index.rhtml:35
-msgid "Really reboot %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:36
-msgid "Shutdown"
-msgstr "બંધ કરો"
-
-#: app/views/controlpanel/index.rhtml:37
-msgid "Really shutdown %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:44
-#, fuzzy
-#| msgid "Switch information"
-msgid "Loading patch information"
-msgstr "સ્વીચ ની માહિતી"
-
-#: app/views/controlpanel/index.rhtml:46
-#, fuzzy
-#| msgid "The configuration is not initialized."
-msgid "Patch plugin is not installed."
-msgstr "કન્ફિગ્યુરેશન ઈનીશીયલાઈઝ થયું નથી."
-
-#: app/views/controlpanel/index.rhtml:52
-#, fuzzy
-#| msgid "System Information"
-msgid "Loading system information"
-msgstr "સિસ્ટમ માહિતી"
-
-#: app/views/controlpanel/index.rhtml:54
-msgid "Status plugin is not installed."
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:93
-#, fuzzy
-#| msgid "Show Loaded Modules"
-msgid "Show all modules"
-msgstr "લોડ થયેલા મોડ્યૂલ્સ દર્શાવો"
-
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
@@ -414,43 +485,47 @@ msgid "Service %s is not running on the target machine"
 msgstr ""
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr ""
+
+#: lib/error_constructor.rb:17
 #, fuzzy
 #| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
 msgstr "સર્વિસ '%2' માટે '%1' ક્રિયાની મંજૂરી નથી."
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:28
+#: lib/error_constructor.rb:29
 #, fuzzy
 #| msgid "An error occurred during the installation."
-msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
 msgstr "સ્થાપન દરમિયાન ભૂલ થઇ."
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "જૂની શેડો ફાઈલ બંધ કરતી વખતે ભૂલ : %m "
 
 #, fuzzy
-#~| msgid "Language"
-#~ msgid "Langugage:"
-#~ msgstr "ભાષા"
+#~| msgid "Reboot the system now?"
+#~ msgid "Set up the system"
+#~ msgstr "હમણા સિસ્ટમ રિબૂટ કરવું છે?"
 
 #, fuzzy
 #~| msgid "Name: "

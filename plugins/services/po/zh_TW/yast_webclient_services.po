@@ -1,16 +1,22 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# translation of yast_webclient_services.po to Chinese Traditional
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 #
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
+#
+# swyear <swyear@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2010-04-21 15:23\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"PO-Revision-Date: 2009-10-22 23:30+0800\n"
+"Last-Translator: swyear <swyear@gmail.com>\n"
+"Language-Team: Chinese Traditional <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/controllers/services_controller.rb:23
@@ -23,31 +29,41 @@ msgstr "成功"
 
 #: app/controllers/services_controller.rb:71
 msgid "unspecified error"
-msgstr "未指定的錯誤"
+msgstr ""
 
 #: app/controllers/services_controller.rb:72
+#, fuzzy
+#| msgid "invalid argument syntax"
 msgid "invalid or excess argument(s)"
-msgstr "無效或多餘的引數"
+msgstr "無效的引數語法"
 
 #: app/controllers/services_controller.rb:73
+#, fuzzy
+#| msgid "not yet implemented"
 msgid "unimplemented feature"
-msgstr "未執行的功能"
+msgstr "尚未執行"
 
 #: app/controllers/services_controller.rb:74
 msgid "user had insufficient privilege"
-msgstr "使用者沒有足夠的權限"
+msgstr ""
 
 #: app/controllers/services_controller.rb:75
+#, fuzzy
+#| msgid "'%s' is not installed."
 msgid "program is not installed"
-msgstr "未安裝程式"
+msgstr "'%s' 未安裝。"
 
 #: app/controllers/services_controller.rb:76
+#, fuzzy
+#| msgid "Not configured"
 msgid "program is not configured"
-msgstr "未設定程式組態"
+msgstr "未設定"
 
 #: app/controllers/services_controller.rb:77
+#, fuzzy
+#| msgid "The hypervisor is not running."
 msgid "program is not runnning"
-msgstr "程式未執行"
+msgstr "hypervisor 尚未執行。"
 
 #: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
@@ -66,98 +82,150 @@ msgid "System Services"
 msgstr "系統服務"
 
 #: app/views/services/index.rhtml:147
+#, fuzzy
+#| msgid "You do not have permission to execute the services. The links are disabled."
 msgid "You do not have permission to execute the services."
-msgstr "您無權執行這些服務。"
+msgstr "您沒有執行此服務的權限。此連結已停用。"
 
 #: app/views/services/index.rhtml:151
+#, fuzzy
+#| msgid "inetd service"
 msgid "Filter services"
-msgstr "過濾服務"
+msgstr "inetd 服務"
 
 #: app/views/services/index.rhtml:153
+#, fuzzy
+#| msgid "all"
 msgid "All"
 msgstr "全部"
 
 #: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "running"
 msgid "Running"
 msgstr "執行中"
 
 #: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "not running"
 msgid "Not Running"
 msgstr "尚未執行"
 
 #: app/views/services/index.rhtml:156
+#, fuzzy
+#| msgid "(dead)"
 msgid "Dead"
-msgstr "停止"
+msgstr "(死亡)"
 
 #: app/views/services/index.rhtml:157
 msgid "Started on Boot"
-msgstr "開機時啟動"
+msgstr ""
 
 #: app/views/services/index.rhtml:158
 msgid "Not Started on Boot"
-msgstr "開機時未啟動"
+msgstr ""
 
 #: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search"
 msgid "Quick Search"
-msgstr "快速搜尋"
+msgstr "搜尋"
 
 #: app/views/services/index.rhtml:180
+#, fuzzy
+#| msgid "The action for service '%1' may not be empty."
 msgid "Description for service is not available"
-msgstr "服務描述不可用"
+msgstr "「%1」服務的動作不得空白。"
 
 #: app/views/services/index.rhtml:203
+#, fuzzy
+#| msgid "Refresh"
 msgid "(refresh)"
-msgstr "(重新整理)"
+msgstr "重新整理"
 
 #: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Start-Up"
 msgid "Start"
 msgstr "啟動"
 
 #: app/views/services/index.rhtml:235
 msgid "Stop"
-msgstr "停止"
+msgstr ""
 
 #: app/views/services/index.rhtml:236
 msgid "Restart"
 msgstr "重新啟動"
 
 #: app/views/services/index.rhtml:237
+#, fuzzy
+#| msgid "Start Konqueror"
 msgid "Start on Boot"
-msgstr "開機時啟動"
+msgstr "啟動 Konqueror"
 
 #: app/views/services/index.rhtml:238
+#, fuzzy
+#| msgid "Do Not Start"
 msgid "Do Not Start on Boot"
-msgstr "開機時不啟動"
+msgstr "不要啟動"
 
 #: app/views/services/_status.rhtml:6
 msgid "Service will be started on boot."
-msgstr "服務將於開機時啟動。"
+msgstr ""
 
 #: app/views/services/_status.rhtml:8
 msgid "Service will not be started on boot."
-msgstr "開機時不會啟動服務。"
+msgstr ""
 
 #: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
 msgid "status unknown"
-msgstr "狀態不明"
+msgstr "不明的"
 
 #: app/views/services/_status.rhtml:33
 msgid "running"
 msgstr "執行中"
 
 #: app/views/services/_status.rhtml:37
+#, fuzzy
+#| msgid "(dead)"
 msgid "dead"
-msgstr "停止"
+msgstr "(死亡)"
 
 #: app/views/services/_status.rhtml:41
 msgid "not running"
 msgstr "尚未執行"
 
 #: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "(unknown: %d)"
 msgid "status unknown: %d"
-msgstr "狀態不明︰%d"
+msgstr "(未知: %d)"
 
 #: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "lock-down status for the search area"
 msgid "Current status of the service:"
-msgstr "服務的目前狀態︰"
+msgstr "鎖定搜尋區域的狀態"
 
+#~ msgid "Invalid session, please login again."
+#~ msgstr "不適用的工作階段，請重新登入。"
+
+#~ msgid "(unknown)"
+#~ msgstr "(未知)"
+
+#~ msgid "(running)"
+#~ msgstr "(執行中)"
+
+#~ msgid "(not running)"
+#~ msgstr "(尚未執行)"
+
+#~ msgid "Back"
+#~ msgstr "上一步"
+
+#~ msgid "Custom Services"
+#~ msgstr "自訂服務"
+
+#~ msgid "status"
+#~ msgstr "狀態"

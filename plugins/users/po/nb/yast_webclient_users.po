@@ -1,165 +1,248 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
+# Olav Pettershagen <olav.pet@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2005-08-11 20:37+0200\n"
-"Last-Translator: Olav Pettershagen <olav.pet@online.no>\n"
-"Language-Team:  <nb@li.org>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2009-12-28 18:17+0100\n"
+"Last-Translator: Olav Pettershagen <olav.pet@gmail.com>\n"
+"Language-Team: Norwegian Bokmål <opensuse-translation@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr ""
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr "Manglende gruppenavnparameter"
 
-#: app/controllers/users_controller.rb:144
-#, fuzzy
-#| msgid "Service '%s' has been successfully added."
+#: app/controllers/groups_controller.rb:27
+msgid "Missing group parameters"
+msgstr "Manglende gruppeparametere"
+
+#: app/controllers/groups_controller.rb:37
+msgid "Please enter a valid group name"
+msgstr "Angi et gyldig gruppenavn"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr "Angi en gyldig GID"
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr "Angi en gyldig gruppetype. bare «system» eller «local» er tillatt."
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr "Angi en gyldige medlemsliste"
+
+#: app/controllers/groups_controller.rb:82
+msgid "Cannot read users list."
+msgstr "Kan ikke lese brukerliste."
+
+#: app/controllers/groups_controller.rb:118
+msgid "Cannot read groups list."
+msgstr "Kan ikke lese gruppeliste."
+
+#: app/controllers/groups_controller.rb:209
+msgid "Unknown backend error"
+msgstr "Ukjent feil i grunnsystem"
+
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
-msgstr "Tjenesten '%s' er lagt til."
+msgstr "Brukeren <i>%s</i> er opprettet."
 
-#: app/controllers/users_controller.rb:148
-#, fuzzy
-#| msgid "Empty CA name."
-msgid "Empty UID value"
-msgstr "Tomt CA-navn."
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr ""
-
-#: app/controllers/users_controller.rb:197
-#, fuzzy
-#| msgid "Service '%s' has been successfully added."
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
-msgstr "Tjenesten '%s' er lagt til."
+msgstr "Brukeren <i>%s</i> er oppdatert."
 
-#: app/controllers/users_controller.rb:218
-#, fuzzy
-#| msgid "Specified lock has been successfully removed."
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
-msgstr "Definerte lås er fjernet."
+msgstr "Brukeren <i>%s</i> er fjernet."
 
-#: app/controllers/users_controller.rb:220
-#, fuzzy
-#| msgid "Error: Could not read profile %s: %s.\n"
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Feil: Kunne ikke lese profil %s:%s.\n"
+msgstr "Feil: Kunne ikke fjerne brukeren <i>%s</i>."
 
-#: app/views/users/index.html.erb:1
-#, fuzzy
-#| msgid "Local Network"
-msgid "Local User"
-msgstr "Lokalt nettverk"
-
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Logg inn"
-
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
-#, fuzzy
-#| msgid "Name"
-msgid "Full Name"
-msgstr "Navn"
-
-#: app/views/users/index.html.erb:8
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&Rediger"
-
-#: app/views/users/index.html.erb:27
-#, fuzzy
-#| msgid "You are <strong>online</strong>"
-msgid "<strong>[New User]</strong>"
-msgstr "Du er <strong>tilkoblet</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Tilbake"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr ""
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Grupper"
 
-#: app/views/users/edit.html.erb:19
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default Group"
-msgstr "Standardrute"
+#: app/views/groups/edit.html.erb:35
+msgid "Add new group"
+msgstr "Legg til ny gruppe"
 
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#, fuzzy
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "Katalog\n"
+#: app/views/groups/edit.html.erb:37
+msgid "Modify group"
+msgstr "Endre gruppe"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#, fuzzy
-#| msgid "Login"
-msgid "Login Shell"
-msgstr "Logg inn"
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+msgid "Group Name"
+msgstr "Gruppenavn"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
-#, fuzzy
-#| msgid "Location Name"
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+msgid "Group ID"
+msgstr "Gruppe-ID"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+msgid "Default members"
+msgstr "Standardmedlemmer"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+msgid "Members"
+msgstr "Medlemmer"
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+msgid "Processing ..."
+msgstr "Beandler ..."
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+msgid "Filter:"
+msgstr "Filtrer:"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr "Legg til ny gruppe"
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Lagre"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Fjern"
+
+#: app/views/groups/index.html.erb:114
+msgid "Are you sure to delete group '%s'?"
+msgstr "Er du sikker på at du vil slette gruppen '%s'?"
+
+#: app/views/users/_user_form.erb:5
+msgid "Login Settings"
+msgstr "Innstillinger for innlogging"
+
+#: app/views/users/_user_form.erb:8
+msgid "Full Name"
+msgstr "Fullt navn"
+
+#: app/views/users/_user_form.erb:12
 msgid "Login Name"
-msgstr "Plassering"
-
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-#, fuzzy
-#| msgid "Numbers"
-msgid "UID Number"
-msgstr "Tall"
+msgstr "Brukernavn"
 
 # password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "Passord"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Oppdater"
+#: app/views/users/_user_form.erb:21
+msgid "Confirm Password"
+msgstr "Bekreft passord"
 
-#: app/views/users/new.html.erb:1
-#, fuzzy
-#| msgid "Create New User?"
-msgid "New User"
-msgstr "Vil du opprette en ny bruker?"
+#: app/views/users/_user_form.erb:39
+msgid "Default Group"
+msgstr "Standardgruppe"
 
-#: app/views/users/new.html.erb:16
-#, fuzzy
-#| msgid "Default route ok."
-msgid "Default Group (GID)"
-msgstr "Standardrute OK."
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "Avansert"
 
-#: app/views/users/new.html.erb:24
-#, fuzzy
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "Kan ikke opprette katalogen %1: %2."
+#: app/views/users/_user_form.erb:64
+msgid "Home Directory"
+msgstr "Hjemmekatalog"
 
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "Opprett"
+#: app/views/users/_user_form.erb:68
+msgid "Login Shell"
+msgstr "Innloggingsskall"
 
-#, fuzzy
-#~| msgid "&Username"
-#~ msgid "User"
-#~ msgstr "Br&ukernavn"
+#: app/views/users/_user_form.erb:72
+msgid "UID Number"
+msgstr "UID-nummer"
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "Svakt"
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normalt"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+msgid "Medium"
+msgstr "Middels"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "Sterkt"
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr "Svært sterkt"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+msgid "Users"
+msgstr "Brukere"
+
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr "Rediger brukeren %s"
+
+#: app/views/users/index.html.erb:52
+msgid "Add New User"
+msgstr "Legg til ny bruker"
+
+#: app/views/users/index.html.erb:68
+msgid "Are you sure to delete user '%s'?"
+msgstr "Er du sikker på at du vil slette brukeren '%s'?"
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "Hjemmekatalog vil også bli slettet."
+
+#: app/views/users/index.html.erb:81
+msgid "Manage Groups"
+msgstr "Behandle grupper"
+
+#: app/views/users/new.html.erb:86
+msgid "Add new user"
+msgstr "Legg til ny bruker"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Ugyldig økt, logg inn på nytt."
+
+#~ msgid "Empty UID value"
+#~ msgstr "UID-verdi mangler"
+
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID: verdier >= 1000 er kun gyldig for lokal bruker"
+
+#~ msgid "Local User"
+#~ msgstr "Lokal bruker"
+
+#~ msgid "Login"
+#~ msgstr "Logg inn"
+
+#~ msgid "Edit"
+#~ msgstr "Rediger"
+
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "<strong>[Ny bruker]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Tilbake"
+
+#~ msgid "Update"
+#~ msgstr "Oppdater"
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "Standardgruppe (GID)"
+
+#~ msgid "Do not create home directory"
+#~ msgstr "Ikke opprett hjemmekatalog"
+
+#~ msgid "Create"
+#~ msgstr "Opprett"

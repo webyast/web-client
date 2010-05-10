@@ -4,160 +4,174 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2010-03-30 10:01+0200\n"
-"PO-Revision-Date: 2010-04-08 10:19\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-04-29 10:57+0100\n"
+"Last-Translator: Mirek Rogoziński <miroslaw.rogozinski@opensuse.biz>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/services_controller.rb:23
+#: app/controllers/services_controller.rb:44
 msgid "(cannot read status)"
 msgstr "(nie można odczytać statusu)"
 
-#: app/controllers/services_controller.rb:70
+#: app/controllers/services_controller.rb:91
 msgid "success"
 msgstr "sukces"
 
-#: app/controllers/services_controller.rb:71
+#: app/controllers/services_controller.rb:92
 msgid "unspecified error"
-msgstr "nieokreślony błąd"
+msgstr "nieznany błąd"
 
-#: app/controllers/services_controller.rb:72
+#: app/controllers/services_controller.rb:93
 msgid "invalid or excess argument(s)"
-msgstr "nieprawidłowe lub zbędne argumenty"
+msgstr "nieprawidłowy parametr lub zbyt duża liczba parametrów"
 
-#: app/controllers/services_controller.rb:73
+#: app/controllers/services_controller.rb:94
 msgid "unimplemented feature"
 msgstr "funkcja niezaimplementowana"
 
-#: app/controllers/services_controller.rb:74
+#: app/controllers/services_controller.rb:95
 msgid "user had insufficient privilege"
-msgstr "użytkownik nie ma odpowiednich uprawnień"
+msgstr "użytkownik ma wystarczające uprawnienia"
 
-#: app/controllers/services_controller.rb:75
+#: app/controllers/services_controller.rb:96
 msgid "program is not installed"
-msgstr "program nie jest zainstalowany"
+msgstr "program nie zainstalowany"
 
-#: app/controllers/services_controller.rb:76
+#: app/controllers/services_controller.rb:97
 msgid "program is not configured"
-msgstr "program nie jest skonfigurowany"
+msgstr "program nie skonfigurowany"
 
-#: app/controllers/services_controller.rb:77
+#: app/controllers/services_controller.rb:98
 msgid "program is not runnning"
-msgstr "program nie jest uruchomiony"
+msgstr "program nie działa"
 
-#: app/views/services/_result.rhtml:6
+#: app/views/services/_result.rhtml:7
 msgid "Service Call Result"
 msgstr "Wynik wywołania usługi"
 
-#: app/views/services/_result.rhtml:9
+#: app/views/services/_result.rhtml:10
 msgid "Result"
 msgstr "Wynik"
 
-#: app/views/services/_result.rhtml:14
+#: app/views/services/_result.rhtml:15
 msgid "Description"
 msgstr "Opis"
 
-#: app/views/services/index.rhtml:21
-msgid "Quick Search"
-msgstr "Szybkie wyszukiwanie"
-
-#: app/views/services/index.rhtml:126
+#: app/views/services/index.rhtml:162
 msgid "System Services"
 msgstr "Usługi systemowe"
 
-#: app/views/services/index.rhtml:132
+#: app/views/services/index.rhtml:168
 msgid "You do not have permission to execute the services."
-msgstr "Brak uprawnień do uruchomienia tych usług."
+msgstr "Brak uprawnień do wykonania usług."
 
-#: app/views/services/index.rhtml:136
+#: app/views/services/index.rhtml:172
 msgid "Filter services"
-msgstr "Filtrowanie usług"
+msgstr "Filtr usług "
 
-#: app/views/services/index.rhtml:138
+#: app/views/services/index.rhtml:174
 msgid "All"
-msgstr "Wszystkie"
+msgstr "Wszystko"
 
-#: app/views/services/index.rhtml:139
+#: app/views/services/index.rhtml:175
 msgid "Running"
-msgstr "Działające"
+msgstr "Działa"
 
-#: app/views/services/index.rhtml:140
+#: app/views/services/index.rhtml:176
 msgid "Not Running"
-msgstr "Niedziałające"
+msgstr "Nie działa"
 
-#: app/views/services/index.rhtml:141
+#: app/views/services/index.rhtml:177
 msgid "Dead"
-msgstr "Martwe"
+msgstr "Martwy"
 
-#: app/views/services/index.rhtml:142
+#: app/views/services/index.rhtml:178
 msgid "Started on Boot"
-msgstr "Uruchamiane przy rozruchu"
+msgstr "Uruchamione podczas startu"
 
-#: app/views/services/index.rhtml:143
+#: app/views/services/index.rhtml:179
 msgid "Not Started on Boot"
-msgstr "Nie uruchamiane przy rozruchu"
+msgstr "Nie uruchomione podczas startu"
 
-#: app/views/services/index.rhtml:159
+#: app/views/services/index.rhtml:186
+msgid "Quick Search"
+msgstr "Szybkie wyszukiwanie"
+
+#: app/views/services/index.rhtml:201
 msgid "Description for service is not available"
 msgstr "Opis usługi jest niedostępny"
 
-#: app/views/services/index.rhtml:178
+#: app/views/services/index.rhtml:224
 msgid "(refresh)"
-msgstr "(odśwież)"
+msgstr "(ośwież)"
 
-#: app/views/services/index.rhtml:209
+#: app/views/services/index.rhtml:255
 msgid "Start"
 msgstr "Uruchom"
 
-#: app/views/services/index.rhtml:210
+#: app/views/services/index.rhtml:256
 msgid "Stop"
 msgstr "Zatrzymaj"
 
-#: app/views/services/index.rhtml:211
+#: app/views/services/index.rhtml:257
 msgid "Restart"
-msgstr "Uruchom ponownie"
+msgstr "Restart"
 
-#: app/views/services/index.rhtml:212
+#: app/views/services/index.rhtml:258
 msgid "Start on Boot"
-msgstr "Uruchom przy rozruchu"
+msgstr "Uruchom podczas startu"
 
-#: app/views/services/index.rhtml:213
+#: app/views/services/index.rhtml:259
 msgid "Do Not Start on Boot"
-msgstr "Nie uruchamiaj przy rozruchu"
+msgstr "Nie uruchamiaj podczas startu"
 
-#: app/views/services/_status.rhtml:6
+#: app/views/services/_status.rhtml:7
 msgid "Service will be started on boot."
-msgstr "Usługa będzie uruchamiana przy rozruchu."
+msgstr "Usługa zostanie uruchomiona podczas uruchamiania systemu."
 
-#: app/views/services/_status.rhtml:8
+#: app/views/services/_status.rhtml:9
 msgid "Service will not be started on boot."
-msgstr "Usługa nie będzie uruchamiana przy rozruchu"
+msgstr "Usługa nie będzie uruchomiona podczas uruchamiania systemu."
 
-#: app/views/services/_status.rhtml:31
+#: app/views/services/_status.rhtml:32
 msgid "status unknown"
-msgstr "stan nieznany"
+msgstr "status nieznany"
 
-#: app/views/services/_status.rhtml:33
+#: app/views/services/_status.rhtml:34
 msgid "running"
-msgstr "działa"
+msgstr "(działa)"
 
-#: app/views/services/_status.rhtml:37
+#: app/views/services/_status.rhtml:38
 msgid "dead"
-msgstr "martwa"
+msgstr "(martwy)"
 
-#: app/views/services/_status.rhtml:41
+#: app/views/services/_status.rhtml:42
 msgid "not running"
-msgstr "nie działa"
+msgstr "(nie działa)"
 
-#: app/views/services/_status.rhtml:45
+#: app/views/services/_status.rhtml:46
 msgid "status unknown: %d"
-msgstr "stan nieznany: %d"
+msgstr "status nieznany: %d"
 
-#: app/views/services/_status.rhtml:48
+#: app/views/services/_status.rhtml:49
 msgid "Current status of the service:"
-msgstr "Aktualny stan usługi:"
+msgstr "Aktualny status usługi:"
 
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Niepoprawna sesja, proszę zalogować się ponownie."
+
+#~ msgid "Back"
+#~ msgstr "Wstecz"
+
+#~ msgid "Custom Services"
+#~ msgstr "Usługi niestandardowe"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "Brak usług niestandardowej na komputerze docelowym."
+
+#~ msgid "status"
+#~ msgstr "status"

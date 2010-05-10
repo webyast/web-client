@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-08-18 21:16+0300\n"
 "Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -11,28 +11,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 #, fuzzy
 #| msgid "This is not a valid CCW address."
 msgid "Enter a valid e-mail address."
 msgstr "Това не е валиден CCW адрес."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Паролите не съответстват."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 #, fuzzy
 #| msgid "Monitor Settings"
 msgid "Administrator settings have been written."
 msgstr "Настройки на монитора"
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Възникнала е грешка при затварянето на стария shadow файл: %m"
+
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr ""
 
 #: app/views/administrator/index.html.erb:1
 #, fuzzy
@@ -40,41 +44,79 @@ msgstr "Възникнала е грешка при затварянето на 
 msgid "Administrator Settings"
 msgstr "Настройки на монитора"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "Паролите не съответстват."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
+#: app/views/administrator/index.html.erb:33
+msgid "A password is required."
 msgstr ""
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Парола"
+#: app/views/administrator/index.html.erb:38
+#, fuzzy
+#| msgid "Password:"
+msgid "Password Strength:"
+msgstr "Парола:"
 
-# password dialog title
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "Нормална"
+
+#: app/views/administrator/index.html.erb:42
+msgid "Medium"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:44
+msgid "Very Strong"
+msgstr ""
+
 #: app/views/administrator/index.html.erb:63
-#, fuzzy
-#| msgid "Password"
-msgid "Confirm password"
-msgstr "Парола"
-
-# password dialog title
-#: app/views/administrator/index.html.erb:65
-#, fuzzy
-#| msgid "Password"
-msgid "Save Password"
-msgstr "Парола"
-
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
+msgid "Password Setup for User 'root'"
 msgstr ""
 
-#: app/views/administrator/index.html.erb:72
+#: app/views/administrator/index.html.erb:64
+#, fuzzy
+#| msgid "New Password: "
+msgid "New Password"
+msgstr "Нова парола:"
+
+# password dialog title
+#: app/views/administrator/index.html.erb:69
+#, fuzzy
+#| msgid "Password"
+msgid "Confirm Password"
+msgstr "Парола"
+
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:78
+msgid "Forward system mail to"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:81
 #, fuzzy
 #| msgid "&Save"
-msgid "Save Mail"
+msgid "Save Mail Only"
 msgstr "&Запис..."
+
+# password dialog title
+#~ msgid "Password"
+#~ msgstr "Парола"
+
+# password dialog title
+#, fuzzy
+#~| msgid "Password"
+#~ msgid "Save Password"
+#~ msgstr "Парола"

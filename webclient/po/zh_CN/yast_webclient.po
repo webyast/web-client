@@ -1,31 +1,37 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 10:44\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: app/helpers/application_helper.rb:20
 msgid " or "
-msgstr " 或 "
+msgstr ""
 
 #: app/helpers/application_helper.rb:24
 msgid " - "
-msgstr " - "
+msgstr ""
 
 #: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
 #: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "后退"
 
+# cancel button label
 #: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
 msgid "Cancel"
 msgstr "取消"
@@ -39,220 +45,274 @@ msgid "Next"
 msgstr "下一步"
 
 #: app/helpers/application_helper.rb:56
+#, fuzzy
+#| msgid "Finnish"
 msgid "Finish"
-msgstr "完成"
+msgstr "芬兰语"
 
 #: app/helpers/view_helpers/html_helper.rb:9
 msgid "Are you sure?"
-msgstr "您确定吗？"
+msgstr ""
 
 #: app/helpers/view_helpers/html_helper.rb:133
+#, fuzzy
+#| msgid "Unknown error\n"
 msgid "Unknown error"
-msgstr "未知错误"
+msgstr "未知错误\n"
 
-#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
+#, fuzzy
+#| msgid "No information available."
 msgid "No information available"
-msgstr "无信息可用"
+msgstr "没有可用信息。"
 
 #: app/helpers/view_helpers/html_helper.rb:140
 msgid "There was a problem retrieving information from the server."
-msgstr "从服务器检索信息时出现问题。"
+msgstr ""
 
 #: app/helpers/view_helpers/effect_helper.rb:32
+#, fuzzy
+#| msgid "Details"
 msgid "Hide Details"
-msgstr "隐藏细节"
+msgstr "细节"
 
 #: app/helpers/view_helpers/effect_helper.rb:33
+#, fuzzy
+#| msgid "Details"
 msgid "Show Details"
-msgstr "显示细节"
+msgstr "细节"
 
-#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
 msgid "Add"
 msgstr "添加"
 
 #: app/helpers/view_helpers/label_helper.rb:10
+#, fuzzy
+#| msgid "&Edit"
 msgid "Edit"
-msgstr "编辑"
+msgstr "编辑(&E)"
 
 #: app/helpers/view_helpers/label_helper.rb:14
 msgid "Delete"
 msgstr "删除"
 
 #: app/controllers/sessions_controller.rb:49
+#, fuzzy
+#| msgid "You need to specify a file to install"
 msgid "You need to specify the host"
-msgstr "您需要指定主机"
+msgstr "您需要指定安装的文件"
 
 #: app/controllers/sessions_controller.rb:52
+#, fuzzy
+#| msgid "No valid arguments specified."
 msgid "No login specified"
-msgstr "未指定登录"
+msgstr "没有指定有效的参数。"
 
 #: app/controllers/sessions_controller.rb:55
+#, fuzzy
+#| msgid "No valid key file specified."
 msgid "No password specified"
-msgstr "未指定密码"
+msgstr "未指定有效的密钥文件。"
 
 #: app/controllers/sessions_controller.rb:74
 msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "主机已阻止用户 %s。它不能登录直到 %s"
+msgstr ""
 
 #: app/controllers/sessions_controller.rb:97
+#, fuzzy
+#| msgid "Login failure. Please check username and password and try again"
 msgid "Login incorrect. Check your username and password."
-msgstr "登录错误。请检查您的用户名和密码。"
+msgstr "登录失败。请检查用户名和密码然后重试。"
 
 #: app/controllers/sessions_controller.rb:130
 msgid "You have been logged out."
-msgstr "您已注销。"
+msgstr ""
 
 #: app/controllers/application_controller.rb:24
+#, fuzzy
+#| msgid "Session active:"
 msgid "Session timeout"
-msgstr "会话超时"
+msgstr "活动会话："
 
 #: app/controllers/application_controller.rb:79
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
-msgstr "不允许您执行此操作。如果您必须执行此操作，请联系系统管理员"
+msgstr ""
 
 #: app/controllers/application_controller.rb:117
+#, fuzzy
+#| msgid "Please connect to the internet."
 msgid "Please login to continue"
-msgstr "请登录以继续"
+msgstr "请连接到因特网。"
 
 #: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
-msgstr "必须先注销才能登录"
+msgstr ""
 
 #: app/controllers/application_controller.rb:213
 msgid "can't be blank"
-msgstr "不能为空白"
+msgstr ""
 
 #: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
-msgstr "在允许值范围外"
+msgstr ""
 
 #: app/controllers/application_controller.rb:215
 msgid "can't be empty"
-msgstr "不能为空"
+msgstr ""
 
 #: app/controllers/application_controller.rb:216
+#, fuzzy
+#| msgid "Given URI is invalid"
 msgid "is invalid"
-msgstr "无效"
+msgstr "所给的 URL 无效"
 
 #: app/controllers/application_controller.rb:231
+#, fuzzy
+#| msgid "Invalid package file"
 msgid "Invalid parameters:"
-msgstr "无效参数："
+msgstr "软件包文件无效"
 
 #: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "无法连接到主机 %s。"
+msgstr "不能 chroot 到 '%s' (%s)"
 
 #: app/controllers/hosts_controller.rb:26
+#, fuzzy
+#| msgid "Enter the port number on which the NFS server is running."
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "请确保主机已打开并且 YaST Web 服务正在运行。"
+msgstr "输入要在其上运行 NFS 服务器的端口号。"
 
 #: app/controllers/hosts_controller.rb:28
+#, fuzzy
+#| msgid "Please select the type of your network device."
 msgid "Please select a host to connect to."
-msgstr "请选择要连接到的主机。"
+msgstr "请选择您的网络设备的类型。"
 
 #: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "找不到主机“%s”。"
+msgstr "找不到安装源'%s'。"
 
 #: app/controllers/hosts_controller.rb:32
+#, fuzzy
+#| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
-msgstr "请再次检查主机 URL。"
+msgstr "%s 不存在，请复查路径。"
 
 #: app/models/account.rb:-
 msgid "account"
-msgstr "帐户"
+msgstr ""
 
 #: app/models/account.rb:-
 msgid "Account|Login"
-msgstr "帐户|登录"
+msgstr ""
 
 #: app/models/account.rb:-
 msgid "Account|Created at"
-msgstr "帐户|创建时间"
+msgstr ""
 
 #: app/models/account.rb:-
 msgid "Account|Updated at"
-msgstr "帐户|更新时间"
+msgstr ""
 
 #: app/models/account.rb:-
 msgid "Account|Remember token"
-msgstr "帐户|记住令牌"
+msgstr ""
 
 #: app/models/account.rb:-
 msgid "Account|Remember token expires at"
-msgstr "帐户|记住令牌失效时间"
+msgstr ""
 
 #: app/models/account.rb:-
 msgid "Account|Salt"
-msgstr "帐户|Salt"
+msgstr ""
 
 #: app/models/host.rb:-
 msgid "host"
-msgstr "主机"
+msgstr ""
 
 #: app/models/host.rb:-
+#, fuzzy
+#| msgid "Host Names"
 msgid "Host|Name"
-msgstr "主机|名称"
+msgstr "主机名"
 
 #: app/models/host.rb:-
 msgid "Host|Url"
-msgstr "主机|Url"
+msgstr ""
 
 #: app/models/host.rb:-
+#, fuzzy
+#| msgid "Description"
 msgid "Host|Description"
-msgstr "主机|描述"
+msgstr "说明"
 
 #: app/models/host.rb:-
 msgid "Host|Created at"
-msgstr "主机|创建时间"
+msgstr ""
 
 #: app/models/host.rb:-
+#, fuzzy
+#| msgid "Updated"
 msgid "Host|Updated at"
-msgstr "主机|更新时间"
+msgstr "已更新"
 
 #: app/views/main/_select_language.html.erb:18
+#, fuzzy
+#| msgid "Clear Package Selection"
 msgid "Language Selection"
-msgstr "语言选择"
+msgstr "清除包选择"
 
-#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
+#: app/views/shared/exception_trap.html.erb:8
+#: app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
-msgstr "这是令人尴尬的...."
+msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:10
 msgid "We are sorry, but there are some problems."
-msgstr "抱歉，出现问题。"
+msgstr ""
 
-#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
+#: app/views/shared/exception_trap.html.erb:12
+#: app/views/shared/backendexception_trap.html.erb:6
+#, fuzzy
+#| msgid "Problem: "
 msgid "Problem:"
 msgstr "问题："
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "请报告 bug 以便我们能够修复问题！"
+msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
-msgstr "（报告链接）"
+msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
-msgstr "不要忘记包含 bug 细节。"
+msgstr ""
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
-msgstr "问题发生在目标计算机上。"
+msgstr ""
 
 #: app/views/shared/_missing_write_permissions.html.erb:1
 msgid "You do not have permissions to modify the settings."
-msgstr "您无权修改设置。"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
-msgstr "正在编辑 YaST Web 服务"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:22
+#, fuzzy
+#| msgid "Service"
 msgid "YaST-Web-Service"
-msgstr "YaST Web 服务"
+msgstr "服务"
 
 #: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
@@ -260,41 +320,48 @@ msgstr "名称"
 
 #: app/views/hosts/edit.html.erb:29
 msgid "Url"
-msgstr "Url"
+msgstr ""
 
 #: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
-msgstr "描述"
+msgstr "说明"
 
 #: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "确定"
 
 #: app/views/hosts/index.html.erb:6
+#, fuzzy
+#| msgid "Please choose the CCW bus interface."
 msgid "Please choose a service:"
-msgstr "请选择服务："
+msgstr "请选择 CCW 总线接口。"
 
 #: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr "是否确实要删除主机 %s？"
+msgstr ""
 
 #: app/views/hosts/new.html.erb:9
 msgid "New WebYaST Host"
-msgstr "新建 WebYaST 主机"
+msgstr ""
 
 #: app/views/hosts/new.html.erb:41
+#, fuzzy
+#| msgid "URI"
 msgid "URL"
-msgstr "URL"
+msgstr "URI"
 
 #: app/views/hosts/new.html.erb:53
+#, fuzzy
+#| msgid "Created On: "
 msgid "Create"
-msgstr "创建"
+msgstr "创建日期："
 
 #: app/views/hosts/show.html.erb:7
 msgid "Index"
 msgstr "索引"
 
-#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:72
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "配置"
 
@@ -303,16 +370,19 @@ msgid "Status"
 msgstr "状态"
 
 #: app/views/controlpanel/index.rhtml:35
+#, fuzzy
+#| msgid "System Information"
 msgid "System actions"
-msgstr "系统操作"
+msgstr "系统信息"
 
+# reboot button label
 #: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
-msgstr "重引导"
+msgstr "重启"
 
 #: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
-msgstr "确实要重引导 %s 吗？"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
@@ -320,71 +390,92 @@ msgstr "关机"
 
 #: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
-msgstr "确实要关闭 %s 吗？"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:48
+#, fuzzy
+#| msgid "Downloading update information"
 msgid "Loading patch information"
-msgstr "正在装载增补程序信息"
+msgstr "正在下载更新信息"
 
 #: app/views/controlpanel/index.rhtml:50
 msgid "Patch status summary is disabled in the config file."
-msgstr "配置文件中已禁用增补程序状态摘要功能。"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:53
+#, fuzzy
+#| msgid "Package '%s' is not installed."
 msgid "Patch plugin is not installed."
-msgstr "未安装增补程序插件。"
+msgstr "软件包 '%s' 没有安装。"
 
 #: app/views/controlpanel/index.rhtml:60
+#, fuzzy
+#| msgid "Downloading update information"
 msgid "Loading system information"
-msgstr "正在装载系统信息"
+msgstr "正在下载更新信息"
 
 #: app/views/controlpanel/index.rhtml:62
 msgid "System status summary is disabled in the config file."
-msgstr "配置文件中已禁用系统状态摘要功能。"
+msgstr ""
 
 #: app/views/controlpanel/index.rhtml:65
+#, fuzzy
+#| msgid "'%s' is not installed."
 msgid "Status plugin is not installed."
-msgstr "未安装状态插件。"
+msgstr "'%s'未安装。"
 
 #: app/views/controlpanel/index.rhtml:102
+#, fuzzy
+#| msgid "Show Loaded Modules"
 msgid "Show all modules"
-msgstr "显示所有模块"
+msgstr "显示已装载的模块"
 
 #: app/views/controlpanel/basesystem.rhtml:1
 msgid "Base system setup"
-msgstr "基本系统设置"
+msgstr ""
 
 #: app/views/controlpanel/basesystem.rhtml:3
 msgid "Your initial system setup was not completed. Please continue with setting up the modules."
-msgstr "您的初始系统设置不完整。请继续设置模块。"
+msgstr ""
 
 #: app/views/controlpanel/basesystem.rhtml:4
 msgid "Continue initial system setup"
-msgstr "继续进行初始系统设置"
+msgstr ""
 
 #: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
-msgstr "WebYaST"
+msgstr ""
 
 #: app/views/layouts/main.rhtml:50
+#, fuzzy
+#| msgid "Applied"
 msgid "My Appliance"
-msgstr "我的设备"
+msgstr "已应用"
 
+# label for language selection
 #: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#, fuzzy
+#| msgid "Language"
 msgid "Language:"
-msgstr "语言："
+msgstr "语言"
 
 #: app/views/layouts/main.rhtml:62
+#, fuzzy
+#| msgid "Connected To"
 msgid "Connected host:"
-msgstr "已连接的主机："
+msgstr "已连接到"
 
 #: app/views/layouts/main.rhtml:63
+#, fuzzy
+#| msgid "Username: "
 msgid "User:"
-msgstr "用户："
+msgstr "用户名："
 
 #: app/views/layouts/main.rhtml:66
+#, fuzzy
+#| msgid "Control Center"
 msgid "Control panel"
-msgstr "控制面板"
+msgstr "控制中心"
 
 #: app/views/layouts/main.rhtml:67
 msgid "Logout"
@@ -392,61 +483,85 @@ msgstr "注销"
 
 #: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
-msgstr "...请稍候..."
+msgstr ""
 
 #: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "登录"
 
 #: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "请输入主机 %s 的登录凭证。"
+msgstr "输入芯片组\"%s\"的特定参数。"
 
 #: app/views/sessions/new.rhtml:10
+#, fuzzy
+#| msgid "Username: "
 msgid "Username:"
 msgstr "用户名："
 
 #: app/views/sessions/new.rhtml:13
 msgid "Password:"
-msgstr "密码："
+msgstr "口令："
 
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
-msgstr "服务 %s 在目标计算机中不可用"
+msgstr ""
 
 #: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
-msgstr "服务 %s 在目标计算机上未运行"
+msgstr ""
 
 #: lib/error_constructor.rb:16
 msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
-msgstr "rest-service 上设置的许可权限错误。可以用 grantwebyastrights 脚本修复。"
+msgstr ""
 
 #: lib/error_constructor.rb:17
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "许可权限 %s 未授予用户 %s"
+msgstr "服务“%2”不允许使用操作“%1”。"
 
 #: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr "用户 %s 和许可权限 %s 的策略包例外（未翻译的消息）：%s"
+msgstr ""
 
 #: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "用户不再登录到目标计算机。请重新登录。"
+msgstr ""
 
 #: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr "目标系统不一致：缺少或损坏的文件 %s"
+msgstr ""
 
 #: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr "在 /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS 上不存在预定义的 ntp 服务器"
+msgstr ""
 
 #: lib/error_constructor.rb:29
+#, fuzzy
+#| msgid "An error occurred during the installation."
 msgid "Error occurred during ntp synchronization: %s"
-msgstr "ntp 同步期间发生错误：%s"
+msgstr "安装期间出错。"
 
 #: lib/error_constructor.rb:32
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "保存管理员设置时出错：%s"
+msgstr "关闭旧的阴影文件时出错：%m"
 
+#, fuzzy
+#~| msgid "Reboot the system now?"
+#~ msgid "Set up the system"
+#~ msgstr "是否现在重引导系统？"
+
+#, fuzzy
+#~| msgid "Name: "
+#~ msgid "Name:"
+#~ msgstr "名称："
+
+#, fuzzy
+#~| msgid "A kioslave to browse services"
+#~ msgid "Noone is logged to rest service."
+#~ msgstr "浏览服务的一个 kioslave"
