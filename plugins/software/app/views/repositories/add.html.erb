@@ -22,7 +22,27 @@
   <%= javascript_include_tag :defaults %>
 
   <style type="text/css">
-    label.error { float: none; color: red; padding-left: .5em; vertical-align: top; width: 100%; text-align: left }
+	 /* TODO temporary solution please see the comment in style.css*/
+	 input.error {
+		float: none;
+	 }
+
+    label.error { 
+		float: none; 
+		color:#990000;
+      font-weight:bold;
+		padding-left: .5em; 
+		vertical-align:baseline; 
+		width: 100%; 
+		text-align: left 
+	 }
+
+	 label.valid { 
+		background: url('../images/checked.gif') no-repeat;
+		padding:0px 10px 0px 18px;
+		vertical-align:middle; 
+		margin-left:5px;
+	 }
   </style>
 
   <script type="text/javascript">
@@ -43,8 +63,8 @@
 
 	}, "<%= _("Symbols <b>%s</b> are not allowed in repository alias.") % "^${}[]&gt;&lt;`\\'\\\"\\\\" -%>");
 
-        // validate the form
-	$("#repositoryForm").validate()
+   // validate the form
+	$("#repositoryForm").validate({success: "valid"})
 
 	// set custom translatable messages
 	$.extend($.validator.messages, {

@@ -463,9 +463,9 @@ fieldset.small-fields input[type="text"] {
   width: 10em;
 }
 
-fieldset select {
+/*fieldset select {
   background-color: #fff;
-}
+}*/
 
 fieldset label {
   display: block; 
@@ -488,10 +488,34 @@ legend span {
   margin-left: 2px;
 }
 
+/* TODO find the better soulution later */
+/* breaks input type="text" alignment if used together with label.error and label.valid properties, see example network modules if field is valid and field with errors*/
+
 /* make error messages show up right of the label, bnc#592282 */
 input.error {
   float: left;
 }
+
+/* Repositories validation is not consistent with other modules (bnc#604160)*/
+/* TODO move all label.error and label.valid properties from modules index files to style.css*/
+/* is not possible now (for WebYaST-SP1-GMC) because of higher effort as assumed  */
+
+/*label.error {
+  float:none;
+  display:inline;
+  font-weight:bold;
+  color:#990000;
+  padding-top:2px;
+  padding-left:.5em;
+  vertical-align:middle; 
+}
+
+label.valid { 
+  background: url('/images/checked.gif') no-repeat;
+  padding:0px 0px 0px 18px;
+  vertical-align:middle; 
+  margin-left:5px;
+}*/
 
 label.error {
   float: left;
