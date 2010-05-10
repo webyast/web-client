@@ -151,6 +151,25 @@ input {
   background: #fcfcfc;
 }
 
+select {
+  border: 1px solid #ccc;
+  padding: 2px;
+  color: #666;
+  font-size: 1em;
+  background: #fcfcfc;
+}
+
+/* select for available Updates in software module with image before text */
+/* TODO find the solution for IE and Chrome, the images are not rendered before text */
+#selector { 
+  padding: 0px;
+}
+
+select:focus {
+  border: 1px solid #69c;
+  color: #666;
+}
+
 /* breaks button background in IE8 (Groups and users module) */
 /*input { vertical-align: top; }*/
 
