@@ -18,7 +18,7 @@ Requires(pre):  yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.10
+Version:        0.1.11
 Release:        0
 Summary:        WebYaST - time management UI
 Source:         www.tar.bz2
