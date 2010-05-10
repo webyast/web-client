@@ -51,12 +51,12 @@ function _getElementsByClassName(node, classname)  {
  }
 
 // delete button handler
-function delete_handler(which){
+function delete_handler(which, progress){
  if (which.childElementCount == 2 && which.children[0].firstChild.textContent == "Delete"){
   which.childNodes[0].onclick="return false;";
   which.childNodes[0].href="";
   disable_forms();
-  $('#progress').show();
+  $(progress).show();
  }
 }
 

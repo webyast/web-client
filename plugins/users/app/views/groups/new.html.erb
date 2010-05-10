@@ -110,6 +110,7 @@ function members_validation(which){ return true; }
   </fieldset>
 
   <div class="nav-buttons">
+    <div id="progress_" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
     <%= submit_tag _("Save") %>
     <%= form_str_spacer %>
 	 <%= form_cancel_button :action => :index %>
