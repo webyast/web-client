@@ -40,7 +40,11 @@ protected
   rescue_from Exception, :with => :exception_trap
   rescue_from ActiveResource::UnauthorizedAccess do #lazy load of activeresource exception
     flash[:error] = _("Session timeout");
-    redirect_to '/logout' unless request.xhr?
+    if request.xhr?
+      render :text => flash[:error], :status => 401
+    else
+      redirect_to '/logout'
+    end
   end
 
   # helper to add details show link with details content as parameter
@@ -93,10 +97,14 @@ private
 #handle insufficient permissions, especially useful for read permissions,
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
-    if e.backend_exception_type == "NO_PERM" && !request.xhr?
+    if e.backend_exception_type == "NO_PERM"
       flash[:error] = _("You're not allowed to do this. If you have to do this action, please contact system administrator")+
                           details(e.message) #already localized from error constructor
-      redirect_to :controller => :controlpanel
+      if  request.xhr?
+        render :text => "<div>#{flash[:error]}</div>", :status => 403
+      else
+        redirect_to :controller => :controlpanel
+      end
       return
     end
     
