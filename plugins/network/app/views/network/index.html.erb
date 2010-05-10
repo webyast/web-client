@@ -143,31 +143,31 @@
 
 		  messages: {
 			 ip: {
-				required: "<%= _("This field is required") -%>",
-				ip: "<%= _("Enter a valid IP address") -%>"
+				required: <%= jss _("This field is required") -%>,
+				ip: <%= jss _("Enter a valid IP address") -%>
 			 },
 			 netmask: {
-				required: "<%= _("This field is required") -%>",
-				netmask: "<%= _("Enter a valid subnet mask or prefix") -%>"
+				required: <%= jss _("This field is required") -%>,
+				netmask: <%= jss _("Enter a valid subnet mask or prefix") -%>
 			 },
 			 default_route: {
-				required: "<%= _("This field is required") -%>",
-				default_route:"<%= _("Enter a valid IP address") -%>"
+				required: <%= jss _("This field is required") -%>,
+				default_route:<%= jss _("Enter a valid IP address") -%>
 			 },
 
-			 name:{ required: "<%= _("This field is required") -%>" },
+			 name:{ required: <%= jss _("This field is required") -%> },
 
 			 domain:{
-				required: "<%= _("This field is required") -%>",
-				domain: "<%= _("Enter a valid domain name") -%>" 
+				required: <%= jss _("This field is required") -%>,
+				domain: <%= jss _("Enter a valid domain name") -%> 
 			 },
 			 nameservers: {
-				required: "<%= _("This field is required") -%>",
-				nameservers: "<%= _("Enter a valid IP address") -%>"
+				required: <%= jss _("This field is required") -%>,
+				nameservers: <%= jss _("Enter a valid IP address") -%>
 			 },
 			 searchdomains: {
-				required: "<%= _("This field is required")  -%>",
-				searchdomains: "<%= _("Enter a valid domain name") -%>" 
+				required: <%= jss _("This field is required")  -%>,
+				searchdomains: <%= jss _("Enter a valid domain name") -%> 
 			 }
 		  },
 		  success: "valid"  
@@ -255,18 +255,18 @@
 
       function addWarning(message){
          if(message == " ") {
-            message += "<%= _("whitespace - invalid character.") %>"
+            message += <%= jss _("whitespace - invalid character.") %>
          } else if (isNaN(message) == false) {
-            message += "<%= _(" - can not start with a digit.") %>"
+            message += <%= jss _(" - can not start with a digit.") %>
          } else if (message == "periodic") { 
-            message = "<%= _("periodic '-' is not allowed.") %>"
+            message = <%= jss _("periodic '-' is not allowed.") %>
          } else if (message == "endWithHyphen") { 
-				message = "<%= _("can not end with (-) hyphen.") %>"
+				message = <%= jss _("can not end with (-) hyphen.") %>
          } else {
             if(message == '-') {
-               message = "<%= _("can not start with (-) hyphen.") %>"
+               message = <%= jss _("can not start with (-) hyphen.") %>
             } else {
-               message += "<%= _(" - is invalid character for hostname.") %>"
+               message += <%= jss _(" - is invalid character for hostname.") %>
             }
          }
 			
