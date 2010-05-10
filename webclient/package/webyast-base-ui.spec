@@ -103,6 +103,7 @@ mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/log
 mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp
 cp -a * $RPM_BUILD_ROOT/%{webyast_ui_dir}
 rm -rf $RPM_BUILD_ROOT/%{webyast_ui_dir}/log/*
+rm -rf $RPM_BUILD_ROOT/%{webyast_ui_dir}/po
 rm -f $RPM_BUILD_ROOT/%{webyast_ui_dir}/COPYING
 
 #
@@ -166,7 +167,6 @@ chmod 600 db/*.sqlite* log/*
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %{webyast_ui_dir}/locale
-%{webyast_ui_dir}/po
 %{webyast_ui_dir}/vendor
 %{webyast_ui_dir}/app
 %{webyast_ui_dir}/db
