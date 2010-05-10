@@ -14,7 +14,7 @@ Recommends:     WebYaST(org.opensuse.yast.roles)
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.0
+Version:        0.1.1
 Release:        0
 Summary:        WebYaST - Roles management UI
 Source:         www.tar.bz2
