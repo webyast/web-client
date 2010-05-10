@@ -21,10 +21,10 @@
 #++
 %>
 <% unauthorized =  error.class == ActiveResource::UnauthorizedAccess -%>
-<%= report_error(error, _("An problem occured when loading status information.")) if error && !unauthorized%>
 
 <div class="status_status">
   <% link_to (unauthorized ? "controlpanel" : "status") do %>
+    <%= report_error(error, _("An problem occured when loading status information.")) if error && !unauthorized %>
     <% unless status.blank? %>
       <div class="status-icon <%= level %>"></div>
       <span><%= status %></span>
@@ -32,7 +32,7 @@
       <% if unauthorized -%>
 	<div class="status-icon warning"></div>
         <span><%= _("Cannot read system status - you have been logged out.") %></span>
-      <% else %>
+      <% elsif !error %>
 	<div class="status-icon ok"></div>
         <span><%= _("Your system is healthy.") %></span>
       <% end %>
@@ -40,7 +40,7 @@
   <% end %>
 </div>
 
-<% if refresh_timeout.to_i > 0 -%>
+<% if refresh_timeout.to_i > 0 && !unauthorized -%>
   <!-- refresh the status again after a timeout -->
   <% javascript_tag do -%>
     setTimeout(function() {
