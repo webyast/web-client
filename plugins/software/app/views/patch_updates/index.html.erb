@@ -22,12 +22,12 @@
 <% if @permissions and @patch_updates %>
   <%= javascript_include_tag :defaults %>
   <style type="text/css">
-
     option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
     option[value=important]:before { content:url('/icons/kupdateapplet_yellow.png'); }
     option[value=green]:before { content:url('/icons/kupdateapplet_green.png'); }
     option[value=optional]:before { content:url('/icons/kupdateapplet_optional.png'); }
 
+	 .patches a {border:0px;}
   </style>
   <div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %></div>
   <div class='plugin-content'>
@@ -40,7 +40,6 @@
   <% else %>
     <fieldset>
       <h3><%=_("Updates available") %></h3>
-  
       <select name="selector" id="selector" size="1">
         <option value="all">All</option>
         <option value="security">Security</option>

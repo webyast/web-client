@@ -62,7 +62,7 @@
       <td class="label"><%=h patch_update.summary %></td>
       <td class="icon"><%=h patch_update.repo %></td>
       <% if @permissions[:install] %>
-        <td><%= link_to image_tag("/icons/system-software-install.png"\
+        <td class="icon"><%= link_to image_tag("/icons/system-software-install.png"\
               , :alt =>  "install", :class=>"icon", :border => "0"),\
             :controller => 'patch_updates', :id => patch_update.resolvable_id,\
             :onclick=>"$('#progress').show()", :method => :post, :action => "install" %></td>
