@@ -67,10 +67,8 @@
     </noscript>
   
     <div id="header">
-      
+		<h1><%= _("My Appliance") %></h1>
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
-      
-      <h1><%= _("My Appliance") %></h1>
 
       <div id="login-wrapper">
         <% host = Host.find(session[:host]) rescue nil
