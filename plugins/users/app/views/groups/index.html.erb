@@ -122,7 +122,7 @@ function members_validation(which){ return true; }
   <%= f.hidden_field :old_cn %>
     <p>
       <div class="label"><%=_("Group Name")%></div>
-      <%= f.text_field :cn, :disabled => false %>
+      <%= f.text_field :cn, :disabled => false, :class => "required" %>
     </p>
     <p>
       <div class="label"><%=_("Group ID")%></div>
@@ -132,13 +132,13 @@ function members_validation(which){ return true; }
       <div class="label"><%=_("Members")%></div>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);", :class => "members-string"%>
       <% if @permissions[:usersget] == true %>
-        <a href="#" class="button" onClick="select_users_open('<%= group.old_cn%>');return false;"><%= _("Manage Members") %></a>
+        <a href="#" class="button" onClick="select_users_open('<%= group.old_cn %>');return false;"><%= _("Manage Members") %></a>
       <% end %>
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
     <div class="nav-buttons">
     <div id="progress_<%= group.cn -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-      <%= submit_tag _("Save") %>
+      <%= submit_tag _("Save"), :onclick=>"return $('#form_" + group.old_cn + "').valid();" %>
       <% if @permissions[:groupdelete] %>
       <span onclick="delete_handler(this, '#progress_<%= group.cn -%>');">
         <%= link_to _("Delete"),

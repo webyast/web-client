@@ -194,7 +194,7 @@ function def_group_validation(which){ return true; }
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
 	</td><td colspan=2 rowspan=2>
-          <%= f.password_field :user_password, :onkeyup => "$('#form_').validate().element('#user_user_password');", :disabled => disabled, :required => true %>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_').validate().element('#user_user_password');", :disabled => disabled, :class => "required" %>
 	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 
