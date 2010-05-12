@@ -87,7 +87,7 @@
 		  $('#ntp_server').val("");
 		  $('#ntp_server').attr("disabled","disabled");
 		  $('#currenttime').focus();
-// 		  clearAllErrorMessages("timeForm");
+      $("#timeForm").valid(); //recheck
 		});
 
 		// enable form validation for #ntp_server if #ntp_sync is checked
@@ -97,6 +97,7 @@
 		  settings.messages.ntp_server = "<%= _("This field is required") -%>";
 		  settings.messages.ntp_server = {ntp_server: "<%= _("Enter a valid domain name or an IP address") -%>"};
 		  $('#ntp_server').removeAttr("disabled");
+      $("#timeForm").valid(); //recheck
 		});
     $("#timeForm").valid(); //initial check
   });
