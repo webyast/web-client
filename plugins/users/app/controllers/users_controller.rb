@@ -73,11 +73,6 @@ class UsersController < ApplicationController
         end
       end
     end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
   end
 
   # GET /users/new
@@ -112,10 +107,6 @@ class UsersController < ApplicationController
        end
     end
     @user.grp_string = ""
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
   end
 
 
@@ -197,14 +188,11 @@ class UsersController < ApplicationController
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
     end
-    respond_to do |format|
-      if response
-        flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
-        format.html { redirect_to :action => "index" }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if response
+      flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
+      redirect_to :action => "index"
+    else
+      render :action => "new"
     end
   end
   # PUT /users/1.xml
@@ -232,22 +220,18 @@ class UsersController < ApplicationController
     @user.user_password = params["user"]["user_password"]
     @user.type = "local"
 
-    respond_to do |format|
-      response = true
-      begin
-        response = @user.save
-        rescue ActiveResource::ClientError => e
-          flash[:error] = YaST::ServiceResource.error(e)
-          response = false
-      end
-      if  response
-        flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
-        format.html { redirect_to :action => "index" }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    response = true
+    begin
+      response = @user.save
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        response = false
+    end
+    if  response
+      flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
+      redirect_to :action => "index"
+    else
+      render :action => "edit"
     end
   end
 
@@ -262,14 +246,11 @@ class UsersController < ApplicationController
     ret = @user.destroy
 
     if ret.code_type == Net::HTTPOK
-	flash[:notice] = _("User <i>%s</i> was successfully removed.") % @user.uid
+      flash[:notice] = _("User <i>%s</i> was successfully removed.") % @user.uid
     else
-	flash[:error] = _("Error: Could not remove user <i>%s</i>.") % @user.uid
+      flash[:error] = _("Error: Could not remove user <i>%s</i>.") % @user.uid
     end
 
-    respond_to do |format|
-      format.html { redirect_to :action => "index" }
-      format.xml  { head :ok }
-    end
+    redirect_to :action => "index"
   end
 end

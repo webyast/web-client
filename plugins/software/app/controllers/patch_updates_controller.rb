@@ -147,17 +147,13 @@ public
   def start_install_all
     logger.debug "Start installation of all patches"
 
-    respond_to do |format|
-      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true, :message => "" }}
-    end    
+    render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true, :message => "" }
   end
 
   def stop_install_all
     logger.debug "Stopping installation of all patches"
 
-    respond_to do |format|
-      format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false, :message => "" }}
-    end    
+    render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false, :message => "" }
   end
 
   # POST /patch_updates/install_all

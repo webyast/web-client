@@ -424,10 +424,7 @@ class RegistrationController < ApplicationController
         return
       end
 
-      respond_to do |format|
-        format.html { render :action => "index" }
-      end
+      render :action => "index"
     end
   end
-
 end

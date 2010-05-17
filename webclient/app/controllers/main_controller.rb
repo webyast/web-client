@@ -37,9 +37,7 @@ class MainController < ApplicationController
   # POST /select_language
   # setting language for translations
   def select_language
-    respond_to do |format|
-      format.html { render :partial => "select_language" }
-    end    
+    format.html { render :partial => "select_language" }
   end
 
 
