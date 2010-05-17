@@ -98,7 +98,7 @@ private
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
     if e.backend_exception_type == "NO_PERM"
-      flash[:error] = _("You're not allowed to do this. If you have to do this action, please contact system administrator")+
+      flash[:error] = _("Operation is forbidden. If you have to do it, please contact system administrator")+
                           details(e.message) #already localized from error constructor
       if  request.xhr?
         render :text => "<div>#{flash[:error]}</div>", :status => 403
