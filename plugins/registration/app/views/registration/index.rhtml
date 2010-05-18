@@ -1,48 +1,88 @@
 <div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="<%= _("register plugin") %>"/><%=_("Registration")%></div>
 
-<div class='plugin-content grid_12'>
+<div class='plugin-content grid_12' style="padding-top: 8px">
 
-  <% form_target_save = @detail ? '/registration/detail' : '/registration/update' %>
+  <% form_target_save = '/registration/' + (@nexttarget.kind_of?(String) ? @nexttarget : 'skip') %>
 
-  <% if @guid then %>
-     <fieldset>
-       <p><strong><%=_("This system is registered")%></strong></p>
-       <p><small><%=_("System's GUID:")%> <%= @guid %></small></p>
-       <p><%= link_to _('Register again'), {:controller => :registration, :action =>:update}, :onclick=>"$('#progress').show()", :class => "button" %></p>
+  <% if @showstatus then %>
+     <fieldset class="wrapper with-background width-75">
+       <legend><%= _("Registration Information") %></legend>
+       <p><strong><%= _("This system is registered") %></strong></p>
+       <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>
+       <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"$('#progress').show()", :class => "button" %></p>
      </fieldset>
-  <%
-       form_target_save = '/controlpanel'
-     end
-  %>
+
+     <fieldset>
+       <%= form_back_button %>
+       <%= if basesystem_in_process? then
+             ret = form_str_spacer
+             ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
+           end
+       %>
+     </fieldset>
+  <% else %>
 
 <% form_tag form_target_save, { :onsubmit => "$('#progress').show()" } do -%>
 
-  <% if @arguments && @arguments.size > 0 then %>
-    <fieldset>
-    <% for argument in @arguments %>
-      <% if argument["flag"] == "m" || @detail then %>
-         <p>
-         <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
-           <%= argument['description'] %>
-         </label>
-         <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
-         </p>
-      <% else %>
-         <%= hidden_field_tag "registration_arg,"+argument["name"], argument["value"], :disabled => 'disabled'  %>
-      <% end %>
 
+  <% if !@arguments_mandatory.blank? then %>
+  <fieldset class="wrapper with-background width-75">
+    <legend><%= _("Mandatory Information") %></legend>
+    <% for argument in @arguments_mandatory %>
+      <p>
+        <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
+          <%= argument['description'] %>
+        </label>
+        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+      </p>
     <% end %>
+  </fieldset>
+  <% end %>
+
+    <p id="hidedetails" style="display: none">
+      <%= link_to_function _("Hide Details") do |p|
+            p.visual_effect( :switch_off, :argumentdetail, {:duration => 0} )
+            p.visual_effect( :switch_off, :hidedetails,    {:duration => 0} )
+            p.visual_effect( :switch_on,  :showdetails,    {:duration => 0} )
+          end
+      %>
+    </p>
+
+    <p id="showdetails">
+      <%= link_to_function _("Show Details") do |p|
+            p.visual_effect( :switch_on,  :argumentdetail, {:duration => 0} )
+            p.visual_effect( :switch_off, :showdetails,    {:duration => 0} )
+            p.visual_effect( :switch_on,  :hidedetails,    {:duration => 0} )
+          end
+      %>
+    </p>
+
+  <% if !@arguments_detail.blank? then %>
+  <fieldset class="wrapper with-background width-75" id="argumentdetail" style="display: none">
+    <legend><%= _("Details") %></legend>
+    <% for argument in @arguments_detail %>
+      <p>
+        <label for="<%= 'registration_arg_'+argument['name'] %>" >
+          <%= argument['description'] %>
+        </label>
+        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+      </p>
+    <% end %>
+  </fieldset>
+  <% end %>
+
+
+    <fieldset>
+      <%= form_send_buttons %>
+      <%= if Basesystem.new.load_from_session(session).in_process? then
+            link_to _('Skip'), {:controller => :registration, :action => :skip}, :onclick=>"$('#progress').show()"
+          end %>
     </fieldset>
-  <% end %>
 
-  <% unless @detail || @guid %>
-    <p><%= link_to _('Detail'), {:controller => :registration, :action =>:detail}, :onclick=>"$('#progress').show()" %></p>
-  <% end %>
+<% end  %>
 
-  <p><%= form_send_buttons %></p>
 
 <% end -%>
+
 </div>
-
-
 
