@@ -150,7 +150,7 @@
           :disabled => disabled})  %>
       </span>
     </p>
-    <% if @stime.respond_to?(:utcstatus) && @stime.utcstatus.nil? %>
+    <% if @stime.respond_to?(:utcstatus) && !@stime.utcstatus.nil? %>
     <%# I can't get this cobe-ing checkbox line up with the rest of the fields otherwise, grr
         4em, because labels are 5em wide | -bubli
     %>
