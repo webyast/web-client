@@ -91,18 +91,32 @@ class RegistrationController < ApplicationController
     _("Please try to register again later.")
   end
 
+  def not_succeeded_msg
+    _("Registration did not succeed.")
+  end
+
+  def skipped_msg
+    _("Registration was skipped.")
+  end
+
+  def temporary_issue_msg
+    _("This may be a temporary issue.")
+  end
+
+  def no_updates_msg
+    _("The system might not receive necessary updates.")
+  end
+
   def registration_skip_flash
-    error_line1 = "<b>" + _("Registration was skipped.") + "</b>"
-    error_line2 = "The system might not receive necessary updates."
-    return error_line1 + "<p>" + error_line2 + "<br />" + try_again_msg + "</p>"
+    "<b>#{ skipped_msg }</b><p>#{ no_updates_msg }<br />#{ try_again_msg }</p>"
   end
 
   def server_error_flash(msg)
-    error_heading_old = _("Registration did not finish.")
-    error_heading =     _("Registration did not succeed.")
-    error_line1 = "<b>" + error_heading + "</b>"
-    error_line2 = ( msg || "" ) + " " + _("This may be a temporary issue.")
-    return error_line1 + "<p>" + error_line2 + "<br />" + try_again_msg + "</p>"
+    "<b>#{ not_succeeded_msg }</b><p>#{ msg || '' } #{ temporary_issue_msg }<br />#{ try_again_msg }</p>"
+  end
+
+  def data_error_flash(msg)
+    "<b>#{ not_succeeded_msg }</b><p>#{ msg || try_again_msg }</p>"
   end
 
   def registration_logic_error
@@ -351,10 +365,20 @@ class RegistrationController < ApplicationController
 
         logger.error "Registration resulted in an error, ID: #{e_exitcode}."
         case e_exitcode
-        when  2, 199 then
-          # 2 and 199 means that even the initialization of the backend did not succeed
+        when 199 then
+          # 199 means that even the initialization of the backend did not succeed
           logger.error "Registration backend could not be initialized. Maybe due to network problem, SSL certificate issue or blocked by firewall."
           flash[:error] = server_error_flash _("A connection to the registration server could not be established.")
+        when  2 then
+          logger[:error] "Registration failed due to invalid data passed to the registration server. Most likely due to a wrong regcode."
+          logger[:error] "  The registration server thus rejected the registration. User can try again."
+          dataerror = _("The supplied registration data was invalid.")
+          if ( !error["invaliddataerrormessage"].blank? &&
+                error["invaliddataerrormessage"] =~ /(invalid regcode)|(improper code was supplied)/i ) then
+            logger[:error] "  Yep, the registration server says that the regcode was wrong."
+            dataerror = _("The registration code you entered was invalid.")
+          end
+          flash[:error] = data_error_flash  ( dataerror + '<br />' + _("Please perform the registration again with correct registration data.") )
         when  3 then
           # 3 means that there is a conflict with the sent and the required data - it could not be solved by asking again
           logger.error "Registration data is conflicting. Contact your vendor."
