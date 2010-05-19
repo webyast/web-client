@@ -28,7 +28,7 @@
   <%= h error.message %>
 </pre></p>
 
-<p><span class="bug-icon"></span><%= _("Please Report a bug so we can fix the problem!.") %><a target="_blank" href="<%= @bug_url %>"><%= _("(report link)") %></a></p>
+<p><span class="bug-icon"></span><%= _("Please Report a bug so we can fix the problem!.") %><a target="_blank" href="<%= controller.class.bug_url %>"><%= _("(report link)") %></a></p>
 <p><%= _("Don't forget to include the bug details.") %></p>
 
   <%

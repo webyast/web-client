@@ -108,19 +108,6 @@ private
       return
     end
     
-    # get the vendor settings
-    begin
-      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
-      @bug_url = ActiveSupport::JSON.decode(open(settings_url).read)
-    rescue Exception => vendor_excp
-      @bug_url = "https://bugzilla.novell.com/enter_bug.cgi?product=WebYaST&format=guided"
-      # there was a problem or the setting does not exist
-      # Here we should handle this always as an error
-      # the service should return a sane default if the
-      # url is not configured
-      logger.warn "Can't get vendor bug reporting url, Using Novell. Exception: #{vendor_excp.inspect}"
-    end
-    
     # for ajax request render a different template, much less verbose
     if request.xhr?
       logger.error "Error during ajax request"
@@ -137,6 +124,22 @@ private
     return
   end
   
+  def self.bug_url
+    begin
+      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
+      url = ActiveSupport::JSON.decode(open(settings_url).read)
+      return url unless url.blank?
+    rescue Exception => vendor_excp
+      # there was a problem or the setting does not exist
+      # Here we should handle this always as an error
+      # the service should return a sane default if the
+      # url is not configured
+      logger.warn "Can't get vendor bug reporting url, Using Novell. Exception: #{vendor_excp.inspect}"
+    end
+    #fallback if bugurl is not defined
+    return "https://bugzilla.novell.com/enter_bug.cgi?product=WebYaST&format=guided"
+  end
+
 protected
   def ensure_login
     unless logged_in?
