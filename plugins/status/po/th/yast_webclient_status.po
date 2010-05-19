@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,238 +14,111 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:15
+msgid "Invalid session, please login again."
+msgstr ""
+
+#: app/controllers/status_controller.rb:33
+msgid "Disk free limits exceeded;"
+msgstr ""
+
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:187
-msgid "Limits exceeded for "
+#: app/controllers/status_controller.rb:181
+msgid "Limits exceeded for %s"
 msgstr ""
 
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:229
 #, fuzzy
-#| msgid "Succeeded"
-msgid "exceeded"
-msgstr "สำเร็จแล้ว"
+#| msgid "Storing file list failed"
+msgid "Saving limits failed!"
+msgstr "การจัดเก็บรายการแฟ้มล้มเหลว"
 
-#: app/controllers/status_controller.rb:330
-msgid "undercut"
-msgstr ""
-
-#: app/controllers/status_controller.rb:432
-msgid "Limits have been written."
-msgstr ""
-
-#: app/views/status/edit.html.erb:27
-#, fuzzy
-#| msgid "Only two parameters are allowed."
-msgid "Only numbers are valid !"
-msgstr "อนุญาตให้ใช้พารามิเตอร์ได้เพียงสองตัวเท่านั้น"
-
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "สถานะ"
 
-#: app/views/status/edit.html.erb:51
-msgid "Settings"
-msgstr "การตั้งค่า"
+#: app/views/status/index.html.erb:45
+msgid "Disk usage"
+msgstr "การใช้งานดิสก์"
 
-#: app/views/status/edit.html.erb:66
-msgid "undercuts"
-msgstr ""
-
-#: app/views/status/edit.html.erb:66
-msgid "exceeds"
-msgstr ""
-
-#: app/views/status/index.html.erb:71
-#, fuzzy
-#| msgid "&Details"
-msgid "details"
-msgstr "รายละเอียด"
-
-#: app/views/status/index.html.erb:87
-#, fuzzy
-#| msgid "&Details"
-msgid "Details"
-msgstr "รายละเอียด"
-
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:68
 #, fuzzy
 #| msgid "No Limit"
 msgid "Edit Limits"
 msgstr "ไม่จำกัด"
 
-#: app/views/status/_status_graph.html.erb:1
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
 #, fuzzy
-#| msgid "An error occurred during initrd creation."
-msgid "A problem occured when loading status information."
-msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
+#| msgid "&Back"
+msgid "Back"
+msgstr "ย้อนกลับ"
 
-#: app/views/status/_status_graph.html.erb:91
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "free"
+msgstr "ว่าง"
+
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
 #, fuzzy
-#| msgid "Show Desktop"
-msgid "Show last"
-msgstr "แสดงพื้นที่ทำงาน"
+#| msgid ""
+#| "used\n"
+#| "%1"
+msgid "used"
+msgstr ""
+"ใช้ไป\n"
+"%1"
 
-#: app/views/status/_status_graph.html.erb:92
+#: app/views/status/edit.html.erb:2
 #, fuzzy
-#| msgid "Minutes"
-msgid "5 Minutes"
-msgstr "นาที"
+#| msgid "Configured as %1"
+msgid "Configure Status Limits"
+msgstr "ถูกปรับแต่งเป็น %1"
 
-#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/edit.html.erb:7
 #, fuzzy
-#| msgid "Minutes"
-msgid "15 Minutes"
-msgstr "นาที"
+#| msgid "Status"
+msgid "Status Path"
+msgstr "สถานะ"
 
-#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/edit.html.erb:8
 #, fuzzy
-#| msgid "Minutes"
-msgid "30 Minutes"
-msgstr "นาที"
+#| msgid "&Minimum"
+msgid "Minimum Value"
+msgstr "ค่าน้อยที่สุด (&Minimum)"
 
-#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/edit.html.erb:9
 #, fuzzy
-#| msgid "Hour"
-msgid "1 Hour"
-msgstr "ชั่วโมง"
+#| msgid "Maximum size"
+msgid "Maximum Value"
+msgstr "ขนาดสูงสุด"
 
-#: app/views/status/_status_graph.html.erb:96
+#: app/views/status/edit.html.erb:39
 #, fuzzy
-#| msgid "Hours"
-msgid "6 Hours"
-msgstr "ชั่วโมง"
+#| msgid "&Save"
+msgid "Save"
+msgstr "จัดเก็บ"
 
-#: app/views/status/_status_graph.html.erb:97
-#, fuzzy
-#| msgid "Hours"
-msgid "12 Hours"
-msgstr "ชั่วโมง"
-
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:1
 #, fuzzy
 #| msgid "An error occurred during initrd creation."
 msgid "An problem occured when loading status information."
 msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "Cannot read system status - you have been logged out."
-msgstr ""
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "<P>No information available.</P>"
+msgid "No status information available"
+msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:14
 #, fuzzy
 #| msgid "<p>Your system is ready for use.</p>"
 msgid "Your system is healthy."
 msgstr "<p>ระบบของคุณพร้อมที่จะใช้งานได้แล้ว</p>"
-
-#: app/views/status/_status_summary.html.erb:20
-#, fuzzy
-#| msgid "&Start Check"
-msgid "Start collectd"
-msgstr "เริ่มตรวจสอบ"
-
-#: app/views/status/_status_summary.html.erb:28
-#, fuzzy
-#| msgid "System Information"
-msgid "Loading system information"
-msgstr "ข้อมูลรายละเอียดของระบบ"
-
-#: app/views/status/_status_progress.html.erb:7
-#, fuzzy
-#| msgid "Checking file system..."
-msgid "Checking system status"
-msgstr "กำลังตรวจสอบระบบแฟ้ม..."
-
-#: lib/plugin_translation.rb:25
-#, fuzzy
-#| msgid "Registration"
-msgid "Registration is missing"
-msgstr "การลงทะเบียน"
-
-#: lib/plugin_translation.rb:26
-msgid "Please register your system in order to get updates."
-msgstr ""
-
-#: lib/plugin_translation.rb:27
-#, fuzzy
-#| msgid "Registered Host"
-msgid "register"
-msgstr "เครื่องที่ลงทะเบียนไว้แล้ว"
-
-#: lib/plugin_translation.rb:29
-#, fuzzy
-#| msgid "Mail configuration summary"
-msgid "Mail configuration test not confirmed"
-msgstr "สรุปการปรับแต่งค่าเมล"
-
-#: lib/plugin_translation.rb:30
-msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr ""
-
-#: lib/plugin_translation.rb:33
-msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr ""
-
-#: lib/plugin_translation.rb:34
-msgid "Test mail received"
-msgstr ""
-
-#, fuzzy
-#~| msgid "Storing file list failed"
-#~ msgid "Saving limits failed!"
-#~ msgstr "การจัดเก็บรายการแฟ้มล้มเหลว"
-
-#~ msgid "Disk usage"
-#~ msgstr "การใช้งานดิสก์"
-
-#, fuzzy
-#~| msgid "&Back"
-#~ msgid "Back"
-#~ msgstr "ย้อนกลับ"
-
-#~ msgid "free"
-#~ msgstr "ว่าง"
-
-#, fuzzy
-#~| msgid ""
-#~| "used\n"
-#~| "%1"
-#~ msgid "used"
-#~ msgstr ""
-#~ "ใช้ไป\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "Configured as %1"
-#~ msgid "Configure Status Limits"
-#~ msgstr "ถูกปรับแต่งเป็น %1"
-
-#, fuzzy
-#~| msgid "Status"
-#~ msgid "Status Path"
-#~ msgstr "สถานะ"
-
-#, fuzzy
-#~| msgid "&Minimum"
-#~ msgid "Minimum Value"
-#~ msgstr "ค่าน้อยที่สุด (&Minimum)"
-
-#, fuzzy
-#~| msgid "Maximum size"
-#~ msgid "Maximum Value"
-#~ msgstr "ขนาดสูงสุด"
-
-#, fuzzy
-#~| msgid "&Save"
-#~ msgid "Save"
-#~ msgstr "จัดเก็บ"
-
-#, fuzzy
-#~| msgid "<P>No information available.</P>"
-#~ msgid "No status information available"
-#~ msgstr "<P>ไม่มีข้อมูลรายละเอียด</P>"
 
 #, fuzzy
 #~| msgid "Button Events"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2005-08-24 17:37+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenščina <sl@li.org>\n"
@@ -18,188 +18,79 @@ msgstr ""
 "X-Generator: KBabel 1.3.1\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#: app/controllers/services_controller.rb:23
+#: app/controllers/services_controller.rb:11
+msgid "Invalid session, please login again."
+msgstr ""
+
+#: app/controllers/services_controller.rb:34
 msgid "(cannot read status)"
 msgstr ""
 
-#: app/controllers/services_controller.rb:70
+#: app/controllers/services_controller.rb:80
 msgid "success"
 msgstr ""
 
-#: app/controllers/services_controller.rb:71
-msgid "unspecified error"
-msgstr ""
-
-#: app/controllers/services_controller.rb:72
-msgid "invalid or excess argument(s)"
-msgstr ""
-
-#: app/controllers/services_controller.rb:73
-msgid "unimplemented feature"
-msgstr ""
-
-#: app/controllers/services_controller.rb:74
-msgid "user had insufficient privilege"
-msgstr ""
-
-#: app/controllers/services_controller.rb:75
-msgid "program is not installed"
-msgstr ""
-
-#: app/controllers/services_controller.rb:76
+#: app/views/services/_status.rhtml:14
 #, fuzzy
-#| msgid "Not configured"
-msgid "program is not configured"
-msgstr "Neprilagojeno"
+#| msgid "unknown"
+msgid "(unknown)"
+msgstr "neznano"
 
-#: app/controllers/services_controller.rb:77
-msgid "program is not runnning"
+#: app/views/services/_status.rhtml:16
+#, fuzzy
+#| msgid "Warning"
+msgid "(running)"
+msgstr "Opozorilo"
+
+#: app/views/services/_status.rhtml:18
+msgid "(dead)"
 msgstr ""
 
-#: app/views/services/_result.rhtml:6
+#: app/views/services/_status.rhtml:20
+msgid "(not running)"
+msgstr ""
+
+#: app/views/services/_status.rhtml:22
+#, fuzzy
+#| msgid "unknown"
+msgid "(unknown: %d)"
+msgstr "neznano"
+
+#: app/views/services/_result.rhtml:5
 msgid "Service Call Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:9
+#: app/views/services/_result.rhtml:8
 msgid "Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:14
+#: app/views/services/_result.rhtml:12
 msgid "Description"
 msgstr "Opis"
 
-#: app/views/services/index.rhtml:141
+#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
+#: app/views/services/index.rhtml:102
+msgid "Back"
+msgstr "Nazaj"
+
+#: app/views/services/index.rhtml:11
+msgid "Custom Services"
+msgstr ""
+
+#: app/views/services/index.rhtml:13
 msgid "System Services"
 msgstr ""
 
-#: app/views/services/index.rhtml:147
-msgid "You do not have permission to execute the services."
+#: app/views/services/index.rhtml:20
+msgid "No custom service is defined on target machine."
 msgstr ""
 
-#: app/views/services/index.rhtml:151
-msgid "Filter services"
+#: app/views/services/index.rhtml:22
+msgid "You do not have permission to execute the services. The links are disabled."
 msgstr ""
 
-#: app/views/services/index.rhtml:153
+#: app/views/services/index.rhtml:94
 #, fuzzy
-#| msgid "all"
-msgid "All"
-msgstr "vse"
-
-#: app/views/services/index.rhtml:154
-#, fuzzy
-#| msgid "Warning"
-msgid "Running"
-msgstr "Opozorilo"
-
-#: app/views/services/index.rhtml:155
-#, fuzzy
-#| msgid "Warning"
-msgid "Not Running"
-msgstr "Opozorilo"
-
-#: app/views/services/index.rhtml:156
-msgid "Dead"
-msgstr ""
-
-#: app/views/services/index.rhtml:157
-msgid "Started on Boot"
-msgstr ""
-
-#: app/views/services/index.rhtml:158
-msgid "Not Started on Boot"
-msgstr ""
-
-#: app/views/services/index.rhtml:165
-#, fuzzy
-#| msgid "Search"
-msgid "Quick Search"
-msgstr "Išči"
-
-#: app/views/services/index.rhtml:180
-msgid "Description for service is not available"
-msgstr ""
-
-#: app/views/services/index.rhtml:203
-#, fuzzy
-#| msgid "Refresh"
-msgid "(refresh)"
-msgstr "Osvežitev"
-
-# window title for kernel loading (see txt_load_kernel)
-#: app/views/services/index.rhtml:234
-#, fuzzy
-#| msgid "Starting..."
-msgid "Start"
-msgstr "Zagon..."
-
-#: app/views/services/index.rhtml:235
-msgid "Stop"
-msgstr ""
-
-#: app/views/services/index.rhtml:236
-#, fuzzy
-#| msgid "Prestart"
-msgid "Restart"
-msgstr "Pred zagonom"
-
-#: app/views/services/index.rhtml:237
-msgid "Start on Boot"
-msgstr ""
-
-#: app/views/services/index.rhtml:238
-msgid "Do Not Start on Boot"
-msgstr ""
-
-#: app/views/services/_status.rhtml:6
-msgid "Service will be started on boot."
-msgstr ""
-
-#: app/views/services/_status.rhtml:8
-msgid "Service will not be started on boot."
-msgstr ""
-
-#: app/views/services/_status.rhtml:31
-#, fuzzy
-#| msgid "unknown"
-msgid "status unknown"
-msgstr "neznano"
-
-#: app/views/services/_status.rhtml:33
-#, fuzzy
-#| msgid "Warning"
-msgid "running"
-msgstr "Opozorilo"
-
-#: app/views/services/_status.rhtml:37
-msgid "dead"
-msgstr ""
-
-#: app/views/services/_status.rhtml:41
-#, fuzzy
-#| msgid "Warning"
-msgid "not running"
-msgstr "Opozorilo"
-
-#: app/views/services/_status.rhtml:45
-#, fuzzy
-#| msgid "unknown"
-msgid "status unknown: %d"
-msgstr "neznano"
-
-#: app/views/services/_status.rhtml:48
-msgid "Current status of the service:"
-msgstr ""
-
-#, fuzzy
-#~| msgid "unknown"
-#~ msgid "(unknown)"
-#~ msgstr "neznano"
-
-#~ msgid "Back"
-#~ msgstr "Nazaj"
-
-#, fuzzy
-#~| msgid "Status"
-#~ msgid "status"
-#~ msgstr "Status "
+#| msgid "Status"
+msgid "status"
+msgstr "Status "

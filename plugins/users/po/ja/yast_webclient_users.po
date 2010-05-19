@@ -1,210 +1,261 @@
-# translation of yast_webclient_users.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-15 22:34+0900\n"
-"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-07 07:53\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/groups_controller.rb:15
+#: app/controllers/groups_controller.rb:36
 msgid "Missing group name parameter"
-msgstr "グループ名のパラメータがありません"
+msgstr "グループ名パラメータが不足しています"
 
-#: app/controllers/groups_controller.rb:27
+#: app/controllers/groups_controller.rb:48
 msgid "Missing group parameters"
-msgstr "グループパラメータがありません"
+msgstr "グループパラメータが不足しています"
 
-#: app/controllers/groups_controller.rb:37
+#: app/controllers/groups_controller.rb:58
 msgid "Please enter a valid group name"
-msgstr "正しいグループ名を入力してください"
-
-#: app/controllers/groups_controller.rb:47
-msgid "Please enter a valid GID"
-msgstr "正しい GID を入力してください。"
-
-#: app/controllers/groups_controller.rb:57
-msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "正しいグループ種類を入力してください。 \"system\" または \"local\" だけを指定することができます。"
+msgstr "有効なグループ名を入力してください"
 
 #: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid GID"
+msgstr "有効なGIDを入力してください"
+
+#: app/controllers/groups_controller.rb:78
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr "有効なグループタイプを入力してください。「システム」または「ローカル」だけが認められています。"
+
+#: app/controllers/groups_controller.rb:89
 msgid "Please enter a valid list of members"
-msgstr "正しいメンバー一覧を入力してください。"
+msgstr "有効なメンバーのリストを入力してください"
 
-#: app/controllers/groups_controller.rb:82
+#: app/controllers/groups_controller.rb:103
 msgid "Cannot read users list."
-msgstr "ユーザ一覧を読み込めません。"
+msgstr "ユーザリストを読み込めません。"
 
-#: app/controllers/groups_controller.rb:118
+#: app/controllers/groups_controller.rb:139
 msgid "Cannot read groups list."
-msgstr "グループ一覧を読み込めません。"
+msgstr "グループリストを読み込めません。"
 
-#: app/controllers/groups_controller.rb:209
+#: app/controllers/groups_controller.rb:230
 msgid "Unknown backend error"
-msgstr "不明なバックエンドエラーです"
+msgstr "未知のバックエンドエラー"
 
-#: app/controllers/users_controller.rb:154
+#: app/controllers/users_controller.rb:188
 msgid "User <i>%s</i> was successfully created."
 msgstr "ユーザ <i>%s</i> の作成に成功しました。"
 
-#: app/controllers/users_controller.rb:196
+#: app/controllers/users_controller.rb:230
 msgid "User <i>%s</i> was successfully updated."
 msgstr "ユーザ <i>%s</i> の更新に成功しました。"
 
-#: app/controllers/users_controller.rb:217
+#: app/controllers/users_controller.rb:251
 msgid "User <i>%s</i> was successfully removed."
 msgstr "ユーザ <i>%s</i> の削除に成功しました。"
 
-#: app/controllers/users_controller.rb:219
+#: app/controllers/users_controller.rb:253
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "エラー: ユーザ <i>%s</i> を削除できませんでした。"
+msgstr "エラー:ユーザ <i>%s</i> を削除できませんでした。"
 
-#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
-#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+#: app/views/groups/index.html.erb:32 app/views/groups/new.html.erb:56
+msgid "Select Members"
+msgstr "メンバの選択"
+
+#: app/views/groups/index.html.erb:33 app/views/groups/new.html.erb:57
+msgid "Selected Members"
+msgstr "選択したメンバ"
+
+#: app/views/groups/index.html.erb:34 app/views/groups/new.html.erb:58
+msgid "Available Members"
+msgstr "利用可能なメンバ"
+
+#: app/views/groups/index.html.erb:35 app/views/groups/new.html.erb:59
+msgid "Click user names to select/unselect members"
+msgstr "ユーザ名をクリックして、メンバの選択/選択解除を行います"
+
+#: app/views/groups/index.html.erb:88 app/views/groups/new.html.erb:80 app/views/users/_user_form.erb:30
+#: app/views/users/_user_form.erb:33 app/views/users/index.html.erb:212 app/views/users/new.html.erb:156
+#: app/views/users/new.html.erb:159
 msgid "Groups"
 msgstr "グループ"
 
-#: app/views/groups/edit.html.erb:35
-msgid "Add new group"
-msgstr "新しいグループの追加"
-
-#: app/views/groups/edit.html.erb:37
-msgid "Modify group"
-msgstr "グループの修正"
-
-#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
-msgid "Group Name"
-msgstr "グループ名"
-
-#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
-msgid "Group ID"
-msgstr "グループ ID"
-
-#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
-msgid "Default members"
-msgstr "既定のメンバー"
-
-#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
-msgid "Members"
-msgstr "メンバー"
-
-#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
-msgid "Processing ..."
-msgstr "処理しています ..."
-
-#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#: app/views/groups/index.html.erb:92 app/views/users/index.html.erb:160
 msgid "Filter:"
 msgstr "フィルタ:"
 
-#: app/views/groups/index.html.erb:78
+#: app/views/groups/index.html.erb:98
 msgid "Add New Group"
 msgstr "新しいグループの追加"
 
-#: app/views/groups/index.html.erb:110
+#: app/views/groups/index.html.erb:114 app/views/groups/new.html.erb:94
+msgid "Group Name"
+msgstr "グループ名"
+
+#: app/views/groups/index.html.erb:118 app/views/groups/new.html.erb:98
+msgid "Group ID"
+msgstr "グループID"
+
+#: app/views/groups/index.html.erb:122 app/views/groups/new.html.erb:102
+msgid "Default members"
+msgstr "デフォルトギア"
+
+#: app/views/groups/index.html.erb:126 app/views/groups/new.html.erb:106
+msgid "Members"
+msgstr "メンバー"
+
+#: app/views/groups/index.html.erb:128
+msgid "Manage Members"
+msgstr "メンバの管理"
+
+#: app/views/groups/index.html.erb:131 app/views/users/index.html.erb:252
 msgid "Save"
 msgstr "保存"
 
-#: app/views/groups/index.html.erb:112
+#: app/views/groups/index.html.erb:133 app/views/users/index.html.erb:254
 msgid "Delete"
 msgstr "削除"
 
-#: app/views/groups/index.html.erb:114
+#: app/views/groups/index.html.erb:135
 msgid "Are you sure to delete group '%s'?"
-msgstr "グループ '%s' を削除してよろしいですか？"
+msgstr "本当にグループ%sを削除してもよろしいですか？"
 
-#: app/views/users/_user_form.erb:5
+#: app/views/groups/new.html.erb:81
+msgid "Add new group"
+msgstr "新しいグループを追加します"
+
+#: app/views/users/_user_form.erb:5 app/views/users/new.html.erb:124
 msgid "Login Settings"
-msgstr "ログイン設定"
+msgstr "ログインの設定"
 
-#: app/views/users/_user_form.erb:8
+#: app/views/users/_user_form.erb:8 app/views/users/index.html.erb:186 app/views/users/new.html.erb:127
 msgid "Full Name"
 msgstr "氏名"
 
-#: app/views/users/_user_form.erb:12
+#: app/views/users/_user_form.erb:12 app/views/users/index.html.erb:192 app/views/users/new.html.erb:133
 msgid "Login Name"
 msgstr "ログイン名"
 
-# password dialog title
-#: app/views/users/_user_form.erb:17
+#: app/views/users/_user_form.erb:17 app/views/users/index.html.erb:199 app/views/users/new.html.erb:140
 msgid "Password"
 msgstr "パスワード"
 
-#: app/views/users/_user_form.erb:21
+#: app/views/users/_user_form.erb:21 app/views/users/index.html.erb:205 app/views/users/new.html.erb:146
 msgid "Confirm Password"
 msgstr "パスワードの確認"
 
-#: app/views/users/_user_form.erb:39
+#: app/views/users/_user_form.erb:39 app/views/users/index.html.erb:224 app/views/users/new.html.erb:167
 msgid "Default Group"
-msgstr "既定のグループ"
+msgstr "デフォルトグループ"
 
-#: app/views/users/_user_form.erb:61
+#: app/views/users/_user_form.erb:61 app/views/users/new.html.erb:188
 msgid "Advanced"
-msgstr "詳細"
+msgstr "拡張"
 
-#: app/views/users/_user_form.erb:64
+#: app/views/users/_user_form.erb:64 app/views/users/index.html.erb:231 app/views/users/new.html.erb:191
 msgid "Home Directory"
 msgstr "ホームディレクトリ"
 
-#: app/views/users/_user_form.erb:68
+#: app/views/users/_user_form.erb:68 app/views/users/index.html.erb:238 app/views/users/new.html.erb:197
 msgid "Login Shell"
 msgstr "ログインシェル"
 
-#: app/views/users/_user_form.erb:72
+#: app/views/users/_user_form.erb:72 app/views/users/index.html.erb:244 app/views/users/new.html.erb:203
 msgid "UID Number"
-msgstr "UID 番号"
+msgstr "UID番号"
 
-#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:66
+msgid "The passwords do not match."
+msgstr "パスワードが一致しません。"
+
+#: app/views/users/edit.html.erb:64 app/views/users/index.html.erb:98 app/views/users/new.html.erb:67
+msgid "This field is required."
+msgstr "このフィールドは必須です。"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:116 app/views/users/new.html.erb:81
+msgid "Password Strength:"
+msgstr "パスワードの強度:"
+
+#: app/views/users/edit.html.erb:82 app/views/users/index.html.erb:118 app/views/users/new.html.erb:83
 msgid "Weak"
 msgstr "弱い"
 
-#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:119 app/views/users/new.html.erb:84
 msgid "Normal"
 msgstr "通常"
 
-#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#: app/views/users/edit.html.erb:84 app/views/users/index.html.erb:120 app/views/users/new.html.erb:85
 msgid "Medium"
-msgstr "中程度"
+msgstr "中"
 
-#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+#: app/views/users/edit.html.erb:85 app/views/users/index.html.erb:121 app/views/users/new.html.erb:86
 msgid "Strong"
 msgstr "強い"
 
-#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#: app/views/users/edit.html.erb:86 app/views/users/index.html.erb:122 app/views/users/new.html.erb:87
 msgid "Very Strong"
-msgstr "とても強い"
+msgstr "非常に強い"
 
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
-#: app/views/users/new.html.erb:86
+#: app/views/users/edit.html.erb:107 app/views/users/index.html.erb:156 app/views/users/new.html.erb:115
 msgid "Users"
 msgstr "ユーザ"
 
-#: app/views/users/edit.html.erb:80
+#: app/views/users/edit.html.erb:107
 msgid "Edit user %s"
 msgstr "ユーザ %s の編集"
 
-#: app/views/users/index.html.erb:52
+#: app/views/users/index.html.erb:57
+msgid "Select Groups"
+msgstr "グループの選択"
+
+#: app/views/users/index.html.erb:58
+msgid "Selected Groups"
+msgstr "選択したグループ"
+
+#: app/views/users/index.html.erb:59
+msgid "Available Groups"
+msgstr "利用可能なグループ"
+
+#: app/views/users/index.html.erb:60
+msgid "Click group names to select/unselect groups"
+msgstr "グループ名をクリックして、グループの選択/選択解除を行います"
+
+#: app/views/users/index.html.erb:77 app/views/users/index.html.erb:227
+msgid "Select Default Group"
+msgstr "デフォルトグループの選択"
+
+#: app/views/users/index.html.erb:78
+msgid "Click a group name to choose users default group"
+msgstr "グループ名をクリックして、ユーザのデフォルトグループを選択します"
+
+#: app/views/users/index.html.erb:97
+msgid " The passwords do not match."
+msgstr " パスワードが一致しません。"
+
+#: app/views/users/index.html.erb:150
+msgid "Processing ..."
+msgstr "処理中..."
+
+#: app/views/users/index.html.erb:166
 msgid "Add New User"
 msgstr "新しいユーザの追加"
 
-#: app/views/users/index.html.erb:68
-msgid "Are you sure to delete user '%s'?"
-msgstr "ユーザ '%s' を削除してよろしいですか？"
-
-#: app/views/users/index.html.erb:68
-msgid "Home directory will be deleted as well."
-msgstr "ホームディレクトリについても削除が行なわれます。"
-
-#: app/views/users/index.html.erb:81
+#: app/views/users/index.html.erb:216 app/views/users/index.html.erb:269
 msgid "Manage Groups"
 msgstr "グループの管理"
 
-#: app/views/users/new.html.erb:86
+#: app/views/users/index.html.erb:256
+msgid "Are you sure to delete user '%s'?"
+msgstr "本当にユーザ「%s」を削除してもよろしいですか?"
+
+#: app/views/users/new.html.erb:115
 msgid "Add new user"
-msgstr "新しいユーザの追加"
+msgstr "新規ユーザの追加"
+

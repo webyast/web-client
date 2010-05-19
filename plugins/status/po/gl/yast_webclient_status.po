@@ -1,219 +1,95 @@
 # Galician translation of yast_webclient_status.gl.po
-# Manuel A. Vázquez <xixirei@yahoo.es>, 2009, 2010.
-# Manuel A. Vazquez <xixirei@yahoo.es>, 2010.
+# Manuel A. Vázquez <xixirei@yahoo.es>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status.gl.po\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-04-23 11:01+0200\n"
-"PO-Revision-Date: 2010-04-10 10:30+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-11-14 18:46+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:15
+msgid "Invalid session, please login again."
+msgstr "Sesión non válida, inicie a sesión de novo."
+
+#: app/controllers/status_controller.rb:33
+msgid "Disk free limits exceeded;"
+msgstr "Excedido olímite do disco libre;"
+
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr "Non se atopou ningún dato para amosar o estado do sistema."
 
-#: app/controllers/status_controller.rb:208
-msgid "Limits exceeded for "
-msgstr "Límites excedidos para"
+#: app/controllers/status_controller.rb:181
+msgid "Limits exceeded for %s"
+msgstr "Límites excedidos para %s"
 
-#: app/controllers/status_controller.rb:337
-msgid "exceeded"
-msgstr "excedido"
+#: app/controllers/status_controller.rb:229
+msgid "Saving limits failed!"
+msgstr "Fallou ao gardar os límites!"
 
-#: app/controllers/status_controller.rb:351
-msgid "undercut"
-msgstr "corte inferior"
-
-#: app/controllers/status_controller.rb:453
-msgid "Limits have been written."
-msgstr "Graváronse os límites."
-
-#: app/views/status/edit.html.erb:48
-msgid "Only numbers are valid !"
-msgstr "Son válidos só os números!"
-
-#: app/views/status/edit.html.erb:73 app/views/status/index.html.erb:49
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Estado"
 
-#: app/views/status/edit.html.erb:73
-msgid "Settings"
-msgstr "Configuración"
+#: app/views/status/index.html.erb:45
+msgid "Disk usage"
+msgstr "Uso do disco"
 
-#: app/views/status/edit.html.erb:88
-msgid "undercuts"
-msgstr "cortes inferiores"
-
-#: app/views/status/edit.html.erb:88
-msgid "exceeds"
-msgstr "excede"
-
-#: app/views/status/index.html.erb:93
-#, fuzzy
-#| msgid "Details"
-msgid "details"
-msgstr "Detalles"
-
-#: app/views/status/index.html.erb:109
-msgid "Details"
-msgstr "Detalles"
-
-#: app/views/status/index.html.erb:165
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr "Editar límites"
 
-#: app/views/status/_status_graph.html.erb:2
-msgid "A problem occured when loading status information."
-msgstr "Houbo un problema ao cargar a información de estado."
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
+msgid "Back"
+msgstr "Atrás"
 
-#: app/views/status/_status_graph.html.erb:92
-msgid "Show last"
-msgstr "Amosar o último"
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "free"
+msgstr "libre"
 
-#: app/views/status/_status_graph.html.erb:93
-msgid "5 Minutes"
-msgstr "5 minutos"
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "used"
+msgstr "usado"
 
-#: app/views/status/_status_graph.html.erb:94
-msgid "15 Minutes"
-msgstr "15 minutos"
+#: app/views/status/edit.html.erb:2
+msgid "Configure Status Limits"
+msgstr "Configurar os límites de estado"
 
-#: app/views/status/_status_graph.html.erb:95
-msgid "30 Minutes"
-msgstr "30 minutos"
+#: app/views/status/edit.html.erb:7
+msgid "Status Path"
+msgstr "Ruta do estado"
 
-#: app/views/status/_status_graph.html.erb:96
-msgid "1 Hour"
-msgstr "1 hora"
+#: app/views/status/edit.html.erb:8
+msgid "Minimum Value"
+msgstr "valor mínimo"
 
-#: app/views/status/_status_graph.html.erb:97
-msgid "6 Hours"
-msgstr "6 horas"
+#: app/views/status/edit.html.erb:9
+msgid "Maximum Value"
+msgstr "Valor máximo"
 
-#: app/views/status/_status_graph.html.erb:98
-msgid "12 Hours"
-msgstr "12 horas"
+#: app/views/status/edit.html.erb:39
+msgid "Save"
+msgstr "Gardar"
 
-#: app/views/status/_status_summary.html.erb:3
+#: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr "Aconteceu un problema mentres se cargaba a información de estado."
 
-#: app/views/status/_status_summary.html.erb:13
-msgid "Cannot read system status - you have been logged out."
-msgstr ""
-"Non se pode ler o estado do sistema - ten que saír como usuario rexistrado."
+#: app/views/status/_status_summary.html.erb:6
+msgid "No status information available"
+msgstr "Non hai dispoñible información do estado"
 
-#: app/views/status/_status_summary.html.erb:16
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr "O seu sistema está en bo estado."
-
-#: app/views/status/_status_summary.html.erb:21
-msgid "Start collectd"
-msgstr ""
-
-#: app/views/status/_status_summary.html.erb:29
-msgid "Loading system information"
-msgstr "Cargando información do sistema"
-
-#: app/views/status/_status_progress.html.erb:8
-msgid "Checking system status"
-msgstr "Comprobando o estado do sistema"
-
-#: lib/plugin_translation.rb:46
-msgid "Registration is missing"
-msgstr "Falta o rexistro"
-
-#: lib/plugin_translation.rb:47
-msgid "Please register your system in order to get updates."
-msgstr "Rexistre o seu sistema para poder obter actualizacións."
-
-#: lib/plugin_translation.rb:48
-msgid "register"
-msgstr "rexistrar"
-
-#: lib/plugin_translation.rb:50
-msgid "Mail configuration test not confirmed"
-msgstr "Proba da configuración do correo-e non confirmado"
-
-#: lib/plugin_translation.rb:51
-#, fuzzy
-#| msgid ""
-#| "During Mail configuration, test mail was sent to %s . Was the mail "
-#| "delivered to this address?<br> If so, confirm it by pressing the button. "
-#| "Otherwise, check your mail confiuration again, even the '/var/log/mail' "
-#| "file."
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-"Durante a configuración do correo-e, un correo-e de proba foi enviado a %s. "
-"O correo-e foi entregado neste enderezo?<br> Se  foi así, confirme premendo "
-"no botón. En caso contrario, comprobe a súa configuración de correo-e outra "
-"vez, incluído o ficheiro '/var/log/mail'."
-
-#: lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-
-#: lib/plugin_translation.rb:55
-msgid "Test mail received"
-msgstr "Proba de correo-e recibida"
-
-#~ msgid "start"
-#~ msgstr "iniciar"
-
-#~ msgid "Back"
-#~ msgstr "Atrás"
-
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Sesión non válida, inicie a sesión de novo."
-
-#~ msgid "Disk free limits exceeded;"
-#~ msgstr "Excedido olímite do disco libre;"
-
-#~ msgid "Limits exceeded for %s"
-#~ msgstr "Límites excedidos para %s"
-
-#~ msgid "Saving limits failed!"
-#~ msgstr "Fallou ao gardar os límites!"
-
-#~ msgid "Disk usage"
-#~ msgstr "Uso do disco"
-
-#~ msgid "free"
-#~ msgstr "libre"
-
-#~ msgid "used"
-#~ msgstr "usado"
-
-#~ msgid "Configure Status Limits"
-#~ msgstr "Configurar os límites de estado"
-
-#~ msgid "Status Path"
-#~ msgstr "Ruta do estado"
-
-#~ msgid "Minimum Value"
-#~ msgstr "valor mínimo"
-
-#~ msgid "Maximum Value"
-#~ msgstr "Valor máximo"
-
-#~ msgid "Save"
-#~ msgstr "Gardar"
-
-#~ msgid "No status information available"
-#~ msgstr "Non hai dispoñible información do estado"
 
 #~ msgid "Events"
 #~ msgstr "Eventos"

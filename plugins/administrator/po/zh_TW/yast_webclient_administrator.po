@@ -1,138 +1,95 @@
-# translation of yast_webclient_administrator.po to Chinese Traditional
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# swyear <swyear@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2009-10-22 19:22+0800\n"
-"Last-Translator: swyear <swyear@gmail.com>\n"
-"Language-Team: Chinese Traditional <zh@li.org>\n"
+"POT-Creation-Date: 2010-04-23 11:00+0200\n"
+"PO-Revision-Date: 2010-05-06 10:21\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/administrator_controller.rb:32
-#: app/views/administrator/index.html.erb:24
+#: app/controllers/administrator_controller.rb:53 app/views/administrator/index.html.erb:45
 msgid "Enter a valid e-mail address."
-msgstr "輸入適用的 e-mail 位址。"
+msgstr "輸入有效的電子郵件地址。"
 
-#: app/controllers/administrator_controller.rb:40
+#: app/controllers/administrator_controller.rb:61
 msgid "Passwords do not match."
-msgstr "密碼不符合。"
+msgstr "密碼不符。"
 
-#: app/controllers/administrator_controller.rb:53
-#, fuzzy
-#| msgid "Administrator Settings"
+#: app/controllers/administrator_controller.rb:74
 msgid "Administrator settings have been written."
-msgstr "管理員設定"
+msgstr "已經寫入管理員設定。"
 
-#: app/controllers/administrator_controller.rb:63
+#: app/controllers/administrator_controller.rb:84
 msgid "Error while saving administrator settings: %s"
-msgstr "儲存管理者設定時發生錯誤： %s"
+msgstr "儲存管理員設定時出錯：%s"
 
-#: app/controllers/administrator_controller.rb:75
+#: app/controllers/administrator_controller.rb:96
 msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
-msgstr ""
+msgstr "設定了郵件別名，但未設定外送郵件伺服器 (%s<i>change</i>%s)。"
 
-#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:22
 msgid "Administrator Settings"
 msgstr "管理員設定"
 
-#: app/views/administrator/index.html.erb:32
-#, fuzzy
-#| msgid "Passwords do not match."
+#: app/views/administrator/index.html.erb:53
 msgid "The passwords do not match."
-msgstr "密碼不符合。"
+msgstr "密碼不符。"
 
-#: app/views/administrator/index.html.erb:33
-#, fuzzy
-#| msgid "The PKCS12 password is required."
+#: app/views/administrator/index.html.erb:54
 msgid "A password is required."
-msgstr "您必須要有 PKCS12 密碼。"
+msgstr "需要密碼。"
 
-#: app/views/administrator/index.html.erb:38
-#, fuzzy
-#| msgid "Passwords match"
+#: app/views/administrator/index.html.erb:59
 msgid "Password Strength:"
-msgstr "密碼相符"
+msgstr "密碼長度︰"
 
-#: app/views/administrator/index.html.erb:40
+#: app/views/administrator/index.html.erb:61
 msgid "Weak"
-msgstr ""
+msgstr "弱"
 
-#: app/views/administrator/index.html.erb:41
+#: app/views/administrator/index.html.erb:62
 msgid "Normal"
 msgstr "一般"
 
-#: app/views/administrator/index.html.erb:42
-#, fuzzy
-#| msgid "Media"
-msgid "Medium"
-msgstr "媒體"
-
-#: app/views/administrator/index.html.erb:43
-msgid "Strong"
-msgstr ""
-
-#: app/views/administrator/index.html.erb:44
-#, fuzzy
-#| msgid "Very fast"
-msgid "Very Strong"
-msgstr "非常快速"
-
 #: app/views/administrator/index.html.erb:63
-msgid "Password Setup for User 'root'"
-msgstr ""
+msgid "Medium"
+msgstr "中等"
 
 #: app/views/administrator/index.html.erb:64
-#, fuzzy
-#| msgid "_New Password:"
+msgid "Strong"
+msgstr "嚴密"
+
+#: app/views/administrator/index.html.erb:65
+msgid "Very Strong"
+msgstr "非常嚴密"
+
+#: app/views/administrator/index.html.erb:93
+msgid "Password Setup for User 'root'"
+msgstr "root 使用者的密碼設定"
+
+#: app/views/administrator/index.html.erb:94
 msgid "New Password"
-msgstr "新密碼(_N)："
+msgstr "新密碼"
 
-#: app/views/administrator/index.html.erb:69
-#, fuzzy
-#| msgid "_Confirm Password:"
+#: app/views/administrator/index.html.erb:99
 msgid "Confirm Password"
-msgstr "確認密碼(_C)："
+msgstr "確認密碼"
 
-#: app/views/administrator/index.html.erb:76
+#: app/views/administrator/index.html.erb:106
 msgid "Mail Setup for User 'root'"
-msgstr ""
+msgstr "root 使用者的郵件設定"
 
-#: app/views/administrator/index.html.erb:78
-#, fuzzy
-#| msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:108
 msgid "Forward system mail to"
-msgstr "轉寄信件至"
+msgstr "轉寄系統郵件至"
 
-#: app/views/administrator/index.html.erb:81
-#, fuzzy
-#| msgid "Save"
+#: app/views/administrator/index.html.erb:111
 msgid "Save Mail Only"
-msgstr "儲存"
+msgstr "僅儲存郵件"
 
-# password dialog title
-#~ msgid "Password"
-#~ msgstr "密碼"
-
-#, fuzzy
-#~| msgid "Confirm Password"
-#~ msgid "Confirm password"
-#~ msgstr "確認密碼"
-
-#, fuzzy
-#~| msgid "Change Password"
-#~ msgid "Save Password"
-#~ msgstr "變更密碼"
-
-#~ msgid "Invalid session, please login again."
-#~ msgstr "不適用的工作階段，請重新登入。"

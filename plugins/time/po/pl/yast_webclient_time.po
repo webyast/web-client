@@ -1,79 +1,67 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2006-03-23 18:35+0100\n"
-"Last-Translator: Wojciech Kapusta <wojciech@aviary.pl>\n"
-"Language-Team:  <pl@li.org>\n"
+"Project-Id-Version: yast_webclient_time\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 10:19\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/time_controller.rb:77 app/controllers/time_controller.rb:81
-#, fuzzy
-#| msgid "The configuration file has been written."
+#: app/controllers/time_controller.rb:71 app/controllers/time_controller.rb:75
 msgid "Time settings have been written."
-msgstr "Plik konfiguracyjny został zapisany."
+msgstr "Ustawienia czasu zostały zapisane."
 
 #: app/models/systemtime.rb:8
-#, fuzzy
-#| msgid "Unknown option "
 msgid "Unknown timezone %s on host"
-msgstr "Nieznana opcja"
+msgstr "Nieznana strefa czasowa %s hosta"
 
-#: app/views/time/index.rhtml:56
+#: app/views/time/index.rhtml:18
 msgid "Invalid date format. Correct one is dd/mm/yyyy"
-msgstr ""
+msgstr "Nieprawidłowy format daty. Właściwy to dd/mm/rrrr"
 
-#: app/views/time/index.rhtml:60
+#: app/views/time/index.rhtml:22
 msgid "Invalid time format. Correct one is hh:mm:ss"
-msgstr ""
+msgstr "Nieprawidłowy format czasu. Właściwy to hh:mm:ss"
 
-#: app/views/time/index.rhtml:84 app/views/time/index.rhtml:128
+#: app/views/time/index.rhtml:29
+msgid "Ntp server is not specified. Please specify one."
+msgstr "Nie określono serwera NTP. Proszę go podać."
+
+#: app/views/time/index.rhtml:55 app/views/time/index.rhtml:102
 msgid "Time"
-msgstr ""
+msgstr "Czas"
 
-#: app/views/time/index.rhtml:92
-#, fuzzy
-#| msgid "Religion"
+#: app/views/time/index.rhtml:63
 msgid "Region"
-msgstr "Religia"
+msgstr "Region"
 
-#: app/views/time/index.rhtml:96
+#: app/views/time/index.rhtml:67
 msgid "Timezone"
-msgstr ""
+msgstr "Strefa czasowa"
 
-#: app/views/time/index.rhtml:110
+#: app/views/time/index.rhtml:84
 msgid "Hardware clock is set to UTC"
-msgstr ""
+msgstr "Zegar sprzętowy ustawiony jest na czas UTC"
 
-#: app/views/time/index.rhtml:119
-#, fuzzy
-#| msgid "Manual IP config"
+#: app/views/time/index.rhtml:93
 msgid "Manually configure time"
-msgstr "Ręczna konfiguracja IP"
+msgstr "Ręczna konfiguracja czasu"
 
-#: app/views/time/index.rhtml:124
+#: app/views/time/index.rhtml:98
 msgid "Date"
 msgstr "Data"
 
-#: app/views/time/index.rhtml:135
-#, fuzzy
-#| msgid "Network Time Protocol daemon"
+#: app/views/time/index.rhtml:109
 msgid "Synchronize via Network Time Protocol (NTP)"
-msgstr "Demon NTP"
+msgstr "Synchronizacja poprzez protokół NTP"
 
-#: app/views/time/index.rhtml:139
-#, fuzzy
-#| msgid "NFS server"
+#: app/views/time/index.rhtml:113
 msgid "NTP server"
-msgstr "Serwer NFS"
+msgstr "Serwer NTP"
+

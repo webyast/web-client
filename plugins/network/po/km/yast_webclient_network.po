@@ -1,126 +1,191 @@
-# translation of yast_webclient_network.km.po to Khmer
-# Seng Sutha <sutha@khmeros.info>, 2010.
-# Khoem Sokhem <khoemsokhem@khmeros.info>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_network.km\n"
+"Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-20 08:55+0700\n"
-"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2006-02-18 09:47+0700\n"
+"Last-Translator: Keo Sophon <keosophon@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:43
+msgid "No permissions for network module"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
 msgid "Not configured"
 msgstr "មិន​បាន​កំណត់​រចនាសម្ព័ន្ធ"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 msgid "Manual"
 msgstr "សៀវភៅ​ដៃ​"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
+#, fuzzy
+#| msgid "Automatic Mode"
 msgid "Automatic"
-msgstr "ស្វ័យ​​ប្រវត្តិ​"
+msgstr "របៀប​ស្វ័យប្រវត្តិ​"
 
 # %s is either BOOTP or DHCP
-#: app/controllers/network_controller.rb:134
+#: app/controllers/network_controller.rb:105
+#, fuzzy
+#| msgid "The configuration file has been written."
 msgid "Network settings have been written."
-msgstr "ការ​កំណត់​បណ្តាញ​ត្រូវ​បាន​សរសេរ​ ។"
+msgstr "ឯកសារ​កំណត់​រចនាសម្ព័ន្ធ​ត្រូវ​បានសរសេរ ។"
 
-#: app/views/network/index.html.erb:118
-msgid "whitespace - invalid character."
-msgstr "ចន្លោះ​មិនឃើញ - តួអក្សរ​មិន​ត្រឹមត្រូវ ។"
-
-#: app/views/network/index.html.erb:120
-msgid " - can not start with a digit."
-msgstr " - មិនអាច​ចាប់ផ្ដើម​ដោយ​តួលេខ​បានទេ ។"
-
-#: app/views/network/index.html.erb:122
-msgid "periodic '-' is not allowed."
-msgstr "ដោយ​ទៀតទាត់ '-' មិន​ត្រូវ​បាន​អនុញ្ញាត​ទេ ។"
-
-#: app/views/network/index.html.erb:124
-msgid "can not end with (-) hyphen."
-msgstr "មិន​អាច​បញ្ចប់​ដោយ​សញ្ញា (-) បាន​ទេ ។"
-
-#: app/views/network/index.html.erb:127
-msgid "can not start with (-) hyphen."
-msgstr "មិន​អាច​ចាប់ផ្ដើម​ដោយ​សញ្ញា (-) បាន​ទេ ។"
-
-#: app/views/network/index.html.erb:129
-msgid " - is invalid character for hostname."
-msgstr " - គឺ​ជា​តួអក្សរ​មិន​ត្រឹមត្រូវ​សម្រាប់​ឈ្មោះ​ម៉ាស៊ីន ។"
-
-#: app/views/network/index.html.erb:154
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "ទ្រង់​ទ្រាយ​អាសយដ្ឋាន​របស់​ IP មិន​ត្រឹមត្រូវ​ឡើយ​ ។​ ទ្រង់ទ្រាយ​ដែល​ត្រឹមត្រូវ​​ nnn.nnn.nnn.nnn ដែល nnn ចន្លោះ​ពី​ ០ ដល់​ ២៥៥ ។"
+msgstr ""
 
-#: app/views/network/index.html.erb:163
+#: app/views/network/index.html.erb:97
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "ទ្រង់​ទ្រាយបុព្វបទមិន​ត្រឹមត្រូវ​ឡើយ​ ។ ទ្រង់ទ្រាយ​ដែល​ត្រឹមត្រូវ​គឺ​​ /nn ដែល​ nn ​ចន្លោះ​ពី​ ០-៣២ (ទ្រង់​ទ្រាយ​ CIDR ​) ។"
+msgstr ""
 
-#: app/views/network/index.html.erb:169
+#: app/views/network/index.html.erb:103
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "ទ្រង់ទ្រាយផ្លូវ​លំនាំដើម​មិនត្រឹ​មត្រូវ​ឡើយ​ ។ ទ្រង់ទ្រាយ​ដែល​ត្រឹមត្រូវ​គឺ​ nnn.nnn.nnn.nnn ដែល​​ nnn ចន្លោះ​ពី​​ ០​ ដល់ ២៥៥ ។"
+msgstr ""
 
-#: app/views/network/index.html.erb:175
+#: app/views/network/index.html.erb:109
 msgid "Name servers are required. There must be at least one specified."
-msgstr "ឈ្មោះ​ម៉ាស៊ីន​បម្រើ​ត្រូវ​បាន​ទាមទារ​ ។​ ​យ៉ាងតិ​ច​ណាស់​ត្រូវ​តែ​បញ្ជាក់​​​មួយ ។​"
+msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:115
+#, fuzzy
+#| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
-msgstr "ឈ្មោះ​ម៉ាស៊ីន​ត្រូវ​បាន​ទាមទារ ។ ត្រូវ​តែ​បញ្ជាក់​វា ។"
+msgstr "គ្មាន​ឯកសារ​សំណើ​ដែល​បាន​បញ្ជាក់​ត្រឹមត្រូវ​ទេ ។"
 
-#: app/views/network/index.html.erb:187
-msgid "Domain is required. An empty domain is not supported."
-msgstr "ទាមទារ​ដែន ។ ដែន​ទទេ​មិន​ត្រូ​វបានគាំទ្រ​ទេ ។"
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
+msgstr ""
 
-#: app/views/network/index.html.erb:210
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "បណ្តាញ"
 
-#: app/views/network/index.html.erb:221
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "ចំណុច​ប្រទាក់"
 
-#: app/views/network/index.html.erb:226
+#: app/views/network/index.html.erb:145
+#, fuzzy
+#| msgid "_Selection"
 msgid "Select"
-msgstr "ជ្រើស"
+msgstr "ជម្រើស"
 
-#: app/views/network/index.html.erb:243
+#: app/views/network/index.html.erb:166
+#, fuzzy
+#| msgid "Configuration"
 msgid "Configuration mode"
-msgstr "របៀប​កំណត់រចនាសម្ព័ន្ធ"
+msgstr "កំណត់រចនាសម្ព័ន្ធ"
 
-#: app/views/network/index.html.erb:252
+#: app/views/network/index.html.erb:170
+#, fuzzy
+#| msgid "IP Address"
 msgid "IP address"
 msgstr "អាសយដ្ឋាន IP"
 
-#: app/views/network/index.html.erb:256
+#: app/views/network/index.html.erb:174
 msgid "Subnet mask / Prefixlen"
-msgstr "របាំង​ Subnet ​ / Prefixlen"
+msgstr ""
 
-#: app/views/network/index.html.erb:260
-msgid "Default route"
-msgstr "ផ្លូវ​លំនាំដើម​"
-
-#: app/views/network/index.html.erb:269
+#: app/views/network/index.html.erb:181
+#, fuzzy
+#| msgid "Host Names"
 msgid "Hostname"
 msgstr "ឈ្មោះ​ម៉ាស៊ីន"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:274
+#: app/views/network/index.html.erb:185
+#, fuzzy
+#| msgid "Domain\n"
 msgid "Domain"
-msgstr "ដែន"
+msgstr "ដែន\n"
 
-#: app/views/network/index.html.erb:278
+#: app/views/network/index.html.erb:189
+#, fuzzy
+#| msgid "Name Server"
 msgid "Name servers"
 msgstr "ម៉ាស៊ីន​បម្រើ​ឈ្មោះ"
 
-#: app/views/network/index.html.erb:282
+#: app/views/network/index.html.erb:193
+#, fuzzy
+#| msgid "&Search domains:"
 msgid "Search domains"
-msgstr "ស្វែង​រក​ដែន"
+msgstr "ដែន​ស្វែងរក ៖"
+
+#: app/views/network/index.html.erb:201
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "ផ្លូវ​លំនាំដើ៼ម"
+
+#, fuzzy
+#~| msgid "Do not start"
+#~ msgid "not set"
+#~ msgstr "កុំ​ចាប់ផ្ដើម"
+
+#, fuzzy
+#~| msgid "Static"
+#~ msgid "static"
+#~ msgstr "ឋិតិវន្ដ"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#, fuzzy
+#~| msgid "Dial Prefix"
+#~ msgid "Prefixlen"
+#~ msgstr "បុព្វបទ​ការ​ហៅ"
+
+#, fuzzy
+#~| msgid "NFS"
+#~ msgid "DNS"
+#~ msgstr "NFS"
+
+#~ msgid "Save"
+#~ msgstr "រក្សា​ទុក"
+
+# cancel button label
+#~ msgid "Cancel"
+#~ msgstr "បោះបង់"
+
+#, fuzzy
+#~| msgid "Network Servers"
+#~ msgid "Edit Network Device"
+#~ msgstr "ម៉ាស៊ីន​បម្រើ​បណ្ដាញ"
+
+#~ msgid "Configuration"
+#~ msgstr "កំណត់រចនាសម្ព័ន្ធ"
+
+#~ msgid "Description"
+#~ msgstr "សេចក្តី​ពិពណ៌នា"
+
+#, fuzzy
+#~| msgid "DMA"
+#~ msgid "MAC"
+#~ msgstr "DMA"
+
+#, fuzzy
+#~| msgid "Device"
+#~ msgid "Device Name"
+#~ msgstr "ឧបករណ៍"
+
+#, fuzzy
+#~| msgid "Start-Up"
+#~ msgid "Startup"
+#~ msgstr "ចាប់ផ្ដើម"
+
+#, fuzzy
+#~| msgid "Search Domains:"
+#~ msgid "Search Domains"
+#~ msgstr "ដែន​ស្វែងរក ៖"
+
+#~ msgid "Update"
+#~ msgstr "ធ្វើ​ឲ្យ​ទាន់សម័យ"
+
+#~ msgid "Back"
+#~ msgstr "ថយក្រោយ"

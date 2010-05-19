@@ -1,96 +1,81 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: yast_webclient_network\n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2005-09-18 19:09+0200\n"
-"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2010-04-20 09:47\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/network_controller.rb:64
 msgid "Not configured"
-msgstr "Inte inställd"
+msgstr "Inte konfigurerad"
 
 #: app/controllers/network_controller.rb:64
-#, fuzzy
-#| msgid "Manual Mode"
 msgid "Manual"
-msgstr "Manuellt läge"
+msgstr "Manuellt"
 
 #: app/controllers/network_controller.rb:64
-#, fuzzy
-#| msgid "Automatic Mode"
 msgid "Automatic"
-msgstr "Automatiskt läge"
+msgstr "Automatiskt"
 
 #: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
-msgstr ""
+msgstr "Nätverksinställningarna har skrivits."
 
 #: app/views/network/index.html.erb:118
 msgid "whitespace - invalid character."
-msgstr ""
+msgstr "blanksteg - ogiltigt tecken."
 
 #: app/views/network/index.html.erb:120
-#, fuzzy
-#| msgid "The VM's name cannot start with a digit."
 msgid " - can not start with a digit."
-msgstr "VM-namnet får inte börja med en siffra."
+msgstr " - kan inte börja med en siffra."
 
 #: app/views/network/index.html.erb:122
-#, fuzzy
-#| msgid "The option 'flush' is not allowed"
 msgid "periodic '-' is not allowed."
-msgstr "Alternativet \"flush\" tillåts inte"
+msgstr "tankstreck, \"-\", är inte tillåtna."
 
 #: app/views/network/index.html.erb:124
 msgid "can not end with (-) hyphen."
-msgstr ""
+msgstr "kan inte sluta med ett bindestreck (-)."
 
 #: app/views/network/index.html.erb:127
 msgid "can not start with (-) hyphen."
-msgstr ""
+msgstr "kan inte börja med ett bindestreck (-)."
 
 #: app/views/network/index.html.erb:129
 msgid " - is invalid character for hostname."
-msgstr ""
+msgstr " - är ett ogiltigt tecken för värdnamn."
 
 #: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Ogiltigt format för IP-adress. Det korrekta formatet är nnn.nnn.nnn.nnn där nnn är mellan 0 och 255."
 
 #: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr ""
+msgstr "Ogiltigt prefixformat. Det korrekta formatet är /nn där nn är mellan 0 och 32 (CIDR-format)."
 
 #: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
+msgstr "Ogiltigt format för standardroute. Det korrekta formatet är nnn.nnn.nnn.nnn där nnn är mellan 0 och 255."
 
 #: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
-msgstr ""
+msgstr "Det krävs namnservrar. Ange minst en namnserver."
 
 #: app/views/network/index.html.erb:181
-#, fuzzy
-#| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
-msgstr "Ingen giltig begärandefil har angetts."
+msgstr "Det krävs ett värdnamn. Ange ett värdnamn."
 
 #: app/views/network/index.html.erb:187
 msgid "Domain is required. An empty domain is not supported."
-msgstr ""
+msgstr "Domän krävs. Tomma domäner fungerar inte."
 
 #: app/views/network/index.html.erb:210
 msgid "Network"
@@ -101,106 +86,38 @@ msgid "Interface"
 msgstr "Gränssnitt"
 
 #: app/views/network/index.html.erb:226
-#, fuzzy
-#| msgid "Select Script"
 msgid "Select"
-msgstr "Välj skript"
+msgstr "Välj"
 
 #: app/views/network/index.html.erb:243
-#, fuzzy
-#| msgid "Configuration"
 msgid "Configuration mode"
-msgstr "Inställningar"
+msgstr "Konfigurationsläge"
 
 #: app/views/network/index.html.erb:252
-#, fuzzy
-#| msgid "Own Address"
 msgid "IP address"
-msgstr "Egen adress"
+msgstr "IP-adress"
 
 #: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "Delnätsmask/prefixlen"
 
 #: app/views/network/index.html.erb:260
-#, fuzzy
-#| msgid "Default Route"
 msgid "Default route"
-msgstr "Standardrutt"
+msgstr "Standardroute"
 
 #: app/views/network/index.html.erb:269
-#, fuzzy
-#| msgid "Host Names"
 msgid "Hostname"
-msgstr "Värddatornamn"
+msgstr "Värdnamn"
 
-# as in Windows Authentication Domain
 #: app/views/network/index.html.erb:274
-#, fuzzy
-#| msgid "Domain\n"
 msgid "Domain"
-msgstr "Domän\n"
+msgstr "Domän"
 
 #: app/views/network/index.html.erb:278
-#, fuzzy
-#| msgid "Name Server"
 msgid "Name servers"
-msgstr "Namnserver"
+msgstr "Namnservrar"
 
 #: app/views/network/index.html.erb:282
-#, fuzzy
-#| msgid "Search Index"
 msgid "Search domains"
-msgstr "Sökindex"
+msgstr "Sök domäner"
 
-#, fuzzy
-#~| msgid "Do not start"
-#~ msgid "not set"
-#~ msgstr "Starta inte"
-
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
-
-#, fuzzy
-#~| msgid "Dial Prefix"
-#~ msgid "Prefixlen"
-#~ msgstr "Uppringningsprefix"
-
-#~ msgid "Save"
-#~ msgstr "Spara"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"
-
-#, fuzzy
-#~| msgid "Choose the network device."
-#~ msgid "Edit Network Device"
-#~ msgstr "Välj nätverksenhet."
-
-#~ msgid "Configuration"
-#~ msgstr "Inställningar"
-
-#~ msgid "Description"
-#~ msgstr "Beskrivning"
-
-#, fuzzy
-#~| msgid "DMA"
-#~ msgid "MAC"
-#~ msgstr "DMA"
-
-#, fuzzy
-#~| msgid "Device"
-#~ msgid "Device Name"
-#~ msgstr "Enhet"
-
-#, fuzzy
-#~| msgid "Start-Up"
-#~ msgid "Startup"
-#~ msgstr "Start"
-
-#~ msgid "Update"
-#~ msgstr "Uppdatera"
-
-#~ msgid "Back"
-#~ msgstr "Tillbaka"

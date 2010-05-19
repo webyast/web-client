@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,250 +14,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/registration_controller.rb:11
-#, fuzzy
-#| msgid "Procmail"
-msgid "Email"
-msgstr "Procmail"
-
-#: app/controllers/registration_controller.rb:12
-#, fuzzy
-#| msgid "System Type"
-msgid "System name"
-msgstr "ชนิดของระบบ"
-
-#: app/controllers/registration_controller.rb:13
-#, fuzzy
-#| msgid "Registration"
-msgid "SLES registration code"
-msgstr "การลงทะเบียน"
-
-#: app/controllers/registration_controller.rb:14
-#, fuzzy
-#| msgid "Registration"
-msgid "SLED registration code"
-msgstr "การลงทะเบียน"
-
 #: app/controllers/registration_controller.rb:15
-msgid "Appliance registration code"
-msgstr ""
-
-#: app/controllers/registration_controller.rb:16
-msgid "WebYaST registration code"
-msgstr ""
-
-#: app/controllers/registration_controller.rb:17
-#, fuzzy
-#| msgid "Registration"
-msgid "Registration code"
-msgstr "การลงทะเบียน"
-
-#: app/controllers/registration_controller.rb:18
-msgid "Hostname"
-msgstr "ชื่อเครื่อง"
-
-#: app/controllers/registration_controller.rb:19
-#, fuzzy
-#| msgid "&Device name"
-msgid "Device name"
-msgstr "ชื่ออุปกรณ์"
-
-#: app/controllers/registration_controller.rb:20
-#, fuzzy
-#| msgid "Service name"
-msgid "Appliance name"
-msgstr "ชื่อของบริการ"
-
-#: app/controllers/registration_controller.rb:21
-#, fuzzy
-#| msgid "Registration"
-msgid "registration code"
-msgstr "การลงทะเบียน"
-
-#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:41
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:84
-msgid "Please try to register again later."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:88
+#: app/controllers/registration_controller.rb:68
 #, fuzzy
-#| msgid "Creation was skipped"
-msgid "Registration was skipped."
-msgstr "การสร้างถูกข้าม"
+#| msgid "A primary partition cannot be created."
+msgid "Arguments for registration cannot be evaluated."
+msgstr "พาร์ทิชันหลักไม่สามารถถูกสร้างได้"
 
-#: app/controllers/registration_controller.rb:94
+#: app/controllers/registration_controller.rb:69
 #, fuzzy
-#| msgid "MBR restored successfully."
-msgid "Registration did not finish."
-msgstr "คืนค่าส่วน MBR ของฮาร์ดดิสก์เรียบร้อยแล้ว"
+#| msgid "An error occurred during initrd creation."
+msgid "An error occurred during registration. Please try again."
+msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
 
-#: app/controllers/registration_controller.rb:95
-#, fuzzy
-#| msgid "MBR restored successfully."
-msgid "Registration did not succeed."
-msgstr "คืนค่าส่วน MBR ของฮาร์ดดิสก์เรียบร้อยแล้ว"
-
-#: app/controllers/registration_controller.rb:97
-msgid "This may be a temporary issue."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:102
-msgid "The registration server returned invalid or incomplete data."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:134
-msgid "Please fill out missing entries."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:155
-#, fuzzy
-#| msgid "Service Name"
-msgid "Service added:"
-msgstr "ชื่อของบริการ"
-
-#: app/controllers/registration_controller.rb:159
-#: app/controllers/registration_controller.rb:164
-#, fuzzy
-#| msgid "Upload enabled"
-msgid "Catalog enabled:"
-msgstr "อนุญาตให้อัปโหลด"
-
-#: app/controllers/registration_controller.rb:188
-#, fuzzy
-#| msgid "Repository &Name:"
-msgid "Repository added:"
-msgstr "ชื่อของคลังแพกเกจ:"
-
-#: app/controllers/registration_controller.rb:248
-#, fuzzy
-#| msgid "File system %1 is already in the list."
-msgid "This system is already registered."
-msgstr "มีระบบแฟ้ม %1 อยู่ในรายการอยู่แล้ว"
-
-#: app/controllers/registration_controller.rb:277
+#: app/controllers/registration_controller.rb:111
 #, fuzzy
 #| msgid "MBR restored successfully."
 msgid "Registration finished successfully."
 msgstr "คืนค่าส่วน MBR ของฮาร์ดดิสก์เรียบร้อยแล้ว"
 
-#: app/controllers/registration_controller.rb:290
-msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
-msgstr ""
-
-#: app/controllers/registration_controller.rb:324
-msgid "A connection to the registration server could not be established."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:328
-msgid "The transmitted registration data created a conflict."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:336
-msgid "Registration can not be performed. There is no product installed that can be registered."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:351
-msgid "A connection to the registration server could not be established or it did not reply."
-msgstr ""
-
-#: app/controllers/registration_controller.rb:368
+#: app/controllers/registration_controller.rb:119
 #, fuzzy
-#| msgid "The primary name server is invalid."
-msgid "The registration server returned invalid data."
-msgstr "เครื่องให้บริการสืบค้นชื่อตัวหลักใช้งานไม่ได้"
+#| msgid "Service Name"
+msgid "Service added:"
+msgstr "ชื่อของบริการ"
 
-#: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
+#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
 #, fuzzy
-#| msgid "%1 is not a valid IPv4 address."
-msgid "Please enter a valid Email address."
-msgstr "%1 ไม่ใช่ค่าที่อยู่แบบ IPv4 ที่ถูกต้อง"
+#| msgid "Upload enabled"
+msgid "Catalog enabled:"
+msgstr "อนุญาตให้อัปโหลด"
 
-#: app/views/registration/index.rhtml:36
+#: app/controllers/registration_controller.rb:143
+#, fuzzy
+#| msgid "Repository &Name:"
+msgid "Repository added:"
+msgstr "ชื่อของคลังแพกเกจ:"
+
+#: app/controllers/registration_controller.rb:173
+msgid "Please fill out missing entries."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:176
+#, fuzzy
+#| msgid "Error occurred while creating the repository."
+msgid "Error occured while connecting to registration server."
+msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้างคลังแพกเกจ"
+
+#: app/views/registration/index.rhtml:1
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:36
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "การลงทะเบียน"
 
-#: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Read installation information"
-msgid "Registration Information"
-msgstr "อ่านข้อมูลการติดตั้ง"
-
-#: app/views/registration/index.rhtml:45
+#: app/views/registration/index.rhtml:9
 msgid "This system is registered"
 msgstr ""
 
-#: app/views/registration/index.rhtml:46
+#: app/views/registration/index.rhtml:10
 #, fuzzy
 #| msgid "System:"
-msgid "System number (GUID)"
+msgid "System's GUID:"
 msgstr "ระบบ:"
 
-#: app/views/registration/index.rhtml:47
+#: app/views/registration/index.rhtml:11
 #, fuzzy
 #| msgid "Registration"
 msgid "Register again"
 msgstr "การลงทะเบียน"
 
-#: app/views/registration/index.rhtml:54
-msgid "Next"
-msgstr "ถัดไป"
-
-#: app/views/registration/index.rhtml:64
-#, fuzzy
-#| msgid "Memory Information"
-msgid "Mandatory Information"
-msgstr "หน่วยความจำ"
-
-#: app/views/registration/index.rhtml:79
+#: app/views/registration/index.rhtml:39
 #, fuzzy
 #| msgid "&Details"
-msgid "Details"
+msgid "Detail"
 msgstr "รายละเอียด"
-
-#: app/views/registration/index.rhtml:104
-msgid "Skip"
-msgstr "ข้ามมัน"
-
-#: app/views/registration/index.rhtml:105
-msgid "Postpone"
-msgstr ""
-
-#: app/views/registration/index.rhtml:106
-#, fuzzy
-#| msgid "Port"
-msgid "or"
-msgstr "พอร์ต"
-
-#, fuzzy
-#~| msgid "A primary partition cannot be created."
-#~ msgid "Arguments for registration cannot be evaluated."
-#~ msgstr "พาร์ทิชันหลักไม่สามารถถูกสร้างได้"
-
-#, fuzzy
-#~| msgid "An error occurred during initrd creation."
-#~ msgid "An error occurred during registration. Please try again."
-#~ msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้าง initrd"
-
-#, fuzzy
-#~| msgid "Error occurred while creating the repository."
-#~ msgid "Error occured while connecting to registration server."
-#~ msgstr "เกิดข้อผิดพลาดขึ้นระหว่างทำการสร้างคลังแพกเกจ"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Detail"
-#~ msgstr "รายละเอียด"
 
 #, fuzzy
 #~| msgid "Save installation settings"

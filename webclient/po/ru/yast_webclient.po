@@ -1,213 +1,206 @@
-# Alexander Melentiev <alex239@gmail.com>, 2009, 2010.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-05-03 16:30+0200\n"
-"PO-Revision-Date: 2010-04-25 18:21+0400\n"
-"Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-22 15:24\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/helpers/application_helper.rb:39
+#: app/helpers/application_helper.rb:20
 msgid " or "
 msgstr " или "
 
-#: app/helpers/application_helper.rb:43
+#: app/helpers/application_helper.rb:24
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:52 app/helpers/application_helper.rb:66
-#: app/views/hosts/edit.html.erb:40
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Назад"
 
-#: app/helpers/application_helper.rb:56 app/views/hosts/new.html.erb:53
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
 msgid "Cancel"
 msgstr "Отмена"
 
-#: app/helpers/application_helper.rb:71
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "Сохранить"
 
-#: app/helpers/application_helper.rb:74
+#: app/helpers/application_helper.rb:55
 msgid "Next"
 msgstr "Далее"
 
-#: app/helpers/application_helper.rb:75
+#: app/helpers/application_helper.rb:56
 msgid "Finish"
 msgstr "Готово"
 
-#: app/helpers/view_helpers/html_helper.rb:27
+#: app/helpers/view_helpers/html_helper.rb:9
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
-#: app/helpers/view_helpers/html_helper.rb:153
+#: app/helpers/view_helpers/html_helper.rb:133
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: app/helpers/view_helpers/html_helper.rb:157
-#: app/views/shared/exception_trap.html.erb:22
+#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
-msgstr "Сведения недоступны"
+msgstr "Информация отсутствует."
 
-#: app/helpers/view_helpers/html_helper.rb:160
+#: app/helpers/view_helpers/html_helper.rb:140
 msgid "There was a problem retrieving information from the server."
-msgstr "Проблема при получении сведений с сервера."
+msgstr "Проблема при получении информации с сервера."
 
-#: app/helpers/view_helpers/effect_helper.rb:50
+#: app/helpers/view_helpers/effect_helper.rb:32
 msgid "Hide Details"
-msgstr "Скрыть подробности"
+msgstr "Скрыть сведения"
 
-#: app/helpers/view_helpers/effect_helper.rb:51
+#: app/helpers/view_helpers/effect_helper.rb:33
 msgid "Show Details"
-msgstr "Показать подробности"
+msgstr "Показать сведения"
 
-#: app/helpers/view_helpers/label_helper.rb:24
-#: app/views/hosts/index.html.erb:32
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
 msgid "Add"
 msgstr "Добавить"
 
-#: app/helpers/view_helpers/label_helper.rb:28
+#: app/helpers/view_helpers/label_helper.rb:10
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "Изменить"
 
-#: app/helpers/view_helpers/label_helper.rb:32
+#: app/helpers/view_helpers/label_helper.rb:14
 msgid "Delete"
 msgstr "Удалить"
 
-#: app/controllers/sessions_controller.rb:67
+#: app/controllers/sessions_controller.rb:49
 msgid "You need to specify the host"
-msgstr "Вы должны указать узел"
+msgstr "Необходимо указать хост"
 
-#: app/controllers/sessions_controller.rb:70
+#: app/controllers/sessions_controller.rb:52
 msgid "No login specified"
-msgstr "Не указан логин"
+msgstr "Не указано имя для входа"
 
-#: app/controllers/sessions_controller.rb:73
+#: app/controllers/sessions_controller.rb:55
 msgid "No password specified"
 msgstr "Не указан пароль"
 
-#: app/controllers/sessions_controller.rb:92
+#: app/controllers/sessions_controller.rb:74
 msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "Узел заблокировал пользователя %s. Он не сможет войти в систему до %s"
+msgstr "Хост заблокировал пользователя %s. Он не сможет войти в систему до %s"
 
-#: app/controllers/sessions_controller.rb:115
+#: app/controllers/sessions_controller.rb:97
 msgid "Login incorrect. Check your username and password."
-msgstr "Неверный логин. Проверьте имя пользователя и пароль."
+msgstr "Неверный вход. Проверьте имя пользователя и пароль."
 
-#: app/controllers/sessions_controller.rb:148
+#: app/controllers/sessions_controller.rb:130
 msgid "You have been logged out."
 msgstr "Вы вышли из системы."
 
-#: app/controllers/application_controller.rb:42
+#: app/controllers/application_controller.rb:24
 msgid "Session timeout"
-msgstr "Время сессии вышло"
+msgstr "Тайм-аут сеанса"
 
-#: app/controllers/application_controller.rb:97
-msgid ""
-"You're not allowed to do this. If you have to do this action, please contact "
-"system administrator"
-msgstr ""
-"Вам не разрешено этого делать. Если вам необходимо выполнить это, свяжитесь "
-"с системным администратором"
+#: app/controllers/application_controller.rb:79
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr "Не разрешено. Если это действие необходимо, обратитесь к системному администратору."
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "Для продолжения необходимо войти в систему."
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
-msgstr "Перед входом необходимо выйти"
+msgstr "Перед входом необходимо выйти из системы"
 
-#: app/controllers/application_controller.rb:231
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
 msgstr "не может быть пустым"
 
-#: app/controllers/application_controller.rb:232
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
-msgstr "вне разрешённых пределов"
+msgstr "выходит за пределы допустимых значений"
 
-#: app/controllers/application_controller.rb:233
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
 msgstr "не может быть пустым"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
-msgstr "неверен"
+msgstr "недопустимо"
 
-#: app/controllers/application_controller.rb:249
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
-msgstr "Неверные параметры"
+msgstr "Недопустимые параметры:"
 
-#: app/controllers/hosts_controller.rb:43
+#: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
-msgstr "Невозможно подключиться к узлу %s."
+msgstr "Не удалось подключиться к хосту %s."
 
-#: app/controllers/hosts_controller.rb:44
+#: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "Удостоверьтесь, что узел работает, а веб-служба YaST запущена."
+msgstr "Убедитесь, что узел работает, а веб-служба YaST запущена."
 
-#: app/controllers/hosts_controller.rb:46
+#: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
-msgstr "Выберите узел для подключения."
+msgstr "Выберите хост для подключения."
 
-#: app/controllers/hosts_controller.rb:49
+#: app/controllers/hosts_controller.rb:31
 msgid "The host '%s' cannot be found."
-msgstr "Узел '%s' не найден."
+msgstr "Хост \"%s\" не найден."
 
-#: app/controllers/hosts_controller.rb:50
+#: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
-msgstr "Пожалуйста, дважды проверьте URL узла."
+msgstr "Дважды проверьте URL-адрес хоста."
 
 #: app/models/account.rb:-
 msgid "account"
-msgstr "учётная запись"
+msgstr "учетная запись"
 
 #: app/models/account.rb:-
 msgid "Account|Login"
-msgstr "Учётная запись|Логин"
+msgstr "Учетная запись|Вход"
 
 #: app/models/account.rb:-
 msgid "Account|Created at"
-msgstr "Учётная запись|Время создания"
+msgstr "Учетная запись|Время создания"
 
 #: app/models/account.rb:-
 msgid "Account|Updated at"
-msgstr "Учётная запись|Время обновления"
+msgstr "Учетная запись|Время обновления"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token"
-msgstr "Учётная запись|Запоминание"
+msgstr "Учетная запись|Запоминание"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token expires at"
-msgstr "Учётная запись|Запоминать до"
+msgstr "Учетная запись|Запоминать до"
 
 #: app/models/account.rb:-
 msgid "Account|Salt"
-msgstr "Учётная запись|Salt"
+msgstr "Учетная запись|Начальное значение"
 
 #: app/models/host.rb:-
 msgid "host"
-msgstr "узел"
+msgstr "хост"
 
 #: app/models/host.rb:-
 msgid "Host|Name"
-msgstr "Узел|Имя"
+msgstr "Хост|Имя"
 
 #: app/models/host.rb:-
 msgid "Host|Url"
-msgstr "Узел|URL"
+msgstr "Хост|URL-адрес"
 
 #: app/models/host.rb:-
 msgid "Host|Description"
-msgstr "Узел|Описание"
+msgstr "Хост|Описание"
 
 #: app/models/host.rb:-
 msgid "Host|Created at"
@@ -221,31 +214,29 @@ msgstr "Узел|Время обновления"
 msgid "Language Selection"
 msgstr "Выбор языка"
 
-#: app/views/shared/exception_trap.html.erb:8
-#: app/views/shared/backendexception_trap.html.erb:2
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
-msgstr "Как неловко получилось..."
+msgstr "Приносим извинения..."
 
 #: app/views/shared/exception_trap.html.erb:10
 msgid "We are sorry, but there are some problems."
-msgstr "Нам очень жаль, но всё ещё есть некоторые проблемы."
+msgstr "К сожалению, возникли некоторые проблемы."
 
-#: app/views/shared/exception_trap.html.erb:12
-#: app/views/shared/backendexception_trap.html.erb:6
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
 msgid "Problem:"
-msgstr "Проблема: "
+msgstr "Проблема:"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "Пожалуйста, сообщите об ошибке, чтобы мы могли исправить эту проблему."
+msgstr "Пожалуйста, сообщите об ошибке, чтобы мы могли разрешить эту проблему."
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
-msgstr "(ссылка на отчёт)"
+msgstr "(ссылка на отчет)"
 
 #: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
-msgstr "Не забудьте включить дополнительные сведения об ошибке."
+msgstr "Не забудьте включить подробные сведения об ошибке."
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
@@ -253,60 +244,59 @@ msgstr "Проблема на целевой машине."
 
 #: app/views/shared/_missing_write_permissions.html.erb:1
 msgid "You do not have permissions to modify the settings."
-msgstr "У вас нет прав для изменения настроек."
+msgstr "Отсутствуют разрешения на изменение параметров."
 
-#: app/views/hosts/edit.html.erb:2
+#: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
 msgstr "Редактирование веб-службы YaST"
 
-#: app/views/hosts/edit.html.erb:23
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "Веб-служба YaST"
 
-#: app/views/hosts/edit.html.erb:26 app/views/hosts/new.html.erb:37
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
 msgstr "Имя"
 
-#: app/views/hosts/edit.html.erb:30
+#: app/views/hosts/edit.html.erb:29
 msgid "Url"
-msgstr "URL"
+msgstr "URL-адрес"
 
-#: app/views/hosts/edit.html.erb:34 app/views/hosts/new.html.erb:47
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
 msgstr "Описание"
 
-#: app/views/hosts/edit.html.erb:39
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
-msgstr "ОК"
+msgstr "OK"
 
-#: app/views/hosts/index.html.erb:5
+#: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
 msgstr "Выберите службу:"
 
-#: app/views/hosts/index.html.erb:25
+#: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
-msgstr "Действительно удалить узел %s?"
+msgstr "Удалить хост %s ?"
 
-#: app/views/hosts/new.html.erb:10
+#: app/views/hosts/new.html.erb:9
 msgid "New WebYaST Host"
-msgstr "Новый узел WebYaST"
+msgstr "Новый хост WebYaST"
 
-#: app/views/hosts/new.html.erb:42
+#: app/views/hosts/new.html.erb:41
 msgid "URL"
 msgstr "URL"
 
-#: app/views/hosts/new.html.erb:54
+#: app/views/hosts/new.html.erb:53
 msgid "Create"
 msgstr "Создать"
 
-#: app/views/hosts/show.html.erb:8
+#: app/views/hosts/show.html.erb:7
 msgid "Index"
 msgstr "Индекс"
 
-#: app/views/controlpanel/show_all.rhtml:18
-#: app/views/controlpanel/index.rhtml:72
+#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
-msgstr "Настройка"
+msgstr "Конфигурация"
 
 #: app/views/controlpanel/index.rhtml:27
 msgid "Status"
@@ -318,27 +308,27 @@ msgstr "Системные действия"
 
 #: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
-msgstr "Перезагрузка"
+msgstr "Перезагрузить"
 
 #: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
-msgstr "Действительно перезагрузить %s?"
+msgstr "Перезагрузить %s?"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
-msgstr "Выключение"
+msgstr "Выключить"
 
 #: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
-msgstr "Действительно выключить %s?"
+msgstr "Выключить %s?"
 
 #: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
-msgstr "Загрузка сведений об исправлении"
+msgstr "Загрузка информации об исправлениях"
 
 #: app/views/controlpanel/index.rhtml:50
 msgid "Patch status summary is disabled in the config file."
-msgstr "Отчёт о статусе исправлений отключён в файле настроек."
+msgstr "В файле конфигурации отключены краткие сведения о состоянии исправления."
 
 #: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
@@ -346,163 +336,117 @@ msgstr "Модуль исправлений не установлен."
 
 #: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
-msgstr "Загрузка сведений о системе"
+msgstr "Загрузка системной информации"
 
 #: app/views/controlpanel/index.rhtml:62
 msgid "System status summary is disabled in the config file."
-msgstr "Отчёт о статусе системы отключён в файле настроек."
+msgstr "В файле конфигурации отключены краткие сведения о состоянии системы."
 
 #: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
 msgstr "Модуль состояния не установлен."
 
-#: app/views/controlpanel/index.rhtml:100
+#: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
 msgstr "Показать все модули"
 
-#: app/views/controlpanel/basesystem.rhtml:18
+#: app/views/controlpanel/basesystem.rhtml:1
 msgid "Base system setup"
 msgstr "Настройка основной системы."
 
-#: app/views/controlpanel/basesystem.rhtml:20
-msgid ""
-"Your initial system setup was not completed. Please continue with setting up "
-"the modules."
-msgstr ""
-"Начальная настройка системы не была завершена. Пожалуйста, настройте модули."
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr "Начальная настройка системы не была завершена. Пожалуйста, продолжите настройку модулей."
 
-#: app/views/controlpanel/basesystem.rhtml:21
+#: app/views/controlpanel/basesystem.rhtml:4
 msgid "Continue initial system setup"
 msgstr "Продолжить начальную настройку системы"
 
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:56
-msgid ""
-"You are using an unsupported browser. Please switch to %sFireFox 3.5 or "
-"better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]"
-msgstr ""
-"Вы используете неподдерживаемый браузер. Пожалуйста, перейдите на %sFireFox "
-"3.5 или выше%s или %sInternet Explorer 8%s. Спасибо! [%sзакрыть%s]"
-
-#: app/views/layouts/main.rhtml:63
-msgid ""
-"JavaScript support is missing or disabled. Please turn JavaScript on or use "
-"a supported browser (%sFireFox 3.5%s or %sInternet Explorer 8%s)."
-msgstr ""
-"Поддержка JavaScript отсутствует или отключена. Пожалуйста, включите "
-"JavaScript или используйте поддерживаемый браузер (%sFireFox 3.5%s или %"
-"sInternet Explorer 8%s)."
-
-#: app/views/layouts/main.rhtml:73
+#: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
 msgstr "Применение"
 
-# label for language selection
-#: app/views/layouts/main.rhtml:79 app/views/layouts/main.rhtml:83
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
 msgid "Language:"
 msgstr "Язык:"
 
-#: app/views/layouts/main.rhtml:85
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
-msgstr "Подключённый узел:"
+msgstr "Подключенный хост:"
 
-#: app/views/layouts/main.rhtml:86
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
 msgstr "Пользователь:"
 
-#: app/views/layouts/main.rhtml:89
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "Панель управления"
 
-#: app/views/layouts/main.rhtml:90
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
-msgstr "Завершить сеанс"
+msgstr "Выход из системы"
 
-#: app/views/layouts/main.rhtml:125
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr "...Ожидание..."
 
-#: app/views/sessions/new.rhtml:21 app/views/sessions/new.rhtml:33
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "Вход"
 
-#: app/views/sessions/new.rhtml:23
+#: app/views/sessions/new.rhtml:6
 msgid "Enter login credentials for host %s."
-msgstr "Укажите параметры для входа на узел %s."
+msgstr "Укажите учетные данные входа на хост %s."
 
-#: app/views/sessions/new.rhtml:27
+#: app/views/sessions/new.rhtml:10
 msgid "Username:"
-msgstr "Имя пользователя: "
+msgstr "Имя пользователя:"
 
-#: app/views/sessions/new.rhtml:30
+#: app/views/sessions/new.rhtml:13
 msgid "Password:"
 msgstr "Пароль:"
 
-#: lib/error_constructor.rb:30
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
-msgstr "Служба %s целевой машины недоступна"
+msgstr "Служба %s на целевой машине недоступна"
+
+#: lib/error_constructor.rb:14
+msgid "Service %s is not running on the target machine"
+msgstr "Служба %s на целевой машине не запущена"
+
+#: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr "Нарушено разрешение, настроенное для REST-сервиса. Проблема решается с помощью сценария grantwebyastrights."
+
+#: lib/error_constructor.rb:17
+msgid "Permission %s is not granted for user %s"
+msgstr "Разрешение %s пользователю %s не предоставлено"
+
+#: lib/error_constructor.rb:19
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr "Исключение набора политик для пользователя %s и разрешения %s (нетранслированное сообщение): %s"
+
+#: lib/error_constructor.rb:21
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr "Пользователь завершил сеанс на целевой машине. Войдите еще раз."
+
+#: lib/error_constructor.rb:23
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr "Несогласованная целевая система: файл %s отсутствует или поврежден"
+
+#: lib/error_constructor.rb:27
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "Не указан сервер NTP в файле /etc/sysconfig/network/config — NETCONFIG_NTP_STATIC_SERVERS"
+
+#: lib/error_constructor.rb:29
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "Ошибка при синхронизации по ntp: %s"
 
 #: lib/error_constructor.rb:32
-msgid "Service %s is not running on the target machine"
-msgstr "Служба %s целевой машины не запущена"
-
-#: lib/error_constructor.rb:34
-msgid ""
-"Broken permission setup on rest-service. Can be fixed by grantwebyastrights "
-"script."
-msgstr ""
-"Для rest-service выставлены неправильные разрешения. Может быть исправлено "
-"скриптом grantwebyastrights."
-
-#: lib/error_constructor.rb:35
-msgid "Permission %s is not granted for user %s"
-msgstr "У пользователя %s нет права %s"
-
-#: lib/error_constructor.rb:37
-msgid ""
-"Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
-"Исключение PolicyKit для пользователя %s и права %s (непереведённое "
-"сообщение): %s"
-
-#: lib/error_constructor.rb:39
-msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "Пользователь завершил сеанс на целевой машине. Войдите ещё раз."
-
-#: lib/error_constructor.rb:41
-msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
-"Нарушена целостность целевой системы: файл %s повреждён или отсутствует"
-
-#: lib/error_constructor.rb:45
-msgid ""
-"There is no predefined ntp server at /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
-"Не указан сервер NTP в файле /etc/sysconfig/network/config - "
-"NETCONFIG_NTP_STATIC_SERVERS"
-
-#: lib/error_constructor.rb:47
-msgid "Error occurred during ntp synchronization: %s"
-msgstr "Произошла ошибка при синхронизации по ntp: %s"
-
-#: lib/error_constructor.rb:50
 msgid "Error while saving administrator settings: %s"
 msgstr "Ошибка при сохранении настроек администратора: %s"
 
-#~ msgid "You must accept all EULAs before using this product!"
-#~ msgstr ""
-#~ "Перед использованием данного продукта вы должны принять все лицензии!"
-
-#~| msgid ""
-#~| "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is "
-#~| "installed"
-#~ msgid ""
-#~ "Cannot redirect to EULA. Make sure webyast-licenses-ui package is "
-#~ "installed"
-#~ msgstr ""
-#~ "Невозможно перейти к EULA. Убедитесь, что пакет webyast-licenses-ui "
-#~ "установлен"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -14,192 +14,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:15
+msgid "Invalid session, please login again."
+msgstr ""
+
+#: app/controllers/status_controller.rb:33
+msgid "Disk free limits exceeded;"
+msgstr ""
+
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:187
+#: app/controllers/status_controller.rb:181
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for "
+msgid "Limits exceeded for %s"
 msgstr "Byvoeging vir \"%s\" was suksesvol.\n"
 
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:229
 #, fuzzy
-#| msgid "Needed"
-msgid "exceeded"
-msgstr "Benodig"
+#| msgid "Saving the changes failed"
+msgid "Saving limits failed!"
+msgstr "Berg van die wysigings het misluk"
 
-#: app/controllers/status_controller.rb:330
-msgid "undercut"
-msgstr ""
-
-#: app/controllers/status_controller.rb:432
-msgid "Limits have been written."
-msgstr ""
-
-#: app/views/status/edit.html.erb:27
-msgid "Only numbers are valid !"
-msgstr ""
-
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/edit.html.erb:51
-msgid "Settings"
-msgstr "Instellings"
-
-#: app/views/status/edit.html.erb:66
-msgid "undercuts"
-msgstr ""
-
-#: app/views/status/edit.html.erb:66
-msgid "exceeds"
-msgstr ""
-
-#: app/views/status/index.html.erb:71
+#: app/views/status/index.html.erb:45
 #, fuzzy
-#| msgid "&Details"
-msgid "details"
-msgstr "&Besonderhede"
+#| msgid "Disks"
+msgid "Disk usage"
+msgstr "Skywe"
 
-#: app/views/status/index.html.erb:87
-#, fuzzy
-#| msgid "&Details"
-msgid "Details"
-msgstr "&Besonderhede"
-
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr ""
 
-#: app/views/status/_status_graph.html.erb:1
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
+msgid "Back"
+msgstr "Terug"
+
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "free"
+msgstr ""
+
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "used"
+msgstr ""
+
+#: app/views/status/edit.html.erb:2
 #, fuzzy
-#| msgid "An error occurred during the installation."
-msgid "A problem occured when loading status information."
-msgstr "’n Fout het  tydens die installasie voorgekom."
+#| msgid "Configure Notifications..."
+msgid "Configure Status Limits"
+msgstr "Konfigureer kennisgewings ..."
 
-#: app/views/status/_status_graph.html.erb:91
+#: app/views/status/edit.html.erb:7
 #, fuzzy
-#| msgid "&Show changes"
-msgid "Show last"
-msgstr "&Toon wysigings"
+#| msgid "Status: "
+msgid "Status Path"
+msgstr "Status:"
 
-#: app/views/status/_status_graph.html.erb:92
-msgid "5 Minutes"
+#: app/views/status/edit.html.erb:8
+msgid "Minimum Value"
 msgstr ""
 
-#: app/views/status/_status_graph.html.erb:93
-msgid "15 Minutes"
-msgstr ""
+#: app/views/status/edit.html.erb:9
+#, fuzzy
+#| msgid "Maximum Memory"
+msgid "Maximum Value"
+msgstr "Maksimum geheue"
 
-#: app/views/status/_status_graph.html.erb:94
-msgid "30 Minutes"
-msgstr ""
+#: app/views/status/edit.html.erb:39
+msgid "Save"
+msgstr "Berg"
 
-#: app/views/status/_status_graph.html.erb:95
-msgid "1 Hour"
-msgstr ""
-
-#: app/views/status/_status_graph.html.erb:96
-msgid "6 Hours"
-msgstr ""
-
-#: app/views/status/_status_graph.html.erb:97
-msgid "12 Hours"
-msgstr ""
-
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:1
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
 msgstr "’n Fout het  tydens die installasie voorgekom."
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "Cannot read system status - you have been logged out."
-msgstr ""
+#: app/views/status/_status_summary.html.erb:6
+#, fuzzy
+#| msgid "No information available."
+msgid "No status information available"
+msgstr "Geen inligting beskikbaar nie."
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr ""
-
-#: app/views/status/_status_summary.html.erb:20
-msgid "Start collectd"
-msgstr ""
-
-#: app/views/status/_status_summary.html.erb:28
-#, fuzzy
-#| msgid "System Information"
-msgid "Loading system information"
-msgstr "Stelselinligting"
-
-#: app/views/status/_status_progress.html.erb:7
-msgid "Checking system status"
-msgstr ""
-
-#: lib/plugin_translation.rb:25
-msgid "Registration is missing"
-msgstr ""
-
-#: lib/plugin_translation.rb:26
-msgid "Please register your system in order to get updates."
-msgstr ""
-
-#: lib/plugin_translation.rb:27
-msgid "register"
-msgstr ""
-
-#: lib/plugin_translation.rb:29
-#, fuzzy
-#| msgid "The configuration is not initialized."
-msgid "Mail configuration test not confirmed"
-msgstr "Die konfigurasie is nie geïnisialiseer nie."
-
-#: lib/plugin_translation.rb:30
-msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr ""
-
-#: lib/plugin_translation.rb:33
-msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr ""
-
-#: lib/plugin_translation.rb:34
-msgid "Test mail received"
-msgstr ""
-
-#, fuzzy
-#~| msgid "Saving the changes failed"
-#~ msgid "Saving limits failed!"
-#~ msgstr "Berg van die wysigings het misluk"
-
-#, fuzzy
-#~| msgid "Disks"
-#~ msgid "Disk usage"
-#~ msgstr "Skywe"
-
-#~ msgid "Back"
-#~ msgstr "Terug"
-
-#, fuzzy
-#~| msgid "Configure Notifications..."
-#~ msgid "Configure Status Limits"
-#~ msgstr "Konfigureer kennisgewings ..."
-
-#, fuzzy
-#~| msgid "Status: "
-#~ msgid "Status Path"
-#~ msgstr "Status:"
-
-#, fuzzy
-#~| msgid "Maximum Memory"
-#~ msgid "Maximum Value"
-#~ msgstr "Maksimum geheue"
-
-#~ msgid "Save"
-#~ msgstr "Berg"
-
-#, fuzzy
-#~| msgid "No information available."
-#~ msgid "No status information available"
-#~ msgstr "Geen inligting beskikbaar nie."

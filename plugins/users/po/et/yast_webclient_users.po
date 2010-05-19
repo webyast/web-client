@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: autoinst.fi\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2003-09-22 13:26+0200\n"
 "Last-Translator: Ain Vagula <avagula@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -10,288 +10,139 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/groups_controller.rb:15
-msgid "Missing group name parameter"
+#: app/controllers/users_controller.rb:18
+msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/groups_controller.rb:27
-msgid "Missing group parameters"
-msgstr ""
-
-#: app/controllers/groups_controller.rb:37
-#, fuzzy
-#| msgid "Please enter server name below"
-msgid "Please enter a valid group name"
-msgstr "Sisesta allapoole serveri nimi"
-
-#: app/controllers/groups_controller.rb:47
-msgid "Please enter a valid GID"
-msgstr ""
-
-#: app/controllers/groups_controller.rb:57
-msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr ""
-
-#: app/controllers/groups_controller.rb:68
-msgid "Please enter a valid list of members"
-msgstr ""
-
-#: app/controllers/groups_controller.rb:82
-#, fuzzy
-#| msgid "Cannot read from file %1."
-msgid "Cannot read users list."
-msgstr "Ei suuda lugeda failist %1."
-
-#: app/controllers/groups_controller.rb:118
-#, fuzzy
-#| msgid "Cannot read from file %1."
-msgid "Cannot read groups list."
-msgstr "Ei suuda lugeda failist %1."
-
-#: app/controllers/groups_controller.rb:209
-#, fuzzy
-#| msgid "Unknown error\n"
-msgid "Unknown backend error"
-msgstr "Tundmatu viga\n"
-
-#: app/controllers/users_controller.rb:154
+#: app/controllers/users_controller.rb:144
 msgid "User <i>%s</i> was successfully created."
 msgstr ""
 
-#: app/controllers/users_controller.rb:196
+#: app/controllers/users_controller.rb:148
+#, fuzzy
+#| msgid "Empty CA name."
+msgid "Empty UID value"
+msgstr "Tühi SK nimi."
+
+#: app/controllers/users_controller.rb:152
+msgid "UID: value >= 1000 is valid for local user only"
+msgstr ""
+
+#: app/controllers/users_controller.rb:197
 msgid "User <i>%s</i> was successfully updated."
 msgstr ""
 
-#: app/controllers/users_controller.rb:217
+#: app/controllers/users_controller.rb:218
 #, fuzzy
 #| msgid "Repository %s has been sucessfully modified."
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Hoidla %s muutmine õnnestus."
 
-#: app/controllers/users_controller.rb:219
+#: app/controllers/users_controller.rb:220
 #, fuzzy
 #| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Viga: pole võimalik lugeda profiili %s: %s.\n"
 
-#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
-#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
-msgid "Groups"
-msgstr "Rühmad"
-
-#: app/views/groups/edit.html.erb:35
-msgid "Add new group"
-msgstr ""
-
-#: app/views/groups/edit.html.erb:37
-msgid "Modify group"
-msgstr ""
-
-#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#: app/views/users/index.html.erb:1
 #, fuzzy
-#| msgid "Name"
-msgid "Group Name"
-msgstr "Nimi"
+#| msgid "Local Network"
+msgid "Local User"
+msgstr "Kohalik võrk"
 
-#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
-#, fuzzy
-#| msgid "Groups"
-msgid "Group ID"
-msgstr "Rühmad"
+#: app/views/users/index.html.erb:6
+msgid "Login"
+msgstr "Sisselogimine"
 
-#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
-#, fuzzy
-#| msgid "Default System"
-msgid "Default members"
-msgstr "Vaikesüsteem"
-
-#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
-msgid "Members"
-msgstr ""
-
-#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
-#, fuzzy
-#| msgid "Processor %1"
-msgid "Processing ..."
-msgstr "Protsessor %1"
-
-#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
-#, fuzzy
-#| msgid "Filter"
-msgid "Filter:"
-msgstr "Filter"
-
-#: app/views/groups/index.html.erb:78
-msgid "Add New Group"
-msgstr ""
-
-#: app/views/groups/index.html.erb:110
-msgid "Save"
-msgstr "Salvesta"
-
-#: app/views/groups/index.html.erb:112
-msgid "Delete"
-msgstr "Kustuta"
-
-#: app/views/groups/index.html.erb:114
-msgid "Are you sure to delete group '%s'?"
-msgstr ""
-
-#: app/views/users/_user_form.erb:5
-#, fuzzy
-#| msgid "Monitor Settings"
-msgid "Login Settings"
-msgstr "Monitori sätted"
-
-#: app/views/users/_user_form.erb:8
+#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
+#: app/views/users/new.html.erb:8
 #, fuzzy
 #| msgid "Name"
 msgid "Full Name"
 msgstr "Nimi"
 
-#: app/views/users/_user_form.erb:12
+#: app/views/users/index.html.erb:8
 #, fuzzy
-#| msgid "Login"
-msgid "Login Name"
-msgstr "Sisselogimine"
+#| msgid "&Edit"
+msgid "Edit"
+msgstr "&Redigeeri"
 
-# password dialog title
-#: app/views/users/_user_form.erb:17
-msgid "Password"
-msgstr "Parool"
-
-# password dialog title
-#: app/views/users/_user_form.erb:21
+#: app/views/users/index.html.erb:27
 #, fuzzy
-#| msgid "Change Password"
-msgid "Confirm Password"
-msgstr "Parooli muutmine"
+#| msgid "You are <strong>online</strong>"
+msgid "<strong>[New User]</strong>"
+msgstr "Sa oled <strong>ühendatud</strong>"
 
-#: app/views/users/_user_form.erb:39
+#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
+#: app/views/users/new.html.erb:44
+msgid "Back"
+msgstr "Tagasi"
+
+#: app/views/users/edit.html.erb:1
+msgid "Edit user %s"
+msgstr ""
+
+#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+msgid "Groups"
+msgstr "Rühmad"
+
+#: app/views/users/edit.html.erb:19
 #, fuzzy
 #| msgid "Default Route"
 msgid "Default Group"
 msgstr "Vaikemarsruut"
 
-#: app/views/users/_user_form.erb:61
-msgid "Advanced"
-msgstr "Täpsemalt"
-
-#: app/views/users/_user_form.erb:64
+#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
 #, fuzzy
 #| msgid "Directory\n"
 msgid "Home Directory"
 msgstr "Kataloog\n"
 
-#: app/views/users/_user_form.erb:68
+#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
 #, fuzzy
 #| msgid "Login"
 msgid "Login Shell"
 msgstr "Sisselogimine"
 
-#: app/views/users/_user_form.erb:72
+#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#, fuzzy
+#| msgid "Login"
+msgid "Login Name"
+msgstr "Sisselogimine"
+
+#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
 msgid "UID Number"
 msgstr ""
 
-#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
-msgid "Weak"
-msgstr ""
+# password dialog title
+#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+msgid "Password"
+msgstr "Parool"
 
-#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
-msgid "Normal"
-msgstr "Normaalne"
+#: app/views/users/edit.html.erb:43
+msgid "Update"
+msgstr "Uuendamine"
 
-#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
-#, fuzzy
-#| msgid "Media"
-msgid "Medium"
-msgstr "Andmekandja"
-
-#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
-msgid "Strong"
-msgstr ""
-
-#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
-msgid "Very Strong"
-msgstr ""
-
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
-#: app/views/users/new.html.erb:86
+#: app/views/users/new.html.erb:1
 #, fuzzy
 #| msgid "New Version"
-msgid "Users"
+msgid "New User"
 msgstr "Uus versioon"
 
-#: app/views/users/edit.html.erb:80
-msgid "Edit user %s"
-msgstr ""
-
-#: app/views/users/index.html.erb:52
+#: app/views/users/new.html.erb:16
 #, fuzzy
-#| msgid "New Version"
-msgid "Add New User"
-msgstr "Uus versioon"
+#| msgid "Default route ok."
+msgid "Default Group (GID)"
+msgstr "Vaikemarsruut korras."
 
-#: app/views/users/index.html.erb:68
-msgid "Are you sure to delete user '%s'?"
-msgstr ""
-
-#: app/views/users/index.html.erb:68
-msgid "Home directory will be deleted as well."
-msgstr ""
-
-#: app/views/users/index.html.erb:81
+#: app/views/users/new.html.erb:24
 #, fuzzy
-#| msgid "Groups"
-msgid "Manage Groups"
-msgstr "Rühmad"
+#| msgid "Cannot create directory %1: %2."
+msgid "Do not create home directory"
+msgstr "Ei saa luua katalooogi %1: %2"
 
-#: app/views/users/new.html.erb:86
+#: app/views/users/new.html.erb:44
 #, fuzzy
-#| msgid "Add Eraser"
-msgid "Add new user"
-msgstr "Kustutuskummi lisamine"
-
-#, fuzzy
-#~| msgid "Empty CA name."
-#~ msgid "Empty UID value"
-#~ msgstr "Tühi SK nimi."
-
-#, fuzzy
-#~| msgid "Local Network"
-#~ msgid "Local User"
-#~ msgstr "Kohalik võrk"
-
-#~ msgid "Login"
-#~ msgstr "Sisselogimine"
-
-#, fuzzy
-#~| msgid "&Edit"
-#~ msgid "Edit"
-#~ msgstr "&Redigeeri"
-
-#, fuzzy
-#~| msgid "You are <strong>online</strong>"
-#~ msgid "<strong>[New User]</strong>"
-#~ msgstr "Sa oled <strong>ühendatud</strong>"
-
-#~ msgid "Back"
-#~ msgstr "Tagasi"
-
-#~ msgid "Update"
-#~ msgstr "Uuendamine"
-
-#, fuzzy
-#~| msgid "Default route ok."
-#~ msgid "Default Group (GID)"
-#~ msgstr "Vaikemarsruut korras."
-
-#, fuzzy
-#~| msgid "Cannot create directory %1: %2."
-#~ msgid "Do not create home directory"
-#~ msgstr "Ei saa luua katalooogi %1: %2"
-
-#, fuzzy
-#~| msgid "Created On: "
-#~ msgid "Create"
-#~ msgstr "Loodud: "
+#| msgid "Created On: "
+msgid "Create"
+msgstr "Loodud: "

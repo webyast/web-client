@@ -1,94 +1,77 @@
-# Fabien Crespel <fabien@crespel.net>, 2009, 2010.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-03 16:31+0200\n"
-"PO-Revision-Date: 2010-05-01 19:00+0200\n"
-"Last-Translator: Fabien Crespel\n"
-"Language-Team: French <opensuse-fr@opensuse.org>\n"
+"Project-Id-Version: yast_webclient_status\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-06 08:12\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
 msgstr "Aucune donnée disponible pour afficher l'état du système."
 
-#: app/controllers/status_controller.rb:159
-msgid "Status not available."
-msgstr ""
-
-#: app/controllers/status_controller.rb:178
-msgid "Can't connect to host"
-msgstr ""
-
-#: app/controllers/status_controller.rb:180
-msgid "Can't connect to host %s."
-msgstr ""
-
-#: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:208
 msgid "Limits exceeded for "
-msgstr "Limites dépassées pour"
+msgstr "Limites dépassées pour "
 
-#: app/controllers/status_controller.rb:244
-msgid "Status not available"
-msgstr ""
-
-#: app/controllers/status_controller.rb:321
+#: app/controllers/status_controller.rb:337
 msgid "exceeded"
-msgstr ""
+msgstr "au-delà de"
 
-#: app/controllers/status_controller.rb:335
+#: app/controllers/status_controller.rb:351
 msgid "undercut"
-msgstr ""
+msgstr "sous"
 
-#: app/controllers/status_controller.rb:437
+#: app/controllers/status_controller.rb:453
 msgid "Limits have been written."
 msgstr "Les limites ont été écrites."
 
 #: app/views/status/edit.html.erb:48
 msgid "Only numbers are valid !"
-msgstr "Seuls les nombres sont valides !"
+msgstr "Seuls les nombres sont valides."
 
-# TLABEL lan_inetd_2002_01_04_0147__28
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:73 app/views/status/index.html.erb:49
 msgid "Status"
 msgstr "État"
 
-#: app/views/status/edit.html.erb:75
+#: app/views/status/edit.html.erb:73
 msgid "Settings"
 msgstr "Paramètres"
 
-#: app/views/status/edit.html.erb:89
+#: app/views/status/edit.html.erb:88
 msgid "undercuts"
-msgstr ""
+msgstr "sous"
 
-#: app/views/status/edit.html.erb:89
+#: app/views/status/edit.html.erb:88
 msgid "exceeds"
-msgstr ""
+msgstr "au-delà de"
 
-#: app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:93
 msgid "details"
 msgstr "détails"
 
-#: app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:109
 msgid "Details"
 msgstr "Détails"
 
-#: app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:165
 msgid "Edit Limits"
 msgstr "Modifier les limites"
 
 #: app/views/status/_status_graph.html.erb:2
 msgid "A problem occured when loading status information."
-msgstr "Un problème est survenu lors du chargement des informations sur l'état"
+msgstr "Un problème est survenu lors du chargement des informations d'état."
 
 #: app/views/status/_status_graph.html.erb:92
 msgid "Show last"
-msgstr "Afficher les dernières"
+msgstr "Afficher dernière(s)"
 
 #: app/views/status/_status_graph.html.erb:93
 msgid "5 Minutes"
@@ -114,7 +97,6 @@ msgstr "6 heures"
 msgid "12 Hours"
 msgstr "12 heures"
 
-# TLABEL linuxrc_2002_03_29_0036__95
 #: app/views/status/_status_summary.html.erb:3
 msgid "An problem occured when loading status information."
 msgstr "Un problème est survenu lors du chargement des informations d'état."
@@ -127,9 +109,13 @@ msgstr "Impossible de lire l'état du système - vous avez été déconnecté."
 msgid "Your system is healthy."
 msgstr "Votre système est en bon état."
 
-#: app/views/status/_status_summary.html.erb:26
+#: app/views/status/_status_summary.html.erb:21
+msgid "Start collectd"
+msgstr "Démarrer les éléments collectés"
+
+#: app/views/status/_status_summary.html.erb:29
 msgid "Loading system information"
-msgstr "Chargement des informations sur le système"
+msgstr "Chargement des informations relatives au système"
 
 #: app/views/status/_status_progress.html.erb:8
 msgid "Checking system status"
@@ -137,11 +123,11 @@ msgstr "Vérification de l'état du système"
 
 #: lib/plugin_translation.rb:46
 msgid "Registration is missing"
-msgstr "L'enregistrement est manquant"
+msgstr "Enregistrement manquant"
 
 #: lib/plugin_translation.rb:47
 msgid "Please register your system in order to get updates."
-msgstr "Veuillez enregistrer votre système pour obtenir des mises à jour."
+msgstr "Enregistrez votre système afin d'obtenir les mises à jour."
 
 #: lib/plugin_translation.rb:48
 msgid "register"
@@ -149,87 +135,17 @@ msgstr "enregistrer"
 
 #: lib/plugin_translation.rb:50
 msgid "Mail configuration test not confirmed"
-msgstr "Test de la configuration du courrier non confirmé"
+msgstr "Test de configuration de messagerie non confirmé"
 
 #: lib/plugin_translation.rb:51
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-"Lors de la configuration du courrier, un e-mail de test a été envoyé à %s. "
-"Le message a-t-il bien été envoyé à cette adresse ?<br>Si oui, confirmez-le "
-"en cliquant sur le bouton. Sinon, vérifiez à nouveau votre configuration du "
-"courrier."
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "Lors de la configuration de la messagerie, un message de test a été envoyé à %s. Le message est-il parvenu à cette adresse ?<br>Si oui, confirmez la réception en appuyant sur le bouton. Si non, revérifiez la configuration de votre messagerie."
 
 #: lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-"Il n'a pas été possible de récupérer le nom d'hôte complet de la machine. Si "
-"le mail n'a pas pu être envoyé, consultez la configuration réseau et/ou du "
-"courrier avec votre administrateur réseau."
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "La récupération du nom d'hôte entier de la machine a échoué. Si le message n'a pas pu être transmis, vérifiez le réseau et/ou la configuration de la messagerie avec votre administrateur réseau."
 
 #: lib/plugin_translation.rb:55
 msgid "Test mail received"
-msgstr "Courrier de test reçu"
+msgstr "Message de test reçu"
 
-# TLABEL kinternet_2002_02_20_2255__72
-#~ msgid "Start collectd"
-#~ msgstr "Démarrer collectd"
-
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Session invalide, veuillez vous reconnecter."
-
-#~ msgid "Disk free limits exceeded;"
-#~ msgstr "Limites d'espace disque libre dépassées ;"
-
-#~ msgid "Limits exceeded for %s"
-#~ msgstr "Limites dépassées pour %s"
-
-#~ msgid "Saving limits failed!"
-#~ msgstr "L'enregistrement des limites a échoué !"
-
-#~ msgid "Disk usage"
-#~ msgstr "Utilisation du disque"
-
-# TLABEL linuxrc_2002_03_29_0036__1
-#~ msgid "Back"
-#~ msgstr "Retour"
-
-#~ msgid "free"
-#~ msgstr "disponible"
-
-#~ msgid "used"
-#~ msgstr "utilisé"
-
-#~ msgid "Configure Status Limits"
-#~ msgstr "Configurer les limites d'état"
-
-#~ msgid "Status Path"
-#~ msgstr "Chemin d'état :"
-
-#~ msgid "Minimum Value"
-#~ msgstr "Valeur minimum"
-
-# TLABEL linuxrc_2002_03_29_0036__40
-#~ msgid "Maximum Value"
-#~ msgstr "Valeur maximum"
-
-#~ msgid "Save"
-#~ msgstr "Enregistrer"
-
-# TLABEL linuxrc_2002_03_29_0036__109
-#~ msgid "No status information available"
-#~ msgstr "Aucune information d'état disponible"
-
-#~ msgid "Events"
-#~ msgstr "Événements"
-
-#~ msgid "These values have been evaluated the last 5 minutes."
-#~ msgstr "Ces valeurs ont été évaluées dans les 5 dernières minutes."
-
-#~ msgid "Show details..."
-#~ msgstr "Afficher les détails..."

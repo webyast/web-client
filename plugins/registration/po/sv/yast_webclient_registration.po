@@ -1,273 +1,191 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2005-09-18 19:09+0200\n"
-"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 08:13\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/registration_controller.rb:11
-#, fuzzy
-#| msgid "Emails"
 msgid "Email"
 msgstr "E-post"
 
 #: app/controllers/registration_controller.rb:12
-#, fuzzy
-#| msgid "System"
 msgid "System name"
-msgstr "System"
+msgstr "Systemnamn"
 
 #: app/controllers/registration_controller.rb:13
-#, fuzzy
-#| msgid "&Administration"
 msgid "SLES registration code"
-msgstr "&Administration"
+msgstr "SLES-registreringskod"
 
 #: app/controllers/registration_controller.rb:14
-#, fuzzy
-#| msgid "&Administration"
 msgid "SLED registration code"
-msgstr "&Administration"
+msgstr "SLED-registreringskod"
 
 #: app/controllers/registration_controller.rb:15
-#, fuzzy
-#| msgid "Application Browser"
 msgid "Appliance registration code"
-msgstr "Programbläddrare"
+msgstr "Produktregistreringskod"
 
 #: app/controllers/registration_controller.rb:16
-#, fuzzy
-#| msgid "YaST installation source"
 msgid "WebYaST registration code"
-msgstr "YaST-installationskälla"
+msgstr "WebYaST-registreringskod"
 
 #: app/controllers/registration_controller.rb:17
-#, fuzzy
-#| msgid "&Administration"
 msgid "Registration code"
-msgstr "&Administration"
+msgstr "Registreringskod"
 
 #: app/controllers/registration_controller.rb:18
-#, fuzzy
-#| msgid "Host Names"
 msgid "Hostname"
 msgstr "Värddatornamn"
 
 #: app/controllers/registration_controller.rb:19
-#, fuzzy
-#| msgid "Modem device name"
 msgid "Device name"
-msgstr "Namn på modemenhet"
+msgstr "Enhetsnamn"
 
 #: app/controllers/registration_controller.rb:20
 msgid "Appliance name"
-msgstr ""
+msgstr "Produktnamn"
 
 #: app/controllers/registration_controller.rb:21
-#, fuzzy
-#| msgid "&Administration"
 msgid "registration code"
-msgstr "&Administration"
+msgstr "registreringskod"
 
 #: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "Ogiltig session. Logga in igen."
 
 #: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
-msgstr ""
+msgstr "Det finns inga behörigheter för registreringen"
 
 #: app/controllers/registration_controller.rb:84
 msgid "Please try to register again later."
-msgstr ""
+msgstr "Gör ett nytt försök med registreringen senare."
 
 #: app/controllers/registration_controller.rb:88
-#, fuzzy
-#| msgid "&Administration"
 msgid "Registration was skipped."
-msgstr "&Administration"
+msgstr "Registreringen hoppades över"
 
 #: app/controllers/registration_controller.rb:94
-#, fuzzy
-#| msgid "&Administration"
 msgid "Registration did not finish."
-msgstr "&Administration"
+msgstr "Registreringen slutfördes inte."
 
 #: app/controllers/registration_controller.rb:95
 msgid "Registration did not succeed."
-msgstr ""
+msgstr "Registreringen lyckades inte."
 
 #: app/controllers/registration_controller.rb:97
 msgid "This may be a temporary issue."
-msgstr ""
+msgstr "Detta kan vara ett tillfälligt problem."
 
 #: app/controllers/registration_controller.rb:102
 msgid "The registration server returned invalid or incomplete data."
-msgstr ""
+msgstr "Registreringsservern returnerade ogiltiga eller ofullständiga data."
 
 #: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
-msgstr ""
+msgstr "Fyll i posterna som saknas."
 
 #: app/controllers/registration_controller.rb:155
-#, fuzzy
-#| msgid "Service Removed"
 msgid "Service added:"
-msgstr "Tjänst borttagen"
+msgstr "Tjänst som lagts till:"
 
-#: app/controllers/registration_controller.rb:159
-#: app/controllers/registration_controller.rb:164
-#, fuzzy
-#| msgid "Catalog: "
+#: app/controllers/registration_controller.rb:159 app/controllers/registration_controller.rb:164
 msgid "Catalog enabled:"
-msgstr "Katalog: "
+msgstr "Aktiverad katalog:"
 
 #: app/controllers/registration_controller.rb:188
-#, fuzzy
-#| msgid "Repository: "
 msgid "Repository added:"
-msgstr "Arkiv:  "
+msgstr "Arkiv som lagts till:"
 
 #: app/controllers/registration_controller.rb:248
-#, fuzzy
-#| msgid "File already exist."
 msgid "This system is already registered."
-msgstr "Filen finns redan."
+msgstr "Systemet är redan registrerat."
 
 #: app/controllers/registration_controller.rb:277
 msgid "Registration finished successfully."
-msgstr ""
+msgstr "Registreringen är slutförd."
 
 #: app/controllers/registration_controller.rb:290
 msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
-msgstr ""
+msgstr "<p><b>Inga lagringsplatser ändrades under registreringen.</b></p><p>Förmodligen har en felaktig registreringskod använts. Prova igen om det stämmer så att du får tillgång till en lagringsplats för uppdateringar.</p><p>Kontrollera att systemet har konfigurerats med en lagringsplats för uppdateringar, annars går det inte att ta emot några uppdateringar.</p>"
 
 #: app/controllers/registration_controller.rb:324
 msgid "A connection to the registration server could not be established."
-msgstr ""
+msgstr "Det går inte att skapa en anslutning till registreringsservern."
 
 #: app/controllers/registration_controller.rb:328
 msgid "The transmitted registration data created a conflict."
-msgstr ""
+msgstr "Den överförda registreringsinformationen orsakade en konflikt."
 
 #: app/controllers/registration_controller.rb:336
 msgid "Registration can not be performed. There is no product installed that can be registered."
-msgstr ""
+msgstr "Registreringen går inte genomföra. Det finns ingen produkt som har installerats och kan registreras."
 
 #: app/controllers/registration_controller.rb:351
 msgid "A connection to the registration server could not be established or it did not reply."
-msgstr ""
+msgstr "Det gick inte att skapa en anslutningen till registreringsservern, eller också svarade den inte."
 
 #: app/controllers/registration_controller.rb:368
 msgid "The registration server returned invalid data."
-msgstr ""
+msgstr "Registreringsservern returnerade ogiltiga data."
 
 #: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "`%s' is not a valid ip address."
 msgid "Please enter a valid Email address."
-msgstr "`%s' är inte en giltig ip-adress."
+msgstr "Ange en giltig e-postadress."
 
 #: app/views/registration/index.rhtml:36
 msgid "register plugin"
-msgstr ""
+msgstr "insticksprogram för registrering"
 
 #: app/views/registration/index.rhtml:36
-#, fuzzy
-#| msgid "&Administration"
 msgid "Registration"
-msgstr "&Administration"
+msgstr "Registrering"
 
 #: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Disk Information"
 msgid "Registration Information"
-msgstr "Diskinformation"
+msgstr "Registreringsinformation"
 
 #: app/views/registration/index.rhtml:45
 msgid "This system is registered"
-msgstr ""
+msgstr "Systemet är registrerat"
 
 #: app/views/registration/index.rhtml:46
-#, fuzzy
-#| msgid "System:"
 msgid "System number (GUID)"
-msgstr "System:"
+msgstr "Systemnummer (GUID)"
 
 #: app/views/registration/index.rhtml:47
-#, fuzzy
-#| msgid "&Administration"
 msgid "Register again"
-msgstr "&Administration"
+msgstr "Registrera igen"
 
 #: app/views/registration/index.rhtml:54
-#, fuzzy
-#| msgid "&Next"
 msgid "Next"
-msgstr "&Nästa"
+msgstr "Nästa"
 
 #: app/views/registration/index.rhtml:64
-#, fuzzy
-#| msgid "Memory Information"
 msgid "Mandatory Information"
-msgstr "Minnesinformation"
+msgstr "Obligatorisk information"
 
 #: app/views/registration/index.rhtml:79
 msgid "Details"
-msgstr "Detaljer"
+msgstr "Information"
 
 #: app/views/registration/index.rhtml:104
 msgid "Skip"
-msgstr ""
+msgstr "Hoppa över"
 
 #: app/views/registration/index.rhtml:105
-#, fuzzy
-#| msgid "Poststop"
 msgid "Postpone"
-msgstr "Efterstopp"
+msgstr "Skjut upp"
 
 #: app/views/registration/index.rhtml:106
 msgid "or"
-msgstr ""
+msgstr "eller"
 
-#, fuzzy
-#~| msgid "An error occurred during the installation."
-#~ msgid "An error occurred during registration. Please try again."
-#~ msgstr "Ett fel uppstod under installationen."
-
-#, fuzzy
-#~| msgid "An error occurred while reading from the installation source."
-#~ msgid "Error occured while connecting to registration server."
-#~ msgstr "Ett fel uppstod vid läsning från installationskällan."
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgid "Detail"
-#~ msgstr "Detaljer"
-
-#, fuzzy
-#~| msgid "Changed profiles"
-#~ msgid "Changed Repositories"
-#~ msgstr "Ändrade profiler"
-
-#, fuzzy
-#~| msgid "Changed profiles"
-#~ msgid "Changed Services"
-#~ msgstr "Ändrade profiler"
-
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"

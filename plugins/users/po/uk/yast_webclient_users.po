@@ -5,249 +5,137 @@
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2009.
-# Rev. Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users.uk\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-16 18:20-0700\n"
-"Last-Translator: Rev. Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
-"Language-Team: Ukrainian <kde-i18n-doc@kde.org>\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-09-27 16:42-0700\n"
+"Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/groups_controller.rb:15
-msgid "Missing group name parameter"
-msgstr "Відсутні параметри групи"
+#: app/controllers/users_controller.rb:18
+msgid "Invalid session, please login again."
+msgstr "Нечинний сеанс, увійдіть знов."
 
-#: app/controllers/groups_controller.rb:27
-msgid "Missing group parameters"
-msgstr "Відсутні параметри групи"
-
-#: app/controllers/groups_controller.rb:37
-msgid "Please enter a valid group name"
-msgstr "Будь ласка, введіть чинну назву групи"
-
-#: app/controllers/groups_controller.rb:47
-msgid "Please enter a valid GID"
-msgstr "Введіть чинний ідентифікатор групи (GID)"
-
-#: app/controllers/groups_controller.rb:57
-msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "Будь ласка, введіть чинний тип групи. Дозволяються тільки \"system\" або \"local\"."
-
-#: app/controllers/groups_controller.rb:68
-msgid "Please enter a valid list of members"
-msgstr "Будь ласка, введіть чинний список членів"
-
-#: app/controllers/groups_controller.rb:82
-msgid "Cannot read users list."
-msgstr "Неможливо прочитати список користувачів."
-
-#: app/controllers/groups_controller.rb:118
-msgid "Cannot read groups list."
-msgstr "Неможливо прочитати список груп."
-
-#: app/controllers/groups_controller.rb:209
-msgid "Unknown backend error"
-msgstr "Невідома помилка фонової програми"
-
-#: app/controllers/users_controller.rb:154
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully created."
-msgstr "Успішно створено користувача <i>%s</i>."
+msgstr "Успішно додано службу «%s»."
 
-#: app/controllers/users_controller.rb:196
+#: app/controllers/users_controller.rb:148
+msgid "Empty UID value"
+msgstr "Порожнє значення ідентифікатора користувача"
+
+#: app/controllers/users_controller.rb:152
+msgid "UID: value >= 1000 is valid for local user only"
+msgstr "UID: значення >= 1000 чинне тільки для локального користувача"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully updated."
-msgstr "Успішно оновлено користувача <i>%s</i>."
+msgstr "Успішно додано службу «%s»."
 
-#: app/controllers/users_controller.rb:217
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
 msgid "User <i>%s</i> was successfully removed."
-msgstr "Успішно вилучено користувача <i>%s</i>."
+msgstr "Вказане блокування було успішно знято."
 
-#: app/controllers/users_controller.rb:219
+#: app/controllers/users_controller.rb:220
+#, fuzzy
+#| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Помилка: Не вдалось вилучити користувача <i>%s</i>."
+msgstr "Помилка: Не вдалось прочитати профіль %s: %s.\n"
 
-#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
-#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
-msgid "Groups"
-msgstr "Групи"
+#: app/views/users/index.html.erb:1
+msgid "Local User"
+msgstr "Локальний користувач"
 
-#: app/views/groups/edit.html.erb:35
-msgid "Add new group"
-msgstr "Додати нову групу"
+#: app/views/users/index.html.erb:6
+msgid "Login"
+msgstr "Користувач"
 
-#: app/views/groups/edit.html.erb:37
-msgid "Modify group"
-msgstr "Змінити групу"
-
-#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
-msgid "Group Name"
-msgstr "Назви групи"
-
-#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
-msgid "Group ID"
-msgstr "Ідентифікатор групи"
-
-#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
-msgid "Default members"
-msgstr "Типові члени"
-
-#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
-msgid "Members"
-msgstr "Члени"
-
-#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
-msgid "Processing ..."
-msgstr "Опрацювання..."
-
-#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
-msgid "Filter:"
-msgstr "Фільтр:"
-
-#: app/views/groups/index.html.erb:78
-msgid "Add New Group"
-msgstr "Додати нову групу"
-
-#: app/views/groups/index.html.erb:110
-msgid "Save"
-msgstr "Зберегти"
-
-#: app/views/groups/index.html.erb:112
-msgid "Delete"
-msgstr "Вилучити"
-
-#: app/views/groups/index.html.erb:114
-msgid "Are you sure to delete group '%s'?"
-msgstr "Дійсно вилучити групу '%s'?"
-
-#: app/views/users/_user_form.erb:5
-msgid "Login Settings"
-msgstr "Параметри входу"
-
-#: app/views/users/_user_form.erb:8
+#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
+#: app/views/users/new.html.erb:8
 msgid "Full Name"
 msgstr "Повне ім'я"
 
-#: app/views/users/_user_form.erb:12
-msgid "Login Name"
-msgstr "Користувач"
+#: app/views/users/index.html.erb:8
+msgid "Edit"
+msgstr "Змінити"
 
-# password dialog title
-#: app/views/users/_user_form.erb:17
-msgid "Password"
-msgstr "Пароль"
+#: app/views/users/index.html.erb:27
+msgid "<strong>[New User]</strong>"
+msgstr "<strong>[Новий користувач]</strong>"
 
-#: app/views/users/_user_form.erb:21
-msgid "Confirm Password"
-msgstr "Підтвердити пароль"
+#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
+#: app/views/users/new.html.erb:44
+msgid "Back"
+msgstr "Назад"
 
-#: app/views/users/_user_form.erb:39
-msgid "Default Group"
-msgstr "Типова група"
-
-#: app/views/users/_user_form.erb:61
-msgid "Advanced"
-msgstr "Додатково"
-
-#: app/views/users/_user_form.erb:64
-msgid "Home Directory"
-msgstr "Домашній каталог"
-
-#: app/views/users/_user_form.erb:68
-msgid "Login Shell"
-msgstr "Оболонка входу в систему"
-
-#: app/views/users/_user_form.erb:72
-msgid "UID Number"
-msgstr "Ідентифікатор користувача (UID)"
-
-#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
-msgid "Weak"
-msgstr "Слабкий"
-
-#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
-msgid "Normal"
-msgstr "Нормальний"
-
-#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
-msgid "Medium"
-msgstr "Посередній"
-
-#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
-msgid "Strong"
-msgstr "Сильний"
-
-#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
-msgid "Very Strong"
-msgstr "Дуже сильний"
-
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
-#: app/views/users/new.html.erb:86
-msgid "Users"
-msgstr "Користувачі"
-
-#: app/views/users/edit.html.erb:80
+#: app/views/users/edit.html.erb:1
+#, fuzzy
+#| msgid "Edit User %s"
 msgid "Edit user %s"
 msgstr "Редагувати користувача %s"
 
-#: app/views/users/index.html.erb:52
-msgid "Add New User"
-msgstr "Додати нового користувача"
+#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+msgid "Groups"
+msgstr "Групи"
 
-#: app/views/users/index.html.erb:68
-msgid "Are you sure to delete user '%s'?"
-msgstr "Дійсно вилучити користувача '%s'?"
+#: app/views/users/edit.html.erb:19
+msgid "Default Group"
+msgstr "Типова група"
 
-#: app/views/users/index.html.erb:68
-msgid "Home directory will be deleted as well."
-msgstr "Домашній каталог буде також вилучено"
+#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
+msgid "Home Directory"
+msgstr "Домашній каталог"
 
-#: app/views/users/index.html.erb:81
-msgid "Manage Groups"
-msgstr "Керування групами"
+#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
+msgid "Login Shell"
+msgstr "Оболонка входу в систему"
 
-#: app/views/users/new.html.erb:86
-msgid "Add new user"
-msgstr "Додати нового користувача"
+#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+msgid "Login Name"
+msgstr "Користувач входу в систему"
 
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Нечинний сеанс, увійдіть знов."
+#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
+msgid "UID Number"
+msgstr "Номер UID"
 
-#~ msgid "Empty UID value"
-#~ msgstr "Порожнє значення ідентифікатора користувача"
+# password dialog title
+#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+msgid "Password"
+msgstr "Пароль"
 
-#~ msgid "UID: value >= 1000 is valid for local user only"
-#~ msgstr "UID: значення >= 1000 чинне тільки для локального користувача"
+#: app/views/users/edit.html.erb:43
+msgid "Update"
+msgstr "Оновити"
 
-#~ msgid "Local User"
-#~ msgstr "Локальний користувач"
+#: app/views/users/new.html.erb:1
+msgid "New User"
+msgstr "Новий користувач"
 
-#~ msgid "Login"
-#~ msgstr "Користувач"
+#: app/views/users/new.html.erb:16
+msgid "Default Group (GID)"
+msgstr "Типова група (GID)"
 
-#~ msgid "Edit"
-#~ msgstr "Змінити"
-
-#~ msgid "<strong>[New User]</strong>"
-#~ msgstr "<strong>[Новий користувач]</strong>"
-
-#~ msgid "Back"
-#~ msgstr "Назад"
-
-#~ msgid "Update"
-#~ msgstr "Оновити"
-
-#~ msgid "Default Group (GID)"
-#~ msgstr "Типова група (GID)"
-
+#: app/views/users/new.html.erb:24
 #, fuzzy
-#~| msgid "do NOT create home directory"
-#~ msgid "Do not create home directory"
-#~ msgstr "НЕ створювати домашню теку"
+#| msgid "do NOT create home directory"
+msgid "Do not create home directory"
+msgstr "НЕ створювати домашню теку"
 
-#~ msgid "Create"
-#~ msgstr "Створити"
+#: app/views/users/new.html.erb:44
+msgid "Create"
+msgstr "Створити"
+
+#~ msgid "User"
+#~ msgstr "Користувач"

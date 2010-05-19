@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -14,138 +14,114 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:43
+msgid "No permissions for network module"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
 msgid "Not configured"
 msgstr "Nie gekonfigureer nie"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 #, fuzzy
 #| msgid "Manual Mode"
 msgid "Manual"
 msgstr "Met-die-hand modus"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 #, fuzzy
 #| msgid "Automatic Mode"
 msgid "Automatic"
 msgstr "Outomatiese modus"
 
-#: app/controllers/network_controller.rb:134
+#: app/controllers/network_controller.rb:105
 msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:118
-msgid "whitespace - invalid character."
-msgstr ""
-
-#: app/views/network/index.html.erb:120
-#, fuzzy
-#| msgid "The VM's name cannot start with a digit."
-msgid " - can not start with a digit."
-msgstr "Die SM se naam kan nie met ’n syfer begin nie."
-
-#: app/views/network/index.html.erb:122
-#, fuzzy
-#| msgid "The option 'flush' is not allowed"
-msgid "periodic '-' is not allowed."
-msgstr "Die opsie ‘spoel’ word nie toegelaat nie"
-
-#: app/views/network/index.html.erb:124
-msgid "can not end with (-) hyphen."
-msgstr ""
-
-#: app/views/network/index.html.erb:127
-msgid "can not start with (-) hyphen."
-msgstr ""
-
-#: app/views/network/index.html.erb:129
-msgid " - is invalid character for hostname."
-msgstr ""
-
-#: app/views/network/index.html.erb:154
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:163
+#: app/views/network/index.html.erb:97
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:169
+#: app/views/network/index.html.erb:103
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:175
+#: app/views/network/index.html.erb:109
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:115
 #, fuzzy
 #| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
 msgstr "Geen geldige versoeklêer gespesifiseer nie."
 
-#: app/views/network/index.html.erb:187
-msgid "Domain is required. An empty domain is not supported."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
-#: app/views/network/index.html.erb:210
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Netwerk"
 
-#: app/views/network/index.html.erb:221
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Koppelvlak"
 
-#: app/views/network/index.html.erb:226
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "Select Script"
 msgid "Select"
 msgstr "Kies skrip"
 
-#: app/views/network/index.html.erb:243
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "Konfigurasie"
 
-#: app/views/network/index.html.erb:252
+#: app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "Own Address"
 msgid "IP address"
 msgstr "Eie adres"
 
-#: app/views/network/index.html.erb:256
+#: app/views/network/index.html.erb:174
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:260
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "Verstekroete"
-
-#: app/views/network/index.html.erb:269
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Gasheername"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:274
+#: app/views/network/index.html.erb:185
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Domein\n"
 
-#: app/views/network/index.html.erb:278
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "Naambediener"
 
-#: app/views/network/index.html.erb:282
+#: app/views/network/index.html.erb:193
 msgid "Search domains"
 msgstr ""
+
+#: app/views/network/index.html.erb:201
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "Verstekroete"
 
 #, fuzzy
 #~| msgid "Do not start"

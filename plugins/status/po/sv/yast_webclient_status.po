@@ -1,50 +1,41 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: yast_webclient_status\n"
 "POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2005-09-18 19:09+0200\n"
-"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2010-04-20 09:47\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "Inga data för att visa systemstatus hittades."
 
 #: app/controllers/status_controller.rb:187
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
 msgid "Limits exceeded for "
-msgstr "Tillägg lyckades för %s.\n"
+msgstr "Gränser överskridna för "
 
 #: app/controllers/status_controller.rb:316
-#, fuzzy
-#| msgid "Needed"
 msgid "exceeded"
-msgstr "Behövd"
+msgstr "överskridna"
 
 #: app/controllers/status_controller.rb:330
 msgid "undercut"
-msgstr ""
+msgstr "underskridna"
 
 #: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
-msgstr ""
+msgstr "Gränserna har sparats."
 
 #: app/views/status/edit.html.erb:27
 msgid "Only numbers are valid !"
-msgstr ""
+msgstr "Endast siffror är giltiga."
 
 #: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
@@ -56,19 +47,15 @@ msgstr "Inställningar"
 
 #: app/views/status/edit.html.erb:66
 msgid "undercuts"
-msgstr ""
+msgstr "underskrider"
 
 #: app/views/status/edit.html.erb:66
-#, fuzzy
-#| msgid "Feeds"
 msgid "exceeds"
-msgstr "Källor"
+msgstr "överskrider"
 
 #: app/views/status/index.html.erb:71
-#, fuzzy
-#| msgid "Details"
 msgid "details"
-msgstr "Detaljer"
+msgstr "detaljer"
 
 #: app/views/status/index.html.erb:87
 msgid "Details"
@@ -76,154 +63,89 @@ msgstr "Detaljer"
 
 #: app/views/status/index.html.erb:143
 msgid "Edit Limits"
-msgstr ""
+msgstr "Redigera begränsningar"
 
 #: app/views/status/_status_graph.html.erb:1
-#, fuzzy
-#| msgid "An error occurred during the installation."
 msgid "A problem occured when loading status information."
-msgstr "Ett fel uppstod under installationen."
+msgstr "Det inträffade ett problem när statusinformationen lästes in."
 
 #: app/views/status/_status_graph.html.erb:91
-#, fuzzy
-#| msgid "&Show changes"
 msgid "Show last"
-msgstr "Vi&sa ändringar"
+msgstr "Visa senaste"
 
 #: app/views/status/_status_graph.html.erb:92
-#, fuzzy
-#| msgid " Minutes"
 msgid "5 Minutes"
-msgstr " minuter"
+msgstr "5 minuter"
 
 #: app/views/status/_status_graph.html.erb:93
-#, fuzzy
-#| msgid " Minutes"
 msgid "15 Minutes"
-msgstr " minuter"
+msgstr "15 minuter"
 
 #: app/views/status/_status_graph.html.erb:94
-#, fuzzy
-#| msgid " Minutes"
 msgid "30 Minutes"
-msgstr " minuter"
+msgstr "30 minuter"
 
 #: app/views/status/_status_graph.html.erb:95
-#, fuzzy
-#| msgid " Hours"
 msgid "1 Hour"
-msgstr " Timmar"
+msgstr "1 timme"
 
 #: app/views/status/_status_graph.html.erb:96
-#, fuzzy
-#| msgid " Hours"
 msgid "6 Hours"
-msgstr " Timmar"
+msgstr "6 timmar"
 
 #: app/views/status/_status_graph.html.erb:97
-#, fuzzy
-#| msgid " Hours"
 msgid "12 Hours"
-msgstr " Timmar"
+msgstr "12 timmar"
 
 #: app/views/status/_status_summary.html.erb:2
-#, fuzzy
-#| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
-msgstr "Ett fel uppstod under installationen."
+msgstr "Det inträffade ett problem när statusinformationen lästes in."
 
 #: app/views/status/_status_summary.html.erb:12
 msgid "Cannot read system status - you have been logged out."
-msgstr ""
+msgstr "Det går inte att läsa systemstatus. Du har loggats ut."
 
 #: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
-msgstr ""
+msgstr "Systemet fungerar som det ska."
 
 #: app/views/status/_status_summary.html.erb:20
 msgid "Start collectd"
-msgstr ""
+msgstr "Börja insaml."
 
 #: app/views/status/_status_summary.html.erb:28
-#, fuzzy
-#| msgid "System Information"
 msgid "Loading system information"
-msgstr "Systeminformation"
+msgstr "Läser in systeminformation"
 
 #: app/views/status/_status_progress.html.erb:7
 msgid "Checking system status"
-msgstr ""
+msgstr "Kontrollerar systemstatus"
 
 #: lib/plugin_translation.rb:25
-#, fuzzy
-#| msgid "Required file is missing: "
 msgid "Registration is missing"
-msgstr "Fil som krävs saknas: "
+msgstr "Registrering saknas"
 
 #: lib/plugin_translation.rb:26
 msgid "Please register your system in order to get updates."
-msgstr ""
+msgstr "Du måste registrera ditt system om du vill hämta uppdateringar."
 
 #: lib/plugin_translation.rb:27
 msgid "register"
-msgstr ""
+msgstr "registrera"
 
-# %s is either BOOTP or DHCP
 #: lib/plugin_translation.rb:29
-#, fuzzy
-#| msgid "The configuration is not initialized."
 msgid "Mail configuration test not confirmed"
-msgstr "Konfigurationen har inte initierats."
+msgstr "Konfigurationstestet för post har inte bekräftats"
 
 #: lib/plugin_translation.rb:30
 msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr ""
+msgstr "När posten konfigurerades skickades ett meddelande till %s. Kom meddelandet fram till denna adress?<br> Om det kom fram bekräftar du genom att klicka på knappen. Om det inte kom fram kontrollerar du konfigurationen igen."
 
 #: lib/plugin_translation.rb:33
 msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr ""
+msgstr "Det gick inte att hämta datorns fullständiga värdnamn. Om meddelandet inte kan levereras bör du kontakta nätverksdministratören angående nätverket och/eller e-postkonfigurationen."
 
 #: lib/plugin_translation.rb:34
 msgid "Test mail received"
-msgstr ""
+msgstr "Testmeddelande mottaget"
 
-#, fuzzy
-#~| msgid "Saving the changes failed"
-#~ msgid "Saving limits failed!"
-#~ msgstr "Misslyckades med att spara ändringar"
-
-#~ msgid "Back"
-#~ msgstr "Tillbaka"
-
-#, fuzzy
-#~| msgid "Configure Notifications..."
-#~ msgid "Configure Status Limits"
-#~ msgstr "Ställ in meddelanden..."
-
-#, fuzzy
-#~| msgid "Status: "
-#~ msgid "Status Path"
-#~ msgstr "Status: "
-
-#, fuzzy
-#~| msgid "Maximum Memory"
-#~ msgid "Maximum Value"
-#~ msgstr "Maximalt minne"
-
-#~ msgid "Save"
-#~ msgstr "Spara"
-
-#, fuzzy
-#~| msgid "No information available."
-#~ msgid "No status information available"
-#~ msgstr "Ingen information tillgänglig."
-
-#, fuzzy
-#~| msgid "Button Events"
-#~ msgid "Events"
-#~ msgstr "Knapphändelser"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Show details..."
-#~ msgstr "Detaljer..."

@@ -5,153 +5,41 @@
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 # Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2009.
-# Rev. Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2010.
-# I. Petrouchtchak <ivanpetrouchtchak@yahoo.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient.uk\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-05-06 13:27-0700\n"
-"Last-Translator: I. Petrouchtchak <ivanpetrouchtchak@yahoo.com>\n"
-"Language-Team: Ukrainian <kde-i18n-doc@kde.org>\n"
+"POT-Creation-Date: 2009-11-20 14:33+0100\n"
+"PO-Revision-Date: 2009-09-27 16:39-0700\n"
+"Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/helpers/application_helper.rb:20
-msgid " or "
-msgstr " або "
+#: app/controllers/application_controller.rb:53
+msgid "You must accept all EULAs before using this product!"
+msgstr ""
 
-#: app/helpers/application_helper.rb:24
-msgid " - "
-msgstr " - "
-
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Назад"
-
-# cancel button label
-#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
-msgid "Cancel"
-msgstr "Скасувати"
-
-#: app/helpers/application_helper.rb:52
-msgid "Save"
-msgstr "Зберегти"
-
-#: app/helpers/application_helper.rb:55
-msgid "Next"
-msgstr "Далі"
-
-#: app/helpers/application_helper.rb:56
-msgid "Finish"
-msgstr "Закінчити"
-
-#: app/helpers/view_helpers/html_helper.rb:9
-msgid "Are you sure?"
-msgstr "Ви впевнені?"
-
-#: app/helpers/view_helpers/html_helper.rb:133
-msgid "Unknown error"
-msgstr "Невідома помилка"
-
-#: app/helpers/view_helpers/html_helper.rb:137
-#: app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "Немає інформації"
-
-#: app/helpers/view_helpers/html_helper.rb:140
-msgid "There was a problem retrieving information from the server."
-msgstr "Трапилась помилка при спробі отримання інформації з сервера."
-
-#: app/helpers/view_helpers/effect_helper.rb:32
-msgid "Hide Details"
-msgstr "Сховати подробиці"
-
-#: app/helpers/view_helpers/effect_helper.rb:33
-msgid "Show Details"
-msgstr "Показати подробиці"
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Додати"
-
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Змінити"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Вилучити"
-
-#: app/controllers/sessions_controller.rb:49
-msgid "You need to specify the host"
-msgstr "Вам слід вказати вузол"
-
-#: app/controllers/sessions_controller.rb:52
-msgid "No login specified"
-msgstr "Не вказано користувача"
-
-#: app/controllers/sessions_controller.rb:55
-msgid "No password specified"
-msgstr "Не вказано пароль"
-
-#: app/controllers/sessions_controller.rb:74
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "Вузол заблокував користувача %s. Неможливо увійти до  %s"
-
-#: app/controllers/sessions_controller.rb:97
-msgid "Login incorrect. Check your username and password."
-msgstr "Помилка входу. Перевірте ім'я користувача та пароль."
-
-#: app/controllers/sessions_controller.rb:130
-msgid "You have been logged out."
-msgstr "Ви вийшли з системи."
-
-#: app/controllers/application_controller.rb:24
-msgid "Session timeout"
-msgstr "Тайм-аут сеансу"
-
-#: app/controllers/application_controller.rb:79
-msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
-msgstr "Вам цього не дозволено. Якщо вам потрібна ця дія, зверніться до свого системного адміністратора."
+#: app/controllers/application_controller.rb:57
+msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+msgstr ""
 
 # %s is FTP or HTTP
-#: app/controllers/application_controller.rb:117
+#: app/controllers/application_controller.rb:111
 msgid "Please login to continue"
 msgstr "Будь ласка, увійдіть, щоб продовжити"
 
-#: app/controllers/application_controller.rb:124
+#: app/controllers/application_controller.rb:118
 msgid "You must logout before you can login"
 msgstr "Мусите вийти з системи перед тим як увійти"
 
-#: app/controllers/application_controller.rb:213
-msgid "can't be blank"
-msgstr "не може бути порожнім"
-
-#: app/controllers/application_controller.rb:214
-msgid "is out of allowed values"
-msgstr "є поза дозволеними межами"
-
-#: app/controllers/application_controller.rb:215
-msgid "can't be empty"
-msgstr "не може бути порожнім"
-
-#: app/controllers/application_controller.rb:216
-msgid "is invalid"
-msgstr "нечинний"
-
-#: app/controllers/application_controller.rb:231
-msgid "Invalid parameters:"
-msgstr "Нечинні параметри"
-
 #: app/controllers/hosts_controller.rb:25
+#, fuzzy
+#| msgid "Can't chroot to '%s' (%s)."
 msgid "Can't connect to host %s."
-msgstr "Неможливо з'єднатися з вузлом %s."
+msgstr "Не вдалося створити chroot для \"%s\" (%s)."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
@@ -162,12 +50,40 @@ msgid "Please select a host to connect to."
 msgstr "Будь ласка, виберіть вузол, до якого приєднатись."
 
 #: app/controllers/hosts_controller.rb:31
+#, fuzzy
+#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Неможливо знайти вузол '%s'."
+msgstr "Сховище «%s» не знайдено."
 
 #: app/controllers/hosts_controller.rb:32
+#, fuzzy
+#| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
-msgstr "Ще раз перевірте URL вузла."
+msgstr "%s не існує, будь ласка, ще раз перевірте шлях."
+
+#: app/controllers/sessions_controller.rb:51
+msgid "You need to specify the host"
+msgstr "Вам слід вказати вузол"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "No login specified"
+msgstr "Не вказано користувача"
+
+#: app/controllers/sessions_controller.rb:57
+msgid "No password specified"
+msgstr "Не вказано пароль"
+
+#: app/controllers/sessions_controller.rb:76
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:99
+msgid "Login incorrect. Check your username and password."
+msgstr "Помилка входу. Перевірте ім'я користувача та пароль."
+
+#: app/controllers/sessions_controller.rb:132
+msgid "You have been logged out."
+msgstr "Ви вийшли з системи."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -221,9 +137,102 @@ msgstr "Вузол|Створено"
 msgid "Host|Updated at"
 msgstr "Вузол|Оновлено"
 
-#: app/views/main/_select_language.html.erb:18
-msgid "Language Selection"
-msgstr "Вибір мови"
+#: app/helpers/application_helper.rb:15
+msgid " or "
+msgstr ""
+
+# cancel button label
+#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: app/helpers/application_helper.rb:28
+msgid "Save"
+msgstr "Зберегти"
+
+#: app/helpers/application_helper.rb:30
+msgid "Next"
+msgstr "Далі"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Додати"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Змінити"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Вилучити"
+
+#: app/helpers/view_helpers/html_helper.rb:10
+msgid "Are you sure?"
+msgstr "Ви впевнені?"
+
+#: app/helpers/view_helpers/html_helper.rb:132
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown error"
+msgstr "Невідома помилка\n"
+
+#: app/helpers/view_helpers/html_helper.rb:136
+#: app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "Немає інформації"
+
+#: app/helpers/view_helpers/html_helper.rb:139
+msgid "There was a problem retrieving information from the server."
+msgstr ""
+
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Будь ласка, виберіть службу:"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr "Редагування веб-служби YaST"
+
+#: app/views/hosts/edit.html.erb:22
+msgid "YaST-Web-Service"
+msgstr "YaST-Web-Service"
+
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
+msgid "Name"
+msgstr "Назва"
+
+#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
+msgid "Url"
+msgstr "Url"
+
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
+msgid "Description"
+msgstr "Опис"
+
+#: app/views/hosts/edit.html.erb:38
+msgid "Ok"
+msgstr "Гаразд"
+
+#: app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Назад"
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Індекс"
+
+#: app/views/hosts/new.html.erb:4
+msgid "New WebYaST Host"
+msgstr "Новий вузол WebYaST"
+
+#: app/views/hosts/new.html.erb:47
+msgid "Create"
+msgstr "Створити"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
@@ -231,8 +240,8 @@ msgid "This is embarrasing...."
 msgstr "Це встид...."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but there are some problems."
-msgstr "Вибачте, є деякі проблеми."
+msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgstr "Вибачте, алеWebYaST ще в альфа-версії і має деякі проблеми."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
@@ -252,161 +261,38 @@ msgid "Don't forget to include the bug details."
 msgstr "Не забудьте включити подробиці про ваду."
 
 #: app/views/shared/backendexception_trap.html.erb:4
+#, fuzzy
+#| msgid "Problem occur on target machine."
 msgid "Problem occured on target machine."
 msgstr "Трапилась проблема на машині цілі."
 
-#: app/views/shared/_missing_write_permissions.html.erb:1
-msgid "You do not have permissions to modify the settings."
-msgstr "Ви не маєте дозволу на зміну параметрів."
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr "Редагування веб-служби YaST"
-
-#: app/views/hosts/edit.html.erb:22
-msgid "YaST-Web-Service"
-msgstr "YaST-Web-Service"
-
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
-msgid "Name"
-msgstr "Назва"
-
-#: app/views/hosts/edit.html.erb:29
-msgid "Url"
-msgstr "Url"
-
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
-msgid "Description"
-msgstr "Опис"
-
-#: app/views/hosts/edit.html.erb:38
-msgid "Ok"
-msgstr "Гаразд"
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "Будь ласка, виберіть службу:"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr "Вилучити вузол %s ?"
-
-#: app/views/hosts/new.html.erb:9
-msgid "New WebYaST Host"
-msgstr "Новий вузол WebYaST"
-
-#: app/views/hosts/new.html.erb:41
-msgid "URL"
-msgstr "URL"
-
-#: app/views/hosts/new.html.erb:53
-msgid "Create"
-msgstr "Створити"
-
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Індекс"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:72
-msgid "Configuration"
-msgstr "Налаштування"
-
-#: app/views/controlpanel/index.rhtml:27
-msgid "Status"
-msgstr "Стан"
-
-#: app/views/controlpanel/index.rhtml:35
-msgid "System actions"
-msgstr "Системні дії"
-
-# reboot button label
-#: app/views/controlpanel/index.rhtml:37
-msgid "Reboot"
-msgstr "Перезапустити"
-
-#: app/views/controlpanel/index.rhtml:38
-msgid "Really reboot %s?"
-msgstr "Перезапустити %s?"
-
-#: app/views/controlpanel/index.rhtml:39
-msgid "Shutdown"
-msgstr "Вимкнути"
-
-#: app/views/controlpanel/index.rhtml:40
-msgid "Really shutdown %s?"
-msgstr "Вимкнути %s?"
-
-#: app/views/controlpanel/index.rhtml:48
-msgid "Loading patch information"
-msgstr "Звантаження інформації про латки"
-
-#: app/views/controlpanel/index.rhtml:50
-msgid "Patch status summary is disabled in the config file."
-msgstr "Зведення стану латок вимкнено у файлі конфігурації."
-
-#: app/views/controlpanel/index.rhtml:53
-msgid "Patch plugin is not installed."
-msgstr "Не встановлено додаток для латок."
-
-#: app/views/controlpanel/index.rhtml:60
-msgid "Loading system information"
-msgstr "Звантаження інформації про систему"
-
-#: app/views/controlpanel/index.rhtml:62
-msgid "System status summary is disabled in the config file."
-msgstr "Зведення стану системи вимкнено у файлі конфігурації."
-
-#: app/views/controlpanel/index.rhtml:65
-msgid "Status plugin is not installed."
-msgstr "Не встановлено додаток про стан."
-
-#: app/views/controlpanel/index.rhtml:102
-msgid "Show all modules"
-msgstr "Показати всі модулі"
-
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "Налаштування базової системи"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your initial system setup was not completed. Please continue with setting up the modules."
-msgstr "Початкове налаштування вашої системи не завершено. Продовжіть налаштування модулів."
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Continue initial system setup"
-msgstr "Продовжити початкове налаштування системи"
-
-#: app/views/layouts/main.rhtml:36
+#: app/views/layouts/main.rhtml:34
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:50
+#: app/views/layouts/main.rhtml:48
 msgid "My Appliance"
 msgstr "Мій окремий пристрій"
 
-# label for language selection
-#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
-msgid "Language:"
-msgstr "Мова:"
-
-#: app/views/layouts/main.rhtml:62
+#: app/views/layouts/main.rhtml:56
+#, fuzzy
+#| msgid "Connected Host"
 msgid "Connected host:"
-msgstr "З'єднано з вузлом:"
+msgstr "З'єднано з вузлом"
 
-#: app/views/layouts/main.rhtml:63
+#: app/views/layouts/main.rhtml:57
 msgid "User:"
 msgstr "Користувач:"
 
-#: app/views/layouts/main.rhtml:66
+#: app/views/layouts/main.rhtml:60
 msgid "Control panel"
 msgstr "Центр керування"
 
-#: app/views/layouts/main.rhtml:67
+#: app/views/layouts/main.rhtml:61
 msgid "Logout"
 msgstr "Вийти"
 
-#: app/views/layouts/main.rhtml:102
+#: app/views/layouts/main.rhtml:93
 msgid "...Wait..."
 msgstr "...Зачекайте..."
 
@@ -415,8 +301,10 @@ msgid "Login"
 msgstr "Вхід"
 
 #: app/views/sessions/new.rhtml:6
+#, fuzzy
+#| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "Введіть потрібні дані входу для вузла %s."
+msgstr "Введіть специфічні параметри для набору мікросхем \"%s\"."
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
@@ -426,54 +314,115 @@ msgstr "Користувач:"
 msgid "Password:"
 msgstr "Пароль:"
 
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Налаштування базової системи"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your system setup was not completed. Please continue with setting up the modules."
+msgstr "Налаштування вашої системи завершено. Продовжіть налаштування модулів."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+msgid "Set up the system"
+msgstr "Налаштувати систему"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:61
+msgid "Configuration"
+msgstr "Налаштування"
+
+#: app/views/controlpanel/index.rhtml:24
+msgid "Status"
+msgstr "Стан"
+
+#: app/views/controlpanel/index.rhtml:33
+msgid "System actions"
+msgstr "Системні дії"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:34
+msgid "Reboot"
+msgstr "Перезапустити"
+
+#: app/views/controlpanel/index.rhtml:35
+msgid "Really reboot %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:36
+msgid "Shutdown"
+msgstr "Вимкнути"
+
+#: app/views/controlpanel/index.rhtml:37
+msgid "Really shutdown %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:44
+msgid "Loading patch information"
+msgstr "Звантаження інформації про латки"
+
+#: app/views/controlpanel/index.rhtml:46
+msgid "Patch plugin is not installed."
+msgstr "Не встановлено додаток для латок."
+
+#: app/views/controlpanel/index.rhtml:52
+msgid "Loading system information"
+msgstr "Звантаження інформації про систему"
+
+#: app/views/controlpanel/index.rhtml:54
+msgid "Status plugin is not installed."
+msgstr "Не встановлено додаток про стан."
+
+#: app/views/controlpanel/index.rhtml:93
+msgid "Show all modules"
+msgstr "Показати всі модулі"
+
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
-msgstr "Служба %s недоступна на машині цілі"
+msgstr ""
 
 #: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
-msgstr "Службу %s не запущено на машині цілі"
+msgstr ""
 
 #: lib/error_constructor.rb:16
-msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
-msgstr "Пошкоджене налаштування прав доступу на rest-service. Можна виправити скриптом grantwebyastrights."
-
-#: lib/error_constructor.rb:17
+#, fuzzy
+#| msgid "Action '%1' is not allowed for service '%2'."
 msgid "Permission %s is not granted for user %s"
-msgstr "Дозвіл %s не надано користувачу %s"
+msgstr "Дія \"%1\" не дозволена для служби \"%2\"."
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:18
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr "Виняток політики для користувача %s і дозволу %s (неперекладене повідомлення): %s"
+msgstr ""
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:20
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "Користувач повинен знову увійти в машину цілі."
+msgstr ""
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:22
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr "Система цілі нестабільна: відсутній або пошкоджений файл %s"
+msgstr ""
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:26
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr "Немає визначеного ntp-сервера в /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr ""
 
-#: lib/error_constructor.rb:29
-msgid "Error occurred during ntp synchronization: %s"
-msgstr "Під час синхронізації ntp трапилась помилка: %s"
+#: lib/error_constructor.rb:28
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "Error occured during ntp synchronization: %s"
+msgstr "Під час встановлення трапилась помилка."
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:31
+#, fuzzy
+#| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
-msgstr "Помилка під час збереження адміністраторських параметрів: %s"
+msgstr "Помилка під час закриття старого файла shadow: %m"
 
-#~ msgid "You must accept all EULAs before using this product!"
-#~ msgstr "Перед використанням цього продукту мусите спочатку прийняти всі угоди користування!"
-
-#~ msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-#~ msgstr "Неможливо перенаправити до ліцензійних угод користування. Переконайтесь, що встановлено пакунок yast2-webclient-eulas"
-
-#~ msgid "Set up the system"
-#~ msgstr "Налаштувати систему"
+# label for language selection
+#, fuzzy
+#~| msgid "Language"
+#~ msgid "Langugage:"
+#~ msgstr "Мова"
 
 #~ msgid "Name:"
 #~ msgstr "Назва:"

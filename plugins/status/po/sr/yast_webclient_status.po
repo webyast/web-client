@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2005-08-03 21:03+0200\n"
 "Last-Translator: Данило Шеган <danilo@gnome.org>\n"
 "Language-Team: Serbian <novell@prevod.org>\n"
@@ -16,177 +16,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : (n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/status_controller.rb:130
+#: app/controllers/status_controller.rb:15
+msgid "Invalid session, please login again."
+msgstr ""
+
+#: app/controllers/status_controller.rb:33
+msgid "Disk free limits exceeded;"
+msgstr ""
+
+#: app/controllers/status_controller.rb:135
+#: app/controllers/status_controller.rb:161
+#: app/controllers/status_controller.rb:183
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:187
-msgid "Limits exceeded for "
+#: app/controllers/status_controller.rb:181
+msgid "Limits exceeded for %s"
 msgstr ""
 
-#: app/controllers/status_controller.rb:316
-msgid "exceeded"
-msgstr ""
-
-#: app/controllers/status_controller.rb:330
-msgid "undercut"
-msgstr ""
-
-#: app/controllers/status_controller.rb:432
-msgid "Limits have been written."
-msgstr ""
-
-#: app/views/status/edit.html.erb:27
-msgid "Only numbers are valid !"
+#: app/controllers/status_controller.rb:229
+msgid "Saving limits failed!"
 msgstr ""
 
 #  table header: module status
-#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+#: app/views/status/index.html.erb:23
 msgid "Status"
 msgstr "Status"
 
-# window title for kernel loading (see txt_load_kernel)
-#: app/views/status/edit.html.erb:51
-msgid "Settings"
-msgstr "Подешавања"
-
-#: app/views/status/edit.html.erb:66
-msgid "undercuts"
+#: app/views/status/index.html.erb:45
+msgid "Disk usage"
 msgstr ""
 
-#: app/views/status/edit.html.erb:66
-msgid "exceeds"
-msgstr ""
-
-#: app/views/status/index.html.erb:71
-#, fuzzy
-#| msgid "Details"
-msgid "details"
-msgstr "Детаљи"
-
-#: app/views/status/index.html.erb:87
-msgid "Details"
-msgstr "Детаљи"
-
-#: app/views/status/index.html.erb:143
+#: app/views/status/index.html.erb:68
 msgid "Edit Limits"
 msgstr ""
 
-#: app/views/status/_status_graph.html.erb:1
-msgid "A problem occured when loading status information."
+#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
+#, fuzzy
+#| msgid "Backend:"
+msgid "Back"
+msgstr "Позадина:"
+
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "free"
 msgstr ""
 
-#: app/views/status/_status_graph.html.erb:91
-msgid "Show last"
+#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
+msgid "used"
 msgstr ""
 
-#: app/views/status/_status_graph.html.erb:92
+#: app/views/status/edit.html.erb:2
 #, fuzzy
-#| msgid " Minutes"
-msgid "5 Minutes"
-msgstr "Минута"
+#| msgid "Configuration"
+msgid "Configure Status Limits"
+msgstr "Konfigurisanje"
 
-#: app/views/status/_status_graph.html.erb:93
+#  table header: module status
+#: app/views/status/edit.html.erb:7
 #, fuzzy
-#| msgid " Minutes"
-msgid "15 Minutes"
-msgstr "Минута"
+#| msgid "Status"
+msgid "Status Path"
+msgstr "Status"
 
-#: app/views/status/_status_graph.html.erb:94
-#, fuzzy
-#| msgid " Minutes"
-msgid "30 Minutes"
-msgstr "Минута"
+#: app/views/status/edit.html.erb:8
+msgid "Minimum Value"
+msgstr ""
 
-#: app/views/status/_status_graph.html.erb:95
-#, fuzzy
-#| msgid " Hours"
-msgid "1 Hour"
-msgstr "Сати"
+#: app/views/status/edit.html.erb:9
+msgid "Maximum Value"
+msgstr ""
 
-#: app/views/status/_status_graph.html.erb:96
-#, fuzzy
-#| msgid " Hours"
-msgid "6 Hours"
-msgstr "Сати"
+#: app/views/status/edit.html.erb:39
+msgid "Save"
+msgstr ""
 
-#: app/views/status/_status_graph.html.erb:97
-#, fuzzy
-#| msgid " Hours"
-msgid "12 Hours"
-msgstr "Сати"
-
-#: app/views/status/_status_summary.html.erb:2
+#: app/views/status/_status_summary.html.erb:1
 msgid "An problem occured when loading status information."
 msgstr ""
 
-#: app/views/status/_status_summary.html.erb:12
-msgid "Cannot read system status - you have been logged out."
+#: app/views/status/_status_summary.html.erb:6
+msgid "No status information available"
 msgstr ""
 
-#: app/views/status/_status_summary.html.erb:15
+#: app/views/status/_status_summary.html.erb:14
 msgid "Your system is healthy."
 msgstr ""
-
-#: app/views/status/_status_summary.html.erb:20
-#, fuzzy
-#| msgid "Status connected color"
-msgid "Start collectd"
-msgstr "Боја када је повезан"
-
-#: app/views/status/_status_summary.html.erb:28
-#, fuzzy
-#| msgid "Looking for memory information..."
-msgid "Loading system information"
-msgstr "Прикупљам информације о меморији..."
-
-#: app/views/status/_status_progress.html.erb:7
-msgid "Checking system status"
-msgstr ""
-
-#: lib/plugin_translation.rb:25
-msgid "Registration is missing"
-msgstr ""
-
-#: lib/plugin_translation.rb:26
-msgid "Please register your system in order to get updates."
-msgstr ""
-
-#: lib/plugin_translation.rb:27
-msgid "register"
-msgstr ""
-
-#: lib/plugin_translation.rb:29
-msgid "Mail configuration test not confirmed"
-msgstr ""
-
-#: lib/plugin_translation.rb:30
-msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
-msgstr ""
-
-#: lib/plugin_translation.rb:33
-msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
-msgstr ""
-
-#: lib/plugin_translation.rb:34
-msgid "Test mail received"
-msgstr ""
-
-#, fuzzy
-#~| msgid "Backend:"
-#~ msgid "Back"
-#~ msgstr "Позадина:"
-
-#, fuzzy
-#~| msgid "Configuration"
-#~ msgid "Configure Status Limits"
-#~ msgstr "Konfigurisanje"
-
-#  table header: module status
-#, fuzzy
-#~| msgid "Status"
-#~ msgid "Status Path"
-#~ msgstr "Status"
 
 #, fuzzy
 #~| msgid "Details..."

@@ -1,166 +1,162 @@
-# translation of yast_webclient.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-15 22:11+0900\n"
-"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"POT-Creation-Date: 2010-04-23 11:00+0200\n"
+"PO-Revision-Date: 2010-05-07 07:53\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/helpers/application_helper.rb:20
+#: app/helpers/application_helper.rb:38
 msgid " or "
-msgstr " または "
+msgstr "または"
 
-#: app/helpers/application_helper.rb:24
+#: app/helpers/application_helper.rb:42
 msgid " - "
 msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
-#: app/views/hosts/edit.html.erb:39
+#: app/helpers/application_helper.rb:51 app/helpers/application_helper.rb:65
+#: app/views/hosts/edit.html.erb:40
 msgid "Back"
 msgstr "戻る"
 
-# cancel button label
-#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+#: app/helpers/application_helper.rb:55 app/views/hosts/new.html.erb:53
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: app/helpers/application_helper.rb:52
+#: app/helpers/application_helper.rb:70
 msgid "Save"
 msgstr "保存"
 
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:73
 msgid "Next"
-msgstr "次"
+msgstr "次へ"
 
-#: app/helpers/application_helper.rb:56
+#: app/helpers/application_helper.rb:74
 msgid "Finish"
 msgstr "完了"
 
-#: app/helpers/view_helpers/html_helper.rb:9
+#: app/helpers/view_helpers/html_helper.rb:27
 msgid "Are you sure?"
 msgstr "正しいですか？"
 
-#: app/helpers/view_helpers/html_helper.rb:133
+#: app/helpers/view_helpers/html_helper.rb:153
 msgid "Unknown error"
-msgstr "不明なエラー"
+msgstr "未知のエラー"
 
-#: app/helpers/view_helpers/html_helper.rb:137
-#: app/views/shared/exception_trap.html.erb:22
+#: app/helpers/view_helpers/html_helper.rb:157 app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
-msgstr "情報が利用できません"
+msgstr "情報がありません"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:160
 msgid "There was a problem retrieving information from the server."
 msgstr "サーバからの情報取得時に問題が発生しました。"
 
-#: app/helpers/view_helpers/effect_helper.rb:32
+#: app/helpers/view_helpers/effect_helper.rb:50
 msgid "Hide Details"
 msgstr "詳細を隠す"
 
-#: app/helpers/view_helpers/effect_helper.rb:33
+#: app/helpers/view_helpers/effect_helper.rb:51
 msgid "Show Details"
 msgstr "詳細を表示する"
 
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
+#: app/helpers/view_helpers/label_helper.rb:24 app/views/hosts/index.html.erb:32
 msgid "Add"
 msgstr "追加"
 
-#: app/helpers/view_helpers/label_helper.rb:10
+#: app/helpers/view_helpers/label_helper.rb:28
 msgid "Edit"
 msgstr "編集"
 
-#: app/helpers/view_helpers/label_helper.rb:14
+#: app/helpers/view_helpers/label_helper.rb:32
 msgid "Delete"
 msgstr "削除"
 
-#: app/controllers/sessions_controller.rb:49
+#: app/controllers/sessions_controller.rb:67
 msgid "You need to specify the host"
 msgstr "ホストを指定する必要があります"
 
-#: app/controllers/sessions_controller.rb:52
+#: app/controllers/sessions_controller.rb:70
 msgid "No login specified"
 msgstr "ログインが指定されていません"
 
-#: app/controllers/sessions_controller.rb:55
+#: app/controllers/sessions_controller.rb:73
 msgid "No password specified"
 msgstr "パスワードが指定されていません"
 
-#: app/controllers/sessions_controller.rb:74
+#: app/controllers/sessions_controller.rb:92
 msgid "Host has blocked user %s. It cannot login until  %s"
 msgstr "ホストはユーザ %s をブロックしています。 %s までログインできません"
 
-#: app/controllers/sessions_controller.rb:97
+#: app/controllers/sessions_controller.rb:115
 msgid "Login incorrect. Check your username and password."
-msgstr "ログインに失敗しました。ユーザ名とパスワードをご確認ください。"
+msgstr "ログインが正しくありません。ユーザ名とパスワードをご確認ください。"
 
-#: app/controllers/sessions_controller.rb:130
+#: app/controllers/sessions_controller.rb:148
 msgid "You have been logged out."
 msgstr "ログアウトしました。"
 
-#: app/controllers/application_controller.rb:24
+#: app/controllers/application_controller.rb:42
 msgid "Session timeout"
-msgstr "セッションタイムアウト"
+msgstr "セッションのタイムアウト:"
 
-#: app/controllers/application_controller.rb:79
+#: app/controllers/application_controller.rb:97
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
-msgstr "あなたには、この作業を行なうことが許されていません。この作業を行なう場合は、システム管理者に連絡してください"
+msgstr "これを行う権限がありません。この操作を行う必要がある場合は、システム管理者にご連絡ください。"
 
-#: app/controllers/application_controller.rb:117
+#: app/controllers/application_controller.rb:135
 msgid "Please login to continue"
 msgstr "続行するにはログインしてください"
 
-#: app/controllers/application_controller.rb:124
+#: app/controllers/application_controller.rb:142
 msgid "You must logout before you can login"
 msgstr "ログインの前にログアウトしなければなりません"
 
-#: app/controllers/application_controller.rb:213
-msgid "can't be blank"
-msgstr "には何らかの指定が必要です"
-
-#: app/controllers/application_controller.rb:214
-msgid "is out of allowed values"
-msgstr "は許可された値の範囲を外れています"
-
-#: app/controllers/application_controller.rb:215
-msgid "can't be empty"
-msgstr "は何らかの指定が必要です"
-
-#: app/controllers/application_controller.rb:216
-msgid "is invalid"
-msgstr "は正しくありません"
-
 #: app/controllers/application_controller.rb:231
+msgid "can't be blank"
+msgstr "空白にすることはできません"
+
+#: app/controllers/application_controller.rb:232
+msgid "is out of allowed values"
+msgstr "使用可能でない値です。"
+
+#: app/controllers/application_controller.rb:233
+msgid "can't be empty"
+msgstr "空白を指定することはできません"
+
+#: app/controllers/application_controller.rb:234
+msgid "is invalid"
+msgstr "無効です"
+
+#: app/controllers/application_controller.rb:249
 msgid "Invalid parameters:"
-msgstr "正しくないパラメータ:"
+msgstr "無効なパラメータ:"
 
-#: app/controllers/hosts_controller.rb:25
+#: app/controllers/hosts_controller.rb:43
 msgid "Can't connect to host %s."
-msgstr "ホスト %s に接続できません。"
+msgstr "ホスト %s へ接続できませんでした。"
 
-#: app/controllers/hosts_controller.rb:26
+#: app/controllers/hosts_controller.rb:44
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "ホストが起動されていて、かつ YaST Web サービスが起動済みであることを確認してください。"
+msgstr "ホストが起動されていて、YaST Webサービスが起動済みであることを確認してください。"
 
-#: app/controllers/hosts_controller.rb:28
+#: app/controllers/hosts_controller.rb:46
 msgid "Please select a host to connect to."
 msgstr "接続先のホストを選択してください。"
 
-#: app/controllers/hosts_controller.rb:31
+#: app/controllers/hosts_controller.rb:49
 msgid "The host '%s' cannot be found."
-msgstr "ホスト '%s' が見つかりません。"
+msgstr "ホスト「%s」が見つかりません。"
 
-#: app/controllers/hosts_controller.rb:32
+#: app/controllers/hosts_controller.rb:50
 msgid "Please double-check the host URL."
-msgstr "ホスト URL をもう一度ご確認ください。"
+msgstr "ホストURLをもう一度ご確認ください。"
 
 #: app/models/account.rb:-
 msgid "account"
@@ -196,7 +192,7 @@ msgstr "ホスト"
 
 #: app/models/host.rb:-
 msgid "Host|Name"
-msgstr "ホスト|ホスト名"
+msgstr "ホスト|名前"
 
 #: app/models/host.rb:-
 msgid "Host|Url"
@@ -218,23 +214,21 @@ msgstr "ホスト|更新先"
 msgid "Language Selection"
 msgstr "言語選択"
 
-#: app/views/shared/exception_trap.html.erb:8
-#: app/views/shared/backendexception_trap.html.erb:2
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "申し訳ありません...."
 
 #: app/views/shared/exception_trap.html.erb:10
 msgid "We are sorry, but there are some problems."
-msgstr "申し訳ありませんが、いくつかの問題があります。"
+msgstr "申し訳ありません。いくつかの問題点があります。"
 
-#: app/views/shared/exception_trap.html.erb:12
-#: app/views/shared/backendexception_trap.html.erb:6
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
 msgid "Problem:"
 msgstr "問題点:"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "バグとして報告していただけると助かります!"
+msgstr "バグとして報告してください。問題に対応いたします!"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
@@ -250,77 +244,75 @@ msgstr "ターゲットマシンで問題が発生しました。"
 
 #: app/views/shared/_missing_write_permissions.html.erb:1
 msgid "You do not have permissions to modify the settings."
-msgstr "この設定を変更する許可がありません。"
+msgstr "この設定を変更するためのパーミッションがありません。"
 
-#: app/views/hosts/edit.html.erb:1
+#: app/views/hosts/edit.html.erb:2
 msgid "Editing YaST-Web-Service"
 msgstr "YaST-Web-サービスを編集しています"
 
-#: app/views/hosts/edit.html.erb:22
+#: app/views/hosts/edit.html.erb:23
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-サービス"
 
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:26 app/views/hosts/new.html.erb:37
 msgid "Name"
 msgstr "名前"
 
-#: app/views/hosts/edit.html.erb:29
+#: app/views/hosts/edit.html.erb:30
 msgid "Url"
 msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
+#: app/views/hosts/edit.html.erb:34 app/views/hosts/new.html.erb:47
 msgid "Description"
 msgstr "説明"
 
-#: app/views/hosts/edit.html.erb:38
+#: app/views/hosts/edit.html.erb:39
 msgid "Ok"
 msgstr "OK"
 
-#: app/views/hosts/index.html.erb:6
+#: app/views/hosts/index.html.erb:5
 msgid "Please choose a service:"
 msgstr "サービスを選択してください:"
 
-#: app/views/hosts/index.html.erb:26
+#: app/views/hosts/index.html.erb:25
 msgid "Really delete host %s ?"
-msgstr "ホスト %s を削除してよろしいですか？"
+msgstr "ホスト %s を削除しますか？"
 
-#: app/views/hosts/new.html.erb:9
+#: app/views/hosts/new.html.erb:10
 msgid "New WebYaST Host"
-msgstr "新しい WebYaST ホスト"
+msgstr "新しいWebYaSTホスト"
 
-#: app/views/hosts/new.html.erb:41
+#: app/views/hosts/new.html.erb:42
 msgid "URL"
 msgstr "URL"
 
-#: app/views/hosts/new.html.erb:53
+#: app/views/hosts/new.html.erb:54
 msgid "Create"
 msgstr "作成"
 
-#: app/views/hosts/show.html.erb:7
+#: app/views/hosts/show.html.erb:8
 msgid "Index"
 msgstr "インデックス"
 
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:72
+#: app/views/controlpanel/show_all.rhtml:18 app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
-msgstr "設定"
+msgstr "環境設定"
 
 #: app/views/controlpanel/index.rhtml:27
 msgid "Status"
-msgstr "状態"
+msgstr "状況"
 
 #: app/views/controlpanel/index.rhtml:35
 msgid "System actions"
 msgstr "システムアクション"
 
-# reboot button label
 #: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
-msgstr "再起動"
+msgstr "リブート"
 
 #: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
-msgstr "%s を再起動してよろしいですか？"
+msgstr "%s をリブートしてよろしいですか？"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
@@ -332,15 +324,15 @@ msgstr "%s をシャットダウンしてよろしいですか？"
 
 #: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
-msgstr "修正情報を読み込んでいます"
+msgstr "パッチ情報を読み込んでいます"
 
 #: app/views/controlpanel/index.rhtml:50
 msgid "Patch status summary is disabled in the config file."
-msgstr "修正の状態概要は設定ファイルで無効に設定されています。"
+msgstr "パッチステータスサマリが設定ファイルで無効になっています。"
 
 #: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
-msgstr "修正プラグインがインストールされていません。"
+msgstr "パッチプラグインがインストールされていません。"
 
 #: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
@@ -348,113 +340,121 @@ msgstr "システム情報を読み込んでいます"
 
 #: app/views/controlpanel/index.rhtml:62
 msgid "System status summary is disabled in the config file."
-msgstr "システム状態の概要は設定ファイルで無効に設定されています。"
+msgstr "システムステータスサマリが設定ファイルで無効になっています。"
 
 #: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
-msgstr "状態プラグインがインストールされていません。"
+msgstr "ステータスプラグインがインストールされていません。"
 
 #: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
-msgstr "全てのモジュールを表示"
+msgstr "すべてのモジュールを表示"
 
-#: app/views/controlpanel/basesystem.rhtml:1
+#: app/views/controlpanel/basesystem.rhtml:18
 msgid "Base system setup"
 msgstr "基本システムセットアップ"
 
-#: app/views/controlpanel/basesystem.rhtml:3
+#: app/views/controlpanel/basesystem.rhtml:20
 msgid "Your initial system setup was not completed. Please continue with setting up the modules."
 msgstr "お使いのシステムの初期セットアップが完了していません。モジュールのセットアップを続けてください。"
 
-#: app/views/controlpanel/basesystem.rhtml:4
+#: app/views/controlpanel/basesystem.rhtml:21
 msgid "Continue initial system setup"
-msgstr "システム初期セットアップ"
+msgstr "初期システムセットアップを続行"
 
-#: app/views/layouts/main.rhtml:36
+#: app/views/layouts/main.rhtml:54
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:50
+#: app/views/layouts/main.rhtml:58
+msgid "You are using an unsupported browser. Please switch to %sFireFox 3.5 or better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]"
+msgstr "サポートされていないブラウザを使用しています。お手数ですが、%sFireFox 3.5 or better%s または %sInternet Explorer 8%s に切り替えてください。[%sclose%s]"
+
+#: app/views/layouts/main.rhtml:65
+msgid "JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (%sFireFox 3.5%s or %sInternet Explorer 8%s)."
+msgstr "JavaScriptのサポートが失われているか、無効になっています。JavaScriptをオンにするか、サポートされているブラウザ(%sFireFox 3.5%sまたは%sInternet Explorer 8%s)を使用してください。"
+
+#: app/views/layouts/main.rhtml:75
 msgid "My Appliance"
 msgstr "アプライアンス"
 
-# label for language selection
-#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:81 app/views/layouts/main.rhtml:85
 msgid "Language:"
-msgstr "言語"
+msgstr "言語:"
 
-#: app/views/layouts/main.rhtml:62
+#: app/views/layouts/main.rhtml:87
 msgid "Connected host:"
-msgstr "接続先ホスト:"
+msgstr "接続済みホスト:"
 
-#: app/views/layouts/main.rhtml:63
+#: app/views/layouts/main.rhtml:88
 msgid "User:"
 msgstr "ユーザ:"
 
-#: app/views/layouts/main.rhtml:66
+#: app/views/layouts/main.rhtml:91
 msgid "Control panel"
 msgstr "コントロールパネル"
 
-#: app/views/layouts/main.rhtml:67
+#: app/views/layouts/main.rhtml:92
 msgid "Logout"
 msgstr "ログアウト"
 
-#: app/views/layouts/main.rhtml:102
+#: app/views/layouts/main.rhtml:127
 msgid "...Wait..."
 msgstr "...お待ちください..."
 
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+#: app/views/sessions/new.rhtml:21 app/views/sessions/new.rhtml:33
 msgid "Login"
 msgstr "ログイン"
 
-#: app/views/sessions/new.rhtml:6
+#: app/views/sessions/new.rhtml:23
 msgid "Enter login credentials for host %s."
-msgstr "ホスト %s に対するログイン資格を入力してください。"
+msgstr "ホスト %s に対するログイン資格情報を入力してください。"
 
-#: app/views/sessions/new.rhtml:10
+#: app/views/sessions/new.rhtml:27
 msgid "Username:"
 msgstr "ユーザ名:"
 
-#: app/views/sessions/new.rhtml:13
+#: app/views/sessions/new.rhtml:30
 msgid "Password:"
 msgstr "パスワード:"
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:30
 msgid "Service %s is not available in the target machine"
 msgstr "サービス %s はターゲットマシン内で利用可能な状態ではありません"
 
-#: lib/error_constructor.rb:14
+#: lib/error_constructor.rb:32
 msgid "Service %s is not running on the target machine"
 msgstr "サービス %s はターゲットマシン内で動作していません"
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:34
 msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
-msgstr "rest サービス上のパーミッション設定が壊れています。 grantwebyastrights スクリプトで修復できます。"
+msgstr "rest-serviceのパーミッションセットアップが壊れています。 grantwebyastrightsスクリプトによって修正できます。"
 
-#: lib/error_constructor.rb:17
+#: lib/error_constructor.rb:35
 msgid "Permission %s is not granted for user %s"
-msgstr "ユーザ %2$s に対する %1$s の許可がありません"
+msgstr "%s の許可がユーザ %s に付与されていません"
 
-#: lib/error_constructor.rb:19
+#: lib/error_constructor.rb:37
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "ユーザ %s に対する %s の許可を確認する際に Policy kit の例外が発生しました (エラーメッセージ原文): %s"
 
-#: lib/error_constructor.rb:21
+#: lib/error_constructor.rb:39
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "ユーザはターゲットのマシンには既にログインしていません。ログインし直してください。"
+msgstr "ユーザはターゲットマシンにはもうログインしていません。再度ログインしてください。"
 
-#: lib/error_constructor.rb:23
+#: lib/error_constructor.rb:41
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr "ターゲットのシステムに矛盾があります: ファイル %s が見つからないか、壊れています"
+msgstr "ターゲットのシステムに矛盾があります:ファイル %s が存在しないか、壊れています"
 
-#: lib/error_constructor.rb:27
+#: lib/error_constructor.rb:45
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr "/etc/sysconfig/network/config 内の NETCONFIG_NTP_STATIC_SERVERS には、 NTP サーバが事前設定されていません。"
+msgstr "/etc/sysconfig/network/config内のNETCONFIG_NTP_STATIC_SERVERSには、 事前設定されたNTPサーバがありません。"
 
-#: lib/error_constructor.rb:29
+#: lib/error_constructor.rb:47
 msgid "Error occurred during ntp synchronization: %s"
-msgstr "NTP の同期処理時にエラーが発生しました: %s"
+msgstr "NTPによる同期処理時にエラーが発生しました: %s"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:50
 msgid "Error while saving administrator settings: %s"
 msgstr "管理者設定を保存する際にエラーが発生しました: %s"
+
