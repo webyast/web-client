@@ -71,7 +71,7 @@ class RegistrationControllerTest < ActionController::TestCase
     get :index
 
     #check if everything have been correctly set
-    assert_response :success
+    assert_response 302
     assert_valid_markup
     assert assigns(:permissions) , "Permission is not set"
     assert assigns(:permissions)[:statelessregister], ":statelessregister permission is not set"
@@ -113,7 +113,7 @@ class RegistrationControllerTest < ActionController::TestCase
 
     get :index
 
-    assert_response :success
+    assert_response 302
     assert_valid_markup
   end
 
