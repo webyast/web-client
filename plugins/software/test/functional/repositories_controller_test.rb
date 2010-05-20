@@ -257,7 +257,7 @@ class RepositoriesControllerTest < ActionController::TestCase
 
     assert_response :redirect
     assert_valid_markup
-    assert_redirected_to :action => :index
+    assert_redirected_to :action => :index, :show => 'Ruby'
     assert_false flash.empty?
   end
 
@@ -270,7 +270,7 @@ class RepositoriesControllerTest < ActionController::TestCase
 
     assert_response :redirect
     assert_valid_markup
-    assert_redirected_to :action => :index
+    assert_redirected_to :action => :index, :show => 'new_repo'
     assert_false flash.empty?
   end
 
@@ -380,7 +380,7 @@ class RepositoriesControllerTest < ActionController::TestCase
       mock.permissions "org.opensuse.yast.system.repositories", { :read => true, :write => true }
       mock.get  "/repositories/Ruby.xml", @header, fixture("repository_Ruby.xml"), 200
       # Content-Type is essential here, ActiveResource does not parse the response when the type is missing
-      mock.put "/repositories/Ruby.xml", @header, fixture("error_validation_failed.xml"), 422, 'Content-Type' => 'text/xml'
+      mock.put "/repositories/Ruby.xml", @header, fixture("error_validation_failed.xml"), 422, 'Content-Type' => 'application/xml'
     end
 
     put :update, :id => 'Ruby', :repository => { :name => 'New name', :autorefresh => '0', :priority => '50', :url => 'http://example.com',
