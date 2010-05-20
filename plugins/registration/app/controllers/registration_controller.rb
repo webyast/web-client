@@ -37,6 +37,20 @@ class RegistrationController < ApplicationController
     @arguments = []
   end
 
+  def redirect_success
+    # Use our own redirect_success!
+    # the one in application_controller.rb has a different behaviour which got fixed in a later version
+    # this registration module is a port of a version that relies on the new behaviour of redirect_success
+    logger.debug session.inspect
+    if Basesystem::in_process?(session)
+      logger.debug "wizard redirect DONE"
+      redirect_to :controller => "controlpanel", :action => "nextstep"
+    else
+      logger.debug "Success non-wizard redirect"
+      redirect_to :controller => "controlpanel", :action => "index"
+    end
+  end
+
   def register_permissions
     unless @permissions[:statelessregister]
       flash[:warning] = _("No permissions for registration")
@@ -370,12 +384,12 @@ class RegistrationController < ApplicationController
           logger.error "Registration backend could not be initialized. Maybe due to network problem, SSL certificate issue or blocked by firewall."
           flash[:error] = server_error_flash _("A connection to the registration server could not be established.")
         when  2 then
-          logger[:error] "Registration failed due to invalid data passed to the registration server. Most likely due to a wrong regcode."
-          logger[:error] "  The registration server thus rejected the registration. User can try again."
+          logger.error "Registration failed due to invalid data passed to the registration server. Most likely due to a wrong regcode."
+          logger.error "  The registration server thus rejected the registration. User can try again."
           dataerror = _("The supplied registration data was invalid.")
-          if ( !error["invaliddataerrormessage"].blank? &&
-                error["invaliddataerrormessage"] =~ /(invalid regcode)|(improper code was supplied)/i ) then
-            logger[:error] "  Yep, the registration server says that the regcode was wrong."
+          if ( !error["invaliddataerrormessage"].blank?  &&
+                ( error["invaliddataerrormessage"].to_s.match /(invalid regcode)|(improper code was supplied)/i )  ) then
+            logger.error "  Yep, the registration server says that the regcode was wrong."
             dataerror = _("The registration code you entered was invalid.")
           end
           flash[:error] = data_error_flash  ( dataerror + '<br />' + _("Please perform the registration again with correct registration data.") )

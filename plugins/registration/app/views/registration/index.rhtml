@@ -33,7 +33,7 @@
         <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
           <%= argument['description'] %>
         </label>
-        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
+        <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
       </p>
     <% end %>
   </fieldset>
@@ -74,7 +74,7 @@
 
     <fieldset>
       <%= form_send_buttons %>
-      <%= if Basesystem.new.load_from_session(session).in_process? then
+      <%= if Basesystem::in_process?(session) then
             link_to _('Skip'), {:controller => :registration, :action => :skip}, :onclick=>"$('#progress').show()"
           end %>
     </fieldset>
