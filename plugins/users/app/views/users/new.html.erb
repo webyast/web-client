@@ -194,7 +194,7 @@ function def_group_validation(which){ return true; }
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
 	</td><td colspan=2 rowspan=2>
-          <%= f.password_field :user_password, :onkeyup => "$('#form_').validate().element('#user_user_password');", :disabled => disabled, :required => true %>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_').validate().element('#user_user_password');", :disabled => disabled, :class => "required" %>
 	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 
@@ -217,7 +217,7 @@ function def_group_validation(which){ return true; }
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
 	</td><td rowspan=2>
 	<% if @permissions[:groupsget] == true %>
-            <a href="#" class="button" onClick="select_groups_open('new');return false;">Manage Groups</a>
+            <a href="#" class="button" onClick="select_groups_open('new');return false;"><%= _("Manage Groups") %></a>
         <% end %>
 	<td></tr>
 
@@ -231,7 +231,7 @@ function def_group_validation(which){ return true; }
             <%= f.text_field :groupname, :disabled => disabled, :onkeyup => "def_group_validation(this);" %>
 	</td><td rowspan=2>
 	<% if @permissions[:groupsget] == true %>
-            <a href="#" class="button" onClick="select_default_group_open('new');return false;">Select Default Group</a>
+            <a href="#" class="button" onClick="select_default_group_open('new');return false;"><%= _("Select Default Group") %></a>
         <% end %>
 	<td></tr>
 

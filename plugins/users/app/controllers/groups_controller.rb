@@ -114,7 +114,7 @@ private
     begin
       Group.find params[:id]
     rescue ActiveResource::ResourceNotFound => e
-      flash[:error] = _("Group named '#{params[:id]}' was not found.")
+      flash[:error] = _("Group named <i>%s</i> was not found.") % @params[:id]
       redirect_to :action => :index
       nil
     end
@@ -225,7 +225,7 @@ public
 
     begin
       if @group.save
-        flash[:message] = _("Group '#{@group.cn}' has been added.")
+        flash[:message] = _("Group <i>%s</i> has been added.") % @group.cn
       end
     rescue ActiveResource::ServerError, ActiveResource::ResourceNotFound => ex
       begin
@@ -236,7 +236,7 @@ public
           Rails.logger.error "Cannot create group '#{@group.cn}': #{ERB::Util.html_escape err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot create group '#{@group.cn}' : #{ERB::Util.html_escape err['error']['message']}")
+        flash[:error] = _("Cannot create group <i>%s</i> : #{ERB::Util.html_escape err['error']['message']}") % @group.cn
       rescue Exception => e
         Rails.logger.error "Exception: #{e}"
         # XML parsing has failed, display complete response
@@ -267,13 +267,13 @@ public
 
     begin
       if @group.save
-        flash[:message] = _("Group '#{@group.cn}' has been updated.")
+        flash[:message] = _("Group <i>%s</i> has been updated.") % @group.cn
       else
         if @group.errors.size > 0
           Rails.logger.error "Group save failed: #{@repo.errors.errors.inspect}"
           flash[:error] = generate_error_messages @repo, attribute_mapping
         else
-          flash[:error] = _("Cannot update group '#{group.old_cn}': Unknown error")
+          flash[:error] = _("Cannot update group <i>%s</i>: Unknown error") % @group.old_cn
         end
 
         render :edit and return
@@ -287,7 +287,7 @@ public
           Rails.logger.error "Cannot update group '#{@group.old_cn}': #{err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot update group '#{ERB::Util.html_escape @group.old_cn}' : #{ERB::Util.html_escape err['error']['message']}")
+        flash[:error] = _("Cannot update group <i>%s</i> : #{ERB::Util.html_escape err['error']['message']}") % @group.old_cn
       rescue Exception => e
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
@@ -307,11 +307,11 @@ public
 
     begin
       if @group.destroy
-        flash[:message] = _("Group '#{@group.cn}' has been deleted.")
+        flash[:message] = _("Group <i>%s</i> has been deleted.") % @group.cn
       end
     rescue ActiveResource::ResourceNotFound => e
       err = Hash.from_xml e.response.body
-      flash[:error] = _("Cannot remove group '#{@group.cn}' : #{ERB::Util.html_escape err['error']['message']}")
+      flash[:error] = _("Cannot remove group <i>%s</i> : #{ERB::Util.html_escape err['error']['message']}") % @group.cn
     end
 
     redirect_to :action => :index and return

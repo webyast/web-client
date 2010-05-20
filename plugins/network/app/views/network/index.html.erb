@@ -319,7 +319,7 @@
   
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
   <fieldset id="general-settings">
-    <legend><span>General settings</span></legend>
+    <legend><span><%= _("General settings")%></span></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
       <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled, :onchange => "hide_static_config();")%>
@@ -327,7 +327,7 @@
   </fieldset>
   <div class="fieldset-group">
     <fieldset id="ip-address">
-      <legend id="ip-tab"><span>IP Address</span></legend>
+      <legend id="ip-tab"><span><%= _("IP Address")%></span></legend>
       <div>
         <p>
           <label for="<%= :ip %>"><%=_("IP address")%></label>
@@ -344,7 +344,7 @@
       </div>
     </fieldset>
     <fieldset id="dns">
-      <legend id="dns-tab"><span>DNS</span></legend>
+      <legend id="dns-tab"><span><%= _("DNS")%></span></legend>
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>

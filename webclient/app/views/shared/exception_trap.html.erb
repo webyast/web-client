@@ -17,11 +17,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 %>
-<script type="text/javascript">
-$(document).ready(function() {
-  $('#details-link').click(function() { $('#backtrace').hide();$('#backtrace').show();return false; });
-});
-</script>
 
 <h1><%= _("This is embarrasing....") %></h1>
 
@@ -33,7 +28,7 @@ $(document).ready(function() {
   <%= h error.message %>
 </pre></p>
 
-<p><span class="bug-icon"></span><%= _("Please Report a bug so we can fix the problem!.") %><a target="_blank" href="<%= @bug_url %>"><%= _("(report link)") %></a></p>
+<p><span class="bug-icon"></span><%= _("Please Report a bug so we can fix the problem!.") %><a target="_blank" href="<%= controller.class.bug_url %>"><%= _("(report link)") %></a></p>
 <p><%= _("Don't forget to include the bug details.") %></p>
 
   <%
@@ -46,3 +41,6 @@ $(document).ready(function() {
 <pre id="backtrace" style="display: none">
 <%= h backtrace  %>
 </pre>
+<script type="text/javascript">
+  $('#details-link').click(function() { $('#backtrace').hide();$('#backtrace').show();return false; });
+</script>

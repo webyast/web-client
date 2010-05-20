@@ -26,34 +26,24 @@
   <% javascript_tag do -%>
   $(document).ready(function(){
 
-    $("#blocked_services div label span, #allowed_services div label span").fadeTo(0,0);
-
-    $("#blocked_services div label").click( function(){
-        $(this).parent().hide();
-        $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "true");
-        $("#allowed_services div."+$(this).parent().attr("class")).show();
+    $("#blocked_services div").click( function(){
+        $(this).hide();
+        $("#fw_services_values input."+$(this).attr("value")).attr("value", "true");
+        $("#allowed_services div[value='"+$(this).attr("value")+"']").show();
     });
     
-    $("#allowed_services div label").click( function(){
-        $(this).parent().hide();
-        $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "false");
-        $("#blocked_services div."+$(this).parent().attr("class")).show();
-    });
-    
-    $("#allowed_services div,#blocked_services div").mouseenter( function(){
-        $(this).find("label span").fadeTo(100,1);
-    });
-    
-    $("#allowed_services div,#blocked_services div").mouseleave( function(){
-        $(this).find("label span").fadeTo(100,0);
+    $("#allowed_services div").click( function(){
+        $(this).hide();
+        $("#fw_services_values input."+$(this).attr("value")).attr("value", "false");
+        $("#blocked_services div[value='"+$(this).attr("value")+"']").show();
     });
     
     $("#blocked_services div").filter( function(index) {
-        return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "true";
+        return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
     }).hide();
 
     $("#allowed_services div").filter( function(index) {
-        return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "false";
+        return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "false";
     }).hide();
   });
 
@@ -77,6 +67,14 @@
     }
   }
   <% end -%>
+
+  <style>
+    div.firewall-service {
+      float: left;
+      width: 10em;
+      margin: 3px 0 3px 3px;
+    }
+  </style>
 <% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
@@ -112,8 +110,8 @@
   <legend><%= _("Allowed services") %></legend>
   <div id="allowed_services">
       <% @firewall.fw_services.each do |service| %>
-          <div class="<%= service.css_class %>">
-              <label><%= service.name %><span><%= " ("+_("Block")+") " %></span></label>
+          <div value="<%= service.css_class %>" class="firewall-service">
+              <a><%= service.name %></a>
           </div>
       <% end %>
   </div>
@@ -122,8 +120,8 @@
   <legend><%= _("Blocked services") %></legend>
   <div id="blocked_services">
       <% @firewall.fw_services.each do |service| %>
-          <div class="<%= service.css_class %>">
-              <label><%= service.name %><span><%= " ("+_("Allow")+") " %></span></label>
+          <div value="<%= service.css_class %>" class="firewall-service">
+              <a><%= service.name %></a>
           </div>
       <% end %>
   </div>
