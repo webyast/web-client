@@ -31,7 +31,7 @@
 	<% perm_id = permissions.sort{|x,y| x.pretty_id <=> y.pretty_id}
 		 perm_id.each do |p|
      trp = p.id.tr(".","_")%>
-	  <li id="<%=trp%>-g" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "default" : "none" %>;"
+	  <li id="<%=trp%>-g" style="display:<%= role.permissions.include?(p.id) ? "default" : "none" %>;"
         onMouseOver="show_desc('<%=trp%>');">
       <a href="#" onclick="revoke_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>
@@ -43,7 +43,7 @@
   <ul>
 	<% perm_id.each do |p| 
      trp = p.id.tr(".","_")%>
-	  <li id="<%=trp%>-a" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "none" : "default" %>;"
+	  <li id="<%=trp%>-a" style="display:<%= role.permissions.include?(p.id) ? "none" : "default" %>;"
         onMouseOver="show_desc('<%=trp%>');">
       <a href="#" onclick="grant_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>

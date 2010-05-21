@@ -19,6 +19,13 @@ class RolesController < ApplicationController
   # still shows problems. Now it invalidate session for logged user.If
   # everything goes fine it redirect to index
   def update
+		role = Role.find params[:id]
+		new_perm = (params[:assigned_perms]||"").tr("_",".").split(',')
+		if role.permissions.sort != new_perm.sort
+			role.permissions = new_perm
+		end
+		role.save
+		redirect_to :action => :edit, :id => params[:id]
   end
 
 	def edit
