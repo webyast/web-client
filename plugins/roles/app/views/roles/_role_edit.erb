@@ -9,21 +9,31 @@
     function grant_perm(id) {
       $("#"+id+"-g").css("display","list-item");
       $("#"+id+"-a").css("display","none");
+			renew_hidden();
     }
     function revoke_perm(id){
       $("#"+id+"-a").css("display","list-item");
       $("#"+id+"-g").css("display","none");
+			renew_hidden();
+		}
+
+		function renew_hidden(){
+			var new_val = [];
+			$.each($("#granted_perm li:not(:hidden)"),function(i,val){
+				var len = val.id.length;
+				new_val.push (val.id.substring(0,len-2))});
+			$("#assigned_perms")[0].value = new_val.join(',');
     }
   <% end %>
 <div style="display:block;float:left;width:33%;">
   <h3> <%= _("Permissions granted by role") %> </h3>
-  <ul>
-	<% perm_id = permissions.collect { |p| p.pretty_id }.sort
+  <ul id="granted_perm">
+	<% perm_id = permissions.sort{|x,y| x.pretty_id <=> y.pretty_id}
 		 perm_id.each do |p|
-     trp = p.tr(".","_")%>
+     trp = p.id.tr(".","_")%>
 	  <li id="<%=trp%>-g" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "default" : "none" %>;"
         onMouseOver="show_desc('<%=trp%>');">
-      <a href="#" onclick="revoke_perm('<%=trp%>');"><%= p %></a>
+      <a href="#" onclick="revoke_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>
 	<% end %>
   </ul>
@@ -32,10 +42,10 @@
   <h3> <%= _("Available permissions") %> </h3>
   <ul>
 	<% perm_id.each do |p| 
-     trp = p.tr(".","_")%>
+     trp = p.id.tr(".","_")%>
 	  <li id="<%=trp%>-a" style="display:<%= role.permissions.any?{ |pe| pe.include? p } ? "none" : "default" %>;"
         onMouseOver="show_desc('<%=trp%>');">
-      <a href="#" onclick="grant_perm('<%=trp%>');"><%= p %></a>
+      <a href="#" onclick="grant_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>
 	<% end %>
   </ul>
@@ -49,3 +59,7 @@
   <% javascript_tag do %>
       hide_descrs();
   <% end %>
+<% form_tag :action => "update", :id => params[:id] do %>
+	<%= hidden_field_tag "assigned_perms", role.permissions.join(",") %>
+	<%= submit_tag _("Save permissions") %>
+<% end %>
