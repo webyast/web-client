@@ -1,65 +1,89 @@
+<!--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
+
 <% disabled = !@permissions[:write] %>
 
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
   <% javascript_tag do -%>
-
   $(document).ready(function(){
 
-    $("ul#blocked_services li input, ul#allowed_services li input").fadeTo(0,0);
-
-    $("ul#blocked_services li input").click( function(){
-        $(this).parent().hide("slow");
-        $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "true");
-        $("ul#allowed_services li."+$(this).parent().attr("class")).show("slow");
+    $("#blocked_services div").click( function(){
+        $(this).hide();
+        $("#fw_services_values input."+$(this).attr("value")).attr("value", "true");
+        $("#allowed_services div[value='"+$(this).attr("value")+"']").show();
     });
     
-    $("ul#allowed_services li input").click( function(){
-        $(this).parent().hide("slow");
-        $("#fw_services_values input."+$(this).parent().attr("class")).attr("value", "false");
-        $("ul#blocked_services li."+$(this).parent().attr("class")).show("slow");
+    $("#allowed_services div").click( function(){
+        $(this).hide();
+        $("#fw_services_values input."+$(this).attr("value")).attr("value", "false");
+        $("#blocked_services div[value='"+$(this).attr("value")+"']").show();
     });
     
-    $("ul#allowed_services li,ul#blocked_services li").mouseenter( function(){
-        $(this).find("input").fadeTo(100,1);
-    });
-    
-    $("ul#allowed_services li,ul#blocked_services li").mouseleave( function(){
-        $(this).find("input").fadeTo(100,0);
-    });
-    
-    $("ul#blocked_services li").filter( function(index) {
-        return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "true";
+    $("#blocked_services div").filter( function(index) {
+        return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
     }).hide();
 
-    $("ul#allowed_services li").filter( function(index) {
-        return $("#fw_services_values input."+$(this).attr("class")).attr("value") == "false";
+    $("#allowed_services div").filter( function(index) {
+        return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "false";
     }).hide();
-
-    $(".fw-services-list li h4").click(function(){
-        $(this).next("ul").slideToggle("slow");
-    });
   });
 
+  function validateNeededServices() {
+    var use_firewall_old = <%= @firewall.use_firewall ? "true" : "false" %>;
+    var needed_services = <%= @needed_services_js %>;
+    var confirm_text = <%= "\""+_("Some of needed services (%s) are going to be blocked. WebYaST may not be usable anymore. Do you really want to block them?")+"\"" %>;
+    function isBlockedAndWasAllowed(service) {
+      var is_blocked  = ( $("#fw_services_values input[name='"+service.input_name+"']")[0].value == 'false' );
+      return is_blocked && (service.allowed || ! use_firewall_old);
+    }
+    function blockedNames(services) {
+      return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
+    }
+    if ( $("#use_firewall")[0].checked ) {
+      if ( needed_services.some( isBlockedAndWasAllowed ) ) {
+        return confirm( confirm_text.replace("%s", blockedNames(needed_services).join(", ")) );
+      } 
+    } else {
+      return true;
+    }
+  }
   <% end -%>
 
-  <style type="text/css">
-    .plugin-content h4 {
-        background: #e9e7e7 no-repeat left center;
-    }
-    .plugin-content h4:hover {
-        background-color: #e3e2e2;
-    }
-    .plugin-content ul {
-        list-style-type: none;
+  <style>
+    div.firewall-service {
+      float: left;
+      width: 10em;
+      margin: 3px 0 3px 3px;
     }
   </style>
 <% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
 
-<div class="plugin-content grid_12">
-  <% form_tag '/firewall/update', {:class => 'container'} do %>
+<div class="plugin-content">
+
+  <%= render :partial => 'shared/missing_write_permissions' if disabled %>
+
+  <% form_tag '/firewall/update', {:class => 'container', :onsubmit => "return validateNeededServices()" } do %>
   <div id="fw_services_values">
     <% @firewall.fw_services.each do |service| %>
       <input type="hidden" 
@@ -70,42 +94,40 @@
     <% end %>
   </div>
 
-  <fieldset id="" class="">
-      <label for="use_firewall"><%=_("Use Firewall")%></label>
+  <fieldset>
+      <legend><%= _("General settings") %></legend>
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
       <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
           <%=  "checked=\"checked\"" if @firewall.use_firewall %>
           <%=  "disabled=\"disabled\"" if disabled %> 
           />
-  </fieldset>
-      <ul class="fw-services-list">
-          <li>
-              <h4><%= _("Allowed") %></h4>
-              <ul id="allowed_services">
-              <% @firewall.fw_services.each do |service| %>
-                  <li class="<%= service.css_class %>">
-                      <input type="button" value="Block" class="button"/>
-                      <%= service.name %>
-                  </li>
-              <% end %>
-              </ul>
-          </li>
-          <li>
-              <h4><%= _("Blocked") %></h4>
-              <ul id="blocked_services">
-              <% @firewall.fw_services.each do |service| %>
-                  <li class="<%= service.css_class %>">
-                      <input type="button" value="Allow" class="button"/>
-                      <%= service.name %>
-                  </li>
-              <% end %>
-              </ul>
-          </li>
-      </ul>
+      <label for="use_firewall"><%=_("Use Firewall")%></label>
+      <% #don't use check_box helper as it generate also hidden opposite value
+      %>
   </fieldset>
   <fieldset>
-      <%= form_send_buttons :disabled => disabled, :class => "button" %>
+  <legend><%= _("Allowed services") %></legend>
+  <div id="allowed_services">
+      <% @firewall.fw_services.each do |service| %>
+          <div value="<%= service.css_class %>" class="firewall-service">
+              <a><%= service.name %></a>
+          </div>
+      <% end %>
+  </div>
   </fieldset>
+  <fieldset>
+  <legend><%= _("Blocked services") %></legend>
+  <div id="blocked_services">
+      <% @firewall.fw_services.each do |service| %>
+          <div value="<%= service.css_class %>" class="firewall-service">
+              <a><%= service.name %></a>
+          </div>
+      <% end %>
+  </div>
+  </fieldset>
+  <div class="nav-buttons">
+      <%= form_send_buttons :disabled => disabled, :class => "button" %>
+  </div>
   <% end %>
 </div>

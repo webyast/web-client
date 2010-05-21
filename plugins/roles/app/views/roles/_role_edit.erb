@@ -40,7 +40,7 @@
 </div>
 <div style="display:block;float:left;width:33%;">
   <h3> <%= _("Available permissions") %> </h3>
-  <ul>
+  <ul id="available_perms">
 	<% perm_id.each do |p| 
      trp = p.id.tr(".","_")%>
 	  <li id="<%=trp%>-a" style="display:<%= role.permissions.include?(p.id) ? "none" : "default" %>;"

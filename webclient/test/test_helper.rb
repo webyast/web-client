@@ -1,6 +1,27 @@
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require 'yast_mock' #extension of httpmock for testing rest service
+require 'mocha' #stubbing staff
+require File.join(File.dirname(__FILE__),'validation_assert') #validation of html
 
 class ActiveSupport::TestCase
   def load_xml_response(file)
@@ -41,4 +62,18 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+end
+
+# use a different DB for tests -  needed during RPM build
+if !ENV['TEST_DB_PATH'].nil? && ENV['RAILS_ENV'] == 'test'
+  Rails.logger.debug "Using DB file for tests: #{ENV['TEST_DB_PATH']}"
+
+  # read the current config
+  dbconf = Rails::Configuration.new.database_configuration['test']
+
+  # update the config and make a new DB connection
+  require 'active_record'
+  dbconf['database'] = ENV['TEST_DB_PATH']
+  ActiveRecord::Base.establish_connection(dbconf)
+  ActiveRecord::Base.connection
 end

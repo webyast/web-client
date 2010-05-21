@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-10-05 17:02+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <opensuse-translation@opensuse.org>\n"
@@ -13,91 +13,223 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "Ugyldig session, log venligst ind igen."
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "Grænse for ledig diskplads overskredet;"
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:181
+#: app/controllers/status_controller.rb:187
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
+msgid "Limits exceeded for "
 msgstr "Tilføjelse lykkedes for \"%s\".\n"
 
-#: app/controllers/status_controller.rb:229
+#: app/controllers/status_controller.rb:316
 #, fuzzy
-#| msgid "Saving the changes failed"
-msgid "Saving limits failed!"
-msgstr "Fejl under gem ændringer"
+#| msgid "Needed"
+msgid "exceeded"
+msgstr "Nødvendig"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr ""
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr ""
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr ""
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Status"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "Diskforbrug"
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "Indstillinger"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
+msgstr ""
+
+#: app/views/status/edit.html.erb:66
+#, fuzzy
+#| msgid "Needs"
+msgid "exceeds"
+msgstr "Behøver"
+
+#: app/views/status/index.html.erb:71
+#, fuzzy
+#| msgid "Details"
+msgid "details"
+msgstr "Detaljer"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Detaljer"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "Redigér grænser"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Tilbage"
+#: app/views/status/_status_graph.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "A problem occured when loading status information."
+msgstr "En fejl opstod under indlæsning af statusinformation."
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "ledig"
+#: app/views/status/_status_graph.html.erb:91
+#, fuzzy
+#| msgid "Show caps"
+msgid "Show last"
+msgstr "Vis dæksler"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "brugt"
+#: app/views/status/_status_graph.html.erb:92
+#, fuzzy
+#| msgid " Minutes"
+msgid "5 Minutes"
+msgstr " minutter"
 
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "Indstil statusgrænser"
+#: app/views/status/_status_graph.html.erb:93
+#, fuzzy
+#| msgid " Minutes"
+msgid "15 Minutes"
+msgstr " minutter"
 
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "Statussti"
+#: app/views/status/_status_graph.html.erb:94
+#, fuzzy
+#| msgid "30 minutes"
+msgid "30 Minutes"
+msgstr "30 minutter"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "Minimumværdi"
+#: app/views/status/_status_graph.html.erb:95
+#, fuzzy
+#| msgid " Hours"
+msgid "1 Hour"
+msgstr " Timer"
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "Maksimumværdi"
+#: app/views/status/_status_graph.html.erb:96
+#, fuzzy
+#| msgid " Hours"
+msgid "6 Hours"
+msgstr " Timer"
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Gem"
+#: app/views/status/_status_graph.html.erb:97
+#, fuzzy
+#| msgid " Hours"
+msgid "12 Hours"
+msgstr " Timer"
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_summary.html.erb:2
 #, fuzzy
 #| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "En fejl opstod under indlæsning af statusinformation."
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "Ingen information tilgængelig."
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "Dit system er i god tilstand."
+
+#: app/views/status/_status_summary.html.erb:20
+#, fuzzy
+#| msgid "Start VPN connection"
+msgid "Start collectd"
+msgstr "Start VPN-forbindelse"
+
+#: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "Downloading update information"
+msgid "Loading system information"
+msgstr "Downloader opdateringsinformation"
+
+#: app/views/status/_status_progress.html.erb:7
+#, fuzzy
+#| msgid "Checking signatures"
+msgid "Checking system status"
+msgstr "Tjekker signaturer"
+
+#: lib/plugin_translation.rb:25
+#, fuzzy
+#| msgid "Required file is missing: "
+msgid "Registration is missing"
+msgstr "Påkrævet fil mangler: "
+
+#: lib/plugin_translation.rb:26
+#, fuzzy
+#| msgid "Please restart your system as soon as possible."
+msgid "Please register your system in order to get updates."
+msgstr "Genstart venligst dit system, så snart det er muligt."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr ""
+
+# %s is either BOOTP or DHCP
+#: lib/plugin_translation.rb:29
+#, fuzzy
+#| msgid "The configuration is not initialized."
+msgid "Mail configuration test not confirmed"
+msgstr "Konfigurationen er ikke initialiseret."
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr ""
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr ""
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Ugyldig session, log venligst ind igen."
+
+#~ msgid "Disk free limits exceeded;"
+#~ msgstr "Grænse for ledig diskplads overskredet;"
+
+#, fuzzy
+#~| msgid "Saving the changes failed"
+#~ msgid "Saving limits failed!"
+#~ msgstr "Fejl under gem ændringer"
+
+#~ msgid "Disk usage"
+#~ msgstr "Diskforbrug"
+
+#~ msgid "Back"
+#~ msgstr "Tilbage"
+
+#~ msgid "free"
+#~ msgstr "ledig"
+
+#~ msgid "used"
+#~ msgstr "brugt"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "Indstil statusgrænser"
+
+#~ msgid "Status Path"
+#~ msgstr "Statussti"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Minimumværdi"
+
+#~ msgid "Maximum Value"
+#~ msgstr "Maksimumværdi"
+
+#~ msgid "Save"
+#~ msgstr "Gem"
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "Ingen information tilgængelig."
 
 #~ msgid "Events"
 #~ msgstr "Hændelser"

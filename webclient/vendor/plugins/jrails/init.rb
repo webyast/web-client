@@ -1,3 +1,4 @@
+# Source: jrails
 # uncomment to use jQuery.noConflict()
 #ActionView::Helpers::PrototypeHelper::JQUERY_VAR = 'jQuery'
 

@@ -1,17 +1,123 @@
+<!--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
 <% content_for :head do %>
-
+<%= javascript_include_tag :defaults %>
 <%= javascript_include_tag "digitalspaghetti.password.js" %>
-<%= javascript_include_tag "users_edit.js" %>
+<%= javascript_include_tag "users.js" %>
+<%= javascript_include_tag "select_dialog.js" %>
+
+<!-- if no groups, disable validation
+-->
+<% if @permissions[:groupsget] != true %>
+<script language="javascript">
+function groups_validation(which){ return true; }
+function def_group_validation(which){ return true; }
+</script>
+<% end %>       
+
   <style type="text/css">
-    label.error { display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em;  text-align: left; vertical-align: top; width: 50% }
+    .GContainerUser, .GContainerGroups {
+        float: left;
+        margin: 3px;
+        border: #669999 2px solid;
+        padding: 5px;
+     }
+     .GContainerUser {
+        width: 100px;
+     }
+     .GContainerGroups {
+        width: 400px;
+     }
+     .GBox {
+        border: #000 1px solid;
+        cursor: pointer;
+	display: block;
+	float: left;
+        font-family: verdana, tahoma, arial;
+        font-size: 10px;
+        margin-bottom: 5px;
+        padding: 2px;
+        width: 94px;
+     }
+     #ContainerUser .GBox {
+        background-color: #eee;
+     }
+    #password-strength {
+	left: 0em;
+    }
   </style>
+
 <script language='javascript'>
+
+  function select_groups_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'groups',
+      title : '<%= _('Select Groups') %>',
+      selected_title : '<%= _('Selected Groups') %>',
+      unselected_title : '<%= _('Available Groups') %>',
+      tooltip : '<%= _('Click group names to select/unselect groups') %>',
+      loadItems : function (dialogId) { 
+        return $('#form_ #user_grp_string')[0].value.split(",")
+      },
+      storeItems : function (dialogId, items) { 
+        $('#form_ #user_grp_string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_grps_string')[0].value.split(",") 
+      }
+    });
+    return open_dialog;
+  };
+  
+  function select_default_group_dialog() {
+    var open_dialog = select_one_dialog({
+      kind : 'group',
+      title : '<%= _('Select Default Group') %>',
+      tooltip : '<%= _('Click a group name to choose users default group') %>',
+      allItems : function (dialogId) {
+        return $('#all_grps_string')[0].value.split(",")
+      },
+      storeItem : function (dialogId, item) {
+        $('#form_ #user_groupname')[0].value = item;
+      }
+    });
+    return open_dialog;
+  };
 
   $(document).ready(function(){
 
-   $("#userForm").validate()
+    select_groups_open = select_groups_dialog();
 
-   $("#userForm").validate({
+    select_default_group_open = select_default_group_dialog();
+
+
+   $("#form_").validate();
+
+// make the error message translatable - override the default messsage
+   $.extend($.validator.messages, {
+     equalTo:  "<%= _("The passwords do not match.") -%>",
+     required: "<%= _("This field is required.") -%>"
+   });
+
+   $("#form_").validate({
     rules: {
       user_password: "required",
       user_password2: {
@@ -21,8 +127,9 @@
    });
 
    $("#user_user_password").pstrength({
-     'displayMinChar'   : false,
-       'verdicts'               : [
+      'displayMinChar'      : true,
+      'minCharText'      : "<%= _("Password Strength:") %>", 
+      'verdicts'      : [
             "<%= _("Weak") %>",
             "<%= _("Normal") %>",
             "<%= _("Medium") %>",
@@ -31,113 +138,141 @@
           ],
       });
 
- })
 
-   function user_validation(){
-     var valid = $('#userForm').valid();
-     // if UID is invalidate, do Show Details (make it visible)
-     if ($("#user_uid_number")[0].className.indexOf("error")!=-1) $('#showdetails')[0].children[0].onclick();
-     return valid;
-   }
+ })
 
     // start password validation workaround only when "Save" button has been pressed
     password_validation_enabled = false;
-
 </script>
-
 <% end %>
 
-<div class="plugin-content grid_12">
-<fieldset>
-<h3><%=_("New User")%></h3>
-</fieldset>
-<% form_for :user, :url => { :action => "create"}, :html => { :id => "userForm", :autocomplete => :off}  do |f| %>
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+      // to switch from tabs to accordion, just uncomment this and comment the lower tabs section
+      /*
+      $(".fieldset-group").accordion({
+        autoHeight : false,
+        navigation : true,
+        header     : 'fieldset legend',
+        animated   : false,
+        collapsible: true
+      });
+      */
+      addTabsNavigation(".fieldset-group", "span");
+      $(".fieldset-group").tabs();
+    });
+  <% end %>
+<% end %>
+
+<% disabled = ! @permissions[:useradd] %>
+<div class='plugin-icon'><img src='/icons/yast-users.png' alt="users module"/>
+  <%=_("Users") + header_spacer + _("Add new user")%>
+</div>
+<div class="plugin-content">
+<% form_for :user, :url => { :action => "create"}, :html => { :id => "form_", :autocomplete => :off, :onsubmit => "form_handler('')",}  do |f| %>
   <%= f.error_messages %>
 
-  <fieldset class="wrapper with-background">
-    <legend> Basic User Data</legend>
-    <p>
-	<label><%=_("Full Name")%></label>
-	<%= f.text_field :cn %>
-    </p>
-    <p>
-	<label><%=_("Login Name")%></label>
-	<%= f.text_field :uid, :class => "required", :onkeyup => "$('#userForm').validate().element('#user_uid');" %>
-    </p>
-    <p>
-	<label><%=_("Password")%></label>
-	<%= f.password_field :user_password, :class => "required", :onkeyup => "$('#userForm').validate().element('#user_user_password');"%>
-    </p>
-    <p>
-	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :user_password2, :equalTo => "#user_user_password",:class => "required", :onkeyup => "$('#userForm').validate().element('#user_user_password2');" %>
-    </p>
-    <!-- this is a pre-generated placeholder for the validation messages -->
-    <p><label for="administrator_confirm_password" generated="true" class="error"></label><p>
+  <div class="fieldset-group">
 
-  </fieldset>
-<p id="hidedetails" style="display: none">
-    <%= link_to_function _("Hide Details") do |p|
-          p.visual_effect( :slide_up,   :argumentdetail, {:duration => 0} )
-          p.visual_effect( :switch_off, :hidedetails,    {:duration => 0} )
-          p.visual_effect( :switch_on,  :showdetails,    {:duration => 0} )
-        end
-    %>
-</p>
- <p id="showdetails">
-    <%= link_to_function _("Show Details") do |p|
-          p.visual_effect( :slide_down, :argumentdetail, {:duration => 0} )
-          p.visual_effect( :switch_off, :showdetails,    {:duration => 0} )
-          p.visual_effect( :switch_on,  :hidedetails,    {:duration => 0} )
-        end
-    %>
-  </p>
-<div id="argumentdetail" style="display: none">
-  <fieldset class="wrapper with-background">
-    <legend>Group Membership</legend>
-    <p>
-	<label><%=_("Groups")%></label>
-	<%= f.text_field :grp_string %>
-	<a href="#" class="button" onclick="open_groups_dialog();return false;">Manage Groups</a>
-    </p>
-    <p><label id="groups-error" class="error"></label><p>
-    <p>
-	<label><%=_("Default Group (GID)")%></label>
-	<%= f.text_field :groupname %>
-    </p>
-    <div id="groups" style="display:none;" title="Groups"> 
-      <DIV>
-        <DIV class="GContainer" id="ContainerUser" onclick="moveItem(event,'ContainerGroups');"> </DIV>
-        <DIV class="GContainer" id="ContainerGroups" onclick="moveItem(event,'ContainerUser');"> </DIV>
-	<div><%= f.hidden_field :all_grps_string %></div>
-      </DIV>
-    </div>
-  </fieldset>
-  <fieldset class="wrapper with-background">
-    <legend>Detailed User Data </legend>
-    <p>
-	<label><%=_("UID Number")%></label>
-	<%= f.text_field :uid_number, :min => 1000, :class => "number", :onkeyup => "$('#userForm').validate().element('#user_uid_number');"  %>
-    </p>
-    <p>
-	<label><%=_("Home Directory")%></label>
-	<%= f.text_field :home_directory %>
-    </p>
-    <p>
-        <%=_("Do not create home directory")%>
-        <input type="checkbox" name="nohome" value="true" >
-    </p>
-    <p>
-	<label><%=_("Login Shell")%></label>
-	<%= f.text_field :login_shell %>
-    </p>
-   </fieldset>
+    <fieldset id="tab_login">
+      <legend><span><%= _("Login Settings") %></span></legend>
+	<table>
+	<tr><td>
+          <div class="label"><%=_("Full Name")%></div>
+	</td><td>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this.parentNode.parentNode.parentNode.parentNode.parentNode);" %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Login Name")%></div>
+	</td><td>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_').validate().element('#user_uid') && propose_home(this.parentNode.parentNode.parentNode.parentNode.parentNode);", :class => "required" %>
+          <%= f.hidden_field :id %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Password")%></div>
+	</td><td colspan=2 rowspan=2>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_').validate().element('#user_user_password');", :disabled => disabled, :class => "required" %>
+	</td></tr>
+	<tr><td>&nbsp;</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Confirm Password")%></div>
+	</td><td>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#user_user_password", :onkeyup => "$('#form_').validate().element('#user_user_password2');" %>
+        <!-- this is a pre-generated placeholder for the validation messages -->
+        <div class="label" for="administrator_confirm_password" generated="true" class="error"></div>
+	</td></tr>
+	</table>
+    </fieldset>
+
+    <fieldset id="tab_groups">
+      <legend><span><%=_("Groups")%></span></legend>
+	<table border=0>
+	<tr><td rowspan=2>
+            <div class="label"><%=_("Groups")%></div>
+	</td><td>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);" %>
+	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
+            <a href="#" class="button" onClick="select_groups_open('new');return false;"><%= _("Manage Groups") %></a>
+        <% end %>
+	<td></tr>
+
+	<tr><td>
+            <label class="label error" id="groups-error" ></label>
+	<td></tr>
+
+	<tr><td rowspan=2>
+            <div class="label"><%=_("Default Group")%></div>
+	</td><td>
+            <%= f.text_field :groupname, :disabled => disabled, :onkeyup => "def_group_validation(this);" %>
+	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
+            <a href="#" class="button" onClick="select_default_group_open('new');return false;"><%= _("Select Default Group") %></a>
+        <% end %>
+	<td></tr>
+
+	<tr><td>
+            <label class="label error" id="def-group-error" ></label>
+	<td></tr>
+
+	</table>
+    </fieldset>
+
+    <fieldset id="tab_advanced">
+      <legend><span><%= _("Advanced") %></span></legend>
+	<table>
+	<tr><td>
+            <div class="label"><%=_("Home Directory")%></div>
+	</td><td>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+	<td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Login Shell")%></div>
+	</td><td>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+	<td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("UID Number")%></div>
+	</td><td>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#form_').validate().element('#user_uid_number');"  %>
+        <div class="label" id="uid-error" class="error"></div>
+	<td></tr>
+	</table>
+    </fieldset>
+
   </div>
-    <p>
-      <%= link_to _('Cancel'), {:action => :index}%>
-      <%= form_str_spacer %>
-      <%= f.submit _("Save"), :onclick=>"return user_validation();" %>
-    </p>
-  </div> 
+  <div class="nav-buttons">
+    <div id="progress_" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
+    <%= submit_tag _("Save"), :onclick=>"return new_user_validation(this);" %>
+    <%= form_str_spacer %>
+    <%= form_cancel_button :action => :index%>
+  </div>
 <% end %>
-
+            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
+</div>

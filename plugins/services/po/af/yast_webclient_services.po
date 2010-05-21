@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -14,15 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr ""
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 #, fuzzy
 #| msgid ""
 #| "Success:\n"
@@ -32,71 +28,210 @@ msgstr ""
 "Sukses:\n"
 "%s"
 
-#: app/views/services/_status.rhtml:14
-#, fuzzy
-#| msgid "unknown"
-msgid "(unknown)"
-msgstr "onbekend"
-
-#: app/views/services/_status.rhtml:16
-#, fuzzy
-#| msgid "running"
-msgid "(running)"
-msgstr "lopend"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
 msgstr ""
 
-#: app/views/services/_status.rhtml:20
+#: app/controllers/services_controller.rb:72
 #, fuzzy
-#| msgid "not running"
-msgid "(not running)"
-msgstr "nie lopend nie"
+#| msgid "invalid argument syntax"
+msgid "invalid or excess argument(s)"
+msgstr "ongeldige argumentsintaks"
 
-#: app/views/services/_status.rhtml:22
+#: app/controllers/services_controller.rb:73
 #, fuzzy
-#| msgid "unknown"
-msgid "(unknown: %d)"
-msgstr "onbekend"
+#| msgid "not yet implemented"
+msgid "unimplemented feature"
+msgstr "nog nie geïmplementeer nie"
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
+
+#: app/controllers/services_controller.rb:75
+#, fuzzy
+#| msgid "not installed"
+msgid "program is not installed"
+msgstr "nie geïnstalleer nie"
+
+#: app/controllers/services_controller.rb:76
+#, fuzzy
+#| msgid "Not configured"
+msgid "program is not configured"
+msgstr "Nie gekonfigureer nie"
+
+#: app/controllers/services_controller.rb:77
+#, fuzzy
+#| msgid "The hypervisor is not running."
+msgid "program is not runnning"
+msgstr "Die hypervisor loop nie."
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 #, fuzzy
 #| msgid "Connect Result"
 msgid "Result"
 msgstr "Verbind resultaat"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Beskrywing"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "Terug"
-
-#: app/views/services/index.rhtml:12
-#, fuzzy
-#| msgid "Novell Services"
-msgid "Custom Services"
-msgstr "Novell-dienste"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:141
 #, fuzzy
 #| msgid "System Settings"
 msgid "System Services"
 msgstr "Stelselinstellings"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
 msgstr ""
 
-#: app/views/services/index.rhtml:93
+#: app/views/services/index.rhtml:151
 #, fuzzy
-#| msgid "Status"
-msgid "status"
-msgstr "Status"
+#| msgid "inetd service"
+msgid "Filter services"
+msgstr "inetd-diens"
+
+#: app/views/services/index.rhtml:153
+#, fuzzy
+#| msgid "all"
+msgid "All"
+msgstr "alles"
+
+#: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "running"
+msgid "Running"
+msgstr "lopend"
+
+#: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "not running"
+msgid "Not Running"
+msgstr "nie lopend nie"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr ""
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search:"
+msgid "Quick Search"
+msgstr "Soek:"
+
+#: app/views/services/index.rhtml:180
+#, fuzzy
+#| msgid "The action for service '%1' may not be empty."
+msgid "Description for service is not available"
+msgstr "Die aksie vir diens '%1' mag nie leeg wees nie."
+
+#: app/views/services/index.rhtml:203
+#, fuzzy
+#| msgid "Refresh"
+msgid "(refresh)"
+msgstr "Vernuwe"
+
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Start-Up"
+msgid "Start"
+msgstr "Aanvangs"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr ""
+
+#: app/views/services/index.rhtml:236
+#, fuzzy
+#| msgid "_Restart"
+msgid "Restart"
+msgstr "_Herbegin"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:238
+#, fuzzy
+#| msgid "Do Not Start"
+msgid "Do Not Start on Boot"
+msgstr "Moenie begin nie"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown"
+msgstr "onbekend"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "lopend"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr ""
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "nie lopend nie"
+
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown: %d"
+msgstr "onbekend"
+
+#: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "lock-down status for the search area"
+msgid "Current status of the service:"
+msgstr "afsluitstatus vir die soekarea"
+
+#, fuzzy
+#~| msgid "unknown"
+#~ msgid "(unknown)"
+#~ msgstr "onbekend"
+
+#, fuzzy
+#~| msgid "running"
+#~ msgid "(running)"
+#~ msgstr "lopend"
+
+#, fuzzy
+#~| msgid "not running"
+#~ msgid "(not running)"
+#~ msgstr "nie lopend nie"
+
+#~ msgid "Back"
+#~ msgstr "Terug"
+
+#, fuzzy
+#~| msgid "Novell Services"
+#~ msgid "Custom Services"
+#~ msgstr "Novell-dienste"
+
+#, fuzzy
+#~| msgid "Status"
+#~ msgid "status"
+#~ msgstr "Status"

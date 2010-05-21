@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins type="array">
+  <plugin>
+    <level>warning</level>
+    <message_id>MISSING_REGISTRATION</message_id>
+    <short_description>Registration is missing</short_description>
+    <long_description>Please register your system in order to get updates.</long_description>
+    <details></details>
+    <confirmation_host>client</confirmation_host>
+    <confirmation_link>/registration</confirmation_link>
+    <confirmation_label>register</confirmation_label>
+  </plugin>
+  <plugin>
+    <level>warning</level>
+    <message_id>MAIL_SENT</message_id>
+    <short_description>Mail configuration test not confirmed</short_description>
+    <long_description>While configuring mail, a test mail was sent to schubi@suse.de . Was the mail delivered to this address?&lt;br&gt; If so, confirm it by pressing the button. Otherwise check your mail configuration again.</long_description>
+    <details>hostname</details>
+    <confirmation_host>service</confirmation_host>
+    <confirmation_link>/mail/state</confirmation_link>
+    <confirmation_label>Test mail received</confirmation_label>
+  </plugin>
+</plugins>

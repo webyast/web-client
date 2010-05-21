@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-09-25 20:07+0100\n"
-"Last-Translator: Rastislav Krupanský <rastislav.krupansky@gamil.com>\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-04-19 07:44+0100\n"
+"Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,70 +20,170 @@ msgstr ""
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Neplatné sedenie, prihláste sa znovu prosím."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(nemožno prečítať stav)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "úspech"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(neznámy)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr "nešpecifikovaná chyba"
 
-# internal key used: Warning
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(beží)"
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
+msgstr "neplatný, alebo prekročený argument(y)"
 
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(mŕtvy)"
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr "neimplementovaná funkcia"
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(nebeží)"
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr "používateľ mal nedostatočné práva"
 
-#: app/views/services/_status.rhtml:22
-#, fuzzy
-#| msgid "(unknown)"
-msgid "(unknown: %d)"
-msgstr "(neznámy)"
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr "program nie je nainštalovaný"
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr "program nie je nakonfigurovaný"
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr "program nebeží"
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Výsledok volania služby"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Výsledok"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Popis"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "Nazad"
-
-#: app/views/services/index.rhtml:12
-msgid "Custom Services"
-msgstr "Vlastné služby"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:141
 msgid "System Services"
 msgstr "Služby systému"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Nemáte povolenie pre spustenie služieb. Prepojenia sú zakázané."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
+msgstr "Nemáte oprávnenie spustiť služby."
 
-#: app/views/services/index.rhtml:93
-msgid "status"
-msgstr "stav"
+#: app/views/services/index.rhtml:151
+msgid "Filter services"
+msgstr "Služby filtra"
+
+#: app/views/services/index.rhtml:153
+msgid "All"
+msgstr "Všetko"
+
+# internal key used: Warning
+#: app/views/services/index.rhtml:154
+msgid "Running"
+msgstr "Beží"
+
+#: app/views/services/index.rhtml:155
+msgid "Not Running"
+msgstr "Nebeží"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr "Mŕtvy"
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr "Spustené pri štarte"
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr "Nespustené pri štarte"
+
+#: app/views/services/index.rhtml:165
+msgid "Quick Search"
+msgstr "Rýchle hľadanie"
+
+#: app/views/services/index.rhtml:180
+msgid "Description for service is not available"
+msgstr "Popis pre službu nie dostupný"
+
+#: app/views/services/index.rhtml:203
+msgid "(refresh)"
+msgstr "(obnoviť)"
+
+#: app/views/services/index.rhtml:234
+msgid "Start"
+msgstr "Spustiť"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr "Zastaviť"
+
+#: app/views/services/index.rhtml:236
+msgid "Restart"
+msgstr "Reštart"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr "Spustiť pri štarte"
+
+#: app/views/services/index.rhtml:238
+msgid "Do Not Start on Boot"
+msgstr "Nespúšťať pri štarte"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "Služba bude spustená pri štarte."
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "Služba nebude spustená pri štarte."
+
+#: app/views/services/_status.rhtml:31
+msgid "status unknown"
+msgstr "neznámy stav"
+
+# internal key used: Warning
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "beží"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr "mŕtvy"
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "nebeží"
+
+#: app/views/services/_status.rhtml:45
+msgid "status unknown: %d"
+msgstr "stav neznámy: %d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "Aktuálny stav služby:"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Neplatné sedenie, prihláste sa znovu prosím."
+
+#~ msgid "(unknown)"
+#~ msgstr "(neznámy)"
+
+#~ msgid "Back"
+#~ msgstr "Nazad"
+
+#~ msgid "Custom Services"
+#~ msgstr "Vlastné služby"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "Na cieľovom počítači nie je definovaná vlastná služba."
+
+#~ msgid "status"
+#~ msgstr "stav"

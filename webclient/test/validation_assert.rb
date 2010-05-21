@@ -1,3 +1,21 @@
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 require "open3"
 
 class ActionController::TestCase
@@ -21,7 +39,7 @@ class ActionController::TestCase
       return
     end
 
-    fail("Tidy is not available") unless system("which tidy &>/dev/null")
+    fail("Tidy is not available, install 'tidy'") unless system("which tidy &>/dev/null")
 
     Open3.popen3('tidy -e') do |stdin, stdout, stderr|
       # write the markup to tidy
@@ -41,9 +59,14 @@ class ActionController::TestCase
         warns = $1.to_i
         errors = $2.to_i
         unless (errors == 0 and warns == 0)
-          File.open("tidy-failed.html","w+") do
-            |file|
-            file.puts markup
+          filename = ENV["TIDY_FAILED_FILE"].blank? ? "tidy-failed.html" : ENV["TIDY_FAILED_FILE"]
+          begin
+            File.open(filename,"w+") do
+              |file|
+              file.puts markup
+            end
+          rescue Exception => e
+            puts "WARNING: Cannot save tidy output: #{e.message}.\nUse TIDY_FAILED_FILE variable to override the default location."
           end
         end
         assert (errors == 0), "#{errors} validation errors and #{warns} warnings found:\n#{messages.map{ |x| "- #{x}"}.join("\n")} \n

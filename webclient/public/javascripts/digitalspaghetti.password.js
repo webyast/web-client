@@ -1,4 +1,5 @@
-/* @projectDescription jQuery Password Strength Plugin - A jQuery plugin to provide accessibility functions
+/* Source: jquery password strength plugin
+ * @projectDescription jQuery Password Strength Plugin - A jQuery plugin to provide accessibility functions
  * @author Tane Piper (digitalspaghetti@gmail.com)
  * @version 2.0
  * @website: http://digitalspaghetti.me.uk/digitalspaghetti
@@ -180,14 +181,16 @@ digitalspaghetti.password = {
 			}
 			jQuery('.password-strength-bar').stop();
 			
+			/* Uncomment this to revert to previous behaviour - passwd field
+			 description disappears as soon as passwd length reaches the treshold
 			if (digitalspaghetti.password.options.displayMinChar && !digitalspaghetti.password.tooShort) {
 				jQuery('.password-min-char').hide();
 			} else {
 				jQuery('.password-min-char').show();
-			}
+			}*/
 			
 			jQuery('.password-strength-bar').animate({opacity: 0.5}, 'fast', 'linear', function () {
-				jQuery(this).css({'display': 'block', 'background-color': digitalspaghetti.password.strColor, 'width': digitalspaghetti.password.width + "%"}).text(digitalspaghetti.password.strText);
+				jQuery(this).css({'display': 'block', 'background-color': digitalspaghetti.password.strColor,'color': digitalspaghetti.password.strColor, 'width': digitalspaghetti.password.width + "%"}).text(digitalspaghetti.password.strText);
 				jQuery(this).animate({opacity: 1}, 'fast', 'linear');
 			});
 		}

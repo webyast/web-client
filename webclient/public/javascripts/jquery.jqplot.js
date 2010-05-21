@@ -1,4 +1,5 @@
 /**
+ * Source: Jquery jqplot plugin
  * Title: jqPlot Charts
  * 
  * Pure JavaScript plotting plugin for jQuery.

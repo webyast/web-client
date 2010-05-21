@@ -1,79 +1,186 @@
-# Krešimir Jozić <kjozic@gmail.com>, 2009.
+# Krešimir Jozić <kjozic@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-20 18:15+0200\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-04-18 18:48+0200\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
-"Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
+"Language-Team: Croatian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Neispravna sesija, molimo vas da se ponovno prijavite."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(ne mogu pročitati status)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "uspjeh"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(nepoznato)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr "nepoznata greška"
 
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(radi)"
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
+msgstr "neispravni ili prevelik broj argumenata"
 
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(mrtvo)"
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr "funkcija nije implementirana"
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(ne radi)"
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr "korisnik nema dovoljne privilegije"
 
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(nepoznato: %d)"
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr "program nije instaliran"
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr "program nije podešen"
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr "program ne radi"
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Rezultat poziva servisa"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Rezultat"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Opis"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "Natrag"
-
-#: app/views/services/index.rhtml:12
-msgid "Custom Services"
-msgstr "Proizvoljni servisi"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:141
 msgid "System Services"
 msgstr "Sistemski servisi"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Nemate dozvolu za izvođenje servisa. Veze su onemogućene."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
+msgstr "Nemate dozvolu za izvođenje servisa."
 
-#: app/views/services/index.rhtml:93
-msgid "status"
-msgstr "status"
+#: app/views/services/index.rhtml:151
+msgid "Filter services"
+msgstr "Filtriraj servise"
+
+#: app/views/services/index.rhtml:153
+msgid "All"
+msgstr "Sve"
+
+#: app/views/services/index.rhtml:154
+msgid "Running"
+msgstr "Radi"
+
+#: app/views/services/index.rhtml:155
+msgid "Not Running"
+msgstr "Ne radi"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr "Mrtav"
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr "Pokrenuto prilikom podizanja sustava"
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr "Nije pokrenuto prilikom podizanja sustava"
+
+#: app/views/services/index.rhtml:165
+msgid "Quick Search"
+msgstr "Brza pretraga"
+
+#: app/views/services/index.rhtml:180
+msgid "Description for service is not available"
+msgstr "Opis servisa nije dostupan"
+
+#: app/views/services/index.rhtml:203
+msgid "(refresh)"
+msgstr "(osvježi)"
+
+#: app/views/services/index.rhtml:234
+msgid "Start"
+msgstr "Pokreni"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr "Zaustavi"
+
+#: app/views/services/index.rhtml:236
+msgid "Restart"
+msgstr "Ponovno pokreni"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr "Pokreni prilikom podizanja sustava"
+
+#: app/views/services/index.rhtml:238
+msgid "Do Not Start on Boot"
+msgstr "Nemoj pokrenuti prilikom podizanja sustava"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "Servis neće biti pokrenut prilikom podizanja sustava."
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "Servis neće biti pokrenut prilikom podizanja sustava."
+
+#: app/views/services/_status.rhtml:31
+msgid "status unknown"
+msgstr "nepoznat status"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "radi"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr "mrtav"
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "ne radi"
+
+#: app/views/services/_status.rhtml:45
+msgid "status unknown: %d"
+msgstr "status nepoznat: %d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "Trenutni satus servisa:"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Neispravna sesija, molimo vas da se ponovno prijavite."
+
+#~ msgid "(unknown)"
+#~ msgstr "(nepoznato)"
+
+#~ msgid "(running)"
+#~ msgstr "(radi)"
+
+#~ msgid "(not running)"
+#~ msgstr "(ne radi)"
+
+#~ msgid "Back"
+#~ msgstr "Natrag"
+
+#~ msgid "Custom Services"
+#~ msgstr "Proizvoljni servisi"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "Nema definiranih proizvoljnih servisa na ciljnom računalu."
+
+#~ msgid "status"
+#~ msgstr "status"

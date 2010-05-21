@@ -1,0 +1,78 @@
+/*
+* Source: jQuery UI CSS Framework
+* Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+*/
+
+/*Accordion
+----------------------------------*/
+.ui-accordion .ui-accordion-header {
+}
+
+.ui-accordion .ui-state-default { 
+}
+
+.ui-accordion .wrapper {
+  min-height: 1em;
+}
+
+.no-min-height {
+  min-height: 0 !important;
+}
+
+.ui-accordion .ui-accordion-li-fix { display: inline; }
+.ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: 0; }
+
+
+.accordion.ui-accordion .ui-accordion-content { 
+  display: none; 
+  border: none;
+  background: none;
+  padding: 0px;
+}
+
+.ui-accordion .ui-accordion-content-active { display: block; }
+
+.ui-accordion .status-icon {
+  position: relative;
+  top: -2px;
+}
+
+/* Reset regular jquery-ui styles inside accordion */
+
+.ui-accordion .ui-corner-top {
+  -moz-border-radius-topleft:0px;
+  -moz-border-radius-topright:0px;
+}
+
+.ui-accordion .ui-state-active, 
+.ui-accordion .ui-widget-content .ui-state-active, 
+.ui-accordion .ui-state-default, 
+.ui-accordion .ui-widget-content .ui-state-default {
+  background: none;
+  border: none;
+  color: #333333;
+}
+
+.ui-accordion legend.ui-state-active, 
+.ui-accordion .ui-widget-content legend.ui-state-active,
+.ui-accordion legend.ui-state-default, 
+.ui-accordion .ui-widget-content legend.ui-state-default {
+  font-weight: bold;
+  font-size:1em;
+}
+
+.ui-accordion .ui-accordion-header .ui-icon {
+  float:left;
+  left:0.5em;
+  margin-top: 0px;
+  position: inherit;
+  padding-right: 5px;
+}
+
+.ui-accordion .ui-corner-all {
+  -moz-border-radius-bottomleft:0px;
+  -moz-border-radius-bottomright:0px;
+  -moz-border-radius-topleft:0px;
+  -moz-border-radius-topright:0px;
+}

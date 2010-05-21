@@ -1,3 +1,24 @@
+#--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+#++
+
 class NetworkController < ApplicationController
 
   before_filter :login_required
@@ -13,6 +34,7 @@ class NetworkController < ApplicationController
   end
   
   NETMASK_RANGE = 0..32
+  STATIC_BOOT_ID = "static"
 
   # GET /network
   def index
@@ -45,14 +67,15 @@ class NetworkController < ApplicationController
     # FIXME tests for YSRB
 
     @conf_mode = ifc.bootproto
-    if @conf_mode == "static"
+    @conf_mode = STATIC_BOOT_ID if @conf_mode.blank?
+    if @conf_mode == STATIC_BOOT_ID
       ipaddr = ifc.ipaddr
     else
-      ipaddr = "-/-"
+      ipaddr = "/"
     end
     @ip, @netmask = ipaddr.split "/"
     # when detect PREFIXLEN with leading "/"
-    if ifc.bootproto == "static" && NETMASK_RANGE.include?(@netmask.to_i)
+    if ifc.bootproto == STATIC_BOOT_ID && NETMASK_RANGE.include?(@netmask.to_i)
       @netmask = "/"+@netmask
     end    
  
@@ -61,7 +84,7 @@ class NetworkController < ApplicationController
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-    @conf_modes = {_("Not configured")=>"", _("Manual")=>"static", _("Automatic")=>"dhcp"}
+    @conf_modes = {_("Manual")=>STATIC_BOOT_ID, _("Automatic")=>"dhcp"}
     @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
     
   end
@@ -109,7 +132,7 @@ class NetworkController < ApplicationController
     dirty_ifc = true unless (ifc.bootproto == params["conf_mode"])
     logger.info "dirty after interface config: #{dirty}"
     ifc.bootproto=params["conf_mode"]
-    if ifc.bootproto=="static"
+    if ifc.bootproto==STATIC_BOOT_ID
       #ip addr is returned in another state then given, but restart of static address is not problem
       if ((ifc.ipaddr||"").delete("/")!=params["ip"]+(params["netmask"]||"").delete("/"))
         dirty_ifc = true

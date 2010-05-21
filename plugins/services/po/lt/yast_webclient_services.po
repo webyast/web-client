@@ -1,103 +1,234 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Mindaugas Baranauskas <embar@users.berlios.de>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2001-10-18 09:54+0200\n"
-"Last-Translator: Jonas Gocentas <jonasgocentas@florida.usa.com>\n"
-"Language-Team: Lithuanian <i18n@suse.de>\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-01-04 12:52+0200\n"
+"Last-Translator: Mindaugas Baranauskas <embar@users.berlios.de>\n"
+"Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
-msgstr ""
+msgstr "(nepavyksta nuskaityti būsenos)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
+msgstr "sėkmingai"
+
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
 msgstr ""
 
-#: app/views/services/_status.rhtml:14
+#: app/controllers/services_controller.rb:72
 #, fuzzy
-#| msgid "unknown"
-msgid "(unknown)"
-msgstr "nežinomas"
+#| msgid "invalid argument syntax"
+msgid "invalid or excess argument(s)"
+msgstr "klaidinga argumento sintakse"
 
-#: app/views/services/_status.rhtml:16
-#, fuzzy
-#| msgid "running"
-msgid "(running)"
-msgstr "veikia"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
 msgstr ""
 
-#: app/views/services/_status.rhtml:20
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
+
+#: app/controllers/services_controller.rb:75
+#, fuzzy
+#| msgid "not installed"
+msgid "program is not installed"
+msgstr "neįdiegta"
+
+#: app/controllers/services_controller.rb:76
+#, fuzzy
+#| msgid "Not configured"
+msgid "program is not configured"
+msgstr "Nesukonfigūruota"
+
+#: app/controllers/services_controller.rb:77
 #, fuzzy
 #| msgid "not running"
-msgid "(not running)"
+msgid "program is not runnning"
 msgstr "neveikia"
 
-#: app/views/services/_status.rhtml:22
-#, fuzzy
-#| msgid "unknown"
-msgid "(unknown: %d)"
-msgstr "nežinomas"
-
-#: app/views/services/_result.rhtml:5
-#, fuzzy
-#| msgid "Service unavailable"
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
-msgstr "Paslauga naprieinama"
+msgstr "Paslaugos vykdymo rezultatas"
 
-#: app/views/services/_result.rhtml:8
-#, fuzzy
-#| msgid "Connect Result"
+#: app/views/services/_result.rhtml:9
 msgid "Result"
-msgstr "Jungimosi rezultatas"
+msgstr "Rezultatas"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Aprašymas"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "Atgal"
-
-#: app/views/services/index.rhtml:12
-#, fuzzy
-#| msgid "Automounter service"
-msgid "Custom Services"
-msgstr "Automontavimo paslauga"
-
-#: app/views/services/index.rhtml:14
-#, fuzzy
-#| msgid "System Settings"
+#: app/views/services/index.rhtml:141
 msgid "System Services"
-msgstr "Sistemos nustatymai"
+msgstr "Sistemos paslaugos"
 
-#: app/views/services/index.rhtml:21
+#: app/views/services/index.rhtml:147
 #, fuzzy
-#| msgid "you have no permission to execute this command"
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "jūs neturite teisių įvykdyti šią komandą"
+#| msgid "You do not have permission to execute the services. The links are disabled."
+msgid "You do not have permission to execute the services."
+msgstr "Jūs neturite teisių įvykdyti šią paslaugą. Nuorodos uždraustos."
 
-#: app/views/services/index.rhtml:93
+#: app/views/services/index.rhtml:151
 #, fuzzy
-#| msgid "Status"
-msgid "status"
-msgstr "Būsena"
+#| msgid "inetd service"
+msgid "Filter services"
+msgstr "inetd paslauga"
+
+#: app/views/services/index.rhtml:153
+msgid "All"
+msgstr ""
+
+#: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "running"
+msgid "Running"
+msgstr "veikia"
+
+#: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "not running"
+msgid "Not Running"
+msgstr "neveikia"
+
+#: app/views/services/index.rhtml:156
+#, fuzzy
+#| msgid "(dead)"
+msgid "Dead"
+msgstr "(nebeveikia)"
+
+#: app/views/services/index.rhtml:157
+#, fuzzy
+#| msgid "Start Konqueror"
+msgid "Started on Boot"
+msgstr "Paleisti Konqueror"
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search:"
+msgid "Quick Search"
+msgstr "Paieška:"
+
+#: app/views/services/index.rhtml:180
+msgid "Description for service is not available"
+msgstr ""
+
+#: app/views/services/index.rhtml:203
+#, fuzzy
+#| msgid "Refresh"
+msgid "(refresh)"
+msgstr "Atnaujinti"
+
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Start '%1'"
+msgid "Start"
+msgstr "Paleisti „%1“"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr ""
+
+#: app/views/services/index.rhtml:236
+msgid "Restart"
+msgstr "Perkrauti"
+
+#: app/views/services/index.rhtml:237
+#, fuzzy
+#| msgid "Start Konqueror"
+msgid "Start on Boot"
+msgstr "Paleisti Konqueror"
+
+#: app/views/services/index.rhtml:238
+#, fuzzy
+#| msgid "Do Not Start"
+msgid "Do Not Start on Boot"
+msgstr "Nepaleisti"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown"
+msgstr "nežinomas"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "veikia"
+
+#: app/views/services/_status.rhtml:37
+#, fuzzy
+#| msgid "(dead)"
+msgid "dead"
+msgstr "(nebeveikia)"
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "neveikia"
+
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "(unknown: %d)"
+msgid "status unknown: %d"
+msgstr "(nežinoma: %d)"
+
+#: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "Current user:"
+msgid "Current status of the service:"
+msgstr "Dabartinis vartotojas:"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Negalima sesija, prisijunkite iš naujo."
+
+#~| msgid "unknown"
+#~ msgid "(unknown)"
+#~ msgstr "(nežinoma)"
+
+#~| msgid "running"
+#~ msgid "(running)"
+#~ msgstr "(paleista)"
+
+#~| msgid "not running"
+#~ msgid "(not running)"
+#~ msgstr "(nepaleista)"
+
+#~ msgid "Back"
+#~ msgstr "Atgal"
+
+#~| msgid "Automounter service"
+#~ msgid "Custom Services"
+#~ msgstr "Pasirinktinos paslaugos"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "Paskirties kompiuteryje nėra apibrėžtų pasirinktinų paslaugų."
+
+#~| msgid "Status"
+#~ msgid "status"
+#~ msgstr "būsena"

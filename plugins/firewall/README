@@ -1,7 +1,22 @@
 Firewall
 ========
 
-Plugin for handling system firewall.
+User can turn the firewall on and off. He can also block/allow individual
+services to pass through the firewall.
 
+User is shown current status of firewall. If the firewall is running, it is 
+shown as on (regardless of whether it will be enabled on reboot or not). 
+User can change the setting by clicking the checkbox and pressing save. When
+saving the off status, the firewall service is stopped and will not be started on
+next boot. When saving the on status, the firewall service is started and will
+also be started on next boot.
+
+The user also sees 2 groups of service names - allowed and blocked. By clicking
+on a service name, he can move the service from one group to the other and 
+back. By clicking save the changes become effective.
+
+If the user is about to block a needed service (webyast and webyast-ui) the 
+user is presented with a warning message. This is done to prevent the user from
+blocking his access to WebYaST itself. 
 
 Copyright (c) 2009 Novell

@@ -8,12 +8,17 @@ desc 'Run all tests by default'
 task :default => :test
 
 
-%w(makemo updatepot test test:ui rdoc pgem package release install install_policies check_syntax package-local buildrpm buildrpm-local test:test:rcov).each do |task_name|
+%w(license:report makemo updatepot test test:ui rdoc pgem package release install install_policies check_syntax package-local buildrpm buildrpm-local test:test:rcov).each do |task_name|
   desc "Run #{task_name} task for all projects"
   task task_name do
     PROJECTS.each do |project|
-      system %(cd #{project} && #{env} #{$0} #{task_name})
-      raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+      puts "run into project #{project}"
+      Dir.chdir project do
+        if File.exist? "Rakefile" #avoid endless loop if directory doesn't contain Rakefile
+          system %(#{env} #{$0} #{task_name})
+          raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+        end
+      end
     end
   end
 end
@@ -32,10 +37,15 @@ task :fetch_po, [:lcn_dir] do |t, args|
   #remove translation statistik
   File.delete(File.join("pot", "translation_status.yaml")) if File.exist?("pot/translation_status.yaml")
   result = Hash.new()
+  task_name = "fetch_po"
 
   PROJECTS.each do |project|
-    system %(cd #{project} && #{env} #{$0} fetch_po #{args.lcn_dir})
-    raise "Error on execute task fetch_po on #{project}" if $?.exitstatus != 0
+      Dir.chdir project do
+        if File.exist? "Rakefile" #avoid endless loop if directory doesn't contain Rakefile
+          system %(#{env} #{$0} #{task_name}[#{args.lcn_dir}] )
+          raise "Error on execute task #{task_name} on #{project}" if $?.exitstatus != 0
+        end
+      end
 
     #collecting translation information
     Dir.glob("#{project}/**/*.po").each {|po_file|
@@ -107,7 +117,7 @@ task :doc do
   end
   plugins_names.each do |plugin|
     Dir.chdir("plugins/#{plugin}") do
-      system "rake doc:app"
+      system "rake doc:app" if File.exist? "Rakefile"
     end
     system "cp -r plugins/#{plugin}/doc/app doc/#{plugin}"
   end

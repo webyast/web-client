@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-20 19:25-0300\n"
+"POT-Creation-Date: 2010-05-03 16:30+0200\n"
+"PO-Revision-Date: 2010-04-14 21:44-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,62 +21,87 @@ msgstr ""
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:53
+#: app/views/administrator/index.html.erb:45
 msgid "Enter a valid e-mail address."
 msgstr "Digite um endereço de e-mail válido."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:61
 msgid "Passwords do not match."
 msgstr "As senhas não coincidem."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:74
 msgid "Administrator settings have been written."
 msgstr "As configurações do administrador foram gravadas."
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:84
 msgid "Error while saving administrator settings: %s"
 msgstr "Erro ao salvar as configurações do administrador: %s"
 
-#: app/views/administrator/index.html.erb:1
+#: app/controllers/administrator_controller.rb:96
+msgid ""
+"Mail alias was set but outgoing mail server is not configured (%s<i>change</"
+"i>%s)."
+msgstr ""
+"O apelido de e-mail foi configurado mas o servidor de saída do e-mail não "
+"está configurado (%s<i>alterar</i>%s)."
+
+#: app/views/administrator/index.html.erb:22
 msgid "Administrator Settings"
 msgstr "Configurações do administrador"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:53
 msgid "The passwords do not match."
-msgstr "As senhas não correspondem."
+msgstr "As senhas não coincidem."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
-msgstr ""
-"Aqui, defina as configurações para o administrador do sistema ('root')."
+#: app/views/administrator/index.html.erb:54
+msgid "A password is required."
+msgstr "Uma senha é necessária."
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Senha"
+#: app/views/administrator/index.html.erb:59
+msgid "Password Strength:"
+msgstr " Força da senha:"
+
+#: app/views/administrator/index.html.erb:61
+msgid "Weak"
+msgstr "Fraco"
+
+#: app/views/administrator/index.html.erb:62
+msgid "Normal"
+msgstr "Normal"
 
 #: app/views/administrator/index.html.erb:63
-msgid "Confirm password"
-msgstr "Confirmar senha"
+msgid "Medium"
+msgstr "Médio"
+
+#: app/views/administrator/index.html.erb:64
+msgid "Strong"
+msgstr "Forte"
 
 #: app/views/administrator/index.html.erb:65
-msgid "Save Password"
-msgstr "Salvar senha"
+msgid "Very Strong"
+msgstr "Muito forte"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
-msgstr "Encaminhar e-mail para"
+#: app/views/administrator/index.html.erb:93
+msgid "Password Setup for User 'root'"
+msgstr "Configuração de senha para o usuário 'root'"
 
-#: app/views/administrator/index.html.erb:72
-msgid "Save Mail"
-msgstr "Salvar e-mail"
+#: app/views/administrator/index.html.erb:94
+msgid "New Password"
+msgstr "Nova senha"
 
-#~ msgid "Save"
-#~ msgstr "Salvar"
+#: app/views/administrator/index.html.erb:99
+msgid "Confirm Password"
+msgstr "Confirmar senha"
 
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Sessão inválida, por favor conecte-se novamente."
+#: app/views/administrator/index.html.erb:106
+msgid "Mail Setup for User 'root'"
+msgstr "Configuração de e-mail para o usuário 'root'"
 
-#~ msgid "Confirm Password"
-#~ msgstr "Confirmar senha"
+#: app/views/administrator/index.html.erb:108
+msgid "Forward system mail to"
+msgstr "Encaminhar e-mail do sistema para"
+
+#: app/views/administrator/index.html.erb:111
+msgid "Save Mail Only"
+msgstr "Salvar e-mail somente"

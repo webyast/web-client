@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-10-22 23:34+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -19,116 +19,281 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "不適用的工作階段，請重新登入。"
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr ""
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
+msgid "Missing group parameters"
+msgstr "遺失引數"
+
+#: app/controllers/groups_controller.rb:37
+#, fuzzy
+#| msgid "Please enter server name below"
+msgid "Please enter a valid group name"
+msgstr "請在下面輸入伺服器名稱。"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr "無法從檔案 %1 讀取。"
+
+#: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr "無法從檔案 %1 讀取。"
+
+#: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "未知的錯誤\n"
+
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr "使用者 <i>%s</i> 已成功建立。"
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "空白的 UID 值"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID： 數值 >= 1000 僅適用於本地使用者"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "使用者 <i>%s</i> 已成功更新。"
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "使用者 <i>%s</i> 已成功移除。"
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "錯誤：無法移除使用者 <i>%s</i>。"
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr "本地使用者"
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+msgid "Groups"
+msgstr "群組"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "登入"
+#: app/views/groups/edit.html.erb:35
+#, fuzzy
+#| msgid "Unknown group"
+msgid "Add new group"
+msgstr "未知的群組"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
+#: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Downloading groups"
+msgid "Modify group"
+msgstr "正在下載群組"
+
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Full Name"
+msgid "Group Name"
+msgstr "完整名稱"
+
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
+msgid "Group ID"
+msgstr "群組"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
+msgid "Default members"
+msgstr "預設規劃"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+msgid "Members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "處理器 %1"
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "過濾"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr ""
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "儲存"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "刪除"
+
+#: app/views/groups/index.html.erb:114
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete group '%s'?"
+msgstr "您確定要永久刪除 \"%s\"？"
+
+#: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Monitor Settings"
+msgid "Login Settings"
+msgstr "顯示器設定"
+
+#: app/views/users/_user_form.erb:8
 msgid "Full Name"
 msgstr "完整名稱"
 
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "編輯"
+#: app/views/users/_user_form.erb:12
+msgid "Login Name"
+msgstr "登入名稱"
 
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[新使用者]</strong>"
+# password dialog title
+#: app/views/users/_user_form.erb:17
+msgid "Password"
+msgstr "密碼"
 
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "上一步"
+#: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "確認密碼(_C)："
 
-#: app/views/users/edit.html.erb:1
+#: app/views/users/_user_form.erb:39
+msgid "Default Group"
+msgstr "預設群組"
+
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "進階"
+
+#: app/views/users/_user_form.erb:64
+msgid "Home Directory"
+msgstr "家目錄"
+
+#: app/views/users/_user_form.erb:68
+msgid "Login Shell"
+msgstr "登入 Shell"
+
+#: app/views/users/_user_form.erb:72
+msgid "UID Number"
+msgstr "UID 編號"
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr ""
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "一般"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "媒體"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#, fuzzy
+#| msgid "Very fast"
+msgid "Very Strong"
+msgstr "非常快速"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "User"
+msgid "Users"
+msgstr "使用者名稱"
+
+#: app/views/users/edit.html.erb:80
 #, fuzzy
 #| msgid "Edit User %s"
 msgid "Edit user %s"
 msgstr "編輯使用者 %s"
 
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "群組"
-
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "預設群組"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "家目錄"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "登入 Shell"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
-msgid "Login Name"
-msgstr "登入名稱"
-
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "UID 編號"
-
-# password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
-msgid "Password"
-msgstr "密碼"
-
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "更新"
-
-#: app/views/users/new.html.erb:1
-msgid "New User"
+#: app/views/users/index.html.erb:52
+#, fuzzy
+#| msgid "New User"
+msgid "Add New User"
 msgstr "新使用者"
 
-#: app/views/users/new.html.erb:16
-msgid "Default Group (GID)"
-msgstr "預設群組 (GID)"
-
-#: app/views/users/new.html.erb:24
+#: app/views/users/index.html.erb:68
 #, fuzzy
-#| msgid "do NOT create home directory"
-msgid "Do not create home directory"
-msgstr "不要建立家目錄"
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete user '%s'?"
+msgstr "您確定要永久刪除 \"%s\"？"
 
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "建立"
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr ""
 
-#~ msgid "User"
-#~ msgstr "使用者名稱"
+#: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "manage backups"
+msgid "Manage Groups"
+msgstr "管理備份"
+
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "New User"
+msgid "Add new user"
+msgstr "新使用者"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "不適用的工作階段，請重新登入。"
+
+#~ msgid "Empty UID value"
+#~ msgstr "空白的 UID 值"
+
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID： 數值 >= 1000 僅適用於本地使用者"
+
+#~ msgid "Local User"
+#~ msgstr "本地使用者"
+
+#~ msgid "Login"
+#~ msgstr "登入"
+
+#~ msgid "Edit"
+#~ msgstr "編輯"
+
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "<strong>[新使用者]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "上一步"
+
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "預設群組 (GID)"
+
+#, fuzzy
+#~| msgid "do NOT create home directory"
+#~ msgid "Do not create home directory"
+#~ msgstr "不要建立家目錄"
+
+#~ msgid "Create"
+#~ msgstr "建立"

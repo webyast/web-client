@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-05-18 10:33+0200\n"
 "Last-Translator: Aiet Kolkhi <aiet@qartuli.net>\n"
 "Language-Team: Georgian <i18n@suse.de>\n"
@@ -11,23 +11,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr ""
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "პაროლები არ ემთხვევა."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 #, fuzzy
 #| msgid "Installation--Safe Settings"
 msgid "Administrator settings have been written."
 msgstr "ჩადგმა--უსაფრთხო პარამეტრებით"
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
+msgstr ""
+
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
 msgstr ""
 
 #: app/views/administrator/index.html.erb:1
@@ -36,39 +40,77 @@ msgstr ""
 msgid "Administrator Settings"
 msgstr "ჩადგმა--უსაფრთხო პარამეტრებით"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "პაროლები არ ემთხვევა."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
+#: app/views/administrator/index.html.erb:33
+msgid "A password is required."
 msgstr ""
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "პაროლი"
+#: app/views/administrator/index.html.erb:38
+#, fuzzy
+#| msgid "Password: "
+msgid "Password Strength:"
+msgstr "პაროლი: "
 
-# password dialog title
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:42
+msgid "Medium"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:44
+msgid "Very Strong"
+msgstr ""
+
 #: app/views/administrator/index.html.erb:63
+msgid "Password Setup for User 'root'"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:64
 #, fuzzy
-#| msgid "Password"
-msgid "Confirm password"
-msgstr "პაროლი"
+#| msgid "New Password: "
+msgid "New Password"
+msgstr "ახალი პაროლი:"
 
 # password dialog title
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:69
 #, fuzzy
 #| msgid "Password"
-msgid "Save Password"
+msgid "Confirm Password"
 msgstr "პაროლი"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
 msgstr ""
 
-#: app/views/administrator/index.html.erb:72
-msgid "Save Mail"
+#: app/views/administrator/index.html.erb:78
+msgid "Forward system mail to"
 msgstr ""
+
+#: app/views/administrator/index.html.erb:81
+msgid "Save Mail Only"
+msgstr ""
+
+# password dialog title
+#~ msgid "Password"
+#~ msgstr "პაროლი"
+
+# password dialog title
+#, fuzzy
+#~| msgid "Password"
+#~ msgid "Save Password"
+#~ msgstr "პაროლი"

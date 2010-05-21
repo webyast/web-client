@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-13 16:03+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-15 22:41+0100\n"
 "Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,108 +13,117 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Italian\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Nessun permesso per il modulo di rete"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Non configurato"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "Manuale"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
-msgstr "Modalità automatica"
+msgstr "Automatico"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
-msgstr "Scrittura delle impostazioni completata."
+msgstr "Le impostazioni di rete sono state scritte."
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr "spazio - carattere non valido."
+
+#: app/views/network/index.html.erb:120
+msgid " - can not start with a digit."
+msgstr " - non può iniziare con un carattere."
+
+#: app/views/network/index.html.erb:122
+msgid "periodic '-' is not allowed."
+msgstr "'-' periodico non è consentito."
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr "non può terminare con il trattino -."
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr "non può iniziare con il trattino -."
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr " - non è un carattere valido per il nome dell'host."
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "Indirizzo IP in un formato non valito. Quello corretto è nnn.nnn.nnn.nnn dove nnn varia tra 0 e 255"
 
-#: app/views/network/index.html.erb:97
-#, fuzzy
-#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "Prefisso non valido. Quello corretto è /nn dove nn varia tra 0 e 32 (formato CIDR)"
+msgstr "Formato del prefisso non valido. Quello corretto è /nn dove nn varia tra 0 e 32 (formato CIDR)."
 
-#: app/views/network/index.html.erb:103
-#, fuzzy
-#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Instradamento predefinito non valido. Quello corretto è nnn.nnn.nnn.nnn dove nnn varia tra 0 e 255"
+msgstr "Formato dell'instradamento predefinito non valido. Quello corretto è nnn.nnn.nnn.nnn dove nnn varia tra 0 e 255."
 
-#: app/views/network/index.html.erb:109
-#, fuzzy
-#| msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
-msgstr "Server dei nomi non validi. Deve esserci almeno un server specificato."
+msgstr "Sono richiesti i server dei nomi. Deve esserci almeno un server specificato."
 
-#: app/views/network/index.html.erb:115
-#, fuzzy
-#| msgid "Hostname is not valid. It must be specified."
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
-msgstr "Il nome dell'host non è valido. Deve essere specificato."
+msgstr "Il nome dell'host è richiesto. Deve essere specificato."
 
-#: app/views/network/index.html.erb:121
-#, fuzzy
-#| msgid "Domain is not valid. It is not supported empty domain."
-msgid "Domain is required. It is not supported empty domain."
-msgstr "Il dominio non è valido. Il dominio vuoto non è supportato."
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
+msgstr "Il dominio è richiesto. uN dominio vuoto non è supportato."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "Rete"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "Interfaccia"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:226
 msgid "Select"
 msgstr "Selezionare"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
 msgstr "Modalità di configurazione"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "Indirizzo IP"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "Maschera di sottorete / lunghezza del prefisso"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+msgid "Default route"
+msgstr "Instradamento predefinito"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "Nome host"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "Dominio"
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:278
 msgid "Name servers"
 msgstr "Server dei nomi"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:282
 msgid "Search domains"
 msgstr "Domini di ricerca"
 
-#: app/views/network/index.html.erb:201
-msgid "Default route"
-msgstr "Instradamento predefinito"
+#~ msgid "No permissions for network module"
+#~ msgstr "Nessun permesso per il modulo di rete"
 
 #~ msgid "not set"
 #~ msgstr "non impostato"

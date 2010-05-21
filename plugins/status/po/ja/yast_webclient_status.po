@@ -1,11 +1,11 @@
 # translation of yast_webclient_status.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009.
+# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_status\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-13 19:54+0900\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-15 22:29+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,86 +14,138 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "セッションが正しくありません。ログインし直してください。"
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "ディスクの残り容量の制限を超過しました:"
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr "システム情報を表示するためのデータが見つかりません。"
 
-#: app/controllers/status_controller.rb:181
-msgid "Limits exceeded for %s"
-msgstr "%s に対する制限が超過しています"
+#: app/controllers/status_controller.rb:187
+msgid "Limits exceeded for "
+msgstr "以下のものに対する制限が超過しています "
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
-msgstr "制限の保存に失敗しました！"
+#: app/controllers/status_controller.rb:316
+msgid "exceeded"
+msgstr "超過"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr "削減"
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr "制限を書き込みました。"
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "数字だけを指定してください！"
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "状態"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "ディスク使用量"
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "設定"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
+msgstr "削減"
+
+#: app/views/status/edit.html.erb:66
+msgid "exceeds"
+msgstr "超過"
+
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr "詳細"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "詳細"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "制限の編集"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "戻る"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
+msgstr "状態情報を読み込む際に問題が発生しました。"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "残り"
+#: app/views/status/_status_graph.html.erb:91
+msgid "Show last"
+msgstr "以下の間隔の最新を表示"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "使用"
+#: app/views/status/_status_graph.html.erb:92
+msgid "5 Minutes"
+msgstr "5 分"
 
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "状態の制限を設定"
+#: app/views/status/_status_graph.html.erb:93
+msgid "15 Minutes"
+msgstr "15 分"
 
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "状態パス"
+#: app/views/status/_status_graph.html.erb:94
+msgid "30 Minutes"
+msgstr "30 分"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "最小値"
+#: app/views/status/_status_graph.html.erb:95
+msgid "1 Hour"
+msgstr "1 時間"
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "最大値"
+#: app/views/status/_status_graph.html.erb:96
+msgid "6 Hours"
+msgstr "6 時間"
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "保存"
+#: app/views/status/_status_graph.html.erb:97
+msgid "12 Hours"
+msgstr "12 時間"
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
 msgstr "状態情報を読み込む際に問題が発生しました。"
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
-msgstr "利用可能な状態情報がありません"
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "システム情報を読み込めません - ログアウトしました。"
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "システムは健全な状態です。"
 
-#~ msgid "Events"
-#~ msgstr "イベント"
+#: app/views/status/_status_summary.html.erb:20
+msgid "Start collectd"
+msgstr "collectd の開始"
 
-#~ msgid "These values have been evaluated the last 5 minutes."
-#~ msgstr "これらの値は直前の 5 分で計測されたものです。"
+#: app/views/status/_status_summary.html.erb:28
+msgid "Loading system information"
+msgstr "システム情報を読み込んでいます"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr "システム状態を確認しています"
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr "登録がありません"
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr "更新を受けるため、お使いのシステムを登録してください。"
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "登録"
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr "メール設定のテストは確認していません"
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr "メールを設定する際に、テストメールを %s 宛に送信しました。このアドレスにメールが届きましたか？<br>届いている場合は、確認ボタンを押してください。そうでない場合は、メールの設定を確認してください。"
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "お使いのマシンの完全修飾ホスト名を取得することができません。メールが配信できなかった場合、ご利用のネットワークの管理者に対して、ネットワークやメールの設定を確認してください。"
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr "テストメールを受信しました"

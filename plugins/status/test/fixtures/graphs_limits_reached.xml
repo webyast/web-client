@@ -3,9 +3,12 @@
     <id>Network</id>
     <y_scale>1</y_scale>
     <y_label>MByte</y_label>
+    <y_max></y_max>
+    <y_decimal_places></y_decimal_places>
     <single_graphs type="array">
       <single_graph>
         <cummulated>false</cummulated>
+        <linegraph>true</linegraph>
         <headline>eth0</headline>
         <lines type="array">
           <line>
@@ -36,9 +39,12 @@
     <id>CPU</id>
     <y_scale>1</y_scale>
     <y_label>Percent</y_label>
+    <y_max></y_max>
+    <y_decimal_places></y_decimal_places>
     <single_graphs type="array">
       <single_graph>
         <cummulated>false</cummulated>
+        <linegraph>false</linegraph>
         <headline>CPU-0</headline>
         <lines type="array">
           <line>
@@ -63,6 +69,7 @@
       </single_graph>
       <single_graph>
         <cummulated>false</cummulated>
+        <linegraph>false</linegraph>
         <headline>CPU-1</headline>
         <lines type="array">
           <line>
@@ -78,9 +85,9 @@
             <metric_id>cpu-1+cpu-user</metric_id>
             <label>user</label>
             <limits>
-              <max>0</max>
+              <max>95</max>
               <min>0</min>
-              <reached>false</reached>
+              <reached>true</reached>
             </limits>
           </line>
         </lines>
@@ -91,9 +98,12 @@
     <id>Disk</id>
     <y_scale>1073741824</y_scale>
     <y_label>GByte</y_label>
+    <y_max></y_max>
+    <y_decimal_places></y_decimal_places>
     <single_graphs type="array">
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>root</headline>
         <lines type="array">
           <line>
@@ -111,15 +121,16 @@
             <metric_column>free</metric_column>
             <label>free</label>
             <limits>
-              <max>0</max>
+              <max>80</max>
               <min>0</min>
-              <reached>false</reached>
+              <reached>true</reached>
             </limits>
           </line>
         </lines>
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>windows-C</headline>
         <lines type="array">
           <line>
@@ -146,6 +157,7 @@
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>windows-D</headline>
         <lines type="array">
           <line>
@@ -172,6 +184,7 @@
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>mounts-work</headline>
         <lines type="array">
           <line>
@@ -198,6 +211,7 @@
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>mounts-built</headline>
         <lines type="array">
           <line>
@@ -224,6 +238,7 @@
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>mounts-machcd2</headline>
         <lines type="array">
           <line>
@@ -250,6 +265,7 @@
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>mounts-machcd3</headline>
         <lines type="array">
           <line>
@@ -276,6 +292,7 @@
       </single_graph>
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>suse-schubi</headline>
         <lines type="array">
           <line>
@@ -306,9 +323,12 @@
     <id>Memory</id>
     <y_scale>1048567</y_scale>
     <y_label>MByte</y_label>
+    <y_max></y_max>
+    <y_decimal_places></y_decimal_places>
     <single_graphs type="array">
       <single_graph>
         <cummulated>true</cummulated>
+        <linegraph>false</linegraph>
         <headline>Memory</headline>
         <lines type="array">
           <line>

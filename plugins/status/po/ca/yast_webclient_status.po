@@ -1,111 +1,170 @@
+# Catalan message file for YaST2 (@memory@).
+# Copyright (C) 2005 SUSE Linux Products GmbH.
+# Copyright (C) 2002 SuSE Linux AG.
+# Copyright (C) 2000, 2001 SuSE GmbH.
+# Jaume Badiella <myotis@drac.com>, 2001.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"Project-Id-Version: YaST (@memory@)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
 "PO-Revision-Date: 2002-02-08 15:47+0100\n"
-"Last-Translator: Jaume Badiella <myotis@drac.com>\n"
+"Last-Translator: Jordi Bruguera i Cortada <jordi@grn.es>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  compendi_yast_11.1_11.2_e.po (YaST (@memory@))  #-#-#-#-#\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"#-#-#-#-#  isns.ca.po (YaST (@memory@))  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr ""
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
-msgstr ""
+msgstr "No s'han trobat dades per mostrar l'estat del sistema."
 
-#: app/controllers/status_controller.rb:181
-#, fuzzy
-#| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
-msgstr "\"%s\" s'ha afegit correctament.\n"
+#: app/controllers/status_controller.rb:208
+msgid "Limits exceeded for "
+msgstr "S'han excedit els límits per "
 
-#: app/controllers/status_controller.rb:229
-#, fuzzy
-#| msgid "Saving the changes failed"
-msgid "Saving limits failed!"
-msgstr "S'ha produït un error en desar els canvis"
+#: app/controllers/status_controller.rb:337
+msgid "exceeded"
+msgstr "excedit"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:351
+msgid "undercut"
+msgstr "inferior"
+
+#: app/controllers/status_controller.rb:453
+msgid "Limits have been written."
+msgstr "S'han desat els límits."
+
+#: app/views/status/edit.html.erb:48
+msgid "Only numbers are valid !"
+msgstr "Només els números son vàlids !"
+
+#: app/views/status/edit.html.erb:73 app/views/status/index.html.erb:49
 msgid "Status"
 msgstr "Estat"
 
-#: app/views/status/index.html.erb:45
-#, fuzzy
-#| msgid "Disks"
-msgid "Disk usage"
-msgstr "Discos"
+#: app/views/status/edit.html.erb:73
+msgid "Settings"
+msgstr "Paràmetres"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:88
+msgid "undercuts"
+msgstr "inferiors"
+
+#: app/views/status/edit.html.erb:88
+msgid "exceeds"
+msgstr "excedeix"
+
+#: app/views/status/index.html.erb:93
+msgid "details"
+msgstr "detalls"
+
+#: app/views/status/index.html.erb:109
+msgid "Details"
+msgstr "Detalls"
+
+#: app/views/status/index.html.erb:165
 msgid "Edit Limits"
-msgstr ""
+msgstr "Edita els límits"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Enrere"
+#: app/views/status/_status_graph.html.erb:2
+msgid "A problem occured when loading status information."
+msgstr "S'ha produït un problema en llegir la informació d'estat ."
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr ""
+#: app/views/status/_status_graph.html.erb:92
+msgid "Show last"
+msgstr "Mostra el darrer"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr ""
+#: app/views/status/_status_graph.html.erb:93
+msgid "5 Minutes"
+msgstr "5 minuts"
 
-#: app/views/status/edit.html.erb:2
-#, fuzzy
-#| msgid "Configure Notifications..."
-msgid "Configure Status Limits"
-msgstr "Configura les notificacions..."
+#: app/views/status/_status_graph.html.erb:94
+msgid "15 Minutes"
+msgstr "15 minuts"
 
-#: app/views/status/edit.html.erb:7
-#, fuzzy
-#| msgid "Status: "
-msgid "Status Path"
-msgstr "Estat:"
+#: app/views/status/_status_graph.html.erb:95
+msgid "30 Minutes"
+msgstr "30 minuts"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr ""
+#: app/views/status/_status_graph.html.erb:96
+msgid "1 Hour"
+msgstr "1 hora"
 
-#: app/views/status/edit.html.erb:9
-#, fuzzy
-#| msgid "Maximum Memory"
-msgid "Maximum Value"
-msgstr "Memòria màxima"
+#: app/views/status/_status_graph.html.erb:97
+msgid "6 Hours"
+msgstr "6 hores"
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Desa"
+#: app/views/status/_status_graph.html.erb:98
+msgid "12 Hours"
+msgstr "12 hores"
 
-#: app/views/status/_status_summary.html.erb:1
-#, fuzzy
-#| msgid "An error occurred during the installation."
+#: app/views/status/_status_summary.html.erb:3
 msgid "An problem occured when loading status information."
-msgstr "S'ha produït un error durant la instal·lació."
+msgstr "S'ha produït un problema en llegir la informació d'estat."
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "No hi ha informació disponible."
+#: app/views/status/_status_summary.html.erb:13
+msgid "Cannot read system status - you have been logged out."
+msgstr "No s'ha pogut llegir l'estat del sistema - heu estat desconnectats."
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:16
 msgid "Your system is healthy."
-msgstr ""
+msgstr "El vostre sistema està en bon estat."
 
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Show details..."
-#~ msgstr "Detalls..."
+#: app/views/status/_status_summary.html.erb:21
+msgid "Start collectd"
+msgstr "Inicia el collectd"
+
+#: app/views/status/_status_summary.html.erb:29
+msgid "Loading system information"
+msgstr "S'està llegint la informació del sistema"
+
+#: app/views/status/_status_progress.html.erb:8
+msgid "Checking system status"
+msgstr "S'està comprovant l'estat del sistema"
+
+#: lib/plugin_translation.rb:46
+msgid "Registration is missing"
+msgstr "No s'ha registrat el producte o sistema"
+
+#: lib/plugin_translation.rb:47
+msgid "Please register your system in order to get updates."
+msgstr "Registreu el vostre sistema per rebre les actualitzacions."
+
+#: lib/plugin_translation.rb:48
+msgid "register"
+msgstr "registra"
+
+#: lib/plugin_translation.rb:50
+msgid "Mail configuration test not confirmed"
+msgstr "No s'ha confirmat la prova de la configuració del correu"
+
+#: lib/plugin_translation.rb:51
+msgid ""
+"While configuring mail, a test mail was sent to %s . Was the mail delivered "
+"to this address?<br>If so, confirm it by pressing the button. Otherwise "
+"check your mail configuration again."
+msgstr ""
+"Durant la configuració del correu, s'ha enviat un correu de prova a %s. "
+"<br>Verifiqueu que el correu ha arribat i en cas afirmatiu premeu el botó. "
+"En cas que no, comproveu la configuració del correu electrònic."
+
+
+#: lib/plugin_translation.rb:54
+msgid ""
+"It was not possible to retrieve the full hostname of the machine. If the "
+"mail could not be delivered, consult the network and/or mail configuration "
+"with your network administrator."
+msgstr ""
+"No ha estat possible de recuperar el nom complet de l'ordinador central. "
+"Si el correu no s'ha pogut repartir, consulteu la configuració del correu "
+"i/o de la xarxa amb el vostre administrador de la xarxa."
+
+#: lib/plugin_translation.rb:55
+msgid "Test mail received"
+msgstr "S'ha rebut el correu de prova"

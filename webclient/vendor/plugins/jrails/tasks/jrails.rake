@@ -1,3 +1,4 @@
+# Source: jrails plugin
 namespace :jrails do
 	namespace :update do
 		desc "Copies the jQuery and jRails javascripts to public/javascripts"

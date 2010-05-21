@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2010-01-04 12:37+0200\n"
 "Last-Translator: Mindaugas Baranauskas <embar@users.berlios.de>\n"
 "Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
@@ -18,107 +18,119 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Jokių leidimų tinklo moduliui"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "Nesukonfigūruota"
 
-#: app/controllers/network_controller.rb:66
-#| msgid "Manual Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "Rankiniu būdu"
 
-#: app/controllers/network_controller.rb:66
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
 msgstr "Automatiškai"
 
-#: app/controllers/network_controller.rb:105
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
 msgstr "Tinklo nuostatos įrašytos."
 
-#: app/views/network/index.html.erb:88
-msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
 msgstr ""
-"Netinkamas IP adreso formatas. Turi būti nnn.nnn.nnn.nnn, kur nnn yra skaičius tarp 0 ir 255 (imtinai)."
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:120
+msgid " - can not start with a digit."
+msgstr ""
+
+#: app/views/network/index.html.erb:122
+msgid "periodic '-' is not allowed."
+msgstr ""
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr ""
+
+#: app/views/network/index.html.erb:154
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Netinkamas IP adreso formatas. Turi būti nnn.nnn.nnn.nnn, kur nnn yra skaičius tarp 0 ir 255 (imtinai)."
+
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "Netinkamas prefikso formatas. Turi būti /nn, kur nn yra tarp 0-32 (CIDR formatu)."
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
-"Netinkamas numatytojo maršruto formatas. Turi būti nnn.nnn.nnn.nnn, kur nnn yra skaičius tarp 0 ir 255 "
-"(imtinai)."
+msgstr "Netinkamas numatytojo maršruto formatas. Turi būti nnn.nnn.nnn.nnn, kur nnn yra skaičius tarp 0 ir 255 (imtinai)."
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr "Reikia serverio vardo. Turi būti nurodytas bent vienas."
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
 msgstr "Reikia pagrindinio kompiuterio. Privalo būti nurodytas."
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:187
+#, fuzzy
+#| msgid "Domain is required. It is not supported empty domain."
+msgid "Domain is required. An empty domain is not supported."
 msgstr "Reikia srities. Tuščia sritis nepalaikoma."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "Tinklas"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "Sąsaja"
 
-#: app/views/network/index.html.erb:145
-#| msgid "selection"
+#: app/views/network/index.html.erb:226
 msgid "Select"
 msgstr "Pasirinkti"
 
-#: app/views/network/index.html.erb:166
-#| msgid "Configuration"
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
 msgstr "Konfigūracijos veiksena"
 
-#: app/views/network/index.html.erb:170
-#| msgid "IP Address:"
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "IP adresas"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:181
-#| msgid "Host Names"
+#: app/views/network/index.html.erb:260
+msgid "Default route"
+msgstr "Numatytasis maršrutas"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "Pagrindinio kompiuterio vardas"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
-#| msgid "Domain\n"
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "Sritis"
 
-#: app/views/network/index.html.erb:189
-#| msgid "Name Server"
+#: app/views/network/index.html.erb:278
 msgid "Name servers"
 msgstr "Vardų serveriai"
 
-#: app/views/network/index.html.erb:193
-#| msgid "Search Index"
+#: app/views/network/index.html.erb:282
 msgid "Search domains"
 msgstr "Paieškos sritys"
 
-#: app/views/network/index.html.erb:201
-#| msgid "Default System"
-msgid "Default route"
-msgstr "Numatytasis maršrutas"
+#~ msgid "No permissions for network module"
+#~ msgstr "Jokių leidimų tinklo moduliui"
 
 #, fuzzy
 #~| msgid "not present"

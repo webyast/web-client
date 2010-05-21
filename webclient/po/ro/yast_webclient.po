@@ -1,88 +1,177 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: openSUSE\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:33+0100\n"
-"PO-Revision-Date: 2009-09-25 23:33+0200\n"
-"Last-Translator: Andrei Cipu <traduceri@strainu.ro>\n"
-"Language-Team: Romanian <i18n@suse.de>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-30 16:32+0300\n"
+"Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
+"Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea.luci@gmail.com><strainu10@gmail.com><traduceri@suseromania.ro>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
 
-#: app/controllers/application_controller.rb:53
-msgid "You must accept all EULAs before using this product!"
+#: app/helpers/application_helper.rb:20
+msgid " or "
+msgstr " sau "
+
+#: app/helpers/application_helper.rb:24
+msgid " - "
+msgstr " - "
+
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
+msgid "Back"
+msgstr "Înapoi"
+
+# cancel button label
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "Anulare"
+
+#: app/helpers/application_helper.rb:52
+msgid "Save"
+msgstr "Salvare"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "Înainte"
+
+#: app/helpers/application_helper.rb:56
+#| msgid "Finnish"
+msgid "Finish"
+msgstr "Terminare"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr "Sunteţi sigur?"
+
+#: app/helpers/view_helpers/html_helper.rb:133
+msgid "Unknown error"
+msgstr "Eroare necunoscută"
+
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "Nu există informaţii disponibile."
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr "A existat o problemă în timpul obţinerii informaţiilor de la server."
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+#| msgid "Details"
+msgid "Hide Details"
+msgstr "Ascunde detaliile"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+#| msgid "Details"
+msgid "Show Details"
+msgstr "Arată detalii"
+
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Adaugă"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+msgid "Edit"
+msgstr "Editează"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Şterge"
+
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr "Trebuie să specificaţi gazda"
+
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr "Nici un nume de utilizator specificat"
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr "Nici o parolă specificată"
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "Gazda a blocat utilizatorul %s. Nu se poate conecta până când %s"
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr "Autentificare eşuată. Verificaţi numele de utilizator şi parola."
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr "Aţi fost deconectat."
+
+#: app/controllers/application_controller.rb:24
+#| msgid "Session active:"
+msgid "Session timeout"
+msgstr "Sesiune expirată"
+
+#: app/controllers/application_controller.rb:79
+msgid ""
+"You're not allowed to do this. If you have to do this action, please contact "
+"system administrator"
 msgstr ""
+"Nu este permisă efectuarea acestei acţiuni. Dacă totuşi trebuie efectuată "
+"această acţiune, vă rugăm să luaţi legătura cu administratorul de sistem"
 
-#: app/controllers/application_controller.rb:57
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr ""
-
-#: app/controllers/application_controller.rb:111
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
-msgstr "Vă rugăm să vă conectați pentru a continua."
+msgstr "Vă rugăm să vă conectaţi pentru a continua."
 
-#: app/controllers/application_controller.rb:118
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "Trebuie să vă deconectaţi înainte să vă reconectaţi"
 
+#: app/controllers/application_controller.rb:213
+msgid "can't be blank"
+msgstr "nu poate fi gol"
+
+#: app/controllers/application_controller.rb:214
+msgid "is out of allowed values"
+msgstr "este în afara valorilor permise"
+
+#: app/controllers/application_controller.rb:215
+msgid "can't be empty"
+msgstr "nu poate fi gol"
+
+#: app/controllers/application_controller.rb:216
+#| msgid "invalid"
+msgid "is invalid"
+msgstr "este invalid"
+
+#: app/controllers/application_controller.rb:231
+#| msgid "Invalid LDAP URL query parameter '%s'"
+msgid "Invalid parameters:"
+msgstr "Parametrii invalizi:"
+
 # %s is FTP or HTTP
 #: app/controllers/hosts_controller.rb:25
-#, fuzzy
-#| msgid "Trying to connect to the %s server..."
 msgid "Can't connect to host %s."
-msgstr "Încerc să mă conectez la serverul %s..."
+msgstr "Nu mă pot conecta la gazda %s."
 
 #: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "Asiguraţi-vă că maşina este pornită şi serviciul web YaST rulează."
+msgstr ""
+"Trebuie să vă asiguraţi că serviciul web YaST rulează iar calculatorul este "
+"pornit."
 
 #: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
 msgstr "Vă rugăm să alegeti o gazdă la care să vă conectati."
 
 #: app/controllers/hosts_controller.rb:31
-#, fuzzy
-#| msgid "Repository '%s' not found."
 msgid "The host '%s' cannot be found."
-msgstr "Nu am găsit sursa de instalare '%s'."
+msgstr "Gazda '%s' nu poate fi găsită."
 
 #: app/controllers/hosts_controller.rb:32
-#, fuzzy
-#| msgid "%s does not exist, please double-check the path."
 msgid "Please double-check the host URL."
-msgstr "%s nu există, verificați calea din nou."
-
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr "Trebuie să specificați gazda"
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr "Nici un cont specificat"
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr "Nici o parolă specificată"
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr "Autentificare eşuată. Verificaţi numele de utilizator şi parola."
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr "Aţi fost deconectat."
+msgstr "Vă rugăm să verificaţi URL-ul gazdă."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -101,17 +190,14 @@ msgid "Account|Updated at"
 msgstr "Cont|Actualizat la"
 
 #: app/models/account.rb:-
-#, fuzzy
 msgid "Account|Remember token"
-msgstr "Cont|Jeton"
+msgstr "Cont|Aminteşte-ţi jetonul"
 
 #: app/models/account.rb:-
-#, fuzzy
 msgid "Account|Remember token expires at"
 msgstr "Cont|Jetonul expiră la"
 
 #: app/models/account.rb:-
-#, fuzzy
 msgid "Account|Salt"
 msgstr "Cont|Salt"
 
@@ -139,111 +225,18 @@ msgstr "Gazdă|Creat la"
 msgid "Host|Updated at"
 msgstr "Gazdă|Actualizat la"
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr ""
-
-# cancel button label
-#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Renunță"
-
-#: app/helpers/application_helper.rb:28
-msgid "Save"
-msgstr "Salvează"
-
-#: app/helpers/application_helper.rb:30
-msgid "Next"
-msgstr "Înainte"
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Adaugă"
-
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Editează"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Șterge"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "Sunteţi sigur?"
-
-#: app/helpers/view_helpers/html_helper.rb:132
-#, fuzzy
-#| msgid "Unknown error\n"
-msgid "Unknown error"
-msgstr "Eroare necunoscută\n"
-
-#: app/helpers/view_helpers/html_helper.rb:136
-#: app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "Nu există informații disponibile."
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr ""
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "Vă rugăm să alegeți un serviciu:"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr "Editez Serviciul-Web-YaST"
-
-#: app/views/hosts/edit.html.erb:22
-msgid "YaST-Web-Service"
-msgstr "Serviciul-Web-YaST"
-
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
-msgid "Name"
-msgstr "Nume"
-
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
-msgid "Url"
-msgstr "Url"
-
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
-msgid "Description"
-msgstr "Descriere"
-
-#: app/views/hosts/edit.html.erb:38
-msgid "Ok"
-msgstr "Ok"
-
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Înapoi"
-
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Index"
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
-msgstr "Gazdă WebYaST nouă"
-
-#: app/views/hosts/new.html.erb:47
-msgid "Create"
-msgstr "Crează"
+#: app/views/main/_select_language.html.erb:18
+#| msgid "Clear Package Selection"
+msgid "Language Selection"
+msgstr "Alegerea limbii"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
-msgstr "Asta e neplăcut..."
+msgstr "Acest lucru este neplăcut ...."
 
-#: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "Ne pare rău, dar WebYaST este încă în versiune alfa şi pot apărea câteva probleme."
+msgid "We are sorry, but there are some problems."
+msgstr "Ne pare rău, dar există unele probleme."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
@@ -252,7 +245,9 @@ msgstr "Problemă:"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "Vă rugăm să deschideti un incident de tip bug pentru a putea rezolva problema!."
+msgstr ""
+"Vă rugăm să deschideti un incident de tip bug pentru a putea rezolva "
+"problema!."
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
@@ -263,40 +258,167 @@ msgid "Don't forget to include the bug details."
 msgstr "Nu uitaţi să includeti detaliile problemei."
 
 #: app/views/shared/backendexception_trap.html.erb:4
-#, fuzzy
-#| msgid "Problem occur on target machine."
 msgid "Problem occured on target machine."
-msgstr "Problema are loc pe maşina ţintă"
+msgstr "A apărut o problemă pe calculatorul ţintă."
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "Nu aveţi permisiunea de a modifica setările."
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr "Editez Serviciul-Web-YaST"
+
+#: app/views/hosts/edit.html.erb:22
+msgid "YaST-Web-Service"
+msgstr "Serviciul-Web-YaST"
+
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
+msgid "Name"
+msgstr "Nume"
+
+#: app/views/hosts/edit.html.erb:29
+msgid "Url"
+msgstr "Url"
+
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
+msgid "Description"
+msgstr "Descriere"
+
+#: app/views/hosts/edit.html.erb:38
+msgid "Ok"
+msgstr "Ok"
+
+#: app/views/hosts/index.html.erb:6
+msgid "Please choose a service:"
+msgstr "Vă rugăm să alegeţi un serviciu:"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr "Sunteţi sigur că vreţi să ştergeţi gazda %s?"
+
+#: app/views/hosts/new.html.erb:9
+msgid "New WebYaST Host"
+msgstr "Gazdă WebYaST nouă"
+
+#: app/views/hosts/new.html.erb:41
+#| msgid "URI"
+msgid "URL"
+msgstr "URL"
+
+#: app/views/hosts/new.html.erb:53
+msgid "Create"
+msgstr "Creează"
+
+#: app/views/hosts/show.html.erb:7
+msgid "Index"
+msgstr "Index"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
+msgid "Configuration"
+msgstr "Configuraţie"
+
+#: app/views/controlpanel/index.rhtml:27
+msgid "Status"
+msgstr "Stare"
+
+#: app/views/controlpanel/index.rhtml:35
+msgid "System actions"
+msgstr "Acţiuni de sistem"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:37
+msgid "Reboot"
+msgstr "Repornire"
+
+#: app/views/controlpanel/index.rhtml:38
+msgid "Really reboot %s?"
+msgstr "Sunteţi sigur că doriţi să reporniţi %s?"
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Shutdown"
+msgstr "Închidere"
+
+#: app/views/controlpanel/index.rhtml:40
+msgid "Really shutdown %s?"
+msgstr "Sunteţi sigur că doriţi să opriţi %s?"
+
+#: app/views/controlpanel/index.rhtml:48
+msgid "Loading patch information"
+msgstr "Se încarcă informaţia despre petic"
+
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr "Rezumatul stării peticelor este dezactivat din fişierul de configurare."
+
+#: app/views/controlpanel/index.rhtml:53
+msgid "Patch plugin is not installed."
+msgstr "Modulul pentru petic nu este instalat."
+
+#: app/views/controlpanel/index.rhtml:60
+msgid "Loading system information"
+msgstr "Se încarcă informaţiile despre sistem"
+
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr ""
+"Rezumatul stării sistemului este dezactivat din fişierul de configurare."
+
+#: app/views/controlpanel/index.rhtml:65
+msgid "Status plugin is not installed."
+msgstr "Modulul de status nu este instalat."
+
+#: app/views/controlpanel/index.rhtml:102
+msgid "Show all modules"
+msgstr "Arată toate modulele"
+
+#: app/views/controlpanel/basesystem.rhtml:1
+msgid "Base system setup"
+msgstr "Instalare sistem de bază"
+
+msgid ""
+"Your initial system setup was not completed. Please continue with setting up "
+"the modules."
+msgstr ""
+"Instalarea iniţială a sistemul dumneavoastră nu a fost finalizată. Vă rugăm "
+"să continuaţi cu setarea modulelor."
+
+#: app/views/controlpanel/basesystem.rhtml:4
+#| msgid "Base system setup"
+msgid "Continue initial system setup"
+msgstr "Continuă instalarea iniţială a sistemului"
+
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:48
-#, fuzzy
-#| msgid "Not Applicable"
+#: app/views/layouts/main.rhtml:50
 msgid "My Appliance"
 msgstr "Aplicaţia mea"
 
-#: app/views/layouts/main.rhtml:56
-#, fuzzy
-#| msgid "Connected Host"
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#| msgid "Language"
+msgid "Language:"
+msgstr "Limbă:"
+
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
-msgstr "Gazdă conectată"
+msgstr "Gazdă conectată:"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
-msgstr "Utilizator: "
+msgstr "Utilizator:"
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "Panoul de control"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
-msgstr "Ieșire"
+msgstr "Deconectare"
 
-#: app/views/layouts/main.rhtml:93
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr "...Aşteptaţi..."
 
@@ -305,138 +427,68 @@ msgid "Login"
 msgstr "Autentificare"
 
 #: app/views/sessions/new.rhtml:6
-#, fuzzy
-#| msgid "Enter specific parameters for chipset \"%s\"."
 msgid "Enter login credentials for host %s."
-msgstr "Introduceți parametrii specifici pentru chipsetul \"%s\"."
+msgstr "Introduceţi datele de conectare pentru gazda %s."
 
 #: app/views/sessions/new.rhtml:10
 msgid "Username:"
-msgstr "Nume utilizator: "
+msgstr "Nume utilizator:"
 
 # password dialog title
 #: app/views/sessions/new.rhtml:13
 msgid "Password:"
 msgstr "Parolă:"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "Instalare sistem de bază"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "Instalarea sistemului nu a fost terminată. Vă rugăm să continuaţi cu instalarea modulelor."
-
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Puneţi la punct sistemul"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
-msgid "Configuration"
-msgstr "Configurare"
-
-#: app/views/controlpanel/index.rhtml:24
-msgid "Status"
-msgstr "Stare"
-
-#: app/views/controlpanel/index.rhtml:33
-#, fuzzy
-#| msgid "System Information"
-msgid "System actions"
-msgstr "Acţiuni de sistem"
-
-# reboot button label
-#: app/views/controlpanel/index.rhtml:34
-msgid "Reboot"
-msgstr "Restartează"
-
-#: app/views/controlpanel/index.rhtml:35
-msgid "Really reboot %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:36
-msgid "Shutdown"
-msgstr "Oprire calculator"
-
-#: app/views/controlpanel/index.rhtml:37
-msgid "Really shutdown %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:44
-msgid "Loading patch information"
-msgstr "Încarc informaţia despre petice"
-
-#: app/views/controlpanel/index.rhtml:46
-msgid "Patch plugin is not installed."
-msgstr "Pluginul pentru petice nu este instalat"
-
-#: app/views/controlpanel/index.rhtml:52
-msgid "Loading system information"
-msgstr "Încarc informațiile despre sistem"
-
-#: app/views/controlpanel/index.rhtml:54
-msgid "Status plugin is not installed."
-msgstr "Pluginul de status nu este instalat"
-
-#: app/views/controlpanel/index.rhtml:93
-msgid "Show all modules"
-msgstr "Arată toate modulele"
-
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
-msgstr ""
+msgstr "Serviciul %s nu este disponibil în cadrul maşinii ţintă"
 
 #: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
-msgstr ""
+msgstr "Serviciul %s nu este activ pe calculatorul ţintă"
 
 #: lib/error_constructor.rb:16
-#, fuzzy
-#| msgid "Action '%1' is not allowed for service '%2'."
-msgid "Permission %s is not granted for user %s"
-msgstr "Acțiunea '%1' nu este permisă pentru serviciul '%2'."
-
-#: lib/error_constructor.rb:18
-msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgid ""
+"Broken permission setup on rest-service. Can be fixed by grantwebyastrights "
+"script."
 msgstr ""
+"Setare greşită de permisiuni pe serviciul rest. Poate fi reparată de către "
+"scriptul grantwebyastrights."
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:17
+msgid "Permission %s is not granted for user %s"
+msgstr "Permisiunea %s nu este acordată utilizatorului %s"
+
+#: lib/error_constructor.rb:19
+msgid ""
+"Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+"Politica de excepţie pentru utilizator %s şi permisiunea %s (mesajul nu este "
+"tradus): %s"
+
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
+"Utilizatorul nu mai este conectat la calculator ţintă. Vă rugăm să vă "
+"reconectaţi."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr "Sistemul ţintă nu este consistent: fişierul %s lipseşte sau este corupt"
+
+#: lib/error_constructor.rb:27
+msgid ""
+"There is no predefined ntp server at /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
+"Nu există nici un server ntp predefinit în /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
 
-#: lib/error_constructor.rb:26
-msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr ""
+#: lib/error_constructor.rb:29
+#| msgid "Error occured during ntp synchronization: %s"
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "Eroare apărută în timpul sincronizării ntp: %s"
 
-#: lib/error_constructor.rb:28
-#, fuzzy
-#| msgid "An error occurred during the installation."
-msgid "Error occured during ntp synchronization: %s"
-msgstr "A apărut o eroare la instalare."
-
-#: lib/error_constructor.rb:31
-#, fuzzy
-#| msgid "Error while closing old shadow file: %m"
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
-msgstr "Eroare la închiderea vechiului fișier shadow: %m"
-
-#, fuzzy
-#~| msgid "Language"
-#~ msgid "Langugage:"
-#~ msgstr "Limbă"
-
-#~ msgid "Name:"
-#~ msgstr "Nume:"
-
-#, fuzzy
-#~| msgid "Problem occur on target machine."
-#~ msgid "Problem occured on target machine"
-#~ msgstr "Problema are loc pe maşina ţintă"
-
-#~ msgid "Noone is logged to rest service."
-#~ msgstr "Nimeni nu este conectat la serviciul rest."
+msgstr "Eroare la salvarea setărilor de administrator: %s"

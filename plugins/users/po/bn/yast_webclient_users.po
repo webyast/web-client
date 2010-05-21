@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -11,131 +11,271 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
 msgstr ""
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
+msgid "Missing group parameters"
+msgstr "এর জন্য অনুপস্থির আর্গুমেন্ট "
+
+#: app/controllers/groups_controller.rb:37
+msgid "Please enter a valid group name"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr " ফাইল %1 থেকে পড়া যাচ্ছে না"
+
+#: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr " ফাইল %1 থেকে পড়া যাচ্ছে না"
+
+#: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "অজানা ভুল\n"
+
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr ""
 
-#: app/controllers/users_controller.rb:148
-#, fuzzy
-#| msgid "Empty CA name."
-msgid "Empty UID value"
-msgstr " CA নাম শূণ্য"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr ""
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr ""
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr ""
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr ""
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+msgid "Groups"
+msgstr "গ্রুপ"
+
+#: app/views/groups/edit.html.erb:35
+msgid "Add new group"
 msgstr ""
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "লগইন"
+#: app/views/groups/edit.html.erb:37
+msgid "Modify group"
+msgstr ""
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Name"
+msgid "Group Name"
+msgstr "নাম"
+
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
+msgid "Group ID"
+msgstr "গ্রুপ"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default members"
+msgstr "ডিফল্ট রুট"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+msgid "Members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "প্রসেসর %1"
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "ফিল্টার:"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr ""
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "মোছো"
+
+#: app/views/groups/index.html.erb:114
+msgid "Are you sure to delete group '%s'?"
+msgstr ""
+
+#: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Monitor Settings"
+msgid "Login Settings"
+msgstr "মনিটরের সেটিং"
+
+#: app/views/users/_user_form.erb:8
 #, fuzzy
 #| msgid "Name"
 msgid "Full Name"
 msgstr "নাম"
 
-#: app/views/users/index.html.erb:8
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&সম্পাদনা"
-
-#: app/views/users/index.html.erb:27
-#, fuzzy
-#| msgid "You are <strong>online</strong>"
-msgid "<strong>[New User]</strong>"
-msgstr "আপনি<মজবুত>অনলাইন আছেন</মজবুত>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "পিছনে যান"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr ""
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "গ্রুপ"
-
-#: app/views/users/edit.html.erb:19
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default Group"
-msgstr "ডিফল্ট রুট"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#, fuzzy
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "ডাইরেক্টরি\n"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#, fuzzy
-#| msgid "Login"
-msgid "Login Shell"
-msgstr "লগইন"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/_user_form.erb:12
 #, fuzzy
 #| msgid "Login"
 msgid "Login Name"
 msgstr "লগইন"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr ""
-
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "পাসওয়ার্ড"
 
-#  Proposal for installation mode
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "পরিবর্ধন"
+#: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "পাসওয়ার্ড (_P):"
 
-#: app/views/users/new.html.erb:1
+#: app/views/users/_user_form.erb:39
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default Group"
+msgstr "ডিফল্ট রুট"
+
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "উন্নত"
+
+#: app/views/users/_user_form.erb:64
+#, fuzzy
+#| msgid "Directory\n"
+msgid "Home Directory"
+msgstr "ডাইরেক্টরি\n"
+
+#: app/views/users/_user_form.erb:68
+#, fuzzy
+#| msgid "Login"
+msgid "Login Shell"
+msgstr "লগইন"
+
+#: app/views/users/_user_form.erb:72
+msgid "UID Number"
+msgstr ""
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr ""
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "স্বাভাবিক মাপ (_N)"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+msgid "Medium"
+msgstr ""
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
 #, fuzzy
 #| msgid "New Mode"
-msgid "New User"
+msgid "Users"
 msgstr "নতুন মোড"
 
-#: app/views/users/new.html.erb:16
-#, fuzzy
-#| msgid "Default route ok."
-msgid "Default Group (GID)"
-msgstr "ডিফল্ট রুট ঠিক আছে।"
-
-#: app/views/users/new.html.erb:24
-#, fuzzy
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "ডায়রেক্টরি %1: %2 তৈরী করা যাচ্ছে না"
-
-#: app/views/users/new.html.erb:44
-msgid "Create"
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
 msgstr ""
+
+#: app/views/users/index.html.erb:52
+#, fuzzy
+#| msgid "New Mode"
+msgid "Add New User"
+msgstr "নতুন মোড"
+
+#: app/views/users/index.html.erb:68
+msgid "Are you sure to delete user '%s'?"
+msgstr ""
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr ""
+
+#: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "Groups"
+msgid "Manage Groups"
+msgstr "গ্রুপ"
+
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "New Mode"
+msgid "Add new user"
+msgstr "নতুন মোড"
+
+#, fuzzy
+#~| msgid "Empty CA name."
+#~ msgid "Empty UID value"
+#~ msgstr " CA নাম শূণ্য"
+
+#~ msgid "Login"
+#~ msgstr "লগইন"
+
+#, fuzzy
+#~| msgid "&Edit"
+#~ msgid "Edit"
+#~ msgstr "&সম্পাদনা"
+
+#, fuzzy
+#~| msgid "You are <strong>online</strong>"
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "আপনি<মজবুত>অনলাইন আছেন</মজবুত>"
+
+#~ msgid "Back"
+#~ msgstr "পিছনে যান"
+
+#  Proposal for installation mode
+#~ msgid "Update"
+#~ msgstr "পরিবর্ধন"
+
+#, fuzzy
+#~| msgid "Default route ok."
+#~ msgid "Default Group (GID)"
+#~ msgstr "ডিফল্ট রুট ঠিক আছে।"
+
+#, fuzzy
+#~| msgid "Cannot create directory %1: %2."
+#~ msgid "Do not create home directory"
+#~ msgstr "ডায়রেক্টরি %1: %2 তৈরী করা যাচ্ছে না"

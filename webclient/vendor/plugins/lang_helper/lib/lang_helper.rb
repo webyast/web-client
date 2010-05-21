@@ -31,11 +31,11 @@ module LangHelper
 
   def current_locale
     ret = locale.language
-    Rails.logger.info ("detected locale #{ret}")
+    Rails.logger.info("detected locale #{ret}")
     #find locale from existing one, translate if locale came from browser to current one, fallback to american english
     default = lambda{return "en_US"} #detect require something which response to call
     ret = supported_languages.detect(default) { |k| ret.tr('-','_').downcase == k.downcase ? k : nil} 
-    Rails.logger.info ("returned locale #{ret}")
+    Rails.logger.info("returned locale #{ret}")
     return ret
   end
 

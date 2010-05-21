@@ -16,12 +16,13 @@ PreReq:         yast2-webclient
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.0.6
+Version:        0.0.7
 Release:        0
 Summary:        YaST2 - Webclient - Custom Services
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 
 Requires:	yast2-webclient-services
 
@@ -31,11 +32,22 @@ Requires:	yast2-webclient-services
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-custom-services-ui package
+
 %description
 YaST2 - Webclient - UI for YaST-webservice in order to handle custom service(s).
 Authors:
 --------
 
+
+%description testsuite
+This package contains complete testsuite for webyast-custom-services-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
 
 %prep
 %setup -q -n www
@@ -44,6 +56,9 @@ Authors:
 rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -72,3 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/po
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/locale
 %doc COPYING
+
+#currently no tests available
+#%files testsuite
+#%defattr(-,root,root)
+#%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: desktop-translations 20090902\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,82 +9,180 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr ""
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr ""
 
-#: app/views/services/_status.rhtml:14
-#, fuzzy
-#| msgctxt "Comment(octet-stream.desktop)"
-#| msgid "Unknown"
-msgid "(unknown)"
-msgstr "Номуайян"
-
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
 msgstr ""
 
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
 msgstr ""
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
 msgstr ""
 
-#: app/views/services/_status.rhtml:22
-#, fuzzy
-#| msgctxt "Comment(octet-stream.desktop)"
-#| msgid "Unknown"
-msgid "(unknown: %d)"
-msgstr "Номуайян"
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr ""
+
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr ""
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr ""
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 #, fuzzy
 #| msgctxt "Name(eruption.desktop)"
 #| msgid "Eruption"
 msgid "Description"
 msgstr "Қатраҳои оташӣ"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr ""
-
-#: app/views/services/index.rhtml:12
-#, fuzzy
-#| msgctxt "Name(cvsservice.desktop)"
-#| msgid "CvsService"
-msgid "Custom Services"
-msgstr "ҲизматиCvs"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:141
 #, fuzzy
 #| msgctxt "Name(services.desktop)"
 #| msgid "Services"
 msgid "System Services"
 msgstr "Хидматҳо"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
 msgstr ""
 
-#: app/views/services/index.rhtml:93
-msgid "status"
+#: app/views/services/index.rhtml:151
+#, fuzzy
+#| msgctxt "Name(services.desktop)"
+#| msgid "Services"
+msgid "Filter services"
+msgstr "Хидматҳо"
+
+#: app/views/services/index.rhtml:153
+msgid "All"
 msgstr ""
+
+#: app/views/services/index.rhtml:154
+msgid "Running"
+msgstr ""
+
+#: app/views/services/index.rhtml:155
+msgid "Not Running"
+msgstr ""
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr ""
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgctxt "Name(plasma-applet-quicklaunch.desktop)"
+#| msgid "Quicklaunch"
+msgid "Quick Search"
+msgstr "Оғози тез"
+
+#: app/views/services/index.rhtml:180
+msgid "Description for service is not available"
+msgstr ""
+
+#: app/views/services/index.rhtml:203
+msgid "(refresh)"
+msgstr ""
+
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgctxt "Name(starfish.desktop)"
+#| msgid "Starfish"
+msgid "Start"
+msgstr "Ситора"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr ""
+
+#: app/views/services/index.rhtml:236
+#, fuzzy
+#| msgctxt "Name(autostart.desktop)"
+#| msgid "Autostart"
+msgid "Restart"
+msgstr "Худоғозӣ"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:238
+msgid "Do Not Start on Boot"
+msgstr ""
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgctxt "Comment(octet-stream.desktop)"
+#| msgid "Unknown"
+msgid "status unknown"
+msgstr "Номуайян"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr ""
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr ""
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr ""
+
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgctxt "Comment(octet-stream.desktop)"
+#| msgid "Unknown"
+msgid "status unknown: %d"
+msgstr "Номуайян"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr ""
+
+#, fuzzy
+#~| msgctxt "Name(cvsservice.desktop)"
+#~| msgid "CvsService"
+#~ msgid "Custom Services"
+#~ msgstr "ҲизматиCvs"

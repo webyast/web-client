@@ -1,3 +1,21 @@
+#--
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 #
 # Control panel
 #
@@ -8,7 +26,7 @@ require 'yaml'
 
 class ControlpanelController < ApplicationController
   before_filter :ensure_login
-  before_filter :ensure_wizard, :only => [:nextstep, :backstep]
+  before_filter :ensure_wizard, :only => [:nextstep, :backstep, :thisstep]
 
   def index
     return false if need_redirect
@@ -23,26 +41,10 @@ class ControlpanelController < ApplicationController
         @shortcut_groups[group] << data
       end
     end
-  end
-
-  # this action allows to retrieve the shortcuts
-  # as a resource
-  def shortcuts
-    respond_to do |format|
-      format.html { } 
-      format.xml  { render :xml => shortcuts_data.to_xml, :location => "none" }
-      format.json { render :json => shortcuts_data.to_json, :location => "none" }
+    @shortcut_groups.each do |group,val|
+      val.sort! { |g1,g2| g1['title'] <=> g2['title'] }
     end
   end
-
-
-  # nextstep and backstep expect, that wizard session variables are set
-  def ensure_wizard
-    if !Basesystem.new.load_from_session(session).in_process?
-       redirect_to "/controlpanel"
-    end
-  end
-
 
   def nextstep
     bs = Basesystem.new.load_from_session(session)
@@ -54,6 +56,8 @@ class ControlpanelController < ApplicationController
         return
       end
     end
+    flash.keep #at first keep all flash because first call of flash load it from session and mark all flash messages as used
+    flash.discard :notice #don't show success notice in basesystem (bnc#582803)
     redirect_to bs.next_step
   end
 
@@ -67,6 +71,13 @@ class ControlpanelController < ApplicationController
   end
 
   protected
+
+  # nextstep and backstep expect, that wizard session variables are set
+  def ensure_wizard
+    unless Basesystem.installed? && Basesystem.new.load_from_session(session).in_process?
+       redirect_to "/controlpanel"
+    end
+  end
 
   # reads the shortcuts and returns the
   # hash with the data
@@ -110,19 +121,19 @@ class ControlpanelController < ApplicationController
   # and if it should, then also redirects to that module.
   # TODO check if controller from config exists
   def need_redirect
-    bs = Basesystem.new.load_from_session(session)
-    if bs.initialized?
-      # session variable is used to find out, if basic system module is needed
-      return false if Bs.completed?
-      # error happen during basesystem, so show this page (prevent endless loop bnc#554989) 
-      render :action => "basesystem"
-      return true
-    else
-      bs = Basesystem.find session
-      return false if bs.completed?
-      logger.info "start basesystem setup"
+    return false unless Basesystem.installed?
+    first_run = !(Basesystem.new.load_from_session(session).initialized)
+    logger.debug "first run of basesystem: #{first_run}.\n Session: #{session.inspect}."
+    bs = Basesystem.find(session)
+    # session variable is used to find out, if basic system module is needed
+    return false if bs.completed?
+    # error happen during basesystem, so show this page (prevent endless loop bnc#554989) 
+    if first_run
       redirect_to bs.current_step
-      return true
+    else 
+      logger.info "error occur during basesystem. render basesystem screen"
+      render :action => "basesystem"
     end
+    return true
   end
 end

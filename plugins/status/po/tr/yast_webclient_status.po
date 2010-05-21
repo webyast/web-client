@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -17,88 +17,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr ""
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:181
+#: app/controllers/status_controller.rb:187
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
+msgid "Limits exceeded for "
 msgstr "\"%s\" için ekleme başarılı oldu.\n"
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
+#: app/controllers/status_controller.rb:316
+#, fuzzy
+#| msgid "Needed"
+msgid "exceeded"
+msgstr "Gerekli"
+
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr ""
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr ""
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
 msgstr ""
 
 # clients/lan_inetd_custom.ycp:748
-#: app/views/status/index.html.erb:23
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Durum"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
+#: app/views/status/edit.html.erb:51
+#, fuzzy
+#| msgid "Manual Settings"
+msgid "Settings"
+msgstr "El ile ayarlama"
+
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
 msgstr ""
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "exceeds"
+msgstr ""
+
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr ""
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr ""
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr ""
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
+#: app/views/status/_status_graph.html.erb:1
+msgid "A problem occured when loading status information."
 msgstr ""
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
+#: app/views/status/_status_graph.html.erb:91
+msgid "Show last"
 msgstr ""
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
+#: app/views/status/_status_graph.html.erb:92
+msgid "5 Minutes"
 msgstr ""
 
-#: app/views/status/edit.html.erb:2
-#, fuzzy
-#| msgid "Configuration"
-msgid "Configure Status Limits"
-msgstr "Yapılandırma"
-
-# clients/lan_inetd_custom.ycp:748
-#: app/views/status/edit.html.erb:7
-#, fuzzy
-#| msgid "Status: "
-msgid "Status Path"
-msgstr "Durum: "
-
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
+#: app/views/status/_status_graph.html.erb:93
+msgid "15 Minutes"
 msgstr ""
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
+#: app/views/status/_status_graph.html.erb:94
+msgid "30 Minutes"
 msgstr ""
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
+#: app/views/status/_status_graph.html.erb:95
+msgid "1 Hour"
 msgstr ""
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_graph.html.erb:96
+msgid "6 Hours"
+msgstr ""
+
+#: app/views/status/_status_graph.html.erb:97
+msgid "12 Hours"
+msgstr ""
+
+#: app/views/status/_status_summary.html.erb:2
 msgid "An problem occured when loading status information."
 msgstr ""
 
-#: app/views/status/_status_summary.html.erb:6
-msgid "No status information available"
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
 msgstr ""
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr ""
+
+#: app/views/status/_status_summary.html.erb:20
+#, fuzzy
+#| msgid "Status connected color"
+msgid "Start collectd"
+msgstr "Bağlandı durum rengi"
+
+#: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "Looking for memory information..."
+msgid "Loading system information"
+msgstr "Hafıza bilgisi araştırılıyor..."
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr ""
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr ""
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr ""
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr ""
+
+#: lib/plugin_translation.rb:29
+msgid "Mail configuration test not confirmed"
+msgstr ""
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr ""
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Configuration"
+#~ msgid "Configure Status Limits"
+#~ msgstr "Yapılandırma"
+
+# clients/lan_inetd_custom.ycp:748
+#, fuzzy
+#~| msgid "Status: "
+#~ msgid "Status Path"
+#~ msgstr "Durum: "

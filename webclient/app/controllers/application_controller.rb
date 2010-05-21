@@ -1,3 +1,21 @@
+#--
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 require 'open-uri'
@@ -9,7 +27,7 @@ class ApplicationController < ActionController::Base
 protected
   def redirect_success
     logger.debug session.inspect
-    if Basesystem.new.load_from_session(session).in_process?
+    if Basesystem.installed? && Basesystem.new.load_from_session(session).in_process?
       logger.debug "wizard redirect DONE"
       redirect_to :controller => "controlpanel", :action => "nextstep", :done => self.controller_name
     else
@@ -22,7 +40,22 @@ protected
   rescue_from Exception, :with => :exception_trap
   rescue_from ActiveResource::UnauthorizedAccess do #lazy load of activeresource exception
     flash[:error] = _("Session timeout");
-    redirect_to '/logout' unless request.xhr?
+    if request.xhr?
+      render :text => flash[:error], :status => 401
+    else
+      redirect_to '/logout'
+    end
+  end
+
+  # helper to add details show link with details content as parameter
+  # Main usage is for flash message
+  #
+  # === usage ===
+  # flash[:error] = "Fatal error."+details("really interesting details")
+  def details(message, options={})
+    ret = "<br><a href=\"#\" onClick=\"$('.details',this.parentNode).css('display','block');\"><small>#{_('details')}</small></a>
+            <pre class=\"details\" style=\"display:none\"> #{CGI.escapeHTML message } </pre>"
+    ret
   end
   
   include AuthenticatedSystem
@@ -30,13 +63,7 @@ protected
 #hide actions because our routing table has automatic action mapping
   hide_action :construct_error
 
-  begin
-    require 'gettext_rails'
-  rescue Exception => e
-    $stderr.puts "gettext_rails not found!"
-    exit
-  end
-
+  require 'gettext_rails'
 public
   helper :all # include all helpers, all the time
 
@@ -60,16 +87,6 @@ private
     end
   end
 
-  def eulaexception_trap
-    flash[:error] = _("You must accept all EULAs before using this product!")
-    if ActionController::Routing.possible_controllers.include?("eulas") then
-      redirect_to :controller => :eulas, :action => :next
-    else
-      render :status => 501, :text => _("Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed")
-    end
-    true
-  end
-
   def exception_trap(error)
     logger.error "***" + error.to_s
     logger.error error.backtrace.join "\n"
@@ -80,25 +97,15 @@ private
 #handle insufficient permissions, especially useful for read permissions,
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
-    if e.backend_exception_type == "NO_PERM" && !request.xhr?
-      flash[:error] = e.message #already localized from error constructor
-      redirect_to :controller => :controlpanel
+    if e.backend_exception_type == "NO_PERM"
+      flash[:error] = _("Operation is forbidden. If you have to do it, please contact system administrator")+
+                          details(e.message) #already localized from error constructor
+      if  request.xhr?
+        render :text => "<div>#{flash[:error]}</div>", :status => 403
+      else
+        redirect_to :controller => :controlpanel
+      end
       return
-    end
-    
-    eulaexception_trap(e) and return if e.backend_exception_type.to_s == 'EULA_NOT_ACCEPTED'
-    
-    # get the vendor settings
-    begin
-      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
-      @bug_url = ActiveSupport::JSON.decode(open(settings_url).read)
-    rescue Exception => vendor_excp
-      @bug_url = "https://bugzilla.novell.com/enter_bug.cgi?classification=84&product=WebYaST&submit=Use+This+Product&component=WebYaST&format=guided"
-      # there was a problem or the setting does not exist
-      # Here we should handle this always as an error
-      # the service should return a sane default if the
-      # url is not configured
-      logger.warn "Can't get vendor bug reporting url, Using Novell"
     end
     
     # for ajax request render a different template, much less verbose
@@ -117,11 +124,27 @@ private
     return
   end
   
+  def self.bug_url
+    begin
+      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
+      url = ActiveSupport::JSON.decode(open(settings_url).read)
+      return url unless url.blank?
+    rescue Exception => vendor_excp
+      # there was a problem or the setting does not exist
+      # Here we should handle this always as an error
+      # the service should return a sane default if the
+      # url is not configured
+      logger.warn "Can't get vendor bug reporting url, Using Novell. Exception: #{vendor_excp.inspect}"
+    end
+    #fallback if bugurl is not defined
+    return "https://bugzilla.novell.com/enter_bug.cgi?product=WebYaST&format=guided"
+  end
+
 protected
   def ensure_login
     unless logged_in?
       flash[:notice] = _("Please login to continue")
-      redirect_to new_session_path
+      redirect_to :controller => "session", :action => "new", :hostid => "localhost" #redirect by default to locahost appliance (bnc#602807)
     end
   end
 
@@ -146,8 +169,23 @@ protected
         ActionController::Base.init_gettext(domainname, opt)
       else
         #load default no vendor translation available
-        logger.info "Loading standard textdomain #{domainname}"
-        ActionController::Base.init_gettext(domainname, options)
+        locale_path = ""
+        #searching in RAILS_ROOT
+        mo_files = Dir.glob(File.join(RAILS_ROOT, "**", "#{domainname}.mo"))
+        if mo_files.size > 0
+          locale_path = File.dirname(File.dirname(File.dirname(mo_files.first)))
+        else
+          # trying plugin directory in the git 
+          mo_files = Dir.glob(File.join(RAILS_ROOT, "..", "**", "#{domainname}.mo"))
+          locale_path = File.dirname(File.dirname(File.dirname(mo_files.first))) if mo_files.size > 0
+        end
+        unless locale_path.blank?
+          logger.info "Loading standard textdomain #{domainname} from #{locale_path}"
+          opt = {:locale_path => locale_path}.merge(options)
+          ActionController::Base.init_gettext(domainname, opt)
+        else
+          logger.error "Cannot find translation for #{domainname}"
+        end
       end
     else
       #load default if the path has been given
@@ -194,4 +232,44 @@ protected
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password").
   filter_parameter_logging :password
+
+  # Translation mapping for ActiveResource validation errors
+  def error_mapping
+    # TODO: is it complete?
+    # ActiveRecord::Errors.default_error_messages defines more messages
+    # but it seems that they cannot be used with YaST model...
+    {
+      :blank => _("can't be blank"),
+      :inclusion => _("is out of allowed values"),
+      :empty => _("can't be empty"),
+      :invalid => _("is invalid")
+    }
+  end
+
+  private :error_mapping
+
+  # Create human readable error meesages from passed ActiveResource object
+  # This error message can be used either in flash or in a view
+  # Parameters:
+  #   obj => ActiveResource object
+  #   mapping => custom mapping of attribute name => translatable description,
+  #      e.g. { :name => _('Name')}
+  #      the mapping should match the labels used in the form
+  #   header => optional header
+  #
+  def generate_error_messages obj, mapping = {}, header = _('Invalid parameters:')
+    return '' if obj.errors.size == 0
+
+    emapping = error_mapping
+    ret = ''
+
+    obj.errors.each {|attr, msg|
+      attrib_name = mapping[attr.to_sym] || attr
+      err_msg = emapping[msg.to_sym] || ''
+
+      ret += "<li>#{ERB::Util.html_escape attrib_name} #{ERB::Util.html_escape err_msg}</li>"
+    }
+
+    "<p>#{ERB::Util.html_escape header}</p><ul>#{ret}</ul>"
+  end
 end

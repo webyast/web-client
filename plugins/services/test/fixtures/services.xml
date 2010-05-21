@@ -5,20 +5,37 @@
     <description>D-Bus supplies...</description>
     <summary></summary>
     <custom>false</custom>
+    <enabled>true</enabled>
     <status type="integer"></status>
+    <required_for_start type="array">
+    </required_for_start>
+    <required_for_stop type="array">
+    </required_for_stop>
   </service>
   <service>
     <name>nfs</name>
     <description>All necessary services for NFS clients</description>
     <summary>NFS client services </summary>
     <custom>false</custom>
+    <enabled>true</enabled>
     <status type="integer"></status>
+    <required_for_start type="array">
+    </required_for_start>
+    <required_for_stop type="array">
+    </required_for_stop>
   </service>
   <service>
     <name>alsasound</name>
     <description>Loading ALSA drivers and store/restore the current setting</description>
     <summary>Set up ALSA sound system</summary>
     <custom>false</custom>
+    <enabled>true</enabled>
     <status type="integer"></status>
+    <required_for_start type="array">
+    </required_for_start>
+    <required_for_stop type="array">
+      <service>joystick</service>
+      <service>esound</service>
+    </required_for_stop>
   </service>
 </services>

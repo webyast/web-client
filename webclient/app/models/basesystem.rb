@@ -1,6 +1,28 @@
+#--
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 class Basesystem < ActiveResource::Base
   extend YastModel::Base
   model_interface :'org.opensuse.yast.modules.basesystem'
+
+  def self.installed?
+    YastModel::Resource.interfaces_available? :'org.opensuse.yast.modules.basesystem'
+  end
 
   def load_from_session(session)
     @session = session
@@ -21,9 +43,9 @@ class Basesystem < ActiveResource::Base
       session[:wizard_current] = FINISH_STEP
     else
       Rails.logger.debug "Basesystem steps: #{bs.steps.inspect}"
-      decoded_steps = bs.steps.collect { |step| step.action ? "#{step.controller}:#{step.action}" : "#{step.controller}"  }
+      decoded_steps = bs.steps.collect { |step| step.respond_to?(:action) ? "#{step.controller}:#{step.action}" : "#{step.controller}"}
       session[:wizard_steps] = decoded_steps.join(",")
-      session[:wizard_current] = decoded_steps.first
+      session[:wizard_current] = decoded_steps.find(decoded_steps.first) { |s| s.include? bs.done }
     end
     bs.load_from_session session
     bs
@@ -41,6 +63,8 @@ class Basesystem < ActiveResource::Base
       return :controller => "controlpanel"
     else
       self.current_step = @steps[@steps.index(current)+1]
+      load(:finish => false,  :steps => [], :done => self.current_step[:controller]) #store advantage in setup
+      save #TODO check return value
       return redirect_hash
     end
   end
@@ -50,8 +74,7 @@ class Basesystem < ActiveResource::Base
   end
 
   def back_step
-    current_step if first_step?
-    self.current_step = @steps[@steps.index(current)-1]
+    self.current_step = @steps[@steps.index(current)-1] unless first_step?
     redirect_hash
   end
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-11-21 13:00+0100\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -13,56 +13,114 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Geben Sie eine gültige E-Mail-Adresse ein."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Die Passwörter sind nicht identisch."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
 msgstr "Administrator-Einstellungen wurden geschrieben."
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
 msgstr "Fehler beim Speichern der Administrator-Einstellungen: %s"
+
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr ""
 
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "Administrator-Einstellungen"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Die Passwörter sind nicht identisch."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
-msgstr ""
-"Hier konfigurieren Sie die Einstellunjgen für den Systemadministrator "
-"('root')"
+#: app/views/administrator/index.html.erb:33
+#, fuzzy
+#| msgid "The PKCS12 password is required."
+msgid "A password is required."
+msgstr "Das PKCS12-Passwort muss angegeben werden."
 
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Passwort"
+#: app/views/administrator/index.html.erb:38
+#, fuzzy
+#| msgid "Passwords match"
+msgid "Password Strength:"
+msgstr "Passwörter stimmen überein"
+
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "Normal"
+
+#: app/views/administrator/index.html.erb:42
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "Medien"
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:44
+#, fuzzy
+#| msgid "Very fast"
+msgid "Very Strong"
+msgstr "Sehr schnell"
 
 #: app/views/administrator/index.html.erb:63
-msgid "Confirm password"
-msgstr "Passwort bestätigen"
+msgid "Password Setup for User 'root'"
+msgstr ""
 
-#: app/views/administrator/index.html.erb:65
-msgid "Save Password"
-msgstr "Passwort speichern"
+#: app/views/administrator/index.html.erb:64
+#, fuzzy
+#| msgid "_New Password:"
+msgid "New Password"
+msgstr "_Neues Passwort:"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:69
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "_Passwort bestätigen:"
+
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:78
+#, fuzzy
+#| msgid "Forward mail to"
+msgid "Forward system mail to"
 msgstr "E-Mail weiterleiten an"
 
-#: app/views/administrator/index.html.erb:72
-msgid "Save Mail"
+#: app/views/administrator/index.html.erb:81
+#, fuzzy
+#| msgid "Save Mail"
+msgid "Save Mail Only"
 msgstr "Mail speichern"
+
+#~ msgid "Here, configure the settings for system administrator ('root')."
+#~ msgstr "Hier konfigurieren Sie die Einstellunjgen für den Systemadministrator ('root')"
+
+#~ msgid "Password"
+#~ msgstr "Passwort"
+
+#~ msgid "Confirm password"
+#~ msgstr "Passwort bestätigen"
+
+#~ msgid "Save Password"
+#~ msgstr "Passwort speichern"
 
 #~ msgid "Save"
 #~ msgstr "Speichern"

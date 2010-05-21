@@ -1,6 +1,29 @@
+#--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+#++
+
 require 'yast/service_resource'
 require 'client_exception'
 require 'open-uri'
+
+include PluginTranslation
 
 class StatusController < ApplicationController
   
@@ -11,7 +34,7 @@ class StatusController < ApplicationController
 
   private
   def client_permissions
-    @permissions = Status.permissions
+    @permissions = Logs.permissions #each model return same permissions as it share policy
   end
 
   #
@@ -80,6 +103,18 @@ class StatusController < ApplicationController
   def initialize
   end
 
+  def confirm_status
+    if not params.has_key?(:url)
+      raise "Missing service URL for POST request"
+    end
+    base_path = params[:url][0..params[:url].rindex("/")-1]
+    base_name = params[:url][params[:url].rindex("/")+1..(params[:url].size-1) ]
+    res_resource = OpenStruct.new(:href => base_path, :singular? => true)
+    proxy = YaST::ServiceResource.class_for_resource(res_resource)
+    proxy.post(base_name)
+    redirect_to :controller => :controlpanel, :action => :index
+  end
+
   def ajax_log_custom
     # set the site to the view so it can load the log
     # dynamically
@@ -88,18 +123,29 @@ class StatusController < ApplicationController
     end
     lines = params[:lines].to_i || DEFAULT_LINES
     pos_begin = params[:pos_begin].to_i || 0
-    log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
-    content = log.content.value if log
-    position = log.content.position.to_i if log
-    render :partial => 'status_log', :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }
+    begin 
+      log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
+      content = log.content.value if log
+      position = log.content.position.to_i if log
+      render(:partial => 'status_log', 
+             :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }) and return
+    rescue ActiveResource::ServerError => error
+	error_hash = Hash.from_xml error.response.body
+	logger.warn error_hash.inspect
+	if error_hash["error"] && error_hash["error"]["type"] == "NO_PERM"
+           render :text => error_hash["error"]["description"] and return
+	else
+           raise error
+	end
+    end
   end
   
   def index
     client_permissions
+    @logs = Logs.find(:all)
+    @plugins = translate_plugin_message(Plugins.find(:all))
     begin
-      @logs = Logs.find(:all) || {}
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
-      @graphs ||= []
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
       flash[:notice] = _("No data found for showing system status.") if @graphs.blank?
@@ -108,12 +154,17 @@ class StatusController < ApplicationController
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" ||
-           error_hash["error"]["type"] == "NO_PERM")
-           flash[:error] = error_hash["error"]["description"]
+           error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
+           if error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"
+             flash[:error] = _("Status not available.")
+           else
+             flash[:error] = error_hash["error"]["description"]
+           end
 	else
            raise error
 	end
+      ensure
+        @graphs ||= []
     end
   end
 
@@ -121,12 +172,46 @@ class StatusController < ApplicationController
   # AJAX call for showing status overview
   #
   def show_summary
-    client_permissions
     begin
-      level = "ok"
-      status = ""
-      ActionController::Base.benchmark("Graphs data read from the server") do
-        graphs = Graphs.find(:all, :params => { :checklimits => true }) || []  
+      client_permissions
+    rescue Errno::ECONNREFUSED => e #connection to service has been lost, but still trying
+      status = _("Can't connect to host")
+      host = Host.find(session[:host]) rescue nil
+      status = _("Can't connect to host %s.") % host.name if host #this string is already translated int webclient
+      render(:partial => "status_summary", 
+             :locals => { :status => status, :level => 'error', :error => nil, 
+                          :refresh_timeout =>  refresh_timeout })
+      return
+    rescue ActiveResource::UnauthorizedAccess => error
+      # handle unauthorized error - the session timed out
+      Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
+      render :partial => "status_summary", :locals => { :status => '', :level => 'error', :error => error, :refresh_timeout => nil }
+      return
+    end
+
+    level = "ok"
+    status = ""
+    ret_error = nil
+    refresh = true
+    ActionController::Base.benchmark("Graphs data read from the server") do
+      begin
+        graphs = Graphs.find(:all, :params => { :checklimits => true, :background => true }) || []
+
+        # is it a background progress?
+        if graphs.size == 1 && graphs.first.respond_to?(:status)
+          bg_stat = graphs.first
+
+          Rails.logger.info "Received background status progress: #{bg_stat.progress}%%"
+
+          respond_to do |format|
+            format.html { render :partial  => 'status_progress', :locals => {:progress => bg_stat.progress} }
+            format.json  { render :json => {:progress => bg_stat.progress} }
+          end
+
+          return
+        end
+
+        # render
         graphs.each do |graph|
           label = limits_reached(graph)
           unless label.blank?
@@ -137,28 +222,47 @@ class StatusController < ApplicationController
             end
           end
         end
-      end
-      level = "error" unless status.blank?
-      render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
+        level = "error" unless status.blank?
+
       rescue ActiveResource::ClientError => error
 	logger.warn error.inspect
         level = "error"
-        render :partial => "status_summary", :locals => { :status => nil, :level => "error", :error => ClientException.new(error) } and return
+        ret_error = ClientException.new(error)
+        refresh = false
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
         level = "error"
+        refresh = false
 	logger.warn error_hash.inspect
 	if error_hash["error"] && 
           (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
-           error_hash["error"]["type"] == "NO_PERM" ||
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
-           level = "warning" if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR" #it is a warning only
-           status = error_hash["error"]["description"]
-           render :partial => "status_summary", :locals => { :status => status, :level => level, :error => nil }
+           if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR"
+             level = "warning"  #it is a warning only
+             status = error_hash["error"]["description"]
+           else
+             status = _("Status not available")
+           end
 	else
-           render :partial => "status_summary", :locals => { :status => nil, :level => level, :error => ClientException.new(error) } 
+           ret_error = ClientException.new(error)
 	end
-    end
+      end
+
+      #Checking WebYaST service plugins
+      plugins = translate_plugin_message(Plugins.find(:all))
+      plugins.each {|plugin|
+        level = plugin.level if plugin.level == "error" || (plugin.level == "warning" && level == "ok")
+        if status.blank?
+          status = plugin.short_description
+        else
+          status += "; " + plugin.short_description
+        end        
+      }
+    end #benchmark
+
+    render(:partial => "status_summary", 
+           :locals => { :status => status, :level => level, :error => ret_error, 
+                        :refresh_timeout => (refresh ? refresh_timeout : nil) })
   end
 
   #
@@ -169,12 +273,13 @@ class StatusController < ApplicationController
     group_id = params[:group_id]
     graph_id = params[:graph_id]
     till = Time.now
-    if params.has_key? "minutes"
-      from = till -  params[:minutes].to_i*60
-    else
-      from = till -  300 #last 5 minutes
-    end
     data = Hash.new
+    if  params.has_key? "minutes"
+      data[:minutes] = params[:minutes].to_i 
+    else
+      data[:minutes] = 5 #default last 5 minutes
+    end
+    from = till -  data[:minutes]*60
     
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
@@ -182,6 +287,8 @@ class StatusController < ApplicationController
         available_metrics = Metrics.find(:all)
         data[:y_scale] = graph.y_scale.to_f
         data[:y_label] = graph.y_label
+        data[:y_max] = graph.y_max
+        data[:y_decimal_places] = graph.y_decimal_places
         data[:graph_id] = graph_id
         data[:group_id] = group_id
         data[:lines] = []
@@ -191,6 +298,7 @@ class StatusController < ApplicationController
           logger.warn "More than one graphs with the same haeadline #{graph_id}. --> taking first" if graph_descriptions.size > 1
           graph_description = graph_descriptions.first
           data[:cummulated] = graph_description.cummulated
+          data[:linegraph] = graph_description.linegraph
           graph_description.lines.each do |line|
             original_metrics = available_metrics.select{|me| me.id[(me.host.size+1)..(me.id.size-1)] == line.metric_id}
             unless original_metrics.empty?
@@ -235,6 +343,17 @@ class StatusController < ApplicationController
           logger.error "No description for #{group_id}/#{graph_id} found."
         end
       end
+
+      #flatten the data of all lines to the same amount of entries
+      min_hash = data[:lines].min {|a,b| a[:values].size <=> b[:values].size }
+      count = min_hash[:values].size
+      data[:lines].each do |line|
+        #strip to the same length
+        while line[:values].size > count
+          line[:values].pop
+        end  
+      end
+
       logger.debug "Rendering #{data.inspect}"
 
       render :partial => "status_graph", :locals => { :data => data, :error => nil }
@@ -312,6 +431,21 @@ class StatusController < ApplicationController
 
     flash[:notice] = _("Limits have been written.")
     redirect_to :controller=>"status", :action=>"index"
+  end
+
+  private
+
+  def refresh_timeout
+    # default refresh timeout is 5 minutes
+    timeout = ControlPanelConfig.read 'system_status_timeout', 5*60
+
+    if timeout.zero?
+      Rails.logger.info "System status autorefresh is disabled"
+    else
+      Rails.logger.info "Autorefresh system status after #{timeout} seconds"
+    end
+
+    return timeout
   end
 
 end

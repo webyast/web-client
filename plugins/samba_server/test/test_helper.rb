@@ -1,2 +1,2 @@
-require 'active_support'
-require 'active_support/test_case'
+require File.join(File.dirname(__FILE__), '..', 'config', 'rails_parent')
+require File.join(RailsParent.parent, "test","test_helper")

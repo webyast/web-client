@@ -1,8 +1,41 @@
+<!--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
+
 <% content_for :head do %>
 
 <%= javascript_include_tag "jquery.quicksearch.js"-%>
+<%= javascript_include_tag "digitalspaghetti.password.js" %>
+<%= javascript_include_tag "select_dialog.js" %>
+<%= javascript_include_tag "users.js" %>
 
- <style>
+<!-- if no groups, disable validation
+-->
+<% if @permissions[:groupsget] != true %>
+<script language="javascript">
+function groups_validation(which){ return true; }
+function def_group_validation(which){ return true; }
+</script>
+<% end %>       
+
+ <style type="text/css">
     .pad1_2em {
 	padding: 1em 2em;
     }
@@ -12,72 +45,263 @@
     label, .qs_input {
 	width: auto !important;
     }
+    .label {
+        min-width: 10em;
+        float: left;
+        margin-left: 1em
+    }
+    #password-strength {
+	left: 0em;
+    }
  </style>
 
- <script language='javascript'>
+ <% javascript_tag do %>
  jQuery.expr[':'].Contains = function(a, i, m) {
   return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
  };
 
- $(document).ready(function(){
+  function select_groups_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'groups',
+      title : '<%= _('Select Groups') %>',
+      selected_title : '<%= _('Selected Groups') %>',
+      unselected_title : '<%= _('Available Groups') %>',
+      tooltip : '<%= _('Click group names to select/unselect groups') %>',
+      loadItems : function (dialogId) { 
+        return $('#form_'+dialogId+' .grp-string')[0].value.split(",")
+      },
+      storeItems : function (dialogId, items) { 
+        $('#form_'+dialogId+' .grp-string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_grps_string')[0].value.split(",") 
+      }
+    });
+    return open_dialog;
+  };
+  
+  function select_default_group_dialog() {
+    var open_dialog = select_one_dialog({
+      kind : 'group',
+      title : '<%= _('Select Default Group') %>',
+      tooltip : '<%= _('Click a group name to choose users default group') %>',
+      allItems : function (dialogId) {
+        return $('#all_grps_string')[0].value.split(",")
+      },
+      storeItem : function (dialogId, item) {
+        $('#form_'+dialogId+' .groupname')[0].value = item;
+      }
+    });
+    return open_dialog;
+  };
 
- $('.row').mouseenter(function() {
-  $(this).find(".del_user").show();
- }).mouseleave(function() {
-  $(this).find(".del_user").hide();
- });
+  $(document).ready(function(){
 
- $('table tbody tr').quicksearch({
-        attached: 'div#qs_anchor',
-	inputText: '<%= _("Type user name or login ...")%>',
-	inputClass: 'qs_input',
-        loaderText: '',
-        labelText: '<%= _("Filter:")%>',
-	stripeRowClass: ['odd', 'even'],
-        delay: 100
- });
+    select_groups_open = select_groups_dialog();
 
- // default state
- $('.del_user').hide();
+    select_default_group_open = select_default_group_dialog();
+
+// make the error message translatable - override the default messsage
+   $.extend($.validator.messages, {
+     equalTo:  "<%= _(" The passwords do not match.") -%>",
+     required: "<%= _("This field is required.") -%>"
+   });
+
+ for(var i=0;i<$('.edit_user').length;i++){
+  var id=$('.edit_user')[i].id;
+   $("#"+id).validate()
+
+   $("#"+id).validate({
+    rules: {
+      user_password: "required",
+      user_password2: {
+        equalTo: "#user_password"
+      }
+    }
+   });
+
+   $("#"+id+" .user-password").pstrength({
+      'displayMinChar'      : true,
+      'minCharText'      : "<%= _("Password Strength:") %>", 
+      'verdicts'      : [
+            "<%= _("Weak") %>",
+            "<%= _("Normal") %>",
+            "<%= _("Medium") %>",
+            "<%= _("Strong") %>",
+            "<%= _("Very Strong") %>"
+          ]
+      });
+ }
+
+      $(".accordion").accordion({
+         autoHeight : false,
+         navigation : true,
+         collapsible: true,
+         header     : 'div.list-fieldset div.list-fieldset-header',
+         animated   : false
+      });
+
+      $(".accordion").accordion('activate', false);
+
+  $('input#users_search').quicksearch('div.list-fieldset', {
+          selector: 'span.quicksearch_content',
+          delay: 100
+  });
+
+
 });//document.ready
-</script>
 
 <% end %>
-<div class='plugin-icon'><img src='/icons/yast-users.png'/><%=_("Local Users")%></div>
-<div class="plugin-content grid_12">
 
-<div id='qs_anchor' class='pad1_2em'></div>
+<% end %>
+<div class='plugin-icon'><img alt="yast-users" src='/icons/yast-users.png'/><%=_("Users")%></div>
+<div class="plugin-content">
+
+<form action="#" id="quicksearch" class="pad1_2em">
+  <label><%= _("Filter:") %></label>
+  <input type="text" id="users_search"/>
+</form>
+
 <div class='pad1_2em'>
-<table cellpadding="3px" width="50%"  style="border-collapse:collapse;">
-  <thead>
-    <tr>
-      <th>Login</th>
-      <th>Real Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
+<% if @permissions[:useradd] %>
+<%= link_to _("Add New User"), :action => :new -%>
+<% end %>
 
-  <tbody>
+ <div id="users" class="accordion">
+ <% disabled = ! @permissions[:usermodify] %>
   <% for user in @users %>
-  <tr class= <%= cycle('odd', 'even') -%> >
-    <td align=center id="login"><%= user.uid  -%></td>
-    <td align=center width="65%" id="fullname"><%= link_to ( user.cn || "-none-" ), {:action => :edit, :id => user.id}, :onclick=>"$('#progress').show()" -%></td>
-    <% if @permissions[:userdelete] %>
-    <td class="icon" width="10%"><%= html_delete_link(user.uid, :destroy) %></td>
-    <% end %>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
-</div>
+   <div class="list-fieldset">
 
-<fieldset>
-  <%= form_back_button -%>
-  <% if @permissions[:useradd] %>
-    <%= form_str_spacer %>
-    <%= link_to _("New User..."), {:action => :new}, :class=>'button', :onclick=>"$('#progress').show()" -%>
-  <% end %>
-</fieldset>
+    <div class="list-fieldset-header">
+     <span class="quicksearch_content">
+      <%= h user.uid -%> (<%= h user.cn || "-none-" -%>)
+     </span>
+    </div>
+
+    <div class='user-content' style="display:none">
+     <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "form_handler('#{user.uid}')", :autocomplete => :off } ) do |f| %>
+      <%= f.error_messages %>
+
+      <div class="fieldset-group tabs_<%= user.uid %>">
+
+      <fieldset id="tab_login_<%= user.uid %>">
+       <legend><span><%= _("Login Settings") %></span></legend>
+       <table border=0>
+	<tr><td>
+          <div class="label"><%=_("Full Name")%></div>
+	</td><td colspan=2>
+          <%= f.text_field :cn , :disabled => disabled, :onblur => "propose_login(this.parentNode.parentNode);" %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Login Name")%></div>
+	</td><td colspan=2>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+user.uid+"').validate().element('#user_uid');", :class => "required" %>
+          <%= f.hidden_field :id %>
+	</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Password")%></div>
+	</td><td colspan=2 rowspan=2>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_user_password');", :disabled => disabled, :class => "user-password" %>
+	</td></tr>
+	<tr><td>&nbsp;</td></tr>
+
+	<tr><td>
+          <div class="label"><%=_("Confirm Password")%></div>
+	</td><td colspan=2>
+          <%= f.password_field :user_password2, :disabled => disabled, :equalTo => "#form_"+user.uid+" #user_user_password", :onkeyup => "$('#form_"+user.uid+"').validate().element('#form_"+user.uid+" #user_user_password2');" %>
+	  <label for="user_user_password2" generated="true" class="error"></label>
+	</td></tr>
+      </table>
+     </fieldset>
+
+      <fieldset id="tab_groups_<%= user.uid %>">
+      <legend><span><%=_("Groups")%></span></legend>
+      <table>
+	<tr><td rowspan=2>
+            <div class="label"><%=_("Groups")%></div>
+	</td><td>
+            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);", :class => "grp-string" %>
+	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
+            <a href="#" class="button" onClick="select_groups_open('<%= user.uid%>');return false;"><%= _("Manage Groups") %></a>
+	<% end %>
+	</td></tr>
+
+	<tr><td>
+            <label id="groups-error" class="error">error</label>
+	</td></tr>
+
+	<tr><td rowspan=2>
+            <div class="label"><%=_("Default Group")%></div>
+	</td><td>
+            <%= f.text_field :groupname, :disabled => disabled, :class => "groupname", :onkeyup => "def_group_validation(this);" %>
+	</td><td rowspan=2>
+	<% if @permissions[:groupsget] == true %>
+            <%= link_to _("Select Default Group"), {}, :href => "#", :onClick => "select_default_group_open('"+user.uid.to_s+"');return false;", :class => "button" %>
+	<% end %>
+	</td></tr>
+
+	<tr><td>
+            <label id="def-group-error" class="error">error</label>
+	</td></tr>
+       </table>
+      </fieldset>
+
+      <fieldset id="tab_advanced_<%= user.uid %>">
+      <legend><span><%= _("Advanced") %></span></legend>
+      <table>
+	<tr><td>
+            <div class="label"><%=_("Home Directory")%></div>
+	</td><td colspan=2>
+            <%= f.text_field :home_directory, :disabled => disabled %>
+	</td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("Login Shell")%></div>
+	</td><td colspan=2>
+            <%= f.text_field :login_shell, :disabled => disabled %>
+	</td></tr>
+
+	<tr><td>
+            <div class="label"><%=_("UID Number")%></div>
+	</td><td colspan=2>
+            <%= f.text_field :uid_number, :disabled => disabled, :min => 1000, :class => "number", :onkeyup => "$('#form_"+user.uid+"').validate().element('#user_uid_number');"  %>
+            <label id="uid-error" class="error"></label>
+	</td></tr>
+       </table>
+      </fieldset>
 </div>
+     <div class="nav-buttons">
+    <div id="progress_<%= user.uid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
+       <%= submit_tag _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
+       <% if @permissions[:userdelete] %>
+         <span onclick="delete_handler(this, '#progress_<%= user.uid -%>');">
+           <%= link_to _("Delete"),
+                       {:action => 'destroy', :id => user.uid},
+                       {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %>
+         </span>
+       <% end %>
+     </div>
+<script language="javascript">
+   addTabsNavigation(".tabs_<%= user.uid %>", "span");
+   $(".tabs_<%= user.uid %>").tabs();
+</script>
+
+    <% end %>
+    </div> 
+   </div>
+  <% end %>
+ </div>
+
+
+  <div class="nav-buttons">
+    <%= form_back_button -%>
+    <%= form_str_spacer %>
+    <%= link_to _("Manage Groups"), "controller" => "groups" %>
+  </div>
+</div>
+            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
 </div>
 

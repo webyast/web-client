@@ -1,3 +1,21 @@
+#--
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 
 module ViewHelpers::HtmlHelper
 
@@ -94,6 +112,8 @@ module ViewHelpers::HtmlHelper
 
     # clipboard icon for a predefined text
     def clippy(text, bgcolor='#FFFFFF')
+      text.gsub! "\"","''" #replace quotes in text as it breaks output (bnc#596023)
+      text.gsub! "&","%28" #escape & which is special in FlashVars (bnc#596023)
   html = <<-EOF
     <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
             width="110"
@@ -144,8 +164,9 @@ module ViewHelpers::HtmlHelper
       <div id="error-#{error_id}-content">
         <div>
           <p><strong>Error message:</strong>#{err_message}</p>
-          <p><span class="bug-icon"></span><a href="#{@bug_url}">Report bug</a></p>
-          <p><a href="#" id="error-#{error_id}-show-backtrace-link">Show details</a>#{clippy(backtrace_text)}</p></p>
+          <p><span class="bug-icon"></span><a target="_blank" href="#{::ApplicationController.bug_url}">Report bug</a></p>
+          <p><a href="#" id="error-#{error_id}-show-backtrace-link">Show details</a>
+          #{clippy("message: #{err_message}\n backtrace: #{backtrace_text}")}</p></p>
           <pre id="error-#{error_id}-backtrace" style="display: none">
           #{backtrace_text}
           </pre>
@@ -237,6 +258,20 @@ EOF_PROGRESS
     ret.gsub!('+', '-')
     ret.gsub!('/', '_')
     ret
+  end
+
+  # JavaScript String, makes a JS literal from a string value,
+  # typically from a translated string.
+  #
+  # Usage:
+  #
+  #   alert(<%= jss _("These are 'quotes'.") -%>);
+  #
+  # That works correctly if the text gets translated
+  # to 'Toto jsou "uvozovky".'
+  # (see also https://bugzilla.novell.com/show_bug.cgi?id=604224)
+  def jss(s)
+    "\"#{escape_javascript s}\""
   end
 
 end

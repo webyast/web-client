@@ -1,190 +1,135 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: entries\n"
+"Project-Id-Version: yast_webclient_network.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2006-06-12 16:56+0100\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-03-10 16:50+0900\n"
+"Last-Translator: Yunseok Choi <xein@naver.com>\n"
+"Language-Team: Korean <xein@naver.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr ""
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "설정되지 않음"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "수동"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
-msgstr "자동 모드"
+msgstr "자동"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "The configuration file has been written."
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
-msgstr "구성 파일이 기록되었습니다."
+msgstr "네트워크 설정이 기록되었습니다."
 
-#: app/views/network/index.html.erb:88
-msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
-
-#: app/views/network/index.html.erb:97
-msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr ""
-
-#: app/views/network/index.html.erb:103
-msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr ""
-
-#: app/views/network/index.html.erb:109
-msgid "Name servers are required. There must be at least one specified."
-msgstr ""
-
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:118
 #, fuzzy
-#| msgid "No valid request file specified."
-msgid "Hostname is required. It must be specified."
-msgstr "올바른 요청 파일이 지정되지 않았습니다."
+#| msgid "The search text contains invalid characters"
+msgid "whitespace - invalid character."
+msgstr "검색어에 잘못된 문자가 포함되어 있음"
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:120
+#, fuzzy
+#| msgid "The VM's name cannot start with a digit."
+msgid " - can not start with a digit."
+msgstr "가상머신 이름은 첫문자로 숫자를 지정 할 수 없습니다."
+
+#: app/views/network/index.html.erb:122
+#, fuzzy
+#| msgid "The option 'flush' is not allowed"
+msgid "periodic '-' is not allowed."
+msgstr "'flush' 옵션은 허용되지 않음"
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
 msgstr ""
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr ""
+
+#: app/views/network/index.html.erb:154
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "잘못된 IP 주소 양식입니다. 0 에서 255 사이의 숫자로 된 nnn,nnn,nnn,nnn 이 올바릅니다."
+
+#: app/views/network/index.html.erb:163
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "잘못된 머릿말 양식입니다. /nn 이 올바르며 nn 에는 0-32 (CIDR 포맷)가 되어야 합니다."
+
+#: app/views/network/index.html.erb:169
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "잘못된 기본 라우트 양식입니다. 0 에서 255 사이의 숫자로 된 nnn,nnn,nnn,nnn 이 올바릅니다."
+
+#: app/views/network/index.html.erb:175
+msgid "Name servers are required. There must be at least one specified."
+msgstr "네임 서버가 필요합니다. 최소 한개 이상 지정되어야 합니다."
+
+#: app/views/network/index.html.erb:181
+msgid "Hostname is required. It must be specified."
+msgstr "호스트네임이 필요합니다. 필수로 입력되어야 합니다."
+
+#: app/views/network/index.html.erb:187
+#, fuzzy
+#| msgid "Domain is required. It is not supported empty domain."
+msgid "Domain is required. An empty domain is not supported."
+msgstr "도메인이 필요합니다. 비어있는 도메인을 지원하지 않습니다."
+
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "네트워크"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "인터페이스"
 
-#: app/views/network/index.html.erb:145
-#, fuzzy
-#| msgid "_Selection"
+#: app/views/network/index.html.erb:226
 msgid "Select"
-msgstr "선택사항(_S)"
+msgstr "선택"
 
-#: app/views/network/index.html.erb:166
-#, fuzzy
-#| msgid "Configuration"
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
-msgstr "구성"
+msgstr "구성 모드"
 
-#: app/views/network/index.html.erb:170
-#, fuzzy
-#| msgid "IP Address"
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "IP 주소"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
-msgstr ""
+msgstr "서브넷 마스크 / Prefixlen"
 
-#: app/views/network/index.html.erb:181
-#, fuzzy
-#| msgid "Host Names"
-msgid "Hostname"
-msgstr "호스트 이름:"
-
-# as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
-#, fuzzy
-#| msgid "Domain\n"
-msgid "Domain"
-msgstr "도메인\n"
-
-#: app/views/network/index.html.erb:189
-#, fuzzy
-#| msgid "Name Server"
-msgid "Name servers"
-msgstr "네임서버"
-
-#: app/views/network/index.html.erb:193
-#, fuzzy
-#| msgid "&Search domains:"
-msgid "Search domains"
-msgstr "도메인 검색(&S):"
-
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
+#: app/views/network/index.html.erb:260
 msgid "Default route"
 msgstr "기본 라우트"
 
-#, fuzzy
-#~| msgid "Do not start"
-#~ msgid "not set"
-#~ msgstr "시작하지 않음"
+#: app/views/network/index.html.erb:269
+msgid "Hostname"
+msgstr "호스트네임"
 
-#, fuzzy
-#~| msgid "Static"
-#~ msgid "static"
-#~ msgstr "고정"
+# as in Windows Authentication Domain
+#: app/views/network/index.html.erb:274
+msgid "Domain"
+msgstr "도메인"
 
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
+#: app/views/network/index.html.erb:278
+msgid "Name servers"
+msgstr "네임 서버"
 
-#, fuzzy
-#~| msgid "Dial Prefix"
-#~ msgid "Prefixlen"
-#~ msgstr "국번"
+#: app/views/network/index.html.erb:282
+msgid "Search domains"
+msgstr "도메인 검색"
 
-#, fuzzy
-#~| msgid "NFS"
-#~ msgid "DNS"
-#~ msgstr "NFS"
-
-#~ msgid "Save"
-#~ msgstr "저장"
-
-#~ msgid "Cancel"
-#~ msgstr "취소"
-
-#  Selection box item
-#, fuzzy
-#~| msgid "Network Servers"
-#~ msgid "Edit Network Device"
-#~ msgstr "네트워크 서버"
-
-#~ msgid "Configuration"
-#~ msgstr "구성"
-
-#~ msgid "Description"
-#~ msgstr "설명"
-
-#, fuzzy
-#~| msgid "DMA"
-#~ msgid "MAC"
-#~ msgstr "DMA"
-
-#, fuzzy
-#~| msgid "Device"
-#~ msgid "Device Name"
-#~ msgstr "장치"
-
-#, fuzzy
-#~| msgid "Start-Up"
-#~ msgid "Startup"
-#~ msgstr "시작"
-
-#, fuzzy
-#~| msgid "Search Domains:"
-#~ msgid "Search Domains"
-#~ msgstr "도메인 검색:"
-
-#~ msgid "Update"
-#~ msgstr "업데이트"
-
-#~ msgid "Back"
-#~ msgstr "뒤로"
+#~ msgid "No permissions for network module"
+#~ msgstr "네트워크 모듈에 대한 권한이 없음"

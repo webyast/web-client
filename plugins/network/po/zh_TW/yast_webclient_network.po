@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-10-22 19:30+0800\n"
 "Last-Translator: swyear <swyear@gmail.com>\n"
 "Language-Team: Chinese Traditional <zh@li.org>\n"
@@ -19,118 +19,147 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "無網路模組權限"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "未設定"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgid "Manual Mode"
 msgid "Manual"
 msgstr "手動模式"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 #, fuzzy
 #| msgid "Automatic Mode"
 msgid "Automatic"
 msgstr "自動模式"
 
-#: app/controllers/network_controller.rb:105
+#: app/controllers/network_controller.rb:134
 #, fuzzy
 #| msgid "Settings have been written."
 msgid "Network settings have been written."
 msgstr "設定已經寫入。"
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+#, fuzzy
+#| msgid "The search text contains invalid characters"
+msgid "whitespace - invalid character."
+msgstr "搜尋文字中包含不適用的字元"
+
+#: app/views/network/index.html.erb:120
+#, fuzzy
+#| msgid "The VM's name cannot start with a digit."
+msgid " - can not start with a digit."
+msgstr "VM 的名稱不能以數字開始。"
+
+#: app/views/network/index.html.erb:122
+#, fuzzy
+#| msgid "The option 'flush' is not allowed"
+msgid "periodic '-' is not allowed."
+msgstr "不允許「衝洗」選項"
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr ""
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr ""
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn 範圍為 0 到 255。"
 
-#: app/views/network/index.html.erb:97
+#: app/views/network/index.html.erb:163
 #, fuzzy
 #| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn 範圍為 0 到 255。"
 
-#: app/views/network/index.html.erb:103
+#: app/views/network/index.html.erb:169
 #, fuzzy
 #| msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "不適用的 IP 位址格式。正確的格式為 nnn.nnn.nnn.nnn ，nnn 範圍為 0 到 255。"
 
-#: app/views/network/index.html.erb:109
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:115
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
 msgstr "沒有指定的有效要求檔案。"
 
-#: app/views/network/index.html.erb:121
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
 msgstr ""
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "網路"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "介面"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:226
 #, fuzzy
 #| msgid "Select item"
 msgid "Select"
 msgstr "選取的項目"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:243
 #, fuzzy
 #| msgid "Configuration Mode"
 msgid "Configuration mode"
 msgstr "組態模式"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:252
 #, fuzzy
 #| msgid "IP Address"
 msgid "IP address"
 msgstr "IP 位址"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "預設路由"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "主機名稱"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "領域"
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:278
 #, fuzzy
 #| msgid "Name Servers"
 msgid "Name servers"
 msgstr "名稱伺服器"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:282
 #, fuzzy
 #| msgid "Search Domains"
 msgid "Search domains"
 msgstr "搜尋領域"
 
-#: app/views/network/index.html.erb:201
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "預設路由"
+#~ msgid "No permissions for network module"
+#~ msgstr "無網路模組權限"
 
 #, fuzzy
 #~| msgid "Do not start"

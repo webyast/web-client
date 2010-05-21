@@ -1,166 +1,148 @@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-#
-# Alexander Melentiev <alex239@gmail.com>, 2009.
+# Alexander Melentiev <alex239@gmail.com>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-12-14 20:51+0300\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-04-25 18:18+0400\n"
 "Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Нет прав для модуля сети"
-
-#: app/controllers/network_controller.rb:66
-msgid "Not configured"
-msgstr "Не сконфигурировано"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:87
 msgid "Manual"
 msgstr "Вручную"
 
-#: app/controllers/network_controller.rb:66
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:87
 msgid "Automatic"
 msgstr "Автоматически"
 
-#: app/controllers/network_controller.rb:105
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:157
 msgid "Network settings have been written."
 msgstr "Настройки сети были записаны."
 
-#: app/views/network/index.html.erb:88
-msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
+#: app/views/network/index.html.erb:160 app/views/network/index.html.erb:164
+#: app/views/network/index.html.erb:168 app/views/network/index.html.erb:172
+#: app/views/network/index.html.erb:175 app/views/network/index.html.erb:179
+#: app/views/network/index.html.erb:183
+msgid "This field is required"
+msgstr "Это поле обязательно"
 
-#: app/views/network/index.html.erb:97
-#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "Неверный формат префикса. Верный формат: /nn, где nn от 0 до 32 (формат CIDR)."
+#: app/views/network/index.html.erb:161 app/views/network/index.html.erb:169
+#: app/views/network/index.html.erb:180
+msgid "Enter a valid IP address"
+msgstr "Введите верный IP-адрес"
 
-#: app/views/network/index.html.erb:103
-#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Неверный формат маршрута по умолчанию. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 до 255."
+#: app/views/network/index.html.erb:165
+msgid "Enter a valid subnet mask or prefix"
+msgstr "Введите верную маску подсети или префикс"
 
-#: app/views/network/index.html.erb:109
-#| msgid "Name servers is not valid. There must be at least one specified."
-msgid "Name servers are required. There must be at least one specified."
-msgstr "Не указаны серверы имён. Укажите хотя бы один."
+#: app/views/network/index.html.erb:176 app/views/network/index.html.erb:184
+msgid "Enter a valid domain name"
+msgstr "Введите верное имя домена"
 
-#: app/views/network/index.html.erb:115
-#| msgid "Hostname is not valid. It must be specified."
-msgid "Hostname is required. It must be specified."
-msgstr "Не указано имя узла. Укажите его."
+#: app/views/network/index.html.erb:271
+msgid "whitespace - invalid character."
+msgstr "разделитель - неверный символ"
 
-#: app/views/network/index.html.erb:121
-#| msgid "Domain is not valid. It is not supported empty domain."
-msgid "Domain is required. It is not supported empty domain."
-msgstr "Не указано имя домена. Работы с пустым доменом не поддерживается."
+#: app/views/network/index.html.erb:273
+msgid " - can not start with a digit."
+msgstr " - не может начинаться с цифры."
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:275
+msgid "periodic '-' is not allowed."
+msgstr "повторение '-' не разрешено."
+
+#: app/views/network/index.html.erb:277
+msgid "can not end with (-) hyphen."
+msgstr "не может оканчиваться на дефис (-)."
+
+#: app/views/network/index.html.erb:280
+msgid "can not start with (-) hyphen."
+msgstr "не может начинаться с дефиса (-)."
+
+#: app/views/network/index.html.erb:282
+msgid " - is invalid character for hostname."
+msgstr " - неверный символ для имени узла."
+
+#: app/views/network/index.html.erb:325
 msgid "Network"
 msgstr "Сеть"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:336
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:341
 msgid "Select"
 msgstr "Выбрать"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:356
 msgid "Configuration mode"
 msgstr "Режим настройки"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:365
 msgid "IP address"
 msgstr "IP-адрес"
 
-#: app/views/network/index.html.erb:174
-msgid "Subnet mask / Prefixlen"
+#: app/views/network/index.html.erb:369
+msgid "Subnet mask/Prefixlen"
 msgstr "Маска подсети/префикс"
 
-#: app/views/network/index.html.erb:181
-msgid "Hostname"
-msgstr "Имя узла"
-
-#: app/views/network/index.html.erb:185
-msgid "Domain"
-msgstr "Домен"
-
-#: app/views/network/index.html.erb:189
-msgid "Name servers"
-msgstr "Серверы имён"
-
-#: app/views/network/index.html.erb:193
-msgid "Search domains"
-msgstr "Домены поиска"
-
-#: app/views/network/index.html.erb:201
+#: app/views/network/index.html.erb:373
 msgid "Default route"
 msgstr "Маршрут по умолчанию"
 
-#~ msgid "not set"
-#~ msgstr "не задано"
+#: app/views/network/index.html.erb:382
+msgid "Hostname"
+msgstr "Имя узла"
 
-#~ msgid "static"
-#~ msgstr "статически"
+#: app/views/network/index.html.erb:388
+msgid "Domain"
+msgstr "Домен"
 
-#~ msgid "dhcp"
-#~ msgstr "dhcp"
+#: app/views/network/index.html.erb:392
+msgid "Name servers"
+msgstr "Серверы имён"
 
-#~ msgid "Prefixlen"
-#~ msgstr "Длина префикса"
+#: app/views/network/index.html.erb:396
+msgid "Search domains"
+msgstr "Домены поиска"
 
-#~ msgid "DNS"
-#~ msgstr "DNS"
+#~ msgid "Not configured"
+#~ msgstr "Не настроено"
 
-#~ msgid "Routing"
-#~ msgstr "Маршрутизация"
+#~ msgid ""
+#~ "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn "
+#~ "between 0 and 255."
+#~ msgstr ""
+#~ "Неверный формат IP-адреса. Верный формат: nnn.nnn.nnn.nnn, где nnn от 0 "
+#~ "до 255."
 
-#~ msgid "Save"
-#~ msgstr "Сохранить"
+#~ msgid ""
+#~ "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR "
+#~ "format)."
+#~ msgstr ""
+#~ "Неверный формат префикса. Верный формат: /nn, где nn от 0 до 32 (формат "
+#~ "CIDR)."
 
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Отмена"
+#~ msgid ""
+#~ "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn "
+#~ "between 0 and 255."
+#~ msgstr ""
+#~ "Неверный формат маршрута по умолчанию. Верный формат: nnn.nnn.nnn.nnn, "
+#~ "где nnn от 0 до 255."
 
-#~ msgid "Edit Network Device"
-#~ msgstr "Редактировать сетевое устройство"
+#~ msgid "Name servers are required. There must be at least one specified."
+#~ msgstr "Не указаны серверы имён. Укажите хотя бы один."
 
-#~ msgid "Configuration"
-#~ msgstr "Настройка"
+#~ msgid "Hostname is required. It must be specified."
+#~ msgstr "Не указано имя узла. Укажите его."
 
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Description"
-#~ msgstr "Описание"
-
-#~ msgid "MAC"
-#~ msgstr "MAC"
-
-#~ msgid "Device Name"
-#~ msgstr "Имя устройства"
-
-#~ msgid "Startup"
-#~ msgstr "Запуск"
-
-#~ msgid "Search Domains"
-#~ msgstr "Домены поиска"
-
-#~ msgid "Update"
-#~ msgstr "Обновить"
-
-#~ msgid "Back"
-#~ msgstr "Назад"
+#~ msgid "Domain is required. An empty domain is not supported."
+#~ msgstr "Не указано имя домена. Пустой домен не поддерживается."

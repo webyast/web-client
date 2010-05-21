@@ -1,9 +1,50 @@
-<%= report_error(error, error_string) if error %>
+<%#
+#--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+#++
+%>
+<%
+  unauthorized = error.class == ActiveResource::UnauthorizedAccess
+  unsigned_repo = nil
+  if !error_string.blank?
+    error_string.match /Repository (.*) needs to be signed/
+    unsigned_repo = $1
+  end
+  error = nil unless unsigned_repo.blank?
+-%>
+<%= report_error(error, error_string) if error && !unauthorized %>
 
 <div class="status_patches">
   <% unless patch %>
       <div class="status-icon warning"></div>
-      <%= _("No information about patches available") %>
+      <% if unauthorized %>
+	<% link_to "controlpanel" do %>
+	  <%= _("Cannot read patch updates - you have been logged out.") %>
+	<% end %>
+      <% else %>
+	<% if unsigned_repo.blank? %>
+	  <%= _("No information about patches available") %>
+	<% else %>
+	  <%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
+	<% end %>
+      <% end %>
   <% else %>
     <% label = [] %>
     <% link_to "patch_updates" do %>
@@ -30,8 +71,19 @@
       <span><%= label.join(", ") %></span>
     <% end %>
     <% if patch[:security] > 0 or patch[:important] > 0 or patch[:optional] > 0%>
-      <%= button_to_remote "Update All", :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
+      <%= button_to_remote _("Update All"), :update =>"status_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
     <% end %>
+
+  <% if refresh_timeout.to_i > 0 -%>
+    <!-- refresh the status again after a timeout -->
+    <% javascript_tag do -%>
+      setTimeout(function() {
+	$('#status_patches').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>')
+	<%= remote_function(:update => "status_patches",
+	    :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+      }, <%= refresh_timeout.to_i * 1000 -%>);
+    <% end -%>
+  <% end -%>
 
   <% end %>
 </div>

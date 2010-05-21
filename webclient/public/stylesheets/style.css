@@ -1,3 +1,23 @@
+/*
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+*/
+
  /* == Used Colours ===========================================================
 Title               Hex-Code    Used-for Examples
 ------------------------------------------------------------------------------
@@ -10,22 +30,20 @@ BG Grey:            #fcfcfc     Body-BG
 =========================================================================== */
 
 /* == Basic setup  ======================================================== */
-html,
+
+/* html, */ /* unnecessary property, causes inheritance  */
 body {
-  background-color: #fcfcfc;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5;  /* BG Grey: #fcfcfc is taken see example above */
   color: #333;
-  font: 1em "lsLucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
   width: 100%;
   height: 99%;
   margin: 0;
   padding: 0;
 }
 
-div {
-  display: block;
-}
-
+/* Heading 1 to Heading 6 (1 being the highest level, 6 being the lowest). Headings should be used in order and h1 used just once. */
+/* http://www.htmldog.com/examples/headings1.html */
 h1 {
   font-size: 1.3em;
 }
@@ -35,62 +53,151 @@ h2 {
 h3 {
   font-size: 1.1em;
 }
-#content h3 {
-  font-size: 1.7em;
-  color: #666;
-  margin-bottom: 0.5em;
-}
-h4 {
-  font-size: 1em;
-}
-h5 {
-  font-size: 1em;
-}
+
+/* Same size of h4 and h5 ??? */
+h4, h5 { font-size: 1em; }
 
 a {
   color: #333;
+  font-weight:bold;
   text-decoration: none;
+  font-size:11px;
+/*   border-bottom:1px dotted #8e908b; */
+  border-bottom:1px dotted #1e90ff;
 }
 a:hover {
-  color: #666;
-  text-decoration: underline;
+  color: #444;
+  font-size:11px;
+/*   text-decoration: underline; */
+  border-bottom:2px solid #1e90ff;
+}
+
+a.action-link {
+ color: #333;
+/*  color:#8e908b; */
+ font-size:13px;
+ font-weight:bold;
+ text-decoration:none;
+/*  border-bottom:2px solid #666; */
+}
+
+a.action-link:hover {
+/*  color:#1e90ff; */
+ color:#333;
+ font-size:13px;
+/*  color:#a0a0a0; */
+ font-weight:bold;
+/*  border-bottom:3px solid #1C94C4; */
+/*  border-bottom:2px dotted #D84630; */
+ border-bottom:2px solid red;
+/*  Studio: #8e908b */
+/*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2); */
 }
 
 
-img {
-  border: none;
+/* CSS properties for all input elements  */
+a.button, input.button, input[type="submit"], input[type="button"] {
+  background: #eee url(images/button-bg-rollover.gif) repeat-x scroll center top;
+  color: #333;
+  font-size: 13px;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
+  font-weight: bold;
+  border: 1px solid #999;
+  cursor: pointer;
+  padding: 2px 10px;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 #bbb;
+  -moz-border-radius: 4px;
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  -webkit-border-radius: 4px;
+  width: auto;
+  vertical-align: baseline;
 }
+
+a.button {
+  /* CSS Hack for IE8 */
+  padding /*\**/: 2px 10px\9;
+  color /*\**/: #333\9 !important
+}
+
+/* CSS Hack for FF */
+html a.button:only-of-type {
+  padding: 3px 10px;  
+}
+
+a.button:hover {
+  background-position:0 -22px;
+  color:#FFF !important;
+  text-shadow: 0 -1px 0 #252525;
+}
+
+a.button[disabled], input[type="submit"][disabled], input[type="submit"][disabled]:hover {
+  color: #999;
+  background-position:0 0px;
+  text-shadow: 0 -1px 0 #bbb; 
+}
+
 input {
   border: 1px solid #ccc;
   padding: 3px;
   color: #666;
   font-size: 1em;
   background: #fcfcfc;
+}
+
+select {
+  border: 1px solid #ccc;
+  padding: 2px;
+  color: #666;
+  font-size: 1em;
+  background: #fcfcfc;
+}
+
+/* select for available Updates in software module with image before text */
+/* TODO find the solution for IE and Chrome, the images are not rendered before text */
+#selector { 
+  padding: 0px;
+}
+
+select:focus {
+  border: 1px solid #69c;
+  color: #666;
+}
+
+/* breaks button background in IE8 (Groups and users module) */
+/*input { vertical-align: top; }*/
+
+input.button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+  background-position:0 -22px;
+  color:#FFF;
+  text-shadow: 0 -1px 0 #252525;
+}
+
+input[type="text"] {
   width: 32em;
 }
-  input[type="text"] {
-    width: 32em;
-  }
-  input:focus {
-    border: 1px solid #69c;
-    color: #69c;
-  }
+
+input[type="text"]:focus {
+  width: 32em;
+  border: 1px solid #69c;
+  color: #69c;
+}
+
+input[disabled] {
+  background-color: #eee;
+}
+
+img {
+  border: none;
+}
 
 ul li {
   padding: 3px;
 }
-/* == Basic Structure ===================================================== */
 
-/*#header,*/
-#content,
-#footer {
-  min-width: 450px;
-  width: auto;
-  max-width: 960px;
-  overflow: hidden;
-  margin: 0 auto;
-  font-size: 0.8em;
-}
+/* == Basic Structure ===================================================== */
 
 #header {
   width: 100%;
@@ -101,59 +208,74 @@ ul li {
   text-align: center;
   position:relative;
 }
-  #header h1,
-  #header img {
-  }
-  #header h1 {
-    margin: 0;
-    padding-top: 13px;
-  }
-  #header img {
-    margin: 2px 1em 0;
-    position: absolute;
-    top: 2px;
-    left: 0;
-  }
-  #header ul.header-links {
-    float: right;
-    vertical-align: bottom;
-  }
-  #login-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
 
-#content {
-
-  margin-top: 2em;
+#header * {
+  color: #444;
 }
-  #content h2 {
+
+#header h1 {
+  margin: 0;
+  padding-top: 13px;
+}
+
+#header img {
+  margin: 2px 1em 0;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+
+#header ul.header-links {
+  float: right;
+  vertical-align: bottom;
+}
+
+#content h3 {
+  font-size: 1.7em;
+  color: #666;
+  margin-bottom: 0.5em;
+  clear: both;
+}
+
+/* #content { */
+ /* margin-top: 2em;*/ /* already defined see below */
+/* } */
+
+#content h2 {
     font-size: 2em;
     margin-bottom: 1.5em;
-  }
+}
+
+#content, #footer {
+  min-width: 640px;
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  margin: 0 auto;
+  font-size: 0.8em;
+  padding: 0 10px 0;
+  width: 97%;
+}
+
 #footer {
   padding: 2em 0;
   color: #999;
 }
 
-/* == Basic Styles ======================================================== */
-#header * {
-  color: #444;
+#login-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.wrapper {
-  
-}
+/* == Basic Styles ======================================================== */
 
 #login-wrapper ul {
   list-style: none outside;
   margin: 0;
   font-size: 0.7em;
 }
-#login-wrapper ul * {
 
-}
 #login-wrapper li {
   float: left;
   margin: 0 0.5em;
@@ -161,17 +283,15 @@ ul li {
 #login-wrapper ul em {
   font-weight: bold;
 }
-#login-wrapper li a {
-  
-}
+
 #login-wrapper li a:hover {
   color: #06c;
 }
 
-#login-dialogue,
-.dialoge-wrapper {
+#login-dialogue {
   width: 23em;
-  min-height: 17em; /* FIXME not working in IE6 */
+  /*min-height: 17em; FIXME not working in IE6 | not working anywhere, 
+  breaks host selection screen --bubli*/
   background: #999;
   margin: 10px auto;
   overflow: hidden;
@@ -183,259 +303,186 @@ ul li {
   -webkit-box-shadow: 0 1px 7px #999;
   box-shadow: 0 1px 7px #999;
 }
-  .dialoge-wrapper {
-    min-width: 500px;
-  }
-  #login-dialogue form,
-  .dialoge-sub-wrapper {
-    display: block;
-    background: #fefefe;
-    padding: 15px;
-    margin: 7px;
-    overflow:hidden;
-  }
-  #login-dialogue input {
-    width: 97%;
-  }
-  #login-dialogue h2,
-  .dialoge-wrapper h2 {
-    margin: 0 !important;
-    color: #69c;
-  }
-  #login-dialogue label {
-    display: block;
-    margin: 0 0 0.2em;
-    text-align: left;
-  }
-/*  #status-wrapper, */
-  #favorites {
-  }
- 
+
+#login_button {
+  float: right;
+}
+
+#login-dialogue form {
+  display: block;
+  background: #fefefe;
+  padding: 15px;
+  margin: 7px;
+  overflow:hidden;
+}
+
+#login-dialogue input[type="password"], #login-dialogue input[type="text"] {
+  width: 97%;
+}
+
+#login-dialogue h2 {
+  margin: 0 !important;
+  color: #69c;
+}
+
+#login-dialogue label {
+  display: block;
+  margin: 0 0 0.2em;
+  text-align: left;
+}
+
+#status {
+  width: 70%;
+  display: inline-block;
+}
+
 #status_patches {
   margin: 0;
+  /*margin-left: 2em;*/ /*taken from yast.css*/
   padding-top: 1em;
 }
 
-  #status-wrapper {
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border: 1px solid #999;
-    margin-bottom: 3em;
-    background: #f9f9f9;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  
-    #status-wrapper h3:first-child {
-      margin-top: 0;
-    }
-    #status-wrapper #machine-controle {
-      display: block;
-      min-height: 110px;
-      height: 100%;
-      overflow: hidden;
-      border-left: 1px solid #ccc;
-      background-color: #eee;
-      background: #fcfcfc url(/stylesheets/images/gradient-light-short.png) repeat-x scroll left bottom;
-      
-      float: right;
-    }
-    #status-wrapper #status_patches,
-    #status-wrapper #status_status {
-      margin: 10px;
-    }
-    #status-wrapper #machine-controle ul {
-      list-style: none outside;
-      margin: 10px 0;
-    }
+#machine-controle {
+  width: 25%;
+  float: right;
+  height: 100%;
+  display: inline-block;
+}
 
-    #status-wrapper #machine-controle ul li  {
-      margin: 0.5em 0;
-    }
-    
-    #status-wrapper #machine-controle h4 {
-      margin: 0;
-    }
-    
+#machine-controle a {
+  text-align: center;
+  margin: 10px 10px 0;
+  display: block;
+}
+
+#status_patches, #status_status {
+  margin: 10px;
+}
+
+.plugin-content {
+  background-color: #fff;
+  border-color: #ddd #ccc #bbb;
+  border-style: solid;
+  border-width: 1px;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0 1px 3px #ccc;
+  -moz-box-shadow: 0 1px 3px #ccc;
+   box-shadow: 0 1px 3px #ccc;
+
+  float: left;
+  clear: both;
+  width: 100%;
+  min-height: 100px;
+}
+
 /* == Lists and Tables ==================================================== */
 
 .list-row {
   clear: left;
   overflow: hidden;
   padding: 1em 0;
+  border-bottom: 1px dotted #eee;
 }
 
 .list-row h3 {
   margin-top: 0;
   text-indent: 10px;
 }
+
 .list-row div div,
 .list-row div a {
   float: left;
   margin: 0 25px 0 0;
   width: 75px;
-  
   text-align: center;
 }
-.list-row {
-  border-bottom: 1px dotted #ccc;
-}
+
 .list-row.overview {
   border-color: transparent;
 }
-  .list-row.overview > div { /* get child of *.overview */
-    overflow: hidden;
-    padding: 1em 0;
-    
-  }
-  .list-row.overview > div {
-   border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
-  }
-    .list-row div a {
-      display: block;
-      padding: 1em 5px 0;
-      margin: 0 5px;
-      border: 2px solid transparent;
-      height: 8em;
-    }
-    .list-row div a:hover {
-      border-color: #999;
-      background: #eee;
-      text-decoration: none;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-    }
-    
-ul.list-2level-inline,
-ul.list-2level-inline ul {
-  list-style: none outside;
-  margin: 0.5em 0 1em;
-  margin: 0;
-  padding: 0;
+
+.list-row.overview > div { /* get child of *.overview */
   overflow: hidden;
-}
-ul.list-2level-inline {
-  margin: 1em 0 2em;
-}
-  ul.list-2level-inline a {
-    text-decoration: underline;
-  }
-  .list-2level-inline ul {
-    
-  }
-    .list-2level-inline ul li {
-      float: left;
-      margin-right: 0.5em;
-    }
-    
-    .list-2level-inline + p {
-      clear: left;
-    }
-    
-    .list-2level-inline ul li strong,
-    .list-2level-inline ul li span {
-      display: block;
-    }
-    .list-2level-inline ul li strong {
-      color: #666;
-      min-width: 75px;
-    }
-    .list-2level-inline ul li span {
-      color: #666;
-    }
-    .list-2level-inline ul li span.li-url {
-      min-width: 150px;
-    }
-    .list-2level-inline ul li span.li-descr {
-      min-width: 250px;
-    }
-
-/* Tabed Contend */
-.tab-form {
-  
-}
-.tab-form fieldset {
-  clear: left;
-  margin-top: 1em;
-}
-ul.tab-nav {
-  list-style: none inside;
-  padding: 0;
-  overflow: hidden;
+  padding: 1em 0;
 }
 
-.tab-nav li {
-  float: left;
-  min-width: 7em;
+.list-row.overview > div {
+  border-bottom: 1px dotted #eee; /* FIXME Just a quick workaround */
+}
+
+.list-row div a {
+  display: block;
+  padding: 1em 5px 0;
+  margin: 0 5px;
+  border: 2px solid transparent;
+  height: 8em;
+}
+
+.list-row div a:hover {
+  border-color: #999;
+  background: #eee;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.list-row .controlpanel-shortcut {
+  float : left;
+  margin: 0 5px;
+  border: 2px solid transparent;
+  width : 75px;
+  height: 8em;
+  padding: 1em 5px 0;
   text-align: center;
-  padding: 0;
-  margin-right: 1px;
 }
-  .tab-nav li a {
-    display: block;
-    width: 100%;
-    background-color: #eee;
-    padding: 0.5em 0;
-    
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-  }
-  
-  .tab-nav li a:hover {
-    text-decoration: none;
-  }
-  
-  
-    .tab-nav li a.selected {
-      background-color: #7a7a7a;
-      color: #fff;
-    }
-/* == Text Styles ======================================================= */
+.list-row .controlpanel-shortcut:hover {
+  border-color: #999;
+  background: #eee;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
 
-.notifications {
-  color: #06c;
-  color: #f90;
-  margin: 1em 0;
-  text-align: center;
-  text-shadow: 0 1px 1px #ccc;
+.list-row div div, .list-row div a {
+ text-align:center;
 }
 
 /* == Form Styles ======================================================= */
 
 fieldset {
+  background-color: #eee;
   border: none;
+  margin: 1em;
+  border-color: #ddd #ccc #bbb;
+  border-style: solid;
+  border-width: 1px;
+  -moz-box-shadow: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
 }
 
 fieldset p {
   clear: both;
   margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
-  fieldset.smallfields label {
-    width: 5em;
-  }
-
-  fieldset.smallfields input[type="text"] {
-    width: 10em;
-  }
-
-  fieldset.with-background {
-    background-color: #eee;
-    margin: 1em;
-  }
-
-  fieldset.with-background select {
-    background-color: #fff;
-  }
- 
-legend {
-  font-weight: bold;
+fieldset.small-fields input[type="text"] {
+  width: 10em;
 }
 
-label {
+/*fieldset select {
+  background-color: #fff;
+}*/
+
+fieldset label {
   display: block; 
   float: left;
   width: 11em; 
@@ -443,30 +490,70 @@ label {
   margin: 0.2em 0.5em;
 }
 
-  label.radio-right {
-    display:block;
-    float:left;
-    width:auto !important;
-    line-height: 1.5em;
-    margin-bottom: 1em;
-  }
-
-
-#login_button {
-  float: right;
+fieldset.small-labels label {
+  width: 8em;
 }
 
-.dialoge-wrapper input[type="text"] {
-  width: 99%;
-}
-.dialogue-footer {
-  margin: 0;
-  padding-top: 15px;
-  text-align: center;
+legend {
+  font-weight: bold;
 }
 
-form a {
-  color: #0000CD;
+/* IE8: bnc#592301 */
+legend span {
+  margin-left: 2px;
+}
+
+/* TODO find the better soulution later */
+/* breaks input type="text" alignment if used together with label.error and label.valid properties, see example network modules if field is valid and field with errors*/
+
+/* make error messages show up right of the label, bnc#592282 */
+input.error {
+  float: left;
+}
+
+/* Repositories validation is not consistent with other modules (bnc#604160)*/
+/* TODO move all label.error and label.valid properties from modules index files to style.css*/
+/* is not possible now (for WebYaST-SP1-GMC) because of higher effort as assumed  */
+
+/*label.error {
+  float:none;
+  display:inline;
+  font-weight:bold;
+  color:#990000;
+  padding-top:2px;
+  padding-left:.5em;
+  vertical-align:middle; 
+}
+
+label.valid { 
+  background: url('/images/checked.gif') no-repeat;
+  padding:0px 0px 0px 18px;
+  vertical-align:middle; 
+  margin-left:5px;
+}*/
+
+label.error {
+  float: left;
+  text-align: left;
+  vertical-align: middle;
+  display: none;
+  color: red;
+  padding: 0 0 0 0;
+  margin: 2px;
+  width: auto; 
+}
+
+fieldset fieldset {
+  background-color: transparent;
+  border: none;
+  margin: 0em;
+  border: 0px none transparent;
+  -moz-box-shadow: none;
+  padding: 0px;
+}
+
+fieldset fieldset p {
+  margin-top: 0px;
 }
 
 /* == Helper Styles ======================================================= */
@@ -478,36 +565,6 @@ form a {
   display: none;
 }
 
-a.button,
-input.button,
-input[type="submit"] {
-  background: #eee url(images/button-bg-rollover.gif) repeat-x scroll left top;
-  color: #333;
-  font-size: 12px;
-  font-weight: bold;
-  border: 1px solid #999;
-  cursor: pointer;
-  padding: 2px 10px 3px 10px;
-  text-decoration: none;
-  text-shadow: 0 -1px 0 #bbb;
-  -moz-border-radius: 4px;
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
-  -webkit-border-radius: 4px;
-  width: auto !important;
-  vertical-align: baseline;
-}
-  a.button:hover,
-  input.button:hover {
-    background-position:0 -22px;
-    color:#FFF;
-    text-shadow: 0 -1px 0 #252525;
-  }
-  input.button {
-    padding: 2px 9px;
-  }
-
 /* ==Status Icons ==*/
 /* -- HTML Example --
   <div class="status-icon ok"></div>
@@ -518,10 +575,11 @@ input[type="submit"] {
 .status-icon {
   display: block;
   width: 23px;
-  height: 23px;
-  margin-right: 1em;
+  height: 19px;
   background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
   float: left;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .bug-icon {
@@ -538,94 +596,60 @@ input[type="submit"] {
 }
 
 .status-icon.ok {
-  background-position: 0 0;
+  background-position: 0 -3;
 }
 .status-icon.warning {
-  background-position: 0 -22px;
+  background-position: 0 -24px;
 }
 .status-icon.error {
-  background-position: 0 -44px;
+  background-position: 0 -46px;
 }
 .status-icon.optional {
-  background-position: 0 -66px;
+  background-position: 0 -68px;
+}
+.status-icon.unused {
+  background-position: 0 -89px;
+}
+.status-icon.ok-unused {
+  background-position: 0 -108px;
+}
+.status-icon.unused-ok {
+  background-position: 0 -128px;
+}
+.status-icon.none {
+  background: transparent;
 }
 /* ==/Status Icons ==*/
-
-.width-50 {
-  width: 50%;
-}
-.width-65 {
-  width: 65%;
-}
-.width-75 {
-  width: 75%;
-}
 
 .alt-bg {
   background-color: #f9f9f9;
 }
 
-.plugin-icon
-{ 
+.plugin-content form > p {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.plugin-icon { 
   float: left;
   margin: 1em;
   font-size: 1.5em;
 }
 
-.plugin-icon img
-
-{
+.plugin-icon img {
   vertical-align: middle;
   margin: 0.5em; 
 }
 
-
-.plugin-content {
-  float: left;
-  clear: left;
+img.small-working-icon {
+  width: 20px;
+  height: 20px;
+  border: 0px none transparent;
 }
 
-.wrapper,
-.plugin-content,
-#status-wrapper {
-  background-color: #fff;
-  min-height: 5em;
-}
-.wrapper,
-#status-wrapper,
-.plugin-content {
-  border-color: #ddd #ccc #bbb;
-  border-style: solid;
-  border-width: 1px;
-  
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
+/* ========================= Table ========================== */
 
-  -webkit-box-shadow: 0 1px 3px #ccc;
-  -moz-box-shadow: 0 1px 3px #ccc;
-  box-shadow: 0 1px 3px #ccc;
-}
-
-.plugin-content form > p,
-.plugin-content form > fieldset {
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
-select.aligned-inputs,
-input.aligned-inputs {
-  width: 100%;
-}
-
-input[disabled] {
-  background-color: #eee;
-}
-
-td.icon,
-td.checkbox,
-th.checkbox {
+td.icon, td.checkbox, th.checkbox {
   text-align: center;
 }
 
@@ -636,6 +660,7 @@ tr.odd {
 tr.even {
   background-color: #bee9ff;
 }
+
 .clipboard {
   display: block;
   width: 14px;
@@ -643,9 +668,11 @@ tr.even {
   background: transparent url(images/clipboard/button_up.png) no-repeat scroll 0 0;
   float: left;
 }
+
 .clipboard:hover {
   background: transparent url(images/clipboard/button_over.png) no-repeat scroll 0 0;
 }
+
 .clipboard:active {
   background: transparent url(images/clipboard/button_down.png) no-repeat scroll 0 0;
 }
@@ -659,28 +686,23 @@ tr.even {
   color: #666;
 }
 
-
-input {
-    vertical-align: top;
-}
-
-
-.nav_buttons{
-    margin: 1em;
+.nav-buttons{
+   margin: 1em;
+   clear: both;
 }
 
 .example{
 	font-style:italic;
 }
 
-
 /* Error Messages */
-
 #flash-messages {
   margin-bottom: 2em;
+  width: 100%;
 }
 .flash-message {
   margin-top: 20px;
+  padding: 12px;
 }
 
 .flash-message span {
@@ -709,3 +731,99 @@ input {
   background: #7AD3FF;
 }
 
+/* Password strength indicator */
+#password-strength {
+   /* uncomment this if you want
+    a border around passwd strength bar
+  border: 1px solid #aaa;*/
+  font-size: 0.8em;
+  height: 5ex;
+  padding: 0.3em;
+  width: 40em;
+  position: relative;
+  left: 15em;
+  top: 1ex;
+}
+
+.password-strength-bar {
+  height: 3px;
+}
+
+/* List accordion styles */
+
+.list-fieldset {
+  border-color: #ddd #ccc #bbb;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #eee;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+  margin: 0.5em 1em 0.5em;
+}
+
+.list-fieldset-header,
+.ui-accordion .list-fieldset-header.ui-accordion-header {
+  font-weight: bold !important;
+  margin-bottom: 5px;
+  margin-top: 4px;
+}
+
+.list-fieldset select {
+  background-color: #fff;
+}
+
+.list-fieldset.alt-bg {
+  background-color: #ddd;
+}
+
+p.missing-permissions {
+  margin-left: 1em;
+  color: #ff9900;
+}
+
+div#browserWarning {
+  background-color: '#fcfdde';
+  width: 100%;
+  border-top: solid 1px #000;
+  border-bottom: solid 1px #000;
+  text-align: center;
+  padding: 5px 0px 5px 0px;
+}
+
+/* styles for select dialogs */
+.select-dialog-item {
+  float: left;
+  width: 8em;
+}
+
+.select-dialog-item:hover {
+  font-weight : bold;
+}
+
+.select-tooltip {
+  color: #888888;
+  font-size: 0.8em;
+  font-weight: bold;
+  display: block;
+  display: none;
+}
+
+.select-tooltip:hover {
+  color: #222222;
+}
+
+.dialog-container {
+  min-height: 5em;
+}
+
+.dialog-container div {
+  display: block;
+}
+
+.dialog-container h2 {
+  display: block;
+}

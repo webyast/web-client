@@ -1,33 +1,57 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Kalman Kemenczy <kkemenczy@novell.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient firewall 1.0.0\n"
-"POT-Creation-Date: 2010-01-27 18:01+0100\n"
-"PO-Revision-Date: 2010-01-27 18:01+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2010-05-03 16:30+0200\n"
+"PO-Revision-Date: 2010-04-29 09:29+0200\n"
+"Last-Translator: kalman <kkemenczy@gmail.com>\n"
+"Language-Team: collection <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.2\n"
 
-#: app/views/firewall/index.rhtml:3
+#: app/controllers/firewall_controller.rb:72
+msgid "Firewall settings have been written."
+msgstr "A tűzfalbeállítások mentése befejeződött."
+
+#: app/views/firewall/index.rhtml:63
+msgid ""
+"Some of needed services (%s) are going to be blocked. WebYaST may not be "
+"usable anymore. Do you really want to block them?"
+msgstr ""
+"Néhány szükséges szolgáltatás (%s) blokkolva van. A WebYaST valószínűleg nem "
+"használható a továbbiakban. Valóban blokkolni akarja ezeket?"
+
+#: app/views/firewall/index.rhtml:82
 msgid "Firewall"
-msgstr ""
+msgstr "Tűzfal"
 
-#: app/views/firewall/index.rhtml:9
+#: app/views/firewall/index.rhtml:100
+msgid "General settings"
+msgstr "Általános beállítások"
+
+#: app/views/firewall/index.rhtml:107
 msgid "Use Firewall"
-msgstr ""
+msgstr "Tűzfal használata"
 
-#: app/views/firewall/index.rhtml:21
-msgid "Service"
-msgstr ""
+#: app/views/firewall/index.rhtml:112
+msgid "Allowed services"
+msgstr "Engedélyezett szolgáltatások"
 
-#: app/views/firewall/index.rhtml:22
-msgid "Allowed"
-msgstr ""
+#: app/views/firewall/index.rhtml:116
+msgid "Block"
+msgstr "Tiltás"
+
+#: app/views/firewall/index.rhtml:122
+msgid "Blocked services"
+msgstr "Letiltott szolgáltatások"
+
+#: app/views/firewall/index.rhtml:126
+msgid "Allow"
+msgstr "Engedélyezés"

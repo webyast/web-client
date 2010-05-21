@@ -1,53 +1,54 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# Przemysław Bojczuk <pbojczuk@gmail.com>, 2009.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-10-27 20:08+0100\n"
-"Last-Translator: Przemysław Bojczuk <pbojczuk@gmail.com>\n"
-"Language-Team:  <pl@li.org>\n"
+"Project-Id-Version: yast_webclient_eulas\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-04-29 10:57+0100\n"
+"Last-Translator: Miroslaw Rogozinski <miroslaw.rogozinski@opensuse.biz>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/eulas_controller.rb:78
+#: app/controllers/eulas_controller.rb:94
 msgid "You cannot reject a license once it has been accepted!"
-msgstr ""
+msgstr "Nie można odrzucić wcześniej zaakceptowanej licencji!"
 
-#: app/controllers/eulas_controller.rb:81
+#: app/controllers/eulas_controller.rb:97
 msgid "You must accept all licences before using this product!"
 msgstr "Należy zaakceptować wszystkie licencje, by móc używać tego produktu!"
 
-#: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
-#: app/views/eulas/no_licenses.erb:1
+#: app/views/eulas/no_licenses.erb:1 app/views/eulas/all_accepted.erb:1
 msgid "Accept End User Licence Agreement"
-msgstr "Czy zaakceptować licencję użytkownika końcowego EULA"
+msgstr "Akceptacja umowy licencyjnej użytkownika końcowego"
 
-#: app/views/eulas/show.html.erb:4
+#: app/views/eulas/no_licenses.erb:2
+msgid "There are no licenses to accept."
+msgstr "Brak licencji do zaakceptowania."
+
+#: app/views/eulas/show.html.erb:37
+msgid "Licence Agreement"
+msgstr "Umowa licencyjna"
+
+#: app/views/eulas/show.html.erb:46
 msgid "Available translations:"
 msgstr "Dostępne tłumaczenia:"
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:57
 msgid "Yes, I agree to the license agreement."
-msgstr "Tak, akceptuję zapisy licencyjne."
+msgstr "Tak, zgadzam się z warunkami umowy licencyjnej."
 
-#: app/views/eulas/show.html.erb:28
+#: app/views/eulas/show.html.erb:61
 msgid "No, I do not agree."
 msgstr "Nie, nie zgadzam się."
+
+#: app/views/eulas/show.html.erb:73
+msgid "Back"
+msgstr "Cofnij"
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
 msgstr "Wszystkie licencje już zostały zaakceptowane"
-
-#: app/views/eulas/no_licenses.erb:2
-#, fuzzy
-msgid "There are no licenses to accept."
-msgstr "Brak zdefiniowanych repozytoriów, które są włączone."

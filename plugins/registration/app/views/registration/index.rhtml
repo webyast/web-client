@@ -1,71 +1,136 @@
+<!--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
+
+<% content_for :head do %>
+  <%= javascript_include_tag :defaults %>
+<% end %>
+<% content_for :before_script do %>
+  <% javascript_tag do -%>
+  $(document).ready(function(){
+    $(".accordion").accordion({
+       autoHeight : false,
+       navigation : true,
+       collapsible: true,
+       header     : 'fieldset legend',
+       animated   : false
+    });
+    $(".accordion").accordion('activate',false);
+    <% if @arguments_mandatory.blank? %>
+      $(".accordion").accordion('activate', "#argumentdetail legend");
+    <% end %>
+  });
+  <% end %>
+
+  <% javascript_tag do -%>
+  $(document).ready(function(){
+    $("#registrationform").validate({
+      rules: {
+        registration_arg_email: {
+          required: true,
+          email: true
+        }
+      },
+      messages: {
+       registration_arg_email: {
+         required: "<%= _("Please enter a valid Email address.") %>",
+         email: "<%= _("Please enter a valid Email address.") %>"
+       }
+      }
+    })});
+  <% end %>
+<% end %>
+
 <div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="<%= _("register plugin") %>"/><%=_("Registration")%></div>
 
-<div class='plugin-content grid_12' style="padding-top: 8px">
+<div class='plugin-content' style="padding-top: 8px">
 
   <% form_target_save = '/registration/' + (@nexttarget.kind_of?(String) ? @nexttarget : 'skip') %>
 
   <% if @showstatus then %>
-     <fieldset class="wrapper with-background width-75">
+     <fieldset>
        <legend><%= _("Registration Information") %></legend>
        <p><strong><%= _("This system is registered") %></strong></p>
        <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>
        <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"$('#progress').show()", :class => "button" %></p>
      </fieldset>
 
-     <fieldset>
+     <div class="nav-buttons">
        <%= form_back_button %>
        <%= if basesystem_in_process? then
              ret = form_str_spacer
              ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
            end
        %>
-     </fieldset>
+     </div>
   <% else %>
 
-<% form_tag form_target_save, { :onsubmit => "$('#progress').show()" } do -%>
+    <% form_tag form_target_save, { :id => "registrationform", :onsubmit => "$('#progress').show()" } do -%>
 
+      <% if !@arguments_mandatory.blank? then %>
+      <fieldset>
+        <legend><%= _("Mandatory Information") %></legend>
+        <% for argument in @arguments_mandatory %>
+          <p>
+            <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
+              <%= argument['description'] %>
+            </label>
+            <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
+          </p>
+        <% end %>
+      </fieldset>
+      <% end %>
 
-  <% if @arguments_mandatory then %>
-  <fieldset class="wrapper with-background width-75">
-    <legend><%= _("Mandatory Information") %></legend>
-    <% for argument in @arguments_mandatory %>
-      <p>
-        <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
-          <%= argument['description'] %>
-        </label>
-        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
-      </p>
-    <% end %>
-  </fieldset>
-  <% end %>
+      <% if !@arguments_detail.blank? then %>
+        <div class="accordion">
+          <fieldset id="argumentdetail">
+            <legend><%= _("Details") %></legend>
+            <div style="display: none;">
+              <% for argument in @arguments_detail %>
+                <p>
+                  <label for="<%= 'registration_arg_'+argument['name'] %>" >
+                    <%= argument['description'] %>
+                  </label>
+                  <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
+                </p>
+              <% end %>
+            </div>
+          </fieldset>
+        </div>
+      <% end %>
 
-  <%= show_hide_elements :argumentdetail, { :show_msg => _("Show Details"), :hide_msg => _("Hide Details") } %>
-
-  <% if @arguments_detail then %>
-  <fieldset class="wrapper with-background width-75" id="argumentdetail" style="display: none">
-    <legend><%= _("Details") %></legend>
-    <% for argument in @arguments_detail %>
-      <p>
-        <label for="<%= 'registration_arg_'+argument['name'] %>" >
-          <%= argument['description'] %>
-        </label>
-        <%= text_field_tag "registration_arg,"+argument["name"], argument["value"]  %>
-      </p>
-    <% end %>
-  </fieldset>
-  <% end %>
-
-    <fieldset>
-      <%= form_send_buttons %>
-      <%= if basesystem_in_process? then
-            link_to _('Skip'), {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()", :class => "button"
-          end %>
-    </fieldset>
-
-<% end  %>
-
-
-<% end -%>
-
+      <div class="nav-buttons">
+        <% if @arguments_mandatory.kind_of?(Array) && !@arguments_mandatory.select{ |p|  p["name"]=="email" }.empty?
+             onclick_action = "return $('#registrationform').validate().element('#registration_arg_email');"
+           else
+             onclick_action = "return true;"
+           end
+        %>
+        <%= form_send_buttons :onclick => onclick_action %>
+          <%= if basesystem_in_process? then
+                skip_msg = _('Skip')
+                postpone_msg = _('Postpone')
+                connecting_or = ' ' + _('or') + ' '
+                connecting_or + link_to(postpone_msg, {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()")
+              end %>
+      </div>
+    <% end  %>
+  <% end -%>
 </div>
-

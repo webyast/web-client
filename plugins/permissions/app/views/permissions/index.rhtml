@@ -1,7 +1,29 @@
-<html>
-<head>
-  <title><%= controller.action_name %></title>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.checktree.js"></script>
+<!--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
+
+
+<!--   <title><%= controller.action_name %></title> -->
+<% content_for :head do %>
+  <%= javascript_include_tag "jquery.checktree.js" %>
+  <%= stylesheet_link_tag "checktree" %>
 
   <script type="text/javascript">
   $(document).ready(function(){
@@ -40,22 +62,21 @@
 	});
   });
   </script>
+<% end %>
 
-  <link rel="stylesheet" href="/inc/checktree/checktree.css" type="text/css" media="screen" title="default" charset="utf-8" />
- </head>
-<div class='plugin-icon'><img src='/icons/yast-permissions.png'/><%=_("User Permissions")%></div>
-<div class="plugin-content"
-<br>
+<div class='plugin-icon'><img alt="yast-permissions" src='/icons/yast-permissions.png'/><%=_("User Permissions")%></div>
+<div class="plugin-content">
+<br/>
 <% form_tag '/permissions/search' do %>
   <p><label for="user"><%=_("User")%></label>
   <input type="text" name="user" size=25 value=<%= "#{@current_user}" %> >
   <%= submit_tag _("Search"), :disabled=> !@right_get_permissions, :onclick=>"$('#progress').show()", :class => 'button'%>
 <% end %>
-<br>
-<br>
+<br/>
+<br/>
 <% if !@current_user.blank? %>
  <% form_tag ({:action => "set", :user => @current_user})  do %>
-   <table border="1" align="left" hspace=1 vspace=1>
+   <table summary="" border="1" align="left" hspace=1 vspace=1>
    <colgroup>
    <col width="300" span="2">
    <col>
@@ -66,7 +87,6 @@
    </tr>
    <tr>
      <td valign="top">
-     <body>
        <div id="revoketree"></div>
        <ul class="tree" style="margin-left: 15px;">
        <% last_level = 0 %>
@@ -75,7 +95,7 @@
             <% last_level = @revoke_data[k][:level] %>
        <%= "  " * last_level %><ul>
        <%= "  " * (last_level+1) %><li>
-		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant" disabled="disabled">
+		  <input type="checkbox" name="<%= @revoke_data[k][:path] %>" value="grant" disabled="disabled" />
 		  <%= @revoke_data[k][:label] %>
             <% if k < @revoke_data.size-1 && @revoke_data[k+1][:level] == @revoke_data[k][:level] %>
        <%= "  " * (last_level+1) %></li>
@@ -87,11 +107,11 @@
             <% end %>
             <% last_level = @revoke_data[k][:level] %>
        <%= "  " * last_level %><li>
-		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant" disabled="disabled">
+		  <input type="checkbox" name="<%= @revoke_data[k][:path] %>" value="grant" disabled="disabled" />
 		  <%= @revoke_data[k][:label] %>
           <% else %>
        <%= "  " * (last_level+1) %><li>
-		  <input type="checkbox" name= <%= @revoke_data[k][:path] %> value="grant" disabled="disabled">
+		  <input type="checkbox" name="<%= @revoke_data[k][:path] %>" value="grant" disabled="disabled" />
 		  <%= @revoke_data[k][:label] %>
        <%= "  " * (last_level+1) %></li>
           <% end %>
@@ -103,11 +123,9 @@
        <% end %>
        <% end %>
        </ul>
-     </body>
-     </td>
+      </td>
      <td valign="top">
-     <body>
-       <div id="granttree"></div>
+        <div id="granttree"></div>
        <ul class="tree" style="margin-left: 15px;">
        <% last_level = 0 %>
        <% for k in 0..@grant_data.size-1 %>   
@@ -115,7 +133,7 @@
             <% last_level = @grant_data[k][:level] %>
        <%= "  " * last_level %><ul>
        <%= "  " * (last_level+1) %><li>
-		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke" disabled="disabled">
+		  <input type="checkbox" name="<%= @grant_data[k][:path] %>" value="revoke" disabled="disabled" />
 		  <%= @grant_data[k][:label] %>
             <% if k < @grant_data.size-1 && @grant_data[k+1][:level] == @grant_data[k][:level] %>
        <%= "  " * (last_level+1) %></li>
@@ -127,11 +145,11 @@
             <% end %>
             <% last_level = @grant_data[k][:level] %>
        <%= "  " * last_level %><li>
-		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke" disabled="disabled">
+		  <input type="checkbox" name="<%= @grant_data[k][:path] %>" value="revoke" disabled="disabled" />
 		  <%= @grant_data[k][:label] %>
           <% else %>
        <%= "  " * (last_level+1) %><li>
-		  <input type="checkbox" name= <%= @grant_data[k][:path] %> value="revoke" disabled="disabled">
+		  <input type="checkbox" name="<%= @grant_data[k][:path] %>" value="revoke" disabled="disabled" />
 		  <%= @grant_data[k][:label] %>
        <%= "  " * (last_level+1) %></li>
           <% end %>
@@ -143,9 +161,7 @@
        <% end %>
        <% end %>
        </ul>
-     </body>
      </td>
-
    </tr>
    </table>
    <br style='clear: both'>
@@ -156,8 +172,8 @@
 
 <% end %>
 <fieldset>
-  <%= form_back_button %>
+  <%= link_to _("Back"), :controller => "controlpanel" %>
 </fieldset>
 </div>
-</html>
+
 

@@ -1,5 +1,5 @@
 <div class='plugin-icon'><img src='/icons/yast-language.png' alt="<%= _("language plugin") %>"/><%=_("Language")%></div>
-<div class='plugin-content grid_12'>
+<div class='plugin-content'>
 <% form_tag '/language/update' do -%>
   <fieldset id="language_set" class="">
     <p>
@@ -7,10 +7,10 @@
 <%= select_tag "webyast_language",
   options_for_select(LangHelper::LANGUAGES.invert.to_a.reject{|val| !(supported_languages.include?(val[1]))}.sort_by { |a| a[0].parameterize}, current_locale) %>
    </p>
-</fieldset>
-<fieldset>
-  <%= form_send_buttons %>
-</fieldset>
+  </fieldset>
+  <div class="nav-buttons">
+    <%= form_send_buttons %>
+  </div>
 <% end -%>
 </div>
 

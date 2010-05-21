@@ -1,5 +1,5 @@
 <div class='plugin-icon'><img src='/icons/yast-samba-server.png'/><%=_("Exported Samba Shares")%></div>
-<div class='plugin-content grid_12'>
+<div class='plugin-content'>
 
 <%= html_simple_table([_("Samba Shares")], @shares, [:id], {:add => @permissions[:addshare], :edit => @permissions[:editshare], :delete => @permissions[:deleteshare], :id => :id})%>
 </div>

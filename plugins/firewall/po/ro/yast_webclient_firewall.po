@@ -1,33 +1,61 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient firewall 1.0.0\n"
-"POT-Creation-Date: 2010-01-27 18:01+0100\n"
-"PO-Revision-Date: 2010-01-27 18:01+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: openSUSE\n"
+"Report-Msgid-Bugs-To: translation@suse.de\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-30 16:32+0300\n"
+"Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
+"Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea.luci@gmail.com><strainu10@gmail.com><traduceri@suseromania.ro>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms:  nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
 
-#: app/views/firewall/index.rhtml:3
+#: app/controllers/firewall_controller.rb:51
+#| msgid "The configuration file has been written."
+msgid "Firewall settings have been written."
+msgstr "Setările paravanului de protecţie au fost scrise."
+
+#: app/views/firewall/index.rhtml:42
+msgid ""
+"Some of needed services are going to be blocked. WebYaST may not be usable "
+"anymore."
+msgstr ""
+"Unele din serviciile necesare vor fi blocate. WebYaST ar putea să nu mai fie "
+"utilizabil."
+
+#: app/views/firewall/index.rhtml:68
+#| msgid "SuSE Firewall 2"
 msgid "Firewall"
-msgstr ""
+msgstr "Paravan de protecţie"
 
-#: app/views/firewall/index.rhtml:9
+#: app/views/firewall/index.rhtml:86
+#| msgid "General Settings"
+msgid "General settings"
+msgstr "Setări generale"
+
+#: app/views/firewall/index.rhtml:93
+#| msgid "SuSE Firewall 2"
 msgid "Use Firewall"
-msgstr ""
+msgstr "Utilizaţi Paravanul de protecţie"
 
-#: app/views/firewall/index.rhtml:21
-msgid "Service"
-msgstr ""
+#: app/views/firewall/index.rhtml:99
+#| msgid "inetd service"
+msgid "Allowed services"
+msgstr "Servicii permise"
 
-#: app/views/firewall/index.rhtml:22
-msgid "Allowed"
-msgstr ""
+#: app/views/firewall/index.rhtml:103
+#| msgid "xlock"
+msgid "Block"
+msgstr "Blochează"
+
+#: app/views/firewall/index.rhtml:109
+#| msgid "nfslock service"
+msgid "Blocked services"
+msgstr "Servicii blocate"
+
+#: app/views/firewall/index.rhtml:113
+msgid "Allow"
+msgstr "Permite"

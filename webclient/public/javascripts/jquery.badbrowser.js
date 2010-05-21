@@ -1,3 +1,23 @@
+/*
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+*/
+
 function badBrowser(){
     if(   ($.browser.msie() && $.browser.version.number() == 8 )
        || ($.browser.firefox() && $.browser.version.number() >= 3.5 )
@@ -36,20 +56,11 @@ function setBadBrowser(c_name,value,expiredays)
 
 if(badBrowser() && getBadBrowser('browserWarning') != 'seen' ){
     $(function(){
-            $("<div id='browserWarning'>You are using an unsupported browser. Please switch to <a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>. Thanks!&nbsp;&nbsp;&nbsp;[<a href='#' id='warningClose'>close</a>] </div> ")
-                .css({
-                    backgroundColor: '#fcfdde',
-                        'width': '100%',
-                        'border-top': 'solid 1px #000',
-                        'border-bottom': 'solid 1px #000',
-                        'text-align': 'center',
-                        padding:'5px 0px 5px 0px'
-                })
-                .prependTo("body");		
-            $('#warningClose').click(function(){
-                setBadBrowser('browserWarning','seen');
-                $('#browserWarning').slideUp('slow');
-                return false;
-	    });
-    });	
+      $("#browserWarning").show();
+      $('#warningClose').click(function(){
+        setBadBrowser('browserWarning','seen');
+        $('#browserWarning').slideUp('slow');
+        return false;
+      });
+    });
 }

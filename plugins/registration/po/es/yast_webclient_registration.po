@@ -5,12 +5,13 @@
 #
 # Automatically generated, 2009.
 # Carlos E. Robinson <carlos.e.r@opensuse.org>, 2009.
+# Carlos E. Robinson M. <carlos.e.r@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_registration.es\n"
-"POT-Creation-Date: 2009-11-10 16:37+0100\n"
-"PO-Revision-Date: 2009-10-30 00:11+0100\n"
-"Last-Translator: Carlos E. Robinson <carlos.e.r@opensuse.org>\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-04-28 11:39+0200\n"
+"Last-Translator: Carlos E. Robinson M. <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,52 +19,215 @@ msgstr ""
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 "X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: SPAIN\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:32
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: app/controllers/registration_controller.rb:33
+msgid "System name"
+msgstr "Nombre del sistema"
+
+#: app/controllers/registration_controller.rb:34
+msgid "SLES registration code"
+msgstr "Código de registro SLES"
+
+#: app/controllers/registration_controller.rb:35
+msgid "SLED registration code"
+msgstr "Código de registro SLED"
+
+# CER 11.3 ¿appliance?
+#: app/controllers/registration_controller.rb:36
+msgid "Appliance registration code"
+msgstr "Código de registro del aplicativo"
+
+#: app/controllers/registration_controller.rb:37
+msgid "WebYaST registration code"
+msgstr "Código de registro WebYaST"
+
+#: app/controllers/registration_controller.rb:38
+msgid "Registration code"
+msgstr "Código de registro"
+
+#: app/controllers/registration_controller.rb:39
+msgid "Hostname"
+msgstr "Nombre de equipo"
+
+#: app/controllers/registration_controller.rb:40
+msgid "Device name"
+msgstr "Nombre del dispositivo"
+
+#: app/controllers/registration_controller.rb:41
+msgid "Appliance name"
+msgstr "Nombre del aplicativo"
+
+#: app/controllers/registration_controller.rb:42
+msgid "registration code"
+msgstr "código de registro"
+
+#: app/controllers/registration_controller.rb:51
 msgid "Invalid session, please login again."
 msgstr "Sesión inválida, por favor vuelva a entrar."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:62
 msgid "No permissions for registration"
 msgstr "Sin permiso para reistro"
 
-#: app/controllers/registration_controller.rb:57
-msgid "Arguments for registration cannot be evaluated."
-msgstr "Los argumentos para registro no puede ser evaluado."
+#: app/controllers/registration_controller.rb:111
+msgid "Please try to register again later."
+msgstr "Por favor reintente el registro más tarde."
 
-#: app/controllers/registration_controller.rb:97
-msgid "Registration finished successfully."
-msgstr "Registro finalizado con éxito."
+#: app/controllers/registration_controller.rb:115
+msgid "Registration was skipped."
+msgstr "Se omitió el registro."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:121
+msgid "Registration did not finish."
+msgstr "El registro no se terminó."
+
+#: app/controllers/registration_controller.rb:122
+msgid "Registration did not succeed."
+msgstr "El registro no tuvo éxito."
+
+#: app/controllers/registration_controller.rb:124
+msgid "This may be a temporary issue."
+msgstr "Esto puede ser un problema temporal."
+
+#: app/controllers/registration_controller.rb:129
+msgid "The registration server returned invalid or incomplete data."
+msgstr "El servidor de registro retornó datos incompletos o inválidos."
+
+#: app/controllers/registration_controller.rb:137
+msgid "Could not read the registration configuration."
+msgstr "No se puedo leer la configuración de registro."
+
+#: app/controllers/registration_controller.rb:137
+msgid "The registration backend is not installed correctly"
+msgstr "El motor de registro no ha sido correctamente instalado"
+
+#: app/controllers/registration_controller.rb:138
+msgid "Please refer to your support contact."
+msgstr "Por favor, remítase a su contacto de soporte."
+
+#: app/controllers/registration_controller.rb:167
 msgid "Please fill out missing entries."
 msgstr "Por favor, rellene las entradas que faltan."
 
-#: app/controllers/registration_controller.rb:126
-msgid "Error occured while connecting to registration server."
-msgstr "Ocurrió un error al conectar al servidor de registro."
+#: app/controllers/registration_controller.rb:198
+msgid "Service added:"
+msgstr "Servicio añadido:"
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:202
+#: app/controllers/registration_controller.rb:207
+msgid "Catalog enabled:"
+msgstr "Catálogo activado:"
+
+#: app/controllers/registration_controller.rb:232
+msgid "Repository added:"
+msgstr "Repositorio añadido:"
+
+#: app/controllers/registration_controller.rb:304
+msgid "This system is already registered."
+msgstr "El sistema ya está registrado."
+
+#: app/controllers/registration_controller.rb:333
+msgid "Registration finished successfully."
+msgstr "Registro finalizado con éxito."
+
+#: app/controllers/registration_controller.rb:343
+msgid ""
+"<p><b>Repositories were not modified during the registration process.</b></"
+"p><p>It is likely that an incorrect registration code was used. If this is "
+"the case, please attempt the registration process again to get an update "
+"repository.</p><p>Please make sure that this system has an update repository "
+"configured, otherwise it will not receive updates.</p>"
+msgstr ""
+"<p><b>Los repositorios no fueron modificados durante el proceso de registro."
+"</b></p><p>Es probable que se usara un código de registro incorrecto. Si "
+"este fuera el caso, por favor reintente el proceso de registro para obtener "
+"un repositorio de actualización.</p><p>Por favor, asegúrese de que el "
+"sistema tiene un repositorio de actualizaciones configurado, de otro modo no "
+"recibirá actualizaciones.</p>"
+
+#: app/controllers/registration_controller.rb:377
+msgid "A connection to the registration server could not be established."
+msgstr "No se pudo establecer una conexión con el servidor de registro."
+
+#: app/controllers/registration_controller.rb:381
+msgid "The transmitted registration data created a conflict."
+msgstr "Los datos de registro transmitidos ceraron un conflicto."
+
+#: app/controllers/registration_controller.rb:389
+msgid ""
+"Registration can not be performed. There is no product installed that can be "
+"registered."
+msgstr ""
+"El registro no se pudo realizar. No hay un producto instalado que pueda ser "
+"registrado."
+
+#: app/controllers/registration_controller.rb:404
+msgid ""
+"A connection to the registration server could not be established or it did "
+"not reply."
+msgstr ""
+"No se pudo establecer una conexión con el servidor de registro o no contestó."
+
+#: app/controllers/registration_controller.rb:421
+msgid "The registration server returned invalid data."
+msgstr "El servidor de registro devolvió datos inválidos."
+
+#: app/views/registration/index.rhtml:53 app/views/registration/index.rhtml:54
+msgid "Please enter a valid Email address."
+msgstr "Por favor introduzca una dirección de correo electrónico válida."
+
+#: app/views/registration/index.rhtml:61
 msgid "register plugin"
 msgstr "complemento de registro"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:61
 msgid "Registration"
 msgstr "Registro"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "Esta tabla da las configuraciones de registro."
+#: app/views/registration/index.rhtml:69
+msgid "Registration Information"
+msgstr "Información de registro"
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "Repositorios cambiados"
+#: app/views/registration/index.rhtml:70
+msgid "This system is registered"
+msgstr "Este sistema está registrado"
 
-#: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "Servicios cambiados"
+#: app/views/registration/index.rhtml:71
+msgid "System number (GUID)"
+msgstr "Número de sistema (GUID)"
 
-#: app/views/registration/index.rhtml:57
-msgid "Detail"
-msgstr ""
+#: app/views/registration/index.rhtml:72
+msgid "Register again"
+msgstr "Regístrese otra vez"
+
+#: app/views/registration/index.rhtml:79
+msgid "Next"
+msgstr "Siguiente"
+
+#: app/views/registration/index.rhtml:89
+msgid "Mandatory Information"
+msgstr "Información obligatoria"
+
+#: app/views/registration/index.rhtml:104
+msgid "Details"
+msgstr "Detalles"
+
+#: app/views/registration/index.rhtml:128
+msgid "Skip"
+msgstr "Omitir"
+
+#: app/views/registration/index.rhtml:129
+msgid "Postpone"
+msgstr "Postponer"
+
+#: app/views/registration/index.rhtml:130
+msgid "or"
+msgstr "o"
+
+#~ msgid "Arguments for registration cannot be evaluated."
+#~ msgstr "Los argumentos para registro no puede ser evaluado."

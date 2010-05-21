@@ -1,3 +1,21 @@
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 require 'gettext'
 
 # from the error data (a hash created from
@@ -13,7 +31,8 @@ module ErrorConstructor
     when "SERVICE_NOT_RUNNING"
       return _("Service %s is not running on the target machine") % [error["service"]]
     when "NO_PERM"
-      return _("Broken permission setup on rest-service. Can be fixed by grantwebyastrights script.") if error["user"] == "yastws" #special login for webservice user
+      #because this message appear often in details print all available informations (bnc#601865)
+      #return _("Broken permission setup on rest-service. Can be fixed by grantwebyastrights script.") if error["user"] == "yastws" #special login for webservice user
       return _("Permission %s is not granted for user %s") % [error["permission"], error["user"]]
     when "POLKIT"
       return _("Policy kit exception for user %s and permission %s (untranslated message): %s") % [error["user"], error["permission"], error["polkitout"]]
@@ -26,7 +45,7 @@ module ErrorConstructor
       if error["output"]=="NOSERVERS" #special value indicates that there is no predefined ntp server
         problem = _("There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS")
       end
-      return _("Error occured during ntp synchronization: %s") %problem
+      return _("Error occurred during ntp synchronization: %s") %problem
     when "ADMINISTRATOR_ERROR"
       problem = error["output"]
       return _("Error while saving administrator settings: %s") %problem

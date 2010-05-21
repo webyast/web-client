@@ -1,82 +1,178 @@
 # translation of yast_webclient_services.es.po to Spanish
 # Carlos E. Robinson <carlos.e.r@opensuse.org>, 2009.
+# Carlos E. Robinson M. <carlos.e.r@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-20 14:36+0100\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-03-31 12:48+0200\n"
 "Last-Translator: Carlos E. Robinson M. <carlos.e.r@opensuse.org>\n"
 "Language-Team: Spanish <opensuse-translation-es@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Spanish\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Sesión inválida, por favor entre de nuevo."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:44
 msgid "(cannot read status)"
 msgstr "(no se puede leer el estado)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:91
 msgid "success"
 msgstr "éxito"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(desconocido)"
+#: app/controllers/services_controller.rb:92
+msgid "unspecified error"
+msgstr "error no especificado"
 
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(en ejecución)"
+#: app/controllers/services_controller.rb:93
+msgid "invalid or excess argument(s)"
+msgstr "argumento(s) inválido(s) o en exceso"
 
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(muerto)"
+#: app/controllers/services_controller.rb:94
+msgid "unimplemented feature"
+msgstr "funcionalidad no implementada"
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(no se está ejecutando)"
+#: app/controllers/services_controller.rb:95
+msgid "user had insufficient privilege"
+msgstr "el usuario no tiene suficientes privilegios"
 
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(desconocido: %d)"
+#: app/controllers/services_controller.rb:96
+msgid "program is not installed"
+msgstr "el programa no está instalado"
+
+#: app/controllers/services_controller.rb:97
+msgid "program is not configured"
+msgstr "el programa no está configurado"
+
+#: app/controllers/services_controller.rb:98
+msgid "program is not runnning"
+msgstr "el programa no está corriendo"
 
 # CER 2009 12.1: no me gusta
-#: app/views/services/_result.rhtml:5
+#: app/views/services/_result.rhtml:7
 msgid "Service Call Result"
 msgstr "Resultado del servido de llamada inversa"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:10
 msgid "Result"
 msgstr "Resultado"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:15
 msgid "Description"
 msgstr "Descripción"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "Atrás"
-
-#: app/views/services/index.rhtml:12
-msgid "Custom Services"
-msgstr "Servicios a medida"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:162
 msgid "System Services"
 msgstr "Servicios del sistema"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "No tiene permiso para ejecutar los servicios. Los enlaces están desactivados."
+#: app/views/services/index.rhtml:168
+msgid "You do not have permission to execute the services."
+msgstr "No tiene usted permiso para ejecutar los servicios."
 
-#: app/views/services/index.rhtml:93
-msgid "status"
-msgstr "estado"
+#: app/views/services/index.rhtml:172
+msgid "Filter services"
+msgstr "Servicios de filtro"
+
+#: app/views/services/index.rhtml:174
+msgid "All"
+msgstr "Todo"
+
+#: app/views/services/index.rhtml:175
+msgid "Running"
+msgstr "Ejecutando"
+
+#: app/views/services/index.rhtml:176
+msgid "Not Running"
+msgstr "No ejecutando"
+
+#: app/views/services/index.rhtml:177
+msgid "Dead"
+msgstr "Muerto"
+
+#: app/views/services/index.rhtml:178
+msgid "Started on Boot"
+msgstr "Iniciado durante el arranque"
+
+#: app/views/services/index.rhtml:179
+msgid "Not Started on Boot"
+msgstr "No iniciado durante el arranque"
+
+#: app/views/services/index.rhtml:186
+msgid "Quick Search"
+msgstr "Búsqueda rápida"
+
+#: app/views/services/index.rhtml:201
+msgid "Description for service is not available"
+msgstr "La descripción del servicio no está disponible"
+
+#: app/views/services/index.rhtml:224
+msgid "(refresh)"
+msgstr "(refrescar)"
+
+#: app/views/services/index.rhtml:255
+msgid "Start"
+msgstr "Iniciar"
+
+#: app/views/services/index.rhtml:256
+msgid "Stop"
+msgstr "Alto"
+
+#: app/views/services/index.rhtml:257
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: app/views/services/index.rhtml:258
+msgid "Start on Boot"
+msgstr "Iniciar durante el arranque"
+
+#: app/views/services/index.rhtml:259
+msgid "Do Not Start on Boot"
+msgstr "No iniciar durante el arranque"
+
+#: app/views/services/_status.rhtml:7
+msgid "Service will be started on boot."
+msgstr "El servicio será iniciado durante el arranque."
+
+#: app/views/services/_status.rhtml:9
+msgid "Service will not be started on boot."
+msgstr "El servicio no será iniciado durante el arranque."
+
+#: app/views/services/_status.rhtml:32
+msgid "status unknown"
+msgstr "estado desconocido"
+
+#: app/views/services/_status.rhtml:34
+msgid "running"
+msgstr "en ejecución"
+
+#: app/views/services/_status.rhtml:38
+msgid "dead"
+msgstr "muerto"
+
+#: app/views/services/_status.rhtml:42
+msgid "not running"
+msgstr "no se está ejecutando"
+
+#: app/views/services/_status.rhtml:46
+msgid "status unknown: %d"
+msgstr "estado desconocido: %d"
+
+#: app/views/services/_status.rhtml:49
+msgid "Current status of the service:"
+msgstr "Estado actual del servicio:"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Sesión inválida, por favor entre de nuevo."
+
+#~ msgid "Back"
+#~ msgstr "Atrás"
+
+#~ msgid "Custom Services"
+#~ msgstr "Servicios a medida"
+
+#~ msgid "status"
+#~ msgstr "estado"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-10-05 16:49+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <opensuse-translation@opensuse.org>\n"
@@ -13,67 +13,124 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Angiv en gyldig e-mail-adresse."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Adgangskoderne stemmer ikke overens."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 #, fuzzy
 #| msgid "Administrator Settings"
 msgid "Administrator settings have been written."
 msgstr "Administratorindstillinger"
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Fejl under lukning af gammel shadow-fil: %m"
 
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr ""
+
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "Administratorindstillinger"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "Adgangskoderne stemmer ikke overens."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
+#: app/views/administrator/index.html.erb:33
+#, fuzzy
+#| msgid "The PKCS12 password is required."
+msgid "A password is required."
+msgstr "PKCS12-adgangskoden er påkrævet."
+
+#: app/views/administrator/index.html.erb:38
+#, fuzzy
+#| msgid "Password too short"
+msgid "Password Strength:"
+msgstr "For kort adgangskode"
+
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
 msgstr ""
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Adgangskode"
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "Normal"
+
+#: app/views/administrator/index.html.erb:42
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "Medie"
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:44
+#, fuzzy
+#| msgid "Very fast"
+msgid "Very Strong"
+msgstr "Meget hurtig"
 
 #: app/views/administrator/index.html.erb:63
 #, fuzzy
-#| msgid "Confirm Password"
-msgid "Confirm password"
-msgstr "Bekræft adgangskode"
+#| msgid "Password too short"
+msgid "Password Setup for User 'root'"
+msgstr "For kort adgangskode"
 
-#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:64
 #, fuzzy
-#| msgid "Change Password"
-msgid "Save Password"
-msgstr "Skift adgangskode"
+#| msgid "_New Password:"
+msgid "New Password"
+msgstr "_Ny adgangskode"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:69
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "_Bekræft adgangskode:"
+
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:78
+#, fuzzy
+#| msgid "Forward mail to"
+msgid "Forward system mail to"
 msgstr "Videresend e-mail til"
 
-#: app/views/administrator/index.html.erb:72
+#: app/views/administrator/index.html.erb:81
 #, fuzzy
 #| msgid "Save"
-msgid "Save Mail"
+msgid "Save Mail Only"
 msgstr "Gem"
+
+# password dialog title
+#~ msgid "Password"
+#~ msgstr "Adgangskode"
+
+#, fuzzy
+#~| msgid "Confirm Password"
+#~ msgid "Confirm password"
+#~ msgstr "Bekræft adgangskode"
+
+#, fuzzy
+#~| msgid "Change Password"
+#~ msgid "Save Password"
+#~ msgstr "Skift adgangskode"
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Ugyldig session, log venligst ind igen."

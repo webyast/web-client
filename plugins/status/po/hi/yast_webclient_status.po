@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: Prasanth Kurian <prasanth.kurian@agreeya.com>\n"
 "Language-Team: Hindi <i18n@suse.de>\n"
@@ -15,92 +15,184 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr ""
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:181
+#: app/controllers/status_controller.rb:187
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
+msgid "Limits exceeded for "
 msgstr "\"%s\" के लिए जोड़ना सफल रहा।\n"
 
-#: app/controllers/status_controller.rb:229
+#: app/controllers/status_controller.rb:316
 #, fuzzy
-#| msgid "Saving the changes failed"
-msgid "Saving limits failed!"
-msgstr "परिवर्तन रक्षित करना विफल"
+#| msgid "Needed"
+msgid "exceeded"
+msgstr "जरूरी"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr ""
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr ""
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr ""
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "स्थिती"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
 msgstr ""
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+#, fuzzy
+#| msgid "Feeds"
+msgid "exceeds"
+msgstr "फीड"
+
+#: app/views/status/index.html.erb:71
+#, fuzzy
+#| msgid "&Details"
+msgid "details"
+msgstr "&विवरण "
+
+#: app/views/status/index.html.erb:87
+#, fuzzy
+#| msgid "&Details"
+msgid "Details"
+msgstr "&विवरण "
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr ""
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "पीछे"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr ""
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr ""
-
-#: app/views/status/edit.html.erb:2
+#: app/views/status/_status_graph.html.erb:1
 #, fuzzy
-#| msgid "Configure Notifications..."
-msgid "Configure Status Limits"
-msgstr "अधिसूचनाएं कॉन्फिगर करें..."
+#| msgid "An error occurred during the installation."
+msgid "A problem occured when loading status information."
+msgstr "इंस्टालेशन के दौरान कोई त्रुटि हुई।"
 
-#: app/views/status/edit.html.erb:7
+#: app/views/status/_status_graph.html.erb:91
 #, fuzzy
-#| msgid "Status: "
-msgid "Status Path"
-msgstr "स्थिति: "
+#| msgid "&Show changes"
+msgid "Show last"
+msgstr "&परिवर्तन दर्शाएं "
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
+#: app/views/status/_status_graph.html.erb:92
+msgid "5 Minutes"
 msgstr ""
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
+#: app/views/status/_status_graph.html.erb:93
+msgid "15 Minutes"
 msgstr ""
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr " रक्षित करें "
+#: app/views/status/_status_graph.html.erb:94
+msgid "30 Minutes"
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_graph.html.erb:95
+msgid "1 Hour"
+msgstr ""
+
+#: app/views/status/_status_graph.html.erb:96
+msgid "6 Hours"
+msgstr ""
+
+#: app/views/status/_status_graph.html.erb:97
+msgid "12 Hours"
+msgstr ""
+
+#: app/views/status/_status_summary.html.erb:2
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
 msgstr "इंस्टालेशन के दौरान कोई त्रुटि हुई।"
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "कोई जानकारी उपलब्ध नहीं।"
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr ""
+
+#: app/views/status/_status_summary.html.erb:20
+msgid "Start collectd"
+msgstr ""
+
+#: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "System Information"
+msgid "Loading system information"
+msgstr "सिस्टम जानकारी"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr ""
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr ""
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr ""
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr ""
+
+#: lib/plugin_translation.rb:29
+#, fuzzy
+#| msgid "The configuration is not initialized."
+msgid "Mail configuration test not confirmed"
+msgstr "कॉन्फिगरेशन को आरंभ नहीं किया गया।"
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr ""
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Saving the changes failed"
+#~ msgid "Saving limits failed!"
+#~ msgstr "परिवर्तन रक्षित करना विफल"
+
+#~ msgid "Back"
+#~ msgstr "पीछे"
+
+#, fuzzy
+#~| msgid "Configure Notifications..."
+#~ msgid "Configure Status Limits"
+#~ msgstr "अधिसूचनाएं कॉन्फिगर करें..."
+
+#, fuzzy
+#~| msgid "Status: "
+#~ msgid "Status Path"
+#~ msgstr "स्थिति: "
+
+#~ msgid "Save"
+#~ msgstr " रक्षित करें "
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "कोई जानकारी उपलब्ध नहीं।"

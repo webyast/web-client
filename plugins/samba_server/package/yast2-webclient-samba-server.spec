@@ -13,7 +13,8 @@
 %define plugin_name samba_server
 #
 
-Name:           yast2-webclient-samba-server
+Name:           webyast-samba-server-ui
+Recommends:     WebYaST(org.opensuse.yast.system.sambashares)
 PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/controllers/sambserver_controller.rb
 License:	GPL v2 only
@@ -25,16 +26,28 @@ Summary:        YaST2 - Webclient - Samba Server
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 BuildRequires:  ruby
 BuildRequires:  yast2-webclient
 
 
+
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-samba-server-ui package
 
 %description
 YaST2 - Webclient - UI for YaST-webservice in order to handle Samba server settings.
 Authors:
 --------
     Ladislav Slezák <lslezak@novell.com>
+
+%description testsuite
+This package contains complete testsuite for webyast-samba-server-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
 
 %prep
 %setup -q -n www
@@ -43,6 +56,9 @@ Authors:
 rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -79,4 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/config
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+
 

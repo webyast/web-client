@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: Prasanth Kurian <prasanth.kurian@agreeya.com>\n"
 "Language-Team: Hindi <i18n@suse.de>\n"
@@ -15,37 +15,44 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
 
-#: app/controllers/eulas_controller.rb:78
+#: app/controllers/eulas_controller.rb:72
 msgid "You cannot reject a license once it has been accepted!"
 msgstr ""
 
-#: app/controllers/eulas_controller.rb:81
+#: app/controllers/eulas_controller.rb:75
 msgid "You must accept all licences before using this product!"
 msgstr ""
 
-#: app/views/eulas/show.html.erb:1 app/views/eulas/all_accepted.erb:1
-#: app/views/eulas/no_licenses.erb:1
+#: app/views/eulas/no_licenses.erb:1 app/views/eulas/all_accepted.erb:1
 msgid "Accept End User Licence Agreement"
 msgstr ""
 
-#: app/views/eulas/show.html.erb:4
+#: app/views/eulas/no_licenses.erb:2
+msgid "There are no licenses to accept."
+msgstr ""
+
+#: app/views/eulas/show.html.erb:2
+msgid "Licence Agreement"
+msgstr ""
+
+#: app/views/eulas/show.html.erb:8
 #, fuzzy
 #| msgid "Available profiles"
 msgid "Available translations:"
 msgstr " उपलब्ध प्रोफाइलें "
 
-#: app/views/eulas/show.html.erb:22
+#: app/views/eulas/show.html.erb:26
 msgid "Yes, I agree to the license agreement."
 msgstr ""
 
-#: app/views/eulas/show.html.erb:28
+#: app/views/eulas/show.html.erb:32
 msgid "No, I do not agree."
 msgstr ""
 
+#: app/views/eulas/show.html.erb:43
+msgid "Back"
+msgstr "पीछे"
+
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
-msgstr ""
-
-#: app/views/eulas/no_licenses.erb:2
-msgid "There are no licenses to accept."
 msgstr ""

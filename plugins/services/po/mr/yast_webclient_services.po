@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: \"( अमेय पाळंदे ) Ameya Palande\" <2ameya@gmail.com>\n"
 "Language-Team: Marathi <i18n@suse.de>\n"
@@ -15,15 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr ""
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 #, fuzzy
 #| msgid ""
 #| "Success:\n"
@@ -33,71 +29,210 @@ msgstr ""
 " यश:\n"
 "%s"
 
-#: app/views/services/_status.rhtml:14
-#, fuzzy
-#| msgid "unknown"
-msgid "(unknown)"
-msgstr "अज्ञात"
-
-#: app/views/services/_status.rhtml:16
-#, fuzzy
-#| msgid "running"
-msgid "(running)"
-msgstr "सुरू आहे"
-
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
 msgstr ""
 
-#: app/views/services/_status.rhtml:20
+#: app/controllers/services_controller.rb:72
 #, fuzzy
-#| msgid "not running"
-msgid "(not running)"
-msgstr "सुरू नाही"
+#| msgid "invalid argument syntax"
+msgid "invalid or excess argument(s)"
+msgstr "अग्राह्य युक्तिवाद syntax "
 
-#: app/views/services/_status.rhtml:22
+#: app/controllers/services_controller.rb:73
 #, fuzzy
-#| msgid "unknown"
-msgid "(unknown: %d)"
-msgstr "अज्ञात"
+#| msgid "not yet implemented"
+msgid "unimplemented feature"
+msgstr "अद्याप कार्यान्वित नाहीत"
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
+
+#: app/controllers/services_controller.rb:75
+#, fuzzy
+#| msgid "not installed"
+msgid "program is not installed"
+msgstr "स्थापित नसलेली"
+
+#: app/controllers/services_controller.rb:76
+#, fuzzy
+#| msgid "Not configured"
+msgid "program is not configured"
+msgstr "अजून संरचित केले नाही."
+
+#: app/controllers/services_controller.rb:77
+#, fuzzy
+#| msgid "The hypervisor is not running."
+msgid "program is not runnning"
+msgstr " hypervisor चालत नाही."
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr ""
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 #, fuzzy
 #| msgid "Connect Result"
 msgid "Result"
 msgstr "कनेक्टचा निष्कर्ष"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "विवरण"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "मागे"
-
-#: app/views/services/index.rhtml:12
-#, fuzzy
-#| msgid "Novell Services"
-msgid "Custom Services"
-msgstr " नॉव्हेलच्या सेवा"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:141
 #, fuzzy
 #| msgid "System Settings"
 msgid "System Services"
 msgstr " प्रणाली सेटिंग्ज"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
 msgstr ""
 
-#: app/views/services/index.rhtml:93
+#: app/views/services/index.rhtml:151
 #, fuzzy
-#| msgid "Status"
-msgid "status"
-msgstr "स्थिती"
+#| msgid "inetd service"
+msgid "Filter services"
+msgstr "inetd सेवा"
+
+#: app/views/services/index.rhtml:153
+#, fuzzy
+#| msgid "all"
+msgid "All"
+msgstr "सर्व"
+
+#: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "running"
+msgid "Running"
+msgstr "सुरू आहे"
+
+#: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "not running"
+msgid "Not Running"
+msgstr "सुरू नाही"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr ""
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search:"
+msgid "Quick Search"
+msgstr "शोधः"
+
+#: app/views/services/index.rhtml:180
+#, fuzzy
+#| msgid "The action for service '%1' may not be empty."
+msgid "Description for service is not available"
+msgstr "सर्व्हिस '%1'साठीची कृती रिक्त नसेल."
+
+#: app/views/services/index.rhtml:203
+#, fuzzy
+#| msgid "Refresh"
+msgid "(refresh)"
+msgstr "रिफ्रेश"
+
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Start-Up"
+msgid "Start"
+msgstr "स्टार्टअप"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr ""
+
+#: app/views/services/index.rhtml:236
+#, fuzzy
+#| msgid "_Restart"
+msgid "Restart"
+msgstr "_ पुन्हा सुरु करा"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:238
+#, fuzzy
+#| msgid "Do Not Start"
+msgid "Do Not Start on Boot"
+msgstr "सुरू करू नका"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown"
+msgstr "अज्ञात"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "सुरू आहे"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr ""
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "सुरू नाही"
+
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown: %d"
+msgstr "अज्ञात"
+
+#: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "lock-down status for the search area"
+msgid "Current status of the service:"
+msgstr "शोध एरियासाठी लॉक-डाऊन स्थिती"
+
+#, fuzzy
+#~| msgid "unknown"
+#~ msgid "(unknown)"
+#~ msgstr "अज्ञात"
+
+#, fuzzy
+#~| msgid "running"
+#~ msgid "(running)"
+#~ msgstr "सुरू आहे"
+
+#, fuzzy
+#~| msgid "not running"
+#~ msgid "(not running)"
+#~ msgstr "सुरू नाही"
+
+#~ msgid "Back"
+#~ msgstr "मागे"
+
+#, fuzzy
+#~| msgid "Novell Services"
+#~ msgid "Custom Services"
+#~ msgstr " नॉव्हेलच्या सेवा"
+
+#, fuzzy
+#~| msgid "Status"
+#~ msgid "status"
+#~ msgstr "स्थिती"

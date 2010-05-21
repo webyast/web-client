@@ -1,132 +1,352 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
+# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_users\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-20 19:27-0300\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-09 00:01-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <opensuse-pt@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "Sessão inválida, por favor conecte-se novamente."
+#: app/controllers/groups_controller.rb:36
+msgid "Missing group name parameter"
+msgstr "Parâmetro do nome de grupo faltante"
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:48
+msgid "Missing group parameters"
+msgstr "Parâmetro de grupo faltante"
+
+#: app/controllers/groups_controller.rb:58
+msgid "Please enter a valid group name"
+msgstr "Por favor, digite um nome de grupo válido"
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid GID"
+msgstr "Por favor, digite um GID válido"
+
+#: app/controllers/groups_controller.rb:78
+msgid ""
+"Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+"Por favor, digite um tipo de grupo válido. Somente \"system\" ou \"local\" "
+"sao permitidos."
+
+#: app/controllers/groups_controller.rb:89
+msgid "Please enter a valid list of members"
+msgstr "Por favor, digite uma lista de membros válida"
+
+#: app/controllers/groups_controller.rb:103
+msgid "Cannot read users list."
+msgstr "Não foi possível ler a lista de usuários."
+
+#: app/controllers/groups_controller.rb:123
+msgid "No groups found."
+msgstr "Nenhum grupo encontrado."
+
+#: app/controllers/groups_controller.rb:147
+msgid "Cannot read groups list."
+msgstr "Não foi possível ler a lista de grupos."
+
+#: app/controllers/groups_controller.rb:233
+msgid "Unknown backend error"
+msgstr "Erro desconhecido da infraestrutura"
+
+#: app/controllers/users_controller.rb:41
+msgid "No users found."
+msgstr "Nenhum usuário encontrado."
+
+#: app/controllers/users_controller.rb:197
 msgid "User <i>%s</i> was successfully created."
 msgstr "O usuário <i>%s</i> foi criado com sucesso."
 
-#: app/controllers/users_controller.rb:148
-msgid "Empty UID value"
-msgstr "Valor de UID vazio"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID: valor >= 1000 é válido somente para usuário local"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:239
 msgid "User <i>%s</i> was successfully updated."
 msgstr "O usuário <i>%s</i> foi atualizado com sucesso."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:260
 msgid "User <i>%s</i> was successfully removed."
 msgstr "O usuário <i>%s</i> foi removido com sucesso."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:262
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Erro: não foi possível remover o usuário <i>%s</i>."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr "Usuário local"
+#: app/views/groups/index.html.erb:52 app/views/groups/new.html.erb:56
+msgid "Select Members"
+msgstr "Selecionar membros"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Conectar"
+#: app/views/groups/index.html.erb:53 app/views/groups/new.html.erb:57
+msgid "Selected Members"
+msgstr "Membros selecionados"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
-msgid "Full Name"
-msgstr "Nome completo"
+#: app/views/groups/index.html.erb:54 app/views/groups/new.html.erb:58
+msgid "Available Members"
+msgstr "Membros disponíveis"
 
-#: app/views/users/index.html.erb:8
-msgid "Edit"
-msgstr "Editar"
+#: app/views/groups/index.html.erb:55 app/views/groups/new.html.erb:59
+msgid "Click user names to select/unselect members"
+msgstr ""
+"Clique nos nomes de usuário para selecionar/anular seleção de membros"
 
-#: app/views/users/index.html.erb:27
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[Novo usuário]</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Cancelar"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr "Editar usuário %s"
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+#: app/views/groups/index.html.erb:94 app/views/groups/new.html.erb:80
+#: app/views/users/index.html.erb:219 app/views/users/index.html.erb:222
+#: app/views/users/new.html.erb:203 app/views/users/new.html.erb:206
 msgid "Groups"
 msgstr "Grupos"
 
-#: app/views/users/edit.html.erb:19
-msgid "Default Group"
-msgstr "Grupo padrão"
+#: app/views/groups/index.html.erb:98 app/views/users/index.html.erb:160
+msgid "Filter:"
+msgstr "Filtro:"
 
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-msgid "Home Directory"
-msgstr "Diretório home"
+#: app/views/groups/index.html.erb:104
+msgid "Add New Group"
+msgstr "Adicionar novo grupo?"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-msgid "Login Shell"
-msgstr "Shell de login"
+#: app/views/groups/index.html.erb:120 app/views/groups/new.html.erb:94
+msgid "Group Name"
+msgstr "Nome do grupo"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/groups/index.html.erb:124
+msgid "Group ID"
+msgstr "ID do grupo"
+
+#: app/views/groups/index.html.erb:128 app/views/groups/new.html.erb:98
+msgid "Members"
+msgstr "Membros"
+
+#: app/views/groups/index.html.erb:130
+msgid "Manage Members"
+msgstr "Gerenciar membros"
+
+#: app/views/groups/index.html.erb:134 app/views/users/index.html.erb:272
+msgid "Save"
+msgstr "Salvar"
+
+#: app/views/groups/index.html.erb:137 app/views/users/index.html.erb:275
+msgid "Delete"
+msgstr "Remover"
+
+#: app/views/groups/index.html.erb:139
+msgid "Are you sure to delete group '%s'?"
+msgstr "Tem certeza que quer remover o grupo '%s'?"
+
+#: app/views/groups/new.html.erb:81
+msgid "Add new group"
+msgstr "Adicionar novo grupo"
+
+#: app/views/users/index.html.erb:57 app/views/users/new.html.erb:64
+msgid "Select Groups"
+msgstr "Selecionar grupos"
+
+#: app/views/users/index.html.erb:58 app/views/users/new.html.erb:65
+msgid "Selected Groups"
+msgstr "Grupos selecionados"
+
+#: app/views/users/index.html.erb:59 app/views/users/new.html.erb:66
+msgid "Available Groups"
+msgstr "Grupos disponíveis"
+
+#: app/views/users/index.html.erb:60 app/views/users/new.html.erb:67
+msgid "Click group names to select/unselect groups"
+msgstr "Clique nos nomes dos grupos para selecionar/anular seleção de grupos"
+
+#: app/views/users/index.html.erb:77 app/views/users/index.html.erb:238
+#: app/views/users/new.html.erb:84
+msgid "Select Default Group"
+msgstr "Selecionar grupo padrão"
+
+#: app/views/users/index.html.erb:78 app/views/users/new.html.erb:85
+msgid "Click a group name to choose users default group"
+msgstr "Clique num nome de grupo para escolher o grupo padrão dos usuários"
+
+#: app/views/users/index.html.erb:97
+msgid " The passwords do not match."
+msgstr " As senhas não coincidem."
+
+#: app/views/users/index.html.erb:98 app/views/users/new.html.erb:108
+msgid "This field is required."
+msgstr "Este campo é necessário."
+
+#: app/views/users/index.html.erb:116 app/views/users/new.html.erb:122
+msgid "Password Strength:"
+msgstr "Força da senha:"
+
+#: app/views/users/index.html.erb:118 app/views/users/new.html.erb:124
+msgid "Weak"
+msgstr "Fraco"
+
+#: app/views/users/index.html.erb:119 app/views/users/new.html.erb:125
+msgid "Normal"
+msgstr "Normal"
+
+#: app/views/users/index.html.erb:120 app/views/users/new.html.erb:126
+msgid "Medium"
+msgstr "Médio"
+
+#: app/views/users/index.html.erb:121 app/views/users/new.html.erb:127
+msgid "Strong"
+msgstr "Forte"
+
+#: app/views/users/index.html.erb:122 app/views/users/new.html.erb:128
+msgid "Very Strong"
+msgstr "Muito forte"
+
+#: app/views/users/index.html.erb:150
+msgid "Processing ..."
+msgstr "Processando..."
+
+#: app/views/users/index.html.erb:156 app/views/users/new.html.erb:161
+msgid "Users"
+msgstr "Usuários"
+
+#: app/views/users/index.html.erb:166
+msgid "Add New User"
+msgstr "Adicionar novo usuário"
+
+#: app/views/users/index.html.erb:187 app/views/users/new.html.erb:170
+msgid "Login Settings"
+msgstr "Configurações de login"
+
+#: app/views/users/index.html.erb:190 app/views/users/new.html.erb:173
+msgid "Full Name"
+msgstr "Nome completo"
+
+#: app/views/users/index.html.erb:196 app/views/users/new.html.erb:179
 msgid "Login Name"
 msgstr "Nome de login"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "Número do UID"
-
 # password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/index.html.erb:203 app/views/users/new.html.erb:186
 msgid "Password"
 msgstr "Senha"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Atualizar"
+#: app/views/users/index.html.erb:210 app/views/users/new.html.erb:193
+msgid "Confirm Password"
+msgstr "Confirmar senha"
 
-#: app/views/users/new.html.erb:1
-msgid "New User"
-msgstr "Novo usuário"
+#: app/views/users/index.html.erb:226 app/views/users/index.html.erb:296
+msgid "Manage Groups"
+msgstr "Gerenciar grupos"
 
-#: app/views/users/new.html.erb:16
-msgid "Default Group (GID)"
-msgstr "Grupo padrão (GID)"
+#: app/views/users/index.html.erb:234 app/views/users/new.html.erb:218
+msgid "Default Group"
+msgstr "Grupo padrão"
 
-#: app/views/users/new.html.erb:24
-msgid "Do not create home directory"
-msgstr "Não criar diretório pessoal"
+#: app/views/users/index.html.erb:248 app/views/users/new.html.erb:245
+msgid "Advanced"
+msgstr "Avançado"
 
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "Criar"
+#: app/views/users/index.html.erb:251 app/views/users/new.html.erb:248
+msgid "Home Directory"
+msgstr "Diretório home"
+
+#: app/views/users/index.html.erb:257 app/views/users/new.html.erb:254
+msgid "Login Shell"
+msgstr "Shell de login"
+
+#: app/views/users/index.html.erb:263 app/views/users/new.html.erb:260
+msgid "UID Number"
+msgstr "Número do UID"
+
+#: app/views/users/index.html.erb:277
+msgid "Are you sure to delete user '%s'?"
+msgstr "Tem certeza de que quer remover o usuário '%s'?"
+
+#: app/views/users/new.html.erb:107
+msgid "The passwords do not match."
+msgstr "As senhas não coincidem."
+
+#: app/views/users/new.html.erb:161
+msgid "Add new user"
+msgstr "Adicionar novo usuário"
+
+#~ msgid "Default members"
+#~ msgstr "Membros padrões"
+
+#~ msgid "Edit user %s"
+#~ msgstr "Editar usuário %s"
+
+#~ msgid "Modify group"
+#~ msgstr "Modificar grupo"
+
+#~ msgid "Home directory will be deleted as well."
+#~ msgstr "O diretório Home também será removido."
+
+#~ msgid "Group Type"
+#~ msgstr "Tipo de grupo"
+
+#~ msgid "Type group name ..."
+#~ msgstr "Nome do tipo de grupo..."
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Action"
+#~ msgstr "Ação"
+
+#~ msgid "Local Users"
+#~ msgstr "Usuários locais"
+
+#~ msgid "Type user name or login ..."
+#~ msgstr "Digite o nome de usuário ou login..."
+
+#~ msgid "Are you sure to delete user %s?"
+#~ msgstr "Tem certeza que quer remover o usuário '%s'?"
+
+#~ msgid "New User..."
+#~ msgstr "Novo usuário..."
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "Grupo padrão (GID)"
+
+#~ msgid "Do not create home directory"
+#~ msgstr "Não criar diretório pessoal"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Sessão inválida, por favor inicie a sessão novamente."
+
+#~ msgid "Empty UID value"
+#~ msgstr "Valor de UID vazio"
+
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID: valor >= 1000 é válido somente para usuário local"
+
+#~ msgid "Local User"
+#~ msgstr "Usuário local"
+
+#~ msgid "Login"
+#~ msgstr "Iniciar sessão"
+
+#~ msgid "Edit"
+#~ msgstr "Editar"
+
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "<strong>[Novo usuário]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Voltar"
+
+#~ msgid "Update"
+#~ msgstr "Atualizar"
+
+#~ msgid "New User"
+#~ msgstr "Novo usuário"
+
+#~ msgid "Create"
+#~ msgstr "Criar"
 
 #~ msgid "Edit User %s"
 #~ msgstr "Editar usuário %s"

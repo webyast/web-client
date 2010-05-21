@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2010-01-04 12:56+0200\n"
 "Last-Translator: Mindaugas Baranauskas <embar@users.berlios.de>\n"
 "Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
@@ -18,122 +18,274 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr "Negalima sesija, prisijunkite iš naujo."
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
+msgstr ""
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:27
+msgid "Missing group parameters"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:37
+#, fuzzy
+#| msgid "Please enter server name below"
+msgid "Please enter a valid group name"
+msgstr "Prašome žemiau įvesti serverio pavadinimą"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr "Nepavyksta nuskaityti iš failo %1."
+
+#: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr "Nepavyksta nuskaityti iš failo %1."
+
+#: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "Nežinomas klaida\n"
+
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr "Vartotojas <i>%s</i> sėkmingai sukurtas."
 
-#: app/controllers/users_controller.rb:148
-#| msgid "Empty CA name."
-msgid "Empty UID value"
-msgstr "Tuščia UID vertė."
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr "UID: vertė >= 1000 yra tinkama tik vietiniams vartotojams"
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Vartotojasr <i>%s</i> sėkmingai atnaujintas."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Vartotojas <i>%s</i> sėkmingai pašalintas."
 
-#: app/controllers/users_controller.rb:220
-#| msgid "Error: Could not read profile %s: %s.\n"
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Klaida: nepavyksta pašalinti vartotojo <i>%s</i>."
 
-#: app/views/users/index.html.erb:1
-#| msgid "Local Network"
-msgid "Local User"
-msgstr "Vietinis vartotojas"
-
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Prisijungti"
-
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
-#| msgid "Name"
-msgid "Full Name"
-msgstr "Pilnas vardas"
-
-#: app/views/users/index.html.erb:8
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "Keisti"
-
-#: app/views/users/index.html.erb:27
-#| msgid "You are <strong>online</strong>"
-msgid "<strong>[New User]</strong>"
-msgstr "<strong>[Naujas vartotojas]</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Atgal"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr "Keisti vartotoją %s"
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Grupės"
 
-#: app/views/users/edit.html.erb:19
-#| msgid "Default"
-msgid "Default Group"
-msgstr "Numatytoji grupė"
+#: app/views/groups/edit.html.erb:35
+msgid "Add new group"
+msgstr ""
 
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "Namų aplankas"
+#: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Modified resources"
+msgid "Modify group"
+msgstr "Pakeisti resursau"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#| msgid "Login"
-msgid "Login Shell"
-msgstr "Prisijungimo apvalkalas"
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Full Name"
+msgid "Group Name"
+msgstr "Pilnas vardas"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
-#| msgid "Login"
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
+msgid "Group ID"
+msgstr "Grupės"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
+msgid "Default members"
+msgstr "Numatytos schemos"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+msgid "Members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "Procesorius %1"
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "Filtras"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr ""
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Išsaugoti"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Trinti"
+
+#: app/views/groups/index.html.erb:114
+msgid "Are you sure to delete group '%s'?"
+msgstr ""
+
+#: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Monitor Settings"
+msgid "Login Settings"
+msgstr "Monitoriaus nustatymai"
+
+#: app/views/users/_user_form.erb:8
+msgid "Full Name"
+msgstr "Pilnas vardas"
+
+#: app/views/users/_user_form.erb:12
 msgid "Login Name"
 msgstr "Prisijungimo vardas"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr "UID numeris"
-
 # password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "Slaptažodis"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Atnaujinti"
+#: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "_Patvirtinkite slaptažodį:"
 
-#: app/views/users/new.html.erb:1
-#| msgid "New Version"
-msgid "New User"
+#: app/views/users/_user_form.erb:39
+msgid "Default Group"
+msgstr "Numatytoji grupė"
+
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "Papildomai"
+
+#: app/views/users/_user_form.erb:64
+msgid "Home Directory"
+msgstr "Namų aplankas"
+
+#: app/views/users/_user_form.erb:68
+msgid "Login Shell"
+msgstr "Prisijungimo apvalkalas"
+
+#: app/views/users/_user_form.erb:72
+msgid "UID Number"
+msgstr "UID numeris"
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr ""
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normalus"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "Laikmenos"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "New User"
+msgid "Users"
 msgstr "Naujas vartotojas"
 
-#: app/views/users/new.html.erb:16
-msgid "Default Group (GID)"
-msgstr "Numatytoji grupė (GID)"
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr "Keisti vartotoją %s"
 
-#: app/views/users/new.html.erb:24
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "Nekurti namų aplanko"
+#: app/views/users/index.html.erb:52
+#, fuzzy
+#| msgid "New User"
+msgid "Add New User"
+msgstr "Naujas vartotojas"
 
-#: app/views/users/new.html.erb:44
-msgid "Create"
-msgstr "Sukurti"
+#: app/views/users/index.html.erb:68
+#, fuzzy
+#| msgid "Do you really want to delete the %1 scheme?"
+msgid "Are you sure to delete user '%s'?"
+msgstr "Ar tikrai norite ištrinti %1 schemą?"
 
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr ""
+
+#: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "manage backups"
+msgid "Manage Groups"
+msgstr "tvarkyti atsargines kopijas"
+
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "Add Eraser"
+msgid "Add new user"
+msgstr "Pridėti trintuką"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Negalima sesija, prisijunkite iš naujo."
+
+#~| msgid "Empty CA name."
+#~ msgid "Empty UID value"
+#~ msgstr "Tuščia UID vertė."
+
+#~ msgid "UID: value >= 1000 is valid for local user only"
+#~ msgstr "UID: vertė >= 1000 yra tinkama tik vietiniams vartotojams"
+
+#~| msgid "Local Network"
+#~ msgid "Local User"
+#~ msgstr "Vietinis vartotojas"
+
+#~ msgid "Login"
+#~ msgstr "Prisijungti"
+
+#~| msgid "&Edit"
+#~ msgid "Edit"
+#~ msgstr "Keisti"
+
+#~| msgid "You are <strong>online</strong>"
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "<strong>[Naujas vartotojas]</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Atgal"
+
+#~ msgid "Update"
+#~ msgstr "Atnaujinti"
+
+#~ msgid "Default Group (GID)"
+#~ msgstr "Numatytoji grupė (GID)"
+
+#~| msgid "Cannot create directory %1: %2."
+#~ msgid "Do not create home directory"
+#~ msgstr "Nekurti namų aplanko"
+
+#~ msgid "Create"
+#~ msgstr "Sukurti"

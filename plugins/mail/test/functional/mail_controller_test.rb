@@ -1,8 +1,25 @@
+#--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+#++
+
 require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
-require 'test/unit'
-require File.expand_path( File.join("test","validation_assert"), RailsParent.parent )
-require 'yast_mock'
-require 'mocha'
 
 class MailControllerTest < ActionController::TestCase
 
@@ -40,7 +57,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "index"
@@ -52,7 +71,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "hh",
 	:password			=> "a",
-	:confirm_password		=> "b" }
+	:confirm_password		=> "b",
+	:test_mail_address		=> ""
+     }
     }
     assert_response :redirect
     assert flash[:error]
@@ -66,7 +87,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert flash[:warning]
@@ -75,6 +98,7 @@ class MailControllerTest < ActionController::TestCase
 
   # smtp server empty, admin will be in the sequence: no warning
   def test_commit_empty_server_wizard
+    Basesystem.stubs(:installed?).returns(true)
     session[:wizard_current] = "mail"
     session[:wizard_steps] = "mail,administrator"
     post :update, { :mail => {
@@ -82,7 +106,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "nextstep"
@@ -103,7 +129,9 @@ class MailControllerTest < ActionController::TestCase
 	:transport_layer_security	=> "no",
 	:user				=> "",
 	:password			=> "",
-	:confirm_password		=> "" }
+	:confirm_password		=> "",
+	:test_mail_address		=> ""
+      }
     }
     assert_response :redirect
     assert flash[:error]

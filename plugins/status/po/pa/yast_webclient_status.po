@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-10-10 22:47+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -18,91 +18,217 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "ਗਲਤ ਸ਼ੈਸ਼ਨ, ਫੇਰ ਲਾਗਇਨ ਕਰੋ ਜੀ"
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "ਡਿਸਕ ਖਾਲੀ ਲਿਮਟ ਤੋਂ ਵੱਧ ਗਈ;"
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:181
+#: app/controllers/status_controller.rb:187
 #, fuzzy
 #| msgid "Removal succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
+msgid "Limits exceeded for "
 msgstr "ਸਫ਼ਲ \"%s\" ਲਈ ਹਟਾਉਣਾ\n"
 
-#: app/controllers/status_controller.rb:229
+#: app/controllers/status_controller.rb:316
 #, fuzzy
-#| msgid "Saving the changes failed"
-msgid "Saving limits failed!"
-msgstr "ਬਦਲਾਅ ਬਾਅਦ ਸੰਭਾਲਣ ਲਈ ਫੇਲ੍ਹ"
+#| msgid "Needed"
+msgid "exceeded"
+msgstr "ਲੋੜ ਹੈ"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr ""
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr ""
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr ""
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "ਹਾਲਤ"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "ਡਿਸਕ ਵਰਤੋਂ"
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "ਸੈਟਿੰਗ"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
+msgstr ""
+
+#: app/views/status/edit.html.erb:66
+#, fuzzy
+#| msgid "Feeds"
+msgid "exceeds"
+msgstr "ਫੀਡ"
+
+#: app/views/status/index.html.erb:71
+#, fuzzy
+#| msgid "Details"
+msgid "details"
+msgstr "ਵੇਰਵਾ"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "ਵੇਰਵਾ"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "ਲਿਮਟ ਸੋਧ"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "ਪਿੱਛੇ"
+#: app/views/status/_status_graph.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "A problem occured when loading status information."
+msgstr "ਹਾਲਤ ਜਾਣਕਾਰੀ ਲੋਡ ਕਰਨ ਦੇ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ।"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "ਖਾਲੀ"
+#: app/views/status/_status_graph.html.erb:91
+#, fuzzy
+#| msgid "Show Desktop"
+msgid "Show last"
+msgstr "ਡੈਸਕਟਾਪ ਵੇਖੋ"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "ਵਰਤੀ"
+#: app/views/status/_status_graph.html.erb:92
+#, fuzzy
+#| msgid " Minutes"
+msgid "5 Minutes"
+msgstr " ਮਿੰਟ"
 
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "ਹਾਲਤ ਲਿਮਟ ਸੰਰਚਨਾ"
+#: app/views/status/_status_graph.html.erb:93
+#, fuzzy
+#| msgid " Minutes"
+msgid "15 Minutes"
+msgstr " ਮਿੰਟ"
 
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "ਹਾਲਤ ਪਾਥ"
+#: app/views/status/_status_graph.html.erb:94
+#, fuzzy
+#| msgid " Minutes"
+msgid "30 Minutes"
+msgstr " ਮਿੰਟ"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "ਘੱਟੋ-ਘੱਟ ਮੁੱਲ"
+#: app/views/status/_status_graph.html.erb:95
+#, fuzzy
+#| msgid " Hours"
+msgid "1 Hour"
+msgstr " ਘੰਟੇ"
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "ਵੱਧੋ-ਵੱਧ ਮੁੱਲ"
+#: app/views/status/_status_graph.html.erb:96
+#, fuzzy
+#| msgid " Hours"
+msgid "6 Hours"
+msgstr " ਘੰਟੇ"
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "ਸੰਭਾਲੋ"
+#: app/views/status/_status_graph.html.erb:97
+#, fuzzy
+#| msgid " Hours"
+msgid "12 Hours"
+msgstr " ਘੰਟੇ"
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_summary.html.erb:2
 #, fuzzy
 #| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "ਹਾਲਤ ਜਾਣਕਾਰੀ ਲੋਡ ਕਰਨ ਦੇ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ।"
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "ਕੋਈ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀ ਹੈ"
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "ਤੁਹਾਡਾ ਸਿਸਟਮ ਠੀਕ ਹੈ।"
+
+#: app/views/status/_status_summary.html.erb:20
+msgid "Start collectd"
+msgstr ""
+
+#: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "System Information"
+msgid "Loading system information"
+msgstr "ਸਿਸਟਮ ਜਾਣਕਾਰੀ"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr ""
+
+#: lib/plugin_translation.rb:25
+#, fuzzy
+#| msgid "Required file is missing: "
+msgid "Registration is missing"
+msgstr "ਲੋੜੀ ਫਾਇਲ ਗੁੰਮ ਹੈ: "
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr ""
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr ""
+
+# %s is either BOOTP or DHCP
+#: lib/plugin_translation.rb:29
+#, fuzzy
+#| msgid "The configuration is not initialized."
+msgid "Mail configuration test not confirmed"
+msgstr "ਸੰਰਚਨਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ।"
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr ""
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr ""
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "ਗਲਤ ਸ਼ੈਸ਼ਨ, ਫੇਰ ਲਾਗਇਨ ਕਰੋ ਜੀ"
+
+#~ msgid "Disk free limits exceeded;"
+#~ msgstr "ਡਿਸਕ ਖਾਲੀ ਲਿਮਟ ਤੋਂ ਵੱਧ ਗਈ;"
+
+#, fuzzy
+#~| msgid "Saving the changes failed"
+#~ msgid "Saving limits failed!"
+#~ msgstr "ਬਦਲਾਅ ਬਾਅਦ ਸੰਭਾਲਣ ਲਈ ਫੇਲ੍ਹ"
+
+#~ msgid "Disk usage"
+#~ msgstr "ਡਿਸਕ ਵਰਤੋਂ"
+
+#~ msgid "Back"
+#~ msgstr "ਪਿੱਛੇ"
+
+#~ msgid "free"
+#~ msgstr "ਖਾਲੀ"
+
+#~ msgid "used"
+#~ msgstr "ਵਰਤੀ"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "ਹਾਲਤ ਲਿਮਟ ਸੰਰਚਨਾ"
+
+#~ msgid "Status Path"
+#~ msgstr "ਹਾਲਤ ਪਾਥ"
+
+#~ msgid "Minimum Value"
+#~ msgstr "ਘੱਟੋ-ਘੱਟ ਮੁੱਲ"
+
+#~ msgid "Maximum Value"
+#~ msgstr "ਵੱਧੋ-ਵੱਧ ਮੁੱਲ"
+
+#~ msgid "Save"
+#~ msgstr "ਸੰਭਾਲੋ"
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "ਕੋਈ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀ ਹੈ"
 
 #~ msgid "Events"
 #~ msgstr "ਈਵੈਂਟ"

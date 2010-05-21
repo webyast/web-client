@@ -1,51 +1,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
+<!--
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#-->
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css","jquery-ui-1.7.2.custom.css",
+  <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css",
+      "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css",
       :title=>"default", :charset=>"utf-8"
       # key :cache is disabled, because user which run webyast doesn't have permission to write to 
       #             stylesheet directory and cache cannot be created.
       %>
 
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.query.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.timers.js"></script>
-
-  <script type="text/javascript" charset="utf-8" src="/inc/jquery.ui.custom.js"></script>
-
-  <script type="text/javascript" charset="utf-8" src="/javascripts/script.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.validate.js"></script>
-  <!-- browser detection -->
-   <script type="text/javascript" charset="utf-8" src="/javascripts/jqbrowser-compressed.js"></script>
-   <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.badbrowser.js"></script>
-
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.jqModal.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.core.js"></script>
-  <script type="text/javascript" language="javascript" charset="utf-8" src="/inc/jquery.ui.tabs.js"></script>
-
-  <script type="text/javascript" charset="utf-8" src="/inc/shortcut.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/yast.widgets.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/inc/yast.helpers.js"></script>
-  <!-- custom page scripts and css -->
+  <%= javascript_include_tag 	"jquery",
+				"jquery.query", #FIXME write reason
+				"jquery.timers",
+				"jquery.ui.custom",
+				"jquery.validate",
+				"jqbrowser-compressed", #our browser detection extension
+				"jquery.badbrowser", #original browser detection plugin
+				"jquery.jqModal",
+				"jquery.ui.core",
+				"jquery.ui.tabs", #FIXME looks like already include in ui.core
+				"shortcut.js",
+				"yast.widgets",
+				"yast.helpers",
+				"/javascripts/browser_fixes"
+  %>
+  <%= yield :before_script %>
+  <%= javascript_include_tag	"script",
+				"application" #FIXME it can be problem if plugin also have own application specific js
+  %>
   <%= yield :head %>
 
   <title><%= _("WebYaST") %></title>
 </head>
   <body id="shell" onload="">
-
-  <noscript>
-    <div id="no_js_warning">
-      JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (<a href='http://getfirefox.com'>FireFox 3.5 or better</a> or <a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>Internet Explorer 8</a>).
+    <div id='browserWarning' style="display: none">
+      <%= ( _("You are using an unsupported browser. Please switch to %sFireFox 3.5 or better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]") %
+            ["<a href='http://getfirefox.com'>","</a>",
+             "<a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>", "</a>",
+             "<a href='#' id='warningClose'>", "</a>"] ) %>
     </div>
-  </noscript>
-
+    <noscript>
+      <div id="no_js_warning">
+        <%= ( _("JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (%sFireFox 3.5%s or %sInternet Explorer 8%s).") %
+            ["<a href='http://getfirefox.com'>","</a>",
+             "<a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>", "</a>"] ) %>
+      </div>
+    </noscript>
+  
     <div id="header">
-      
+		<h1><%= _("My Appliance") %></h1>
       <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
-      
-      <h1><%= _("My Appliance") %></h1>
 
       <div id="login-wrapper">
         <% host = Host.find(session[:host]) rescue nil
@@ -67,11 +90,10 @@
         <% end -%>
       </div>
     </div>
-    
-    <div id="content" class="container_12">
+    <div id="content">
       
       <!-- here both flash and dynamic notifications should be added -->
-      <div id="flash-messages" class="grid_12 alpha">
+      <div id="flash-messages" class="alpha">
         <div id="language_selection"></div>
         <!-- show the flash messages -->
       
@@ -89,7 +111,7 @@
             end
           %>
         
-          <div class="flash-message <%= flash_style %> ui-corner-all grid_12">
+          <div class="flash-message <%= flash_style %> ui-corner-all">
             <p><span class="ui-icon <%= flash_icon %>"></span><strong><%= message %></strong></p>
           </div>
           <% flash.delete flash_type -%>
@@ -103,8 +125,8 @@
       <%= yield %>
     </div>
 
-    <div id="footer" class="container_12">
-      <div class="copy">&copy; 2009 Novell, Inc.</div>
+    <div id="footer">
+      <div class="copy">&copy; 2009,2010 Novell, Inc.</div>
     </div>
 
   </body>

@@ -1,13 +1,12 @@
 # @TITLE@
 # Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
 # This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
 # Olav Pettershagen <olav.pet@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-12-28 18:14+0100\n"
 "Last-Translator: Olav Pettershagen <olav.pet@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <opensuse-translation@opensuse.org>\n"
@@ -17,53 +16,95 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Angi en gyldig e-postadresse."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Passordene samsvarer ikke."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
 msgstr "Administratorinnstillingene er lagret."
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
 msgstr "Feil under lagring av administratorinnstillinger: %s"
+
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr "E-postalias er definiert med utgående e-postserver er ikke satt opp (%s<i>endre</i>%s)."
 
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "Administratorinnstillinger"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Passordene samsvarer ikke."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
-msgstr "Her kan du velge innstillinger for systemadministratoren (root)."
+#: app/views/administrator/index.html.erb:33
+msgid "A password is required."
+msgstr "Du må angi et passord."
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Passord"
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "Passordsikkerhet:"
+
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr "Svak"
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "Normal"
+
+#: app/views/administrator/index.html.erb:42
+msgid "Medium"
+msgstr "Middels"
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr "God"
+
+#: app/views/administrator/index.html.erb:44
+msgid "Very Strong"
+msgstr "Svært god"
 
 #: app/views/administrator/index.html.erb:63
-msgid "Confirm password"
+msgid "Password Setup for User 'root'"
+msgstr "Passordoppsett for 'root'"
+
+#: app/views/administrator/index.html.erb:64
+msgid "New Password"
+msgstr "Nytt passord"
+
+#: app/views/administrator/index.html.erb:69
+msgid "Confirm Password"
 msgstr "Bekreft passord"
 
-#: app/views/administrator/index.html.erb:65
-msgid "Save Password"
-msgstr "Lagre passord"
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr "E-postoppsett for 'root'"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
-msgstr "Videresend e-post til"
+#: app/views/administrator/index.html.erb:78
+msgid "Forward system mail to"
+msgstr "Videresend system-e-post til"
 
-#: app/views/administrator/index.html.erb:72
-msgid "Save Mail"
-msgstr "Lagre e-post"
+#: app/views/administrator/index.html.erb:81
+msgid "Save Mail Only"
+msgstr "Kun lagre e-post"
 
+#~ msgid "Here, configure the settings for system administrator ('root')."
+#~ msgstr "Her kan du velge innstillinger for systemadministratoren (root)."
+
+#~ msgid "Password"
+#~ msgstr "Passord"
+
+#~ msgid "Confirm password"
+#~ msgstr "Bekreft passord"
+
+#~ msgid "Save Password"
+#~ msgstr "Lagre passord"

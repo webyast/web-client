@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2009-10-08 14:38+0200\n"
 "Last-Translator: Vojtěch Zeisek <vojta.sc@seznam.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -15,91 +15,225 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr "Chybná session, prosím přihlaste se znova."
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr "Překročena disková kvóta;"
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:181
+#: app/controllers/status_controller.rb:187
 #, fuzzy
 #| msgid "Addition succeeded for \"%s\".\n"
-msgid "Limits exceeded for %s"
+msgid "Limits exceeded for "
 msgstr "Přidání uspělo pro \"%s\".\n"
 
-#: app/controllers/status_controller.rb:229
+#: app/controllers/status_controller.rb:316
 #, fuzzy
-#| msgid "Saving the changes failed"
-msgid "Saving limits failed!"
-msgstr "Uložení změn selhalo"
+#| msgid "Needed"
+msgid "exceeded"
+msgstr "Je potřeba"
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr ""
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr ""
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr ""
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Stav"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
-msgstr "Obsazenost disku"
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "Nastavení"
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
+msgstr ""
+
+#: app/views/status/edit.html.erb:66
+#, fuzzy
+#| msgid "Needs"
+msgid "exceeds"
+msgstr "Vyžaduje"
+
+#: app/views/status/index.html.erb:71
+#, fuzzy
+#| msgid "Details"
+msgid "details"
+msgstr "Podrobnosti"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr "Editace limitů"
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Zpět"
+#: app/views/status/_status_graph.html.erb:1
+#, fuzzy
+#| msgid "An error occured when loading status information."
+msgid "A problem occured when loading status information."
+msgstr "Objevila se chyba během načítání stavových informací"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr "volno"
+#: app/views/status/_status_graph.html.erb:91
+#, fuzzy
+#| msgid "Show Desktop"
+msgid "Show last"
+msgstr "Zobrazit plochu"
 
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr "použito"
+# 49593 AttribValues/label
+#: app/views/status/_status_graph.html.erb:92
+#, fuzzy
+#| msgid " Minutes"
+msgid "5 Minutes"
+msgstr " min"
 
-#: app/views/status/edit.html.erb:2
-msgid "Configure Status Limits"
-msgstr "Nastavit limity stavů"
+# 49593 AttribValues/label
+#: app/views/status/_status_graph.html.erb:93
+#, fuzzy
+#| msgid " Minutes"
+msgid "15 Minutes"
+msgstr " min"
 
-#: app/views/status/edit.html.erb:7
-msgid "Status Path"
-msgstr "Cesta stavu"
+# 49593 AttribValues/label
+#: app/views/status/_status_graph.html.erb:94
+#, fuzzy
+#| msgid "30 minutes"
+msgid "30 Minutes"
+msgstr "30 minut"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
-msgstr "Minimální hodnota"
+#: app/views/status/_status_graph.html.erb:95
+#, fuzzy
+#| msgid " Hours"
+msgid "1 Hour"
+msgstr "h"
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
-msgstr "Maximální hodnota"
+#: app/views/status/_status_graph.html.erb:96
+#, fuzzy
+#| msgid " Hours"
+msgid "6 Hours"
+msgstr "h"
 
-#: app/views/status/edit.html.erb:39
-msgid "Save"
-msgstr "Uložit"
+#: app/views/status/_status_graph.html.erb:97
+#, fuzzy
+#| msgid " Hours"
+msgid "12 Hours"
+msgstr "h"
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_summary.html.erb:2
 #, fuzzy
 #| msgid "An error occured when loading status information."
 msgid "An problem occured when loading status information."
 msgstr "Objevila se chyba během načítání stavových informací"
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "Nejsou dostupné žádné informace."
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr "Vás systém je zdravý."
+
+#: app/views/status/_status_summary.html.erb:20
+#, fuzzy
+#| msgid "Start VPN connection"
+msgid "Start collectd"
+msgstr "Spustit VPN spojení"
+
+#: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "Downloading update information"
+msgid "Loading system information"
+msgstr "Stahuje se aktualizační informace"
+
+#: app/views/status/_status_progress.html.erb:7
+#, fuzzy
+#| msgid "Checking signatures"
+msgid "Checking system status"
+msgstr "Kontroluje se podpis"
+
+#: lib/plugin_translation.rb:25
+#, fuzzy
+#| msgid "Required file is missing: "
+msgid "Registration is missing"
+msgstr "Chybí vyžadovaný soubor: "
+
+#: lib/plugin_translation.rb:26
+#, fuzzy
+#| msgid "Please restart your system as soon as possible."
+msgid "Please register your system in order to get updates."
+msgstr "Prosím restartujte váš systém co nejdříve to bude možné."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr ""
+
+#: lib/plugin_translation.rb:29
+#, fuzzy
+#| msgid "The configuration is not initialized."
+msgid "Mail configuration test not confirmed"
+msgstr "Konfigurace neinicializována."
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr ""
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr ""
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Chybná session, prosím přihlaste se znova."
+
+#~ msgid "Disk free limits exceeded;"
+#~ msgstr "Překročena disková kvóta;"
+
+#, fuzzy
+#~| msgid "Saving the changes failed"
+#~ msgid "Saving limits failed!"
+#~ msgstr "Uložení změn selhalo"
+
+#~ msgid "Disk usage"
+#~ msgstr "Obsazenost disku"
+
+#~ msgid "Back"
+#~ msgstr "Zpět"
+
+#~ msgid "free"
+#~ msgstr "volno"
+
+#~ msgid "used"
+#~ msgstr "použito"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "Nastavit limity stavů"
+
+#~ msgid "Status Path"
+#~ msgstr "Cesta stavu"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Minimální hodnota"
+
+#~ msgid "Maximum Value"
+#~ msgstr "Maximální hodnota"
+
+#~ msgid "Save"
+#~ msgstr "Uložit"
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "Nejsou dostupné žádné informace."
 
 #~ msgid "Events"
 #~ msgstr "Události"

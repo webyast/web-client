@@ -1,4 +1,262 @@
 -------------------------------------------------------------------
+Mon May 10 15:01:16 UTC 2010 - schubi@novell.com
+
+- update translation
+- 0.1.31 
+
+-------------------------------------------------------------------
+Mon May 10 15:33:35 CEST 2010 - vgorobets@suse.de
+
+- Repositories validation is not consistent with other modules (bnc#604160)
+- Use same styles for 'select' fields (bnc#603659)
+
+-------------------------------------------------------------------
+Mon May 10 14:14:38 CEST 2010 - mvidner@suse.cz
+
+- added jss view helper for translated JavaScript (bnc#604224)
+- don't install .po files (jreidinger, bnc#603832)
+- updated translations (schubi)
+
+-------------------------------------------------------------------
+Fri May  7 11:53:10 UTC 2010 - jreidinger@novell.com
+
+- when user is not logged in redirect him to new session on
+  localhost (bnc#602807)
+- 0.1.30
+
+-------------------------------------------------------------------
+Thu May  6 15:02:52 UTC 2010 - kkaempf@novell.com
+
+- use the network interface of the default route in init script
+  (bnc#603206)
+
+-------------------------------------------------------------------
+Thu May  6 09:04:48 CEST 2010 - jsuchome@suse.cz
+
+- removed 'Show all' link from control center (bnc#603134) 
+
+-------------------------------------------------------------------
+Tue May  4 10:26:54 CEST 2010 - jsuchome@suse.cz
+
+- added padding to list item icon (bnc#598400) 
+
+-------------------------------------------------------------------
+Mon Apr 26 16:25:27 CEST 2010 - vgorobets@suse.de
+
+- IE8: Login is all on left and submit button looks strange (bnc#598576)
+- 0.1.29 
+
+-------------------------------------------------------------------
+Mon Apr 26 12:53:32 UTC 2010 - jreidinger@novell.com
+
+- mark file which contain secret as config file
+- 0.1.28
+
+-------------------------------------------------------------------
+Mon Apr 26 07:33:23 UTC 2010 - jreidinger@novell.com
+
+- use fix for opensuse split of sysvinit also in webclient
+  (bnc#598101) 
+- fixed wrong button order (bnc#562119)
+- generate secret for webclient after initial start (bnc#598834)
+- 0.1.27
+
+-------------------------------------------------------------------
+Mon Apr 26 07:31:53 UTC 2010 - lslezak@suse.cz
+
+- assert_valid_markup - don't fail when saving tidy-failed.html
+  file fails (don't fail when the test found just warnings and
+  runs under non-privileged user)
+
+-------------------------------------------------------------------
+Fri Apr 23 14:19:59 UTC 2010 - schubi@novell.com
+
+- removed not needed cleanurl-v5.lua 
+
+-------------------------------------------------------------------
+Fri Apr 23 13:03:17 UTC 2010 - lslezak@suse.cz
+
+- added tidy to *-testsuite package dependency
+
+-------------------------------------------------------------------
+Tue Apr 20 16:36:56 CEST 2010 - vgorobets@suse.de
+
+- Cannot enter valid domain
+- 0.1.26
+
+-------------------------------------------------------------------
+Mon Apr 19 13:57:50 CEST 2010 - vgorobets@suse.de
+
+- Network module still has the validation messages in the form of javascript alert boxes (bnc#596049) 
+- 0.1.25
+
+-------------------------------------------------------------------
+Mon Apr 19 11:16:11 UTC 2010 - jreidinger@novell.com
+
+- discard notice flash from basesystem (bnc#582803)
+
+-------------------------------------------------------------------
+Fri Apr 16 12:59:32 UTC 2010 - lslezak@suse.cz
+
+- run the testsuite during RPM build (bnc#594343),
+  put the testsuite into -testsuite subpackage
+- 0.1.24
+
+-------------------------------------------------------------------
+Tue Apr 13 12:31:50 CEST 2010 - vgorobets@suse.de
+
+- Grammar mistake in Time module error translation (bnc#590036)
+- 0.1.23
+
+-------------------------------------------------------------------
+Tue Apr 13 07:52:45 UTC 2010 - jreidinger@novell.com
+
+- open bugzilla page in new window (bnc#579465) 
+
+-------------------------------------------------------------------
+Mon Apr 12 15:36:37 CEST 2010 - kkaempf@suse.de
+
+- Add left margin to legend title (bnc#592301)
+- 0.1.22
+
+-------------------------------------------------------------------
+Mon Apr 12 13:48:00 CEST 2010 - vgorobets@suse.de
+
+- added separate javascript validation script validation.js for NTP and SMTP server
+- fixed Insufficient validation of NTP server (bnc#589300)
+- 0.1.21
+
+-------------------------------------------------------------------
+Thu Apr  8 14:30:57 UTC 2010 - lslezak@suse.cz
+
+- added style for disabled link with class "button"
+- 0.1.20
+
+-------------------------------------------------------------------
+Thu Apr  8 16:15:47 CEST 2010 - jsuchome@suse.cz
+
+- added ok-unused and unused-ok icons (bnc#587879)
+
+-------------------------------------------------------------------
+Thu Apr  8 10:05:16 UTC 2010 - schubi@novell.com
+
+- Take care about plugin translation (bnc#594034) 
+
+-------------------------------------------------------------------
+Fri Apr  2 20:04:32 UTC 2010 - lslezak@suse.cz
+
+- updated control panel default refresh time - check patches
+  after 8 hours, check status every 5 minutes
+- 0.1.19
+
+-------------------------------------------------------------------
+Thu Apr  1 09:47:50 CEST 2010 - jsuchome@suse.cz
+
+- added shared partial for missing write permissions (bnc#592625)
+- 0.1.18
+
+-------------------------------------------------------------------
+Wed Mar 31 11:51:14 UTC 2010 - lslezak@suse.cz
+
+- updated jQuery quicksearch plugin (jquery.quicksearch.js to the
+  latest version - from March 07 2010) (bnc#587882)
+- 0.1.17
+
+-------------------------------------------------------------------
+Wed Mar 31 10:15:53 CEST 2010 - kkaempf@suse.de
+
+- Fixed too wide radiobuttons (bnc#587812, bnc#592275#c1)
+
+-------------------------------------------------------------------
+Mon Mar 29 14:15:42 CEST 2010 - mvidner@suse.cz
+
+- RPM-Recommend WebYaST(org.opensuse.yast.modules.FOO) (bnc#583561)
+- 0.1.16
+
+-------------------------------------------------------------------
+Mon Mar 29 12:00:00 CEST 2010 - jreidinger@suse.cz
+
+- form_send_buttons: produce form_cancel_button (new helper)
+  instead of back_button (mkudlvasr)
+- yast_model: Fix for XML serialization of arrays
+- Refer to webyast-licenses-ui, not yast2-webclient-eulas, in a message
+- more tests for application controller (bnc#581250)
+  and control panel (bnc#581243)
+- /controlpanel/ensure_wizard is now protected
+- added application.js to the default layout
+
+-------------------------------------------------------------------
+Mon Mar 22 14:38:33 UTC 2010 - lslezak@suse.cz
+
+- ControlPanelConfig - return the default when config file is
+  missing (or other exception is thrown)
+- 0.1.15
+
+-------------------------------------------------------------------
+Fri Mar 19 15:49:36 UTC 2010 - lslezak@suse.cz
+
+- make "patche update status" and "system status" overviews
+  in the control panel configurable (bnc#580025)
+- added control panel config file (/etc/webyast/control_panel.yml)
+- added ControlPanelConfig for reading the config file
+- 0.1.14
+
+-------------------------------------------------------------------
+Tue Mar 16 11:08:01 UTC 2010 - jreidinger@novell.com
+
+- avoid basesystem page if initial setup run first time(bnc#587487)
+- UI improvements
+- more friendly report if permission is not granted (bnc#580931)
+- 0.1.13
+
+-------------------------------------------------------------------
+Tue Mar 16 09:55:43 UTC 2010 - jreidinger@novell.com
+
+- add helper which generate details element 
+
+-------------------------------------------------------------------
+Tue Mar 16 08:44:07 UTC 2010 - lslezak@suse.cz
+
+- escape paremeters in ApplicationController::generate_error_messages
+
+-------------------------------------------------------------------
+Mon Mar 15 16:55:17 UTC 2010 - lslezak@suse.cz
+
+- added year 2010 to the copyright footer (bnc#587525)
+
+-------------------------------------------------------------------
+Thu Mar 11 15:49:29 UTC 2010 - jreidinger@novell.com
+
+- avoid back step for first module in sequence (bnc#583277) 
+
+-------------------------------------------------------------------
+Thu Mar 11 08:16:40 UTC 2010 - lslezak@suse.cz
+
+- added ApplicationController::generate_error_messages method
+  for displaying ActiveResource::Errors (validation errors)
+- 0.1.12
+
+-------------------------------------------------------------------
+Wed Mar 10 14:07:53 UTC 2010 - jreidinger@novell.com
+
+- store intermediate result of base system (bnc#555303)
+- 0.1.11
+
+-------------------------------------------------------------------
+Wed Mar 10 11:30:50 CET 2010 - mvidner@suse.cz
+
+- Don't claim WebYaST is still in alpha (bnc#570440).
+- HTML-escape the host description in the login dialog (bnc#560323).
+
+-------------------------------------------------------------------
+Mon Mar  8 16:38:06 UTC 2010 - jreidinger@novell.com
+
+- fix for bnc#579538, redirect from "/session" to "/" (mkudlvasr)
+- UI improvements (bubli)
+- permission model - add ability to print pretier string name
+- 0.1.10
+
+-------------------------------------------------------------------
 Mon Mar  1 13:00:33 UTC 2010 - lslezak@suse.cz
 
 - html_helper.rb - escape_jquery_selector() replaced by safe_id(),

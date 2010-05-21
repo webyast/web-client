@@ -1,11 +1,11 @@
 # translation of yast_webclient_network.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009.
+# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_network\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-12-04 20:06+0900\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-15 22:40+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,99 +14,111 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "ネットワークモジュールに対する許可がありません"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Not configured"
 msgstr "設定されていません"
 
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:64
 msgid "Manual"
 msgstr "手動"
 
-#: app/controllers/network_controller.rb:66
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:64
 msgid "Automatic"
 msgstr "自動"
 
-#: app/controllers/network_controller.rb:105
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:134
 msgid "Network settings have been written."
 msgstr "ネットワーク設定を書き込みました。"
 
-#: app/views/network/index.html.erb:88
+#: app/views/network/index.html.erb:118
+msgid "whitespace - invalid character."
+msgstr "空白 - 正しくない文字です。"
+
+#: app/views/network/index.html.erb:120
+msgid " - can not start with a digit."
+msgstr " - 数字からはじめることはできません。"
+
+#: app/views/network/index.html.erb:122
+msgid "periodic '-' is not allowed."
+msgstr "周期的な '-' は利用できません。"
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr "ハイフン (-) で終わることはできません。"
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr "ハイフン (-) ではじめることはできません。"
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr " - はホスト名としては正しくない文字です。"
+
+#: app/views/network/index.html.erb:154
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "IP アドレスの書式が正しくありません。正しくは \"nnn.nnn.nnn.nnn\" の形式で、それぞれ \"nnn\" には 0 から 255 までの数値が入ります。"
 
-#: app/views/network/index.html.erb:97
-#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
+#: app/views/network/index.html.erb:163
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr "プレフィクスの書式が正しくありません。正しくは \"/nn\" の形式で、 nn には 0 から 32 までの数値 (CIDR 形式) が入ります。"
 
-#: app/views/network/index.html.erb:103
-#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+#: app/views/network/index.html.erb:169
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr "既定のルートの書式が正しくありません。正しくは \"nnn.nnn.nnn.nnn\" の形式で、それぞれ \"nnn\" には 0 から 255 までの数値が入ります。"
 
-#: app/views/network/index.html.erb:109
-#| msgid "Name servers is not valid. There must be at least one specified."
+#: app/views/network/index.html.erb:175
 msgid "Name servers are required. There must be at least one specified."
 msgstr "ネームサーバを設定する必要があります。 1 つ以上を設定しなければなりません。"
 
-#: app/views/network/index.html.erb:115
-#| msgid "Hostname is not valid. It must be specified."
+#: app/views/network/index.html.erb:181
 msgid "Hostname is required. It must be specified."
 msgstr "ホスト名を設定する必要があります。"
 
-#: app/views/network/index.html.erb:121
-#| msgid "Domain is not valid. It is not supported empty domain."
-msgid "Domain is required. It is not supported empty domain."
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
 msgstr "ドメインを設定する必要があります。ドメイン名を指定しない方法には対応していません。"
 
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:210
 msgid "Network"
 msgstr "ネットワーク"
 
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:221
 msgid "Interface"
 msgstr "インターフェイス"
 
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:226
 msgid "Select"
 msgstr "選択"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:243
 msgid "Configuration mode"
 msgstr "設定モード"
 
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:252
 msgid "IP address"
 msgstr "IP アドレス"
 
-#: app/views/network/index.html.erb:174
+#: app/views/network/index.html.erb:256
 msgid "Subnet mask / Prefixlen"
 msgstr "サブネットマスク／プレフィクス長"
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:260
+msgid "Default route"
+msgstr "既定のルート"
+
+#: app/views/network/index.html.erb:269
 msgid "Hostname"
 msgstr "ホスト名"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:274
 msgid "Domain"
 msgstr "ドメイン"
 
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:278
 msgid "Name servers"
 msgstr "ネームサーバ"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:282
 msgid "Search domains"
 msgstr "ドメイン検索"
-
-#: app/views/network/index.html.erb:201
-msgid "Default route"
-msgstr "既定のルート"
-

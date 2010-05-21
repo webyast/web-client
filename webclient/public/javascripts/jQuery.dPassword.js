@@ -1,5 +1,5 @@
 /*******************************************************************************
- * dPassword v0.1 - jQuery delayed password masking (iPhone style)
+ * Source: dPassword v0.1 - jQuery delayed password masking (iPhone style)
  *
  * licensed under MIT License
  *

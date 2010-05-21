@@ -1,11 +1,11 @@
 # translation of yast_webclient_administrator.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009.
+# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-12-04 20:13+0900\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-15 22:14+0900\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,55 +14,83 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "正しい電子メールアドレスを入力してください。"
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "パスワードが一致しません。"
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
 msgstr "管理者設定を書き込みました。"
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
 msgstr "管理者設定を保存する際にエラーが発生しました: %s"
+
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr "メールの別名が設定されていますが、外向けのメールサーバが設定されていません (%s<i>変更</i>%s) 。"
 
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "管理者設定"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "パスワードが一致しません。"
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
-msgstr "ここではシステム管理者 ('root') に対する設定を行ないます。"
+#: app/views/administrator/index.html.erb:33
+msgid "A password is required."
+msgstr "パスワードが必要です。"
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "パスワード"
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "パスワードの強度:"
+
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr "弱い"
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "通常"
+
+#: app/views/administrator/index.html.erb:42
+msgid "Medium"
+msgstr "中程度"
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr "強い"
+
+#: app/views/administrator/index.html.erb:44
+msgid "Very Strong"
+msgstr "とても強い"
 
 #: app/views/administrator/index.html.erb:63
-msgid "Confirm password"
+msgid "Password Setup for User 'root'"
+msgstr "'root' ユーザに対するパスワード設定"
+
+#: app/views/administrator/index.html.erb:64
+msgid "New Password"
+msgstr "新しいパスワード"
+
+#: app/views/administrator/index.html.erb:69
+msgid "Confirm Password"
 msgstr "パスワードの確認"
 
-#: app/views/administrator/index.html.erb:65
-#| msgid "Change Password"
-msgid "Save Password"
-msgstr "パスワードの保存"
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr "'root' ユーザに対するメール設定"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
-msgstr "メール転送先"
+#: app/views/administrator/index.html.erb:78
+msgid "Forward system mail to"
+msgstr "システムメールの転送先"
 
-#: app/views/administrator/index.html.erb:72
-#| msgid "Save"
-msgid "Save Mail"
-msgstr "メールの保存"
-
+#: app/views/administrator/index.html.erb:81
+msgid "Save Mail Only"
+msgstr "メールの保存のみ"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2005-08-24 17:37+0200\n"
 "Last-Translator: Janez Krek <janez.krek@euroteh.si>\n"
 "Language-Team: Slovenščina <sl@li.org>\n"
@@ -18,60 +18,223 @@ msgstr ""
 "X-Generator: KBabel 1.3.1\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
+#: app/controllers/registration_controller.rb:11
+msgid "Email"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:12
+#, fuzzy
+#| msgid "System"
+msgid "System name"
+msgstr "Sistem"
+
+#: app/controllers/registration_controller.rb:13
+msgid "SLES registration code"
+msgstr ""
+
 #: app/controllers/registration_controller.rb:14
+msgid "SLED registration code"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:15
+msgid "Appliance registration code"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:16
+msgid "WebYaST registration code"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:17
+msgid "Registration code"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:18
+#, fuzzy
+#| msgid "Host Names"
+msgid "Hostname"
+msgstr "Imena računalnikov (host names)"
+
+#: app/controllers/registration_controller.rb:19
+#, fuzzy
+#| msgid "Modem device name"
+msgid "Device name"
+msgstr "Ime naprave modema"
+
+#: app/controllers/registration_controller.rb:20
+msgid "Appliance name"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:21
+msgid "registration code"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
-msgid "Arguments for registration cannot be evaluated."
+#: app/controllers/registration_controller.rb:84
+msgid "Please try to register again later."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:88
+msgid "Registration was skipped."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:94
+msgid "Registration did not finish."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:95
+msgid "Registration did not succeed."
 msgstr ""
 
 #: app/controllers/registration_controller.rb:97
-msgid "Registration finished successfully."
+msgid "This may be a temporary issue."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:102
+msgid "The registration server returned invalid or incomplete data."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
-msgid "Error occured while connecting to registration server."
+#: app/controllers/registration_controller.rb:155
+msgid "Service added:"
 msgstr ""
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:159
+#: app/controllers/registration_controller.rb:164
+msgid "Catalog enabled:"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:188
+msgid "Repository added:"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:248
+msgid "This system is already registered."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:277
+msgid "Registration finished successfully."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:290
+msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:324
+msgid "A connection to the registration server could not be established."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:328
+msgid "The transmitted registration data created a conflict."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:336
+msgid "Registration can not be performed. There is no product installed that can be registered."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:351
+msgid "A connection to the registration server could not be established or it did not reply."
+msgstr ""
+
+#: app/controllers/registration_controller.rb:368
+msgid "The registration server returned invalid data."
+msgstr ""
+
+# e.g 'not a SUSE LINUX CD-ROM'
+#: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
+#, fuzzy
+#| msgid "This is not a valid CCW address."
+msgid "Please enter a valid Email address."
+msgstr "To ni veljaven CCW naslov."
+
+#: app/views/registration/index.rhtml:36
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:36
 msgid "Registration"
 msgstr ""
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
-
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Repositories"
-msgstr "Sprememba &položaja"
-
 #: app/views/registration/index.rhtml:44
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Services"
-msgstr "Sprememba &položaja"
+#| msgid "Disk Information"
+msgid "Registration Information"
+msgstr "Podatki o disku"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:45
+msgid "This system is registered"
+msgstr ""
+
+#: app/views/registration/index.rhtml:46
+#, fuzzy
+#| msgid "System:"
+msgid "System number (GUID)"
+msgstr "Sistem:"
+
+#: app/views/registration/index.rhtml:47
+msgid "Register again"
+msgstr ""
+
+#: app/views/registration/index.rhtml:54
+#, fuzzy
+#| msgid "&Next"
+msgid "Next"
+msgstr "&Naprej"
+
+#: app/views/registration/index.rhtml:64
+#, fuzzy
+#| msgid "Memory Information"
+msgid "Mandatory Information"
+msgstr "Podatki o pomnilniku"
+
+#: app/views/registration/index.rhtml:79
 #, fuzzy
 #| msgid "&Details"
-msgid "Detail"
+msgid "Details"
 msgstr "Po&drobnosti"
+
+#: app/views/registration/index.rhtml:104
+msgid "Skip"
+msgstr ""
+
+#: app/views/registration/index.rhtml:105
+#, fuzzy
+#| msgid "Poststop"
+msgid "Postpone"
+msgstr "Po zaustavitvi"
+
+#: app/views/registration/index.rhtml:106
+msgid "or"
+msgstr ""
+
+#, fuzzy
+#~| msgid "An error occurred during the installation."
+#~ msgid "An error occurred during registration. Please try again."
+#~ msgstr "Med namestitvijo je prišlo do napake."
+
+#, fuzzy
+#~| msgid "&Details"
+#~ msgid "Detail"
+#~ msgstr "Po&drobnosti"
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Repositories"
+#~ msgstr "Sprememba &položaja"
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Services"
+#~ msgstr "Sprememba &položaja"
 
 # cancel button label
 #~ msgid "Cancel"

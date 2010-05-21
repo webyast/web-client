@@ -1,5 +1,22 @@
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
 require File.dirname(__FILE__) + '/../test_helper'
-require 'yast_mock'
 
 class BasesystemTest < ActiveSupport::TestCase
 
@@ -23,16 +40,29 @@ class BasesystemTest < ActiveSupport::TestCase
     ActiveResource::HttpMock.reset!
   end
 
+  def test_not_installed
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      # this is inadequate, :singular is per resource,
+      # and does NOT depend on :policy
+      # see yast-rest-service/plugins/network/config/resources/*
+      mock.resources :"org.opensuse.yast.test" => "/test"
+      mock.permissions "org.opensuse.yast.test", {}
+    end
+    assert !Basesystem.installed?
+  end
+
   def test_initialize
+    assert Basesystem.installed?
     session = {}
     bs = Basesystem.find session
     assert !bs.completed?
     assert bs.first_step?
-    result = {:controller => "systemtime", :action => "index"}
+    result = {:controller => "time", :action => "index"}
     assert_equal  result,bs.current_step
     result = {:controller => "language", :action => "cool_action"}
     assert_equal  result,bs.next_step
-    result = {:controller => "systemtime", :action => "index"}
+    result = {:controller => "time", :action => "index"}
     assert_equal  result,bs.back_step
     bs.next_step
     assert bs.last_step?
@@ -41,7 +71,7 @@ class BasesystemTest < ActiveSupport::TestCase
   end
 
   def test_load_from_session
-    session = {:wizard_current => "systemtime", :wizard_steps => "systemtime" }
+    session = {:wizard_current => "time", :wizard_steps => "time" }
     bs = Basesystem.new.load_from_session session
     assert !bs.completed?
     assert bs.first_step?
@@ -72,17 +102,17 @@ class BasesystemTest < ActiveSupport::TestCase
   end
 
   def test_following_steps
-    session = {:wizard_current => "systemtime", :wizard_steps => "systemtime,language:show" }
+    session = {:wizard_current => "time", :wizard_steps => "time,language:show" }
     bs = Basesystem.new.load_from_session session
     steps = bs.following_steps
     assert_equal 1,steps.size
     assert_equal "language", steps[0][:controller]
     assert_equal "show", steps[0][:action]
-    session = {:wizard_current => "language:show", :wizard_steps => "systemtime,language:show" }
+    session = {:wizard_current => "language:show", :wizard_steps => "time,language:show" }
     bs = Basesystem.new.load_from_session session
     steps = bs.following_steps
     assert_equal 0,steps.size
-    session = {:wizard_current => "FINISH", :wizard_steps => "systemtime,language:show" }
+    session = {:wizard_current => "FINISH", :wizard_steps => "time,language:show" }
     bs = Basesystem.new.load_from_session session
     steps = bs.following_steps
     assert_equal 0,steps.size

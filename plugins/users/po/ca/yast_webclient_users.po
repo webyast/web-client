@@ -1,143 +1,287 @@
+# Catalan message file for YaST2 (@memory@).
+# Copyright (C) 2005 SUSE Linux Products GmbH.
+# Copyright (C) 2002 SuSE Linux AG.
+# Copyright (C) 2000, 2001 SuSE GmbH.
+# Jaume Badiella <myotis@drac.com>, 2001.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"Project-Id-Version: YaST (@memory@)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
 "PO-Revision-Date: 2002-02-08 15:47+0100\n"
-"Last-Translator: Jaume Badiella <myotis@drac.com>\n"
+"Last-Translator: Jordi Bruguera i Cortada <jordi@grn.es>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"#-#-#-#-#  compendi_yast_11.1_11.2_e.po (YaST (@memory@))  #-#-#-#-#\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"#-#-#-#-#  isns.ca.po (YaST (@memory@))  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
-msgstr ""
+#: app/controllers/groups_controller.rb:36
+msgid "Missing group name parameter"
+msgstr "Falta el paràmetre de nom de grup"
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:48
+msgid "Missing group parameters"
+msgstr "Falten els paràmetres del grup"
+
+#: app/controllers/groups_controller.rb:58
+msgid "Please enter a valid group name"
+msgstr "Introduiu un nom de grup vàlid, si us plau"
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid GID"
+msgstr "Introduiu un identificador de grup GID vàlid, si us plau"
+
+#: app/controllers/groups_controller.rb:78
+msgid ""
+"Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+"Introduïu un tipus de grup vàlid. Només els tipus \"system\" o \"local\" son permesos."
+
+#: app/controllers/groups_controller.rb:89
+msgid "Please enter a valid list of members"
+msgstr "Introduiu una llista vàlida de membres, si us plau"
+
+#: app/controllers/groups_controller.rb:103
+msgid "Cannot read users list."
+msgstr "No s'han pogut llegir la llista d'usuaris."
+
+#: app/controllers/groups_controller.rb:139
+msgid "Cannot read groups list."
+msgstr "No s'ha pogut llegir la llista de grups."
+
+#: app/controllers/groups_controller.rb:230
+msgid "Unknown backend error"
+msgstr "Error desconegut"
+
+#: app/controllers/users_controller.rb:188
 msgid "User <i>%s</i> was successfully created."
-msgstr ""
+msgstr "L'usuari <i>%s</i> s'ha creat correctament."
 
-#: app/controllers/users_controller.rb:148
-#, fuzzy
-#| msgid "Empty CA name."
-msgid "Empty UID value"
-msgstr "El nom de la CA és buit."
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr ""
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:230
 msgid "User <i>%s</i> was successfully updated."
-msgstr ""
+msgstr "L'usuari <i>%s</i> ha estat actualitzat correctament."
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:251
 msgid "User <i>%s</i> was successfully removed."
-msgstr ""
+msgstr "L'usuari <i>%s</i> ha estat eliminat correctament."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:253
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr ""
+msgstr "Error: no s'han pogut eliminar l'usuari <i>%s</i>."
 
-#: app/views/users/index.html.erb:1
-msgid "Local User"
-msgstr ""
+#: app/views/groups/index.html.erb:32 app/views/groups/new.html.erb:56
+msgid "Select Members"
+msgstr "Seleccioneu els membres"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Entrada"
+#: app/views/groups/index.html.erb:33 app/views/groups/new.html.erb:57
+msgid "Selected Members"
+msgstr "Membres seleccionats"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
-#, fuzzy
-#| msgid "Name"
-msgid "Full Name"
-msgstr "Nom"
+#: app/views/groups/index.html.erb:34 app/views/groups/new.html.erb:58
+msgid "Available Members"
+msgstr "Membres disponibles"
 
-#: app/views/users/index.html.erb:8
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&Edita"
+#: app/views/groups/index.html.erb:35 app/views/groups/new.html.erb:59
+msgid "Click user names to select/unselect members"
+msgstr "Feu clic als noms d'usuari per seleccionar-ne els membres"
 
-#: app/views/users/index.html.erb:27
-#, fuzzy
-#| msgid "You are <strong>online</strong>"
-msgid "<strong>[New User]</strong>"
-msgstr "Esteu <strong>en línia</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Enrere"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr ""
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+#: app/views/groups/index.html.erb:88 app/views/groups/new.html.erb:80
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+#: app/views/users/index.html.erb:212 app/views/users/new.html.erb:156
+#: app/views/users/new.html.erb:159
 msgid "Groups"
 msgstr "Grups"
 
-#: app/views/users/edit.html.erb:19
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default Group"
-msgstr "Ruta predeterminada"
+#: app/views/groups/index.html.erb:92 app/views/users/index.html.erb:160
+msgid "Filter:"
+msgstr "Filtre:"
 
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#, fuzzy
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "Directori\n"
+#: app/views/groups/index.html.erb:98
+msgid "Add New Group"
+msgstr "Afegeix un grup nou"
 
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#, fuzzy
-#| msgid "Login"
-msgid "Login Shell"
-msgstr "Entrada"
+#: app/views/groups/index.html.erb:114 app/views/groups/new.html.erb:94
+msgid "Group Name"
+msgstr "Nom del grup"
 
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
-#, fuzzy
-#| msgid "Login"
+#: app/views/groups/index.html.erb:118 app/views/groups/new.html.erb:98
+msgid "Group ID"
+msgstr "Identificador del grup"
+
+#: app/views/groups/index.html.erb:122 app/views/groups/new.html.erb:102
+msgid "Default members"
+msgstr "Membres per defecte"
+
+#: app/views/groups/index.html.erb:126 app/views/groups/new.html.erb:106
+msgid "Members"
+msgstr "Membres"
+
+#: app/views/groups/index.html.erb:128
+msgid "Manage Members"
+msgstr "Gestiona els membres"
+
+#: app/views/groups/index.html.erb:131 app/views/users/index.html.erb:252
+msgid "Save"
+msgstr "Desa"
+
+#: app/views/groups/index.html.erb:133 app/views/users/index.html.erb:254
+msgid "Delete"
+msgstr "Suprimeix"
+
+#: app/views/groups/index.html.erb:135
+msgid "Are you sure to delete group '%s'?"
+msgstr "Esteu segurs que voleu eliminar el grup '%s'?"
+
+#: app/views/groups/new.html.erb:81
+msgid "Add new group"
+msgstr "Afegeix un grup nou"
+
+#: app/views/users/_user_form.erb:5 app/views/users/new.html.erb:124
+msgid "Login Settings"
+msgstr "Paràmetres d'entrada"
+
+#: app/views/users/_user_form.erb:8 app/views/users/index.html.erb:186
+#: app/views/users/new.html.erb:127
+msgid "Full Name"
+msgstr "Nom complet"
+
+#: app/views/users/_user_form.erb:12 app/views/users/index.html.erb:192
+#: app/views/users/new.html.erb:133
 msgid "Login Name"
-msgstr "Entrada"
+msgstr "Nom d'usuari"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr ""
-
-# password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/_user_form.erb:17 app/views/users/index.html.erb:199
+#: app/views/users/new.html.erb:140
 msgid "Password"
 msgstr "Contrasenya"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Actualitza"
+#: app/views/users/_user_form.erb:21 app/views/users/index.html.erb:205
+#: app/views/users/new.html.erb:146
+msgid "Confirm Password"
+msgstr "Confirmeu la contrasenya"
 
-#: app/views/users/new.html.erb:1
-#, fuzzy
-#| msgid "New Mode"
-msgid "New User"
-msgstr "Mode nou"
+#: app/views/users/_user_form.erb:39 app/views/users/index.html.erb:224
+#: app/views/users/new.html.erb:167
+msgid "Default Group"
+msgstr "Grup predeterminat"
 
-#: app/views/users/new.html.erb:16
-#, fuzzy
-#| msgid "Default route ok."
-msgid "Default Group (GID)"
-msgstr "La ruta predeterminada és correcta."
+#: app/views/users/_user_form.erb:61 app/views/users/new.html.erb:188
+msgid "Advanced"
+msgstr "Avançat"
 
-#: app/views/users/new.html.erb:24
-#, fuzzy
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "No es pot crear el directori %1: %2."
+#: app/views/users/_user_form.erb:64 app/views/users/index.html.erb:231
+#: app/views/users/new.html.erb:191
+msgid "Home Directory"
+msgstr "Directori de l'usuari"
 
-#: app/views/users/new.html.erb:44
-#, fuzzy
-#| msgid "Created On: "
-msgid "Create"
-msgstr "Creat el:"
+#: app/views/users/_user_form.erb:68 app/views/users/index.html.erb:238
+#: app/views/users/new.html.erb:197
+msgid "Login Shell"
+msgstr "Intèrpret d'ordres de l'entrada"
+
+#: app/views/users/_user_form.erb:72 app/views/users/index.html.erb:244
+#: app/views/users/new.html.erb:203
+msgid "UID Number"
+msgstr "Número UID"
+
+#: app/views/users/edit.html.erb:63 app/views/users/new.html.erb:66
+msgid "The passwords do not match."
+msgstr "Les contrasenyes no coincideixen."
+
+#: app/views/users/edit.html.erb:64 app/views/users/index.html.erb:98
+#: app/views/users/new.html.erb:67
+msgid "This field is required."
+msgstr "Aquest camp és obligatori."
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:116
+#: app/views/users/new.html.erb:81
+msgid "Password Strength:"
+msgstr "Fortalesa de la contrasenya"
+
+#: app/views/users/edit.html.erb:82 app/views/users/index.html.erb:118
+#: app/views/users/new.html.erb:83
+msgid "Weak"
+msgstr "Dèbil"
+
+#: app/views/users/edit.html.erb:83 app/views/users/index.html.erb:119
+#: app/views/users/new.html.erb:84
+msgid "Normal"
+msgstr "Normal"
+
+#: app/views/users/edit.html.erb:84 app/views/users/index.html.erb:120
+#: app/views/users/new.html.erb:85
+msgid "Medium"
+msgstr "Mitjana"
+
+# TO
+#: app/views/users/edit.html.erb:85 app/views/users/index.html.erb:121
+#: app/views/users/new.html.erb:86
+msgid "Strong"
+msgstr "Forta"
+
+#: app/views/users/edit.html.erb:86 app/views/users/index.html.erb:122
+#: app/views/users/new.html.erb:87
+msgid "Very Strong"
+msgstr "Molt forta"
+
+#: app/views/users/edit.html.erb:107 app/views/users/index.html.erb:156
+#: app/views/users/new.html.erb:115
+msgid "Users"
+msgstr "Usuaris"
+
+#: app/views/users/edit.html.erb:107
+msgid "Edit user %s"
+msgstr "Edita l'usuari %s"
+
+#: app/views/users/index.html.erb:57
+msgid "Select Groups"
+msgstr "Selecciona els grups"
+
+#: app/views/users/index.html.erb:58
+msgid "Selected Groups"
+msgstr "Grups seleccionats"
+
+#: app/views/users/index.html.erb:59
+msgid "Available Groups"
+msgstr "Grups disponibles"
+
+#: app/views/users/index.html.erb:60
+msgid "Click group names to select/unselect groups"
+msgstr "Feu clic als noms de grups per seleccionar-ne els grups"
+
+#: app/views/users/index.html.erb:77 app/views/users/index.html.erb:227
+msgid "Select Default Group"
+msgstr "Seleccioneu el grup predeterminat"
+
+#: app/views/users/index.html.erb:78
+msgid "Click a group name to choose users default group"
+msgstr "Feu clic a un nom de grup per triar el grup predeterminat"
+
+#: app/views/users/index.html.erb:97
+msgid " The passwords do not match."
+msgstr " Les contrasenyes no coincideixen."
+
+#: app/views/users/index.html.erb:150
+msgid "Processing ..."
+msgstr "S'està processant..."
+
+#: app/views/users/index.html.erb:166
+msgid "Add New User"
+msgstr "Afegeix un usuari nou"
+
+#: app/views/users/index.html.erb:216 app/views/users/index.html.erb:269
+msgid "Manage Groups"
+msgstr "Gestió dels grups"
+
+#: app/views/users/index.html.erb:256
+msgid "Are you sure to delete user '%s'?"
+msgstr "Esteu segur que voleu suprimir l'usuari '%s'?"
+
+#: app/views/users/new.html.erb:115
+msgid "Add new user"
+msgstr "Afegeix un usuari nou"

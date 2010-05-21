@@ -1,3 +1,24 @@
+#--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+#++
+
 require 'yast/service_resource'
 
 class ServicesController < ApplicationController
@@ -23,7 +44,11 @@ class ServicesController < ApplicationController
 	render :text => _('(cannot read status)') and return
     end
 
-    render(:partial =>'status', :object => @response.status, :params => params)
+    render(
+	:partial =>'status',
+	:locals	=> { :status => @response.status, :enabled => @response.enabled?, :custom => @response.custom? },
+	:params => params
+    )
   end
 
   # GET /services
@@ -32,10 +57,19 @@ class ServicesController < ApplicationController
 
     @permissions = Service.permissions
     @services = []
+    all_services	= []
     begin
-      @services	= Service.find(:all, :params => { :read_status => 1 })
+      all_services	= Service.find(:all, :params => { :read_status => 1 })
     rescue ActiveResource::ClientError => e
         flash[:error] = YaST::ServiceResource.error(e)
+    end
+    # there's no sense in showing these in UI (bnc#587885)
+    killer_services	= [ "yastwc", "yastws", "dbus", "network", "lighttpd" ]
+    all_services.each do |s|
+	# only leave dependent services that are shown in the UI
+	s.required_for_start.reject! { |rs| killer_services.include? rs }
+	s.required_for_stop.reject! { |rs| killer_services.include? rs }
+	@services.push s unless killer_services.include? s.name
     end
   end
 
@@ -52,8 +86,16 @@ class ServicesController < ApplicationController
     @result_string << ret["stdout"] if ret["stdout"]
     @result_string << ret["stderr"] if ret["stderr"]
     @error_string = ret["exit"].to_s
-    if ret["exit"] == 0 || ret["exit"] == "0"
-       @error_string = _("success")
+
+    @error_string = case @error_string
+       when "0" then _("success")
+       when "1" then _("unspecified error")
+       when "2" then _("invalid or excess argument(s)")
+       when "3" then _("unimplemented feature")
+       when "4" then _("user had insufficient privilege")
+       when "5" then _("program is not installed")
+       when "6" then _("program is not configured")
+       when "7" then _("program is not runnning")
     end
     render(:partial =>'result', :params => params)
   end

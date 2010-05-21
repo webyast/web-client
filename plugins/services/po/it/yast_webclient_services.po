@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:06+0100\n"
-"PO-Revision-Date: 2009-10-29 11:19+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"PO-Revision-Date: 2010-04-19 11:26+0100\n"
 "Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: italiano <translations@opensuse.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,67 +15,181 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Italian\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Sessione non valida, per favore fai il login di nuovo."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(impossibile leggere lo stato)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "successo"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(sconosciuto)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr "errore non specificato"
 
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(in esecuzione)"
+#: app/controllers/services_controller.rb:72
+msgid "invalid or excess argument(s)"
+msgstr "argomenti non validi o eccedenti"
 
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(morto)"
+#: app/controllers/services_controller.rb:73
+msgid "unimplemented feature"
+msgstr "funzionalità non implementata"
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(non in esecuzione)"
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr "l'utente aveva privilegi insufficienti"
 
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(sconosciuto: %d)"
+# TLABEL modules/inst_target_part.ycp:680
+#: app/controllers/services_controller.rb:75
+msgid "program is not installed"
+msgstr "il programma non è installato"
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:76
+msgid "program is not configured"
+msgstr "il programma non è configurato"
+
+#: app/controllers/services_controller.rb:77
+msgid "program is not runnning"
+msgstr "il programma non è in esecuzione"
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Risultato del servizio chiamato"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Risultato"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Descrizione"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:101
-msgid "Back"
-msgstr "Indietro"
-
-#: app/views/services/index.rhtml:12
-msgid "Custom Services"
-msgstr "Servizi Clienti"
-
-#: app/views/services/index.rhtml:14
+#: app/views/services/index.rhtml:141
 msgid "System Services"
 msgstr "Servizi di Sistema"
 
-#: app/views/services/index.rhtml:21
-msgid "You do not have permission to execute the services. The links are disabled."
-msgstr "Non hai il permesso di eseguire il servizio. I link sono disabilitati."
+#: app/views/services/index.rhtml:147
+msgid "You do not have permission to execute the services."
+msgstr "Non hai le autorizzazioni per eseguire il servizio."
 
-#: app/views/services/index.rhtml:93
-msgid "status"
-msgstr "stato"
+#: app/views/services/index.rhtml:151
+msgid "Filter services"
+msgstr "Filtra servizi"
+
+#: app/views/services/index.rhtml:153
+msgid "All"
+msgstr "Tutto"
+
+#: app/views/services/index.rhtml:154
+msgid "Running"
+msgstr "In esecuzione"
+
+#: app/views/services/index.rhtml:155
+msgid "Not Running"
+msgstr "Non in esecuzione"
+
+#: app/views/services/index.rhtml:156
+msgid "Dead"
+msgstr "Morto"
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
+msgstr "Avviato al boot"
+
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr "Non avviato al boot"
+
+# "c" as a keyboard accel is already taken.
+#: app/views/services/index.rhtml:165
+msgid "Quick Search"
+msgstr "Ricerca veloce"
+
+#: app/views/services/index.rhtml:180
+msgid "Description for service is not available"
+msgstr "La descrizione del servizio non è disponibile"
+
+#: app/views/services/index.rhtml:203
+msgid "(refresh)"
+msgstr "(aggiorna)"
+
+#: app/views/services/index.rhtml:234
+msgid "Start"
+msgstr "Avvia"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr "Arresta"
+
+#: app/views/services/index.rhtml:236
+msgid "Restart"
+msgstr "Riavvia"
+
+#: app/views/services/index.rhtml:237
+msgid "Start on Boot"
+msgstr "Avvia al boot"
+
+#: app/views/services/index.rhtml:238
+msgid "Do Not Start on Boot"
+msgstr "Non avviare al boot"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr "Il servizio verrà avviato al boot."
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr "Il servizio non verrà avviato al boot."
+
+# TLABEL modules/inst_user.ycp:71
+#: app/views/services/_status.rhtml:31
+msgid "status unknown"
+msgstr "stato sconosciuto"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "in esecuzione"
+
+#: app/views/services/_status.rhtml:37
+msgid "dead"
+msgstr "morto"
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "non in esecuzione"
+
+# TLABEL modules/inst_user.ycp:71
+#: app/views/services/_status.rhtml:45
+msgid "status unknown: %d"
+msgstr "stato sconosciuto: %d"
+
+#: app/views/services/_status.rhtml:48
+msgid "Current status of the service:"
+msgstr "Stato corrente del servizio:"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Sessione non valida, per favore fai il login di nuovo."
+
+#~ msgid "(unknown)"
+#~ msgstr "(sconosciuto)"
+
+#~ msgid "(running)"
+#~ msgstr "(in esecuzione)"
+
+#~ msgid "(not running)"
+#~ msgstr "(non in esecuzione)"
+
+#~ msgid "(unknown: %d)"
+#~ msgstr "(sconosciuto: %d)"
+
+#~ msgid "Back"
+#~ msgstr "Indietro"
+
+#~ msgid "Custom Services"
+#~ msgstr "Servizi Clienti"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "Nessun servizio cliente è definito sulla macchina obiettivo."
+
+#~ msgid "status"
+#~ msgstr "stato"

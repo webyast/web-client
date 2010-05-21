@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast memory\n"
-"POT-Creation-Date: 2009-11-20 14:33+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2004-04-05 17:37+0200\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <i18n@suse.de>\n"
@@ -15,23 +15,154 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/application_controller.rb:53
-msgid "You must accept all EULAs before using this product!"
+#: app/helpers/application_helper.rb:20
+msgid " or "
 msgstr ""
 
-#: app/controllers/application_controller.rb:57
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
+#: app/helpers/application_helper.rb:24
+msgid " - "
 msgstr ""
 
-#: app/controllers/application_controller.rb:111
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
+#, fuzzy
+#| msgid "Backend:"
+msgid "Back"
+msgstr "Bouye di fond:"
+
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+msgid "Cancel"
+msgstr "Rinoncî"
+
+#: app/helpers/application_helper.rb:52
+#, fuzzy
+#| msgid "&Save"
+msgid "Save"
+msgstr "&Schaper"
+
+#: app/helpers/application_helper.rb:55
+msgid "Next"
+msgstr "Shuvant"
+
+#: app/helpers/application_helper.rb:56
+#, fuzzy
+#| msgid "Finnish"
+msgid "Finish"
+msgstr "Finwès"
+
+#: app/helpers/view_helpers/html_helper.rb:9
+msgid "Are you sure?"
+msgstr ""
+
+#: app/helpers/view_helpers/html_helper.rb:133
+#, fuzzy
+#| msgid "Unknown Person"
+msgid "Unknown error"
+msgstr "Djin nén cnoxhowe"
+
+#: app/helpers/view_helpers/html_helper.rb:137
+#: app/views/shared/exception_trap.html.erb:22
+#, fuzzy
+#| msgid "No optional updates available"
+msgid "No information available"
+msgstr "Pont d' coridjaedje nén oblidjî di disponibe"
+
+#: app/helpers/view_helpers/html_helper.rb:140
+msgid "There was a problem retrieving information from the server."
+msgstr ""
+
+#: app/helpers/view_helpers/effect_helper.rb:32
+#, fuzzy
+#| msgid "Details"
+msgid "Hide Details"
+msgstr "Detays"
+
+#: app/helpers/view_helpers/effect_helper.rb:33
+#, fuzzy
+#| msgid "Details"
+msgid "Show Details"
+msgstr "Detays"
+
+#: app/helpers/view_helpers/label_helper.rb:6
+#: app/views/hosts/index.html.erb:33
+msgid "Add"
+msgstr "Radjouter"
+
+#: app/helpers/view_helpers/label_helper.rb:10
+#, fuzzy
+#| msgid "&Edit"
+msgid "Edit"
+msgstr "&Candjî"
+
+#: app/helpers/view_helpers/label_helper.rb:14
+msgid "Delete"
+msgstr "Disfacer"
+
+#: app/controllers/sessions_controller.rb:49
+msgid "You need to specify the host"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:52
+msgid "No login specified"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:55
+msgid "No password specified"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:74
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:97
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+
+#: app/controllers/sessions_controller.rb:130
+msgid "You have been logged out."
+msgstr ""
+
+#: app/controllers/application_controller.rb:24
+#, fuzzy
+#| msgid "Session: %1"
+msgid "Session timeout"
+msgstr "Session: %1"
+
+#: app/controllers/application_controller.rb:79
+msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
+msgstr ""
+
+#: app/controllers/application_controller.rb:117
 #, fuzzy
 #| msgid "Please connect to the internet."
 msgid "Please login to continue"
 msgstr "Raloyîz vs al daegntoele, s' i vs plait."
 
-#: app/controllers/application_controller.rb:118
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr ""
+
+#: app/controllers/application_controller.rb:213
+msgid "can't be blank"
+msgstr ""
+
+#: app/controllers/application_controller.rb:214
+msgid "is out of allowed values"
+msgstr ""
+
+#: app/controllers/application_controller.rb:215
+msgid "can't be empty"
+msgstr ""
+
+#: app/controllers/application_controller.rb:216
+msgid "is invalid"
+msgstr ""
+
+#: app/controllers/application_controller.rb:231
+#, fuzzy
+#| msgid "Invalid default route:"
+msgid "Invalid parameters:"
+msgstr "Prémetowe voye nén valide:"
 
 #: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
@@ -53,30 +184,6 @@ msgstr ""
 
 #: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
 msgstr ""
 
 #: app/models/account.rb:-
@@ -135,115 +242,11 @@ msgstr ""
 msgid "Host|Updated at"
 msgstr ""
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr ""
-
-#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Rinoncî"
-
-#: app/helpers/application_helper.rb:28
+#: app/views/main/_select_language.html.erb:18
 #, fuzzy
-#| msgid "&Save"
-msgid "Save"
-msgstr "&Schaper"
-
-#: app/helpers/application_helper.rb:30
-msgid "Next"
-msgstr "Shuvant"
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Radjouter"
-
-#: app/helpers/view_helpers/label_helper.rb:10
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&Candjî"
-
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Disfacer"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr ""
-
-#: app/helpers/view_helpers/html_helper.rb:132
-#, fuzzy
-#| msgid "Unknown Person"
-msgid "Unknown error"
-msgstr "Djin nén cnoxhowe"
-
-#: app/helpers/view_helpers/html_helper.rb:136
-#: app/views/shared/exception_trap.html.erb:22
-#, fuzzy
-#| msgid "No optional updates available"
-msgid "No information available"
-msgstr "Pont d' coridjaedje nén oblidjî di disponibe"
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr ""
-
-#: app/views/hosts/index.html.erb:6
-#, fuzzy
-#| msgid "A kioslave to browse services"
-msgid "Please choose a service:"
-msgstr "On vårlet d' I/R po foyter avå les siervices"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:22
-#, fuzzy
-#| msgid "Service"
-msgid "YaST-Web-Service"
-msgstr "Siervice"
-
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
-msgid "Name"
-msgstr "No"
-
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
-msgid "Url"
-msgstr ""
-
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
-msgid "Description"
-msgstr "Discrijhaedje"
-
-#: app/views/hosts/edit.html.erb:38
-msgid "Ok"
-msgstr "'l est Bon"
-
-#: app/views/hosts/edit.html.erb:39
-#, fuzzy
-#| msgid "Backend:"
-msgid "Back"
-msgstr "Bouye di fond:"
-
-#: app/views/hosts/show.html.erb:7
-#, fuzzy
-#| msgid "&Index"
-msgid "Index"
-msgstr "&Indecse"
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
-msgstr ""
-
-#: app/views/hosts/new.html.erb:47
-msgid "Create"
-msgstr ""
+#| msgid "Clear Package Selection"
+msgid "Language Selection"
+msgstr "Netyî l' tchoes des pacaedjes"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
@@ -251,7 +254,7 @@ msgid "This is embarrasing...."
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
+msgid "We are sorry, but there are some problems."
 msgstr ""
 
 #: app/views/shared/exception_trap.html.erb:12
@@ -275,39 +278,183 @@ msgstr ""
 msgid "Problem occured on target machine."
 msgstr ""
 
-#: app/views/layouts/main.rhtml:34
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:1
+msgid "Editing YaST-Web-Service"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:22
+#, fuzzy
+#| msgid "Service"
+msgid "YaST-Web-Service"
+msgstr "Siervice"
+
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
+msgid "Name"
+msgstr "No"
+
+#: app/views/hosts/edit.html.erb:29
+msgid "Url"
+msgstr ""
+
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
+msgid "Description"
+msgstr "Discrijhaedje"
+
+#: app/views/hosts/edit.html.erb:38
+msgid "Ok"
+msgstr "'l est Bon"
+
+#: app/views/hosts/index.html.erb:6
+#, fuzzy
+#| msgid "A kioslave to browse services"
+msgid "Please choose a service:"
+msgstr "On vårlet d' I/R po foyter avå les siervices"
+
+#: app/views/hosts/index.html.erb:26
+msgid "Really delete host %s ?"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:9
+msgid "New WebYaST Host"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:41
+msgid "URL"
+msgstr ""
+
+#: app/views/hosts/new.html.erb:53
+msgid "Create"
+msgstr ""
+
+#: app/views/hosts/show.html.erb:7
+#, fuzzy
+#| msgid "&Index"
+msgid "Index"
+msgstr "&Indecse"
+
+#: app/views/controlpanel/show_all.rhtml:1
+#: app/views/controlpanel/index.rhtml:72
+msgid "Configuration"
+msgstr "Apontiaedje"
+
+#: app/views/controlpanel/index.rhtml:27
+msgid "Status"
+msgstr "Estat"
+
+#: app/views/controlpanel/index.rhtml:35
+#, fuzzy
+#| msgid "System Settings"
+msgid "System actions"
+msgstr "Tchuzes do sistinme"
+
+# reboot button label
+#: app/views/controlpanel/index.rhtml:37
+msgid "Reboot"
+msgstr "Renonder l' copiutrece"
+
+#: app/views/controlpanel/index.rhtml:38
+msgid "Really reboot %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:39
+msgid "Shutdown"
+msgstr "Distinde"
+
+#: app/views/controlpanel/index.rhtml:40
+msgid "Really shutdown %s?"
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:48
+#, fuzzy
+#| msgid "Looking for CPU information..."
+msgid "Loading patch information"
+msgstr "Dji cache après des informåcions sol CPU..."
+
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:53
+msgid "Patch plugin is not installed."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:60
+#, fuzzy
+#| msgid "System Information"
+msgid "Loading system information"
+msgstr "Informåcion sol sistinme"
+
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:65
+msgid "Status plugin is not installed."
+msgstr ""
+
+#: app/views/controlpanel/index.rhtml:102
+msgid "Show all modules"
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:1
+#, fuzzy
+#| msgid "Base System"
+msgid "Base system setup"
+msgstr "Sistinme di båze"
+
+#: app/views/controlpanel/basesystem.rhtml:3
+msgid "Your initial system setup was not completed. Please continue with setting up the modules."
+msgstr ""
+
+#: app/views/controlpanel/basesystem.rhtml:4
+#, fuzzy
+#| msgid "Base System"
+msgid "Continue initial system setup"
+msgstr "Sistinme di båze"
+
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr ""
 
-#: app/views/layouts/main.rhtml:48
+#: app/views/layouts/main.rhtml:50
 #, fuzzy
 #| msgid "Applied"
 msgid "My Appliance"
 msgstr "Eployî"
 
-#: app/views/layouts/main.rhtml:56
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
+#, fuzzy
+#| msgid "Language"
+msgid "Language:"
+msgstr "Lingaedje"
+
+#: app/views/layouts/main.rhtml:62
 #, fuzzy
 #| msgid "Connected to: %s"
 msgid "Connected host:"
 msgstr "Raloyî a: %s"
 
-#: app/views/layouts/main.rhtml:57
+#: app/views/layouts/main.rhtml:63
 #, fuzzy
 #| msgid "&Username:"
 msgid "User:"
 msgstr "No d' &uzeu:"
 
-#: app/views/layouts/main.rhtml:60
+#: app/views/layouts/main.rhtml:66
 #, fuzzy
 #| msgid "Control Center"
 msgid "Control panel"
 msgstr "Cinte di contrôle"
 
-#: app/views/layouts/main.rhtml:61
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "Moussî foû"
 
-#: app/views/layouts/main.rhtml:93
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr ""
 
@@ -329,78 +476,6 @@ msgstr "No d' &uzeu:"
 msgid "Password:"
 msgstr "Sicret:"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-#, fuzzy
-#| msgid "Base System"
-msgid "Base system setup"
-msgstr "Sistinme di båze"
-
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr ""
-
-#: app/views/controlpanel/basesystem.rhtml:4
-#, fuzzy
-#| msgid "Halt the system now?"
-msgid "Set up the system"
-msgstr "Arester l' sistinme asteure?"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
-msgid "Configuration"
-msgstr "Apontiaedje"
-
-#: app/views/controlpanel/index.rhtml:24
-msgid "Status"
-msgstr "Estat"
-
-#: app/views/controlpanel/index.rhtml:33
-#, fuzzy
-#| msgid "System Settings"
-msgid "System actions"
-msgstr "Tchuzes do sistinme"
-
-# reboot button label
-#: app/views/controlpanel/index.rhtml:34
-msgid "Reboot"
-msgstr "Renonder l' copiutrece"
-
-#: app/views/controlpanel/index.rhtml:35
-msgid "Really reboot %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:36
-msgid "Shutdown"
-msgstr "Distinde"
-
-#: app/views/controlpanel/index.rhtml:37
-msgid "Really shutdown %s?"
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:44
-#, fuzzy
-#| msgid "Looking for CPU information..."
-msgid "Loading patch information"
-msgstr "Dji cache après des informåcions sol CPU..."
-
-#: app/views/controlpanel/index.rhtml:46
-msgid "Patch plugin is not installed."
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:52
-#, fuzzy
-#| msgid "System Information"
-msgid "Loading system information"
-msgstr "Informåcion sol sistinme"
-
-#: app/views/controlpanel/index.rhtml:54
-msgid "Status plugin is not installed."
-msgstr ""
-
-#: app/views/controlpanel/index.rhtml:93
-msgid "Show all modules"
-msgstr ""
-
 #: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr ""
@@ -410,37 +485,41 @@ msgid "Service %s is not running on the target machine"
 msgstr ""
 
 #: lib/error_constructor.rb:16
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr ""
+
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
 msgstr ""
 
-#: lib/error_constructor.rb:18
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr ""
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr ""
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr ""
 
-#: lib/error_constructor.rb:26
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr ""
 
-#: lib/error_constructor.rb:28
-msgid "Error occured during ntp synchronization: %s"
+#: lib/error_constructor.rb:29
+msgid "Error occurred during ntp synchronization: %s"
 msgstr ""
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr ""
 
 #, fuzzy
-#~| msgid "Language"
-#~ msgid "Langugage:"
-#~ msgstr "Lingaedje"
+#~| msgid "Halt the system now?"
+#~ msgid "Set up the system"
+#~ msgstr "Arester l' sistinme asteure?"
 
 #, fuzzy
 #~| msgid "Name"

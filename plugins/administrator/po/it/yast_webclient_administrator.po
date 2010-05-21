@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-10-29 15:06+0100\n"
-"Last-Translator: Andrea Florio <andrea@opensuse.org>\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-15 22:39+0100\n"
+"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: Italiano <opensuse-translation@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,59 +16,86 @@ msgstr ""
 "X-Poedit-Language: Italian\n"
 
 # TLABEL modules/dialup/dialup.ycp:1329
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Inserisci un indirizzo e-mail valido."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Le password non corrispondono."
 
-#: app/controllers/administrator_controller.rb:60
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
-msgstr "Le impostazioni di Amministratore sono state scritte."
+msgstr "Le impostazioni dell'amministratore sono state scritte."
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
-msgstr "Errore durante il salvataggio delle impostazioni di amministratore: %s"
+msgstr "Errore durante il salvataggio delle impostazioni dell'amministratore: %s"
+
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr "Un alias per la posta è stato impostato ma il server di posta in uscita non è configurato (%s<i>cambia</i>%s)."
 
 #: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
-msgstr "Impostazioni di Amministratore"
+msgstr "Impostazioni dell'amministratore"
 
-#: app/views/administrator/index.html.erb:36
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Le password non corrispondono."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
-msgstr ""
+#: app/views/administrator/index.html.erb:33
+msgid "A password is required."
+msgstr "Una password è richiesta."
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Password"
+#: app/views/administrator/index.html.erb:38
+msgid "Password Strength:"
+msgstr "Robustezza password:"
+
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr "Debole"
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "Normale"
+
+#: app/views/administrator/index.html.erb:42
+msgid "Medium"
+msgstr "Media"
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr "Forte"
+
+#: app/views/administrator/index.html.erb:44
+msgid "Very Strong"
+msgstr "Molto forte"
 
 #: app/views/administrator/index.html.erb:63
-msgid "Confirm password"
+msgid "Password Setup for User 'root'"
+msgstr "Impostazione password per l'utente 'root'"
+
+#: app/views/administrator/index.html.erb:64
+msgid "New Password"
+msgstr "Nuova password"
+
+#: app/views/administrator/index.html.erb:69
+msgid "Confirm Password"
 msgstr "Conferma password"
 
-#: app/views/administrator/index.html.erb:65
-#, fuzzy
-#| msgid "Change Password"
-msgid "Save Password"
-msgstr "Cambia password"
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr "Impostazione posta per l'utente 'root'"
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
-msgstr "Inoltra mail a"
+#: app/views/administrator/index.html.erb:78
+msgid "Forward system mail to"
+msgstr "Inoltra posta di sistema a"
 
-#: app/views/administrator/index.html.erb:72
-#, fuzzy
-#| msgid "Save"
-msgid "Save Mail"
-msgstr "Salva"
+#: app/views/administrator/index.html.erb:81
+msgid "Save Mail Only"
+msgstr "Salva solamente il messaggio di posta"
 
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Sessione non valida, per favore rifai il login."
+#~ msgid "Here, configure the settings for system administrator ('root')."
+#~ msgstr "Qui puoi configurare le impostazioni per l'amministratore di sistema ('root')."

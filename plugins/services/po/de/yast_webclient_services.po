@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:37+0200\n"
 "PO-Revision-Date: 2009-11-21 13:01+0100\n"
 "Last-Translator: Hermann-Josef Beckers <hj.beckers@onlinehome.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -13,74 +13,216 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/services_controller.rb:11
-msgid "Invalid session, please login again."
-msgstr "Ungültige Sitzung, bitte melden Sie sich erneut an."
-
-#: app/controllers/services_controller.rb:34
+#: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
 msgstr "(Status kann nicht gelesen werden)"
 
-#: app/controllers/services_controller.rb:80
+#: app/controllers/services_controller.rb:70
 msgid "success"
 msgstr "Erfolgreich"
 
-#: app/views/services/_status.rhtml:14
-msgid "(unknown)"
-msgstr "(unbekannt)"
+#: app/controllers/services_controller.rb:71
+msgid "unspecified error"
+msgstr ""
 
-#: app/views/services/_status.rhtml:16
-msgid "(running)"
-msgstr "(läuft)"
+#: app/controllers/services_controller.rb:72
+#, fuzzy
+#| msgid "invalid argument syntax"
+msgid "invalid or excess argument(s)"
+msgstr "ungültige Argumentsyntax"
 
-#: app/views/services/_status.rhtml:18
-msgid "(dead)"
-msgstr "(tot)"
+#: app/controllers/services_controller.rb:73
+#, fuzzy
+#| msgid "not yet implemented"
+msgid "unimplemented feature"
+msgstr "noch nicht implementiert"
 
-#: app/views/services/_status.rhtml:20
-msgid "(not running)"
-msgstr "(läuft nicht)"
+#: app/controllers/services_controller.rb:74
+msgid "user had insufficient privilege"
+msgstr ""
 
-#: app/views/services/_status.rhtml:22
-msgid "(unknown: %d)"
-msgstr "(unbekannt: %d)"
+#: app/controllers/services_controller.rb:75
+#, fuzzy
+#| msgid "'%s' is not installed."
+msgid "program is not installed"
+msgstr "'%s' ist nicht installiert."
 
-#: app/views/services/_result.rhtml:5
+#: app/controllers/services_controller.rb:76
+#, fuzzy
+#| msgid "Not configured"
+msgid "program is not configured"
+msgstr "Nicht konfiguriert"
+
+#: app/controllers/services_controller.rb:77
+#, fuzzy
+#| msgid "The hypervisor is not running."
+msgid "program is not runnning"
+msgstr "Der Hypervisor wird nicht ausgeführt."
+
+#: app/views/services/_result.rhtml:6
 msgid "Service Call Result"
 msgstr "Dienst-Aufruf-Ergebnis"
 
-#: app/views/services/_result.rhtml:8
+#: app/views/services/_result.rhtml:9
 msgid "Result"
 msgstr "Ergebnis"
 
-#: app/views/services/_result.rhtml:12
+#: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Beschreibung"
 
-#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
-#: app/views/services/index.rhtml:102
-msgid "Back"
-msgstr "Zurück"
-
-#: app/views/services/index.rhtml:11
-msgid "Custom Services"
-msgstr "Angepasste Dienste"
-
-#: app/views/services/index.rhtml:13
+#: app/views/services/index.rhtml:141
 msgid "System Services"
 msgstr "System-Dienste"
 
-#: app/views/services/index.rhtml:20
-msgid "No custom service is defined on target machine."
-msgstr "Auf dem Zielrechner ist kein angepasster Dienst definiert."
+#: app/views/services/index.rhtml:147
+#, fuzzy
+#| msgid "You do not have permission to execute the services. The links are disabled."
+msgid "You do not have permission to execute the services."
+msgstr "Sie verfügen nicht über die Berechtigung zur Ausführung dieser Dienste. Die Links sind deaktiviert."
 
-#: app/views/services/index.rhtml:22
-msgid ""
-"You do not have permission to execute the services. The links are disabled."
+#: app/views/services/index.rhtml:151
+#, fuzzy
+#| msgid "inetd service"
+msgid "Filter services"
+msgstr "inetd-Dienst"
+
+#: app/views/services/index.rhtml:153
+#, fuzzy
+#| msgid "Alt"
+msgid "All"
+msgstr "Alt"
+
+#: app/views/services/index.rhtml:154
+#, fuzzy
+#| msgid "running"
+msgid "Running"
+msgstr "läuft"
+
+#: app/views/services/index.rhtml:155
+#, fuzzy
+#| msgid "not running"
+msgid "Not Running"
+msgstr "läuft nicht"
+
+#: app/views/services/index.rhtml:156
+#, fuzzy
+#| msgid "(dead)"
+msgid "Dead"
+msgstr "(tot)"
+
+#: app/views/services/index.rhtml:157
+msgid "Started on Boot"
 msgstr ""
-"Sie verfügen nicht über die Berechtigung zur Ausführung dieser Dienste. Die "
-"Links sind deaktiviert."
 
-#: app/views/services/index.rhtml:94
-msgid "status"
-msgstr "Status"
+#: app/views/services/index.rhtml:158
+msgid "Not Started on Boot"
+msgstr ""
+
+#: app/views/services/index.rhtml:165
+#, fuzzy
+#| msgid "Search"
+msgid "Quick Search"
+msgstr "Suche"
+
+#: app/views/services/index.rhtml:180
+#, fuzzy
+#| msgid "The action for service '%1' may not be empty."
+msgid "Description for service is not available"
+msgstr "Die Aktion für Dienst '%1' muss angegeben werden."
+
+#: app/views/services/index.rhtml:203
+#, fuzzy
+#| msgid "Refresh"
+msgid "(refresh)"
+msgstr "Auffrischen"
+
+#: app/views/services/index.rhtml:234
+#, fuzzy
+#| msgid "Start-Up"
+msgid "Start"
+msgstr "Start"
+
+#: app/views/services/index.rhtml:235
+msgid "Stop"
+msgstr ""
+
+#: app/views/services/index.rhtml:236
+msgid "Restart"
+msgstr "Neustart"
+
+#: app/views/services/index.rhtml:237
+#, fuzzy
+#| msgid "Start Konqueror"
+msgid "Start on Boot"
+msgstr "Konqueror starten"
+
+#: app/views/services/index.rhtml:238
+#, fuzzy
+#| msgid "Do Not Start"
+msgid "Do Not Start on Boot"
+msgstr "Nicht starten"
+
+#: app/views/services/_status.rhtml:6
+msgid "Service will be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:8
+msgid "Service will not be started on boot."
+msgstr ""
+
+#: app/views/services/_status.rhtml:31
+#, fuzzy
+#| msgid "unknown"
+msgid "status unknown"
+msgstr "unbekannt"
+
+#: app/views/services/_status.rhtml:33
+msgid "running"
+msgstr "läuft"
+
+#: app/views/services/_status.rhtml:37
+#, fuzzy
+#| msgid "(dead)"
+msgid "dead"
+msgstr "(tot)"
+
+#: app/views/services/_status.rhtml:41
+msgid "not running"
+msgstr "läuft nicht"
+
+#: app/views/services/_status.rhtml:45
+#, fuzzy
+#| msgid "(unknown: %d)"
+msgid "status unknown: %d"
+msgstr "(unbekannt: %d)"
+
+#: app/views/services/_status.rhtml:48
+#, fuzzy
+#| msgid "lock-down status for the search area"
+msgid "Current status of the service:"
+msgstr "Sperrstatus für den Suchbereich"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Ungültige Sitzung, bitte melden Sie sich erneut an."
+
+#~ msgid "(unknown)"
+#~ msgstr "(unbekannt)"
+
+#~ msgid "(running)"
+#~ msgstr "(läuft)"
+
+#~ msgid "(not running)"
+#~ msgstr "(läuft nicht)"
+
+#~ msgid "Back"
+#~ msgstr "Zurück"
+
+#~ msgid "Custom Services"
+#~ msgstr "Angepasste Dienste"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "Auf dem Zielrechner ist kein angepasster Dienst definiert."
+
+#~ msgid "status"
+#~ msgstr "Status"

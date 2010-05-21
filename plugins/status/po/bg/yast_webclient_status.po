@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-08-18 21:16+0300\n"
 "Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -11,95 +11,185 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:15
-msgid "Invalid session, please login again."
-msgstr ""
-
-#: app/controllers/status_controller.rb:33
-msgid "Disk free limits exceeded;"
-msgstr ""
-
-#: app/controllers/status_controller.rb:135
-#: app/controllers/status_controller.rb:161
-#: app/controllers/status_controller.rb:183
+#: app/controllers/status_controller.rb:130
 msgid "No data found for showing system status."
 msgstr ""
 
-#: app/controllers/status_controller.rb:181
+#: app/controllers/status_controller.rb:187
 #, fuzzy
 #| msgid "%s is needed by %s"
-msgid "Limits exceeded for %s"
+msgid "Limits exceeded for "
 msgstr "%s е необходим на %s"
 
-#: app/controllers/status_controller.rb:229
-msgid "Saving limits failed!"
+#: app/controllers/status_controller.rb:316
+msgid "exceeded"
 msgstr ""
 
-#: app/views/status/index.html.erb:23
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr ""
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr ""
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr ""
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
 msgid "Status"
 msgstr "Статус"
 
-#: app/views/status/index.html.erb:45
-msgid "Disk usage"
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "Настройки"
+
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
 msgstr ""
 
-#: app/views/status/index.html.erb:68
+#: app/views/status/edit.html.erb:66
+msgid "exceeds"
+msgstr ""
+
+#: app/views/status/index.html.erb:71
+msgid "details"
+msgstr ""
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr ""
+
+#: app/views/status/index.html.erb:143
 msgid "Edit Limits"
 msgstr ""
 
-#: app/views/status/index.html.erb:69 app/views/status/edit.html.erb:40
-msgid "Back"
-msgstr "Назад"
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "free"
-msgstr ""
-
-#: app/views/status/index.html.erb:216 app/views/status/index.html.erb:218
-msgid "used"
-msgstr ""
-
-#: app/views/status/edit.html.erb:2
+#: app/views/status/_status_graph.html.erb:1
 #, fuzzy
-#| msgid "Configure Notifications..."
-msgid "Configure Status Limits"
-msgstr "Настройка на забележките..."
+#| msgid "An error occurred during the installation."
+msgid "A problem occured when loading status information."
+msgstr "Възникнала е грешка по време на инсталацията."
 
-#: app/views/status/edit.html.erb:7
+#: app/views/status/_status_graph.html.erb:91
 #, fuzzy
-#| msgid "Status"
-msgid "Status Path"
-msgstr "Статус"
+#| msgid "Show Desktop"
+msgid "Show last"
+msgstr "Показване на Плота"
 
-#: app/views/status/edit.html.erb:8
-msgid "Minimum Value"
+#: app/views/status/_status_graph.html.erb:92
+#, fuzzy
+#| msgid " Minutes"
+msgid "5 Minutes"
+msgstr "Минути"
+
+#: app/views/status/_status_graph.html.erb:93
+#, fuzzy
+#| msgid " Minutes"
+msgid "15 Minutes"
+msgstr "Минути"
+
+#: app/views/status/_status_graph.html.erb:94
+#, fuzzy
+#| msgid " Minutes"
+msgid "30 Minutes"
+msgstr "Минути"
+
+#: app/views/status/_status_graph.html.erb:95
+msgid "1 Hour"
 msgstr ""
 
-#: app/views/status/edit.html.erb:9
-msgid "Maximum Value"
+#: app/views/status/_status_graph.html.erb:96
+msgid "6 Hours"
 msgstr ""
 
-#: app/views/status/edit.html.erb:39
-#, fuzzy
-#| msgid "&Save"
-msgid "Save"
-msgstr "&Запис..."
+#: app/views/status/_status_graph.html.erb:97
+msgid "12 Hours"
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:1
+#: app/views/status/_status_summary.html.erb:2
 #, fuzzy
 #| msgid "An error occurred during the installation."
 msgid "An problem occured when loading status information."
 msgstr "Възникнала е грешка по време на инсталацията."
 
-#: app/views/status/_status_summary.html.erb:6
-#, fuzzy
-#| msgid "No information available."
-msgid "No status information available"
-msgstr "Няма информация."
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr ""
 
-#: app/views/status/_status_summary.html.erb:14
+#: app/views/status/_status_summary.html.erb:15
 msgid "Your system is healthy."
 msgstr ""
+
+#: app/views/status/_status_summary.html.erb:20
+#, fuzzy
+#| msgid "Start VPN connection"
+msgid "Start collectd"
+msgstr "Пускане на ЧВМ връзка"
+
+#: app/views/status/_status_summary.html.erb:28
+#, fuzzy
+#| msgid "System Information"
+msgid "Loading system information"
+msgstr "Системна информация"
+
+#: app/views/status/_status_progress.html.erb:7
+msgid "Checking system status"
+msgstr ""
+
+#: lib/plugin_translation.rb:25
+msgid "Registration is missing"
+msgstr ""
+
+#: lib/plugin_translation.rb:26
+msgid "Please register your system in order to get updates."
+msgstr ""
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr ""
+
+# %s is either BOOTP or DHCP
+#: lib/plugin_translation.rb:29
+#, fuzzy
+#| msgid "%s configuration failed."
+msgid "Mail configuration test not confirmed"
+msgstr "Настройването чрез %s бе неуспешно."
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr ""
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr ""
+
+#~ msgid "Back"
+#~ msgstr "Назад"
+
+#, fuzzy
+#~| msgid "Configure Notifications..."
+#~ msgid "Configure Status Limits"
+#~ msgstr "Настройка на забележките..."
+
+#, fuzzy
+#~| msgid "Status"
+#~ msgid "Status Path"
+#~ msgstr "Статус"
+
+#, fuzzy
+#~| msgid "&Save"
+#~ msgid "Save"
+#~ msgstr "&Запис..."
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "Няма информация."
 
 #, fuzzy
 #~| msgid "Even"

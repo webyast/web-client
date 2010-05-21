@@ -1,4 +1,284 @@
 -------------------------------------------------------------------
+Wed May 12 10:17:50 CEST 2010 - mzugec@suse.cz
+
+- fixed empty value validation (bnc#603778)
+- mark buttons string for translation (bnc#603682)
+- mark string for translation (bnc#603767)
+- properly marked translation strings (bnc#603764)
+- users/groups - consistency link to each other (bnc#605057)
+- 0.1.35 
+
+-------------------------------------------------------------------
+Tue May 11 16:15:42 CEST 2010 - mzugec@suse.cz
+
+- fixed typo (bnc#604770) 
+
+-------------------------------------------------------------------
+Mon May 10 11:38:19 CEST 2010 - mzugec@suse.cz
+
+- visual progress indication (bnc#600764)
+- 0.1.34 
+
+-------------------------------------------------------------------
+Wed May  5 10:41:42 CEST 2010 - mzugec@suse.cz
+
+- page loading optimalization (bnc#602257)
+- 0.1.33 
+
+-------------------------------------------------------------------
+Tue May  4 16:29:07 CEST 2010 - mzugec@suse.cz
+
+- improve tests coverage (bnc#602024) 
+- 0.1.32
+
+-------------------------------------------------------------------
+Tue May  4 14:16:45 CEST 2010 - mzugec@suse.cz
+
+- users: error mgs when groupsget not granted (bnc#601984) 
+
+-------------------------------------------------------------------
+Tue May  4 13:19:44 CEST 2010 - jsuchome@suse.cz
+
+- do not read all user data, only required parts (bnc#602257)
+
+-------------------------------------------------------------------
+Tue May  4 10:46:16 CEST 2010 - mzugec@suse.cz
+
+- disable forms and buttons on submit or delete (bnc#600765)
+- 0.1.31 
+
+-------------------------------------------------------------------
+Mon May  3 13:13:21 CEST 2010 - jsuchome@suse.cz
+
+- groups: do not show 'default members', do not show GID entry
+  when creating new group (bnc#600081)
+
+-------------------------------------------------------------------
+Thu Apr 29 16:09:15 CEST 2010 - mzugec@suse.cz
+
+- tabbed users index (bnc#600932)
+- 0.1.30 
+
+-------------------------------------------------------------------
+Thu Apr 29 13:42:37 CEST 2010 - mzugec@suse.cz
+
+- Confirm Password validation (bnc#600868) 
+
+-------------------------------------------------------------------
+Wed Apr 28 09:58:03 CEST 2010 - mzugec@suse.cz
+
+- align "password" label (bnc#600372) 
+
+-------------------------------------------------------------------
+Mon Apr 26 17:31:05 CEST 2010 - mzugec@suse.cz
+
+- fixed 'error not seen when in another tab' (bnc#598406)
+- 0.1.29
+
+-------------------------------------------------------------------
+Mon Apr 26 15:20:57 CEST 2010 - mzugec@suse.cz
+
+- default group validation (bnc#599653)
+- 0.1.28 
+
+-------------------------------------------------------------------
+Mon Apr 26 13:13:37 CEST 2010 - mzugec@suse.cz
+
+- DBus::Error handling (bnc#598872) 
+
+-------------------------------------------------------------------
+Mon Apr 26 10:29:02 CEST 2010 - mzugec@suse.cz
+
+- group members validation doesn't work in IE8 (bnc#599571)
+- 0.1.27 
+
+-------------------------------------------------------------------
+Fri Apr 23 15:32:50 CEST 2010 - mzugec@suse.cz
+
+- improved UI to styleguide
+- 0.1.26 
+
+-------------------------------------------------------------------
+Fri Apr 23 13:03:17 UTC 2010 - lslezak@suse.cz
+
+- added tidy to *-testsuite package dependency
+
+-------------------------------------------------------------------
+Fri Apr 16 10:16:55 CEST 2010 - mzugec@suse.cz
+
+- translated error labels (bnc#591461) 
+
+-------------------------------------------------------------------
+Wed Apr 14 17:18:31 CEST 2010 - mzugec@suse.cz
+
+- don't allow empty login (bnc#596035) 
+
+-------------------------------------------------------------------
+Tue Apr 13 21:28:20 CEST 2010 - mzugec@suse.cz
+
+- use Cancel instead of Back (bnc#593348) 
+
+-------------------------------------------------------------------
+Tue Apr 13 16:36:58 CEST 2010 - mzugec@suse.cz
+
+- marked "Password Strength:" string for translation (bnc#596043) 
+
+-------------------------------------------------------------------
+Mon Apr 12 18:37:33 CEST 2010 - mzugec@suse.cz
+
+- groups: "repository like" index view
+- 0.1.25 
+
+-------------------------------------------------------------------
+Fri Apr  2 14:52:33 CEST 2010 - mzugec@suse.cz
+
+- delete user's home directory (bnc#591410)
+- 0.1.24 
+
+-------------------------------------------------------------------
+Fri Apr  2 13:29:01 CEST 2010 - mzugec@suse.cz
+
+- group dialog: members validation (bnc#593324)
+- 0.1.23 
+
+-------------------------------------------------------------------
+Fri Apr  2 12:43:05 CEST 2010 - mzugec@suse.cz
+
+- "Manage Members" button to select members in popup (bnc#593320)
+- 0.1.22 
+
+-------------------------------------------------------------------
+Thu Apr  1 16:49:23 CEST 2010 - mzugec@suse.cz
+
+- propose login from full name, propose home directory (bnc#582585)
+- 0.1.21 
+
+-------------------------------------------------------------------
+Thu Apr  1 13:28:41 CEST 2010 - mzugec@suse.cz
+
+- fixed create user issue 
+
+-------------------------------------------------------------------
+Thu Apr  1 10:31:26 CEST 2010 - mzugec@suse.cz
+
+- delete user/group properly (bnc#582607)
+- 0.1.20
+
+-------------------------------------------------------------------
+Wed Mar 31 19:02:53 CEST 2010 - mkudlvasr@suse.cz
+
+- fix bnc#592230 - new group is created instead of renamed
+- 0.1.19
+
+-------------------------------------------------------------------
+Wed Mar 31 15:39:00 CEST 2010 - mzugec@suse.cz
+
+- show error message when adding non exists user as group member
+(bnc#592223) 
+-------------------------------------------------------------------
+Wed Mar 31 12:30:50 UTC 2010 - lslezak@suse.cz
+
+- quicksearch - updated to the latest jQuery plugin version
+- 0.1.18
+
+-------------------------------------------------------------------
+Tue Mar 30 15:09:49 CEST 2010 - mzugec@suse.cz
+
+- rename "Local Users" to "Users" (bnc#590791) 
+
+-------------------------------------------------------------------
+Tue Mar 30 09:55:49 CEST 2010 - mzugec@suse.cz
+
+- link from users to groups and vice versa 
+
+-------------------------------------------------------------------
+Mon Mar 29 16:21:20 CEST 2010 - mzugec@suse.cz
+
+- Groups Management (bnc#570311)
+- 0.1.17 
+
+-------------------------------------------------------------------
+Mon Mar 29 14:15:42 CEST 2010 - mvidner@suse.cz
+
+- RPM-Recommend WebYaST(org.opensuse.yast.modules.FOO) (bnc#583561)
+
+-------------------------------------------------------------------
+Tue Mar 23 13:22:26 CET 2010 - mzugec@suse.cz
+
+- new_user link position (bnc#588641)
+- 0.1.16 
+
+-------------------------------------------------------------------
+Mon Mar 22 09:59:31 CET 2010 - mzugec@suse.cz
+
+- fixed bnc#581153 again (delete user string)
+- 0.1.15 
+
+-------------------------------------------------------------------
+Fri Mar 19 16:36:00 CET 2010 - mzugec@suse.cz
+
+- method new: undefined method `all_grps_string' (bnc#589707)
+- 0.1.14 
+
+-------------------------------------------------------------------
+Wed Mar 17 16:41:55 CET 2010 - mzugec@suse.cz
+
+- using same html code for new and edit user (bnc#589041)
+- 0.1.13 
+
+-------------------------------------------------------------------
+Wed Mar 17 16:16:10 CET 2010 - mzugec@suse.cz
+
+- possible to select default group from list (bnc#582589)
+- 0.1.12 
+
+-------------------------------------------------------------------
+Wed Mar 17 13:39:48 CET 2010 - mzugec@suse.cz
+
+- JScript vs ECMAScript incompatibility (bnc#580561)
+- 0.1.11 
+
+-------------------------------------------------------------------
+Tue Mar 16 10:06:55 CET 2010 - mzugec@suse.cz
+
+- entered values escaped with h() helper (bnc#588443)
+- 0.1.10 
+
+-------------------------------------------------------------------
+Tue Mar 16 09:45:06 CET 2010 - mzugec@suse.cz
+
+- show Groups button for edit user 
+
+-------------------------------------------------------------------
+Fri Mar 12 16:38:32 CET 2010 - mzugec@suse.cz
+
+- improved UI align for groups dialog
+- 0.1.9 
+
+-------------------------------------------------------------------
+Fri Mar 12 11:06:04 CET 2010 - mzugec@suse.cz
+
+- improve grouplist validation (bnc#587446) 
+
+-------------------------------------------------------------------
+Fri Mar 12 10:28:23 CET 2010 - mzugec@suse.cz
+
+- removed GID string (bnc#548785) 
+
+-------------------------------------------------------------------
+Fri Mar 12 10:15:27 CET 2010 - mzugec@suse.cz
+
+- fixed several issues in new user groups dialog 
+(bnc#587444, bnc#587511, bnc#587516) 
+- 0.1.8 
+
+-------------------------------------------------------------------
+Fri Mar  5 16:46:40 CET 2010 - mzugec@suse.cz
+
+- create separate model for groups
+- 0.1.7 
+
+-------------------------------------------------------------------
 Fri Feb 26 16:37:10 CET 2010 - mzugec@suse.cz
 
 - validate form values onkeyup(bnc#582587) 

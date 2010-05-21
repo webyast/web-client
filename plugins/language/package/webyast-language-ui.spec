@@ -10,6 +10,7 @@
 
 
 Name:           webyast-language-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.language)
 Provides:       yast2-webclient-language = %{version}
 Obsoletes:      yast2-webclient-language < %{version}
 PreReq:         yast2-webclient >= 0.0.26
@@ -17,12 +18,13 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/language_controlle
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.0
+Version:        0.1.1
 Release:        0
 Summary:        YaST2 - Webclient - Language
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 
 #
 %define pkg_user yast
@@ -30,11 +32,22 @@ BuildArch:      noarch
 #
 
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+Summary:  Testsuite for webyast-language-ui package
+
 %description
 YaST2 - Webclient - UI for YaST-webservice in order to handle language settings.
 Authors:
 --------
     Stefan Schubert <schubi@opensuse.org>
+
+%description testsuite
+This package contains complete testsuite for webyast-language-ui package.
+It is only needed for verifying the functionality of the module
+and it is not needed at runtime.
 
 %prep
 %setup -q -n www
@@ -42,6 +55,9 @@ Authors:
 %build
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+
+%check
+%webyast_ui_check
 
 %install
 
@@ -79,3 +95,8 @@ rm -rf $RPM_BUILD_ROOT
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/shortcuts.yml
 /srv/www/%{pkg_user}/vendor/plugins/%{plugin_name}/doc/README_FOR_APP
 %doc COPYING
+
+%files testsuite
+%defattr(-,root,root)
+%{webyast_ui_dir}/vendor/plugins/%{plugin_name}/test
+

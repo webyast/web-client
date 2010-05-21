@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -18,148 +18,303 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
 msgstr ""
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
+msgid "Missing group parameters"
+msgstr "缺少以下项的自变量"
+
+#: app/controllers/groups_controller.rb:37
+#, fuzzy
+#| msgid "Please enter server name below"
+msgid "Please enter a valid group name"
+msgstr "请输入服务器名"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr "无法读取文件 %1。"
+
+#: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr "无法读取文件 %1。"
+
+#: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "未知错误\n"
+
+#: app/controllers/users_controller.rb:154
 #, fuzzy
 #| msgid "Repository '%s' has been sucessfully enabled."
 msgid "User <i>%s</i> was successfully created."
 msgstr "成功启用软件源 '%s'。"
 
-#: app/controllers/users_controller.rb:148
-#, fuzzy
-#| msgid "Empty CA name."
-msgid "Empty UID value"
-msgstr "CA 名称为空。"
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr ""
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:196
 #, fuzzy
 #| msgid "Repository '%s' has been sucessfully disabled."
 msgid "User <i>%s</i> was successfully updated."
 msgstr "成功禁用软件源 '%s'。"
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:217
 #, fuzzy
 #| msgid "Specified lock has been successfully removed."
 msgid "User <i>%s</i> was successfully removed."
 msgstr "指定的锁定已经成功删除。"
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:219
 #, fuzzy
 #| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "错误：无法读取配置文件 %s：%s。\n"
 
-#: app/views/users/index.html.erb:1
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+msgid "Groups"
+msgstr "组"
+
+#: app/views/groups/edit.html.erb:35
 #, fuzzy
-#| msgid "Local Network"
-msgid "Local User"
-msgstr "本地网络"
+#| msgid "Unknown group"
+msgid "Add new group"
+msgstr "未知群组"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "登录"
+#: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Downloading groups"
+msgid "Modify group"
+msgstr "正在下载组"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Name"
+msgid "Group Name"
+msgstr "名称"
+
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
+msgid "Group ID"
+msgstr "组"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
+msgid "Default members"
+msgstr "默认方案"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+msgid "Members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "处理器 %1"
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "过滤"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr ""
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "保存"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "删除"
+
+#: app/views/groups/index.html.erb:114
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete group '%s'?"
+msgstr "您确信要永久的删除“%s”吗？"
+
+#: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Monitor Settings"
+msgid "Login Settings"
+msgstr "显示器设置"
+
+#: app/views/users/_user_form.erb:8
 #, fuzzy
 #| msgid "Name"
 msgid "Full Name"
 msgstr "名称"
 
-#: app/views/users/index.html.erb:8
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "编辑(&E)"
-
-#: app/views/users/index.html.erb:27
-#, fuzzy
-#| msgid "You are <strong>online</strong>"
-msgid "<strong>[New User]</strong>"
-msgstr "您的状态为<strong>联机</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "后退"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr ""
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "组"
-
-#: app/views/users/edit.html.erb:19
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default Group"
-msgstr "默认路由"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#, fuzzy
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "目录\n"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#, fuzzy
-#| msgid "Login"
-msgid "Login Shell"
-msgstr "登录"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/_user_form.erb:12
 #, fuzzy
 #| msgid "Login"
 msgid "Login Name"
 msgstr "登录"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
-msgid "UID Number"
-msgstr ""
-
 # password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+#: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "口令"
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "更新"
+#: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "确认口令(_C)："
 
-#: app/views/users/new.html.erb:1
+#: app/views/users/_user_form.erb:39
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default Group"
+msgstr "默认路由"
+
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "高级"
+
+#: app/views/users/_user_form.erb:64
+#, fuzzy
+#| msgid "Directory\n"
+msgid "Home Directory"
+msgstr "目录\n"
+
+#: app/views/users/_user_form.erb:68
+#, fuzzy
+#| msgid "Login"
+msgid "Login Shell"
+msgstr "登录"
+
+#: app/views/users/_user_form.erb:72
+msgid "UID Number"
+msgstr ""
+
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr ""
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "常规"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "媒体"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#, fuzzy
+#| msgid "Very fast"
+msgid "Very Strong"
+msgstr "很快"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "User Name"
+msgid "Users"
+msgstr "用户名"
+
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr ""
+
+#: app/views/users/index.html.erb:52
 #, fuzzy
 #| msgid "Create New User?"
-msgid "New User"
+msgid "Add New User"
 msgstr "是否创建新用户？"
 
-#: app/views/users/new.html.erb:16
+#: app/views/users/index.html.erb:68
 #, fuzzy
-#| msgid "Default route ok."
-msgid "Default Group (GID)"
-msgstr "默认路由有效。"
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete user '%s'?"
+msgstr "您确信要永久的删除“%s”吗？"
 
-#: app/views/users/new.html.erb:24
-#, fuzzy
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "无法创建目录 %1：%2。"
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr ""
 
-#: app/views/users/new.html.erb:44
+#: app/views/users/index.html.erb:81
 #, fuzzy
-#| msgid "Created On: "
-msgid "Create"
-msgstr "创建日期："
+#| msgid "manage backups"
+msgid "Manage Groups"
+msgstr "管理备份"
+
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "Create New User?"
+msgid "Add new user"
+msgstr "是否创建新用户？"
 
 #, fuzzy
-#~| msgid "User Name"
-#~ msgid "User"
-#~ msgstr "用户名"
+#~| msgid "Empty CA name."
+#~ msgid "Empty UID value"
+#~ msgstr "CA 名称为空。"
+
+#, fuzzy
+#~| msgid "Local Network"
+#~ msgid "Local User"
+#~ msgstr "本地网络"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#, fuzzy
+#~| msgid "&Edit"
+#~ msgid "Edit"
+#~ msgstr "编辑(&E)"
+
+#, fuzzy
+#~| msgid "You are <strong>online</strong>"
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "您的状态为<strong>联机</strong>"
+
+#~ msgid "Back"
+#~ msgstr "后退"
+
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#, fuzzy
+#~| msgid "Default route ok."
+#~ msgid "Default Group (GID)"
+#~ msgstr "默认路由有效。"
+
+#, fuzzy
+#~| msgid "Cannot create directory %1: %2."
+#~ msgid "Do not create home directory"
+#~ msgstr "无法创建目录 %1：%2。"
+
+#, fuzzy
+#~| msgid "Created On: "
+#~ msgid "Create"
+#~ msgstr "创建日期："

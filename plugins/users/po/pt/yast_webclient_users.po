@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -18,141 +18,301 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/users_controller.rb:18
-msgid "Invalid session, please login again."
+#: app/controllers/groups_controller.rb:15
+msgid "Missing group name parameter"
 msgstr ""
 
-#: app/controllers/users_controller.rb:144
+#: app/controllers/groups_controller.rb:27
+#, fuzzy
+#| msgid "Missing argument for "
+msgid "Missing group parameters"
+msgstr "Argumento em falta para "
+
+#: app/controllers/groups_controller.rb:37
+#, fuzzy
+#| msgid "Please enter server name below"
+msgid "Please enter a valid group name"
+msgstr "Por favor introduza o nome do servidor em baixo"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:68
+msgid "Please enter a valid list of members"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:82
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read users list."
+msgstr "Não é possível ler do ficheiro %1."
+
+#: app/controllers/groups_controller.rb:118
+#, fuzzy
+#| msgid "Cannot read from file %1."
+msgid "Cannot read groups list."
+msgstr "Não é possível ler do ficheiro %1."
+
+#: app/controllers/groups_controller.rb:209
+#, fuzzy
+#| msgid "Unknown error\n"
+msgid "Unknown backend error"
+msgstr "Erro desconhecido\n"
+
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
 msgstr ""
 
-#: app/controllers/users_controller.rb:148
-#, fuzzy
-#| msgid "Empty CA name."
-msgid "Empty UID value"
-msgstr "Nome de CA vazio."
-
-#: app/controllers/users_controller.rb:152
-msgid "UID: value >= 1000 is valid for local user only"
-msgstr ""
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr ""
 
-#: app/controllers/users_controller.rb:218
+#: app/controllers/users_controller.rb:217
 #, fuzzy
 #| msgid "Repository %s has been sucessfully modified."
 msgid "User <i>%s</i> was successfully removed."
 msgstr "O repositório %s foi modificado com sucesso."
 
-#: app/controllers/users_controller.rb:220
+#: app/controllers/users_controller.rb:219
 #, fuzzy
 #| msgid "Error: Could not read profile %s: %s.\n"
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Erro: Não é possível ler o perfil %s: %s.\n"
 
-#: app/views/users/index.html.erb:1
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+msgid "Groups"
+msgstr "Grupos"
+
+#: app/views/groups/edit.html.erb:35
 #, fuzzy
-#| msgid "Local Network"
-msgid "Local User"
-msgstr "Rede Local"
+#| msgid "Unknown group"
+msgid "Add new group"
+msgstr "Grupo desconhecido"
 
-#: app/views/users/index.html.erb:6
-msgid "Login"
-msgstr "Login"
+#: app/views/groups/edit.html.erb:37
+#, fuzzy
+#| msgid "Downloading groups"
+msgid "Modify group"
+msgstr "A descarregar grupos"
 
-#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
-#: app/views/users/new.html.erb:8
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
+#, fuzzy
+#| msgid "Name"
+msgid "Group Name"
+msgstr "Nome"
+
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
+#, fuzzy
+#| msgid "Groups"
+msgid "Group ID"
+msgstr "Grupos"
+
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+#, fuzzy
+#| msgid "Default Schemes"
+msgid "Default members"
+msgstr "Esquemas Pré-definidos"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
+msgid "Members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+#, fuzzy
+#| msgid "Processor %1"
+msgid "Processing ..."
+msgstr "Processador %1"
+
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+#, fuzzy
+#| msgid "Filter"
+msgid "Filter:"
+msgstr "Filtro"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr ""
+
+#: app/views/groups/index.html.erb:110
+msgid "Save"
+msgstr "Guardar"
+
+#: app/views/groups/index.html.erb:112
+msgid "Delete"
+msgstr "Apagar"
+
+#: app/views/groups/index.html.erb:114
+#, fuzzy
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete group '%s'?"
+msgstr "Tem a certeza de que pretende apagar \"%s\" de forma permanente?"
+
+#: app/views/users/_user_form.erb:5
+#, fuzzy
+#| msgid "Monitor Settings"
+msgid "Login Settings"
+msgstr "Definições do Monitor"
+
+#: app/views/users/_user_form.erb:8
 #, fuzzy
 #| msgid "Name"
 msgid "Full Name"
 msgstr "Nome"
 
-#: app/views/users/index.html.erb:8
-#, fuzzy
-#| msgid "&Edit"
-msgid "Edit"
-msgstr "&Editar"
-
-#: app/views/users/index.html.erb:27
-#, fuzzy
-#| msgid "You are <strong>online</strong>"
-msgid "<strong>[New User]</strong>"
-msgstr "Esta <strong>online</strong>"
-
-#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
-#: app/views/users/new.html.erb:44
-msgid "Back"
-msgstr "Retroceder"
-
-#: app/views/users/edit.html.erb:1
-msgid "Edit user %s"
-msgstr ""
-
-#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
-msgid "Groups"
-msgstr "Grupos"
-
-#: app/views/users/edit.html.erb:19
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default Group"
-msgstr "Rota Pré-definida"
-
-#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
-#, fuzzy
-#| msgid "Directory\n"
-msgid "Home Directory"
-msgstr "Directório\n"
-
-#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
-#, fuzzy
-#| msgid "Login"
-msgid "Login Shell"
-msgstr "Login"
-
-#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+#: app/views/users/_user_form.erb:12
 #, fuzzy
 #| msgid "Login"
 msgid "Login Name"
 msgstr "Login"
 
-#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
+# password dialog title
+#: app/views/users/_user_form.erb:17
+msgid "Password"
+msgstr "Palavra Passe"
+
+#: app/views/users/_user_form.erb:21
+#, fuzzy
+#| msgid "_Confirm Password:"
+msgid "Confirm Password"
+msgstr "_Confirmar Palavra Passe:"
+
+#: app/views/users/_user_form.erb:39
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default Group"
+msgstr "Rota Pré-definida"
+
+#: app/views/users/_user_form.erb:61
+msgid "Advanced"
+msgstr "Avançado"
+
+#: app/views/users/_user_form.erb:64
+#, fuzzy
+#| msgid "Directory\n"
+msgid "Home Directory"
+msgstr "Directório\n"
+
+#: app/views/users/_user_form.erb:68
+#, fuzzy
+#| msgid "Login"
+msgid "Login Shell"
+msgstr "Login"
+
+#: app/views/users/_user_form.erb:72
 #, fuzzy
 #| msgid "&Number:"
 msgid "UID Number"
 msgstr "&Número:"
 
-# password dialog title
-#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
-msgid "Password"
-msgstr "Palavra Passe"
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr ""
 
-#: app/views/users/edit.html.erb:43
-msgid "Update"
-msgstr "Actualizar"
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normal"
 
-#: app/views/users/new.html.erb:1
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "Suporte"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr ""
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+#, fuzzy
+#| msgid "Very fast"
+msgid "Very Strong"
+msgstr "Muito rápido"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
+#: app/views/users/new.html.erb:86
 #, fuzzy
 #| msgid "Create New User?"
-msgid "New User"
+msgid "Users"
 msgstr "Criar Novo Utilizador?"
 
-#: app/views/users/new.html.erb:16
-#, fuzzy
-#| msgid "Default route ok."
-msgid "Default Group (GID)"
-msgstr "Rota pré-definida ok."
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr ""
 
-#: app/views/users/new.html.erb:24
+#: app/views/users/index.html.erb:52
 #, fuzzy
-#| msgid "Cannot create directory %1: %2."
-msgid "Do not create home directory"
-msgstr "Não é possível criar o directório %1: %2."
+#| msgid "Create New User?"
+msgid "Add New User"
+msgstr "Criar Novo Utilizador?"
 
-#: app/views/users/new.html.erb:44
+#: app/views/users/index.html.erb:68
 #, fuzzy
-#| msgid "Created On: "
-msgid "Create"
-msgstr "Criado em: "
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure to delete user '%s'?"
+msgstr "Tem a certeza de que pretende apagar \"%s\" de forma permanente?"
+
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr ""
+
+#: app/views/users/index.html.erb:81
+#, fuzzy
+#| msgid "manage backups"
+msgid "Manage Groups"
+msgstr "gerir cópias de segurança"
+
+#: app/views/users/new.html.erb:86
+#, fuzzy
+#| msgid "Create New User?"
+msgid "Add new user"
+msgstr "Criar Novo Utilizador?"
+
+#, fuzzy
+#~| msgid "Empty CA name."
+#~ msgid "Empty UID value"
+#~ msgstr "Nome de CA vazio."
+
+#, fuzzy
+#~| msgid "Local Network"
+#~ msgid "Local User"
+#~ msgstr "Rede Local"
+
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#, fuzzy
+#~| msgid "&Edit"
+#~ msgid "Edit"
+#~ msgstr "&Editar"
+
+#, fuzzy
+#~| msgid "You are <strong>online</strong>"
+#~ msgid "<strong>[New User]</strong>"
+#~ msgstr "Esta <strong>online</strong>"
+
+#~ msgid "Back"
+#~ msgstr "Retroceder"
+
+#~ msgid "Update"
+#~ msgstr "Actualizar"
+
+#, fuzzy
+#~| msgid "Default route ok."
+#~ msgid "Default Group (GID)"
+#~ msgstr "Rota pré-definida ok."
+
+#, fuzzy
+#~| msgid "Cannot create directory %1: %2."
+#~ msgid "Do not create home directory"
+#~ msgstr "Não é possível criar o directório %1: %2."
+
+#, fuzzy
+#~| msgid "Created On: "
+#~ msgid "Create"
+#~ msgstr "Criado em: "

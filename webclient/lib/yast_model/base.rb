@@ -1,3 +1,26 @@
+#--
+# Webyast Webservice framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc. 
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation. 
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+# details. 
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software 
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+
+#inject to ActiveResource xml serializer fix to_xml method
+require "yast_model/xml_fix.rb"
+
+include LangHelper
+
 # ==YastModel module
 # Extension to set correctly ActiveResource model for webyast purpose
 # (multiple hosts and multiple users)
@@ -69,9 +92,12 @@ module YastModel
     # Sets new site to model, together with path of interface on target machine and password for user
     # also invalidates old permissions
     def set_site
-      @permissions = nil #reset permission as it can be for each site and for each user different
       self.site = YaST::ServiceResource::Session.site
       self.password = YaST::ServiceResource::Session.auth_token
+ 
+      #Setting language in the header of the http request
+      self.headers["ACCEPT_LANGUAGE"] = current_locale 
+
       YastModel::Resource.site = self.site  #dynamic set site
       #FIXME not thread safe, (whole using resource with site set class variable is not thread save
       Rails.logger.debug "read interface to #{@interface.to_s}"
@@ -108,7 +134,7 @@ module YastModel
     # Note: it lazy loads permissions so first call for site take more time
     # Note: it is class method, because user, password and site is also on class level
     def permissions
-      return @permissions if @permissions
+      set_site #set site which sets also policy if model has a policy
       YastModel::Permission.site = YaST::ServiceResource::Session.site
       YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
       permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }

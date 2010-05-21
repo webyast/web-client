@@ -1,11 +1,11 @@
-# Fabien Crespel <fabien@crespel.net>, 2009.
+# Fabien Crespel <fabien@crespel.net>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
-"PO-Revision-Date: 2009-11-12 17:56+0100\n"
-"Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
+"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"PO-Revision-Date: 2010-05-01 18:32+0200\n"
+"Last-Translator: Fabien Crespel\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,114 +13,162 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/network_controller.rb:43
-msgid "No permissions for network module"
-msgstr "Pas de permissions pour le module réseau"
-
-#: app/controllers/network_controller.rb:66
-msgid "Not configured"
-msgstr "Non configuré"
-
-#: app/controllers/network_controller.rb:66
+#: app/controllers/network_controller.rb:87
 msgid "Manual"
 msgstr "Manuel"
 
-#: app/controllers/network_controller.rb:66
-#, fuzzy
-#| msgid "Automatic Mode"
+#: app/controllers/network_controller.rb:87
 msgid "Automatic"
-msgstr "Mode automatique"
+msgstr "Automatique"
 
-#: app/controllers/network_controller.rb:105
-#, fuzzy
-#| msgid "Settings have been written."
+#: app/controllers/network_controller.rb:157
 msgid "Network settings have been written."
-msgstr "Les paramètres ont été écrits."
+msgstr "Les paramètres réseau ont été écrits."
 
-#: app/views/network/index.html.erb:88
-msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Format d'adresse IP invalide. Le format correct est nnn.nnn.nnn.nnn avec nnn entre 0 et 255."
+#: app/views/network/index.html.erb:160 app/views/network/index.html.erb:164
+#: app/views/network/index.html.erb:168 app/views/network/index.html.erb:172
+#: app/views/network/index.html.erb:175 app/views/network/index.html.erb:179
+#: app/views/network/index.html.erb:183
+msgid "This field is required"
+msgstr "Ce champ est requis"
 
-#: app/views/network/index.html.erb:97
-#, fuzzy
-#| msgid "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
-msgstr "Préfixe invalide. Le format correct est /nn où nn est compris entre 0 et 32 (format CIDR)."
+#: app/views/network/index.html.erb:161 app/views/network/index.html.erb:169
+#: app/views/network/index.html.erb:180
+msgid "Enter a valid IP address"
+msgstr "Entrez une adresse IP valide"
 
-#: app/views/network/index.html.erb:103
-#, fuzzy
-#| msgid "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
-msgstr "Route par défaut invalide. Le format correct est nnn.nnn.nnn.nnn avec nnn entre 0 et 255."
+#: app/views/network/index.html.erb:165
+msgid "Enter a valid subnet mask or prefix"
+msgstr "Entrez un masque de sous-réseau ou préfixe valide"
 
-#: app/views/network/index.html.erb:109
-#, fuzzy
-#| msgid "Name servers is not valid. There must be at least one specified."
-msgid "Name servers are required. There must be at least one specified."
-msgstr "Serveurs de noms invalides. Au moins un serveur doit être spécifié."
+#: app/views/network/index.html.erb:176 app/views/network/index.html.erb:184
+msgid "Enter a valid domain name"
+msgstr "Entrez un nom de domaine valide"
 
-#: app/views/network/index.html.erb:115
-#, fuzzy
-#| msgid "Hostname is not valid. It must be specified."
-msgid "Hostname is required. It must be specified."
-msgstr "Nom d'hôte invalide. Il doit être spécifié."
+#: app/views/network/index.html.erb:271
+msgid "whitespace - invalid character."
+msgstr "espace - caractère invalide."
 
-#: app/views/network/index.html.erb:121
-#, fuzzy
-#| msgid "Domain is not valid. It is not supported empty domain."
-msgid "Domain is required. It is not supported empty domain."
-msgstr "Domaine invalide. Les domaines vides ne sont pas supportés."
+#: app/views/network/index.html.erb:273
+msgid " - can not start with a digit."
+msgstr " - ne peut pas commencer par un chiffre."
+
+#: app/views/network/index.html.erb:275
+msgid "periodic '-' is not allowed."
+msgstr "'-' périodique non autorisé."
+
+#: app/views/network/index.html.erb:277
+msgid "can not end with (-) hyphen."
+msgstr "ne peut se terminer par '-' (trait d'union)."
+
+#: app/views/network/index.html.erb:280
+msgid "can not start with (-) hyphen."
+msgstr "ne peut commencer par '-' (trait d'union)."
+
+#: app/views/network/index.html.erb:282
+msgid " - is invalid character for hostname."
+msgstr " - est un caractère invalide pour le nom d'hôte."
 
 # TLABEL linuxrc_2002_03_29_0036__161
-#: app/views/network/index.html.erb:131
+#: app/views/network/index.html.erb:325
 msgid "Network"
 msgstr "Réseau"
 
 # TLABEL kinternet_2002_02_20_2255__50
-#: app/views/network/index.html.erb:140
+#: app/views/network/index.html.erb:336
 msgid "Interface"
 msgstr "Interface"
 
 # TLABEL kinternet_2002_02_20_2255__4
-#: app/views/network/index.html.erb:145
+#: app/views/network/index.html.erb:341
 msgid "Select"
 msgstr "Sélectionner"
 
-#: app/views/network/index.html.erb:166
+#: app/views/network/index.html.erb:356
 msgid "Configuration mode"
 msgstr "Mode de configuration"
 
 # TLABEL kinternet_2002_02_20_2255__49
-#: app/views/network/index.html.erb:170
+#: app/views/network/index.html.erb:365
 msgid "IP address"
 msgstr "Adresse IP"
 
-#: app/views/network/index.html.erb:174
-msgid "Subnet mask / Prefixlen"
-msgstr ""
+#: app/views/network/index.html.erb:369
+msgid "Subnet mask/Prefixlen"
+msgstr "Masque de sous-réseau / préfixe"
 
-#: app/views/network/index.html.erb:181
+# TLABEL kinternet_2002_02_20_2255__41
+#: app/views/network/index.html.erb:373
+msgid "Default route"
+msgstr "Route par défaut"
+
+#: app/views/network/index.html.erb:382
 msgid "Hostname"
 msgstr "Nom d'hôte"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:185
+#: app/views/network/index.html.erb:388
 msgid "Domain"
 msgstr "Domaine"
 
 # TLABEL kinternet_2002_02_20_2255__42
-#: app/views/network/index.html.erb:189
+#: app/views/network/index.html.erb:392
 msgid "Name servers"
 msgstr "Serveurs de noms"
 
-#: app/views/network/index.html.erb:193
+#: app/views/network/index.html.erb:396
 msgid "Search domains"
 msgstr "Domaines de recherche"
 
-# TLABEL kinternet_2002_02_20_2255__41
-#: app/views/network/index.html.erb:201
-msgid "Default route"
-msgstr "Route par défaut"
+#~ msgid "Not configured"
+#~ msgstr "Non configuré"
+
+#~ msgid ""
+#~ "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn "
+#~ "between 0 and 255."
+#~ msgstr ""
+#~ "Format d'adresse IP invalide. Le format correct est nnn.nnn.nnn.nnn avec "
+#~ "nnn entre 0 et 255."
+
+#, fuzzy
+#~| msgid ""
+#~| "Invalid Prefix. The correct one /nn where nn is between 0-32 (CIDR "
+#~| "format)."
+#~ msgid ""
+#~ "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR "
+#~ "format)."
+#~ msgstr ""
+#~ "Préfixe invalide. Le format correct est /nn où nn est compris entre 0 et "
+#~ "32 (format CIDR)."
+
+#, fuzzy
+#~| msgid ""
+#~| "Invalid default route. The correct one is nnn.nnn.nnn.nnn for nnn "
+#~| "between 0 and 255."
+#~ msgid ""
+#~ "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn "
+#~ "between 0 and 255."
+#~ msgstr ""
+#~ "Route par défaut invalide. Le format correct est nnn.nnn.nnn.nnn avec nnn "
+#~ "entre 0 et 255."
+
+#, fuzzy
+#~| msgid "Name servers is not valid. There must be at least one specified."
+#~ msgid "Name servers are required. There must be at least one specified."
+#~ msgstr "Serveurs de noms invalides. Au moins un serveur doit être spécifié."
+
+#, fuzzy
+#~| msgid "Hostname is not valid. It must be specified."
+#~ msgid "Hostname is required. It must be specified."
+#~ msgstr "Nom d'hôte invalide. Il doit être spécifié."
+
+#~ msgid "No permissions for network module"
+#~ msgstr "Pas de permissions pour le module réseau"
+
+#, fuzzy
+#~| msgid "Domain is not valid. It is not supported empty domain."
+#~ msgid "Domain is required. It is not supported empty domain."
+#~ msgstr "Domaine invalide. Les domaines vides ne sont pas supportés."
 
 #~ msgid "not set"
 #~ msgstr "non défini"

@@ -1,3 +1,24 @@
+#--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+#++
+
 require 'yast/service_resource'
 
 class UsersController < ApplicationController
@@ -8,10 +29,20 @@ class UsersController < ApplicationController
   private
   def client_permissions
     @permissions = User.permissions
+    @permissions.merge!(Group.permissions)
   end
 
   # Initialize GetText and Content-Type.
   init_gettext "yast_webclient_users"
+
+  def load_users
+    begin
+      User.find :all
+    rescue ActiveResource::ResourceNotFound => e
+      flash[:error] = _("No users found.")
+      []
+    end
+  end
 
   public
   def initialize
@@ -23,14 +54,24 @@ class UsersController < ApplicationController
     return unless client_permissions
     @users = []
     begin
-      @users = User.find :all
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
+      @users = load_users
+      @users.each do |user|
+        user.user_password2 = user.user_password
+        user.uid_number	= user.uid_number
+        user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
+        @all_grps_string = ""
+	@groups = []
+        if @permissions[:groupsget] == true
+          @groups = Group.find :all
+        end
+        @groups.each do |group|
+          if @all_grps_string.blank?
+            @all_grps_string = group.cn
+          else
+            @all_grps_string += ",#{group.cn}"
+          end
+        end
+      end
     end
   end
 
@@ -53,20 +94,19 @@ class UsersController < ApplicationController
       :type		=> "local",
       :id		=> nil
     )
-    @user.grp_string = ""
-    @user.all_grps_string = ""
-    @user.allgroups.each do |group|
-       if counter == 0
-          @user.all_grps_string = group.cn
+    @all_grps_string = ""
+    @groups = []
+    if @permissions[:groupsget] == true
+      @groups = Group.find :all
+    end
+    @groups.each do |group|
+       if @all_grps_string.blank?
+          @all_grps_string = group.cn
        else
-          @user.all_grps_string += ",#{group.cn}"
+          @all_grps_string += ",#{group.cn}"
        end
-       counter += 1
     end
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
+    @user.grp_string = ""
   end
 
 
@@ -74,12 +114,15 @@ class UsersController < ApplicationController
   def edit
     return unless client_permissions
     @user = User.find(params[:id])
+    @groups = Group.find(:all)
+
     #FIXME handle if id is invalid
 
     @user.type	= ""
     @user.id	= @user.uid # use id for storing index value (see update)
     @user.grp_string = ""
-    @user.all_grps_string = ""
+
+    @all_grps_string = ""
 
     # FIXME hack, this must be done properly
     # (my keys in camelCase were transformed to under_scored)
@@ -90,23 +133,19 @@ class UsersController < ApplicationController
     @user.user_password	= @user.user_password
     @user.user_password2= @user.user_password
 
-    counter = 0
     @user.grouplist.each do |group|
-       if counter == 0
+       if @user.grp_string.blank?
           @user.grp_string = group.cn
        else
           @user.grp_string += ",#{group.cn}"
        end
-       counter += 1
     end
-    counter = 0
-    @user.allgroups.each do |group|
-       if counter == 0
-          @user.all_grps_string = group.cn
+    @groups.each do |group|
+       if @all_grps_string.blank?
+          @all_grps_string = group.cn
        else
-          @user.all_grps_string += ",#{group.cn}"
+          @all_grps_string += ",#{group.cn}"
        end
-       counter += 1
     end
   end
 
@@ -123,7 +162,7 @@ class UsersController < ApplicationController
     dummy.grouplist = []
     if dummy.grp_string != nil
        dummy.grp_string.split(",").each do |groupname|
-	  group = { "cn" => groupname }
+	  group = { "cn" => groupname.strip }
 	  dummy.grouplist.push group
        end
     end
@@ -149,18 +188,13 @@ class UsersController < ApplicationController
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
     end
-    respond_to do |format|
-      if response
-        flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
-        format.html { redirect_to :action => "index" }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if response
+      flash[:notice] = _("User <i>%s</i> was successfully created.") % @user.uid
+      redirect_to :action => "index"
+    else
+      render :action => "new"
     end
   end
-
-  # PUT /users/1
   # PUT /users/1.xml
   def update
     return unless client_permissions
@@ -174,7 +208,7 @@ class UsersController < ApplicationController
     @user.grouplist = []
     if params["user"]["grp_string"] != nil
        params["user"]["grp_string"].split(",").each do |groupname|
-	  group = { "cn" => groupname }
+	  group = { "cn" => groupname.strip }
 	  @user.grouplist.push group
        end
     end
@@ -186,22 +220,18 @@ class UsersController < ApplicationController
     @user.user_password = params["user"]["user_password"]
     @user.type = "local"
 
-    respond_to do |format|
-      response = true
-      begin
-        response = @user.save
-        rescue ActiveResource::ClientError => e
-          flash[:error] = YaST::ServiceResource.error(e)
-          response = false
-      end
-      if  response
-        flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
-        format.html { redirect_to :action => "index" }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    response = true
+    begin
+      response = @user.save
+      rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        response = false
+    end
+    if  response
+      flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
+      redirect_to :action => "index"
+    else
+      render :action => "edit"
     end
   end
 
@@ -216,14 +246,11 @@ class UsersController < ApplicationController
     ret = @user.destroy
 
     if ret.code_type == Net::HTTPOK
-	flash[:notice] = _("User <i>%s</i> was successfully removed.") % @user.uid
+      flash[:notice] = _("User <i>%s</i> was successfully removed.") % @user.uid
     else
-	flash[:error] = _("Error: Could not remove user <i>%s</i>.") % @user.uid
+      flash[:error] = _("Error: Could not remove user <i>%s</i>.") % @user.uid
     end
 
-    respond_to do |format|
-      format.html { redirect_to :action => "index" }
-      format.xml  { head :ok }
-    end
+    redirect_to :action => "index"
   end
 end

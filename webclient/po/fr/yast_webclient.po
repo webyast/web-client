@@ -1,11 +1,11 @@
-# Fabien Crespel <fabien@crespel.net>, 2009.
+# Fabien Crespel <fabien@crespel.net>, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:33+0100\n"
-"PO-Revision-Date: 2009-11-12 17:53+0100\n"
-"Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
+"POT-Creation-Date: 2010-05-03 16:30+0200\n"
+"PO-Revision-Date: 2010-05-01 18:23+0200\n"
+"Last-Translator: Fabien Crespel\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,68 +13,169 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/application_controller.rb:53
-msgid "You must accept all EULAs before using this product!"
-msgstr "Vous devez accepter tous les accords de licence avant d'utiliser ce produit !"
+#: app/helpers/application_helper.rb:39
+msgid " or "
+msgstr " ou "
 
-#: app/controllers/application_controller.rb:57
-msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-msgstr "Impossible de rediriger vers l'accord de licence. Assurez-vous que le paquet yast2-webclient-eulas est installé"
+#: app/helpers/application_helper.rb:43
+msgid " - "
+msgstr " - "
 
-#: app/controllers/application_controller.rb:111
+# TLABEL linuxrc_2002_03_29_0036__1
+#: app/helpers/application_helper.rb:52 app/helpers/application_helper.rb:66
+#: app/views/hosts/edit.html.erb:40
+msgid "Back"
+msgstr "Retour"
+
+# cancel button label
+#: app/helpers/application_helper.rb:56 app/views/hosts/new.html.erb:53
+msgid "Cancel"
+msgstr "Annuler"
+
+#: app/helpers/application_helper.rb:71
+msgid "Save"
+msgstr "Enregistrer"
+
+#: app/helpers/application_helper.rb:74
+msgid "Next"
+msgstr "Suivant"
+
+#: app/helpers/application_helper.rb:75
+msgid "Finish"
+msgstr "Terminer"
+
+#: app/helpers/view_helpers/html_helper.rb:27
+msgid "Are you sure?"
+msgstr "Êtes-vous sûr ?"
+
+#: app/helpers/view_helpers/html_helper.rb:153
+msgid "Unknown error"
+msgstr "Erreur inconnue"
+
+# TLABEL linuxrc_2002_03_29_0036__109
+#: app/helpers/view_helpers/html_helper.rb:157
+#: app/views/shared/exception_trap.html.erb:22
+msgid "No information available"
+msgstr "Aucune information disponible"
+
+#: app/helpers/view_helpers/html_helper.rb:160
+msgid "There was a problem retrieving information from the server."
+msgstr ""
+"Un problème est survenu lors de la récupération des informations depuis le "
+"serveur."
+
+#: app/helpers/view_helpers/effect_helper.rb:50
+msgid "Hide Details"
+msgstr "Masquer les détails"
+
+#: app/helpers/view_helpers/effect_helper.rb:51
+msgid "Show Details"
+msgstr "Afficher les détails"
+
+#: app/helpers/view_helpers/label_helper.rb:24
+#: app/views/hosts/index.html.erb:32
+msgid "Add"
+msgstr "Ajouter"
+
+#: app/helpers/view_helpers/label_helper.rb:28
+msgid "Edit"
+msgstr "Modifier"
+
+# TLABEL autoinst_2002_08_07_0216__155
+#: app/helpers/view_helpers/label_helper.rb:32
+msgid "Delete"
+msgstr "Effacer"
+
+#: app/controllers/sessions_controller.rb:67
+msgid "You need to specify the host"
+msgstr "Vous devez spécifier l'hôte"
+
+#: app/controllers/sessions_controller.rb:70
+msgid "No login specified"
+msgstr "Aucun login n'a été spécifié"
+
+#: app/controllers/sessions_controller.rb:73
+msgid "No password specified"
+msgstr "Aucun mot de passe n'a été spécifié"
+
+#: app/controllers/sessions_controller.rb:92
+msgid "Host has blocked user %s. It cannot login until  %s"
+msgstr "L'hôte a bloqué l'utilisateur %s. Il ne peut pas se connecter avant %s"
+
+#: app/controllers/sessions_controller.rb:115
+msgid "Login incorrect. Check your username and password."
+msgstr ""
+"Échec de l'identification. Veuillez vérifier votre nom d'utilisateur et mot "
+"de passe."
+
+#: app/controllers/sessions_controller.rb:148
+msgid "You have been logged out."
+msgstr "Vous avez été déconnecté."
+
+#: app/controllers/application_controller.rb:42
+msgid "Session timeout"
+msgstr "Expiration de la session"
+
+#: app/controllers/application_controller.rb:97
+msgid ""
+"You're not allowed to do this. If you have to do this action, please contact "
+"system administrator"
+msgstr ""
+"Vous n'êtes pas autorisé à effectuer cette action. Si vous devez le faire, "
+"veuillez contacter un administrateur système"
+
+#: app/controllers/application_controller.rb:135
 msgid "Please login to continue"
 msgstr "Veuillez vous connecter pour continuer"
 
-#: app/controllers/application_controller.rb:118
+#: app/controllers/application_controller.rb:142
 msgid "You must logout before you can login"
 msgstr "Vous devez vous déconnecter avant de pouvoir vous connecter"
 
-#: app/controllers/hosts_controller.rb:25
+#: app/controllers/application_controller.rb:231
+msgid "can't be blank"
+msgstr "ne peut être vide"
+
+#: app/controllers/application_controller.rb:232
+msgid "is out of allowed values"
+msgstr "est en dehors des valeurs autorisées"
+
+#: app/controllers/application_controller.rb:233
+msgid "can't be empty"
+msgstr "ne peut être vide"
+
+#: app/controllers/application_controller.rb:234
+msgid "is invalid"
+msgstr "est invalide"
+
+#: app/controllers/application_controller.rb:249
+msgid "Invalid parameters:"
+msgstr "Paramètres invalides :"
+
+#: app/controllers/hosts_controller.rb:43
 msgid "Can't connect to host %s."
 msgstr "Impossible de se connecter à l'hôte %s."
 
 # TLABEL linuxrc_2002_03_29_0036__132
-#: app/controllers/hosts_controller.rb:26
+#: app/controllers/hosts_controller.rb:44
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "Assurez-vous que l'hôte est en fonctionnement et que le service web YaST est en cours d'exécution."
+msgstr ""
+"Assurez-vous que l'hôte est en fonctionnement et que le service web YaST est "
+"en cours d'exécution."
 
-#: app/controllers/hosts_controller.rb:28
+#: app/controllers/hosts_controller.rb:46
 msgid "Please select a host to connect to."
 msgstr "Veuillez sélectionner un hôte auquel se connecter."
 
 # TLABEL linuxrc_2002_03_29_0036__117
-#: app/controllers/hosts_controller.rb:31
+#: app/controllers/hosts_controller.rb:49
 msgid "The host '%s' cannot be found."
 msgstr "L'hôte '%s' est introuvable."
 
 # TLABEL support_2002_03_14_2340__2
-#: app/controllers/hosts_controller.rb:32
+#: app/controllers/hosts_controller.rb:50
 msgid "Please double-check the host URL."
 msgstr "Veuillez vérifier l'URL de l'hôte."
-
-#: app/controllers/sessions_controller.rb:51
-msgid "You need to specify the host"
-msgstr "Vous devez spécifier l'hôte"
-
-#: app/controllers/sessions_controller.rb:54
-msgid "No login specified"
-msgstr "Aucun login n'a été spécifié"
-
-#: app/controllers/sessions_controller.rb:57
-msgid "No password specified"
-msgstr "Aucun mot de passe n'a été spécifié"
-
-#: app/controllers/sessions_controller.rb:76
-msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr "L'hôte a bloqué l'utilisateur %s. Il ne peut pas se connecter avant %s"
-
-#: app/controllers/sessions_controller.rb:99
-msgid "Login incorrect. Check your username and password."
-msgstr "Échec de l'identification. Veuillez vérifier votre nom d'utilisateur et mot de passe."
-
-#: app/controllers/sessions_controller.rb:132
-msgid "You have been logged out."
-msgstr "Vous avez été déconnecté."
 
 #: app/models/account.rb:-
 msgid "account"
@@ -128,103 +229,9 @@ msgstr "Hôte|Créé le"
 msgid "Host|Updated at"
 msgstr "Hôte|Mis à jour le"
 
-#: app/helpers/application_helper.rb:15
-msgid " or "
-msgstr " ou "
-
-# cancel button label
-#: app/helpers/application_helper.rb:20 app/views/hosts/new.html.erb:46
-msgid "Cancel"
-msgstr "Annuler"
-
-#: app/helpers/application_helper.rb:28
-msgid "Save"
-msgstr "Enregistrer"
-
-#: app/helpers/application_helper.rb:30
-msgid "Next"
-msgstr "Suivant"
-
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
-msgid "Add"
-msgstr "Ajouter"
-
-#: app/helpers/view_helpers/label_helper.rb:10
-msgid "Edit"
-msgstr "Modifier"
-
-# TLABEL autoinst_2002_08_07_0216__155
-#: app/helpers/view_helpers/label_helper.rb:14
-msgid "Delete"
-msgstr "Effacer"
-
-#: app/helpers/view_helpers/html_helper.rb:10
-msgid "Are you sure?"
-msgstr "Êtes-vous sûr ?"
-
-#: app/helpers/view_helpers/html_helper.rb:132
-msgid "Unknown error"
-msgstr "Erreur inconnue"
-
-# TLABEL linuxrc_2002_03_29_0036__109
-#: app/helpers/view_helpers/html_helper.rb:136
-#: app/views/shared/exception_trap.html.erb:22
-msgid "No information available"
-msgstr "Aucune information disponible"
-
-#: app/helpers/view_helpers/html_helper.rb:139
-msgid "There was a problem retrieving information from the server."
-msgstr "Un problème est survenu lors de la récupération des informations depuis le serveur."
-
-#: app/views/hosts/index.html.erb:6
-msgid "Please choose a service:"
-msgstr "Veuillez choisir un service :"
-
-#: app/views/hosts/index.html.erb:26
-msgid "Really delete host %s ?"
-msgstr "Voulez-vous vraiment supprimer l'hôte %s ?"
-
-#: app/views/hosts/edit.html.erb:1
-msgid "Editing YaST-Web-Service"
-msgstr "Modification de YaST-Web-Service"
-
-#: app/views/hosts/edit.html.erb:22
-msgid "YaST-Web-Service"
-msgstr "YaST-Web-Service"
-
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:31
-msgid "Name"
-msgstr "Nom"
-
-#: app/views/hosts/edit.html.erb:29 app/views/hosts/new.html.erb:36
-msgid "Url"
-msgstr "URL"
-
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:41
-msgid "Description"
-msgstr "Description"
-
-#: app/views/hosts/edit.html.erb:38
-msgid "Ok"
-msgstr "OK"
-
-# TLABEL linuxrc_2002_03_29_0036__1
-#: app/views/hosts/edit.html.erb:39
-msgid "Back"
-msgstr "Retour"
-
-#: app/views/hosts/show.html.erb:7
-msgid "Index"
-msgstr "Index"
-
-#: app/views/hosts/new.html.erb:4
-msgid "New WebYaST Host"
-msgstr "Nouvel hôte WebYaST"
-
-#: app/views/hosts/new.html.erb:47
-msgid "Create"
-msgstr "Créer"
+#: app/views/main/_select_language.html.erb:18
+msgid "Language Selection"
+msgstr "Sélection de la langue"
 
 #: app/views/shared/exception_trap.html.erb:8
 #: app/views/shared/backendexception_trap.html.erb:2
@@ -232,8 +239,8 @@ msgid "This is embarrasing...."
 msgstr "C'est embarrassant ..."
 
 #: app/views/shared/exception_trap.html.erb:10
-msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
-msgstr "Nous sommes désolés, mais WebYaST est encore au stade alpha et il reste des problèmes."
+msgid "We are sorry, but there are some problems."
+msgstr "Nous sommes désolés, il y a quelques problèmes."
 
 #: app/views/shared/exception_trap.html.erb:12
 #: app/views/shared/backendexception_trap.html.erb:6
@@ -242,7 +249,8 @@ msgstr "Problème :"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "Veuillez signaler le bug afin que nous puissions corriger le problème !"
+msgstr ""
+"Veuillez signaler le bug afin que nous puissions corriger le problème !"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
@@ -256,158 +264,291 @@ msgstr "N'oubliez pas d'inclure les détails du problème."
 msgid "Problem occured on target machine."
 msgstr "Un problème est survenu sur la machine cible."
 
-#: app/views/layouts/main.rhtml:34
-msgid "WebYaST"
-msgstr "WebYaST"
+#: app/views/shared/_missing_write_permissions.html.erb:1
+msgid "You do not have permissions to modify the settings."
+msgstr "Vous n'avez pas la permission de modifier les paramètres."
 
-#: app/views/layouts/main.rhtml:48
-msgid "My Appliance"
-msgstr "Ma Machine"
+#: app/views/hosts/edit.html.erb:2
+msgid "Editing YaST-Web-Service"
+msgstr "Modification de YaST-Web-Service"
 
-#: app/views/layouts/main.rhtml:56
-#, fuzzy
-#| msgid "Connected Host"
-msgid "Connected host:"
-msgstr "Hôte connecté"
+#: app/views/hosts/edit.html.erb:23
+msgid "YaST-Web-Service"
+msgstr "YaST-Web-Service"
 
-#: app/views/layouts/main.rhtml:57
-msgid "User:"
-msgstr "Utilisateur :"
+#: app/views/hosts/edit.html.erb:26 app/views/hosts/new.html.erb:37
+msgid "Name"
+msgstr "Nom"
 
-# TLABEL general_2002_03_14_2340__44
-#: app/views/layouts/main.rhtml:60
-msgid "Control panel"
-msgstr "Panneau de configuration"
+#: app/views/hosts/edit.html.erb:30
+msgid "Url"
+msgstr "URL"
 
-#: app/views/layouts/main.rhtml:61
-msgid "Logout"
-msgstr "Déconnexion"
+#: app/views/hosts/edit.html.erb:34 app/views/hosts/new.html.erb:47
+msgid "Description"
+msgstr "Description"
 
-#: app/views/layouts/main.rhtml:93
-msgid "...Wait..."
-msgstr "... Patientez ..."
+#: app/views/hosts/edit.html.erb:39
+msgid "Ok"
+msgstr "OK"
 
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
-msgid "Login"
-msgstr "Connexion"
+#: app/views/hosts/index.html.erb:5
+msgid "Please choose a service:"
+msgstr "Veuillez choisir un service :"
 
-# TLABEL linuxrc_2002_03_29_0036__77
-#: app/views/sessions/new.rhtml:6
-msgid "Enter login credentials for host %s."
-msgstr "Entrez les identifiants de connexion pour l'hôte %s."
+#: app/views/hosts/index.html.erb:25
+msgid "Really delete host %s ?"
+msgstr "Voulez-vous vraiment supprimer l'hôte %s ?"
 
-#: app/views/sessions/new.rhtml:10
-msgid "Username:"
-msgstr "Nom d'utilisateur :"
+#: app/views/hosts/new.html.erb:10
+msgid "New WebYaST Host"
+msgstr "Nouvel hôte WebYaST"
 
-# TLABEL kinternet_2002_02_20_2255__81
-#: app/views/sessions/new.rhtml:13
-msgid "Password:"
-msgstr "Mot de passe :"
+#: app/views/hosts/new.html.erb:42
+msgid "URL"
+msgstr "URL"
 
-#: app/views/controlpanel/basesystem.rhtml:1
-msgid "Base system setup"
-msgstr "Configuration du système de base"
+#: app/views/hosts/new.html.erb:54
+msgid "Create"
+msgstr "Créer"
 
-#: app/views/controlpanel/basesystem.rhtml:3
-msgid "Your system setup was not completed. Please continue with setting up the modules."
-msgstr "La configuration du système n'est pas terminée. Veuillez continuer à configurer les modules."
+#: app/views/hosts/show.html.erb:8
+msgid "Index"
+msgstr "Index"
 
-# TLABEL linuxrc_2002_03_29_0036__90
-#: app/views/controlpanel/basesystem.rhtml:4
-msgid "Set up the system"
-msgstr "Configurer le système"
-
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:61
+#: app/views/controlpanel/show_all.rhtml:18
+#: app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "Configuration"
 
 # TLABEL lan_inetd_2002_01_04_0147__28
-#: app/views/controlpanel/index.rhtml:24
+#: app/views/controlpanel/index.rhtml:27
 msgid "Status"
 msgstr "État"
 
 # TLABEL linuxrc_2002_03_29_0036__142
-#: app/views/controlpanel/index.rhtml:33
+#: app/views/controlpanel/index.rhtml:35
 msgid "System actions"
 msgstr "Actions système"
 
 # reboot button label
-#: app/views/controlpanel/index.rhtml:34
+#: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
 msgstr "Redémarrage"
 
-#: app/views/controlpanel/index.rhtml:35
+#: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
 msgstr "Voulez-vous vraiment redémarrer %s ?"
 
-#: app/views/controlpanel/index.rhtml:36
+#: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
 msgstr "Arrêt"
 
-#: app/views/controlpanel/index.rhtml:37
+#: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
 msgstr "Voulez-vous vraiment arrêter %s ?"
 
-#: app/views/controlpanel/index.rhtml:44
+#: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
 msgstr "Chargement des informations sur les correctifs"
 
-#: app/views/controlpanel/index.rhtml:46
+#: app/views/controlpanel/index.rhtml:50
+msgid "Patch status summary is disabled in the config file."
+msgstr ""
+"Le résumé de l'état des correctifs est désactivé dans le fichier de "
+"configuration."
+
+#: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
 msgstr "Le module d'installation des correctifs n'est pas installé."
 
-#: app/views/controlpanel/index.rhtml:52
+#: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
 msgstr "Chargement des informations sur le système"
 
+#: app/views/controlpanel/index.rhtml:62
+msgid "System status summary is disabled in the config file."
+msgstr ""
+"Le résumé de l'état du système est désactivé dans le fichier de "
+"configuration."
+
 # TLABEL partitioning_2002_01_04_0147__180
-#: app/views/controlpanel/index.rhtml:54
+#: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
 msgstr "Le module d'état n'est pas installé."
 
 # TLABEL linuxrc_2002_03_29_0036__17
-#: app/views/controlpanel/index.rhtml:93
+#: app/views/controlpanel/index.rhtml:100
 msgid "Show all modules"
 msgstr "Afficher tous les modules"
 
-#: lib/error_constructor.rb:12
+#: app/views/controlpanel/basesystem.rhtml:18
+msgid "Base system setup"
+msgstr "Configuration du système de base"
+
+#: app/views/controlpanel/basesystem.rhtml:20
+msgid ""
+"Your initial system setup was not completed. Please continue with setting up "
+"the modules."
+msgstr ""
+"La configuration initiale du système n'est pas terminée. Veuillez continuer "
+"à configurer les modules."
+
+#: app/views/controlpanel/basesystem.rhtml:21
+msgid "Continue initial system setup"
+msgstr "Continuer la configuration initiale du système"
+
+#: app/views/layouts/main.rhtml:52
+msgid "WebYaST"
+msgstr "WebYaST"
+
+#: app/views/layouts/main.rhtml:56
+msgid ""
+"You are using an unsupported browser. Please switch to %sFireFox 3.5 or "
+"better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]"
+msgstr ""
+"Vous utilisez un navigateur non supporté. Veuillez passer à %sFirefox 3.5 ou "
+"plus récent%s ou %sInternet Explorer 8%s. Merci ! [%sclose%s]"
+
+#: app/views/layouts/main.rhtml:63
+msgid ""
+"JavaScript support is missing or disabled. Please turn JavaScript on or use "
+"a supported browser (%sFireFox 3.5%s or %sInternet Explorer 8%s)."
+msgstr ""
+"Le support de JavaScript est manquant ou désactivé. Veuillez activer "
+"JavaScript ou utiliser un navigateur supporté (%sFirefox 3.5%s ou %sInternet "
+"Explorer 8%s)."
+
+#: app/views/layouts/main.rhtml:73
+msgid "My Appliance"
+msgstr "Ma Machine"
+
+#: app/views/layouts/main.rhtml:79 app/views/layouts/main.rhtml:83
+msgid "Language:"
+msgstr "Langue :"
+
+#: app/views/layouts/main.rhtml:85
+msgid "Connected host:"
+msgstr "Hôte connecté :"
+
+#: app/views/layouts/main.rhtml:86
+msgid "User:"
+msgstr "Utilisateur :"
+
+# TLABEL general_2002_03_14_2340__44
+#: app/views/layouts/main.rhtml:89
+msgid "Control panel"
+msgstr "Panneau de configuration"
+
+#: app/views/layouts/main.rhtml:90
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: app/views/layouts/main.rhtml:125
+msgid "...Wait..."
+msgstr "... Patientez ..."
+
+#: app/views/sessions/new.rhtml:21 app/views/sessions/new.rhtml:33
+msgid "Login"
+msgstr "Connexion"
+
+# TLABEL linuxrc_2002_03_29_0036__77
+#: app/views/sessions/new.rhtml:23
+msgid "Enter login credentials for host %s."
+msgstr "Entrez les identifiants de connexion pour l'hôte %s."
+
+#: app/views/sessions/new.rhtml:27
+msgid "Username:"
+msgstr "Nom d'utilisateur :"
+
+# TLABEL kinternet_2002_02_20_2255__81
+#: app/views/sessions/new.rhtml:30
+msgid "Password:"
+msgstr "Mot de passe :"
+
+#: lib/error_constructor.rb:30
 msgid "Service %s is not available in the target machine"
 msgstr "Le service %s n'est pas disponible sur la machine cible"
 
-#: lib/error_constructor.rb:14
+#: lib/error_constructor.rb:32
 msgid "Service %s is not running on the target machine"
 msgstr "Le service %s n'est pas en cours d'exécution sur la machine cible"
 
-#: lib/error_constructor.rb:16
+#: lib/error_constructor.rb:34
+msgid ""
+"Broken permission setup on rest-service. Can be fixed by grantwebyastrights "
+"script."
+msgstr ""
+"Configuration des permissions incorrecte sur rest-service. Peut être "
+"corrigée par le script grantwebyastrights."
+
+#: lib/error_constructor.rb:35
 msgid "Permission %s is not granted for user %s"
 msgstr "La permission %s n'est pas accordée à l'utilisateur %s"
 
-#: lib/error_constructor.rb:18
-msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr "Exception Policy Kit pour l'utilisateur %s et la permission %s (message non traduit) : %s"
+#: lib/error_constructor.rb:37
+msgid ""
+"Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr ""
+"Exception Policy Kit pour l'utilisateur %s et la permission %s (message non "
+"traduit) : %s"
 
-#: lib/error_constructor.rb:20
+#: lib/error_constructor.rb:39
 msgid "A user is no longer logged to target machine. Please log in again."
-msgstr "Il n'y a plus d'utilisateur connecté à la machine cible. Veuillez vous reconnecter."
+msgstr ""
+"Il n'y a plus d'utilisateur connecté à la machine cible. Veuillez vous "
+"reconnecter."
 
-#: lib/error_constructor.rb:22
+#: lib/error_constructor.rb:41
 msgid "Target system is not consistent: Missing or corrupted file %s"
 msgstr "Le système cible n'est pas cohérent : fichier %s corrompu ou manquant"
 
-#: lib/error_constructor.rb:26
-msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr "Il n'y a pas de serveur NTP prédéfini dans /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+#: lib/error_constructor.rb:45
+msgid ""
+"There is no predefined ntp server at /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
+msgstr ""
+"Il n'y a pas de serveur NTP prédéfini dans /etc/sysconfig/network/config - "
+"NETCONFIG_NTP_STATIC_SERVERS"
 
 # TLABEL linuxrc_2002_03_29_0036__95
-#: lib/error_constructor.rb:28
-msgid "Error occured during ntp synchronization: %s"
+#: lib/error_constructor.rb:47
+msgid "Error occurred during ntp synchronization: %s"
 msgstr "Une erreur est survenue lors de la synchronisation NTP : %s"
 
-#: lib/error_constructor.rb:31
+#: lib/error_constructor.rb:50
 msgid "Error while saving administrator settings: %s"
-msgstr "Erreur lors de l'enregistrement des paramètres de l'administrateur : %s"
+msgstr ""
+"Erreur lors de l'enregistrement des paramètres de l'administrateur : %s"
+
+#~ msgid "You must accept all EULAs before using this product!"
+#~ msgstr ""
+#~ "Vous devez accepter tous les accords de licence avant d'utiliser ce "
+#~ "produit !"
+
+#~ msgid ""
+#~ "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is "
+#~ "installed"
+#~ msgstr ""
+#~ "Impossible de rediriger vers l'accord de licence. Assurez-vous que le "
+#~ "paquet yast2-webclient-eulas est installé"
+
+# TLABEL linuxrc_2002_03_29_0036__90
+#~ msgid "Set up the system"
+#~ msgstr "Configurer le système"
+
+#~ msgid ""
+#~ "We are sorry, but WebYaST is still in alpha and there are some problems."
+#~ msgstr ""
+#~ "Nous sommes désolés, mais WebYaST est encore au stade alpha et il reste "
+#~ "des problèmes."
+
+#~ msgid ""
+#~ "Your system setup was not completed. Please continue with setting up the "
+#~ "modules."
+#~ msgstr ""
+#~ "La configuration du système n'est pas terminée. Veuillez continuer à "
+#~ "configurer les modules."
 
 #~ msgid "Langugage:"
 #~ msgstr "Langue :"

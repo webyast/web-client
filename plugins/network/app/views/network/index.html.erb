@@ -1,87 +1,189 @@
+<!--
+# Copyright (c) 2009-2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
+
 <%
   write_disabled = ! @permissions[:write]
-  static_disabled = write_disabled || @conf_mode != "static"
 %>
+
 <% content_for :head do %>
    <%= javascript_include_tag :defaults %>
-   <link rel="stylesheet" href="/inc/smoothness/jquery.ui.custom.css" type="text/css" media="screen" title="default" charset="utf-8" />
-
-  <script type="text/javascript" charset="utf-8" src="/javascripts/jquery.example.js"></script>
-
-	<script type="text/javascript">
-	    $(function() {
-	      $('#ip').example('Address of this machine (e.g. 192.168.0.18)');
-	    });
-	  </script>
-
-	<script type="text/javascript">
-	    $(function() {
-	      $('#netmask').example('Address shared with other machines (e.g. 255.255.255.0)');
-	    });
-	  </script>
-
-	 <script type="text/javascript">
-	    $(function() {
-	      $('#name').example('Name of this machine in the network (e.g. mycomputer)');
-	    });
-	  </script>
-
-	 <script type="text/javascript">
-	    $(function() {
-	      $('#domain').example('Network name (e.g. example.com)');
-	    });
-	  </script>
-
-	 <script type="text/javascript">
-	    $(function() {
-	      $('#nameservers').example('IP address of machine which translates hostnames in IP addresses');
-	    });
-	  </script>
-
-	 <script type="text/javascript">
-	    $(function() {
-	      $('#searchdomains').example('Domain name where hostname searching starts ');
-	    });
-	  </script>
-
-	 <script type="text/javascript">
-	    $(function() {
-	      $('#default_route').example('Target address for outgoing IP data packages');
-	    });
-	  </script>
 
    <% javascript_tag do -%>
-      function disable_static_config(abool) {
-          $("#ip")[0].disabled = abool;
-          $("#netmask")[0].disabled = abool;
-          $("#nameservers")[0].disabled = abool;
-          $("#searchdomains")[0].disabled = abool;
-          $("#default_route")[0].disabled = abool;
-// TODO fix and use this
-//          $.each(["#ip", "#netmask",
-//                  "#nameservers", "#searchdomains",
-//                  "#default_route"], function() {
-//              $(this)[0].disabled = abool;
-//          });
+      // Slide and focus the field with error if accordion/tab section  is closed 
+      // (prevent the slideDown of opened tab)
+      function focus_field(field_id) {
+        var fragment_id = $("#"+ field_id).parents('fieldset').attr("id");
+        if ($("#"+fragment_id+" legend").attr('aria-expanded') != 'true') {
+           $(".fieldset-group.ui-accordion").accordion('activate', "#"+fragment_id+" legend");
+        };
+        $(".fieldset-group.ui-tabs").tabs('select',"#"+fragment_id);
+        $("#"+field_id).focus();
+      };
+   <% end %>
+
+   <% javascript_tag do -%>
+      function hide_static_config() {
+            if ($("#conf_mode").val() == "static"){
+              $(".fieldset-group").show();
+              $(".fieldset-group :input").enable();
+              $("#dnsForm").valid();
+            } else {
+              $(".fieldset-group").hide();
+              $(".fieldset-group :input").disable();
+            }
       }
-      // Sets a focus to a fieldID, switching to its tab first.
-      // fieldID is like "default_route"
-      function focus_tabbed(fieldID) {
-	// show its fieldset and save ID
-	var fsID = $("#"+fieldID).closest('fieldset').attr('id');
-	$("#"+fsID).show()
-	// hide all other fieldsets
-	$("#"+fsID).siblings('fieldset').hide();
-	// Remove highlighting from tabs
-	$('.tab-nav').find('a').removeClass('selected');
-	var className = fsID
-	// highlight its tab
-	$('.'+className).addClass('selected');
-	// focus at last
-	$("#"+fieldID).focus();
+   <% end -%>
+
+<!-- 	TODO move all stylesheets to public css file -->
+	<style type="text/css">
+	 /* TODO move to style.css fix for validation */
+	 .ui-accordion .ui-accordion-content {padding:1em 0px;}
+	 label.error {
+		float:none;
+		display:inline;
+		font-weight:bold;
+		color:#990000;
+		padding-left:.5em;
+		vertical-align:middle;
+	 }
+	 label.valid { 
+		background: url('../images/checked.gif') no-repeat;
+		padding:0px 0px 0px 18px;
+		vertical-align:middle; 
+		margin-left:5px;
+	 }
+	</style>
+
+	<script type="text/javascript">
+		function switchFieldsetGroupTab()
+		{
+      if ($("#conf_mode").val() == "static"){
+			  var ipValid = getElementsByClass("error valid", "ip-address", "label");
+  			var ipErrors = getElementsByClass("error", "ip-address", "label");
+	  		var dnsValid = getElementsByClass("error valid", "dns", "label");
+		  	var dnsErrors = getElementsByClass("error", "dns", "label");
+
+  			if(dnsValid.length != dnsErrors.length && ipValid.length == ipErrors.length) {
+	  			focus_field("name");
+				  return false;
+		  	} else if(ipValid.length != ipErrors.length && dnsValid.length == dnsErrors.length) {
+			  	focus_field("ip");
+				  return false;
+  			} else if(ipValid.length != ipErrors.length && dnsValid.length != dnsErrors.length) {
+	  			focus_field("ip");
+				  return false;
+		  	}
       }
 
-   <% end -%>
+      disable_forms();
+		 	$('#progress').show();
+		  return true;
+		}
+	</script>
+
+	<%= javascript_include_tag "validation.js" %>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  validateIPv4("ip");
+	  validateSubnetMask("netmask"); //accept prefixlen and common subnet mask format e.g. 255.255.255.0
+	  validateDefaultRoute("default_route");
+	  validateDomainNameWithAndWithoutTLD("domain");
+	  validateIPv4("nameservers");
+	  validateDomainNameWithAndWithoutTLD("searchdomains");
+
+		$("#dnsForm").validate({ 
+		  onblur: true,
+		  rules:{
+			 ip: {
+				ip: true,
+				required:true
+			 },
+			 netmask:{
+				netmask: true,
+				required:true
+			 },
+			 default_route: {
+				default_route: true,
+				required:true
+			 },
+			 name: { 
+				required: true,
+			 },
+			 domain: {
+				domain: true,
+				required:true
+			 },
+			 nameservers: {
+				nameservers: true,
+				required:true
+			 },
+			 searchdomains: {
+				searchdomains: true,
+				required:true
+			 }
+		  },
+
+		  messages: {
+			 ip: {
+				required: <%= jss _("This field is required") -%>,
+				ip: <%= jss _("Enter a valid IP address") -%>
+			 },
+			 netmask: {
+				required: <%= jss _("This field is required") -%>,
+				netmask: <%= jss _("Enter a valid subnet mask or prefix") -%>
+			 },
+			 default_route: {
+				required: <%= jss _("This field is required") -%>,
+				default_route:<%= jss _("Enter a valid IP address") -%>
+			 },
+
+			 name:{ required: <%= jss _("This field is required") -%> },
+
+			 domain:{
+				required: <%= jss _("This field is required") -%>,
+				domain: <%= jss _("Enter a valid domain name") -%> 
+			 },
+			 nameservers: {
+				required: <%= jss _("This field is required") -%>,
+				nameservers: <%= jss _("Enter a valid IP address") -%>
+			 },
+			 searchdomains: {
+				required: <%= jss _("This field is required")  -%>,
+				searchdomains: <%= jss _("Enter a valid domain name") -%> 
+			 }
+		  },
+		  success: "valid"  
+		});
+		
+		// FIXME: find better solution for starting the validation with document on load
+		$("#ip").keyup( function() {$("#dnsForm").valid();}); 
+		$("#netmask").keyup( function() {$("#dnsForm").valid();});
+		$("#default_route").keyup( function() {$("#dnsForm").valid();});
+		$("#domain").keyup( function() {$("#dnsForm").valid();});
+		$("#nameservers").keyup( function() {$("#dnsForm").valid();});
+		$("#searchdomains").keyup( function() {$("#dnsForm").valid();});
+    hide_static_config();
+	 });
+	 </script>
+
    <% javascript_tag do -%>
    //TODO move this validations to separate js library
       function validIP(ip) {
@@ -117,144 +219,156 @@
             return false;
         return true; //FIXME better check
       }
+
+      //RFC 952 [a-zA-Z0-9'-']
+      //cann't have any spaces
+      //cann't start with a hyphen '-'
+      //cann't start with a digit
+      //no periodic hyphen '-'
+      //must not end with a hyphen '-'
+
+      //vgorobets@suse.de TODO:
+      //upgrade to RFC1123
+
+      var valChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789";
+
+      function hostValidation(t,v){
+          var valhostname = "";
+          for (i=0; i < t.value.length; i++) {
+          x = t.value.charAt(i);
+             if (v.indexOf(x,0) != -1 && t.value !='-' && isNaN(t.value)) {
+                if(t.value[t.value.length-1] == t.value[t.value.length-2] && t.value[t.value.length-1] == "-") {
+						t.value = t.value.substring(0,t.value.length-1);
+                  addWarning("periodic");
+                }
+                valhostname += x;
+              } else {
+                addWarning(x); // put warning if character is invalid
+              }
+          }
+          t.value = valhostname;
+      }
+
+      function clearWarning(){
+			$("#dns").find("label[for='name']").filter('[class=error]').text("");
+      }
+
+      function addWarning(message){
+         if(message == " ") {
+            message += <%= jss _("whitespace - invalid character.") %>
+         } else if (isNaN(message) == false) {
+            message += <%= jss _(" - can not start with a digit.") %>
+         } else if (message == "periodic") { 
+            message = <%= jss _("periodic '-' is not allowed.") %>
+         } else if (message == "endWithHyphen") { 
+				message = <%= jss _("can not end with (-) hyphen.") %>
+         } else {
+            if(message == '-') {
+               message = <%= jss _("can not start with (-) hyphen.") %>
+            } else {
+               message += <%= jss _(" - is invalid character for hostname.") %>
+            }
+         }
+			
+			$("#dns").find("label[for='name']").filter('[class=error valid]').removeClass("valid").addClass("error");
+			$("#dns").find("label[for='name']").filter('[class=error]').text(message);
+		}
+
+      function endWithHyphen(t) {
+         if(t.value[t.value.length-1] == "-") {
+            t.value = t.value.substring(0,t.value.length-1);
+            focus_field("name");
+            addWarning("endWithHyphen");
+			}        
+      }
+
       function validDomain(domain){
         //not empty, suse doesn't support it
         if (domain.match(/^\s*$/))
             return false;
         return true; //FIXME better check
       }
+    <% end %>
+<% end %>
+<% content_for :before_script do %>
+  <% javascript_tag do %>
+    $(document).ready(function(){
+/*
+      // commenting/uncommenting these few lines is all it takes to switch from tebs to accordion
+      $(".fieldset-group").accordion({
+        autoHeight : false,
+        navigation : true,
+        header     : 'fieldset legend',
+        collapsible: true,
+        animated   : false
+      });
+*/
+      addTabsNavigation(".fieldset-group", "span");
+      $(".fieldset-group").tabs();
+    });
 
-
-
-      function validateNetwork() {
-        if ($("#conf_mode")[0].value == "static") {
-          if (! validIP($("#ip")[0].value)) {
-            say_bad_ip = "<%= _("Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
-      	    focus_tabbed("ip");
-            alert (say_bad_ip);
-            return false;
-          }
-          netmask = $("#netmask")[0].value;
-          //support only prefix as it is not confusing with label
-          if (!validPrefix(netmask)) {
-      	    focus_tabbed("netmask");
-            say_bad_mask = "<%= _("Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format).") %>"
-            alert (say_bad_mask);
-            return false;
-          }
-          if (! validIP($("#default_route")[0].value)) {
-      	    focus_tabbed("default_route");
-            say_bad_route = "<%= _("Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255.") %>"
-            alert (say_bad_route);
-            return false;
-          }
-          if (!validNameservers($("#nameservers")[0].value)){
-      	    focus_tabbed("nameservers");
-            say_bad_ns = "<%= _("Name servers are required. There must be at least one specified.") %>"
-            alert (say_bad_ns);
-            return false;
-          }
-          if (!validHostname($("#name")[0].value)){
-      	    focus_tabbed("name");
-            say_bad_hostname = "<%= _("Hostname is required. It must be specified.") %>"
-            alert (say_bad_hostname);
-            return false;
-          }
-          if (!validDomain($("#domain")[0].value)){
-      	    focus_tabbed("domain");
-            say_bad_domain = "<%= _("Domain is required. An empty domain is not supported.") %>"
-            alert (say_bad_domain);
-            return false;
-          }
-        }
-        $('#progress').show();
-        return true;
-      };
-   <% end %>
+  <% end %>
 <% end %>
 <div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
-<div class='plugin-content grid_12'>
+<div class='plugin-content'>
 
-<% form_tag("/network", :method => "get") do %>
-  <!-- (collection, value, text, selected) -->
+<%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
 
-
-<!--  temporally disabled - 2009-10-26 rlihm
-  <fieldset id="interface_set" class="">
-    <legend><%= _("Interface")%></legend>
-    <p>
-      <%= select_tag(:interface, options_from_collection_for_select(@ifcs, :id, :id, @iface)) %>
-    </p>
-    <p>
-      <%= submit_tag(_("Select"), :class => "button") %>
-    </p>
-  </fieldset>
-   -->
-
-<% end %>
-
-
-<% form_for :network, @network, :url => { :action => "update" }, :html => { :method => :put, :onsubmit => "return validateNetwork();" , :class => 'tab-form'} do |n| %>
+<% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return switchFieldsetGroupTab();"} do |n| %>
 <%= n.error_messages %>
-<!-- ~/svn/web-client/plugins/systemtime/app/views/systemtime/index.rhtml -->
-  
-  <ul class="tab-nav">
-    <!-- javascript adds tabs here -->
-  </ul>
   
   <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
-
-  <fieldset id="ip-address" class="">
-    <legend>IP Address</legend>    
+  <fieldset id="general-settings">
+    <legend><span><%= _("General settings")%></span></legend>
     <p>
       <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
-      <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled)%>
-    </p>
-    <p>
-      <label for="<%= :ip %>"><%=_("IP address")%></label>
-      <%=text_field_tag :ip, @ip, :disabled => static_disabled %>
-    </p>
-    <p>
-      <label for="<%= :netmask %>"><%=_("Subnet mask / Prefixlen")%></label>
-      <%=text_field_tag :netmask, @netmask, :disabled => static_disabled %>
+      <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled, :onchange => "hide_static_config();")%>
     </p>
   </fieldset>
-  <fieldset id="dns" class="">
-    <legend>DNS</legend>
-    <p>
-      <label for="<%= :name %>"><%=_("Hostname")%></label>
-      <%=text_field_tag :name, @name, :disabled => write_disabled %>
-    </p>
-    <p>
-      <label for="<%= :domain %>"><%=_("Domain")%></label>
-      <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
-    </p>
-    <p>
-      <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
-      <%=text_field_tag :nameservers, @nameservers.join(" "), :disabled => static_disabled %>
-    </p>
-    <p>
-      <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
-      <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => static_disabled %>
-    </p>
-  </fieldset>
-
-  <fieldset id="routing" class="ui-tab">
-    <legend>Routing</legend>    
-    <p>
-      <label for="<%= :default_route %>"><%=_("Default route")%></label>
-      <%=text_field_tag :default_route, @default_route, :disabled => static_disabled %>
-    </p>
-  </fieldset>
-  <p>
+  <div class="fieldset-group">
+    <fieldset id="ip-address">
+      <legend id="ip-tab"><span><%= _("IP Address")%></span></legend>
+      <div>
+        <p>
+          <label for="<%= :ip %>"><%=_("IP address")%></label>
+          <%=text_field_tag :ip, @ip, :disabled => write_disabled %>
+        </p>
+        <p>
+          <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
+          <%=text_field_tag :netmask, @netmask, :disabled => write_disabled %>
+        </p>
+        <p>
+          <label for="<%= :default_route %>"><%=_("Default route")%></label>
+          <%=text_field_tag :default_route, @default_route, :disabled => write_disabled %>
+        </p>
+      </div>
+    </fieldset>
+    <fieldset id="dns">
+      <legend id="dns-tab"><span><%= _("DNS")%></span></legend>
+      <div>
+        <p>
+          <label for="<%= :name %>"><%=_("Hostname")%></label>
+          <%=text_field_tag(:name, @name, :onblur=>"endWithHyphen(this);clearWarning();", :onkeyup=>"hostValidation(this,valChar);", :onkeydown=>"clearWarning();", :disabled => write_disabled) %>
+<!--           <span id="warning" style="font-weight:bold; margin-left:20px; color:#c00000">&nbsp;</span> -->
+			 <label class="error" for="name" generated="true">&nbsp;</label>
+        </p>
+        <p>
+          <label for="<%= :domain %>"><%=_("Domain")%></label>
+          <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
+        </p>
+        <p>
+          <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
+          <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
+        </p>
+        <p>
+          <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
+          <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => write_disabled %>
+        </p>
+      </div>
+    </fieldset>
+  </div>
+  <div class="nav-buttons">
     <%= form_send_buttons :disabled => write_disabled %>
-  </p>
+  </div>
 <% end %>
 </div>
-
-<% javascript_tag do -%>
-   $('#conf_mode').delayedObserver(0.25, function(element, value) {
-     disabled = <%= write_disabled %> || value != "static";
-     disable_static_config(disabled);
-   })
-<% end -%>

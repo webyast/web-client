@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
 "PO-Revision-Date: 2010-01-04 12:17+0200\n"
 "Last-Translator: Mindaugas Baranauskas <embar@users.berlios.de>\n"
 "Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
@@ -18,60 +18,112 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/controllers/administrator_controller.rb:35
-#: app/views/administrator/index.html.erb:28
-#| msgid "`%s' is not a valid ip address."
+#: app/controllers/administrator_controller.rb:32
+#: app/views/administrator/index.html.erb:24
 msgid "Enter a valid e-mail address."
 msgstr "Įveskite tinkamą el.pašto adresą."
 
-#: app/controllers/administrator_controller.rb:43
+#: app/controllers/administrator_controller.rb:40
 msgid "Passwords do not match."
 msgstr "Slaptažodžiai nesutampa"
 
-#: app/controllers/administrator_controller.rb:60
-#| msgid "Monitor Settings"
+#: app/controllers/administrator_controller.rb:53
 msgid "Administrator settings have been written."
 msgstr "Administratoriaus nuostatos įrašytos."
 
-#: app/controllers/administrator_controller.rb:70
+#: app/controllers/administrator_controller.rb:63
 msgid "Error while saving administrator settings: %s"
 msgstr "Įrašant administratoriaus nuostatas įvyko klaida: %s"
 
+#: app/controllers/administrator_controller.rb:75
+msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+msgstr ""
+
 #: app/views/administrator/index.html.erb:1
-#| msgid "Monitor Settings"
 msgid "Administrator Settings"
 msgstr "Administratoriaus nuostatos"
 
-#: app/views/administrator/index.html.erb:36
-#| msgid "Passwords do not match."
+#: app/views/administrator/index.html.erb:32
 msgid "The passwords do not match."
 msgstr "Slaptažodžiai nesutampa."
 
-#: app/views/administrator/index.html.erb:51
-msgid "Here, configure the settings for system administrator ('root')."
-msgstr "Čia konfigūruokite sistemos administratoriaus („root“) nuostatas."
+#: app/views/administrator/index.html.erb:33
+#, fuzzy
+#| msgid "The PKCS12 password is required."
+msgid "A password is required."
+msgstr "Reikalingas PKCS12 slaptažodis."
 
-# password dialog title
-#: app/views/administrator/index.html.erb:58
-msgid "Password"
-msgstr "Slaptažodis"
+#: app/views/administrator/index.html.erb:38
+#, fuzzy
+#| msgid "Passwords match"
+msgid "Password Strength:"
+msgstr "Slaptažodžiai sutampa"
+
+#: app/views/administrator/index.html.erb:40
+msgid "Weak"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:41
+msgid "Normal"
+msgstr "Normalus"
+
+#: app/views/administrator/index.html.erb:42
+#, fuzzy
+#| msgid "Media"
+msgid "Medium"
+msgstr "Laikmenos"
+
+#: app/views/administrator/index.html.erb:43
+msgid "Strong"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:44
+msgid "Very Strong"
+msgstr ""
 
 #: app/views/administrator/index.html.erb:63
+msgid "Password Setup for User 'root'"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:64
+#, fuzzy
+#| msgid "_New Password:"
+msgid "New Password"
+msgstr "_Naujas slaptažodis:"
+
+#: app/views/administrator/index.html.erb:69
+#, fuzzy
 #| msgid "_Confirm Password:"
-msgid "Confirm password"
-msgstr "Patvirtinti slaptažodį"
+msgid "Confirm Password"
+msgstr "_Patvirtinkite slaptažodį:"
 
-#: app/views/administrator/index.html.erb:65
-#| msgid "Change Password"
-msgid "Save Password"
-msgstr "Įrašyti slaptažodį"
+#: app/views/administrator/index.html.erb:76
+msgid "Mail Setup for User 'root'"
+msgstr ""
 
-#: app/views/administrator/index.html.erb:70
-msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:78
+#, fuzzy
+#| msgid "Forward mail to"
+msgid "Forward system mail to"
 msgstr "Persiųsti paštą į"
 
-#: app/views/administrator/index.html.erb:72
-#| msgid "Save"
-msgid "Save Mail"
+#: app/views/administrator/index.html.erb:81
+#, fuzzy
+#| msgid "Save Mail"
+msgid "Save Mail Only"
 msgstr "Įrašyti paštą"
 
+#~ msgid "Here, configure the settings for system administrator ('root')."
+#~ msgstr "Čia konfigūruokite sistemos administratoriaus („root“) nuostatas."
+
+# password dialog title
+#~ msgid "Password"
+#~ msgstr "Slaptažodis"
+
+#~| msgid "_Confirm Password:"
+#~ msgid "Confirm password"
+#~ msgstr "Patvirtinti slaptažodį"
+
+#~| msgid "Change Password"
+#~ msgid "Save Password"
+#~ msgstr "Įrašyti slaptažodį"
