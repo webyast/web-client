@@ -19,6 +19,8 @@
 #inject to ActiveResource xml serializer fix to_xml method
 require "yast_model/xml_fix.rb"
 
+include LangHelper
+
 # ==YastModel module
 # Extension to set correctly ActiveResource model for webyast purpose
 # (multiple hosts and multiple users)
@@ -92,6 +94,12 @@ module YastModel
     def set_site
       self.site = YaST::ServiceResource::Session.site
       self.password = YaST::ServiceResource::Session.auth_token
+ 
+      #Setting language in the header of the http request
+      header = self.headers 
+      header["ACCEPT_LANGUAGE"] = current_locale
+      self.instance_variable_set(:@headers, header)
+
       YastModel::Resource.site = self.site  #dynamic set site
       #FIXME not thread safe, (whole using resource with site set class variable is not thread save
       Rails.logger.debug "read interface to #{@interface.to_s}"
