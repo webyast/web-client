@@ -98,6 +98,7 @@ module YastModel
       #Setting language in the header of the http request
       header = self.headers 
       header["ACCEPT_LANGUAGE"] = current_locale
+      # headers is RO, so we have to uses this "overwriting" call:
       self.instance_variable_set(:@headers, header)
 
       YastModel::Resource.site = self.site  #dynamic set site
