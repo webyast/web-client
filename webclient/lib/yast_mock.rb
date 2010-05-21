@@ -31,6 +31,13 @@ module ActiveResource
       # Gets authentication header which must send request for authentication
       # to rest-service
       def authentication_header
+        {"Authorization"=>"Basic OjEyMzQ=",
+         "ACCEPT_LANGUAGE"=>"en_US"}
+      end
+
+      # Gets authentication header which must send request for authentication
+      # to rest-service
+      def authentication_header_without_language
         {"Authorization"=>"Basic OjEyMzQ="}
       end
     end
@@ -65,7 +72,7 @@ module ActiveResource
           response << "</permission>"
         end
         response << "</permissions>"
-        get   "/permissions.xml?filter=#{prefix}&user_id=test", HttpMock.authentication_header, response, 200
+        get   "/permissions.xml?filter=#{prefix}&user_id=test", HttpMock.authentication_header_without_language, response, 200
       end
     end
 

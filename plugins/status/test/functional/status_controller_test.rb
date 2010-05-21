@@ -82,7 +82,7 @@ end
       mock.get "/metrics/waerden+memory+memory-used.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_used, 200
       mock.get "/metrics/waerden+memory+memory-cached.xml?start=1264006320&stop=1264006620", @header, @response_metrics_memory_cached, 200
       mock.get "/metrics/waerden+df+df-root.xml?start=1264006320&stop=1264006620", @header, @response_metrics_df_root, 200
-      mock.post "/mail/state.xml", @header, nil, 200
+      mock.post "/mail/state.xml", ActiveResource::HttpMock.authentication_header_without_language, nil, 200
     end
   end
 

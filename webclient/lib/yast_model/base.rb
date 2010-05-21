@@ -96,10 +96,7 @@ module YastModel
       self.password = YaST::ServiceResource::Session.auth_token
  
       #Setting language in the header of the http request
-#      header = self.headers 
-#      header["ACCEPT_LANGUAGE"] = current_locale
-#      # headers is RO, so we have to uses this "overwriting" call:
-#      self.instance_variable_set(:@headers, header)
+      self.headers["ACCEPT_LANGUAGE"] = current_locale 
 
       YastModel::Resource.site = self.site  #dynamic set site
       #FIXME not thread safe, (whole using resource with site set class variable is not thread save
