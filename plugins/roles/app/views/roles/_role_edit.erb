@@ -32,7 +32,7 @@
 		 perm_id.each do |p|
      trp = p.id.tr(".","_")%>
 	  <li id="<%=trp%>-g" style="display:<%= role.permissions.include?(p.id) ? "default" : "none" %>;"
-        onMouseOver="show_desc('<%=trp%>');">
+        onMouseOver="show_desc('<%= p.pretty_id.tr('.','_') %>');">
       <a href="#" onclick="revoke_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>
 	<% end %>
@@ -44,7 +44,7 @@
 	<% perm_id.each do |p| 
      trp = p.id.tr(".","_")%>
 	  <li id="<%=trp%>-a" style="display:<%= role.permissions.include?(p.id) ? "none" : "default" %>;"
-        onMouseOver="show_desc('<%=trp%>');">
+        onMouseOver="show_desc('<%= p.pretty_id.tr('.','_') %>');">
       <a href="#" onclick="grant_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>
 	<% end %>
