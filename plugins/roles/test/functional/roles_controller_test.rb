@@ -20,7 +20,7 @@ class RolesControllerTest < ActionController::TestCase
       mock.permissions "org.opensuse.yast.modules.yapi.network", { :read => true, :write => true }
       mock.get  "/roles.xml", header, response_roles, 200
       mock.get  "/roles/test2.xml", header, response_role, 200
-      mock.get  "/permissions.xml?with_description=1", header, response_perm, 200
+      mock.get  "/permissions.xml?with_description=1", ActiveResource::HttpMock.authentication_header_without_language, response_perm, 200
     end
   end
 
