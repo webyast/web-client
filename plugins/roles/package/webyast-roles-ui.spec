@@ -36,7 +36,7 @@ Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
 Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
 #need users fixtures
-Requires: webyast-users-ui-testsuite
+BuildRequires: webyast-users-ui-testsuite
 Summary:  Testsuite for webyast-roles-ui package
 
 %description
