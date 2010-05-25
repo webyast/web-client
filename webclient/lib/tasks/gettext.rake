@@ -37,20 +37,43 @@ end
 desc "Update pot/po files to match new version."
 task :updatepot do
   require 'gettext_rails/tools'
+
+  #generate a ruby file include the translation. This tmp file is needed for generating pot files
+  yml_files = Dir.glob("{config,.}/**/*.{yml,yaml}")
+  yml_files.each do |src_file|
+    system "cp #{src_file} #{src_file+".sav"}"
+    src_array = IO.readlines(src_file)
+    dst = File.new(src_file, "w")
+    src_array.each {|line|
+      ind = line.index '_('
+      if ind
+        dst << line[ind..line.length-1]
+      else
+        dst << "\n"
+      end
+    }
+    dst.close
+  end
+
   destdir = File.join(File.dirname(__FILE__),"../../..", "pot")
   Dir.mkdir destdir unless File.directory?(destdir)
 
   if File.basename(Dir.pwd) == "webclient"
-    GetText.update_pofiles("yast_webclient", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"),
+    GetText.update_pofiles("yast_webclient", Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
                            "yast_webclient 1.0.0")
     filename = "yast_webclient.pot"
   else
-    GetText.update_pofiles("yast_webclient_#{File.basename(Dir.pwd)}", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"),
+    GetText.update_pofiles("yast_webclient_#{File.basename(Dir.pwd)}", Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
                            "yast_webclient #{File.basename(Dir.pwd)} 1.0.0")
     filename = "yast_webclient_#{File.basename(Dir.pwd)}.pot"
   end
   # Moving pot file to global pot directory
   File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
+  #cleanup YAML files
+  yml_files.each do |src_file|
+    system "cp #{src_file+".sav"} #{src_file}"
+    system "rm #{src_file+".sav"}"
+  end
 end
 
 desc "Fetch po files from lcn. Parameter: source directory of lcn e.g. ...lcn/trunk/"
