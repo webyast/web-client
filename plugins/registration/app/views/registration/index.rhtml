@@ -14,7 +14,7 @@
 
      <fieldset>
        <%= form_back_button %>
-       <%= if basesystem_in_process? then
+       <%= if Basesystem::in_process?(session) then
              ret = form_str_spacer
              ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
            end
