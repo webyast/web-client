@@ -23,17 +23,25 @@
 				var len = val.id.length;
 				new_val.push (val.id.substring(0,len-2))});
 			$("#assigned_perms")[0].value = new_val.join(',');
+			new_val = [];
+			$.each($("#users_assigned li:not(:hidden)"),function(i,val){
+				var len = val.id.length;
+				new_val.push (val.id.substring(0,len-2))});
+			$("#assigned_users")[0].value = new_val.join(',');
     }
   <% end %>
+<div class="tab">
+<fieldset>
+<legend><span><%= _("Permissions contained in role")%></span></legend>
 <div style="display:block;float:left;width:33%;">
   <h3> <%= _("Permissions granted by role") %> </h3>
   <ul id="granted_perm">
 	<% perm_id = permissions.sort{|x,y| x.pretty_id <=> y.pretty_id}
 		 perm_id.each do |p|
      trp = p.id.tr(".","_")%>
-	  <li id="<%=trp%>-g" style="display:<%= role.permissions.include?(p.id) ? "default" : "none" %>;"
+	  <li id="<%=trp%>-g" style="display:<%= role.permissions.include?(p.id) ? "default" : "none;color:green" %>;"
         onMouseOver="show_desc('<%= p.pretty_id.tr('.','_') %>');">
-      <a href="#" onclick="revoke_perm('<%=trp%>');"><%= p.pretty_id %></a>
+      <a href="#<%=trp%>-a" onclick="revoke_perm('<%=trp%>');"><%= p.pretty_id %></a>
     </li>
 	<% end %>
   </ul>
@@ -43,9 +51,11 @@
   <ul id="available_perms">
 	<% perm_id.each do |p| 
      trp = p.id.tr(".","_")%>
-	  <li id="<%=trp%>-a" style="display:<%= role.permissions.include?(p.id) ? "none" : "default" %>;"
+	  <li id="<%=trp%>-a" style="display:<%= role.permissions.include?(p.id) ? "none;color:green" : "default" %>;"
         onMouseOver="show_desc('<%= p.pretty_id.tr('.','_') %>');">
-      <a href="#" onclick="grant_perm('<%=trp%>');"><%= p.pretty_id %></a>
+      <a href="#<%=trp%>-g" onclick="grant_perm('<%=trp%>');">
+          <%= p.pretty_id %>
+      </a>
     </li>
 	<% end %>
   </ul>
@@ -56,10 +66,42 @@
 		<p id="<%= "#{p.pretty_id.tr(".","_")}-description"%>"> <%= p.try(:description)||"" %></p>
 	<% end %>
 </div>
+</fieldset>
+  <fieldset>
+  <legend><span><%= _("Permissions contained in role")%></span></legend>
+<div style="display:block;float:left;width:50%;">
+  <h3> <%= _("Users assigned to role") %> </h3>
+  <ul id="users_assigned">
+  <%
+    users.each do |u|
+  %>
+    <li id="<%= u.id  %>-g" style="display:<%= role.users.include?(u.id) ?  "default" : "none;color:green"%>;">
+      <a href="#<%=u.id%>-g" onclick="revoke_perm('<%=u.id%>');"><%= u.cn || u.id %></a>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<div style="display:block;float:left;width:50%;">
+  <h3> <%= _("Remaining users") %> </h3>
+  <ul id="available_users">
+  <%
+    users.each do |u|
+  %>
+    <li id="<%= u.id  %>-a" style="display:<%= role.users.include?(u.id) ? "none;color:green" : "default" %>;">
+      <a href="#<%=u.id%>-a" onclick="grant_perm('<%=u.id%>');"><%= u.cn || u.id %></a>
+    </li>
+  <% end %>
+  </ul>
+</div>
+</fieldset>
+</div>
+<div>
   <% javascript_tag do %>
       hide_descrs();
   <% end %>
 <% form_tag :action => "update", :id => params[:id] do %>
 	<%= hidden_field_tag "assigned_perms", role.permissions.join(",") %>
-	<%= submit_tag _("Save permissions") %>
+	<%= hidden_field_tag "assigned_users", role.users.join(",") %>
+	<%= submit_tag _("Save") %>
 <% end %>
+</div>

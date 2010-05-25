@@ -24,6 +24,7 @@ class RolesController < ApplicationController
 		if role.permissions.sort != new_perm.sort
 			role.permissions = new_perm
 		end
+    role.users = params[:assigned_users].split(',')
 		role.save
 		redirect_to :action => :edit, :id => params[:id]
   end
@@ -35,6 +36,7 @@ class RolesController < ApplicationController
 		@permissions = YastModel::Permission.find :all, :params => { :with_description => "1" }
 		logger.info "permissions #{@permissions.inspect}"
 		@role = Role.find params[:id]
+    @users = User.find :all
   end
 
 	def create
