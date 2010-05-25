@@ -1,5 +1,6 @@
 class RolesController < ApplicationController
   before_filter :login_required
+  before_filter :load_role, :only => [:update,:edit]
   layout 'main'
 
   public
@@ -19,13 +20,12 @@ class RolesController < ApplicationController
   # still shows problems. Now it invalidate session for logged user.If
   # everything goes fine it redirect to index
   def update
-		role = Role.find params[:id]
 		new_perm = (params[:assigned_perms]||"").tr("_",".").split(',')
-		if role.permissions.sort != new_perm.sort
-			role.permissions = new_perm
+		if @role.permissions.sort != new_perm.sort
+			@role.permissions = new_perm
 		end
-    role.users = params[:assigned_users].split(',')
-		role.save
+    @role.users = params[:assigned_users].split(',')
+		@role.save
 		redirect_to :action => :edit, :id => params[:id]
   end
 
@@ -35,7 +35,6 @@ class RolesController < ApplicationController
     YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
 		@permissions = YastModel::Permission.find :all, :params => { :with_description => "1" }
 		logger.info "permissions #{@permissions.inspect}"
-		@role = Role.find params[:id]
     @users = User.find :all
   end
 
@@ -44,5 +43,15 @@ class RolesController < ApplicationController
 		Role.new(:name => params[:role_name]).save
 		redirect_to "/roles/"
 	end
+
+  private
+  def load_role
+    begin
+  		@role = Role.find params[:id]
+    rescue ActiveResource::ResourceInvalid
+      flash[:error] = _("Invalid role name")
+      redirect_to :action => "index"
+    end
+  end
 
 end
