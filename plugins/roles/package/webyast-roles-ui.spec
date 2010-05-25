@@ -23,6 +23,7 @@ BuildArch:      noarch
 BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 BuildRequires:  ruby
 BuildRequires:  yast2-webclient
+Requires:       webyast-users-ui
 
 #
 %define plugin_name roles
