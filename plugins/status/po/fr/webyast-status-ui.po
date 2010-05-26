@@ -1,9 +1,9 @@
 # Fabien Crespel <fabien@crespel.net>, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-status-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-03 16:31+0200\n"
+"POT-Creation-Date: 2010-05-26 16:42+0200\n"
 "PO-Revision-Date: 2010-05-16 00:50+0200\n"
 "Last-Translator: Fabien Crespel <fabien@crespel.net>\n"
 "Language-Team: French <opensuse-fr@opensuse.org>\n"
@@ -14,144 +14,168 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:151
 msgid "No data found for showing system status."
 msgstr "Aucune donnée disponible pour afficher l'état du système."
 
+#: app/controllers/status_controller.rb:159
 #: app/controllers/status_controller.rb:159
 msgid "Status not available."
 msgstr "État non disponible."
 
 #: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:178
 msgid "Can't connect to host"
 msgstr "Impossible de se connecter à l'hôte"
 
+#: app/controllers/status_controller.rb:180
 #: app/controllers/status_controller.rb:180
 msgid "Can't connect to host %s."
 msgstr "Impossible de se connecter à l'hôte %s."
 
 #: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:219
 msgid "Limits exceeded for "
 msgstr "Limites dépassées pour"
 
 #: app/controllers/status_controller.rb:244
+#: app/controllers/status_controller.rb:244
 msgid "Status not available"
 msgstr "État non disponible"
 
-#: app/controllers/status_controller.rb:321
+#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:316
 msgid "exceeded"
 msgstr ""
 
-#: app/controllers/status_controller.rb:335
+#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:330
 msgid "undercut"
 msgstr ""
 
-#: app/controllers/status_controller.rb:437
+#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:432
 msgid "Limits have been written."
 msgstr "Les limites ont été écrites."
 
-#: app/views/status/edit.html.erb:48
+#: app/views/status/edit.html.erb:48 app/views/status/edit.html.erb:48
 msgid "Only numbers are valid !"
 msgstr "Seuls les nombres sont valides !"
 
 # TLABEL lan_inetd_2002_01_04_0147__28
 #: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: shortcuts.yml:6
 msgid "Status"
 msgstr "État"
 
-#: app/views/status/edit.html.erb:75
+#: app/views/status/edit.html.erb:75 app/views/status/edit.html.erb:75
 msgid "Settings"
 msgstr "Paramètres"
 
-#: app/views/status/edit.html.erb:89
+#: app/views/status/edit.html.erb:89 app/views/status/edit.html.erb:89
 msgid "undercuts"
 msgstr ""
 
-#: app/views/status/edit.html.erb:89
+#: app/views/status/edit.html.erb:89 app/views/status/edit.html.erb:89
 msgid "exceeds"
 msgstr ""
 
-#: app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:92 app/views/status/index.html.erb:92
 msgid "details"
 msgstr "détails"
 
-#: app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:108 app/views/status/index.html.erb:108
 msgid "Details"
 msgstr "Détails"
 
-#: app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:161 app/views/status/index.html.erb:161
 msgid "Edit Limits"
 msgstr "Modifier les limites"
 
 #: app/views/status/_status_graph.html.erb:2
+#: app/views/status/_status_graph.html.erb:2
 msgid "A problem occured when loading status information."
 msgstr "Un problème est survenu lors du chargement des informations sur l'état"
 
-#: app/views/status/_status_graph.html.erb:92
+#: app/views/status/_status_graph.html.erb:90
+#: app/views/status/_status_graph.html.erb:90
 msgid "Show last"
 msgstr "Afficher les dernières"
 
-#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/_status_graph.html.erb:91
+#: app/views/status/_status_graph.html.erb:91
 msgid "5 Minutes"
 msgstr "5 minutes"
 
-#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/_status_graph.html.erb:92
+#: app/views/status/_status_graph.html.erb:92
 msgid "15 Minutes"
 msgstr "15 minutes"
 
-#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/_status_graph.html.erb:93
+#: app/views/status/_status_graph.html.erb:93
 msgid "30 Minutes"
 msgstr "30 minutes"
 
-#: app/views/status/_status_graph.html.erb:96
+#: app/views/status/_status_graph.html.erb:94
+#: app/views/status/_status_graph.html.erb:94
 msgid "1 Hour"
 msgstr "1 heure"
 
-#: app/views/status/_status_graph.html.erb:97
+#: app/views/status/_status_graph.html.erb:95
+#: app/views/status/_status_graph.html.erb:95
 msgid "6 Hours"
 msgstr "6 heures"
 
-#: app/views/status/_status_graph.html.erb:98
+#: app/views/status/_status_graph.html.erb:96
+#: app/views/status/_status_graph.html.erb:96
 msgid "12 Hours"
 msgstr "12 heures"
 
 # TLABEL linuxrc_2002_03_29_0036__95
-#: app/views/status/_status_summary.html.erb:3
+#: app/views/status/_status_summary.html.erb:6
+#: app/views/status/_status_summary.html.erb:6
 msgid "An problem occured when loading status information."
 msgstr "Un problème est survenu lors du chargement des informations d'état."
 
+#: app/views/status/_status_summary.html.erb:13
 #: app/views/status/_status_summary.html.erb:13
 msgid "Cannot read system status - you have been logged out."
 msgstr "Impossible de lire l'état du système - vous avez été déconnecté."
 
 #: app/views/status/_status_summary.html.erb:16
+#: app/views/status/_status_summary.html.erb:16
 msgid "Your system is healthy."
 msgstr "Votre système est en bon état."
 
+#: app/views/status/_status_summary.html.erb:26
 #: app/views/status/_status_summary.html.erb:26
 msgid "Loading system information"
 msgstr "Chargement des informations sur le système"
 
 #: app/views/status/_status_progress.html.erb:8
+#: app/views/status/_status_progress.html.erb:8
 msgid "Checking system status"
 msgstr "Vérification de l'état du système"
 
-#: lib/plugin_translation.rb:46
+#: lib/plugin_translation.rb:46 lib/plugin_translation.rb:46
 msgid "Registration is missing"
 msgstr "L'enregistrement est manquant"
 
-#: lib/plugin_translation.rb:47
+#: lib/plugin_translation.rb:47 lib/plugin_translation.rb:47
 msgid "Please register your system in order to get updates."
 msgstr "Veuillez enregistrer votre système pour obtenir des mises à jour."
 
-#: lib/plugin_translation.rb:48
+#: lib/plugin_translation.rb:48 lib/plugin_translation.rb:48
 msgid "register"
 msgstr "enregistrer"
 
-#: lib/plugin_translation.rb:50
+#: lib/plugin_translation.rb:50 lib/plugin_translation.rb:50
 msgid "Mail configuration test not confirmed"
 msgstr "Test de la configuration du courrier non confirmé"
 
-#: lib/plugin_translation.rb:51
+#: lib/plugin_translation.rb:51 lib/plugin_translation.rb:51
 msgid ""
 "While configuring mail, a test mail was sent to %s . Was the mail delivered "
 "to this address?<br>If so, confirm it by pressing the button. Otherwise "
@@ -162,7 +186,7 @@ msgstr ""
 "en cliquant sur le bouton. Sinon, vérifiez à nouveau votre configuration du "
 "courrier."
 
-#: lib/plugin_translation.rb:54
+#: lib/plugin_translation.rb:54 lib/plugin_translation.rb:54
 msgid ""
 "It was not possible to retrieve the full hostname of the machine. If the "
 "mail could not be delivered, consult the network and/or mail configuration "
@@ -172,9 +196,14 @@ msgstr ""
 "le mail n'a pas pu être envoyé, consultez la configuration réseau et/ou du "
 "courrier avec votre administrateur réseau."
 
-#: lib/plugin_translation.rb:55
+#: lib/plugin_translation.rb:55 lib/plugin_translation.rb:55
 msgid "Test mail received"
 msgstr "Courrier de test reçu"
+
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Show system status"
+msgstr "Vérification de l'état du système"
 
 # TLABEL kinternet_2002_02_20_2255__72
 #~ msgid "Start collectd"

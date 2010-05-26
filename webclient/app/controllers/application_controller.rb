@@ -204,7 +204,7 @@ protected
   # 2. If you call init_gettext in each controllers
   #    (In this sample, blog_controller.rb is applicable)
   #    The textdomains are applied to each controllers/views.
-  init_gettext "yast_webclient"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-base-ui"  # textdomain, options(:charset, :content_type)
   I18n.supported_locales = Dir[ File.join(RAILS_ROOT, 'locale/*') ].collect{|v| File.basename(v)}
 
 =begin
