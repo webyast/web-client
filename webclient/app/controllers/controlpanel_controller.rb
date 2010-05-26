@@ -132,10 +132,10 @@ class ControlpanelController < ApplicationController
         logger.info "Loading textdomain #{File.basename(mo_files.first, '.mo')} from #{locale_path} for shortcuts"
         opt = {:locale_path => locale_path}
         ActionController::Base.init_gettext(File.basename(mo_files.first, ".mo"), opt)
-        shortcutsdata = translate_shortcuts shortcutsdata
       else
         logger.warn "Cannot find shortcut translation for #{plugin.name}"
       end
+      shortcutsdata = translate_shortcuts shortcutsdata
       return nil unless shortcutsdata.is_a? Hash
       # now go over each shortcut and add it to the modules
       shortcutsdata.each do |k,v|
