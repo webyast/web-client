@@ -58,17 +58,17 @@ task :updatepot do
   destdir = File.join(File.dirname(__FILE__),"../../..", "pot")
   Dir.mkdir destdir unless File.directory?(destdir)
 
-  if File.basename(Dir.pwd) == "webclient"
-    GetText.update_pofiles("yast_webclient", Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
-                           "yast_webclient 1.0.0")
-    filename = "yast_webclient.pot"
+  spec_files = Dir.glob("package/**/*.spec")
+  unless spec_files.empty?
+    package_name = File.basename(spec_files.first,".spec")
+    GetText.update_pofiles(package_name, Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
+                             "#{package_name} 1.0.0")
+    filename = package_name + ".pot"
+    # Moving pot file to global pot directory
+    File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
   else
-    GetText.update_pofiles("yast_webclient_#{File.basename(Dir.pwd)}", Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
-                           "yast_webclient #{File.basename(Dir.pwd)} 1.0.0")
-    filename = "yast_webclient_#{File.basename(Dir.pwd)}.pot"
+    puts "ERROR: package name not found for #{Dir.pwd}"
   end
-  # Moving pot file to global pot directory
-  File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
   #cleanup YAML files
   yml_files.each do |src_file|
     system "cp #{src_file+".sav"} #{src_file}"
@@ -80,17 +80,23 @@ desc "Fetch po files from lcn. Parameter: source directory of lcn e.g. ...lcn/tr
 task :fetch_po, [:lcn_dir] do |t, args|
   args.with_defaults(:lcn_dir => File.join(File.dirname(__FILE__),"../../../../..", "lcn", "trunk"))  
   puts "Scanning #{args.lcn_dir}"
-  po_files = File.join(args.lcn_dir, "**", "*.po")
-  Dir.glob(po_files).each {|po_file|
-    filename_array = File.basename(po_file).split(".")
-    if filename_array[0] == "yast_webclient_#{File.basename(Dir.pwd)}" ||
-       filename_array[0] == "yast_webclient" && File.basename(Dir.pwd) == "webclient"
-       destdir = File.join(Dir.pwd, "po", filename_array[1])
-       Dir.mkdir destdir unless File.directory?(destdir)
-       destfile = File.join(destdir,filename_array[0]+".po")
-       puts "copy #{po_file} --> #{destfile}"
-       FileUtils.cp(po_file, destfile)
-    end
-  }
+  spec_files = Dir.glob("package/**/*.spec")
+  unless spec_files.empty?
+    package_name = File.basename(spec_files.first,".spec")
+
+    po_files = File.join(args.lcn_dir, "**", "*.po")
+    Dir.glob(po_files).each {|po_file|
+      filename_array = File.basename(po_file).split(".")
+      if filename_array[0] == package_name
+         destdir = File.join(Dir.pwd, "po", filename_array[1])
+         Dir.mkdir destdir unless File.directory?(destdir)
+         destfile = File.join(destdir,filename_array[0]+".po")
+         puts "copy #{po_file} --> #{destfile}"
+         FileUtils.cp(po_file, destfile)
+      end
+    }
+  else
+    puts "ERROR: package name not found for #{Dir.pwd}"
+  end
 end
 

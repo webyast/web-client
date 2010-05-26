@@ -1,0 +1,185 @@
+# Vojtěch Zeisek <vojta.sc@seznam.cz>, 2009.
+# Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-05-24 22:19+0200\n"
+"Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
+"Language-Team: Czech <opensuse-translation@opensuse.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: app/controllers/network_controller.rb:64
+msgid "Not configured"
+msgstr "Není nastaveno"
+
+#: app/controllers/network_controller.rb:64
+#| msgid "Manual Mode"
+msgid "Manual"
+msgstr "Ručně"
+
+#: app/controllers/network_controller.rb:64
+#| msgid "Automatic Mode"
+msgid "Automatic"
+msgstr "Automaticky"
+
+#: app/controllers/network_controller.rb:134
+#| msgid "Settings have been written."
+msgid "Network settings have been written."
+msgstr "Nastavení sítě bylo zapsáno."
+
+#: app/views/network/index.html.erb:118
+#| msgid "The search text contains invalid characters"
+msgid "whitespace - invalid character."
+msgstr "mezera - neplatný znak"
+
+#: app/views/network/index.html.erb:120
+#| msgid "The VM's name cannot start with a digit."
+msgid " - can not start with a digit."
+msgstr " - nelze začínat číslem."
+
+#: app/views/network/index.html.erb:122
+#| msgid "The option 'flush' is not allowed"
+msgid "periodic '-' is not allowed."
+msgstr "opakování '-' není povoleno."
+
+#: app/views/network/index.html.erb:124
+msgid "can not end with (-) hyphen."
+msgstr "nelze končit pomlčkou (-)."
+
+#: app/views/network/index.html.erb:127
+msgid "can not start with (-) hyphen."
+msgstr "nelze začínat pomlčkou (-)."
+
+#: app/views/network/index.html.erb:129
+msgid " - is invalid character for hostname."
+msgstr " - je neplatný pro jméno hostitele neplatný znak."
+
+#: app/views/network/index.html.erb:154
+msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Neplatný formát IP adresy. Správně je XXX.XXX.XXX.XXX, kde X je číslo mezi 0 a 255."
+
+#: app/views/network/index.html.erb:163
+msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
+msgstr "Neplatný formát předpony. Správně je /NN kde NN je mezi 0 a 32 (formát CIDR)."
+
+#: app/views/network/index.html.erb:169
+msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
+msgstr "Neplatný formát výchozí cesty. Správně je XXX.XXX.XXX.XXX kde XXX je číslo mezi 0 a 255."
+
+#: app/views/network/index.html.erb:175
+msgid "Name servers are required. There must be at least one specified."
+msgstr "Jména serverů jsou vyžadována. Musí být uvedeno alespoň jedno."
+
+#: app/views/network/index.html.erb:181
+#| msgid "No valid request file specified."
+msgid "Hostname is required. It must be specified."
+msgstr "Jméno hostitele je vyžadováno. Musí být zadáno."
+
+#: app/views/network/index.html.erb:187
+msgid "Domain is required. An empty domain is not supported."
+msgstr "Doména je vyžadována. Prázdná doména není podporována."
+
+#: app/views/network/index.html.erb:210
+msgid "Network"
+msgstr "Síť"
+
+#: app/views/network/index.html.erb:221
+msgid "Interface"
+msgstr "Rozhraní"
+
+#: app/views/network/index.html.erb:226
+#| msgid "Select Script"
+msgid "Select"
+msgstr "Vyberte"
+
+#: app/views/network/index.html.erb:243
+#| msgid "Configuration Mode"
+msgid "Configuration mode"
+msgstr "Konfigurační mód"
+
+#: app/views/network/index.html.erb:252
+#| msgid "IP Address"
+msgid "IP address"
+msgstr "IP adresa"
+
+#: app/views/network/index.html.erb:256
+msgid "Subnet mask / Prefixlen"
+msgstr "Maska podsítě / Prefixlen"
+
+#: app/views/network/index.html.erb:260
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "Výchozí směrování"
+
+#: app/views/network/index.html.erb:269
+msgid "Hostname"
+msgstr "Jméno hostitele"
+
+# as in Windows Authentication Domain
+#: app/views/network/index.html.erb:274
+msgid "Domain"
+msgstr "Doména"
+
+#: app/views/network/index.html.erb:278
+#| msgid "Name Servers"
+msgid "Name servers"
+msgstr "Nameservery"
+
+#: app/views/network/index.html.erb:282
+#| msgid "Search Domains"
+msgid "Search domains"
+msgstr "Vyhledávací domény"
+
+#, fuzzy
+#~| msgid "Do not start"
+#~ msgid "not set"
+#~ msgstr "Nespouštět"
+
+#~ msgid "dhcp"
+#~ msgstr "dhcp"
+
+#~ msgid "Prefixlen"
+#~ msgstr "Předčíslí"
+
+#~ msgid "DNS"
+#~ msgstr "DNS"
+
+#~ msgid "Routing"
+#~ msgstr "Routování"
+
+#~ msgid "Save"
+#~ msgstr "Uložit"
+
+# cancel button label
+#~ msgid "Cancel"
+#~ msgstr "Zrušit"
+
+#~ msgid "Edit Network Device"
+#~ msgstr "Upravit síťová zařízení"
+
+#~ msgid "Configuration"
+#~ msgstr "Konfigurace"
+
+#~ msgid "Description"
+#~ msgstr "Popis"
+
+#~ msgid "MAC"
+#~ msgstr "MAC"
+
+#~ msgid "Device Name"
+#~ msgstr "Jméno zařízení"
+
+#~ msgid "Startup"
+#~ msgstr "Spuštění"
+
+#~ msgid "Update"
+#~ msgstr "Aktualizace"
+
+#~ msgid "Back"
+#~ msgstr "Zpět"

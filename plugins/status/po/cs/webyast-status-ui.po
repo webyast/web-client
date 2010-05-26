@@ -1,0 +1,229 @@
+# translation of yast_webclient_status.cs.po to czech
+# Jaromír Červenka <cervajz@cervajz.com>, 2009.
+# Vojtěch Zeisek <vojta.sc@seznam.cz>, 2009.
+# Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-05-24 22:28+0200\n"
+"Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
+"Language-Team: Czech <opensuse-translation@opensuse.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: app/controllers/status_controller.rb:130
+msgid "No data found for showing system status."
+msgstr "Nebyla nalezena žádná data k zobrazení výchozího stavu."
+
+#: app/controllers/status_controller.rb:187
+#| msgid "Addition succeeded for \"%s\".\n"
+msgid "Limits exceeded for "
+msgstr "Přidání byly překročeny pro "
+
+#: app/controllers/status_controller.rb:316
+#| msgid "Needed"
+msgid "exceeded"
+msgstr "překročeno"
+
+#: app/controllers/status_controller.rb:330
+msgid "undercut"
+msgstr "podseknutí"
+
+#: app/controllers/status_controller.rb:432
+msgid "Limits have been written."
+msgstr "Limity byly zapsány"
+
+#: app/views/status/edit.html.erb:27
+msgid "Only numbers are valid !"
+msgstr "Platná jsou pouze čísla !"
+
+#: app/views/status/edit.html.erb:51 app/views/status/index.html.erb:27
+msgid "Status"
+msgstr "Stav"
+
+#: app/views/status/edit.html.erb:51
+msgid "Settings"
+msgstr "Nastavení"
+
+#: app/views/status/edit.html.erb:66
+msgid "undercuts"
+msgstr "podseknutí"
+
+#: app/views/status/edit.html.erb:66
+#| msgid "Needs"
+msgid "exceeds"
+msgstr "překračuje"
+
+#: app/views/status/index.html.erb:71
+#| msgid "Details"
+msgid "details"
+msgstr "podrobnosti"
+
+#: app/views/status/index.html.erb:87
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: app/views/status/index.html.erb:143
+msgid "Edit Limits"
+msgstr "Editace limitů"
+
+#: app/views/status/_status_graph.html.erb:1
+#| msgid "An error occured when loading status information."
+msgid "A problem occured when loading status information."
+msgstr "Objevila se chyba během načítání stavových informací."
+
+#: app/views/status/_status_graph.html.erb:91
+#| msgid "Show Desktop"
+msgid "Show last"
+msgstr "Zobrazit poslední"
+
+# 49593 AttribValues/label
+#: app/views/status/_status_graph.html.erb:92
+#| msgid " Minutes"
+msgid "5 Minutes"
+msgstr "5 minut"
+
+# 49593 AttribValues/label
+#: app/views/status/_status_graph.html.erb:93
+#| msgid " Minutes"
+msgid "15 Minutes"
+msgstr "15 minut"
+
+# 49593 AttribValues/label
+#: app/views/status/_status_graph.html.erb:94
+#| msgid "30 minutes"
+msgid "30 Minutes"
+msgstr "30 minut"
+
+#: app/views/status/_status_graph.html.erb:95
+#| msgid " Hours"
+msgid "1 Hour"
+msgstr "1 hodina"
+
+#: app/views/status/_status_graph.html.erb:96
+#| msgid " Hours"
+msgid "6 Hours"
+msgstr "6 hodin"
+
+#: app/views/status/_status_graph.html.erb:97
+#| msgid " Hours"
+msgid "12 Hours"
+msgstr "12 hodin"
+
+#: app/views/status/_status_summary.html.erb:2
+#| msgid "An error occured when loading status information."
+msgid "An problem occured when loading status information."
+msgstr "Objevila se chyba během načítání stavových informací."
+
+#: app/views/status/_status_summary.html.erb:12
+msgid "Cannot read system status - you have been logged out."
+msgstr "Nelze číst stav systém - byl(a) jste odhlášen(a)."
+
+#: app/views/status/_status_summary.html.erb:15
+msgid "Your system is healthy."
+msgstr "Vás systém je zdravý."
+
+#: app/views/status/_status_summary.html.erb:20
+#| msgid "Start VPN connection"
+msgid "Start collectd"
+msgstr "collectd byl spuštěn"
+
+#: app/views/status/_status_summary.html.erb:28
+#| msgid "Downloading update information"
+msgid "Loading system information"
+msgstr "Načítání informací o stavu"
+
+#: app/views/status/_status_progress.html.erb:7
+#| msgid "Checking signatures"
+msgid "Checking system status"
+msgstr "Kontroluje stav"
+
+#: lib/plugin_translation.rb:25
+#| msgid "Required file is missing: "
+msgid "Registration is missing"
+msgstr "Chybí registrace"
+
+#: lib/plugin_translation.rb:26
+#| msgid "Please restart your system as soon as possible."
+msgid "Please register your system in order to get updates."
+msgstr "Prosíme, zaregistrujte váš systém, abyste mohli dostávat aktualizace."
+
+#: lib/plugin_translation.rb:27
+msgid "register"
+msgstr "registrace"
+
+#: lib/plugin_translation.rb:29
+#| msgid "The configuration is not initialized."
+msgid "Mail configuration test not confirmed"
+msgstr "Test nastavení mailu nebyl potvrzen"
+
+#: lib/plugin_translation.rb:30
+msgid "While configuring mail, a test mail was sent to %s . Was the mail delivered to this address?<br>If so, confirm it by pressing the button. Otherwise check your mail configuration again."
+msgstr ""
+"Během nastavování mailu byl testovací mail odeslán na %s. Byl na tuto adresu doručen mail?<br>Pokud ano, potvrďte to stiskem tlačítka. V opačném případě opětovně zkontrolujte nastavení "
+"vašeho mailu."
+
+#: lib/plugin_translation.rb:33
+msgid "It was not possible to retrieve the full hostname of the machine. If the mail could not be delivered, consult the network and/or mail configuration with your network administrator."
+msgstr "Nepodařilo se získat plné jméno hostitele stroje. Pokud mail nemohl být doručen, zkontrolujte síť a/nebo nastavení mailu s vaším správcem sítě."
+
+#: lib/plugin_translation.rb:34
+msgid "Test mail received"
+msgstr "Testovací mail byl obdržen"
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Chybná session, prosím přihlaste se znova."
+
+#~ msgid "Disk free limits exceeded;"
+#~ msgstr "Překročena disková kvóta;"
+
+#, fuzzy
+#~| msgid "Saving the changes failed"
+#~ msgid "Saving limits failed!"
+#~ msgstr "Uložení změn selhalo"
+
+#~ msgid "Disk usage"
+#~ msgstr "Obsazenost disku"
+
+#~ msgid "Back"
+#~ msgstr "Zpět"
+
+#~ msgid "free"
+#~ msgstr "volno"
+
+#~ msgid "used"
+#~ msgstr "použito"
+
+#~ msgid "Configure Status Limits"
+#~ msgstr "Nastavit limity stavů"
+
+#~ msgid "Status Path"
+#~ msgstr "Cesta stavu"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Minimální hodnota"
+
+#~ msgid "Maximum Value"
+#~ msgstr "Maximální hodnota"
+
+#~ msgid "Save"
+#~ msgstr "Uložit"
+
+#, fuzzy
+#~| msgid "No information available."
+#~ msgid "No status information available"
+#~ msgstr "Nejsou dostupné žádné informace."
+
+#~ msgid "Events"
+#~ msgstr "Události"
+
+#~ msgid "These values have been evaluated the last 5 minutes."
+#~ msgstr "Tyto hodnoty byly hodnoceny posledních 5 minut"
+
+#~ msgid "Show details..."
+#~ msgstr "Zobrazit podrobnosti..."
