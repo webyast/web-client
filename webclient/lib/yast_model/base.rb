@@ -19,9 +19,6 @@
 #inject to ActiveResource xml serializer fix to_xml method
 require "yast_model/xml_fix.rb"
 
-#inject YAML.load which takes care about translation
-require "yast_model/yaml_translation.rb"
-
 include LangHelper
 
 # ==YastModel module

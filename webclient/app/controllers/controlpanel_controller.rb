@@ -98,6 +98,26 @@ class ControlpanelController < ApplicationController
     shortcuts
   end
   
+  def translate_shortcuts(node)
+    if node.is_a? Hash
+      node.each do |key,data|
+        node[key] = translate_shortcuts data
+      end
+    elsif node.is_a? Array
+      counter = 0
+      node.each do |data|
+        node[counter] = translate_shortcuts data
+        counter +=1
+      end
+    elsif node.is_a? String
+      node = node.strip
+      if node =~ /^_\(\"/ && node =~ /\"\)$/
+        node = _(node[3..node.length-3]) #try to translate it
+      end
+    end
+    return node
+  end 
+
   # reads shortcuts of a specific plugin directory
   def plugin_shortcuts(plugin)
     shortcuts = {}
@@ -105,6 +125,17 @@ class ControlpanelController < ApplicationController
     if File.exists?(shortcuts_fn)
       logger.debug "Shortcuts at #{plugin.directory}"
       shortcutsdata = YAML::load(File.open(shortcuts_fn))
+      #loading translations 
+      mo_files = Dir.glob(File.join(plugin.directory, "**", "*.mo"))
+      if mo_files.size > 0
+        locale_path = File.dirname(File.dirname(File.dirname(mo_files.first))) 
+        logger.info "Loading textdomain #{File.basename(mo_files.first, '.mo')} from #{locale_path} for shortcuts"
+        opt = {:locale_path => locale_path}
+        ActionController::Base.init_gettext(File.basename(mo_files.first, ".mo"), opt)
+        shortcutsdata = translate_shortcuts shortcutsdata
+      else
+        logger.warn "Cannot find shortcut translation for #{plugin.name}"
+      end
       return nil unless shortcutsdata.is_a? Hash
       # now go over each shortcut and add it to the modules
       shortcutsdata.each do |k,v|
