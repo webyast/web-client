@@ -80,12 +80,12 @@ rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
 
 # search locale files
-%find_lang yast_webclient_network
+%find_lang webyast-network-ui
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_network.lang
+%files -f webyast-network-ui.lang
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %dir %{webyast_ui_dir}/vendor
