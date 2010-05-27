@@ -74,12 +74,12 @@ rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
 
 # search locale files
-%find_lang yast_webclient_system
+%find_lang webyast-reboot-ui
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_system.lang
+%files -f webyast-reboot-ui.lang
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %dir %{webyast_ui_dir}/vendor
