@@ -37,7 +37,7 @@ class TimeController < ApplicationController
 
   # cannot move to initialize, it is not finded - http://www.yotabanana.com/hiki/ruby-gettext-howto-rails.html#ApplicationController
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_time"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-time-ui"  # textdomain, options(:charset, :content_type)
 
   def initialize
     unless defined? @@timezones

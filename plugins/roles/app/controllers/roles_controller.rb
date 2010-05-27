@@ -6,7 +6,7 @@ class RolesController < ApplicationController
   public
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_roles"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-roles-ui"  # textdomain, options(:charset, :content_type)
 
   # Index handler. Loads information from backend and if success all required
   # fields is filled. In case of errors redirect to help page, main page or just

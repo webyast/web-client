@@ -29,7 +29,7 @@ class PatchUpdatesController < ApplicationController
   include ProxyLoader
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_software"
+  init_gettext "webyast-software-ui"
 
 private
 

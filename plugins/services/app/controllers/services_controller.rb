@@ -28,7 +28,7 @@ class ServicesController < ApplicationController
   private
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_services"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-services-ui"  # textdomain, options(:charset, :content_type)
 
   public
 

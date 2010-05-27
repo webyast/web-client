@@ -27,7 +27,7 @@ class AdministratorController < ApplicationController
   private
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_administrator"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-root-user-ui"  # textdomain, options(:charset, :content_type)
 
   public
 

@@ -28,7 +28,7 @@ class FirewallController < ApplicationController
   before_filter :login_required
   layout 'main'
 
-  init_gettext "yast_webclient_firewall"
+  init_gettext "webyast-firewall-ui"
 
   NEEDED_SERVICES=["service:webyast","service:webyast-ui"]
 

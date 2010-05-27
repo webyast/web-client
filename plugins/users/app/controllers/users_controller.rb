@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_users"
+  init_gettext "webyast-users-ui"
 
   def load_users
     begin

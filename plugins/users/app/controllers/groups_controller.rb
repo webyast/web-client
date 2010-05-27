@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
   layout 'main'
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_users"
+  init_gettext "webyast-users-ui"
 
 private
   def validate_group_id

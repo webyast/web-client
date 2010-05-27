@@ -7,7 +7,7 @@ class CustomServiceController < ApplicationController
   include ProxyLoader
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_custom_services"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-custom-services-ui"  # textdomain, options(:charset, :content_type)
 
 
   def index

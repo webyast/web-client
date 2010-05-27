@@ -27,7 +27,7 @@ class NetworkController < ApplicationController
   private
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_network" 
+  init_gettext "webyast-network-ui" 
 
   public
   def initialize

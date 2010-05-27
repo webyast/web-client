@@ -23,7 +23,7 @@ class SystemController < ApplicationController
     before_filter :login_required
 
     # Initialize GetText and Content-Type.
-    init_gettext "yast_webclient_system"  # textdomain, options(:charset, :content_type)
+    init_gettext "webyast-reboot-ui"  # textdomain, options(:charset, :content_type)
 
     def initialize
 	@sys = System.new rescue nil

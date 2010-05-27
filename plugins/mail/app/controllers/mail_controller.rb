@@ -27,7 +27,7 @@ class MailController < ApplicationController
   private
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_mail"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-mail-ui"  # textdomain, options(:charset, :content_type)
 
   public
 

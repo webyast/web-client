@@ -29,7 +29,7 @@ class EulasController < ApplicationController
   layout 'main'
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_eulas"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-licenses-ui"  # textdomain, options(:charset, :content_type)
 
 private
 

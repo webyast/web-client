@@ -86,7 +86,7 @@ class RegistrationController < ApplicationController
   end
 
   # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_registration"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-registration-ui"  # textdomain, options(:charset, :content_type)
 
   def client_guid
     # handle config error in backend (bnc#592620)

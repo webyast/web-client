@@ -51,7 +51,7 @@ class PermissionsController < ApplicationController
   end
 
  # Initialize GetText and Content-Type.
-  init_gettext "yast_webclient_permissions"  # textdomain, options(:charset, :content_type)
+  init_gettext "webyast-permissions-ui"  # textdomain, options(:charset, :content_type)
 
 
   # Checks the tree if there is a node which is set to the value of "granted"
