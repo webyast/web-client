@@ -39,9 +39,10 @@ task :updatepot do
   require 'gettext_rails/tools'
 
   #generate a ruby file include the translation. This tmp file is needed for generating pot files
-  yml_files = Dir.glob("{config,.}/**/*.{yml,yaml}")
-  yml_files.each do |src_file|
-    system "cp #{src_file} #{src_file+".sav"}"
+  yml_files = Dir.glob("./**/*.{yml,yaml}")
+  yml_files.each do |yml_file|
+    src_file = File.join(Dir.pwd,yml_file)
+    FileUtils.cp (src_file, src_file+"save")
     src_array = IO.readlines(src_file)
     dst = File.new(src_file, "w")
     src_array.each {|line|
@@ -61,18 +62,23 @@ task :updatepot do
   spec_files = Dir.glob("package/**/*.spec")
   unless spec_files.empty?
     package_name = File.basename(spec_files.first,".spec")
-    GetText.update_pofiles(package_name, Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
+    begin
+      GetText.update_pofiles(package_name, Dir.glob("{app,lib,config,.}/**/*.{rb,erb,rhtml,yml,yaml}"),
                              "#{package_name} 1.0.0")
-    filename = package_name + ".pot"
-    # Moving pot file to global pot directory
-    File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
+      filename = package_name + ".pot"
+      # Moving pot file to global pot directory
+      File.rename(File.join(Dir.pwd,"po", filename), File.join(destdir, filename))
+    rescue
+      puts "ERROR while calling GetText.update_pofiles"
+    end
   else
     puts "ERROR: package name not found for #{Dir.pwd}"
   end
   #cleanup YAML files
-  yml_files.each do |src_file|
-    system "cp #{src_file+".sav"} #{src_file}"
-    system "rm #{src_file+".sav"}"
+  yml_files.each do |yml_file|
+    src_file = File.join(Dir.pwd,yml_file)
+    FileUtils.remove(src_file)
+    File.rename(src_file+'save', src_file)
   end
 end
 
