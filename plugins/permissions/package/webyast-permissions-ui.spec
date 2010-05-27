@@ -76,12 +76,12 @@ rm -f $RPM_BUILD_ROOT/%{plugin_dir}/shortcuts.yml
 rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
 
 # search locale files
-%find_lang yast_webclient_permissions
+%find_lang webyast-permissions-ui
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_permissions.lang
+%files -f webyast-permissions-ui.lang
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %dir %{webyast_ui_dir}/vendor
