@@ -72,12 +72,12 @@ rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
 
 # search locale files
-%find_lang yast_webclient_firewall
+%find_lang webyast-firewall-ui
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_firewall.lang
+%files -f webyast-firewall-ui.lang
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %dir %{webyast_ui_dir}/vendor
