@@ -74,12 +74,12 @@ rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 # remove .po files (no longer needed)
 rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
 # search locale files
-%find_lang yast_webclient_eulas
+%find_lang webyast-licenses-ui
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f yast_webclient_eulas.lang
+%files -f webyast-licenses-ui.lang
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %dir %{webyast_ui_dir}/vendor
