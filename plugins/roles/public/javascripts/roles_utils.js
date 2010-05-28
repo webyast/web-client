@@ -1,0 +1,34 @@
+function hide_descrs() {
+	$("#descriptions > p").hide();
+}
+
+function show_desc(id) {
+	hide_descrs();
+	$("#"+id+"-description").show();
+}
+
+function grant_perm(id) {
+	$("#"+id+"-g").css("display","list-item");
+	$("#"+id+"-a").css("display","none");
+	renew_hidden();
+}
+
+function revoke_perm(id){
+	$("#"+id+"-a").css("display","list-item");
+	$("#"+id+"-g").css("display","none");
+	renew_hidden();
+}
+
+function renew_hidden(){
+	var new_val = [];
+	$.each($("#granted_perm li:not(:hidden)"),function(i,val){
+		var len = val.id.length;
+		new_val.push (val.id.substring(0,len-2))});
+	$("#assigned_perms")[0].value = new_val.join(',');
+
+	new_val = [];
+	$.each($("#users_assigned li:not(:hidden)"),function(i,val){
+		var len = val.id.length;
+		new_val.push (val.id.substring(0,len-2))});
+	$("#assigned_users")[0].value = new_val.join(',');
+}
