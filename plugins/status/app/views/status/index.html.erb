@@ -63,7 +63,7 @@
                             ) unless group.single_graphs.blank?
            %>">
          <span class="status-icon <%= limits_reached(group) ? 'error' : 'ok' %>"></span>
-         <%= group.id %>
+         <%= group.headline %>
       </div>
       <div style="display: none;">
           <% group.single_graphs.each do |single_graph| %>
