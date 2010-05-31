@@ -1,78 +1,191 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# Aleksey Osipov <aliks-os@yandex.ru>, 2005, 2006, 2007.
-# Alexander Melentiev <alex239@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2009-11-01 02:07+0300\n"
-"Last-Translator: Alexander Melentiev <alex239@gmail.com>\n"
-"Language-Team: Russian <opensuse-translation-ru@opensuse.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 12:14\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 1.0\n"
+
+#: app/controllers/registration_controller.rb:11
+msgid "Email"
+msgstr "Электронная почта"
+
+#: app/controllers/registration_controller.rb:12
+msgid "System name"
+msgstr "Имя системы"
+
+#: app/controllers/registration_controller.rb:13
+msgid "SLES registration code"
+msgstr "Регистрационный код SLES"
 
 #: app/controllers/registration_controller.rb:14
+msgid "SLED registration code"
+msgstr "Регистрационный код SLED"
+
+#: app/controllers/registration_controller.rb:15
+msgid "Appliance registration code"
+msgstr "Код регистрации программно-аппаратного комплекса"
+
+#: app/controllers/registration_controller.rb:16
+msgid "WebYaST registration code"
+msgstr "Регистрационный код WebYaST"
+
+#: app/controllers/registration_controller.rb:17
+msgid "Registration code"
+msgstr "Регистрационный код"
+
+#: app/controllers/registration_controller.rb:18
+msgid "Hostname"
+msgstr "Имя хоста"
+
+#: app/controllers/registration_controller.rb:19
+msgid "Device name"
+msgstr "Имя устройства"
+
+#: app/controllers/registration_controller.rb:20
+msgid "Appliance name"
+msgstr "Имя программно-аппаратного комплекса"
+
+#: app/controllers/registration_controller.rb:21
+msgid "registration code"
+msgstr "регистрационный код"
+
+#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
-msgstr "Неверный сеанс, пожалуйста, войдите снова."
+msgstr "Неверный сеанс, повторите вход."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
-msgstr "Нет прав для регистрации"
+msgstr "Нет разрешений для регистрации"
 
-#: app/controllers/registration_controller.rb:57
-msgid "Arguments for registration cannot be evaluated."
-msgstr "Аргументы регистрации не могут быть приняты."
+#: app/controllers/registration_controller.rb:84
+msgid "Please try to register again later."
+msgstr "Пожалуйста, повторите попытку регистрации позднее."
+
+#: app/controllers/registration_controller.rb:88
+msgid "Registration was skipped."
+msgstr "Регистрация была пропущена."
+
+#: app/controllers/registration_controller.rb:94
+msgid "Registration did not finish."
+msgstr "Регистрация не завершена."
+
+#: app/controllers/registration_controller.rb:95
+msgid "Registration did not succeed."
+msgstr "Не удалось выполнить регистрацию."
 
 #: app/controllers/registration_controller.rb:97
-msgid "Registration finished successfully."
-msgstr "Регистрация завершена успешно."
+msgid "This may be a temporary issue."
+msgstr "Возможно, это временная проблема."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:102
+msgid "The registration server returned invalid or incomplete data."
+msgstr "Сервер регистрации вернул недопустимые или неполные данные."
+
+#: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
 msgstr "Заполните пропущенные записи."
 
-#: app/controllers/registration_controller.rb:126
-msgid "Error occured while connecting to registration server."
-msgstr "Произошла ошибка при подключении к серверу регистрации."
+#: app/controllers/registration_controller.rb:155
+msgid "Service added:"
+msgstr "Добавлена служба:"
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:159 app/controllers/registration_controller.rb:164
+msgid "Catalog enabled:"
+msgstr "Каталог включен:"
+
+#: app/controllers/registration_controller.rb:188
+msgid "Repository added:"
+msgstr "Добавлен репозиторий:"
+
+#: app/controllers/registration_controller.rb:248
+msgid "This system is already registered."
+msgstr "Эта система уже зарегистрирована."
+
+#: app/controllers/registration_controller.rb:277
+msgid "Registration finished successfully."
+msgstr "Регистрация завершена успешно."
+
+#: app/controllers/registration_controller.rb:290
+msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
+msgstr "<p><b>Репозитории не изменялись во время регистрации.</b></p><p>Вероятно, был использован неверный код регистрации. Повторите попытку начать процесс регистрации, чтобы получить репозиторий обновления.</p><p>Пожалуйста, убедитесь, что репозиторий обновления сконфигурирован, иначе он не получит обновлений.</p>"
+
+#: app/controllers/registration_controller.rb:324
+msgid "A connection to the registration server could not be established."
+msgstr "Не удалось установить соединение с сервером регистрации."
+
+#: app/controllers/registration_controller.rb:328
+msgid "The transmitted registration data created a conflict."
+msgstr "Переданные регистрационные данные вызвали конфликт."
+
+#: app/controllers/registration_controller.rb:336
+msgid "Registration can not be performed. There is no product installed that can be registered."
+msgstr "Невозможно выполнить регистрацию. Не установлено ни одного продукта, который может быть зарегистрирован."
+
+#: app/controllers/registration_controller.rb:351
+msgid "A connection to the registration server could not be established or it did not reply."
+msgstr "Не удается подключиться к серверу регистрации, или сервер регистрации не отвечает."
+
+#: app/controllers/registration_controller.rb:368
+msgid "The registration server returned invalid data."
+msgstr "Сервер регистрации вернул недопустимые данные."
+
+#: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
+msgid "Please enter a valid Email address."
+msgstr "Введите действительный адрес электронной почты."
+
+#: app/views/registration/index.rhtml:36
 msgid "register plugin"
 msgstr "модуль регистрации"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:36
 msgid "Registration"
 msgstr "Регистрация"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "В таблице представлены настройки регистрации."
-
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "Изменённые репозитории"
-
 #: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "Изменённые службы"
+msgid "Registration Information"
+msgstr "Регистрационные данные"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
-msgid "Detail"
+#: app/views/registration/index.rhtml:45
+msgid "This system is registered"
+msgstr "Система зарегистрирована"
+
+#: app/views/registration/index.rhtml:46
+msgid "System number (GUID)"
+msgstr "Системный номер (идентификатор GUID)"
+
+#: app/views/registration/index.rhtml:47
+msgid "Register again"
+msgstr "Повторная регистрация"
+
+#: app/views/registration/index.rhtml:54
+msgid "Next"
+msgstr "Далее"
+
+#: app/views/registration/index.rhtml:64
+msgid "Mandatory Information"
+msgstr "Обязательные сведения"
+
+#: app/views/registration/index.rhtml:79
+msgid "Details"
 msgstr "Подробности"
 
-#~ msgid "Register"
-#~ msgstr "Зарегистрироваться"
+#: app/views/registration/index.rhtml:104
+msgid "Skip"
+msgstr "Пропустить"
 
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Отмена"
+#: app/views/registration/index.rhtml:105
+msgid "Postpone"
+msgstr "Отложить"
+
+#: app/views/registration/index.rhtml:106
+msgid "or"
+msgstr "или"
+

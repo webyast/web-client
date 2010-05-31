@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2009-11-13 19:57+0100\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@lists.kde.org>\n"
@@ -13,28 +13,53 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 0.2\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr "Invalidna sesija, molimo vas da se ponovo prijavite."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr "Nema dozvola za registraciju"
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr "Argumenti za registraciju ne mogu biti provjereni."
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid "Error occured while connecting to registration server."
+msgid "An error occurred during registration. Please try again."
+msgstr "Dogodila se greška prilikom spajanja na poslužitelj za registraciju."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr "Registracija je uspješno završena."
 
+#: app/controllers/registration_controller.rb:119
+#, fuzzy
+#| msgid "SLP Services and more"
+msgid "Service added:"
+msgstr "SLP servisi i više"
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "Catalog: "
+msgid "Catalog enabled:"
+msgstr "Katalog:"
+
+#: app/controllers/registration_controller.rb:143
+#, fuzzy
+#| msgid "Repository: "
+msgid "Repository added:"
+msgstr "Repozitorij:"
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr "Molimo vas da popunite unose koji nedostaju."
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 msgid "Error occured while connecting to registration server."
 msgstr "Dogodila se greška prilikom spajanja na poslužitelj za registraciju."
 
@@ -42,30 +67,41 @@ msgstr "Dogodila se greška prilikom spajanja na poslužitelj za registraciju."
 msgid "register plugin"
 msgstr "umetak za registraciju"
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 msgid "Registration"
 msgstr "Registracija"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr "Ova tablica daje postavke registracije."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
+msgstr ""
 
-#: app/views/registration/index.rhtml:29
-msgid "Changed Repositories"
-msgstr "Promijenjeni repozitoriji"
+#: app/views/registration/index.rhtml:10
+#, fuzzy
+#| msgid "System:"
+msgid "System's GUID:"
+msgstr "Sustav:"
 
-#: app/views/registration/index.rhtml:44
-msgid "Changed Services"
-msgstr "Promjenjeni servisi"
+#: app/views/registration/index.rhtml:11
+#, fuzzy
+#| msgid "Registration"
+msgid "Register again"
+msgstr "Registracija"
 
-#: app/views/registration/index.rhtml:57
-#| msgid "Details"
+#: app/views/registration/index.rhtml:39
 msgid "Detail"
 msgstr "Detalj"
+
+#~ msgid "This table gives registration settings."
+#~ msgstr "Ova tablica daje postavke registracije."
+
+#~ msgid "Changed Repositories"
+#~ msgstr "Promijenjeni repozitoriji"
+
+#~ msgid "Changed Services"
+#~ msgstr "Promjenjeni servisi"
 
 #~ msgid "Register"
 #~ msgstr "Registriraj"
 
 #~ msgid "Cancel"
 #~ msgstr "Otkaži"
-

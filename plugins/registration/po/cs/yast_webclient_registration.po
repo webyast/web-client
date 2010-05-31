@@ -1,76 +1,191 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
-"PO-Revision-Date: 2005-07-31 14:37+0200\n"
-"Last-Translator: Klara Cihlarova <koty@seznam.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"Project-Id-Version: yast_webclient_registration\n"
+"POT-Creation-Date: 2010-03-30 10:01+0200\n"
+"PO-Revision-Date: 2010-04-08 11:43\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
+#: app/controllers/registration_controller.rb:11
+msgid "Email"
+msgstr "E-mail"
+
+#: app/controllers/registration_controller.rb:12
+msgid "System name"
+msgstr "Název systému"
+
+#: app/controllers/registration_controller.rb:13
+msgid "SLES registration code"
+msgstr "Registrační číslo SLES"
+
 #: app/controllers/registration_controller.rb:14
+msgid "SLED registration code"
+msgstr "Registrační číslo SLED"
+
+#: app/controllers/registration_controller.rb:15
+msgid "Appliance registration code"
+msgstr "Registrační číslo zařízení"
+
+#: app/controllers/registration_controller.rb:16
+msgid "WebYaST registration code"
+msgstr "Registrační číslo WebYaST"
+
+#: app/controllers/registration_controller.rb:17
+msgid "Registration code"
+msgstr "Registrační číslo"
+
+#: app/controllers/registration_controller.rb:18
+msgid "Hostname"
+msgstr "Název hostitele"
+
+#: app/controllers/registration_controller.rb:19
+msgid "Device name"
+msgstr "Název zařízení"
+
+#: app/controllers/registration_controller.rb:20
+msgid "Appliance name"
+msgstr "Název zařízení"
+
+#: app/controllers/registration_controller.rb:21
+msgid "registration code"
+msgstr "registrační číslo"
+
+#: app/controllers/registration_controller.rb:30
 msgid "Invalid session, please login again."
-msgstr ""
+msgstr "Nepatná relace, přihlaste se znovu."
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:41
 msgid "No permissions for registration"
-msgstr ""
+msgstr "Nejsou žádná oprávnění pro registraci."
 
-#: app/controllers/registration_controller.rb:57
-msgid "Arguments for registration cannot be evaluated."
-msgstr ""
+#: app/controllers/registration_controller.rb:84
+msgid "Please try to register again later."
+msgstr "Zkuste se prosím zaregistrovat později."
+
+#: app/controllers/registration_controller.rb:88
+msgid "Registration was skipped."
+msgstr "Registrace byla přeskočena."
+
+#: app/controllers/registration_controller.rb:94
+msgid "Registration did not finish."
+msgstr "Registrace nebyla dokončena."
+
+#: app/controllers/registration_controller.rb:95
+msgid "Registration did not succeed."
+msgstr "Registrace se nezdařila."
 
 #: app/controllers/registration_controller.rb:97
-msgid "Registration finished successfully."
-msgstr ""
+msgid "This may be a temporary issue."
+msgstr "Může jít o dočasný problém."
 
-#: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:102
+msgid "The registration server returned invalid or incomplete data."
+msgstr "Registrační server vrátil neplatná nebo neúplná data."
+
+#: app/controllers/registration_controller.rb:134
 msgid "Please fill out missing entries."
-msgstr ""
+msgstr "Vyplňte chybějící položky."
 
-#: app/controllers/registration_controller.rb:126
-#, fuzzy
-#| msgid "An error occurred while reading from the installation source."
-msgid "Error occured while connecting to registration server."
-msgstr "Při čtení z instalačního zdroje došlo k chybě."
+#: app/controllers/registration_controller.rb:155
+msgid "Service added:"
+msgstr "Přidaná služba:"
 
-#: app/views/registration/index.rhtml:1
+#: app/controllers/registration_controller.rb:159 app/controllers/registration_controller.rb:164
+msgid "Catalog enabled:"
+msgstr "Povolený katalog:"
+
+#: app/controllers/registration_controller.rb:188
+msgid "Repository added:"
+msgstr "Přidané úložiště:"
+
+#: app/controllers/registration_controller.rb:248
+msgid "This system is already registered."
+msgstr "Tento systém je již zaregistrován."
+
+#: app/controllers/registration_controller.rb:277
+msgid "Registration finished successfully."
+msgstr "Registrace byla úspěšně dokončena."
+
+#: app/controllers/registration_controller.rb:290
+msgid "<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>"
+msgstr "<p><b>Úložiště nebyla při registraci změněna.</b></p><p>Nejspíš bylo použito nesprávné registrační číslo. Je-li tomu tak, úložiště aktualizací získáte zopakováním registrace.</p><p>Ujistěte se, že úložiště aktualizací je v tomto systému nakonfigurováno, jinak nebude aktualizace přijímat.</p>"
+
+#: app/controllers/registration_controller.rb:324
+msgid "A connection to the registration server could not be established."
+msgstr "Nepodařilo se navázat připojení k registračnímu serveru."
+
+#: app/controllers/registration_controller.rb:328
+msgid "The transmitted registration data created a conflict."
+msgstr "Odeslaná registrační data vyvolala konflikt."
+
+#: app/controllers/registration_controller.rb:336
+msgid "Registration can not be performed. There is no product installed that can be registered."
+msgstr "Registraci nelze provést. Není nainstalován žádný produkt, který by bylo možné zaregistrovat."
+
+#: app/controllers/registration_controller.rb:351
+msgid "A connection to the registration server could not be established or it did not reply."
+msgstr "Nepodařilo se navázt připojení k registračnímu serveru, nebo server neodpověděl."
+
+#: app/controllers/registration_controller.rb:368
+msgid "The registration server returned invalid data."
+msgstr "Registrační server vrátil neplatná data."
+
+#: app/views/registration/index.rhtml:28 app/views/registration/index.rhtml:29
+msgid "Please enter a valid Email address."
+msgstr "Zadejte platnou e-mailovou adresu."
+
+#: app/views/registration/index.rhtml:36
 msgid "register plugin"
-msgstr ""
+msgstr "registrovat modul plug-in"
 
-#: app/views/registration/index.rhtml:2
-#, fuzzy
-#| msgid "Administration"
+#: app/views/registration/index.rhtml:36
 msgid "Registration"
-msgstr "Administrace"
-
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
-msgstr ""
-
-#: app/views/registration/index.rhtml:29
-#, fuzzy
-#| msgid "Error reading repositories:"
-msgid "Changed Repositories"
-msgstr "Chyba při čtení repozitářů:"
+msgstr "Registrace"
 
 #: app/views/registration/index.rhtml:44
-#, fuzzy
-#| msgid "Changed profiles"
-msgid "Changed Services"
-msgstr "Změněné profily"
+msgid "Registration Information"
+msgstr "Informace o registraci"
 
-#: app/views/registration/index.rhtml:57
-#, fuzzy
-#| msgid "Details"
-msgid "Detail"
+#: app/views/registration/index.rhtml:45
+msgid "This system is registered"
+msgstr "Systém je zaregistrován"
+
+#: app/views/registration/index.rhtml:46
+msgid "System number (GUID)"
+msgstr "Číslo systému (GUID)"
+
+#: app/views/registration/index.rhtml:47
+msgid "Register again"
+msgstr "Registrovat znovu"
+
+#: app/views/registration/index.rhtml:54
+msgid "Next"
+msgstr "Další"
+
+#: app/views/registration/index.rhtml:64
+msgid "Mandatory Information"
+msgstr "Povinné informace"
+
+#: app/views/registration/index.rhtml:79
+msgid "Details"
 msgstr "Podrobnosti"
 
-# cancel button label
-#~ msgid "Cancel"
-#~ msgstr "Zrušit"
+#: app/views/registration/index.rhtml:104
+msgid "Skip"
+msgstr "Přeskočit"
+
+#: app/views/registration/index.rhtml:105
+msgid "Postpone"
+msgstr "Odložit"
+
+#: app/views/registration/index.rhtml:106
+msgid "or"
+msgstr "nebo"
+

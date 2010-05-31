@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: base\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-12 12:07+0100\n"
+"POT-Creation-Date: 2009-11-20 14:35+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -14,28 +14,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/registration_controller.rb:14
+#: app/controllers/registration_controller.rb:15
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:42
-#: app/controllers/registration_controller.rb:75
+#: app/controllers/registration_controller.rb:39
+#: app/controllers/registration_controller.rb:89
 msgid "No permissions for registration"
 msgstr ""
 
-#: app/controllers/registration_controller.rb:57
+#: app/controllers/registration_controller.rb:68
 msgid "Arguments for registration cannot be evaluated."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:97
+#: app/controllers/registration_controller.rb:69
+#, fuzzy
+#| msgid "An error occurred during the installation."
+msgid "An error occurred during registration. Please try again."
+msgstr "Kwenzeke impazamo ngethuba lokuhlohla."
+
+#: app/controllers/registration_controller.rb:111
 msgid "Registration finished successfully."
 msgstr ""
 
+#: app/controllers/registration_controller.rb:119
+msgid "Service added:"
+msgstr ""
+
 #: app/controllers/registration_controller.rb:123
+#: app/controllers/registration_controller.rb:128
+#, fuzzy
+#| msgid "Catalog: "
+msgid "Catalog enabled:"
+msgstr "Ikhathalog:"
+
+#: app/controllers/registration_controller.rb:143
+msgid "Repository added:"
+msgstr ""
+
+#: app/controllers/registration_controller.rb:173
 msgid "Please fill out missing entries."
 msgstr ""
 
-#: app/controllers/registration_controller.rb:126
+#: app/controllers/registration_controller.rb:176
 #, fuzzy
 #| msgid "An error occurred while reading from the installation source."
 msgid "Error occured while connecting to registration server."
@@ -45,33 +66,43 @@ msgstr "Kwenzeke imposiso xa bekufundwa kukavimba wokuhlohla."
 msgid "register plugin"
 msgstr ""
 
-#: app/views/registration/index.rhtml:2
+#: app/views/registration/index.rhtml:1
 #, fuzzy
 #| msgid "&Administration"
 msgid "Registration"
 msgstr "&Ulawulo"
 
-#: app/views/registration/index.rhtml:7
-msgid "This table gives registration settings."
+#: app/views/registration/index.rhtml:9
+msgid "This system is registered"
 msgstr ""
 
-#: app/views/registration/index.rhtml:29
+#: app/views/registration/index.rhtml:10
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Repositories"
-msgstr "Guqula &Indawo"
+#| msgid "System:"
+msgid "System's GUID:"
+msgstr "Isixokelelwano:"
 
-#: app/views/registration/index.rhtml:44
+#: app/views/registration/index.rhtml:11
 #, fuzzy
-#| msgid "Change &Position"
-msgid "Changed Services"
-msgstr "Guqula &Indawo"
+#| msgid "&Administration"
+msgid "Register again"
+msgstr "&Ulawulo"
 
-#: app/views/registration/index.rhtml:57
+#: app/views/registration/index.rhtml:39
 #, fuzzy
 #| msgid "&Details"
 msgid "Detail"
 msgstr "&Iinkcukacha"
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Repositories"
+#~ msgstr "Guqula &Indawo"
+
+#, fuzzy
+#~| msgid "Change &Position"
+#~ msgid "Changed Services"
+#~ msgstr "Guqula &Indawo"
 
 # cancel button label
 #~ msgid "Cancel"
