@@ -23,8 +23,6 @@ require 'yast/service_resource'
 require 'client_exception'
 require 'open-uri'
 
-include PluginTranslation
-
 class StatusController < ApplicationController
   
   before_filter :login_required
@@ -143,7 +141,7 @@ class StatusController < ApplicationController
   def index
     client_permissions
     @logs = Logs.find(:all)
-    @plugins = translate_plugin_message(Plugins.find(:all))
+    @plugins = Plugins.find(:all)
     begin
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
       #sorting graphs via id
@@ -249,7 +247,7 @@ class StatusController < ApplicationController
       end
 
       #Checking WebYaST service plugins
-      plugins = translate_plugin_message(Plugins.find(:all))
+      plugins = Plugins.find(:all)
       plugins.each {|plugin|
         level = plugin.level if plugin.level == "error" || (plugin.level == "warning" && level == "ok")
         if status.blank?
