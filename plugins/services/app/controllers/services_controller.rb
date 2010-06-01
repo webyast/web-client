@@ -95,7 +95,7 @@ class ServicesController < ApplicationController
        when "4" then _("user had insufficient privilege")
        when "5" then _("program is not installed")
        when "6" then _("program is not configured")
-       when "7" then _("program is not runnning")
+       when "7" then _("program is not running")
     end
     render(:partial =>'result', :params => params)
   end
