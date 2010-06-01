@@ -1,9 +1,0 @@
-<% content_for :before_script do %>
-  <% javascript_tag do %>
-    $(document).ready(function(){
-      addTabsNavigation(".tab", "span");
-      $(".tab").tabs();
-    });
-  <% end %>
-<% end %>
-<%= render :partial => "role_edit", :locals => { :permissions => @permissions, :role => @role, :users => @users } %>

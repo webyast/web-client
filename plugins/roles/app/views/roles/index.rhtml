@@ -1,29 +1,189 @@
 <% content_for :head do %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "select_dialog.js" %>
+<% end%>
 
+<% content_for :before_script do %>
   <% javascript_tag do %>
-	  function showNew() {
-		  $("#new_role").css("visibility","visible");
-  	}
-  <% end %>
-<% end %>
+    function groupedFields(group_role_id) {
+      var header_check = $(".permissions-group-header .permission-field[group-role-id='"+group_role_id+"'] input")[0];
+      var field_checks = $(".permissions-group-content .permission-field[group-role-id='"+group_role_id+"'] input").get();
+      return { header : header_check, fields : field_checks };
+    };
+    function all(items, cond) {
+      items_length = items.length;
+      for (var i=0;i<items_length;i++) {
+        if (!cond(items[i])) { return false }
+      };
+      return true;
+    };
+    function allChecked(checks, status) {
+      return all(checks, function(ch) { return ch.checked == status });
+    };
+    function allCheckedSame(checks) {
+      return (allChecked(checks,true) || allChecked(checks,false));
+    };
+    function groupHeaderClicked( group_header ) {
+      var group = groupedFields(group_header.parent().attr('group-role-id'));
+      if (group_header.hasClass('computed')) {
+        group.fields.map( function(f){f.checked = group_header[0].checked} )
+        group_header.removeClass('computed');
+        $(group.fields).addClass('computed');
+      } else {
+        group.fields.map( function(f){ f.checked = group_header[0].checked } );
+      }
+    };
+    function refreshComputed(group_role_id) {
+      group = groupedFields( group_role_id );
+      if (allCheckedSame(group.fields)) {
+        $(group.header).removeClass('computed');
+        $(group.fields).addClass('computed');
+        group.header.checked = group.fields[0].checked;
+      } else {
+        $(group.header).addClass('computed');
+        $(group.fields).removeClass('computed');
+        group.header.checked = true;
+      }
+    };
+    function groupFieldClicked( group_field ) {
+      refreshComputed(group_field.parent().attr('group-role-id'));
+    };
+    function collapseAll() {
+      $('.list-fieldset-header').next().hide();
+    };
+    function select_users_dialog() {
+      var open_dialog = select_many_dialog({
+        kind : 'users',
+        title : '<%= _('Assign Users') %>',
+        selected_title : '<%= _('Selected Users') %>',
+        unselected_title : '<%= _('Available Users') %>',
+        tooltip : '<%= _('Click user names to assign/remove users') %>',
+        loadItems : function (dialogId) {
+          return $('#users_of_'+dialogId)[0].value.split(",")
+        },
+        storeItems : function (dialogId, items) {
+          $('#users_of_'+dialogId)[0].value = items.join(",");
+        },
+        allItems : function (dialogId) {
+          return $('#all_users_string')[0].value.split(",")
+        }
+      });
+      return open_dialog;
+    };
 
+    $(document).ready(function(){
+      select_users_open = select_users_dialog();
+      $(".permissions-group-header .permission-field input").click( function() {
+        groupHeaderClicked($(this));
+      });
+      $(".permissions-group-content .permission-field input").click( function() {
+        groupFieldClicked( $(this) );
+      });
+      $(".permissions-group-header .permission-field").map( function() { refreshComputed( this.getAttribute('group-role-id') ) });
+      $('.list-fieldset-header .permission-label').click(function() {
+        $(this).parent().next().toggle();
+        return false;
+      });
+      $('.permissions-header .permission-label').click( collapseAll );
+      addTabsNavigation(".fieldset-group", "span");
+      $(".fieldset-group").tabs();
+    });
+  <% end %>
+
+<style>
+  .permission-label {
+    width: 22em;
+    float: left;
+    cursor: pointer;
+  }
+  .permission-field, .role-label {
+    width: 8em;
+    float: left;
+    text-align: center;
+  }
+  .permissions-content, .permissions-group-row {
+    clear: left;
+  }
+  .permissions-group-row .permission-label {
+    margin-left: 2em;
+    width: 20em;
+  }
+  .permissions-header {
+    margin: 0em 1.5em;
+  }
+  input.computed {
+    opacity: 0.5;
+  }
+</style>
+
+<% end %>
 
 <div class='plugin-icon'><img src='/icons/yast-permissions.png' alt="Roles module"/><%=_("Roles")%></div>
 
 <div class="plugin-content">
-  <ul>
-	<% (@roles||[]).each  do |role| %>
-		<div>
-			<li> <%= link_to role.name, "/roles/edit/#{role.name}" %> </li>
-		</div>
-	<% end %>
-  </ul>
-	<div > <a href="#" onclick="showNew()">Create new role</a> </div>
-	<div id="new_role" style="visibility:hidden">
-  		<% form_tag '/roles/create', {:class => 'container'} do %>
-    	<label for="role_name"> Name </label><%= text_field_tag "role_name", ""%>
-			<%= submit_tag "create" %>
-			<% end %>
-	</div>
+  <div class="nav-buttons">
+    <%= link_to  (_("Manage Roles") ),
+                 {:action => 'manage_roles'} %>
+  </div>
+  <% form_tag '/roles/update', {:class => 'container'} do %>
+    <div class="fieldset-group">
+      <fieldset id="assign-permissions">
+        <legend><span><%= _("Assign Permissions")%></span></legend>
+        <div>
+          <div class="permissions-header">
+            <span class="permission-label"><%= _("collapse all") %></span>
+            <% @roles.each do |role| %>
+                 <span class="role-label"><%= role.name %></span>
+            <% end %>
+          </div>
+          <div class="permissions-content">
+            <% @prefixed_permissions.each do |prefix,permissions| %>
+              <div class="list-fieldset">
+                <div class="permissions-group-header list-fieldset-header">
+                  <span class="permission-label"><%= prefix %></span>
+                  <% @roles.each do |role| %>
+                    <span class="permission-field" group-role-id="<%= RolesController.permission_role_id prefix, role.name %>">
+                      <%= check_box_tag( RolesController.permission_role_id( prefix, role.name),
+                                         "1" ) %>
+                    </span>
+                  <% end %>
+                </div>
+                <div class="permissions-group-content">
+                  <% permissions.each do |permission| %>
+                    <div class="permissions-group-row">
+                      <span class="permission-label"><%= permission.short_name %></span>
+                      <% @roles.each do |role| %>
+                        <span class="permission-field" group-role-id="<%= RolesController.permission_role_id prefix, role.name %>">
+                          <%= check_box_tag( RolesController.permission_role_id( permission.full_name, role.name ),
+                                             "1",
+                                             role.permissions.include?( permission.full_name) ) %>
+                        </span>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset id="assign-users">
+        <legend><span><%= _("Assign Users")%></span></legend>
+        <div>
+          <% @roles.each do |role| %>
+            <p>
+              <label><%= role.name%></label>
+              <%=text_field_tag( RolesController.users_role_id(role.name), role.users.join(",")) %>
+              <a href="#" onClick="select_users_open('<%= role.name %>');return false;"><%= _("Assign Users") %></a>
+            </p>
+          <% end %>
+          <input type="hidden" id="all_users_string" value="<%= @all_users_string %>" />
+        </div>
+      </fieldset>
+    </div>
+    <div class="nav-buttons">
+      <%= form_next_button %>
+      <%= form_str_spacer %>
+      <%= form_back_button %>
+    </div>
+  <% end %>
 </div>
