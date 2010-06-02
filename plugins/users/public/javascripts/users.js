@@ -137,25 +137,7 @@ function def_group_validation(which){
   return (errmsg.length==0);
 }
 
-function new_user_validation(which){
-  var valid = true;
-  if (valid && ($('#form_').validate().element('#user_uid')==false || $('#form_').validate().element('#user_user_password')==false)){
-	$(".fieldset-group.ui-tabs").tabs('select',"#tab_login");
-	valid = false;
-  }
-  if (valid && (groups_validation($('#user_grp_string')[0])==false || def_group_validation($('#user_groupname')[0])==false)){
-	$(".fieldset-group.ui-tabs").tabs('select',"#tab_groups");
-	valid = false;
-  }
-  if (valid && $('#form_').validate().element('#user_uid_number')==false){
-	$(".fieldset-group.ui-tabs").tabs('select',"#tab_advanced");
-	valid = false;
-  }
-
-  return valid;
-}
-
-function edit_user_validation(which, username){
+function user_validation(which, username){
   var valid = true;
   var form = '#form_'+username;
   if (valid && ($(form).validate().element(form+' #user_uid')==false || $(form).validate().element(form+' #user_user_password')==false || $(form).validate().element(form+' #user_user_password2')==false)){

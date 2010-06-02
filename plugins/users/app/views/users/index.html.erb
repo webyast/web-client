@@ -186,7 +186,7 @@ function def_group_validation(which){ return true; }
 
      <div class="nav-buttons">
     <div id="progress_<%= user.uid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-       <%= submit_tag _("Save"), :onclick=>"return edit_user_validation(this, '"+user.uid+"');"  %>
+       <%= submit_tag _("Save"), :onclick=>"return user_validation(this, '"+user.uid+"');"  %>
        <% if @permissions[:userdelete] %>
          <span onclick="delete_handler(this, '#progress_<%= user.uid -%>');">
            <%= link_to _("Delete"),
