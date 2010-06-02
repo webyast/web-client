@@ -185,7 +185,7 @@ public
                              :version=>nil,
                              :summary=>nil,
                              :resolvable_id=>patch_updates[0].resolvable_id})
-        message_array=create_messages(ret.messages) if ret.respond_to?(:messages) && !ret.messages.blank?
+        message_array.concat(create_messages(ret.messages)) if ret.respond_to?(:messages) && !ret.messages.blank?
         logger.debug "updated #{patch_updates[0].name}"
       rescue ActiveResource::ResourceNotFound => e
         flash[:error] = YaST::ServiceResource.error(e)
@@ -231,12 +231,10 @@ public
                              :version=>nil,
                              :summary=>nil,
                              :resolvable_id=>patch_id})
-        message_array=create_messages(ret.messages) if ret.respond_to?(:messages) && !ret.messages.blank?
+        message_array.concat(create_messages(ret.messages)) if ret.respond_to?(:messages) && !ret.messages.blank?
         logger.debug "updated #{patch_id}"
         unless message_array.blank?
-          flash[:warning] = _("Patch has been installed. ") + message_array.uniq.to_s
-        else
-          flash[:notice] = _("Patch has been installed. ")
+          flash[:warning] =  message_array.uniq.to_s
         end
       rescue ActiveResource::ResourceNotFound => e
         flash[:error] = YaST::ServiceResource.error(e)
@@ -251,6 +249,12 @@ public
         flash[:warning] = _("All Patches have been installed. ") + message_array.uniq.to_s 
       else
         flash[:warning] = _("Patch has been installed. ") + message_array.uniq.to_s 
+      end
+    else
+      if update_array.size > 1       
+        flash[:notice] = _("All Patches have been installed. ")
+      else
+        flash[:notice] = _("Patch has been installed. ")
       end
     end
   
