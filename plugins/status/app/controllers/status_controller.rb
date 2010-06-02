@@ -247,15 +247,29 @@ class StatusController < ApplicationController
       end
 
       #Checking WebYaST service plugins
-      plugins = Plugins.find(:all)
-      plugins.each {|plugin|
-        level = plugin.level if plugin.level == "error" || (plugin.level == "warning" && level == "ok")
-        if status.blank?
-          status = plugin.short_description
+      begin
+        plugins = Plugins.find(:all)
+        plugins.each {|plugin|
+          level = plugin.level if plugin.level == "error" || (plugin.level == "warning" && level == "ok")
+          if status.blank?
+            status = plugin.short_description
+          else
+            status += "; " + plugin.short_description
+          end        
+        }
+      rescue Exception => error
+	logger.warn error.inspect
+        level = "error"
+        refresh = false
+	error_hash = Hash.from_xml error.response.body
+	if error_hash["error"] && error_hash["error"]["type"] == "NO_PERM"
+          status = _("Status not available (no permissions)")
+          level = "warning"  #it is a warning only
         else
-          status += "; " + plugin.short_description
-        end        
-      }
+          status = error_hash["error"]["description"]
+        end
+        ret_error = ClientException.new(error)
+      end
     end #benchmark
 
     render(:partial => "status_summary", 
