@@ -192,7 +192,7 @@ function propose_login(which){
  if (login.length==0){
   login = fullname.replace(/\s/g, '').toLowerCase();
   findById(which.parentNode.getElementsByTagName('input'), "user_uid").value = login;
-  propose_home(which.parentNode);
+  propose_home(which.parentNode.parentNode.parentNode);
  }
 } 
  

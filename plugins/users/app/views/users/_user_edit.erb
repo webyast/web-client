@@ -19,7 +19,7 @@
 	<tr><td>
           <div class="label"><%=_("Password")%></div>
 	</td><td colspan=2 rowspan=2>
-          <%= f.password_field :user_password, :onkeyup => "$('#form_"+ (new ? "" : user.uid) +"').validate().element('#user_user_password');", :disabled => disabled, :class => "user-password" %>
+          <%= f.password_field :user_password, :onkeyup => "$('#form_"+ (new ? "" : user.uid) +"').validate().element('#user_user_password');", :disabled => disabled, :class => (new ? "user-password required" : "user-password") %>
 	</td></tr>
 	<tr><td>&nbsp;</td></tr>
 
