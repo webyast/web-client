@@ -90,3 +90,20 @@
       </fieldset>
   </div>
 
+   <div class="nav-buttons">
+    <div id="progress_<%= (new ? "" : user.uid) -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
+       <%= submit_tag _("Save"), :onclick=>"return user_validation(this, '"+ (new ? "" : user.uid) +"');"  %>
+       <% if @permissions[:userdelete] && !new %>
+         <span onclick="delete_handler(this, '#progress_<%= user.uid -%>');">
+           <%= link_to _("Delete"),
+                       {:action => 'destroy', :id => user.uid},
+                       {:confirm => _("Are you sure to delete user '%s'?") % user.uid, :method => :destroy, :class => :button} %>
+         </span>
+       <% elsif new %>
+    	<%= form_str_spacer %>
+    	<%= form_cancel_button :action => :index%>
+       <% end %>
+    </div>
+
+
+

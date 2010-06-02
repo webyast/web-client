@@ -169,18 +169,13 @@ function def_group_validation(which){ return true; }
 <div class='plugin-icon'><img src='/icons/yast-users.png' alt="users module"/>
   <%=_("Users") + header_spacer + _("Add new user")%>
 </div>
+
 <div class="plugin-content">
-<% form_for :user, :url => { :action => "create"}, :html => { :id => "form_", :autocomplete => :off, :onsubmit => "form_handler('')",}  do |f| %>
+ <% form_for :user, :url => { :action => "create"}, :html => { :id => "form_", :autocomplete => :off, :onsubmit => "form_handler('')",}  do |f| %>
   <%= f.error_messages %>
 
-<%= render :partial => "user_form", :locals =>{ :f => f, :disabled => disabled, :user => @user, :new => true } %>
+  <%= render :partial => "user_form", :locals =>{ :f => f, :disabled => disabled, :user => @user, :new => true } %>
 
-  <div class="nav-buttons">
-    <div id="progress_" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-    <%= submit_tag _("Save"), :onclick=>"return user_validation(this,'');" %>
-    <%= form_str_spacer %>
-    <%= form_cancel_button :action => :index%>
-  </div>
-<% end %>
-            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
+ <% end %>
+ <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
 </div>
