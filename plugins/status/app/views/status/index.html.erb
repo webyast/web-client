@@ -85,50 +85,64 @@
          <span class="status-icon <%= plugin.level %>"></span>
          <%= plugin.short_description %>
       </div>
-        <div id="<%=plugin.message_id%>" >
-          <p>     
-            <%= plugin.long_description %>
-            <% if (plugin.respond_to?(:details) && !plugin.details.blank?) %>
-              <a href="#" id="<%='detail_link_'+plugin.message_id%>">(<%=_("details")%>)</a>
-              <div id="<%='detail_'+plugin.message_id%>" >
-                <div>
-                  <%= plugin.details %>
-                </div>
+      <div id="<%=plugin.message_id%>" >
+          <%= plugin.long_description %>
+          <% if (plugin.respond_to?(:details) && !plugin.details.blank?) %>
+            <a href="#" id="<%='detail_link_'+plugin.message_id%>">(<%=_("details")%>)</a>
+            <div id="<%='detail_'+plugin.message_id%>" >
+              <div>
+                <%= plugin.details %>
               </div>
+            </div>
 
-              <script type="text/javascript">
-              $(document).ready(
-                   function() {
-                     // define a dialog
-                     $('#<%='detail_'+plugin.message_id%>').dialog(
-                     {
-               	      bgiframe: true,
-    	              autoOpen: false,
-            	      height: 'auto',
-                      title: "<%= _("Details")%>",
-                      modal: true
-                     });
-                     // open detail popup
-                     $('#<%='detail_link_'+plugin.message_id%>').click( function() {
-                       $('#<%='detail_'+plugin.message_id%>').dialog('open');
-                     });
-                  });
-              </script>
-            <% end %>
-          </p>     
+            <script type="text/javascript">
+            $(document).ready(
+                 function() {
+                   // define a dialog
+                   $('#<%='detail_'+plugin.message_id%>').dialog(
+                   {
+             	      bgiframe: true,
+  	              autoOpen: false,
+          	      height: 'auto',
+                    title: "<%= _("Details")%>",
+                    modal: true
+                   });
+                   // open detail popup
+                   $('#<%='detail_link_'+plugin.message_id%>').click( function() {
+                     $('#<%='detail_'+plugin.message_id%>').dialog('open');
+                   });
+                });
+            </script>
+          <% end %>
           <% unless plugin.confirmation_host.blank? || plugin.confirmation_link.blank? %>
             <% if plugin.confirmation_host == "client" %>
               <% unless plugin.confirmation_label.blank? %>
-                <%= button_to plugin.confirmation_label, url_for(plugin.confirmation_link) %>
+                <% if plugin.confirmation_kind == "button" %>
+                  <%= button_to plugin.confirmation_label, url_for(plugin.confirmation_link) %>
+                <% else %> 
+                  (               
+                  <%= link_to plugin.confirmation_label, url_for(plugin.confirmation_link) %>
+                  )
+                <% end %>
               <% else %>
+                (
                 <%= link_to plugin.confirmation_link, url_for(plugin.confirmation_link) %>
+                )
               <% end %>
             <% end %>
             <% if plugin.confirmation_host == "service" %>
               <% unless plugin.confirmation_label.blank? %>
-                <%= button_to plugin.confirmation_label, {:action => :confirm_status, :url => plugin.confirmation_link, :param => plugin.confirmation_label} %>
+                <% if plugin.confirmation_kind == "button" %>
+                  <%= button_to plugin.confirmation_label, {:action => :confirm_status, :url => plugin.confirmation_link, :param => plugin.confirmation_label} %>
+                <% else %>
+                  (
+                  <%= link_to plugin.confirmation_label, {:action => :confirm_status, :url => plugin.confirmation_link, :param => plugin.confirmation_label} %>
+                  )
+                <% end %>
               <% else %>
+                (
                 <%= link_to "<service>"+plugin.confirmation_link, {:action => :confirm_status, :url => plugin.confirmation_link} %>
+                )
               <% end %>
             <% end %>
           <% end %>
