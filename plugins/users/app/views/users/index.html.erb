@@ -182,7 +182,7 @@ function def_group_validation(which){ return true; }
      <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "form_handler('#{user.uid}')", :autocomplete => :off } ) do |f| %>
       <%= f.error_messages %>
 
-<%= render :partial => "user_edit", :locals =>{ :f => f, :disabled => disabled, :user => user, :new => false } %>
+<%= render :partial => "user_form", :locals =>{ :f => f, :disabled => disabled, :user => user, :new => false } %>
 
      <div class="nav-buttons">
     <div id="progress_<%= user.uid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
