@@ -22,9 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-require 'nokogiri'
 require 'tidy'
-require File.join(File.dirname(__FILE__), '../../../app/helpers/view_helpers/html_helper')
 
 module YaST
   module Rack
@@ -40,15 +38,11 @@ module YaST
         'wrap'              => 0
       }
   
-      #TIDY_LIB_PATH = '/opt/local/lib/libtidy.dylib'
-
       attr_accessor :options
   
       def initialize(app, options = {})
         options.stringify_keys!
         options.reverse_merge! DEFAULT_TIDY_OPTS
-    
-        #Tidy.path = TIDY_LIB_PATH
     
         self.options = options
     
@@ -56,13 +50,9 @@ module YaST
       end
   
       def call(env)
-        dup.call!(env)
-      end
-  
-      def call!(env)
         status, headers, response = @app.call(env)
     
-        if should_validate? headers          
+        if should_validate? headers, env
           response = ::Rack::Response.new(validate(response.body, :partial => xhr?(headers)), status, headers)
           response.finish
         else
@@ -77,28 +67,29 @@ module YaST
         headers && headers['X-Requested-With'] && headers['X-Requested-With'].include?("XMLHttpRequest")
       end
       
-      def should_validate?(headers)
-        headers && ( (headers["Content-Type"] && headers["Content-Type"].include?("text/html")) or () ) 
+      def should_validate?(headers, env)
+        headers && headers["Content-Type"] && headers["Content-Type"].include?("text/html") && !env["QUERY_STRING"].include?("tidy=no")
       end
-    
-      def validate(content, opts={}) #:nodoc:
 
+      def validate(content, opts={}) #:nodoc:
         first_line = content.each_line.to_a.first || ""
-        if content.each_line.to_a.first.include?("DOCTYPE")
+        if first_line.include?("DOCTYPE")
           content = "#{first_line}\n<html><head></head><body>#{content}</body></html>" if opts[:partial]
         end
-        
-        returning(doc = Nokogiri::HTML(content)) do
-          Tidy.open(self.options) do |tidy|
-            tidy.clean(content)
-          
-            unless tidy.errors.empty?
-              (doc/'body').first.children.first.before("<div class='ui-state-error'><p><b>HTML errors:</b>:</p><pre>#{html_escape(tidy.errors)}</pre></div>")
-            end
+
+        Tidy.open(self.options) do |tidy|
+          tidy.clean(content)
+          unless tidy.errors.empty?
+              content << present_errors(tidy.errors)
+          end
         end
-        end.to_xhtml
+        content
       end
       
+      def present_errors(s)
+        "<div class='ui-state-error'><p><b>HTML errors:</b></p><pre>#{html_escape(s)}</pre></div>"
+      end
+
       HTML_ESCAPE	=	{ 
         '&' => '&amp;', 
         '>' => '&gt;', 
