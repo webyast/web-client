@@ -51,9 +51,9 @@ module YaST
   
       def call(env)
         status, headers, response = @app.call(env)
-    
+
         if should_validate? headers, env
-          response = ::Rack::Response.new(validate(response.body, :partial => xhr?(headers)), status, headers)
+          response = ::Rack::Response.new(validate(response.body, :partial => xhr?(env)), status, headers)
           response.finish
         else
           [ status, headers, response ]
@@ -63,8 +63,8 @@ module YaST
       private
 
       # whether it is an ajax request
-      def xhr?(headers)
-        headers && headers['X-Requested-With'] && headers['X-Requested-With'].include?("XMLHttpRequest")
+      def xhr?(env)
+        env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
       end
       
       def should_validate?(headers, env)
@@ -72,13 +72,22 @@ module YaST
       end
 
       def validate(content, opts={}) #:nodoc:
-        first_line = content.each_line.to_a.first || ""
-        if first_line.include?("DOCTYPE")
-          content = "#{first_line}\n<html><head></head><body>#{content}</body></html>" if opts[:partial]
+        cooked_content = content
+        if opts[:partial]
+          # insert basic boilerplate that makes a partial page pass thru Tidy
+          first_line = content.each_line.to_a.first || ""
+          if first_line.include?("DOCTYPE")
+            doctype = first_line
+          else
+            doctype = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'
+          end
+          # BTW, do not insert newlines here, otherwise line numbers will
+          # not match in the Tidy report
+          cooked_content = "#{doctype}\n<html><head><title>tidy</title></head><body>#{content}</body></html>"
         end
 
         Tidy.open(self.options) do |tidy|
-          tidy.clean(content)
+          tidy.clean(cooked_content)
           unless tidy.errors.empty?
               content << present_errors(tidy.errors)
           end
