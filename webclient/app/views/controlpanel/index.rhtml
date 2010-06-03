@@ -92,7 +92,7 @@
   <% line_counter = 0 %>
   <% shortcuts_counter = 0 %>
   <div class="overview">
-    <% @shortcuts.each do |name, data| %>
+    <% @shortcuts.values.sort_by {|v| v['title']}.each do |data| %>
       <% if line_counter*5 == shortcuts_counter %>
         <% if line_counter > 0 %>
           </div>
