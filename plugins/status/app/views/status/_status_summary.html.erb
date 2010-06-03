@@ -26,14 +26,14 @@
   <% link_to (unauthorized ? "controlpanel" : "status") do %>
     <%= report_error(error, _("An problem occured when loading status information.")) if error && !unauthorized %>
     <% unless status.blank? %>
-      <div class="status-icon <%= level %>"></div>
+      <span class="status-icon <%= level %>">&nbsp;</span>
       <span><%= status %></span>
     <% else %>
       <% if unauthorized -%>
-	<div class="status-icon warning"></div>
+	<span class="status-icon warning">&nbsp;</span>
         <span><%= _("Cannot read system status - you have been logged out.") %></span>
       <% elsif !error %>
-	<div class="status-icon ok"></div>
+	<span class="status-icon ok">&nbsp;</span>
         <span><%= _("Your system is healthy.") %></span>
       <% end %>
     <% end %>

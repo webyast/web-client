@@ -49,11 +49,11 @@
     <% label = [] %>
     <% link_to "patch_updates" do %>
       <% if patch[:security]+patch[:important] > 0 %>
-        <div class="status-icon error"></div>
+        <span class="status-icon error">&nbsp;</span>
       <% elsif patch[:optional] > 0%>
-        <div class="status-icon warning"></div>
+        <span class="status-icon warning">&nbsp;</span>
       <% else %>
-        <div class="status-icon ok"></div>
+        <span class="status-icon ok">&nbsp;</span>
       <% end %>
 
       <% if patch[:security] > 0 %>

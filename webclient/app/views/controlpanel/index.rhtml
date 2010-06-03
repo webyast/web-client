@@ -101,10 +101,8 @@
         <div class="highlight-bg list-row">
       <% end %>
       <% link_to (data['url'], {:class => "controlpanel-shortcut"}) do %>
-        <%= image_tag(data['icon']) %>
-        <div>
-          <%= data['title'] %>
-        </div>
+        <%= image_tag(data['icon']) %><br />
+	<%= data['title'] %>
       <% end %>
       <% shortcuts_counter +=1 %>
     <% end %>
