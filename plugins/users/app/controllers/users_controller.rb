@@ -60,6 +60,17 @@ class UsersController < ApplicationController
         user.uid_number	= user.uid_number
         user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
         @all_grps_string = ""
+    user.roles_string = ""
+@roles = Role.find :all
+@roles.each do |role|
+ if role.users.include?(user.id)
+  if user.roles_string.blank?
+   user.roles_string = role.name
+  else
+   user.roles_string += ",#{role.name}" 
+  end
+ end
+end
 	@groups = []
         if @permissions[:groupsget] == true
           @groups = Group.find :all
@@ -91,9 +102,19 @@ class UsersController < ApplicationController
       :login_shell	=> "/bin/bash",
       :user_password	=> nil,
       :user_password2	=> nil,
-      :type		=> "local",
-      :id		=> nil
+      :type		=> "local"
     )
+    @user.roles_string = ""
+@roles = Role.find :all
+@roles.each do |role|
+ if role.users.include?(user.id)
+  if user.roles_string.blank?
+   user.roles_string = role.name
+  else
+   user.roles_string += ",#{role.name}"
+  end
+ end
+end
     @all_grps_string = ""
     @groups = []
     if @permissions[:groupsget] == true

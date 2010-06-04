@@ -88,6 +88,15 @@
 	</td></tr>
        </table>
       </fieldset>
+
+      <fieldset id="tab_roles_<%= (new ? "" : user.uid) %>">
+      <legend><span><%= _("Roles") %></span></legend>
+       <div>
+	<%= f.text_field :roles_string, :disabled => false  %>
+	<a href="#" class="button"><%= _("Manage Roles") %></a>
+       </div>
+      </fieldset>
+
   </div>
 
    <div class="nav-buttons">
