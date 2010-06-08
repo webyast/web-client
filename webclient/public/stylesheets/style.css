@@ -1,47 +1,671 @@
-/*
-Syntax error: "#6eb928" is not a color for `lighten'
-        on line 27 of style.sass
+/*#--
+ *# Webyast Webservice framework
+ *#
+ *# Copyright (C) 2009, 2010 Novell, Inc. 
+ *#   This library is free software; you can redistribute it and/or modify
+ *# it only under the terms of version 2.1 of the GNU Lesser General Public
+ *# License as published by the Free Software Foundation. 
+ *#
+ *#   This library is distributed in the hope that it will be useful, but WITHOUT
+ *# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+ *# details. 
+ *#
+ *#   You should have received a copy of the GNU Lesser General Public
+ *# License along with this library; if not, write to the Free Software 
+ *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *#++ */
+/* == Used Colours =========================================================== */
+@c_button: lighten($c_anchor_underline, 50%);
+/* == Basic setup  ======================================================== */
+/* html, */
+/* unnecessary property, causes inheritance */
+body {
+  background-color: #f5f5f5;
+  /* BG Grey: #fcfcfc is taken see example above */
+  color: #333333;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
+  width: 100%;
+  height: 99%;
+  margin: 0;
+  padding: 0; }
 
-22: $c_header: "#6eb928"
-23: $c_text: "#111111"
-24: $c_anchor_underline: "#0e5148"
-25: $c_error: "#990000"
-26: $c_white: "#ffffff"
-27: $c_fieldset: lighten($c_header, 60%)
-28: $c_background: lighten($c_header, 80%)
-29: @c_button: lighten($c_anchor_underline, 50%)
-30: 
-31: /* == Basic setup  ========================================================
-32: 
+/* Heading 1 to Heading 6 (1 being the highest level, 6 being the lowest). Headings should be used in order and h1 used just once. */
+/* http://www.htmldog.com/examples/headings1.html */
+h1 {
+  font-size: 1.3em; }
 
-Backtrace:
-style.sass:27
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/script/funcall.rb:74:in `_perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/script/node.rb:61:in `perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/variable_node.rb:30:in `_perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:209:in `perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:322:in `perform_children'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:322:in `map'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:322:in `perform_children'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:313:in `perform!'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/root_node.rb:59:in `perform!'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:301:in `_perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/node.rb:209:in `perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/root_node.rb:37:in `perform'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/tree/root_node.rb:29:in `render'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/plugin.rb:221:in `update_stylesheet'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/plugin.rb:72:in `update_stylesheets'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/plugin.rb:72:in `each'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/sass/plugin.rb:72:in `update_stylesheets'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/haml/exec.rb:425:in `watch_or_update'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/haml/exec.rb:347:in `process_result'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/haml/exec.rb:42:in `parse'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/../lib/haml/exec.rb:22:in `parse!'
-/usr/lib/ruby/gems/1.8/gems/haml-3.0.12/bin/sass:8
-/usr/bin/sass:19:in `load'
-/usr/bin/sass:19
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: \"#6eb928\" is not a color for `lighten'\A         on line 27 of style.sass\A \A 22: $c_header: \"#6eb928\"\A 23: $c_text: \"#111111\"\A 24: $c_anchor_underline: \"#0e5148\"\A 25: $c_error: \"#990000\"\A 26: $c_white: \"#ffffff\"\A 27: $c_fieldset: lighten($c_header, 60%)\A 28: $c_background: lighten($c_header, 80%)\A 29: @c_button: lighten($c_anchor_underline, 50%)\A 30: \A 31: /* == Basic setup  ========================================================\A 32: "; }
+h2 {
+  font-size: 1.2em; }
+
+h3 {
+  font-size: 1.1em; }
+
+/* Same size of h4 and h5 ??? */
+h4, h5 {
+  font-size: 1em; }
+
+a {
+  color: #333333;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 11px;
+  /*   border-bottom:1px dotted #8e908b; */
+  border-bottom: 1px dotted #1e90ff; }
+  a:hover {
+    color: #444444;
+    font-size: 11px;
+    /*   text-decoration: underline; */
+    border-bottom: 2px solid #1e90ff; }
+  a.action-link {
+    color: #333333;
+    /*  color:#8e908b; */
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    /*  border-bottom:2px solid #666; */ }
+    a.action-link:hover {
+      /*  color:#1e90ff; */
+      color: #333333;
+      font-size: 13px;
+      /*  color:#a0a0a0; */
+      font-weight: bold;
+      /*  border-bottom:3px solid #1C94C4; */
+      /*  border-bottom:2px dotted #D84630; */
+      border-bottom: 2px solid red;
+      /*  Studio: #8e908b */
+      /*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2); */ }
+  a.button {
+    background: #eeeeee url(images/button-bg-rollover.gif) repeat-x scroll center top;
+    color: #333333;
+    font-size: 13px;
+    font-family: Trebuchet MS, Helvetica, sans-serif;
+    font-weight: bold;
+    border: 1px solid #999999;
+    cursor: pointer;
+    padding: 2px 10px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 #bbbbbb;
+    -moz-border-radius: 4px;
+    -moz-background-clip: border;
+    -moz-background-inline-policy: continuous;
+    -moz-background-origin: padding;
+    -webkit-border-radius: 4px;
+    width: auto;
+    vertical-align: baseline; }
+
+/* CSS properties for all input elements */
+input.button, input[type="submit"], input[type="button"] {
+  background: #eeeeee url(images/button-bg-rollover.gif) repeat-x scroll center top;
+  color: #333333;
+  font-size: 13px;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
+  font-weight: bold;
+  border: 1px solid #999999;
+  cursor: pointer;
+  padding: 2px 10px;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 #bbbbbb;
+  -moz-border-radius: 4px;
+  -moz-background-clip: border;
+  -moz-background-inline-policy: continuous;
+  -moz-background-origin: padding;
+  -webkit-border-radius: 4px;
+  width: auto;
+  vertical-align: baseline; }
+
+a.button {
+  /* CSS Hack for IE8 */
+  padding: 2px 10px \9;
+  color: #333333 \9  !important; }
+
+/* CSS Hack for FF */
+html a.button:only-of-type {
+  padding: 3px 10px; }
+
+a.button:hover {
+  background-position: 0 -22px;
+  color: white !important;
+  text-shadow: 0 -1px 0 #252525; }
+a.button[disabled] {
+  color: #999999;
+  background-position: 0 0px;
+  text-shadow: 0 -1px 0 #bbbbbb; }
+
+input {
+  border: 1px solid #cccccc;
+  padding: 3px;
+  color: #666666;
+  font-size: 1em;
+  background: #fcfcfc; }
+  input[type="submit"][disabled] {
+    color: #999999;
+    background-position: 0 0px;
+    text-shadow: 0 -1px 0 #bbbbbb; }
+    input[type="submit"][disabled]:hover {
+      color: #999999;
+      background-position: 0 0px;
+      text-shadow: 0 -1px 0 #bbbbbb; }
+
+select {
+  border: 1px solid #cccccc;
+  padding: 2px;
+  color: #666666;
+  font-size: 1em;
+  background: #fcfcfc; }
+
+/* select for available Updates in software module with image before text */
+/* TODO find the solution for IE and Chrome, the images are not rendered before text */
+#selector {
+  padding: 0px; }
+
+select:focus {
+  border: 1px solid #6699cc;
+  color: #666666; }
+
+/* breaks button background in IE8 (Groups and users module) */
+/*input { vertical-align: top; } */
+input.button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+  background-position: 0 -22px;
+  color: white;
+  text-shadow: 0 -1px 0 #252525; }
+input[type="text"] {
+  width: 32em; }
+  input[type="text"]:focus {
+    width: 32em;
+    border: 1px solid #6699cc;
+    color: #6699cc; }
+input[disabled] {
+  background-color: #eeeeee; }
+
+img {
+  border: none; }
+
+ul li {
+  padding: 3px; }
+
+/* == Basic Structure ===================================================== */
+#header {
+  width: 100%;
+  background: #0072ba url("images/bg-head-gradient-grey.png") repeat-x scroll 0 0;
+  border-bottom: 1px solid #3399ff;
+  border-bottom: 1px solid #0066cc;
+  height: 50px;
+  text-align: center;
+  position: relative; }
+  #header * {
+    color: #444444; }
+  #header h1 {
+    margin: 0;
+    padding-top: 13px; }
+  #header img {
+    margin: 2px 1em 0;
+    position: absolute;
+    top: 2px;
+    left: 0; }
+  #header ul.header-links {
+    float: right;
+    vertical-align: bottom; }
+
+#content {
+  min-width: 640px;
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  margin: 0 auto;
+  font-size: 0.8em;
+  padding: 0 10px 0;
+  width: 97%; }
+  #content h3 {
+    font-size: 1.7em;
+    color: #666666;
+    margin-bottom: 0.5em;
+    clear: both; }
+  #content h2 {
+    font-size: 2em;
+    margin-bottom: 1.5em; }
+
+/* #content { */
+/* margin-top: 2em; */
+/* already defined see below */
+/* } */
+#footer {
+  min-width: 640px;
+  width: 100%;
+  max-width: 960px;
+  overflow: hidden;
+  margin: 0 auto;
+  font-size: 0.8em;
+  padding: 0 10px 0;
+  width: 97%;
+  padding: 2em 0;
+  color: #999999; }
+
+#login-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0; }
+  #login-wrapper ul {
+    list-style: none outside;
+    margin: 0;
+    font-size: 0.7em; }
+  #login-wrapper li {
+    float: left;
+    margin: 0 0.5em; }
+  #login-wrapper ul em {
+    font-weight: bold; }
+  #login-wrapper li a:hover {
+    color: #0066cc; }
+
+/* == Basic Styles ======================================================== */
+#login-dialogue {
+  width: 23em;
+  /*min-height: 17em; FIXME not working in IE6 | not working anywhere,
+   *breaks host selection screen --bubli */
+  background: #999999;
+  margin: 10px auto;
+  overflow: hidden;
+  color: #666666;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 0 1px 7px #999999;
+  -webkit-box-shadow: 0 1px 7px #999999;
+  box-shadow: 0 1px 7px #999999; }
+
+#login_button {
+  float: right; }
+
+#login-dialogue form {
+  display: block;
+  background: #fefefe;
+  padding: 15px;
+  margin: 7px;
+  overflow: hidden; }
+#login-dialogue input[type="password"], #login-dialogue input[type="text"] {
+  width: 97%; }
+#login-dialogue h2 {
+  margin: 0 !important;
+  color: #6699cc; }
+#login-dialogue label {
+  display: block;
+  margin: 0 0 0.2em;
+  text-align: left; }
+
+#status {
+  width: 70%;
+  display: inline-block; }
+
+#status_patches {
+  margin: 0;
+  /*margin-left: 2em; */
+  /*taken from yast.css */
+  padding-top: 1em; }
+
+#machine-controle {
+  width: 25%;
+  float: right;
+  height: 100%;
+  display: inline-block; }
+  #machine-controle a {
+    text-align: center;
+    margin: 10px 10px 0;
+    display: block; }
+
+#status_patches, #status_status {
+  margin: 10px; }
+
+.plugin-content {
+  background-color: white;
+  border-color: #dddddd #cccccc #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px #cccccc;
+  -moz-box-shadow: 0 1px 3px #cccccc;
+  box-shadow: 0 1px 3px #cccccc;
+  float: left;
+  clear: both;
+  width: 100%;
+  min-height: 100px; }
+
+/* == Lists and Tables ==================================================== */
+.list-row {
+  clear: left;
+  overflow: hidden;
+  padding: 1em 0;
+  border-bottom: 1px dotted #eeeeee; }
+  .list-row h3 {
+    margin-top: 0;
+    text-indent: 10px; }
+  .list-row div div, .list-row div a {
+    float: left;
+    margin: 0 25px 0 0;
+    width: 75px;
+    text-align: center; }
+  .list-row.overview {
+    border-color: transparent; }
+    .list-row.overview > div {
+      /* get child of *.overview */
+      overflow: hidden;
+      padding: 1em 0;
+      border-bottom: 1px dotted #eeeeee;
+      /* FIXME Just a quick workaround */ }
+  .list-row div a {
+    display: block;
+    padding: 1em 5px 0;
+    margin: 0 5px;
+    border: 2px solid transparent;
+    height: 8em; }
+    .list-row div a:hover {
+      border-color: #999999;
+      background: #eeeeee;
+      text-decoration: none;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px; }
+  .list-row .controlpanel-shortcut {
+    float: left;
+    margin: 0 5px;
+    border: 2px solid transparent;
+    width: 75px;
+    height: 8em;
+    padding: 1em 5px 0;
+    text-align: center; }
+    .list-row .controlpanel-shortcut:hover {
+      border-color: #999999;
+      background: #eeeeee;
+      text-decoration: none;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px; }
+  .list-row div div, .list-row div a {
+    text-align: center; }
+
+/* == Form Styles ======================================================= */
+fieldset {
+  background-color: #eeeeee;
+  border: none;
+  margin: 1em;
+  border-color: #dddddd #cccccc #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  -moz-box-shadow: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px; }
+  fieldset p {
+    clear: both;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em; }
+  fieldset.small-fields input[type="text"] {
+    width: 10em; }
+  fieldset label {
+    display: block;
+    float: left;
+    width: 11em;
+    text-align: right;
+    margin: 0.2em 0.5em; }
+  fieldset.small-labels label {
+    width: 8em; }
+
+/*fieldset select {
+ *  background-color: #fff;
+ *} */
+legend {
+  font-weight: bold; }
+  legend span {
+    margin-left: 2px; }
+
+/* IE8: bnc#592301 */
+/* TODO find the better soulution later */
+/* breaks input type="text" alignment if used together with label.error and label.valid properties, see example network modules if field is valid and field with errors */
+/* make error messages show up right of the label, bnc#592282 */
+input.error {
+  float: left; }
+
+/* Repositories validation is not consistent with other modules (bnc#604160) */
+/* TODO move all label.error and label.valid properties from modules index files to style.css */
+/* is not possible now (for WebYaST-SP1-GMC) because of higher effort as assumed */
+/*label.error {
+ *  float:none;
+ *  display:inline;
+ *  font-weight:bold;
+ *  color:#990000;
+ *  padding-top:2px;
+ *  padding-left:.5em;
+ *  vertical-align:middle; 
+ *}
+ *
+ *label.valid { 
+ *  background: url('/images/checked.gif') no-repeat;
+ *  padding:0px 0px 0px 18px;
+ *  vertical-align:middle; 
+ *  margin-left:5px;
+ *} */
+label.error {
+  float: left;
+  text-align: left;
+  vertical-align: middle;
+  display: none;
+  color: red;
+  padding: 0 0 0 0;
+  margin: 2px;
+  width: auto; }
+
+fieldset fieldset {
+  background-color: transparent;
+  border: none;
+  margin: 0em;
+  border: 0px none transparent;
+  -moz-box-shadow: none;
+  padding: 0px; }
+  fieldset fieldset p {
+    margin-top: 0px; }
+
+/* == Helper Styles ======================================================= */
+.grey-bg {
+  background-color: #f6f6f6; }
+
+.hidden {
+  display: none; }
+
+/* ==Status Icons == */
+/* -- HTML Example --
+ *<div class="status-icon ok"></div>
+ *<div class="status-icon warning"></div>
+ *<div class="status-icon error"></div>
+ *<div class="status-icon optional"></div> */
+.status-icon {
+  display: block;
+  width: 23px;
+  height: 19px;
+  background: transparent url(images/status-imagemap.png) no-repeat scroll 0 0;
+  float: left;
+  margin-left: 3px;
+  margin-right: 3px; }
+
+.bug-icon {
+  display: block;
+  width: 23px;
+  height: 23px;
+  background: transparent url(images/bug.png) no-repeat scroll 0 0;
+  float: left; }
+
+.status-icon + span {
+  /*  margin-left: 1em; */
+  line-height: 2em; }
+.status-icon.ok {
+  background-position: 0 -3; }
+.status-icon.warning {
+  background-position: 0 -24px; }
+.status-icon.error {
+  background-position: 0 -46px; }
+.status-icon.optional {
+  background-position: 0 -68px; }
+.status-icon.unused {
+  background-position: 0 -89px; }
+.status-icon.ok-unused {
+  background-position: 0 -108px; }
+.status-icon.unused-ok {
+  background-position: 0 -128px; }
+.status-icon.none {
+  background: transparent; }
+
+/* ==/Status Icons == */
+.alt-bg {
+  background-color: #f9f9f9; }
+
+.plugin-content form > p {
+  margin-left: 1em;
+  margin-right: 1em; }
+
+.plugin-icon {
+  float: left;
+  margin: 1em;
+  font-size: 1.5em; }
+  .plugin-icon img {
+    vertical-align: middle;
+    margin: 0.5em; }
+
+img.small-working-icon {
+  width: 20px;
+  height: 20px;
+  border: 0px none transparent; }
+
+/* ========================= Table ========================== */
+td.icon, td.checkbox {
+  text-align: center; }
+
+th.checkbox {
+  text-align: center; }
+
+tr.odd {
+  background-color: #fcfcfc; }
+tr.even {
+  background-color: #bee9ff; }
+
+.clipboard {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: transparent url(images/clipboard/button_up.png) no-repeat scroll 0 0;
+  float: left; }
+  .clipboard:hover {
+    background: transparent url(images/clipboard/button_over.png) no-repeat scroll 0 0; }
+  .clipboard:active {
+    background: transparent url(images/clipboard/button_down.png) no-repeat scroll 0 0; }
+
+.busy {
+  background: transparent url(images/working.gif) no-repeat scroll 0 0; }
+
+.form-details {
+  font-size: 0.8em;
+  color: #666666; }
+
+.nav-buttons {
+  margin: 1em;
+  clear: both; }
+
+.example {
+  font-style: italic; }
+
+/* Error Messages */
+#flash-messages {
+  margin-bottom: 2em;
+  width: 100%; }
+
+.flash-message {
+  margin-top: 20px;
+  padding: 12px; }
+  .flash-message span {
+    float: left;
+    margin-right: 0.3em; }
+
+/* style for progress bars */
+.progress_bar {
+  float: left;
+  padding-left: 1em;
+  padding-top: 8px; }
+
+.progress_bar_percent {
+  float: left;
+  text-align: center; }
+
+.progress_bar_frame {
+  border-style: solid;
+  border-width: 1px; }
+
+.progress_bar_progress {
+  background: #7ad3ff; }
+
+/* Password strength indicator */
+#password-strength {
+  /*     uncomment this if you want
+   *   a border around passwd strength bar
+   * border: 1px solid #aaa; */
+  font-size: 0.8em;
+  height: 5ex;
+  padding: 0.3em;
+  width: 40em;
+  position: relative;
+  left: 15em;
+  top: 1ex; }
+
+.password-strength-bar {
+  height: 3px; }
+
+/* List accordion styles */
+.list-fieldset {
+  border-color: #dddddd #cccccc #bbbbbb;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #eeeeee;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0 0.5em;
+  margin: 0.5em 1em 0.5em; }
+
+.list-fieldset-header, .ui-accordion .list-fieldset-header.ui-accordion-header {
+  font-weight: bold !important; }
+
+.list-fieldset select {
+  background-color: white; }
+.list-fieldset.alt-bg {
+  background-color: #dddddd; }
+
+p.missing-permissions {
+  margin-left: 1em;
+  color: #ff9900; }
+
+div#browserWarning {
+  background-color: "#fcfdde";
+  width: 100%;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+  text-align: center;
+  padding: 5px 0px 5px 0px; }
+
+/* styles for select dialogs */
+.select-dialog-item {
+  float: left;
+  width: 8em; }
+  .select-dialog-item:hover {
+    font-weight: bold; }
+
+.select-tooltip {
+  color: #888888;
+  font-size: 0.8em;
+  font-weight: bold;
+  display: block;
+  display: none; }
+  .select-tooltip:hover {
+    color: #222222; }
+
+.dialog-container {
+  min-height: 5em; }
+  .dialog-container div, .dialog-container h2 {
+    display: block; }
