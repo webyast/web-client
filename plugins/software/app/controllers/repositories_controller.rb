@@ -148,7 +148,7 @@ class RepositoriesController < ApplicationController
           Rails.logger.error "Cannot update repository '#{@repo.name}': #{err['error']['message']}"
         end
 
-        flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}'}")
+        flash[:error] = _("Cannot update repository '#{ERB::Util.html_escape @repo.name}'")
       rescue Exception => e
           # XML parsing has failed, display complete response
           flash[:error] = _("Unknown backend error: #{ERB::Util.html_escape ex.response.body}")
