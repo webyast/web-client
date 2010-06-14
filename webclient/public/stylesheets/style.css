@@ -9,21 +9,20 @@
  *#   This library is distributed in the hope that it will be useful, but WITHOUT
  *# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  *# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
- *# details. 
+ *# details.
  *#
  *#   You should have received a copy of the GNU Lesser General Public
  *# License along with this library; if not, write to the Free Software 
  *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *#++ */
 /* == Used Colours =========================================================== */
-@c_button: lighten($c_anchor_underline, 50%);
 /* == Basic setup  ======================================================== */
 /* html, */
 /* unnecessary property, causes inheritance */
 body {
-  background-color: #f5f5f5;
+  background-color: #e2f1d4;
   /* BG Grey: #fcfcfc is taken see example above */
-  color: #333333;
+  color: #111111;
   font-family: Trebuchet MS, Helvetica, sans-serif;
   width: 100%;
   height: 99%;
@@ -46,19 +45,19 @@ h4, h5 {
   font-size: 1em; }
 
 a {
-  color: #333333;
+  color: #111111;
   font-weight: bold;
   text-decoration: none;
   font-size: 11px;
   /*   border-bottom:1px dotted #8e908b; */
-  border-bottom: 1px dotted #1e90ff; }
+  border-bottom: 1px dotted #0e5148; }
   a:hover {
-    color: #444444;
+    color: #111111;
     font-size: 11px;
     /*   text-decoration: underline; */
-    border-bottom: 2px solid #1e90ff; }
+    border-bottom: 2px solid #0e5148; }
   a.action-link {
-    color: #333333;
+    color: #111111;
     /*  color:#8e908b; */
     font-size: 13px;
     font-weight: bold;
@@ -66,93 +65,93 @@ a {
     /*  border-bottom:2px solid #666; */ }
     a.action-link:hover {
       /*  color:#1e90ff; */
-      color: #333333;
+      color: #111111;
       font-size: 13px;
       /*  color:#a0a0a0; */
       font-weight: bold;
       /*  border-bottom:3px solid #1C94C4; */
       /*  border-bottom:2px dotted #D84630; */
-      border-bottom: 2px solid red;
+      border-bottom: 2px solid #0e5148;
       /*  Studio: #8e908b */
       /*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2); */ }
   a.button {
-    background: #eeeeee url(images/button-bg-rollover.gif) repeat-x scroll center top;
-    color: #333333;
+    background: #86a8a3 url(images/button-bg-rollover.gif) repeat-x scroll center top;
+    color: #111111;
     font-size: 13px;
     font-family: Trebuchet MS, Helvetica, sans-serif;
     font-weight: bold;
-    border: 1px solid #999999;
+    border: 1px solid #435451;
     cursor: pointer;
     padding: 2px 10px;
     text-decoration: none;
-    text-shadow: 0 -1px 0 #bbbbbb;
+    text-shadow: 0 -1px 0 #435451;
+    width: auto;
+    vertical-align: baseline;
     -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
     -moz-background-clip: border;
     -moz-background-inline-policy: continuous;
     -moz-background-origin: padding;
-    -webkit-border-radius: 4px;
-    width: auto;
-    vertical-align: baseline; }
+    /* CSS Hack for IE8 */
+    padding: 2px 10px \9;
+    color: #111111 \9  !important;
+    /* end of hack */ }
+    a.button:hover {
+      text-shadow: 0 -1px 0 #435451;
+      background-position: 0 -22px;
+      color: white !important; }
+    a.button[disabled] {
+      color: #4c4c4c;
+      text-shadow: 0 -1px 0 #4c4c4c; }
+      a.button[disabled]:hover {
+        background-position: 0 0px; }
 
 /* CSS properties for all input elements */
 input.button, input[type="submit"], input[type="button"] {
-  background: #eeeeee url(images/button-bg-rollover.gif) repeat-x scroll center top;
-  color: #333333;
+  background: #86a8a3 url(images/button-bg-rollover.gif) repeat-x scroll center top;
+  color: #111111;
   font-size: 13px;
   font-family: Trebuchet MS, Helvetica, sans-serif;
   font-weight: bold;
-  border: 1px solid #999999;
+  border: 1px solid #435451;
   cursor: pointer;
   padding: 2px 10px;
   text-decoration: none;
-  text-shadow: 0 -1px 0 #bbbbbb;
+  text-shadow: 0 -1px 0 #435451;
+  width: auto;
+  vertical-align: baseline;
   -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -moz-background-clip: border;
   -moz-background-inline-policy: continuous;
-  -moz-background-origin: padding;
-  -webkit-border-radius: 4px;
-  width: auto;
-  vertical-align: baseline; }
-
-a.button {
-  /* CSS Hack for IE8 */
-  padding: 2px 10px \9;
-  color: #333333 \9  !important; }
+  -moz-background-origin: padding; }
+  input.button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-position: 0 -22px;
+    color: white;
+    text-shadow: 0 -1px 0 #435451; }
+  input.button[disabled], input[type="submit"][disabled], input[type="button"][disabled] {
+    color: #4c4c4c;
+    text-shadow: 0 -1px 0 #4c4c4c; }
+    input.button[disabled]:hover, input[type="submit"][disabled]:hover, input[type="button"][disabled]:hover {
+      background-position: 0 0px; }
 
 /* CSS Hack for FF */
 html a.button:only-of-type {
   padding: 3px 10px; }
 
-a.button:hover {
-  background-position: 0 -22px;
-  color: white !important;
-  text-shadow: 0 -1px 0 #252525; }
-a.button[disabled] {
-  color: #999999;
-  background-position: 0 0px;
-  text-shadow: 0 -1px 0 #bbbbbb; }
-
 input {
-  border: 1px solid #cccccc;
+  border: 1px solid #435451;
   padding: 3px;
-  color: #666666;
+  color: #111111;
   font-size: 1em;
-  background: #fcfcfc; }
-  input[type="submit"][disabled] {
-    color: #999999;
-    background-position: 0 0px;
-    text-shadow: 0 -1px 0 #bbbbbb; }
-    input[type="submit"][disabled]:hover {
-      color: #999999;
-      background-position: 0 0px;
-      text-shadow: 0 -1px 0 #bbbbbb; }
+  background: white; }
 
 select {
-  border: 1px solid #cccccc;
+  border: 1px solid #435451;
   padding: 2px;
-  color: #666666;
+  color: #111111;
   font-size: 1em;
-  background: #fcfcfc; }
+  background: white; }
 
 /* select for available Updates in software module with image before text */
 /* TODO find the solution for IE and Chrome, the images are not rendered before text */
@@ -160,23 +159,19 @@ select {
   padding: 0px; }
 
 select:focus {
-  border: 1px solid #6699cc;
-  color: #666666; }
+  border: 1px solid #6b8682;
+  color: #111111; }
 
 /* breaks button background in IE8 (Groups and users module) */
 /*input { vertical-align: top; } */
-input.button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-  background-position: 0 -22px;
-  color: white;
-  text-shadow: 0 -1px 0 #252525; }
 input[type="text"] {
   width: 32em; }
   input[type="text"]:focus {
     width: 32em;
-    border: 1px solid #6699cc;
-    color: #6699cc; }
+    border: 1px solid #6b8682;
+    color: #111111; }
 input[disabled] {
-  background-color: #eeeeee; }
+  background-color: #86a8a3; }
 
 img {
   border: none; }
@@ -187,14 +182,13 @@ ul li {
 /* == Basic Structure ===================================================== */
 #header {
   width: 100%;
-  background: #0072ba url("images/bg-head-gradient-grey.png") repeat-x scroll 0 0;
-  border-bottom: 1px solid #3399ff;
-  border-bottom: 1px solid #0066cc;
+  background: #6eb928 url("images/bg-head-gradient-grey.png") repeat-x scroll 0 0;
+  border-bottom: 1px solid #426f18;
   height: 50px;
   text-align: center;
   position: relative; }
   #header * {
-    color: #444444; }
+    color: #111111; }
   #header h1 {
     margin: 0;
     padding-top: 13px; }
@@ -218,17 +212,13 @@ ul li {
   width: 97%; }
   #content h3 {
     font-size: 1.7em;
-    color: #666666;
+    color: #111111;
     margin-bottom: 0.5em;
     clear: both; }
   #content h2 {
     font-size: 2em;
     margin-bottom: 1.5em; }
 
-/* #content { */
-/* margin-top: 2em; */
-/* already defined see below */
-/* } */
 #footer {
   min-width: 640px;
   width: 100%;
@@ -239,7 +229,7 @@ ul li {
   padding: 0 10px 0;
   width: 97%;
   padding: 2em 0;
-  color: #999999; }
+  color: #71786a; }
 
 #login-wrapper {
   position: absolute;
@@ -262,22 +252,22 @@ ul li {
   width: 23em;
   /*min-height: 17em; FIXME not working in IE6 | not working anywhere,
    *breaks host selection screen --bubli */
-  background: #999999;
+  background: #86a8a3;
   margin: 10px auto;
   overflow: hidden;
-  color: #666666;
+  color: #111111;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-box-shadow: 0 1px 7px #999999;
-  -webkit-box-shadow: 0 1px 7px #999999;
-  box-shadow: 0 1px 7px #999999; }
+  -moz-box-shadow: 0 1px 7px #435451;
+  -webkit-box-shadow: 0 1px 7px #435451;
+  box-shadow: 0 1px 7px #435451; }
 
 #login_button {
   float: right; }
 
 #login-dialogue form {
   display: block;
-  background: #fefefe;
+  background: white;
   padding: 15px;
   margin: 7px;
   overflow: hidden; }
@@ -285,7 +275,7 @@ ul li {
   width: 97%; }
 #login-dialogue h2 {
   margin: 0 !important;
-  color: #6699cc; }
+  color: #111111; }
 #login-dialogue label {
   display: block;
   margin: 0 0 0.2em;
@@ -316,16 +306,16 @@ ul li {
 
 .plugin-content {
   background-color: white;
-  border-color: #dddddd #cccccc #bbbbbb;
+  border-color: #b4c0a9 #929c89 #71786a;
   border-style: solid;
   border-width: 1px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 3px #cccccc;
-  -moz-box-shadow: 0 1px 3px #cccccc;
-  box-shadow: 0 1px 3px #cccccc;
+  -webkit-box-shadow: 0 1px 3px #9ea894;
+  -moz-box-shadow: 0 1px 3px #9ea894;
+  box-shadow: 0 1px 3px #9ea894;
   float: left;
   clear: both;
   width: 100%;
@@ -374,8 +364,8 @@ ul li {
     padding: 1em 5px 0;
     text-align: center; }
     .list-row .controlpanel-shortcut:hover {
-      border-color: #999999;
-      background: #eeeeee;
+      border-color: #435451;
+      background: #e2f1d4;
       text-decoration: none;
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px; }
@@ -384,7 +374,7 @@ ul li {
 
 /* == Form Styles ======================================================= */
 fieldset {
-  background-color: #eeeeee;
+  background-color: #c2d3d1;
   border: none;
   margin: 1em;
   border-color: #dddddd #cccccc #bbbbbb;
