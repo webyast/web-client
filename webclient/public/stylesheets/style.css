@@ -55,7 +55,7 @@
 /* html, */
 /* unnecessary property, causes inheritance */
 body {
-  background-color: #e2f1d4;
+  background-color: #f5f5f5;
   /* BG Grey: #fcfcfc is taken see example above */
   color: #111111;
   font-family: Trebuchet MS, Helvetica, sans-serif;
@@ -85,12 +85,12 @@ a {
   text-decoration: none;
   font-size: 11px;
   /*   border-bottom:1px dotted #8e908b; */
-  border-bottom: 1px dotted #0e5148; }
+  border-bottom: 1px dotted #1e90ff; }
   a:hover {
     color: #111111;
     font-size: 11px;
     /*   text-decoration: underline; */
-    border-bottom: 2px solid #0e5148; }
+    border-bottom: 2px solid #1e90ff; }
   a.action-link {
     color: #111111;
     /*  color:#8e908b; */
@@ -106,16 +106,16 @@ a {
       font-weight: bold;
       /*  border-bottom:3px solid #1C94C4; */
       /*  border-bottom:2px dotted #D84630; */
-      border-bottom: 2px solid #0e5148;
+      border-bottom: 2px solid #1e90ff;
       /*  Studio: #8e908b */
       /*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2); */ }
   a.button {
-    background: #86a8a3 url(images/button-bg-rollover-gradient.png) repeat-x scroll center top;
+    background: #bebebe url(images/button-bg-rollover-gradient.png) repeat-x scroll center top;
     color: #111111;
     font-size: 13px;
     font-family: Trebuchet MS, Helvetica, sans-serif;
     font-weight: bold;
-    border-color: #354340 #2b3634 #212a28;
+    border-color: #4c4c4c #3d3d3d #2f2f2f;
     border-style: solid;
     border-width: 1px;
     -moz-background-inline-policy: continuous;
@@ -123,7 +123,7 @@ a {
     cursor: pointer;
     padding: 2px 10px;
     text-decoration: none;
-    text-shadow: 0 -1px 0 #c2d3d1;
+    text-shadow: 0 -1px 0 #dedede;
     width: auto;
     vertical-align: baseline;
     -moz-border-radius: 4px;
@@ -137,9 +137,10 @@ a {
     color: #111111 \9  !important;
     /* end of hack */ }
     a.button:hover {
+      background-color: #858585;
       background-position: 0 -22px;
       color: white;
-      text-shadow: 0 -1px 0 #435451; }
+      text-shadow: 0 -1px 0 #5f5f5f; }
     a.button[disabled] {
       color: #4c4c4c;
       text-shadow: 0 -1px 0 #4c4c4c; }
@@ -148,12 +149,12 @@ a {
 
 /* CSS properties for all input elements */
 input.button, input[type="submit"], input[type="button"] {
-  background: #86a8a3 url(images/button-bg-rollover-gradient.png) repeat-x scroll center top;
+  background: #bebebe url(images/button-bg-rollover-gradient.png) repeat-x scroll center top;
   color: #111111;
   font-size: 13px;
   font-family: Trebuchet MS, Helvetica, sans-serif;
   font-weight: bold;
-  border-color: #354340 #2b3634 #212a28;
+  border-color: #4c4c4c #3d3d3d #2f2f2f;
   border-style: solid;
   border-width: 1px;
   -moz-background-inline-policy: continuous;
@@ -161,7 +162,7 @@ input.button, input[type="submit"], input[type="button"] {
   cursor: pointer;
   padding: 2px 10px;
   text-decoration: none;
-  text-shadow: 0 -1px 0 #c2d3d1;
+  text-shadow: 0 -1px 0 #dedede;
   width: auto;
   vertical-align: baseline;
   -moz-border-radius: 4px;
@@ -171,9 +172,10 @@ input.button, input[type="submit"], input[type="button"] {
   -moz-box-shadow: none;
   border-radius: 4px; }
   input.button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #858585;
     background-position: 0 -22px;
     color: white;
-    text-shadow: 0 -1px 0 #435451; }
+    text-shadow: 0 -1px 0 #5f5f5f; }
   input.button[disabled], input[type="submit"][disabled], input[type="button"][disabled] {
     color: #4c4c4c;
     text-shadow: 0 -1px 0 #4c4c4c; }
@@ -185,38 +187,37 @@ html a.button:only-of-type {
   padding: 3px 10px; }
 
 input {
-  border: 1px solid #435451;
+  border: 1px solid #5f5f5f;
   padding: 3px;
   color: #111111;
   font-size: 1em;
   background: white; }
 
 select {
-  border: 1px solid #435451;
+  border: 1px solid #5f5f5f;
   padding: 2px;
   color: #111111;
   font-size: 1em;
   background: white; }
+  select:focus {
+    border: 1px solid #1e90ff; }
 
 /* select for available Updates in software module with image before text */
 /* TODO find the solution for IE and Chrome, the images are not rendered before text */
 #selector {
   padding: 0px; }
 
-select:focus {
-  border: 1px solid #6b8682;
-  color: #111111; }
-
 /* breaks button background in IE8 (Groups and users module) */
 /*input { vertical-align: top; } */
-input[type="text"] {
-  width: 32em; }
-  input[type="text"]:focus {
+input[type="text"], input[type="password"] {
+  width: 32em;
+  border-color: #989898; }
+  input[type="text"]:focus, input[type="password"]:focus {
     width: 32em;
-    border: 1px solid #6b8682;
+    border: 1px solid #1e90ff;
     color: #111111; }
 input[disabled] {
-  background-color: #86a8a3; }
+  background-color: #bebebe; }
 
 img {
   border: none; }
@@ -227,8 +228,8 @@ ul li {
 /* == Basic Structure ===================================================== */
 #header {
   width: 100%;
-  background: #6eb928 url("images/bg-head-gradient.png") repeat-x scroll 0 0;
-  border-bottom: 1px solid #426f18;
+  background: #dddddd url("images/bg-head-gradient.png") repeat-x scroll 0 0;
+  border-bottom: 1px solid #848484;
   height: 50px;
   text-align: center;
   position: relative; }
@@ -274,7 +275,7 @@ ul li {
   padding: 0 10px 0;
   width: 97%;
   padding: 2em 0;
-  color: #71786a; }
+  color: #838383; }
 
 #login-wrapper {
   position: absolute;
@@ -297,15 +298,15 @@ ul li {
   width: 23em;
   /*min-height: 17em; FIXME not working in IE6 | not working anywhere,
    *breaks host selection screen --bubli */
-  background: #86a8a3;
+  background: #bebebe;
   margin: 10px auto;
   overflow: hidden;
   color: #111111;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-box-shadow: 0 1px 7px #435451;
-  -webkit-box-shadow: 0 1px 7px #435451;
-  box-shadow: 0 1px 7px #435451; }
+  -moz-box-shadow: 0 1px 7px #5f5f5f;
+  -webkit-box-shadow: 0 1px 7px #5f5f5f;
+  box-shadow: 0 1px 7px #5f5f5f; }
 
 #login_button {
   float: right; }
@@ -351,7 +352,7 @@ ul li {
 
 .plugin-content {
   background-color: white;
-  border-color: #71786a #929c89 #b4c0a9;
+  border-color: #7a7a7a #9f9f9f #c4c4c4;
   border-style: solid;
   border-width: 1px;
   -moz-border-radius: 4px;
@@ -408,8 +409,8 @@ ul li {
     padding: 1em 5px 0;
     text-align: center; }
     .list-row .controlpanel-shortcut:hover {
-      border-color: #435451;
-      background: #e2f1d4;
+      border-color: #5f5f5f;
+      background: #f5f5f5;
       text-decoration: none;
       -moz-border-radius: 4px;
       -webkit-border-radius: 4px;
@@ -422,10 +423,10 @@ ul li {
 
 /* == Form Styles ======================================================= */
 fieldset {
-  background-color: #c2d3d1;
+  background-color: #eeeeee;
   border: none;
   margin: 1em;
-  border-color: #9ba8a7 #7e8987 #616968;
+  border-color: #bebebe #9a9a9a #777777;
   border-style: solid;
   border-width: 1px;
   -moz-border-radius: 4px;
@@ -656,10 +657,10 @@ tr.even {
 
 /* List accordion styles */
 .list-fieldset {
-  border-color: #9ba8a7 #7e8987 #616968;
+  border-color: #bebebe #9a9a9a #777777;
   border-style: solid;
   border-width: 1px;
-  background-color: #c2d3d1;
+  background-color: #eeeeee;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-background-clip: border;
@@ -679,13 +680,13 @@ tr.even {
 
 p.missing-permissions {
   margin-left: 1em;
-  color: #990000; }
+  color: red; }
 
 div#browserWarning {
   background-color: white;
   width: 100%;
-  border-top: solid 1px #990000;
-  border-bottom: solid 1px #990000;
+  border-top: solid 1px red;
+  border-bottom: solid 1px red;
   text-align: center;
   padding: 5px 0px 5px 0px; }
 

@@ -41,6 +41,7 @@
   vertical-align: baseline
   @include round-corners
   &:hover
+    background-color: mix($c_black, $c_button, 30%)
     background-position: 0 -22px
     color: $c_inverse_text
     text-shadow: 0 -1px 0 $c_hower_text_shadow
@@ -140,6 +141,8 @@ select
   color: $c_text
   font-size: 1em
   background: $c_inverse_text
+  &:focus
+    border: 1px solid $c_focused_input
 
 /* select for available Updates in software module with image before text
 /* TODO find the solution for IE and Chrome, the images are not rendered before text
@@ -147,16 +150,14 @@ select
 #selector
   padding: 0px
 
-select:focus
-  border: 1px solid $c_focused_input
-  color: $c_text
 
 /* breaks button background in IE8 (Groups and users module)
 /*input { vertical-align: top; }
 
 input
-  &[type="text"]
+  &[type="text"],&[type="password"]
     width: 32em
+    border-color: $c_input_border
     &:focus
       width: 32em
       border: 1px solid $c_focused_input
