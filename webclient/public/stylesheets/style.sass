@@ -19,41 +19,20 @@
 
 /* == Used Colours ===========================================================
 
-$c_header: #6eb928
-$c_text: #111111
-$c_anchor_underline: #0e5148
-$c_error: #990000
-$c_white: #ffffff
-$c_gray: #888888
-$c_black: #000000
-$c_button: mix($c_white, $c_anchor_underline, 50%)
-$c_fieldset: mix($c_white, $c_button, 50%)
-$c_background: mix($c_white, $c_header, 80%)
-$c_anchor: $c_text
-$c_shortcut_background: $c_background
-$c_inverse_text: $c_white
-$c_disabled_text: mix($c_gray, $c_text, 50%)
-$c_button_border: mix($c_black, $c_button, 50%)
-$c_text_shadow: mix($c_black, $c_button, 50%)
-$c_focused_input: mix($c_black, $c_button, 20%)
-$c_content_shadow: mix($c_black, $c_background, 30%)
+@import "colors"
+@import "borders"
 
 /* == Basic setup  ========================================================
 
-@mixin round-corners
-  -moz-border-radius: 4px
-  -webkit-border-radius: 4px
-  -moz-background-clip: border
-  -moz-background-inline-policy: continuous
-  -moz-background-origin: padding
-
 @mixin button
-  background: $c_button url(images/button-bg-rollover.gif) repeat-x scroll center top
+  background: $c_button url(images/button-bg-rollover-gradient.png) repeat-x scroll center top
   color: $c_text
   font-size: 13px
   font-family: Trebuchet MS, Helvetica, sans-serif
   font-weight: bold
-  border: 1px solid $c_button_border
+  @include border-outset($c_button_border)
+  -moz-background-inline-policy: continuous
+  -moz-background-origin: padding
   cursor: pointer
   padding: 2px 10px
   text-decoration: none
@@ -61,12 +40,15 @@ $c_content_shadow: mix($c_black, $c_background, 30%)
   width: auto
   vertical-align: baseline
   @include round-corners
-
-@mixin disabled-button
-  color: $c_disabled_text
-  text-shadow: 0 -1px 0 $c_disabled_text
   &:hover
-    background-position: 0 0px
+    background-position: 0 -22px
+    color: $c_inverse_text
+    text-shadow: 0 -1px 0 $c_hower_text_shadow
+  &[disabled]
+    color: $c_disabled_text
+    text-shadow: 0 -1px 0 $c_disabled_text
+    &:hover
+      background-position: 0 0px
 /* html,
 
 /* unnecessary property, causes inheritance
@@ -134,24 +116,12 @@ a
     padding: 2px 10px\9
     color: $c_text \9 !important
     /* end of hack
-    &:hover
-      text-shadow: 0 -1px 0 $c_text_shadow
-      background-position: 0 -22px
-      color: $c_inverse_text !important
-    &[disabled]
-      @include disabled-button
 
 /* CSS properties for all input elements
 
 input
   &.button, &[type="submit"], &[type="button"]
     @include button
-    &:hover
-      background-position: 0 -22px
-      color: $c_inverse_text
-      text-shadow: 0 -1px 0 $c_text_shadow
-    &[disabled]
-      @include disabled-button
 
 /* CSS Hack for FF
 html a.button:only-of-type
@@ -204,7 +174,7 @@ ul li
 
 #header
   width: 100%
-  background: $c_header url('images/bg-head-gradient-grey.png') repeat-x scroll 0 0
+  background: $c_header url('images/bg-head-gradient.png') repeat-x scroll 0 0
   border-bottom: 1px solid mix($c_black, $c_header, 40%)
   height: 50px
   text-align: center
@@ -251,7 +221,7 @@ ul li
   padding: 0 10px 0
   width: 97%
   padding: 2em 0
-  color: mix($c_black, $c_background, 50%)
+  color: mix($c_text, $c_background, 50%)
 
 #login-wrapper
   position: absolute
@@ -331,16 +301,8 @@ ul li
 
 .plugin-content
   background-color: $c_inverse_text
-  border-color: mix($c_black, $c_background, 20%) mix($c_black, $c_background,35%) mix($c_black, $c_background,50%)
-  border-style: solid
-  border-width: 1px
-  -moz-border-radius: 5px
-  -webkit-border-radius: 5px
-  -khtml-border-radius: 5px
-  border-radius: 5px
-  -webkit-box-shadow: 0 1px 3px $c_content_shadow
-  -moz-box-shadow: 0 1px 3px $c_content_shadow
-  box-shadow: 0 1px 3px $c_content_shadow
+  @include border-inset($c_background)
+  @include round-corners
   float: left
   clear: both
   width: 100%
@@ -394,8 +356,7 @@ ul li
       border-color: $c_button_border
       background: $c_background
       text-decoration: none
-      -moz-border-radius: 5px
-      -webkit-border-radius: 5px
+      @include round-corners
   div
     div, a
       text-align: center
@@ -406,14 +367,8 @@ fieldset
   background-color: $c_fieldset
   border: none
   margin: 1em
-  border-color: #ddd #ccc #bbb
-  border-style: solid
-  border-width: 1px
-  -moz-box-shadow: none
-  -moz-border-radius: 5px
-  -webkit-border-radius: 5px
-  -khtml-border-radius: 5px
-  border-radius: 5px
+  @include border-outset($c_fieldset)
+  @include round-corners
   p
     clear: both
     margin-bottom: 0.5em
@@ -483,7 +438,6 @@ fieldset fieldset
   background-color: transparent
   border: none
   margin: 0em
-  border: 0px none transparent
   -moz-box-shadow: none
   padding: 0px
   p
@@ -654,14 +608,9 @@ tr
 /* List accordion styles
 
 .list-fieldset
-  border-color: #ddd #ccc #bbb
-  border-style: solid
-  border-width: 1px
-  background-color: #eee
-  -moz-border-radius: 5px
-  -webkit-border-radius: 5px
-  -khtml-border-radius: 5px
-  border-radius: 5px
+  @include border-outset($c_fieldset)
+  background-color: $c_fieldset
+  @include round-corners
   padding: 0 0.5em
   margin: 0.5em 1em 0.5em
 
@@ -676,13 +625,13 @@ tr
 
 p.missing-permissions
   margin-left: 1em
-  color: #ff9900
+  color: $c_error
 
 div#browserWarning
-  background-color: '#fcfdde'
+  background-color: $c_inverse_text
   width: 100%
-  border-top: solid 1px #000
-  border-bottom: solid 1px #000
+  border-top: solid 1px $c_error
+  border-bottom: solid 1px $c_error
   text-align: center
   padding: 5px 0px 5px 0px
 
