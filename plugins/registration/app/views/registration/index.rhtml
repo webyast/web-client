@@ -5,7 +5,7 @@
   <% form_target_save = '/registration/' + (@nexttarget.kind_of?(String) ? @nexttarget : 'skip') %>
 
   <% if @showstatus then %>
-     <fieldset class="wrapper with-background width-75">
+     <fieldset class="wrapper with-background width-75" style="margin-left: 10px" >
        <legend><%= _("Registration Information") %></legend>
        <p><strong><%= _("This system is registered") %></strong></p>
        <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>

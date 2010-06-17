@@ -22,6 +22,7 @@ class RegistrationController < ApplicationController
                 '___getittranslated5' => _("registration code")
              }
     @trans.freeze
+    @options = { 'debug'=>2 , 'forcereg' => 0 }
   end
 
   private
@@ -33,7 +34,6 @@ class RegistrationController < ApplicationController
     end
     @client.timeout = 120 #increasing server timeout cause registration can take a while
     @permissions = @client.permissions
-    @options = {'debug'=>2 }
     @arguments = []
   end
 
@@ -199,6 +199,7 @@ class RegistrationController < ApplicationController
 
   def check_service_changes
     begin
+      changes = false
       if @changed_services && @changed_services.kind_of?(Array) && @changed_services.size > 0 then
         flash_msg = "<ul>"
         @changed_services.each do |c|
@@ -208,11 +209,13 @@ class RegistrationController < ApplicationController
           if c.respond_to?(:catalogs) && c.catalogs && c.catalogs.respond_to?(:catalog) && c.catalogs.catalog then
             if c.catalogs.catalog.respond_to?(:name) && c.catalogs.catalog.respond_to?(:status) && c.catalogs.catalog.status == 'added' then
               flash_msg += "<ul><li>" + _("Catalog enabled:") + " #{c.catalogs.catalog.name}</li></ul>"
+              changes = true
             elsif c.catalogs.catalog.kind_of?(Array) then
               flash_msg += "<ul>"
               c.catalogs.catalog.each do |s|
                 if s && s.respond_to?(:name) && s.respond_to?(:status) && s.status == 'added' then
                   flash_msg += "<li>" + _("Catalog enabled:") + " #{s.name}</li>"
+                  changes = true
                 end
               end
               flash_msg += "</ul>"
@@ -220,7 +223,7 @@ class RegistrationController < ApplicationController
           end
         end
         flash_msg += "</ul>"
-        sources_changes_flash flash_msg
+        sources_changes_flash flash_msg if changes
       else
         return false
       end
@@ -233,15 +236,17 @@ class RegistrationController < ApplicationController
 
   def check_repository_changes
     begin
+      changes = false
       if @changed_repositories && @changed_repositories.kind_of?(Array) && @changed_repositories.size > 0 then
         flash_msg = "<ul>"
         @changed_repositories.each do |r|
           if r.respond_to?(:name) && r.name && r.respond_to?(:status) && r.status == 'added' then
             flash_msg += "<li>" + _("Repository added:") + " #{r.name}</li>"
+            changes = true
           end
         end
         flash_msg += "</ul>"
-        sources_changes_flash flash_msg
+        sources_changes_flash flash_msg if changes
       else
         return false
       end
@@ -288,6 +293,15 @@ class RegistrationController < ApplicationController
     # provide a way to force a new registration, even if system is already registered
     @reregister = true
     @nexttarget = 'reregister'
+
+    # correctly set the forcereg parameter according to registration protocol specification
+    @options['forcereg'] = 1
+    # switch back to a wrong behaviour of the registration, as NCC implemented the specification wrongly
+    # this is just an ugly workaround and should be removed when NCC was fixed
+    if File::exists? '/var/lib/yastws/enable_SLM_webyast_registration_workaround' then
+      @options['forcereg'] = 0
+    end
+
     register
   end
 
