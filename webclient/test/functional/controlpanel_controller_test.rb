@@ -76,9 +76,9 @@ class ControlpanelControllerTest < ActionController::TestCase
   test "next step action" do
     simulate_running_basesystem
     get :index #require to initialize session
-    get :nextstep, :done => "time"
+    get :nextstep, :done => "controlpanel"
     assert_response :redirect
-    assert_redirected_to "/language/cool_action"
+    assert_redirected_to "/sessions"
   end
 
   test "next step action with wrong done parameter" do
@@ -86,7 +86,7 @@ class ControlpanelControllerTest < ActionController::TestCase
     get :index #require to initialize session
     get :nextstep, :done => "language"
     assert_response :redirect
-    assert_redirected_to "/time"
+    assert_redirected_to "/controlpanel/nextstep"
   end
 
   test "this step action" do
@@ -107,7 +107,7 @@ class ControlpanelControllerTest < ActionController::TestCase
     get :index #require to initialize session
     get :thisstep
     assert_response :redirect
-    assert_redirected_to "/time"
+    assert_redirected_to "/controlpanel/nextstep"
   end
 
   test "back step action on first element" do
@@ -128,6 +128,6 @@ class ControlpanelControllerTest < ActionController::TestCase
     get :index #require to initialize session
     get :backstep
     assert_response :redirect
-    assert_redirected_to "/time"
+    assert_redirected_to "/controlpanel/nextstep"
   end
 end

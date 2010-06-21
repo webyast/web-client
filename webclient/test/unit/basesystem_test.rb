@@ -58,20 +58,43 @@ class BasesystemTest < ActiveSupport::TestCase
     bs = Basesystem.find session
     assert !bs.completed?
     assert bs.first_step?
-    result = {:controller => "time", :action => "index"}
-    assert_equal  result,bs.current_step
-    result = {:controller => "language", :action => "cool_action"}
-    assert_equal  result,bs.next_step
-    result = {:controller => "time", :action => "index"}
-    assert_equal  result,bs.back_step
+    result1 = {:controller => "controlpanel", :action => "nextstep"}
+    assert_equal  result1,bs.current_step
+    result2 = {:controller => "sessions", :action => "index"}
+    assert_equal  result2,bs.next_step
+    assert_equal  result1,bs.back_step
     bs.next_step
     assert bs.last_step?
     bs.next_step 
     assert bs.completed?
   end
 
+  def test_non_exist_step
+    response_bs = load_xml_response "basesystem-nonexiststep.xml"
+    request_bs = load_xml_response "basesystem-response.xml"
+    ActiveResource::HttpMock.set_authentication
+    ActiveResource::HttpMock.respond_to do |mock|
+      header = ActiveResource::HttpMock.authentication_header
+      # this is inadequate, :singular is per resource,
+      # and does NOT depend on :policy
+      # see yast-rest-service/plugins/network/config/resources/*
+      mock.resources :"org.opensuse.yast.modules.basesystem" => "/basesystem"
+      mock.permissions "org.opensuse.yast.modules.basesystem", {}
+      mock.get  "/basesystem.xml", header, response_bs, 200
+      mock.post  "/basesystem.xml", header, request_bs, 200
+    end
+    assert Basesystem.installed?
+    session = {}
+    bs = Basesystem.find session
+    assert !bs.completed?
+    assert bs.first_step?
+    result1 = {:controller => "controlpanel", :action => "nextstep"}
+    assert_equal  result1,bs.current_step
+    assert_raise(RuntimeError) { bs.next_step }
+  end
+
   def test_load_from_session
-    session = {:wizard_current => "time", :wizard_steps => "time" }
+    session = {:wizard_current => "controlpanel", :wizard_steps => "controlpanel" }
     bs = Basesystem.new.load_from_session session
     assert !bs.completed?
     assert bs.first_step?

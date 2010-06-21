@@ -45,7 +45,10 @@ class Basesystem < ActiveResource::Base
       Rails.logger.debug "Basesystem steps: #{bs.steps.inspect}"
       decoded_steps = bs.steps.collect { |step| step.respond_to?(:action) ? "#{step.controller}:#{step.action}" : "#{step.controller}"}
       session[:wizard_steps] = decoded_steps.join(",")
-      session[:wizard_current] = decoded_steps.find(decoded_steps.first) { |s| s.include? bs.done }
+      session[:wizard_current] =
+        decoded_steps.find(lambda{decoded_steps.first}) do |s|
+          s.include? bs.done
+        end
     end
     bs.load_from_session session
     bs
@@ -65,7 +68,11 @@ class Basesystem < ActiveResource::Base
       self.current_step = @steps[@steps.index(current)+1]
       load(:finish => false,  :steps => [], :done => self.current_step[:controller]) #store advantage in setup
       save #TODO check return value
-      return redirect_hash
+      ret = redirect_hash
+      raise "Invalid configuration. Missing controller required in First boot sequence. 
+        Possible typo or plugin is not installed." unless 
+          ActionController::Routing.possible_controllers.include? ret[:controller]
+      return ret
     end
   end
 
