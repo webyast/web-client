@@ -126,7 +126,7 @@ private
   
   def self.bug_url
     begin
-      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bugzilla_url.json")
+      settings_url = YaST::ServiceResource::Session.site.merge("/vendor_settings/bug_url.json")
       url = ActiveSupport::JSON.decode(open(settings_url).read)
       return url unless url.blank?
     rescue Exception => vendor_excp
