@@ -41,7 +41,9 @@
             <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);", :class => "grp-string" %>
 	</td><td rowspan=2>
 	<% if @permissions[:groupsget] == true %>
-            <a href="#" class="button" onClick="select_groups_open('<%= (new ? "" : user.uid) %>');return false;"><%= _("Manage Groups") %></a>
+            <%= 
+		action = (disabled) ? "" : "select_groups_open('"+(new ? "" : user.uid)+"');return false;"
+		link_to _("Manage Groups"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled %>
 	<% end %>
 	</td></tr>
 
@@ -55,7 +57,9 @@
             <%= f.text_field :groupname, :disabled => disabled, :class => "groupname", :onkeyup => "def_group_validation(this);" %>
 	</td><td rowspan=2>
 	<% if @permissions[:groupsget] == true %>
-            <%= link_to _("Select Default Group"), {}, :href => "#", :onClick => "select_default_group_open('"+user.uid.to_s+"');return false;", :class => "button" %>
+            <%= 
+		action = (disabled) ? "" : "select_default_group_open('"+user.uid.to_s+"');return false;"
+		link_to _("Select Default Group"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled %>
 	<% end %>
 	</td></tr>
 
@@ -101,7 +105,7 @@
 
    <div class="nav-buttons">
     <div id="progress_<%= (new ? "" : user.uid) -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-       <%= submit_tag _("Save"), :onclick=>"return user_validation(this, '"+ (new ? "" : user.uid) +"');"  %>
+       <%= submit_tag _("Save"), :onclick=>"return user_validation(this, '"+ (new ? "" : user.uid) +"');", :disabled => disabled  %>
        <% if @permissions[:userdelete] && !new %>
          <span onclick="delete_handler(this, '#progress_<%= user.uid -%>');">
            <%= link_to _("Delete"),
