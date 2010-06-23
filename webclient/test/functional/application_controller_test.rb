@@ -214,15 +214,16 @@ class TestControllerTest < ActionController::TestCase
   end
   
   test "vendor bugzilla" do
-    path = File.join(File.dirname(__FILE__),'..','fixtures','bug_url.json')
+    path = File.join(File.dirname(__FILE__),'..','fixtures','bug_url.xml')
     response = IO.read(path)
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.get "/vendor_settings/bug_url.json",{},response,200
+      mock.get "/vendor_settings/bug_url.xml",{},response,200
     end
+    YaST::ServiceResource::Session.site = "http://localhost:4984"
     get :crash_action
     assert_response 500
     assert @response.body.include? "WebYaST" #test if response is not rails handler but our styled one
-    assert @response.body.include?("my.company.com"), "vendor bugzilla URL is not used" #test if points to vendor bugzilla
+    assert @response.body.include?("www.mycompany.com"), "vendor bugzilla URL is not used" #test if points to vendor bugzilla
   end
   
   test "locale loading" do
