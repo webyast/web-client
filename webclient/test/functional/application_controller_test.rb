@@ -223,6 +223,7 @@ class TestControllerTest < ActionController::TestCase
     get :crash_action
     assert_response 500
     assert @response.body.include? "WebYaST" #test if response is not rails handler but our styled one
+    Rails.logger.debug @response.body
     assert @response.body.include?("www.mycompany.com"), "vendor bugzilla URL is not used" #test if points to vendor bugzilla
   end
   
