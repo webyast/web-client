@@ -44,11 +44,4 @@ class RolesControllerTest < ActionController::TestCase
     assert assigns :roles
   end
 
-  def test_edit
-    get :edit, :id => "test2" 
-    assert_response :success
-    assert assigns :role
-    assert assigns :permissions
-  end
-
 end
