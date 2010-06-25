@@ -89,7 +89,7 @@ and it is not needed at runtime.
 %build
 env LANG=en rake makemo
 rake sass:update
-rm public/stylesheets/*.sass
+rm -r app/sass
 
 %check
 # run the testsuite
