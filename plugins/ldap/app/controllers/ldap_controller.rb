@@ -49,6 +49,9 @@ class LdapController < ApplicationController
 
   def update
     begin
+      #translate from text to boolean
+      params[:ldap][:tls] = params[:ldap][:tls] == "true"
+      params[:ldap][:enabled] = params[:ldap][:enabled] == "true"
       @ldap = Ldap.new(params[:ldap]).save
       flash[:message] = _("LDAP client configuraton successfully written.")
     rescue ActiveResource::ClientError => e

@@ -47,23 +47,23 @@
 
 	  <div class="ldap-content" style="padding-bottom: 10px">
 	    <p>
-	      <%= check_box_tag 'enabled', true, @ldap.enabled, :disabled => disabled, :name => 'ldap[enabled]' -%>
+	      <%= check_box 'ldap', :enabled, {:disabled => disabled, :checked => @ldap.enabled}, true,false -%>
 	      <%= _("Enable LDAP Authentication") %>
 	    </p>
             <p>
-              <%= label_tag :server, _("LDAP Server Address") %>
+              <%= label_tag :ldap_server, _("LDAP Server Address") %>
             </p>
             <p>
-              <%= text_field_tag :server, @ldap.server, :disabled => disabled, :class=> 'required', :name => 'ldap[server]'  %>
+              <%= text_field :ldap, :server, :disabled => disabled, :class=> 'required' %>
             </p>
             <p>
-              <%= label_tag :base_dn, _("Base DN") %>
+              <%= label_tag :ldap_base_dn, _("Base DN") %>
             </p>
             <p>
-              <%= text_field_tag :base_dn, @ldap.base_dn, :disabled => disabled, :class => 'required', :name => 'ldap[base_dn]'  %>
+              <%= text_field :ldap, :base_dn, :disabled => disabled, :class => 'required'  %>
             </p>
        	    <p>
-	      <%= check_box_tag 'tls', true, @ldap.tls, :disabled => disabled, :name => 'tls' -%>
+	      <%= check_box 'ldap', :tls, {:disabled => disabled, :checked => @ldap.tls}, true,false -%>
 	      <%= _("Secure Connection") %>
 	    </p>
 	    <p>
