@@ -53,7 +53,7 @@ BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
 BuildRequires:  rubygem-rails-2_3 >= 2.3.4
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
-BuildRequires:  tidy
+BuildRequires:  tidy, rubygem-haml
 # we require the lighttpd user to be present when building the rpm
 BuildRequires:  lighttpd
 BuildArch:      noarch
@@ -88,6 +88,8 @@ and it is not needed at runtime.
 
 %build
 env LANG=en rake makemo
+rake sass:update
+rm -r app/sass
 
 %check
 # run the testsuite

@@ -41,3 +41,12 @@ namespace :doc do
     rdoc.rdoc_files.include('test/validation_assert.rb')
   }
 end
+
+require 'sass/plugin'
+namespace :sass do
+  desc 'Updates stylesheets if necessary from their Sass templates.'
+  task :update do
+    Sass::Plugin.add_template_location "app/sass"
+    Sass::Plugin.update_stylesheets
+  end
+end
