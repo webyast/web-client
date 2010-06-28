@@ -34,19 +34,21 @@ class UsersControllerTest < ActionController::TestCase
     response_tester = fixture "users/tester.xml"
     response_users  = fixture "users/emptycn.xml"
     response_groups  = fixture "groups/groups.xml"
+    response_roles  = fixture "roles.xml"
 
 
 #FIXME move to separate load fixture method
     ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups"
+      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups", :"org.opensuse.yast.roles" => "/roles"
       mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
       mock.get   "/users.xml", header, response_index, 200
       mock.get   "/users/tester.xml", header, response_tester, 200
       mock.put   "/users/tester.xml", header, nil, 200
       mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => true }
       mock.get   "/groups.xml", header, response_groups, 200
+      mock.get   "/roles.xml", header, response_roles, 200
     end
   end
 
@@ -72,13 +74,15 @@ class UsersControllerTest < ActionController::TestCase
   def test_users_index_no_groupsget_permission
     response_index  = fixture "users/users.xml"
     response_groups  = fixture "groups/groups.xml"
+    response_roles  = fixture "roles.xml"
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups"
+      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups", :"org.opensuse.yast.roles" => "/roles"
       mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
       mock.get   "/users.xml", header, response_index, 200
       mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => false }
       mock.get   "/groups.xml", header, response_groups, 200
+      mock.get   "/roles.xml", header, response_roles, 200
     end
     get :index
     assert_response :success
