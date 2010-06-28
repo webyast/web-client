@@ -1,8 +1,20 @@
 /**
-* Source: jqplot plugin
-* Copyright (c) 2009 Chris Leonello
-* This software is licensed under the GPL version 2.0 and MIT licenses.
-*/
+ * Copyright (c) 2009 Chris Leonello
+ * jqPlot is currently available for use in all personal or commercial projects 
+ * under both the MIT and GPL version 2.0 licenses. This means that you can 
+ * choose the license that best suits your project and use it accordingly. 
+ *
+ * The author would appreciate an email letting him know of any substantial
+ * use of jqPlot.  You can reach the author at: chris dot leonello at gmail 
+ * dot com or see http://www.jqplot.com/info.php .  This is, of course, 
+ * not required.
+ *
+ * If you are feeling kind and generous, consider supporting the project by
+ * making a donation at: http://www.jqplot.com/donate.php .
+ *
+ * Thanks for using jqPlot!
+ * 
+ */
 (function($) {    
     // This code is a modified version of the canvastext.js code, copyright below:
     //
@@ -10,8 +22,8 @@
     // He may keep some sort of up to date copy at http://www.federated.com/~jim/canvastext/
     //
     $.jqplot.CanvasTextRenderer = function(options){
-        this.fontStyle = 'normal';  // normal, italic, oblique
-        this.fontVariant = 'normal';    // normal, small caps
+        this.fontStyle = 'normal';  // normal, italic, oblique [not implemented]
+        this.fontVariant = 'normal';    // normal, small caps [not implemented]
         this.fontWeight = 'normal'; // normal, bold, bolder, lighter, 100 - 900
         this.fontSize = '10px'; 
         this.fontFamily = 'sans-serif';
@@ -150,9 +162,9 @@
         var len = str.length;
  
         for ( i = 0; i < len; i++) {
-        	var c = this.letter(str.charAt(i));
-        	if (c) {
-        	    total += c.width * this.normalizedFontSize / 25.0 * this.fontStretch;
+            var c = this.letter(str.charAt(i));
+            if (c) {
+                total += c.width * this.normalizedFontSize / 25.0 * this.fontStretch;
             }
         }
         return total;
@@ -329,6 +341,10 @@
      };
      
     $.jqplot.CanvasFontRenderer = function(options) {
+        options = options || {};
+        if (!options.pt2px) {
+            options.pt2px = 1.5;
+        }
         $.jqplot.CanvasTextRenderer.call(this, options);
     };
     
@@ -376,27 +392,15 @@
              tx = Math.sin(this.angle) * this.height - Math.cos(this.angle)*this.width;
              ty = -Math.cos(this.angle) * this.height;
          }
+         ctx.strokeStyle = this.fillStyle;
          ctx.fillStyle = this.fillStyle;
         // var fstyle = this.fontStyle+' '+this.fontVariant+' '+this.fontWeight+' '+this.fontSize+' '+this.fontFamily;
         var fstyle = this.fontSize+' '+this.fontFamily;
          ctx.font = fstyle;
-         // ctx.font = 'bold 12px Arial';
          ctx.translate(tx, ty);
          ctx.rotate(this.angle);
          ctx.fillText(str, x, y);
-         // ctx.textAlign = 'center';
-         // ctx.textBaseline = 'middle';
-         // ctx.strokeStyle = '#992244';
-         //ctx.fillStyle = '#992244';
-         //  var g = ctx.createLinearGradient(0, 0, 0, 25);
-         //  g.addColorStop(0, '#d4f4f5');
-         //  g.addColorStop(0.4, '#d4f4f5');
-         //  g.addColorStop(0.6, '#c2d7c4');
-         //  g.addColorStop(1, '#c2d7c4');
-         //  ctx.fillStyle = g;
-         // ctx.strokeText('H3', 15,15);
-         // ctx.fillText('H3', 15,15);
-         //ctx.fillRect(5,5,5,5);
+         // ctx.strokeText(str, x, y);
 
          ctx.restore();
     };

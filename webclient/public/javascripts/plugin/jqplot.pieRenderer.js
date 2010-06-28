@@ -1,7 +1,19 @@
 /**
- * Source: jqplot plugin
  * Copyright (c) 2009 Chris Leonello
- * This software is licensed under the GPL version 2.0 and MIT licenses.
+ * jqPlot is currently available for use in all personal or commercial projects 
+ * under both the MIT and GPL version 2.0 licenses. This means that you can 
+ * choose the license that best suits your project and use it accordingly. 
+ *
+ * The author would appreciate an email letting him know of any substantial
+ * use of jqPlot.  You can reach the author at: chris dot leonello at gmail 
+ * dot com or see http://www.jqplot.com/info.php .  This is, of course, 
+ * not required.
+ *
+ * If you are feeling kind and generous, consider supporting the project by
+ * making a donation at: http://www.jqplot.com/donate.php .
+ *
+ * Thanks for using jqPlot!
+ * 
  */
 (function($) {
     /**
@@ -20,11 +32,11 @@
     
     // called with scope of a series
     $.jqplot.PieRenderer.prototype.init = function(options) {
-	    // Group: Properties
-	    //
-	    // prop: diameter
-	    // diameter of the pie, auto computed by default
-        this.diameter;
+        // Group: Properties
+        //
+        // prop: diameter
+        // diameter of the pie, auto computed by default
+        this.diameter = null;
         // prop: padding
         // padding between the pie and plot edges, legend, etc.
         this.padding = 20;
@@ -47,14 +59,17 @@
         this.shadowDepth = 5;
         this.tickRenderer = $.jqplot.PieTickRenderer;
         $.extend(true, this, options);
-        this._colorGenerator = new this.colorGenerator(this.seriesColors);
+        if (this.diameter != null) {
+            this.diameter = this.diameter - this.sliceMargin;
+        }
+        this._diameter = null;
     };
     
-    $.jqplot.PieRenderer.prototype.setGridData = function() {
+    $.jqplot.PieRenderer.prototype.setGridData = function(plot) {
         // this is a no-op
     };
     
-    $.jqplot.PieRenderer.prototype.makeGridData = function(data) {
+    $.jqplot.PieRenderer.prototype.makeGridData = function(data, plot) {
         var stack = [];
         var td = [];
         for (var i=0; i<data.length; i++){
@@ -73,12 +88,12 @@
     };
     
     $.jqplot.PieRenderer.prototype.drawSlice = function (ctx, ang1, ang2, color, isShadow) {
-        var r = this.diameter / 2;
+        var r = this._diameter / 2;
         var fill = this.fill;
         var lineWidth = this.lineWidth;
         ctx.save();
-
         ctx.translate(this.sliceMargin*Math.cos((ang1+ang2)/2), this.sliceMargin*Math.sin((ang1+ang2)/2));
+        
         if (isShadow) {
             for (var i=0; i<this.shadowDepth; i++) {
                 ctx.save();
@@ -92,6 +107,14 @@
         }
         
         function doDraw () {
+            // Fix for IE and Chrome that can't seem to draw circles correctly.
+            // ang2 should always be <= 2 pi since that is the way the data is converted.
+             if (ang2 > 6.282) {
+                ang2 = 6.282;
+                if (ang1 > ang2) {
+                    ang1 = 6.281;
+                }
+            }
             ctx.beginPath();  
             ctx.moveTo(0, 0);
             ctx.fillStyle = color;
@@ -124,6 +147,7 @@
         var offx = 0;
         var offy = 0;
         var trans = 1;
+        var colorGenerator = new this.colorGenerator(this.seriesColors);
         if (options.legendInfo) {
             var li = options.legendInfo;
             switch (li.location) {
@@ -168,11 +192,10 @@
         var w = cw - offx - 2 * this.padding;
         var h = ch - offy - 2 * this.padding;
         var d = Math.min(w,h);
-        this.diameter = this.diameter  || d;
-        this.diameter -= this.sliceMargin;
-        var r = this.diameter/2;
+        this._diameter = this.diameter  || d - this.sliceMargin;
+        // this.diameter -= this.sliceMargin;
+        var r = this._diameter/2;
         ctx.save();
-    
         ctx.translate((cw - trans * offx)/2 + trans * offx, (ch - trans*offy)/2 + trans * offy);
         
         if (this.shadow) {
@@ -185,10 +208,8 @@
         }
         for (var i=0; i<gd.length; i++) {
             var ang1 = (i == 0) ? 0 : gd[i-1][1];
-            this.renderer.drawSlice.call (this, ctx, ang1, gd[i][1], this._colorGenerator.next());
+            this.renderer.drawSlice.call (this, ctx, ang1, gd[i][1], colorGenerator.next());
         }
-        // shadows
-        // markers
         
         ctx.restore();        
     };
@@ -222,14 +243,6 @@
         this.show = false; 
     };
     
-    
-    $.jqplot.PieTickRenderer = function() {
-        $.jqplot.AxisTickRenderer.call(this);
-    };
-    
-    $.jqplot.PieTickRenderer.prototype = new $.jqplot.AxisTickRenderer();
-    $.jqplot.PieTickRenderer.prototype.constructor = $.jqplot.PieTickRenderer;
-    
     $.jqplot.PieLegendRenderer = function() {
         $.jqplot.TableLegendRenderer.call(this);
     };
@@ -249,7 +262,7 @@
             ss += (this.fontSize) ? 'font-size:'+this.fontSize+';' : '';
             ss += (this.fontFamily) ? 'font-family:'+this.fontFamily+';' : '';
             ss += (this.textColor) ? 'color:'+this.textColor+';' : '';
-            this._elem = $('<table class="jqplot-legend" style="'+ss+'"></table>');
+            this._elem = $('<table class="jqplot-table-legend" style="'+ss+'"></table>');
         
             var pad = false;
             var s = series[0];
@@ -259,22 +272,12 @@
                 for (var i=0; i<pd.length; i++){
                     var lt = pd[i][0].toString();
                     if (lt) {
-                        addrow.call(this, lt, colorGenerator.next(), pad);
+                        this.renderer.addrow.call(this, lt, colorGenerator.next(), pad);
                         pad = true;
                     }  
                 }
             }
-        }
-        
-        function addrow(label, color, pad) {
-            var rs = (pad) ? this.rowSpacing : '0';
-            var tr = $('<tr class="jqplot-legend"></tr>').appendTo(this._elem);
-            $('<td class="jqplot-legend" style="vertical-align:middle;text-align:center;padding-top:'+rs+';">'+
-                '<div style="border:1px solid #cccccc;padding:0.2em;">'+
-                '<div style="width:1.2em;height:0.7em;background-color:'+color+';"></div>'+
-                '</div></td>').appendTo(tr);
-            $('<td class="jqplot-legend" style="vertical-align:middle;padding-top:'+rs+';">'+label+'</td>').appendTo(tr);
-        }
+        }        
         return this._elem;
     };
     
@@ -302,12 +305,21 @@
             options.axesDefaults.renderer = $.jqplot.PieAxisRenderer;
             options.legend.renderer = $.jqplot.PieLegendRenderer;
             options.legend.preDraw = true;
-            options.seriesDefaults.colorGenerator = this.colorGenerator;
-            options.seriesDefaults.seriesColors = this.seriesColors;
+            // options.seriesDefaults.colorGenerator = this.colorGenerator;
+            // options.seriesDefaults.seriesColors = this.seriesColors;
+        }
+    }
+    
+    // called with scope of plot
+    function postParseOptions(options) {
+        for (var i=0; i<this.series.length; i++) {
+            this.series[i].seriesColors = this.seriesColors;
+            this.series[i].colorGenerator = this.colorGenerator;
         }
     }
     
     $.jqplot.preInitHooks.push(preInit);
+    $.jqplot.postParseOptionsHooks.push(postParseOptions);
     
     $.jqplot.PieTickRenderer = function() {
         $.jqplot.AxisTickRenderer.call(this);

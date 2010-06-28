@@ -1,21 +1,34 @@
 /**
-* Source: jqplot plugin
-* Copyright (c) 2009 Chris Leonello
-* This software is licensed under the GPL version 2.0 and MIT licenses.
-*/
+ * Copyright (c) 2009 Chris Leonello
+ * jqPlot is currently available for use in all personal or commercial projects 
+ * under both the MIT and GPL version 2.0 licenses. This means that you can 
+ * choose the license that best suits your project and use it accordingly. 
+ *
+ * The author would appreciate an email letting him know of any substantial
+ * use of jqPlot.  You can reach the author at: chris dot leonello at gmail 
+ * dot com or see http://www.jqplot.com/info.php .  This is, of course, 
+ * not required.
+ *
+ * If you are feeling kind and generous, consider supporting the project by
+ * making a donation at: http://www.jqplot.com/donate.php .
+ *
+ * Thanks for using jqPlot!
+ * 
+ */ 
 (function($) {
     /**
-	*  class: $.jqplot.LogAxisRenderer
-	*  A plugin for a jqPlot to render a logarithmic axis.
-	* 
-	*  To use this renderer, include the plugin in your source
-	*  > <script type="text/javascript" language="javascript" src="plugins/jqplot.logAxisRenderer.js" />
-	*  
-	*  and supply the appropriate options to your plot
-	*  
-	*  > {axes:{xaxis:{renderer:$.jqplot.LogAxisRenderer}}}
-	**/	
+    *  class: $.jqplot.LogAxisRenderer
+    *  A plugin for a jqPlot to render a logarithmic axis.
+    * 
+    *  To use this renderer, include the plugin in your source
+    *  > <script type="text/javascript" language="javascript" src="plugins/jqplot.logAxisRenderer.js"></script>
+    *  
+    *  and supply the appropriate options to your plot
+    *  
+    *  > {axes:{xaxis:{renderer:$.jqplot.LogAxisRenderer}}}
+    **/ 
     $.jqplot.LogAxisRenderer = function() {
+        $.jqplot.LinearAxisRenderer.call(this);
         // prop: axisDefaults
         // Default properties which will be applied directly to the series.
         //
@@ -33,11 +46,15 @@
         };
     };
     
+    $.jqplot.LogAxisRenderer.prototype = new $.jqplot.LinearAxisRenderer();
+    $.jqplot.LogAxisRenderer.prototype.constructor = $.jqplot.LogAxisRenderer;
+    
     $.jqplot.LogAxisRenderer.prototype.init = function(options) {
         // prop: tickRenderer
         // A class of a rendering engine for creating the ticks labels displayed on the plot, 
         // See <$.jqplot.AxisTickRenderer>.
-        this.tickRenderer = $.jqplot.AxisTickRenderer;
+        // this.tickRenderer = $.jqplot.AxisTickRenderer;
+        // this.labelRenderer = $.jqplot.AxisLabelRenderer;
         $.extend(true, this.renderer, options);
         for (var d in this.renderer.axisDefaults) {
             if (this[d] == null) {
@@ -71,68 +88,6 @@
             }
         }
     };
-
-    $.jqplot.LogAxisRenderer.prototype.draw = function() {
-        if (this.show) {
-            // populate the axis label and value properties.
-            this.renderer.createTicks.call(this);
-            // fill a div with axes labels in the right direction.
-            // Need to pregenerate each axis to get it's bounds and
-            // position it and the labels correctly on the plot.
-            var dim=0;
-            var temp;
-            
-            this._elem = $('<div class="jqplot-axis jqplot-'+this.name+'" style="position:absolute;"></div>');
-            //for (var s in axis.style) $(axis._elem).css(s, axis.style[s]);
-    
-            if (this.showTicks) {
-                var t = this._ticks;
-                for (var i=0; i<t.length; i++) {
-                    var tick = t[i];
-                    if (tick.showLabel && (!tick.isMinorTick || this.showMinorTicks)) {
-                        var elem = tick.draw();
-                        //var elem = $(frag).appendTo(axis._elem).get(0);
-                        elem.appendTo(this._elem);
-                    }
-                }
-            }
-        }
-        return this._elem;
-    };    
-    
-    $.jqplot.LogAxisRenderer.prototype.set = function() {   
-        var dim = 0;
-        var temp; 
-        if (this.show && this.showTicks) {
-            var t = this._ticks;
-            for (var i=0; i<t.length; i++) {
-                var tick = t[i];
-                if (tick.showLabel && (!tick.isMinorTick || this.showMinorTicks)) {
-                    if (this.name == 'xaxis' || this.name == 'x2axis') {
-                        temp = tick._elem.outerHeight(true);
-                    }
-                    else {
-                        temp = tick._elem.outerWidth(true);
-                    }
-                    if (temp > dim) {
-                        dim = temp;
-                    }
-                }
-            }
-            if (this.name == 'xaxis') {
-                this._elem.css({'height':dim+'px', left:'0px', bottom:'0px'});
-            }
-            else if (this.name == 'x2axis') {
-                this._elem.css({'height':dim+'px', left:'0px', top:'0px'});
-            }
-            else if (this.name == 'yaxis') {
-                this._elem.css({'width':dim+'px', left:'0px', top:'0px'});
-            }
-            else {
-                this._elem.css({'width':dim+'px', right:'0px', top:'0px'});
-            }
-        } 
-    };
     
     $.jqplot.LogAxisRenderer.prototype.createTicks = function() {
         // we're are operating on an axis here
@@ -160,7 +115,7 @@
                         t.showMark = false;
                     }
                     else if (!this.showTickMarks) {
-                    	t.showMark = false;
+                        t.showMark = false;
                     }
                     t.setTick(ut[0], this.name);
                     this._ticks.push(t);
@@ -173,7 +128,7 @@
                         t.showMark = false;
                     }
                     else if (!this.showTickMarks) {
-                    	t.showMark = false;
+                        t.showMark = false;
                     }
                     t.setTick(ut, this.name);
                     this._ticks.push(t);
@@ -322,6 +277,7 @@
         min = trans(this.min);
         var offmax = offsets.max;
         var offmin = offsets.min;
+        var lshow = (this._label == null) ? false : this._label.show;
         
         for (var p in pos) {
             this._elem.css(p, pos[p]);
@@ -363,17 +319,114 @@
             if (this.name == 'xaxis' || this.name == 'x2axis') {
                 for (i=0; i<ticks.length; i++) {
                     var t = ticks[i];
-                    var shim = t.getWidth()/2;
-                    var val = this.u2p(t.value) - shim + 'px';
-                    t._elem.css('left', val);
+                    if (t.show && t.showLabel) {
+                        var shim;
+                        
+                        if (t.constructor == $.jqplot.CanvasAxisTickRenderer && t.angle) {
+                            switch (t.labelPosition) {
+                                case 'auto':
+                                    // position at end
+                                    if (t.angle < 0) {
+                                        shim = -t.getWidth() + t._textRenderer.height * Math.sin(-t._textRenderer.angle) / 2;
+                                    }
+                                    // position at start
+                                    else {
+                                        shim = -t._textRenderer.height * Math.sin(t._textRenderer.angle) / 2;
+                                    }
+                                    break;
+                                case 'end':
+                                    shim = -t.getWidth() + t._textRenderer.height * Math.sin(-t._textRenderer.angle) / 2;
+                                    break;
+                                case 'start':
+                                    shim = -t._textRenderer.height * Math.sin(t._textRenderer.angle) / 2;
+                                    break;
+                                case 'middle':
+                                    shim = -t.getWidth()/2 + t._textRenderer.height * Math.sin(-t._textRenderer.angle) / 2;
+                                    break;
+                                default:
+                                    shim = -t.getWidth()/2 + t._textRenderer.height * Math.sin(-t._textRenderer.angle) / 2;
+                                    break;
+                            }
+                        }
+                        else {
+                            shim = -t.getWidth()/2;
+                        }
+                        // var shim = t.getWidth()/2;
+                        var val = this.u2p(t.value) + shim + 'px';
+                        t._elem.css('left', val);
+                        t.pack();
+                    }
+                }
+                if (lshow) {
+                    var w = this._label._elem.outerWidth(true);
+                    this._label._elem.css('left', offmin + pixellength/2 - w/2 + 'px');
+                    if (this.name == 'xaxis') {
+                        this._label._elem.css('bottom', '0px');
+                    }
+                    else {
+                        this._label._elem.css('top', '0px');
+                    }
+                    this._label.pack();
                 }
             }
             else {
                 for (i=0; i<ticks.length; i++) {
                     var t = ticks[i];
-                    var shim = t.getHeight()/2;
-                    var val = this.u2p(t.value) - shim + 'px';
-                    t._elem.css('top', val);
+                    if (t.show && t.showLabel) {                        
+                        var shim;
+                        if (t.constructor == $.jqplot.CanvasAxisTickRenderer && t.angle) {
+                            switch (t.labelPosition) {
+                                case 'auto':
+                                    // position at end
+                                case 'end':
+                                    if (t.angle < 0) {
+                                        shim = -t._textRenderer.height * Math.cos(-t._textRenderer.angle) / 2;
+                                    }
+                                    else {
+                                        shim = -t.getHeight() + t._textRenderer.height * Math.cos(t._textRenderer.angle) / 2;
+                                    }
+                                    break;
+                                case 'start':
+                                    if (t.angle > 0) {
+                                        shim = -t._textRenderer.height * Math.cos(-t._textRenderer.angle) / 2;
+                                    }
+                                    else {
+                                        shim = -t.getHeight() + t._textRenderer.height * Math.cos(t._textRenderer.angle) / 2;
+                                    }
+                                    break;
+                                case 'middle':
+                                    // if (t.angle > 0) {
+                                    //     shim = -t.getHeight()/2 + t._textRenderer.height * Math.sin(-t._textRenderer.angle) / 2;
+                                    // }
+                                    // else {
+                                    //     shim = -t.getHeight()/2 - t._textRenderer.height * Math.sin(t._textRenderer.angle) / 2;
+                                    // }
+                                    shim = -t.getHeight()/2;
+                                    break;
+                                default:
+                                    shim = -t.getHeight()/2;
+                                    break;
+                            }
+                        }
+                        else {
+                            shim = -t.getHeight()/2;
+                        }
+                        
+                        var val = this.u2p(t.value) + shim + 'px';
+                        t._elem.css('top', val);
+                        t.pack();
+                    }
+                }
+                if (lshow) {
+                    var h = this._label._elem.outerHeight(true);
+                    this._label._elem.css('top', offmax - pixellength/2 - h/2 + 'px');
+                    if (this.name == 'yaxis') {
+                        this._label._elem.css('left', '0px');
+                    }
+                    else {
+                        this._label._elem.css('right', '0px');
+                    }   
+                    this._label.pack();
                 }
             }
         }        

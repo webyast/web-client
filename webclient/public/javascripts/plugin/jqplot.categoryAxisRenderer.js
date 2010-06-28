@@ -1,21 +1,33 @@
 /**
-* Source: jqplot plugin
-* Copyright (c) 2009 Chris Leonello
-* This software is licensed under the GPL version 2.0 and MIT licenses.
-*/
+ * Copyright (c) 2009 Chris Leonello
+ * jqPlot is currently available for use in all personal or commercial projects 
+ * under both the MIT and GPL version 2.0 licenses. This means that you can 
+ * choose the license that best suits your project and use it accordingly. 
+ *
+ * The author would appreciate an email letting him know of any substantial
+ * use of jqPlot.  You can reach the author at: chris dot leonello at gmail 
+ * dot com or see http://www.jqplot.com/info.php .  This is, of course, 
+ * not required.
+ *
+ * If you are feeling kind and generous, consider supporting the project by
+ * making a donation at: http://www.jqplot.com/donate.php .
+ *
+ * Thanks for using jqPlot!
+ * 
+ */
 (function($) {   
     /**
-	*  class: $.jqplot.CategoryAxisRenderer
-	*  A plugin for jqPlot to render a category style axis, with equal pixel spacing between y data values of a series.
-	*  This renderer has no options beyond those supplied by the <Axis> class. 
-	*  
-	*  To use this renderer, include the plugin in your source
-	*  > <script type="text/javascript" language="javascript" src="plugins/jqplot.categoryAxisRenderer.js" />
-	*  
-	*  and supply the appropriate options to your plot
-	*  
-	*  > {axes:{xaxis:{renderer:$.jqplot.CategoryAxisRenderer}}}
-	**/
+    *  class: $.jqplot.CategoryAxisRenderer
+    *  A plugin for jqPlot to render a category style axis, with equal pixel spacing between y data values of a series.
+    *  This renderer has no options beyond those supplied by the <Axis> class. 
+    *  
+    *  To use this renderer, include the plugin in your source
+    *  > <script type="text/javascript" language="javascript" src="plugins/jqplot.categoryAxisRenderer.js"></script>
+    *  
+    *  and supply the appropriate options to your plot
+    *  
+    *  > {axes:{xaxis:{renderer:$.jqplot.CategoryAxisRenderer}}}
+    **/
     $.jqplot.CategoryAxisRenderer = function() {
         $.jqplot.LinearAxisRenderer.call(this);
     };
@@ -27,7 +39,8 @@
         // prop: tickRenderer
         // A class of a rendering engine for creating the ticks labels displayed on the plot, 
         // See <$.jqplot.AxisTickRenderer>.
-        this.tickRenderer = $.jqplot.AxisTickRenderer;
+        // this.tickRenderer = $.jqplot.AxisTickRenderer;
+        // this.labelRenderer = $.jqplot.AxisLabelRenderer;
         $.extend(true, this, {tickOptions:{formatString:'%d'}}, options);
         var db = this._dataBounds;
         // Go through all the series attached to this axis and find
@@ -39,18 +52,18 @@
             for (var j=0; j<d.length; j++) { 
                 if (this.name == 'xaxis' || this.name == 'x2axis') {
                     if (d[j][0] < db.min || db.min == null) {
-                    	db.min = d[j][0];
+                        db.min = d[j][0];
                     }
                     if (d[j][0] > db.max || db.max == null) {
-                    	db.max = d[j][0];
+                        db.max = d[j][0];
                     }
                 }              
                 else {
                     if (d[j][1] < db.min || db.min == null) {
-                    	db.min = d[j][1];
+                        db.min = d[j][1];
                     }
                     if (d[j][1] > db.max || db.max == null) {
-                    	db.max = d[j][1];
+                        db.max = d[j][1];
                     }
                 }              
             }
@@ -82,7 +95,6 @@
                 var t = new this.tickRenderer(this.tickOptions);
                 t.showLabel = false;
                 t.showMark = true;
-                t.showGridline = true;
                 t.setTick(tt, this.name);
                 this._ticks.push(t);
                 var t = new this.tickRenderer(this.tickOptions);
@@ -97,7 +109,6 @@
             var t = new this.tickRenderer(this.tickOptions);
             t.showLabel = false;
             t.showMark = true;
-            t.showGridline = true;
             t.setTick(tt+1, this.name);
             this._ticks.push(t);
         }
@@ -144,13 +155,8 @@
                 }
             }
             
-            try {
-                // if labels are numbers, sort them
-                labels.sort(function (a, b) { return a - b;}); 
-            }
-            catch (e) {
-                // don't sort
-            }
+            // keep a reference to these tick labels to use for redrawing plot (see bug #57)
+            this.ticks = labels;
             
             // now bin the data values to the right lables.
             for (var i=0; i<this._series.length; i++) {
@@ -175,18 +181,22 @@
             }
         
             max = numcats + 0.5;
-            this.numberTicks = 2*numcats + 1;
+            if (this.numberTicks == null) {
+                this.numberTicks = 2*numcats + 1;
+            }
 
             var range = max - min;
             this.min = min;
             this.max = max;
             var track = 0;
-            var maxVisibleTicks = parseInt(3+dim/45, 10);
+            
+            // todo: adjust this so more ticks displayed.
+            var maxVisibleTicks = parseInt(3+dim/20, 10);
             var skip = parseInt(numcats/maxVisibleTicks, 10);
 
             if (this.tickInterval == null) {
 
-            	this.tickInterval = range / (this.numberTicks-1);
+                this.tickInterval = range / (this.numberTicks-1);
 
             }
             // if tickInterval is specified, we will ignore any computed maximum.
@@ -197,7 +207,6 @@
                 if (i/2 == parseInt(i/2, 10)) {
                     t.showLabel = false;
                     t.showMark = true;
-                    t.showGridline = true;
                 }
                 else {
                     if (skip>0 && track<skip) {
