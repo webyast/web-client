@@ -198,5 +198,3 @@ chmod 600 db/*.sqlite* log/*
 %{webyast_ui_dir}/test
 
 %changelog
-* Tue Nov 27 2008 schubi@suse.de
-- initial
