@@ -128,7 +128,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"div",
+    assert_tag :tag =>"span",
                :attributes => { :class => "status-icon warning" }
     assert_tag "Registration is missing; Mail configuration test not confirmed"
   end
@@ -139,7 +139,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"div",
+    assert_tag :tag =>"span",
                :attributes => { :class => "status-icon error" }
     assert_tag "Can't connect to host"
   end
@@ -150,7 +150,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"div",
+    assert_tag :tag =>"span",
                :attributes => { :class => "status-icon warning" }
     assert_tag "Cannot read system status - you have been logged out."
   end
@@ -175,7 +175,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"div",
+    assert_tag :tag =>"span",
                :attributes => { :class => "status-icon error" }
     assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Disk/root/free; Registration is missing; Mail configuration test not confirmed"
   end
