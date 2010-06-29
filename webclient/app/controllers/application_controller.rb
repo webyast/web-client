@@ -127,7 +127,7 @@ private
   def self.bug_url
     begin
       VendorSetting.site = YaST::ServiceResource::Session.site.to_s
-      url = VendorSetting.find(:bug_url).value
+      url = VendorSetting.find(:one,:from => "/vendor_settings.json").bug_url
       return url unless url.blank?
     rescue Exception => vendor_excp
       # there was a problem or the setting does not exist
