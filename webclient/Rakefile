@@ -42,10 +42,10 @@ namespace :doc do
   }
 end
 
-require 'sass/plugin'
 namespace :sass do
   desc 'Updates stylesheets if necessary from their Sass templates.'
   task :update do
+    require 'sass/plugin'
     Sass::Plugin.add_template_location "app/sass"
     Sass::Plugin.update_stylesheets
   end
