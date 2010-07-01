@@ -98,12 +98,13 @@ module YastModel
       #Setting language in the header of the http request
       self.headers["ACCEPT_LANGUAGE"] = current_locale 
 
-      YastModel::Resource.site = self.site  #dynamic set site
+#      YastModel::Resource.site = self.site  #dynamic set site
       #FIXME not thread safe, (whole using resource with site set class variable is not thread save
       Rails.logger.debug "read interface to #{@interface.to_s}"
       Rails.logger.debug "set site tot #{self.site}"
       Rails.logger.debug "set token to #{self.password}"
-      resource = YastModel::Resource.find(:all).find { |r| r.interface.to_sym == @interface.to_sym }
+#      resource = YastModel::Resource.find(:all).find { |r| r.interface.to_sym == @interface.to_sym }
+      resource = YaST::ServiceResource::Session.resources[@interface.to_sym]
       #TODO throw better exception if not found
       raise "Interface #{@interface} missing on target machine" unless resource
       p, sep, self.collection_name = resource.href.rpartition('/')
@@ -135,13 +136,16 @@ module YastModel
     # Note: it is class method, because user, password and site is also on class level
     def permissions
       set_site #set site which sets also policy if model has a policy
-      YastModel::Permission.site = YaST::ServiceResource::Session.site
-      YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
-      permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }
+#      YastModel::Permission.site = YaST::ServiceResource::Session.site
+#      YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
+#      permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }
+      permissions = YaST::ServiceResource::Session.permissions.select { |perm| perm.id.to_s.index(permission_prefix.to_s) == 0 }
+      Rails.logger.debug permissions.inspect
       @permissions = {}
       permissions.each do |p|
         key = p.id
         key.slice! "#{permission_prefix}."
+        Rails.logger.debug "sliced: #{key} granted?: #{p.granted.inspect}"
         @permissions[key.to_sym] = p.granted
       end
       @permissions

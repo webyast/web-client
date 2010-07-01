@@ -184,7 +184,6 @@ def test_save_deep_array_xml
     assert rq #commit request send
     assert rq.body
     result = Hash.from_xml(rq.body)["ctest"]
-    puts result
     assert_equal true, result["actions"]["action1"]["active"]
     assert_equal false, result["arg1"][0]["value"]
     assert_equal "lest", result["arg1"][2]["value"][0]
@@ -193,5 +192,26 @@ def test_save_deep_array_xml
     Rails.logger.debug ActiveResource::HttpMock.requests.inspect
   end
 end
+
+  def test_permissions_serialization
+    p1 = YastModel::Permission.new :granted => false, :id => "org.test"
+    p2 = YastModel::Permission.new :granted => true, :id => "org.test2"
+    p3 = YastModel::Permission.load_from_string p1.serialize_to_string
+    assert_equal p1.id, p3.id
+    assert_equal p1.granted, p3.granted
+    p3 = YastModel::Permission.load_from_string p2.serialize_to_string
+    assert_equal p2.id, p3.id
+    assert_equal p2.granted, p3.granted
+  end
+
+  def test_resource_serialization
+    r1 = YastModel::Resource.new :interface => "org.test", :policy => "",
+            :singular => true, :href => "/test"
+    r2 = YastModel::Resource.load_from_string r1.serialize_to_string
+    assert_equal r1.interface, r2.interface
+    assert_equal r1.policy, r2.policy
+    assert_equal r1.singular, r2.singular
+    assert_equal r1.href, r2.href
+  end
 
 end

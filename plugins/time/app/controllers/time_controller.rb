@@ -44,7 +44,7 @@ class TimeController < ApplicationController
       @@timezones = {}
     end
     @valid = []    
-  end 
+  end
 
   # Index handler. Loads information from backend and if success all required
   # fields is filled. In case of errors redirect to help page, main page or just

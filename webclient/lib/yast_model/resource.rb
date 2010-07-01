@@ -33,13 +33,24 @@ module YastModel
     # === usage
     #   res = YastModel::Resource.interfaces_available? :'org.opensuse.int1', :'org.opensuse.int2'
     def self.interfaces_available?(*args)
-      self.site = YaST::ServiceResource::Session.site
-      res = Resource.find :all
+#      self.site = YaST::ServiceResource::Session.site
+#      res = Resource.find :all
       args.each do |int|
-        found = res.find{ |v| v.interface.to_sym == int.to_sym }
+#        found = res.find{ |v| v.interface.to_sym == int.to_sym }
+          found = YaST::ServiceResource::Session.resources[int.to_sym]
         return false if found.nil?
       end
       return true
+    end
+
+    def serialize_to_string
+      "#{interface}|#{policy}|#{singular}|#{href}"
+    end
+
+    def self.load_from_string(str)
+      args = str.split "|"
+      Resource.new :interface => args[0], :policy => args[1],
+          :singular => (args[2]=="true"), :href => args[3]
     end
   end
 end
