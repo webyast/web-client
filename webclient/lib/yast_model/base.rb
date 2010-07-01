@@ -104,7 +104,7 @@ module YastModel
       Rails.logger.debug "set site tot #{self.site}"
       Rails.logger.debug "set token to #{self.password}"
 #      resource = YastModel::Resource.find(:all).find { |r| r.interface.to_sym == @interface.to_sym }
-      resource = YaST::ServiceResource::Session.resources[@interface.to_sym]
+      resource = ResourceCache.instance.resources[@interface.to_sym]
       #TODO throw better exception if not found
       raise "Interface #{@interface} missing on target machine" unless resource
       p, sep, self.collection_name = resource.href.rpartition('/')
@@ -139,7 +139,7 @@ module YastModel
 #      YastModel::Permission.site = YaST::ServiceResource::Session.site
 #      YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
 #      permissions = YastModel::Permission.find :all, :params => { :user_id => YaST::ServiceResource::Session.login, :filter => permission_prefix }
-      permissions = YaST::ServiceResource::Session.permissions.select { |perm| perm.id.to_s.index(permission_prefix.to_s) == 0 }
+      permissions = ResourceCache.instance.permissions.select { |perm| perm.id.to_s.index(permission_prefix.to_s) == 0 }
       Rails.logger.debug permissions.inspect
       @permissions = {}
       permissions.each do |p|

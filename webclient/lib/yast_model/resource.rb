@@ -37,7 +37,7 @@ module YastModel
 #      res = Resource.find :all
       args.each do |int|
 #        found = res.find{ |v| v.interface.to_sym == int.to_sym }
-          found = YaST::ServiceResource::Session.resources[int.to_sym]
+          found = ResourceCache.instance.resources[int.to_sym]
         return false if found.nil?
       end
       return true

@@ -123,10 +123,6 @@ module YaST
       mattr_accessor :login
       # auth_token from session
       mattr_accessor :auth_token
-      # resources at site
-      mattr_accessor :resources
-      # permissions for site
-      mattr_accessor :permissions
     end
 
     # ActiveResource::Base class is broken with singleton resources

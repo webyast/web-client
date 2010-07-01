@@ -84,8 +84,6 @@ private
       YaST::ServiceResource::Session.login = session[:user]
       YaST::ServiceResource::Session.auth_token = session[:auth_token]
       YaST::ServiceResource::Session.site = Host.find(session[:host]).url
-#  YaST::ServiceResource::Session.permissions = session[:permissions].split(',').collect{|s| YastModel::Permission.load_from_string s } if session[:permissions]
-#     YaST::ServiceResource::Session.resources = session[:resources].split(',').collect{|s| YastModel::Resource.load_from_string s } if session[:resources]
     end
   end
 

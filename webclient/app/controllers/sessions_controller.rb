@@ -100,13 +100,6 @@ class SessionsController < ApplicationController
         session[:auth_token] = auth_token
         session[:user] = params[:login]
         session[:host] = host.id
-        YastModel::Permission.site = host.url
-        YastModel::Permission.password = auth_token
-        YaST::ServiceResource::Session.permissions = YastModel::Permission.find(:all,:params => {:user_id => params[:login]})
-        YastModel::Resource.site = host.url
-        resources = {}
-        YastModel::Resource.find(:all).each { |r| resources[r.interface.to_sym] = r }
-        YaST::ServiceResource::Session.resources = resources
 
         # evaluate available service resources here or not?
         # @modules = Yast.find(:all)
