@@ -25,6 +25,7 @@ require 'client_exception'
 class ActivedirectoryController < ApplicationController
 
   before_filter :login_required
+  before_filter :set_perm
   layout 'main'
 
   # Initialize GetText and Content-Type.
@@ -43,15 +44,10 @@ class ActivedirectoryController < ApplicationController
     end
 
     return unless @activedirectory
-    @permissions = Activedirectory.permissions
-    @activedirectory.administrator	= nil
     logger.debug "permissions: #{@permissions.inspect}"
   end
 
   def update
-
-    @permissions = Activedirectory.permissions
-
     begin
       params[:activedirectory][:create_dirs] = params[:activedirectory][:create_dirs] == "true"
       params[:activedirectory][:enabled] = params[:activedirectory][:enabled] == "true"
@@ -81,4 +77,8 @@ class ActivedirectoryController < ApplicationController
     redirect_success
   end
 
+private
+  def set_perm
+    @permissions = Activedirectory.permissions
+  end
 end
