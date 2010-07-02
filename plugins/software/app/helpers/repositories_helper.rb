@@ -73,26 +73,21 @@ module RepositoriesHelper
   end
 
   def hidden_field_with_link form, sid, flag, value, change
-
-    html = <<-EOF
+    <<-EOF
+      #{form.hidden_field(flag, :id => "repo_#{flag}_#{sid}", :value => value)}
       <span id='repo_#{flag}_change_#{sid}' style='display: none'><b>#{change}</b></span>
       (<a onclick="switch_flag('#repo_#{flag}_link_#{sid}', '#repo_#{flag}_#{sid}', '#{value}', '#repo_#{flag}_change_#{sid}')"
 	id="repo_#{flag}_link_#{sid}">#{bool_cmd !value}</a>)
     EOF
-
-    return form.hidden_field(flag, :id => "repo_#{flag}_#{sid}", :value => value) + html
-
   end
 
   def hidden_field_with_toggle_link form, flag, value, enabled_text, disabled_text
-
-    html = <<-EOF
+    <<-EOF
+      #{form.hidden_field(flag, :id => "repo_#{flag}", :value => value)}
       <span id='repo_#{flag}_enabled' #{value ? '' : "style='display: none'"}>#{enabled_text}</span>
       <span id='repo_#{flag}_disabled' #{value ? "style='display: none'" : ''}>#{disabled_text}</span>
       (<a onclick="toggle_flag('#repo_#{flag}_link', '#repo_#{flag}', '#repo_#{flag}_enabled', '#repo_#{flag}_disabled')"
 	id="repo_#{flag}_link">#{bool_cmd !value}</a>)
     EOF
-
-    return form.hidden_field(flag, :id => "repo_#{flag}", :value => value) + html
   end
 end
