@@ -44,22 +44,39 @@ class ActivedirectoryController < ApplicationController
 
     return unless @activedirectory
     @permissions = Activedirectory.permissions
+    @activedirectory.administrator	= nil
     logger.debug "permissions: #{@permissions.inspect}"
   end
 
   def update
+
+    @permissions = Activedirectory.permissions
+
     begin
       params[:activedirectory][:create_dirs] = params[:activedirectory][:create_dirs] == "true"
       params[:activedirectory][:enabled] = params[:activedirectory][:enabled] == "true"
-      @activedirectory = Activedirectory.new(params[:activedirectory]).save
+      @activedirectory = Activedirectory.new(params[:activedirectory])
+      @activedirectory.save
       flash[:message] = _("Active Directory client configuraton successfully written.")
-# FIXME check for not_member exception, ask for credentials
     rescue ActiveResource::ClientError => e
       flash[:error] = YaST::ServiceResource.error(e)
       logger.warn e.inspect
     rescue ActiveResource::ServerError => e
-      flash[:error] = _("Error while saving Active Directory client configuration.")
       logger.warn e.inspect
+      error = Hash.from_xml e.response.body
+      # credentials required for joining the domain
+      if error["error"] && error["error"]["type"] == "ACTIVEDIRECTORY_ERROR" && error["error"]["id"] == "not_member"
+	flash[:mesage] = _("Machine is not member of given domain. Enter the credentials needed for join.")
+	@activedirectory.administrator	= ""
+	@activedirectory.password		= ""
+	@activedirectory.machine		= ""
+	render :index and return
+      elsif error["error"] && error["error"]["type"] == "ACTIVEDIRECTORY_ERROR" && error["error"]["id"] == "join_error"
+	flash[:error] = _("Error while jooining Active Directory domain: %s") % error["error"]["message"]
+	render :index and return
+      else
+	flash[:error] = _("Error while saving Active Directory client configuration.")
+      end
     end
     redirect_success
   end
