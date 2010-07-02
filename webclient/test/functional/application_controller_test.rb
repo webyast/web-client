@@ -217,7 +217,7 @@ class TestControllerTest < ActionController::TestCase
     path = File.join(File.dirname(__FILE__),'..','fixtures','bug_url.xml')
     response = IO.read(path)
     ActiveResource::HttpMock.respond_to do |mock|
-      mock.get "/vendor_settings/bug_url.xml",{},response,200
+      mock.get "/vendor_settings.xml",{},response,200
     end
     YaST::ServiceResource::Session.site = "http://localhost:4984"
     get :crash_action

@@ -1,4 +1,33 @@
-<vendor-setting>
-  <value>http://www.mycompany.com/report_bug</value>
-  <name>bug_url</name>
-</vendor-setting>
+<?xml version="1.0" encoding="UTF-8"?>
+<vendor-settings type="array">
+  <vendor-setting>
+    <value type="array">
+      <value>
+        <package>mydb-server</package>
+      </value>
+      <value>
+        <package>mydb-console</package>
+      </value>
+    </value>
+    <name>packages</name>
+  </vendor-setting>
+  <vendor-setting>
+    <value>This is an evil eula that will make you think twice before clicking it</value>
+    <name>eula</name>
+  </vendor-setting>
+  <vendor-setting>
+    <value>http://www.mycompany.com/report_bug</value>
+    <name>bug_url</name>
+  </vendor-setting>
+  <vendor-setting>
+    <value type="array">
+      <value>
+        <service>mydb-daemon</service>
+      </value>
+      <value>
+        <service>syslog</service>
+      </value>
+    </value>
+    <name>services</name>
+  </vendor-setting>
+</vendor-settings>
