@@ -97,13 +97,20 @@
 
       <fieldset id="tab_roles_<%= (new ? "" : user.uid) %>">
       <legend><span><%= _("Roles") %></span></legend>
-       <div>
-	<%= f.text_field :roles_string, :disabled => false, :class => "roles-string"  %>
+       <table>
+	<tr><td>
+	<%= f.text_field :roles_string, :disabled => false, :class => "roles-string",  :onkeyup => "roles_validation(this);"  %>
+	 </td><td>
             <%= 
 		action = (disabled) ? "" : "select_roles_open('"+user.uid.to_s+"');return false;"
 		link_to _("Manage Roles"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
 	    %>
-       </div>
+	 </td>
+         </tr>
+	 <tr><td>
+            <label id="roles-error" class="error">error</label>
+	 </td></tr>
+       </table>
       </fieldset>
 
   </div>

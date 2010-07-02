@@ -137,6 +137,27 @@ function def_group_validation(which){
   return (errmsg.length==0);
 }
 
+function roles_validation(which){
+  var myroles = _trim(findById(which.parentNode.getElementsByTagName('input'), "user_roles_string").value);
+  if (myroles.length>0) myroles = myroles.split(",");
+  var allroles = $("#all_roles_string")[0].value.split(",");
+  errmsg="";
+  for (i=0;i<myroles.length;i++){
+    var found=false;
+    for(a=0;a<allroles.length;a++){
+     if (allroles[a]==_trim(myroles[i])) found=true;
+    }
+    if (!found){
+     errmsg = myroles[i]+" "+"is not valid role!" ;
+    }
+  }
+  set_tab_focus("roles")
+  var error = findById(which.parentNode.parentNode.parentNode.getElementsByTagName('label'), "roles-error");
+  error.innerHTML = errmsg;
+  error.style.display= (errmsg.length==0) ? "none" : "block";
+  return (errmsg.length==0);
+}
+
 function user_validation(which, username){
   var valid = true;
   var form = '#form_'+username;
