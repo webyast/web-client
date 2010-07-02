@@ -95,11 +95,31 @@ function def_group_validation(which){ return true; }
     return open_dialog;
   };
 
+  function select_roles_dialog() {
+    var open_dialog = select_many_dialog({
+      kind : 'roles',
+      title : '<%= _('Select Roles') %>',
+      selected_title : '<%= _('Selected Roles') %>',
+      unselected_title : '<%= _('Available Roles') %>',
+      tooltip : '<%= _('Click group names to select/unselect roles') %>',
+      loadItems : function (dialogId) { 
+        return $('#form_'+dialogId+' .roles-string')[0].value.split(",")
+      },
+      storeItems : function (dialogId, items) { 
+        $('#form_'+dialogId+' .roles-string')[0].value = items.join(",");
+      },
+      allItems : function (dialogId) { 
+        return $('#all_roles_string')[0].value.split(",") 
+      }
+    });
+    return open_dialog;
+  };
+
   $(document).ready(function(){
 
     select_groups_open = select_groups_dialog();
-
     select_default_group_open = select_default_group_dialog();
+    select_roles_open = select_roles_dialog();
 
 // make the error message translatable - override the default messsage
    $.extend($.validator.messages, {
@@ -203,5 +223,6 @@ function def_group_validation(which){ return true; }
   </div>
 </div>
             <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
+            <div><input type="hidden" id="all_roles_string" value="<%= @all_roles_string %>" /></div>
 </div>
 
