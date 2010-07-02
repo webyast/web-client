@@ -60,17 +60,19 @@ class UsersController < ApplicationController
         user.uid_number	= user.uid_number
         user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
         @all_grps_string = ""
-    user.roles_string = ""
-@roles = Role.find :all
-@roles.each do |role|
- if role.users.include?(user.id)
-  if user.roles_string.blank?
-   user.roles_string = role.name
-  else
-   user.roles_string += ",#{role.name}" 
-  end
- end
-end
+        @all_roles_string = ""
+        user.roles_string = ""
+        @roles = Role.find :all
+        my_roles=[]
+        all_roles=[]
+        @roles.each do |role|
+         if role.users.include?(user.id)
+          my_roles.push(role.name)
+         end
+         all_roles.push(role.name)
+        end
+        user.roles_string = my_roles.join(",")
+        @all_roles_string = all_roles.join(",")
 	@groups = []
         if @permissions[:groupsget] == true
           @groups = Group.find :all
@@ -104,17 +106,15 @@ end
       :user_password2	=> nil,
       :type		=> "local"
     )
-    @user.roles_string = ""
-@roles = Role.find :all
-@roles.each do |role|
- if role.users.include?(user.id)
-  if user.roles_string.blank?
-   user.roles_string = role.name
-  else
-   user.roles_string += ",#{role.name}"
-  end
- end
-end
+        @all_roles_string = ""
+        @user.roles_string = ""
+        @roles = Role.find :all
+        my_roles=[]
+        all_roles=[]
+        @roles.each do |role|
+         all_roles.push(role.name)
+        end
+        @all_roles_string = all_roles.join(",")
     @all_grps_string = ""
     @groups = []
     if @permissions[:groupsget] == true

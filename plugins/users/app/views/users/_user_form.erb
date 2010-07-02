@@ -43,7 +43,8 @@
 	<% if @permissions[:groupsget] == true %>
             <%= 
 		action = (disabled) ? "" : "select_groups_open('"+(new ? "" : user.uid)+"');return false;"
-		link_to _("Manage Groups"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled %>
+		link_to _("Manage Groups"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
+            %>
 	<% end %>
 	</td></tr>
 
@@ -59,7 +60,8 @@
 	<% if @permissions[:groupsget] == true %>
             <%= 
 		action = (disabled) ? "" : "select_default_group_open('"+user.uid.to_s+"');return false;"
-		link_to _("Select Default Group"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled %>
+		link_to _("Select Default Group"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
+	    %>
 	<% end %>
 	</td></tr>
 
@@ -96,8 +98,11 @@
       <fieldset id="tab_roles_<%= (new ? "" : user.uid) %>">
       <legend><span><%= _("Roles") %></span></legend>
        <div>
-	<%= f.text_field :roles_string, :disabled => false  %>
-	<a href="#" class="button" disabled=true><%= _("Manage Roles") %></a>
+	<%= f.text_field :roles_string, :disabled => false, :class => "roles-string"  %>
+            <%= 
+		action = (disabled) ? "" : "select_roles_open('"+user.uid.to_s+"');return false;"
+		link_to _("Manage Roles"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
+	    %>
        </div>
       </fieldset>
 
