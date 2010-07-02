@@ -59,8 +59,6 @@ class UsersController < ApplicationController
         user.user_password2 = user.user_password
         user.uid_number	= user.uid_number
         user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
-        @all_grps_string = ""
-        @all_roles_string = ""
         user.roles_string = ""
         @roles = Role.find :all
         my_roles=[]
@@ -77,13 +75,11 @@ class UsersController < ApplicationController
         if @permissions[:groupsget] == true
           @groups = Group.find :all
         end
+	grps_list=[]
         @groups.each do |group|
-          if @all_grps_string.blank?
-            @all_grps_string = group.cn
-          else
-            @all_grps_string += ",#{group.cn}"
-          end
+	 grps_list.push(group.cn)
         end
+        @all_grps_string = grps_list.join(",")
       end
     end
   end
@@ -115,18 +111,16 @@ class UsersController < ApplicationController
          all_roles.push(role.name)
         end
         @all_roles_string = all_roles.join(",")
-    @all_grps_string = ""
     @groups = []
     if @permissions[:groupsget] == true
       @groups = Group.find :all
     end
+    grp_list=[]
     @groups.each do |group|
-       if @all_grps_string.blank?
-          @all_grps_string = group.cn
-       else
-          @all_grps_string += ",#{group.cn}"
-       end
+     grp_list.push(group.cn)
     end
+    @all_grps_string = grp_list.join(",")
+    
     @user.grp_string = ""
   end
 
