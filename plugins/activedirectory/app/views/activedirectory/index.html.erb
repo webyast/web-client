@@ -38,11 +38,11 @@
   <% end -%>
 </div>
 
-  <div class='plugin-icon'><img src='/icons/yast-users.png'/> <%= _("Active Directory") %></div>
+  <div class='plugin-icon'><img src='../icons/yast-samba-client.png'/> <%= _("Active Directory") %></div>
   <div class='plugin-content'>
 
     <% form_for(:activedirectory, @activedirectory, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'activedirectory_form' }
+      :html => { :method => :put, :id => 'activedirectory_form', :onsubmit => "$('#progress').show()", :autocomplete => :off }
     ) do |f| %>
 
 	  <div class="activedirectory-content" style="padding-bottom: 10px">
@@ -60,6 +60,26 @@
 	      <%= check_box 'activedirectory', :create_dirs, {:disabled => disabled, :checked => @activedirectory.create_dirs}, true,false -%>
 	      <%= _("Create Home Directory on Login") %>
 	    </p>
+	    <% unless @activedirectory.administrator.nil? %>
+            <p>
+              <%= label_tag :activedirectory_administrator, _("Adminstrator User Name") %>
+            </p>
+            <p>
+              <%= text_field :activedirectory, :administrator, :disabled => disabled, :class => 'required'  %>
+            </p>
+            <p>
+              <%= label_tag :activedirectory_password, _("Password") %>
+            </p>
+            <p>
+              <%= password_field :activedirectory, :password, :disabled => disabled, :class => 'required'  %>
+            </p>
+            <p>
+              <%= label_tag :activedirectory_machine, _("Machine Account") %>
+            </p>
+            <p>
+              <%= text_field :activedirectory, :machine, :disabled => disabled  %>
+            </p>
+	    <% end %>
 	    <p>
               <%= form_send_buttons :onclick=>"Element.show('progress')" %>
             </p>
