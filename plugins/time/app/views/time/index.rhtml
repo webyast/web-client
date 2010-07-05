@@ -76,8 +76,9 @@
 		  }
 		});
 
-		$("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
-		$("#currenttime").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
+		//is not needed anymore, because of jquery.validate plugin update (TODO: remove commented out lines after test )
+		//$("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
+		//$("#currenttime").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
 
 		// allows to switch between radio buttons and disable validation if #timeconfig_manual is checked
 		$('#timeconfig_manual').click(function() {
@@ -87,7 +88,7 @@
 		  $('#ntp_server').val("");
 		  $('#ntp_server').attr("disabled","disabled");
 		  $('#currenttime').focus();
-      $("#timeForm").valid(); //recheck
+      //$("#timeForm").valid(); //recheck
 		});
 
 		// enable form validation for #ntp_server if #ntp_sync is checked
@@ -97,9 +98,9 @@
 		  settings.messages.ntp_server = "<%= _("This field is required") -%>";
 		  settings.messages.ntp_server = {ntp_server: "<%= _("Enter a valid domain name or an IP address") -%>"};
 		  $('#ntp_server').removeAttr("disabled");
-      $("#timeForm").valid(); //recheck
+      //$("#timeForm").valid(); //recheck
 		});
-    $("#timeForm").valid(); //initial check
+    //$("#timeForm").valid(); //initial check
   });
 </script>
 
