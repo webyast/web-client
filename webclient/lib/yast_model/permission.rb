@@ -28,6 +28,8 @@ module YastModel
     YSR_NEW_STR = "registration"
     MAX_PERM_LEN = 512
 
+    self.prefix = '/'
+
 
     def pretty_id
       cutted = id
