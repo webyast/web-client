@@ -21,6 +21,12 @@
 
 require File.join(File.dirname(__FILE__),'..','test_helper')
 
+class Service #simulate service class
+  def self.permissions
+    { :execute => true, :read => true } #service is needed restart service
+  end
+end
+
 class NtpTest < ActiveSupport::TestCase
   # return contents of a fixture file +file+
   def fixture(file)
@@ -36,7 +42,6 @@ class NtpTest < ActiveSupport::TestCase
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
-      mock.permissions "org.opensuse.yast.modules.yapi.services", { :execute => true, :read => true } #service is needed restart service
       mock.get  "/ntp.xml", @header, @response, 200
     end
     ResourceCache.instance.send(:permissions=,[]) #reset cache
@@ -48,7 +53,6 @@ class NtpTest < ActiveSupport::TestCase
   end
 
   def test_available
-    debugger
     assert Ntp.available?
   end
 
