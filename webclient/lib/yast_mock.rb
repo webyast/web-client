@@ -26,6 +26,8 @@ module ActiveResource
         YaST::ServiceResource::Session.site = "http://localhost"
         YaST::ServiceResource::Session.login = "test"
         YaST::ServiceResource::Session.auth_token = "1234"
+        ResourceCache.instance.send(:permissions=,[])
+        ResourceCache.instance.send(:resources=,[])
       end
 
       # Gets authentication header which must send request for authentication
