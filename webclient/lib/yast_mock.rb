@@ -72,7 +72,7 @@ module ActiveResource
           response << "</permission>"
         end
         response << "</permissions>"
-        get   "/permissions.xml?filter=#{prefix}&user_id=test", HttpMock.authentication_header_without_language, response, 200
+        get   "/permissions.xml?user_id=test", HttpMock.authentication_header_without_language, response, 200
       end
     end
 
