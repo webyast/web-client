@@ -41,6 +41,14 @@ module YastModel
       perms.collect { |p| p.id }.find { |id| id.include? pretty_id }
     end
 
+    def serialize_to_string
+      "#{id}->#{granted ? 1 : 0}"
+    end
+
+    def self.load_from_string(str)
+      pos = str.index '->'
+      return Permission.new :id => str[0..pos-1],:granted => (str[pos+2].chr=='1')
+    end
   end
 
 end
