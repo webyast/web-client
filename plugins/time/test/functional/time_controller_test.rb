@@ -106,6 +106,7 @@ class TimeControllerTest < ActionController::TestCase
   def test_commit_wizard
     response_ntp_stop = services_fixtures
     #add mock for services to stop ntp
+    ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
@@ -137,6 +138,7 @@ class TimeControllerTest < ActionController::TestCase
   def test_ntp
     #add mock for services to stop ntp
     response_ntp_stop = services_fixtures
+    ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
@@ -166,6 +168,7 @@ class TimeControllerTest < ActionController::TestCase
 #test that controller survive time change by ntp model
   def test_ntp_timeout
     response_ntp_stop = services_fixtures
+    ActiveResource::HttpMock.set_authentication
     ActiveResource::HttpMock.respond_to do |mock|
       mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
