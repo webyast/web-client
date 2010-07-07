@@ -69,6 +69,8 @@ def setup
     mock.get   "/ctest.xml", header, CTEST_RESPONSE, 200
     mock.post   "/ctest.xml", header, CTEST_RESPONSE, 200
   end
+  ResourceCache.instance.send(:permissions=,[]) #reset cache
+  ResourceCache.instance.send(:resources=,[]) #reset cache
   TestModel.set_site #reset site cache
   Test2Model.set_site
 end
@@ -136,6 +138,8 @@ def test_specified_policy
     mock.get   "/test.xml", header, TEST_RESPONSE, 200
     mock.post   "/test.xml", header, TEST_RESPONSE, 200
   end
+  ResourceCache.instance.send(:permissions=,[]) #reset cache
+  ResourceCache.instance.send(:resources=,[]) #reset cache
   TestModel.set_site #reset site cache, to reread resources
   perm = TestModel.permissions
   assert_equal "org.perm", TestModel.permission_prefix

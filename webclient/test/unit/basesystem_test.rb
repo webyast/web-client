@@ -21,6 +21,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class BasesystemTest < ActiveSupport::TestCase
 
   def setup
+    ResourceCache.instance.send(:permissions=,[]) #reset cache
+    ResourceCache.instance.send(:resources=,[]) #reset cache
     response_bs = load_xml_response "basesystem.xml"
     request_bs = load_xml_response "basesystem-response.xml"
     ActiveResource::HttpMock.set_authentication
