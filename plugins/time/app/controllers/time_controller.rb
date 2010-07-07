@@ -52,6 +52,7 @@ class TimeController < ApplicationController
   def index
     @ntp = Ntp.find :one
     @stime = Systemtime.find :one
+    @stime.load_timezone params if params[:timezone] #do not reset timezone if ntp fail (bnc#600370)
     @permissions = Systemtime.permissions
   end
 
@@ -82,7 +83,7 @@ class TimeController < ApplicationController
         ce = ClientException.new e
         if ce.backend_exception_type == "NTP_ERROR"
           flash[:error] = ce.message
-          redirect_to :action => "index" and return
+          redirect_to ({:action => "index"}.merge params) and return
         end
       end
       Service.put("ntp", {:execute => "start" })
