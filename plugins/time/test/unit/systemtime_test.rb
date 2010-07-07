@@ -38,6 +38,8 @@ class SystemtimeTest < ActiveSupport::TestCase
       mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
       mock.get  "/systemtime.xml", header, response, 200
     end
+    ResourceCache.instance.send(:permissions=,[]) #reset cache
+    ResourceCache.instance.send(:resources=,[]) #reset cache
     @systemtime = Systemtime.find :one
   end
 

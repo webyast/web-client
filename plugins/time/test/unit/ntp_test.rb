@@ -39,6 +39,8 @@ class NtpTest < ActiveSupport::TestCase
       mock.permissions "org.opensuse.yast.modules.yapi.services", { :execute => true, :read => true } #service is needed restart service
       mock.get  "/ntp.xml", @header, @response, 200
     end
+    ResourceCache.instance.send(:permissions=,[]) #reset cache
+    ResourceCache.instance.send(:resources=,[]) #reset cache
   end
 
   def teardown
@@ -46,6 +48,7 @@ class NtpTest < ActiveSupport::TestCase
   end
 
   def test_available
+    debugger
     assert Ntp.available?
   end
 
