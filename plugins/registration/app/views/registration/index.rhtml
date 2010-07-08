@@ -125,10 +125,8 @@
         %>
         <%= form_send_buttons :onclick => onclick_action %>
           <%= if basesystem_in_process? then
-                skip_msg = _('Skip')
                 postpone_msg = _('Postpone')
-                connecting_or = ' ' + _('or') + ' '
-                connecting_or + link_to(postpone_msg, {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()")
+                form_str_spacer + link_to(postpone_msg, {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()")
               end %>
       </div>
     <% end  %>
