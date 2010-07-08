@@ -17,41 +17,59 @@
  *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *#++
 
-@mixin round-corners-radius($radius)
-  -moz-border-radius: $radius
-  -webkit-border-radius: $radius
+=round-corners-radius
+  -moz-border-radius: !round_corners_radius
+  -webkit-border-radius: !round_corners_radius
   -moz-background-clip: border
-  -khtml-border-radius: $radius
+  -khtml-border-radius: !round_corners_radius
   -moz-box-shadow: none
-  border-radius: $radius
+  border-radius: !round_corners_radius
 
-@mixin round-corners
-  @include round-corners-radius(4px)
+=round-corners
+  -moz-border-radius: 4px
+  -webkit-border-radius: 4px
+  -moz-background-clip: border
+  -khtml-border-radius: 4px
+  -moz-box-shadow: none
+  border-radius: 4px
 
-@mixin no-round-corners
-  @include round-corners-radius(0)
+=no-round-corners
+  -moz-border-radius: 0px
+  -webkit-border-radius: 0px
+  -moz-background-clip: border
+  -khtml-border-radius: 0px
+  -moz-box-shadow: none
+  border-radius: 0px
 
-@mixin round-corners-top-radius($radius)
-  -moz-border-radius-topleft: $radius
-  -moz-border-radius-topright: $radius
-  border-radius-topleft: $radius
-  border-radius-topright: $radius
-  -webkit-border-radius-topleft: $radius
-  -webkit-border-radius-topright: $radius
-  -khtml-border-radius-topleft: $radius
-  -khtml-border-radius-topright: $radius
+=round-corners-top-radius
+  -moz-border-radius-topleft: !round_corners_top_radius
+  -moz-border-radius-topright: !round_corners_top_radius
+  border-radius-topleft: !round_corners_top_radius
+  border-radius-topright: !round_corners_top_radius
+  -webkit-border-radius-topleft: !round_corners_top_radius
+  -webkit-border-radius-topright: !round_corners_top_radius
+  -khtml-border-radius-topleft: !round_corners_top_radius
+  -khtml-border-radius-topright: !round_corners_top_radius
   -moz-background-clip: border
 
-@mixin round-corners-top
-  @include round-corners-top-radius(4px)
+=round-corners-top
+  -moz-border-radius-topleft: 4px
+  -moz-border-radius-topright: 4px
+  border-radius-topleft: 4px
+  border-radius-topright: 4px
+  -webkit-border-radius-topleft: 4px
+  -webkit-border-radius-topright: 4px
+  -khtml-border-radius-topleft: 4px
+  -khtml-border-radius-topright: 4px
+  -moz-background-clip: border
 
-@mixin border-inset($base_color)
-  border-color: mix($c_black, $base_color, 50%) mix($c_black, $base_color,35%) mix($c_black, $base_color, 20%)
+=border-inset
+  border-color: mix(!c_black, !border_inset_base_color, 50%) mix(!c_black, !border_inset_base_color,35%) mix(!c_black, !border_inset_base_color, 20%)
   border-style: solid
   border-width: 1px
 
-@mixin border-outset($base_color)
-  border-color: mix($c_black, $base_color, 20%) mix($c_black, $base_color,35%) mix($c_black, $base_color, 50%)
+=border-outset
+  border-color: mix(!c_black, !border_outset_base_color, 20%) mix(!c_black, !border_outset_base_color,35%) mix(!c_black, !border_outset_base_color, 50%)
   border-style: solid
   border-width: 1px
 
