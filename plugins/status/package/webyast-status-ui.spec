@@ -99,7 +99,6 @@ rm -rf $RPM_BUILD_ROOT
 %{plugin_dir}/uninstall.rb
 %{plugin_dir}/shortcuts.yml
 %{plugin_dir}/app
-%{plugin_dir}/lib
 %{plugin_dir}/tasks
 %{plugin_dir}/config/rails_parent.rb
 
