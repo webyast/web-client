@@ -20,13 +20,15 @@
 -->
 
 <% content_for :head do %>
-  <%= javascript_include_tag :defaults %>
+<!--   <%= javascript_include_tag :defaults %> -->
 
   <style type="text/css">
     label.error { float: none; padding-left: 10em }
   </style>
 
-  <%= javascript_include_tag "validation.js" %>
+  <% if RAILS_ENV == 'development' %>
+    <%= javascript_include_tag "validation.js" %>
+  <% end %>
 
 <% end %>
 

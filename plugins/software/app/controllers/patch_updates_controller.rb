@@ -80,7 +80,7 @@ public
     error = nil
     patch_updates = nil
     begin
-      patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
+#       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
     rescue ActiveResource::UnauthorizedAccess => e
       # handle unauthorized error - the session timed out
       Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"

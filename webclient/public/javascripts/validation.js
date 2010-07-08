@@ -18,13 +18,6 @@
 #++
 */
 
-//BACKUP
-//var host ="([A-Za-z0-9])(([\\.\\-]?[a-zA-Z0-9]+)*)"; //\\.([A-Za-z]{2,}
-//http://regexlib.com/REDetails.aspx?regexp_id=333
-//Hostname part: ([A-Za-z0-9]+)(([\\.\\-]?[a-zA-Z0-9]+)*)\\.([A-Za-z]{2,})
-//^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$)
-
-
 var protocol = "(http|https|ftp)";
 // FQDN: http://regexlib.com/REDetails.aspx?regexp_id=391
 var host = "([a-zA-Z0-9](([\\.\\-]?[a-zA-Z0-9]+){0,61}[a-zA-Z0-9]))+[a-zA-Z0-9]*";

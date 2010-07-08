@@ -21,14 +21,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css",
-      "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css",
-      :title=>"default", :charset=>"utf-8"
-      # key :cache is disabled, because user which run webyast doesn't have permission to write to 
-      #             stylesheet directory and cache cannot be created.
-      %>
+  <!-- Do not forget to change to production !!! development -->
 
-  <%= javascript_include_tag 	"jquery",
+  <% if RAILS_ENV == 'production' %>
+<!--  TODO add css minify functionality to bundle fu  -->
+<!--     <#%# bundle do #%#> -->
+  
+     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+	
+<!--     <#%# end #%#> -->
+    <%= javascript_include_tag "min/webclient-base-min" %>
+    <%= yield :before_script %>
+    <%= yield :head %>
+  <% else %>
+    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <%= javascript_include_tag 	"jquery-1.4.2",
 				"jquery.query", #FIXME write reason
 				"jquery.timers",
 				"jquery.ui.custom",
@@ -40,13 +47,13 @@
 				"jquery.ui.tabs", #FIXME looks like already include in ui.core
 				"yast.widgets",
 				"yast.helpers",
-				"/javascripts/browser_fixes"
-  %>
-  <%= yield :before_script %>
-  <%= javascript_include_tag	"script",
-				"application" #FIXME it can be problem if plugin also have own application specific js
-  %>
-  <%= yield :head %>
+				"/javascripts/browser_fixes" %>
+
+    <%= yield :before_script %>
+      <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
+      %>
+    <%= yield :head %>
+  <% end %>
 
   <title><%= _("WebYaST") %></title>
 </head>

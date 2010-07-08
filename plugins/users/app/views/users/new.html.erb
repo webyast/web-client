@@ -19,13 +19,28 @@
 # you may find current contact information at www.novell.com
 -->
 <% content_for :head do %>
-<%= javascript_include_tag :defaults %>
-<%= javascript_include_tag "digitalspaghetti.password.js" %>
-<%= javascript_include_tag "users.js" %>
-<%= javascript_include_tag "select_dialog.js" %>
+<!--<%= javascript_include_tag :defaults %>-->
 
-<!-- if no groups, disable validation
+<!--
+- already added to webyast-base-min.js:
+  <%= javascript_include_tag "digitalspaghetti.password.js" %>
+
+- added to to users-group-min.js
+  <%= javascript_include_tag "jquery.quicksearch.js"-%>
+  <%= javascript_include_tag "select_dialog.js" %>
+  <%= javascript_include_tag "users.js" %>
+
 -->
+
+ <!-- don't forget to change to production -->
+  <% if RAILS_ENV == 'production' %>
+    <%= javascript_include_tag "min/users-group-min.js"-%>
+  <% else %>
+    <%= javascript_include_tag "users.js" %>
+    <%= javascript_include_tag "select_dialog.js" %>
+  <% end %>
+
+<!-- if no groups, disable validation-->
 <% if @permissions[:groupsget] != true %>
 <script language="javascript">
 function groups_validation(which){ return true; }

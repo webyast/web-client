@@ -21,7 +21,11 @@
 #++
 %>
 <% content_for :head do %>
-  <%= javascript_include_tag "select_dialog.js" %>
+  <% if RAILS_ENV == 'production' %>
+    <%= javascript_include_tag "min/users-group-min.js" %>
+  <% else %>
+    <%= javascript_include_tag "select_dialog.js" %>
+  <% end%>
 <% end%>
 
 <% content_for :before_script do %>

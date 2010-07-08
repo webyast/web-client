@@ -23,8 +23,10 @@
 
 <div class="plugin-content">
 <% content_for :head do %>
-  <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "digitalspaghetti.password.js" %>
+  <!--<%= javascript_include_tag :defaults %>--> <!-- is not needed -->
+  <% if RAILS_ENV == 'development' %>
+    <%= javascript_include_tag "digitalspaghetti.password.js" %>
+  <% end %>
 
   <script type="text/javascript">
     // define custom validation function

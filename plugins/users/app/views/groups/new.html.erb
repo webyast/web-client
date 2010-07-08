@@ -18,12 +18,30 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
-<%= javascript_include_tag "users.js" %>
-<%= javascript_include_tag "select_dialog.js" %>
+
+<!--
+- already added to webyast-base-min.js:
+  <%= javascript_include_tag "digitalspaghetti.password.js" %>
+
+- added to to users-group-min.js
+  <%= javascript_include_tag "jquery.quicksearch.js"-%>
+  <%= javascript_include_tag "select_dialog.js" %>
+  <%= javascript_include_tag "users.js" %>
+
+-->
+
+ <!-- don't forget to change to production -->
+  <% if RAILS_ENV == 'production' %>
+    <%= javascript_include_tag "min/users-group-min.js"-%>
+  <% else %>
+    <%= javascript_include_tag "users.js" %>
+    <%= javascript_include_tag "select_dialog.js" %>
+  <% end %>
+
 <% if @permissions[:usersget] != true %>
-<script language="javascript">
-function members_validation(which){ return true; }
-</script>
+  <script language="javascript">
+    function members_validation(which){ return true; }
+  </script>
 <% end %>
 
   <style type="text/css">

@@ -20,14 +20,16 @@
 -->
 
 <% content_for :head do %>
-
-<!--[if IE]><%= javascript_include_tag "excanvas.js" %><![endif]-->
-<%= javascript_include_tag "jquery.jqplot.js" %>
-<%= javascript_include_tag "plugin/jqplot.categoryAxisRenderer.js" %>
-<%= javascript_include_tag "plugin/jqplot.dateAxisRenderer.js" %>
-<%= javascript_include_tag "plugin/jqplot.canvasTextRenderer.js" %>
-<%= javascript_include_tag "plugin/jqplot.cursor.js" %>
-<%= javascript_include_tag "plugin/jqplot.pieRenderer.js" %>
+  <!--[if IE]><%= javascript_include_tag "excanvas.js" %><![endif]-->
+  <% if RAILS_ENV == 'production' %>
+    <%= javascript_include_tag "min/jqplot-status-min" %>
+  <% else %>
+    <%= javascript_include_tag "jquery.jqplot.js" %>
+    <%= javascript_include_tag "plugin/jqplot.categoryAxisRenderer.js" %>
+    <%= javascript_include_tag "plugin/jqplot.dateAxisRenderer.js" %>	
+    <%= javascript_include_tag "plugin/jqplot.canvasTextRenderer.js" %>
+    <%= javascript_include_tag "plugin/jqplot.cursor.js" %>
+  <% end %>
 <% end %>
 
 <% content_for :before_script do %>
@@ -45,7 +47,7 @@
   <% end %>
 <% end %>
 
-<%= javascript_include_tag :defaults %>
+<!--<%= javascript_include_tag :defaults %>-->
 
 <div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status")%></div>
 <div class="plugin-content">

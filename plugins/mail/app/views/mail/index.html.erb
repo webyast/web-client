@@ -20,7 +20,16 @@
 -->
 
 <% content_for :head do %>
-  <%= javascript_include_tag :defaults %>
+  <!--<%= javascript_include_tag :defaults %>--> <!-- is not needed -->
+
+<style type="text/css">
+label.error {
+  font-weight:bold;
+  color:#990000;
+  padding-left:.5em;
+  vertical-align:middle;
+}
+</style>
 
 <%= javascript_include_tag "validation.js" %>
 <script type="text/javascript">

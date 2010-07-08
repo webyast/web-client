@@ -21,17 +21,31 @@
 
 <% content_for :head do %>
 
-<%= javascript_include_tag "jquery.quicksearch.js"-%>
-<%= javascript_include_tag "digitalspaghetti.password.js" %>
-<%= javascript_include_tag "select_dialog.js" %>
-<%= javascript_include_tag "users.js" %>
+<!--
+- already added to webyast-base-min.js:
+  <%= javascript_include_tag "digitalspaghetti.password.js" %>
 
-<!-- if no groups, disable validation
+- added to to users-group-min.js
+  <%= javascript_include_tag "jquery.quicksearch.js"-%>
+  <%= javascript_include_tag "select_dialog.js" %>
+  <%= javascript_include_tag "users.js" %>
+
 -->
+
+ <!-- don't forget to change to production -->
+  <% if RAILS_ENV == 'production' %>
+    <%= javascript_include_tag "min/users-group-min.js"-%>
+  <% else %>
+    <%= javascript_include_tag "jquery.quicksearch.js"-%>
+    <%= javascript_include_tag "select_dialog.js" %>
+    <%= javascript_include_tag "users.js" %>
+  <% end %>
+ 
+<!-- if no groups, disable validation-->
 <% if @permissions[:groupsget] != true %>
 <script language="javascript">
-function groups_validation(which){ return true; }
-function def_group_validation(which){ return true; }
+  function groups_validation(which){ return true; }
+  function def_group_validation(which){ return true; }
 </script>
 <% end %>       
 
