@@ -22,12 +22,11 @@
 <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
 
 <% content_for :head do %>
-  <% if RAILS_ENV == 'development' %>
+  <% if JSMIN == false %>
     <%= javascript_include_tag "jquery.quicksearch.js"-%>
   <% end %>
  
   <%= javascript_include_tag :defaults %>
-<!--   <%= javascript_include_tag "jquery.quicksearch.js" %> -->
 
   <style type="text/css">
     label.error { float: none; color: red; padding-left: 6.5em; vertical-align: top; width: 70%; text-align: left }
