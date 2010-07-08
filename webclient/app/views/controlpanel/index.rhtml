@@ -89,27 +89,15 @@
 
 <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
 <div id="favorites" class="plugin-content">
-  <% line_counter = 0 %>
-  <% shortcuts_counter = 0 %>
   <div class="overview">
     <% @shortcuts.values.sort_by {|v| v['title']}.each do |data| %>
-      <% if line_counter*5 == shortcuts_counter %>
-        <% if line_counter > 0 %>
-          </div>
-        <% end %>
-        <% line_counter +=1 %>
-        <div class="highlight-bg list-row">
-      <% end %>
       <% link_to (data['url'], {:class => "controlpanel-shortcut"}) do %>
         <%= image_tag(data['icon']) %><br />
-	<%= data['title'] %>
+        <%= data['title'] %>
       <% end %>
-      <% shortcuts_counter +=1 %>
     <% end %>
-    <% if line_counter*5 != shortcuts_counter-1 %>
-    </div>
-  <% end %>
-
+    <div style="clear:both;"></div>
+  </div>
 </div>
 
 </div>
