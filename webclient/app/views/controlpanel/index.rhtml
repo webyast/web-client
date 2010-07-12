@@ -90,7 +90,7 @@
 <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
 <div id="favorites" class="plugin-content">
   <div class="overview">
-    <% @shortcuts.values.sort_by {|v| v['title']}.each do |data| %>
+    <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each do |data| %>
       <% link_to (data['url'], {:class => "controlpanel-shortcut"}) do %>
         <%= image_tag(data['icon']) %><br />
         <%= data['title'] %>

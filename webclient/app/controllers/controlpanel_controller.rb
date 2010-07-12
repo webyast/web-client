@@ -120,6 +120,10 @@ class ControlpanelController < ApplicationController
 
   # reads shortcuts of a specific plugin directory
   def plugin_shortcuts(plugin)
+    permissions = {}
+    ResourceCache.instance.permissions.each do |p|
+      permissions[p.id] = p.granted
+    end
     shortcuts = {}
     shortcuts_fn = File.join(plugin.directory, 'shortcuts.yml')
     if File.exists?(shortcuts_fn)
@@ -142,6 +146,13 @@ class ControlpanelController < ApplicationController
         # use the plugin name and the shortcut key as
         # the new key
         shortcuts["#{plugin.name}:#{k}"] = v
+        v["disabled"] = false #backward compatibility
+        if v.include? "read_permissions"
+          perms = v["read_permissions"]
+          perms.each do |perm|
+            v["disabled"] = v["disabled"] || !permissions[perm]
+          end
+        end
       end
     end
     shortcuts
