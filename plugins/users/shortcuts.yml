@@ -5,6 +5,7 @@ main:
   tags: [ users, account, security, access]
   title: _("Users")
   description: _("Manage user accounts")
+  read_permissions: [ org.opensuse.yast.modules.yapi.users.userget, org.opensuse.yast.modules.yapi.users.usersget ]
 
 groups:
   icon: '/icons/yast-groups.png'
@@ -13,4 +14,5 @@ groups:
   tags: [ groups, account, security, access]
   title: _("Groups")
   description: _("Manage groups")
+  read_permissions: [ org.opensuse.yast.modules.yapi.users.groupget, org.opensuse.yast.modules.yapi.users.groupsget ]
 
