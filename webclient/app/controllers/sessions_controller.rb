@@ -101,6 +101,9 @@ class SessionsController < ApplicationController
         session[:user] = params[:login]
         session[:host] = host.id
 
+        #reset resource cache after login to refresh permissions and modules (bnc#621579)
+        ResourceCache.instance.reset_cache params[:login], host.url
+
         # evaluate available service resources here or not?
         # @modules = Yast.find(:all)
   

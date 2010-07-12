@@ -42,6 +42,11 @@ class ResourceCache
     str.split(",").collect{ |s| YastModel::Permission.load_from_string s }
   end
 
+  def reset_cache(user,site)
+    Rails.cache.write "resources|#{site}", ""
+    Rails.cache.write "permissions|#{user}|#{site}", ""
+  end
+
 private
 
   def resources=(resources)
