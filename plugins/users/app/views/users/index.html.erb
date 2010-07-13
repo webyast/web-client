@@ -20,21 +20,8 @@
 -->
 
 <% content_for :head do %>
-
-<!--
-- already added to webyast-base-min.js:
-  <%= javascript_include_tag "digitalspaghetti.password.js" %>
-
-- added to to users-group-min.js
-  <%= javascript_include_tag "jquery.quicksearch.js"-%>
-  <%= javascript_include_tag "select_dialog.js" %>
-  <%= javascript_include_tag "users.js" %>
-
--->
-
- <!-- don't forget to change to production -->
-  <% if RAILS_ENV == 'production' %>
-    <%= javascript_include_tag "min/users-group-min.js"-%>
+ <% if JSMIN == true %>  
+    <%= javascript_include_tag "users-min.js"-%>
   <% else %>
     <%= javascript_include_tag "jquery.quicksearch.js"-%>
     <%= javascript_include_tag "select_dialog.js" %>

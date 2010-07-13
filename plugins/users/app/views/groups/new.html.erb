@@ -31,8 +31,8 @@
 -->
 
  <!-- don't forget to change to production -->
-  <% if RAILS_ENV == 'production' %>
-    <%= javascript_include_tag "min/users-group-min.js"-%>
+  <% if JSMIN == true %>
+    <%= javascript_include_tag "users-min.js"-%>
   <% else %>
     <%= javascript_include_tag "users.js" %>
     <%= javascript_include_tag "select_dialog.js" %>

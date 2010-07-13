@@ -21,16 +21,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <!-- Do not forget to change to production !!! development -->
+  <!-- Do not forget to change to production !!! production -->
+<!--   <#%# if RAILS_ENV == 'production' #%#> -->
+    <% if JSMIN == true %>
+    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
 
-  <% if RAILS_ENV == 'production' %>
-<!--  TODO add css minify functionality to bundle fu  -->
-<!--     <#%# bundle do #%#> -->
-  
-     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-	
-<!--     <#%# end #%#> -->
-    <%= javascript_include_tag "min/webclient-base-min" %>
+    <%= javascript_include_tag "min/base-min" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
