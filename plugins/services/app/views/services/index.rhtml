@@ -242,7 +242,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 
   <span class='service_status' id='service_status_<%= h service.name%>'>
     <% unless service.status.nil? %>
-    <%= render :partial => 'status', :locals => { :status => service.status, :enabled => service.enabled?, :custom => service.custom? } %>
+    <%= render :partial => 'status', :locals => { :status => service.status, :enabled => service.enabled, :custom => service.custom } %>
     <% end %>
   </span>
 
@@ -264,7 +264,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
   <p class="service-buttons">
   <% commands.each do |cmd|
         # do not show enable/disable part for custom services -->
-	if @permissions[:execute] && ! (service.custom? && (cmd == "enable" || cmd == "disable")) %>
+	if @permissions[:execute] && ! (service.custom && (cmd == "enable" || cmd == "disable")) %>
 	    <%=
 		url	= {
 		    :id		=> cmd, 
@@ -283,7 +283,7 @@ commands	= [ "start", "stop", "restart", "enable", "disable"]
 		    :id		=> cmd + "_" + service.name
 		}
 		html_options[:style]	= "display: none" if (cmd == "start" && service.status == 0) || (cmd == "stop" && service.status != 0) ||
-							     (cmd == "enable" && service.enabled?) || (cmd == "disable" && !service.enabled?) 
+							     (cmd == "enable" && service.enabled) || (cmd == "disable" && !service.enabled) 
 
 		label = case cmd
 		  when "start" then _("Start")
