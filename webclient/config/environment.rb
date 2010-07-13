@@ -30,6 +30,12 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'yast/rack/static_overlay'
 
 init = Rails::Initializer.run do |config|
+  
+  #Set JSMIN constant to true/false 
+  #true: load minified javascript files for speed up
+  #false: load source javascript files for debugging
+  JSMIN = true
+  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
