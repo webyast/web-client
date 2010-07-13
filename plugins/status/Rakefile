@@ -2,3 +2,8 @@ require File.join(File.dirname(__FILE__), 'config', 'rails_parent')
 require File.join(RailsParent.parent, 'lib', 'tasks', 'common')
 
 # Deploy ?!
+
+#import rake task files from plugins directory 
+Dir.glob(File.dirname(__FILE__) + "/tasks/*.rake").each do |rake_file|
+  import rake_file
+end

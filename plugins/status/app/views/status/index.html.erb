@@ -21,8 +21,8 @@
 
 <% content_for :head do %>
   <!--[if IE]><%= javascript_include_tag "excanvas.js" %><![endif]-->
-  <% if RAILS_ENV == 'production' %>
-    <%= javascript_include_tag "min/jqplot-status-min" %>
+  <% if JSMIN == true %>
+    <%= javascript_include_tag "min/status-min" %>
   <% else %>
     <%= javascript_include_tag "jquery.jqplot.js" %>
     <%= javascript_include_tag "plugin/jqplot.categoryAxisRenderer.js" %>
