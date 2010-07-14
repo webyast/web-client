@@ -46,7 +46,7 @@
     });
   <% end -%>
 
-  <% if RAILS_ENV == 'development' %>
+  <% if JSMIN == false %>
     <%= javascript_include_tag "validation.js" %>
   <% end %>
   
@@ -204,6 +204,7 @@
   </div>
   <% end %>
 </div>
+
 
 <%= observe_field(:region,
   :frequency => 0.25,

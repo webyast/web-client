@@ -21,14 +21,14 @@
 
 <% content_for :head do %>
   <!--<%= javascript_include_tag :defaults %>--> <!-- is not needed -->
-
+<!-- Move to style.css -->
 <style type="text/css">
-label.error {
-  font-weight:bold;
-  color:#990000;
-  padding-left:.5em;
-  vertical-align:middle;
-}
+  label.error {
+    font-weight:bold;
+    color:#990000;
+    padding-left:.5em;
+    vertical-align:middle;
+  }
 </style>
 
 <%= javascript_include_tag "validation.js" %>
@@ -71,28 +71,36 @@ label.error {
     <fieldset>
       <p>
         <label for="<%= :smtp_server %>"><%=_("Outgoing mail server")%></label>
-        <%=f.text_field :smtp_server, :disabled => disabled, :class => "smtp_server" %></p>
+        <%=f.text_field :smtp_server, :disabled => disabled, :class => "smtp_server" %>
+	<div style="clear:both"></div>
+      </p>
       <p>
         <label><%=_("Use secure connection (TLS)")%></label>
-        <%= f.select :transport_layer_security, [ [_("Never"), "no" ], [_("If available"), "yes"], [_("Always"), "must"]], :disabled => disabled %></p>
+        <%= f.select :transport_layer_security, [ [_("Never"), "no" ], [_("If available"), "yes"], [_("Always"), "must"]], :disabled => disabled %>
+      </p>
       <p>
         <label><%=_("User name")%></label>
-        <%= f.text_field :user, :disabled => disabled %></p>
+        <%= f.text_field :user, :disabled => disabled %>
+      </p>
       <p>
         <label><%=_("Password")%></label>
-        <%= f.password_field :password, :disabled => disabled %></p>
+        <%= f.password_field :password, :disabled => disabled %>
+      </p>
       <p>
         <label><%=_("Confirm password")%></label>
         <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#mail_password", :onkeyup => "$('#mailForm').validate().element('#mail_confirm_password');" %>
+	<div style="clear:both"></div>
       </p>
     </fieldset> 
+      
     <fieldset>
       <p>
-        <label><%=_("Send test mail to")%></label>
+        <label style="float:left"><%=_("Send test mail to")%></label>
         <%= f.text_field :test_mail_address, :disabled => disabled, :class => "email" %>
 	<%= f.submit _("Send Mail"), :name => "send_mail" %>
-      </p>
-      <p><label for="mail_test_mail_address" generated="true" class="error"></label></p>
+	<label for="mail_test_mail_address" generated="true" class="error"></label>
+	<div style="clear:both"></div>
+      </p>      
     </fieldset> 
     <div class="nav-buttons">
       <%= form_send_buttons :disabled => disabled %>

@@ -23,10 +23,19 @@
 
 <div class="plugin-content">
 <% content_for :head do %>
-  <!--<%= javascript_include_tag :defaults %>--> <!-- is not needed -->
-  <% if RAILS_ENV == 'development' %>
+  <% if JSMIN == false %>
     <%= javascript_include_tag "digitalspaghetti.password.js" %>
   <% end %>
+  
+  <!-- Move to style.css -->
+  <style type="text/css">
+    label.error {
+      font-weight:bold;
+      color:#990000;
+      padding-left:.5em;
+      vertical-align:middle;
+    }
+  </style>
 
   <script type="text/javascript">
     // define custom validation function
@@ -99,7 +108,8 @@
 	</p>
 	<p>
 	<label><%=_("Confirm Password")%></label>
-	<%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required", :onkeyup => "$('#adminForm').validate().element('#administrator_confirm_password');" %>
+	  <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required", :onkeyup => "$('#adminForm').validate().element('#administrator_confirm_password');" %>
+	  <div style="clear:both"></div>
         </p>
     <!-- this is a pre-generated placeholder for the validation messages
     <p><label for="administrator_confirm_password" generated="true" class="error"></label></p>
@@ -108,14 +118,14 @@
     <fieldset>
         <legend><%= _("Mail Setup for User 'root'") -%></legend>
 	<p>
-	<label><%=_("Forward system mail to")%></label>
-	<%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
-	<% unless params.has_key? "firstboot" # during initial configuration, allow only main Save button %>
-	<%= f.submit _("Save Mail Only"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
+	<label style="float:left;"><%=_("Forward system mail to")%></label>
+	  <%= f.text_field :aliases, :disabled => disabled, :class => "emails" %>
+	  <% unless params.has_key? "firstboot" # during initial configuration, allow only main Save button %>
+	  <%= f.submit _("Save Mail Only"), :name => "save_aliases", :disabled => disabled, :onclick=>"return $('#adminForm').validate().element('#administrator_aliases');", :class=>'cancel' %>
+	  <label style="float:left" for="administrator_aliases" generated="true" class="error"></label>
+	  <div style="clear:both"></div>
 	<% end %>
 	</p>
-    <!-- this is a pre-generated placeholder for the validation messages -->
-    <p><label for="administrator_aliases" generated="true" class="error"></label></p>
     </fieldset>
     <div class="nav-buttons">
       <%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :id => "default_submit", :disabled => disabled %>
