@@ -1,0 +1,111 @@
+/* CSS Hacks if needed */
+  /* IE */ 
+    /* a.button{ padding:3px 6px 3px 6px\9; } */
+  /* FF */
+    /* a.button, x:-moz-any-link, x:default { padding:3px 8px 3px 8px; } */
+  /* Webkit */
+    /*@media screen and (-webkit-min-device-pixel-ratio:0) { a.button{ padding:3px 6px 3px 6px; }} */
+/* CSS Hacks END */
+
+button[type="submit"]::-moz-focus-inner, input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner { border: 0; }
+input[type="text"], input[type="password"], select { margin:0px; padding:0px;}
+
+input[type="text"], input[type="submit"], button[type="submit"], input[type="button"], a.button {
+  font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+  font-weight:bold; /*important for input field and buttons right of it*/
+  font-size: 13px;
+  border: 1px solid #999;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px; 
+}
+
+select { border: 1px solid #999; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+input[type="password"] { border: 1px solid #999999; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+
+input[type="text"], input[type="password"], select { padding: 3px;}
+input[type="text"]:focus, input[type="password"]:focus { border-color: #1E90FF; }
+
+input[type="submit"], input[type="button"], button[type="submit"], a.button {-moz-box-sizing:border-box; box-sizing:border-box; margin:0; padding:0;}
+input[type="submit"], input[type="button"], button[type="submit"], a.button {
+  color: #333;
+  cursor: pointer;
+  background: url("/images/gradientx40.png") repeat-x white;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9);
+  text-decoration:none;
+  padding:3px 6px 3px 6px;
+}
+
+a.button:-moz-any-link, a.button:default { padding:3px 8px 3px 7px; } 
+
+/* HOVER, ACTIVE, DISABLED */
+input[type="submit"]:hover,  input[type="button"]:hover, button[type="submit"]:hover, a.button:hover {
+  background:url('/images/gradientx40.png') repeat-x #3494f2;
+  color: #f2f2f2;
+  text-shadow: 0px -1px 1px #222222; 
+}
+
+input[type="submit"]:active, input[type="button"]:active, button[type="submit"]:active, a.button:active {
+  color: #f2f2f2;
+  background: url("../images/gradientx60.png") repeat-x #2966FF; 
+}
+
+input[type="submit"][disabled], input[type="button"][disabled], button[type="submit"][disabled], a.button[disabled] {
+  color: #aaa;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: url("../images/gradientx40.png") repeat-x #fff; 
+}
+
+
+/* CLASSES INPUT ELEMENTS */
+  .small { width:150px; }
+  .medium { width:250px; }
+  .big { width:350px; }
+  .bigger { width:400px;}
+  .biggest { width:550px; }
+
+  input[type="text"].without_border_right {
+    float: left;
+    border-right-width: 0px;
+    -moz-border-radius-topright: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px; 
+   }
+
+   input[type="submit"].without_border_left {
+    border-left-width: 1px;
+    -moz-border-left-topright: 0px;
+    -moz-border-left-bottomright: 0px;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px; 
+   }
+/* END */
+
+/* MODULE SPECIFIC ADAPTATIONS */
+  /*  LOGIN  */
+  #login-dialogue input[type="password"], #login-dialogue input[type="text"] { width:100%; }
+
+  /*  SOFTWARE REPOSITORIES */
+  #repository_name, #repository_url { width:70%; }
+
+  /*  MAIL/ADMINISTRATOR SETTINGS AND   */
+  #mailForm input[type="text"], #adminForm input[type="password"] {width:300px;}
+  #mail_test_mail_address, #mail_submit, #administrator_aliases, #administrator_submit { float: left; vertical-align:middle; }
+
+  #mail_test_mail_address {width:225px!important;}
+  #administrator_aliases { width:190px; }
+  
+  #mail_test_mail_address, #administrator_aliases {
+    border-radius:3px 0px 0px 3px;
+    -moz-border-radius: 3px 0px 0px 3px;
+    -webkit-border-radius:3px 0px 0px 3px;
+  }
+
+  #mail_submit, #administrator_submit {
+     border-left-width: 0px;
+     border-radius:0px 3px 3px 0px;
+    -moz-border-radius:0px 3px 3px 0px;
+    -webkit-border-radius:0px 3px 3px 0px;
+  }
+
+/* END */

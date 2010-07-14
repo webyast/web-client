@@ -21,16 +21,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <!-- Do not forget to change to production !!! production -->
-<!--   <#%# if RAILS_ENV == 'production' #%#> -->
     <% if JSMIN == true %>
-    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <!--     "style" -->
+    <%= stylesheet_link_tag "yast","grid","style_in_progress","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
+  
 
     <%= javascript_include_tag "min/base-min" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
-    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+<!--     "style" -->
+    <%= stylesheet_link_tag "yast","grid", "style_in_progress","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
+
     <%= javascript_include_tag 	"jquery-1.4.2",
 				"jquery.query", #FIXME write reason
 				"jquery.timers",
