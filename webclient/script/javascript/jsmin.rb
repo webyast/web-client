@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# Source: Uladzislau Latynski
 # jsmin.rb 2007-07-20
 # Author: Uladzislau Latynski
 # This work is a translation from C to Ruby of jsmin.c published by

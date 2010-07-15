@@ -1,4 +1,4 @@
-
+/*Source: non-minified version */
 (function($){var undefined;$.jqplot=function(target,data,options){var _data,_options;if(data==null){throw"No data specified";}
 if(data.constructor==Array&&data.length==0||data[0].constructor!=Array){throw"Improper Data Array";}
 if(options==null){if(data instanceof Array){_data=data;_options=null;}
