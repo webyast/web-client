@@ -47,28 +47,28 @@
   <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
   <div class="plugin-content">
     <div id="status_patches">
-    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-      <% if display_patches %>
-	<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>
+      <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+	<% if display_patches %>
+	  <%= image_tag("/images/working.gif", :class => "small-working-icon") %><label><%= _("Loading patch information") %></label>
+	<% else %>
+	  <div class="status-icon optional"></div><span><%= _("Patch status summary is disabled in the config file.") %></span>
+	<% end %>
       <% else %>
-	<div class="status-icon optional"></div><span><%= _("Patch status summary is disabled in the config file.") %></span>
+	<%= _("Patch plugin is not installed.") %>
       <% end %>
-    <% else %>
-      <%= _("Patch plugin is not installed.") %>
-    <% end %>
     </div>
     <div id="status_status">
-    <% if ActionController::Routing.possible_controllers.include?("status") %>
-      <% if display_patches %>
-	<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading system information") %>
+      <% if ActionController::Routing.possible_controllers.include?("status") %>
+	<% if display_patches %>
+	  <%= image_tag("/images/working.gif", :class => "small-working-icon") %><label><%= _("Loading system information") %></label>
+	<% else %>
+	  <div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
+	<% end %>
       <% else %>
-	<div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
+	<%= _("Status plugin is not installed.") %>
       <% end %>
-    <% else %>
-      <%= _("Status plugin is not installed.") %>
-    <% end %>
     </div>
-  </div>
+    </div>
   </div>
 
 <% if ActionController::Routing.possible_controllers.include?("system") %>

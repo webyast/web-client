@@ -281,12 +281,15 @@ ul li
 #status
   width: 70%
   display: inline-block
+  vertical-align: middle
 
-#status_patches
+#status_patches, #status_status
   margin: 0
-  /*margin-left: 2em;
-  /*taken from yast.css
-  padding-top: 1em
+  padding: 12px 0px 0px 10px
+  vertical-align: image-top
+  label
+    margin-left: 5px
+    vertical-align: top
 
 #machine-controle
   width: 25%
@@ -298,8 +301,8 @@ ul li
     margin: 10px 10px 0
     display: block
 
-#status_patches, #status_status
-  margin: 10px
+/* #status_patches, #status_status
+  /* margin: 10px
 
 !border_inset_base_color = !c_background
 .plugin-content
@@ -309,7 +312,7 @@ ul li
   float: left
   clear: both
   width: 100%
-  min-height: 100px
+  min-height: 80px
 
 /* == Lists and Tables ====================================================
 
@@ -431,6 +434,7 @@ fieldset fieldset
   float: left
   margin-left: 3px
   margin-right: 3px
+  vertical-align:text-top
 
 .bug-icon
   display: block
@@ -480,6 +484,7 @@ fieldset fieldset
 img.small-working-icon
   width: 20px
   height: 20px
+  vertical-align:text-top
   border: 0px none transparent
 
 /* ========================= Table ==========================
