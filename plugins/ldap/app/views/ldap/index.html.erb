@@ -20,57 +20,57 @@
 -->
 
 <% content_for :head do %>
-<!--   <%= javascript_include_tag :defaults %> -->
 
-  <style type="text/css">
-    label.error { float: none; padding-left: 10em }
-  </style>
- 
-  <% if RAILS_ENV == 'development' %>
-    <%= javascript_include_tag "validation.js" %>
-  <% end %>
+  <%= javascript_include_tag "validation.js" %>
+  <script type="text/javascript">
+  
+    $(document).ready(function() {
+      validateDomainNameWithPortNumber("server");
+
+      $("#ldapForm").validate();
+      // make the error message translatable - override the default messsage
+      $.extend($.validator.messages, {
+	    required: "<%= _("This field is required.") -%>",
+	    server: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
+      });
+    });
+  </script>
 
 <% end %>
 
 <% disabled = !@permissions[:write] %>
 
-<div class="nav-buttons">
-  <% if !disabled -%>
-  <div id="progress" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-  <% end -%>
-</div>
+<div class='plugin-icon'><img src='../icons/yast-ldap.png'/> <%= _("LDAP client") %></div>
+<div class='plugin-content'>
 
-  <div class='plugin-icon'><img src='../icons/yast-ldap.png'/> <%= _("LDAP client") %></div>
-  <div class='plugin-content'>
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
     <% form_for(:ldap, @ldap, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'ldap_form' }
+      :html => { :method => :put, :id => 'ldapForm', :onsubmit => "if ($('#ldapForm').valid()) $('#progress').show()" }
     ) do |f| %>
 
-	  <div class="ldap-content" style="padding-bottom: 10px">
+	<fieldset>
 	    <p>
 	      <%= check_box 'ldap', :enabled, {:disabled => disabled, :checked => @ldap.enabled}, true,false -%>
 	      <%= _("Enable LDAP Authentication") %>
 	    </p>
             <p>
               <%= label_tag :ldap_server, _("LDAP Server Address") %>
-            </p>
-            <p>
-              <%= text_field :ldap, :server, :disabled => disabled, :class=> 'required' %>
+              <%= text_field :ldap, :server, :disabled => disabled, :class => "server required" %>
             </p>
             <p>
               <%= label_tag :ldap_base_dn, _("Base DN") %>
-            </p>
-            <p>
-              <%= text_field :ldap, :base_dn, :disabled => disabled, :class => 'required'  %>
+              <%= text_field :ldap, :base_dn, :disabled => disabled, :class => "required" %>
             </p>
        	    <p>
 	      <%= check_box 'ldap', :tls, {:disabled => disabled, :checked => @ldap.tls}, true,false -%>
 	      <%= _("Secure Connection") %>
 	    </p>
-	    <p>
-              <%= form_send_buttons :onclick=>"Element.show('progress')" %>
-            </p>
+
+	</fieldset>
+	<div class="nav-buttons">
+	    <%= form_send_buttons :disabled => disabled, :onclick=>"Element.show('progress')"%>
+	</div>
 
     <% end %>
 
