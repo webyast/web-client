@@ -186,7 +186,7 @@
     </p>
     <p>
       <input id="ntp_sync" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
-        <%=  "disabled=\"disabled\"" if disabled || ntp_available %>
+        <%=  "disabled=\"disabled\"" if disabled || !ntp_available %>
         <%=  "checked=\"checked\"" if ntp_available %> />
       <%=_("Synchronize via Network Time Protocol (NTP)")%>
     </p>
