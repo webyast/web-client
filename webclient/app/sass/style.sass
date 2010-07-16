@@ -157,14 +157,16 @@ select
 
 input
   &[type="text"],&[type="password"]
-    width: 32em
+    width: 300px
     border-color: !c_input_border
     &:focus
-      width: 32em
+      width: 300px
       border: 1px solid !c_focused_input
       color: !c_text
   &[disabled]
-    background-color: !c_button
+    /*background-color: !c_button
+    background-color: #ddd
+    color: #999
 
 img
   border: none
@@ -301,13 +303,12 @@ ul li
     margin: 10px 10px 0
     display: block
 
-/* #status_patches, #status_status
-  /* margin: 10px
-
 !border_inset_base_color = !c_background
 .plugin-content
   background-color: !c_inverse_text
-  +border-inset
+  /*background-color: 
+  /*+border-inset
+  +border-inset-5
   +round-corners
   float: left
   clear: both
@@ -339,7 +340,8 @@ fieldset
   background-color: !c_fieldset
   border: none
   margin: 1em
-  +border-outset
+  /*+border-outset
+  +border-outset-3
   +round-corners
   p
     clear: both
@@ -567,7 +569,8 @@ tr
   font-size: 0.8em
   height: 5ex
   padding: 0.3em
-  width: 40em
+  /*width: 40em
+  width: 30em
   position: relative
   left: 15em
   top: 1ex
