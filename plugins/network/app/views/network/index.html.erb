@@ -111,6 +111,7 @@
 	  validateDomainNameWithAndWithoutTLD("searchdomains");
 
 		$("#dnsForm").validate({ 
+		  onkeyup: function(element) { this.element(element); }, 
 		  onblur: true,
 		  rules:{
 			 ip: {
@@ -307,14 +308,17 @@
         <p>
           <label for="<%= :ip %>"><%=_("IP address")%></label>
           <%=text_field_tag :ip, @ip, :disabled => write_disabled %>
+	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
           <%=text_field_tag :netmask, @netmask, :disabled => write_disabled %>
+	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :default_route %>"><%=_("Default route")%></label>
           <%=text_field_tag :default_route, @default_route, :disabled => write_disabled %>
+	  <div style="clear:both"></div>
         </p>
       </div>
     </fieldset>
@@ -325,19 +329,23 @@
           <label for="<%= :name %>"><%=_("Hostname")%></label>
           <%=text_field_tag(:name, @name, :onblur=>"endWithHyphen(this);clearWarning();", :onkeyup=>"hostValidation(this,valChar);", :onkeydown=>"clearWarning();", :disabled => write_disabled) %>
 <!--           <span id="warning" style="font-weight:bold; margin-left:20px; color:#c00000">&nbsp;</span> -->
-			 <label class="error" for="name" generated="true">&nbsp;</label>
+	    <label class="error" for="name" generated="true">&nbsp;</label>
+	    <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :domain %>"><%=_("Domain")%></label>
           <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
+	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
           <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
+	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
           <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => write_disabled %>
+	  <div style="clear:both"></div>
         </p>
       </div>
     </fieldset>

@@ -1,0 +1,7 @@
+/* The IE Fieldset Background Color Bleed Bug http://www.communitymx.com/content/article.cfm?page=1&cid=DD9F3 */
+fieldset { position: relative;}
+legend { position: relative; top: -.9em; left: .2em; }
+
+/* Fix for bug 601309 - Radio buttons and checkboxes look ugly in IE8  */
+input[type="radio"] { height:18px; width:18px;}
+input[type="checkbox"] { height:16px; width:16px;}
