@@ -41,7 +41,7 @@ class NetworkController < ApplicationController
     @ifcs = Interface.find :all
     @iface = params[:interface]
     unless @iface
-      ifc = @ifcs.find {|i| i.bootproto!=nil} || @ifcs[0]
+      ifc = @ifcs.find {|i| i.try(:bootproto)!=nil} || @ifcs[0]
       @iface = ifc.id
     end
 
