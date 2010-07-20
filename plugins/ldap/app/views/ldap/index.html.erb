@@ -61,6 +61,22 @@
             <p>
               <%= label_tag :ldap_base_dn, _("Base DN") %>
               <%= text_field :ldap, :base_dn, :disabled => disabled, :class => "required" %>
+	      <%=
+		link_to_remote _("Fetch DN"),
+		    :url	=> {
+			:controller	=> :ldap,
+			:action		=> :fetch_dn
+		    },
+		    :loading	=> "$('#ldap_base_dn').attr('disabled', 'disabled'); $('#fetch_progress').show();",
+		    :complete	=> "$('#fetch_progress').hide(); $('#ldap_base_dn').removeAttr('disabled')",
+		    :with 	=> "'server=' + $('#ldap_server').val()",
+		    :html	=> {
+			:class		=> "button",
+			:disabled	=> disabled
+		    }
+	      %>
+	      <img src="/images/working.gif" class="small-working-icon" id="fetch_progress" style="display: none; margin-bottom: -3pt" alt='working...'/>
+
             </p>
        	    <p>
 	      <%= check_box 'ldap', :tls, {:disabled => disabled, :checked => @ldap.tls}, true,false -%>
