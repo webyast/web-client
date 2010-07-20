@@ -1,5 +1,5 @@
 #
-# spec file for package webyast-network-ui (Version 0.1)
+# spec file for package webyast-kerberos-ui
 #
 # Copyright (c) 2008 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -9,31 +9,24 @@
 #
 
 
-Name:           webyast-network-ui
-Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.routes)
-Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.interfaces)
-Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.hostname)
-Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.dns)
-Provides:       yast2-webclient-network = %{version}
-Obsoletes:      yast2-webclient-network < %{version}
+Name:           webyast-kerberos-ui
+Recommends:     WebYaST(org.opensuse.yast.modules.yapi.kerberos)
+PreReq:         webyast-base-ui
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.1.20
+Version:        0.1.0
 Release:        0
-Summary:        WebYaST - network UI
+Summary:        WebYaST - Kerberos Client UI
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 BuildRequires:  webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit rubygem-webyast-rake-tasks
 BuildRequires:  ruby tidy
 BuildRequires:  yast2-webclient
-PreReq:         yast2-webclient >= 0.0.2
-# minimum counterpart required:
-Conflicts:      yast2-webservice-network < 0.0.3
 
 #
-%define plugin_name network
+%define plugin_name kerberos
 %define plugin_dir %{webyast_ui_dir}/vendor/plugins/%{plugin_name}
 #
 
@@ -42,18 +35,17 @@ Conflicts:      yast2-webservice-network < 0.0.3
 Group:    Productivity/Networking/Web/Utilities
 Requires: %{name} = %{version}
 Requires: webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit tidy
-Summary:  Testsuite for webyast-network-ui package
+Summary:  Testsuite for webyast-kerberos-ui package
 
 %description
-WebYaST - Plugin providing UI for network configuration
+WebYaST - Plugin providing UI for Kerberos client configuration.
 
 Authors:
 --------
-    Michal Zugec <mzugec@suse.cz>
-    Martin Vidner <mvidner@suse.cz>
+    Jiri Suchomel <jsuchome@novell.com>
 
 %description testsuite
-This package contains complete testsuite for webyast-network-ui package.
+This package contains complete testsuite for webyast-kerberos-ui package.
 It is only needed for verifying the functionality of the module
 and it is not needed at runtime.
 
@@ -62,7 +54,8 @@ and it is not needed at runtime.
 
 %build
 export RAILS_PARENT=%{webyast_ui_dir}
-env LANG=en rake makemo
+export LANG=en
+rake makemo
 
 %check
 %webyast_ui_check
@@ -80,12 +73,12 @@ rm -f $RPM_BUILD_ROOT/%{plugin_dir}/COPYING
 rm -rf $RPM_BUILD_ROOT/%{plugin_dir}/po
 
 # search locale files
-%find_lang webyast-network-ui
+%find_lang webyast-kerberos-ui
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f webyast-network-ui.lang
+%files -f webyast-kerberos-ui.lang
 %defattr(-,root,root)
 %dir %{webyast_ui_dir}
 %dir %{webyast_ui_dir}/vendor
@@ -101,8 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %{plugin_dir}/uninstall.rb
 %{plugin_dir}/shortcuts.yml
 %{plugin_dir}/app
-%{plugin_dir}/lib
-%{plugin_dir}/tasks
+%{plugin_dir}/public
 %{plugin_dir}/config/rails_parent.rb
 %{plugin_dir}/doc/README_FOR_APP
 
