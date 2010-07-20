@@ -91,7 +91,7 @@
 <div id="favorites" class="plugin-content">
   <div class="overview">
     <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each do |data| %>
-      <% link_to (data['url'], {:class => "controlpanel-shortcut"}) do %>
+      <% link_to(data['url'], {:class => "controlpanel-shortcut"}) do %>
         <%= image_tag(data['icon']) %><br />
         <%= data['title'] %>
       <% end %>

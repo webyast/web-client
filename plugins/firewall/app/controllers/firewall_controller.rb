@@ -66,7 +66,7 @@ public
     fw = Firewall.find :one
     fw.use_firewall = checkbox_true? "use_firewall"
     fw.fw_services.each do |service|
-      service.allowed = checkbox_true? (CGI_PREFIX+"_"+service.id)
+      service.allowed = checkbox_true?(CGI_PREFIX+"_"+service.id)
     end
     fw.save
     flash[:notice] = _('Firewall settings have been written.')

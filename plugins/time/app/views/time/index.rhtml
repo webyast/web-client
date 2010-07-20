@@ -198,7 +198,7 @@
       <label for="ntp_server"><%= _("NTP server") %></label>
         <%= options = {}
             options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
-            text_field_tag ("ntp_server", @ntp.actions.ntp_server || "", options={:class=>"ntp_server"})  %>
+            text_field_tag("ntp_server", @ntp.actions.ntp_server || "", options={:class=>"ntp_server"})  %>
     </p>
     <% end %>
   </fieldset>
