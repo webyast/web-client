@@ -1,0 +1,76 @@
+<!--
+# Copyright (c) 2010 Novell, Inc.
+# 
+# All Rights Reserved.
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License
+# as published by the Free Software Foundation.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, contact Novell, Inc.
+# 
+# To contact Novell about this file by physical or electronic mail,
+# you may find current contact information at www.novell.com
+-->
+
+<% content_for :head do %>
+
+  <%= javascript_include_tag "validation.js" %>
+  <script type="text/javascript">
+  
+    $(document).ready(function() {
+      validateDomainName("kdc");
+
+      $("#kerberosForm").validate();
+      // make the error message translatable - override the default messsage
+      $.extend($.validator.messages, {
+	    required: "<%= _("This field is required.") -%>",
+	    kdc: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
+      });
+    });
+  </script>
+
+<% end %>
+
+<% disabled = !@permissions[:write] %>
+
+<div class='plugin-icon'><img src='../icons/yast-kerberos.png'/> <%= _("Kerberos client") %></div>
+<div class='plugin-content'>
+
+<%= render :partial => 'shared/missing_write_permissions' if disabled %>
+
+    <% form_for(:kerberos, @kerberos, :url => { :action => 'update' },
+      :html => { :method => :put, :id => 'kerberosForm', :onsubmit => "if ($('#kerberosForm').valid()) $('#progress').show()" }
+    ) do |f| %>
+
+	<fieldset>
+	    <p>
+	      <%= check_box 'kerberos', :enabled, {:disabled => disabled, :checked => @kerberos.enabled}, true,false -%>
+	      <%= _("Enable Kerberos Authentication") %>
+	    </p>
+            <p>
+              <%= label_tag :kerberos_default_domain, _("Default Domain") %>
+              <%= text_field :kerberos, :default_domain, :disabled => disabled, :class => "required" %>
+            </p>
+            <p>
+              <%= label_tag :kerberos_default_realm, _("Default Realm") %>
+              <%= text_field :kerberos, :default_realm, :disabled => disabled, :class => "required" %>
+            </p>
+            <p>
+              <%= label_tag :kerberos_kdc, _("KDC Server Address") %>
+              <%= text_field :kerberos, :kdc, :disabled => disabled, :class => "kdc required" %>
+            </p>
+	</fieldset>
+	<div class="nav-buttons">
+	    <%= form_send_buttons :disabled => disabled, :onclick=>"Element.show('progress')"%>
+	</div>
+
+    <% end %>
+
+  </div>
