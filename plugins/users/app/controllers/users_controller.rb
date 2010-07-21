@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   def client_permissions
     @permissions = User.permissions
     @permissions.merge!(Group.permissions)
+    @permissions.merge!(Role.permissions)
   end
 
   # Initialize GetText and Content-Type.
@@ -48,7 +49,9 @@ class UsersController < ApplicationController
   def initialize
   end
 
-  def save_roles (userid,roles_string) 
+  def save_roles (userid,roles_string)
+   #FIXME: not very unique permission names
+   if @permissions[:modify]==true && @permissions[:assign]==true
     roles = roles_string.split(",")
     my_roles=[]
     Role.find(:all).each do |role|
@@ -72,6 +75,7 @@ class UsersController < ApplicationController
      r.users << userid
      r.save
     end
+   end
   end
 
   # GET /users

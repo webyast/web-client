@@ -57,10 +57,9 @@ class GroupsControllerTest < ActionController::TestCase
   def test_groups_index
     get :index
     assert_response :success
-#   FIXME: commented because it freezes test
-#    assert_valid_markup
-#    assert assigns(:groups)
-    assert_select '#all_users_string[value="tester,mzugec"]'
+    assert_valid_markup
+    assert assigns(:groups)
+#    assert_select '#all_users_string[value="tester,mzugec"]'
   end
 
   def test_groups_index_no_permissions

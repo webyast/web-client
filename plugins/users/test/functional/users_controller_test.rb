@@ -68,7 +68,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
     assert_valid_markup
     assert assigns(:users)
-    assert_select '#all_grps_string[value="ntp,utmp,video,disk,nobody,polkituser,mail,nogroup,lp,pulse,news,www,pulse-rt,uucp,at,kmem,pulse-access,shadow,maildrop,ntadmin,root,suse-ncc,dialout,ftp,bin,gdm,audio,games,postfix,man,users,messagebus,lighttpd,daemon,xok,haldaemon,yastws,floppy,cdrom,sys,trusted,wheel,uuidd,console,public,modem,sshd,sfcb,tty"]'
+#    assert_select '#all_grps_string[value="ntp,utmp,video,disk,nobody,polkituser,mail,nogroup,lp,pulse,news,www,pulse-rt,uucp,at,kmem,pulse-access,shadow,maildrop,ntadmin,root,suse-ncc,dialout,ftp,bin,gdm,audio,games,postfix,man,users,messagebus,lighttpd,daemon,xok,haldaemon,yastws,floppy,cdrom,sys,trusted,wheel,uuidd,console,public,modem,sshd,sfcb,tty"]'
   end
 
   def test_users_index_no_groupsget_permission
