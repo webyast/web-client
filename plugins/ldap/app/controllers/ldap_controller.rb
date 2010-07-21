@@ -49,17 +49,8 @@ class LdapController < ApplicationController
 
   # try to get base DN provided by given LDAP server
   def fetch_dn
-    dn		= ""
-    begin
-	Ldap.new({:server => params[:server], :fetch_dn => true}).save
-    rescue ActiveResource::ServerError => e
-      logger.warn e.inspect
-      error = Hash.from_xml e.response.body
-      if error["error"] && error["error"]["type"] == "LDAP_ERROR" && error["error"]["id"] == "fetched"
-	  dn	= error["error"]["message"]
-      end
-    end
-    render :text => "$('#ldap_base_dn').val('#{dn}');"
+    fetched = Ldap.find(:one,:params => {:fetch_dn => true, :server => params[:server]})
+    render :text => "$('#ldap_base_dn').val('#{fetched.dn}');"
   end
 
   def update
