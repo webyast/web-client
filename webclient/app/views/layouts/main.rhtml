@@ -24,21 +24,17 @@
 <!--[if IE]>
   <%= stylesheet_link_tag "ie_fixes" %>
 <![endif]--> 
+
+<%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+<%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
+<!--     <%= stylesheet_link_tag "input-elements", :title=>"default", :charset=>"utf-8" %> -->
+
     
     <% if JSMIN == true %>
-    <!--     "style" -->
-    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
-  
-
     <%= javascript_include_tag "min/base-min" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
-<!--     "style" -->
-    <%= stylesheet_link_tag "yast","grid", "style_in_progress","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
-
     <%= javascript_include_tag 	"jquery-1.4.2",
 				"jquery.query", #FIXME write reason
 				"jquery.timers",

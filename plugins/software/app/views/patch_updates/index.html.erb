@@ -19,55 +19,90 @@
 # you may find current contact information at www.novell.com
 -->
 
-<% if @permissions and @patch_updates %>
-  <%= javascript_include_tag :defaults %>
-  <style type="text/css">
-    option[value=security]:before { content:url('/icons/kupdateapplet_red.png'); }
-    option[value=important]:before { content:url('/icons/kupdateapplet_yellow.png'); }
-    option[value=green]:before { content:url('/icons/kupdateapplet_green.png'); }
-    option[value=optional]:before { content:url('/icons/kupdateapplet_optional.png'); }
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(":button").click(function() {
+      $(":button.active").removeClass('active')
+      $(this).removeClass('left');
+      $(this).addClass('active');
+      $(this).addClass('left');
+    });
+    $("form#form1").submit(function () { return false; }); // so it won't submit
+  });
+</script>
 
-	 .patches a {border:0px;}
-  </style>
-  <div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %></div>
+<% if @permissions and @patch_updates %>
+<%= javascript_include_tag :defaults %>
+
+<div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %></div>
   <div class='plugin-content'>
-  <div class="loading"></div>
-  <% if @patch_updates.empty? %>
-    <h3><%=_("Your system is up to date.") unless @error%></h3>
+    <div class="loading"></div>
+
+    <% if @patch_updates.empty? %>
+    <h3 class="module_header"><%=_("Your system is up to date.") unless @error%></h3>
     <div class="nav-buttons">
       <%= form_back_button %>
     </div>
-  <% else %>
-    <fieldset>
-      <h3><%=_("Updates available") %></h3>
-      <select name="selector" id="selector" size="1">
-        <option value="all">All</option>
-        <option value="security">Security</option>
-        <option value="important">Important</option>
-        <option value="green">Green</option>
-        <option value="optional">Optional</option>
-      </select>
-    </fieldset>
+    <% else %>
+      <% @hash = Hash.new(0)
+	counter=0
+	@patch_updates.each do |p|
+	  if @hash.has_key?(p.kind) 
+	    @hash[p.kind]= @hash[p.kind]+1
+	    counter = counter+1
+	  else 
+	    @hash[p.kind]=1
+	    counter = counter+1
+	  end 
+      end %>
+    <form id="form1" style="z-index:0" method="post">
+      <div id="parent">
+	<div id="shade"></div>
+	<div id="wait"><%= image_tag("/images/wait.gif", :style => "vertical-align:middle;") %><%=_("Please wait ...") %></div>
+      </div>
+
+      <fieldset id="updates_fieldset" style="margin:1em; padding:5px;">
+      <legend id="updates_legend"><span><%=_("Updates available") %></span></legend>
+      <div id="updates_panel" style="margin:0px; padding:0px; float:left">
+	  <button type="submit" id="comment" class="left active" value="all" 
+	     onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	     :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	     <img src='/icons/yast-online_update.png'><%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span> 
+	  </button>
+	  <button type="submit" class="middle" value="security" 
+	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value", 
+	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	      <img src='/icons/kupdateapplet_red.png'><%=_("Security") %>&nbsp;<span>(<%=@hash["security"]%>)</span></button>
+	  <button type="submit" class="middle" value="important" 
+	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	    <img src='/icons/kupdateapplet_yellow.png'><%=_("Important") %>&nbsp;<span>(<%=@hash["important"]%>)</span> 
+	  </button>	  
+	  <button type="submit" class="middle" value="green" 
+	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	      <img src='/icons/kupdateapplet_green.png'><%=_("Recommended") %>&nbsp;<span>(<%=@hash["green"]%>)</span> 
+	  </button>
+	  <button type="submit" class="right" value="optional" 
+	    onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	    :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	    <img src='/icons/kupdateapplet_optional.png'><%=_("Optional") %>&nbsp;<span>(<%=@hash["optional"]%>)</span> 
+	  </button>
+      </div>	
+      </fieldset>
+    </form>
   
     <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
       <fieldset>
-   
-        <div id="patchesd"><%= render :partial => "patches"%></div>
+	<div id="patchesd"><%= render :partial => "patches"%></div>
       </fieldset>
-      <div class="nav-buttons">
-        <%= form_send_buttons :label => _("Update"), :onclick => "$('#progress').show()", :action => 'install' %>
+      <div class="buttons" style="padding:10px; vertical-align:middle; ">
+	<%= form_send_buttons :label => _("Update"), :onclick => "$('#progress').show()", :action => 'install' %>
+	<br style="clear:both" />
       </div>
-    <% end %>
-
-    <%= observe_field(:selector,
-      :frequency => 0.1,
-      :update => :patchesd,
-      :url => { :action => :load_filtered },
-      :with => "'value=' + value"
-    )
-    %>
+    <% end %> 
   <% end %>
-  </div>
-
+</div>
 <% end %>
+
 

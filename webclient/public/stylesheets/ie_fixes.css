@@ -2,6 +2,17 @@
 fieldset { position: relative;}
 legend { position: relative; top: -.9em; left: .2em; }
 
+/* IE fix for fieldset with lenend and block element for UPDATES MODULE */
+/* #updates_fieldset {padding:5px;} */
+#updates_legend  {margin-top:0; height:0;}
+#updates_legend  span {position:relative; top:-0.5em; height:0.5em;}
+
+/* Fix for opacity issue in IE for visual feedback */
+#shade {
+  background-color:#e0e0e0; /* important because IE8 ignore the background-color: rgba(100, 100, 100, 0.5); */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)"!important; /* opacity IE8 */ 
+}
+
 /* Fix for bug 601309 - Radio buttons and checkboxes look ugly in IE8  */
 input[type="radio"] { height:18px; width:18px;}
 input[type="checkbox"] { height:16px; width:16px;}
