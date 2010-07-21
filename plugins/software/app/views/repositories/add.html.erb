@@ -64,7 +64,10 @@
 	}, "<%= _("Symbols <b>%s</b> are not allowed in repository alias.") % "^${}[]&gt;&lt;`\\'\\\"\\\\" -%>");
 
    // validate the form
-	$("#repositoryForm").validate({success: "valid"})
+	$("#repositoryForm").validate({
+	  onkeyup: function(element) { this.element(element); },
+	  success: "valid"	  
+	});
 
 	// set custom translatable messages
 	$.extend($.validator.messages, {

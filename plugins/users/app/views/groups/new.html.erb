@@ -38,11 +38,11 @@
     <%= javascript_include_tag "select_dialog.js" %>
   <% end %>
 
-<% if @permissions[:usersget] != true %>
-  <script language="javascript">
-    function members_validation(which){ return true; }
-  </script>
-<% end %>
+  <% if @permissions[:usersget] != true %>
+    <script language="javascript">
+      function members_validation(which){ return true; }
+    </script>
+  <% end %>
 
   <style type="text/css">
     label.error {

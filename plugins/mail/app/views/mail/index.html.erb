@@ -36,7 +36,9 @@
   
     $(document).ready(function() {
       validateDomainNameWithPortNumber("smtp_server");
-      $("#mailForm").validate()
+      $("#mailForm").validate({
+	onkeyup: function(element) { this.element(element); }
+      });
        // make the error message translatable - override the default messsage
        $.extend($.validator.messages, {
 		  equalTo: "<%= _("The passwords do not match.") -%>",
