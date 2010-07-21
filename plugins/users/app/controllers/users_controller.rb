@@ -222,6 +222,7 @@ class UsersController < ApplicationController
         :login_shell	=> dummy.login_shell,
         :user_password	=> dummy.user_password,
         :user_password2	=> dummy.user_password,
+	:roles_string 	=> dummy.roles_string,
         :type		=> "local"
     )
     @user.grp_string	= dummy.grp_string
