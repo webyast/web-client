@@ -48,6 +48,32 @@ class UsersController < ApplicationController
   def initialize
   end
 
+  def save_roles (userid,roles_string) 
+    roles = roles_string.split(",")
+    my_roles=[]
+    Role.find(:all).each do |role|
+     role.id=role.name
+     if role.users.include?(userid)
+      if roles.include?(role.name)
+       # already written - do nothing
+       roles.delete(role.name)
+      else
+       # remove item
+       role.users.delete(userid)
+       role.save
+       roles.delete(role.name)
+      end
+     end
+    end
+    roles.each do |role|
+     # this should be added
+     r = Role.find (role)
+     r.id=r.name
+     r.users << userid
+     r.save
+    end
+  end
+
   # GET /users
   # GET /users.xml
   def index
@@ -199,6 +225,7 @@ class UsersController < ApplicationController
     response = true
     begin
         response = @user.save
+        save_roles (@user.id,dummy.roles_string)
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
@@ -234,29 +261,7 @@ class UsersController < ApplicationController
     @user.login_shell = params["user"]["login_shell"]
     @user.user_password = params["user"]["user_password"]
     @user.type = "local"
-    roles = params["user"]["roles_string"].split(",")
-    my_roles=[]
-    Role.find(:all).each do |role|
-     role.id=role.name
-     if role.users.include?(@user.id)
-      if roles.include?(role.name)
-       # already written - do nothing
-       roles.delete(role.name)
-      else
-       # remove item
-       role.users.delete(@user.id)
-       role.save
-       roles.delete(role.name)
-      end
-     end
-    end
-    roles.each do |role|
-     # this should be added
-     r = Role.find (role)
-     r.id=r.name
-     r.users << @user.id
-     r.save
-    end
+    save_roles (@user.id,params["user"]["roles_string"])
 
     response = true
     begin
