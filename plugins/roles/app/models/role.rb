@@ -22,4 +22,8 @@
 class Role < ActiveResource::Base
   extend YastModel::Base
   model_interface :"org.opensuse.yast.roles"
+
+  def self.element_path(id, prefix_options = {}, query_options = nil)
+    super ERB::Util.url_encode(id), prefix_options, query_options
+  end
 end
