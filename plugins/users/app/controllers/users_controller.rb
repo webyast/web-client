@@ -237,14 +237,13 @@ class UsersController < ApplicationController
     roles = params["user"]["roles_string"].split(",")
     my_roles=[]
     Role.find(:all).each do |role|
-     role.id=ERB::Util::url_encode(role.name)
+     role.id=role.name
      if role.users.include?(@user.id)
       if roles.include?(role.name)
        # already written - do nothing
        roles.delete(role.name)
       else
        # remove item
-       puts "remove item:" + role.name
        role.users.delete(@user.id)
        role.save
        roles.delete(role.name)
@@ -253,10 +252,8 @@ class UsersController < ApplicationController
     end
     roles.each do |role|
      # this should be added
-     puts "add item:" + role
-     # find raises exception if role contains space delimiter
-     r = Role.find( ERB::Util::url_encode( role))
-     r.id=ERB::Util::url_encode(r.name)
+     r = Role.find (role)
+     r.id=r.name
      r.users << @user.id
      r.save
     end
