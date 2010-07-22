@@ -48,5 +48,7 @@ namespace :sass do
     require 'sass/plugin'
     Sass::Plugin.options = { :template_location => "app/sass" }
     Sass::Plugin.update_stylesheets
+    #run css minifier task after sass to css converter
+    Rake::Task['css:min'].invoke
   end
 end

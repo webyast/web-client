@@ -24,14 +24,10 @@
 <!--[if IE]>
   <%= stylesheet_link_tag "ie_fixes" %>
 <![endif]--> 
-
-<%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-<%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
-<!--     <%= stylesheet_link_tag "input-elements", :title=>"default", :charset=>"utf-8" %> -->
-
-    
-    <% if JSMIN == true %>
+   
+  <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
+    <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
@@ -49,6 +45,9 @@
 				"yast.helpers",
 				"digitalspaghetti.password.js",
 				"/javascripts/browser_fixes" %>
+    
+    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
 
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
