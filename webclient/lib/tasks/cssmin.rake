@@ -17,9 +17,9 @@
 #++
 
 require "tempfile"
-require 'cssmin'
-
+require File.join(File.dirname(RAILS_ROOT), '/webclient/lib/cssmin.rb')
 CSS_PATH = File.join(RAILS_ROOT, '/public/stylesheets')
+
 
 def min(list, output)
   tmp = Tempfile.open('all')

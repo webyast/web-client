@@ -45,7 +45,6 @@
 #
 #   File.open('example.css', 'r') {|file| puts CSSMin.minify(file) }
 #
-
 module CSSMin
 
   # Reads CSS from +input+ (which can be a String or an IO object) and
@@ -107,11 +106,7 @@ module CSSMin
 
     css.strip
   end
-end 
 
-ARGV.each do |anArg|
-    $stdout.write "// #{anArg}\n"
-    return anArg.minify
 end
 
 
