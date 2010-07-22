@@ -34,6 +34,7 @@ namespace :css do
 
     file 'css-min.css' => files do | f |
       output = File.join(Dir.pwd, 'public/stylesheets/', f.name)
+      #do not compress already minified file
       f.prerequisites.delete(output)
       min(f.prerequisites, output)
     end
