@@ -44,7 +44,7 @@
 	else $("#fetch_dn", "#ldapForm").removeAttr("disabled");
       }); 
 
-      if ($("#ldap_enabled", "#ldapForm").val() != "true") {
+      if ($("#ldap_enabled:checked").length == 0) {
         $("#ldap_server").attr("disabled","disabled");
         $("#ldap_base_dn").attr("disabled","disabled");
         $("#ldap_tls").attr("disabled","disabled");

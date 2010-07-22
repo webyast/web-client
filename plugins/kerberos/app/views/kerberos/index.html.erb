@@ -34,6 +34,27 @@
 	    kdc: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
       });
     });
+
+    $(document).ready(function() {
+      if ($("#kerberos_enabled:checked").length == 0) {
+        $("#kerberos_default_domain").attr("disabled","disabled");
+        $("#kerberos_default_realm").attr("disabled","disabled");
+        $("#kerberos_kdc").attr("disabled","disabled");
+      };
+
+      $("#kerberos_enabled").click(function () {
+	if ($("#kerberos_enabled:checked").length == 0) {
+	    $("#kerberos_default_domain").attr("disabled","disabled");
+	    $("#kerberos_default_realm").attr("disabled","disabled");
+	    $("#kerberos_kdc").attr("disabled","disabled");
+	}
+	else {
+	    $("#kerberos_default_domain", "#kerberosForm").removeAttr("disabled");
+	    $("#kerberos_default_realm", "#kerberosForm").removeAttr("disabled");
+	    $("#kerberos_kdc", "#kerberosForm").removeAttr("disabled");
+	}
+      });
+    });
   </script>
 
 <% end %>
