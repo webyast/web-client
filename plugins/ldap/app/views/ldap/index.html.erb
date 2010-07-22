@@ -34,6 +34,40 @@
 	    server: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
       });
     });
+
+    $(document).ready(function() {
+      if ($("#ldap_server", "#ldapForm").val() == "") {
+        $("#fetch_dn").attr("disabled","disabled");
+      };
+      $("#ldap_server").keyup(function () {
+	if ($("#ldap_server", "#ldapForm").val() == "") $("#fetch_dn").attr("disabled","disabled");
+	else $("#fetch_dn", "#ldapForm").removeAttr("disabled");
+      }); 
+
+      if ($("#ldap_enabled", "#ldapForm").val() != "true") {
+        $("#ldap_server").attr("disabled","disabled");
+        $("#ldap_base_dn").attr("disabled","disabled");
+        $("#ldap_tls").attr("disabled","disabled");
+        $("#fetch_dn").attr("disabled","disabled");
+      };
+
+      $("#ldap_enabled").click(function () {
+	if ($("#ldap_enabled:checked").length == 0) {
+	    $("#ldap_server").attr("disabled","disabled");
+	    $("#ldap_base_dn").attr("disabled","disabled");
+	    $("#ldap_tls").attr("disabled","disabled");
+	    $("#fetch_dn").attr("disabled","disabled");
+	}
+	else {
+	    $("#ldap_server", "#ldapForm").removeAttr("disabled");
+	    $("#ldap_base_dn", "#ldapForm").removeAttr("disabled");
+	    $("#ldap_tls", "#ldapForm").removeAttr("disabled");
+	    $("#fetch_dn", "#ldapForm").removeAttr("disabled");
+	}
+      });
+
+    });
+   
   </script>
 
 <% end %>
@@ -72,6 +106,7 @@
 		    :with 	=> "'server=' + $('#ldap_server').val()",
 		    :html	=> {
 			:class		=> "button",
+			:id		=> "fetch_dn",
 			:disabled	=> disabled
 		    }
 	      %>
