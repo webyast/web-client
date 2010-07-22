@@ -32,6 +32,25 @@
 	    required: "<%= _("This field is required.") -%>",
       });
     });
+    $(document).ready(function() {
+
+      if ($("#activedirectory_enabled:checked").length == 0) {
+        $("#activedirectory_domain").attr("disabled","disabled");
+        $("#activedirectory_create_dirs").attr("disabled","disabled");
+      };
+
+      $("#activedirectory_enabled").click(function () {
+	if ($("#activedirectory_enabled:checked").length == 0) {
+	    $("#activedirectory_domain").attr("disabled","disabled");
+	    $("#activedirectory_create_dirs").attr("disabled","disabled");
+	}
+	else {
+	    $("#activedirectory_domain", "#activedirectoryForm").removeAttr("disabled");
+	    $("#activedirectory_create_dirs", "#activedirectoryForm").removeAttr("disabled");
+	}
+      });
+
+    });
   </script>
 
 <% end %>
