@@ -96,6 +96,23 @@
       return open_dialog;
     };
 
+    function create_role_dialog() {
+      $("#create_role_dialog").dialog({
+        autoOpen: false,
+        height: 170,
+        width: 400,
+        modal: true,
+        buttons: {
+          'Create Role': function() {
+            $(this).children("form").first().submit();
+          },
+          Cancel: function() {
+            $(this).dialog('close');
+          }
+        }
+      });
+    };
+
     $(document).ready(function(){
       select_users_open = select_users_dialog();
       $(".permissions-group-header .permission-field input").click( function() {
@@ -112,6 +129,13 @@
       $('.permissions-header .permission-label').click( collapseAll );
       addTabsNavigation(".fieldset-group", "span");
       $(".fieldset-group").tabs();
+
+      create_role_dialog();
+
+      $("#create_role_link").click( function (e) {
+        e.preventDefault();
+        $("#create_role_dialog").dialog('open');
+      });
     });
   <% end %>
 
@@ -147,8 +171,14 @@
 
 <div class="plugin-content">
   <div class="nav-buttons">
-    <%= link_to  (_("Manage Roles") ),
-                 {:action => 'manage_roles'} %>
+    <%= link_to  (_("Create Role") ),
+                 {},
+                 {:id => 'create_role_link'} %>
+  </div>
+  <div id="create_role_dialog" style="display: none">
+    <% form_tag '/roles/create', {:class => 'container'} do %>
+      <label for="role_name"> Name </label><%= text_field_tag "role_name", ""%>
+    <% end %>
   </div>
   <% form_tag '/roles/update', {:class => 'container'} do %>
     <div class="fieldset-group">
