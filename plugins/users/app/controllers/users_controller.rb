@@ -30,7 +30,9 @@ class UsersController < ApplicationController
   def client_permissions
     @permissions = User.permissions
     @permissions.merge!(Group.permissions)
-    @permissions.merge!(Role.permissions)
+#    if defined?(Role) == 'constant' && Role.class == Class
+      @permissions.merge!(Role.permissions)
+#    end
   end
 
   # Initialize GetText and Content-Type.
@@ -52,28 +54,30 @@ class UsersController < ApplicationController
   def save_roles (userid,roles_string)
    #FIXME: not very unique permission names
    if @permissions[:modify]==true && @permissions[:assign]==true
-    roles = roles_string.split(",")
-    my_roles=[]
-    Role.find(:all).each do |role|
-     role.id=role.name
-     if role.users.include?(userid)
-      if roles.include?(role.name)
-       # already written - do nothing
-       roles.delete(role.name)
-      else
-       # remove item
-       role.users.delete(userid)
-       role.save
-       roles.delete(role.name)
+    if defined?(Role) == 'constant' && Role.class == Class
+     roles = roles_string.split(",")
+     my_roles=[]
+     Role.find(:all).each do |role|
+      role.id=role.name
+      if role.users.include?(userid)
+       if roles.include?(role.name)
+        # already written - do nothing
+        roles.delete(role.name)
+       else
+        # remove item
+        role.users.delete(userid)
+        role.save
+        roles.delete(role.name)
+       end
       end
      end
-    end
-    roles.each do |role|
-     # this should be added
-     r = Role.find (role)
-     r.id=r.name
-     r.users << userid
-     r.save
+     roles.each do |role|
+      # this should be added
+      r = Role.find(role)
+      r.id=r.name
+      r.users << userid
+      r.save
+     end
     end
    end
   end
@@ -89,15 +93,17 @@ class UsersController < ApplicationController
         user.user_password2 = user.user_password
         user.uid_number	= user.uid_number
         user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
-        user.roles_string = ""
-        @roles = Role.find :all
+#        user.roles_string = ""
         my_roles=[]
         all_roles=[]
-        @roles.each do |role|
-         if role.users.include?(user.id)
-          my_roles.push(role.name)
+        if defined?(Role) == 'constant' && Role.class == Class
+         @roles = Role.find :all
+         @roles.each do |role|
+          if role.users.include?(user.id)
+           my_roles.push(role.name)
+          end
+          all_roles.push(role.name)
          end
-         all_roles.push(role.name)
         end
         user.roles_string = my_roles.join(",")
         @all_roles_string = all_roles.join(",")
@@ -134,11 +140,13 @@ class UsersController < ApplicationController
       :roles_string	=> ""
     )
         @all_roles_string = ""
-        @roles = Role.find :all
-        my_roles=[]
         all_roles=[]
-        @roles.each do |role|
-         all_roles.push(role.name)
+        if defined?(Role) == 'constant' && Role.class == Class
+         @roles = Role.find :all
+         my_roles=[]
+         @roles.each do |role|
+          all_roles.push(role.name)
+         end
         end
         @all_roles_string = all_roles.join(",")
     @groups = []
@@ -230,7 +238,7 @@ class UsersController < ApplicationController
     response = true
     begin
         response = @user.save
-        save_roles (@user.id,dummy.roles_string)
+        save_roles(@user.id,dummy.roles_string)
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
@@ -266,7 +274,7 @@ class UsersController < ApplicationController
     @user.login_shell = params["user"]["login_shell"]
     @user.user_password = params["user"]["user_password"]
     @user.type = "local"
-    save_roles (@user.id,params["user"]["roles_string"])
+    save_roles(@user.id,params["user"]["roles_string"])
 
     response = true
     begin
