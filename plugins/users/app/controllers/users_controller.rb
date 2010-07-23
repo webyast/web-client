@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @permissions = User.permissions
     @permissions.merge!(Group.permissions)
 #    if defined?(Role) == 'constant' && Role.class == Class
-      @permissions.merge!(Role.permissions)
+#      @permissions.merge!(Role.permissions)
 #    end
   end
 
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def save_roles (userid,roles_string)
    #FIXME: not very unique permission names
-   if @permissions[:modify]==true && @permissions[:assign]==true
+#   if @permissions[:modify]==true && @permissions[:assign]==true
     if defined?(Role) == 'constant' && Role.class == Class
      roles = roles_string.split(",")
      my_roles=[]
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
       r.save
      end
     end
-   end
+#   end
   end
 
   # GET /users
