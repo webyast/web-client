@@ -67,7 +67,7 @@
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
     <% form_for(:kerberos, @kerberos, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'kerberosForm', :onsubmit => "if ($('#kerberosForm').valid()) $('#progress').show()" }
+      :html => { :method => :put, :id => 'kerberosForm', :onsubmit => "if ($('#kerberosForm').valid()) $('#progress').show() && disable_forms ()" }
     ) do |f| %>
 
 	<fieldset>

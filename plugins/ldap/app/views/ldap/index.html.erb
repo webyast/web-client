@@ -80,7 +80,7 @@
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
     <% form_for(:ldap, @ldap, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'ldapForm', :onsubmit => "if ($('#ldapForm').valid()) $('#progress').show()" }
+      :html => { :method => :put, :id => 'ldapForm', :onsubmit => "if ($('#ldapForm').valid()) $('#progress').show() && disable_forms ()" }
     ) do |f| %>
 
 	<fieldset>

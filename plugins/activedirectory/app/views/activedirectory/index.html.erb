@@ -63,7 +63,7 @@
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
     <% form_for(:activedirectory, @activedirectory, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'activedirectoryForm', :onsubmit => "if ($('#activedirectoryForm').valid()) $('#progress').show()", :autocomplete => :off }
+      :html => { :method => :put, :id => 'activedirectoryForm', :onsubmit => "if ($('#activedirectoryForm').valid()) $('#progress').show() && disable_forms ()", :autocomplete => :off }
     ) do |f| %>
 
 	<fieldset>

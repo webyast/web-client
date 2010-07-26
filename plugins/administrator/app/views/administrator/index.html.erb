@@ -26,7 +26,7 @@
   <% if JSMIN == false %>
     <%= javascript_include_tag "digitalspaghetti.password.js" %>
   <% end %>
-  
+
   <!-- Move to style.css -->
   <style type="text/css">
     label.error {
@@ -98,7 +98,7 @@
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
-  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show()", :autocomplete => :off } ) do |f| %>
+  <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :onsubmit => "$('#progress').show(); disable_forms ()", :autocomplete => :off } ) do |f| %>
   <%= f.error_messages %>
     <fieldset id="password">
         <legend><%= _("Password Setup for User 'root'") -%></legend>
