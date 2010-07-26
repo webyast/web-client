@@ -68,6 +68,10 @@ public
         end
         @patch_updates = []
         @error = true
+      elsif ce.backend_exception_type == "PACKAGEKIT_INSTALL"
+        flash[:info] = ce.message
+        @patch_updates = []
+        @error = true
       else
         raise e
       end
@@ -79,8 +83,10 @@ public
   def show_summary
     error = nil
     patch_updates = nil
+    refresh = false
     begin
        patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
+       refresh = true
     rescue ActiveResource::UnauthorizedAccess => e
       # handle unauthorized error - the session timed out
       Rails.logger.error "Error: ActiveResource::UnauthorizedAccess"
@@ -93,7 +99,8 @@ public
     rescue ActiveResource::ServerError => e
       error = ClientException.new(e)
       error_string = _("A problem occured when loading patch information.")
-      error_string = error.message if error.backend_exception_type ==  "PACKAGEKIT_ERROR"
+      error_string = error.message if error.backend_exception_type =~  /PACKAGEKIT_.*/
+      refresh = true if error.backend_exception_type == "PACKAGEKIT_INSTALL" #refresh state of installation
       patch_updates = nil
     end    
     patches_summary = nil
@@ -125,7 +132,7 @@ public
     end
 
     # don't refresh if there was an error
-    ref_timeout = error ? nil : refresh_timeout
+    ref_timeout = refresh ? refresh_timeout : nil
 
     respond_to do |format|
       format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string, :refresh_timeout => ref_timeout } }
