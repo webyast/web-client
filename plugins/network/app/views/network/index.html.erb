@@ -43,14 +43,14 @@
 
    <% javascript_tag do -%>
       function hide_static_config() {
-            if ($("#conf_mode").val() == "static"){
-              $(".fieldset-group").show();
-              $(".fieldset-group :input").enable();
-              <!--$("#dnsForm").valid();is not needed anymore because of jquery.validate version update--> 
-            } else {
-              $(".fieldset-group").hide();
-              $(".fieldset-group :input").disable();
-            }
+	    var input = $(".fieldset-group :input");
+            var disable = false;
+	    if ($("#conf_mode").val() != "static") disable=true;
+	    for (var i=0;i<input.length;i++){
+		if (input[i].id=="name"||input[i].id=="domain") input[i].disabled = false;
+			else input[i].disabled=disable;
+	    };
+
       }
    <% end -%>
 
