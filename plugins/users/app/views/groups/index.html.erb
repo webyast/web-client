@@ -132,8 +132,10 @@ function members_validation(which){ return true; }
    <span style="clear:both; overflow:hidden;"></span>
    <div id="link-container">
     <div id="action_links" class="action_links">	
-      <%=link_to image_tag ("/icons/yast-groups.png", :class=>"icons") + _("Add New Group"), :action => :new %>
-      <label>|</label>
+      <% if @permissions[:groupadd] %>
+	<%=link_to image_tag ("/icons/yast-groups.png", :class=>"icons") + _("Add New Group"), :action => :new %>
+	<label>|</label>
+      <% end %>
       <%=link_to image_tag ("/icons/yast-users.png", :class=>"icons") + _("Manage Users"), "controller" => "users" %>
     </div>
   </div>
