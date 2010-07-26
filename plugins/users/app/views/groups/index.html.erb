@@ -48,7 +48,7 @@ function members_validation(which){ return true; }
 
  <style>
     .pad1_2em {
-	padding: 1em 2em;
+/* 	padding: 1em 2em; */
     }
     tr {
 	border: solid 1px #ddd;
@@ -111,20 +111,40 @@ function members_validation(which){ return true; }
 });//document.ready
 
 <% end %>
-
 <% end %>
+
 <div class='plugin-icon'><img alt="yast-groups" src='/icons/yast-groups.png'/><%=_("Groups")%></div>
 <div class="plugin-content">
 
-<form action="#" id="quicksearch" class="pad1_2em">
-  <label><%= _("Filter:") %></label>
-  <input type="text" id="groups_search"/>
-</form>
+<div id="search-userbar">
+  <div id="home-container">
+    <div id="home">		
+      <%=link_to image_tag ("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
+    </div>
+  </div>
+  <span style="clear:both; overflow:hidden;"></span>
+  <div id="search-container">
+    <form action="#" id="quicksearch"  >
+      <label style="font-weight:bold; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.9);"><%= _("Filter:") %></label>
+      <input type="text" id="groups_search" style="padding:3px;"/>
+    </form>
+   </div>
+   <span style="clear:both; overflow:hidden;"></span>
+   <div id="link-container">
+    <div id="action_links" class="action_links">	
+      <%=link_to image_tag ("/icons/yast-groups.png", :class=>"icons") + _("Add New Group"), :action => :new %>
+      <label>|</label>
+      <%=link_to image_tag ("/icons/yast-users.png", :class=>"icons") + _("Manage Users"), "controller" => "users" %>
+    </div>
+  </div>
+</div>
+
+<div style="clear:both; overflow:hidden;"></div>
 
 <div class='pad1_2em'>
-   <% if @permissions[:groupadd] %>
+   <!--<% if @permissions[:groupadd] %>
      <%= link_to _("Add New Group"), :action => :new -%>
-   <% end %>
+   <% end %>-->
  <div id="groups" class="accordion">
 
   <% for group in @groups %>
