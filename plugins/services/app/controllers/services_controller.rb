@@ -39,9 +39,14 @@ class ServicesController < ApplicationController
 
     begin
 	@response = Service.find(:one, :from => params[:id].intern, :params => { "custom" => params[:custom]})
-    rescue ActiveResource::ResourceNotFound => e
-	Rails.logger.error "Resource not found: #{e.to_s}: #{e.response.body}"
-	render :text => _('(cannot read status)') and return
+    rescue ActiveResource::ServerError => e
+	error = Hash.from_xml e.response.body
+	logger.warn error.inspect
+	if error["error"] && error["error"]["type"] == "SERVICE_ERROR"
+	    render :text => _('(cannot read status)') and return
+	else
+	    raise e
+	end
     end
 
     render(
@@ -60,8 +65,21 @@ class ServicesController < ApplicationController
     all_services	= []
     begin
       all_services	= Service.find(:all, :params => { :read_status => 1 })
-    rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
+    rescue ActiveResource::ServerError => e
+        error = Hash.from_xml e.response.body
+	logger.warn error.inspect
+	if error["error"] && error["error"]["type"] == "SERVICE_ERROR"
+	  ee	= error["error"]
+	  if ee["id"] == "no-services"
+	    flash[:error] = _("List of services could not be read")
+	  elsif ee["id"] == "no-custom-services"
+	    flash[:error] = _("List of custom services could not be read")
+	  else
+	    flash[:error] = ee["message"]
+	  end
+	else
+	  raise e
+	end
     end
     # there's no sense in showing these in UI (bnc#587885)
     killer_services	= [ "yastwc", "yastws", "dbus", "network", "lighttpd" ]
@@ -76,6 +94,9 @@ class ServicesController < ApplicationController
   # PUT /services/1.xml
   def execute
     args	= { :execute => params[:id], :custom => params[:custom] }
+
+    begin
+
     response = Service.put(params[:service_id], args)
     # we get a hash with exit, stderr, stdout
     ret = Hash.from_xml(response.body)
@@ -97,6 +118,14 @@ class ServicesController < ApplicationController
        when "6" then _("program is not configured")
        when "7" then _("program is not running")
     end
+
+    rescue ActiveResource::ServerError => e
+        error = Hash.from_xml e.response.body
+	logger.warn error.inspect
+	@result_string	= error["error"]["description"] if error["error"]["description"]
+	@error_string	= _("Unknown error on server side")
+    end
+
     render(:partial =>'result', :params => params)
   end
 

@@ -67,7 +67,7 @@ class ServicesControllerTest < ActionController::TestCase
       header = ActiveResource::HttpMock.authentication_header
       mock.resources  :"org.opensuse.yast.modules.yapi.services" => "/services"
       mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
-      mock.get   "/services.xml?read_status=1", header, response_failed, 404
+      mock.get   "/services.xml?read_status=1", header, response_failed, 500
     end
     get :index
     assert_response :success
@@ -89,7 +89,7 @@ class ServicesControllerTest < ActionController::TestCase
     response_aaa = fixture("aaa.xml")
     ActiveResource::HttpMock.respond_to do |mock|
       header = ActiveResource::HttpMock.authentication_header
-      mock.get   "/services/aaa.xml?custom=false", header, response_aaa, 404
+      mock.get   "/services/aaa.xml?custom=false", header, response_aaa, 500
     end
     ret = get :show_status, {:id => 'aaa', :custom => false}
     assert_equal ret.body, '(cannot read status)'
