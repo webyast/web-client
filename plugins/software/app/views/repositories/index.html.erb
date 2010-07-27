@@ -166,31 +166,44 @@
     <div class="loading"></div>
     <% disabled = !@permissions[:write] %>
 
-    <h3><%=_("Configured software repositories") %></h3>
+    <h3 style="margin-left:12px;"><%=_("Configured software repositories") %></h3>
 
-    <p>
-      <label for="filter"><%=  _("Filter repositories") %></label>
-      <%= select_tag "filter", options_for_select([
+    <div id="softwarebar">
+      <div id="home-container">
+	<div id="home">		
+	  <%=link_to image_tag ("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
+	</div>
+      </div>
+      <span style="clear:both; overflow:hidden;"></span>
+      <div id="search-container">
+	<form action="#" id="quicksearch">
+	   <label><%= _("Quick Search") %></label>
+	   <input type="text" id="repo_search">
+	</form>
+      </div>
+      <span style="clear:both; overflow:hidden;"></span>
+      <div id="link-container">
+	  <% if !disabled %>
+	    <div id="action_links" class="action_links">	
+	      <%=link_to image_tag ("/icons/yast-online_update.png", :class=>"icons") +  (_("Add New Repository") ), {:action => 'add'}, :onclick=>"$('#progress').show()" %>
+	    </div>
+	  <% end %>
+      </div>
+      <div id="filter-container">
+	<label for="filter">
+	  <%=  _("Filter repositories") %>
+	  <%=image_tag ("/images/filter.png", :style=>"vertical-align:text-top; margin-top:1px; margin-right:3px;width:16px; height:14px;")%>
+	</label>
+	<%= select_tag "filter", options_for_select([
 	  [ _("All"), "all"],
 	  [ _("Enabled"), "enabled"],
 	  [ _("Disabled"), "disabled"]
 	])
-      %>
-      <%= observe_field("filter", :function => "select_repositories(value)") %>
-    </p>
-
-    <form action="#" id="quicksearch">
-      <label><%= _("Quick Search") %></label>
-      <input type="text" id="repo_search">
-    </form>
-
-    <% if !disabled %>
-      <div class="nav-buttons">
-	<%= link_to   (_("Add New Repository") ),
-	  {:action => 'add'},
-	  :onclick=>"$('#progress').show()" %>
+	%>
+	<%= observe_field("filter", :function => "select_repositories(value)") %>
       </div>
-    <% end %>
+    </div>
+    <div style="clear:both; overflow:hidden;"></div>
 
     <div id="repositories" class="accordion">
       <% @repos.each do |r| %>
