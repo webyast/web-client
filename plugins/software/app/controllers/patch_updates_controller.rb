@@ -19,14 +19,12 @@
 # you may find current contact information at www.novell.com
 #++
 
-require 'yast/service_resource'
 require 'client_exception'
 
 class PatchUpdatesController < ApplicationController
 
   before_filter :login_required
   layout 'main'
-  include ProxyLoader
 
   # Initialize GetText and Content-Type.
   init_gettext "webyast-software-ui"
@@ -56,8 +54,9 @@ public
   # GET /patch_updates
   # GET /patch_updates.xml
   def index
+    @permissions = Patch.permissions
     begin
-      @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+      @patch_updates = Patch.find :all
     rescue ActiveResource::ServerError => e
       ce = ClientException.new e
       if ce.backend_exception_type ==  "PACKAGEKIT_ERROR"
@@ -76,7 +75,7 @@ public
         raise e
       end
     end
-    logger.debug "Available patches: #{@patch_updates.inspect}"
+    logger.info "Available patches: #{@patch_updates.inspect}"
   end
 
   # this action is rendered as a partial, so it can't throw
@@ -85,7 +84,7 @@ public
     patch_updates = nil
     refresh = false
     begin
-       patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all, {:background => params['background']}
+       patch_updates = Patch.find :all, {:background => params['background']}
        refresh = true
     rescue ActiveResource::UnauthorizedAccess => e
       # handle unauthorized error - the session timed out
@@ -141,7 +140,7 @@ public
   end
 
   def load_filtered
-    @patch_updates = load_proxy 'org.opensuse.yast.system.patches', :all
+    @patch_updates = Patch.find :all
     kind = params[:value]
     unless kind == "all"
       @patch_updates = @patch_updates.find_all { |patch| patch.kind == kind }
@@ -226,46 +225,10 @@ public
         update_array << value
       end
     }
-    flash_string = ""
-    message_array = []
-    update_array.each do |patch_id|
-      begin
-        client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-        ret = client.create({:repo=>nil,
-                             :kind=>nil,
-                             :name=>nil,
-                             :arch=>nil,
-                             :version=>nil,
-                             :summary=>nil,
-                             :resolvable_id=>patch_id})
-        message_array.concat(create_messages(ret.messages)) if ret.respond_to?(:messages) && !ret.messages.blank?
-        logger.debug "updated #{patch_id}"
-        unless message_array.blank?
-          flash[:warning] =  message_array.uniq.to_s
-        end
-      rescue ActiveResource::ResourceNotFound => e
-        flash[:error] = YaST::ServiceResource.error(e)
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        redirect_to({:controller=>"controlpanel", :action=>"index"}) and return
-      end        
-    end
-    unless message_array.blank?
-      #show all messages again
-      if update_array.size > 1       
-        flash[:warning] = _("All Patches have been installed. ") + message_array.uniq.to_s 
-      else
-        flash[:warning] = _("Patch has been installed. ") + message_array.uniq.to_s 
-      end
-    else
-      if update_array.size > 1       
-        flash[:notice] = _("All Patches have been installed. ")
-      else
-        flash[:notice] = _("Patch has been installed. ")
-      end
-    end
-  
-    redirect_to({:controller=>"controlpanel", :action=>"index"})
+    
+    Patch.install_patches_by_id update_array
+
+    redirect_to :action => "index"
   end
 
   private
