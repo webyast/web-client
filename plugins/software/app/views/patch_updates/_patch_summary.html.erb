@@ -21,29 +21,36 @@
 #++
 %>
 <%
-  unauthorized = error.class == ActiveResource::UnauthorizedAccess
+  error_type = error ? :unknown : :none
+  if error.class == ClientException &&
+      error.backend_exception_type == "PACKAGEKIT_INSTALL"
+    error_type = :install
+  end
+  error_type = :unauthorized if error.class == ActiveResource::UnauthorizedAccess
   unsigned_repo = nil
   if !error_string.blank?
     error_string.match /Repository (.*) needs to be signed/
     unsigned_repo = $1
+    error_type = :unsigned unless unsigned_repo.blank?
   end
-  error = nil unless unsigned_repo.blank?
+
 -%>
-<%= report_error(error, error_string) if error && !unauthorized %>
+<%= report_error(error, error_string) if error_type == :unknown %>
 
 <div class="status_patches">
   <% unless patch %>
       <div class="status-icon warning"></div>
-      <% if unauthorized %>
-	<% link_to "controlpanel" do %>
-	  <%= _("Cannot read patch updates - you have been logged out.") %>
-	<% end %>
-      <% else %>
-	<% if unsigned_repo.blank? %>
-	  <%= _("No information about patches available") %>
-	<% else %>
-	  <%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
-	<% end %>
+      <% case error_type 
+          when :unauthorized then %>
+	      <% link_to "controlpanel" do %>
+      	  <%= _("Cannot read patch updates - you have been logged out.") %>
+	      <% end %>
+      <% when :unknown %>
+	      <%= _("No information about patches available") %>
+	    <% when :unsigned %>
+	      <%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
+	    <% when :install %>
+    	  <%= error.message %>
       <% end %>
   <% else %>
     <% label = [] %>

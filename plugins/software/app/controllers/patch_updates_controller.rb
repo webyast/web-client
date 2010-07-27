@@ -151,66 +151,9 @@ public
   # POST /patch_updates/start_install_all
   # Starting installation of all proposed patches
   def start_install_all
-    logger.debug "Start installation of all patches"
-
-    render :partial => "patch_installation", :locals => { :patch => _("Installing all patches..."), :error => nil  , :go_on => true, :message => "" }
-  end
-
-  def stop_install_all
-    logger.debug "Stopping installation of all patches"
-
-    render :partial => "patch_installation", :locals => { :patch => _("Installation stopped"), :error => nil  , :go_on => false, :message => "" }
-  end
-
-  # POST /patch_updates/install_all
-  # Install each patch. This function will be called periodically from the controll center
-  def install_all
-    logger.debug "Installing one available patch...."
-
-    error = nil
-    patch_updates = nil    
-    begin
-      client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.patches')
-      patch_updates = client.find :all
-    rescue Exception => e
-      error = e
-      patch_updates = nil
-    end
-
-    flash.clear #no flash from load_proxy
-    last_patch = ""
-    message_array = []
-    unless patch_updates.blank?
-      #installing the first available patch
-      logger.info "Installing patch :#{patch_updates[0].name}"
-      begin
-        ret = client.create({:repo=>nil,
-                             :kind=>nil,
-                             :name=>nil,
-                             :arch=>nil,
-                             :version=>nil,
-                             :summary=>nil,
-                             :resolvable_id=>patch_updates[0].resolvable_id})
-        message_array.concat(create_messages(ret.messages)) if ret.respond_to?(:messages) && !ret.messages.blank?
-        logger.debug "updated #{patch_updates[0].name}"
-      rescue ActiveResource::ResourceNotFound => e
-        flash[:error] = YaST::ServiceResource.error(e)
-      rescue ActiveResource::ClientError => e
-        error = e
-      end        
-      last_patch = patch_updates[0].name
-    else
-      erase_redirect_results #reset all redirects
-      erase_render_results
-    end
-
-    respond_to do |format|
-      if last_patch.blank?
-        format.html { render :partial => "patch_installation", :locals => { :patch => _("Installation finished"), :error => error  , :go_on => false, :message => "" }}
-      else
-        format.html { render :partial => "patch_installation", :locals => { :patch => _("%s installed.") % last_patch , :error => error, :message => message_array.uniq.to_s }}
-      end
-    end    
+    logger.info "Start installation of all patches"
+    Patch.install_patches Patch.find(:all)
+    show_summary
   end
 
   # POST /patch_updates/install
