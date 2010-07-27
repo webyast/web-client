@@ -20,18 +20,6 @@
 -->
 <% content_for :head do %>
 
-<!--
-- already added to webyast-base-min.js:
-  <%= javascript_include_tag "digitalspaghetti.password.js" %>
-
-- added to to users-group-min.js
-  <%= javascript_include_tag "jquery.quicksearch.js"-%>
-  <%= javascript_include_tag "select_dialog.js" %>
-  <%= javascript_include_tag "users.js" %>
-
--->
-
- <!-- don't forget to change to production -->
   <% if JSMIN == true %>
     <%= javascript_include_tag "users-min.js"-%>
   <% else %>
@@ -42,7 +30,7 @@
 
 <% if @permissions[:usersget] != true %>
 <script language="javascript">
-function members_validation(which){ return true; }
+  function members_validation(which){ return true; }
 </script>
 <% end %>
 
@@ -61,6 +49,7 @@ function members_validation(which){ return true; }
 	float: left;
 	margin-left: 1em
     }
+    label.error {display: none; float:left; color: #990000; font-weight:bold; margin-left:10px;}
  </style>
 
  <% javascript_tag do %>
@@ -125,7 +114,7 @@ function members_validation(which){ return true; }
   <span style="clear:both; overflow:hidden;"></span>
   <div id="search-container">
     <form action="#" id="quicksearch"  >
-      <label style="font-weight:bold; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.9);"><%= _("Filter:") %></label>
+      <label><%= _("Filter:") %></label>
       <input type="text" id="groups_search" style="padding:3px;"/>
     </form>
    </div>
@@ -172,7 +161,7 @@ function members_validation(which){ return true; }
       <div class="label"><%=_("Members")%></div>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);", :class => "members-string"%>
       <% if @permissions[:usersget] == true %>
-        <a href="#" class="button" onClick="select_users_open('<%= group.old_cn %>');return false;"><%= _("Manage Members") %></a>
+        <a href="#" id="manage_members" class="button" onClick="select_users_open('<%= group.old_cn %>');return false;"><%= _("Manage Members") %></a>
       <% end %>
     </p>
     <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>

@@ -19,18 +19,6 @@
 # you may find current contact information at www.novell.com
 -->
 
-<!--
-- already added to webyast-base-min.js:
-  <%= javascript_include_tag "digitalspaghetti.password.js" %>
-
-- added to to users-group-min.js
-  <%= javascript_include_tag "jquery.quicksearch.js"-%>
-  <%= javascript_include_tag "select_dialog.js" %>
-  <%= javascript_include_tag "users.js" %>
-
--->
-
- <!-- don't forget to change to production -->
   <% if JSMIN == true %>
     <%= javascript_include_tag "users-min.js"-%>
   <% else %>
@@ -46,7 +34,7 @@
 
   <style type="text/css">
     label.error {
-         display: none; color: red; padding-left: 11.5em; padding-bottom: 1.5em; margin-top: -0.5em; text-align: left; vertical-align: top; width: 50%
+         display: none; float:left; color: #990000; font-weight:bold; margin-left:10px;
     }
 
     .GContainerUser, .GContainerGroups {
@@ -120,11 +108,13 @@
     <p>
       <label><%=_("Members")%></label>
       <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);" %>
+      
       <% if @permissions[:usersget] == true %>
-        <a href="#" class="button" onClick="select_users_open('');return false;"><%= _("Manage Members") -%></a>
+        <a href="#" id="manage_members" class="button" onClick="select_users_open('');return false;"><%= _("Manage Members") -%></a>
+	<%= f.hidden_field :group_type %><label id="users-error" class="error"></label>
       <% end %>
     </p>
-    <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label><p>
+    <!--<p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label><p>-->
   </fieldset>
 
   <div class="nav-buttons">
