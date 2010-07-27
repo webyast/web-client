@@ -53,7 +53,7 @@ module ErrorConstructor
       problem = error["description"]
       return _("Uncommon exception on target machine:\n #{problem}")
     when "PACKAGEKIT_INSTALL"
-      return _("Installation in progress. Remain %i patches. Installation of recently installed patch is at %i %.") % [error["count"],error["status"]["progress"]]
+      return _("Installation in progress. Remain %i patches. Time of installation depend on patch size.") % [error["count"]]
     else
       RAILS_DEFAULT_LOGGER.warn "Untranslated message for exception #{error["type"]}"
       return error["description"]
