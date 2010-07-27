@@ -49,7 +49,7 @@
 
 <!--<%= javascript_include_tag :defaults %>-->
 
-<div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status")%></div>
+<div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png' width="48px" height="48"/><%=_("Status")%></div>
 <div class="plugin-content">
 
 <div class="accordion">
@@ -74,7 +74,7 @@
               <h3><%= single_graph.headline %></h3>
             </p>
             <div id='<%= graph_id(group.id, single_graph.headline) %>'>
-              <img alt="monitoring" src='/images/working.gif' />
+              <img alt="monitoring" src='/images/working.gif' height="32px" width="32px" />
             </div>
           <% end %>
       </div>

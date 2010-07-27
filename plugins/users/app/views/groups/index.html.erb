@@ -102,7 +102,7 @@
 <% end %>
 <% end %>
 
-<div class='plugin-icon'><img alt="yast-groups" src='/icons/yast-groups.png'/><%=_("Groups")%></div>
+<div class='plugin-icon'><img alt="yast-groups" src='/icons/yast-groups.png' width="48px" height="48px"><%=_("Groups")%></div>
 <div class="plugin-content">
 
 <div id="search-userbar">
@@ -122,10 +122,10 @@
    <div id="link-container">
     <div id="action_links" class="action_links">	
       <% if @permissions[:groupadd] %>
-	<%=link_to image_tag ("/icons/yast-groups.png", :class=>"icons") + _("Add New Group"), :action => :new %>
+	<%=link_to image_tag ("/icons/yast-groups_16.png", :class=>"icons") + _("Add New Group"), :action => :new %>
 	<label>|</label>
       <% end %>
-      <%=link_to image_tag ("/icons/yast-users.png", :class=>"icons") + _("Manage Users"), "controller" => "users" %>
+      <%=link_to image_tag ("/icons/yast-users_16.png", :class=>"icons") + _("Manage Users"), "controller" => "users" %>
     </div>
   </div>
 </div>

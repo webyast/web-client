@@ -74,7 +74,7 @@
   
     <div id="header">
 		<h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= _("My Appliance") %></h1>
-      <%= link_to(image_tag("/images/webyast-logo.png", :alt =>"webyast" ),"/")  %>
+      <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :alt =>"webyast" ),"/")  %>
 
       <div id="login-wrapper">
         <% host = Host.find(session[:host]) rescue nil
