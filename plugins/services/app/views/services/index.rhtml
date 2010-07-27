@@ -192,13 +192,13 @@ function enable_buttons (s) {
 
 <div class="plugin-content">
 
-<div id="heading" class="pad1_2em">
-
 <% unless @permissions[:execute] %>
-<p class="missing-permissions"><%=_("You do not have permission to execute the services.")%></p>
+  <div id="heading" class="pad1_2em">
+    <p class="missing-permissions"><%=_("You do not have permission to execute the services.")%></p>
+  </div>
 <% end %>
 
-<p>
+<!--<p>
     <label for="filter"><%=_("Filter services")%></label>
     <%= select_tag "filter", options_for_select([
 	[ _("All"), "all"],
@@ -210,14 +210,70 @@ function enable_buttons (s) {
     ])
     %>
     <%= observe_field("filter", :function => "select_status(value)") %>
-</p>
+</p>-->
 
-<form action="#" id="quicksearch">
+<!--<form action="#" id="quicksearch">
   <label><%= _("Quick Search") %></label>
   <input type="text" id="service_search">
-</form>
+</form>-->
 
+<!--</div>-->
+
+<div id="systembar">
+  <div id="home-container">
+    <div id="home">		
+      <%=link_to image_tag ("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
+    </div>
+  </div>
+  <span style="clear:both; overflow:hidden;"></span>
+  <div id="search-container">
+    <form action="#" id="quicksearch">
+      <label><%= _("Quick Search") %></label>
+      <input type="text" id="service_search">
+    </form>
+    <!--<form action="#" id="quicksearch">
+      <label><%= _("Quick Search") %></label>
+	<input type="text" id="repo_search">	
+      </form>-->
+  </div>
+  <span style="clear:both; overflow:hidden;"></span>
+  <!--<div id="link-container">
+    <div id="action_links" class="action_links">	
+      <%=link_to image_tag ("/icons/yast-online_update.png", :class=>"icons") +  (_("Add New Repository") ), {:action => 'add'}, :onclick=>"$('#progress').show()" %>
+    </div>
+  </div>-->
+  <div id="filter-container">
+     <label for="filter">
+      <%=_("Filter services")%>
+      <%=image_tag ("/images/filter.png", :style=>"vertical-align:text-top; margin-top:2px; margin-right:5px;width:16px; height:14px;")%>
+     </label>
+    <%= select_tag "filter", options_for_select([
+	[ _("All"), "all"],
+	[ _("Running"), "running"],
+	[ _("Not Running"), "not-running"],
+	[ _("Dead"), "dead"],
+	[ _("Started on Boot"), "enabled"],
+	[ _("Not Started on Boot"), "disabled"],
+    ])
+    %>
+    <%= observe_field("filter", :function => "select_status(value)") %>
+<!--
+    <label for="filter">
+      <%=  _("Filter repositories") %>
+      <%=image_tag ("/images/filter.png", :style=>"vertical-align:text-top; margin-top:1px; margin-right:3px;width:16px; height:14px;")%>
+    </label>
+    <%= select_tag "filter", options_for_select([
+	[ _("All"), "all"],
+	[ _("Enabled"), "enabled"],
+	[ _("Disabled"), "disabled"]
+      ])
+    %>
+    <%= observe_field("filter", :function => "select_repositories(value)") %>-->
+  </div>
 </div>
+<div style="clear:both; overflow:hidden;"></div>
+
+
 
 <div id="services" class="accordion">
 <%
