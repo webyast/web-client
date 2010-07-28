@@ -81,6 +81,8 @@ class NetworkController < ApplicationController
  
     @name = hn.name
     @domain = hn.domain
+    @dhcp_hostname_enabled = hn.attributes.include?("dhcp_hostname")
+    @dhcp_hostname = @dhcp_hostname_enabled && hn.dhcp_hostname=="1" 
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
@@ -126,6 +128,10 @@ class NetworkController < ApplicationController
     logger.info "dirty after  hostname: #{dirty}"
     hn.name   = params["name"]
     hn.domain = params["domain"]
+    if params["dhcp_hostname_enabled"]=="true"
+#      params["dhcp_hostname"]==nil ? params["dhcp_hostname"]="0" : pass
+      hn.dhcp_hostname = params["dhcp_hostname"] || "0"
+    end
 
     ifc = Interface.find params["interface"]
     return false unless ifc

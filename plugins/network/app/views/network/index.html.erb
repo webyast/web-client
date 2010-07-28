@@ -43,14 +43,9 @@
 
    <% javascript_tag do -%>
       function hide_static_config() {
-	    var input = $(".fieldset-group :input");
-            var disable = false;
-	    if ($("#conf_mode").val() != "static") disable=true;
-	    for (var i=0;i<input.length;i++){
-		if (input[i].id=="name"||input[i].id=="domain") input[i].disabled = false;
-			else input[i].disabled=disable;
-	    };
-
+	    var input = $(".fieldset-group .static");
+	    if ($("#conf_mode").val() != "static") input.attr('disabled', 'disabled');
+		else input.removeAttr('disabled');
       }
    <% end -%>
 
@@ -307,17 +302,17 @@
       <div>
         <p>
           <label for="<%= :ip %>"><%=_("IP address")%></label>
-          <%=text_field_tag :ip, @ip, :disabled => write_disabled %>
+          <%=text_field_tag :ip, @ip, :class=>"static", :disabled => write_disabled %>
 	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
-          <%=text_field_tag :netmask, @netmask, :disabled => write_disabled %>
+          <%=text_field_tag :netmask, @netmask, :class=>"static", :disabled => write_disabled %>
 	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :default_route %>"><%=_("Default route")%></label>
-          <%=text_field_tag :default_route, @default_route, :disabled => write_disabled %>
+          <%=text_field_tag :default_route, @default_route, :class=>"static", :disabled => write_disabled %>
 	  <div style="clear:both"></div>
         </p>
       </div>
@@ -338,13 +333,18 @@
 	  <div style="clear:both"></div>
         </p>
         <p>
+          <label for="<%= :dhcp_hostname %>"><%=_("Change hostname by DHCP")%></label>
+	 <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :disabled=>!@dhcp_hostname_enabled %>
+	 <input type="hidden" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
+	</p>
+        <p>
           <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
-          <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
+          <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers static", :disabled => write_disabled %>
 	  <div style="clear:both"></div>
         </p>
         <p>
           <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
-          <%=text_field_tag :searchdomains, @searchdomains.join(" "), :disabled => write_disabled %>
+          <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"static", :disabled => write_disabled %>
 	  <div style="clear:both"></div>
         </p>
       </div>
