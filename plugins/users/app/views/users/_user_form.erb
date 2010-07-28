@@ -35,39 +35,44 @@
       <fieldset id="tab_groups_<%= (new ? "" : user.uid) %>">
       <legend><span><%=_("Groups")%></span></legend>
       <table>
-	<tr><td rowspan=2>
-            <div class="label"><%=_("Groups")%></div>
-	</td><td>
-            <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);", :class => "grp-string" %>
-	</td><td rowspan=2>
-	<% if @permissions[:groupsget] == true %>
-            <%= 
-		action = (disabled) ? "" : "select_groups_open('"+(new ? "" : user.uid)+"');return false;"
-		link_to _("Manage Groups"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
-            %>
-	<% end %>
-	</td></tr>
-
-	<tr><td>
-            <label id="groups-error" class="error">error</label>
-	</td></tr>
-
-	<tr><td rowspan=2>
+	<tr>
+	  <td>
+	      <div class="label"><%=_("Groups")%></div>
+	  </td>
+	  <td>
+	      <%= f.text_field :grp_string, :disabled => disabled, :onkeyup => "groups_validation(this);", :class => "grp-string" %>
+	  </td>
+	  <td>
+	    <% if @permissions[:groupsget] == true %>
+		<%= 
+		    action = (disabled) ? "" : "select_groups_open('"+(new ? "" : user.uid)+"');return false;"
+		    link_to _("Manage Groups"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
+		%>
+	    <% end %>
+	  </td>
+	  <td>
+	    <label id="groups-error" class="error">error</label>  
+	  </td>
+	</tr>
+	<tr>
+	  <td>
             <div class="label"><%=_("Default Group")%></div>
-	</td><td>
+	  </td>
+	  <td>
             <%= f.text_field :groupname, :disabled => disabled, :class => "groupname", :onkeyup => "def_group_validation(this);" %>
-	</td><td rowspan=2>
-	<% if @permissions[:groupsget] == true %>
-            <%= 
-		action = (disabled) ? "" : "select_default_group_open('"+user.uid.to_s+"');return false;"
-		link_to _("Select Default Group"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
-	    %>
-	<% end %>
-	</td></tr>
-
-	<tr><td>
-            <label id="def-group-error" class="error">error</label>
-	</td></tr>
+	  </td>
+	  <td>
+	  <% if @permissions[:groupsget] == true %>
+	      <%= 
+		  action = (disabled) ? "" : "select_default_group_open('"+user.uid.to_s+"');return false;"
+		  link_to _("Select Default Group"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
+	      %>
+	  <% end %>
+	  </td>
+	  <td>
+	      <label id="def-group-error" class="error">error</label>
+	  </td>
+	</tr>
        </table>
       </fieldset>
 
@@ -98,21 +103,22 @@
       <fieldset id="tab_roles_<%= (new ? "" : user.uid) %>">
       <legend><span><%= _("Roles") %></span></legend>
        <table>
-	<tr><td>
-	<%= f.text_field :roles_string, :disabled => false, :class => "roles-string",  :onkeyup => "roles_validation(this);"  %>
-	 </td><td>
-            <%= 
+	<tr>
+	  <td>
+	    <%= f.text_field :roles_string, :disabled => false, :class => "roles-string",  :onkeyup => "roles_validation(this);"  %>
+	  </td>
+	  <td>
+	    <%= 
 		action = (disabled) ? "" : "select_roles_open('"+user.uid.to_s+"');return false;"
 		link_to _("Manage Roles"), {}, :href => "#", :onClick => action, :class => "button", :disabled => disabled
 	    %>
 	 </td>
-         </tr>
-	 <tr><td>
+	 <td>
             <label id="roles-error" class="error">error</label>
-	 </td></tr>
+	 </td>
+	</tr>
        </table>
       </fieldset>
-
   </div>
 
    <div class="nav-buttons">

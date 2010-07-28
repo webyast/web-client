@@ -22,10 +22,9 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $(":button").click(function() {
-      $(":button.active").removeClass('active')
-      $(this).removeClass('left');
-      $(this).addClass('active');
-      $(this).addClass('left');
+      $("button[type=submit].active").removeClass('active')
+      $(this).removeClass("left").addClass("active left");
+      return false;
     });
     $("form#form1").submit(function () { return false; }); // so it won't submit
   });

@@ -100,7 +100,7 @@
 
   /* MODULE SPECIFIC ADAPTATIONS */
   /*  LOGIN  */
-  #login-dialogue input[type="password"], #login-dialogue input[type="text"] { width:100%; }
+/*   #login-dialogue input[type="password"], #login-dialogue input[type="text"] { width:100%; } */
 
   /*  SOFTWARE REPOSITORIES */
   #repository_name, #repository_url { width:70%; }
@@ -111,15 +111,15 @@
 
   #mail_test_mail_address {width:225px!important;}
   #administrator_aliases { width:190px; }
-  #group_members_string { width:172px; }
+  #group_members_string { width:166px; }
   
-  #mail_test_mail_address, #administrator_aliases, #group_members_string {
+  #mail_test_mail_address, #administrator_aliases {
     border-radius:3px 0px 0px 3px;
     -moz-border-radius: 3px 0px 0px 3px;
     -webkit-border-radius:3px 0px 0px 3px;
   }
 
-  #mail_submit, #administrator_submit, #manage_members {
+  #mail_submit, #administrator_submit {
      border-left-width: 0px;
      border-radius:0px 3px 3px 0px;
     -moz-border-radius:0px 3px 3px 0px;
@@ -127,6 +127,7 @@
   }
 
   #group_members_string, #manage_members { float:left; font-size:12px; }
+  #manage_members { margin-left:5px;}
   
   /* TIME */
     /* Fix for bug 601309 - Radio buttons and checkboxes look ugly in IE8  */
