@@ -140,6 +140,7 @@ public
   end
 
   def load_filtered
+    @permissions = Patch.permissions
     @patch_updates = Patch.find :all
     kind = params[:value]
     unless kind == "all"
