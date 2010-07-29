@@ -1,4 +1,26 @@
 -------------------------------------------------------------------
+Thu Jul 29 08:54:24 UTC 2010 - jreidinger@novell.com
+
+- css code clean up (vgorobets)
+- several IE8 fixes (vgorobets)
+- fixed "don't put space before argument parentheses" (mvidner)
+- added run validation immediately (onchage)
+- fixed floating/padding issue between input fields (vgorobets)
+- added separately css file for IE fixes (vgorobets)
+- changed text shadow for action links (vgorobets)
+- adaptation to background patch install
+- fixed wrong path to the css compresor script cssmin.rb (vgorobets)
+- exclude ie_fixes.css from the liste of the files to be minified
+  to prevent it from using in other browsers (vgorobets)
+- do not minify the ie_fixes.css because of possible use of IE hacks,
+  which could be broken by css compressing (vgorobets)
+- added task for CSS compression (vgorobets)
+- set JSMIN constant in environment.rb to false if you want to use
+  uncompressed css/javascripts files (vgorobets)
+- new wait animation for update module (vgorobets)
+- 0.2.0
+
+-------------------------------------------------------------------
 Tue Jul 20 08:51:54 CEST 2010 - mvidner@suse.cz
 
 - copy more useful information to clipboard in bug reporting page
