@@ -45,6 +45,7 @@
 				"yast.helpers",
 				"digitalspaghetti.password.js",
 				"/javascripts/browser_fixes" %>
+    <%= javascript_include_tag "jquery.idletimer", "jquery.idletimeout" %>
     
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
     <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
@@ -56,6 +57,48 @@
   <% end %>
 
   <title><%= _("WebYaST") %></title>
+
+  <script type="text/javascript">
+    var logout_path =  window.location.protocol + "//" + window.location.host + "/logout";
+    var loged_out = String(window.location.protocol + "//" + window.location.host + "/session/");
+    var current_location = String(window.location);
+    
+    $(function(){
+      var today = Math.round(new Date().getTime() / 1000);
+      var expiration_date_sec ="<% if session[:expires] !=nil %><%=session[:expires].to_time.to_i %><%end%>";
+      var expires_in = expiration_date_sec-today;
+
+//       uncomment for test
+//       expires_in  = 95;
+
+      $("#idletimeout").everyTime(1000,function(i) {
+	if(expires_in-i == 90) {
+	  $(this).stopTime();
+	  if(current_location.match(loged_out) ==null) {
+	      $.idleTimeout('#idletimeout', '#idletimeout a', {
+		      idleAfter: 30,
+		      pollingInterval: 2,
+		      onTimeout: function(){
+			    $(this).slideUp();
+			    location = logout_path; // redirect to logout page and stop all counters
+			    $(document).unbind('.idleTimer');
+			    $(document).unbind('.idleTimeout');
+		      },
+		      onIdle: function(){
+			      $(this).slideDown(); // show the warning bar
+		      },
+		      onCountdown: function(counter){
+			      $(this).find("span").html(counter); // update the counter
+		      }
+	      });
+	  }
+      }
+      });
+    });
+    
+  </script>
+
+
 </head>
   <body id="shell" onload="">
     <div id='browserWarning' style="display: none">
@@ -73,7 +116,7 @@
     </noscript>
   
     <div id="header">
-		<h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= _("My Appliance") %></h1>
+      <h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= _("My Appliance") %></h1>
       <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :alt =>"webyast" ),"/")  %>
 
       <div id="login-wrapper">
@@ -96,13 +139,18 @@
         <% end -%>
       </div>
     </div>
+
+    <div id="idletimeout">
+      <img width="130" height="42" src="/images/webyast-logo.png?1280237271" alt="webyast">
+      <%= _("You will be logged off in")-%><span><!-- countdown place holder --></span><%= _("seconds due to inactivity. ")-%>
+    </div>
+
     <div id="content">
-      
       <!-- here both flash and dynamic notifications should be added -->
       <div id="flash-messages" class="alpha">
         <div id="language_selection"></div>
         <!-- show the flash messages -->
-      
+
         <% flash.each do |flash_type, message| %>
           <%
             flash_icon = case flash_type

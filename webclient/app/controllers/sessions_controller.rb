@@ -75,10 +75,10 @@ class SessionsController < ApplicationController
     else
       # otherwise, we have all the data, try to login
       begin
-        self.current_account, auth_token = Account.authenticate(params[:login], 
+        self.current_account, auth_token, expires_date = Account.authenticate(params[:login], 
                                                             params[:password],
                                                             host.url)
-        # error handling when login to the service is pretty
+	# error handling when login to the service is pretty
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
         redirect_to :controller => "hosts", :action => "index", :hostid => host.id, :error => "econnrefused"
@@ -100,6 +100,7 @@ class SessionsController < ApplicationController
         session[:auth_token] = auth_token
         session[:user] = params[:login]
         session[:host] = host.id
+	session[:expires] = expires_date
 
         #reset resource cache after login to refresh permissions and modules (bnc#621579)
         ResourceCache.instance.reset_cache params[:login], host.url
@@ -149,7 +150,7 @@ class SessionsController < ApplicationController
     flash.replace(flash_backup)
 
     flash[:notice] = _("You have been logged out.") unless flash[:notice]
-#FIXME redirect to hosts if we are not on appliance
+    #FIXME redirect to hosts if we are not on appliance
     redirect_to :controller => "session", :action => "new", :hostid => "localhost"
   end
 end

@@ -61,14 +61,15 @@ class Account < ActiveRecord::Base
     # set default site url for all YaST service based resources
     YaST::ServiceResource::Session.site = uri
     YaST::ServiceResource::Session.login = login
-    
+        
     YaST::ServiceResource::Base.password = ""
     YaST::ServiceResource::Session.auth_token = ""
-
+    
     # the above will obsolete this
     YaST::ServiceResource::Base.site = uri
     # create a login resource
     ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
+
     # this would log the password!
     # logger.debug ret.inspect
     if (ret and ret.attributes["login"] == "granted")
@@ -84,7 +85,8 @@ class Account < ActiveRecord::Base
       Rails.logger.info "Authenticate Successful for rest-server ID #{ret.attributes["auth_token"].attributes["value"].inspect}"
       YaST::ServiceResource::Base.password = ret.attributes["auth_token"].attributes["value"]
       YaST::ServiceResource::Session.auth_token = ret.attributes["auth_token"].attributes["value"]
-      return acc, ret.attributes["auth_token"].attributes["value"]
+
+      return acc, ret.attributes["auth_token"].attributes["value"], ret.attributes["auth_token"].attributes["expires"]
     elsif (ret && ret.attributes["login"] == "blocked")
       raise BlockedService.new(ret.attributes["remain"])
     else

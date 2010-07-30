@@ -33,7 +33,8 @@ end
 namespace :js do
   javascripts = ["jquery-1.4.2.js", "jquery.query.js", "jquery.timers.js", "jquery.ui.custom.js", "jquery.validate.js", "validation.js",
 	           "jqbrowser-compressed.js", "jquery.badbrowser.js", "jquery.jqModal.js", "jquery.ui.core.js", "jquery.ui.tabs.js", 
-	           "yast.widgets.js", "yast.helpers.js", "browser_fixes.js", "jrails.js", "jquery.quicksearch.js", "digitalspaghetti.password.js", "script.js"]  
+	           "yast.widgets.js", "yast.helpers.js", "browser_fixes.js", "jrails.js", "jquery.quicksearch.js", "digitalspaghetti.password.js", 
+		   "script.js", "jquery.idletimer.js", "jquery.idletimeout.js"]  
 
   Dir.chdir(JAVASCRIPTS_PATH) do
     javascripts.map! {|f| File.join(Dir.pwd, f)}
