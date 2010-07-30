@@ -1,4 +1,4 @@
-
+/* source: generated from other javascripts */
 if(!Array.prototype.map)
 {Array.prototype.map=function(fun)
 {var len=this.length;if(typeof fun!="function")
