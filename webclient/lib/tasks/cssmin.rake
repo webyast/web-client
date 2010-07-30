@@ -22,6 +22,7 @@ require "cssmin"
 #require File.join(File.dirname(__FILE__), "..", "cssmin.rb")
 
 CSS_PATH = File.join(RAILS_ROOT, '/public/stylesheets')
+OUTPUT_FILE = 'css-min.css'
 
 def min(list, output)
   tmp = Tempfile.open('all')
@@ -30,20 +31,19 @@ def min(list, output)
 end
 
 namespace :css do
-  Dir.chdir(CSS_PATH) do
-    files = Dir.glob("*.css")
-    files.map! {|f| File.join(Dir.pwd, f)}
-
-    file 'css-min.css' => files do | f |
-      output = File.join(Dir.pwd, 'public/stylesheets/', f.name)
-      #do not compress already minified file
-      f.prerequisites.delete(output)
-      min(f.prerequisites, output)
-    end
-  end
 
   desc 'Minimize CSS files'
-  task :"min" => ['css-min.css']  do
+  task :"min" do
+    Dir.chdir(CSS_PATH) do
+      files = Dir.glob("*.css")
+      files.map! {|f| File.join(Dir.pwd, f)}
+
+      output = File.join(Dir.pwd, OUTPUT_FILE)
+      #do not compress already minified file
+      files.delete(output)
+      puts files.sort.join ",\n"
+      min(files.sort, output)
+    end
     puts "\nPath to output file: #{CSS_PATH}"
     puts "\n####################: #{File.join(File.dirname(__FILE__), "..", "cssmin.rb")}"
   end
