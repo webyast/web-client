@@ -5,7 +5,7 @@
 namespace :js do
   javascripts = ['select_dialog.js', 'excanvas.js']
   
-  Dir.chdir(File.join(RailsParent.parent, 'public', 'javascripts')) do    
+  Dir.chdir(File.join(RAILS_ROOT, 'public', 'javascripts')) do    
     javascripts.map! {|f| File.join(Dir.pwd, f)}
       #users.js stored in the plugin folder!!!
       javascripts.push(File.join(File.dirname(__FILE__), '/../public/javascripts/users.js'))
