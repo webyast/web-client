@@ -41,7 +41,7 @@
     -webkit-border-radius:3px;
   }
 
-  select { border: 1px solid #999; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+  select { border: 1px solid #999; -moz-border-radius: 3px; -webkit-border-radius: 3px; background-color:#fff; }
   input[type="password"] { border: 1px solid #999999; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 
   input[type="text"], input[type="password"], select { padding: 3px;}
@@ -71,7 +71,7 @@
     background: url("../images/gradientx60.png") repeat-x #2966FF; 
   }
 
-  intput[disabled] { background-color:#eee; }
+  input[disabled] { background-color:#eee; }
   input[type="submit"][disabled], input[type="button"][disabled], button[type="submit"][disabled], a.button[disabled] {
     color: #aaa;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -350,7 +350,8 @@
   #home a {text-decoration:none; border:none;}
   #home_image {width:18px; height:18px; }
 
-  .action_links {float:left;
+  .action_links {
+    float:left;
     margin-left:5px; 
     border:1px solid black;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);
@@ -360,12 +361,16 @@
     -moz-border-radius: 3px;
     -khtml-border-radius: 3px;
     -webkit-border-radius:3px;
+    
     background:url('../images/gradientx40.png') repeat-x #eee;
   }
 
   .action_links label { float:left; margin:0px 5px; color:#999;}
-  .action_links a {float:left; margin-top:2px; vertical-align:middle; border:none;}
-  .action_links a:hover {color:#1E90FF;}
+  .action_links a {float:left; margin-top:2px; vertical-align:middle; border:0px; }
+  .action_links a:hover {color:#1E90FF; border:0px;}
 
   .icons {float:left; width:16px; height:16px; margin-right:5px; vertical-align:text-bottom;}
-  
+
+/* FIREWALL */
+  #firewall label { float:none; display:inline;}
+  .ui-accordion .ui-accordion-header .ui-icon { position:inherit; margin-top:0px; float:left;}

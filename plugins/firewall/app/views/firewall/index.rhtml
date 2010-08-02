@@ -94,15 +94,16 @@
     <% end %>
   </div>
 
-  <fieldset>
+  <fieldset id="firewall">
       <legend><%= _("General settings") %></legend>
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
+      <label for="use_firewall"><%=_("Use Firewall")%></label>
       <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
           <%=  "checked=\"checked\"" if @firewall.use_firewall %>
           <%=  "disabled=\"disabled\"" if disabled %> 
           />
-      <label for="use_firewall"><%=_("Use Firewall")%></label>
+      
       <% #don't use check_box helper as it generate also hidden opposite value
       %>
   </fieldset>
