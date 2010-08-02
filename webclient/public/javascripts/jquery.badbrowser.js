@@ -27,7 +27,7 @@ function badBrowser(){
     {
       //chrome detected, check major version
       var version = /Chrome\/([0-9]+)/.exec(navigator.userAgent)[1];
-      if (version.parseInt() >= 4)
+      if (parseInt(version) >= 4)
         return false;
     }
     return true;
