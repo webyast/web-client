@@ -31,23 +31,23 @@
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
-    <%= javascript_include_tag 	"jquery-1.4.2",
+
+<!--   #TODO: remove from javascripts directory after testing: "jquery.ui.tabs.js", "jquery.jqModal.js", "jquery.ui.core.js", jquery.example.js, "jrails.js", -->
+  <%= javascript_include_tag 	"jquery-1.4.2",
 				"jquery.query", #FIXME write reason
 				"jquery.timers",
 				"jquery.ui.custom",
 				"jquery.validate",
+				"validation.js",
 				"jqbrowser-compressed", #our browser detection extension
 				"jquery.badbrowser", #original browser detection plugin
-				"jquery.jqModal",
-				"jquery.ui.core",
-				"jquery.ui.tabs", #FIXME looks like already include in ui.core
 				"yast.widgets",
 				"yast.helpers",
-				"digitalspaghetti.password.js",
-				"validation.js",
-				"/javascripts/browser_fixes" %>
-    <%= javascript_include_tag "jquery.idletimer", "jquery.idletimeout" %>
-    
+				"digitalspaghetti.password",
+				"browser_fixes",
+				"jquery.idletimer",
+				"jquery.idletimeout" %>
+        
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
     <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
 
