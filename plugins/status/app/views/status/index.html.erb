@@ -69,13 +69,22 @@
          <%= group.headline %>
       </div>
       <div style="display: none;">
-          <% group.single_graphs.each do |single_graph| %>
-            <p>     
-              <h3><%= single_graph.headline %></h3>
-            </p>
-            <div id='<%= graph_id(group.id, single_graph.headline) %>'>
-              <img alt="monitoring" src='/images/working.gif' height="32px" width="32px" />
-            </div>
+	  <% group.single_graphs.each_with_index do |single_graph, index| %>
+	    <% if index%2 == 0%>
+	      <div style="float:left; width:50%">
+		<h3><%= single_graph.headline %></h3>
+		<div id='<%= graph_id(group.id, single_graph.headline) %>'>
+		  <img alt="monitoring" src='/images/working.gif' height="32px" width="32px" />
+		</div>
+	      </div>
+	    <%else%>
+	      <div style="float:right; width:50%">
+		<h3><%= single_graph.headline %></h3>
+		<div id='<%= graph_id(group.id, single_graph.headline) %>'>
+		  <img alt="monitoring" src='/images/working.gif' height="32px" width="32px" />
+		</div>
+	      </div>
+	    <%end%>
           <% end %>
       </div>
     </div>
