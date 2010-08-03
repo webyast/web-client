@@ -117,7 +117,14 @@
     </noscript>
   
     <div id="header">
-      <h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= _("My Appliance") %></h1>
+      <%
+      appliance_label	= ControlPanelConfig.read 'appliance_label', _("My Appliance")
+      appliance_label	= appliance_label.strip
+      if appliance_label =~ /^_\(\"/ && appliance_label =~ /\"\)$/
+        appliance_label = _(appliance_label[3..appliance_label.length-3]) #try to translate it
+      end
+      %>
+      <h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= appliance_label %></h1>
       <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :alt =>"webyast" ),"/")  %>
 
       <div id="login-wrapper">
