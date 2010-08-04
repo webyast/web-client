@@ -86,18 +86,28 @@
   </div>
 <% end %>
 
-
 <h3><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Configuration") %></h3>
 <div id="favorites" class="plugin-content">
   <div class="overview">
-    <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each do |data| %>
-      <% link_to(data['url'], {:class => "controlpanel-shortcut"}) do %>
-        <%= image_tag(data['icon']) %><br />
-        <%= data['title'] %>
+    <% if @shortcuts.empty? %>
+      <!-- image from: http://www.clker.com/disclaimer.html under creative common public domain license -->
+      <h4 id="warning_message_text">
+	<%= image_tag("/images/warning-42.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
+	<%= _("WebYaST modules are not installed on your system!") %>
+      </h4>
+    <% elsif  !@shortcuts.empty? && @count == @shortcuts.count %>
+      <h4 id="warning_message_text">
+	<%= image_tag("/images/warning-42.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
+	<%= _("You have no permissions to see or change the modules, please contact the administrator to set up permissions first!") %>
+      </h4>
+    <% else %>
+      <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
+	<% link_to(data['url'], {:class => "controlpanel-shortcut"}) do %>
+	  <%= image_tag(data['icon']) %><br />
+	  <%= data['title'] %>
+	<% end %>
       <% end %>
     <% end %>
     <div style="clear:both;"></div>
-  </div>
-</div>
-
-</div>
+  </div><!--overview-->
+</div><!--favorites-->

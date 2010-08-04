@@ -31,6 +31,7 @@ class ControlpanelController < ApplicationController
   def index
     return false if need_redirect
     @shortcuts = shortcuts_data
+    @count = getNumberPermittedModules(@shortcuts)
   end
 
   def show_all
@@ -46,6 +47,18 @@ class ControlpanelController < ApplicationController
     end
   end
 
+  def getNumberPermittedModules(shortcuts)
+    count = 0
+    unless shortcuts.empty? 
+      shortcuts.values.each do |data|
+	if data['disabled'] != false
+	  count += 1
+	end
+      end
+    end 
+    return count
+  end 
+  
   def nextstep
     bs = Basesystem.new.load_from_session(session)
     unless params[:done].blank?
