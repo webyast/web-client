@@ -47,6 +47,26 @@ class UsersController < ApplicationController
     end
   end
 
+  # Try to find Roles
+  # when no succeed, just return empty list
+  # because Roles are no strictly required
+  # see bnc#628223
+  def load_roles
+    roles=[]
+    begin
+     roles = Role.find :all
+    rescue Exception => e
+     match = /^Interface ([[:alpha:].]*) missing/.match e.to_s
+     if match || e.class==NameError
+      puts "Couldn't inititalize Role object with error: ", e
+     else
+      raise
+     end
+    end
+    return roles
+  end
+
+
   public
   def initialize
   end
@@ -54,10 +74,11 @@ class UsersController < ApplicationController
   def save_roles (userid,roles_string)
    #FIXME: not very unique permission names
 #   if @permissions[:modify]==true && @permissions[:assign]==true
-    if defined?(Role) == 'constant' && Role.class == Class
+
+    all_roles = load_roles
      roles = roles_string.split(",")
      my_roles=[]
-     Role.find(:all).each do |role|
+     all_roles.each do |role|
       role.id=role.name
       if role.users.include?(userid)
        if roles.include?(role.name)
@@ -77,9 +98,7 @@ class UsersController < ApplicationController
       r.id=r.name
       r.users << userid
       r.save
-     end
     end
-#   end
   end
 
   # GET /users
@@ -93,18 +112,18 @@ class UsersController < ApplicationController
         user.user_password2 = user.user_password
         user.uid_number	= user.uid_number
         user.grp_string = user.grouplist.collect{|g| g.cn}.join(",")
-#        user.roles_string = ""
         my_roles=[]
         all_roles=[]
-        if defined?(Role) == 'constant' && Role.class == Class
-         @roles = Role.find :all
-         @roles.each do |role|
-          if role.users.include?(user.id)
-           my_roles.push(role.name)
-          end
-          all_roles.push(role.name)
+
+#FIXME: description
+	@roles=load_roles
+        @roles.each do |role|
+         if role.users.include?(user.id)
+          my_roles.push(role.name)
          end
+         all_roles.push(role.name)
         end
+
         user.roles_string = my_roles.join(",")
         @all_roles_string = all_roles.join(",")
 	@groups = []
@@ -141,13 +160,11 @@ class UsersController < ApplicationController
     )
         @all_roles_string = ""
         all_roles=[]
-        if defined?(Role) == 'constant' && Role.class == Class
-         @roles = Role.find :all
+         @roles = load_roles
          my_roles=[]
          @roles.each do |role|
           all_roles.push(role.name)
          end
-        end
         @all_roles_string = all_roles.join(",")
     @groups = []
     if @permissions[:groupsget] == true
@@ -238,7 +255,9 @@ class UsersController < ApplicationController
     response = true
     begin
         response = @user.save
-        save_roles(@user.id,dummy.roles_string)
+	if dummy.roles_string!=nil
+         save_roles(@user.id,dummy.roles_string)
+        end
         rescue ActiveResource::ClientError => e
           flash[:error] = YaST::ServiceResource.error(e)
           response = false
@@ -250,6 +269,7 @@ class UsersController < ApplicationController
       render :action => "new"
     end
   end
+
   # PUT /users/1.xml
   def update
     return unless client_permissions
@@ -274,7 +294,9 @@ class UsersController < ApplicationController
     @user.login_shell = params["user"]["login_shell"]
     @user.user_password = params["user"]["user_password"]
     @user.type = "local"
-    save_roles(@user.id,params["user"]["roles_string"])
+    if params["user"]["roles_string"]!=nil
+     save_roles(@user.id,params["user"]["roles_string"])
+    end
 
     response = true
     begin

@@ -100,4 +100,40 @@ class UsersControllerTest < ActionController::TestCase
     assert_false flash.empty?
   end  
 
+#  def test_users_index_no_roles
+#    response_index  = fixture "users/users.xml"
+#    response_groups  = fixture "groups/groups.xml"
+#    ActiveResource::HttpMock.respond_to do |mock|
+#      header = ActiveResource::HttpMock.authentication_header
+#      mock.resources  :"org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups" , :"org.opensuse.yast.roles" => nil #"/roles"
+#      mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
+#      mock.get   "/users.xml", header, response_index, 200
+#      mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => true }
+#      mock.get   "/groups.xml", header, response_groups, 200
+#      mock.get   "/roles.xml", header, "", 404
+#   end
+#   get :index
+#   assert_response :success
+#   assert_valid_markup
+#   assert assigns(:users)
+# end
+#
+# def test_update_user_no_roles
+#   response_tester = fixture "users/tester.xml"
+#   ActiveResource::HttpMock.respond_to do |mock|
+#     header = ActiveResource::HttpMock.authentication_header
+#     mock.resources  "org.opensuse.yast.modules.yapi.users" => "/users", :"org.opensuse.yast.modules.yapi.groups" => "/groups"
+#     mock.permissions "org.opensuse.yast.modules.yapi.users", { :read => true, :write => true }
+#     mock.get   "/users/tester.xml", header, response_tester, 200
+#     mock.put   "/users/tester.xml", header, nil, 200
+#     mock.permissions "org.opensuse.yast.modules.yapi.groups", { :groupsget => true }
+#   end
+#  post :update, {:user => { :id => "tester", :cn => "Tester Testerovic" }} 
+#   assert_response :redirect
+#   assert_valid_markup
+#   assert_redirected_to :action => :index
+#    assert_valid_markup
+#    assert_false flash.empty?
+#  end  
+
 end
