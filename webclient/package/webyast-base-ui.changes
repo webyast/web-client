@@ -1,4 +1,22 @@
 -------------------------------------------------------------------
+Wed Aug  4 13:52:07 UTC 2010 - vgorobets@novell.com
+
+- added rake js:base call to the spec file
+- Split branding files (.css, .png, .ico, ...) from webyast-client to separate webyast-branding-default package (bnc#586630)
+- Control panel should inform about missing modules (bnc#602340)
+- show graphs in a double row instead of single on if number of graphs is more than 1 
+(saved vertical space, raises readableness and prevent unnecessary scrolling)
+- added "min" directory task as prerequisites to rake js:base 
+- fixed Language selection looks resizable (bnc#605861)
+- fixed Automatically inform user about session time out bnc#558026 
+- Fixed Chrome/Chromium version detection.
+It broke the whole rest of base-min.js so quicksearch stopped working. (mzugec)
+- removed all minified javascipt files from git
+- fix generating of minified css (jreidinger)
+- 0.2.4
+
+
+-------------------------------------------------------------------
 Wed Aug  4 10:59:18 CEST 2010 - jsuchome@suse.cz
 
 - check display_status for displaying status 

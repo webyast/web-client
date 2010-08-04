@@ -14,6 +14,7 @@ Recommends:     WebYaST(org.opensuse.yast.modules.basesystem)
 Provides:       yast2-webclient = %{version}
 Obsoletes:      yast2-webclient < %{version}
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-certificate
+Requires: 	webyast-base-ui-branding-default
 PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 >= 2.3.4
 PreReq:         rubygem-gettext_rails
@@ -41,7 +42,7 @@ PreReq:         lighttpd > 1.4.20-2.29.1
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.2.3
+Version:        0.2.4
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -60,12 +61,6 @@ BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
 #
 
-%package testsuite
-Group:    Productivity/Networking/Web/Utilities
-Requires: %{name} = %{version}
-Requires: rubygem-mocha rubygem-test-unit tidy
-Summary:  Testsuite for webyast-base-ui package
-
 %description
 WebYaST - Provides core web client for WebYaST service.
 Without plugins has only very limited configuration options.
@@ -78,10 +73,26 @@ Authors:
     Klaus Kaempf <kkaempf@opensuse.org>
     Josef Reidinger <jreidinger@suse.cz>
 
+%package testsuite
+Group:    Productivity/Networking/Web/Utilities
+Requires: %{name} = %{version}
+Requires: rubygem-mocha rubygem-test-unit tidy
+Summary:  Testsuite for webyast-base-ui package
+
 %description testsuite
 This package contains complete testsuite for webyast-base-ui package.
 It is only needed for verifying the functionality of the package
 and it is not needed at runtime.
+
+%package branding-default
+Group:    Productivity/Networking/Web/Utilities
+Provides: webyast-branding
+Requires: %{name} = %{version}
+#Requires: rubygem-mocha rubygem-test-unit tidy
+Summary:  Branding package for webyast-base-ui package
+
+%description branding-default
+This package contains css, icons and images for webyast-base-ui package.
 
 %prep
 %setup -q -n www
@@ -89,6 +100,7 @@ and it is not needed at runtime.
 %build
 env LANG=en rake makemo
 rake sass:update
+rake js:base
 rm -r app/sass
 
 %check
@@ -193,8 +205,20 @@ chmod 600 db/*.sqlite* log/*
 %dir /etc/webyast/
 %config /etc/webyast/control_panel.yml
 
+### exclude css, icons and images 
+%exclude %{webyast_ui_dir}/public/stylesheets
+%exclude %{webyast_ui_dir}/public/icons
+%exclude %{webyast_ui_dir}/public/images
+
 %files testsuite
 %defattr(-,root,root)
 %{webyast_ui_dir}/test
+
+%files branding-default
+%defattr(-,root,root)
+### include css, icons and images 
+%{webyast_ui_dir}/public/stylesheets
+%{webyast_ui_dir}/public/icons
+%{webyast_ui_dir}/public/images
 
 %changelog
