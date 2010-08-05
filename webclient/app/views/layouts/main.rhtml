@@ -44,10 +44,11 @@
 				"yast.widgets",
 				"yast.helpers",
 				"digitalspaghetti.password",
-				"browser_fixes",
-				"jquery.idletimer",
-				"jquery.idletimeout" %>
-        
+				"browser_fixes"
+  %>
+
+<!--     <%= javascript_include_tag "jquery.idletimer", "jquery.idletimeout" %> -->
+       
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
     <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
 
@@ -59,7 +60,7 @@
 
   <title><%= _("WebYaST") %></title>
 
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
     var logout_path =  window.location.protocol + "//" + window.location.host + "/logout";
     var loged_out = String(window.location.protocol + "//" + window.location.host + "/session/");
     var current_location = String(window.location);
@@ -97,7 +98,7 @@
       });
     });
     
-  </script>
+  </script>-->
 
 
 </head>

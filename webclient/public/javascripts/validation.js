@@ -63,12 +63,14 @@ function validateDomainName(domain)
 	 });
 }
 
+// Search domains validation (bnc#607103) - accept several domain names separated through whitespace
+// new RegExp("^"+host+"$") replaced through -> new RegExp("^(" + host + ")(\\ "+ host +")*$");
 function validateDomainNameWithAndWithoutTLD(domain)
 {
-	 jQuery.validator.addMethod(domain, function(value, element) {
-		var regExp = new RegExp("^"+host+"$");
-		return this.optional(element) || regExp.test(value);
-	 });
+  jQuery.validator.addMethod(domain, function(value, element) {
+    var regExp = new RegExp("^(" + host + ")(\\ "+ host +")*$");
+    return this.optional(element) || regExp.test(value);
+  });
 }
 
 function validateDomainNameWithPortNumber(domain)

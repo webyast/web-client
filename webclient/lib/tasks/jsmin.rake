@@ -32,13 +32,12 @@ def minify(list, output)
 end
 
 #TODO: remove from javascripts directory after testing: "jquery.ui.tabs.js", "jquery.jqModal.js", "jquery.ui.core.js", jquery.example.js, "jrails.js", 
-
+# use of "jquery.idletimer.js", "jquery.idletimeout.js"] is not permitted because of missing license  
 namespace :js do
   directory MIN
   javascripts = ["jquery-1.4.2.js", "jquery.query.js", "jquery.timers.js", "jquery.ui.custom.js", "jquery.validate.js", "validation.js",
 	         "jqbrowser-compressed.js", "jquery.badbrowser.js", "yast.widgets.js", "yast.helpers.js",
-		 "browser_fixes.js", "jquery.quicksearch.js", "digitalspaghetti.password.js", "script.js", "jquery.idletimer.js", 
-		 "jquery.idletimeout.js"]  
+		 "browser_fixes.js", "jquery.quicksearch.js", "digitalspaghetti.password.js", "script.js"]
 
   Dir.chdir(JAVASCRIPTS_PATH) do
     javascripts.map! {|f| File.join(Dir.pwd, f)}
