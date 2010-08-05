@@ -19,22 +19,9 @@
 # you may find current contact information at www.novell.com
 -->
 <% disabled = ! @permissions[:accept] %>
-<% content_for :head do %>
-  <style>
-    .eula-text-area {
-      width: 45em;
-      height: 30em;
-      background-color: white;
-      overflow: auto;
-      border: 2px inset #CCC;
-      font-size: 1.1em;
-      white-space: pre;
-      font-family: courier, serif;
-    } 
-  </style>
-<% end %>
+
 <div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="eula module"/>
-<%=_("Licence Agreement")-%> - <%= @eula.name -%>
+  <%=_("Licence Agreement")-%> - <%= @eula.name -%>
 </div>
 
 <div class="plugin-content" id="eula">
@@ -43,9 +30,10 @@
             :html=> { :method => :put} 
            ) do |f|  -%>
 <fieldset>
-  <p>
-  <div class="eula-text-area"><%= @eula.text %></div>
-  </p>
+  <div class="eula-text-area">
+    <%= @eula.text.gsub(%r{^[\n\n$]}, '<p class="eula_paragraph">').gsub(%r{[\n]}, ' ')%>
+  </div>
+  
   <% if @eula.only_show %>
   <%=  hidden_field_tag :accepted, "true" %>
   <% else %>
