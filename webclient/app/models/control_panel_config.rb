@@ -30,8 +30,10 @@ class ControlPanelConfig
   #     used when the attribute is missing or when an error occurrs
   #     during reading/parsing the config file
   def self.read(attribute = nil, default_value = nil)
+    file	= '/etc/webyast/vendor/control_panel.yml'
+    file	= '/etc/webyast/control_panel.yml' unless File.exists? file
     begin
-      l = YAML::load_file '/etc/webyast/control_panel.yml'
+      l = YAML::load_file file
 
       # no required attribute, return complete config
       return l if attribute.nil?
@@ -45,7 +47,7 @@ class ControlPanelConfig
       Rails.logger.warn "Cannot read attribute '#{attribute}', using default: #{default_value}"
       return default_value
     rescue Exception => e
-      Rails.logger.error "Cannot read /etc/webyast/control_panel.yml: #{e}"
+      Rails.logger.error "Cannot read #{file}: #{e}"
       return default_value
     end
   end
