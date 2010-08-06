@@ -36,17 +36,14 @@
 
       if ($("#activedirectory_enabled:checked").length == 0) {
         $("#activedirectory_domain").attr("disabled","disabled");
-        $("#activedirectory_create_dirs").attr("disabled","disabled");
       };
 
       $("#activedirectory_enabled").click(function () {
 	if ($("#activedirectory_enabled:checked").length == 0) {
 	    $("#activedirectory_domain").attr("disabled","disabled");
-	    $("#activedirectory_create_dirs").attr("disabled","disabled");
 	}
 	else {
 	    $("#activedirectory_domain", "#activedirectoryForm").removeAttr("disabled");
-	    $("#activedirectory_create_dirs", "#activedirectoryForm").removeAttr("disabled");
 	}
       });
 
@@ -75,10 +72,6 @@
               <%= label_tag :activedirectory_domain, _("Active Directory Domain") %>
               <%= text_field :activedirectory, :domain, :disabled => disabled, :class => 'required'  %>
             </p>
-       	    <p>
-	      <%= check_box 'activedirectory', :create_dirs, {:disabled => disabled, :checked => @activedirectory.create_dirs}, true,false -%>
-	      <%= _("Create Home Directory on Login") %>
-	    </p>
 	</fieldset>
 	<% if @activedirectory.respond_to? :administrator %>
 	<fieldset>

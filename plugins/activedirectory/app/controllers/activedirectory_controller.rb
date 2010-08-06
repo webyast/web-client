@@ -49,7 +49,6 @@ class ActivedirectoryController < ApplicationController
 
   def update
     begin
-      params[:activedirectory][:create_dirs] = params[:activedirectory][:create_dirs] == "true"
       params[:activedirectory][:enabled] = params[:activedirectory][:enabled] == "true"
       @activedirectory = Activedirectory.new(params[:activedirectory])
       @activedirectory.save
@@ -68,7 +67,10 @@ class ActivedirectoryController < ApplicationController
 	@activedirectory.machine		= ""
 	render :index and return
       elsif error["error"] && error["error"]["type"] == "ACTIVEDIRECTORY_ERROR" && error["error"]["id"] == "join_error"
-	flash[:error] = _("Error while jooining Active Directory domain: %s") % error["error"]["message"]
+	flash[:error] = _("Error while joining Active Directory domain: %s") % error["error"]["message"]
+	render :index and return
+      elsif error["error"] && error["error"]["type"] == "ACTIVEDIRECTORY_ERROR" && error["error"]["id"] == "leave_error"
+	flash[:error] = _("Error while leaving Active Directory domain: %s") % error["error"]["message"]
 	render :index and return
       else
 	flash[:error] = _("Error while saving Active Directory client configuration.")
