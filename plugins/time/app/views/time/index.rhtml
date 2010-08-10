@@ -42,7 +42,11 @@
 
   <% javascript_tag do -%>
     $(document).ready( function() {
-    $("#date_date").datepicker( { dateFormat: 'dd/mm/yy'} );
+      $("#date_date").datepicker( { dateFormat: 'dd/mm/yy'} );
+
+      <!-- disable whole form on submit -->
+      var message = "<%= _("Please wait") -%>";
+      disableOnSubmit("timeSubmit", message);
     });
   <% end -%>
 
@@ -203,7 +207,7 @@
     <% end %>
   </fieldset>
   <div class="nav-buttons">
-    <%= form_send_buttons :disabled => disabled, :class => "button" %>
+    <%= form_send_buttons :id=>"timeSubmit", :disabled => disabled, :class => "button" %>
   </div>
   <% end %>
 </div>

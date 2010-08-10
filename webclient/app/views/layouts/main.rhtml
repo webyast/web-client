@@ -25,7 +25,7 @@
   <%= stylesheet_link_tag "ie/ie_fixes" %>
 <![endif]--> 
    
-  <% if JSMIN == false %>
+  <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
@@ -46,8 +46,7 @@
 				"digitalspaghetti.password",
 				"browser_fixes"
    %>
-   <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout" %>
-    
+    <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
        
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
     <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
@@ -66,6 +65,7 @@
       sessionTimeout(expirationDate);
     });
   </script>
+
 </head>
   <body id="shell" onload="">
     <div id='browserWarning' style="display: none">
