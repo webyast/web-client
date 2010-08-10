@@ -25,7 +25,7 @@
   <%= stylesheet_link_tag "ie/ie_fixes" %>
 <![endif]--> 
    
-  <% if JSMIN == true %>
+  <% if JSMIN == false %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
@@ -45,9 +45,9 @@
 				"yast.helpers",
 				"digitalspaghetti.password",
 				"browser_fixes"
-  %>
-
-<!--     <%= javascript_include_tag "jquery.idletimer", "jquery.idletimeout" %> -->
+   %>
+   <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout" %>
+    
        
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
     <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
@@ -59,48 +59,13 @@
   <% end %>
 
   <title><%= _("WebYaST") %></title>
-
-  <!--<script type="text/javascript">
-    var logout_path =  window.location.protocol + "//" + window.location.host + "/logout";
-    var loged_out = String(window.location.protocol + "//" + window.location.host + "/session/");
-    var current_location = String(window.location);
-    
-    $(function(){
-      var today = Math.round(new Date().getTime() / 1000);
-      var expiration_date_sec ="<% if session[:expires] !=nil %><%=session[:expires].to_time.to_i %><%end%>";
-      var expires_in = expiration_date_sec-today;
-
-//       uncomment for test
-//       expires_in  = 95;
-
-      $("#idletimeout").everyTime(1000,function(i) {
-	if(expires_in-i == 90) {
-	  $(this).stopTime();
-	  if(current_location.match(loged_out) ==null) {
-	      $.idleTimeout('#idletimeout', '#idletimeout a', {
-		      idleAfter: 30,
-		      pollingInterval: 2,
-		      onTimeout: function(){
-			    $(this).slideUp();
-			    location = logout_path; // redirect to logout page and stop all counters
-			    $(document).unbind('.idleTimer');
-			    $(document).unbind('.idleTimeout');
-		      },
-		      onIdle: function(){
-			      $(this).slideDown(); // show the warning bar
-		      },
-		      onCountdown: function(counter){
-			      $(this).find("span").html(counter); // update the counter
-		      }
-	      });
-	  }
-      }
-      });
+ 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var expirationDate ="<% if session[:expires] !=nil %><%=session[:expires].to_time.to_i %><%end%>"; 
+      sessionTimeout(expirationDate);
     });
-    
-  </script>-->
-
-
+  </script>
 </head>
   <body id="shell" onload="">
     <div id='browserWarning' style="display: none">
@@ -149,10 +114,15 @@
       </div>
     </div>
 
-    <div id="idletimeout">
-      <img width="130" height="42" src="/images/webyast-logo.png?1280237271" alt="webyast">
-      <%= _("You will be logged off in")-%><span><!-- countdown place holder --></span><%= _("seconds due to inactivity. ")-%>
+    <div id="timeoutMessage">
+      <img src="/images/webyast-logo.png?1280237271"  width="130" height="42" alt="webyast">
+      <%= _("You will be logged off in")-%><span id="counter"><!-- countdown place holder --></span><%= _("seconds due to session timeout. ")-%>
     </div>
+
+    <!-- CURRENTLY DISABLED SEE COMMENT IN jquerySessionTimeout -->
+    <!--<div id="progress-bar">
+	<div id="progress-level"></div>
+    </div>-->
 
     <div id="content">
       <!-- here both flash and dynamic notifications should be added -->
@@ -184,6 +154,9 @@
       <div id="progress" style="display: none;">
         <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
       </div>
+  
+      <!-- debug info session tieout -->
+      <!-- <fieldset class="example"><div class="timer_logpanel">dd</div></fieldset> -->
       
       <%= yield %>
     </div>
