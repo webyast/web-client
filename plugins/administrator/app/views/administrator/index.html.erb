@@ -26,7 +26,7 @@
   <% if JSMIN == false %>
     <%= javascript_include_tag "digitalspaghetti.password.js" %>
   <% end %>
-
+    
   <!-- Move to style.css -->
   <style type="text/css">
     label.error {
@@ -80,7 +80,9 @@
 
       $("#adminForm input").keypress(function(e){
 	if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-	    $("input#default_submit").click();
+	    if ($('#adminForm').valid()) {
+		$("input#default_submit").click();
+	    }
 	    return false;
 	}
       });
@@ -103,12 +105,11 @@
     <fieldset id="password">
         <legend><%= _("Password Setup for User 'root'") -%></legend>
 	<p><label><%=_("New Password")%></label>
-	<!-- onkeyup handler is a workaround for a jQuery bug - it watches only one field for changes in equalTo check -->
-	<%= f.password_field :password, :disabled => disabled, :onkeyup => "if (password_validation_enabled) $('#adminForm').validate().element('#administrator_confirm_password');" %>
+	<%= f.password_field :password, :disabled => disabled %>
 	</p>
 	<p>
 	<label><%=_("Confirm Password")%></label>
-	  <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required", :onkeyup => "$('#adminForm').validate().element('#administrator_confirm_password');" %>
+	  <%= f.password_field :confirm_password, :disabled => disabled, :equalTo => "#administrator_password", :class => "required" %>
 	  <div style="clear:both"></div>
         </p>
     <!-- this is a pre-generated placeholder for the validation messages
