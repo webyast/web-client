@@ -43,10 +43,6 @@
   <% javascript_tag do -%>
     $(document).ready( function() {
       $("#date_date").datepicker( { dateFormat: 'dd/mm/yy'} );
-
-      <!-- disable whole form on submit -->
-      var message = "<%= _("Please wait") -%>";
-      disableOnSubmit("timeSubmit", message);
     });
   <% end -%>
 
@@ -71,6 +67,11 @@
 				currenttime: true
 			 }
 		  },
+		  submitHandler: function(form) {
+			var message = "<%= _("Please wait") -%>";
+			disableFormOnSubmit(message);
+                        form.submit();
+                  },
 		  success: "valid",
 		  messages: {
 			 ntp_server: {
