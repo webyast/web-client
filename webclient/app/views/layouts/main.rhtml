@@ -61,11 +61,12 @@
  
   <script type="text/javascript">
     $(document).ready(function() {
-      var expirationDate ="<% if session[:expires] !=nil %><%=session[:expires].to_time.to_i %><%end%>"; 
-      sessionTimeout(expirationDate);
+        <% if session[:expires] !=nil && session[:expires].class == Time %>
+	  var expirationDate = "<%=session[:expires].to_time.to_i %>";
+	  sessionTimeout(expirationDate);
+	<%end%>
     });
   </script>
-
 </head>
   <body id="shell" onload="">
     <div id='browserWarning' style="display: none">
@@ -157,7 +158,6 @@
   
       <!-- debug info session tieout -->
       <!-- <fieldset class="example"><div class="timer_logpanel">dd</div></fieldset> -->
-      
       <%= yield %>
     </div>
 

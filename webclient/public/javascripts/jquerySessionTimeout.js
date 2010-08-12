@@ -36,9 +36,9 @@ function sessionTimeout(expirationDate) {
   //DEBUGGG
   //expiresIn  = 5 //just for test
   //var logContainer = jQuery("div.timer_logpanel");
-  //messageAppears = expiresIn-300; // show warning message 5 minutes before the session expires
-  
-  
+
+  expiresIn = expiresIn-300; // show warning message 5 minutes before the session expires
+    
   // check current location and start timer if user is logged on
   if(current_location.match(loged_out) == null) {
     //$("#progress-bar").css("display", "block"); 
