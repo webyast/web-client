@@ -32,6 +32,7 @@ class ControlPanelConfig
   def self.read(attribute = nil, default_value = nil)
     file	= '/etc/webyast/vendor/control_panel.yml'
     file	= '/etc/webyast/control_panel.yml' unless File.exists? file
+    Rails.logger.info "Reading config file: #{file}"
     begin
       l = YAML::load_file file
 
