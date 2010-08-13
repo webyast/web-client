@@ -24,13 +24,12 @@
 var myPic = new Image();
 myPic.src = "/images/wait.gif";
          
-function disableOnSubmit(id, message) {
+// use this function to block form        
+function blockForm(form, message) {
   $.blockUI.defaults.message = "<p><h1 id='message'>" + message + " ... <img id='waitAnimation' style='vertical-align:middle' src='/images/wait.gif'/></h1></p>";
   // fix - enable transparent overlay on FF/Linux 
   $.blockUI.defaults.applyPlatformOpacityRules = false;
-
-  $('#'+id).click(function() {
-    $.blockUI({
+    $('#'+form).block({
 	showOverlay: true, 
 	css: { 
 	  padding:        0, 
@@ -47,9 +46,9 @@ function disableOnSubmit(id, message) {
           '-moz-border-radius': '5px'
 	}
     });          
-  });
 }
 
+// use this function to block the whole UI window
 function disableFormOnSubmit(message) {
   $.blockUI.defaults.message = "<p><h1 id='message'>" + message + " ... <img id='waitAnimation' style='vertical-align:middle' src='/images/wait.gif'/></h1></p>";
   // fix - enable transparent overlay on FF/Linux 
