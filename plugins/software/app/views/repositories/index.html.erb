@@ -95,8 +95,34 @@
     function form_handler(sid) {
       if ($('#repositoryForm_' + sid).valid())
       {
-	disable_forms();
-	$('#progress_' + sid).show();
+	//define message for blockUI
+	var message = "<%= _("Please wait") -%>";
+	blockForm('repositoryForm_'+sid, message)
+
+/*	$.blockUI.defaults.message = "<p><h1 id='message'>" + message + " ... <img id='waitAnimation' style='vertical-align:middle' src='/images/wait.gif'/></h1></p>";
+	$.blockUI.defaults.applyPlatformOpacityRules = false;
+	$('#repositoryForm_' + sid).block({ 
+	  showOverlay: true, 
+	  css: { 
+	    padding:        0, 
+	    margin:         0, 
+	    width:          '30%', 
+	    top:            '40%', 
+	    left:           '35%', 
+	    textAlign:      'center', 
+	    color:          '#3399cc', 
+	    border:         '5px solid #aaa', 
+	    backgroundColor:'#fff', 
+	    cursor:         'wait',
+	    '-webkit-border-radius': '5px', 
+	    '-moz-border-radius': '5px'
+	  }
+	});*/
+
+// 	var message = "<%= _("Please wait") -%>";
+// 	disableFormOnSubmit(message);
+// 	disable_forms();
+// 	$('#progress_' + sid).show();
 	return true;
       }
       else
@@ -106,7 +132,7 @@
     }
 
     // onclick handler for "delete" link parent
-    function delete_handler(elem, progress)
+    function delete_handler(elem, progress, sid)
     {
       // if there are two childrens then the delete was confirmed
       // (rails create a dynanic form there)
@@ -115,8 +141,13 @@
 	elem.onclick="";
 	elem.childNodes[0].onclick="return false;";
 	elem.childNodes[0].href="";
-	disable_forms();
-	$(progress).show();
+	
+	//define message for blockUI
+	var message = "<%= _("Please wait") -%>";
+	blockForm('repositoryForm_'+sid, message);
+// 	disableFormOnSubmit(message);
+// 	disable_forms();
+// 	$(progress).show();
       }
     }
 
@@ -171,7 +202,7 @@
     <div id="softwarebar">
       <div id="home-container">
 	<div id="home">		
-	  <%=link_to image_tag("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
+	  <%=link_to image_tag ("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
 	</div>
       </div>
       <span style="clear:both; overflow:hidden;"></span>
@@ -185,14 +216,14 @@
       <div id="link-container">
 	  <% if !disabled %>
 	    <div id="action_links" class="action_links">	
-	      <%=link_to image_tag("/icons/yast-online_update.png", :class=>"icons") +  (_("Add New Repository") ), {:action => 'add'}, :onclick=>"$('#progress').show()" %>
+	      <%=link_to image_tag ("/icons/yast-online_update.png", :class=>"icons") +  (_("Add New Repository") ), {:action => 'add'}, :onclick=>"$('#progress').show()" %>
 	    </div>
 	  <% end %>
       </div>
       <div id="filter-container">
 	<label for="filter">
 	  <%=  _("Filter repositories") %>
-	  <%=image_tag("/images/filter.png", :style=>"vertical-align:text-top; margin-top:2px; margin-right:3px;width:16px; height:14px;")%>
+	  <%=image_tag ("/images/filter.png", :style=>"vertical-align:text-top; margin-top:2px; margin-right:3px;width:16px; height:14px;")%>
 	</label>
 	<%= select_tag "filter", options_for_select([
 	  [ _("All"), "all"],
@@ -220,6 +251,7 @@
 	    </span>
 	    <span style="float: right; margin-right: 5em"><%= prio_summary r.priority -%></span>
 	  </div>
+<!-- 	'<%= _('Please wait') -%>' -->
 	  <div class='repository-content' style="display:none">
 	      <% form_for(:repository, r, :url => { :action => 'update', :id => r.id },
 		:html => { :method => :put, :id => 'repositoryForm_' + sid, :onsubmit => "form_handler('#{sid}')" }
@@ -267,7 +299,7 @@
 		  <% if !disabled -%>
 		  <div id="progress_<%= sid -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
 		    <%= submit_tag _("Save") %>
-		    <span onclick="delete_handler(this, '#progress_<%= sid -%>');"><%= link_to _("Delete"),
+		    <span onclick="delete_handler(this, '#progress_<%= sid -%>', '<%= sid -%>')"><%= link_to _("Delete"),
 			    {:action => 'delete', :id => r.id},
 			    {:confirm => _("Really delete repository '%s'?") % h(r.name), :method => :delete, :class => :button} %></span>
 		  <% end -%>

@@ -66,7 +66,12 @@
    // validate the form
 	$("#repositoryForm").validate({
 	  onkeyup: function(element) { this.element(element); },
-	  success: "valid"	  
+	  success: "valid",
+	  submitHandler: function(form) {
+	    var message = "<%= _("Please wait") -%>";
+	    disableFormOnSubmit(message);
+	    form.submit();
+	  }
 	});
 
 	// set custom translatable messages
