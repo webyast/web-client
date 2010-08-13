@@ -119,7 +119,17 @@
 
   <div class="nav-buttons">
     <div id="progress_" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-    <%= submit_tag _("Save"), :onclick=>"return $('#form_').valid();" %>
+    <% message = _('Please wait')%>
+    <%= submit_tag _("Save"), 
+    :onclick=>"return $('#form_').validate({
+      submitHandler: function(form) {
+	var message = '#{message}'; 
+	disableFormOnSubmit(message); form.submit();
+      }
+    });" %>
+
+    
+
     <%= form_str_spacer %>
 	 <%= form_cancel_button :action => :index %>
   </div>

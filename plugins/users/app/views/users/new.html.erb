@@ -131,8 +131,13 @@ function def_group_validation(which){ return true; }
     select_default_group_open = select_default_group_dialog();
     select_roles_open = select_roles_dialog();
 
-
-   $("#form_").validate();
+// TODO: double validation? ask mzugec before remove it (fix for bnc#600765)
+// if it is a fix, then the second validation with rules will be never triggered
+//    $("#form_").validate({ 
+//       submitHandler: function(form) {
+//        alert("call1");
+//       }
+//    });
 
 // make the error message translatable - override the default messsage
    $.extend($.validator.messages, {
@@ -146,7 +151,13 @@ function def_group_validation(which){ return true; }
       user_password2: {
         equalTo: "#user_password"
       }
+    },
+    submitHandler: function(form) {
+      var message = "<%= _("Please wait") -%>";
+      disableFormOnSubmit(message);
+      form.submit();
     }
+    
    });
 
    $("#user_user_password").pstrength({

@@ -1,4 +1,4 @@
-/* Source: generated from other javascripts */
+
 if(!Array.prototype.map)
 {Array.prototype.map=function(fun)
 {var len=this.length;if(typeof fun!="function")
@@ -93,11 +93,11 @@ var p=DOMException_.prototype=new Error;p.INDEX_SIZE_ERR=1;p.DOMSTRING_SIZE_ERR=
 function _trim(word){return word.replace(/^\s*|\s*$/g,'');}
 function _getElementsByClassName(node,classname){if(!node)node=document.getElementsByTagName("body")[0];var a=[];var re=new RegExp('\\b'+classname+'\\b');var els=node.getElementsByTagName("*");for(var i=0,j=els.length;i<j;i++)
 if(re.test(els[i].className))a.push(els[i]);return a;}
-function form_handler(sid){if($('#form_'+sid).valid())
-{disable_forms();$('#progress_'+sid).show();return true;}
+function form_handler(sid,message){if($('#form_'+sid).valid())
+{return true;}
 else
 {return false;}}
-function delete_handler(which,progress){if(which.childElementCount==2&&which.children[0].firstChild.textContent=="Delete"){which.childNodes[0].onclick="return false;";which.childNodes[0].href="";disable_forms();$(progress).show();}}
+function delete_handler(which,progress,message){if(which.childElementCount==2&&which.children[0].firstChild.textContent=="Delete"){which.childNodes[0].onclick="return false;";which.childNodes[0].href="";disableFormOnSubmit(message);}}
 function members_validation(which){var mygroups=[];if(_trim(which.value).length>0)mygroups=which.value.split(",");var allgroups=$("#all_users_string")[0].value.split(",");errmsg="";for(i=0;i<mygroups.length;i++){var found=false;for(a=0;a<allgroups.length;a++){if(allgroups[a]==_trim(mygroups[i]))found=true;}
 if(!found){errmsg=mygroups[i]+" "+"is not valid user!";}}
 _getElementsByClassName(which.parentNode.parentNode,'error')[0].innerHTML=errmsg;_getElementsByClassName(which.parentNode.parentNode,'error')[0].style.display=(errmsg.length==0)?"none":"block";return(errmsg.length==0);}

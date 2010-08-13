@@ -37,11 +37,13 @@ function _getElementsByClassName(node, classname)  {
 
 
  // onsubmit handler
- function form_handler(sid) {
+ function form_handler(sid, message) {
    if ($('#form_' + sid).valid())
    {
-     disable_forms();
-     $('#progress_' + sid).show();
+//      disable_forms();
+//      $('#progress_' + sid).show();
+//      blockForm('form_'+sid, message);
+     
      return true;
    }
    else
@@ -51,12 +53,12 @@ function _getElementsByClassName(node, classname)  {
  }
 
 // delete button handler
-function delete_handler(which, progress){
+function delete_handler(which, progress, message){
  if (which.childElementCount == 2 && which.children[0].firstChild.textContent == "Delete"){
   which.childNodes[0].onclick="return false;";
   which.childNodes[0].href="";
-  disable_forms();
-  $(progress).show();
+  
+  disableFormOnSubmit(message);
  }
 }
 

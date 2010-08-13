@@ -119,7 +119,8 @@
   };
 
   $(document).ready(function(){
-
+    var message = "<%= _("Please wait") -%>";
+    
     select_groups_open = select_groups_dialog();
     select_default_group_open = select_default_group_dialog();
     select_roles_open = select_roles_dialog();
@@ -132,7 +133,8 @@
 
  for(var i=0;i<$('.edit_user').length;i++){
   var id=$('.edit_user')[i].id;
-   $("#"+id).validate()
+<!-- TODO: double validation? ask mzugec before remove it (fix for bnc#600765)-->
+<!--    $("#"+id).validate() -->
 
    $("#"+id).validate({
     rules: {
@@ -140,6 +142,11 @@
       user_password2: {
         equalTo: "#user_password"
       }
+    },
+    submitHandler: function(form) {
+      var message = "<%= _("Please wait") -%>";
+      disableFormOnSubmit(message);
+      form.submit();
     }
    });
 
