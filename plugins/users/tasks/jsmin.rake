@@ -19,6 +19,16 @@
 # you may find current contact information at www.novell.com
 #++
 
+require "tempfile"
+JSCOMPRESSOR = File.join(RAILS_ROOT, '/script/javascript/jsmin.rb')
+
+def minify(list, output)
+   tmp = Tempfile.open('all')
+   list.each {|file| open(file) {|f| tmp.write(f.read) } }
+   tmp.rewind 
+   sh "ruby #{JSCOMPRESSOR} < #{tmp.path} > #{output}"
+end
+
 namespace :js do
   javascripts = ['select_dialog.js', 'excanvas.js']
   
@@ -33,8 +43,11 @@ namespace :js do
     end
   end
 
+  puts "defining task user"
   desc "Minimize javascript source files for production environment"
   task :"users" => ['users-min.js']  do
      puts "Done"
   end
 end
+
+task :default => [ :"js:users" ]
