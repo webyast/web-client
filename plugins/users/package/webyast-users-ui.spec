@@ -19,7 +19,7 @@ PreReq:         webyast-users-ws >= 0.1.6
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.2.2
+Version:        0.2.3
 Release:        0
 Summary:        WebYaST - users management UI
 Source:         www.tar.bz2
@@ -59,6 +59,7 @@ and it is not needed at runtime.
 rm -rf doc
 export RAILS_PARENT=/srv/www/yast
 env LANG=en rake makemo
+rake js:users
 
 %check
 %webyast_ui_check
