@@ -136,7 +136,17 @@
         e.preventDefault();
         $("#create_role_dialog").dialog('open');
       });
+
+      // disable whole form on submit
+      $("#roles_submit_button").click( function () {
+	var message = "<%= _("Please wait") -%>";
+	disableFormOnSubmit(message);
+      });
     });
+
+    
+    
+    
   <% end %>
 
 <style>
@@ -239,7 +249,7 @@
       </fieldset>
     </div>
     <div class="nav-buttons">
-      <%= form_next_button %>
+      <%= form_next_button (:id=>'roles_submit_button') %>
       <%= form_str_spacer %>
       <%= form_back_button %>
     </div>
