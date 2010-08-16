@@ -167,6 +167,11 @@
 				searchdomains: <%= jss _("Enter a valid domain name") -%> 
 			 }
 		  },
+		  submitHandler: function(form) {
+			var message = "<%= _("Please wait") -%>";
+			disableFormOnSubmit(message);
+                        form.submit();
+                  },
 		  success: "valid"  
 		});
 		
