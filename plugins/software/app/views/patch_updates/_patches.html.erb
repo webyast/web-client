@@ -32,6 +32,9 @@ _("One of the patches seems to update WebYaST itself.
 You may need to reload the page after applying the patch.") -%></p>
 <% end %>
 
+<% if @patch_updates.empty? %>
+  <h4 style="margin:4px 0px 0px 0px; padding:0px; text-shadow: 0pt -1px 0pt rgba(0, 0, 0, 0.2), 0pt 1px 0pt rgba(250, 250, 250, 0.9);" ><%= _("No patches available") -%></h4>
+<% else %>
 <table summary="" class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr id="first_row">
     <th class="first checkbox" width=8% >
@@ -70,11 +73,11 @@ You may need to reload the page after applying the patch.") -%></p>
       <td class="icon"><%=h patch_update.repo %></td>
       <% if @permissions[:install] %>
         <td class="icon"><%= link_to image_tag("/icons/system-software-install.png"\
-              , :alt =>  "install", :class=>"icon", :style=>"width:24px; height:24px;", :border => "0"),\
+              , :alt =>  "install", :onclick=>"disableForm();", :class=>"icon", :style=>"width:24px; height:24px;", :border => "0"),\
             :controller => 'patch_updates', :id => patch_update.resolvable_id,\
             :onclick=>"$('#progress').show()", :method => :post, :action => "install" %></td>
         <% end %>
     </tr>
   <% end %>
 </table>
-
+<% end %>

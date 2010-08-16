@@ -20,7 +20,7 @@ Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_cont
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.2.3
+Version:        0.2.4
 Release:        0
 Summary:        WebYaST - Software and Repository Management UI
 Source:         www.tar.bz2

@@ -27,7 +27,21 @@
       return false;
     });
     $("form#form1").submit(function () { return false; }); // so it won't submit
+
+    //block whole form onsubmit
+    var message = "<%= _("Please wait") -%>";
+    $("#update_submit_button").click(function() {
+      disableFormOnSubmit(message);      
+    });
+
+    
   });
+  function disableForm(){
+    $(document).ready(function() {
+      var message = "<%= _("Please wait") -%>";
+      disableFormOnSubmit(message);    
+    });
+  }
 </script>
 
 <% if @permissions and @patch_updates %>
@@ -36,7 +50,7 @@
 <div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %></div>
   <div class='plugin-content'>
     <div class="loading"></div>
-
+<!--     <#%#@patch_updates = []#%#> -->
     <% if @patch_updates.empty? %>
     <h3 class="module_header"><%=_("Your system is up to date.") unless @error%></h3>
     <div class="nav-buttons">
@@ -96,7 +110,7 @@
 	<div id="patchesd"><%= render :partial => "patches"%></div>
       </fieldset>
       <div class="buttons" style="padding:10px; vertical-align:middle; ">
-	<%= form_send_buttons :label => _("Update"), :onclick => "$('#progress').show()", :action => 'install' %>
+	<%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :onclick => "$('#progress').show()", :action => 'install' %>
 	<br style="clear:both" />
       </div>
     <% end %> 
