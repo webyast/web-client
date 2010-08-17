@@ -57,7 +57,14 @@
 
     // disable global onsubmit validation, the relevant fields are validated explicitly in onclick handlers
     $(document).ready(function() {
-      $("#adminForm").validate({onkeyup: function(element) { this.element(element); }, onsubmit: false})
+      $("#adminForm").validate({
+	onkeyup: function(element) { this.element(element); }, 
+	submitHandler: function(form) {
+			var message = "<%= _("Please wait") -%>";
+			disableFormOnSubmit(message);
+                        form.submit();
+                  }
+      })
 
       // make the error message translatable - override the default messsage
       $.extend($.validator.messages, {
