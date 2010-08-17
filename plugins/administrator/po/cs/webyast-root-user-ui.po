@@ -4,9 +4,9 @@
 # Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-root-user-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-24 22:03+0200\n"
 "Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
 "Language-Team: Czech <opensuse-translation@opensuse.org>\n"
@@ -16,100 +16,117 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/administrator_controller.rb:32
-#: app/views/administrator/index.html.erb:24
+#: app/controllers/administrator_controller.rb:53
+#: app/views/administrator/index.html.erb:56
+#: app/controllers/administrator_controller.rb:53
+#: app/views/administrator/index.html.erb:56
 msgid "Enter a valid e-mail address."
 msgstr "Zadejte platnou e-mailovou adresu."
 
-#: app/controllers/administrator_controller.rb:40
+#: app/controllers/administrator_controller.rb:61
+#: app/controllers/administrator_controller.rb:61
 msgid "Passwords do not match."
 msgstr "Hesla se neshodují."
 
 # Tady si nejsem jistý zda nebude lepší: Administrátorská nastavení. Cervajzz
-#: app/controllers/administrator_controller.rb:53
-#| msgid "Administrator Settings"
+#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:74
 msgid "Administrator settings have been written."
 msgstr "Administrátorské nastavení bylo zapsáno."
 
-#: app/controllers/administrator_controller.rb:63
-#| msgid "Error while closing old shadow file: %m"
+#: app/controllers/administrator_controller.rb:84
+#: app/controllers/administrator_controller.rb:84
 msgid "Error while saving administrator settings: %s"
 msgstr "Chyba při ukládání uživatelského nastavení: %s"
 
-#: app/controllers/administrator_controller.rb:75
-msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
+#: app/controllers/administrator_controller.rb:96
+#: app/controllers/administrator_controller.rb:96
+msgid ""
+"Mail alias was set but outgoing mail server is not configured (%s<i>change</"
+"i>%s)."
 msgstr ""
-"Alias mailu byl nastaven, ale server odchozí pošty není nastaven (%s<i>změnit</i>%s)."
+"Alias mailu byl nastaven, ale server odchozí pošty není nastaven (%"
+"s<i>změnit</i>%s)."
 
 # Tady si nejsem jistý zda nebude lepší: Administrátorská nastavení. Cervajzz
-#: app/views/administrator/index.html.erb:1
+#: app/views/administrator/index.html.erb:22
+#: app/views/administrator/index.html.erb:22 shortcuts.yml:6
 msgid "Administrator Settings"
 msgstr "Administrátorské nastavení"
 
-#: app/views/administrator/index.html.erb:32
-#| msgid "Passwords do not match."
+#: app/views/administrator/index.html.erb:64
+#: app/views/administrator/index.html.erb:64
 msgid "The passwords do not match."
 msgstr "Hesla se neshodují."
 
-#: app/views/administrator/index.html.erb:33
-#| msgid "The PKCS12 password is required."
+#: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:65
 msgid "A password is required."
 msgstr "Je vyžadováno heslo."
 
-#: app/views/administrator/index.html.erb:38
-#| msgid "Password too short"
+#: app/views/administrator/index.html.erb:70
+#: app/views/administrator/index.html.erb:70
 msgid "Password Strength:"
 msgstr "Síla hesla:"
 
-#: app/views/administrator/index.html.erb:40
+#: app/views/administrator/index.html.erb:72
+#: app/views/administrator/index.html.erb:72
 msgid "Weak"
 msgstr "Slabé"
 
-#: app/views/administrator/index.html.erb:41
+#: app/views/administrator/index.html.erb:73
+#: app/views/administrator/index.html.erb:73
 msgid "Normal"
 msgstr "Normální"
 
-#: app/views/administrator/index.html.erb:42
-#| msgid "Media"
+#: app/views/administrator/index.html.erb:74
+#: app/views/administrator/index.html.erb:74
 msgid "Medium"
 msgstr "Střední"
 
-#: app/views/administrator/index.html.erb:43
+#: app/views/administrator/index.html.erb:75
+#: app/views/administrator/index.html.erb:75
 msgid "Strong"
 msgstr "Silné"
 
-#: app/views/administrator/index.html.erb:44
+#: app/views/administrator/index.html.erb:76
+#: app/views/administrator/index.html.erb:76
 msgid "Very Strong"
 msgstr "Velmi silné"
 
-#: app/views/administrator/index.html.erb:63
-#| msgid "Password too short"
+#: app/views/administrator/index.html.erb:104
+#: app/views/administrator/index.html.erb:104
 msgid "Password Setup for User 'root'"
 msgstr "Nastavení hesla pro uživatele 'root'"
 
-#: app/views/administrator/index.html.erb:64
-#| msgid "_New Password:"
+#: app/views/administrator/index.html.erb:105
+#: app/views/administrator/index.html.erb:105
 msgid "New Password"
 msgstr "Nové heslo"
 
-#: app/views/administrator/index.html.erb:69
-#| msgid "_Confirm Password:"
+#: app/views/administrator/index.html.erb:110
+#: app/views/administrator/index.html.erb:110
 msgid "Confirm Password"
 msgstr "Potvrďte heslo"
 
-#: app/views/administrator/index.html.erb:76
+#: app/views/administrator/index.html.erb:119
+#: app/views/administrator/index.html.erb:119
 msgid "Mail Setup for User 'root'"
 msgstr "Nastavení mailu pro uživatele 'root'"
 
-#: app/views/administrator/index.html.erb:78
-#| msgid "Forward mail to"
+#: app/views/administrator/index.html.erb:121
+#: app/views/administrator/index.html.erb:121
 msgid "Forward system mail to"
 msgstr "Předat systémový mail na"
 
-#: app/views/administrator/index.html.erb:81
-#| msgid "Save"
+#: app/views/administrator/index.html.erb:124
+#: app/views/administrator/index.html.erb:124
 msgid "Save Mail Only"
 msgstr "Uložit pouze mail"
+
+#: shortcuts.yml:7
+msgid "Manage system administrator"
+msgstr ""
 
 # password dialog title
 #~ msgid "Password"

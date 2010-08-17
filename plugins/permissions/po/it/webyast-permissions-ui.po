@@ -1,55 +1,70 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
+# translation of yast_webclient_permissions.po to italiano
+# Andrea Florio <andrea@opensuse.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_permissions\n"
-"POT-Creation-Date: 2010-04-23 11:00+0200\n"
-"PO-Revision-Date: 2010-05-06 08:56\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Project-Id-Version: webyast-permissions-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
+"PO-Revision-Date: 2009-11-13 16:04+0100\n"
+"Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
+"Language-Team: italiano <translations@opensuse.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Italian\n"
 
 #: app/controllers/permissions_controller.rb:34
+#: app/controllers/permissions_controller.rb:34
 msgid "Invalid session, please login again."
-msgstr "Sessione non valida, eseguire di nuovo il login."
+msgstr "Sessione non valida, per favore fai il login di nuovo."
 
+#: app/controllers/permissions_controller.rb:150
 #: app/controllers/permissions_controller.rb:150
 msgid "User name is not valid name"
 msgstr "Il nome utente non è un nome valido"
 
 #: app/controllers/permissions_controller.rb:152
+#: app/controllers/permissions_controller.rb:152
 msgid "User does not exist"
-msgstr "L'utente non esiste"
+msgstr "L'utente non esiste."
 
 #: app/controllers/permissions_controller.rb:200
+#: app/controllers/permissions_controller.rb:200
 msgid "Permissions have been set."
-msgstr "Le autorizzazioni sono state impostate."
+msgstr "I permessi sono stati impostati."
 
-#: app/views/permissions/index.rhtml:67
+#: app/views/permissions/index.rhtml:67 app/views/permissions/index.rhtml:67
+#: shortcuts.yml:6
 msgid "User Permissions"
-msgstr "Autorizzazioni utente"
+msgstr "Permessi dell'utente"
 
-#: app/views/permissions/index.rhtml:71
+#: app/views/permissions/index.rhtml:71 app/views/permissions/index.rhtml:71
 msgid "User"
 msgstr "Utente"
 
-#: app/views/permissions/index.rhtml:73
+# "c" as a keyboard accel is already taken.
+#: app/views/permissions/index.rhtml:73 app/views/permissions/index.rhtml:73
 msgid "Search"
 msgstr "Cerca"
 
-#: app/views/permissions/index.rhtml:85
+#: app/views/permissions/index.rhtml:85 app/views/permissions/index.rhtml:85
 msgid "Revoked Permissions"
-msgstr "Autorizzazioni revocate"
+msgstr "Permessi revocati"
 
-#: app/views/permissions/index.rhtml:86
+#: app/views/permissions/index.rhtml:86 app/views/permissions/index.rhtml:86
 msgid "Granted Permissions"
-msgstr "Autorizzazioni concesse"
+msgstr "Permessi concessi"
 
-#: app/views/permissions/index.rhtml:180
+#: app/views/permissions/index.rhtml:175 app/views/permissions/index.rhtml:175
 msgid "Back"
 msgstr "Indietro"
 
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Set user permissions"
+msgstr "Permessi dell'utente"
+
+#~ msgid "Set"
+#~ msgstr "Imposta"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webyast-status-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 16:42+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-24 22:28+0200\n"
 "Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
 "Language-Team: Czech <opensuse-translation@opensuse.org>\n"
@@ -16,50 +16,56 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/status_controller.rb:151
-#: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:149
+#: app/controllers/status_controller.rb:149
 msgid "No data found for showing system status."
 msgstr "Nebyla nalezena žádná data k zobrazení výchozího stavu."
 
-#: app/controllers/status_controller.rb:159
-#: app/controllers/status_controller.rb:159
+#: app/controllers/status_controller.rb:157
+#: app/controllers/status_controller.rb:157
 #, fuzzy
 msgid "Status not available."
 msgstr "Nejsou dostupné žádné informace."
 
-#: app/controllers/status_controller.rb:178
-#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:176
+#: app/controllers/status_controller.rb:176
 msgid "Can't connect to host"
 msgstr ""
 
-#: app/controllers/status_controller.rb:180
-#: app/controllers/status_controller.rb:180
+#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:178
 msgid "Can't connect to host %s."
 msgstr ""
 
-#: app/controllers/status_controller.rb:219
-#: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:217
+#: app/controllers/status_controller.rb:217
 msgid "Limits exceeded for "
 msgstr "Přidání byly překročeny pro "
 
-#: app/controllers/status_controller.rb:244
-#: app/controllers/status_controller.rb:244
+#: app/controllers/status_controller.rb:242
+#: app/controllers/status_controller.rb:242
 #, fuzzy
 msgid "Status not available"
 msgstr "Nejsou dostupné žádné informace."
 
-#: app/controllers/status_controller.rb:316
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:266
+#: app/controllers/status_controller.rb:266
+#, fuzzy
+msgid "Status not available (no permissions)"
+msgstr "Nejsou dostupné žádné informace."
+
+#: app/controllers/status_controller.rb:328
+#: app/controllers/status_controller.rb:328
 msgid "exceeded"
 msgstr "překročeno"
 
-#: app/controllers/status_controller.rb:330
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:342
+#: app/controllers/status_controller.rb:342
 msgid "undercut"
 msgstr "podseknutí"
 
-#: app/controllers/status_controller.rb:432
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:444
+#: app/controllers/status_controller.rb:444
 msgid "Limits have been written."
 msgstr "Limity byly zapsány"
 
@@ -67,8 +73,8 @@ msgstr "Limity byly zapsány"
 msgid "Only numbers are valid !"
 msgstr "Platná jsou pouze čísla !"
 
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
 #: shortcuts.yml:6
 msgid "Status"
 msgstr "Stav"
@@ -85,15 +91,15 @@ msgstr "podseknutí"
 msgid "exceeds"
 msgstr "překračuje"
 
-#: app/views/status/index.html.erb:92 app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:94 app/views/status/index.html.erb:94
 msgid "details"
 msgstr "podrobnosti"
 
-#: app/views/status/index.html.erb:108 app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:110 app/views/status/index.html.erb:110
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: app/views/status/index.html.erb:161 app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:178 app/views/status/index.html.erb:178
 msgid "Edit Limits"
 msgstr "Editace limitů"
 
@@ -165,49 +171,43 @@ msgstr "Načítání informací o stavu"
 msgid "Checking system status"
 msgstr "Kontroluje stav"
 
-#: lib/plugin_translation.rb:46 lib/plugin_translation.rb:46
-msgid "Registration is missing"
-msgstr "Chybí registrace"
-
-#: lib/plugin_translation.rb:47 lib/plugin_translation.rb:47
-msgid "Please register your system in order to get updates."
-msgstr "Prosíme, zaregistrujte váš systém, abyste mohli dostávat aktualizace."
-
-#: lib/plugin_translation.rb:48 lib/plugin_translation.rb:48
-msgid "register"
-msgstr "registrace"
-
-#: lib/plugin_translation.rb:50 lib/plugin_translation.rb:50
-msgid "Mail configuration test not confirmed"
-msgstr "Test nastavení mailu nebyl potvrzen"
-
-#: lib/plugin_translation.rb:51 lib/plugin_translation.rb:51
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-"Během nastavování mailu byl testovací mail odeslán na %s. Byl na tuto adresu "
-"doručen mail?<br>Pokud ano, potvrďte to stiskem tlačítka. V opačném případě "
-"opětovně zkontrolujte nastavení vašeho mailu."
-
-#: lib/plugin_translation.rb:54 lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-"Nepodařilo se získat plné jméno hostitele stroje. Pokud mail nemohl být "
-"doručen, zkontrolujte síť a/nebo nastavení mailu s vaším správcem sítě."
-
-#: lib/plugin_translation.rb:55 lib/plugin_translation.rb:55
-msgid "Test mail received"
-msgstr "Testovací mail byl obdržen"
-
 #: shortcuts.yml:7
 #, fuzzy
 msgid "Show system status"
 msgstr "Kontroluje stav"
+
+#~ msgid "Registration is missing"
+#~ msgstr "Chybí registrace"
+
+#~ msgid "Please register your system in order to get updates."
+#~ msgstr ""
+#~ "Prosíme, zaregistrujte váš systém, abyste mohli dostávat aktualizace."
+
+#~ msgid "register"
+#~ msgstr "registrace"
+
+#~ msgid "Mail configuration test not confirmed"
+#~ msgstr "Test nastavení mailu nebyl potvrzen"
+
+#~ msgid ""
+#~ "While configuring mail, a test mail was sent to %s . Was the mail "
+#~ "delivered to this address?<br>If so, confirm it by pressing the button. "
+#~ "Otherwise check your mail configuration again."
+#~ msgstr ""
+#~ "Během nastavování mailu byl testovací mail odeslán na %s. Byl na tuto "
+#~ "adresu doručen mail?<br>Pokud ano, potvrďte to stiskem tlačítka. V "
+#~ "opačném případě opětovně zkontrolujte nastavení vašeho mailu."
+
+#~ msgid ""
+#~ "It was not possible to retrieve the full hostname of the machine. If the "
+#~ "mail could not be delivered, consult the network and/or mail "
+#~ "configuration with your network administrator."
+#~ msgstr ""
+#~ "Nepodařilo se získat plné jméno hostitele stroje. Pokud mail nemohl být "
+#~ "doručen, zkontrolujte síť a/nebo nastavení mailu s vaším správcem sítě."
+
+#~ msgid "Test mail received"
+#~ msgstr "Testovací mail byl obdržen"
 
 #~| msgid "Start VPN connection"
 #~ msgid "Start collectd"

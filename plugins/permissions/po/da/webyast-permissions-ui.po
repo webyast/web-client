@@ -1,9 +1,9 @@
 # Martin Schlander <mschlander@opensuse.org>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-permissions-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2009-10-05 16:52+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <opensuse-translation@opensuse.org>\n"
@@ -13,49 +13,57 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/permissions_controller.rb:13
+#: app/controllers/permissions_controller.rb:34
+#: app/controllers/permissions_controller.rb:34
 msgid "Invalid session, please login again."
 msgstr "Ugyldig session, log venligst ind igen."
 
-#: app/controllers/permissions_controller.rb:133
+#: app/controllers/permissions_controller.rb:150
+#: app/controllers/permissions_controller.rb:150
 #, fuzzy
-#| msgid "`%s' is not a valid netmask."
 msgid "User name is not valid name"
 msgstr "`%s' er ikke en gyldig netmaske."
 
-#: app/controllers/permissions_controller.rb:135
+#: app/controllers/permissions_controller.rb:152
+#: app/controllers/permissions_controller.rb:152
 #, fuzzy
-#| msgid "'%1' does not exist."
 msgid "User does not exist"
 msgstr "'%1' findes ikke."
 
-#: app/controllers/permissions_controller.rb:183
+#: app/controllers/permissions_controller.rb:200
+#: app/controllers/permissions_controller.rb:200
 msgid "Permissions have been set."
 msgstr "Rettighederne er blevet sat."
 
-#: app/views/permissions/index.rhtml:46
+#: app/views/permissions/index.rhtml:67 app/views/permissions/index.rhtml:67
+#: shortcuts.yml:6
 msgid "User Permissions"
 msgstr "Brugerrettigheder"
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:71 app/views/permissions/index.rhtml:71
 msgid "User"
 msgstr "Bruger"
 
-#: app/views/permissions/index.rhtml:52
+#: app/views/permissions/index.rhtml:73 app/views/permissions/index.rhtml:73
 msgid "Search"
 msgstr "Søg"
 
-#: app/views/permissions/index.rhtml:54
-msgid "Back"
-msgstr "Tilbage"
-
-#: app/views/permissions/index.rhtml:67
+#: app/views/permissions/index.rhtml:85 app/views/permissions/index.rhtml:85
 msgid "Revoked Permissions"
 msgstr "Inddragede rettigheder"
 
-#: app/views/permissions/index.rhtml:68
+#: app/views/permissions/index.rhtml:86 app/views/permissions/index.rhtml:86
 msgid "Granted Permissions"
 msgstr "Givede rettigheder"
+
+#: app/views/permissions/index.rhtml:175 app/views/permissions/index.rhtml:175
+msgid "Back"
+msgstr "Tilbage"
+
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Set user permissions"
+msgstr "Brugerrettigheder"
 
 #~ msgid "Set"
 #~ msgstr "Sæt"

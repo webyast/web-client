@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: YaST (@memory@)\n"
+"Project-Id-Version: webyast-roles-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-23 11:00+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2002-02-08 15:47+0100\n"
 "Last-Translator: Jordi Bruguera i Cortada <jordi@grn.es>\n"
 "Language-Team: Catalan\n"
@@ -20,26 +20,60 @@ msgstr ""
 "#-#-#-#-#  isns.ca.po (YaST (@memory@))  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/views/roles/_role_edit.erb:31
-msgid "Permissions granted by role"
-msgstr "Permisos garantits per el rol"
+#: app/controllers/roles_controller.rb:97
+#: app/controllers/roles_controller.rb:97
+msgid "Cannot find roles"
+msgstr ""
 
-#: app/views/roles/_role_edit.erb:44
-msgid "Available permissions"
+#: app/views/roles/index.rhtml:61 app/views/roles/index.rhtml:207
+#: app/views/roles/index.rhtml:213 app/views/roles/index.rhtml:61
+#: app/views/roles/index.rhtml:207 app/views/roles/index.rhtml:213
+msgid "Assign Users"
+msgstr ""
+
+#: app/views/roles/index.rhtml:62 app/views/roles/index.rhtml:62
+msgid "Selected Users"
+msgstr ""
+
+#: app/views/roles/index.rhtml:63 app/views/roles/index.rhtml:63
+#, fuzzy
+msgid "Available Users"
 msgstr "Permisos disponibles"
 
-#: app/views/roles/_role_edit.erb:56
-msgid "Description of permissions"
-msgstr "Descripció dels permisos"
+#: app/views/roles/index.rhtml:64 app/views/roles/index.rhtml:64
+msgid "Click user names to assign/remove users"
+msgstr ""
 
-#: app/views/roles/_role_edit.erb:58
-msgid ")}-description"
-msgstr ")}-descripció"
-
-#: app/views/roles/_role_edit.erb:64
-msgid "Save"
-msgstr "Desa"
-
-#: app/views/roles/index.rhtml:12
+#: app/views/roles/index.rhtml:149 app/views/roles/index.rhtml:149
+#: shortcuts.yml:6
 msgid "Roles"
 msgstr "Rols"
+
+#: app/views/roles/index.rhtml:153 app/views/roles/index.rhtml:153
+msgid "Create Role"
+msgstr ""
+
+#: app/views/roles/index.rhtml:165 app/views/roles/index.rhtml:165
+#, fuzzy
+msgid "Assign Permissions"
+msgstr "Permisos disponibles"
+
+#: app/views/roles/index.rhtml:168 app/views/roles/index.rhtml:168
+msgid "collapse all"
+msgstr ""
+
+#: shortcuts.yml:7
+msgid "Set permissions in roles and assign users to roles"
+msgstr ""
+
+#~ msgid "Permissions granted by role"
+#~ msgstr "Permisos garantits per el rol"
+
+#~ msgid "Description of permissions"
+#~ msgstr "Descripció dels permisos"
+
+#~ msgid ")}-description"
+#~ msgstr ")}-descripció"
+
+#~ msgid "Save"
+#~ msgstr "Desa"

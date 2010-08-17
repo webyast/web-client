@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-mail-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-13 14:34+0100\n"
 "Last-Translator: Guillaume GARDET <guillaume.gardet@free.fr>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -12,102 +12,98 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/mail_controller.rb:29
+#: app/controllers/mail_controller.rb:50 app/controllers/mail_controller.rb:50
 msgid "Passwords do not match."
 msgstr "Les mots de passe ne correspondent pas."
 
-#: app/controllers/mail_controller.rb:36
-#| msgid "All services have been refreshed."
+#: app/controllers/mail_controller.rb:57 app/controllers/mail_controller.rb:57
 msgid "Mail settings have been written."
 msgstr "Les paramètres de la messagerie ont été écrits."
 
-#: app/controllers/mail_controller.rb:38
+#: app/controllers/mail_controller.rb:59 app/controllers/mail_controller.rb:59
 #, fuzzy
 msgid "Test mail was sent to %s."
 msgstr "Le courriel de test a été envoyé à %s."
 
-#: app/controllers/mail_controller.rb:50
-#| msgid "Error while closing old opasswd file: %s"
+#: app/controllers/mail_controller.rb:71 app/controllers/mail_controller.rb:71
 msgid "Error while saving mail settings: %s"
 msgstr "Ereur lors de la sauvegarde paramètres de messagerie: %s"
 
-#: app/controllers/mail_controller.rb:67
+#: app/controllers/mail_controller.rb:88 app/controllers/mail_controller.rb:88
 #, fuzzy
 msgid ""
-"No outgoing mail server is set, but administrator has mail forwarders defined.\n"
+"No outgoing mail server is set, but administrator has mail forwarders "
+"defined.\n"
 "Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
 msgstr ""
-"Aucun serveur de messagerie sortant n'est défini, mais l'administrateur a un relais de messagerie défini.\n"
-"Modifier %s<i>l'administrateur</i>%s ou la configuration de la %s<i>messagerie</i>%s."
+"Aucun serveur de messagerie sortant n'est défini, mais l'administrateur a un "
+"relais de messagerie défini.\n"
+"Modifier %s<i>l'administrateur</i>%s ou la configuration de la %"
+"s<i>messagerie</i>%s."
 
-#: app/views/mail/index.html.erb:16
-#| msgid "Passwords do not match."
+#: app/views/mail/index.html.erb:44 app/views/mail/index.html.erb:44
 msgid "The passwords do not match."
 msgstr "Les mots de passe ne correspondent pas."
 
 # TLABEL lan_2002_01_04_0147__56
-#: app/views/mail/index.html.erb:17
-#| msgid "`%s' is not a valid ip address."
+#: app/views/mail/index.html.erb:45 app/views/mail/index.html.erb:45
 msgid "Enter a valid e-mail address."
 msgstr "Entrer une adresse de courriel valide."
 
 # TLABEL linuxrc_2002_03_29_0036__48
-#: app/views/mail/index.html.erb:18
-#| msgid "Enter your IP address."
+#: app/views/mail/index.html.erb:46 app/views/mail/index.html.erb:46
 msgid "Enter a valid domain name or an IP address."
 msgstr "Entrer un nom de domaine valide ou une adresse IP."
 
 # TLABEL kinternet_2002_02_20_2255__5
-#: app/views/mail/index.html.erb:35
-#| msgid "Manual Settings"
+#: app/views/mail/index.html.erb:63 app/views/mail/index.html.erb:63
+#: shortcuts.yml:6
 msgid "Mail Settings"
 msgstr "Paramètres de messagerie"
 
-#: app/views/mail/index.html.erb:47
+#: app/views/mail/index.html.erb:75 app/views/mail/index.html.erb:75
 msgid "Outgoing mail server"
 msgstr "Serveur de messagerie sortant"
 
-#: app/views/mail/index.html.erb:50
+#: app/views/mail/index.html.erb:80 app/views/mail/index.html.erb:80
 msgid "Use secure connection (TLS)"
 msgstr "Utiliser une connexion sécurisée (TLS)"
 
 # TLABEL kinternet_2002_02_20_2255__70
-#: app/views/mail/index.html.erb:51
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
 msgid "Never"
 msgstr "Jamais"
 
-#: app/views/mail/index.html.erb:51
-#| msgid "(%1 available)"
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
 msgid "If available"
 msgstr "Si disponible"
 
-#: app/views/mail/index.html.erb:51
-#| msgid "Alwa&ys"
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
 msgid "Always"
 msgstr "Toujours"
 
-#: app/views/mail/index.html.erb:53
-#| msgid "Username: "
+#: app/views/mail/index.html.erb:84 app/views/mail/index.html.erb:84
 msgid "User name"
 msgstr "Nom d'utilisateur"
 
 # password dialog title
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:88 app/views/mail/index.html.erb:88
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/views/mail/index.html.erb:59
-#| msgid "_Confirm Password:"
+#: app/views/mail/index.html.erb:92 app/views/mail/index.html.erb:92
 msgid "Confirm password"
 msgstr "Confirmez le mot de passe"
 
-#: app/views/mail/index.html.erb:67
-#| msgid "Send Email to %1"
+#: app/views/mail/index.html.erb:100 app/views/mail/index.html.erb:100
 msgid "Send test mail to"
 msgstr "Envoyer le courriel de test à"
 
-#: app/views/mail/index.html.erb:69
-#| msgid "Send Data"
+#: app/views/mail/index.html.erb:102 app/views/mail/index.html.erb:102
 msgid "Send Mail"
 msgstr "Envoyer le courriel"
 
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Manage outgoing mail settings"
+msgstr "Serveur de messagerie sortant"

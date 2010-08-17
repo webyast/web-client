@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webyast-status-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 16:42+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-05 16:10+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
@@ -14,48 +14,54 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/status_controller.rb:151
-#: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:149
+#: app/controllers/status_controller.rb:149
 msgid "No data found for showing system status."
 msgstr "Nem található adat a rendszerállapot megjelenítéséhez."
 
-#: app/controllers/status_controller.rb:159
-#: app/controllers/status_controller.rb:159
+#: app/controllers/status_controller.rb:157
+#: app/controllers/status_controller.rb:157
 msgid "Status not available."
 msgstr "Nincs elérhető állapotinformáció."
 
-#: app/controllers/status_controller.rb:178
-#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:176
+#: app/controllers/status_controller.rb:176
 msgid "Can't connect to host"
 msgstr "Nem tud kapcsolódni a géphez"
 
-#: app/controllers/status_controller.rb:180
-#: app/controllers/status_controller.rb:180
+#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:178
 msgid "Can't connect to host %s."
 msgstr "Nem tud kapcsolódni a(z) %s géphez."
 
-#: app/controllers/status_controller.rb:219
-#: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:217
+#: app/controllers/status_controller.rb:217
 msgid "Limits exceeded for "
 msgstr "Ennek a határértéknek a tállépése: "
 
-#: app/controllers/status_controller.rb:244
-#: app/controllers/status_controller.rb:244
+#: app/controllers/status_controller.rb:242
+#: app/controllers/status_controller.rb:242
 msgid "Status not available"
 msgstr "Az állapot nem érhető el"
 
-#: app/controllers/status_controller.rb:316
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:266
+#: app/controllers/status_controller.rb:266
+#, fuzzy
+msgid "Status not available (no permissions)"
+msgstr "Az állapot nem érhető el"
+
+#: app/controllers/status_controller.rb:328
+#: app/controllers/status_controller.rb:328
 msgid "exceeded"
 msgstr "túllépett"
 
-#: app/controllers/status_controller.rb:330
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:342
+#: app/controllers/status_controller.rb:342
 msgid "undercut"
 msgstr "alatti"
 
-#: app/controllers/status_controller.rb:432
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:444
+#: app/controllers/status_controller.rb:444
 msgid "Limits have been written."
 msgstr "A határértékek mentése befejeződött."
 
@@ -63,8 +69,8 @@ msgstr "A határértékek mentése befejeződött."
 msgid "Only numbers are valid !"
 msgstr "Csak a számok érvényesek !"
 
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
 #: shortcuts.yml:6
 msgid "Status"
 msgstr "Állapot"
@@ -81,15 +87,15 @@ msgstr "alattiak"
 msgid "exceeds"
 msgstr "túllépettek"
 
-#: app/views/status/index.html.erb:92 app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:94 app/views/status/index.html.erb:94
 msgid "details"
 msgstr "részletek"
 
-#: app/views/status/index.html.erb:108 app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:110 app/views/status/index.html.erb:110
 msgid "Details"
 msgstr "Részletek"
 
-#: app/views/status/index.html.erb:161 app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:178 app/views/status/index.html.erb:178
 msgid "Edit Limits"
 msgstr "Határértékek szerkesztése"
 
@@ -158,50 +164,43 @@ msgstr "Rendszerinformáció betöltése"
 msgid "Checking system status"
 msgstr "Rendszerinformáció ellenőrzése"
 
-#: lib/plugin_translation.rb:46 lib/plugin_translation.rb:46
-msgid "Registration is missing"
-msgstr "Hiányzik a regisztráció"
-
-#: lib/plugin_translation.rb:47 lib/plugin_translation.rb:47
-msgid "Please register your system in order to get updates."
-msgstr "Regisztrálja a rendszert, hogy megkapja a frissítéseket."
-
-#: lib/plugin_translation.rb:48 lib/plugin_translation.rb:48
-msgid "register"
-msgstr "regisztráció"
-
-#: lib/plugin_translation.rb:50 lib/plugin_translation.rb:50
-msgid "Mail configuration test not confirmed"
-msgstr "A levelezés beállításának vizsgálata nincs ellenőrizve"
-
-#: lib/plugin_translation.rb:51 lib/plugin_translation.rb:51
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-"A levelezés beállításakor egy próbalevél került elküldésre a következő "
-"címre: %s. Megérkezett ez a levél?<br> Amennyiben igen, akkor nyomja meg a "
-"gombot. Ellenkező esetben ellenőrizze újra a levelezési beállításokat."
-
-#: lib/plugin_translation.rb:54 lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-"Nem lehetett megtudni a gép teljes nevét. Amennyiben a levél nem érkezett "
-"meg, akkor beszéljen a hálózattal és/vagy a levelezőrendszerrel foglalkozó "
-"rendszergazdával."
-
-#: lib/plugin_translation.rb:55 lib/plugin_translation.rb:55
-msgid "Test mail received"
-msgstr "A tesztlevél megérkezett"
-
 #: shortcuts.yml:7
 #, fuzzy
 msgid "Show system status"
 msgstr "Rendszerinformáció ellenőrzése"
+
+#~ msgid "Registration is missing"
+#~ msgstr "Hiányzik a regisztráció"
+
+#~ msgid "Please register your system in order to get updates."
+#~ msgstr "Regisztrálja a rendszert, hogy megkapja a frissítéseket."
+
+#~ msgid "register"
+#~ msgstr "regisztráció"
+
+#~ msgid "Mail configuration test not confirmed"
+#~ msgstr "A levelezés beállításának vizsgálata nincs ellenőrizve"
+
+#~ msgid ""
+#~ "While configuring mail, a test mail was sent to %s . Was the mail "
+#~ "delivered to this address?<br>If so, confirm it by pressing the button. "
+#~ "Otherwise check your mail configuration again."
+#~ msgstr ""
+#~ "A levelezés beállításakor egy próbalevél került elküldésre a következő "
+#~ "címre: %s. Megérkezett ez a levél?<br> Amennyiben igen, akkor nyomja meg "
+#~ "a gombot. Ellenkező esetben ellenőrizze újra a levelezési beállításokat."
+
+#~ msgid ""
+#~ "It was not possible to retrieve the full hostname of the machine. If the "
+#~ "mail could not be delivered, consult the network and/or mail "
+#~ "configuration with your network administrator."
+#~ msgstr ""
+#~ "Nem lehetett megtudni a gép teljes nevét. Amennyiben a levél nem érkezett "
+#~ "meg, akkor beszéljen a hálózattal és/vagy a levelezőrendszerrel "
+#~ "foglalkozó rendszergazdával."
+
+#~ msgid "Test mail received"
+#~ msgstr "A tesztlevél megérkezett"
 
 #~ msgid "Start collectd"
 #~ msgstr "collectd indítása"

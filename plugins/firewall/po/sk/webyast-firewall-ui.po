@@ -5,8 +5,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient firewall 1.0.0\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"Project-Id-Version: webyast-firewall-ui 1.0.0\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-04-19 06:18+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -17,39 +17,47 @@ msgstr ""
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
 
-#: app/controllers/firewall_controller.rb:51
+#: app/controllers/firewall_controller.rb:72
+#: app/controllers/firewall_controller.rb:72
 msgid "Firewall settings have been written."
 msgstr "Nastavenia firewallu boli zapísané."
 
-#: app/views/firewall/index.rhtml:42
-msgid "Some of needed services are going to be blocked. WebYaST may not be usable anymore."
-msgstr "Niektoré z potrebných služieb budú blokované. WebYaST nemusí byť použiteľný."
+#: app/views/firewall/index.rhtml:53 app/views/firewall/index.rhtml:53
+#, fuzzy
+msgid ""
+"Some of needed services (%s) are going to be blocked. WebYaST may not be "
+"usable anymore. Do you really want to block them?"
+msgstr ""
+"Niektoré z potrebných služieb budú blokované. WebYaST nemusí byť použiteľný."
 
-#: app/views/firewall/index.rhtml:68
+#: app/views/firewall/index.rhtml:80 app/views/firewall/index.rhtml:80
+#: shortcuts.yml:6
 msgid "Firewall"
 msgstr "Firewall"
 
-#: app/views/firewall/index.rhtml:86
+#: app/views/firewall/index.rhtml:98 app/views/firewall/index.rhtml:98
 msgid "General settings"
 msgstr "Všeobecné nastavenia"
 
-#: app/views/firewall/index.rhtml:93
+#: app/views/firewall/index.rhtml:105 app/views/firewall/index.rhtml:105
 msgid "Use Firewall"
 msgstr "Použiť firewall"
 
-#: app/views/firewall/index.rhtml:99
+#: app/views/firewall/index.rhtml:110 app/views/firewall/index.rhtml:110
 msgid "Allowed services"
 msgstr "Povolené služby"
 
-#: app/views/firewall/index.rhtml:103
-msgid "Block"
-msgstr "Blokovať"
-
-#: app/views/firewall/index.rhtml:109
+#: app/views/firewall/index.rhtml:120 app/views/firewall/index.rhtml:120
 msgid "Blocked services"
 msgstr "Blokované služby"
 
-#: app/views/firewall/index.rhtml:113
-msgid "Allow"
-msgstr "Povoliť"
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Firewall settings"
+msgstr "Všeobecné nastavenia"
 
+#~ msgid "Block"
+#~ msgstr "Blokovať"
+
+#~ msgid "Allow"
+#~ msgstr "Povoliť"

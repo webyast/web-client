@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'yaml' 
 
 env = ENV.map { |key,val| ENV[key] ? %(#{key}="#{ENV[key]}") : nil }.reject {|x| x.nil?}.join(' ')
 

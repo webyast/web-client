@@ -2,9 +2,9 @@
 # Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-users-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-24 22:40+0200\n"
 "Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
 "Language-Team: Czech <opensuse-translation@opensuse.org>\n"
@@ -14,228 +14,395 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/groups_controller.rb:15
+#: app/controllers/groups_controller.rb:36
+#: app/controllers/groups_controller.rb:36
 msgid "Missing group name parameter"
 msgstr "Chybí parametr jména skupiny"
 
-#: app/controllers/groups_controller.rb:27
-#| msgid "Missing argument for "
+#: app/controllers/groups_controller.rb:48
+#: app/controllers/groups_controller.rb:48
 msgid "Missing group parameters"
 msgstr "Chybějící parametry skupiny"
 
-#: app/controllers/groups_controller.rb:37
-#| msgid "Please enter server name below"
+#: app/controllers/groups_controller.rb:58
+#: app/controllers/groups_controller.rb:58
 msgid "Please enter a valid group name"
 msgstr "Prosíme, zadejte platné jméno skupiny"
 
-#: app/controllers/groups_controller.rb:47
+#: app/controllers/groups_controller.rb:68
+#: app/controllers/groups_controller.rb:68
 msgid "Please enter a valid GID"
 msgstr "Prosíme, vložte platné GID"
 
-#: app/controllers/groups_controller.rb:57
-msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+#: app/controllers/groups_controller.rb:78
+#: app/controllers/groups_controller.rb:78
+msgid ""
+"Please enter a valid group type. Only \"system\" or \"local\" are allowed."
 msgstr ""
 "Prosíme, vložte platný typ skupiny. Povoleny jsou pouze \"system\" nebo "
 "\"local\"."
 
-#: app/controllers/groups_controller.rb:68
+#: app/controllers/groups_controller.rb:89
+#: app/controllers/groups_controller.rb:89
 msgid "Please enter a valid list of members"
 msgstr "Prosíme, vložte platný seznam členů"
 
-#: app/controllers/groups_controller.rb:82
-#| msgid "Cannot read from file %1."
+#: app/controllers/groups_controller.rb:106
+#: app/controllers/groups_controller.rb:106
 msgid "Cannot read users list."
 msgstr "Nelze číst seznam uživatelů."
 
-#: app/controllers/groups_controller.rb:118
-#| msgid "Cannot read from file %1."
+#: app/controllers/groups_controller.rb:117
+#: app/controllers/groups_controller.rb:117
+msgid "Group named <i>%s</i> was not found."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:127
+#: app/controllers/groups_controller.rb:127
+msgid "No groups found."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:155
+#: app/controllers/groups_controller.rb:155
 msgid "Cannot read groups list."
 msgstr "Nelze číst seznam skupin."
 
-#: app/controllers/groups_controller.rb:209
-#| msgid "Unknown error\n"
+#: app/controllers/groups_controller.rb:228
+#: app/controllers/groups_controller.rb:228
+msgid "Group <i>%s</i> has been added."
+msgstr ""
+
+#: app/controllers/groups_controller.rb:243
+#: app/controllers/groups_controller.rb:243
 msgid "Unknown backend error"
 msgstr "Neznámá chyba beckendu"
 
-#: app/controllers/users_controller.rb:154
-#| msgid "Repository '%s' has been sucessfully enabled."
+#: app/controllers/groups_controller.rb:270
+#: app/controllers/groups_controller.rb:270
+#, fuzzy
+msgid "Group <i>%s</i> has been updated."
+msgstr "Uživatel <i>%s</i> byl úspěšně aktualizován."
+
+#: app/controllers/groups_controller.rb:276
+#: app/controllers/groups_controller.rb:276
+msgid "Cannot update group <i>%s</i>: Unknown error"
+msgstr ""
+
+#: app/controllers/groups_controller.rb:310
+#: app/controllers/groups_controller.rb:310
+#, fuzzy
+msgid "Group <i>%s</i> has been deleted."
+msgstr "Uživatel <i>%s</i> byl úspěšně vytvořen."
+
+#: app/controllers/users_controller.rb:45
+#: app/controllers/users_controller.rb:45
+msgid "No users found."
+msgstr ""
+
+#: app/controllers/users_controller.rb:247
+#: app/controllers/users_controller.rb:247
 msgid "User <i>%s</i> was successfully created."
 msgstr "Uživatel <i>%s</i> byl úspěšně vytvořen."
 
-#: app/controllers/users_controller.rb:196
-#| msgid "Repository '%s' has been sucessfully disabled."
+#: app/controllers/users_controller.rb:287
+#: app/controllers/users_controller.rb:287
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Uživatel <i>%s</i> byl úspěšně aktualizován."
 
-#: app/controllers/users_controller.rb:217
-#| msgid "Specified lock has been successfully removed."
+#: app/controllers/users_controller.rb:305
+#: app/controllers/users_controller.rb:305
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Uživatel <i>%s</i> byl úspěšně odebrán."
 
-#: app/controllers/users_controller.rb:219
-#| msgid "Error: Could not read profile %s: %s.\n"
+#: app/controllers/users_controller.rb:307
+#: app/controllers/users_controller.rb:307
 msgid "Error: Could not remove user <i>%s</i>."
 msgstr "Chyba: Nelze odstranit uživatele <i>%s</i>."
 
-#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
-#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
+#: app/views/groups/index.html.erb:63 app/views/groups/new.html.erb:67
+#: app/views/groups/index.html.erb:63 app/views/groups/new.html.erb:67
+#, fuzzy
+msgid "Select Members"
+msgstr "Výchozí členové"
+
+#: app/views/groups/index.html.erb:64 app/views/groups/new.html.erb:68
+#: app/views/groups/index.html.erb:64 app/views/groups/new.html.erb:68
+#, fuzzy
+msgid "Selected Members"
+msgstr "Výchozí členové"
+
+#: app/views/groups/index.html.erb:65 app/views/groups/new.html.erb:69
+#: app/views/groups/index.html.erb:65 app/views/groups/new.html.erb:69
+msgid "Available Members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:66 app/views/groups/new.html.erb:70
+#: app/views/groups/index.html.erb:66 app/views/groups/new.html.erb:70
+msgid "Click user names to select/unselect members"
+msgstr ""
+
+#: app/views/groups/index.html.erb:105 app/views/groups/new.html.erb:91
+#: app/views/users/_user_form.erb:57 app/views/users/_user_form.erb:61
+#: app/views/groups/index.html.erb:105 app/views/groups/new.html.erb:91
+#: app/views/users/_user_form.erb:57 app/views/users/_user_form.erb:61
+#: shortcuts.yml:15
 msgid "Groups"
 msgstr "Skupiny"
 
-#: app/views/groups/edit.html.erb:35
-#| msgid "Unknown group"
-msgid "Add new group"
-msgstr "Přidat novou skupinu"
-
-#: app/views/groups/edit.html.erb:37
-#| msgid "Downloading groups"
-msgid "Modify group"
-msgstr "Upravit skupinu"
-
-#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
-#| msgid "Group name"
-msgid "Group Name"
-msgstr "Jméno skupiny"
-
-#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
-#| msgid "Groups"
-msgid "Group ID"
-msgstr "ID skupiny"
-
-#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
-#| msgid "Default Schemes"
-msgid "Default members"
-msgstr "Výchozí členové"
-
-#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
-msgid "Members"
-msgstr "Členové"
-
-#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
-#| msgid "Processor %1"
-msgid "Processing ..."
-msgstr "Zpracovává se..."
-
-#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
-#| msgid "Filter"
+#: app/views/groups/index.html.erb:117 app/views/users/index.html.erb:193
+#: app/views/groups/index.html.erb:117 app/views/users/index.html.erb:193
 msgid "Filter:"
 msgstr "Filtr:"
 
-#: app/views/groups/index.html.erb:78
+#: app/views/groups/index.html.erb:125 app/views/groups/index.html.erb:137
+#: app/views/groups/index.html.erb:125 app/views/groups/index.html.erb:137
 msgid "Add New Group"
 msgstr "Přidat novou skupinu"
 
-#: app/views/groups/index.html.erb:110
+#: app/views/groups/index.html.erb:128 app/views/groups/index.html.erb:192
+#: app/views/groups/index.html.erb:128 app/views/groups/index.html.erb:192
+#, fuzzy
+msgid "Manage Users"
+msgstr "Spravovat skupiny"
+
+#: app/views/groups/index.html.erb:153 app/views/groups/new.html.erb:105
+#: app/views/groups/index.html.erb:153 app/views/groups/new.html.erb:105
+msgid "Group Name"
+msgstr "Jméno skupiny"
+
+#: app/views/groups/index.html.erb:157 app/views/groups/index.html.erb:157
+msgid "Group ID"
+msgstr "ID skupiny"
+
+#: app/views/groups/index.html.erb:161 app/views/groups/new.html.erb:109
+#: app/views/groups/index.html.erb:161 app/views/groups/new.html.erb:109
+msgid "Members"
+msgstr "Členové"
+
+#: app/views/groups/index.html.erb:164 app/views/groups/new.html.erb:113
+#: app/views/groups/index.html.erb:164 app/views/groups/new.html.erb:113
+#, fuzzy
+msgid "Manage Members"
+msgstr "Členové"
+
+#: app/views/groups/index.html.erb:171 app/views/groups/new.html.erb:122
+#: app/views/users/_user_form.erb:147 app/views/groups/index.html.erb:171
+#: app/views/groups/new.html.erb:122 app/views/users/_user_form.erb:147
 msgid "Save"
 msgstr "Uložit"
 
-#: app/views/groups/index.html.erb:112
+#: app/views/groups/index.html.erb:174 app/views/users/_user_form.erb:150
+#: app/views/groups/index.html.erb:174 app/views/users/_user_form.erb:150
 msgid "Delete"
 msgstr "Smazat"
 
-#: app/views/groups/index.html.erb:114
-#| msgid "Are you sure you want to permanently delete \"%s\"?"
+#: app/views/groups/index.html.erb:176 app/views/groups/index.html.erb:176
 msgid "Are you sure to delete group '%s'?"
 msgstr "Opravdu chcete smazat skupinu '%s'?"
 
-#: app/views/users/_user_form.erb:5
-#| msgid "Monitor Settings"
+#: app/views/groups/new.html.erb:92 app/views/groups/new.html.erb:92
+msgid "Add new group"
+msgstr "Přidat novou skupinu"
+
+#: app/views/users/_user_form.erb:25 app/views/users/_user_form.erb:25
 msgid "Login Settings"
 msgstr "Nastavení přihlašování"
 
-#: app/views/users/_user_form.erb:8
+#: app/views/users/_user_form.erb:28 app/views/users/_user_form.erb:28
 msgid "Full Name"
 msgstr "Plné jméno"
 
-#: app/views/users/_user_form.erb:12
+#: app/views/users/_user_form.erb:34 app/views/users/_user_form.erb:34
 msgid "Login Name"
 msgstr "Přihlašovací jméno"
 
 # password dialog title
-#: app/views/users/_user_form.erb:17
+#: app/views/users/_user_form.erb:41 app/views/users/_user_form.erb:41
 msgid "Password"
 msgstr "Heslo"
 
-#: app/views/users/_user_form.erb:21
-#| msgid "_Confirm Password:"
+#: app/views/users/_user_form.erb:48 app/views/users/_user_form.erb:48
 msgid "Confirm Password"
 msgstr "Potvrďte heslo"
 
-#: app/views/users/_user_form.erb:39
-msgid "Default Group"
-msgstr "Výchozí skupina"
-
-#: app/views/users/_user_form.erb:61
-msgid "Advanced"
-msgstr "Pokročilé"
-
-#: app/views/users/_user_form.erb:64
-msgid "Home Directory"
-msgstr "Domovský adresář"
-
-#: app/views/users/_user_form.erb:68
-msgid "Login Shell"
-msgstr "Přihlašovací shell"
-
-#: app/views/users/_user_form.erb:72
-msgid "UID Number"
-msgstr "Číslo UID"
-
-#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
-msgid "Weak"
-msgstr "Slabé"
-
-#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
-msgid "Normal"
-msgstr "Běžná"
-
-#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
-#| msgid "Media"
-msgid "Medium"
-msgstr "Středně"
-
-#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
-msgid "Strong"
-msgstr "Silné"
-
-#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
-msgid "Very Strong"
-msgstr "Velmi silné"
-
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
-#: app/views/users/new.html.erb:86
-#| msgid "User"
-msgid "Users"
-msgstr "Uživatelé"
-
-#: app/views/users/edit.html.erb:80
-#| msgid "Edit User %s"
-msgid "Edit user %s"
-msgstr "Upravit uživatele %s"
-
-#: app/views/users/index.html.erb:52
-#| msgid "New User"
-msgid "Add New User"
-msgstr "Přidat nového uživatele"
-
-#: app/views/users/index.html.erb:68
-#| msgid "Are you sure you want to permanently delete \"%s\"?"
-msgid "Are you sure to delete user '%s'?"
-msgstr "Opravdu chcete smazat uživatele '%s'?"
-
-#: app/views/users/index.html.erb:68
-msgid "Home directory will be deleted as well."
-msgstr "Domovský adresář bude také smazán."
-
-#: app/views/users/index.html.erb:81
-#| msgid "manage backups"
+#: app/views/users/_user_form.erb:70 app/views/users/index.html.erb:204
+#: app/views/users/index.html.erb:248 app/views/users/_user_form.erb:70
+#: app/views/users/index.html.erb:204 app/views/users/index.html.erb:248
 msgid "Manage Groups"
 msgstr "Spravovat skupiny"
 
-#: app/views/users/new.html.erb:86
-#| msgid "New User"
+#: app/views/users/_user_form.erb:80 app/views/users/_user_form.erb:80
+msgid "Default Group"
+msgstr "Výchozí skupina"
+
+#: app/views/users/_user_form.erb:89 app/views/users/index.html.erb:89
+#: app/views/users/new.html.erb:96 app/views/users/_user_form.erb:89
+#: app/views/users/index.html.erb:89 app/views/users/new.html.erb:96
+#, fuzzy
+msgid "Select Default Group"
+msgstr "Výchozí skupina"
+
+#: app/views/users/_user_form.erb:101 app/views/users/_user_form.erb:101
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: app/views/users/_user_form.erb:104 app/views/users/_user_form.erb:104
+msgid "Home Directory"
+msgstr "Domovský adresář"
+
+#: app/views/users/_user_form.erb:110 app/views/users/_user_form.erb:110
+msgid "Login Shell"
+msgstr "Přihlašovací shell"
+
+#: app/views/users/_user_form.erb:116 app/views/users/_user_form.erb:116
+msgid "UID Number"
+msgstr "Číslo UID"
+
+#: app/views/users/_user_form.erb:125 app/views/users/_user_form.erb:125
+msgid "Roles"
+msgstr ""
+
+#: app/views/users/_user_form.erb:134 app/views/users/_user_form.erb:134
+#, fuzzy
+msgid "Manage Roles"
+msgstr "Spravovat skupiny"
+
+#: app/views/users/_user_form.erb:152 app/views/users/_user_form.erb:152
+msgid "Are you sure to delete user '%s'?"
+msgstr "Opravdu chcete smazat uživatele '%s'?"
+
+#: app/views/users/index.html.erb:69 app/views/users/new.html.erb:76
+#: app/views/users/index.html.erb:69 app/views/users/new.html.erb:76
+#, fuzzy
+msgid "Select Groups"
+msgstr "Výchozí skupina"
+
+#: app/views/users/index.html.erb:70 app/views/users/new.html.erb:77
+#: app/views/users/index.html.erb:70 app/views/users/new.html.erb:77
+#, fuzzy
+msgid "Selected Groups"
+msgstr "Výchozí skupina"
+
+#: app/views/users/index.html.erb:71 app/views/users/new.html.erb:78
+#: app/views/users/index.html.erb:71 app/views/users/new.html.erb:78
+#, fuzzy
+msgid "Available Groups"
+msgstr "Spravovat skupiny"
+
+#: app/views/users/index.html.erb:72 app/views/users/new.html.erb:79
+#: app/views/users/index.html.erb:72 app/views/users/new.html.erb:79
+msgid "Click group names to select/unselect groups"
+msgstr ""
+
+#: app/views/users/index.html.erb:90 app/views/users/new.html.erb:97
+#: app/views/users/index.html.erb:90 app/views/users/new.html.erb:97
+msgid "Click a group name to choose users default group"
+msgstr ""
+
+#: app/views/users/index.html.erb:104 app/views/users/new.html.erb:111
+#: app/views/users/index.html.erb:104 app/views/users/new.html.erb:111
+msgid "Select Roles"
+msgstr ""
+
+#: app/views/users/index.html.erb:105 app/views/users/new.html.erb:112
+#: app/views/users/index.html.erb:105 app/views/users/new.html.erb:112
+msgid "Selected Roles"
+msgstr ""
+
+#: app/views/users/index.html.erb:106 app/views/users/new.html.erb:113
+#: app/views/users/index.html.erb:106 app/views/users/new.html.erb:113
+msgid "Available Roles"
+msgstr ""
+
+#: app/views/users/index.html.erb:107 app/views/users/new.html.erb:114
+#: app/views/users/index.html.erb:107 app/views/users/new.html.erb:114
+msgid "Click group names to select/unselect roles"
+msgstr ""
+
+#: app/views/users/index.html.erb:129 app/views/users/index.html.erb:129
+msgid " The passwords do not match."
+msgstr ""
+
+#: app/views/users/index.html.erb:130 app/views/users/new.html.erb:140
+#: app/views/users/index.html.erb:130 app/views/users/new.html.erb:140
+msgid "This field is required."
+msgstr ""
+
+# password dialog title
+#: app/views/users/index.html.erb:148 app/views/users/new.html.erb:154
+#: app/views/users/index.html.erb:148 app/views/users/new.html.erb:154
+#, fuzzy
+msgid "Password Strength:"
+msgstr "Heslo"
+
+#: app/views/users/index.html.erb:150 app/views/users/new.html.erb:156
+#: app/views/users/index.html.erb:150 app/views/users/new.html.erb:156
+msgid "Weak"
+msgstr "Slabé"
+
+#: app/views/users/index.html.erb:151 app/views/users/new.html.erb:157
+#: app/views/users/index.html.erb:151 app/views/users/new.html.erb:157
+msgid "Normal"
+msgstr "Běžná"
+
+#: app/views/users/index.html.erb:152 app/views/users/new.html.erb:158
+#: app/views/users/index.html.erb:152 app/views/users/new.html.erb:158
+msgid "Medium"
+msgstr "Středně"
+
+#: app/views/users/index.html.erb:153 app/views/users/new.html.erb:159
+#: app/views/users/index.html.erb:153 app/views/users/new.html.erb:159
+msgid "Strong"
+msgstr "Silné"
+
+#: app/views/users/index.html.erb:154 app/views/users/new.html.erb:160
+#: app/views/users/index.html.erb:154 app/views/users/new.html.erb:160
+msgid "Very Strong"
+msgstr "Velmi silné"
+
+#: app/views/users/index.html.erb:181 app/views/users/new.html.erb:193
+#: app/views/users/index.html.erb:181 app/views/users/new.html.erb:193
+#: shortcuts.yml:6
+msgid "Users"
+msgstr "Uživatelé"
+
+#: app/views/users/index.html.erb:201 app/views/users/index.html.erb:213
+#: app/views/users/index.html.erb:201 app/views/users/index.html.erb:213
+msgid "Add New User"
+msgstr "Přidat nového uživatele"
+
+#: app/views/users/new.html.erb:139 app/views/users/new.html.erb:139
+msgid "The passwords do not match."
+msgstr ""
+
+#: app/views/users/new.html.erb:193 app/views/users/new.html.erb:193
 msgid "Add new user"
 msgstr "Přidat nového uživatele"
+
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Manage user accounts"
+msgstr "Spravovat skupiny"
+
+#: shortcuts.yml:16
+#, fuzzy
+msgid "Manage groups"
+msgstr "Spravovat skupiny"
+
+#~| msgid "Downloading groups"
+#~ msgid "Modify group"
+#~ msgstr "Upravit skupinu"
+
+#~| msgid "Processor %1"
+#~ msgid "Processing ..."
+#~ msgstr "Zpracovává se..."
+
+#~| msgid "Edit User %s"
+#~ msgid "Edit user %s"
+#~ msgstr "Upravit uživatele %s"
+
+#~ msgid "Home directory will be deleted as well."
+#~ msgstr "Domovský adresář bude také smazán."
 
 #~ msgid "Invalid session, please login again."
 #~ msgstr "Neplatné sezení, prosíme, přihlaste se znovu"

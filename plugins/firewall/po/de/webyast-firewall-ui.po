@@ -1,11 +1,9 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_firewall\n"
-"POT-Creation-Date: 2010-04-23 11:00+0200\n"
-"PO-Revision-Date: 2010-05-06 07:41\n"
+"Project-Id-Version: webyast-firewall-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,38 +12,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/firewall_controller.rb:72
+#: app/controllers/firewall_controller.rb:72
+#, fuzzy
 msgid "Firewall settings have been written."
-msgstr "Die Firewall-Einstellungen wurden geschrieben."
+msgstr "Alle Dienste wurden aufgefrischt."
 
-#: app/views/firewall/index.rhtml:63
-msgid "Some of needed services (%s) are going to be blocked. WebYaST may not be usable anymore. Do you really want to block them?"
-msgstr "Einige der benötigten Dienste (%s) werden gesperrt. WebYaST kann daraufhin möglicherweise nicht mehr verwendet werden. Sind Sie sicher, dass die Dienste blockiert werden sollen?"
+#: app/views/firewall/index.rhtml:53 app/views/firewall/index.rhtml:53
+msgid ""
+"Some of needed services (%s) are going to be blocked. WebYaST may not be "
+"usable anymore. Do you really want to block them?"
+msgstr ""
 
-#: app/views/firewall/index.rhtml:86
+#: app/views/firewall/index.rhtml:80 app/views/firewall/index.rhtml:80
+#: shortcuts.yml:6
+#, fuzzy
 msgid "Firewall"
-msgstr "Firewall"
+msgstr "SuSE Firewall 2"
 
-#: app/views/firewall/index.rhtml:104
+#: app/views/firewall/index.rhtml:98 app/views/firewall/index.rhtml:98
+#, fuzzy
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: app/views/firewall/index.rhtml:111
+#: app/views/firewall/index.rhtml:105 app/views/firewall/index.rhtml:105
+#, fuzzy
 msgid "Use Firewall"
-msgstr "Firewall verwenden"
+msgstr "SuSE Firewall 2"
 
-#: app/views/firewall/index.rhtml:117
+#: app/views/firewall/index.rhtml:110 app/views/firewall/index.rhtml:110
+#, fuzzy
 msgid "Allowed services"
-msgstr "Zulässige Dienste"
+msgstr "inetd-Dienst"
 
-#: app/views/firewall/index.rhtml:121
-msgid "Block"
-msgstr "Sperren"
-
-#: app/views/firewall/index.rhtml:127
+#: app/views/firewall/index.rhtml:120 app/views/firewall/index.rhtml:120
+#, fuzzy
 msgid "Blocked services"
-msgstr "Gesperrte Dienste"
+msgstr "nfslock-Dienst"
 
-#: app/views/firewall/index.rhtml:131
-msgid "Allow"
-msgstr "Erlauben"
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Firewall settings"
+msgstr "Allgemeine Einstellungen"
 
+#, fuzzy
+#~| msgid "xlock"
+#~ msgid "Block"
+#~ msgstr "xlock"

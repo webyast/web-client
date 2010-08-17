@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webyast-status-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 16:42+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-04-19 11:05+0100\n"
 "Last-Translator: Andrea Turrini <andrea.turrini@gmail.com>\n"
 "Language-Team: italiano <translations@opensuse.org>\n"
@@ -15,50 +15,56 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Italian\n"
 
-#: app/controllers/status_controller.rb:151
-#: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:149
+#: app/controllers/status_controller.rb:149
 msgid "No data found for showing system status."
 msgstr "Non è stato trovato alcun dato per mostrare lo stato del sistema."
 
-#: app/controllers/status_controller.rb:159
-#: app/controllers/status_controller.rb:159
+#: app/controllers/status_controller.rb:157
+#: app/controllers/status_controller.rb:157
 #, fuzzy
 msgid "Status not available."
 msgstr "Nessuna informazione sullo stato disponibile."
 
-#: app/controllers/status_controller.rb:178
-#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:176
+#: app/controllers/status_controller.rb:176
 msgid "Can't connect to host"
 msgstr ""
 
-#: app/controllers/status_controller.rb:180
-#: app/controllers/status_controller.rb:180
+#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:178
 msgid "Can't connect to host %s."
 msgstr ""
 
-#: app/controllers/status_controller.rb:219
-#: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:217
+#: app/controllers/status_controller.rb:217
 msgid "Limits exceeded for "
 msgstr "Limiti ecceduti per "
 
-#: app/controllers/status_controller.rb:244
-#: app/controllers/status_controller.rb:244
+#: app/controllers/status_controller.rb:242
+#: app/controllers/status_controller.rb:242
 #, fuzzy
 msgid "Status not available"
 msgstr "Nessuna informazione sullo stato disponibile."
 
-#: app/controllers/status_controller.rb:316
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:266
+#: app/controllers/status_controller.rb:266
+#, fuzzy
+msgid "Status not available (no permissions)"
+msgstr "Nessuna informazione sullo stato disponibile."
+
+#: app/controllers/status_controller.rb:328
+#: app/controllers/status_controller.rb:328
 msgid "exceeded"
 msgstr "ecceduto"
 
-#: app/controllers/status_controller.rb:330
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:342
+#: app/controllers/status_controller.rb:342
 msgid "undercut"
 msgstr "resta sotto"
 
-#: app/controllers/status_controller.rb:432
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:444
+#: app/controllers/status_controller.rb:444
 msgid "Limits have been written."
 msgstr "I limiti sono stati scritti."
 
@@ -66,8 +72,8 @@ msgstr "I limiti sono stati scritti."
 msgid "Only numbers are valid !"
 msgstr "Solo validi solamente i numeri!"
 
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
 #: shortcuts.yml:6
 msgid "Status"
 msgstr "Stato"
@@ -84,15 +90,15 @@ msgstr "resta sotto"
 msgid "exceeds"
 msgstr "eccede"
 
-#: app/views/status/index.html.erb:92 app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:94 app/views/status/index.html.erb:94
 msgid "details"
 msgstr "dettagli"
 
-#: app/views/status/index.html.erb:108 app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:110 app/views/status/index.html.erb:110
 msgid "Details"
 msgstr "Dettagli"
 
-#: app/views/status/index.html.erb:161 app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:178 app/views/status/index.html.erb:178
 msgid "Edit Limits"
 msgstr "Modifica limiti"
 
@@ -163,51 +169,44 @@ msgstr "Lettura delle informazioni di sistema"
 msgid "Checking system status"
 msgstr "Verifica dello stato del sistema"
 
-#: lib/plugin_translation.rb:46 lib/plugin_translation.rb:46
-msgid "Registration is missing"
-msgstr "La registrazione è mancante"
-
-#: lib/plugin_translation.rb:47 lib/plugin_translation.rb:47
-msgid "Please register your system in order to get updates."
-msgstr "Per favore, registra il sistema per ottenere gli aggiornamenti."
-
-#: lib/plugin_translation.rb:48 lib/plugin_translation.rb:48
-msgid "register"
-msgstr "registra"
-
-#: lib/plugin_translation.rb:50 lib/plugin_translation.rb:50
-msgid "Mail configuration test not confirmed"
-msgstr "Test della configurazione della posta non confermato"
-
-#: lib/plugin_translation.rb:51 lib/plugin_translation.rb:51
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-"Durante la configurazione della posta, un messaggio di prova è stato inviato "
-"a %s. Il messaggio è stato recapitato a tale indirizzo?<br>Se sì, confermalo "
-"premendo il pulsante. Altrimenti controlla di nuovo la configurazione della "
-"posta."
-
-#: lib/plugin_translation.rb:54 lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-"Non è stato possibile ottenere il nome host completo della macchina. Se la "
-"posta non può essere recapitata, controlla con l'amministratore di rete la "
-"configurazione della posta e/o della rete."
-
-#: lib/plugin_translation.rb:55 lib/plugin_translation.rb:55
-msgid "Test mail received"
-msgstr "Messaggio di prova ricevuto"
-
 #: shortcuts.yml:7
 #, fuzzy
 msgid "Show system status"
 msgstr "Verifica dello stato del sistema"
+
+#~ msgid "Registration is missing"
+#~ msgstr "La registrazione è mancante"
+
+#~ msgid "Please register your system in order to get updates."
+#~ msgstr "Per favore, registra il sistema per ottenere gli aggiornamenti."
+
+#~ msgid "register"
+#~ msgstr "registra"
+
+#~ msgid "Mail configuration test not confirmed"
+#~ msgstr "Test della configurazione della posta non confermato"
+
+#~ msgid ""
+#~ "While configuring mail, a test mail was sent to %s . Was the mail "
+#~ "delivered to this address?<br>If so, confirm it by pressing the button. "
+#~ "Otherwise check your mail configuration again."
+#~ msgstr ""
+#~ "Durante la configurazione della posta, un messaggio di prova è stato "
+#~ "inviato a %s. Il messaggio è stato recapitato a tale indirizzo?<br>Se sì, "
+#~ "confermalo premendo il pulsante. Altrimenti controlla di nuovo la "
+#~ "configurazione della posta."
+
+#~ msgid ""
+#~ "It was not possible to retrieve the full hostname of the machine. If the "
+#~ "mail could not be delivered, consult the network and/or mail "
+#~ "configuration with your network administrator."
+#~ msgstr ""
+#~ "Non è stato possibile ottenere il nome host completo della macchina. Se "
+#~ "la posta non può essere recapitata, controlla con l'amministratore di "
+#~ "rete la configurazione della posta e/o della rete."
+
+#~ msgid "Test mail received"
+#~ msgstr "Messaggio di prova ricevuto"
 
 #~ msgid "Start collectd"
 #~ msgstr "Avvia collectd"

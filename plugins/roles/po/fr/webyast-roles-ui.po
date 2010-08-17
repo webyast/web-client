@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-roles-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-12 09:41-0500\n"
 "Last-Translator: DaaX <patrick.dubeau@ccq.org>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -12,34 +12,66 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/views/roles/_role_edit.erb:31
-#, fuzzy
-#| msgid "Permissions denied"
-msgid "Permissions granted by role"
-msgstr "Permissions accordées selon le rôle"
+#: app/controllers/roles_controller.rb:97
+#: app/controllers/roles_controller.rb:97
+msgid "Cannot find roles"
+msgstr ""
+
+#: app/views/roles/index.rhtml:61 app/views/roles/index.rhtml:207
+#: app/views/roles/index.rhtml:213 app/views/roles/index.rhtml:61
+#: app/views/roles/index.rhtml:207 app/views/roles/index.rhtml:213
+msgid "Assign Users"
+msgstr ""
+
+#: app/views/roles/index.rhtml:62 app/views/roles/index.rhtml:62
+msgid "Selected Users"
+msgstr ""
 
 # TLABEL wizard_2002_03_14_2340__1
-#: app/views/roles/_role_edit.erb:44
-#| msgid "Available Processors"
-msgid "Available permissions"
+#: app/views/roles/index.rhtml:63 app/views/roles/index.rhtml:63
+#, fuzzy
+msgid "Available Users"
 msgstr "Permissions disponibles"
 
-#: app/views/roles/_role_edit.erb:56
-#| msgid "Description: "
-msgid "Description of permissions"
-msgstr "Description des permissions"
+#: app/views/roles/index.rhtml:64 app/views/roles/index.rhtml:64
+msgid "Click user names to assign/remove users"
+msgstr ""
 
-#: app/views/roles/_role_edit.erb:58
-#| msgid "description"
-msgid ")}-description"
-msgstr ")}-description"
-
-#: app/views/roles/_role_edit.erb:64
-msgid "Save"
-msgstr "Enregistrer"
-
-#: app/views/roles/index.rhtml:12
-#| msgid "Role"
+#: app/views/roles/index.rhtml:149 app/views/roles/index.rhtml:149
+#: shortcuts.yml:6
 msgid "Roles"
 msgstr "Rôles"
 
+#: app/views/roles/index.rhtml:153 app/views/roles/index.rhtml:153
+msgid "Create Role"
+msgstr ""
+
+# TLABEL wizard_2002_03_14_2340__1
+#: app/views/roles/index.rhtml:165 app/views/roles/index.rhtml:165
+#, fuzzy
+msgid "Assign Permissions"
+msgstr "Permissions disponibles"
+
+#: app/views/roles/index.rhtml:168 app/views/roles/index.rhtml:168
+msgid "collapse all"
+msgstr ""
+
+#: shortcuts.yml:7
+msgid "Set permissions in roles and assign users to roles"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Permissions denied"
+#~ msgid "Permissions granted by role"
+#~ msgstr "Permissions accordées selon le rôle"
+
+#~| msgid "Description: "
+#~ msgid "Description of permissions"
+#~ msgstr "Description des permissions"
+
+#~| msgid "description"
+#~ msgid ")}-description"
+#~ msgstr ")}-description"
+
+#~ msgid "Save"
+#~ msgstr "Enregistrer"

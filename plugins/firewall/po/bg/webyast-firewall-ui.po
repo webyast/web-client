@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-firewall-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2005-08-18 21:16+0300\n"
 "Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -11,46 +11,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/firewall_controller.rb:51
+#: app/controllers/firewall_controller.rb:72
+#: app/controllers/firewall_controller.rb:72
 msgid "Firewall settings have been written."
 msgstr ""
 
-#: app/views/firewall/index.rhtml:42
-msgid "Some of needed services are going to be blocked. WebYaST may not be usable anymore."
+#: app/views/firewall/index.rhtml:53 app/views/firewall/index.rhtml:53
+msgid ""
+"Some of needed services (%s) are going to be blocked. WebYaST may not be "
+"usable anymore. Do you really want to block them?"
 msgstr ""
 
-#: app/views/firewall/index.rhtml:68
+#: app/views/firewall/index.rhtml:80 app/views/firewall/index.rhtml:80
+#: shortcuts.yml:6
 msgid "Firewall"
 msgstr ""
 
-#: app/views/firewall/index.rhtml:86
+#: app/views/firewall/index.rhtml:98 app/views/firewall/index.rhtml:98
 #, fuzzy
-#| msgid "General Settings"
 msgid "General settings"
 msgstr "Общи настройки"
 
-#: app/views/firewall/index.rhtml:93
+#: app/views/firewall/index.rhtml:105 app/views/firewall/index.rhtml:105
 msgid "Use Firewall"
 msgstr ""
 
-#: app/views/firewall/index.rhtml:99
+#: app/views/firewall/index.rhtml:110 app/views/firewall/index.rhtml:110
 #, fuzzy
-#| msgid "All SLP Services"
 msgid "Allowed services"
 msgstr "Всички SLP услуги"
 
-#: app/views/firewall/index.rhtml:103
+#: app/views/firewall/index.rhtml:120 app/views/firewall/index.rhtml:120
 #, fuzzy
-#| msgid "xlock"
-msgid "Block"
-msgstr "xlock"
-
-#: app/views/firewall/index.rhtml:109
-#, fuzzy
-#| msgid "Build Service"
 msgid "Blocked services"
 msgstr "Услуга за изграждане"
 
-#: app/views/firewall/index.rhtml:113
-msgid "Allow"
-msgstr ""
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Firewall settings"
+msgstr "Общи настройки"
+
+#, fuzzy
+#~| msgid "xlock"
+#~ msgid "Block"
+#~ msgstr "xlock"

@@ -1,91 +1,115 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_mail\n"
-"POT-Creation-Date: 2010-04-23 11:01+0200\n"
-"PO-Revision-Date: 2010-05-06 10:21\n"
+"Project-Id-Version: webyast-mail-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/mail_controller.rb:50
+#: app/controllers/mail_controller.rb:50 app/controllers/mail_controller.rb:50
 msgid "Passwords do not match."
-msgstr "密碼不符。"
+msgstr "密碼不符合。"
 
-#: app/controllers/mail_controller.rb:57
+#: app/controllers/mail_controller.rb:57 app/controllers/mail_controller.rb:57
 msgid "Mail settings have been written."
-msgstr "已經寫入郵件設定。"
+msgstr ""
 
-#: app/controllers/mail_controller.rb:59
+#: app/controllers/mail_controller.rb:59 app/controllers/mail_controller.rb:59
 msgid "Test mail was sent to %s."
-msgstr "測試郵件已傳送到 %s。"
+msgstr ""
 
-#: app/controllers/mail_controller.rb:71
+#: app/controllers/mail_controller.rb:71 app/controllers/mail_controller.rb:71
+#, fuzzy
 msgid "Error while saving mail settings: %s"
-msgstr "儲存郵件設定時出錯︰%s"
+msgstr "關閉舊 opasswd 檔案時發生錯誤：%s"
 
-#: app/controllers/mail_controller.rb:88
-msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
-msgstr "未設定外送郵件伺服器，但管理員卻定義了郵件轉遞者。\n請變更 %s<i>administrator</i>%s 或 %s<i>mail</i>%s 組態。"
+#: app/controllers/mail_controller.rb:88 app/controllers/mail_controller.rb:88
+msgid ""
+"No outgoing mail server is set, but administrator has mail forwarders "
+"defined.\n"
+"Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
+msgstr ""
 
-#: app/views/mail/index.html.erb:37
+#: app/views/mail/index.html.erb:44 app/views/mail/index.html.erb:44
+#, fuzzy
 msgid "The passwords do not match."
-msgstr "密碼不符。"
+msgstr "密碼不符合。"
 
-#: app/views/mail/index.html.erb:38
+#: app/views/mail/index.html.erb:45 app/views/mail/index.html.erb:45
+#, fuzzy
 msgid "Enter a valid e-mail address."
-msgstr "輸入有效的電子郵件地址。"
+msgstr "`%s' 不是有效的 IP 位址。"
 
-#: app/views/mail/index.html.erb:39
+#: app/views/mail/index.html.erb:46 app/views/mail/index.html.erb:46
+#, fuzzy
 msgid "Enter a valid domain name or an IP address."
-msgstr "輸入有效的網域名稱或 IP 位址。"
+msgstr "輸入您的 IP 位址。"
 
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:63 app/views/mail/index.html.erb:63
+#: shortcuts.yml:6
+#, fuzzy
 msgid "Mail Settings"
-msgstr "郵件設定"
+msgstr "手動設定"
 
-#: app/views/mail/index.html.erb:68
+#: app/views/mail/index.html.erb:75 app/views/mail/index.html.erb:75
 msgid "Outgoing mail server"
-msgstr "外送郵件伺服器"
+msgstr ""
 
-#: app/views/mail/index.html.erb:71
+#: app/views/mail/index.html.erb:80 app/views/mail/index.html.erb:80
 msgid "Use secure connection (TLS)"
-msgstr "使用安全連線 (TLS)"
+msgstr ""
 
-#: app/views/mail/index.html.erb:72
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
 msgid "Never"
 msgstr "永不"
 
-#: app/views/mail/index.html.erb:72
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
+#, fuzzy
 msgid "If available"
-msgstr "若可用"
+msgstr "(%1 可用)"
 
-#: app/views/mail/index.html.erb:72
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
+#, fuzzy
 msgid "Always"
-msgstr "永遠"
+msgstr "永遠(&Y)"
 
-#: app/views/mail/index.html.erb:74
+#: app/views/mail/index.html.erb:84 app/views/mail/index.html.erb:84
+#, fuzzy
 msgid "User name"
-msgstr "使用者名稱"
+msgstr "使用者名稱："
 
-#: app/views/mail/index.html.erb:77
+# password dialog title
+#: app/views/mail/index.html.erb:88 app/views/mail/index.html.erb:88
 msgid "Password"
 msgstr "密碼"
 
-#: app/views/mail/index.html.erb:80
+#: app/views/mail/index.html.erb:92 app/views/mail/index.html.erb:92
+#, fuzzy
 msgid "Confirm password"
-msgstr "確認密碼"
+msgstr "確認密碼(_C)："
 
-#: app/views/mail/index.html.erb:88
+#: app/views/mail/index.html.erb:100 app/views/mail/index.html.erb:100
+#, fuzzy
 msgid "Send test mail to"
-msgstr "將測試郵件傳送到"
+msgstr "傳送電子郵件至 %1"
 
-#: app/views/mail/index.html.erb:90
+#: app/views/mail/index.html.erb:102 app/views/mail/index.html.erb:102
+#, fuzzy
 msgid "Send Mail"
-msgstr "傳送郵件"
+msgstr "傳送資料"
 
+#: shortcuts.yml:7
+msgid "Manage outgoing mail settings"
+msgstr ""

@@ -1,95 +1,145 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_administrator\n"
-"POT-Creation-Date: 2010-04-23 11:00+0200\n"
-"PO-Revision-Date: 2010-05-06 09:30\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Project-Id-Version: webyast-root-user-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
+"PO-Revision-Date: 2010-03-09 16:13+0900\n"
+"Last-Translator: Yunseok Choi <xein@naver.com>\n"
+"Language-Team: Korean <xein@naver.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/administrator_controller.rb:53 app/views/administrator/index.html.erb:45
+#: app/controllers/administrator_controller.rb:53
+#: app/views/administrator/index.html.erb:56
+#: app/controllers/administrator_controller.rb:53
+#: app/views/administrator/index.html.erb:56
 msgid "Enter a valid e-mail address."
-msgstr "유효한 전자 메일 주소를 입력하십시오."
+msgstr "올바른 메일 주소를 입력하세요."
 
 #: app/controllers/administrator_controller.rb:61
+#: app/controllers/administrator_controller.rb:61
 msgid "Passwords do not match."
-msgstr "비밀번호가 일치하지 않습니다."
+msgstr "열쇠글이 일치하지 않습니다."
 
 #: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:74
 msgid "Administrator settings have been written."
-msgstr "관리자 설정이 기록되었습니다."
+msgstr "관리자 설정을 기록하였습니다."
 
 #: app/controllers/administrator_controller.rb:84
+#: app/controllers/administrator_controller.rb:84
 msgid "Error while saving administrator settings: %s"
-msgstr "관리자 설정을 저장하는 동안 오류 발생: %s"
+msgstr "관리자 설정을 저장하는 도중 오류: %s"
 
 #: app/controllers/administrator_controller.rb:96
-msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
-msgstr "메일 별칭이 설정되었지만 보내는 메일 서버가 구성되지 않았습니다(%s<i>변경</i>%s)."
+#: app/controllers/administrator_controller.rb:96
+msgid ""
+"Mail alias was set but outgoing mail server is not configured (%s<i>change</"
+"i>%s)."
+msgstr ""
 
 #: app/views/administrator/index.html.erb:22
+#: app/views/administrator/index.html.erb:22 shortcuts.yml:6
 msgid "Administrator Settings"
 msgstr "관리자 설정"
 
-#: app/views/administrator/index.html.erb:53
-msgid "The passwords do not match."
-msgstr "비밀번호가 일치하지 않습니다."
-
-#: app/views/administrator/index.html.erb:54
-msgid "A password is required."
-msgstr "비밀번호를 입력해야 합니다."
-
-#: app/views/administrator/index.html.erb:59
-msgid "Password Strength:"
-msgstr "비밀번호 강도:"
-
-#: app/views/administrator/index.html.erb:61
-msgid "Weak"
-msgstr "약함"
-
-#: app/views/administrator/index.html.erb:62
-msgid "Normal"
-msgstr "일반"
-
-#: app/views/administrator/index.html.erb:63
-msgid "Medium"
-msgstr "보통"
-
 #: app/views/administrator/index.html.erb:64
-msgid "Strong"
-msgstr "강함"
+#: app/views/administrator/index.html.erb:64
+msgid "The passwords do not match."
+msgstr "열쇠글이 일치하지 않습니다."
 
 #: app/views/administrator/index.html.erb:65
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+msgid "A password is required."
+msgstr "PKCS12 열쇠글이 필요 합니다."
+
+#: app/views/administrator/index.html.erb:70
+#: app/views/administrator/index.html.erb:70
+#, fuzzy
+msgid "Password Strength:"
+msgstr "열쇠글 일치"
+
+#: app/views/administrator/index.html.erb:72
+#: app/views/administrator/index.html.erb:72
+msgid "Weak"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:73
+#: app/views/administrator/index.html.erb:73
+msgid "Normal"
+msgstr "보통"
+
+#: app/views/administrator/index.html.erb:74
+#: app/views/administrator/index.html.erb:74
+#, fuzzy
+msgid "Medium"
+msgstr "매체"
+
+#: app/views/administrator/index.html.erb:75
+#: app/views/administrator/index.html.erb:75
+msgid "Strong"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:76
+#: app/views/administrator/index.html.erb:76
 msgid "Very Strong"
-msgstr "매우 강함"
+msgstr ""
 
-#: app/views/administrator/index.html.erb:93
+#: app/views/administrator/index.html.erb:104
+#: app/views/administrator/index.html.erb:104
 msgid "Password Setup for User 'root'"
-msgstr "'루트' 사용자에 대한 비밀번호 설정"
+msgstr ""
 
-#: app/views/administrator/index.html.erb:94
+#: app/views/administrator/index.html.erb:105
+#: app/views/administrator/index.html.erb:105
+#, fuzzy
 msgid "New Password"
-msgstr "새 비밀번호"
+msgstr "새 열쇠글(_N):"
 
-#: app/views/administrator/index.html.erb:99
+#: app/views/administrator/index.html.erb:110
+#: app/views/administrator/index.html.erb:110
+#, fuzzy
 msgid "Confirm Password"
-msgstr "비밀번호 확인"
+msgstr "열쇠글 확인(_C):"
 
-#: app/views/administrator/index.html.erb:106
+#: app/views/administrator/index.html.erb:119
+#: app/views/administrator/index.html.erb:119
 msgid "Mail Setup for User 'root'"
-msgstr "'루트' 사용자에 대한 메일 설정"
+msgstr ""
 
-#: app/views/administrator/index.html.erb:108
+#: app/views/administrator/index.html.erb:121
+#: app/views/administrator/index.html.erb:121
+#, fuzzy
 msgid "Forward system mail to"
-msgstr "다음으로 시스템 메일 전달"
+msgstr "메일을 전달"
 
-#: app/views/administrator/index.html.erb:111
+#: app/views/administrator/index.html.erb:124
+#: app/views/administrator/index.html.erb:124
+#, fuzzy
 msgid "Save Mail Only"
-msgstr "메일만 저장"
+msgstr "메일 저장"
 
+#: shortcuts.yml:7
+msgid "Manage system administrator"
+msgstr ""
+
+#~ msgid "Here, configure the settings for system administrator ('root')."
+#~ msgstr "이곳에서 시스템 관리자('root')의 설정을 구성합니다."
+
+# password dialog title
+#~ msgid "Password"
+#~ msgstr "열쇠글"
+
+#~| msgid "_Confirm Password:"
+#~ msgid "Confirm password"
+#~ msgstr "열쇠글 확인"
+
+#~| msgid "Change Password"
+#~ msgid "Save Password"
+#~ msgstr "열쇠글 저장"

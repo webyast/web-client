@@ -4,9 +4,9 @@
 # Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
+"Project-Id-Version: webyast-permissions-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-05-24 22:03+0200\n"
 "Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
 "Language-Team: Czech <opensuse-translation@opensuse.org>\n"
@@ -16,48 +16,56 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/permissions_controller.rb:13
+#: app/controllers/permissions_controller.rb:34
+#: app/controllers/permissions_controller.rb:34
 msgid "Invalid session, please login again."
 msgstr "Chybná session, prosím přihlaste se znova."
 
-#: app/controllers/permissions_controller.rb:129
-#| msgid "`%s' is not a valid netmask."
+#: app/controllers/permissions_controller.rb:150
+#: app/controllers/permissions_controller.rb:150
 msgid "User name is not valid name"
 msgstr "Uživatelské jméno není platné jméno"
 
-#: app/controllers/permissions_controller.rb:131
-#| msgid "'%1' does not exist."
+#: app/controllers/permissions_controller.rb:152
+#: app/controllers/permissions_controller.rb:152
 msgid "User does not exist"
 msgstr "Uživatel neexistuje"
 
-#: app/controllers/permissions_controller.rb:179
+#: app/controllers/permissions_controller.rb:200
+#: app/controllers/permissions_controller.rb:200
 msgid "Permissions have been set."
 msgstr "Práva byla nastavena."
 
-#: app/views/permissions/index.rhtml:46
+#: app/views/permissions/index.rhtml:67 app/views/permissions/index.rhtml:67
+#: shortcuts.yml:6
 msgid "User Permissions"
 msgstr "Uživatelská práva"
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:71 app/views/permissions/index.rhtml:71
 msgid "User"
 msgstr "Uživatel"
 
-#: app/views/permissions/index.rhtml:52
+#: app/views/permissions/index.rhtml:73 app/views/permissions/index.rhtml:73
 msgid "Search"
 msgstr "Vyhledávání"
 
 # Nejsem si jistý. Cervajz.
-#: app/views/permissions/index.rhtml:64
+#: app/views/permissions/index.rhtml:85 app/views/permissions/index.rhtml:85
 msgid "Revoked Permissions"
 msgstr "Revokovaná práva"
 
-#: app/views/permissions/index.rhtml:65
+#: app/views/permissions/index.rhtml:86 app/views/permissions/index.rhtml:86
 msgid "Granted Permissions"
 msgstr "Udělená práva"
 
-#: app/views/permissions/index.rhtml:159
+#: app/views/permissions/index.rhtml:175 app/views/permissions/index.rhtml:175
 msgid "Back"
 msgstr "Zpět"
+
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Set user permissions"
+msgstr "Uživatelská práva"
 
 #~ msgid "Set"
 #~ msgstr "Nastavit"

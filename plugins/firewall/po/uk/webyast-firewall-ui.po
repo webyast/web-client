@@ -6,8 +6,8 @@
 # Rev. Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"Project-Id-Version: webyast-firewall-ui 1.0.0\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-04-15 21:15-0700\n"
 "Last-Translator: Rev. Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <kde-i18n-doc@kde.org>\n"
@@ -15,40 +15,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: app/controllers/firewall_controller.rb:51
+#: app/controllers/firewall_controller.rb:72
+#: app/controllers/firewall_controller.rb:72
 msgid "Firewall settings have been written."
 msgstr "Параметри фаєрволу записано."
 
-#: app/views/firewall/index.rhtml:42
-msgid "Some of needed services are going to be blocked. WebYaST may not be usable anymore."
-msgstr "Деякі потрібні служби буде заблоковано. Можливо, WebYaST стане непридатним для користування."
+#: app/views/firewall/index.rhtml:53 app/views/firewall/index.rhtml:53
+#, fuzzy
+msgid ""
+"Some of needed services (%s) are going to be blocked. WebYaST may not be "
+"usable anymore. Do you really want to block them?"
+msgstr ""
+"Деякі потрібні служби буде заблоковано. Можливо, WebYaST стане непридатним "
+"для користування."
 
-#: app/views/firewall/index.rhtml:68
+#: app/views/firewall/index.rhtml:80 app/views/firewall/index.rhtml:80
+#: shortcuts.yml:6
 msgid "Firewall"
 msgstr "Фаєрвол"
 
-#: app/views/firewall/index.rhtml:86
+#: app/views/firewall/index.rhtml:98 app/views/firewall/index.rhtml:98
 msgid "General settings"
 msgstr "Загальні параметри"
 
-#: app/views/firewall/index.rhtml:93
+#: app/views/firewall/index.rhtml:105 app/views/firewall/index.rhtml:105
 msgid "Use Firewall"
 msgstr "Вживати фаєрвол"
 
-#: app/views/firewall/index.rhtml:99
+#: app/views/firewall/index.rhtml:110 app/views/firewall/index.rhtml:110
 msgid "Allowed services"
 msgstr "Дозволені служби"
 
-#: app/views/firewall/index.rhtml:103
-msgid "Block"
-msgstr "Заблокувати"
-
-#: app/views/firewall/index.rhtml:109
+#: app/views/firewall/index.rhtml:120 app/views/firewall/index.rhtml:120
 msgid "Blocked services"
 msgstr "Заблоковані служби"
 
-#: app/views/firewall/index.rhtml:113
-msgid "Allow"
-msgstr "Дозволити"
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Firewall settings"
+msgstr "Загальні параметри"
+
+#~ msgid "Block"
+#~ msgstr "Заблокувати"
+
+#~ msgid "Allow"
+#~ msgstr "Дозволити"

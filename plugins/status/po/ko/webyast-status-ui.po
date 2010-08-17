@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webyast-status-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 16:42+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-03-09 16:06+0900\n"
 "Last-Translator: Yunseok Choi <xein@naver.com>\n"
 "Language-Team: Korean <xein@naver.com>\n"
@@ -14,52 +14,58 @@ msgstr ""
 "X-Poedit-Country: KOREA, REPUBLIC OF\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/status_controller.rb:151
-#: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:149
+#: app/controllers/status_controller.rb:149
 msgid "No data found for showing system status."
 msgstr "표시되는 시스템 상태에는 데이터가 없습니다."
 
-#: app/controllers/status_controller.rb:159
-#: app/controllers/status_controller.rb:159
+#: app/controllers/status_controller.rb:157
+#: app/controllers/status_controller.rb:157
 #, fuzzy
 msgid "Status not available."
 msgstr "사용 가능한 상태 정보가 없습니다."
 
-#: app/controllers/status_controller.rb:178
-#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:176
+#: app/controllers/status_controller.rb:176
 msgid "Can't connect to host"
 msgstr ""
 
-#: app/controllers/status_controller.rb:180
-#: app/controllers/status_controller.rb:180
+#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:178
 msgid "Can't connect to host %s."
 msgstr ""
 
-#: app/controllers/status_controller.rb:219
-#: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:217
+#: app/controllers/status_controller.rb:217
 #, fuzzy
 msgid "Limits exceeded for "
 msgstr "%s 에 대한 제한을 초과함"
 
-#: app/controllers/status_controller.rb:244
-#: app/controllers/status_controller.rb:244
+#: app/controllers/status_controller.rb:242
+#: app/controllers/status_controller.rb:242
 #, fuzzy
 msgid "Status not available"
 msgstr "사용 가능한 상태 정보가 없습니다."
 
-#: app/controllers/status_controller.rb:316
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:266
+#: app/controllers/status_controller.rb:266
+#, fuzzy
+msgid "Status not available (no permissions)"
+msgstr "사용 가능한 상태 정보가 없습니다."
+
+#: app/controllers/status_controller.rb:328
+#: app/controllers/status_controller.rb:328
 #, fuzzy
 msgid "exceeded"
 msgstr "필요함"
 
-#: app/controllers/status_controller.rb:330
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:342
+#: app/controllers/status_controller.rb:342
 msgid "undercut"
 msgstr ""
 
-#: app/controllers/status_controller.rb:432
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:444
+#: app/controllers/status_controller.rb:444
 msgid "Limits have been written."
 msgstr ""
 
@@ -67,8 +73,8 @@ msgstr ""
 msgid "Only numbers are valid !"
 msgstr ""
 
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
 #: shortcuts.yml:6
 msgid "Status"
 msgstr "상태"
@@ -86,16 +92,16 @@ msgstr ""
 msgid "exceeds"
 msgstr "피드"
 
-#: app/views/status/index.html.erb:92 app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:94 app/views/status/index.html.erb:94
 #, fuzzy
 msgid "details"
 msgstr "자세히"
 
-#: app/views/status/index.html.erb:108 app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:110 app/views/status/index.html.erb:110
 msgid "Details"
 msgstr "자세히"
 
-#: app/views/status/index.html.erb:161 app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:178 app/views/status/index.html.erb:178
 msgid "Edit Limits"
 msgstr "제한 편집"
 
@@ -174,47 +180,22 @@ msgstr "업데이트 정보 다운로드 중"
 msgid "Checking system status"
 msgstr "서명 확인 중"
 
-#: lib/plugin_translation.rb:46 lib/plugin_translation.rb:46
-#, fuzzy
-msgid "Registration is missing"
-msgstr "필요한 '%s' 속성이 빠졌습니다."
-
-#: lib/plugin_translation.rb:47 lib/plugin_translation.rb:47
-#, fuzzy
-msgid "Please register your system in order to get updates."
-msgstr "가능하면 시스템을 재시작 하는것이 좋습니다."
-
-#: lib/plugin_translation.rb:48 lib/plugin_translation.rb:48
-msgid "register"
-msgstr ""
-
-#: lib/plugin_translation.rb:50 lib/plugin_translation.rb:50
-#, fuzzy
-msgid "Mail configuration test not confirmed"
-msgstr "설정은 초기화 되지 않았습니다."
-
-#: lib/plugin_translation.rb:51 lib/plugin_translation.rb:51
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-
-#: lib/plugin_translation.rb:54 lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-
-#: lib/plugin_translation.rb:55 lib/plugin_translation.rb:55
-msgid "Test mail received"
-msgstr ""
-
 #: shortcuts.yml:7
 #, fuzzy
 msgid "Show system status"
 msgstr "서명 확인 중"
+
+#, fuzzy
+#~ msgid "Registration is missing"
+#~ msgstr "필요한 '%s' 속성이 빠졌습니다."
+
+#, fuzzy
+#~ msgid "Please register your system in order to get updates."
+#~ msgstr "가능하면 시스템을 재시작 하는것이 좋습니다."
+
+#, fuzzy
+#~ msgid "Mail configuration test not confirmed"
+#~ msgstr "설정은 초기화 되지 않았습니다."
 
 #, fuzzy
 #~| msgid "Start VPN connection"

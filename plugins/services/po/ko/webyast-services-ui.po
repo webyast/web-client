@@ -1,163 +1,277 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_services\n"
-"POT-Creation-Date: 2010-04-23 11:01+0200\n"
-"PO-Revision-Date: 2010-05-06 09:30\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Project-Id-Version: webyast-services-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:19+0200\n"
+"PO-Revision-Date: 2010-03-10 14:40+0900\n"
+"Last-Translator: Yunseok Choi <xein@naver.com>\n"
+"Language-Team: Korean <xein@naver.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/services_controller.rb:44
+#: app/controllers/services_controller.rb:46
+#: app/controllers/services_controller.rb:46
 msgid "(cannot read status)"
 msgstr "(상태를 읽을 수 없음)"
 
-#: app/controllers/services_controller.rb:91
+#: app/controllers/services_controller.rb:74
+#: app/controllers/services_controller.rb:74
+msgid "List of services could not be read"
+msgstr ""
+
+#: app/controllers/services_controller.rb:76
+#: app/controllers/services_controller.rb:76
+msgid "List of custom services could not be read"
+msgstr ""
+
+#: app/controllers/services_controller.rb:112
+#: app/controllers/services_controller.rb:112
 msgid "success"
 msgstr "성공"
 
-#: app/controllers/services_controller.rb:92
+#: app/controllers/services_controller.rb:113
+#: app/controllers/services_controller.rb:113
 msgid "unspecified error"
-msgstr "알 수 없는 오류"
+msgstr ""
 
-#: app/controllers/services_controller.rb:93
+#: app/controllers/services_controller.rb:114
+#: app/controllers/services_controller.rb:114
+#, fuzzy
 msgid "invalid or excess argument(s)"
-msgstr "잘못되었거나 초과한 인수"
+msgstr "잘못된 인수 구문"
 
-#: app/controllers/services_controller.rb:94
+#: app/controllers/services_controller.rb:115
+#: app/controllers/services_controller.rb:115
+#, fuzzy
 msgid "unimplemented feature"
-msgstr "구현되지 않은 기능"
+msgstr "아직 구현되고 있지 않음"
 
-#: app/controllers/services_controller.rb:95
+#: app/controllers/services_controller.rb:116
+#: app/controllers/services_controller.rb:116
 msgid "user had insufficient privilege"
-msgstr "사용자 권한이 충분하지 않습니다."
+msgstr ""
 
-#: app/controllers/services_controller.rb:96
+#: app/controllers/services_controller.rb:117
+#: app/controllers/services_controller.rb:117
+#, fuzzy
 msgid "program is not installed"
-msgstr "프로그램이 설치되지 않았습니다."
+msgstr "'%s'가 설치되지 않았습니다."
 
-#: app/controllers/services_controller.rb:97
+#: app/controllers/services_controller.rb:118
+#: app/controllers/services_controller.rb:118
+#, fuzzy
 msgid "program is not configured"
-msgstr "프로그램이 구성되지 않았습니다."
+msgstr "설정되지 않음"
 
-#: app/controllers/services_controller.rb:98
-msgid "program is not runnning"
-msgstr "프로그램이 실행 중이 아닙니다."
+#: app/controllers/services_controller.rb:119
+#: app/controllers/services_controller.rb:119
+#, fuzzy
+msgid "program is not running"
+msgstr "하이퍼바이저가 동작 중입니다."
 
-#: app/views/services/_result.rhtml:7
+#: app/controllers/services_controller.rb:126
+#: app/controllers/services_controller.rb:126
+msgid "Unknown error on server side"
+msgstr ""
+
+#: app/views/services/_result.rhtml:7 app/views/services/_result.rhtml:7
 msgid "Service Call Result"
 msgstr "서비스 호출 결과"
 
-#: app/views/services/_result.rhtml:10
+#: app/views/services/_result.rhtml:10 app/views/services/_result.rhtml:10
 msgid "Result"
 msgstr "결과"
 
-#: app/views/services/_result.rhtml:15
+#: app/views/services/_result.rhtml:15 app/views/services/_result.rhtml:15
 msgid "Description"
 msgstr "설명"
 
-#: app/views/services/index.rhtml:162
+#: app/views/services/index.rhtml:191 app/views/services/index.rhtml:191
+#: shortcuts.yml:7
 msgid "System Services"
 msgstr "시스템 서비스"
 
-#: app/views/services/index.rhtml:168
+#: app/views/services/index.rhtml:197 app/views/services/index.rhtml:197
+#, fuzzy
 msgid "You do not have permission to execute the services."
-msgstr "서비스를 실행할 권한이 없습니다."
+msgstr "서비스를 실행할 권한이 사용자에게 없습니다. 링크는 비활성화됩니다."
 
-#: app/views/services/index.rhtml:172
+#: app/views/services/index.rhtml:202 app/views/services/index.rhtml:247
+#: app/views/services/index.rhtml:202 app/views/services/index.rhtml:247
+#, fuzzy
 msgid "Filter services"
-msgstr "필터 서비스"
+msgstr "inetd 서비스"
 
-#: app/views/services/index.rhtml:174
+#: app/views/services/index.rhtml:204 app/views/services/index.rhtml:251
+#: app/views/services/index.rhtml:266 app/views/services/index.rhtml:204
+#: app/views/services/index.rhtml:251 app/views/services/index.rhtml:266
+#, fuzzy
 msgid "All"
-msgstr "모두"
+msgstr "전체"
 
-#: app/views/services/index.rhtml:175
+#: app/views/services/index.rhtml:205 app/views/services/index.rhtml:252
+#: app/views/services/index.rhtml:205 app/views/services/index.rhtml:252
+#, fuzzy
 msgid "Running"
 msgstr "실행 중"
 
-#: app/views/services/index.rhtml:176
+#: app/views/services/index.rhtml:206 app/views/services/index.rhtml:253
+#: app/views/services/index.rhtml:206 app/views/services/index.rhtml:253
+#, fuzzy
 msgid "Not Running"
-msgstr "실행 중이 아님"
+msgstr "실행 중이지 않음"
 
-#: app/views/services/index.rhtml:177
+#: app/views/services/index.rhtml:207 app/views/services/index.rhtml:254
+#: app/views/services/index.rhtml:207 app/views/services/index.rhtml:254
+#, fuzzy
 msgid "Dead"
-msgstr "오류"
+msgstr "(죽음)"
 
-#: app/views/services/index.rhtml:178
+#: app/views/services/index.rhtml:208 app/views/services/index.rhtml:255
+#: app/views/services/index.rhtml:208 app/views/services/index.rhtml:255
 msgid "Started on Boot"
-msgstr "부팅 시 시작됨"
+msgstr ""
 
-#: app/views/services/index.rhtml:179
+#: app/views/services/index.rhtml:209 app/views/services/index.rhtml:256
+#: app/views/services/index.rhtml:209 app/views/services/index.rhtml:256
 msgid "Not Started on Boot"
-msgstr "부팅 시 시작되지 않음"
+msgstr ""
 
-#: app/views/services/index.rhtml:186
+#: app/views/services/index.rhtml:216 app/views/services/index.rhtml:231
+#: app/views/services/index.rhtml:235 app/views/services/index.rhtml:216
+#: app/views/services/index.rhtml:231 app/views/services/index.rhtml:235
+#, fuzzy
 msgid "Quick Search"
-msgstr "빠른 검색"
+msgstr "검색"
 
-#: app/views/services/index.rhtml:201
+#: app/views/services/index.rhtml:242 app/views/services/index.rhtml:242
+msgid "Add New Repository"
+msgstr ""
+
+#: app/views/services/index.rhtml:262 app/views/services/index.rhtml:262
+#, fuzzy
+msgid "Filter repositories"
+msgstr "inetd 서비스"
+
+#: app/views/services/index.rhtml:267 app/views/services/index.rhtml:267
+msgid "Enabled"
+msgstr ""
+
+#: app/views/services/index.rhtml:268 app/views/services/index.rhtml:268
+msgid "Disabled"
+msgstr ""
+
+#: app/views/services/index.rhtml:289 app/views/services/index.rhtml:289
+#, fuzzy
 msgid "Description for service is not available"
-msgstr "서비스 설명을 사용할 수 없습니다."
+msgstr "'%1' 서비스의 동작을 비우면 안됩니다."
 
-#: app/views/services/index.rhtml:224
+#: app/views/services/index.rhtml:313 app/views/services/index.rhtml:313
+#, fuzzy
 msgid "(refresh)"
-msgstr "(새로 고침)"
+msgstr "새로고침"
 
-#: app/views/services/index.rhtml:255
+#: app/views/services/index.rhtml:345 app/views/services/index.rhtml:345
+#, fuzzy
 msgid "Start"
 msgstr "시작"
 
-#: app/views/services/index.rhtml:256
+#: app/views/services/index.rhtml:346 app/views/services/index.rhtml:346
 msgid "Stop"
-msgstr "중지"
+msgstr ""
 
-#: app/views/services/index.rhtml:257
+#: app/views/services/index.rhtml:347 app/views/services/index.rhtml:347
 msgid "Restart"
-msgstr "다시 시작"
+msgstr "재시작"
 
-#: app/views/services/index.rhtml:258
+#: app/views/services/index.rhtml:348 app/views/services/index.rhtml:348
+#, fuzzy
 msgid "Start on Boot"
-msgstr "부팅 시 시작"
+msgstr "퀀커러 시작"
 
-#: app/views/services/index.rhtml:259
+#: app/views/services/index.rhtml:349 app/views/services/index.rhtml:349
+#, fuzzy
 msgid "Do Not Start on Boot"
-msgstr "부팅 시 시작 안 함"
+msgstr "시작하지 않음"
 
-#: app/views/services/_status.rhtml:7
+#: app/views/services/_status.rhtml:7 app/views/services/_status.rhtml:7
 msgid "Service will be started on boot."
-msgstr "서비스가 부팅 시 시작됩니다."
+msgstr ""
 
-#: app/views/services/_status.rhtml:9
+#: app/views/services/_status.rhtml:9 app/views/services/_status.rhtml:9
 msgid "Service will not be started on boot."
-msgstr "서비스가 부팅 시 시작되지 않습니다."
+msgstr ""
 
-#: app/views/services/_status.rhtml:32
+#  translators: fallback name for a module at command line
+#: app/views/services/_status.rhtml:32 app/views/services/_status.rhtml:32
+#, fuzzy
 msgid "status unknown"
 msgstr "알 수 없는 상태"
 
-#: app/views/services/_status.rhtml:34
+#: app/views/services/_status.rhtml:34 app/views/services/_status.rhtml:34
 msgid "running"
 msgstr "실행 중"
 
-#: app/views/services/_status.rhtml:38
+#: app/views/services/_status.rhtml:38 app/views/services/_status.rhtml:38
+#, fuzzy
 msgid "dead"
-msgstr "오류"
+msgstr "(죽음)"
 
-#: app/views/services/_status.rhtml:42
+#: app/views/services/_status.rhtml:42 app/views/services/_status.rhtml:42
 msgid "not running"
-msgstr "실행 중이 아님"
+msgstr "실행 중이지 않음"
 
-#: app/views/services/_status.rhtml:46
+#  translators: fallback name for a module at command line
+#: app/views/services/_status.rhtml:46 app/views/services/_status.rhtml:46
+#, fuzzy
 msgid "status unknown: %d"
-msgstr "알 수 없는 상태: %d"
+msgstr "알 수 없는 상태"
 
-#: app/views/services/_status.rhtml:49
+#: app/views/services/_status.rhtml:49 app/views/services/_status.rhtml:49
+#, fuzzy
 msgid "Current status of the service:"
-msgstr "서비스의 현재 상태:"
+msgstr "검색 영역의 잠금 상태"
 
+#: shortcuts.yml:8
+msgid "Manage the LSB init scripts"
+msgstr ""
+
+#~ msgid "Invalid session, please login again."
+#~ msgstr "잘못된 세션입니다. 다시 로그인 해주세요."
+
+#  translators: fallback name for a module at command line
+#~| msgid "unknown"
+#~ msgid "(unknown)"
+#~ msgstr "(알 수 없음)"
+
+#~| msgid "running"
+#~ msgid "(running)"
+#~ msgstr "(실행 중)"
+
+#~| msgid "not running"
+#~ msgid "(not running)"
+#~ msgstr "(실행 중이지 않음)"
+
+#  translators: fallback name for a module at command line
+#~| msgid "unknown"
+#~ msgid "(unknown: %d)"
+#~ msgstr "(알 수 없음: %d)"
+
+#~ msgid "Back"
+#~ msgstr "뒤로"
+
+#~| msgid "Novell Services"
+#~ msgid "Custom Services"
+#~ msgstr "사용자 지정 서비스"
+
+#~ msgid "No custom service is defined on target machine."
+#~ msgstr "대상 컴퓨터에 정의된 사용자 지정 서비스가 없습니다."
+
+#~| msgid "Status"
+#~ msgid "status"
+#~ msgstr "상태"

@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: YaST (@memory@)\n"
+"Project-Id-Version: webyast-permissions-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,57 +14,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/permissions_controller.rb:13
+#: app/controllers/permissions_controller.rb:34
+#: app/controllers/permissions_controller.rb:34
 msgid "Invalid session, please login again."
 msgstr ""
 
-#: app/controllers/permissions_controller.rb:133
+#: app/controllers/permissions_controller.rb:150
+#: app/controllers/permissions_controller.rb:150
 #, fuzzy
-#| msgid "Entered umask is not valid!"
 msgid "User name is not valid name"
 msgstr "ค่า umask ที่ป้อนมาใช้ไม่ได้ !"
 
-#: app/controllers/permissions_controller.rb:135
+#: app/controllers/permissions_controller.rb:152
+#: app/controllers/permissions_controller.rb:152
 #, fuzzy
-#| msgid "User does not exist."
 msgid "User does not exist"
 msgstr "ยังไม่มีผู้ใช้"
 
-#: app/controllers/permissions_controller.rb:183
+#: app/controllers/permissions_controller.rb:200
+#: app/controllers/permissions_controller.rb:200
 msgid "Permissions have been set."
 msgstr ""
 
-#: app/views/permissions/index.rhtml:46
+#: app/views/permissions/index.rhtml:67 app/views/permissions/index.rhtml:67
+#: shortcuts.yml:6
 #, fuzzy
-#| msgid "Permissions"
 msgid "User Permissions"
 msgstr "สิทธิ์ที่อนุญาต"
 
-#: app/views/permissions/index.rhtml:50
+#: app/views/permissions/index.rhtml:71 app/views/permissions/index.rhtml:71
 msgid "User"
 msgstr "ผู้ใช้"
 
-#: app/views/permissions/index.rhtml:52
+#: app/views/permissions/index.rhtml:73 app/views/permissions/index.rhtml:73
 msgid "Search"
 msgstr "ค้นหา"
 
-#: app/views/permissions/index.rhtml:54
+#: app/views/permissions/index.rhtml:85 app/views/permissions/index.rhtml:85
 #, fuzzy
-#| msgid "&Back"
-msgid "Back"
-msgstr "ย้อนกลับ"
-
-#: app/views/permissions/index.rhtml:67
-#, fuzzy
-#| msgid "Boot Permissions"
 msgid "Revoked Permissions"
 msgstr "สิทธิ์ที่อนุญาตในการบูตระบบ"
 
-#: app/views/permissions/index.rhtml:68
+#: app/views/permissions/index.rhtml:86 app/views/permissions/index.rhtml:86
 #, fuzzy
-#| msgid "Change P&ermissions"
 msgid "Granted Permissions"
 msgstr "แก้ไขสิทธิ์ที่อนุญาต"
+
+#: app/views/permissions/index.rhtml:175 app/views/permissions/index.rhtml:175
+#, fuzzy
+msgid "Back"
+msgstr "ย้อนกลับ"
+
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Set user permissions"
+msgstr "สิทธิ์ที่อนุญาต"
 
 #, fuzzy
 #~| msgid "Select"

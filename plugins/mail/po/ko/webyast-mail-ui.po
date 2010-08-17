@@ -1,91 +1,109 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_mail\n"
-"POT-Creation-Date: 2010-04-23 11:01+0200\n"
-"PO-Revision-Date: 2010-05-06 09:30\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
+"Project-Id-Version: webyast-mail-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
+"PO-Revision-Date: 2006-06-12 16:56+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/mail_controller.rb:50
+#: app/controllers/mail_controller.rb:50 app/controllers/mail_controller.rb:50
 msgid "Passwords do not match."
-msgstr "비밀번호가 일치하지 않습니다."
+msgstr "열쇠글이 일치하지 않습니다."
 
-#: app/controllers/mail_controller.rb:57
+#: app/controllers/mail_controller.rb:57 app/controllers/mail_controller.rb:57
+#, fuzzy
 msgid "Mail settings have been written."
-msgstr "메일 설정이 기록되었습니다."
+msgstr "모든 서비스가 새로 고쳐졌습니다."
 
-#: app/controllers/mail_controller.rb:59
+#: app/controllers/mail_controller.rb:59 app/controllers/mail_controller.rb:59
 msgid "Test mail was sent to %s."
-msgstr "테스트 메일이 %s(으)로 전송되었습니다."
+msgstr ""
 
-#: app/controllers/mail_controller.rb:71
+#: app/controllers/mail_controller.rb:71 app/controllers/mail_controller.rb:71
+#, fuzzy
 msgid "Error while saving mail settings: %s"
-msgstr "메일 설정을 저장하는 동안 오류 발생: %s"
+msgstr "예전 열쇠글 파일을 닫는 동안 오류: %s"
 
-#: app/controllers/mail_controller.rb:88
-msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
-msgstr "보내는 메일 서버가 설정되지 않았지만 관리자가 메일 전달자를 정의했습니다.\n%s<i>관리자</i>%s 또는 %s<i>메일</i>%s 구성을 변경하십시오."
+#: app/controllers/mail_controller.rb:88 app/controllers/mail_controller.rb:88
+msgid ""
+"No outgoing mail server is set, but administrator has mail forwarders "
+"defined.\n"
+"Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
+msgstr ""
 
-#: app/views/mail/index.html.erb:37
+#: app/views/mail/index.html.erb:44 app/views/mail/index.html.erb:44
+#, fuzzy
 msgid "The passwords do not match."
-msgstr "비밀번호가 일치하지 않습니다."
+msgstr "열쇠글이 일치하지 않습니다."
 
-#: app/views/mail/index.html.erb:38
+#: app/views/mail/index.html.erb:45 app/views/mail/index.html.erb:45
+#, fuzzy
 msgid "Enter a valid e-mail address."
-msgstr "유효한 전자 메일 주소를 입력하십시오."
+msgstr "정확한 CCW 주소가 아닙니다."
 
-#: app/views/mail/index.html.erb:39
+#: app/views/mail/index.html.erb:46 app/views/mail/index.html.erb:46
+#, fuzzy
 msgid "Enter a valid domain name or an IP address."
-msgstr "유효한 도메인 이름 또는 IP 주소를 입력하십시오."
+msgstr "IP 주소를 입력 하세요."
 
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:63 app/views/mail/index.html.erb:63
+#: shortcuts.yml:6
+#, fuzzy
 msgid "Mail Settings"
-msgstr "메일 설정"
+msgstr "수동 설정"
 
-#: app/views/mail/index.html.erb:68
+#: app/views/mail/index.html.erb:75 app/views/mail/index.html.erb:75
 msgid "Outgoing mail server"
-msgstr "보내는 메일 서버"
+msgstr ""
 
-#: app/views/mail/index.html.erb:71
+#: app/views/mail/index.html.erb:80 app/views/mail/index.html.erb:80
 msgid "Use secure connection (TLS)"
-msgstr "보안 연결(TLS) 사용"
+msgstr ""
 
-#: app/views/mail/index.html.erb:72
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
 msgid "Never"
 msgstr "안 함"
 
-#: app/views/mail/index.html.erb:72
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
+#, fuzzy
 msgid "If available"
-msgstr "사용 가능한 경우"
+msgstr "(%1 사용가능)"
 
-#: app/views/mail/index.html.erb:72
+#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
+#, fuzzy
 msgid "Always"
-msgstr "항상"
+msgstr "항상(&Y)"
 
-#: app/views/mail/index.html.erb:74
+#: app/views/mail/index.html.erb:84 app/views/mail/index.html.erb:84
+#, fuzzy
 msgid "User name"
-msgstr "사용자 이름"
+msgstr "사용자 이름:"
 
-#: app/views/mail/index.html.erb:77
+# password dialog title
+#: app/views/mail/index.html.erb:88 app/views/mail/index.html.erb:88
 msgid "Password"
-msgstr "비밀번호"
+msgstr "열쇠글"
 
-#: app/views/mail/index.html.erb:80
+#: app/views/mail/index.html.erb:92 app/views/mail/index.html.erb:92
+#, fuzzy
 msgid "Confirm password"
-msgstr "비밀번호 확인"
+msgstr "열쇠글 확인(_C):"
 
-#: app/views/mail/index.html.erb:88
+#: app/views/mail/index.html.erb:100 app/views/mail/index.html.erb:100
+#, fuzzy
 msgid "Send test mail to"
-msgstr "다음으로 테스트 메일 보내기"
+msgstr "%1 로 이메일 보내기"
 
-#: app/views/mail/index.html.erb:90
+#: app/views/mail/index.html.erb:102 app/views/mail/index.html.erb:102
+#, fuzzy
 msgid "Send Mail"
-msgstr "메일 보내기"
+msgstr "데이터 보내기"
 
+#: shortcuts.yml:7
+msgid "Manage outgoing mail settings"
+msgstr ""

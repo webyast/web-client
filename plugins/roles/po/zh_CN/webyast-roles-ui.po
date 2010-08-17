@@ -1,39 +1,84 @@
-# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
-# This file is distributed under the same license as the package.
+# @TITLE@
+# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# This file is distributed under the same license as @PACKAGE@ package. FIRST
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_roles\n"
-"POT-Creation-Date: 2010-03-11 15:45+0100\n"
-"PO-Revision-Date: 2010-03-24 15:11\n"
+"Project-Id-Version: webyast-roles-ui 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
+"PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/views/roles/_role_edit.erb:31
-msgid "Permissions granted by role"
-msgstr "许可权限由角色授予"
+#: app/controllers/roles_controller.rb:97
+#: app/controllers/roles_controller.rb:97
+msgid "Cannot find roles"
+msgstr ""
 
-#: app/views/roles/_role_edit.erb:44
-msgid "Available permissions"
-msgstr "可用许可权限"
+#: app/views/roles/index.rhtml:61 app/views/roles/index.rhtml:207
+#: app/views/roles/index.rhtml:213 app/views/roles/index.rhtml:61
+#: app/views/roles/index.rhtml:207 app/views/roles/index.rhtml:213
+msgid "Assign Users"
+msgstr ""
 
-#: app/views/roles/_role_edit.erb:56
-msgid "Description of permissions"
-msgstr "许可权限的说明"
+#: app/views/roles/index.rhtml:62 app/views/roles/index.rhtml:62
+msgid "Selected Users"
+msgstr ""
 
-#: app/views/roles/_role_edit.erb:58
-msgid ")}-description"
-msgstr ")}-说明"
+#: app/views/roles/index.rhtml:63 app/views/roles/index.rhtml:63
+#, fuzzy
+msgid "Available Users"
+msgstr "可用处理器"
 
-#: app/views/roles/_role_edit.erb:64
-msgid "Save"
-msgstr "保存"
+#: app/views/roles/index.rhtml:64 app/views/roles/index.rhtml:64
+msgid "Click user names to assign/remove users"
+msgstr ""
 
-#: app/views/roles/index.rhtml:12
+#: app/views/roles/index.rhtml:149 app/views/roles/index.rhtml:149
+#: shortcuts.yml:6
+#, fuzzy
 msgid "Roles"
-msgstr "角色"
+msgstr "任务"
 
+#: app/views/roles/index.rhtml:153 app/views/roles/index.rhtml:153
+msgid "Create Role"
+msgstr ""
+
+#: app/views/roles/index.rhtml:165 app/views/roles/index.rhtml:165
+#, fuzzy
+msgid "Assign Permissions"
+msgstr "可用处理器"
+
+#: app/views/roles/index.rhtml:168 app/views/roles/index.rhtml:168
+msgid "collapse all"
+msgstr ""
+
+#: shortcuts.yml:7
+msgid "Set permissions in roles and assign users to roles"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Permissions denied"
+#~ msgid "Permissions granted by role"
+#~ msgstr "拒绝许可权限"
+
+#, fuzzy
+#~| msgid "Description: "
+#~ msgid "Description of permissions"
+#~ msgstr "描述："
+
+#, fuzzy
+#~| msgid "description"
+#~ msgid ")}-description"
+#~ msgstr "描述"
+
+#~ msgid "Save"
+#~ msgstr "保存"

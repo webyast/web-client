@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: YaST (@memory@)\n"
+"Project-Id-Version: webyast-firewall-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-23 11:00+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2002-02-08 15:47+0100\n"
 "Last-Translator: Jordi Bruguera i Cortada <jordi@grn.es>\n"
 "Language-Team: Catalan\n"
@@ -21,10 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/firewall_controller.rb:72
+#: app/controllers/firewall_controller.rb:72
 msgid "Firewall settings have been written."
 msgstr "S'han escrit les preferències del tallafoc."
 
-#: app/views/firewall/index.rhtml:63
+#: app/views/firewall/index.rhtml:53 app/views/firewall/index.rhtml:53
 msgid ""
 "Some of needed services (%s) are going to be blocked. WebYaST may not be "
 "usable anymore. Do you really want to block them?"
@@ -32,30 +33,34 @@ msgstr ""
 "Alguns serveis necessaris (%s) quedaran bloquejats. El servei WebYaST pot "
 "deixar de funcionar. Voleu bloquejar aquests serveis igualment?"
 
-#: app/views/firewall/index.rhtml:86
+#: app/views/firewall/index.rhtml:80 app/views/firewall/index.rhtml:80
+#: shortcuts.yml:6
 msgid "Firewall"
 msgstr "Tallafoc"
 
-#: app/views/firewall/index.rhtml:104
+#: app/views/firewall/index.rhtml:98 app/views/firewall/index.rhtml:98
 msgid "General settings"
 msgstr "Paràmetres generals"
 
-#: app/views/firewall/index.rhtml:111
+#: app/views/firewall/index.rhtml:105 app/views/firewall/index.rhtml:105
 msgid "Use Firewall"
 msgstr "Usa el tallafoc"
 
-#: app/views/firewall/index.rhtml:117
+#: app/views/firewall/index.rhtml:110 app/views/firewall/index.rhtml:110
 msgid "Allowed services"
 msgstr "Serveis permesos"
 
-#: app/views/firewall/index.rhtml:121
-msgid "Block"
-msgstr "Bloqueja"
-
-#: app/views/firewall/index.rhtml:127
+#: app/views/firewall/index.rhtml:120 app/views/firewall/index.rhtml:120
 msgid "Blocked services"
 msgstr "Dispositius bloquejats"
 
-#: app/views/firewall/index.rhtml:131
-msgid "Allow"
-msgstr "Permet"
+#: shortcuts.yml:7
+#, fuzzy
+msgid "Firewall settings"
+msgstr "Paràmetres generals"
+
+#~ msgid "Block"
+#~ msgstr "Bloqueja"
+
+#~ msgid "Allow"
+#~ msgstr "Permet"

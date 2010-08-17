@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: YaST (@memory@)\n"
+"Project-Id-Version: webyast-time-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: i18n@suse.de\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2008-01-04 08:58+0100\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Thai <i18n@suse.de>\n"
@@ -14,62 +14,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/time_controller.rb:77 app/controllers/time_controller.rb:81
+#: app/controllers/time_controller.rb:99
+#: app/controllers/time_controller.rb:103
+#: app/controllers/time_controller.rb:99
+#: app/controllers/time_controller.rb:103
 msgid "Time settings have been written."
 msgstr ""
 
-#: app/models/systemtime.rb:8
+#: app/models/systemtime.rb:29 app/models/systemtime.rb:29
 #, fuzzy
-#| msgid "Unknown zone %1."
 msgid "Unknown timezone %s on host"
 msgstr "ไม่รู้จักเขตพื้นที่ %1"
 
-#: app/views/time/index.rhtml:56
-msgid "Invalid date format. Correct one is dd/mm/yyyy"
+#: app/views/time/index.rhtml:73 app/views/time/index.rhtml:77
+#: app/views/time/index.rhtml:102 app/views/time/index.rhtml:73
+#: app/views/time/index.rhtml:77 app/views/time/index.rhtml:102
+msgid "This field is required"
 msgstr ""
 
-#: app/views/time/index.rhtml:60
+#: app/views/time/index.rhtml:74 app/views/time/index.rhtml:103
+#: app/views/time/index.rhtml:74 app/views/time/index.rhtml:103
+msgid "Enter a valid domain name or an IP address"
+msgstr ""
+
+#: app/views/time/index.rhtml:78 app/views/time/index.rhtml:78
 msgid "Invalid time format. Correct one is hh:mm:ss"
 msgstr ""
 
-#: app/views/time/index.rhtml:84 app/views/time/index.rhtml:128
+#: app/views/time/index.rhtml:137 app/views/time/index.rhtml:171
+#: app/views/time/index.rhtml:185 app/views/time/index.rhtml:137
+#: app/views/time/index.rhtml:171 app/views/time/index.rhtml:185
+#: shortcuts.yml:6
 msgid "Time"
 msgstr "เวลา"
 
-#: app/views/time/index.rhtml:92
+#: app/views/time/index.rhtml:145 app/views/time/index.rhtml:152
+#: app/views/time/index.rhtml:145 app/views/time/index.rhtml:152
 #, fuzzy
-#| msgid "&Region"
-msgid "Region"
-msgstr "เขตพื้นที่"
-
-#: app/views/time/index.rhtml:96
-#, fuzzy
-#| msgid "Time Zone"
 msgid "Timezone"
 msgstr "เขตเวลา"
 
-#: app/views/time/index.rhtml:110
+#: app/views/time/index.rhtml:147 app/views/time/index.rhtml:147
 #, fuzzy
-#| msgid "&Hardware Clock Set To UTC"
+msgid "Region"
+msgstr "เขตพื้นที่"
+
+#: app/views/time/index.rhtml:162 app/views/time/index.rhtml:162
+#, fuzzy
 msgid "Hardware clock is set to UTC"
 msgstr "ตั้งฮาร์ดแวร์นาฬิกาเป็น UTC"
 
-#: app/views/time/index.rhtml:119
+#: app/views/time/index.rhtml:176 app/views/time/index.rhtml:176
 #, fuzzy
-#| msgid "Expert Manual Configuration"
 msgid "Manually configure time"
 msgstr "การปรับแต่งค่าด้วยตนเองสำหรับผู้เชี่ยวชาญ"
 
-#: app/views/time/index.rhtml:124
+#: app/views/time/index.rhtml:181 app/views/time/index.rhtml:181
 msgid "Date"
 msgstr ""
 
-#: app/views/time/index.rhtml:135
+#: app/views/time/index.rhtml:192 app/views/time/index.rhtml:192
 msgid "Synchronize via Network Time Protocol (NTP)"
 msgstr ""
 
-#: app/views/time/index.rhtml:139
+#: app/views/time/index.rhtml:196 app/views/time/index.rhtml:196
 #, fuzzy
-#| msgid "VNC mini-HTTP server"
 msgid "NTP server"
 msgstr "บริการ VNC mini-HTTP"
+
+#: shortcuts.yml:7
+msgid "Set the clock"
+msgstr ""

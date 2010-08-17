@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: webyast-status-ui 1.0.0\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-05-26 16:42+0200\n"
+"POT-Creation-Date: 2010-08-02 09:18+0200\n"
 "PO-Revision-Date: 2010-04-30 16:32+0300\n"
 "Last-Translator: Lucian Oprea <oprea.luci@gmail.com>\n"
 "Language-Team: Comunitatea traducatorilor openSUSE Romania. Contact: <oprea."
@@ -14,48 +14,53 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Narro 0.9.4 on http://tradu.softwareliber.ro\n"
 
-#: app/controllers/status_controller.rb:151
-#: app/controllers/status_controller.rb:151
+#: app/controllers/status_controller.rb:149
+#: app/controllers/status_controller.rb:149
 msgid "No data found for showing system status."
 msgstr "Nu au fost găsite date pentru a afişa starea sistemului."
 
-#: app/controllers/status_controller.rb:159
-#: app/controllers/status_controller.rb:159
+#: app/controllers/status_controller.rb:157
+#: app/controllers/status_controller.rb:157
 msgid "Status not available."
 msgstr ""
 
-#: app/controllers/status_controller.rb:178
-#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:176
+#: app/controllers/status_controller.rb:176
 msgid "Can't connect to host"
 msgstr ""
 
-#: app/controllers/status_controller.rb:180
-#: app/controllers/status_controller.rb:180
+#: app/controllers/status_controller.rb:178
+#: app/controllers/status_controller.rb:178
 msgid "Can't connect to host %s."
 msgstr ""
 
-#: app/controllers/status_controller.rb:219
-#: app/controllers/status_controller.rb:219
+#: app/controllers/status_controller.rb:217
+#: app/controllers/status_controller.rb:217
 msgid "Limits exceeded for "
 msgstr "Limite depăşite pentru "
 
-#: app/controllers/status_controller.rb:244
-#: app/controllers/status_controller.rb:244
+#: app/controllers/status_controller.rb:242
+#: app/controllers/status_controller.rb:242
 msgid "Status not available"
 msgstr ""
 
-#: app/controllers/status_controller.rb:316
-#: app/controllers/status_controller.rb:316
+#: app/controllers/status_controller.rb:266
+#: app/controllers/status_controller.rb:266
+msgid "Status not available (no permissions)"
+msgstr ""
+
+#: app/controllers/status_controller.rb:328
+#: app/controllers/status_controller.rb:328
 msgid "exceeded"
 msgstr "depăşită"
 
-#: app/controllers/status_controller.rb:330
-#: app/controllers/status_controller.rb:330
+#: app/controllers/status_controller.rb:342
+#: app/controllers/status_controller.rb:342
 msgid "undercut"
 msgstr "subcotat"
 
-#: app/controllers/status_controller.rb:432
-#: app/controllers/status_controller.rb:432
+#: app/controllers/status_controller.rb:444
+#: app/controllers/status_controller.rb:444
 msgid "Limits have been written."
 msgstr "Limitele au fost scrise."
 
@@ -63,8 +68,8 @@ msgstr "Limitele au fost scrise."
 msgid "Only numbers are valid !"
 msgstr "Numai numerele sunt valide!"
 
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
-#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:49
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
+#: app/views/status/edit.html.erb:75 app/views/status/index.html.erb:52
 #: shortcuts.yml:6
 msgid "Status"
 msgstr "Stare"
@@ -81,15 +86,15 @@ msgstr "subminează"
 msgid "exceeds"
 msgstr "depăşeşte"
 
-#: app/views/status/index.html.erb:92 app/views/status/index.html.erb:92
+#: app/views/status/index.html.erb:94 app/views/status/index.html.erb:94
 msgid "details"
 msgstr "detalii"
 
-#: app/views/status/index.html.erb:108 app/views/status/index.html.erb:108
+#: app/views/status/index.html.erb:110 app/views/status/index.html.erb:110
 msgid "Details"
 msgstr "Detalii"
 
-#: app/views/status/index.html.erb:161 app/views/status/index.html.erb:161
+#: app/views/status/index.html.erb:178 app/views/status/index.html.erb:178
 msgid "Edit Limits"
 msgstr "Editează limitele"
 
@@ -158,52 +163,46 @@ msgstr "Se încarcă informaţiile despre sistem"
 msgid "Checking system status"
 msgstr "Se verifică stare sistem"
 
-#: lib/plugin_translation.rb:46 lib/plugin_translation.rb:46
-msgid "Registration is missing"
-msgstr "Înregistrarea lipseşte"
-
-#: lib/plugin_translation.rb:47 lib/plugin_translation.rb:47
-msgid "Please register your system in order to get updates."
-msgstr ""
-"Vă rugăm să înregistraţi sistemul dumneavoastră pentru a obţine actualizări."
-
-#: lib/plugin_translation.rb:48 lib/plugin_translation.rb:48
-msgid "register"
-msgstr "înregistrare"
-
-#: lib/plugin_translation.rb:50 lib/plugin_translation.rb:50
-msgid "Mail configuration test not confirmed"
-msgstr "Testul de configurare a email-ului nu a fost confirmat."
-
-#: lib/plugin_translation.rb:51 lib/plugin_translation.rb:51
-msgid ""
-"While configuring mail, a test mail was sent to %s . Was the mail delivered "
-"to this address?<br>If so, confirm it by pressing the button. Otherwise "
-"check your mail configuration again."
-msgstr ""
-"În timpul configurării emailului a fost trimis un email de test la %s. "
-"Emailul a fost livrat la această adresă?<br>Dacă da, vă rugăm să confirmaţi "
-"prin apăsarea butonului. În caz contrar, verificaţi din nou configuraţia "
-"emailului."
-
-#: lib/plugin_translation.rb:54 lib/plugin_translation.rb:54
-msgid ""
-"It was not possible to retrieve the full hostname of the machine. If the "
-"mail could not be delivered, consult the network and/or mail configuration "
-"with your network administrator."
-msgstr ""
-"Nu a fost posibilă preluarea numelui complet al maşinii gazdă. În cazul în "
-"care emailul nu a fost livrat, verificaţi configurarea reţelei şi/sau a "
-"emailului împreună cu administratorul de reţea."
-
-#: lib/plugin_translation.rb:55 lib/plugin_translation.rb:55
-msgid "Test mail received"
-msgstr "A fost recepţionat emailul de test"
-
 #: shortcuts.yml:7
 #, fuzzy
 msgid "Show system status"
 msgstr "Se verifică stare sistem"
+
+#~ msgid "Registration is missing"
+#~ msgstr "Înregistrarea lipseşte"
+
+#~ msgid "Please register your system in order to get updates."
+#~ msgstr ""
+#~ "Vă rugăm să înregistraţi sistemul dumneavoastră pentru a obţine "
+#~ "actualizări."
+
+#~ msgid "register"
+#~ msgstr "înregistrare"
+
+#~ msgid "Mail configuration test not confirmed"
+#~ msgstr "Testul de configurare a email-ului nu a fost confirmat."
+
+#~ msgid ""
+#~ "While configuring mail, a test mail was sent to %s . Was the mail "
+#~ "delivered to this address?<br>If so, confirm it by pressing the button. "
+#~ "Otherwise check your mail configuration again."
+#~ msgstr ""
+#~ "În timpul configurării emailului a fost trimis un email de test la %s. "
+#~ "Emailul a fost livrat la această adresă?<br>Dacă da, vă rugăm să "
+#~ "confirmaţi prin apăsarea butonului. În caz contrar, verificaţi din nou "
+#~ "configuraţia emailului."
+
+#~ msgid ""
+#~ "It was not possible to retrieve the full hostname of the machine. If the "
+#~ "mail could not be delivered, consult the network and/or mail "
+#~ "configuration with your network administrator."
+#~ msgstr ""
+#~ "Nu a fost posibilă preluarea numelui complet al maşinii gazdă. În cazul "
+#~ "în care emailul nu a fost livrat, verificaţi configurarea reţelei şi/sau "
+#~ "a emailului împreună cu administratorul de reţea."
+
+#~ msgid "Test mail received"
+#~ msgstr "A fost recepţionat emailul de test"
 
 #~ msgid "Start collectd"
 #~ msgstr "Pornire collectd"
