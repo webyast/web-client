@@ -1,171 +1,103 @@
-# Catalan message file for YaST2 (@memory@).
-# Copyright (C) 2005 SUSE Linux Products GmbH.
-# Copyright (C) 2002 SuSE Linux AG.
-# Copyright (C) 2000, 2001 SuSE GmbH.
-# Jaume Badiella <myotis@drac.com>, 2001.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: YaST (@memory@)\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"Project-Id-Version: @PACKAGE@\n"
+"Report-Msgid-Bugs-To: translation@suse.de\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2002-02-08 15:47+0100\n"
-"Last-Translator: Jordi Bruguera i Cortada <jordi@grn.es>\n"
+"Last-Translator: Jaume Badiella <myotis@drac.com>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"#-#-#-#-#  compendi_yast_11.1_11.2_e.po (YaST (@memory@))  #-#-#-#-#\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"#-#-#-#-#  isns.ca.po (YaST (@memory@))  #-#-#-#-#\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/services_controller.rb:44
+#: app/controllers/services_controller.rb:11
+msgid "Invalid session, please login again."
+msgstr ""
+
+#: app/controllers/services_controller.rb:34
 msgid "(cannot read status)"
-msgstr "(no es pot llegir l'estat)"
+msgstr ""
 
-#: app/controllers/services_controller.rb:91
+#: app/controllers/services_controller.rb:80
+#, fuzzy
+#| msgid ""
+#| "Success:\n"
+#| "%s"
 msgid "success"
-msgstr "èxit"
+msgstr ""
+"Correcte:\n"
+"%s"
 
-#: app/controllers/services_controller.rb:92
-msgid "unspecified error"
-msgstr "no s'ha especificat l'error"
+#: app/views/services/_status.rhtml:14
+#, fuzzy
+#| msgid "unknown"
+msgid "(unknown)"
+msgstr "desconegut"
 
-#: app/controllers/services_controller.rb:93
-msgid "invalid or excess argument(s)"
-msgstr "els arguments no són vàlids o bé són en excés"
+#: app/views/services/_status.rhtml:16
+#, fuzzy
+#| msgid "running"
+msgid "(running)"
+msgstr "executant-se"
 
-#: app/controllers/services_controller.rb:94
-msgid "unimplemented feature"
-msgstr "no s'ha implementat la característica"
+#: app/views/services/_status.rhtml:18
+msgid "(dead)"
+msgstr ""
 
-#: app/controllers/services_controller.rb:95
-msgid "user had insufficient privilege"
-msgstr "l'usuari no tenia suficients privilegis"
+#: app/views/services/_status.rhtml:20
+#, fuzzy
+#| msgid "not running"
+msgid "(not running)"
+msgstr "no s'està executant"
 
-#: app/controllers/services_controller.rb:96
-msgid "program is not installed"
-msgstr "el programa no està instal·lat"
+#: app/views/services/_status.rhtml:22
+#, fuzzy
+#| msgid "unknown"
+msgid "(unknown: %d)"
+msgstr "desconegut"
 
-#: app/controllers/services_controller.rb:97
-msgid "program is not configured"
-msgstr "el programa no està configurat"
-
-#: app/controllers/services_controller.rb:98
-msgid "program is not runnning"
-msgstr "el programa no s'està executant"
-
-#: app/views/services/_result.rhtml:7
+#: app/views/services/_result.rhtml:5
 msgid "Service Call Result"
-msgstr "Resultat de la crida de servei"
+msgstr ""
 
-#: app/views/services/_result.rhtml:10
+#: app/views/services/_result.rhtml:8
+#, fuzzy
+#| msgid "Connect Result"
 msgid "Result"
-msgstr "Resultat"
+msgstr "Resultat de la connexió"
 
-#: app/views/services/_result.rhtml:15
+#: app/views/services/_result.rhtml:12
 msgid "Description"
 msgstr "Descripció"
 
-#: app/views/services/index.rhtml:162
+#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
+#: app/views/services/index.rhtml:102
+msgid "Back"
+msgstr "Enrere"
+
+#: app/views/services/index.rhtml:11
+#, fuzzy
+#| msgid "Novell Services"
+msgid "Custom Services"
+msgstr "Serveis de Novell"
+
+#: app/views/services/index.rhtml:13
+#, fuzzy
+#| msgid "System Settings"
 msgid "System Services"
-msgstr "Serveis del sistema"
+msgstr "Paràmetres del sistema"
 
-#: app/views/services/index.rhtml:168
-msgid "You do not have permission to execute the services."
-msgstr "No teniu permís per executar els serveis."
+#: app/views/services/index.rhtml:20
+msgid "No custom service is defined on target machine."
+msgstr ""
 
-#: app/views/services/index.rhtml:172
-msgid "Filter services"
-msgstr "Filtra els serveis"
+#: app/views/services/index.rhtml:22
+msgid "You do not have permission to execute the services. The links are disabled."
+msgstr ""
 
-#: app/views/services/index.rhtml:174
-msgid "All"
-msgstr "Tot"
-
-#: app/views/services/index.rhtml:175
-msgid "Running"
-msgstr "S'està executant"
-
-#: app/views/services/index.rhtml:176
-msgid "Not Running"
-msgstr "No s'està en executant"
-
-# RW
-#: app/views/services/index.rhtml:177
-msgid "Dead"
-msgstr "Aturat"
-
-#: app/views/services/index.rhtml:178
-msgid "Started on Boot"
-msgstr "Iniciat durant l'arrencada"
-
-#: app/views/services/index.rhtml:179
-msgid "Not Started on Boot"
-msgstr "No s'ha iniciat durant l'arrencada"
-
-#: app/views/services/index.rhtml:186
-msgid "Quick Search"
-msgstr "Cerca ràpida"
-
-#: app/views/services/index.rhtml:201
-msgid "Description for service is not available"
-msgstr "La descripció del servei no està disponible."
-
-#: app/views/services/index.rhtml:224
-msgid "(refresh)"
-msgstr "(refresca)"
-
-#: app/views/services/index.rhtml:255
-msgid "Start"
-msgstr "Inici"
-
-#: app/views/services/index.rhtml:256
-msgid "Stop"
-msgstr "Atura"
-
-#: app/views/services/index.rhtml:257
-msgid "Restart"
-msgstr "Reinicia"
-
-#: app/views/services/index.rhtml:258
-msgid "Start on Boot"
-msgstr "Inicia durant l'arrencada"
-
-#: app/views/services/index.rhtml:259
-msgid "Do Not Start on Boot"
-msgstr "No iniciïs durant l'arrencada" 
-
-#: app/views/services/_status.rhtml:7
-msgid "Service will be started on boot."
-msgstr "El servei s'iniciarà durant l'arrencada"
-
-#: app/views/services/_status.rhtml:9
-msgid "Service will not be started on boot."
-msgstr "El servei no s'iniciarà durant l'arrencada"
-
-#: app/views/services/_status.rhtml:32
-msgid "status unknown"
-msgstr "estat desconegut"
-
-#: app/views/services/_status.rhtml:34
-msgid "running"
-msgstr "s'està executant"
-
-# RW
-#: app/views/services/_status.rhtml:38
-msgid "dead"
-msgstr "aturat"
-
-#: app/views/services/_status.rhtml:42
-msgid "not running"
-msgstr "no està en funcionament"
-
-#: app/views/services/_status.rhtml:46
-msgid "status unknown: %d"
-msgstr "estat desconegut: %d"
-
-#: app/views/services/_status.rhtml:49
-msgid "Current status of the service:"
-msgstr "Estat actual del servei:"
+#: app/views/services/index.rhtml:94
+#, fuzzy
+#| msgid "Status"
+msgid "status"
+msgstr "Estat"

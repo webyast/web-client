@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2005-08-18 21:16+0300\n"
 "Last-Translator: Borislav Mitev <morbid_viper@tkzs.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -11,134 +11,114 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:43
+msgid "No permissions for network module"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
 msgid "Not configured"
 msgstr "Не е настроено"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 #, fuzzy
 #| msgid "Manual Mode"
 msgid "Manual"
 msgstr "Ръчен режим"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 #, fuzzy
 #| msgid "Automatic Mode"
 msgid "Automatic"
 msgstr "Автоматичен режим"
 
-#: app/controllers/network_controller.rb:134
+#: app/controllers/network_controller.rb:105
 msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:118
-msgid "whitespace - invalid character."
-msgstr ""
-
-#: app/views/network/index.html.erb:120
-msgid " - can not start with a digit."
-msgstr ""
-
-#: app/views/network/index.html.erb:122
-msgid "periodic '-' is not allowed."
-msgstr ""
-
-#: app/views/network/index.html.erb:124
-msgid "can not end with (-) hyphen."
-msgstr ""
-
-#: app/views/network/index.html.erb:127
-msgid "can not start with (-) hyphen."
-msgstr ""
-
-#: app/views/network/index.html.erb:129
-msgid " - is invalid character for hostname."
-msgstr ""
-
-#: app/views/network/index.html.erb:154
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:163
+#: app/views/network/index.html.erb:97
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:169
+#: app/views/network/index.html.erb:103
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:175
+#: app/views/network/index.html.erb:109
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:115
 msgid "Hostname is required. It must be specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:187
-msgid "Domain is required. An empty domain is not supported."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
-#: app/views/network/index.html.erb:210
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "Мрежа"
 
-#: app/views/network/index.html.erb:221
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: app/views/network/index.html.erb:226
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "selection"
 msgid "Select"
 msgstr "подбор"
 
-#: app/views/network/index.html.erb:243
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "Настройка"
 
-#: app/views/network/index.html.erb:252
+#: app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "IP Address:"
 msgid "IP address"
 msgstr "IP адрес:"
 
-#: app/views/network/index.html.erb:256
+#: app/views/network/index.html.erb:174
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:260
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "Маршрутизиране по подразбиране"
-
-#: app/views/network/index.html.erb:269
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "Имена на машините"
 
 # as in Windows Authentication Domain
-#: app/views/network/index.html.erb:274
+#: app/views/network/index.html.erb:185
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "Домейн\n"
 
-#: app/views/network/index.html.erb:278
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "Сървър за имена"
 
-#: app/views/network/index.html.erb:282
+#: app/views/network/index.html.erb:193
 #, fuzzy
 #| msgid "Search"
 msgid "Search domains"
 msgstr "Търсене"
+
+#: app/views/network/index.html.erb:201
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "Маршрутизиране по подразбиране"
 
 #, fuzzy
 #~| msgid "Do not start"

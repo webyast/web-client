@@ -1,77 +1,67 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_time\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-06 10:21\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/controllers/time_controller.rb:77 app/controllers/time_controller.rb:81
+#: app/controllers/time_controller.rb:98 app/controllers/time_controller.rb:102
 msgid "Time settings have been written."
-msgstr ""
+msgstr "已經寫入時間設定。"
 
-#: app/models/systemtime.rb:8
-#, fuzzy
-#| msgid "Unknown option "
+#: app/models/systemtime.rb:29
 msgid "Unknown timezone %s on host"
-msgstr "未知選項"
+msgstr "主機上的時區 %s 未知"
 
-#: app/views/time/index.rhtml:56
-msgid "Invalid date format. Correct one is dd/mm/yyyy"
-msgstr ""
+#: app/views/time/index.rhtml:70 app/views/time/index.rhtml:74 app/views/time/index.rhtml:98
+msgid "This field is required"
+msgstr "此欄位是必要的"
 
-#: app/views/time/index.rhtml:60
+#: app/views/time/index.rhtml:71 app/views/time/index.rhtml:99
+msgid "Enter a valid domain name or an IP address"
+msgstr "輸入有效的網域名稱或 IP 位址"
+
+#: app/views/time/index.rhtml:75
 msgid "Invalid time format. Correct one is hh:mm:ss"
-msgstr ""
+msgstr "時間格式無效。正確的格式為 hh:mm:ss"
 
-#: app/views/time/index.rhtml:84 app/views/time/index.rhtml:128
+#: app/views/time/index.rhtml:132 app/views/time/index.rhtml:179
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
-#: app/views/time/index.rhtml:92
+#: app/views/time/index.rhtml:141
 msgid "Region"
-msgstr ""
+msgstr "區域"
 
-#: app/views/time/index.rhtml:96
+#: app/views/time/index.rhtml:145
 msgid "Timezone"
-msgstr ""
+msgstr "時區"
 
-#: app/views/time/index.rhtml:110
+#: app/views/time/index.rhtml:159
 msgid "Hardware clock is set to UTC"
-msgstr ""
+msgstr "硬體時鐘設為 UTC"
 
-#: app/views/time/index.rhtml:119
-#, fuzzy
-#| msgid "Manual IP config"
+#: app/views/time/index.rhtml:169
 msgid "Manually configure time"
-msgstr "手動 IP 設定"
+msgstr "手動設定時間"
 
-#: app/views/time/index.rhtml:124
-#, fuzzy
-#| msgid "Date: %1"
+#: app/views/time/index.rhtml:175
 msgid "Date"
-msgstr "日期：%1"
+msgstr "日期"
 
-#: app/views/time/index.rhtml:135
-#, fuzzy
-#| msgid "Network Time Protocol daemon"
+#: app/views/time/index.rhtml:187
 msgid "Synchronize via Network Time Protocol (NTP)"
-msgstr "網路時間協定精靈"
+msgstr "透過網路時間協定 (NTP) 同步"
 
-#: app/views/time/index.rhtml:139
-#, fuzzy
-#| msgid "NFS server"
+#: app/views/time/index.rhtml:192
 msgid "NTP server"
-msgstr "NFS 伺服器"
+msgstr "NTP 伺服器"
+

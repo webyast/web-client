@@ -1,335 +1,208 @@
-# translation of yast_webclient_users.nl.po to Dutch
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# Freek de Kruijf <freek@opensuse.org>, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_users.nl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-03 16:31+0200\n"
-"PO-Revision-Date: 2010-05-03 17:58+0200\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <yast-nl-l10n@lists.sf.kovoks.nl>\n"
+"Project-Id-Version: yast_webclient_users\n"
+"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"PO-Revision-Date: 2010-04-22 12:39\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/groups_controller.rb:36
+#: app/controllers/groups_controller.rb:15
 msgid "Missing group name parameter"
-msgstr "Ontbrekende groepsnaam"
+msgstr "Parameter van groepsnaam ontbreekt"
 
-#: app/controllers/groups_controller.rb:48
+#: app/controllers/groups_controller.rb:27
 msgid "Missing group parameters"
-msgstr "Ontbrekende groepsparameters"
+msgstr "Parameters van groep ontbreken"
 
-#: app/controllers/groups_controller.rb:58
+#: app/controllers/groups_controller.rb:37
 msgid "Please enter a valid group name"
-msgstr "Voer een geldige groepsnaam in"
+msgstr "Geef een geldige groepsnaam op"
+
+#: app/controllers/groups_controller.rb:47
+msgid "Please enter a valid GID"
+msgstr "Geef een geldige GID op"
+
+#: app/controllers/groups_controller.rb:57
+msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
+msgstr "Geef een geldig groepstype op. Alleen \"systeem\" of \"lokaal\" zijn toegestaan."
 
 #: app/controllers/groups_controller.rb:68
-msgid "Please enter a valid GID"
-msgstr "Voer een geldige GID in"
-
-#: app/controllers/groups_controller.rb:78
-msgid ""
-"Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr ""
-"Voer een geldig groepstype in. Alleen \"system\" en \"local\" zijn "
-"toegestaan."
-
-#: app/controllers/groups_controller.rb:89
 msgid "Please enter a valid list of members"
-msgstr "Voer een geldige lijst met leden in"
+msgstr "Geef een geldige lijst met leden op"
 
-#: app/controllers/groups_controller.rb:103
+#: app/controllers/groups_controller.rb:82
 msgid "Cannot read users list."
-msgstr "Kan de gebruikerslijst niet lezen."
+msgstr "Kan gebruikerslijst niet lezen."
 
-#: app/controllers/groups_controller.rb:123
-msgid "No groups found."
-msgstr "Geen groepen gevonden."
-
-#: app/controllers/groups_controller.rb:147
+#: app/controllers/groups_controller.rb:118
 msgid "Cannot read groups list."
-msgstr "Kan de groepslijst niet lezen"
+msgstr "Kan groepslijst niet lezen."
 
-#: app/controllers/groups_controller.rb:233
+#: app/controllers/groups_controller.rb:209
 msgid "Unknown backend error"
-msgstr "Onbekende backendfout"
+msgstr "Onbekende back-endfout"
 
-#: app/controllers/users_controller.rb:41
-msgid "No users found."
-msgstr "Geen gebruikers gevonden."
-
-#: app/controllers/users_controller.rb:197
+#: app/controllers/users_controller.rb:154
 msgid "User <i>%s</i> was successfully created."
-msgstr "Gebruiker <i>%s</i> is met succes aangemaakt."
+msgstr "Gebruiker <i>%s</i> is met succes gemaakt."
 
-#: app/controllers/users_controller.rb:239
+#: app/controllers/users_controller.rb:196
 msgid "User <i>%s</i> was successfully updated."
 msgstr "Gebruiker <i>%s</i> is met succes bijgewerkt."
 
-#: app/controllers/users_controller.rb:260
+#: app/controllers/users_controller.rb:217
 msgid "User <i>%s</i> was successfully removed."
 msgstr "Gebruiker <i>%s</i> is met succes verwijderd."
 
-#: app/controllers/users_controller.rb:262
+#: app/controllers/users_controller.rb:219
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Fout: kon gebruiker <i>%s</i> niet verwijderen."
+msgstr "Fout: kan gebruiker <i>%s</i> niet verwijderen."
 
-#: app/views/groups/index.html.erb:52 app/views/groups/new.html.erb:56
-msgid "Select Members"
-msgstr "Leden selecteren"
-
-#: app/views/groups/index.html.erb:53 app/views/groups/new.html.erb:57
-msgid "Selected Members"
-msgstr "Geselecteerde leden"
-
-#: app/views/groups/index.html.erb:54 app/views/groups/new.html.erb:58
-msgid "Available Members"
-msgstr "Beschikbare leden"
-
-#: app/views/groups/index.html.erb:55 app/views/groups/new.html.erb:59
-msgid "Click user names to select/unselect members"
-msgstr "Klik op gebruikersnamen om leden te (de)selecteren"
-
-#: app/views/groups/index.html.erb:94 app/views/groups/new.html.erb:80
-#: app/views/users/index.html.erb:219 app/views/users/index.html.erb:222
-#: app/views/users/new.html.erb:203 app/views/users/new.html.erb:206
+#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
+#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
 msgid "Groups"
 msgstr "Groepen"
 
-#: app/views/groups/index.html.erb:98 app/views/users/index.html.erb:160
-msgid "Filter:"
-msgstr "Filter:"
-
-#: app/views/groups/index.html.erb:104
-msgid "Add New Group"
+#: app/views/groups/edit.html.erb:35
+msgid "Add new group"
 msgstr "Nieuwe groep toevoegen"
 
-#: app/views/groups/index.html.erb:120 app/views/groups/new.html.erb:94
+#: app/views/groups/edit.html.erb:37
+msgid "Modify group"
+msgstr "Groep wijzigen"
+
+#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
 msgid "Group Name"
 msgstr "Groepsnaam"
 
-#: app/views/groups/index.html.erb:124
+#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
 msgid "Group ID"
-msgstr "Groeps-ID"
+msgstr "Groeps-id"
 
-#: app/views/groups/index.html.erb:128 app/views/groups/new.html.erb:98
+#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
+msgid "Default members"
+msgstr "Standaardleden"
+
+#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
 msgid "Members"
 msgstr "Leden"
 
-#: app/views/groups/index.html.erb:130
-msgid "Manage Members"
-msgstr "Leden beheren"
+#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
+msgid "Processing ..."
+msgstr "Bezig met verwerken..."
 
-#: app/views/groups/index.html.erb:134 app/views/users/index.html.erb:272
+#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
+msgid "Filter:"
+msgstr "Filter:"
+
+#: app/views/groups/index.html.erb:78
+msgid "Add New Group"
+msgstr "Nieuwe groep toevoegen"
+
+#: app/views/groups/index.html.erb:110
 msgid "Save"
 msgstr "Opslaan"
 
-#: app/views/groups/index.html.erb:137 app/views/users/index.html.erb:275
+#: app/views/groups/index.html.erb:112
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: app/views/groups/index.html.erb:139
+#: app/views/groups/index.html.erb:114
 msgid "Are you sure to delete group '%s'?"
-msgstr "Wilt u groep '%s' verwijderen?"
+msgstr "Wilt u groep %s echt verwijderen?"
 
-#: app/views/groups/new.html.erb:81
-msgid "Add new group"
-msgstr "Een nieuwe groep toevoegen"
-
-#: app/views/users/index.html.erb:57 app/views/users/new.html.erb:64
-msgid "Select Groups"
-msgstr "Groepen selecteren"
-
-#: app/views/users/index.html.erb:58 app/views/users/new.html.erb:65
-msgid "Selected Groups"
-msgstr "Geselecteerde groepen"
-
-#: app/views/users/index.html.erb:59 app/views/users/new.html.erb:66
-msgid "Available Groups"
-msgstr "Beschikbare groepen"
-
-#: app/views/users/index.html.erb:60 app/views/users/new.html.erb:67
-msgid "Click group names to select/unselect groups"
-msgstr "Klik op groepsnamen om groepen te (de)selecteren"
-
-#: app/views/users/index.html.erb:77 app/views/users/index.html.erb:238
-#: app/views/users/new.html.erb:84
-msgid "Select Default Group"
-msgstr "Standaardgroep selecteren"
-
-#: app/views/users/index.html.erb:78 app/views/users/new.html.erb:85
-msgid "Click a group name to choose users default group"
-msgstr "Klik op een groepsnaam om de standaardgroep van gebruikers te kiezen"
-
-#: app/views/users/index.html.erb:97
-msgid " The passwords do not match."
-msgstr " De wachtwoorden komen niet overeen."
-
-#: app/views/users/index.html.erb:98 app/views/users/new.html.erb:108
-msgid "This field is required."
-msgstr "Dit veld is vereist."
-
-# password dialog title
-#: app/views/users/index.html.erb:116 app/views/users/new.html.erb:122
-msgid "Password Strength:"
-msgstr "Wachtwoordsterkte:"
-
-#: app/views/users/index.html.erb:118 app/views/users/new.html.erb:124
-msgid "Weak"
-msgstr "Zwak"
-
-#: app/views/users/index.html.erb:119 app/views/users/new.html.erb:125
-msgid "Normal"
-msgstr "Normaal"
-
-#: app/views/users/index.html.erb:120 app/views/users/new.html.erb:126
-msgid "Medium"
-msgstr "Middel"
-
-#: app/views/users/index.html.erb:121 app/views/users/new.html.erb:127
-msgid "Strong"
-msgstr "Krachtig"
-
-#: app/views/users/index.html.erb:122 app/views/users/new.html.erb:128
-msgid "Very Strong"
-msgstr "Zeer krachtig"
-
-#: app/views/users/index.html.erb:150
-msgid "Processing ..."
-msgstr "Bezig met verwerken ..."
-
-#: app/views/users/index.html.erb:156 app/views/users/new.html.erb:161
-msgid "Users"
-msgstr "Gebruikers"
-
-#: app/views/users/index.html.erb:166
-msgid "Add New User"
-msgstr "Nieuwe gebruiker toevoegen"
-
-#: app/views/users/index.html.erb:187 app/views/users/new.html.erb:170
+#: app/views/users/_user_form.erb:5
 msgid "Login Settings"
-msgstr "Instellingen voor aanmelden"
+msgstr "Aanmeldinstellingen"
 
-#: app/views/users/index.html.erb:190 app/views/users/new.html.erb:173
+#: app/views/users/_user_form.erb:8
 msgid "Full Name"
 msgstr "Volledige naam"
 
-#: app/views/users/index.html.erb:196 app/views/users/new.html.erb:179
+#: app/views/users/_user_form.erb:12
 msgid "Login Name"
 msgstr "Aanmeldnaam"
 
-# password dialog title
-#: app/views/users/index.html.erb:203 app/views/users/new.html.erb:186
+#: app/views/users/_user_form.erb:17
 msgid "Password"
 msgstr "Wachtwoord"
 
-# password dialog title
-#: app/views/users/index.html.erb:210 app/views/users/new.html.erb:193
+#: app/views/users/_user_form.erb:21
 msgid "Confirm Password"
 msgstr "Wachtwoord bevestigen"
 
-#: app/views/users/index.html.erb:226 app/views/users/index.html.erb:296
-msgid "Manage Groups"
-msgstr "Groepen beheren"
-
-#: app/views/users/index.html.erb:234 app/views/users/new.html.erb:218
+#: app/views/users/_user_form.erb:39
 msgid "Default Group"
 msgstr "Standaardgroep"
 
-#: app/views/users/index.html.erb:248 app/views/users/new.html.erb:245
+#: app/views/users/_user_form.erb:61
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: app/views/users/index.html.erb:251 app/views/users/new.html.erb:248
+#: app/views/users/_user_form.erb:64
 msgid "Home Directory"
-msgstr "Thuismap"
+msgstr "Persoonlijke directory"
 
-#: app/views/users/index.html.erb:257 app/views/users/new.html.erb:254
+#: app/views/users/_user_form.erb:68
 msgid "Login Shell"
-msgstr "Aanmeldshell"
+msgstr "Aanmeldingsshell"
 
-#: app/views/users/index.html.erb:263 app/views/users/new.html.erb:260
+#: app/views/users/_user_form.erb:72
 msgid "UID Number"
 msgstr "UID-nummer"
 
-#: app/views/users/index.html.erb:277
+#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
+msgid "Weak"
+msgstr "Zwak"
+
+#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
+msgid "Normal"
+msgstr "Normaal"
+
+#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
+msgid "Medium"
+msgstr "Medium"
+
+#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
+msgid "Strong"
+msgstr "Sterk"
+
+#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
+msgid "Very Strong"
+msgstr "Zeer sterk"
+
+#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43 app/views/users/new.html.erb:86
+msgid "Users"
+msgstr "Gebruikers"
+
+#: app/views/users/edit.html.erb:80
+msgid "Edit user %s"
+msgstr "Gebruiker %s bewerken"
+
+#: app/views/users/index.html.erb:52
+msgid "Add New User"
+msgstr "Nieuwe gebruiker toevoegen"
+
+#: app/views/users/index.html.erb:68
 msgid "Are you sure to delete user '%s'?"
-msgstr "Wilt u gebruiker '%s' verwijderen?"
+msgstr "Wilt u gebruiker %s echt verwijderen?"
 
-#: app/views/users/new.html.erb:107
-msgid "The passwords do not match."
-msgstr "De wachtwoorden komen niet overeen."
+#: app/views/users/index.html.erb:68
+msgid "Home directory will be deleted as well."
+msgstr "De homedirectory wordt ook verwijderd."
 
-#: app/views/users/new.html.erb:161
+#: app/views/users/index.html.erb:81
+msgid "Manage Groups"
+msgstr "Groepen beheren"
+
+#: app/views/users/new.html.erb:86
 msgid "Add new user"
 msgstr "Nieuwe gebruiker toevoegen"
 
-#~ msgid "Default members"
-#~ msgstr "Standaard leden"
-
-#~ msgid "Edit user %s"
-#~ msgstr "Gebruiker %s bewerken"
-
-#~ msgid "Modify group"
-#~ msgstr "Groep wijzigen"
-
-#~ msgid "Home directory will be deleted as well."
-#~ msgstr "De persoonlijke map zal ook worden verwijderd."
-
-#~| msgid "Groups"
-#~ msgid "Group Type"
-#~ msgstr "Groepstype"
-
-#~ msgid "Type group name ..."
-#~ msgstr "Type groepsnaam ..."
-
-#~ msgid "Type"
-#~ msgstr "Type"
-
-#~ msgid "Action"
-#~ msgstr "Actie"
-
-#~ msgid "Type user name or login ..."
-#~ msgstr "Typ de gebruikersnaam of meldt u aan ..."
-
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Ongeldige sessie, gaarne opnieuw aanmelden."
-
-#~ msgid "Empty UID value"
-#~ msgstr "Lege UID-waarde"
-
-#~ msgid "UID: value >= 1000 is valid for local user only"
-#~ msgstr "UID: waarde >= 1000 is alleen geldig voor lokale gebruiker"
-
-#~ msgid "Login"
-#~ msgstr "Aanmelden"
-
-#~ msgid "Edit"
-#~ msgstr "Bewerken"
-
-#~ msgid "<strong>[New User]</strong>"
-#~ msgstr "<strong>[Nieuwe gebruiker]</strong>"
-
-#~ msgid "Back"
-#~ msgstr "Terug"
-
-#~ msgid "Update"
-#~ msgstr "Opwaarderen"
-
-#~ msgid "Default Group (GID)"
-#~ msgstr "Standaardgroep (GID)"
-
-#~| msgid "do NOT create home directory"
-#~ msgid "Do not create home directory"
-#~ msgstr "Thuismap niet aanmaken"
-
-#~ msgid "Create"
-#~ msgstr "Aanmaken"

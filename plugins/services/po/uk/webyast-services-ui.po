@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_services.uk\n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2009-09-27 16:06-0700\n"
 "Last-Translator: Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -18,220 +18,73 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/services_controller.rb:23
+#: app/controllers/services_controller.rb:11
+msgid "Invalid session, please login again."
+msgstr "Нечинний сеанс, увійдіть знов."
+
+#: app/controllers/services_controller.rb:34
 msgid "(cannot read status)"
 msgstr "(неможливо прочитати стан)"
 
-#: app/controllers/services_controller.rb:70
+#: app/controllers/services_controller.rb:80
 msgid "success"
 msgstr "успіх"
 
-#: app/controllers/services_controller.rb:71
-msgid "unspecified error"
-msgstr ""
+#: app/views/services/_status.rhtml:14
+msgid "(unknown)"
+msgstr "(невідомо)"
 
-#: app/controllers/services_controller.rb:72
+#: app/views/services/_status.rhtml:16
+msgid "(running)"
+msgstr "(запущено)"
+
+#: app/views/services/_status.rhtml:18
+msgid "(dead)"
+msgstr "(мертва)"
+
+#: app/views/services/_status.rhtml:20
+msgid "(not running)"
+msgstr "(не запущено)"
+
+#: app/views/services/_status.rhtml:22
 #, fuzzy
-#| msgid "invalid argument syntax"
-msgid "invalid or excess argument(s)"
-msgstr "нечинний синтаксис аргументів"
+#| msgid "(unknown)"
+msgid "(unknown: %d)"
+msgstr "(невідомо)"
 
-#: app/controllers/services_controller.rb:73
-#, fuzzy
-#| msgid "not yet implemented"
-msgid "unimplemented feature"
-msgstr "ще не впроваджено"
-
-#: app/controllers/services_controller.rb:74
-msgid "user had insufficient privilege"
-msgstr ""
-
-#: app/controllers/services_controller.rb:75
-#, fuzzy
-#| msgid "'%s' is not installed."
-msgid "program is not installed"
-msgstr "«%s» не встановлено."
-
-#: app/controllers/services_controller.rb:76
-#, fuzzy
-#| msgid "Not configured"
-msgid "program is not configured"
-msgstr "Не налаштовано"
-
-#: app/controllers/services_controller.rb:77
-#, fuzzy
-#| msgid "The hypervisor is not running."
-msgid "program is not runnning"
-msgstr "Не запущено hypervisor."
-
-#: app/views/services/_result.rhtml:6
+#: app/views/services/_result.rhtml:5
 msgid "Service Call Result"
 msgstr "Результат виклику служби"
 
-#: app/views/services/_result.rhtml:9
+#: app/views/services/_result.rhtml:8
 msgid "Result"
 msgstr "Результат"
 
-#: app/views/services/_result.rhtml:14
+#: app/views/services/_result.rhtml:12
 msgid "Description"
 msgstr "Опис"
 
-#: app/views/services/index.rhtml:141
+#: app/views/services/_result.rhtml:18 app/views/services/_result.rhtml:20
+#: app/views/services/index.rhtml:102
+msgid "Back"
+msgstr "Назад"
+
+#: app/views/services/index.rhtml:11
+msgid "Custom Services"
+msgstr "Нетипові служби"
+
+#: app/views/services/index.rhtml:13
 msgid "System Services"
 msgstr "Системні служби"
 
-#: app/views/services/index.rhtml:147
-#, fuzzy
-#| msgid "You do not have permission to execute the services. The links are disabled."
-msgid "You do not have permission to execute the services."
+#: app/views/services/index.rhtml:20
+msgid "No custom service is defined on target machine."
+msgstr ""
+
+#: app/views/services/index.rhtml:22
+msgid "You do not have permission to execute the services. The links are disabled."
 msgstr "У вас нема повноважень для запуску служб. Посилання вимкнено."
 
-#: app/views/services/index.rhtml:151
-#, fuzzy
-#| msgid "inetd service"
-msgid "Filter services"
-msgstr "Служба inetd"
-
-#: app/views/services/index.rhtml:153
-#, fuzzy
-#| msgid "Alt"
-msgid "All"
-msgstr "Alt"
-
-#: app/views/services/index.rhtml:154
-#, fuzzy
-#| msgid "running"
-msgid "Running"
-msgstr "запущено"
-
-#: app/views/services/index.rhtml:155
-#, fuzzy
-#| msgid "not running"
-msgid "Not Running"
-msgstr "не запущено"
-
-#: app/views/services/index.rhtml:156
-#, fuzzy
-#| msgid "(dead)"
-msgid "Dead"
-msgstr "(мертва)"
-
-#: app/views/services/index.rhtml:157
-msgid "Started on Boot"
-msgstr ""
-
-#: app/views/services/index.rhtml:158
-msgid "Not Started on Boot"
-msgstr ""
-
-#: app/views/services/index.rhtml:165
-#, fuzzy
-#| msgid "Search"
-msgid "Quick Search"
-msgstr "Пошук"
-
-#: app/views/services/index.rhtml:180
-#, fuzzy
-#| msgid "The action for service '%1' may not be empty."
-msgid "Description for service is not available"
-msgstr "Можливо, дія не порожня для служби \"%1\"."
-
-#: app/views/services/index.rhtml:203
-#, fuzzy
-#| msgid "Refresh"
-msgid "(refresh)"
-msgstr "Оновити"
-
-#: app/views/services/index.rhtml:234
-#, fuzzy
-#| msgid "Start-Up"
-msgid "Start"
-msgstr "Запуск"
-
-#: app/views/services/index.rhtml:235
-msgid "Stop"
-msgstr ""
-
-#: app/views/services/index.rhtml:236
-msgid "Restart"
-msgstr "Перезапустити"
-
-#: app/views/services/index.rhtml:237
-#, fuzzy
-#| msgid "Start Konqueror"
-msgid "Start on Boot"
-msgstr "Запустити Konqueror"
-
-#: app/views/services/index.rhtml:238
-#, fuzzy
-#| msgid "Do Not Start"
-msgid "Do Not Start on Boot"
-msgstr "Не запускати"
-
-#: app/views/services/_status.rhtml:6
-msgid "Service will be started on boot."
-msgstr ""
-
-#: app/views/services/_status.rhtml:8
-msgid "Service will not be started on boot."
-msgstr ""
-
-#: app/views/services/_status.rhtml:31
-#, fuzzy
-#| msgctxt "sc/source/ui/miscdlgs/retypepassdlg.src#RID_SCDLG_RETYPEPASS.FT_DOCSTATUS.fixedtext.text"
-#| msgid "Status unknown"
-msgid "status unknown"
-msgstr "Стан невідомий"
-
-#: app/views/services/_status.rhtml:33
-msgid "running"
-msgstr "запущено"
-
-#: app/views/services/_status.rhtml:37
-#, fuzzy
-#| msgid "(dead)"
-msgid "dead"
-msgstr "(мертва)"
-
-#: app/views/services/_status.rhtml:41
-msgid "not running"
-msgstr "не запущено"
-
-#: app/views/services/_status.rhtml:45
-#, fuzzy
-#| msgctxt "sc/source/ui/miscdlgs/retypepassdlg.src#RID_SCDLG_RETYPEPASS.FT_DOCSTATUS.fixedtext.text"
-#| msgid "Status unknown"
-msgid "status unknown: %d"
-msgstr "Стан невідомий"
-
-#: app/views/services/_status.rhtml:48
-#, fuzzy
-#| msgid "lock-down status for the search area"
-msgid "Current status of the service:"
-msgstr "стан фіксування для області пошуку"
-
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Нечинний сеанс, увійдіть знов."
-
-#~ msgid "(unknown)"
-#~ msgstr "(невідомо)"
-
-#~ msgid "(running)"
-#~ msgstr "(запущено)"
-
-#~ msgid "(not running)"
-#~ msgstr "(не запущено)"
-
-#, fuzzy
-#~| msgid "(unknown)"
-#~ msgid "(unknown: %d)"
-#~ msgstr "(невідомо)"
-
-#~ msgid "Back"
-#~ msgstr "Назад"
-
-#~ msgid "Custom Services"
-#~ msgstr "Нетипові служби"
-
-#~ msgid "status"
-#~ msgstr "стан"
+#: app/views/services/index.rhtml:94
+msgid "status"
+msgstr "стан"

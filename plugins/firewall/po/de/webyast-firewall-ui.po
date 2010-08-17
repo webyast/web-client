@@ -1,9 +1,11 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_firewall\n"
+"POT-Creation-Date: 2010-04-23 11:00+0200\n"
+"PO-Revision-Date: 2010-05-06 07:41\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,52 +13,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/firewall_controller.rb:51
-#, fuzzy
-#| msgid "All services have been refreshed."
+#: app/controllers/firewall_controller.rb:72
 msgid "Firewall settings have been written."
-msgstr "Alle Dienste wurden aufgefrischt."
+msgstr "Die Firewall-Einstellungen wurden geschrieben."
 
-#: app/views/firewall/index.rhtml:42
-msgid "Some of needed services are going to be blocked. WebYaST may not be usable anymore."
-msgstr ""
-
-#: app/views/firewall/index.rhtml:68
-#, fuzzy
-#| msgid "SuSE Firewall 2"
-msgid "Firewall"
-msgstr "SuSE Firewall 2"
+#: app/views/firewall/index.rhtml:63
+msgid "Some of needed services (%s) are going to be blocked. WebYaST may not be usable anymore. Do you really want to block them?"
+msgstr "Einige der benötigten Dienste (%s) werden gesperrt. WebYaST kann daraufhin möglicherweise nicht mehr verwendet werden. Sind Sie sicher, dass die Dienste blockiert werden sollen?"
 
 #: app/views/firewall/index.rhtml:86
-#, fuzzy
-#| msgid "General Settings"
+msgid "Firewall"
+msgstr "Firewall"
+
+#: app/views/firewall/index.rhtml:104
 msgid "General settings"
 msgstr "Allgemeine Einstellungen"
 
-#: app/views/firewall/index.rhtml:93
-#, fuzzy
-#| msgid "SuSE Firewall 2"
+#: app/views/firewall/index.rhtml:111
 msgid "Use Firewall"
-msgstr "SuSE Firewall 2"
+msgstr "Firewall verwenden"
 
-#: app/views/firewall/index.rhtml:99
-#, fuzzy
-#| msgid "inetd service"
+#: app/views/firewall/index.rhtml:117
 msgid "Allowed services"
-msgstr "inetd-Dienst"
+msgstr "Zulässige Dienste"
 
-#: app/views/firewall/index.rhtml:103
-#, fuzzy
-#| msgid "xlock"
+#: app/views/firewall/index.rhtml:121
 msgid "Block"
-msgstr "xlock"
+msgstr "Sperren"
 
-#: app/views/firewall/index.rhtml:109
-#, fuzzy
-#| msgid "nfslock service"
+#: app/views/firewall/index.rhtml:127
 msgid "Blocked services"
-msgstr "nfslock-Dienst"
+msgstr "Gesperrte Dienste"
 
-#: app/views/firewall/index.rhtml:113
+#: app/views/firewall/index.rhtml:131
 msgid "Allow"
-msgstr ""
+msgstr "Erlauben"
+

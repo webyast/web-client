@@ -1,245 +1,163 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: yast_webclient_services\n"
 "POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2005-09-18 19:09+0200\n"
-"Last-Translator: Mattias Newzella <newzella@linux.se>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2010-04-20 09:47\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: app/controllers/services_controller.rb:23
 msgid "(cannot read status)"
-msgstr ""
+msgstr "(det går inte att läsa status)"
 
 #: app/controllers/services_controller.rb:70
-#, fuzzy
-#| msgid ""
-#| "Success:\n"
-#| "%s"
 msgid "success"
-msgstr ""
-"Lyckades:\n"
-"%s"
+msgstr "lyckades"
 
 #: app/controllers/services_controller.rb:71
 msgid "unspecified error"
-msgstr ""
+msgstr "ospecificerat fel"
 
 #: app/controllers/services_controller.rb:72
-#, fuzzy
-#| msgid "invalid argument syntax"
 msgid "invalid or excess argument(s)"
-msgstr "ogiltig argumentsyntax"
+msgstr "ogiltigt eller excess-argument"
 
 #: app/controllers/services_controller.rb:73
-#, fuzzy
-#| msgid "not yet implemented"
 msgid "unimplemented feature"
-msgstr "inte implementerat ännu"
+msgstr "ej implementerad funktion"
 
 #: app/controllers/services_controller.rb:74
 msgid "user had insufficient privilege"
-msgstr ""
+msgstr "användaren saknade tillräcklig behörighet"
 
 #: app/controllers/services_controller.rb:75
-#, fuzzy
-#| msgid "not installed"
 msgid "program is not installed"
-msgstr "inte installerad."
+msgstr "programmet är inte installerat"
 
 #: app/controllers/services_controller.rb:76
-#, fuzzy
-#| msgid "Not configured"
 msgid "program is not configured"
-msgstr "Inte inställd"
+msgstr "programmet är inte konfigurerat"
 
 #: app/controllers/services_controller.rb:77
-#, fuzzy
-#| msgid "The hypervisor is not running."
 msgid "program is not runnning"
-msgstr "Hypervisorn körs inte."
+msgstr "programmet körs inte"
 
 #: app/views/services/_result.rhtml:6
-#, fuzzy
-#| msgid "Service unavailable"
 msgid "Service Call Result"
-msgstr "Tjänst otillgänglig"
+msgstr "Resultat från servicesamtal"
 
 #: app/views/services/_result.rhtml:9
-#, fuzzy
-#| msgid "Connect Result"
 msgid "Result"
-msgstr "Anslutningsresultat"
+msgstr "Resultat"
 
 #: app/views/services/_result.rhtml:14
 msgid "Description"
 msgstr "Beskrivning"
 
 #: app/views/services/index.rhtml:141
-#, fuzzy
-#| msgid "System Settings"
 msgid "System Services"
-msgstr "Systeminställningar"
+msgstr "Systemtjänster"
 
 #: app/views/services/index.rhtml:147
-#, fuzzy
-#| msgid "you have no permission to execute this command"
 msgid "You do not have permission to execute the services."
-msgstr "du har ingen behörighet att köra det här kommandot"
+msgstr "Du har inte behörighet att köra dessa tjänster."
 
 #: app/views/services/index.rhtml:151
-#, fuzzy
-#| msgid "inetd service"
 msgid "Filter services"
-msgstr "Tjänster för e-post och diskussionsgrupper"
+msgstr "Filtrera tjänster"
 
 #: app/views/services/index.rhtml:153
-#, fuzzy
-#| msgid "all"
 msgid "All"
-msgstr "alla"
+msgstr "Alla"
 
 #: app/views/services/index.rhtml:154
-#, fuzzy
-#| msgid "running"
 msgid "Running"
-msgstr "igång"
+msgstr "Körs"
 
 #: app/views/services/index.rhtml:155
-#, fuzzy
-#| msgid "not running"
 msgid "Not Running"
-msgstr "inte igång"
+msgstr "Körs inte"
 
 #: app/views/services/index.rhtml:156
 msgid "Dead"
-msgstr ""
+msgstr "Inaktiv"
 
 #: app/views/services/index.rhtml:157
 msgid "Started on Boot"
-msgstr ""
+msgstr "Startade vid uppstart"
 
 #: app/views/services/index.rhtml:158
 msgid "Not Started on Boot"
-msgstr ""
+msgstr "Startade inte vid uppstart"
 
 #: app/views/services/index.rhtml:165
-#, fuzzy
-#| msgid "Search:"
 msgid "Quick Search"
-msgstr "Sökning:"
+msgstr "Snabbsökning"
 
 #: app/views/services/index.rhtml:180
-#, fuzzy
-#| msgid "The action for service '%1' may not be empty."
 msgid "Description for service is not available"
-msgstr "Åtgärden för tjänsten %1 får inte vara tom."
+msgstr "Det finns ingen beskrivning för tjänsten"
 
 #: app/views/services/index.rhtml:203
-#, fuzzy
-#| msgid "Refresh"
 msgid "(refresh)"
-msgstr "Uppdatera"
+msgstr "(uppdatera)"
 
 #: app/views/services/index.rhtml:234
-#, fuzzy
-#| msgid "Start-Up"
 msgid "Start"
-msgstr "Start"
+msgstr "Starta"
 
 #: app/views/services/index.rhtml:235
 msgid "Stop"
-msgstr ""
+msgstr "Stoppa"
 
 #: app/views/services/index.rhtml:236
 msgid "Restart"
 msgstr "Starta om"
 
 #: app/views/services/index.rhtml:237
-#, fuzzy
-#| msgid "Start Konqueror"
 msgid "Start on Boot"
-msgstr "Starta Konqueror"
+msgstr "Starta vid uppstart"
 
 #: app/views/services/index.rhtml:238
-#, fuzzy
-#| msgid "Do Not Start"
 msgid "Do Not Start on Boot"
-msgstr "Starta inte"
+msgstr "Starta inte vid uppstart"
 
 #: app/views/services/_status.rhtml:6
 msgid "Service will be started on boot."
-msgstr ""
+msgstr "Tjänsten kommer att startas vid uppstart."
 
 #: app/views/services/_status.rhtml:8
 msgid "Service will not be started on boot."
-msgstr ""
+msgstr "Tjänsten startar inte vid uppstart."
 
 #: app/views/services/_status.rhtml:31
-#, fuzzy
-#| msgid "unknown"
 msgid "status unknown"
-msgstr "okänd"
+msgstr "status okänd"
 
 #: app/views/services/_status.rhtml:33
 msgid "running"
-msgstr "igång"
+msgstr "körs"
 
 #: app/views/services/_status.rhtml:37
 msgid "dead"
-msgstr ""
+msgstr "inaktiv"
 
 #: app/views/services/_status.rhtml:41
 msgid "not running"
-msgstr "inte igång"
+msgstr "körs inte"
 
 #: app/views/services/_status.rhtml:45
-#, fuzzy
-#| msgid "unknown"
 msgid "status unknown: %d"
-msgstr "okänd"
+msgstr "status okänd: %d"
 
 #: app/views/services/_status.rhtml:48
-#, fuzzy
-#| msgid "lock-down status for the search area"
 msgid "Current status of the service:"
-msgstr "låsstatus för sökfältet"
+msgstr "Nuvarande status för tjänsten:"
 
-#, fuzzy
-#~| msgid "unknown"
-#~ msgid "(unknown)"
-#~ msgstr "okänd"
-
-#, fuzzy
-#~| msgid "running"
-#~ msgid "(running)"
-#~ msgstr "igång"
-
-#, fuzzy
-#~| msgid "not running"
-#~ msgid "(not running)"
-#~ msgstr "inte igång"
-
-#~ msgid "Back"
-#~ msgstr "Tillbaka"
-
-#, fuzzy
-#~| msgid "Novell Services"
-#~ msgid "Custom Services"
-#~ msgstr "Novell Services"
-
-#, fuzzy
-#~| msgid "Status"
-#~ msgid "status"
-#~ msgstr "Status"

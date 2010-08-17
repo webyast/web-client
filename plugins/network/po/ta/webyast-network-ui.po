@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -17,135 +17,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:43
+msgid "No permissions for network module"
+msgstr ""
+
+#: app/controllers/network_controller.rb:66
 msgid "Not configured"
 msgstr "உள்ளமைக்கப்படவில்லை"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 #, fuzzy
 #| msgid "Manual Mode"
 msgid "Manual"
 msgstr "மேனுவல் மோட்"
 
-#: app/controllers/network_controller.rb:64
+#: app/controllers/network_controller.rb:66
 #, fuzzy
 #| msgid "Automatic Mode"
 msgid "Automatic"
 msgstr "ஆட்டோமேடிக் மோட்"
 
-#: app/controllers/network_controller.rb:134
+#: app/controllers/network_controller.rb:105
 msgid "Network settings have been written."
 msgstr ""
 
-#: app/views/network/index.html.erb:118
-msgid "whitespace - invalid character."
-msgstr ""
-
-#: app/views/network/index.html.erb:120
-msgid " - can not start with a digit."
-msgstr ""
-
-#: app/views/network/index.html.erb:122
-#, fuzzy
-#| msgid "The option 'flush' is not allowed"
-msgid "periodic '-' is not allowed."
-msgstr "'வெளியேற்றவும்' தேர்வுக்கு அனுமதி இல்லை"
-
-#: app/views/network/index.html.erb:124
-msgid "can not end with (-) hyphen."
-msgstr ""
-
-#: app/views/network/index.html.erb:127
-msgid "can not start with (-) hyphen."
-msgstr ""
-
-#: app/views/network/index.html.erb:129
-msgid " - is invalid character for hostname."
-msgstr ""
-
-#: app/views/network/index.html.erb:154
+#: app/views/network/index.html.erb:88
 msgid "Invalid IP address format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:163
+#: app/views/network/index.html.erb:97
 msgid "Invalid Prefix format. The correct one /nn where nn is between 0-32 (CIDR format)."
 msgstr ""
 
-#: app/views/network/index.html.erb:169
+#: app/views/network/index.html.erb:103
 msgid "Invalid default route format. The correct one is nnn.nnn.nnn.nnn for nnn between 0 and 255."
 msgstr ""
 
-#: app/views/network/index.html.erb:175
+#: app/views/network/index.html.erb:109
 msgid "Name servers are required. There must be at least one specified."
 msgstr ""
 
-#: app/views/network/index.html.erb:181
+#: app/views/network/index.html.erb:115
 #, fuzzy
 #| msgid "No valid request file specified."
 msgid "Hostname is required. It must be specified."
 msgstr "செல்லத்தக்க கோரிக்கை கோப்பு குறிப்பிடப்படவில்லை. "
 
-#: app/views/network/index.html.erb:187
-msgid "Domain is required. An empty domain is not supported."
+#: app/views/network/index.html.erb:121
+msgid "Domain is required. It is not supported empty domain."
 msgstr ""
 
-#: app/views/network/index.html.erb:210
+#: app/views/network/index.html.erb:131
 msgid "Network"
 msgstr "வலையமைப்பு"
 
-#: app/views/network/index.html.erb:221
+#: app/views/network/index.html.erb:140
 msgid "Interface"
 msgstr "உள்முகம்"
 
-#: app/views/network/index.html.erb:226
+#: app/views/network/index.html.erb:145
 #, fuzzy
 #| msgid "selection"
 msgid "Select"
 msgstr "தேர்வு"
 
-#: app/views/network/index.html.erb:243
+#: app/views/network/index.html.erb:166
 #, fuzzy
 #| msgid "Configuration"
 msgid "Configuration mode"
 msgstr "உள்ளமைத்தல்"
 
-#: app/views/network/index.html.erb:252
+#: app/views/network/index.html.erb:170
 #, fuzzy
 #| msgid "Own Address"
 msgid "IP address"
 msgstr "சொந்த முகவரி"
 
-#: app/views/network/index.html.erb:256
+#: app/views/network/index.html.erb:174
 msgid "Subnet mask / Prefixlen"
 msgstr ""
 
-#: app/views/network/index.html.erb:260
-#, fuzzy
-#| msgid "Default Route"
-msgid "Default route"
-msgstr "முன்னிருந்த வழி"
-
-#: app/views/network/index.html.erb:269
+#: app/views/network/index.html.erb:181
 #, fuzzy
 #| msgid "Host Names"
 msgid "Hostname"
 msgstr "புரவலன் பெயர்கள்"
 
-#: app/views/network/index.html.erb:274
+#: app/views/network/index.html.erb:185
 #, fuzzy
 #| msgid "Domain\n"
 msgid "Domain"
 msgstr "டொமைன்\n"
 
-#: app/views/network/index.html.erb:278
+#: app/views/network/index.html.erb:189
 #, fuzzy
 #| msgid "Name Server"
 msgid "Name servers"
 msgstr "பெயர் சேவகன்"
 
-#: app/views/network/index.html.erb:282
+#: app/views/network/index.html.erb:193
 msgid "Search domains"
 msgstr ""
+
+#: app/views/network/index.html.erb:201
+#, fuzzy
+#| msgid "Default Route"
+msgid "Default route"
+msgstr "முன்னிருந்த வழி"
 
 #, fuzzy
 #~| msgid "Do not start"

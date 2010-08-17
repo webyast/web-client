@@ -42,6 +42,7 @@ class TimeControllerTest < ActionController::TestCase
     @request.session[:account_id] = 1 # defined in fixtures
     @response_time = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","systemtime.xml"))
     @response_ntp = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","ntp.xml"))
+    @response_time_ppc = IO.read(File.join(File.dirname(__FILE__),"..","fixtures","systemtime-ppc.xml"))
     ActiveResource::HttpMock.set_authentication
     @header = ActiveResource::HttpMock.authentication_header
     ActiveResource::HttpMock.respond_to do |mock|
@@ -195,5 +196,20 @@ class TimeControllerTest < ActionController::TestCase
   def test_timezones_ajax
     post :timezones_for_region, { :value => "Europe" }
     assert_response :success
+  end
+
+  def test_utcstatus_on_ppc #test for bnc#606823
+    ActiveResource::HttpMock.respond_to do |mock|
+      mock.resources  :"org.opensuse.yast.modules.yapi.time" => "/systemtime", :"org.opensuse.yast.modules.yapi.ntp" => "/ntp", :"org.opensuse.yast.modules.yapi.services" => "/services"
+      mock.permissions "org.opensuse.yast.modules.yapi.time", { :read => true, :write => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.ntp", { :available => true, :synchronize => true }
+      mock.permissions "org.opensuse.yast.modules.yapi.services", { :read => true, :write => true, :execute => true}
+      mock.get   "/systemtime.xml", @header, @response_time_ppc, 200
+      mock.get   "/ntp.xml", @header, @response_ntp, 200
+    end
+    get :index
+    assert_response :success
+    assert_valid_markup
+    assert assigns(:stime)
   end
 end

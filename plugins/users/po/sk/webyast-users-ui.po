@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2010-04-19 15:49+0100\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-09-25 09:53+0100\n"
 "Last-Translator: Rastislav Krupanský <rastislav.krupansky@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -20,227 +20,122 @@ msgstr ""
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
 
-#: app/controllers/groups_controller.rb:15
-msgid "Missing group name parameter"
-msgstr "Chýba parameter názvu skupiny"
+#: app/controllers/users_controller.rb:18
+msgid "Invalid session, please login again."
+msgstr "Neplatné sedenie, prihláste sa znovu, prosím."
 
-#: app/controllers/groups_controller.rb:27
-msgid "Missing group parameters"
-msgstr "Chýbajúce parametre skupiny"
-
-#: app/controllers/groups_controller.rb:37
-msgid "Please enter a valid group name"
-msgstr "Zadajte platný názov skupiny"
-
-#: app/controllers/groups_controller.rb:47
-msgid "Please enter a valid GID"
-msgstr "Zadajte platný GID"
-
-#: app/controllers/groups_controller.rb:57
-msgid "Please enter a valid group type. Only \"system\" or \"local\" are allowed."
-msgstr "Zadajte platný typ skupiny. Iba \"system\", alebo \"local\" sú umožnené."
-
-#: app/controllers/groups_controller.rb:68
-msgid "Please enter a valid list of members"
-msgstr "Zadajte platný zoznam členov"
-
-#: app/controllers/groups_controller.rb:82
-msgid "Cannot read users list."
-msgstr "Nedá sa čítať zoznam používateľov."
-
-#: app/controllers/groups_controller.rb:118
-msgid "Cannot read groups list."
-msgstr "Nedá sa čítať zoznam skupín."
-
-#: app/controllers/groups_controller.rb:209
-msgid "Unknown backend error"
-msgstr "Neznáma chyba backendu"
-
-#: app/controllers/users_controller.rb:154
+#: app/controllers/users_controller.rb:144
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully created."
-msgstr "Používateľ <i>%s</i> bol úspešne vytvorený."
+msgstr "Služba '%s' bola úspešne pridaná."
 
-#: app/controllers/users_controller.rb:196
+#: app/controllers/users_controller.rb:148
+msgid "Empty UID value"
+msgstr "Prázdna UID hodnota"
+
+#: app/controllers/users_controller.rb:152
+msgid "UID: value >= 1000 is valid for local user only"
+msgstr "UID: hodnota >= 1000 je platná iba pre lokálneho používateľa"
+
+#: app/controllers/users_controller.rb:197
+#, fuzzy
+#| msgid "Service '%s' has been successfully added."
 msgid "User <i>%s</i> was successfully updated."
-msgstr "Používateľ <i>%s</i> bol úspešne aktualizovaný."
+msgstr "Služba '%s' bola úspešne pridaná."
 
-#: app/controllers/users_controller.rb:217
+#: app/controllers/users_controller.rb:218
+#, fuzzy
+#| msgid "Specified lock has been successfully removed."
 msgid "User <i>%s</i> was successfully removed."
-msgstr "Používateľ <i>%s</i> bol úspešne odstránený."
+msgstr "Zadaný zámok bol úspešne odstránený."
 
-#: app/controllers/users_controller.rb:219
+#: app/controllers/users_controller.rb:220
 msgid "Error: Could not remove user <i>%s</i>."
-msgstr "Chyba: Nedal sa odstrániť používateľ <i>%s</i>."
+msgstr ""
 
-#: app/views/groups/edit.html.erb:33 app/views/groups/index.html.erb:68
-#: app/views/users/_user_form.erb:30 app/views/users/_user_form.erb:33
-msgid "Groups"
-msgstr "Skupiny"
+#: app/views/users/index.html.erb:1
+msgid "Local User"
+msgstr "Lokálny používateľ"
 
-#: app/views/groups/edit.html.erb:35
-msgid "Add new group"
-msgstr "Pridať novú skupinu"
+#: app/views/users/index.html.erb:6
+msgid "Login"
+msgstr "Prihlásenie"
 
-#: app/views/groups/edit.html.erb:37
-msgid "Modify group"
-msgstr "Upraviť skupinu"
-
-#: app/views/groups/edit.html.erb:51 app/views/groups/index.html.erb:94
-msgid "Group Name"
-msgstr "Názov skupiny"
-
-#: app/views/groups/edit.html.erb:55 app/views/groups/index.html.erb:98
-msgid "Group ID"
-msgstr "ID skupiny"
-
-#: app/views/groups/edit.html.erb:59 app/views/groups/index.html.erb:102
-msgid "Default members"
-msgstr "Štandardní členovia"
-
-#: app/views/groups/edit.html.erb:63 app/views/groups/index.html.erb:106
-msgid "Members"
-msgstr "Členovia"
-
-#: app/views/groups/index.html.erb:62 app/views/users/index.html.erb:37
-msgid "Processing ..."
-msgstr "Prebieha spracovanie..."
-
-#: app/views/groups/index.html.erb:72 app/views/users/index.html.erb:47
-msgid "Filter:"
-msgstr "Filter:"
-
-#: app/views/groups/index.html.erb:78
-msgid "Add New Group"
-msgstr "Pridať novú skupinu"
-
-#: app/views/groups/index.html.erb:110
-msgid "Save"
-msgstr "Uložiť"
-
-#: app/views/groups/index.html.erb:112
-msgid "Delete"
-msgstr "Odstrániť"
-
-#: app/views/groups/index.html.erb:114
-msgid "Are you sure to delete group '%s'?"
-msgstr "Ste si istý, že chcete zmazať skupinu '%s'?"
-
-#: app/views/users/_user_form.erb:5
-msgid "Login Settings"
-msgstr "Nastavenia prihlásenia"
-
-#: app/views/users/_user_form.erb:8
+#: app/views/users/index.html.erb:7 app/views/users/edit.html.erb:11
+#: app/views/users/new.html.erb:8
 msgid "Full Name"
 msgstr "Celé meno"
 
-#: app/views/users/_user_form.erb:12
-msgid "Login Name"
-msgstr "Prihlasovacie meno"
+#: app/views/users/index.html.erb:8
+msgid "Edit"
+msgstr "Upraviť"
 
-# password dialog title
-#: app/views/users/_user_form.erb:17
-msgid "Password"
-msgstr "Heslo"
+#: app/views/users/index.html.erb:27
+msgid "<strong>[New User]</strong>"
+msgstr "<strong>[Nový používateľ]</strong>"
 
-#: app/views/users/_user_form.erb:21
-msgid "Confirm Password"
-msgstr "Potvrdiť heslo"
+#: app/views/users/index.html.erb:31 app/views/users/edit.html.erb:43
+#: app/views/users/new.html.erb:44
+msgid "Back"
+msgstr "Nazad"
 
-#: app/views/users/_user_form.erb:39
-msgid "Default Group"
-msgstr "Štandardná skupina"
-
-#: app/views/users/_user_form.erb:61
-msgid "Advanced"
-msgstr "Pokročilé"
-
-#: app/views/users/_user_form.erb:64
-msgid "Home Directory"
-msgstr "Domáci priečinok"
-
-#: app/views/users/_user_form.erb:68
-msgid "Login Shell"
-msgstr "Prihlasovací shell"
-
-#: app/views/users/_user_form.erb:72
-msgid "UID Number"
-msgstr "Číslo UID"
-
-#: app/views/users/edit.html.erb:55 app/views/users/new.html.erb:58
-msgid "Weak"
-msgstr "Slabé"
-
-#: app/views/users/edit.html.erb:56 app/views/users/new.html.erb:59
-msgid "Normal"
-msgstr "Normálne"
-
-#: app/views/users/edit.html.erb:57 app/views/users/new.html.erb:60
-msgid "Medium"
-msgstr "Stredné"
-
-#: app/views/users/edit.html.erb:58 app/views/users/new.html.erb:61
-msgid "Strong"
-msgstr "Silné"
-
-#: app/views/users/edit.html.erb:59 app/views/users/new.html.erb:62
-msgid "Very Strong"
-msgstr "Veľmi silné"
-
-#: app/views/users/edit.html.erb:80 app/views/users/index.html.erb:43
-#: app/views/users/new.html.erb:86
-msgid "Users"
-msgstr "Používatelia"
-
-#: app/views/users/edit.html.erb:80
+#: app/views/users/edit.html.erb:1
+#, fuzzy
+#| msgid "Edit User %s"
 msgid "Edit user %s"
 msgstr "Upraviť používateľa %s"
 
-#: app/views/users/index.html.erb:52
-msgid "Add New User"
-msgstr "Pridať nového používateľa"
+#: app/views/users/edit.html.erb:15 app/views/users/new.html.erb:12
+msgid "Groups"
+msgstr "Skupiny"
 
-#: app/views/users/index.html.erb:68
-msgid "Are you sure to delete user '%s'?"
-msgstr "Ste si istý, že chcete zmazať používateľa '%s'?"
+#: app/views/users/edit.html.erb:19
+msgid "Default Group"
+msgstr "Štandardná skupina"
 
-#: app/views/users/index.html.erb:68
-msgid "Home directory will be deleted as well."
-msgstr "Domovský priečinok bude tiež vymazaný."
+#: app/views/users/edit.html.erb:23 app/views/users/new.html.erb:20
+msgid "Home Directory"
+msgstr "Domáci priečinok"
 
-#: app/views/users/index.html.erb:81
-msgid "Manage Groups"
-msgstr "Spravovať skupiny"
+#: app/views/users/edit.html.erb:27 app/views/users/new.html.erb:28
+msgid "Login Shell"
+msgstr "Prihlasovací shell"
 
-#: app/views/users/new.html.erb:86
-msgid "Add new user"
-msgstr "Pridať nového používateľa"
+#: app/views/users/edit.html.erb:31 app/views/users/new.html.erb:32
+msgid "Login Name"
+msgstr "Prihlasovacie meno"
 
-#~ msgid "Invalid session, please login again."
-#~ msgstr "Neplatné sedenie, prihláste sa znovu, prosím."
+#: app/views/users/edit.html.erb:35 app/views/users/new.html.erb:36
+msgid "UID Number"
+msgstr "Číslo UID"
 
-#~ msgid "Empty UID value"
-#~ msgstr "Prázdna UID hodnota"
+# password dialog title
+#: app/views/users/edit.html.erb:39 app/views/users/new.html.erb:40
+msgid "Password"
+msgstr "Heslo"
 
-#~ msgid "UID: value >= 1000 is valid for local user only"
-#~ msgstr "UID: hodnota >= 1000 je platná iba pre lokálneho používateľa"
+#: app/views/users/edit.html.erb:43
+msgid "Update"
+msgstr "Aktualizácia"
 
-#~ msgid "Local User"
-#~ msgstr "Lokálny používateľ"
+#: app/views/users/new.html.erb:1
+msgid "New User"
+msgstr "Nový používateľ"
 
-#~ msgid "Login"
-#~ msgstr "Prihlásenie"
+#: app/views/users/new.html.erb:16
+msgid "Default Group (GID)"
+msgstr "Štandardná skupina (GID)"
 
-#~ msgid "Edit"
-#~ msgstr "Upraviť"
+#: app/views/users/new.html.erb:24
+#, fuzzy
+#| msgid "do NOT create home directory"
+msgid "Do not create home directory"
+msgstr "nevytvárať domáci priečinok"
 
-#~ msgid "<strong>[New User]</strong>"
-#~ msgstr "<strong>[Nový používateľ]</strong>"
+#: app/views/users/new.html.erb:44
+msgid "Create"
+msgstr "Vytvoriť"
 
-#~ msgid "Back"
-#~ msgstr "Nazad"
-
-#~ msgid "Update"
-#~ msgstr "Aktualizácia"
-
-#~ msgid "Default Group (GID)"
-#~ msgstr "Štandardná skupina (GID)"
+#~ msgid "User"
+#~ msgstr "Používateľ"

@@ -1,420 +1,322 @@
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_software\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-06 10:14\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/helpers/repositories_helper.rb:5
+#: app/helpers/repositories_helper.rb:25
 msgid "Highest"
-msgstr ""
+msgstr "最高"
 
-#: app/helpers/repositories_helper.rb:6
+#: app/helpers/repositories_helper.rb:26
 msgid "Higher"
-msgstr ""
+msgstr "较高"
 
-#: app/helpers/repositories_helper.rb:7
+#: app/helpers/repositories_helper.rb:27
 msgid "Default"
 msgstr "默认"
 
-#: app/helpers/repositories_helper.rb:8
+#: app/helpers/repositories_helper.rb:28
 msgid "Low"
-msgstr "电量低"
-
-#: app/helpers/repositories_helper.rb:9
-#, fuzzy
-#| msgid "Lower"
-msgid "Lowest"
-msgstr "小写"
-
-#: app/helpers/repositories_helper.rb:15
-msgid "Highest priority"
-msgstr ""
-
-#: app/helpers/repositories_helper.rb:16
-#, fuzzy
-#| msgid "Priority"
-msgid "Higher priority"
-msgstr "优先级"
-
-#: app/helpers/repositories_helper.rb:18
-#, fuzzy
-#| msgid "Priority"
-msgid "Low priority"
-msgstr "优先级"
-
-#: app/helpers/repositories_helper.rb:19
-#, fuzzy
-#| msgid "Priority"
-msgid "Lowest priority"
-msgstr "优先级"
-
-#: app/helpers/repositories_helper.rb:24
-#, fuzzy
-#| msgid "Priority"
-msgid "Custom priority"
-msgstr "优先级"
+msgstr "低"
 
 #: app/helpers/repositories_helper.rb:29
+msgid "Lowest"
+msgstr "最低"
+
+#: app/helpers/repositories_helper.rb:35
+msgid "Highest priority"
+msgstr "最高优先级"
+
+#: app/helpers/repositories_helper.rb:36
+msgid "Higher priority"
+msgstr "较高优先级"
+
+#: app/helpers/repositories_helper.rb:38
+msgid "Low priority"
+msgstr "低优先级"
+
+#: app/helpers/repositories_helper.rb:39
+msgid "Lowest priority"
+msgstr "最低优先级"
+
+#: app/helpers/repositories_helper.rb:44
+msgid "Custom priority"
+msgstr "自定义优先级"
+
+#: app/helpers/repositories_helper.rb:49
 msgid "Custom"
-msgstr ""
+msgstr "自定义"
 
-#: app/helpers/repositories_helper.rb:41
-#: app/views/repositories/index.html.erb:119
-#: app/views/repositories/add.html.erb:42
-#, fuzzy
-#| msgid "enabled"
+#: app/helpers/repositories_helper.rb:61 app/views/repositories/index.html.erb:140
+#: app/views/repositories/add.html.erb:62
 msgid "enable"
-msgstr "已启用"
+msgstr "启用"
 
-#: app/helpers/repositories_helper.rb:41
-#: app/views/repositories/index.html.erb:124
-#: app/views/repositories/add.html.erb:49
-#, fuzzy
-#| msgid "Disable"
+#: app/helpers/repositories_helper.rb:61 app/views/repositories/index.html.erb:145
+#: app/views/repositories/add.html.erb:69
 msgid "disable"
 msgstr "禁用"
 
-#: app/helpers/repositories_helper.rb:46
+#: app/helpers/repositories_helper.rb:66
 msgid "enabled"
 msgstr "已启用"
 
-#: app/helpers/repositories_helper.rb:46
-#, fuzzy
-#| msgid "Disabled"
+#: app/helpers/repositories_helper.rb:66
 msgid "disabled"
 msgstr "已禁用"
 
-#: app/controllers/repositories_controller.rb:14
+#: app/controllers/repositories_controller.rb:35
 msgid "Alias"
 msgstr "别名"
 
-#: app/controllers/repositories_controller.rb:15
-#: app/views/repositories/index.html.erb:151
+#: app/controllers/repositories_controller.rb:36 app/views/repositories/index.html.erb:172
 msgid "Enabled"
 msgstr "已启用"
 
-#: app/controllers/repositories_controller.rb:16
+#: app/controllers/repositories_controller.rb:37
 msgid "Autorefresh"
 msgstr "自动刷新"
 
-#: app/controllers/repositories_controller.rb:17
-#: app/views/patch_updates/_patches.html.erb:14
+#: app/controllers/repositories_controller.rb:38 app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "名称"
 
-#: app/controllers/repositories_controller.rb:18
-#, fuzzy
-#| msgid "URI"
+#: app/controllers/repositories_controller.rb:39
 msgid "URL"
-msgstr "URI"
+msgstr "URL"
 
-#: app/controllers/repositories_controller.rb:19
+#: app/controllers/repositories_controller.rb:40
 msgid "Priority"
 msgstr "优先级"
 
-#: app/controllers/repositories_controller.rb:20
-#, fuzzy
-#| msgid "Updated package"
+#: app/controllers/repositories_controller.rb:41
 msgid "Keep downloaded packages"
-msgstr "已更新软件包"
+msgstr "保留已下载的包"
 
-#: app/controllers/repositories_controller.rb:30
-#, fuzzy
-#| msgid "Cannot write repository configuration"
+#: app/controllers/repositories_controller.rb:51
 msgid "Cannot read repository list."
-msgstr "无法写入安装源配置"
+msgstr "无法读取安装源列表。"
 
-#: app/controllers/repositories_controller.rb:47
-#: app/controllers/repositories_controller.rb:74
-#, fuzzy
-#| msgid "Setting repository data"
+#: app/controllers/repositories_controller.rb:68 app/controllers/repositories_controller.rb:95
 msgid "Missing repository parameter"
-msgstr "正在设置安装源数据"
+msgstr "缺少安装源参数"
 
-#: app/controllers/repositories_controller.rb:102
-#: app/controllers/repositories_controller.rb:183
-#, fuzzy
-#| msgid "Invalid capability %s."
+#: app/controllers/repositories_controller.rb:123 app/controllers/repositories_controller.rb:204
 msgid "Invalid priority"
-msgstr "容量 %s 无效。"
+msgstr "无效优先级"
 
-#: app/controllers/repositories_controller.rb:171
-#, fuzzy
-#| msgid "Disabling repository '%s'."
+#: app/controllers/repositories_controller.rb:192
 msgid "Missing repository parameters"
-msgstr "正在禁用软件源'%s'。"
+msgstr "缺少安装源参数"
 
-#: app/controllers/repositories_controller.rb:209
-#, fuzzy
-#| msgid "Unknown error\n"
+#: app/controllers/repositories_controller.rb:230
 msgid "Unknown backend error"
-msgstr "未知错误\n"
+msgstr "未知后端错误"
 
-#: app/controllers/patch_updates_controller.rb:45
-#: app/controllers/patch_updates_controller.rb:48
-#: app/views/patch_updates/_patch_progress.html.erb:1
-#, fuzzy
-#| msgid "Downloading update information"
+#: app/controllers/patch_updates_controller.rb:43 app/views/patch_updates/_patch_summary.html.erb:24
+msgid "Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted."
+msgstr "无法读取增补程序更新：储存库 <em>%s</em> 的 GPG 密钥不受信任。"
+
+#: app/controllers/patch_updates_controller.rb:70 app/controllers/patch_updates_controller.rb:73
+#: app/views/patch_updates/_patch_progress.html.erb:2
 msgid "A problem occured when loading patch information."
-msgstr "正在下载更新信息"
+msgstr "装载增补程序信息时发生问题。"
 
-#: app/controllers/patch_updates_controller.rb:105
-#, fuzzy
-#| msgid "Installing updates..."
+#: app/controllers/patch_updates_controller.rb:129
 msgid "Installing all patches..."
-msgstr "正在安装更新..."
+msgstr "正在安装全部增补程序..."
 
-#: app/controllers/patch_updates_controller.rb:113
-#, fuzzy
-#| msgid "Installation Source"
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Installation stopped"
-msgstr "安装源"
+msgstr "安装已停止"
 
-#: app/controllers/patch_updates_controller.rb:150
-#, fuzzy
-#| msgid "Installation"
+#: app/controllers/patch_updates_controller.rb:173 app/controllers/patch_updates_controller.rb:227
+msgid "<p>A restart of the %s is needed.</p>"
+msgstr "<p>需要重启动 %s。</p>"
+
+#: app/controllers/patch_updates_controller.rb:193
 msgid "Installation finished"
-msgstr "安装"
+msgstr "安装已完成"
 
-#: app/controllers/patch_updates_controller.rb:152
-#, fuzzy
-#| msgid "%s installed ok"
+#: app/controllers/patch_updates_controller.rb:195
 msgid "%s installed."
-msgstr "%s 安装成功"
+msgstr "已安装 %s。"
 
-#: app/controllers/patch_updates_controller.rb:181
-#, fuzzy
-#| msgid "Package '%s' has been installed"
-msgid "Patch has been installed."
-msgstr "软件包 '%s' 已被安装"
+#: app/controllers/patch_updates_controller.rb:235 app/controllers/patch_updates_controller.rb:237
+#: app/controllers/patch_updates_controller.rb:251
+msgid "Patch has been installed. "
+msgstr "增补程序已安装。"
 
-#: app/views/repositories/index.html.erb:20
-#: app/views/repositories/add.html.erb:16
-#, fuzzy
-#| msgid "Enabled repository"
+#: app/controllers/patch_updates_controller.rb:249
+msgid "All Patches have been installed. "
+msgstr "所有增补程序都已安装。 "
+
+#: app/views/repositories/index.html.erb:40 app/views/repositories/add.html.erb:36
 msgid "Enter a valid repository URL."
-msgstr "已启用安装源"
+msgstr "输入有效的安装源 URL。"
 
-#: app/views/repositories/index.html.erb:28
-#: app/views/repositories/add.html.erb:24
+#: app/views/repositories/index.html.erb:48 app/views/repositories/add.html.erb:44
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
-msgstr ""
+msgstr "安装源别名中不允许出现 <b>%s</b> 符号。"
 
-#: app/views/repositories/index.html.erb:32
-#: app/views/repositories/add.html.erb:31
-#, fuzzy
-#| msgid "The idmapd section name may not be empty."
+#: app/views/repositories/index.html.erb:52 app/views/repositories/add.html.erb:51
 msgid "This value cannot be empty."
-msgstr "idmapd 部分名称不能为空。"
+msgstr "此值不能为空。"
 
-#: app/views/repositories/index.html.erb:140
-#: app/views/repositories/add.html.erb:105
-#, fuzzy
-#| msgid "Software sources"
+#: app/views/repositories/index.html.erb:161 app/views/repositories/add.html.erb:125
 msgid "Software Repositories"
-msgstr "软件来源"
+msgstr "软件安装源"
 
-#: app/views/repositories/index.html.erb:145
-#, fuzzy
-#| msgid "Got list of repositories"
+#: app/views/repositories/index.html.erb:166
 msgid "Configured software repositories"
-msgstr "获取到安装源列表"
+msgstr "已配置软件安装源"
 
-#: app/views/repositories/index.html.erb:148
-#, fuzzy
-#| msgid "Got list of repositories"
+#: app/views/repositories/index.html.erb:169
 msgid "Filter repositories"
-msgstr "获取到安装源列表"
+msgstr "过滤器安装源"
 
-#: app/views/repositories/index.html.erb:150
-#, fuzzy
-#| msgid "Alt"
+#: app/views/repositories/index.html.erb:171
 msgid "All"
-msgstr "Alt"
+msgstr "全部"
 
-#: app/views/repositories/index.html.erb:152
+#: app/views/repositories/index.html.erb:173
 msgid "Disabled"
 msgstr "已禁用"
 
-#: app/views/repositories/index.html.erb:159
-#, fuzzy
-#| msgid "Search"
+#: app/views/repositories/index.html.erb:180
 msgid "Quick Search"
-msgstr "搜索"
+msgstr "快速搜索"
 
-#: app/views/repositories/index.html.erb:165
-#, fuzzy
-#| msgid "Repository"
+#: app/views/repositories/index.html.erb:186
 msgid "Add New Repository"
-msgstr "安装源"
+msgstr "添加新安装源"
 
-#: app/views/repositories/index.html.erb:208
-#, fuzzy
-#| msgid "Repository Error"
+#: app/views/repositories/index.html.erb:229
 msgid "Repository is currently"
-msgstr "安装源错误"
+msgstr "安装源目前"
 
-#: app/views/repositories/index.html.erb:211
-#: app/views/repositories/add.html.erb:128
-#: app/views/repositories/add.html.erb:129
-#, fuzzy
-#| msgid "Repository name:"
-msgid "Repository will be %s."
-msgstr "安装源名称："
-
-#: app/views/repositories/index.html.erb:215
-#, fuzzy
-#| msgid "Autorefresh disabled."
-msgid "Autorefresh is currently"
-msgstr "自动刷新已禁用"
-
-#: app/views/repositories/index.html.erb:218
-#: app/views/repositories/add.html.erb:133
-#: app/views/repositories/add.html.erb:134
-#, fuzzy
-#| msgid "Autorefresh disabled."
-msgid "Autorefresh will be %s."
-msgstr "自动刷新已禁用"
-
-#: app/views/repositories/index.html.erb:222
-msgid "Keeping downloaded packages is currently"
-msgstr ""
-
-#: app/views/repositories/index.html.erb:225
-#: app/views/repositories/add.html.erb:140
-#: app/views/repositories/add.html.erb:141
-msgid "Keep packages option will be %s."
-msgstr ""
-
-#: app/views/repositories/index.html.erb:232
+#: app/views/repositories/index.html.erb:232 app/views/repositories/add.html.erb:148
 #: app/views/repositories/add.html.erb:149
+msgid "Repository will be %s."
+msgstr "安装源为 %s。"
+
+#: app/views/repositories/index.html.erb:236
+msgid "Autorefresh is currently"
+msgstr "自动刷新目前"
+
+#: app/views/repositories/index.html.erb:239 app/views/repositories/add.html.erb:153
+#: app/views/repositories/add.html.erb:154
+msgid "Autorefresh will be %s."
+msgstr "自动刷新将为 %s。"
+
+#: app/views/repositories/index.html.erb:243
+msgid "Keeping downloaded packages is currently"
+msgstr "保留已下载的包目前"
+
+#: app/views/repositories/index.html.erb:246 app/views/repositories/add.html.erb:158
+#: app/views/repositories/add.html.erb:159
+msgid "Keep packages option will be %s."
+msgstr "保留包选项将为 %s。"
+
+#: app/views/repositories/index.html.erb:253 app/views/repositories/add.html.erb:167
 msgid "Save"
 msgstr "保存"
 
-#: app/views/repositories/index.html.erb:233
+#: app/views/repositories/index.html.erb:254
 msgid "Delete"
 msgstr "删除"
 
-#: app/views/repositories/index.html.erb:235
-#, fuzzy
-#| msgid "Reading repository '%s' cache"
+#: app/views/repositories/index.html.erb:256
 msgid "Really delete repository '%s'?"
-msgstr "正在读取 '%s' 安装源缓存"
+msgstr "是否确实要删除安装源“%s”？"
 
-#: app/views/repositories/add.html.erb:77
-msgid ""
-"A repository with this URL already exists.\n"
-"Create a duplicate?"
-msgstr ""
+#: app/views/repositories/add.html.erb:97
+msgid "A repository with this URL already exists.\nCreate a duplicate?"
+msgstr "已存在此 URL 的安装源。\n创建重复的安装源吗？"
 
-#: app/views/repositories/add.html.erb:107
-#, fuzzy
-#| msgid "Adding repository '%s'"
+#: app/views/repositories/add.html.erb:127
 msgid "Add a new repository"
-msgstr "正在添加安装源 '%s'"
+msgstr "添加新安装源"
 
-#: app/views/repositories/add.html.erb:116
-#, fuzzy
-#| msgid "Repository"
+#: app/views/repositories/add.html.erb:136
 msgid "New Repository"
-msgstr "安装源"
+msgstr "新建安装源"
 
-#: app/views/repositories/add.html.erb:137
-msgid "Priority for packages:"
-msgstr ""
-
-#: app/views/patch_updates/_patch_installation.html.erb:7
-#, fuzzy
-#| msgid "An error occurred during the installation."
+#: app/views/patch_updates/_patch_installation.html.erb:8
 msgid "An error occured while installing patches."
-msgstr "安装期间出错。"
+msgstr "安装增补程序时发生错误。"
 
-#: app/views/patch_updates/_patch_installation.html.erb:19
+#: app/views/patch_updates/_patch_installation.html.erb:35
+msgid "Patch Installation"
+msgstr "增补程序安装"
+
+#: app/views/patch_updates/_patch_installation.html.erb:45
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
-#: app/views/patch_updates/_patch_installation.html.erb:19
+#: app/views/patch_updates/_patch_installation.html.erb:45
 msgid "Are you sure?"
-msgstr ""
+msgstr "您确定吗？"
 
-#: app/views/patch_updates/index.html.erb:11
+#: app/views/patch_updates/index.html.erb:32
 msgid "Updates"
 msgstr "更新"
 
-#: app/views/patch_updates/index.html.erb:16
-#: app/views/patch_updates/_patch_summary.html.erb:35
-#, fuzzy
-#| msgid "Your system is up-to-date."
+#: app/views/patch_updates/index.html.erb:37 app/views/patch_updates/_patch_summary.html.erb:48
 msgid "Your system is up to date."
-msgstr "你的系统处于最新状态。"
+msgstr "您的系统处于最新状态。"
 
-#: app/views/patch_updates/index.html.erb:21
-#, fuzzy
-#| msgid "No Updates Available"
+#: app/views/patch_updates/index.html.erb:42
 msgid "Updates available"
-msgstr "无可用更新"
+msgstr "更新可用"
 
-#: app/views/patch_updates/index.html.erb:38
+#: app/views/patch_updates/index.html.erb:59
 msgid "Update"
 msgstr "更新"
 
-#: app/views/patch_updates/_patch_progress.html.erb:5
-msgid "Refreshing package cache"
-msgstr "正在刷新软件包缓存"
-
 #: app/views/patch_updates/_patch_progress.html.erb:6
-#, fuzzy
-#| msgid "Starting card manager..."
-msgid "Starting package manager"
-msgstr "正在启动卡管理器..."
+msgid "Refreshing package cache"
+msgstr "正在刷新包缓存"
 
 #: app/views/patch_updates/_patch_progress.html.erb:7
-#, fuzzy
-#| msgid "Waiting for PackageKit service"
-msgid "Waiting for the package manager lock"
-msgstr "等待 PackageKit 服务"
+msgid "Starting package manager"
+msgstr "正在启动包管理器"
 
 #: app/views/patch_updates/_patch_progress.html.erb:8
-#: app/views/patch_updates/_patch_progress.html.erb:18
-msgid "Evaluating available patches"
-msgstr ""
+msgid "Waiting for the package manager lock"
+msgstr "正在等待包管理器锁定"
 
-#: app/views/patch_updates/_patch_progress.html.erb:9
-#, fuzzy
-#| msgid "Finished generating profile for %s."
+#: app/views/patch_updates/_patch_progress.html.erb:9 app/views/patch_updates/_patch_progress.html.erb:19
+msgid "Evaluating available patches"
+msgstr "正在评估可用增补程序"
+
+#: app/views/patch_updates/_patch_progress.html.erb:10
 msgid "Finished reading patches"
-msgstr "%s 简报生成完毕。"
+msgstr "已完成增补程序读取"
 
 #: app/views/patch_updates/_patches.html.erb:11
-#, fuzzy
-#| msgid "CheckBox"
 msgid "Check"
-msgstr "复选框"
+msgstr "检查"
 
 #: app/views/patch_updates/_patches.html.erb:13
 msgid "Kind"
-msgstr "类"
+msgstr "类型"
 
 #: app/views/patch_updates/_patches.html.erb:15
 msgid "Summary"
-msgstr "小结"
+msgstr "摘要"
 
-#: app/views/patch_updates/_patches.html.erb:17
-#: app/views/patch_updates/_patches.html.erb:20
+#: app/views/patch_updates/_patches.html.erb:17 app/views/patch_updates/_patches.html.erb:20
 msgid "Source"
 msgstr "源"
 
@@ -422,46 +324,35 @@ msgstr "源"
 msgid "Install"
 msgstr "安装"
 
-#: app/views/patch_updates/_patch_summary.html.erb:9
+#: app/views/patch_updates/_patch_summary.html.erb:18
 msgid "Cannot read patch updates - you have been logged out."
-msgstr ""
+msgstr "无法读取增补程序更新 － 您已注销。"
 
-#: app/views/patch_updates/_patch_summary.html.erb:12
-#, fuzzy
-#| msgid "No information about battery and AC status available"
+#: app/views/patch_updates/_patch_summary.html.erb:22
 msgid "No information about patches available"
-msgstr "没有可用的电池和交流电源状态信息"
+msgstr "无关于增补程序的信息可用"
 
-#: app/views/patch_updates/_patch_summary.html.erb:26
-#, fuzzy
-#| msgid "Security update"
+#: app/views/patch_updates/_patch_summary.html.erb:39
 msgid "Security Updates: %d"
-msgstr "安全更新"
+msgstr "安全更新：%d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:29
-#, fuzzy
-#| msgid "Important update"
+#: app/views/patch_updates/_patch_summary.html.erb:42
 msgid "Important Updates: %d"
-msgstr "重要更新"
+msgstr "重要更新：%d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:32
-#, fuzzy
-#| msgid "Additonal updates done."
+#: app/views/patch_updates/_patch_summary.html.erb:45
 msgid "Optional Updates: %d"
-msgstr "额外的更新完成。"
+msgstr "可选更新：%d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:40
-#, fuzzy
-#| msgid "Update"
+#: app/views/patch_updates/_patch_summary.html.erb:53
 msgid "Update All"
-msgstr "更新"
+msgstr "全部更新"
 
-#: app/views/patch_updates/_patch_summary.html.erb:40
+#: app/views/patch_updates/_patch_summary.html.erb:53
 msgid "Updating all. Are you sure?"
-msgstr ""
+msgstr "将更新全部。您确定吗？"
 
-#: app/views/patch_updates/_patch_summary.html.erb:47
-#, fuzzy
-#| msgid "Downloading update information"
+#: app/views/patch_updates/_patch_summary.html.erb:60
 msgid "Loading patch information"
-msgstr "正在下载更新信息"
+msgstr "正在装载增补程序信息"
+

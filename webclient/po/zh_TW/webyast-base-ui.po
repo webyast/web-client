@@ -1,183 +1,160 @@
-# translation of yast_webclient.po to Chinese Traditional
-# @TITLE@
-# Copyright (C) 2006, SUSE Linux GmbH, Nuremberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
 #
-# This file is distributed under the same license as @PACKAGE@ package. FIRST
-#
-# swyear <swyear@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2009-10-22 23:41+0800\n"
-"Last-Translator: swyear <swyear@gmail.com>\n"
-"Language-Team: Chinese Traditional <zh@li.org>\n"
+"POT-Creation-Date: 2010-04-23 11:00+0200\n"
+"PO-Revision-Date: 2010-05-06 10:21\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/helpers/application_helper.rb:20
+#: app/helpers/application_helper.rb:38
 msgid " or "
-msgstr ""
+msgstr " 或 "
 
-#: app/helpers/application_helper.rb:24
+#: app/helpers/application_helper.rb:42
 msgid " - "
-msgstr ""
+msgstr " - "
 
-#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
-#: app/views/hosts/edit.html.erb:39
+#: app/helpers/application_helper.rb:51 app/helpers/application_helper.rb:65
+#: app/views/hosts/edit.html.erb:40
 msgid "Back"
 msgstr "上一步"
 
-# cancel button label
-#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
+#: app/helpers/application_helper.rb:55 app/views/hosts/new.html.erb:53
 msgid "Cancel"
 msgstr "取消"
 
-#: app/helpers/application_helper.rb:52
+#: app/helpers/application_helper.rb:70
 msgid "Save"
 msgstr "儲存"
 
-#: app/helpers/application_helper.rb:55
+#: app/helpers/application_helper.rb:73
 msgid "Next"
-msgstr "下一個"
+msgstr "下一步"
 
-#: app/helpers/application_helper.rb:56
-#, fuzzy
-#| msgid "Finnish"
+#: app/helpers/application_helper.rb:74
 msgid "Finish"
-msgstr "芬蘭語"
+msgstr "完成"
 
-#: app/helpers/view_helpers/html_helper.rb:9
+#: app/helpers/view_helpers/html_helper.rb:27
 msgid "Are you sure?"
 msgstr "您確定嗎？"
 
-#: app/helpers/view_helpers/html_helper.rb:133
-#, fuzzy
-#| msgid "Unknown error\n"
+#: app/helpers/view_helpers/html_helper.rb:153
 msgid "Unknown error"
-msgstr "未知的錯誤\n"
+msgstr "未知錯誤"
 
-#: app/helpers/view_helpers/html_helper.rb:137
-#: app/views/shared/exception_trap.html.erb:22
+#: app/helpers/view_helpers/html_helper.rb:157 app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "沒有可用的資訊"
 
-#: app/helpers/view_helpers/html_helper.rb:140
+#: app/helpers/view_helpers/html_helper.rb:160
 msgid "There was a problem retrieving information from the server."
-msgstr ""
+msgstr "從伺服器擷取資訊時發生問題。"
 
-#: app/helpers/view_helpers/effect_helper.rb:32
-#, fuzzy
-#| msgid "Details"
+#: app/helpers/view_helpers/effect_helper.rb:50
 msgid "Hide Details"
-msgstr "詳細資料"
+msgstr "隱藏詳細資料"
 
-#: app/helpers/view_helpers/effect_helper.rb:33
-#, fuzzy
-#| msgid "Details"
+#: app/helpers/view_helpers/effect_helper.rb:51
 msgid "Show Details"
-msgstr "詳細資料"
+msgstr "顯示詳細資料"
 
-#: app/helpers/view_helpers/label_helper.rb:6
-#: app/views/hosts/index.html.erb:33
+#: app/helpers/view_helpers/label_helper.rb:24 app/views/hosts/index.html.erb:32
 msgid "Add"
 msgstr "新增"
 
-#: app/helpers/view_helpers/label_helper.rb:10
+#: app/helpers/view_helpers/label_helper.rb:28
 msgid "Edit"
 msgstr "編輯"
 
-#: app/helpers/view_helpers/label_helper.rb:14
+#: app/helpers/view_helpers/label_helper.rb:32
 msgid "Delete"
 msgstr "刪除"
 
-#: app/controllers/sessions_controller.rb:49
+#: app/controllers/sessions_controller.rb:67
 msgid "You need to specify the host"
-msgstr "您必須指定主機"
+msgstr "必須指定主機"
 
-#: app/controllers/sessions_controller.rb:52
+#: app/controllers/sessions_controller.rb:70
 msgid "No login specified"
-msgstr "沒有指定登入"
+msgstr "沒有指定登入名"
 
-#: app/controllers/sessions_controller.rb:55
+#: app/controllers/sessions_controller.rb:73
 msgid "No password specified"
 msgstr "沒有指定密碼"
 
-#: app/controllers/sessions_controller.rb:74
+#: app/controllers/sessions_controller.rb:92
 msgid "Host has blocked user %s. It cannot login until  %s"
-msgstr ""
+msgstr "主機阻擋了使用者 %s。該使用者在 %s 之後才能登入"
 
-#: app/controllers/sessions_controller.rb:97
+#: app/controllers/sessions_controller.rb:115
 msgid "Login incorrect. Check your username and password."
-msgstr "登入錯誤，請檢查使用者名稱和密碼。"
+msgstr "登入名不正確，請檢查使用者名稱和密碼。"
 
-#: app/controllers/sessions_controller.rb:130
+#: app/controllers/sessions_controller.rb:148
 msgid "You have been logged out."
 msgstr "您已經登出。"
 
-#: app/controllers/application_controller.rb:24
-#, fuzzy
-#| msgid "Session active:"
+#: app/controllers/application_controller.rb:42
 msgid "Session timeout"
-msgstr "工作階段啟用："
+msgstr "工作階段逾時"
 
-#: app/controllers/application_controller.rb:79
+#: app/controllers/application_controller.rb:97
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
-msgstr ""
+msgstr "您不允許執行此動作。如果一定要執行，請聯絡系統管理員"
 
-#: app/controllers/application_controller.rb:117
+#: app/controllers/application_controller.rb:135
 msgid "Please login to continue"
 msgstr "請登入以繼續"
 
-#: app/controllers/application_controller.rb:124
+#: app/controllers/application_controller.rb:142
 msgid "You must logout before you can login"
-msgstr "在您能登入前必須先登出"
-
-#: app/controllers/application_controller.rb:213
-msgid "can't be blank"
-msgstr ""
-
-#: app/controllers/application_controller.rb:214
-msgid "is out of allowed values"
-msgstr ""
-
-#: app/controllers/application_controller.rb:215
-msgid "can't be empty"
-msgstr ""
-
-#: app/controllers/application_controller.rb:216
-#, fuzzy
-#| msgid "Given URI is invalid"
-msgid "is invalid"
-msgstr "指定的位址無效"
+msgstr "您必須先登出，然後才能登入"
 
 #: app/controllers/application_controller.rb:231
-#, fuzzy
-#| msgid "Invalid package file"
+msgid "can't be blank"
+msgstr "不能留空"
+
+#: app/controllers/application_controller.rb:232
+msgid "is out of allowed values"
+msgstr "超出允許範圍"
+
+#: app/controllers/application_controller.rb:233
+msgid "can't be empty"
+msgstr "不能為空白"
+
+#: app/controllers/application_controller.rb:234
+msgid "is invalid"
+msgstr "無效"
+
+#: app/controllers/application_controller.rb:249
 msgid "Invalid parameters:"
-msgstr "不適用的套件檔案"
+msgstr "無效的參數︰"
 
-#: app/controllers/hosts_controller.rb:25
+#: app/controllers/hosts_controller.rb:43
 msgid "Can't connect to host %s."
-msgstr "無法連線到主機 %s。"
+msgstr "無法連接到主機 %s。"
 
-#: app/controllers/hosts_controller.rb:26
+#: app/controllers/hosts_controller.rb:44
 msgid "Make sure the host is up and that the YaST web service is running."
-msgstr "請確認主機已啟動且 YaST 網路服務已正在執行。"
+msgstr "請確定主機已啟動且 YaST Web 服務已在執行。"
 
-#: app/controllers/hosts_controller.rb:28
+#: app/controllers/hosts_controller.rb:46
 msgid "Please select a host to connect to."
-msgstr "請選取要連線的主機。"
+msgstr "請選取要連接的主機。"
 
-#: app/controllers/hosts_controller.rb:31
+#: app/controllers/hosts_controller.rb:49
 msgid "The host '%s' cannot be found."
-msgstr "找不到主機 '%s'。"
+msgstr "找不到主機「%s」。"
 
-#: app/controllers/hosts_controller.rb:32
+#: app/controllers/hosts_controller.rb:50
 msgid "Please double-check the host URL."
 msgstr "請再次檢查主機 URL。"
 
@@ -191,19 +168,19 @@ msgstr "帳戶|登入"
 
 #: app/models/account.rb:-
 msgid "Account|Created at"
-msgstr "帳戶|建立在"
+msgstr "帳戶|建立時間"
 
 #: app/models/account.rb:-
 msgid "Account|Updated at"
-msgstr "帳戶|更新在"
+msgstr "帳戶|更新時間"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token"
-msgstr "帳戶|記住 token"
+msgstr "帳戶|記住記號"
 
 #: app/models/account.rb:-
 msgid "Account|Remember token expires at"
-msgstr "帳戶|記住 token 過期在"
+msgstr "帳戶|記住記號過期時間"
 
 #: app/models/account.rb:-
 msgid "Account|Salt"
@@ -227,106 +204,97 @@ msgstr "主機|描述"
 
 #: app/models/host.rb:-
 msgid "Host|Created at"
-msgstr "主機|建立在"
+msgstr "主機|建立時間"
 
 #: app/models/host.rb:-
 msgid "Host|Updated at"
-msgstr "主機|更新在"
+msgstr "主機|更新時間"
 
 #: app/views/main/_select_language.html.erb:18
-#, fuzzy
-#| msgid "Clear Package Selection"
 msgid "Language Selection"
-msgstr "清除選擇"
+msgstr "語言選擇"
 
-#: app/views/shared/exception_trap.html.erb:8
-#: app/views/shared/backendexception_trap.html.erb:2
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "真是不好意思..."
 
 #: app/views/shared/exception_trap.html.erb:10
-#, fuzzy
-#| msgid "We are sorry, but WebYaST is still in alpha and there are some problems."
 msgid "We are sorry, but there are some problems."
-msgstr "我們很抱歉，然而 WebYaST 仍為 alpha 開發狀態還有些問題存在。"
+msgstr "很抱歉，系統出現了一些問題。"
 
-#: app/views/shared/exception_trap.html.erb:12
-#: app/views/shared/backendexception_trap.html.erb:6
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
 msgid "Problem:"
-msgstr "問題： "
+msgstr "問題："
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
-msgstr "請回報此錯誤讓我們能修正此問題！"
+msgstr "請報告錯誤，以便我們能修正此問題！"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "(report link)"
-msgstr "(回報連結)"
+msgstr "(報告連結)"
 
 #: app/views/shared/exception_trap.html.erb:19
 msgid "Don't forget to include the bug details."
-msgstr "別忘了包含錯誤細節。"
+msgstr "別忘了包含錯誤詳細資料。"
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
-msgstr "在目標機器發生一些問題。"
+msgstr "目標機器上發生問題。"
 
 #: app/views/shared/_missing_write_permissions.html.erb:1
 msgid "You do not have permissions to modify the settings."
-msgstr ""
+msgstr "您無權執行修改這些設定。"
 
-#: app/views/hosts/edit.html.erb:1
+#: app/views/hosts/edit.html.erb:2
 msgid "Editing YaST-Web-Service"
-msgstr "編輯 YaST-網路服務"
+msgstr "編輯 YaST Web 服務"
 
-#: app/views/hosts/edit.html.erb:22
+#: app/views/hosts/edit.html.erb:23
 msgid "YaST-Web-Service"
-msgstr "YaST-網路服務"
+msgstr "YaST Web 服務"
 
-#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
+#: app/views/hosts/edit.html.erb:26 app/views/hosts/new.html.erb:37
 msgid "Name"
 msgstr "名稱"
 
-#: app/views/hosts/edit.html.erb:29
+#: app/views/hosts/edit.html.erb:30
 msgid "Url"
-msgstr "Url"
+msgstr "URL"
 
-#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
+#: app/views/hosts/edit.html.erb:34 app/views/hosts/new.html.erb:47
 msgid "Description"
 msgstr "描述"
 
-#: app/views/hosts/edit.html.erb:38
+#: app/views/hosts/edit.html.erb:39
 msgid "Ok"
 msgstr "確定"
 
-#: app/views/hosts/index.html.erb:6
+#: app/views/hosts/index.html.erb:5
 msgid "Please choose a service:"
-msgstr "請選擇一個服務："
+msgstr "請選擇一項服務："
 
-#: app/views/hosts/index.html.erb:26
+#: app/views/hosts/index.html.erb:25
 msgid "Really delete host %s ?"
-msgstr "確定要刪除主機 %s ？"
+msgstr "確定要刪除主機 %s 嗎？"
 
-#: app/views/hosts/new.html.erb:9
+#: app/views/hosts/new.html.erb:10
 msgid "New WebYaST Host"
-msgstr "新增 WebYaST 主機"
+msgstr "新 WebYaST 主機"
 
-#: app/views/hosts/new.html.erb:41
-#, fuzzy
-#| msgid "URI"
+#: app/views/hosts/new.html.erb:42
 msgid "URL"
-msgstr "位址"
+msgstr "URL"
 
-#: app/views/hosts/new.html.erb:53
+#: app/views/hosts/new.html.erb:54
 msgid "Create"
 msgstr "建立"
 
-#: app/views/hosts/show.html.erb:7
+#: app/views/hosts/show.html.erb:8
 msgid "Index"
 msgstr "索引"
 
-#: app/views/controlpanel/show_all.rhtml:1
-#: app/views/controlpanel/index.rhtml:72
+#: app/views/controlpanel/show_all.rhtml:18 app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "組態"
 
@@ -338,178 +306,155 @@ msgstr "狀態"
 msgid "System actions"
 msgstr "系統動作"
 
-# reboot button label
 #: app/views/controlpanel/index.rhtml:37
 msgid "Reboot"
 msgstr "重新開機"
 
 #: app/views/controlpanel/index.rhtml:38
 msgid "Really reboot %s?"
-msgstr "確定要重新啟動 %s ？"
+msgstr "確定要將 %s 重新開機？"
 
 #: app/views/controlpanel/index.rhtml:39
 msgid "Shutdown"
-msgstr "關機"
+msgstr "關閉"
 
 #: app/views/controlpanel/index.rhtml:40
 msgid "Really shutdown %s?"
-msgstr "確定要關閉 %s ？"
+msgstr "確定要關閉 %s？"
 
 #: app/views/controlpanel/index.rhtml:48
 msgid "Loading patch information"
-msgstr "載入修正資訊"
+msgstr "正在載入修補程式資訊"
 
 #: app/views/controlpanel/index.rhtml:50
 msgid "Patch status summary is disabled in the config file."
-msgstr ""
+msgstr "組態檔案中已停用修補程式狀態摘要。"
 
 #: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
-msgstr "修正外掛尚未安裝。"
+msgstr "未安裝修正外掛程式。"
 
 #: app/views/controlpanel/index.rhtml:60
 msgid "Loading system information"
-msgstr "載入系統資訊"
+msgstr "正在載入系統資訊"
 
 #: app/views/controlpanel/index.rhtml:62
 msgid "System status summary is disabled in the config file."
-msgstr ""
+msgstr "組態檔案中已停用系統狀態摘要。"
 
 #: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
-msgstr "狀態外掛尚未安裝。"
+msgstr "未安裝狀態外掛程式。"
 
 #: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
-msgstr "顯示所有的模組"
+msgstr "顯示所有模組"
 
-#: app/views/controlpanel/basesystem.rhtml:1
+#: app/views/controlpanel/basesystem.rhtml:18
 msgid "Base system setup"
 msgstr "基礎系統設定"
 
-#: app/views/controlpanel/basesystem.rhtml:3
-#, fuzzy
-#| msgid "Your system setup was not completed. Please continue with setting up the modules."
+#: app/views/controlpanel/basesystem.rhtml:20
 msgid "Your initial system setup was not completed. Please continue with setting up the modules."
-msgstr "您的系統設定未完成。請繼續接著設定模組。"
+msgstr "您的啟始系統設定未完成。請繼續接著設定模組。"
 
-#: app/views/controlpanel/basesystem.rhtml:4
-#, fuzzy
-#| msgid "Base system setup"
+#: app/views/controlpanel/basesystem.rhtml:21
 msgid "Continue initial system setup"
-msgstr "基礎系統設定"
+msgstr "繼續進行啟始系統設定"
 
-#: app/views/layouts/main.rhtml:36
+#: app/views/layouts/main.rhtml:54
 msgid "WebYaST"
 msgstr "WebYaST"
 
-#: app/views/layouts/main.rhtml:50
+#: app/views/layouts/main.rhtml:58
+msgid "You are using an unsupported browser. Please switch to %sFireFox 3.5 or better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]"
+msgstr "您使用的是不受支援的瀏覽器。請切換至 %sFireFox 3.5 或更新版本%s 或 %sInternet Explorer 8%s。謝謝！[%s關閉%s]"
+
+#: app/views/layouts/main.rhtml:65
+msgid "JavaScript support is missing or disabled. Please turn JavaScript on or use a supported browser (%sFireFox 3.5%s or %sInternet Explorer 8%s)."
+msgstr "缺少或停用了 JavaScript 支援。請開啟 JavaScript 或使用支援的瀏覽器 (%sFireFox 3.5%s 或 %sInternet Explorer 8%s)。"
+
+#: app/views/layouts/main.rhtml:75
 msgid "My Appliance"
-msgstr "我的工具"
+msgstr "我的裝置"
 
-# label for language selection
-#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
-#, fuzzy
-#| msgid "Language"
+#: app/views/layouts/main.rhtml:81 app/views/layouts/main.rhtml:85
 msgid "Language:"
-msgstr "語言"
+msgstr "語言︰"
 
-#: app/views/layouts/main.rhtml:62
-#, fuzzy
-#| msgid "Connected Host"
+#: app/views/layouts/main.rhtml:87
 msgid "Connected host:"
-msgstr "連線的主機"
+msgstr "連接的主機︰"
 
-#: app/views/layouts/main.rhtml:63
+#: app/views/layouts/main.rhtml:88
 msgid "User:"
-msgstr "使用者名稱："
+msgstr "使用者："
 
-#: app/views/layouts/main.rhtml:66
+#: app/views/layouts/main.rhtml:91
 msgid "Control panel"
-msgstr "控制面板"
+msgstr "控制台"
 
-#: app/views/layouts/main.rhtml:67
+#: app/views/layouts/main.rhtml:92
 msgid "Logout"
 msgstr "登出"
 
-#: app/views/layouts/main.rhtml:102
+#: app/views/layouts/main.rhtml:127
 msgid "...Wait..."
-msgstr "...等候..."
+msgstr "...等待..."
 
-#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
+#: app/views/sessions/new.rhtml:21 app/views/sessions/new.rhtml:33
 msgid "Login"
 msgstr "登入"
 
-#: app/views/sessions/new.rhtml:6
+#: app/views/sessions/new.rhtml:23
 msgid "Enter login credentials for host %s."
-msgstr "輸入主機 %s 的登入憑證。"
+msgstr "輸入主機 %s 的登入身分證明。"
 
-#: app/views/sessions/new.rhtml:10
+#: app/views/sessions/new.rhtml:27
 msgid "Username:"
 msgstr "使用者名稱："
 
-#: app/views/sessions/new.rhtml:13
+#: app/views/sessions/new.rhtml:30
 msgid "Password:"
 msgstr "密碼："
 
-#: lib/error_constructor.rb:12
+#: lib/error_constructor.rb:30
 msgid "Service %s is not available in the target machine"
-msgstr ""
-
-#: lib/error_constructor.rb:14
-msgid "Service %s is not running on the target machine"
-msgstr ""
-
-#: lib/error_constructor.rb:16
-msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
-msgstr ""
-
-#: lib/error_constructor.rb:17
-msgid "Permission %s is not granted for user %s"
-msgstr "權限 %s 無法取得(使用者 %s)"
-
-#: lib/error_constructor.rb:19
-msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
-msgstr ""
-
-#: lib/error_constructor.rb:21
-msgid "A user is no longer logged to target machine. Please log in again."
-msgstr ""
-
-#: lib/error_constructor.rb:23
-msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr ""
-
-#: lib/error_constructor.rb:27
-msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
-msgstr "在 /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS 沒有預先定義的 ntp 伺服器"
-
-#: lib/error_constructor.rb:29
-#, fuzzy
-#| msgid "Error occured during ntp synchronization: %s"
-msgid "Error occurred during ntp synchronization: %s"
-msgstr "ntp 同步時發生錯誤：%s"
+msgstr "目標機器中無法使用服務 %s"
 
 #: lib/error_constructor.rb:32
+msgid "Service %s is not running on the target machine"
+msgstr "目標機器上未執行服務 %s"
+
+#: lib/error_constructor.rb:34
+msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
+msgstr "rest-service 的許可權設定已遭破壞。可執行 grantwebyastrights 程序檔進行修復。"
+
+#: lib/error_constructor.rb:35
+msgid "Permission %s is not granted for user %s"
+msgstr "無法取得許可權 %s (針對使用者 %s)"
+
+#: lib/error_constructor.rb:37
+msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
+msgstr "使用者 %s 和許可 %s 發生規則套件例外 (未轉譯的訊息)︰%s"
+
+#: lib/error_constructor.rb:39
+msgid "A user is no longer logged to target machine. Please log in again."
+msgstr "使用者已登出目標機器。請重新登入。"
+
+#: lib/error_constructor.rb:41
+msgid "Target system is not consistent: Missing or corrupted file %s"
+msgstr "目標系統不一致︰缺少檔案 %s 或該檔案已毀損"
+
+#: lib/error_constructor.rb:45
+msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
+msgstr "在 /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS 中沒有預先定義 NTP 伺服器"
+
+#: lib/error_constructor.rb:47
+msgid "Error occurred during ntp synchronization: %s"
+msgstr "NTP 同步時發生錯誤：%s"
+
+#: lib/error_constructor.rb:50
 msgid "Error while saving administrator settings: %s"
-msgstr "儲存管理員設定時發生錯誤：%s"
+msgstr "儲存管理員設定時出錯：%s"
 
-#~ msgid "You must accept all EULAs before using this product!"
-#~ msgstr "在使用此產品前，您必須接受所有 EULA！"
-
-#~ msgid "Cannot redirect to EULA. Make sure yast2-webclient-eulas package is installed"
-#~ msgstr "無法重新導向到 EULA。請確認已安裝 yast2-webclient-eulas 套件"
-
-#~ msgid "Set up the system"
-#~ msgstr "設定系統"
-
-#~ msgid "Name:"
-#~ msgstr "名稱:"
-
-#, fuzzy
-#~| msgid "Problem occured on target machine."
-#~ msgid "Problem occured on target machine"
-#~ msgstr "在目標機器發生一些問題。"
-
-#~ msgid "Noone is logged to rest service."
-#~ msgstr "無人登入到 rest 服務。"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
 "PO-Revision-Date: 2005-03-09 13:54+0100\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -18,32 +18,28 @@ msgstr ""
 "X-Generator: KBabel 1.9\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/administrator_controller.rb:32
-#: app/views/administrator/index.html.erb:24
+#: app/controllers/administrator_controller.rb:35
+#: app/views/administrator/index.html.erb:28
 #, fuzzy
 #| msgid "`%s' is not a valid ip address."
 msgid "Enter a valid e-mail address."
 msgstr "`%s' não é um endereço ip válido."
 
-#: app/controllers/administrator_controller.rb:40
+#: app/controllers/administrator_controller.rb:43
 msgid "Passwords do not match."
 msgstr "As palavras passe não coincidem."
 
-#: app/controllers/administrator_controller.rb:53
+#: app/controllers/administrator_controller.rb:60
 #, fuzzy
 #| msgid "Monitor Settings"
 msgid "Administrator settings have been written."
 msgstr "Definições do Monitor"
 
-#: app/controllers/administrator_controller.rb:63
+#: app/controllers/administrator_controller.rb:70
 #, fuzzy
 #| msgid "Error while closing old shadow file: %m"
 msgid "Error while saving administrator settings: %s"
 msgstr "Erro ao encerrar o ficheiro shadow antigo: %m"
-
-#: app/controllers/administrator_controller.rb:75
-msgid "Mail alias was set but outgoing mail server is not configured (%s<i>change</i>%s)."
-msgstr ""
 
 #: app/views/administrator/index.html.erb:1
 #, fuzzy
@@ -51,88 +47,39 @@ msgstr ""
 msgid "Administrator Settings"
 msgstr "Definições do Monitor"
 
-#: app/views/administrator/index.html.erb:32
+#: app/views/administrator/index.html.erb:36
 #, fuzzy
 #| msgid "Passwords do not match."
 msgid "The passwords do not match."
 msgstr "As palavras passe não coincidem."
 
-#: app/views/administrator/index.html.erb:33
-#, fuzzy
-#| msgid "The PKCS12 password is required."
-msgid "A password is required."
-msgstr "É necessária a palavra passe de PKCS12."
-
-#: app/views/administrator/index.html.erb:38
-#, fuzzy
-#| msgid "Passwords match"
-msgid "Password Strength:"
-msgstr "As palavras passe coincidem"
-
-#: app/views/administrator/index.html.erb:40
-msgid "Weak"
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
 msgstr ""
-
-#: app/views/administrator/index.html.erb:41
-msgid "Normal"
-msgstr "Normal"
-
-#: app/views/administrator/index.html.erb:42
-#, fuzzy
-#| msgid "Media"
-msgid "Medium"
-msgstr "Suporte"
-
-#: app/views/administrator/index.html.erb:43
-msgid "Strong"
-msgstr ""
-
-#: app/views/administrator/index.html.erb:44
-#, fuzzy
-#| msgid "Very fast"
-msgid "Very Strong"
-msgstr "Muito rápido"
-
-#: app/views/administrator/index.html.erb:63
-msgid "Password Setup for User 'root'"
-msgstr ""
-
-#: app/views/administrator/index.html.erb:64
-#, fuzzy
-#| msgid "_New Password:"
-msgid "New Password"
-msgstr "_Nova Palavra Passe:"
-
-#: app/views/administrator/index.html.erb:69
-#, fuzzy
-#| msgid "_Confirm Password:"
-msgid "Confirm Password"
-msgstr "_Confirmar Palavra Passe:"
-
-#: app/views/administrator/index.html.erb:76
-msgid "Mail Setup for User 'root'"
-msgstr ""
-
-#: app/views/administrator/index.html.erb:78
-msgid "Forward system mail to"
-msgstr ""
-
-#: app/views/administrator/index.html.erb:81
-#, fuzzy
-#| msgid "Save"
-msgid "Save Mail Only"
-msgstr "Guardar"
 
 # password dialog title
-#~ msgid "Password"
-#~ msgstr "Palavra Passe"
+#: app/views/administrator/index.html.erb:58
+msgid "Password"
+msgstr "Palavra Passe"
 
+#: app/views/administrator/index.html.erb:63
 #, fuzzy
-#~| msgid "_Confirm Password:"
-#~ msgid "Confirm password"
-#~ msgstr "_Confirmar Palavra Passe:"
+#| msgid "_Confirm Password:"
+msgid "Confirm password"
+msgstr "_Confirmar Palavra Passe:"
 
+#: app/views/administrator/index.html.erb:65
 #, fuzzy
-#~| msgid "Change Password"
-#~ msgid "Save Password"
-#~ msgstr "Alterar Palavra Passe"
+#| msgid "Change Password"
+msgid "Save Password"
+msgstr "Alterar Palavra Passe"
+
+#: app/views/administrator/index.html.erb:70
+msgid "Forward mail to"
+msgstr ""
+
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Guardar"

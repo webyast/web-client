@@ -1,317 +1,308 @@
-# translation of yast_webclient_software.po to Japanese
-# Yasuhiko Kamata <belphegor@belbel.or.jp>, 2010.
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_software\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2010-04-15 22:04+0900\n"
-"Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <opensuse-ja@opensuse.org>\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-07 07:53\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: app/helpers/repositories_helper.rb:5
+#: app/helpers/repositories_helper.rb:25
 msgid "Highest"
 msgstr "最高"
 
-#: app/helpers/repositories_helper.rb:6
+#: app/helpers/repositories_helper.rb:26
 msgid "Higher"
-msgstr "より高い"
+msgstr "高い"
 
-#: app/helpers/repositories_helper.rb:7
+#: app/helpers/repositories_helper.rb:27
 msgid "Default"
-msgstr "既定"
+msgstr "デフォルト"
 
-#: app/helpers/repositories_helper.rb:8
+#: app/helpers/repositories_helper.rb:28
 msgid "Low"
 msgstr "低い"
 
-#: app/helpers/repositories_helper.rb:9
-msgid "Lowest"
-msgstr "最低"
-
-#: app/helpers/repositories_helper.rb:15
-msgid "Highest priority"
-msgstr "最高の優先順位"
-
-#: app/helpers/repositories_helper.rb:16
-msgid "Higher priority"
-msgstr "高い優先順位"
-
-#: app/helpers/repositories_helper.rb:18
-msgid "Low priority"
-msgstr "低い優先順位"
-
-#: app/helpers/repositories_helper.rb:19
-msgid "Lowest priority"
-msgstr "最低の優先順位"
-
-#: app/helpers/repositories_helper.rb:24
-msgid "Custom priority"
-msgstr "カスタムな優先順位"
-
 #: app/helpers/repositories_helper.rb:29
+msgid "Lowest"
+msgstr "最も低い"
+
+#: app/helpers/repositories_helper.rb:35
+msgid "Highest priority"
+msgstr "最高の優先度"
+
+#: app/helpers/repositories_helper.rb:36
+msgid "Higher priority"
+msgstr "高い優先度"
+
+#: app/helpers/repositories_helper.rb:38
+msgid "Low priority"
+msgstr "低い優先度"
+
+#: app/helpers/repositories_helper.rb:39
+msgid "Lowest priority"
+msgstr "最低の優先度"
+
+#: app/helpers/repositories_helper.rb:44
+msgid "Custom priority"
+msgstr "カスタム優先度"
+
+#: app/helpers/repositories_helper.rb:49
 msgid "Custom"
 msgstr "カスタム"
 
-#: app/helpers/repositories_helper.rb:41
-#: app/views/repositories/index.html.erb:119
-#: app/views/repositories/add.html.erb:42
+#: app/helpers/repositories_helper.rb:61 app/views/repositories/index.html.erb:140
+#: app/views/repositories/add.html.erb:62
 msgid "enable"
 msgstr "有効"
 
-#: app/helpers/repositories_helper.rb:41
-#: app/views/repositories/index.html.erb:124
-#: app/views/repositories/add.html.erb:49
+#: app/helpers/repositories_helper.rb:61 app/views/repositories/index.html.erb:145
+#: app/views/repositories/add.html.erb:69
 msgid "disable"
 msgstr "無効"
 
-#: app/helpers/repositories_helper.rb:46
+#: app/helpers/repositories_helper.rb:66
 msgid "enabled"
 msgstr "有効"
 
-#: app/helpers/repositories_helper.rb:46
+#: app/helpers/repositories_helper.rb:66
 msgid "disabled"
 msgstr "無効"
 
-#: app/controllers/repositories_controller.rb:14
+#: app/controllers/repositories_controller.rb:35
 msgid "Alias"
-msgstr "別名"
+msgstr "エイリアス"
 
-#: app/controllers/repositories_controller.rb:15
-#: app/views/repositories/index.html.erb:151
+#: app/controllers/repositories_controller.rb:36 app/views/repositories/index.html.erb:172
 msgid "Enabled"
 msgstr "有効"
 
-#: app/controllers/repositories_controller.rb:16
+#: app/controllers/repositories_controller.rb:37
 msgid "Autorefresh"
 msgstr "自動更新"
 
-#: app/controllers/repositories_controller.rb:17
-#: app/views/patch_updates/_patches.html.erb:14
+#: app/controllers/repositories_controller.rb:38 app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "名前"
 
-#: app/controllers/repositories_controller.rb:18
+#: app/controllers/repositories_controller.rb:39
 msgid "URL"
 msgstr "URL"
 
-#: app/controllers/repositories_controller.rb:19
+#: app/controllers/repositories_controller.rb:40
 msgid "Priority"
-msgstr "優先順位"
+msgstr "優先度"
 
-#: app/controllers/repositories_controller.rb:20
+#: app/controllers/repositories_controller.rb:41
 msgid "Keep downloaded packages"
-msgstr "ダウンロード済みパッケージを保持"
+msgstr "ダウンロードしたパッケージを維持します"
 
-#: app/controllers/repositories_controller.rb:30
+#: app/controllers/repositories_controller.rb:51
 msgid "Cannot read repository list."
-msgstr "リポジトリの一覧を読み込むことができません。"
+msgstr "リポジトリリストを読み込むことができません"
 
-#: app/controllers/repositories_controller.rb:47
-#: app/controllers/repositories_controller.rb:74
+#: app/controllers/repositories_controller.rb:68 app/controllers/repositories_controller.rb:95
 msgid "Missing repository parameter"
-msgstr "リポジトリのパラメータがありません"
+msgstr "リポジトリパラメータが不足しています"
 
-#: app/controllers/repositories_controller.rb:102
-#: app/controllers/repositories_controller.rb:183
+#: app/controllers/repositories_controller.rb:123 app/controllers/repositories_controller.rb:204
 msgid "Invalid priority"
-msgstr "無効な優先順位です"
+msgstr "不正な優先度"
 
-#: app/controllers/repositories_controller.rb:171
+#: app/controllers/repositories_controller.rb:192
 msgid "Missing repository parameters"
-msgstr "リポジトリのパラメータがありません"
+msgstr "パラメータが不足しています"
 
-#: app/controllers/repositories_controller.rb:209
+#: app/controllers/repositories_controller.rb:230
 msgid "Unknown backend error"
-msgstr "不明なバックエンドエラー"
+msgstr "未知のバックエンドエラー"
 
-#: app/controllers/patch_updates_controller.rb:45
-#: app/controllers/patch_updates_controller.rb:48
-#: app/views/patch_updates/_patch_progress.html.erb:1
+#: app/controllers/patch_updates_controller.rb:43 app/views/patch_updates/_patch_summary.html.erb:24
+msgid "Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted."
+msgstr "パッチアップデートを読み込めません: リポジトリ<em>%s</em>のGPGキー が信頼できません。"
+
+#: app/controllers/patch_updates_controller.rb:70 app/controllers/patch_updates_controller.rb:73
+#: app/views/patch_updates/_patch_progress.html.erb:2
 msgid "A problem occured when loading patch information."
-msgstr "修正情報を読み込む際に問題が発生しました。"
+msgstr "パッチ情報の読み込み時に問題が発生しました。"
 
-#: app/controllers/patch_updates_controller.rb:105
+#: app/controllers/patch_updates_controller.rb:129
 msgid "Installing all patches..."
-msgstr "全ての修正をインストールしています..."
+msgstr "すべてのパッチをインストール中です..."
 
-#: app/controllers/patch_updates_controller.rb:113
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Installation stopped"
-msgstr "インストールを停止しました"
+msgstr "インストールが中止しました"
 
-#: app/controllers/patch_updates_controller.rb:150
+#: app/controllers/patch_updates_controller.rb:173 app/controllers/patch_updates_controller.rb:227
+msgid "<p>A restart of the %s is needed.</p>"
+msgstr "<p>%s の再起動が必要です。</p>"
+
+#: app/controllers/patch_updates_controller.rb:193
 msgid "Installation finished"
 msgstr "インストールが完了しました"
 
-#: app/controllers/patch_updates_controller.rb:152
+#: app/controllers/patch_updates_controller.rb:195
 msgid "%s installed."
-msgstr "%s をインストールしました。"
+msgstr "%s がインストールされました。"
 
-#: app/controllers/patch_updates_controller.rb:181
-msgid "Patch has been installed."
-msgstr "パッケージをインストールしました。"
+#: app/controllers/patch_updates_controller.rb:235 app/controllers/patch_updates_controller.rb:237
+#: app/controllers/patch_updates_controller.rb:251
+msgid "Patch has been installed. "
+msgstr "パッチはインストールされています。"
 
-#: app/views/repositories/index.html.erb:20
-#: app/views/repositories/add.html.erb:16
+#: app/controllers/patch_updates_controller.rb:249
+msgid "All Patches have been installed. "
+msgstr "パッチはすべてインストールされています。 "
+
+#: app/views/repositories/index.html.erb:40 app/views/repositories/add.html.erb:36
 msgid "Enter a valid repository URL."
-msgstr "正しいリポジトリ URL を入力してください。"
+msgstr "有効なリポジトリURLを入力してください。"
 
-#: app/views/repositories/index.html.erb:28
-#: app/views/repositories/add.html.erb:24
+#: app/views/repositories/index.html.erb:48 app/views/repositories/add.html.erb:44
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
-msgstr "リポジトリの別名内にはシンボル <b>%s</b> を使用することはできません。"
+msgstr "リポジトリエイリアスでシンボル <b>%s</b> は許可されません。"
 
-#: app/views/repositories/index.html.erb:32
-#: app/views/repositories/add.html.erb:31
+#: app/views/repositories/index.html.erb:52 app/views/repositories/add.html.erb:51
 msgid "This value cannot be empty."
-msgstr "ここには何らかの値を設定する必要があります。"
+msgstr "値を空白にはできません。"
 
-#: app/views/repositories/index.html.erb:140
-#: app/views/repositories/add.html.erb:105
+#: app/views/repositories/index.html.erb:161 app/views/repositories/add.html.erb:125
 msgid "Software Repositories"
 msgstr "ソフトウエアリポジトリ"
 
-#: app/views/repositories/index.html.erb:145
+#: app/views/repositories/index.html.erb:166
 msgid "Configured software repositories"
-msgstr "設定済みのソフトウエアリポジトリ"
+msgstr "設定されたソフトウェアリポジトリ"
 
-#: app/views/repositories/index.html.erb:148
+#: app/views/repositories/index.html.erb:169
 msgid "Filter repositories"
 msgstr "リポジトリのフィルタ"
 
-#: app/views/repositories/index.html.erb:150
+#: app/views/repositories/index.html.erb:171
 msgid "All"
-msgstr "全て"
+msgstr "すべて"
 
-#: app/views/repositories/index.html.erb:152
+#: app/views/repositories/index.html.erb:173
 msgid "Disabled"
 msgstr "無効"
 
-#: app/views/repositories/index.html.erb:159
+#: app/views/repositories/index.html.erb:180
 msgid "Quick Search"
-msgstr "簡易検索"
+msgstr "クィック検索"
 
-#: app/views/repositories/index.html.erb:165
+#: app/views/repositories/index.html.erb:186
 msgid "Add New Repository"
-msgstr "新しいリポジトリの追加"
+msgstr "新しいリポジトリを追加"
 
-#: app/views/repositories/index.html.erb:208
+#: app/views/repositories/index.html.erb:229
 msgid "Repository is currently"
 msgstr "リポジトリは現在"
 
-#: app/views/repositories/index.html.erb:211
-#: app/views/repositories/add.html.erb:128
-#: app/views/repositories/add.html.erb:129
+#: app/views/repositories/index.html.erb:232 app/views/repositories/add.html.erb:148
+#: app/views/repositories/add.html.erb:149
 msgid "Repository will be %s."
-msgstr "リポジトリは %s になります。"
+msgstr "リポジトリは%s。"
 
-#: app/views/repositories/index.html.erb:215
+#: app/views/repositories/index.html.erb:236
 msgid "Autorefresh is currently"
 msgstr "自動更新は現在"
 
-#: app/views/repositories/index.html.erb:218
-#: app/views/repositories/add.html.erb:133
-#: app/views/repositories/add.html.erb:134
+#: app/views/repositories/index.html.erb:239 app/views/repositories/add.html.erb:153
+#: app/views/repositories/add.html.erb:154
 msgid "Autorefresh will be %s."
-msgstr "自動更新は %s になります。"
+msgstr "自動更新は%s。"
 
-#: app/views/repositories/index.html.erb:222
+#: app/views/repositories/index.html.erb:243
 msgid "Keeping downloaded packages is currently"
-msgstr "ダウンロード済みパッケージの保持は現在"
+msgstr "ダウンロードしたパッケージの維持は現在"
 
-#: app/views/repositories/index.html.erb:225
-#: app/views/repositories/add.html.erb:140
-#: app/views/repositories/add.html.erb:141
+#: app/views/repositories/index.html.erb:246 app/views/repositories/add.html.erb:158
+#: app/views/repositories/add.html.erb:159
 msgid "Keep packages option will be %s."
-msgstr "ダウンロード済みパッケージの保持は %s になります。"
+msgstr "パッケージを維持オプションは%s。"
 
-#: app/views/repositories/index.html.erb:232
-#: app/views/repositories/add.html.erb:149
+#: app/views/repositories/index.html.erb:253 app/views/repositories/add.html.erb:167
 msgid "Save"
 msgstr "保存"
 
-#: app/views/repositories/index.html.erb:233
+#: app/views/repositories/index.html.erb:254
 msgid "Delete"
 msgstr "削除"
 
-#: app/views/repositories/index.html.erb:235
+#: app/views/repositories/index.html.erb:256
 msgid "Really delete repository '%s'?"
-msgstr "リポジトリ '%s' を削除してよろしいですか？"
+msgstr "リポジトリ %s を削除しますか？"
 
-#: app/views/repositories/add.html.erb:77
-msgid ""
-"A repository with this URL already exists.\n"
-"Create a duplicate?"
-msgstr ""
-"この URL のリポジトリは既に存在しています。\n"
-"重複するものを登録しますか？"
+#: app/views/repositories/add.html.erb:97
+msgid "A repository with this URL already exists.\nCreate a duplicate?"
+msgstr "このURLを持つリポジトリはすでに存在しています。\n複製しますか?"
 
-#: app/views/repositories/add.html.erb:107
+#: app/views/repositories/add.html.erb:127
 msgid "Add a new repository"
-msgstr "新しいリポジトリの追加"
+msgstr "新しいリポジトリを追加"
 
-#: app/views/repositories/add.html.erb:116
+#: app/views/repositories/add.html.erb:136
 msgid "New Repository"
 msgstr "新しいリポジトリ"
 
-#: app/views/repositories/add.html.erb:137
-msgid "Priority for packages:"
-msgstr "パッケージの優先順位:"
-
-#: app/views/patch_updates/_patch_installation.html.erb:7
+#: app/views/patch_updates/_patch_installation.html.erb:8
 msgid "An error occured while installing patches."
-msgstr "修正のインストール時にエラーが発生しました。"
+msgstr "パッチのインストール中にエラーが発生しました。"
 
-#: app/views/patch_updates/_patch_installation.html.erb:19
+#: app/views/patch_updates/_patch_installation.html.erb:35
+msgid "Patch Installation"
+msgstr "パッチインストール"
+
+#: app/views/patch_updates/_patch_installation.html.erb:45
 msgid "Stop"
 msgstr "停止"
 
-#: app/views/patch_updates/_patch_installation.html.erb:19
+#: app/views/patch_updates/_patch_installation.html.erb:45
 msgid "Are you sure?"
-msgstr "よろしいですか？"
+msgstr "正しいですか？"
 
-#: app/views/patch_updates/index.html.erb:11
+#: app/views/patch_updates/index.html.erb:32
 msgid "Updates"
 msgstr "更新"
 
-#: app/views/patch_updates/index.html.erb:16
-#: app/views/patch_updates/_patch_summary.html.erb:35
+#: app/views/patch_updates/index.html.erb:37 app/views/patch_updates/_patch_summary.html.erb:48
 msgid "Your system is up to date."
-msgstr "お使いのシステムは最新の状態です。"
+msgstr "システムは最新の状態です。"
 
-#: app/views/patch_updates/index.html.erb:21
+#: app/views/patch_updates/index.html.erb:42
 msgid "Updates available"
-msgstr "更新が利用できます"
+msgstr "更新が利用可能です"
 
-#: app/views/patch_updates/index.html.erb:38
+#: app/views/patch_updates/index.html.erb:59
 msgid "Update"
 msgstr "更新"
 
-#: app/views/patch_updates/_patch_progress.html.erb:5
+#: app/views/patch_updates/_patch_progress.html.erb:6
 msgid "Refreshing package cache"
 msgstr "パッケージキャッシュを更新しています"
 
-#: app/views/patch_updates/_patch_progress.html.erb:6
-msgid "Starting package manager"
-msgstr "パッケージマネージャを起動しています"
-
 #: app/views/patch_updates/_patch_progress.html.erb:7
-msgid "Waiting for the package manager lock"
-msgstr "パッケージマネージャの施錠を待機しています"
+msgid "Starting package manager"
+msgstr "パッケージマネージャを開始しています"
 
 #: app/views/patch_updates/_patch_progress.html.erb:8
-#: app/views/patch_updates/_patch_progress.html.erb:18
-msgid "Evaluating available patches"
-msgstr "利用可能な修正を検索中です"
+msgid "Waiting for the package manager lock"
+msgstr "パッケージマネージャロックを待っています"
 
-#: app/views/patch_updates/_patch_progress.html.erb:9
+#: app/views/patch_updates/_patch_progress.html.erb:9 app/views/patch_updates/_patch_progress.html.erb:19
+msgid "Evaluating available patches"
+msgstr "使用可能なパッチを評価しています"
+
+#: app/views/patch_updates/_patch_progress.html.erb:10
 msgid "Finished reading patches"
-msgstr "修正の読み込みが完了しました"
+msgstr "パッチの読み込みが終了しました"
 
 #: app/views/patch_updates/_patches.html.erb:11
 msgid "Check"
@@ -325,8 +316,7 @@ msgstr "種類"
 msgid "Summary"
 msgstr "概要"
 
-#: app/views/patch_updates/_patches.html.erb:17
-#: app/views/patch_updates/_patches.html.erb:20
+#: app/views/patch_updates/_patches.html.erb:17 app/views/patch_updates/_patches.html.erb:20
 msgid "Source"
 msgstr "ソース"
 
@@ -334,34 +324,35 @@ msgstr "ソース"
 msgid "Install"
 msgstr "インストール"
 
-#: app/views/patch_updates/_patch_summary.html.erb:9
+#: app/views/patch_updates/_patch_summary.html.erb:18
 msgid "Cannot read patch updates - you have been logged out."
-msgstr "修正の更新を読み込むことができません - ログアウトしました。"
+msgstr "パッチ更新を読み込めません - ログアウトしました。"
 
-#: app/views/patch_updates/_patch_summary.html.erb:12
+#: app/views/patch_updates/_patch_summary.html.erb:22
 msgid "No information about patches available"
-msgstr "修正に関する情報が利用できません"
+msgstr "利用可能なパッチに関する情報がありません"
 
-#: app/views/patch_updates/_patch_summary.html.erb:26
+#: app/views/patch_updates/_patch_summary.html.erb:39
 msgid "Security Updates: %d"
 msgstr "セキュリティ更新: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:29
+#: app/views/patch_updates/_patch_summary.html.erb:42
 msgid "Important Updates: %d"
 msgstr "重要な更新: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:32
+#: app/views/patch_updates/_patch_summary.html.erb:45
 msgid "Optional Updates: %d"
-msgstr "任意指定更新: %d"
+msgstr "任意指定の更新: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:40
+#: app/views/patch_updates/_patch_summary.html.erb:53
 msgid "Update All"
-msgstr "全て更新"
+msgstr "すべてを更新"
 
-#: app/views/patch_updates/_patch_summary.html.erb:40
+#: app/views/patch_updates/_patch_summary.html.erb:53
 msgid "Updating all. Are you sure?"
-msgstr "全てを更新します。よろしいですか？"
+msgstr "すべてを更新します。よろしいですか？"
 
-#: app/views/patch_updates/_patch_summary.html.erb:47
+#: app/views/patch_updates/_patch_summary.html.erb:60
 msgid "Loading patch information"
-msgstr "修正情報を読み込んでいます"
+msgstr "パッチ情報を読み込んでいます"
+

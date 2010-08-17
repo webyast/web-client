@@ -15,150 +15,148 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: app/helpers/application_helper.rb:39
+#: app/helpers/application_helper.rb:20
 msgid " or "
 msgstr " lub "
 
-#: app/helpers/application_helper.rb:43
+#: app/helpers/application_helper.rb:24
 msgid " - "
-msgstr "-"
+msgstr " - "
 
-#: app/helpers/application_helper.rb:52 app/helpers/application_helper.rb:66
-#: app/views/hosts/edit.html.erb:40
+#: app/helpers/application_helper.rb:33 app/helpers/application_helper.rb:47
+#: app/views/hosts/edit.html.erb:39
 msgid "Back"
 msgstr "Wstecz"
 
-#: app/helpers/application_helper.rb:56 app/views/hosts/new.html.erb:53
+#: app/helpers/application_helper.rb:37 app/views/hosts/new.html.erb:52
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: app/helpers/application_helper.rb:71
+#: app/helpers/application_helper.rb:52
 msgid "Save"
 msgstr "Zapisz"
 
-#: app/helpers/application_helper.rb:74
+#: app/helpers/application_helper.rb:55
 msgid "Next"
 msgstr "Dalej"
 
-#: app/helpers/application_helper.rb:75
+#: app/helpers/application_helper.rb:56
 msgid "Finish"
 msgstr "Zakończ"
 
-#: app/helpers/view_helpers/html_helper.rb:27
+#: app/helpers/view_helpers/html_helper.rb:9
 msgid "Are you sure?"
 msgstr "Na pewno?"
 
-#: app/helpers/view_helpers/html_helper.rb:153
+#: app/helpers/view_helpers/html_helper.rb:133
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
-#: app/helpers/view_helpers/html_helper.rb:157
-#: app/views/shared/exception_trap.html.erb:22
+#: app/helpers/view_helpers/html_helper.rb:137 app/views/shared/exception_trap.html.erb:22
 msgid "No information available"
 msgstr "Brak informacji"
 
-#: app/helpers/view_helpers/html_helper.rb:160
+#: app/helpers/view_helpers/html_helper.rb:140
 msgid "There was a problem retrieving information from the server."
 msgstr "Wystąpił problem podczas pobierania informacji z serwera."
 
-#: app/helpers/view_helpers/effect_helper.rb:50
+#: app/helpers/view_helpers/effect_helper.rb:32
 msgid "Hide Details"
 msgstr "Ukryj szczegóły"
 
-#: app/helpers/view_helpers/effect_helper.rb:51
+#: app/helpers/view_helpers/effect_helper.rb:33
 msgid "Show Details"
 msgstr "Pokaż szczegóły"
 
-#: app/helpers/view_helpers/label_helper.rb:24
-#: app/views/hosts/index.html.erb:32
+#: app/helpers/view_helpers/label_helper.rb:6 app/views/hosts/index.html.erb:33
 msgid "Add"
 msgstr "Dodaj"
 
-#: app/helpers/view_helpers/label_helper.rb:28
+#: app/helpers/view_helpers/label_helper.rb:10
 msgid "Edit"
 msgstr "Edycja"
 
-#: app/helpers/view_helpers/label_helper.rb:32
+#: app/helpers/view_helpers/label_helper.rb:14
 msgid "Delete"
 msgstr "Usuń"
 
-#: app/controllers/sessions_controller.rb:67
+#: app/controllers/sessions_controller.rb:49
 msgid "You need to specify the host"
 msgstr "Należy określić nazwę hosta"
 
-#: app/controllers/sessions_controller.rb:70
+#: app/controllers/sessions_controller.rb:52
 msgid "No login specified"
 msgstr "Nie określono nazwy użytkownika"
 
-#: app/controllers/sessions_controller.rb:73
+#: app/controllers/sessions_controller.rb:55
 msgid "No password specified"
 msgstr "Nie wprowadzono hasła"
 
-#: app/controllers/sessions_controller.rb:92
+#: app/controllers/sessions_controller.rb:74
 msgid "Host has blocked user %s. It cannot login until  %s"
 msgstr "Użytkownik %s został zablokowany. Nie może się on zalogować do %s"
 
-#: app/controllers/sessions_controller.rb:115
+#: app/controllers/sessions_controller.rb:97
 msgid "Login incorrect. Check your username and password."
 msgstr "Logowanie nieudane. Proszę sprawdzić nazwę użytkownika oraz hasło"
 
-#: app/controllers/sessions_controller.rb:148
+#: app/controllers/sessions_controller.rb:130
 msgid "You have been logged out."
 msgstr "Użytkownik został wylogowany."
 
-#: app/controllers/application_controller.rb:42
+#: app/controllers/application_controller.rb:24
 msgid "Session timeout"
 msgstr "Wygaśnięcie sesji"
 
-#: app/controllers/application_controller.rb:97
+#: app/controllers/application_controller.rb:79
 msgid "You're not allowed to do this. If you have to do this action, please contact system administrator"
-msgstr "Użytkownik nie posiada wystarczających uprawnień. Jeśli czynność ta musi być wykonana, należy skontaktować się z administratorem."
+msgstr "Brak uprawnień do wykonywania tej czynności. Jeśli jednak trzeba ją wykonać, proszę skontaktować się z administratorem."
 
-#: app/controllers/application_controller.rb:135
+#: app/controllers/application_controller.rb:117
 msgid "Please login to continue"
 msgstr "Proszę zalogować się, by kontynuować"
 
-#: app/controllers/application_controller.rb:142
+#: app/controllers/application_controller.rb:124
 msgid "You must logout before you can login"
 msgstr "Należy się wylogować przed ponownym zalogowaniem"
 
-#: app/controllers/application_controller.rb:231
+#: app/controllers/application_controller.rb:213
 msgid "can't be blank"
-msgstr "nie może być puste"
+msgstr "wartość nie może być pusta"
 
-#: app/controllers/application_controller.rb:232
+#: app/controllers/application_controller.rb:214
 msgid "is out of allowed values"
-msgstr "wartość niedozwolona"
+msgstr "wartość jest poza dozwolonym zakresem"
 
-#: app/controllers/application_controller.rb:233
+#: app/controllers/application_controller.rb:215
 msgid "can't be empty"
-msgstr "nie może być puste"
+msgstr "wartość nie może być pusta"
 
-#: app/controllers/application_controller.rb:234
+#: app/controllers/application_controller.rb:216
 msgid "is invalid"
-msgstr "niepoprawna"
+msgstr "wartość jest nieprawidłowa"
 
-#: app/controllers/application_controller.rb:249
+#: app/controllers/application_controller.rb:231
 msgid "Invalid parameters:"
-msgstr "Niepoprawne parametry:"
+msgstr "Nieprawidłowe parametry:"
 
-#: app/controllers/hosts_controller.rb:43
+#: app/controllers/hosts_controller.rb:25
 msgid "Can't connect to host %s."
 msgstr "Nie można połączyć się z hostem %s"
 
-#: app/controllers/hosts_controller.rb:44
+#: app/controllers/hosts_controller.rb:26
 msgid "Make sure the host is up and that the YaST web service is running."
 msgstr "Należy sprawdzić czy host i usługa YaST web service działają."
 
-#: app/controllers/hosts_controller.rb:46
+#: app/controllers/hosts_controller.rb:28
 msgid "Please select a host to connect to."
 msgstr "Proszę wybrać host, z którym zostanie nawiązane połączenie."
 
-#: app/controllers/hosts_controller.rb:49
+#: app/controllers/hosts_controller.rb:31
 msgid "The host '%s' cannot be found."
 msgstr "Nie można znaleźć hosta \"%s\"."
 
-#: app/controllers/hosts_controller.rb:50
+#: app/controllers/hosts_controller.rb:32
 msgid "Please double-check the host URL."
 msgstr "Proszę podwójnie sprawdzić adres URL hosta."
 
@@ -218,19 +216,17 @@ msgstr "Host|Uaktualniono"
 msgid "Language Selection"
 msgstr "Wybór języka"
 
-#: app/views/shared/exception_trap.html.erb:8
-#: app/views/shared/backendexception_trap.html.erb:2
+#: app/views/shared/exception_trap.html.erb:8 app/views/shared/backendexception_trap.html.erb:2
 msgid "This is embarrasing...."
 msgstr "To trochę kłopotliwe..."
 
 #: app/views/shared/exception_trap.html.erb:10
 msgid "We are sorry, but there are some problems."
-msgstr "Niestety program WebYaST jest wciąż w w wersji alpha i jest jeszcze trochę problemów."
+msgstr "Przepraszamy, wystąpiły pewne problemy."
 
-#: app/views/shared/exception_trap.html.erb:12
-#: app/views/shared/backendexception_trap.html.erb:6
+#: app/views/shared/exception_trap.html.erb:12 app/views/shared/backendexception_trap.html.erb:6
 msgid "Problem:"
-msgstr "Problem: "
+msgstr "Problem:"
 
 #: app/views/shared/exception_trap.html.erb:18
 msgid "Please Report a bug so we can fix the problem!."
@@ -246,62 +242,61 @@ msgstr "Prosimy umieścić szczegóły dotyczące błędu."
 
 #: app/views/shared/backendexception_trap.html.erb:4
 msgid "Problem occured on target machine."
-msgstr "Na maszynie docelowej wystąpił problem. "
+msgstr "Na maszynie docelowej wystąpił problem."
 
 #: app/views/shared/_missing_write_permissions.html.erb:1
 msgid "You do not have permissions to modify the settings."
 msgstr "Użytkownik nie posiada wystarczających uprawnień aby zmienić te ustawienia."
 
-#: app/views/hosts/edit.html.erb:2
+#: app/views/hosts/edit.html.erb:1
 msgid "Editing YaST-Web-Service"
-msgstr "Edycja YaST-Web-Service "
+msgstr "Edycja YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:23
+#: app/views/hosts/edit.html.erb:22
 msgid "YaST-Web-Service"
 msgstr "YaST-Web-Service"
 
-#: app/views/hosts/edit.html.erb:26 app/views/hosts/new.html.erb:37
+#: app/views/hosts/edit.html.erb:25 app/views/hosts/new.html.erb:36
 msgid "Name"
 msgstr "Nazwa"
 
-#: app/views/hosts/edit.html.erb:30
+#: app/views/hosts/edit.html.erb:29
 msgid "Url"
 msgstr "Adres URL"
 
-#: app/views/hosts/edit.html.erb:34 app/views/hosts/new.html.erb:47
+#: app/views/hosts/edit.html.erb:33 app/views/hosts/new.html.erb:46
 msgid "Description"
 msgstr "Opis"
 
-#: app/views/hosts/edit.html.erb:39
+#: app/views/hosts/edit.html.erb:38
 msgid "Ok"
 msgstr "OK"
 
-#: app/views/hosts/index.html.erb:5
+#: app/views/hosts/index.html.erb:6
 msgid "Please choose a service:"
 msgstr "Proszę wybrać usługę:"
 
-#: app/views/hosts/index.html.erb:25
+#: app/views/hosts/index.html.erb:26
 msgid "Really delete host %s ?"
 msgstr "Czy naprawdę usunąć hosta %s?"
 
-#: app/views/hosts/new.html.erb:10
+#: app/views/hosts/new.html.erb:9
 msgid "New WebYaST Host"
 msgstr "Nowy host WebYaST"
 
-#: app/views/hosts/new.html.erb:42
+#: app/views/hosts/new.html.erb:41
 msgid "URL"
-msgstr "URL"
+msgstr "Adres URL"
 
-#: app/views/hosts/new.html.erb:54
+#: app/views/hosts/new.html.erb:53
 msgid "Create"
 msgstr "Utwórz"
 
-#: app/views/hosts/show.html.erb:8
+#: app/views/hosts/show.html.erb:7
 msgid "Index"
 msgstr "Indeks"
 
-#: app/views/controlpanel/show_all.rhtml:18
-#: app/views/controlpanel/index.rhtml:72
+#: app/views/controlpanel/show_all.rhtml:1 app/views/controlpanel/index.rhtml:72
 msgid "Configuration"
 msgstr "Konfiguracja"
 
@@ -335,7 +330,7 @@ msgstr "Pobieranie informacji o poprawce"
 
 #: app/views/controlpanel/index.rhtml:50
 msgid "Patch status summary is disabled in the config file."
-msgstr "Podsumowanie stanu łatek jest wyłączone w pliku konfiguracyjnym."
+msgstr "Wyświetlanie podsumowania stanu poprawki jest wyłączone w pliku konfiguracyjnym."
 
 #: app/views/controlpanel/index.rhtml:53
 msgid "Patch plugin is not installed."
@@ -347,29 +342,29 @@ msgstr "Wczytywanie informacji o systemie"
 
 #: app/views/controlpanel/index.rhtml:62
 msgid "System status summary is disabled in the config file."
-msgstr "Podsumowanie stanu systemu jest wyłączone w pliku konfiguracyjnym."
+msgstr "Wyświetlanie podsumowania stanu systemu jest wyłączone w pliku konfiguracyjnym."
 
 #: app/views/controlpanel/index.rhtml:65
 msgid "Status plugin is not installed."
 msgstr "Nie zainstalowano wtyczki statusu."
 
-#: app/views/controlpanel/index.rhtml:100
+#: app/views/controlpanel/index.rhtml:102
 msgid "Show all modules"
 msgstr "Wyświetl wszystkie moduły"
 
-#: app/views/controlpanel/basesystem.rhtml:18
+#: app/views/controlpanel/basesystem.rhtml:1
 msgid "Base system setup"
 msgstr "Konfiguracja podstawowego systemu"
 
-#: app/views/controlpanel/basesystem.rhtml:20
+#: app/views/controlpanel/basesystem.rhtml:3
 msgid "Your initial system setup was not completed. Please continue with setting up the modules."
-msgstr "Nie ukończono wstępnej konfiguracji systemu. Należy dokończyć konfigurację modułów."
+msgstr "Nie ukończono początkowego ustawiania systemu. Proszę kontynuować konfigurację modułów."
 
-#: app/views/controlpanel/basesystem.rhtml:21
+#: app/views/controlpanel/basesystem.rhtml:4
 msgid "Continue initial system setup"
-msgstr "Kontynuacja wstępnej konfiguracji systemu"
+msgstr "Kontynuuj początkową konfigurację systemu"
 
-#: app/views/layouts/main.rhtml:52
+#: app/views/layouts/main.rhtml:36
 msgid "WebYaST"
 msgstr "WebYaST"
 
@@ -385,76 +380,75 @@ msgstr "Brak wsparcia dla JavaScript lub jest ono wyłączone. Należy włączy�
 msgid "My Appliance"
 msgstr "Moje urządzenie"
 
-# label for language selection
-#: app/views/layouts/main.rhtml:79 app/views/layouts/main.rhtml:83
+#: app/views/layouts/main.rhtml:56 app/views/layouts/main.rhtml:60
 msgid "Language:"
 msgstr "Język:"
 
-#: app/views/layouts/main.rhtml:85
+#: app/views/layouts/main.rhtml:62
 msgid "Connected host:"
 msgstr "Podłączony host:"
 
-#: app/views/layouts/main.rhtml:86
+#: app/views/layouts/main.rhtml:63
 msgid "User:"
 msgstr "Użytkownik:"
 
-#: app/views/layouts/main.rhtml:89
+#: app/views/layouts/main.rhtml:66
 msgid "Control panel"
 msgstr "Kanał sterowania"
 
-#: app/views/layouts/main.rhtml:90
+#: app/views/layouts/main.rhtml:67
 msgid "Logout"
 msgstr "Wyloguj"
 
-#: app/views/layouts/main.rhtml:125
+#: app/views/layouts/main.rhtml:102
 msgid "...Wait..."
 msgstr "...Proszę czekać..."
 
-#: app/views/sessions/new.rhtml:21 app/views/sessions/new.rhtml:33
+#: app/views/sessions/new.rhtml:4 app/views/sessions/new.rhtml:16
 msgid "Login"
 msgstr "Login"
 
-#: app/views/sessions/new.rhtml:23
+#: app/views/sessions/new.rhtml:6
 msgid "Enter login credentials for host %s."
 msgstr "Proszę wprowadzić informacje logowania dla hosta %s."
 
-#: app/views/sessions/new.rhtml:27
+#: app/views/sessions/new.rhtml:10
 msgid "Username:"
 msgstr "Nazwa użytkownika:"
 
-#: app/views/sessions/new.rhtml:30
+#: app/views/sessions/new.rhtml:13
 msgid "Password:"
 msgstr "Hasło:"
 
-#: lib/error_constructor.rb:30
+#: lib/error_constructor.rb:12
 msgid "Service %s is not available in the target machine"
 msgstr "Usługa %s nie jest dostępna na docelowym systemie"
 
-#: lib/error_constructor.rb:32
+#: lib/error_constructor.rb:14
 msgid "Service %s is not running on the target machine"
 msgstr "Usługa %s nie jest uruchomiona na docelowym systemie"
 
-#: lib/error_constructor.rb:34
+#: lib/error_constructor.rb:16
 msgid "Broken permission setup on rest-service. Can be fixed by grantwebyastrights script."
-msgstr "Nieprawidłowe uprawnienia dla programu konfigurującego. Problem można usunąć uruchamiając skrypt grantwebyastrights"
+msgstr "Przerwana konfiguracja uprawnień dla usługi rest. Można to naprawić przy pomocy skryptu grantwebyastrights."
 
-#: lib/error_constructor.rb:35
+#: lib/error_constructor.rb:17
 msgid "Permission %s is not granted for user %s"
-msgstr "Nie można uzyskać zezwolenia %s dla użytkownika %s "
+msgstr "Nie można uzyskać zezwolenia %s dla użytkownika %s"
 
-#: lib/error_constructor.rb:37
+#: lib/error_constructor.rb:19
 msgid "Policy kit exception for user %s and permission %s (untranslated message): %s"
 msgstr "Wyjątek Policy Kit dla użytkownika %s i uprawnień %s (nieprzetłumaczony komunikat): %s"
 
-#: lib/error_constructor.rb:39
+#: lib/error_constructor.rb:21
 msgid "A user is no longer logged to target machine. Please log in again."
 msgstr "Użytkownik nie jest już zalogowany na docelowym systemie. Proszę zalogować się ponownie."
 
-#: lib/error_constructor.rb:41
+#: lib/error_constructor.rb:23
 msgid "Target system is not consistent: Missing or corrupted file %s"
-msgstr "Docelowy system jest niespójny: brakuje pliku %s lub jest on uszkodzony "
+msgstr "Docelowy system jest niespójny: brakuje pliku %s lub jest on uszkodzony"
 
-#: lib/error_constructor.rb:45
+#: lib/error_constructor.rb:27
 msgid "There is no predefined ntp server at /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 msgstr "Brak predefiniowanego serwera NTP w /etc/sysconfig/network/config - NETCONFIG_NTP_STATIC_SERVERS"
 
@@ -462,18 +456,7 @@ msgstr "Brak predefiniowanego serwera NTP w /etc/sysconfig/network/config - NETC
 msgid "Error occurred during ntp synchronization: %s"
 msgstr "Wystąpił błąd podczas synchronizacji NTP: %s"
 
-#: lib/error_constructor.rb:50
+#: lib/error_constructor.rb:32
 msgid "Error while saving administrator settings: %s"
 msgstr "Wystąpił błąd podczas zapisu ustawień administracyjnych: %s"
 
-#~ msgid "You must accept all EULAs before using this product!"
-#~ msgstr "Należy zaakceptować wszystkie licencje, by móc używać tego produktu!"
-
-#~ msgid "Cannot redirect to EULA. Make sure webyast-licenses-ui package is installed"
-#~ msgstr "Nie można przekierować do licencji. Należy upewnić się, czy pakiet webyast-licenses-ui został zainstalowany."
-
-#~ msgid "Set up the system"
-#~ msgstr "Konfiguracja systemu"
-
-#~ msgid "Name:"
-#~ msgstr "Nazwa:"

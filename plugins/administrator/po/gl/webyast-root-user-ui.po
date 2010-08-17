@@ -1,120 +1,74 @@
-# Manuel A. Vazquez <xixirei@yahoo.es>, 2009, 2010.
-# Manuel A. Vázquez <xixirei@yahoo.es>, 2009, 2010.
+# Manuel A. Vazquez <xixirei@yahoo.es>, 2009.
+# Manuel A. Vázquez <xixirei@yahoo.es>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yast_webclient_administrator\n"
 "Report-Msgid-Bugs-To: translation@suse.de\n"
-"POT-Creation-Date: 2010-04-23 11:00+0200\n"
-"PO-Revision-Date: 2010-04-10 10:13+0200\n"
+"POT-Creation-Date: 2009-11-20 14:34+0100\n"
+"PO-Revision-Date: 2009-10-31 11:34+0100\n"
 "Last-Translator: Manuel A. Vázquez <xixirei@yahoo.es>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 0.2\n"
 
-#: app/controllers/administrator_controller.rb:53
-#: app/views/administrator/index.html.erb:45
+#: app/controllers/administrator_controller.rb:35
+#: app/views/administrator/index.html.erb:28
 msgid "Enter a valid e-mail address."
 msgstr "Introduza un enderezo válido de correo-e."
 
-#: app/controllers/administrator_controller.rb:61
+#: app/controllers/administrator_controller.rb:43
 msgid "Passwords do not match."
 msgstr "Os contrasinais non coinciden."
 
-#: app/controllers/administrator_controller.rb:74
+#: app/controllers/administrator_controller.rb:60
 msgid "Administrator settings have been written."
 msgstr "As preferencias do administrador foron gravadas."
 
-#: app/controllers/administrator_controller.rb:84
+#: app/controllers/administrator_controller.rb:70
 msgid "Error while saving administrator settings: %s"
-msgstr "Erro mentres se gardaban as preferencias do administrador: %s"
+msgstr "Erro mentes se gardaban as preferencias do administrador: %s"
 
-#: app/controllers/administrator_controller.rb:96
-msgid ""
-"Mail alias was set but outgoing mail server is not configured (%s<i>change</"
-"i>%s)."
-msgstr ""
-"O alias de correo-e foi configurado pero o servidor de saída de correo-e non "
-"está configurado (%s<i>cambiar</i>%s)."
-
-#: app/views/administrator/index.html.erb:22
+#: app/views/administrator/index.html.erb:1
 msgid "Administrator Settings"
 msgstr "Preferencias do administrador"
 
-#: app/views/administrator/index.html.erb:53
+#: app/views/administrator/index.html.erb:36
 msgid "The passwords do not match."
 msgstr "Os contrasinais non coinciden."
 
-#: app/views/administrator/index.html.erb:54
-msgid "A password is required."
-msgstr "Cómpre un contrasinal."
+#: app/views/administrator/index.html.erb:51
+msgid "Here, configure the settings for system administrator ('root')."
+msgstr ""
 
-#: app/views/administrator/index.html.erb:59
-#, fuzzy
-#| msgid "Password: "
-msgid "Password Strength:"
-msgstr "Contrasinal: "
+# password dialog title
+#: app/views/administrator/index.html.erb:58
+msgid "Password"
+msgstr "Contrasinal"
 
-#: app/views/administrator/index.html.erb:61
-msgid "Weak"
-msgstr "Feble"
-
-#: app/views/administrator/index.html.erb:62
-msgid "Normal"
-msgstr "Normal"
-
+# password dialog title
 #: app/views/administrator/index.html.erb:63
-msgid "Medium"
-msgstr "Medio"
-
-#: app/views/administrator/index.html.erb:64
-msgid "Strong"
-msgstr "Forte"
-
-#: app/views/administrator/index.html.erb:65
-msgid "Very Strong"
-msgstr "Moi forte"
-
-#: app/views/administrator/index.html.erb:93
-msgid "Password Setup for User 'root'"
-msgstr "Configurar o contrasinal para o usuario 'root'"
-
-#: app/views/administrator/index.html.erb:94
-msgid "New Password"
-msgstr "Novo contrasinal"
-
-#: app/views/administrator/index.html.erb:99
-msgid "Confirm Password"
+msgid "Confirm password"
 msgstr "Confirmar contrasinal"
 
-#: app/views/administrator/index.html.erb:106
-msgid "Mail Setup for User 'root'"
-msgstr "Configuración do correo electrónico para o usuario 'root'"
-
-#: app/views/administrator/index.html.erb:108
-msgid "Forward system mail to"
-msgstr "Reenviar correo-e do sistema para"
-
-#: app/views/administrator/index.html.erb:111
-msgid "Save Mail Only"
-msgstr "Gardar só correo"
-
 # password dialog title
-#~ msgid "Password"
-#~ msgstr "Contrasinal"
+#: app/views/administrator/index.html.erb:65
+#, fuzzy
+#| msgid "Password"
+msgid "Save Password"
+msgstr "Contrasinal"
 
-# password dialog title
-#~ msgid "Confirm password"
-#~ msgstr "Confirmar contrasinal"
+#: app/views/administrator/index.html.erb:70
+msgid "Forward mail to"
+msgstr "Reenviar o correo a"
 
-#~ msgid "Forward mail to"
-#~ msgstr "Reenviar o correo a"
+#: app/views/administrator/index.html.erb:72
+#, fuzzy
+#| msgid "Save"
+msgid "Save Mail"
+msgstr "Gardar"
 
-# password dialog title
-#~ msgid "Save Password"
-#~ msgstr "Gardar o contrasinal"
-
-#~ msgid "Save Mail"
-#~ msgstr "Gardar correo"
+#~ msgid "Invalid session, please login again."
+#~ msgstr "Sesión non válida, inicie a sesión de novo."

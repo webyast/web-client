@@ -1,9 +1,11 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:36+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_mail\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-06 07:41\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,104 +13,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/mail_controller.rb:29
-msgid "Passwords do not match."
-msgstr "Die Passwörter sind nicht identisch."
-
-#: app/controllers/mail_controller.rb:36
-#, fuzzy
-#| msgid "All services have been refreshed."
-msgid "Mail settings have been written."
-msgstr "Alle Dienste wurden aufgefrischt."
-
-#: app/controllers/mail_controller.rb:38
-msgid "Test mail was sent to %s."
-msgstr ""
-
 #: app/controllers/mail_controller.rb:50
-#, fuzzy
-#| msgid "Error while closing old opasswd file: %s"
+msgid "Passwords do not match."
+msgstr "Die Passwörter stimmen nicht überein."
+
+#: app/controllers/mail_controller.rb:57
+msgid "Mail settings have been written."
+msgstr "Die E-Mail-Einstellungen wurden geschrieben."
+
+#: app/controllers/mail_controller.rb:59
+msgid "Test mail was sent to %s."
+msgstr "Test-E-Mail wurde gesendet an %s."
+
+#: app/controllers/mail_controller.rb:71
 msgid "Error while saving mail settings: %s"
-msgstr "Fehler beim Schließen der alten opasswd-Datei: %s"
+msgstr "Fehler beim Schreiben der E-Mail-Einstellungen: %s"
 
-#: app/controllers/mail_controller.rb:67
-msgid ""
-"No outgoing mail server is set, but administrator has mail forwarders defined.\n"
-"Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
-msgstr ""
+#: app/controllers/mail_controller.rb:88
+msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
+msgstr "Es wurde kein Server für ausgehende E-Mails festgelegt, doch der Administrator hat E-Mail-Weiterleitungen definiert.\nÄndern Sie die Konfiguration von %s<i>Administrator</i>%s oder %s<i>E-Mail</i>%s."
 
-#: app/views/mail/index.html.erb:16
-#, fuzzy
-#| msgid "Passwords do not match."
+#: app/views/mail/index.html.erb:37
 msgid "The passwords do not match."
-msgstr "Die Passwörter sind nicht identisch."
+msgstr "Die Passwörter stimmen nicht überein."
 
-#: app/views/mail/index.html.erb:17
-#, fuzzy
-#| msgid "`%s' is not a valid ip address."
+#: app/views/mail/index.html.erb:38
 msgid "Enter a valid e-mail address."
-msgstr "`%s' ist keine gültige IP-Adresse."
+msgstr "Gebne Sie eine gültige E-Mail-Adresse ein."
 
-#: app/views/mail/index.html.erb:18
-#, fuzzy
-#| msgid "Enter your IP address."
+#: app/views/mail/index.html.erb:39
 msgid "Enter a valid domain name or an IP address."
-msgstr "Geben Sie Ihre IP-Adresse ein."
+msgstr "Geben Sie einen gültigen Domänennamen oder eine IP-Adresse ein."
 
-#: app/views/mail/index.html.erb:35
-#, fuzzy
-#| msgid "Manual Settings"
+#: app/views/mail/index.html.erb:56
 msgid "Mail Settings"
-msgstr "Manuelle Einstellungen"
+msgstr "E-Mail-Einstellungen"
 
-#: app/views/mail/index.html.erb:47
+#: app/views/mail/index.html.erb:68
 msgid "Outgoing mail server"
-msgstr ""
+msgstr "Server für ausgehende E-Mails"
 
-#: app/views/mail/index.html.erb:50
+#: app/views/mail/index.html.erb:71
 msgid "Use secure connection (TLS)"
-msgstr ""
+msgstr "Sichere Verbindung (TLS) verwenden"
 
-#: app/views/mail/index.html.erb:51
+#: app/views/mail/index.html.erb:72
 msgid "Never"
 msgstr "Nie"
 
-#: app/views/mail/index.html.erb:51
-#, fuzzy
-#| msgid "(%1 available)"
+#: app/views/mail/index.html.erb:72
 msgid "If available"
-msgstr "(%1 verfügbar)"
+msgstr "Falls verfügbar"
 
-#: app/views/mail/index.html.erb:51
-#, fuzzy
-#| msgid "Alwa&ys"
+#: app/views/mail/index.html.erb:72
 msgid "Always"
-msgstr "&Immer"
+msgstr "Immer"
 
-#: app/views/mail/index.html.erb:53
-#, fuzzy
-#| msgid "Username: "
+#: app/views/mail/index.html.erb:74
 msgid "User name"
-msgstr "Benutzername: "
+msgstr "Benutzername"
 
-#: app/views/mail/index.html.erb:56
+#: app/views/mail/index.html.erb:77
 msgid "Password"
 msgstr "Passwort"
 
-#: app/views/mail/index.html.erb:59
-#, fuzzy
-#| msgid "_Confirm Password:"
+#: app/views/mail/index.html.erb:80
 msgid "Confirm password"
-msgstr "_Passwort bestätigen:"
+msgstr "Passwort bestätigen"
 
-#: app/views/mail/index.html.erb:67
-#, fuzzy
-#| msgid "Send Email to %1"
+#: app/views/mail/index.html.erb:88
 msgid "Send test mail to"
-msgstr "Email an %1 schreiben"
+msgstr "Test-E-Mail senden an"
 
-#: app/views/mail/index.html.erb:69
-#, fuzzy
-#| msgid "Send Data"
+#: app/views/mail/index.html.erb:90
 msgid "Send Mail"
-msgstr "Daten senden"
+msgstr "Nachricht senden"
+

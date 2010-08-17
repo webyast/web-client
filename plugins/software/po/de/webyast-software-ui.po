@@ -1,9 +1,11 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: @PACKAGE@\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: yast_webclient_software\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-06 07:41\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,392 +13,300 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/helpers/repositories_helper.rb:5
+#: app/helpers/repositories_helper.rb:25
 msgid "Highest"
-msgstr ""
+msgstr "Höchste"
 
-#: app/helpers/repositories_helper.rb:6
+#: app/helpers/repositories_helper.rb:26
 msgid "Higher"
-msgstr ""
+msgstr "Höhere"
 
-#: app/helpers/repositories_helper.rb:7
+#: app/helpers/repositories_helper.rb:27
 msgid "Default"
 msgstr "Standard"
 
-#: app/helpers/repositories_helper.rb:8
+#: app/helpers/repositories_helper.rb:28
 msgid "Low"
-msgstr "Niedrig"
-
-#: app/helpers/repositories_helper.rb:9
-#, fuzzy
-#| msgid "Lower"
-msgid "Lowest"
-msgstr "Kleinbuchstaben"
-
-#: app/helpers/repositories_helper.rb:15
-msgid "Highest priority"
-msgstr ""
-
-#: app/helpers/repositories_helper.rb:16
-#, fuzzy
-#| msgid "Priority"
-msgid "Higher priority"
-msgstr "Priorität"
-
-#: app/helpers/repositories_helper.rb:18
-#, fuzzy
-#| msgid "Priority"
-msgid "Low priority"
-msgstr "Priorität"
-
-#: app/helpers/repositories_helper.rb:19
-#, fuzzy
-#| msgid "Priority"
-msgid "Lowest priority"
-msgstr "Priorität"
-
-#: app/helpers/repositories_helper.rb:24
-#, fuzzy
-#| msgid "Priority"
-msgid "Custom priority"
-msgstr "Priorität"
+msgstr "Niedrige"
 
 #: app/helpers/repositories_helper.rb:29
+msgid "Lowest"
+msgstr "Niedrigste"
+
+#: app/helpers/repositories_helper.rb:35
+msgid "Highest priority"
+msgstr "Höchste Priorität"
+
+#: app/helpers/repositories_helper.rb:36
+msgid "Higher priority"
+msgstr "Höhere Priorität"
+
+#: app/helpers/repositories_helper.rb:38
+msgid "Low priority"
+msgstr "Niedrige  Priorität"
+
+#: app/helpers/repositories_helper.rb:39
+msgid "Lowest priority"
+msgstr "Niedrigste Priorität"
+
+#: app/helpers/repositories_helper.rb:44
+msgid "Custom priority"
+msgstr "Benutzerdefinierte Priorität"
+
+#: app/helpers/repositories_helper.rb:49
 msgid "Custom"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
-#: app/helpers/repositories_helper.rb:41
-#: app/views/repositories/index.html.erb:119
-#: app/views/repositories/add.html.erb:42
-#, fuzzy
-#| msgid "enabled"
+#: app/helpers/repositories_helper.rb:61 app/views/repositories/index.html.erb:140
+#: app/views/repositories/add.html.erb:62
 msgid "enable"
-msgstr "aktiviert"
+msgstr "aktivieren"
 
-#: app/helpers/repositories_helper.rb:41
-#: app/views/repositories/index.html.erb:124
-#: app/views/repositories/add.html.erb:49
-#, fuzzy
-#| msgid "Disable"
+#: app/helpers/repositories_helper.rb:61 app/views/repositories/index.html.erb:145
+#: app/views/repositories/add.html.erb:69
 msgid "disable"
-msgstr "Deaktivieren"
+msgstr "deaktivieren"
 
-#: app/helpers/repositories_helper.rb:46
+#: app/helpers/repositories_helper.rb:66
 msgid "enabled"
 msgstr "aktiviert"
 
-#: app/helpers/repositories_helper.rb:46
-#, fuzzy
-#| msgid "Disabled"
+#: app/helpers/repositories_helper.rb:66
 msgid "disabled"
-msgstr "Deaktiviert"
+msgstr "deaktiviert"
 
-#: app/controllers/repositories_controller.rb:14
+#: app/controllers/repositories_controller.rb:35
 msgid "Alias"
 msgstr "Alias"
 
-#: app/controllers/repositories_controller.rb:15
-#: app/views/repositories/index.html.erb:151
+#: app/controllers/repositories_controller.rb:36 app/views/repositories/index.html.erb:172
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: app/controllers/repositories_controller.rb:16
+#: app/controllers/repositories_controller.rb:37
 msgid "Autorefresh"
-msgstr "Autoauffrischen"
+msgstr "Automatische Aktualisierung"
 
-#: app/controllers/repositories_controller.rb:17
-#: app/views/patch_updates/_patches.html.erb:14
+#: app/controllers/repositories_controller.rb:38 app/views/patch_updates/_patches.html.erb:14
 msgid "Name"
 msgstr "Name"
 
-#: app/controllers/repositories_controller.rb:18
-#, fuzzy
-#| msgid "URI"
+#: app/controllers/repositories_controller.rb:39
 msgid "URL"
-msgstr "URI"
+msgstr "URL"
 
-#: app/controllers/repositories_controller.rb:19
+#: app/controllers/repositories_controller.rb:40
 msgid "Priority"
 msgstr "Priorität"
 
-#: app/controllers/repositories_controller.rb:20
-#, fuzzy
-#| msgid "Updated package"
+#: app/controllers/repositories_controller.rb:41
 msgid "Keep downloaded packages"
-msgstr "Paket aktualisiert"
+msgstr "Heruntergeladene Pakete beibehalten"
 
-#: app/controllers/repositories_controller.rb:30
-#, fuzzy
-#| msgid "Cannot write repository configuration"
+#: app/controllers/repositories_controller.rb:51
 msgid "Cannot read repository list."
-msgstr "Kann Repository-Konfiguration nicht schreiben"
+msgstr "Repository-Liste kann nicht gelesen werden."
 
-#: app/controllers/repositories_controller.rb:47
-#: app/controllers/repositories_controller.rb:74
-#, fuzzy
-#| msgid "Setting repository data"
+#: app/controllers/repositories_controller.rb:68 app/controllers/repositories_controller.rb:95
 msgid "Missing repository parameter"
-msgstr "Erzeuge Daten des Repositorys"
+msgstr "Repository-Parameter fehlt"
 
-#: app/controllers/repositories_controller.rb:102
-#: app/controllers/repositories_controller.rb:183
-#, fuzzy
-#| msgid "Invalid capability %s."
+#: app/controllers/repositories_controller.rb:123 app/controllers/repositories_controller.rb:204
 msgid "Invalid priority"
-msgstr "Ungültige Fähigkeit %s."
+msgstr "Ungültige Priorität"
 
-#: app/controllers/repositories_controller.rb:171
-#, fuzzy
-#| msgid "Disabling repository '%s'."
+#: app/controllers/repositories_controller.rb:192
 msgid "Missing repository parameters"
-msgstr "Deaktiviere Repository '%s'."
+msgstr "Repository-Parameter fehlen"
 
-#: app/controllers/repositories_controller.rb:209
-#, fuzzy
-#| msgid "Unknown error\n"
+#: app/controllers/repositories_controller.rb:230
 msgid "Unknown backend error"
-msgstr "Unbekannter Fehler\n"
+msgstr "Unbekannter Backend-Fehler"
 
-#: app/controllers/patch_updates_controller.rb:45
-#: app/controllers/patch_updates_controller.rb:48
-#: app/views/patch_updates/_patch_progress.html.erb:1
-#, fuzzy
-#| msgid "Downloading update information"
+#: app/controllers/patch_updates_controller.rb:43 app/views/patch_updates/_patch_summary.html.erb:24
+msgid "Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted."
+msgstr "Lesen der Patch-Aktualisierungen nicht möglich: GPG-Schlüssel für Repository <em>%s</em> ist nicht verbürgt."
+
+#: app/controllers/patch_updates_controller.rb:70 app/controllers/patch_updates_controller.rb:73
+#: app/views/patch_updates/_patch_progress.html.erb:2
 msgid "A problem occured when loading patch information."
-msgstr "Lade Aktualisierungsinformationen herunter"
+msgstr "Beim Laden der Patch-Informationen ist ein Fehler aufgetreten."
 
-#: app/controllers/patch_updates_controller.rb:105
-#, fuzzy
-#| msgid "Installing updates..."
+#: app/controllers/patch_updates_controller.rb:129
 msgid "Installing all patches..."
-msgstr "Installiere Aktualisierungen..."
+msgstr "Alle Patches werden installiert..."
 
-#: app/controllers/patch_updates_controller.rb:113
-#, fuzzy
-#| msgid "Installation Source"
+#: app/controllers/patch_updates_controller.rb:137
 msgid "Installation stopped"
-msgstr "Installationsquelle"
+msgstr "Installation angehalten"
 
-#: app/controllers/patch_updates_controller.rb:150
-#, fuzzy
-#| msgid "Installation"
+#: app/controllers/patch_updates_controller.rb:173 app/controllers/patch_updates_controller.rb:227
+msgid "<p>A restart of the %s is needed.</p>"
+msgstr "<p>Neustart von %s erforderlich.</p>"
+
+#: app/controllers/patch_updates_controller.rb:193
 msgid "Installation finished"
-msgstr "Installation"
+msgstr "Installation abgeschlossen"
 
-#: app/controllers/patch_updates_controller.rb:152
-#, fuzzy
-#| msgid "%s installed ok"
+#: app/controllers/patch_updates_controller.rb:195
 msgid "%s installed."
-msgstr "%s ordnungsgemäß installiert"
+msgstr "%s installiert."
 
-#: app/controllers/patch_updates_controller.rb:181
-#, fuzzy
-#| msgid "Package '%s' has been installed"
-msgid "Patch has been installed."
-msgstr "Paket '%s' wurde installiert"
+#: app/controllers/patch_updates_controller.rb:235 app/controllers/patch_updates_controller.rb:237
+#: app/controllers/patch_updates_controller.rb:251
+msgid "Patch has been installed. "
+msgstr "Der Patch wurde installiert."
 
-#: app/views/repositories/index.html.erb:20
-#: app/views/repositories/add.html.erb:16
-#, fuzzy
-#| msgid "Enabled repository"
+#: app/controllers/patch_updates_controller.rb:249
+msgid "All Patches have been installed. "
+msgstr "Alle Patches wurden installiert. "
+
+#: app/views/repositories/index.html.erb:40 app/views/repositories/add.html.erb:36
 msgid "Enter a valid repository URL."
-msgstr "Repository aktiviert"
+msgstr "Geben Sie eine gültige Repository-URL ein."
 
-#: app/views/repositories/index.html.erb:28
-#: app/views/repositories/add.html.erb:24
+#: app/views/repositories/index.html.erb:48 app/views/repositories/add.html.erb:44
 msgid "Symbols <b>%s</b> are not allowed in repository alias."
-msgstr ""
+msgstr "Im Repository-Alias sind keine <b>%s</b>-Symbole zulässig."
 
-#: app/views/repositories/index.html.erb:32
-#: app/views/repositories/add.html.erb:31
-#, fuzzy
-#| msgid "The idmapd section name may not be empty."
+#: app/views/repositories/index.html.erb:52 app/views/repositories/add.html.erb:51
 msgid "This value cannot be empty."
-msgstr "Der idmapd-Abschnittsname muss angegeben werden."
+msgstr "Dieser Wert darf nicht leer sein."
 
-#: app/views/repositories/index.html.erb:140
-#: app/views/repositories/add.html.erb:105
-#, fuzzy
-#| msgid "Specified repositories: "
+#: app/views/repositories/index.html.erb:161 app/views/repositories/add.html.erb:125
 msgid "Software Repositories"
-msgstr "Festgelegte Repositories: "
+msgstr "Software-Repositorys"
 
-#: app/views/repositories/index.html.erb:145
-#, fuzzy
-#| msgid "Got list of repositories"
+#: app/views/repositories/index.html.erb:166
 msgid "Configured software repositories"
-msgstr "Liste der Repositories erhalten"
+msgstr "Konfigurierte Software-Repositorys"
 
-#: app/views/repositories/index.html.erb:148
-#, fuzzy
-#| msgid "Got list of repositories"
+#: app/views/repositories/index.html.erb:169
 msgid "Filter repositories"
-msgstr "Liste der Repositories erhalten"
+msgstr "Filterrepositorys"
 
-#: app/views/repositories/index.html.erb:150
-#, fuzzy
-#| msgid "Alt"
+#: app/views/repositories/index.html.erb:171
 msgid "All"
-msgstr "Alt"
+msgstr "Alle"
 
-#: app/views/repositories/index.html.erb:152
+#: app/views/repositories/index.html.erb:173
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: app/views/repositories/index.html.erb:159
-#, fuzzy
-#| msgid "Search"
+#: app/views/repositories/index.html.erb:180
 msgid "Quick Search"
-msgstr "Suche"
+msgstr "Schnellsuche"
 
-#: app/views/repositories/index.html.erb:165
-#, fuzzy
-#| msgid "Repository"
+#: app/views/repositories/index.html.erb:186
 msgid "Add New Repository"
-msgstr "Repository"
+msgstr "Neues Repository hinzufügen"
 
-#: app/views/repositories/index.html.erb:208
-#, fuzzy
-#| msgid "Repository Error"
+#: app/views/repositories/index.html.erb:229
 msgid "Repository is currently"
-msgstr "Datendepotfehler"
+msgstr "Repository ist aktuell"
 
-#: app/views/repositories/index.html.erb:211
-#: app/views/repositories/add.html.erb:128
-#: app/views/repositories/add.html.erb:129
-#, fuzzy
-#| msgid "Repository name:"
-msgid "Repository will be %s."
-msgstr "Name des Repositorys:"
-
-#: app/views/repositories/index.html.erb:215
-#, fuzzy
-#| msgid "Autorefresh disabled."
-msgid "Autorefresh is currently"
-msgstr "Autoauffrischen deaktiviert."
-
-#: app/views/repositories/index.html.erb:218
-#: app/views/repositories/add.html.erb:133
-#: app/views/repositories/add.html.erb:134
-#, fuzzy
-#| msgid "Autorefresh disabled."
-msgid "Autorefresh will be %s."
-msgstr "Autoauffrischen deaktiviert."
-
-#: app/views/repositories/index.html.erb:222
-msgid "Keeping downloaded packages is currently"
-msgstr ""
-
-#: app/views/repositories/index.html.erb:225
-#: app/views/repositories/add.html.erb:140
-#: app/views/repositories/add.html.erb:141
-msgid "Keep packages option will be %s."
-msgstr ""
-
-#: app/views/repositories/index.html.erb:232
+#: app/views/repositories/index.html.erb:232 app/views/repositories/add.html.erb:148
 #: app/views/repositories/add.html.erb:149
+msgid "Repository will be %s."
+msgstr "Repository wird %s."
+
+#: app/views/repositories/index.html.erb:236
+msgid "Autorefresh is currently"
+msgstr "Automatische Aktualisierung ist aktuell"
+
+#: app/views/repositories/index.html.erb:239 app/views/repositories/add.html.erb:153
+#: app/views/repositories/add.html.erb:154
+msgid "Autorefresh will be %s."
+msgstr "Automatische Aktualisierung wird %s."
+
+#: app/views/repositories/index.html.erb:243
+msgid "Keeping downloaded packages is currently"
+msgstr "Heruntergeladene Pakete beibehalten ist aktuell"
+
+#: app/views/repositories/index.html.erb:246 app/views/repositories/add.html.erb:158
+#: app/views/repositories/add.html.erb:159
+msgid "Keep packages option will be %s."
+msgstr "Option 'Pakete beibehalten' wird %s."
+
+#: app/views/repositories/index.html.erb:253 app/views/repositories/add.html.erb:167
 msgid "Save"
 msgstr "Speichern"
 
-#: app/views/repositories/index.html.erb:233
+#: app/views/repositories/index.html.erb:254
 msgid "Delete"
 msgstr "Löschen"
 
-#: app/views/repositories/index.html.erb:235
-#, fuzzy
-#| msgid "Reading repository '%s' cache"
+#: app/views/repositories/index.html.erb:256
 msgid "Really delete repository '%s'?"
-msgstr "Lese Cache für Repository '%s'"
+msgstr "Repository \"%s\" wirklich löschen?"
 
-#: app/views/repositories/add.html.erb:77
-msgid ""
-"A repository with this URL already exists.\n"
-"Create a duplicate?"
-msgstr ""
+#: app/views/repositories/add.html.erb:97
+msgid "A repository with this URL already exists.\nCreate a duplicate?"
+msgstr "Ein Repository mit dieser URL ist bereits vorhanden.\nDuplikat erstellen?"
 
-#: app/views/repositories/add.html.erb:107
-#, fuzzy
-#| msgid "Adding repository '%s'"
+#: app/views/repositories/add.html.erb:127
 msgid "Add a new repository"
-msgstr "Füge Repository '%s' hinzu"
+msgstr "Neues Repository hinzufügen"
 
-#: app/views/repositories/add.html.erb:116
-#, fuzzy
-#| msgid "Repository"
+#: app/views/repositories/add.html.erb:136
 msgid "New Repository"
-msgstr "Repository"
+msgstr "Neues Repository"
 
-#: app/views/repositories/add.html.erb:137
-msgid "Priority for packages:"
-msgstr ""
-
-#: app/views/patch_updates/_patch_installation.html.erb:7
-#, fuzzy
-#| msgid "An error occurred during the installation."
+#: app/views/patch_updates/_patch_installation.html.erb:8
 msgid "An error occured while installing patches."
-msgstr "Während der Installation trat ein Fehler auf."
+msgstr "Beim Installieren von Patches ist ein Fehler aufgetreten."
 
-#: app/views/patch_updates/_patch_installation.html.erb:19
+#: app/views/patch_updates/_patch_installation.html.erb:35
+msgid "Patch Installation"
+msgstr "Patch-Installation"
+
+#: app/views/patch_updates/_patch_installation.html.erb:45
 msgid "Stop"
-msgstr ""
+msgstr "Stopp"
 
-#: app/views/patch_updates/_patch_installation.html.erb:19
+#: app/views/patch_updates/_patch_installation.html.erb:45
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sind Sie sicher?"
 
-#: app/views/patch_updates/index.html.erb:11
+#: app/views/patch_updates/index.html.erb:32
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: app/views/patch_updates/index.html.erb:16
-#: app/views/patch_updates/_patch_summary.html.erb:35
-#, fuzzy
-#| msgid "Your system is up-to-date."
+#: app/views/patch_updates/index.html.erb:37 app/views/patch_updates/_patch_summary.html.erb:48
 msgid "Your system is up to date."
 msgstr "Ihr System ist auf dem neuesten Stand."
 
-#: app/views/patch_updates/index.html.erb:21
-#, fuzzy
-#| msgid "No Updates Available"
+#: app/views/patch_updates/index.html.erb:42
 msgid "Updates available"
-msgstr "Keine Aktualisierungen verfügbar"
+msgstr "Aktualisierungen verfügbar"
 
-#: app/views/patch_updates/index.html.erb:38
+#: app/views/patch_updates/index.html.erb:59
 msgid "Update"
-msgstr "Aktualisierung"
-
-#: app/views/patch_updates/_patch_progress.html.erb:5
-msgid "Refreshing package cache"
-msgstr "Frische Paketzwischenspeicher auf"
+msgstr "Aktualisieren"
 
 #: app/views/patch_updates/_patch_progress.html.erb:6
-#, fuzzy
-#| msgid "Starting card manager..."
-msgid "Starting package manager"
-msgstr "Cardmanager wird gestartet..."
+msgid "Refreshing package cache"
+msgstr "Aktualisieren des Paket-Cache"
 
 #: app/views/patch_updates/_patch_progress.html.erb:7
-#, fuzzy
-#| msgid "Waiting for PackageKit service"
-msgid "Waiting for the package manager lock"
-msgstr "Warte auf PackageKit Prozess"
+msgid "Starting package manager"
+msgstr "Starten des Paket-Managers"
 
 #: app/views/patch_updates/_patch_progress.html.erb:8
-#: app/views/patch_updates/_patch_progress.html.erb:18
-msgid "Evaluating available patches"
-msgstr ""
+msgid "Waiting for the package manager lock"
+msgstr "Warten auf Paket-Manager-Sperre"
 
-#: app/views/patch_updates/_patch_progress.html.erb:9
-#, fuzzy
-#| msgid "Finished generating profile for %s."
+#: app/views/patch_updates/_patch_progress.html.erb:9 app/views/patch_updates/_patch_progress.html.erb:19
+msgid "Evaluating available patches"
+msgstr "Auswerten verfügbarer Patches"
+
+#: app/views/patch_updates/_patch_progress.html.erb:10
 msgid "Finished reading patches"
-msgstr "Profilerstellung für %s abgeschlossen."
+msgstr "Lesen von Patches abgeschlossen"
 
 #: app/views/patch_updates/_patches.html.erb:11
-#, fuzzy
-#| msgid "CheckBox"
 msgid "Check"
-msgstr "CheckBox"
+msgstr "Überprüfen"
 
 #: app/views/patch_updates/_patches.html.erb:13
 msgid "Kind"
@@ -406,8 +316,7 @@ msgstr "Art"
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: app/views/patch_updates/_patches.html.erb:17
-#: app/views/patch_updates/_patches.html.erb:20
+#: app/views/patch_updates/_patches.html.erb:17 app/views/patch_updates/_patches.html.erb:20
 msgid "Source"
 msgstr "Quelle"
 
@@ -415,46 +324,35 @@ msgstr "Quelle"
 msgid "Install"
 msgstr "Installieren"
 
-#: app/views/patch_updates/_patch_summary.html.erb:9
+#: app/views/patch_updates/_patch_summary.html.erb:18
 msgid "Cannot read patch updates - you have been logged out."
-msgstr ""
+msgstr "Patch-Aktualisierungen können nicht gelesen werden - Sie wurden abgemeldet."
 
-#: app/views/patch_updates/_patch_summary.html.erb:12
-#, fuzzy
-#| msgid "No information about battery and AC status available"
+#: app/views/patch_updates/_patch_summary.html.erb:22
 msgid "No information about patches available"
-msgstr "Keine Informationen über den Batteriezustand und Stromversorgung verfügbar."
+msgstr "Keine Informationen zu Patches verfügbar"
 
-#: app/views/patch_updates/_patch_summary.html.erb:26
-#, fuzzy
-#| msgid "Security update"
+#: app/views/patch_updates/_patch_summary.html.erb:39
 msgid "Security Updates: %d"
-msgstr "Sicherheitsaktualisierung"
+msgstr "Sicherheitsaktualisierungen: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:29
-#, fuzzy
-#| msgid "Important update"
+#: app/views/patch_updates/_patch_summary.html.erb:42
 msgid "Important Updates: %d"
-msgstr "Wichtige Aktualisierung"
+msgstr "Wichtige Aktualisierungen: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:32
-#, fuzzy
-#| msgid "Additonal updates done."
+#: app/views/patch_updates/_patch_summary.html.erb:45
 msgid "Optional Updates: %d"
-msgstr "Zusätzliche Aktualisierungen erledigt."
+msgstr "Optionale Aktualisierungen: %d"
 
-#: app/views/patch_updates/_patch_summary.html.erb:40
-#, fuzzy
-#| msgid "Update"
+#: app/views/patch_updates/_patch_summary.html.erb:53
 msgid "Update All"
-msgstr "Aktualisierung"
+msgstr "Alle aktualisieren"
 
-#: app/views/patch_updates/_patch_summary.html.erb:40
+#: app/views/patch_updates/_patch_summary.html.erb:53
 msgid "Updating all. Are you sure?"
-msgstr ""
+msgstr "Alles wird aktualisiert. Sind Sie sicher?"
 
-#: app/views/patch_updates/_patch_summary.html.erb:47
-#, fuzzy
-#| msgid "Downloading update information"
+#: app/views/patch_updates/_patch_summary.html.erb:60
 msgid "Loading patch information"
-msgstr "Lade Aktualisierungsinformationen herunter"
+msgstr "Patch-Informationen werden geladen"
+

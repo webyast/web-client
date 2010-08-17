@@ -1,57 +1,55 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: yast_webclient_eulas.ko\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-13 13:37+0200\n"
-"PO-Revision-Date: 2010-03-22 15:07+0900\n"
-"Last-Translator: Yunseok Choi <xein@naver.com>\n"
-"Language-Team: Korean <xein@naver.com>\n"
+"Project-Id-Version: yast_webclient_eulas\n"
+"POT-Creation-Date: 2010-04-23 11:01+0200\n"
+"PO-Revision-Date: 2010-05-06 09:30\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Korean\n"
-"X-Poedit-Country: KOREA, REPUBLIC OF\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
-#: app/controllers/eulas_controller.rb:72
+#: app/controllers/eulas_controller.rb:94
 msgid "You cannot reject a license once it has been accepted!"
-msgstr "사용권리에 동의한 다음에는 거부할 수 없습니다!"
+msgstr "라이센스는 동의하고 나면 거부할 수 없습니다."
 
-#: app/controllers/eulas_controller.rb:75
+#: app/controllers/eulas_controller.rb:97
 msgid "You must accept all licences before using this product!"
-msgstr "이 제품을 사용하려면 모든 사용권리에 동의 하여야 합니다!"
+msgstr "이 제품을 사용하기 전에 모든 라이센스에 동의해야 합니다."
 
 #: app/views/eulas/no_licenses.erb:1 app/views/eulas/all_accepted.erb:1
 msgid "Accept End User Licence Agreement"
-msgstr "최종 사용자 사용권리 동의서에 동의"
+msgstr "최종 사용자 사용권 계약에 동의"
 
 #: app/views/eulas/no_licenses.erb:2
 msgid "There are no licenses to accept."
-msgstr "동의 할 사용권리가 없습니다."
+msgstr "동의할 라이센스가 없습니다."
 
-#: app/views/eulas/show.html.erb:2
-#, fuzzy
-#| msgid "_Accept Agreement"
+#: app/views/eulas/show.html.erb:23
 msgid "Licence Agreement"
-msgstr "동의서에 동의(_A)"
-
-#: app/views/eulas/show.html.erb:8
-msgid "Available translations:"
-msgstr "사용 가능한 번역:"
-
-#: app/views/eulas/show.html.erb:26
-msgid "Yes, I agree to the license agreement."
-msgstr "예, 사용권리 동의서에 동의 합니다."
+msgstr "사용권 계약"
 
 #: app/views/eulas/show.html.erb:32
-msgid "No, I do not agree."
-msgstr "아니오, 동의하지 않습니다."
+msgid "Available translations:"
+msgstr "사용 가능한 변환:"
 
 #: app/views/eulas/show.html.erb:43
+msgid "Yes, I agree to the license agreement."
+msgstr "동의함"
+
+#: app/views/eulas/show.html.erb:47
+msgid "No, I do not agree."
+msgstr "동의 안 함"
+
+#: app/views/eulas/show.html.erb:58
 msgid "Back"
 msgstr "뒤로"
 
 #: app/views/eulas/all_accepted.erb:2
 msgid "All licenses have already been accepted"
-msgstr "모든 사용권리에 이미 동의 하였음"
+msgstr "모든 라이센스에 이미 동의했습니다."
+
