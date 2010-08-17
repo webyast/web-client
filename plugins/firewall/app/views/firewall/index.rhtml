@@ -45,6 +45,11 @@
     $("#allowed_services div").filter( function(index) {
         return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "false";
     }).hide();
+
+    $("#firewallSubmitButton").click(function(){
+      var message = "<%= _("Please wait") -%>";
+      disableFormOnSubmit(message);    
+    });
   });
 
   function validateNeededServices() {
@@ -128,7 +133,7 @@
   </div>
   </fieldset>
   <div class="nav-buttons">
-      <%= form_send_buttons :disabled => disabled, :class => "button" %>
+      <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
   </div>
   <% end %>
 </div>
