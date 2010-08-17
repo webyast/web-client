@@ -62,8 +62,21 @@
   <script type="text/javascript">
     $(document).ready(function() {
         <% if session[:expires] !=nil && session[:expires].class == Time %>
-	  var expirationDate = "<%=session[:expires].to_time.to_i %>";
-	  sessionTimeout(expirationDate);
+	   // get current time from back end and check if time zone set to UTC (client) bnc#631763
+	   var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
+	   <% if session[:expires].utc? == false %>
+	      //if time zone is not UTC convert it
+	      var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
+	      sessionTimeout(current_utc_time, expiration_date);
+	   <% else %>
+	      var expiration_date = "<%=session[:expires].to_time.to_i %>";
+	      sessionTimeout(current_utc_time, expiration_date);
+	   <% end %>
+
+	  //<DEBUG>
+	  //var left = (expiration_date - current_utc_time)-300;
+	  //$("div.timer_logpanel").text("Current UTC time: " + current_utc_time + " Expires in UTC time " + expiration_date + " LEFT: " + left); 
+	  //<END>
 	<%end%>
     });
   </script>
@@ -119,12 +132,7 @@
       <img src="/images/webyast-logo.png?1280237271"  width="130" height="42" alt="webyast">
       <%= _("You will be logged off in")-%><span id="counter"><!-- countdown place holder --></span><%= _("seconds due to session timeout. ")-%>
     </div>
-
-    <!-- CURRENTLY DISABLED SEE COMMENT IN jquerySessionTimeout -->
-    <!--<div id="progress-bar">
-	<div id="progress-level"></div>
-    </div>-->
-
+   
     <div id="content">
       <!-- here both flash and dynamic notifications should be added -->
       <div id="flash-messages" class="alpha">
@@ -157,7 +165,7 @@
       </div>
   
       <!-- debug info session tieout -->
-      <!-- <fieldset class="example"><div class="timer_logpanel">dd</div></fieldset> -->
+      <!-- <fieldset class="example"><div class="timer_logpanel">dd</div><div class="time_left"></div></fieldset> -->
       <%= yield %>
     </div>
 

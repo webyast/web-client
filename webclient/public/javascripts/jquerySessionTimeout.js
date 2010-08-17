@@ -18,49 +18,36 @@
 #++
 */
 
-
-// TODO: remove the indicator bar after testing
-// Find the way to save the indicator length between page reloads
-
-function sessionTimeout(expirationDate) {
+function sessionTimeout(currentTime, expirationDate) {
   // Don't start the timer if user is logged out
   var logout_path =  window.location.protocol + "//" + window.location.host + "/logout";
   var loged_out = String(window.location.protocol + "//" + window.location.host + "/session/");
   var current_location = String(window.location);
 
-  // Get the session expires date from back-end
-  var now = Math.round(new Date().getTime() / 1000);
-  var expiresIn = expirationDate-now;
-  //var colors = new Array ('#ef2213', '#f04e46', '#ef6c3f', '#f0984e', '#f0bb46', '#f0e14e', '#eee53f', '#dbe53f', '#bae53f', '#abdf3f');
-
-  //DEBUGGG
-  //expiresIn  = 5 //just for test
-  //var logContainer = jQuery("div.timer_logpanel");
+  var expiresIn = expirationDate-currentTime;
+  
+  //DEBUG
+  //expiresIn  = 305 //just for test
+  //var logContainer = jQuery("div.time_left");
+  //<END>
 
   expiresIn = expiresIn-300; // show warning message 5 minutes before the session expires
-    
+  
   // check current location and start timer if user is logged on
   if(current_location.match(loged_out) == null) {
-    //$("#progress-bar").css("display", "block"); 
     jQuery.fjTimer({ 
       interval: 1000,
       repeat: expiresIn, 
       tick: function(counter, timerId) { 
+	  //DEBUG
 	  //timeLeft = (expiresIn - (counter+1));
-	  //dynamicWidth = ((timeLeft*100 / expiresIn) * (document.body.clientWidth/100));
-	  //step = (((timeLeft/10)*100)/expiresIn).toFixed(0);
-	    
-	  //DEBUGGG
-	  //timeLeftUntilMessageAppears = (messageAppears - counter);
-	  //$("div.timer_logpanel").text("Expire in "+ timeLeft + "!" + " Message in " + timeLeftUntilMessageAppears + "! " + "Tenner " +  step ); 
-	  //$("#progress-level").css("width", dynamicWidth); 
-	  //$("#progress-level").css("background-color", colors[step]); 
-	  
-	  //timeLeft = (expiresIn - (counter+1));
+	  //$("div.timer_logpanel").text("Expire in "+ timeLeft + "Time zone " + tzo);
+	  //$("div.time_left").text("Expire in "+ timeLeft); 
 	  //console.log(timeLeft);
+	  //<END>
+	  
       },
       onComplete: function() {
-	//$("#progress-level").slideUp();
 	$("#timeoutMessage").slideDown(); // show the warning bar
 	
 	messageTimeout = 30;  
