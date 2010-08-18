@@ -32,10 +32,10 @@ end
 namespace :js do
   javascripts = ['jqplot.categoryAxisRenderer.js', "jqplot.dateAxisRenderer.js", "jqplot.canvasTextRenderer.js", "jqplot.cursor.js"]
   
-  Dir.chdir(File.join(RailsParent.parent, 'public', 'javascripts', 'plugin')) do    
+  Dir.chdir(File.join(RAILS_ROOT, 'public', 'javascripts', 'plugin')) do    
     
     javascripts.map! {|f| File.join(Dir.pwd, f)}
-    javascripts.unshift(File.join(RailsParent.parent, 'public', 'javascripts', 'jquery.jqplot.js'))
+    javascripts.unshift(File.join(RAILS_ROOT, 'public', 'javascripts', 'jquery.jqplot.js'))
     file 'status-min.js' => javascripts do | f |
       
       output_file = File.join(File.dirname(__FILE__), '..','public', 'javascripts', 'min', '/') + f.name
