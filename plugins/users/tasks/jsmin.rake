@@ -43,7 +43,7 @@ namespace :js do
     end
   end
 
-  puts "defining task user"
+#  puts "defining task user" #jreidinger: removed because it prints everytime this string, even in silent mode. If it is needed, add it to verbose mode only.
   desc "Minimize javascript source files for production environment"
   task :"users" => ['users-min.js']  do
      puts "Done"
