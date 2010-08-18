@@ -20,7 +20,7 @@ PreReq:         yast2-webclient >= 0.1.14
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 Autoreqprov:    on
-Version:        0.2.1
+Version:        0.2.2
 Release:        0
 Summary:        WebYaST - system status UI
 Source:         www.tar.bz2
@@ -60,6 +60,7 @@ and it is not needed at runtime.
 
 %build
 rm -rf doc
+mkdir -p public/javascripts/min
 export RAILS_PARENT=%{webyast_ui_dir}
 env LANG=en rake makemo
 rake js:status
@@ -101,6 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %{plugin_dir}/shortcuts.yml
 %{plugin_dir}/app
 %{plugin_dir}/tasks
+%{plugin_dir}/public
 %{plugin_dir}/config/rails_parent.rb
 
 %doc COPYING
