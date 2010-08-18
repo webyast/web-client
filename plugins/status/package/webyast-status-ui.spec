@@ -62,6 +62,7 @@ and it is not needed at runtime.
 rm -rf doc
 export RAILS_PARENT=%{webyast_ui_dir}
 env LANG=en rake makemo
+rake js:status
 
 %check
 %webyast_ui_check
