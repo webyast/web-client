@@ -191,7 +191,7 @@ case "$1" in
   #generate deployment specific secret key (bnc#598834)
   SECRET=`cd /srv/www/yast/ && rake -s secret`
   if [ -z $SECRET ]; then
-    echo -n "Can generate secret for session. Run 'cd /srv/www/yast/ && rake -s secret' for details."
+    echo -n "Cannot generate secret for session. Run 'cd /srv/www/yast/ && rake -s secret' for details."
     rc_failed
     rc_status -v
     rc_exit
