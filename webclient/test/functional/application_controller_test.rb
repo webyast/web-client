@@ -97,6 +97,10 @@ class TestController < ApplicationController
     crash
   end
 
+  def url_with_new_port
+    render :text => (url_for :port => 50)
+  end
+
   private
     def crash
       raise "exception"
@@ -143,6 +147,13 @@ class TestControllerTest < ActionController::TestCase
     controller = TestController.new
     assert_equal (DETAILS_PREFIX+"lest"+DETAILS_SUFFIX).gsub(/\s/,''), controller.testing_details("lest").gsub(/\s/,'')
     assert_equal TEST_DETAILS_RESULT.gsub(/\s/,''), controller.testing_details(TEST_DETAILS_STR).gsub(/\s/,'') #test if result is expected except whitespace (which is ignored in html)
+  end
+
+  def test_url_rewrite
+    @request.port = 3000
+    get :url_with_new_port
+    assert_false @response.body.blank?
+    assert @response.body.match(/test\.host:50/), "response doesn't contain correct site. response is '#{@response.body}'"
   end
 
   def test_ensure_logout

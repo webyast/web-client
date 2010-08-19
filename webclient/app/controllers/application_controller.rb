@@ -20,6 +20,8 @@
 # Likewise, all the methods added will be available for all controllers.
 require 'open-uri'
 require 'client_exception'
+require 'action_controller/base'
+require 'url_rewritter' #monkey patch for url_for with port
 
 class ApplicationController < ActionController::Base
   layout 'main'  
