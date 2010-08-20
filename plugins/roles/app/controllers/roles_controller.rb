@@ -82,8 +82,7 @@ class RolesController < ApplicationController
   end
 
   def create
-    #TODO check name
-    Role.new(:name => params[:role_name]).save
+    flash[:warning] = _("Role name is already used or invalid. Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") unless Role.new(:name => params[:role_name]).save
     redirect_to "/roles/"
   end
 
