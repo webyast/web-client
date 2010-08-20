@@ -84,10 +84,10 @@
         unselected_title : '<%= _('Available Users') %>',
         tooltip : '<%= _('Click user names to assign/remove users') %>',
         loadItems : function (dialogId) {
-          return $('#users_of_'+dialogId)[0].value.split(",")
+          return $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value.split(",")
         },
         storeItems : function (dialogId, items) {
-          $('#users_of_'+dialogId)[0].value = items.join(",");
+          $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value = items.join(",");
         },
         allItems : function (dialogId) {
           return $('#all_users_string')[0].value.split(",")

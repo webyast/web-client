@@ -37,7 +37,7 @@ class RolesController < ApplicationController
   end
 
   def self.users_role_id (role_id)
-     "users_of_" + role_id
+     "users_of_" + role_id.gsub(/ /,".") #replace space which cannot be in id - http://www.w3.org/TR/html4/types.html#type-name
   end
 
   def self.permission_role_id (permission_id, role_id)
