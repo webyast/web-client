@@ -1,6 +1,6 @@
 module ActionController
   class UrlRewriter
-      #monkey patch for url rewritter to allow easy change of port in url_for
+      #monkey patch for url rewriter to allow easy change of port in url_for
       def rewrite_url(options)
       rewritten_url = ""
 
