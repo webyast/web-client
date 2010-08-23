@@ -14,6 +14,7 @@ Recommends:     WebYaST(org.opensuse.yast.modules.yapi.firewall)
 PreReq:         webyast-base-ui
 License:        GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
+URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
 Version:        0.2.1
 Release:        0

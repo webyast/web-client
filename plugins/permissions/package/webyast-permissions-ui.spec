@@ -17,6 +17,7 @@ PreReq:         yast2-webclient
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/system_time_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
+URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
 Version:        0.1.7
 Release:        0

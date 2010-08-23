@@ -16,6 +16,7 @@ Obsoletes:      yast2-webclient-mailsettings < %{version}
 PreReq:         yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
+URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
 Version:        0.2.1
 Release:        0

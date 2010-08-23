@@ -19,6 +19,7 @@ Obsoletes:      yast2-webclient-status < %{version}
 PreReq:         yast2-webclient >= 0.1.14
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
+URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
 Version:        0.2.3
 Release:        0

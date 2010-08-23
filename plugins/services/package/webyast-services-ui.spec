@@ -18,6 +18,7 @@ PreReq:         yast2-webclient >= 0.1.17
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
+URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
 Version:        0.2.2
 Release:        0

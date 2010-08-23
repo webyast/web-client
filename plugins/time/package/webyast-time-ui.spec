@@ -17,6 +17,7 @@ Obsoletes:      yast2-webclient-systemtime < %{version}
 Requires(pre):  yast2-webclient >= 0.0.2
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
+URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
 Version:        0.1.16
 Release:        0
