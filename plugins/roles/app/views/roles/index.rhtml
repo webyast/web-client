@@ -241,7 +241,10 @@
             <p>
               <label><%= role.name%></label>
               <%=text_field_tag( RolesController.users_role_id(role.name), role.users.join(",")) %>
-              <a href="#" onClick="select_users_open('<%= role.name %>');return false;"><%= _("Assign Users") %></a>
+              <a href="#" onClick="select_users_open('<%= role.name %>');return false;", class="button"><%= _("Assign Users") %></a>
+	      <%= link_to _("Delete"), #"<img src='/images/delete.png'>",
+                       {:action => 'destroy', :id => ERB::Util.html_escape( role.name ) }, { :class=>:button } %>
+
             </p>
           <% end %>
           <input type="hidden" id="all_users_string" value="<%= @all_users_string %>" />

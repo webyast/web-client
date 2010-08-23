@@ -86,6 +86,28 @@ class RolesController < ApplicationController
     redirect_to "/roles/"
   end
 
+  # DELETE /roles/1
+  # DELETE /roles/1.xml
+  def destroy
+    begin
+      @role = Role.find params[:id]
+      @role.id = @role.name
+
+      ret = @role.destroy
+    rescue ActiveResource::ClientError => e
+        flash[:error] = YaST::ServiceResource.error(e)
+        redirect_to :action => "index"
+    end
+
+    if ret.code_type == Net::HTTPOK
+      flash[:notice] = _("Role <i>%s</i> was successfully removed.") % @role.id
+    else
+      flash[:error] = _("Error: Could not remove role <i>%s</i>.") % @role.id
+    end
+
+    redirect_to :action => "index"
+  end
+
   private
   # Loads only roles, for which the permission/user assignment form is generated.
   # For the moment, that's all roles.
@@ -97,4 +119,6 @@ class RolesController < ApplicationController
       redirect_to :action => "index"
     end
   end
+
+
 end
