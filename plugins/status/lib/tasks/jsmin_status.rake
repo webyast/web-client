@@ -38,7 +38,7 @@ namespace :js do
     javascripts.unshift(File.join(RAILS_ROOT, 'public', 'javascripts', 'jquery.jqplot.js'))
     file 'status-min.js' => javascripts do | f |
       
-      output_file = File.join(File.dirname(__FILE__), '..','public', 'javascripts', 'min', '/') + f.name
+      output_file = File.join(File.dirname(__FILE__), '..','..','public', 'javascripts', 'min', '/') + f.name
       minify(f.prerequisites, output_file)
     end
   end
