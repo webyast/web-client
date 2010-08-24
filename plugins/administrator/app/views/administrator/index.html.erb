@@ -53,14 +53,14 @@
       }
 
       return true;
-    }, "<%= _("Enter a valid e-mail address.") -%>");
+    }, <%= jss _("Enter a valid e-mail address.") -%>);
 
     // disable global onsubmit validation, the relevant fields are validated explicitly in onclick handlers
     $(document).ready(function() {
       $("#adminForm").validate({
 	onkeyup: function(element) { this.element(element); }, 
 	submitHandler: function(form) {
-			var message = "<%= _("Please wait") -%>";
+			var message = <%= jss _("Please wait") -%>;
 			disableFormOnSubmit(message);
                         form.submit();
                   }
@@ -68,19 +68,19 @@
 
       // make the error message translatable - override the default messsage
       $.extend($.validator.messages, {
-	equalTo: "<%= _("The passwords do not match.") -%>",
-	required: "<%= _("A password is required.") -%>"
+	equalTo: <%= jss _("The passwords do not match.") -%>,
+	required: <%= jss _("A password is required.") -%>
       });
 
       $("#administrator_password").pstrength({
 	  'displayMinChar'	: true,
-	  'minCharText'		: "<%= _("Password Strength:") %>",
+	  'minCharText'		: <%= jss _("Password Strength:") %>,
 	  'verdicts'		: [
-	    "<%= _("Weak") %>",
-	    "<%= _("Normal") %>",
-	    "<%= _("Medium") %>",
-	    "<%= _("Strong") %>",
-	    "<%= _("Very Strong") %>"
+	    <%= jss _("Weak") %>,
+	    <%= jss _("Normal") %>,
+	    <%= jss _("Medium") %>,
+	    <%= jss _("Strong") %>,
+	    <%= jss _("Very Strong") %>
 	  ]
       });
 
