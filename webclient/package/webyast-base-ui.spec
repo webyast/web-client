@@ -43,7 +43,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.12
+Version:        0.2.13
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
