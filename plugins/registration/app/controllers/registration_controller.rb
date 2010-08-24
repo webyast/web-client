@@ -305,6 +305,17 @@ class RegistrationController < ApplicationController
     register
   end
 
+  def reregisterupdate
+    # update function for reregistration mode
+    #   in reregistration mode only the first request should contain the "forcereg" option
+    #   the following should not contain them. The "update" function would stop the registration, as the system is already registered.
+    @reregister = true
+    @nexttarget = 'reregisterupdate'
+    # no forcereg parameter here
+
+    register
+  end
+
   def update
     @nexttarget = 'update'
     register
