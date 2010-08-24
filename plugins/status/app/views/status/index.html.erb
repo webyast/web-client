@@ -21,6 +21,8 @@
 
 <% content_for :head do %>
   <!--[if IE]><%= javascript_include_tag "excanvas.js" %><![endif]-->
+  <%= javascript_include_tag "jrails.js" %>
+
   <% if JSMIN == true %>
     <%= javascript_include_tag "min/status-min" %>
   <% else %>
@@ -31,6 +33,8 @@
     <%= javascript_include_tag "plugin/jqplot.cursor.js" %>
   <% end %>
 <% end %>
+
+
 
 <% content_for :before_script do %>
   <% javascript_tag do %>
