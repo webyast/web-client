@@ -298,7 +298,7 @@ class RegistrationController < ApplicationController
   def reregister
     # provide a way to force a new registration, even if system is already registered
     @reregister = true
-    @nexttarget = 'reregister'
+    @nexttarget = 'reregisterupdate'
     # correctly set the forcereg parameter according to registration protocol specification
     @options['forcereg'] = 1
 
