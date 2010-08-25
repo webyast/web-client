@@ -68,7 +68,7 @@
 	  onkeyup: function(element) { this.element(element); },
 	  success: "valid",
 	  submitHandler: function(form) {
-	    var message = "<%= _("Please wait") -%>";
+	    var message = <%= jss _("Please wait") -%>;
 	    disableFormOnSubmit(message);
 	    form.submit();
 	  }
@@ -87,14 +87,14 @@
       if ($(field).val() == "true")
       {
 	$(field).val("false");
-	$(link).text("<%= _("enable") -%>");
+	$(link).text(<%= jss _("enable") -%>);
 	$(enabled_text).hide();
 	$(disabled_text).show();
       }
       else
       {
 	$(field).val("true");
-	$(link).text("<%= _("disable") -%>");
+	$(link).text(<%= jss _("disable") -%>);
 	$(enabled_text).show();
 	$(disabled_text).hide();
       };
@@ -122,7 +122,7 @@
       {
 	 if (url == repos[i])
 	 {
-	   return confirm('<%= _("A repository with this URL already exists.\\nCreate a duplicate?") -%>');
+	   return confirm(<%= jss _("A repository with this URL already exists.\\nCreate a duplicate?") -%>);
 	 };
       };
 

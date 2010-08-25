@@ -38,7 +38,7 @@
   });
   function disableForm(){
     $(document).ready(function() {
-      var message = "<%= _("Please wait") -%>";
+      var message = <%= jss _("Please wait") -%>;
       disableFormOnSubmit(message);    
     });
   }

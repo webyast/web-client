@@ -40,7 +40,7 @@
 	// modified regexp from jQuery validation: accept any protocol, not only http(s) and ftp
 	|| /^([a-zA-Z]+):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
 
-      }, "<%= _("Enter a valid repository URL.") -%>");
+      }, <%= jss _("Enter a valid repository URL.") -%>);
 
       // define a custom validation function for repository alias
       jQuery.validator.addMethod("repo_alias", function(value, element) {
@@ -48,7 +48,7 @@
 	// PackageKit does not accept some special characters in alias
 	|| /^[^`'"\\\[\]^$\{\}<>]*$/i.test(value);
 
-      }, "<%= _("Symbols <b>%s</b> are not allowed in repository alias.") % "^${}[]&gt;&lt;`\\'\\\"\\\\" -%>");
+      }, <%= jss _("Symbols <b>%s</b> are not allowed in repository alias.") % "^${}[]&gt;&lt;`\\'\\\"\\\\" -%>);
 
       // set custom translatable messages
       $.extend($.validator.messages, {
@@ -96,7 +96,7 @@
       if ($('#repositoryForm_' + sid).valid())
       {
 	//define message for blockUI
-	var message = "<%= _("Please wait") -%>";
+	var message = <%= jss _("Please wait") -%>;
 	blockForm('repositoryForm_'+sid, message)
 
 /*	$.blockUI.defaults.message = "<p><h1 id='message'>" + message + " ... <img id='waitAnimation' style='vertical-align:middle' src='/images/wait.gif'/></h1></p>";
@@ -143,7 +143,7 @@
 	elem.childNodes[0].href="";
 	
 	//define message for blockUI
-	var message = "<%= _("Please wait") -%>";
+	var message = <%= jss _("Please wait") -%>;
 	blockForm('repositoryForm_'+sid, message);
 // 	disableFormOnSubmit(message);
 // 	disable_forms();
@@ -171,12 +171,12 @@
       if ($(field).val() == "true")
       {
 	$(field).val("false");
-	$(link).text("<%= _("enable") -%>");
+	$(link).text(<%= jss _("enable") -%>);
       }
       else
       {
 	$(field).val("true");
-	$(link).text("<%= _("disable") -%>");
+	$(link).text(<%= jss _("disable") -%>);
       };
 
       // display/hide the changes text
