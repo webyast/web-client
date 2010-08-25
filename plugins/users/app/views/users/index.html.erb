@@ -66,10 +66,10 @@
   function select_groups_dialog() {
     var open_dialog = select_many_dialog({
       kind : 'groups',
-      title : '<%= _('Select Groups') %>',
-      selected_title : '<%= _('Selected Groups') %>',
-      unselected_title : '<%= _('Available Groups') %>',
-      tooltip : '<%= _('Click group names to select/unselect groups') %>',
+      title : <%=  jss _('Select Groups') %>,
+      selected_title : <%= jss _('Selected Groups') %>,
+      unselected_title : <%= jss _('Available Groups') %>,
+      tooltip : <%= jss _('Click group names to select/unselect groups') %>,
       loadItems : function (dialogId) { 
         return $('#form_'+dialogId+' .grp-string')[0].value.split(",")
       },
@@ -86,8 +86,8 @@
   function select_default_group_dialog() {
     var open_dialog = select_one_dialog({
       kind : 'group',
-      title : '<%= _('Select Default Group') %>',
-      tooltip : '<%= _('Click a group name to choose users default group') %>',
+      title : <%= jss _('Select Default Group') %>,
+      tooltip : <%= jss _('Click a group name to choose users default group') %>,
       allItems : function (dialogId) {
         return $('#all_grps_string')[0].value.split(",")
       },
@@ -101,10 +101,10 @@
   function select_roles_dialog() {
     var open_dialog = select_many_dialog({
       kind : 'roles',
-      title : '<%= _('Select Roles') %>',
-      selected_title : '<%= _('Selected Roles') %>',
-      unselected_title : '<%= _('Available Roles') %>',
-      tooltip : '<%= _('Click group names to select/unselect roles') %>',
+      title : <%= jss _('Select Roles') %>,
+      selected_title : <%= jss _('Selected Roles') %>,
+      unselected_title : <%= jss _('Available Roles') %>,
+      tooltip : <%= jss _('Click group names to select/unselect roles') %>,
       loadItems : function (dialogId) { 
         return $('#form_'+dialogId+' .roles-string')[0].value.split(",")
       },
@@ -119,7 +119,7 @@
   };
 
   $(document).ready(function(){
-    var message = "<%= _("Please wait") -%>";
+    var message = <%= jss _("Please wait") -%>;
     
     select_groups_open = select_groups_dialog();
     select_default_group_open = select_default_group_dialog();
@@ -127,8 +127,8 @@
 
 // make the error message translatable - override the default messsage
    $.extend($.validator.messages, {
-     equalTo:  "<%= _(" The passwords do not match.") -%>",
-     required: "<%= _("This field is required.") -%>"
+     equalTo:  <%= jss _(" The passwords do not match.") -%>,
+     required: <%= jss _("This field is required.") -%>
    });
 
  for(var i=0;i<$('.edit_user').length;i++){
@@ -144,7 +144,7 @@
       }
     },
     submitHandler: function(form) {
-      var message = "<%= _("Please wait") -%>";
+      var message = <%= jss _("Please wait") -%>;
       disableFormOnSubmit(message);
       form.submit();
     }
@@ -152,13 +152,13 @@
 
    $("#"+id+" .user-password").pstrength({
       'displayMinChar'      : true,
-      'minCharText'      : "<%= _("Password Strength:") %>", 
+      'minCharText'      : <%= jss _("Password Strength:") %>, 
       'verdicts'      : [
-            "<%= _("Weak") %>",
-            "<%= _("Normal") %>",
-            "<%= _("Medium") %>",
-            "<%= _("Strong") %>",
-            "<%= _("Very Strong") %>"
+            <%= jss _("Weak") %>,
+            <%= jss _("Normal") %>,
+            <%= jss _("Medium") %>,
+            <%= jss _("Strong") %>,
+            <%= jss _("Very Strong") %>
           ]
       });
  }

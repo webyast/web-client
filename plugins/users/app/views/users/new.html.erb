@@ -73,10 +73,10 @@ function def_group_validation(which){ return true; }
   function select_groups_dialog() {
     var open_dialog = select_many_dialog({
       kind : 'groups',
-      title : '<%= _('Select Groups') %>',
-      selected_title : '<%= _('Selected Groups') %>',
-      unselected_title : '<%= _('Available Groups') %>',
-      tooltip : '<%= _('Click group names to select/unselect groups') %>',
+      title : <%= jss _('Select Groups') %>,
+      selected_title : <%= jss _('Selected Groups') %>,
+      unselected_title : <%= jss _('Available Groups') %>,
+      tooltip : <%= jss _('Click group names to select/unselect groups') %>,
       loadItems : function (dialogId) { 
         return $('#form_ #user_grp_string')[0].value.split(",")
       },
@@ -93,8 +93,8 @@ function def_group_validation(which){ return true; }
   function select_default_group_dialog() {
     var open_dialog = select_one_dialog({
       kind : 'group',
-      title : '<%= _('Select Default Group') %>',
-      tooltip : '<%= _('Click a group name to choose users default group') %>',
+      title : <%= jss _('Select Default Group') %>,
+      tooltip : <%= jss _('Click a group name to choose users default group') %>,
       allItems : function (dialogId) {
         return $('#all_grps_string')[0].value.split(",")
       },
@@ -108,10 +108,10 @@ function def_group_validation(which){ return true; }
   function select_roles_dialog() {
     var open_dialog = select_many_dialog({
       kind : 'roles',
-      title : '<%= _('Select Roles') %>',
-      selected_title : '<%= _('Selected Roles') %>',
-      unselected_title : '<%= _('Available Roles') %>',
-      tooltip : '<%= _('Click group names to select/unselect roles') %>',
+      title : <%= jss _('Select Roles') %>,
+      selected_title : <%= jss _('Selected Roles') %>,
+      unselected_title : <%= jss _('Available Roles') %>,
+      tooltip : <%= jss _('Click group names to select/unselect roles') %>,
       loadItems : function (dialogId) { 
         return $('#form_'+dialogId+' .roles-string')[0].value.split(",")
       },
@@ -153,7 +153,7 @@ function def_group_validation(which){ return true; }
       }
     },
     submitHandler: function(form) {
-      var message = "<%= _("Please wait") -%>";
+      var message = <%= jss _("Please wait") -%>;
       disableFormOnSubmit(message);
       form.submit();
     }
@@ -162,13 +162,13 @@ function def_group_validation(which){ return true; }
 
    $("#user_user_password").pstrength({
       'displayMinChar'      : true,
-      'minCharText'      : "<%= _("Password Strength:") %>", 
+      'minCharText'      : <%= jss _("Password Strength:") %>, 
       'verdicts'      : [
-            "<%= _("Weak") %>",
-            "<%= _("Normal") %>",
-            "<%= _("Medium") %>",
-            "<%= _("Strong") %>",
-            "<%= _("Very Strong") %>"
+            <%= jss _("Weak") %>,
+            <%= jss _("Normal") %>,
+            <%= jss _("Medium") %>,
+            <%= jss _("Strong") %>,
+            <%= jss _("Very Strong") %>
           ],
       });
 

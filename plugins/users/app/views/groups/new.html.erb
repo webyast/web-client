@@ -64,10 +64,10 @@
   function select_users_dialog() {
     var open_dialog = select_many_dialog({
       kind : 'users',
-      title : '<%= _('Select Members') %>',
-      selected_title : '<%= _('Selected Members') %>',
-      unselected_title : '<%= _('Available Members') %>',
-      tooltip : '<%= _('Click user names to select/unselect members') %>',
+      title : <%= jss _('Select Members') %>,
+      selected_title : <%= jss _('Selected Members') %>,
+      unselected_title : <%= jss _('Available Members') %>,
+      tooltip : <%= jss _('Click user names to select/unselect members') %>,
       loadItems : function (dialogId) { 
         return $('#form_'+dialogId+' #group_members_string')[0].value.split(",");
       },
