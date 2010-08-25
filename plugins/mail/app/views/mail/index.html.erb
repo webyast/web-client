@@ -39,16 +39,16 @@
       $("#mailForm").validate({
 	onkeyup: function(element) { this.element(element); },
 	submitHandler: function(form) {
-	  var message = "<%= _("Please wait") -%>";
+	  var message = <%= jss _("Please wait") -%>;
 	  disableFormOnSubmit(message);
 	  form.submit();
 	}
       });
        // make the error message translatable - override the default messsage
        $.extend($.validator.messages, {
-		  equalTo: "<%= _("The passwords do not match.") -%>",
-		  email:	 "<%= _("Enter a valid e-mail address.") -%>",
-		  smtp_server: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
+		  equalTo: <%= jss _("The passwords do not match.") -%>,
+		  email: <%= jss _("Enter a valid e-mail address.") -%>,
+		  smtp_server: <%= jss _("Enter a valid domain name or an IP address.") -%> 
        });
     });
 
