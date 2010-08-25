@@ -72,11 +72,11 @@
 	<script type="text/javascript">
 		function switchFieldsetGroupTab()
 		{
+	  		var dnsValid = getElementsByClass("error valid", "dns", "label");
+		  	var dnsErrors = getElementsByClass("error", "dns", "label");
       if ($("#conf_mode").val() == "static"){
 			  var ipValid = getElementsByClass("error valid", "ip-address", "label");
   			var ipErrors = getElementsByClass("error", "ip-address", "label");
-	  		var dnsValid = getElementsByClass("error valid", "dns", "label");
-		  	var dnsErrors = getElementsByClass("error", "dns", "label");
 
   			if(dnsValid.length != dnsErrors.length && ipValid.length == ipErrors.length) {
 	  			focus_field("name");
