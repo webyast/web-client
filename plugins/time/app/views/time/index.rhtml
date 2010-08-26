@@ -70,19 +70,19 @@
 			 }
 		  },
 		  submitHandler: function(form) {
-			var message = "<%= _("Please wait") -%>";
+			var message = <%= jss _("Please wait") -%>;
 			disableFormOnSubmit(message);
                         form.submit();
                   },
 		  success: "valid",
 		  messages: {
 			 ntp_server: {
-				 required: "<%= _("This field is required") -%>",
-				 ntp_server: "<%= _("Enter a valid domain name or an IP address") -%>"
+				 required: <%= jss _("This field is required") -%>,
+				 ntp_server: <%= jss _("Enter a valid domain name or an IP address") -%>
 			 },
 			 currenttime: {
-				required: "<%= _("This field is required") -%>",
-				currenttime: "<%= _("Invalid time format. Correct one is hh:mm:ss") -%>"
+				required: <%= jss _("This field is required") -%>,
+				currenttime: <%= jss _("Invalid time format. Correct one is hh:mm:ss") -%>
 			 }
 		  }
 		});
