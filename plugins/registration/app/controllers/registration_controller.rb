@@ -306,7 +306,7 @@ class RegistrationController < ApplicationController
   end
 
   def reregisterupdate
-    # update function for reregistration mode
+    # update function for reregistration mode - adaption for (bnc#631173)
     #   in reregistration mode only the first request should contain the "forcereg" option
     #   the following should not contain them. The "update" function would stop the registration, as the system is already registered.
     @reregister = true
