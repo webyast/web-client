@@ -30,8 +30,8 @@
       $("#kerberosForm").validate();
       // make the error message translatable - override the default messsage
       $.extend($.validator.messages, {
-	    required: "<%= _("This field is required.") -%>",
-	    kdc: "<%= _("Enter a valid domain name or an IP address.")  -%>" 
+	    required: <%= jss _("This field is required.") -%>,
+	    kdc: <%= jss _("Enter a valid domain name or an IP address.")  -%> 
       });
     });
 
