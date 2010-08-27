@@ -1,9 +1,11 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: webyast-time-ui 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 09:18+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: webyast-time-ui\n"
+"POT-Creation-Date: 2010-08-18 10:18+0200\n"
+"PO-Revision-Date: 2010-08-26 08:58\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,74 +13,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/time_controller.rb:99
-#: app/controllers/time_controller.rb:103
-#: app/controllers/time_controller.rb:99
-#: app/controllers/time_controller.rb:103
-#, fuzzy
+#: app/controllers/time_controller.rb:99 app/controllers/time_controller.rb:103
+#: ./app/controllers/time_controller.rb:99 ./app/controllers/time_controller.rb:103
 msgid "Time settings have been written."
-msgstr "Die Konfiguratonsdatei wurde geschrieben."
+msgstr "Die Zeiteinstellungen wurden geschrieben."
 
-#: app/models/systemtime.rb:29 app/models/systemtime.rb:29
-#, fuzzy
+#: app/models/systemtime.rb:29 ./app/models/systemtime.rb:29
 msgid "Unknown timezone %s on host"
-msgstr "Unbekannte Option "
+msgstr "Unbekannte Zeitzone %s auf dem Host"
 
-#: app/views/time/index.rhtml:73 app/views/time/index.rhtml:77
-#: app/views/time/index.rhtml:102 app/views/time/index.rhtml:73
-#: app/views/time/index.rhtml:77 app/views/time/index.rhtml:102
+#: app/views/time/index.rhtml:71 ./app/views/time/index.rhtml:71
+msgid "Please wait"
+msgstr "Bitte warten"
+
+#: app/views/time/index.rhtml:78 app/views/time/index.rhtml:82 app/views/time/index.rhtml:107
+#: ./app/views/time/index.rhtml:78 ./app/views/time/index.rhtml:82 ./app/views/time/index.rhtml:107
 msgid "This field is required"
-msgstr ""
+msgstr "Dies ist ein erforderliches Feld."
 
-#: app/views/time/index.rhtml:74 app/views/time/index.rhtml:103
-#: app/views/time/index.rhtml:74 app/views/time/index.rhtml:103
+#: app/views/time/index.rhtml:79 app/views/time/index.rhtml:108 ./app/views/time/index.rhtml:79
+#: ./app/views/time/index.rhtml:108
 msgid "Enter a valid domain name or an IP address"
-msgstr ""
+msgstr "Gültigen Domänennamen oder eine IP-Adresse eingeben"
 
-#: app/views/time/index.rhtml:78 app/views/time/index.rhtml:78
+#: app/views/time/index.rhtml:83 ./app/views/time/index.rhtml:83
 msgid "Invalid time format. Correct one is hh:mm:ss"
-msgstr ""
+msgstr "Ungültiges Zeitformat: Korrekt ist hh:mm:ss"
 
-#: app/views/time/index.rhtml:137 app/views/time/index.rhtml:171
-#: app/views/time/index.rhtml:185 app/views/time/index.rhtml:137
-#: app/views/time/index.rhtml:171 app/views/time/index.rhtml:185
-#: shortcuts.yml:6
+#: app/views/time/index.rhtml:142 app/views/time/index.rhtml:176 app/views/time/index.rhtml:190
+#: ./app/views/time/index.rhtml:142 ./app/views/time/index.rhtml:176 ./app/views/time/index.rhtml:190
+#: ./shortcuts.yml:6
 msgid "Time"
-msgstr ""
+msgstr "Zeit"
 
-#: app/views/time/index.rhtml:145 app/views/time/index.rhtml:152
-#: app/views/time/index.rhtml:145 app/views/time/index.rhtml:152
+#: app/views/time/index.rhtml:150 app/views/time/index.rhtml:157 ./app/views/time/index.rhtml:150
+#: ./app/views/time/index.rhtml:157
 msgid "Timezone"
-msgstr ""
+msgstr "Zeitzone"
 
-#: app/views/time/index.rhtml:147 app/views/time/index.rhtml:147
+#: app/views/time/index.rhtml:152 ./app/views/time/index.rhtml:152
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
-#: app/views/time/index.rhtml:162 app/views/time/index.rhtml:162
+#: app/views/time/index.rhtml:167 ./app/views/time/index.rhtml:167
 msgid "Hardware clock is set to UTC"
-msgstr ""
+msgstr "Hardware-Uhr wurde auf UTC festgelegt"
 
-#: app/views/time/index.rhtml:176 app/views/time/index.rhtml:176
-#, fuzzy
+#: app/views/time/index.rhtml:181 ./app/views/time/index.rhtml:181
 msgid "Manually configure time"
-msgstr "Manuelle IP-Einrichtung"
+msgstr "Zeit manuell konfigurieren"
 
-#: app/views/time/index.rhtml:181 app/views/time/index.rhtml:181
-#, fuzzy
+#: app/views/time/index.rhtml:186 ./app/views/time/index.rhtml:186
 msgid "Date"
-msgstr "Datum: %1"
+msgstr "Datum"
 
-#: app/views/time/index.rhtml:192 app/views/time/index.rhtml:192
-#, fuzzy
+#: app/views/time/index.rhtml:197 ./app/views/time/index.rhtml:197
 msgid "Synchronize via Network Time Protocol (NTP)"
-msgstr "Zeitsynchronisationsdienst (NTP)"
+msgstr "Über Netzwerkzeitprotokoll (NTP) synchronisieren"
 
-#: app/views/time/index.rhtml:196 app/views/time/index.rhtml:196
-#, fuzzy
+#: app/views/time/index.rhtml:201 ./app/views/time/index.rhtml:201
 msgid "NTP server"
-msgstr "NFS Serverdienst"
+msgstr "NTP-Server"
 
-#: shortcuts.yml:7
+#: ./shortcuts.yml:7
 msgid "Set the clock"
-msgstr ""
+msgstr "Uhr stellen"
+

@@ -1,9 +1,11 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: webyast-roles-ui 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 09:18+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: webyast-roles-ui\n"
+"POT-Creation-Date: 2010-08-23 14:39+0200\n"
+"PO-Revision-Date: 2010-08-26 08:58\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,67 +13,64 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/roles_controller.rb:97
-#: app/controllers/roles_controller.rb:97
+#: app/controllers/roles_controller.rb:85 ./app/controllers/roles_controller.rb:85
+msgid "Role name is already used or invalid. Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only."
+msgstr "Der Rollenname wird bereits verwendet oder ist ungültig. Zulässig sind nur Kombinationen aus a-z, A-Z, Nummern, Leerzeichen, Bindestrichen und Unterstrichen."
+
+#: app/controllers/roles_controller.rb:103 ./app/controllers/roles_controller.rb:103
+msgid "Role <i>%s</i> was successfully removed."
+msgstr "Rolle <i>%s</i> wurde entfernt."
+
+#: app/controllers/roles_controller.rb:105 ./app/controllers/roles_controller.rb:105
+msgid "Error: Could not remove role <i>%s</i>."
+msgstr "Fehler: Rolle <i>%s</i> konnte nicht entfernt werden."
+
+#: app/controllers/roles_controller.rb:118 ./app/controllers/roles_controller.rb:118
 msgid "Cannot find roles"
-msgstr ""
+msgstr "Rollen nicht gefunden"
 
-#: app/views/roles/index.rhtml:61 app/views/roles/index.rhtml:207
-#: app/views/roles/index.rhtml:213 app/views/roles/index.rhtml:61
-#: app/views/roles/index.rhtml:207 app/views/roles/index.rhtml:213
+#: app/views/roles/index.rhtml:61 app/views/roles/index.rhtml:217 app/views/roles/index.rhtml:223
+#: ./app/views/roles/index.rhtml:61 ./app/views/roles/index.rhtml:217 ./app/views/roles/index.rhtml:223
 msgid "Assign Users"
-msgstr ""
+msgstr "Benutzer zuweisen"
 
-#: app/views/roles/index.rhtml:62 app/views/roles/index.rhtml:62
+#: app/views/roles/index.rhtml:62 ./app/views/roles/index.rhtml:62
 msgid "Selected Users"
-msgstr ""
+msgstr "Ausgewählte Benutzer"
 
-#: app/views/roles/index.rhtml:63 app/views/roles/index.rhtml:63
-#, fuzzy
+#: app/views/roles/index.rhtml:63 ./app/views/roles/index.rhtml:63
 msgid "Available Users"
-msgstr "Verfügbare Prozessoren"
+msgstr "Verfügbare Benutzer"
 
-#: app/views/roles/index.rhtml:64 app/views/roles/index.rhtml:64
+#: app/views/roles/index.rhtml:64 ./app/views/roles/index.rhtml:64
 msgid "Click user names to assign/remove users"
-msgstr ""
+msgstr "Zum Zuweisen/Entfernen von Benutzern auf Benutzernamen klicken"
 
-#: app/views/roles/index.rhtml:149 app/views/roles/index.rhtml:149
-#: shortcuts.yml:6
-#, fuzzy
+#: app/views/roles/index.rhtml:121 ./app/views/roles/index.rhtml:121
+msgid "Please wait"
+msgstr "Bitte warten"
+
+#: app/views/roles/index.rhtml:159 ./app/views/roles/index.rhtml:159 ./shortcuts.yml:6
 msgid "Roles"
-msgstr "Rolle"
+msgstr "Rollen"
 
-#: app/views/roles/index.rhtml:153 app/views/roles/index.rhtml:153
+#: app/views/roles/index.rhtml:163 ./app/views/roles/index.rhtml:163
 msgid "Create Role"
-msgstr ""
+msgstr "Rolle erstellen"
 
-#: app/views/roles/index.rhtml:165 app/views/roles/index.rhtml:165
-#, fuzzy
+#: app/views/roles/index.rhtml:175 ./app/views/roles/index.rhtml:175
 msgid "Assign Permissions"
-msgstr "Verfügbare Prozessoren"
+msgstr "Berechtigungen zuweisen"
 
-#: app/views/roles/index.rhtml:168 app/views/roles/index.rhtml:168
+#: app/views/roles/index.rhtml:178 ./app/views/roles/index.rhtml:178
 msgid "collapse all"
-msgstr ""
+msgstr "Alle minimieren"
 
-#: shortcuts.yml:7
+#: app/views/roles/index.rhtml:224 ./app/views/roles/index.rhtml:224
+msgid "Delete"
+msgstr "Löschen"
+
+#: ./shortcuts.yml:7
 msgid "Set permissions in roles and assign users to roles"
-msgstr ""
+msgstr "Berechtigungen in Rollen festlegen und Benutzern Rollen zuweisen"
 
-#, fuzzy
-#~| msgid "Permissions denied"
-#~ msgid "Permissions granted by role"
-#~ msgstr "Berechtigungen verweigert"
-
-#, fuzzy
-#~| msgid "Description: "
-#~ msgid "Description of permissions"
-#~ msgstr "Beschreibung: "
-
-#, fuzzy
-#~| msgid "description"
-#~ msgid ")}-description"
-#~ msgstr "Beschreibung"
-
-#~ msgid "Save"
-#~ msgstr "Speichern"

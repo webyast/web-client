@@ -1,9 +1,11 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: webyast-mail-ui 1.0.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 09:18+0200\n"
-"PO-Revision-Date: 2005-03-09 13:54+0100\n"
+"Project-Id-Version: webyast-mail-ui\n"
+"POT-Creation-Date: 2010-08-18 10:19+0200\n"
+"PO-Revision-Date: 2010-08-26 08:58\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -11,98 +13,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/mail_controller.rb:50 app/controllers/mail_controller.rb:50
+#: app/controllers/mail_controller.rb:50 ./app/controllers/mail_controller.rb:50
 msgid "Passwords do not match."
 msgstr "Die Passwörter sind nicht identisch."
 
-#: app/controllers/mail_controller.rb:57 app/controllers/mail_controller.rb:57
-#, fuzzy
+#: app/controllers/mail_controller.rb:57 ./app/controllers/mail_controller.rb:57
 msgid "Mail settings have been written."
-msgstr "Alle Dienste wurden aufgefrischt."
+msgstr "Die E-Mail-Einstellungen wurden geschrieben."
 
-#: app/controllers/mail_controller.rb:59 app/controllers/mail_controller.rb:59
+#: app/controllers/mail_controller.rb:59 ./app/controllers/mail_controller.rb:59
 msgid "Test mail was sent to %s."
-msgstr ""
+msgstr "Test-E-Mail wurde gesendet an %s."
 
-#: app/controllers/mail_controller.rb:71 app/controllers/mail_controller.rb:71
-#, fuzzy
+#: app/controllers/mail_controller.rb:71 ./app/controllers/mail_controller.rb:71
 msgid "Error while saving mail settings: %s"
-msgstr "Fehler beim Schließen der alten opasswd-Datei: %s"
+msgstr "Fehler beim Schreiben der E-Mail-Einstellungen: %s"
 
-#: app/controllers/mail_controller.rb:88 app/controllers/mail_controller.rb:88
-msgid ""
-"No outgoing mail server is set, but administrator has mail forwarders "
-"defined.\n"
-"Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
-msgstr ""
+#: app/controllers/mail_controller.rb:88 ./app/controllers/mail_controller.rb:88
+msgid "No outgoing mail server is set, but administrator has mail forwarders defined.\nChange %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
+msgstr "Es wurde kein Server für ausgehende E-Mails festgelegt, doch der Administrator hat E-Mail-Weiterleitungen definiert.\nÄndern Sie die Konfiguration von %s<i>Administrator</i>%s oder %s<i>E-Mail</i>%s."
 
-#: app/views/mail/index.html.erb:44 app/views/mail/index.html.erb:44
-#, fuzzy
+#: app/views/mail/index.html.erb:42 ./app/views/mail/index.html.erb:42
+msgid "Please wait"
+msgstr "Bitte warten"
+
+#: app/views/mail/index.html.erb:49 ./app/views/mail/index.html.erb:49
 msgid "The passwords do not match."
-msgstr "Die Passwörter sind nicht identisch."
+msgstr "Die Passwörter stimmen nicht überein."
 
-#: app/views/mail/index.html.erb:45 app/views/mail/index.html.erb:45
-#, fuzzy
+#: app/views/mail/index.html.erb:50 ./app/views/mail/index.html.erb:50
 msgid "Enter a valid e-mail address."
-msgstr "`%s' ist keine gültige IP-Adresse."
+msgstr "Gültige E-Mail-Adresse eingeben."
 
-#: app/views/mail/index.html.erb:46 app/views/mail/index.html.erb:46
-#, fuzzy
+#: app/views/mail/index.html.erb:51 ./app/views/mail/index.html.erb:51
 msgid "Enter a valid domain name or an IP address."
-msgstr "Geben Sie Ihre IP-Adresse ein."
+msgstr "Geben Sie einen gültigen Domänennamen oder eine IP-Adresse ein."
 
-#: app/views/mail/index.html.erb:63 app/views/mail/index.html.erb:63
-#: shortcuts.yml:6
-#, fuzzy
+#: app/views/mail/index.html.erb:68 ./app/views/mail/index.html.erb:68 ./shortcuts.yml:6
 msgid "Mail Settings"
-msgstr "Manuelle Einstellungen"
+msgstr "E-Mail-Einstellungen"
 
-#: app/views/mail/index.html.erb:75 app/views/mail/index.html.erb:75
+#: app/views/mail/index.html.erb:80 ./app/views/mail/index.html.erb:80
 msgid "Outgoing mail server"
-msgstr ""
+msgstr "Server für ausgehende E-Mails"
 
-#: app/views/mail/index.html.erb:80 app/views/mail/index.html.erb:80
+#: app/views/mail/index.html.erb:85 ./app/views/mail/index.html.erb:85
 msgid "Use secure connection (TLS)"
-msgstr ""
+msgstr "Sichere Verbindung (TLS) verwenden"
 
-#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
+#: app/views/mail/index.html.erb:86 ./app/views/mail/index.html.erb:86
 msgid "Never"
 msgstr "Nie"
 
-#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
-#, fuzzy
+#: app/views/mail/index.html.erb:86 ./app/views/mail/index.html.erb:86
 msgid "If available"
-msgstr "(%1 verfügbar)"
+msgstr "Falls verfügbar"
 
-#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
-#, fuzzy
+#: app/views/mail/index.html.erb:86 ./app/views/mail/index.html.erb:86
 msgid "Always"
-msgstr "&Immer"
+msgstr "Immer"
 
-#: app/views/mail/index.html.erb:84 app/views/mail/index.html.erb:84
-#, fuzzy
+#: app/views/mail/index.html.erb:89 ./app/views/mail/index.html.erb:89
 msgid "User name"
-msgstr "Benutzername: "
+msgstr "Benutzername"
 
-#: app/views/mail/index.html.erb:88 app/views/mail/index.html.erb:88
+#: app/views/mail/index.html.erb:93 ./app/views/mail/index.html.erb:93
 msgid "Password"
 msgstr "Passwort"
 
-#: app/views/mail/index.html.erb:92 app/views/mail/index.html.erb:92
-#, fuzzy
+#: app/views/mail/index.html.erb:97 ./app/views/mail/index.html.erb:97
 msgid "Confirm password"
-msgstr "_Passwort bestätigen:"
+msgstr "Passwort bestätigen"
 
-#: app/views/mail/index.html.erb:100 app/views/mail/index.html.erb:100
-#, fuzzy
+#: app/views/mail/index.html.erb:105 ./app/views/mail/index.html.erb:105
 msgid "Send test mail to"
-msgstr "Email an %1 schreiben"
+msgstr "Test-E-Mail senden an"
 
-#: app/views/mail/index.html.erb:102 app/views/mail/index.html.erb:102
-#, fuzzy
+#: app/views/mail/index.html.erb:107 ./app/views/mail/index.html.erb:107
 msgid "Send Mail"
-msgstr "Daten senden"
+msgstr "Nachricht verschicken"
 
-#: shortcuts.yml:7
+#: ./shortcuts.yml:7
 msgid "Manage outgoing mail settings"
-msgstr ""
+msgstr "Einstellungen für ausgehende E-Mails verwalten"
+
