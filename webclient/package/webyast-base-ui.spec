@@ -11,6 +11,8 @@
 
 Name:           webyast-base-ui
 Recommends:     WebYaST(org.opensuse.yast.modules.basesystem)
+# bnc#634404
+Recommends:     logrotate
 Provides:       yast2-webclient = %{version}
 Obsoletes:      yast2-webclient < %{version}
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-certificate
@@ -141,8 +143,8 @@ mkdir -p $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
 install -m 0644 %SOURCE4 $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
 
 # logrotate configuration bnc#634404
-mkdir %SOURCE6 $RPM_BUILD_ROOT/etc/logrotate.d/
-install -m 0644 %SOURCE6 $RPM_BUILD_ROOT/etc/logrotate.d/
+mkdir -p $RPM_BUILD_ROOT/etc/logrotate.d
+install -m 0644 %SOURCE6 $RPM_BUILD_ROOT/etc/logrotate.d
 
 #  create empty tmp directory
 mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp
