@@ -43,7 +43,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.13
+Version:        0.2.14
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -205,6 +205,9 @@ chmod 600 db/*.sqlite* log/*
 %{_sbindir}/rc%{webyast_ui_service}
 %dir /etc/webyast/
 %config /etc/webyast/control_panel.yml
+
+#logrotate configuration file
+%config(noreplace) /etc/logrotate.d/webyast-ui.lr
 
 ### exclude css, icons and images 
 %exclude %{webyast_ui_dir}/public/stylesheets
