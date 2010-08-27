@@ -207,7 +207,7 @@ chmod 600 db/*.sqlite* log/*
 %config /etc/webyast/control_panel.yml
 
 #logrotate configuration file
-%config(noreplace) /etc/logrotate.d/webyast-ui.lr
+%config(noreplace) /etc/logrotate.d/webyast-ui.lr.conf
 
 ### exclude css, icons and images 
 %exclude %{webyast_ui_dir}/public/stylesheets
