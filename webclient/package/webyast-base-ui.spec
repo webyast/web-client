@@ -50,6 +50,7 @@ Source:         www.tar.bz2
 Source2:        yastwc
 Source4:        webyast-ui
 Source5:	control_panel.yml
+Source6:	webyast-ui.lr.conf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
@@ -138,6 +139,10 @@ mkdir -p $RPM_BUILD_ROOT/etc/lighttpd/certs
 # firewall service definition, bnc#545627
 mkdir -p $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
 install -m 0644 %SOURCE4 $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
+
+# logrotate configuration bnc#634404
+mkdir %SOURCE6 $RPM_BUILD_ROOT/etc/logrotate.d/
+install -m 0644 %SOURCE6 $RPM_BUILD_ROOT/etc/logrotate.d/
 
 #  create empty tmp directory
 mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp
