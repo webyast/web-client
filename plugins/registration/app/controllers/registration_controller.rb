@@ -33,6 +33,7 @@ class RegistrationController < ApplicationController
                 'moniker' => _("System name"),
                 'regcode-sles' => _("SLES registration code"),
                 'regcode-sled' => _("SLED registration code"),
+                'regcode-slms' => _("SLMS registration code"),
                 'appliance-regcode' => _("Appliance registration code"),
                 'regcode-webyast'   => _("WebYaST registration code"),
                 '___getittranslated1' => _("Registration code"),
