@@ -45,11 +45,6 @@
     $("#allowed_services div").filter( function(index) {
         return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "false";
     }).hide();
-
-    $("#firewallSubmitButton").click(function(){
-      var message = <%= jss _("Please wait") -%>;
-      disableFormOnSubmit(message);    
-    });
   });
 
   function validateNeededServices() {
@@ -63,13 +58,18 @@
     function blockedNames(services) {
       return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
     }
+
+    var message = <%= jss _("Please wait") -%>;
+
     if ( $("#use_firewall")[0].checked ) {
       if ( needed_services.some( isBlockedAndWasAllowed ) ) {
-        return confirm( confirm_text.replace("%s", blockedNames(needed_services).join(", ")) );
+	if (!confirm( confirm_text.replace("%s", blockedNames(needed_services).join(", ")) ) ){
+	  return false;
+	}
       } 
-    } else {
-      return true;
     }
+    disableFormOnSubmit(message);  
+    return true;
   }
   <% end -%>
 
