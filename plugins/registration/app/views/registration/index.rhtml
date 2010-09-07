@@ -40,6 +40,12 @@
   <% end %>
 
   <% javascript_tag do -%>
+  function show_progress()
+  {
+    var message = <%= jss _("Please wait") -%>;
+    disableFormOnSubmit(message);
+  };
+
   $(document).ready(function(){
     $("#registrationform").validate({
       rules: {
@@ -48,6 +54,12 @@
           email: true
         }
       },
+      submitHandler:
+	function(form) {
+	  var message = <%= jss _("Please wait") -%>;
+	  disableFormOnSubmit(message);
+          form.submit();
+	},
       messages: {
        registration_arg_email: {
          required: "<%= _("Please enter a valid Email address.") %>",
@@ -69,7 +81,7 @@
        <legend><%= _("Registration Information") %></legend>
        <p><strong><%= _("This system is registered") %></strong></p>
        <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>
-       <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"$('#progress').show()", :class => "button" %></p>
+       <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"show_progress();", :class => "button" %></p>
      </fieldset>
 
      <div class="nav-buttons">
@@ -82,7 +94,7 @@
      </div>
   <% else %>
 
-    <% form_tag form_target_save, { :id => "registrationform", :onsubmit => "$('#progress').show()" } do -%>
+    <% form_tag form_target_save, { :id => "registrationform" } do -%>
 
       <% if !@arguments_mandatory.blank? then %>
       <fieldset>
@@ -126,7 +138,7 @@
         <%= form_send_buttons :onclick => onclick_action %>
           <%= if basesystem_in_process? then
                 postpone_msg = _('Postpone')
-                form_str_spacer + link_to(postpone_msg, {:controller => :registration, :action =>:skip}, :onclick=>"$('#progress').show()")
+                form_str_spacer + link_to(postpone_msg, {:controller => :registration, :action =>:skip})
               end %>
       </div>
     <% end  %>
