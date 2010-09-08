@@ -51,6 +51,13 @@
 	      <%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
 	    <% when :install %>
     	  <%= error.message %>
+          <% javascript_tag do -%>
+	    setTimeout(function() {
+	      $('#status_patches').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>')
+	      <%= remote_function(:update => "status_patches",
+		:url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+	      }, 15000);
+	  <% end -%>
       <% end %>
   <% else %>
     <% label = [] %>

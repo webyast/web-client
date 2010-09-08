@@ -68,9 +68,12 @@ public
         @patch_updates = []
         @error = true
       elsif ce.backend_exception_type == "PACKAGEKIT_INSTALL"
+        # patch update installation in progress
+        # display the message and reload after a while
         flash[:info] = ce.message
         @patch_updates = []
         @error = true
+        @reload = true
       else
         raise e
       end
@@ -123,6 +126,8 @@ public
         [:security, :important, :optional].each do |patch_type|
           patches_summary[patch_type] = patch_updates.find_all { |p| p.kind == patch_type.to_s }.size
         end
+        # add 'low' patches to optional
+        patches_summary[:optional] += patch_updates.find_all { |p| p.kind == 'low' }.size
       end
     else
       erase_redirect_results #reset all redirects
@@ -144,7 +149,14 @@ public
     @patch_updates = Patch.find :all
     kind = params[:value]
     unless kind == "all"
-      @patch_updates = @patch_updates.find_all { |patch| patch.kind == kind }
+      patches = @patch_updates.find_all { |patch| patch.kind == kind }
+
+      # optional patches can also have kind 'low'
+      if kind == 'optional'
+        patches += @patch_updates.find_all { |patch| patch.kind == 'low' }
+      end
+
+      @patch_updates = patches
     end
     render :partial => "patches"
   end

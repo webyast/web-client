@@ -42,6 +42,15 @@
       disableFormOnSubmit(message);    
     });
   }
+
+  <% if @reload %>
+  // reload the page after 15 seconds
+  setTimeout(function() {
+    $('#progress').show();
+    window.location.reload();
+  } , 15000);
+  <% end %>
+
 </script>
 
 <% if @permissions and @patch_updates %>
@@ -60,13 +69,16 @@
       <% @hash = Hash.new(0)
 	counter=0
 	@patch_updates.each do |p|
-	  if @hash.has_key?(p.kind) 
-	    @hash[p.kind]= @hash[p.kind]+1
-	    counter = counter+1
-	  else 
-	    @hash[p.kind]=1
-	    counter = counter+1
-	  end 
+	  # don't count installed patches
+	  unless p.installed
+	    if @hash.has_key?(p.kind)
+	      @hash[p.kind]= @hash[p.kind]+1
+	      counter = counter+1
+	    else
+	      @hash[p.kind]=1
+	      counter = counter+1
+	    end
+	  end
       end %>
     <form id="form1" style="z-index:0" method="post">
       <div id="parent">
@@ -80,26 +92,26 @@
 	  <button type="submit" id="comment" class="left active" value="all" 
 	     onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
 	     :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	     <img src='/icons/yast-online_update.png'><%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span> 
+	     <img src='/icons/yast-online_update.png'/><%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span>
 	  </button>
 	  <button type="submit" class="middle" value="security" 
 	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value", 
 	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	      <img src='/icons/kupdateapplet_red.png'><%=_("Security") %>&nbsp;<span>(<%=@hash["security"]%>)</span></button>
+	      <img src='/icons/kupdateapplet_red.png'/><%=_("Security") %>&nbsp;<span>(<%=@hash["security"]%>)</span></button>
 	  <button type="submit" class="middle" value="important" 
 	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
 	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	    <img src='/icons/kupdateapplet_yellow.png'><%=_("Important") %>&nbsp;<span>(<%=@hash["important"]%>)</span> 
+	    <img src='/icons/kupdateapplet_yellow.png'/><%=_("Important") %>&nbsp;<span>(<%=@hash["important"]%>)</span>
 	  </button>	  
 	  <button type="submit" class="middle" value="green" 
 	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
 	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	      <img src='/icons/kupdateapplet_green.png'><%=_("Recommended") %>&nbsp;<span>(<%=@hash["green"]%>)</span> 
+	      <img src='/icons/kupdateapplet_green.png'/><%=_("Recommended") %>&nbsp;<span>(<%=@hash["green"]%>)</span>
 	  </button>
 	  <button type="submit" class="right" value="optional" 
 	    onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
 	    :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	    <img src='/icons/kupdateapplet_optional.png'><%=_("Optional") %>&nbsp;<span>(<%=@hash["optional"]%>)</span> 
+	    <img src='/icons/kupdateapplet_optional.png'/><%=_("Optional") %>&nbsp;<span>(<%=@hash["optional"] + @hash["low"] %>)</span>
 	  </button>
       </div>	
       </fieldset>
@@ -110,7 +122,7 @@
 	<div id="patchesd"><%= render :partial => "patches"%></div>
       </fieldset>
       <div class="buttons" style="padding:10px; vertical-align:middle; ">
-	<%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :onclick => "$('#progress').show()", :action => 'install' %>
+	<%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :action => 'install' %>
 	<br style="clear:both" />
       </div>
     <% end %> 
