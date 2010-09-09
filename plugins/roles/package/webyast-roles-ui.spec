@@ -11,11 +11,15 @@
 
 Name:           webyast-roles-ui
 Recommends:     WebYaST(org.opensuse.yast.roles)
+Provides:       yast2-webclient-permissions = %{version}
+Obsoletes:      yast2-webclient-permissions < %{version}
+Provides:       webyast-permissions-ui = %{version}
+Obsoletes:      webyast-permissions-ui < %{version}
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.5
+Version:        0.2.6
 Release:        0
 Summary:        WebYaST - Roles management UI
 Source:         www.tar.bz2
