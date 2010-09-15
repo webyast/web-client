@@ -45,7 +45,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.18
+Version:        0.2.19
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -160,6 +160,24 @@ cp %SOURCE5 $RPM_BUILD_ROOT/etc/webyast/
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+# services will not be restarted correctly if
+# the package name will changed while the update
+# So the service will be restarted by an update-script
+# which will be called AFTER the installation
+if /bin/rpm -q yast2-webclient > /dev/null ; then
+  echo "renaming yast2-webclient to webyast-base-ui"
+  if /usr/sbin/rcyastwc status > /dev/null ; then
+    echo "yastwc is running"
+    echo "#!/bin/sh" > %name-%version-%release-1
+    echo "/usr/sbin/rcyastwc restart" >> %name-%version-%release-1
+    install -D -m 755 %name-%version-%release-1 /var/adm/update-scripts
+    rm %name-%version-%release-1
+    echo "Please restart WebYaST client with \"rcyastwc restart\" if the update has not been called with zypper,yast or packagekit"
+  fi
+fi
+exit 0
+
 %post
 %fillup_and_insserv %{webyast_ui_service}
 
@@ -231,5 +249,6 @@ chmod 600 db/*.sqlite* log/*
 %{webyast_ui_dir}/public/stylesheets
 %{webyast_ui_dir}/public/icons
 %{webyast_ui_dir}/public/images
+%ghost %attr(755,root,root) /var/adm/update-scripts/%name-%version-%release-1
 
 %changelog
