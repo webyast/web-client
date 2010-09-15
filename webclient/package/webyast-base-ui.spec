@@ -249,6 +249,5 @@ chmod 600 db/*.sqlite* log/*
 %{webyast_ui_dir}/public/stylesheets
 %{webyast_ui_dir}/public/icons
 %{webyast_ui_dir}/public/images
-%ghost %attr(755,root,root) /var/adm/update-scripts/%name-%version-%release-1
 
 %changelog
