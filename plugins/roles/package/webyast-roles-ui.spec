@@ -19,7 +19,7 @@ License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.6
+Version:        0.2.7
 Release:        0
 Summary:        WebYaST - Roles management UI
 Source:         www.tar.bz2

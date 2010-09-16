@@ -28,6 +28,24 @@
   <% end %>
 <% end%>
 
+<style type="text/css">
+  label.error {
+    display:block;
+    font-size:11px;
+    font-weight:bold;
+    color:#990000;
+    vertical-align:middle;
+    padding:0px;
+    margin:0px;
+  }
+  input.error { float: none;}
+  
+  /*Patch to support height: 'auto'*/
+  .ui-dialog-content {
+      overflow-y: auto;
+  }  
+</style>
+
 <% content_for :before_script do %>
   <% javascript_tag do %>
     function groupedFields(group_role_id) {
@@ -96,22 +114,56 @@
       return open_dialog;
     };
 
+    $(document).ready(function() {
+    function validateRoleName(name)
+    {
+      jQuery.validator.addMethod(name, function(value, element) {
+	var regExp = new RegExp("^[a-zA-Z0-9\\_\\-\\. ]+$");
+	return this.optional(element) || regExp.test(value);
+      });
+    }
+
+    validateRoleName("role_name");
+    $("#rolesForm").validate({
+	onkeyup: function(element) { this.element(element); }, 
+	rules:{
+	   role_name: { required:true, role_name: true }
+	},  
+	messages: {
+	  role_name: { 
+	     required: <%= jss _("This field is required") -%>,
+	     role_name: <%= jss _("Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") -%>
+	  }
+	}
+      });
+    });
+
+    function clearForm() {
+      $("#role_name").val('');
+      $("#rolesForm label.error")
+	.val('')
+	.css("display", "none");
+    }
+  
     function create_role_dialog() {
       $("#create_role_dialog").dialog({
         autoOpen: false,
-        height: 170,
         width: 400,
         modal: true,
+	close: clearForm,
         buttons: {
           'Create Role': function() {
-            $(this).children("form").first().submit();
-          },
+	      if ($("#rolesForm").validate().form() == true) {
+		$(this).children("form").first().submit();
+	      }	
+	  },
           Cancel: function() {
             $(this).dialog('close');
           }
-        }
+	}
       });
     };
+    
 
     $(document).ready(function(){
       select_users_open = select_users_dialog();
@@ -186,8 +238,8 @@
                  {:id => 'create_role_link'} %>
   </div>
   <div id="create_role_dialog" style="display: none">
-    <% form_tag '/roles/create', {:class => 'container'} do %>
-      <label for="role_name"> Name </label><%= text_field_tag "role_name", ""%>
+    <% form_tag '/roles/create', {:id=>'rolesForm', :class => 'container'} do %>
+      <label for="role_name"> Name </label><%= text_field_tag "role_name", "", :class=>"required"%>
     <% end %>
   </div>
   <% form_tag '/roles/update', {:class => 'container'} do %>
