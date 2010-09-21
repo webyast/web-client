@@ -29,26 +29,6 @@ class PatchUpdatesController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "webyast-software-ui"
 
-private
-
-  #
-  # Create message output, given from PackageKit
-  #
-  def create_messages(messages)
-    ret=[]
-    messages.each { |message|
-      case message.kind
-        when "system"
-          ret << _("<p>Please reboot your system after all patches have been installed.</p>") % message.kind
-        when "session"
-          ret << _("<p>Please logout and login again after all patches have been installed.</p>") % message.kind
-        else
-          ret << "<p><b>#{message.kind}:</b>#{message.details}</p>"
-      end
-    }
-    ret
-  end
-
 public
 
   # GET /patch_updates
