@@ -36,6 +36,13 @@ public
   def index
     @permissions = Patch.permissions
     begin
+      @patch_messages = Patch.find :all, :params => {:messages => true}
+      unless @patch_messages.empty?
+        msg = @patch_messages[0].message
+        msg.gsub!('<br/>', ' ')
+        flash[:warning] = _("There are patch installation messages available") + details(msg)
+      end
+
       @patch_updates = Patch.find :all
     rescue ActiveResource::ServerError => e
       ce = ClientException.new e
@@ -67,7 +74,7 @@ public
     patch_updates = nil
     refresh = false
     begin
-       patch_updates = Patch.find :all, {:background => params['background']}
+       patch_updates = Patch.find :all, :params => {:background => params['background']}
        refresh = true
     rescue ActiveResource::UnauthorizedAccess => e
       # handle unauthorized error - the session timed out
