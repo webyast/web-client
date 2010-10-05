@@ -57,6 +57,11 @@ class ClientException < Exception
     end
   end
   
+  #disabled cookies result in ActionController::InvalidAuthenticityToken (bnc#637361)
+  def origin_exception
+    return @excpt
+  end 
+  
   # message of the exception, this is the translated
   # message for the error on the server side if the exception
   # happened there, or the local one if it is a normal exception

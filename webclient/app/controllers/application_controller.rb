@@ -116,7 +116,8 @@ private
       render :status => 500, :partial => "shared/exception_trap", :locals => {:error => e} and return
     end
 
-    case e
+    #disabled cookies result in ActionController::InvalidAuthenticityToken (bnc#637361)
+    case e.origin_exception
     when ActionController::InvalidAuthenticityToken
       render :status => 500, :template => "shared/cookies_disabled"
     else

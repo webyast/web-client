@@ -20,6 +20,7 @@ Requires: 	webyast-branding
 PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 >= 2.3.4
 PreReq:         rubygem-gettext_rails
+PreReq:         yast2-runlevel
 
 %if 0%{?suse_version} == 0 || %suse_version > 1110
 # 11.2 or newer
@@ -45,7 +46,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.17
+Version:        0.2.20
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -157,8 +158,39 @@ mkdir -p $RPM_BUILD_ROOT/%{webyast_ui_dir}/tmp/sockets
 mkdir -p $RPM_BUILD_ROOT/etc/webyast/
 cp %SOURCE5 $RPM_BUILD_ROOT/etc/webyast/
 
+#create dummy update-script
+mkdir -p %buildroot/var/adm/update-scripts
+touch %buildroot/var/adm/update-scripts/%name-%version-%release-1
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%pre
+# services will not be restarted correctly if
+# the package name will changed while the update
+# So the service will be restarted by an update-script
+# which will be called AFTER the installation
+if /bin/rpm -q yast2-webclient > /dev/null ; then
+  echo "renaming yast2-webclient to webyast-base-ui"
+  if /sbin/yast runlevel summary service=yastwc 2>&1|grep " 3 "|grep yastwc >/dev/null ; then
+    echo "yastwc is inserted into the runlevel"
+    echo "#!/bin/sh" > %name-%version-%release-1
+    echo "/sbin/yast runlevel add service=yastwc" >> %name-%version-%release-1
+    echo "/usr/sbin/rcyastwc restart" >> %name-%version-%release-1
+  else
+    if /usr/sbin/rcyastwc status > /dev/null ; then
+      echo "yastwc is running"
+      echo "#!/bin/sh" > %name-%version-%release-1
+      echo "/usr/sbin/rcyastwc restart" >> %name-%version-%release-1
+    fi
+  fi
+  if [ -f %name-%version-%release-1 ] ; then
+    install -D -m 755 %name-%version-%release-1 /var/adm/update-scripts
+    rm %name-%version-%release-1
+    echo "Please check the service runlevels and restart WebYaST client with \"rcyastwc restart\" if the update has not been called with zypper,yast or packagekit"
+  fi
+fi
+exit 0
 
 %post
 %fillup_and_insserv %{webyast_ui_service}
@@ -221,6 +253,8 @@ chmod 600 db/*.sqlite* log/*
 %exclude %{webyast_ui_dir}/public/icons
 %exclude %{webyast_ui_dir}/public/images
 
+%ghost %attr(755,root,root) /var/adm/update-scripts/%name-%version-%release-1
+
 %files testsuite
 %defattr(-,root,root)
 %{webyast_ui_dir}/test
@@ -231,5 +265,6 @@ chmod 600 db/*.sqlite* log/*
 %{webyast_ui_dir}/public/stylesheets
 %{webyast_ui_dir}/public/icons
 %{webyast_ui_dir}/public/images
+
 
 %changelog

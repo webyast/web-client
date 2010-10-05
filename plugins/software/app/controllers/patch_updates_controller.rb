@@ -29,26 +29,6 @@ class PatchUpdatesController < ApplicationController
   # Initialize GetText and Content-Type.
   init_gettext "webyast-software-ui"
 
-private
-
-  #
-  # Create message output, given from PackageKit
-  #
-  def create_messages(messages)
-    ret=[]
-    messages.each { |message|
-      case message.kind
-        when "system"
-          ret << _("<p>Please reboot your system after all patches have been installed.</p>") % message.kind
-        when "session"
-          ret << _("<p>Please logout and login again after all patches have been installed.</p>") % message.kind
-        else
-          ret << "<p><b>#{message.kind}:</b>#{message.details}</p>"
-      end
-    }
-    ret
-  end
-
 public
 
   # GET /patch_updates
@@ -56,6 +36,13 @@ public
   def index
     @permissions = Patch.permissions
     begin
+      @patch_messages = Patch.find :all, :params => {:messages => true}
+      unless @patch_messages.empty?
+        msg = @patch_messages[0].message
+        msg.gsub!('<br/>', ' ')
+        flash[:warning] = _("There are patch installation messages available") + details(msg)
+      end
+
       @patch_updates = Patch.find :all
     rescue ActiveResource::ServerError => e
       ce = ClientException.new e
@@ -87,7 +74,7 @@ public
     patch_updates = nil
     refresh = false
     begin
-       patch_updates = Patch.find :all, {:background => params['background']}
+       patch_updates = Patch.find :all, :params => {:background => params['background']}
        refresh = true
     rescue ActiveResource::UnauthorizedAccess => e
       # handle unauthorized error - the session timed out
