@@ -143,7 +143,7 @@ public
     @users = []
     if @permissions[:usersget] == true
       @users = User.find(:all, :params => { :attributes => "uid"})
-      @sys_users = User.find( :all, params={ "attributes"=>"cn,uidNumber,uid", "type"=>"system", "index"=>["s", "uid"]} )
+      @sys_users = User.find( :all, :params=> { "attributes"=>"cn,uidNumber,uid", "type"=>"system", "index"=>["s", "uid"]} )
     end
         @users.each do |user|
        if @all_users_string.blank?
