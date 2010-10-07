@@ -66,7 +66,14 @@ class UsersController < ApplicationController
     return roles
   end
 
-
+def all_users
+    all_users_list = []
+    all_users = User.find :all
+    all_users.each do |user|
+      all_users_list.push(user.uid)
+    end
+    all_users_list.join(",")
+end
   public
   def initialize
   end
@@ -166,6 +173,9 @@ class UsersController < ApplicationController
           all_roles.push(role.name)
          end
         @all_roles_string = all_roles.join(",")
+
+    @all_users_string = all_users
+
     @groups = []
     if @permissions[:groupsget] == true
       @groups = Group.find :all
@@ -251,6 +261,7 @@ class UsersController < ApplicationController
         :type		=> "local"
     )
     @user.grp_string	= dummy.grp_string
+    @all_users_string = all_users
 
     response = true
     begin

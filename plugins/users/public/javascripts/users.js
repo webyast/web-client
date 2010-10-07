@@ -160,9 +160,31 @@ function roles_validation(which){
   return (errmsg.length==0);
 }
 
+function user_exists_validation(){
+ var valid = true;
+ var this_user = $("#form_ #user_uid")[0].value;
+   users_list = $("#all_users_string")[0].value.split(",");
+   for (var i=0; i< users_list.length; i++){
+    if (users_list[i] == $("#form_ #user_uid")[0].value){
+	 valid=false;
+	 break;
+    }
+   }
+  $("#user_name-error")[0].style.display= (valid) ? "none" : "block";
+	 
+ return valid;
+}
+
+
 function user_validation(which, username){
   var valid = true;
   var form = '#form_'+username;
+  // for new users test if already not exists
+  if (valid && username == ""){
+   valid = user_exists_validation();
+   if (!valid) $(".tabs_").tabs('select',"#tab_login_");
+  }
+
   if (valid && ($(form).validate().element(form+' #user_uid')==false || $(form).validate().element(form+' #user_user_password')==false || $(form).validate().element(form+' #user_user_password2')==false)){
 	$(".tabs_"+username).tabs('select',"#tab_login_"+username);
 	valid = false;

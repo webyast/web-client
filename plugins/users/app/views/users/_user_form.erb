@@ -32,8 +32,10 @@
 
 	<tr><td>
           <div class="label"><%=_("Login Name")%></div>
-	</td><td colspan=2>
-          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+ (new ? "" : user.uid)  +"').validate().element('#user_uid');", :class => "required" %>
+	</td><td>
+          <%= f.text_field :uid, :disabled => disabled, :onblur => "$('#form_"+ (new ? "" : user.uid)  +"').validate().element('#user_uid');", :onkeyup => "user_exists_validation(this);", :class => "required" %>
+	</td><td>
+          <label id="user_name-error" class="error" style="display:none"><%= _('User already exists.') %></label>
           <%= f.hidden_field :id %>
 	</td></tr>
 
