@@ -116,8 +116,8 @@
           <ul>
           <li><%=_("Language:")%> <strong><%= link_to_remote(current_locale_name,
                   :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %></strong></li>
-            <li><%=_("Connected host:")%> <strong><%= host.name -%></strong></li>
-            <li><%=_("User:")%> <strong><%= user -%></strong></li>
+		<li><%=_("Connected host:")%> <strong title="<%= h "#{host.description} (#{host.url})" -%>"><%= h host.name -%></strong></li>
+            <li><%=_("User:")%> <strong><%= h user -%></strong></li>
           </ul>
           <ul class='header-links'>
             <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
