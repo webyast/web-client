@@ -102,7 +102,11 @@
       </h4>
     <% else %>
       <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
-	<% link_to(data['url'], {:class => "controlpanel-shortcut"}) do %>
+	<%
+	  html_map = {:class => "controlpanel-shortcut"}
+	  html_map[:title] = data["description"] unless data["description"].blank?
+	%>
+	<% link_to(data['url'], html_map) do %>
 	  <%= image_tag(data['icon']) %><br />
 	  <%= data['title'] %>
 	<% end %>
