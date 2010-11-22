@@ -18,7 +18,7 @@ Obsoletes:      yast2-webclient < %{version}
 Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-certificate
 Requires: 	webyast-branding
 PreReq:         rubygem-rake, rubygem-sqlite3
-PreReq:         rubygem-rails-2_3 >= 2.3.4
+PreReq:         rubygem-rails-2_3 >= 2.3.8
 PreReq:         rubygem-gettext_rails
 PreReq:         yast2-runlevel
 
@@ -46,7 +46,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.20
+Version:        0.2.21
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -57,7 +57,7 @@ Source6:	webyast-ui.lr.conf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
-BuildRequires:  rubygem-rails-2_3 >= 2.3.4
+BuildRequires:  rubygem-rails-2_3 >= 2.3.8
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy, rubygem-haml
 # we require the lighttpd user to be present when building the rpm
