@@ -21,6 +21,8 @@ PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 >= 2.3.8
 PreReq:         rubygem-gettext_rails
 PreReq:         yast2-runlevel
+Provides:       webyast-language-ui = 0.1.2
+Obsoletes:      webyast-language-ui <= 0.1.2
 
 %if 0%{?suse_version} == 0 || %suse_version > 1110
 # 11.2 or newer
@@ -46,7 +48,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.21
+Version:        0.2.22
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
