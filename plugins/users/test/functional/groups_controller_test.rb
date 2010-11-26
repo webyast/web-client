@@ -47,6 +47,7 @@ class GroupsControllerTest < ActionController::TestCase
       mock.delete   "/groups/users.xml", header, nil, 200
       mock.put   "/groups/users.xml", header, nil, 200
       mock.get	 "/users.xml?attributes=uid", header, response_users, 200
+      mock.get   "/users.xml?attributes=cn,uidNumber,id&index=s,uid", header, nil, 200
     end
   end
 

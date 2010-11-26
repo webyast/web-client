@@ -141,6 +141,7 @@ public
     @all_users_string = ""
     @all_sys_users_string = ""
     @users = []
+    @sys_users = []
     if @permissions[:usersget] == true
       @users = User.find(:all, :params => { :attributes => "uid"})
       @sys_users = User.find( :all, :params=> { "attributes"=>"cn,uidNumber,uid", "type"=>"system", "index"=>["s", "uid"]} )
