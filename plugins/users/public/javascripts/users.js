@@ -62,10 +62,23 @@ function delete_handler(which, progress, message){
  }
 }
 
+function arrays_complement(a1,a2){
+ var a3 = [];
+ for(var i=0;i<a1.length;i++){
+  var found=false;
+  for(var j=0;j<a2.length;j++){
+   if (a1[i]==_trim(a2[j])) found=true;
+  }
+  if (!found) a3.push(a1[i]);
+ }
+ return a3;
+}
+
 function members_validation(which){
   var mygroups = [];
   if (_trim(which.value).length>0) mygroups = which.value.split(",");
   var allgroups = $("#all_users_string")[0].value.split(",");
+  allgroups=allgroups.concat($("#system_users_string")[0].value.split(","));
   errmsg="";
   for (i=0;i<mygroups.length;i++){
     var found=false;
