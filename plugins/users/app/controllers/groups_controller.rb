@@ -139,15 +139,26 @@ public
        group.members_string = group.members.join(",")
       end
     @all_users_string = ""
+    @all_sys_users_string = ""
     @users = []
+    @sys_users = []
     if @permissions[:usersget] == true
       @users = User.find(:all, :params => { :attributes => "uid"})
+      @sys_users = User.find( :all, :params=> { "attributes"=>"cn,uidNumber,uid", "type"=>"system", "index"=>["s", "uid"]} )
     end
         @users.each do |user|
        if @all_users_string.blank?
           @all_users_string = user.uid
        else
           @all_users_string += ",#{user.uid}"
+       end
+    end
+
+        @sys_users.each do |user|
+       if @all_sys_users_string.blank?
+          @all_sys_users_string = user.uid
+       else
+          @all_sys_users_string += ",#{user.uid}"
        end
     end
 
