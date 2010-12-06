@@ -72,6 +72,46 @@ module RepositoriesHelper
     return ret
   end
 
+  def build_status_msg status, msg1, msg2
+    tag1 = "<span class='repo_status repo_status_#{status ? 'enabled' : 'disabled'}'>"
+    tag2 = "</span>"
+    (status ? msg1 : msg2) % [tag1, tag2]
+  end
+
+  def repo_status_msg status
+    # %s will be replaced by HTML formatting tags, make sure they are included in translation
+    build_status_msg status, _("Repository is currently %senabled%s."),
+      # %s will be replaced by HTML formatting tags, make sure they are included in translation
+      _("Repository is currently %sdisabled%s.")
+  end
+
+  def refresh_status_msg status
+    # %s will be replaced by HTML formatting tags, make sure they are included in translation
+    build_status_msg status, _("Autorefresh is currently %senabled%s."),
+      # %s will be replaced by HTML formatting tags, make sure they are included in translation
+      _("Autorefresh is currently %sdisabled %s.")
+  end
+
+  def keep_status_msg status
+    # %s will be replaced by HTML formatting tags, make sure they are included in translation
+    build_status_msg status, _("Keeping downloaded packages is currently %senabled%s."),
+      # %s will be replaced by HTML formatting tags, make sure they are included in translation
+      _("Keeping downloaded packages is currently %sdisabled%s.")
+  end
+
+  def repo_change_msg status
+    status ? _("Repository will be enabled.") : _("Repository will be disabled.")
+  end
+
+  def refresh_change_msg status
+    status ? _("Autorefresh will be enabled.") :  _("Autorefresh will be disabled.")
+  end
+
+  def keep_change_msg status
+    status ? _("Keep packages option will be enabled.") : _("Keep packages option will be disabled.")
+  end
+
+
   def hidden_field_with_link form, sid, flag, value, change
     <<-EOF
       #{form.hidden_field(flag, :id => "repo_#{flag}_#{sid}", :value => value)}
