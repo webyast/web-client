@@ -46,9 +46,10 @@
 				"browser_fixes"
    %>
     <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
-       
+    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper" %>
+
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", :title=>"default", :charset=>"utf-8" %>
+    <%= stylesheet_link_tag "new_inputs", "tipsy.css" %>
 
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
