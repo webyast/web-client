@@ -21,29 +21,101 @@
 
 <% disabled = !@permissions[:write] %>
 
-<% content_for :head do %>
-<!--   <%= javascript_include_tag :defaults %> -->
-  <% javascript_tag do -%>
-  $(document).ready(function(){
+<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
+<div class="plugin-content">
+  <%= render :partial => 'shared/missing_write_permissions' if disabled %>
+  <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container', :onsubmit => "return validateNeededServices()" } do %>
+  
+  <div id="fw_services_values">
+    <% @firewall.fw_services.each do |service| %>
+      <input type="hidden" 
+             name="<%= service.input_name %>" 
+             class="<%= service.css_class %>" 
+             value="<%= service.allowed ? 'true' : 'false' %>"
+             />
+    <% end %>
+  </div>
+  <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
+      <%=  "checked=\"checked\"" if @firewall.use_firewall %> 
+      <%=  "disabled=\"disabled\"" if disabled %> 
+      /> 
+    
+  <div id="firewall" class="border">
+    <% if @firewall.use_firewall %>
+      <img id="indicator" src="images/firewall-on-led.png">
+    <% else %>
+      <img id="indicator" src="images/firewall-off-grey.png">
+    <% end %>
+    <label id="indicatorLabel" for="use_firewall"><%=_("Use Firewall")%></label>
+    <% if @firewall.use_firewall %>
+      <a id="on" class="btn leftBtn selected">&nbsp;ON&nbsp;</a>	
+      <a id="off" class="btn rightBtn">OFF</a>
+    <% else %>
+      <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
+      <a id="off" class="btn rightBtn selected">OFF</a>
+    <% end %>
+  </div>
 
-    $("#blocked_services div").click( function(){
-        $(this).hide();
-        $("#fw_services_values input."+$(this).attr("value")).attr("value", "true");
-        $("#allowed_services div[value='"+$(this).attr("value")+"']").show();
-    });
-    
-    $("#allowed_services div").click( function(){
-        $(this).hide();
-        $("#fw_services_values input."+$(this).attr("value")).attr("value", "false");
-        $("#blocked_services div[value='"+$(this).attr("value")+"']").show();
-    });
-    
-    $("#blocked_services div").filter( function(index) {
-        return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
+  <div class="clearfix"></div>
+
+  <div id="firewall-wrapper">
+    <div id="allowedContainer">
+      <label><span class="icon-border"><img class="label-image" src="images/locko.png"></span><%= _("Allowed services") %></label>
+      <% if @firewall.use_firewall %>
+	  <script type="text/javascript">jQuery(function($){ enableFirewallForm() })</script>
+	  <div id="allowed_services" class="services round10">
+      <% else %>
+	<div id="allowed_services" class="services round10 firewallForm_disabled">
+      <% end %>
+	<% @firewall.fw_services.each do |service| %>
+	    <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description %>"><%= service.name %></span>
+	<% end %>
+      </div>
+    </div> 
+
+    <div id="blockedContainer">
+      <label><span class="icon-border"><img class="label-image" src="images/lock.png"></span><%= _("Blocked services") %></label>
+      <% if @firewall.use_firewall %>
+	<div id="blocked_services" class="services round10">
+      <% else %>
+	<!--<script type="text/javascript">jQuery(function($){ disableFirewallForm() })</script>-->
+	<div id="blocked_services" class="services round10 firewallForm_disabled">
+      <% end %>
+	<% @firewall.fw_services.each do |service| %>
+	    <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description %>"><%= service.name %></span>
+	<% end %>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="unsavedChangesDialog"> 
+      <div>
+	<img src='/images/warning-red.png'/>
+	<label>Do you want to save your changes?</label>
+      </div>
+	<hr style="border: 0px; width:93%; border-top:solid 1px #ccc; border-bottom:transparent;">
+      <div>
+	<input type="button" id="yes" class="unsaved_changes" value="Yes" /> 
+	<input type="button" id="no" class="unsaved_changes" value="No" /> 
+	<input type="button" id="cancel" class="unsaved_changes" value="&nbsp;Cancel" /> 	
+      </div> 
+    </div> 
+
+    <div class="nav-buttons">
+	<%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<% javascript_tag do -%>
+  $(document).ready(function(){
+    $("#blocked_services span").filter( function(index) {
+      return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
     }).hide();
 
-    $("#allowed_services div").filter( function(index) {
-        return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "false";
+    $("#allowed_services span").filter( function(index) {
+      return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "false";
     }).hide();
   });
 
@@ -51,10 +123,12 @@
     var use_firewall_old = <%= @firewall.use_firewall ? "true" : "false" %>;
     var needed_services = <%= @needed_services_js %>;
     var confirm_text = <%= jss _("Some of needed services (%s) are going to be blocked. WebYaST may not be usable anymore. Do you really want to block them?") %>;
+
     function isBlockedAndWasAllowed(service) {
       var is_blocked  = ( $("#fw_services_values input[name='"+service.input_name+"']")[0].value == 'false' );
       return is_blocked && (service.allowed || ! use_firewall_old);
     }
+
     function blockedNames(services) {
       return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
     }
@@ -68,72 +142,9 @@
 	}
       } 
     }
+    
     disableFormOnSubmit(message);  
     return true;
   }
-  <% end -%>
+<% end -%>
 
-  <style>
-    div.firewall-service {
-      float: left;
-      width: 10em;
-      margin: 3px 0 3px 3px;
-    }
-  </style>
-<% end %>
-
-<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
-
-<div class="plugin-content">
-
-  <%= render :partial => 'shared/missing_write_permissions' if disabled %>
-
-  <% form_tag '/firewall/update', {:class => 'container', :onsubmit => "return validateNeededServices()" } do %>
-  <div id="fw_services_values">
-    <% @firewall.fw_services.each do |service| %>
-      <input type="hidden" 
-             name="<%= service.input_name %>" 
-             class="<%= service.css_class %>" 
-             value="<%= service.allowed ? 'true' : 'false' %>"
-             />
-    <% end %>
-  </div>
-
-  <fieldset id="firewall">
-      <legend><%= _("General settings") %></legend>
-      <% #don't use check_box helper as it generate also hidden opposite value
-      %>
-      <label for="use_firewall"><%=_("Use Firewall")%></label>
-      <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
-          <%=  "checked=\"checked\"" if @firewall.use_firewall %>
-          <%=  "disabled=\"disabled\"" if disabled %> 
-          />
-      
-      <% #don't use check_box helper as it generate also hidden opposite value
-      %>
-  </fieldset>
-  <fieldset>
-  <legend><%= _("Allowed services") %></legend>
-  <div id="allowed_services">
-      <% @firewall.fw_services.each do |service| %>
-          <div value="<%= service.css_class %>" class="firewall-service">
-              <a><%= service.name %></a>
-          </div>
-      <% end %>
-  </div>
-  </fieldset>
-  <fieldset>
-  <legend><%= _("Blocked services") %></legend>
-  <div id="blocked_services">
-      <% @firewall.fw_services.each do |service| %>
-          <div value="<%= service.css_class %>" class="firewall-service">
-              <a><%= service.name %></a>
-          </div>
-      <% end %>
-  </div>
-  </fieldset>
-  <div class="nav-buttons">
-      <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
-  </div>
-  <% end %>
-</div>
