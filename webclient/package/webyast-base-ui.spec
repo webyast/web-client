@@ -15,7 +15,7 @@ Recommends:     WebYaST(org.opensuse.yast.modules.basesystem)
 Recommends:     logrotate
 Provides:       yast2-webclient = %{version}
 Obsoletes:      yast2-webclient < %{version}
-Requires:       lighttpd-mod_magnet, ruby-fcgi, sqlite, syslog-ng, check-create-certificate
+Requires:       ruby-fcgi, sqlite, syslog-ng, check-create-certificate
 Requires: 	webyast-branding
 PreReq:         rubygem-rake, rubygem-sqlite3
 PreReq:         rubygem-rails-2_3 >= 2.3.4
@@ -32,15 +32,11 @@ Requires:       sysvinit-tools
 # Require startproc respecting -p, bnc#559534#c44
 Requires:       sysvinit > 2.86-215.2
 %endif
-# Require lighttpd whose postun does not mass kill, bnc#559534#c19
-# (Updating it later does not work because postun uses the old
-# version.)
-PreReq:         lighttpd > 1.4.20-3.6
 %else
 # 11.1 or SLES11
 Requires:       sysvinit > 2.86-195.3.1
-PreReq:         lighttpd > 1.4.20-2.29.1
 %endif
+Requires:       nginx-passenger
 
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
@@ -54,14 +50,21 @@ Source2:        yastwc
 Source4:        webyast-ui
 Source5:	control_panel.yml
 Source6:	webyast-ui.lr.conf
+Source7:        fastcgi.conf
+Source8:        fastcgi_params
+Source9:        koi-utf
+Source10:       koi-win
+Source11:       mime.types
+Source12:       nginx.conf
+Source13:       scgi_params
+Source14:       uwsgi_params
+Source15:       win-utf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
 BuildRequires:  rubygem-rails-2_3 >= 2.3.4
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy, rubygem-haml
-# we require the lighttpd user to be present when building the rpm
-BuildRequires:  lighttpd
 BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
 #
@@ -136,8 +139,20 @@ rm -f $RPM_BUILD_ROOT/%{webyast_ui_dir}/COPYING
 %{__ln_s} -f %{_sysconfdir}/init.d/%{webyast_ui_service} %{buildroot}%{_sbindir}/rc%{webyast_ui_service}
 #
 
-# configure lighttpd web service
+# configure lighttpd/nginx web service
 mkdir -p $RPM_BUILD_ROOT/etc/lighttpd/certs
+
+# configure nginx web service
+mkdir -p $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE7 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE8 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE9 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE10 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE11 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE12 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE13 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE14 $RPM_BUILD_ROOT/etc/yastwc/
+install -m 0644 %SOURCE15 $RPM_BUILD_ROOT/etc/yastwc/
 
 # firewall service definition, bnc#545627
 mkdir -p $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
@@ -213,12 +228,13 @@ chmod 600 db/*.sqlite* log/*
 %restart_on_update %{webyast_ui_service}
 %{insserv_cleanup}
 
-# restart yastwc on lighttpd update (bnc#559534)
-%triggerin -- lighttpd
+# restart yastwc on nginx update (bnc#559534)
+%triggerin -- nginx
 %restart_on_update %{webyast_ui_service}
 
 %files
 %defattr(-,root,root)
+%dir /etc/yastwc
 %dir %{webyast_ui_dir}
 %{webyast_ui_dir}/locale
 %{webyast_ui_dir}/vendor
@@ -239,11 +255,23 @@ chmod 600 db/*.sqlite* log/*
 %attr(-,%{webyast_ui_user},%{webyast_ui_user}) %{webyast_ui_dir}/tmp
 %attr(-,%{webyast_ui_user},root) %{webyast_ui_dir}/public/javascripts
 %config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
+%dir /etc/lighttpd
 %dir /etc/lighttpd/certs
 %config(noreplace)  %{_sysconfdir}/init.d/%{webyast_ui_service}
 %{_sbindir}/rc%{webyast_ui_service}
 %dir /etc/webyast/
 %config /etc/webyast/control_panel.yml
+
+#nginx stuff
+%config(noreplace) /etc/yastwc/nginx.conf
+%config /etc/yastwc/fastcgi.conf
+%config /etc/yastwc/fastcgi_params
+%config /etc/yastwc/koi-utf
+%config /etc/yastwc/koi-win
+%config /etc/yastwc/mime.types
+%config /etc/yastwc/scgi_params
+%config /etc/yastwc/uwsgi_params
+%config /etc/yastwc/win-utf
 
 #logrotate configuration file
 %config(noreplace) /etc/logrotate.d/webyast-ui.lr.conf
