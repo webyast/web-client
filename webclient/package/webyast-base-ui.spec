@@ -42,7 +42,7 @@ License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.21
+Version:        0.2.22
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -50,15 +50,7 @@ Source2:        yastwc
 Source4:        webyast-ui
 Source5:	control_panel.yml
 Source6:	webyast-ui.lr.conf
-Source7:        fastcgi.conf
-Source8:        fastcgi_params
-Source9:        koi-utf
-Source10:       koi-win
-Source11:       mime.types
-Source12:       nginx.conf
-Source13:       scgi_params
-Source14:       uwsgi_params
-Source15:       win-utf
+Source7:        nginx.conf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
@@ -67,6 +59,7 @@ BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-s
 BuildRequires:  tidy, rubygem-haml
 BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
+BuildRequires:  nginx-passenger
 #
 
 %description
@@ -145,14 +138,15 @@ mkdir -p $RPM_BUILD_ROOT/etc/lighttpd/certs
 # configure nginx web service
 mkdir -p $RPM_BUILD_ROOT/etc/yastwc/
 install -m 0644 %SOURCE7 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE8 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE9 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE10 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE11 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE12 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE13 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE14 $RPM_BUILD_ROOT/etc/yastwc/
-install -m 0644 %SOURCE15 $RPM_BUILD_ROOT/etc/yastwc/
+# create symlinks to nginx config files
+ln -s /etc/nginx/fastcgi.conf $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/fastcgi_params $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/koi-utf $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/koi-win $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/mime.types $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/scgi_params $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/uwsgi_params $RPM_BUILD_ROOT/etc/yastwc
+ln -s /etc/nginx/win-utf $RPM_BUILD_ROOT/etc/yastwc
 
 # firewall service definition, bnc#545627
 mkdir -p $RPM_BUILD_ROOT/etc/sysconfig/SuSEfirewall2.d/services
@@ -257,7 +251,7 @@ chmod 600 db/*.sqlite* log/*
 %config /etc/sysconfig/SuSEfirewall2.d/services/webyast-ui
 %dir /etc/lighttpd
 %dir /etc/lighttpd/certs
-%config(noreplace)  %{_sysconfdir}/init.d/%{webyast_ui_service}
+%config %{_sysconfdir}/init.d/%{webyast_ui_service}
 %{_sbindir}/rc%{webyast_ui_service}
 %dir /etc/webyast/
 %config /etc/webyast/control_panel.yml
