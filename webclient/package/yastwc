@@ -1,37 +1,35 @@
-#! /bin/sh
-# Copyright (c) 1995-2009 SUSE Linux AG, Nuernberg, Germany.
-# All rights reserved.
+#!/bin/sh
 #
-# Author: Kurt Garloff, Stefan Schubert
-# Please send feedback to http://www.suse.de/feedback/
+#     Copyright (C) 1995--2007  Marcus Rückert, SUSE / Novell Inc.
+#          
+#     This library is free software; you can redistribute it and/or modify it
+#     under the terms of the GNU Lesser General Public License as published by
+#     the Free Software Foundation; either version 2.1 of the License, or (at
+#     your option) any later version.
+#			      
+#     This library is distributed in the hope that it will be useful, but
+#     WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#     Lesser General Public License for more details.
+#      
+#     You should have received a copy of the GNU Lesser General Public
+#     License along with this library; if not, write to the Free Software
+#     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307,
+#     USA.
 #
 # /etc/init.d/yastwc
 #   and its symbolic link
 # /(usr/)sbin/rcyastwc
 #
-#    This program is free software; you can redistribute it and/or modify 
-#    it under the terms of the GNU General Public License as published by 
-#    the Free Software Foundation; either version 2 of the License, or 
-#    (at your option) any later version. 
-# 
-#    This program is distributed in the hope that it will be useful, 
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of 
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-#    GNU General Public License for more details. 
-# 
-#    You should have received a copy of the GNU General Public License 
-#    along with this program; if not, write to the Free Software 
-#    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#
-# Template system startup script for some example service/daemon yastwc
 #
 # LSB compatible service control script; see http://www.linuxbase.org/spec/
 # 
 # Note: This template uses functions rc_XXX defined in /etc/rc.status on
-# UnitedLinux (UL) based Linux distributions. If you want to base your 
+# UnitedLinux/SUSE/Novell based Linux distributions. If you want to base your
 # script on this template and ensure that it works on non UL based LSB 
 # compliant Linux distributions, you either have to provide the rc.status
 # functions from UL or change the script to work without them.
+# See skeleton.compat for a template that works with other distros as well.
 #
 ### BEGIN INIT INFO
 # Provides:          yastwc
@@ -41,8 +39,8 @@
 # Should-Stop: $time ypbind sendmail
 # Default-Start:     3 5
 # Default-Stop:      0 1 2 6
-# Short-Description: yastwc 
-# Description:       Start yastwc 
+# Short-Description: yastwc
+# Description:       Start yastwc
 ### END INIT INFO
 # 
 # Any extensions to the keywords given above should be preceeded by 
@@ -114,14 +112,14 @@
 
 # Check for missing binaries (stale symlinks should not happen)
 # Note: Special treatment of stop for LSB conformance
-LIGHTTPD_BIN=/usr/sbin/lighttpd
-test -x $LIGHTTPD_BIN || { echo "$LIGHTTPD_BIN not installed"; 
+NGINX_BIN=/usr/sbin/nginx
+test -x $NGINX_BIN || { echo "$NGINX_BIN not installed"; 
 	if [ "$1" = "stop" ]; then exit 0;
 	else exit 5; fi; }
 
 # Check for existence of needed config file and read it
-LIGHTTPD_CONFIG=/srv/www/yast/config/lighttpd.conf
-test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG not existing";
+NGINX_CONFIG=/etc/yastwc/nginx.conf
+test -r $NGINX_CONFIG || { echo "$NGINX_CONFIG not existing";
 	if [ "$1" = "stop" ]; then exit 0;
 	else exit 6; fi; }
 
@@ -184,14 +182,14 @@ case "$1" in
             rc_status -v
             rc_exit
         fi
-        chown lighttpd:lighttpd $CERTIFICATEFILE $CERTKEYFILE $COMBINEDCERTFILE
+        chown nobody:nobody $CERTIFICATEFILE $CERTKEYFILE $COMBINEDCERTFILE
     fi
 
-	echo -n "Starting yastwc "
-  #generate deployment specific secret key (bnc#598834)
+       echo -n "Starting yastwc "
+  #generate deployment specific secret key (bnc#591345)
   SECRET=`cd /srv/www/yast/ && rake -s secret`
   if [ -z $SECRET ]; then
-    echo -n "Cannot generate secret for session. Run 'cd /srv/www/yast/ && rake -s secret' for details."
+    echo -n "Can generate secret for session. Run 'cd /srv/www/yast/ && rake -s secret' for details."
     rc_failed
     rc_status -v
     rc_exit
@@ -202,31 +200,32 @@ case "$1" in
 	grep -q "^[ \\t]*passenger_root[ \\t][ \\t]*`passenger-config --root`;" $NGINX_CONFIG ||
 	    sed -i.bak "s#^\\([ \\t]*\\)passenger_root[ \\t].*\$#\\1passenger_root `passenger-config --root`;#" $NGINX_CONFIG
 
-	startproc -p $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG 
+	## Start daemon with startproc(8). If this fails
+	## the return value is set appropriately by startproc.
+	/sbin/startproc -p $PID_FILE $NGINX_BIN -c $NGINX_CONFIG
 
 	# Remember status and be verbose
 	rc_status -v
-	
-	# print the URL of the server
-	if test "$?" -eq 0; then
-	    IFC=`LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8`
-            IP=`LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
-            PORT=`LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3`
-	    if [ -n "$IP" ]; then
-		echo -e "\t${done}The WebYaST client service is running at https://$IP:$PORT/${norm}\n"
-	    else
-		echo -e "\t${warn}WebYaST could not determine the IP address for $IFC${norm}\n"
-	    fi
-	fi
+
+       # print the URL of the server
+#        if test "$?" -eq 0; then
+#            IFC=`LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8`
+#            IP=`LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
+#            PORT=`LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3`
+#            if [ -n "$IP" ]; then
+#                echo -e "\t${done}The WebYaST client service is running at https://$IP:$PORT/${norm}\n"
+#            else
+#                echo -e "\t${warn}WebYaST could not determine the IP address for $IFC${norm}\n"
+#            fi
+#        fi
 
 	;;
     stop)
 	echo -n "Shutting down yastwc "
-
 	## Stop daemon with killproc(8) and if this fails
 	## killproc sets the return value according to LSB.
 
-	killproc -TERM -p $PID_FILE $LIGHTTPD_BIN
+	/sbin/killproc -TERM -p $PID_FILE $NGINX_BIN
 
 	# Remember status and be verbose
 	rc_status -v
@@ -259,12 +258,12 @@ case "$1" in
     force-reload)
 	## Signal the daemon to reload its config. Most daemons
 	## do this on signal 1 (SIGHUP).
-	## If it does not support it, restart.
+	## If it does not support it, restart the service if it
+	## is running.
 
 	echo -n "Reload service yastwc "
 	## if it supports it:
-	killproc -HUP -p $PID_FILE $LIGHTTPD_BIN
-	#touch /var/run/lighttpd.pid
+	/sbin/killproc -p $PID_FILE -HUP $NGINX_BIN
 	rc_status -v
 
 	## Otherwise:
@@ -277,8 +276,8 @@ case "$1" in
 
 	# If it supports signaling:
 	echo -n "Reload service yastwc "
-	killproc -HUP -p $PID_FILE $LIGHTTPD_BIN
-	#touch /var/run/lighttpd.pid
+	/sbin/killproc -HUP -p $PID_FILE $NGINX_BIN
+	#touch /var/run/yastwc.pid
 	rc_status -v
 	
 	## Otherwise if it does not support reload:
@@ -299,10 +298,17 @@ case "$1" in
 	# 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
 	
 	# NOTE: checkproc returns LSB compliant status values.
-	checkproc -p $PID_FILE $LIGHTTPD_BIN
+	/sbin/checkproc -p $PID_FILE $NGINX_BIN
 	# NOTE: rc_status knows that we called this init script with
 	# "status" option and adapts its messages accordingly.
 	rc_status -v
+	;;
+    probe)
+	## Optional: Probe for the necessity of a reload, print out the
+	## argument to this init script which is required for a reload.
+	## Note: probe is not (yet) part of LSB (as of 1.9)
+
+	test $NGINX_CONFIG /var/run/yastwc.pid && echo reload
 	;;
     *)
 	echo "Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload|probe}"
