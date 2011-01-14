@@ -37,7 +37,7 @@ class RolesController < ApplicationController
   end
 
   def self.users_role_id (role_id)
-     "users_of_" + role_id.gsub(/ /,".") #replace space which cannot be in id - http://www.w3.org/TR/html4/types.html#type-name
+    "users_of_" + role_id.gsub(/ /,"_") #replace space which cannot be in id - http://www.w3.org/TR/html4/types.html#type-name
   end
 
   def self.permission_role_id (permission_id, role_id)
@@ -52,8 +52,7 @@ class RolesController < ApplicationController
     all_permissions = all_permissions.collect {|p| PrefixedPermission.new(p.id, p.description)}
     # create an [[key,value]] array of prefixed permissions, where key is the prefix
     @prefixed_permissions = PrefixedPermissions.new(all_permissions).sort
-    @all_users_string = (User.find(:all,:params => {:getent => "1"}).collect {|user| user.login}).sort.join(",")
-    Rails.logger.info @all_users_string
+    @all_users_string = (User.find(:all,:params => {:getent => "1"}).collect {|user| user.login}).sort
   end
 
   # Update time handler. Sets to backend new timezone and time.
@@ -65,6 +64,7 @@ class RolesController < ApplicationController
     YastModel::Permission.password = YaST::ServiceResource::Session.auth_token
     all_permissions = YastModel::Permission.find(:all).collect {|p| p.id }
     changed_roles = []
+    
     @roles.each do |role|
       new_permissions = all_permissions.find_all do |perm|
         params[RolesController.permission_role_id perm, role.name]

@@ -20,34 +20,201 @@
 # you may find current contact information at www.novell.com
 #++
 %>
-<% content_for :head do %>
-<% if JSMIN == true %>  
-    <%= javascript_include_tag "users-min.js"-%>
-  <% else %>
-    <%= javascript_include_tag "select_dialog.js" %>
+
+<div class='plugin-icon'><img src='/icons/yast-permissions.png' alt="Roles module"/><%=_("Roles")%></div>
+<div class="plugin-content">
+  <div id="create_role_dialog" style="display: none">
+    <% form_tag '/roles/create', {:id=>'rolesForm', :class => 'container'} do %>
+      <label for="role_name">Name</label><%= text_field_tag "role_name", "", :class=>"required"%>
+    <% end %>
+  </div>
+
+  <% form_tag '/roles/update', { :id=>'rolesUpdateForm', :class => 'container'} do %>
+    <span id="toolbox">
+      <img id="loupe" src="../images/loupe.png">
+      <input type="text" id="find_user" autocomplete="off">
+      <img id="resetSearchField" class="resetSearch" src="../images/reset-search.png">
+      <span id="loader"><img src='/images/spinner.gif'></span>
+      <%= link_to  (_("Create Role") ), {}, {:id => 'create_role_link', :class=>'round3' } %>
+    </span>
+
+    <div id="jqueryTab" class="fieldset-group">
+      <fieldset id="assignUsers">
+        <legend><span><%= _("Assign Users")%></span></legend>
+	  <div id="rolesContainer">
+	    <div id="rolesContent" class="round5b">
+	      <% @roles.each do |role| %>
+		<div class="role">
+		  <span class="roleHeader"  style="vertical-align:middle;">
+		    <label><img class="role" src="../images/key-grey.png"><%= role.name%></label>
+		    <%= link_to image_tag("../images/delete-user.png", :border=>0, :class=>"deleteRole"), {:action => 'destroy', :id => ERB::Util.html_escape( role.name ) }, { :style=>"border:0px;"} %>
+		  </span>
+		  <span class="roleBody drop">
+		    <span class="roles_warning" style="display:none; float:left;"> user already assigned to this role</span>
+		    <%=hidden_field_tag(RolesController.users_role_id(role.name), role.users.join(",") ) %>
+		    <% role.users.each do |user| %>
+		      <span class="user assigned" alt="<%=RolesController.users_role_id(role.name)%>"><%=user%></span>
+		    <% end %>
+		  </span>
+		</div>
+  	      <% end %>
+	    </div>
+	  </div> 
+
+	 <div id="usersContainer">	
+	  <div id="usersContent" class="users round5b">
+	    <div class="slider-content">
+	      <ol>
+		<% @tmp = Array.new %>
+		<% @all_users_string.each_with_index do |elem, i|%>
+		  <% unless @tmp.index(elem[0,1]) != nil  %>
+		    <% if i == 0 %>
+		      <% @alpha = "'" + elem[0,1] + "'" %>
+		      <li id="<%= elem[0,1] %>" class="title"><%= elem[0,1] %></li><ol class="wrapper"><li>
+		    <% else %>
+		      <% @alpha += ",'" + elem[0,1] + "'" %>
+		      </li></ol><li id="<%= elem[0,1] %>" class="title"><%= elem[0,1] %></li><ol class="wrapper"><li>
+		    <% end %>
+		    <% @tmp.push(elem[0,1]) %>
+		    <span class="drag user"><%= elem %></span>
+		  <% else %>
+		    <span class="drag user"><%= elem %></span>
+		  <% end %>
+		<% end %>
+	      </ol>
+	    </div> 
+	  </div> 
+	</div> 
+      </fieldset>
+
+      <fieldset id="assign-permissions">
+        <legend><span><%= _("Assign Permissions")%></span></legend>
+        <div>
+          <div class="permissions-header">
+            <span class="permission-label"><%= _("collapse all") %></span>
+            <% @roles.each do |role| %>
+                 <span class="role-label"><%= role.name %></span>
+            <% end %>
+          </div>
+
+          <div class="permissions-content">
+            <% @prefixed_permissions.each do |prefix,permissions| %>
+              <div class="list-fieldset">
+
+                <div class="permissions-group-header list-fieldset-header">
+                  <span class="permission-label"><%= prefix %></span>
+                  <% @roles.each do |role| %>
+                    <span class="permission-field" group-role-id="<%= RolesController.permission_role_id prefix, role.name %>">
+                      <%= check_box_tag( RolesController.permission_role_id( prefix, role.name), "1" ) %>
+                    </span>
+                  <% end %>
+                  <div style="clear:both"></div>
+                </div>
+
+                <div class="permissions-group-content">
+                  <% permissions.each do |permission| %>
+                    <div class="permissions-group-row">
+                      <span class="permission-label"><%= permission.short_name %></span>
+                      <% @roles.each do |role| %>
+                        <span class="permission-field" group-role-id="<%= RolesController.permission_role_id prefix, role.name %>">
+                          <%= check_box_tag( RolesController.permission_role_id( permission.full_name, role.name ), "1", role.permissions.include?( permission.full_name) ) %>
+                        </span>
+                      <% end %>
+                    </div>
+                  <% end %>
+		  <div style="clear:both"></div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="nav-buttons">
+      <%= form_next_button (:id=>'roles_submit_button') %>
+      <%= form_str_spacer %>
+      <%= form_back_button %>
+    </div>
   <% end %>
-<% end%>
 
-<style type="text/css">
-  label.error {
-    display:block;
-    font-size:11px;
-    font-weight:bold;
-    color:#990000;
-    vertical-align:middle;
-    padding:0px;
-    margin:0px;
-  }
-  input.error { float: none;}
-  
-  /*Patch to support height: 'auto'*/
-  .ui-dialog-content {
-      overflow-y: auto;
-  }  
-</style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      function validateRoleName(name) {
+	jQuery.validator.addMethod(name, function(value, element) {
+	  var regExp = new RegExp("^[a-zA-Z0-9\\_\\-\\. ]+$");
+	  return this.optional(element) || regExp.test(value);
+	});
+      }
+      validateRoleName("role_name");
+      $("#rolesForm").validate({
+	onkeyup: function(element) { this.element(element); }, 
+	rules:{ role_name: { required:true, role_name: true } },  
+	messages: {
+	  role_name: { required: <%= jss _("This field is required") -%>, role_name: <%= jss _("Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") -%> }
+	}
+      });
 
-<% content_for :before_script do %>
-  <% javascript_tag do %>
+      select_users_open = select_users_dialog();
+      $(".permissions-group-header .permission-field input").click( function() {
+	groupHeaderClicked($(this));
+      });
+      $(".permissions-group-content .permission-field input").click( function() {
+	groupFieldClicked( $(this) );
+      });
+      $(".permissions-group-header .permission-field").map( function() { refreshComputed( this.getAttribute('group-role-id') ) });
+      $('.list-fieldset-header .permission-label').click(function() {
+	$(this).parent().next().toggle();
+	return false;
+      });
+      $('.permissions-header .permission-label').click( collapseAll );
+      addTabsNavigation("div#jqueryTab", "span");
+      $("div#jqueryTab").tabs();
+
+      create_role_dialog();
+
+      $("#create_role_link").click( function (e) {
+	e.preventDefault();
+	$("#create_role_dialog").dialog('open');
+      });
+
+      $("#roles_submit_button").click( function () { blockForm(); });
+      $("img.deleteRole").click( function () { blockForm(); });
+
+      $('#usersContent').sliderNav({items:[<%= @alpha %>], arrows:false });
+    });
+    
+    function clearForm() {
+      $("#role_name").val('');
+      $("#rolesForm label.error").val('').css("display", "none");
+    }
+
+    function create_role_dialog() {
+      $("#create_role_dialog").dialog({
+        autoOpen: false,
+        width: 400,
+        modal: true,
+	close: clearForm,
+        buttons: { 
+	  'Create Role': function() {
+	    if ($("#rolesForm").validate().form() == true) {
+	      $(this).children("form").first().submit();
+	      $(this).dialog('close');
+	      blockForm();
+	    }	
+	  },
+	  Cancel: function() {
+	    $(this).dialog('close');
+	  }
+	}
+      });
+    };
+    
+    function blockForm() {
+      var message = "<%= _("Please wait") -%>";
+      disableFormOnSubmit(message);
+    }
+
     function groupedFields(group_role_id) {
       var header_check = $(".permissions-group-header .permission-field[group-role-id='"+group_role_id+"'] input")[0];
       var field_checks = $(".permissions-group-content .permission-field[group-role-id='"+group_role_id+"'] input").get();
@@ -113,200 +280,13 @@
       });
       return open_dialog;
     };
+  </script>
 
-    $(document).ready(function() {
-    function validateRoleName(name)
-    {
-      jQuery.validator.addMethod(name, function(value, element) {
-	var regExp = new RegExp("^[a-zA-Z0-9\\_\\-\\. ]+$");
-	return this.optional(element) || regExp.test(value);
-      });
-    }
-
-    validateRoleName("role_name");
-    $("#rolesForm").validate({
-	onkeyup: function(element) { this.element(element); }, 
-	rules:{
-	   role_name: { required:true, role_name: true }
-	},  
-	messages: {
-	  role_name: { 
-	     required: <%= jss _("This field is required") -%>,
-	     role_name: <%= jss _("Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") -%>
-	  }
-	}
-      });
-    });
-
-    function clearForm() {
-      $("#role_name").val('');
-      $("#rolesForm label.error")
-	.val('')
-	.css("display", "none");
-    }
-  
-    function create_role_dialog() {
-      $("#create_role_dialog").dialog({
-        autoOpen: false,
-        width: 400,
-        modal: true,
-	close: clearForm,
-        buttons: {
-          'Create Role': function() {
-	      if ($("#rolesForm").validate().form() == true) {
-		$(this).children("form").first().submit();
-	      }	
-	  },
-          Cancel: function() {
-            $(this).dialog('close');
-          }
-	}
-      });
-    };
-    
-
-    $(document).ready(function(){
-      select_users_open = select_users_dialog();
-      $(".permissions-group-header .permission-field input").click( function() {
-        groupHeaderClicked($(this));
-      });
-      $(".permissions-group-content .permission-field input").click( function() {
-        groupFieldClicked( $(this) );
-      });
-      $(".permissions-group-header .permission-field").map( function() { refreshComputed( this.getAttribute('group-role-id') ) });
-      $('.list-fieldset-header .permission-label').click(function() {
-        $(this).parent().next().toggle();
-        return false;
-      });
-      $('.permissions-header .permission-label').click( collapseAll );
-      addTabsNavigation(".fieldset-group", "span");
-      $(".fieldset-group").tabs();
-
-      create_role_dialog();
-
-      $("#create_role_link").click( function (e) {
-        e.preventDefault();
-        $("#create_role_dialog").dialog('open');
-      });
-
-      // disable whole form on submit
-      $("#roles_submit_button").click( function () {
-	var message = "<%= _("Please wait") -%>";
-	disableFormOnSubmit(message);
-      });
-    });
-
-    
-    
-    
-  <% end %>
-
-<style>
-  .permission-label {
-    width: 22em;
-    float: left;
-    cursor: pointer;
-  }
-  .permission-field, .role-label {
-    width: 8em;
-    float: left;
-    text-align: center;
-  }
-  .permissions-content, .permissions-group-row {
-    clear: left;
-  }
-  .permissions-group-row .permission-label {
-    margin-left: 2em;
-    width: 20em;
-  }
-  .permissions-header {
-    margin: 0em 1.5em;
-  }
-  input.computed {
-    opacity: 0.5;
-  }
-</style>
-
-<% end %>
-
-<div class='plugin-icon'><img src='/icons/yast-permissions.png' alt="Roles module"/><%=_("Roles")%></div>
-
-<div class="plugin-content">
-  <div class="nav-buttons">
-    <%= link_to  (_("Create Role") ),
-                 {},
-                 {:id => 'create_role_link'} %>
-  </div>
-  <div id="create_role_dialog" style="display: none">
-    <% form_tag '/roles/create', {:id=>'rolesForm', :class => 'container'} do %>
-      <label for="role_name"> Name </label><%= text_field_tag "role_name", "", :class=>"required"%>
-    <% end %>
-  </div>
-  <% form_tag '/roles/update', {:class => 'container'} do %>
-    <div class="fieldset-group">
-      <fieldset id="assign-permissions">
-        <legend><span><%= _("Assign Permissions")%></span></legend>
-        <div>
-          <div class="permissions-header">
-            <span class="permission-label"><%= _("collapse all") %></span>
-            <% @roles.each do |role| %>
-                 <span class="role-label"><%= role.name %></span>
-            <% end %>
-          </div>
-          <div class="permissions-content">
-            <% @prefixed_permissions.each do |prefix,permissions| %>
-              <div class="list-fieldset">
-                <div class="permissions-group-header list-fieldset-header">
-                  <span class="permission-label"><%= prefix %></span>
-                  <% @roles.each do |role| %>
-                    <span class="permission-field" group-role-id="<%= RolesController.permission_role_id prefix, role.name %>">
-                      <%= check_box_tag( RolesController.permission_role_id( prefix, role.name),
-                                         "1" ) %>
-                    </span>
-                  <% end %>
-                  <div style="clear:both"></div>
-                </div>
-                <div class="permissions-group-content">
-                  <% permissions.each do |permission| %>
-                    <div class="permissions-group-row">
-                      <span class="permission-label"><%= permission.short_name %></span>
-                      <% @roles.each do |role| %>
-                        <span class="permission-field" group-role-id="<%= RolesController.permission_role_id prefix, role.name %>">
-                          <%= check_box_tag( RolesController.permission_role_id( permission.full_name, role.name ),
-                                             "1",
-                                             role.permissions.include?( permission.full_name) ) %>
-                        </span>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <div style="clear:both"></div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset id="assign-users">
-        <legend><span><%= _("Assign Users")%></span></legend>
-        <div>
-          <% @roles.each do |role| %>
-            <p>
-              <label><%= role.name%></label>
-              <%=text_field_tag( RolesController.users_role_id(role.name), role.users.join(",")) %>
-              <a href="#" onClick="select_users_open('<%= role.name %>');return false;", class="button"><%= _("Assign Users") %></a>
-	      <%= link_to _("Delete"), #"<img src='/images/delete.png'>",
-                       {:action => 'destroy', :id => ERB::Util.html_escape( role.name ) }, { :class=>:button } %>
-
-            </p>
-          <% end %>
-          <input type="hidden" id="all_users_string" value="<%= @all_users_string %>" />
-        </div>
-      </fieldset>
-    </div>
-    <div class="nav-buttons">
-      <%= form_next_button (:id=>'roles_submit_button') %>
-      <%= form_str_spacer %>
-      <%= form_back_button %>
-    </div>
-  <% end %>
+  <% content_for :head do %>
+    <% if JSMIN == true %>  
+	<%= javascript_include_tag "users-min.js"-%>
+     <% else %>
+	<%= javascript_include_tag "select_dialog", "jquery.event.drag-2.0.min", "jquery.event.drop-2.0.min", "jquery.qsearch", "roles.helper", "slidernav" %>
+     <% end %>
+  <% end%>
 </div>
