@@ -101,7 +101,7 @@ private
 # if it appear during save, then it is module bug, as it cannot allow it
     if e.backend_exception_type == "NO_PERM"
       flash[:error] = _("Operation is forbidden. If you have to do it, please contact system administrator")+
-                          details(e.message) #already localized from error constructor
+                          details(e.message) #already localized from error constructor RORSCAN_ITL
       if  request.xhr?
         render :text => "<div>#{flash[:error]}</div>", :status => 403
       else
@@ -229,12 +229,12 @@ protected
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => 'b1aeb693a1ee49ab70c6b6bf514963a3'
+  protect_from_forgery # :secret => 'b1aeb693a1ee49ab70c6b6bf514963a3' RORSCAN_ITL
 
   # See ActionController::Base for details
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password").
-  filter_parameter_logging :password
+  filter_parameter_logging :password # RORSCAN_ITL
 
   # Translation mapping for ActiveResource validation errors
   def error_mapping

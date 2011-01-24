@@ -39,7 +39,7 @@ class SystemController < ApplicationController
 		else
 		    flash[:error] = _("Cannot reboot the machine!")
 		end
-	    rescue ActiveResource::ResourceNotFound => e #FIXME system returns 404 in case of error. use 422 and proper formated xml
+	    rescue ActiveResource::ResourceNotFound => e #FIXME system returns 404 in case of error. use 422 and proper formated xml RORSCAN_ITL
         logger.warn "Cannot reboot: #{e.inspect}"
 		    flash[:error] = _("Cannot reboot the machine!")
 	    end
@@ -60,7 +60,7 @@ class SystemController < ApplicationController
 		else
 		    flash[:error] = _("Cannot shutdown the machine!")
 		end
-	    rescue ActiveResource::ResourceNotFound => e #FIXME system returns 404 in case of error. use 422 and proper formated xml
+	    rescue ActiveResource::ResourceNotFound => e #FIXME system returns 404 in case of error. use 422 and proper formated xml RORSCAN_ITL
         logger.warn "Cannot shutdown: #{e.inspect}"
 		    flash[:error] = _("Cannot shutdown the machine!")
 	    end

@@ -27,7 +27,7 @@ module AuthenticatedSystem
     # Accesses the current account from the session. 
     # Future calls avoid the database because nil is not equal to false.
     def current_account
-      @current_account ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_account == false
+      @current_account ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_account == false # RORSCAN_ITL
     end
 
     # Store the given account id in the session.

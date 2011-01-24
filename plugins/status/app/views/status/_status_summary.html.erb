@@ -31,10 +31,10 @@
     <% else %>
       <% if unauthorized -%>
 	<span class="status-icon warning">&nbsp;</span>
-        <span><%= _("Cannot read system status - you have been logged out.") %></span>
+        <span><%= _("Cannot read system status - you have been logged out.") %></span> <!-- RORSCAN_ITL -->
       <% elsif !error %>
 	<span class="status-icon ok">&nbsp;</span>
-        <span><%= _("Your system is healthy.") %></span>
+        <span><%= _("Your system is healthy.") %></span> <!-- RORSCAN_ITL -->
       <% end %>
     <% end %>
   <% end %>
@@ -44,7 +44,7 @@
   <!-- refresh the status again after a timeout -->
   <% javascript_tag do -%>
     setTimeout(function() {
-      $('#status_status').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading system information") %>')
+      $('#status_status').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading system information") %>') <!-- RORSCAN_ITL -->
       <%= remote_function(:update => "status_status",
 	:url => { :controller => :status, :action => :show_summary, :background => true }) %>
       }, <%= refresh_timeout.to_i * 1000 -%>);

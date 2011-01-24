@@ -21,7 +21,7 @@
 
 require 'yast/service_resource'
 require 'client_exception'
-require 'open-uri'
+require 'open-uri' # RORSCAN_ITL
 
 class StatusController < ApplicationController
   
@@ -146,7 +146,7 @@ class StatusController < ApplicationController
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
       #sorting graphs via id
       @graphs.sort! {|x,y| y.id <=> x.id } 
-      flash[:notice] = _("No data found for showing system status.") if @graphs.blank?
+      flash[:notice] = _("No data found for showing system status.") if @graphs.blank? # RORSCAN_ITL
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
 	logger.warn error_hash.inspect
@@ -454,7 +454,7 @@ class StatusController < ApplicationController
     if timeout.zero?
       Rails.logger.info "System status autorefresh is disabled"
     else
-      Rails.logger.info "Autorefresh system status after #{timeout} seconds"
+      Rails.logger.info "Autorefresh system status after #{timeout} seconds" # RORSCAN_ITL
     end
 
     return timeout

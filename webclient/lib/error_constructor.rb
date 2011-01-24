@@ -39,7 +39,7 @@ module ErrorConstructor
     when "NOT_LOGGED"
       return _("A user is no longer logged to target machine. Please log in again.")
     when "BADFILE"
-      return _("Target system is not consistent: Missing or corrupted file %s") %error["file"]
+      return _("Target system is not consistent: Missing or corrupted file %s") %error["file"] # RORSCAN_ITL
     when "NTP_ERROR"
       problem = error["output"]
       if error["output"]=="NOSERVERS" #special value indicates that there is no predefined ntp server

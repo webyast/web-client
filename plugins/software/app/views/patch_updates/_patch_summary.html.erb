@@ -80,7 +80,7 @@
 	<% label << _("Optional Updates: %d") % patch[:optional] %>
       <% end %>
       <% if label.empty? %>
-	<% label << _("Your system is up to date.") %>
+	<% label << _("Your system is up to date.") %> <!-- RORSCAN_ITL -->
       <% end %>
       <span><%= label.join(", ") %></span>
     <% end %>

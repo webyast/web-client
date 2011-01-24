@@ -60,9 +60,9 @@
     <div id="status_status">
       <% if ActionController::Routing.possible_controllers.include?("status") %>
 	<% if display_status %>
-	  <%= image_tag("/images/working.gif", :class => "small-working-icon") %><label><%= _("Loading system information") %></label>
+	  <%= image_tag("/images/working.gif", :class => "small-working-icon") %><label><%= _("Loading system information") %></label> <!-- RORSCAN_ITL -->
 	<% else %>
-	  <div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span>
+	  <div class="status-icon optional"></div><span><%= _("System status summary is disabled in the config file.") %></span> <!-- RORSCAN_ITL -->
 	<% end %>
       <% else %>
 	<%= _("Status plugin is not installed.") %>

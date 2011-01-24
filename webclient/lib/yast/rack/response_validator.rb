@@ -64,7 +64,7 @@ module YaST
 
       # whether it is an ajax request
       def xhr?(env)
-        env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest"
+        env["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest" # RORSCAN_ITL
       end
       
       def should_validate?(headers, env)

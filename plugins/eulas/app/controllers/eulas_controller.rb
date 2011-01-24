@@ -42,7 +42,7 @@ private
   end
 
   def ensure_id
-    redirect_to :action => :show, :id => 1 and return if params[:id].nil?
+    redirect_to :action => :show, :id => 1 and return if params[:id].nil? # RORSCAN_ITL
     @eula_id   = [1,params[:id].to_i].max
   end
 

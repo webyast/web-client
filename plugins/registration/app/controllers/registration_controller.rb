@@ -94,7 +94,7 @@ class RegistrationController < ApplicationController
     begin
       status = @client.find
     rescue
-      logger.debug "Registration could not find registration information: system is unregistered."
+      logger.debug "Registration could not find registration information: system is unregistered." # RORSCAN_ITL
     end
 
     begin
@@ -125,7 +125,7 @@ class RegistrationController < ApplicationController
   end
 
   def no_updates_msg
-    _("The system might not receive necessary updates.")
+    _("The system might not receive necessary updates.") # RORSCAN_ITL
   end
 
   def registration_skip_flash
@@ -374,7 +374,7 @@ class RegistrationController < ApplicationController
       # display warning if no repos/services are added/changed during registration (bnc#558854)
       if !check_service_changes && !check_repository_changes
       then
-        flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>")
+        flash[:warning] = _("<p><b>Repositories were not modified during the registration process.</b></p><p>It is likely that an incorrect registration code was used. If this is the case, please attempt the registration process again to get an update repository.</p><p>Please make sure that this system has an update repository configured, otherwise it will not receive updates.</p>") # RORSCAN_ITL
       end
 
     rescue ActiveResource::ClientError => e

@@ -79,8 +79,8 @@
   <% if @showstatus then %>
      <fieldset>
        <legend><%= _("Registration Information") %></legend>
-       <p><strong><%= _("This system is registered") %></strong></p>
-       <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p>
+       <p><strong><%= _("This system is registered") %></strong></p> <!-- RORSCAN_ITL -->
+       <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p> <!-- RORSCAN_ITL -->
        <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"show_progress();", :class => "button" %></p>
      </fieldset>
 
