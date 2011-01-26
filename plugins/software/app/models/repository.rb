@@ -21,6 +21,6 @@
 
 class Repository < ActiveResource::Base
   extend YastModel::Base
-  model_interface :'org.opensuse.yast.system.repositories'
+  model_interface :'org.opensuse.yast.system.repositories' # RORSCAN_ITL
 
 end

@@ -22,7 +22,7 @@
 class System
 
     def initialize
-	@client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.system')
+	@client = YaST::ServiceResource.proxy_for('org.opensuse.yast.system.system') # RORSCAN_ITL
 	@sys = @client.find
     end
 

@@ -335,7 +335,7 @@ class RegistrationController < ApplicationController
 
     # redirect in case of interrupted basesetup
     if @guid && !@reregister
-      flash[:warning] = _("This system is already registered.")
+      flash[:warning] = _("This system is already registered.") # RORSCAN_ITL
       redirect_success
       return
     end
@@ -446,7 +446,7 @@ class RegistrationController < ApplicationController
 
     rescue Exception => e
       flash[:error] = server_error_flash _("A connection to the registration server could not be established or it did not reply.")
-      logger.error "Registration resulted in an error, execution of SuseRegister backend expired: Maybe network problem or severe configuration error."
+      logger.error "Registration resulted in an error, execution of SuseRegister backend expired: Maybe network problem or severe configuration error." # RORSCAN_ITL
       redirect_success
       return
     end

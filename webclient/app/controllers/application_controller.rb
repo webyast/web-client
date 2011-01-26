@@ -99,9 +99,9 @@ private
 #handle insufficient permissions, especially useful for read permissions,
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
-    if e.backend_exception_type == "NO_PERM"
+    if e.backend_exception_type == "NO_PERM" # RORSCAN_INL
       flash[:error] = _("Operation is forbidden. If you have to do it, please contact system administrator")+
-                          details(e.message) #already localized from error constructor RORSCAN_ITL
+                          details(e.message) #already localized from error constructor
       if  request.xhr?
         render :text => "<div>#{flash[:error]}</div>", :status => 403
       else

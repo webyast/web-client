@@ -21,7 +21,7 @@
 
 class Patch < ActiveResource::Base
   extend YastModel::Base
-  model_interface :'org.opensuse.yast.system.patches'
+  model_interface :'org.opensuse.yast.system.patches'  # RORSCAN_ITL
 
   def self.install_patches patches
     to_install = []

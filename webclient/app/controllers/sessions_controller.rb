@@ -58,7 +58,7 @@ class SessionsController < ApplicationController
   #  this is called from login form and expects to have username and password set
   #
   # if the create action is called without the hostname
-  # it will show the login form
+  # it will show the login form # XXX tom: probably needs reset_session to avoid session fixation etc.
   def create
     host = Host.find_by_id_or_name(params[:hostid])
     logger.debug "Host(#{params[:hostid]}): #{host.inspect}"
@@ -144,7 +144,7 @@ class SessionsController < ApplicationController
     # reset_session clears all flash messages, make a backup before the call
     flash_backup = flash
 
-    reset_session
+    reset_session # RORSCAN_ITL
 
     # restore the values from backup
     flash.replace(flash_backup)

@@ -59,7 +59,7 @@
 <div class="accordion">
 <% if @graphs %>
   <% @graphs.each do |group| %>
-    <div class="list-fieldset">
+    <div class="list-fieldset"> <!-- RORSCAN_INL_12 th whole block -->
       <div class="list-fieldset-header" 
            onclick="<%= 
              remote_function(:update   => graph_id(group.id, group.single_graphs.first.headline),

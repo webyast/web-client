@@ -114,9 +114,9 @@ class TimeController < ApplicationController
     # since while calling this function there is different instance of the class
     # than when calling index, @@timezones were empty; reinitialize them
     # possible FIXME: how does it increase the amount of data transferred?
-    systemtime = Systemtime.find :one
+    systemtime = Systemtime.find :one  # RORSCAN_ITL
 
-    timezones = systemtime.timezones
+    timezones = systemtime.timezones # RORSCAN_ITL
 
     region = timezones.find { |r| r.name == params[:value] } #possible FIXME later it gets class, not a string
     return false unless region #possible FIXME: is returnign false for AJAX correct?

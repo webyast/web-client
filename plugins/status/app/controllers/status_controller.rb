@@ -75,13 +75,13 @@ class StatusController < ApplicationController
       status.attributes["value"].each{ |value|
         if value.column == column_id
           value.value.collect!{|x| x.tr('\"','')} #removing \"
-          value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
+          value.value.size.times{|t| ret << [(value.start.to_i + t*value.interval.to_i)*1000, value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format  # RORSCAN_ITL
           break
         end
       }
     else #only one value
       status.value.value.collect!{|x| x.tr('\"','')} #removing \"
-      status.value.value.size.times{|t| ret << [(status.value.start.to_i + t*status.value.interval.to_i)*1000, status.value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format
+      status.value.value.size.times{|t| ret << [(status.value.start.to_i + t*status.value.interval.to_i)*1000, status.value.value[t].to_f/scale]} # *1000 --> jlpot evalutas MSec for date format # RORSCAN_ITL
     end
 
     #strip zero values at the end of the array
