@@ -174,6 +174,23 @@ public
     redirect_to :action => "index"
   end
 
+  def license
+    if params[:accept].present? || params[:reject].present?
+      begin
+        patch = params[:accept].present? ? Patch.create(:accept_license => 1) : Patch.create(:reject_license => 1)
+      rescue ActiveResource::ServerError => e
+        #ignore as it is probably continuing installation
+        # FIXME better check
+      end
+      redirect_to "/"
+      return
+    end
+    @permissions = Patch.permissions
+    @license = Patch.find(:all, :params => {:license => 1}).first
+  end
+
+
+
   private
 
   def refresh_timeout
