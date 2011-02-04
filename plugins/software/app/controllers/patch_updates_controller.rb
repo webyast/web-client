@@ -189,6 +189,13 @@ public
     end
     @permissions = Patch.permissions
     @license = Patch.find(:all, :params => {:license => 1}).first
+    @text = @license.text
+    if @text =~ /DT:Rich/ #text is richtext for packager
+      #rid of html tags
+      @text.gsub!(/&lt;.*&gt;/,'')
+      # unescape all ampersands
+      @text.gsub!(/&amp;([a-zA-Z0-9]+;)/,"&\\1")
+    end
   end
 
 

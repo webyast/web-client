@@ -59,7 +59,7 @@
   <% form_tag "/license" do %>
     <h3><%= @license.name %> </h3>
     <div class="eula-text-area">
-      <%= @license.text.gsub(%r{^[\n\n$]}, '<p class="eula_paragraph">').gsub(%r{[\n]}, ' ')%>
+      <%= @text.gsub(%r{^[\n\n$]}, '<p class="eula_paragraph">').gsub(%r{[\n]}, ' ')%>
     </div>
     <%= link_to _("Accept"), {:controller => "patch_updates", :action => "license", :accept => 1}, :class => "button" %>
     <%= link_to _("Reject"), {:controller => "patch_updates", :action => "license", :reject => 1}, :class => "button" %>
