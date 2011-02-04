@@ -98,7 +98,7 @@ public
 
     if patch_updates
       # is it a background progress?
-      if patch_updates.size == 1 && patch_updates.first.respond_to?(:status)
+      if patch_updates.first.respond_to?(:status)
         bg_stat = patch_updates.first
 
         patches_status = {:status => bg_stat.status, :progress => bg_stat.progress, :subprogress => bg_stat.subprogress}
