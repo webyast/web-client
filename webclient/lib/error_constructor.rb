@@ -55,6 +55,8 @@ module ErrorConstructor
     when "PACKAGEKIT_INSTALL"
       return n_("Installation in progress. Remaining %i patch. The installation time depends on patch size.",
         "Installation in progress. Remaining %i patches. The installation time depends on patch size.", error["count"]) % [error["count"]]
+    when "PACKAGEKIT_LICENSE"
+      return _("Patch require license confirmation. Please decide it in patch module.")
     else
       RAILS_DEFAULT_LOGGER.warn "Untranslated message for exception #{error["type"]}"
       return error["description"]
