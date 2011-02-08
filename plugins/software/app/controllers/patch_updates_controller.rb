@@ -62,7 +62,7 @@ public
         @error = true
         @reload = true
       elsif ce.backend_exception_type == "PACKAGEKIT_LICENSE"
-        redirect_to :action => license #move to page for license confirmation
+        redirect_to :action => "license" #move to page for license confirmation
       else
         raise e
       end
