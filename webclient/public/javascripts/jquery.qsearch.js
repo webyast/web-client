@@ -1,3 +1,8 @@
+/*
+ You may use jQuery quicksearch <by Rik Lomas at Lomalogue, see https://github.com/riklomas/quicksearch/blob/master/README.markdown> 
+ under the terms of either the MIT License or the GNU General Public License (GPL) Version 2
+*/
+
 (function($, window, document, undefined) {
 	$.fn.quicksearch = function (target, opt) {
 		
