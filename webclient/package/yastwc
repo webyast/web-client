@@ -182,7 +182,7 @@ case "$1" in
             rc_status -v
             rc_exit
         fi
-        chown nobody:nobody $CERTIFICATEFILE $CERTKEYFILE $COMBINEDCERTFILE
+        chown nginx:nginx $CERTIFICATEFILE $CERTKEYFILE $COMBINEDCERTFILE
     fi
 
        echo -n "Starting yastwc "
