@@ -309,18 +309,14 @@ end
      save_roles(@user.id,params["user"]["roles_string"])
     end
 
-    response = true
     begin
-      response = @user.save
-      rescue ActiveResource::ClientError => e
-        flash[:error] = YaST::ServiceResource.error(e)
-        response = false
-    end
-    if  response
-      flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
+      if @user.save
+	flash[:notice] = _("User <i>%s</i> was successfully updated.") % @user.uid
+	redirect_to :action => "index"
+      end
+    rescue ActiveResource::ClientError => e
+      flash[:error] = YaST::ServiceResource.error(e)
       redirect_to :action => "index"
-    else
-      render :action => "edit"
     end
   end
 

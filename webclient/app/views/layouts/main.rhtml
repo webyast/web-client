@@ -62,27 +62,55 @@
  
   <script type="text/javascript">
     $(document).ready(function() {
-        <% if session[:expires] !=nil && session[:expires].class == Time %>
-	   // get current time from back end and check if time zone set to UTC (client) bnc#631763
-	   var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
-	   <% if session[:expires].utc? == false %>
-	      //if time zone is not UTC convert it
-	      var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
-	      sessionTimeout(current_utc_time, expiration_date);
-	   <% else %>
-	      var expiration_date = "<%=session[:expires].to_time.to_i %>";
-	      sessionTimeout(current_utc_time, expiration_date);
-	   <% end %>
+      <% if session[:expires] !=nil && session[:expires].class == Time %>
+	  // get current time from back end and check if time zone set to UTC (client) bnc#631763
+	  var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
+	  <% if session[:expires].utc? == false %>
+	    //if time zone is not UTC convert it
+	    var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
+	    sessionTimeout(current_utc_time, expiration_date);
+	  <% else %>
+	    var expiration_date = "<%=session[:expires].to_time.to_i %>";
+	    sessionTimeout(current_utc_time, expiration_date);
+	  <% end %>
 
-	  //<DEBUG>
-	  //var left = (expiration_date - current_utc_time)-300;
-	  //$("div.timer_logpanel").text("Current UTC time: " + current_utc_time + " Expires in UTC time " + expiration_date + " LEFT: " + left); 
-	  //<END>
-	<%end%>
+	//<DEBUG>
+	//var left = (expiration_date - current_utc_time)-300;
+	//$("div.timer_logpanel").text("Current UTC time: " + current_utc_time + " Expires in UTC time " + expiration_date + " LEFT: " + left); 
+	//<END>
+      <%end%>
+
+      
     });
+
+    function runWorker(plugin_name, target) {
+      $(window).unbind('beforeunload');
+      $(window).bind('beforeunload', function() { 
+	console.info("Terminate running workers")
+	worker.terminate();
+      });
+
+      var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent(<%=form_authenticity_token.inspect%>)
+      var worker = new Worker("/javascripts/workers.js");
+      self.plugin_name = plugin_name;
+      self.target = plugin_name;
+
+      typeof(AUTH_TOKEN) != "undefined"? worker.postMessage({'plugin': plugin_name, 'token': AUTH_TOKEN}) : console.error("Invalid authenticity token for current session!");
+
+      worker.addEventListener('message', function(event) {
+	$('#'+target).html(event.data);
+	if(event.data == 'reload') {
+// 	  location.reload();
+	}
+      }, false);
+  
+      worker.onerror = function(error) {
+	console.error(error);
+      };
+    }
   </script>
 </head>
-  <body id="shell" onload="">
+  <body id="shell">
     <div id='browserWarning' style="display: none">
       <%= ( _("You are using an unsupported browser. Please switch to %sFireFox 3.5 or better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]") %
             ["<a href='http://getfirefox.com'>","</a>",
