@@ -21,6 +21,47 @@
 
 <% disabled = !@permissions[:write] %>
 
+
+<script type="text/javascript">
+  //WORKER CALL
+  var notify = function (test) {
+    console.log("params " + test);
+    var url = 'notifier';
+    var xhr = new XMLHttpRequest();
+
+    if(xhr) { 
+      xhr.open('get', url, true);
+      xhr.send();
+      
+      xhr.onreadystatechange = function() {
+	if(xhr.readyState == 4) {
+	  if (xhr.status == 200) {
+	    console.log("XHR HTTP: " + xhr.responseText);
+	  } 
+	}
+      }
+    }
+  }
+
+// setInterval(notify, 5000, 'test');
+
+//NOT FOR WORKER
+
+var pollFirewallCacheController = function() {
+  var jqxhr =  $.getJSON("/notifier?plugin=firewall&id=all", function(data, textStatus, jqXHR) {
+    console.log("getJSON: " + data);
+    $('#timeoutMessage').css('background', '#f6f6f6').css('color', '#800000').fadeIn().text('Attention: Cache is out-of-date, performing page refresh!').delay(5000).fadeOut();;
+  })
+}
+
+setInterval(pollFirewallCacheController, 10000);
+</script>
+
+<!-- WORKER FALLBACK -->
+<!-- <%= @response = periodically_call_remote :url => {:controller=>'notifier?plugin=firewall&id=all'}, :frequency => 6, :method=>:get %> -->
+
+<% logger.error("RESPONSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE #{@response.inspect}") %>
+
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
 <div class="plugin-content">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>

@@ -21,10 +21,6 @@
 <%= javascript_include_tag :defaults %>
 <% end %>
 
-
-
-
-
 <script type="text/javascript">
   $(document).ready( function() {
     $('#getPatches').click(function() { 
@@ -45,11 +41,8 @@
       xhr.onreadystatechange = function() {
 	if(xhr.readyState == 4) {
 	  if (xhr.status == 200) {
-	    console.log("state " + xhr.status);
-	  } else if (xhr.status == 304) {
-	    console.log("state " + xhr.status);
-
-	  }
+	    console.log("HTTP: " + xhr.responseText);
+	  } 
 	}
       }
     }
@@ -63,9 +56,9 @@
   <% javascript_tag do -%>
     $(document).ready( function() {
       if(typeof(Worker) != 'undefined') {
-	runWorker('status', 'status_status');
+	//runWorker('status', 'status_status');
       } else {    
-	<%= remote_function(:update => "status_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %>
+	//<%= remote_function(:update => "status_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %>
       }
     });
   <% end -%>
@@ -75,9 +68,9 @@
   <% javascript_tag do -%>
     $(document).ready( function() {
       if(typeof(Worker) !== "undefined") {
-	runWorker('patches', 'status_patches');
+	//runWorker('patches', 'status_patches');
       } else {    
-	<%= remote_function(:update => "status_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+	//<%= remote_function(:update => "status_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
       }
     });
  <% end -%>

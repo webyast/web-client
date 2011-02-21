@@ -109,6 +109,54 @@
       };
     }
   </script>
+
+  <!--  MOVE TO TOP AFTER TESTING  -->
+  <%= javascript_include_tag "jquery.activity" %>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      jQuery(function($){
+	$.activity.init({
+	  interval: 1000, //check every second if user acrive!
+	  inactive: 5000, //set to 20 seconds
+	  intervalFn: function(){
+	    console.log("User idle!" + top.location.href );
+// 	    console.log('Interval' + arguments.time + arguments.lastActive);
+// 	    console.log(typeof arguments)
+// 	    console.dir(arguments['time']);
+// 	    var tt = arguments;
+// 	    console.dir();
+	    for(var i=0; i < arguments.length; i++) {
+	      console.log("Arg " + i);
+	      console.dir(arguments[i]);
+	    }
+// 	    console.dir(0.arguments.time);
+// 	    console.dir([0].time);
+	  },
+	  inactiveFn: function(){
+	    console.log("User inactive!");
+	    $.activity.update();
+	    console.warn('Inactive', arguments);
+	  },
+	  isActive: function(){
+	    console.log("User active!");
+	  }
+	});
+
+	$(document).bind('click mousemove', function(){
+	  if ( $.activity.isActive() ) {
+// 	    console.log("User active!");
+	    $.activity.update();
+	  } else {
+	    console.log("Continue listening for user activity!");
+	    $.activity.reActivate();
+	  }
+	});
+      });
+    });
+  </script>
+
+
 </head>
   <body id="shell">
     <div id='browserWarning' style="display: none">
@@ -204,3 +252,4 @@
 
   </body>
 </html>
+

@@ -24,21 +24,17 @@ require "notifier"
 
 class NotifierController < ApplicationController
 #   before_filter :login_required
+  layout nil
+  #Remove layouts for all ajax calls
+#   layout proc{ |c| c.request.xhr? ? false : "application" }
+  
   
   def index
     #TODO: add params to post request!
-#     logger.error(" PARAMS #{params.inspect} *********")
+    logger.error(" PARAMS #{params.inspect} *********")
     
-#     @response = Notifier.find(:one, :params => { :plugin => "users", :id=>"" })
-    
-#     @response = Notifier.get("/notifier/status.xml", :params => { :plugin => :users, :id=>:all })
-#     Product.find(:all, :params => { :search => 'table' }) # GET products.xml?search=table
-    logger.error(" HTTP STATUS #{@response.inspect} *********")
-    @response = Notifier.post(:plugin=>:users, :all=>'')
-#     if @response.code.to_i == 304
-#       respond_to do |format|
-# 	format.js { render :text => 'ss', :status => 304 }
-#       end
-#     end
+    @response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
+    logger.error(" HTTP STATUS #{@response.code.to_i} *********")
+    render :nothing=>true, :text=>@response.code.to_i and return
   end
 end

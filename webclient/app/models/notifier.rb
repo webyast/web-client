@@ -37,9 +37,4 @@ require 'yast/service_resource'
 
 class Notifier < YaST::ServiceResource::Base
   self.site = "http://0.0.0.0:4984"
-#   self.element_name = "notifier"
-  #self.element_name = "notifiers"
-#   self.format = :json
-  
-  
 end
