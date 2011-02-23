@@ -18,36 +18,8 @@
 #++
 %>
 <% content_for :head do %>
-<%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :defaults %>
 <% end %>
-
-<script type="text/javascript">
-  $(document).ready( function() {
-    $('#getPatches').click(function() { 
-      notify();
-      
-    });
-  });
-
-  function notify() {
-    var url = 'notifier';
-    var xhr = new XMLHttpRequest();
-    var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent(<%=form_authenticity_token.inspect%>)
-
-    if(xhr) { 
-      xhr.open('get', url, true);
-      xhr.send(AUTH_TOKEN);
-      
-      xhr.onreadystatechange = function() {
-	if(xhr.readyState == 4) {
-	  if (xhr.status == 200) {
-	    console.log("HTTP: " + xhr.responseText);
-	  } 
-	}
-      }
-    }
-  }
-</script>
 
 <% display_patches = ControlPanelConfig.read 'display_patch_status', true %>
 <% display_status = ControlPanelConfig.read 'display_system_status', true %>
@@ -55,11 +27,7 @@
 <% if ActionController::Routing.possible_controllers.include?("status") && display_status %>
   <% javascript_tag do -%>
     $(document).ready( function() {
-      if(typeof(Worker) != 'undefined') {
-	//runWorker('status', 'status_status');
-      } else {    
-	//<%= remote_function(:update => "status_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %>
-      }
+      <%= remote_function(:update => "status_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %>
     });
   <% end -%>
 <% end %>
@@ -67,17 +35,12 @@
 <% if ActionController::Routing.possible_controllers.include?("patch_updates") && display_patches %>
   <% javascript_tag do -%>
     $(document).ready( function() {
-      if(typeof(Worker) !== "undefined") {
-	//runWorker('patches', 'status_patches');
-      } else {    
-	//<%= remote_function(:update => "status_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
-      }
+      <%= remote_function(:update => "status_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
     });
  <% end -%>
 <% end %>
 
   <div id="status">
-  <button id="getPatches">GET Patches</button>
   <h3><%= image_tag("/images/monitoring.png", :height=>"23", :width=>"23", :border=>"0") %> <%= _("Status") %></h3>
   <div class="plugin-content">
     <div id="status_patches">

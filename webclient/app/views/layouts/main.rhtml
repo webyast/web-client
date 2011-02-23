@@ -21,9 +21,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<!--[if IE]>
-  <%= stylesheet_link_tag "ie/ie_fixes" %>
-<![endif]--> 
+  <!--[if IE]>
+    <%= stylesheet_link_tag "ie/ie_fixes" %>
+  <![endif]--> 
    
   <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
@@ -46,16 +46,12 @@
 				"browser_fixes",
 				"jquery.quicksearch"
    %>
-    <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
-    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper"%>
+  <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
+  <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper"%>
 
-    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav" %>
-
-    <%= yield :before_script %>
-      <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
-      %>
-    <%= yield :head %>
+  <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+  <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav" %>
+  <%= javascript_include_tag "jquery.activity", "notifier" %>
   <% end %>
 
   <title><%= _("WebYaST") %></title>
@@ -63,100 +59,19 @@
   <script type="text/javascript">
     $(document).ready(function() {
       <% if session[:expires] !=nil && session[:expires].class == Time %>
-	  // get current time from back end and check if time zone set to UTC (client) bnc#631763
-	  var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
-	  <% if session[:expires].utc? == false %>
-	    //if time zone is not UTC convert it
-	    var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
-	    sessionTimeout(current_utc_time, expiration_date);
-	  <% else %>
-	    var expiration_date = "<%=session[:expires].to_time.to_i %>";
-	    sessionTimeout(current_utc_time, expiration_date);
-	  <% end %>
-
-	//<DEBUG>
-	//var left = (expiration_date - current_utc_time)-300;
-	//$("div.timer_logpanel").text("Current UTC time: " + current_utc_time + " Expires in UTC time " + expiration_date + " LEFT: " + left); 
-	//<END>
+	// get current time from back end and check if time zone set to UTC (client) bnc#631763
+	var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
+	<% if session[:expires].utc? == false %>
+	  //if time zone is not UTC convert it
+	  var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
+	  sessionTimeout(current_utc_time, expiration_date);
+	<% else %>
+	  var expiration_date = "<%=session[:expires].to_time.to_i %>";
+	  sessionTimeout(current_utc_time, expiration_date);
+	<% end %>
       <%end%>
-
-      
-    });
-
-    function runWorker(plugin_name, target) {
-      $(window).unbind('beforeunload');
-      $(window).bind('beforeunload', function() { 
-	console.info("Terminate running workers")
-	worker.terminate();
-      });
-
-      var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent(<%=form_authenticity_token.inspect%>)
-      var worker = new Worker("/javascripts/workers.js");
-      self.plugin_name = plugin_name;
-      self.target = plugin_name;
-
-      typeof(AUTH_TOKEN) != "undefined"? worker.postMessage({'plugin': plugin_name, 'token': AUTH_TOKEN}) : console.error("Invalid authenticity token for current session!");
-
-      worker.addEventListener('message', function(event) {
-	$('#'+target).html(event.data);
-	if(event.data == 'reload') {
-// 	  location.reload();
-	}
-      }, false);
-  
-      worker.onerror = function(error) {
-	console.error(error);
-      };
-    }
-  </script>
-
-  <!--  MOVE TO TOP AFTER TESTING  -->
-  <%= javascript_include_tag "jquery.activity" %>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      jQuery(function($){
-	$.activity.init({
-	  interval: 1000, //check every second if user acrive!
-	  inactive: 5000, //set to 20 seconds
-	  intervalFn: function(){
-	    console.log("User idle!" + top.location.href );
-// 	    console.log('Interval' + arguments.time + arguments.lastActive);
-// 	    console.log(typeof arguments)
-// 	    console.dir(arguments['time']);
-// 	    var tt = arguments;
-// 	    console.dir();
-	    for(var i=0; i < arguments.length; i++) {
-	      console.log("Arg " + i);
-	      console.dir(arguments[i]);
-	    }
-// 	    console.dir(0.arguments.time);
-// 	    console.dir([0].time);
-	  },
-	  inactiveFn: function(){
-	    console.log("User inactive!");
-	    $.activity.update();
-	    console.warn('Inactive', arguments);
-	  },
-	  isActive: function(){
-	    console.log("User active!");
-	  }
-	});
-
-	$(document).bind('click mousemove', function(){
-	  if ( $.activity.isActive() ) {
-// 	    console.log("User active!");
-	    $.activity.update();
-	  } else {
-	    console.log("Continue listening for user activity!");
-	    $.activity.reActivate();
-	  }
-	});
-      });
     });
   </script>
-
-
 </head>
   <body id="shell">
     <div id='browserWarning' style="display: none">
