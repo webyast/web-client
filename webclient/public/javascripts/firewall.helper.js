@@ -143,7 +143,7 @@ function enableFirewallForm() {
   //Description Tooltip
   /*gravity: $.fn.tipsy.autoNS,*/ 
   $('span.firewall-service').tipsy({gravity: 's', delayIn: 500 })
-  $('span.firewall-service').removeClass('firewall_disabled');
+  $('span.firewall-service').removeClass('firewall_disabled').addClass('firewallForm_enabled');
 
   //Change color on hover
   $('#allowed_services span.firewall-service').hover(
@@ -184,7 +184,7 @@ function enableFirewallForm() {
 
 function disableFirewallForm() {
   $elements = $('span.firewall-service');
-  $elements.addClass('firewall_disabled');
+  $elements.removeClass('firewallForm_enabled').addClass('firewall_disabled');
   $elements.unbind('click').unbind('mouseenter mouseleave');
 }
 
