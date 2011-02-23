@@ -23,16 +23,9 @@
 require "notifier"
 
 class NotifierController < ApplicationController
-#   before_filter :login_required
   layout nil
-  #Remove layouts for all ajax calls
-#   layout proc{ |c| c.request.xhr? ? false : "application" }
-  
   
   def index
-    #TODO: add params to post request!
-    logger.error(" PARAMS #{params.inspect} *********")
-    
     @response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
     logger.error(" HTTP STATUS #{@response.code.to_i} *********")
     render :nothing=>true, :text=>@response.code.to_i and return

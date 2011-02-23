@@ -1,20 +1,20 @@
 function XHRrequest(module, id, auth_token) {
   var xhr = new XMLHttpRequest();
-  data='params='+module+'id='+id;
-  self.data = data;
-  self.auth_token = auth_token;
+  self.module = module;
+  self.id = id;
+  
+  url = '/notifier?plugin='+self.module+'&id='+self.id;
+
   if(xhr) {    
-    xhr.open('get', '/notifier');
+    xhr.open('get', url);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//     xhr.send();
-    xhr.send(auth_token);
+    xhr.send();
     
     xhr.onreadystatechange = function() {
-      
       if(xhr.readyState == 4) {
 	if (xhr.status == 200) {
 	  postMessage(xhr.responseText);
-	  setTimeout(XHRrequest, 3000, self.data);
+	  setTimeout(XHRrequest, 3000, self.module, self.id);
 	} else {
 	  postMessage(xhr.readyState);
 	  postMessage(xhr.status);
