@@ -24,10 +24,11 @@
 <%= javascript_include_tag "jquery.activity", "notifier" %>
 <script type="text/javascript">
   var worker, intervalID;
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent(<%=form_authenticity_token.inspect%>)
 //   worker = Notifier({'module':'firewall', 'id':'all'});
 //   terminateOnReload(worker);
-//   var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent(<%=form_authenticity_token.inspect%>)
-  killWorkerOnReload(Notifier({'module':'firewall', 'id':'all'}));
+  
+  killWorkerOnReload(Notifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}));
 
   jQuery(function($){
     $.activity.init({
@@ -48,7 +49,8 @@
 	$.activity.update();
       } else {
 	console.log("User active start worker and reactivate activity check!");
-	Notifier({'module':'firewall', 'id':'all'});
+// 	Notifier({'module':'firewall', 'id':'1', 'AUTH_TOKEN':AUTH_TOKEN});
+	Notifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN});
 	$.activity.reActivate();
       }
     });

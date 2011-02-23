@@ -26,7 +26,12 @@ class NotifierController < ApplicationController
   layout nil
   
   def index
-    @response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
+    if params[:id]
+      @response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
+    else 
+      @response = Notifier.post(:status, :plugin => params[:plugin])
+    end
+    
     logger.error(" HTTP STATUS #{@response.code.to_i} *********")
     render :nothing=>true, :text=>@response.code.to_i and return
   end

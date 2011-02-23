@@ -12,6 +12,14 @@ var Notifier = function(params) {
   } else {
     console.info("DEBUG: AJAX call in WORKER THREAD");
     worker = new Worker("/javascripts/notifier.workers.js");
+    
+    console.log(params.module)
+    if(typeof id === 'undefined') {
+      console.log("UNDEFINED")
+      console.log(params.id)
+    }
+    console.log(params.AUTH_TOKEN)
+    
     worker.postMessage(params);
     
     worker.onmessage = function(event) {

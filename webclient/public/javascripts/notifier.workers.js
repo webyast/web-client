@@ -1,25 +1,34 @@
 function XHRrequest(module, id, auth_token) {
   var xhr = new XMLHttpRequest();
-  self.module = module;
-  self.id = id;
   
-  url = '/notifier?plugin='+self.module+'&id='+self.id;
-
+  self.module = module;
+  self.auth_token = auth_token;
+  
+  if(typeof id !== 'undefined') { 
+    self.id = id;
+    var url = '/notifier?plugin='+self.module+'&id='+self.id; 
+  } else {
+    var url = '/notifier?plugin='+self.module;
+  }
+  
   if(xhr) {    
     xhr.open('get', url);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send();
+    xhr.send(self.auth_token);
     
     xhr.onreadystatechange = function() {
       if(xhr.readyState == 4) {
 	if (xhr.status == 200) {
 	  postMessage(xhr.responseText);
-	  setTimeout(XHRrequest, 3000, self.module, self.id);
+	  if(self.id !='#') {
+	    setTimeout(XHRrequest, 3000, self.module, self.id, self.auth_token);
+	  } else {
+	    setTimeout(XHRrequest, 3000, self.module, self.auth_token);
+	  }
 	} else {
 	  postMessage(xhr.readyState);
 	  postMessage(xhr.status);
 	  self.close();
-	  self.terminate();
 	}
       }
     }
@@ -28,5 +37,5 @@ function XHRrequest(module, id, auth_token) {
 
 onmessage = function(event) {
   var target = event.data;
-  XHRrequest(target.module, target.id);
+  XHRrequest(target.module, target.id, target.AUTH_TOKEN);
 }
