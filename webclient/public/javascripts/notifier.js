@@ -1,7 +1,33 @@
-var AJAXcall = function(params) {
-  $.getJSON("/notifier?plugin="+params.module+"&id="+params.id, function(data, textStatus, jqXHR) {
-    $('#timeoutMessage').css('background', '#f6f6f6').css('color', '#800000').fadeIn().text('Attention: Cache is out-of-date, performing page refresh!').delay(5000).fadeOut();;
-  })
+function startNotifier(params, interval, inactive) {
+  killWorkerOnReload(Notifier(params));
+   
+  $(document).ready(function() {
+    jQuery(function($){
+      $.activity.init({
+  	interval: interval, 
+  	inactive: inactive, 
+	
+	intervalFn: function(){
+	  console.log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
+	},
+	inactiveFn: function(){
+	  console.warn("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
+	  killWorker(worker);
+	  $.activity.update();
+	}
+      });
+      
+    $(document).bind('click mousemove', function(){
+	if($.activity.isActive()) {
+	  $.activity.update();
+	} else {
+	  console.log("User active start worker and reactivate activity check!");
+	  Notifier(params);
+	  $.activity.reActivate();
+	}
+      });
+    });
+  });
 }
 
 // var Notifier = function(worker, params) {
@@ -13,18 +39,24 @@ var Notifier = function(params) {
     console.info("DEBUG: AJAX call in WORKER THREAD");
     worker = new Worker("/javascripts/notifier.workers.js");
     
-    console.log(params.module)
-    if(typeof id === 'undefined') {
-      console.log("UNDEFINED")
-      console.log(params.id)
-    }
-    console.log(params.AUTH_TOKEN)
-    
     worker.postMessage(params);
     
     worker.onmessage = function(event) {
-      if(event.data == 'reload') { location.reload(); }
-      if(event.data == '304') { console.log(event.data) }
+      switch(event.data){
+	case '200':
+	  console.log("RELOAD is NEEDED status: " + event.data); 
+	  disableFormOnSubmit('<img src="/images/warning-red.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	  self.location = window.location.href;
+	  break
+
+	case '304':
+	  console.log("CACHE is UP-TO-DATE status: " + event.data);
+	  break
+	  
+	default : 
+	  console.log("ERROR: unknown http status " + status);
+	  break
+      }
     };
 
     worker.onerror = function(error) {
@@ -35,16 +67,41 @@ var Notifier = function(params) {
   }
 }
 
+var AJAXcall = function(params) {
+  $.getJSON("/notifier?plugin="+params.module+"&id="+params.id, function(data, status, jqXHR) {
+    data.NaN? data = data : data = data.toString();
+    switch(data){
+      case '200':
+	console.log("RELOAD is NEEDED status: " + data); 
+	disableFormOnSubmit('<img src="/images/warning-red.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	self.location = window.location.href;
+	break
+
+      case '304':
+	console.log("CACHE is UP-TO-DATE status: " + data);
+	break
+	
+      default : 
+	console.log("ERROR: unknown http status " + data + typeof(data));
+	break
+    }
+  })
+}
+
 var killWorker = function(worker) {
-  console.info("Terminate all running workers!");
-  worker.terminate();
+  if(typeof(Worker) != 'undefined') {
+    console.info("Terminate all running workers!");
+    worker.terminate();
+  }
 }
 
 var killWorkerOnReload = function(worker, intervalID) {
   $(document).ready(function() {
     window.onbeforeunload = function(){
-      console.info("Terminate all running workers!");
-      worker.terminate();
+      if(typeof(Worker) != 'undefined') {
+	console.info("Terminate all running workers!");
+	worker.terminate();
+      }
     }
   });
 }

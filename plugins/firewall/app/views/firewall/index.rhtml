@@ -23,41 +23,8 @@
 
 <%= javascript_include_tag "jquery.activity", "notifier" %>
 <script type="text/javascript">
-  var worker, intervalID;
-  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent(<%=form_authenticity_token.inspect%>)
-//   worker = Notifier({'module':'firewall', 'id':'all'});
-//   terminateOnReload(worker);
-  
-  killWorkerOnReload(Notifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}));
-
-  jQuery(function($){
-    $.activity.init({
-      interval: 1000, //check every second if user acrive!
-      inactive: 5000, //set to 20 seconds
-      intervalFn: function(){
-	console.log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
-      },
-      inactiveFn: function(){
-	console.warn("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
-	killWorker(worker);
-	$.activity.update();
-      }
-    });
-    
-   $(document).bind('click mousemove', function(){
-      if($.activity.isActive()) {
-	$.activity.update();
-      } else {
-	console.log("User active start worker and reactivate activity check!");
-// 	Notifier({'module':'firewall', 'id':'1', 'AUTH_TOKEN':AUTH_TOKEN});
-	Notifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN});
-	$.activity.reActivate();
-      }
-    });
-  });
-
-  
-
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+  startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 6000);
 </script>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>

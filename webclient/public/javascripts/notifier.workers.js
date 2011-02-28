@@ -26,7 +26,6 @@ function XHRrequest(module, id, auth_token) {
 	    setTimeout(XHRrequest, 3000, self.module, self.auth_token);
 	  }
 	} else {
-	  postMessage(xhr.readyState);
 	  postMessage(xhr.status);
 	  self.close();
 	}

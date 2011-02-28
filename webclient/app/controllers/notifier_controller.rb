@@ -32,7 +32,7 @@ class NotifierController < ApplicationController
       @response = Notifier.post(:status, :plugin => params[:plugin])
     end
     
-    logger.error(" HTTP STATUS #{@response.code.to_i} *********")
-    render :nothing=>true, :text=>@response.code.to_i and return
+    logger.error(" HTTP STATUS #{@response.code.to_s} *********")
+    render :nothing=>true, :text=>@response.code.to_s and return
   end
 end
