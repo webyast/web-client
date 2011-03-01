@@ -48,6 +48,11 @@ module LangHelper
     language
   end
 
+  def language_code(name)
+    language = LANGUAGES.index(name)
+    language.strip.split('_')[1]? language.split('_')[1] : language
+  end
+    
   def current_locale_name
     # check full locale at first (language + country)
     if LANGUAGES.has_key?(locale.to_s)
