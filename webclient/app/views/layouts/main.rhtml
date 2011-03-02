@@ -25,7 +25,7 @@
     <%= stylesheet_link_tag "ie/ie_fixes" %>
   <![endif]--> 
    
-  <% if JSMIN == true %>
+  <% if JSMIN == false %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
@@ -89,35 +89,47 @@
     </noscript>
   
     <div id="header">
-      <%
-      appliance_label	= ControlPanelConfig.read 'appliance_label', _("My Appliance")
-      appliance_label	= appliance_label.strip
-      if appliance_label =~ /^_\(\"/ && appliance_label =~ /\"\)$/
-        appliance_label = _(appliance_label[3..appliance_label.length-3]) #try to translate it
-      end
-      %>
-      <h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= appliance_label %></h1>
-      <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :alt =>"webyast" ),"/")  %>
+      <% appliance_label = ControlPanelConfig.read 'appliance_label', _("My Appliance") %>
+      <% appliance_label = appliance_label.strip %>
+      <% if appliance_label =~ /^_\(\"/ && appliance_label =~ /\"\)$/ %>
+	<% appliance_label = _(appliance_label[3..appliance_label.length-3]) %>
+      <% end %>
 
-      <div id="login-wrapper">
-        <% host = Host.find(session[:host]) rescue nil
-          user = session[:user]
-          if host.blank? || user.blank? -%>
-          <ul><li><%=_("Language:")%> <strong><%= link_to_remote(current_locale_name,
-                  :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %></strong></li></ul>
-        <% else -%>
-          <ul>
-          <li><%=_("Language:")%> <strong><%= link_to_remote(current_locale_name,
-                  :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %></strong></li>
-		<li><%=_("Connected host:")%> <strong title="<%= h "#{host.description} (#{host.url})" -%>"><%= h host.name -%></strong></li>
-            <li><%=_("User:")%> <strong><%= h user -%></strong></li>
-          </ul>
-          <ul class='header-links'>
-            <li><em><%= link_to _("Control panel"), '/controlpanel'%></em></li>
-            <li><em><%= link_to _("Logout"), '/logout' %></em></li>
-          </ul>
-        <% end -%>
-      </div>
+      <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :alt =>"webyast"),"/" )%>
+      <% host = Host.find(session[:host]) rescue nil %>
+      <% user = session[:user] %>
+
+      <% if host.blank? || user.blank? %>
+	<span id="userbar">
+	  <span class="userbar-icon" style=" text-align:center;">
+	    <span class="language-icon">
+	      <%= language_code(current_locale_name).upcase  %>
+	    </span>
+	    <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
+	  </span>
+	</span>
+      <% else -%>
+	
+	<span id="userbar">
+	  <span class="userbar-icon home-icon">
+	    <%= link_to _("Home"), '/controlpanel'%>
+	  </span>
+	  <span class="userbar-icon user-icon">
+	    <%= h user -%>
+	  </span>
+	  <span class="userbar-icon" style=" text-align:center;">
+	    <span class="language-icon">
+	      <%= language_code(current_locale_name).upcase  %>
+	    </span>
+	    <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
+	  </span>
+	  <span class="userbar-icon logout-icon">
+	    <%= link_to _("Logout"), '/logout' %>
+	  </span>
+	</span>
+      <% end -%>
+
+      <h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= appliance_label %></h1>
     </div>
 
     <div id="timeoutMessage">
