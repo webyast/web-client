@@ -45,7 +45,8 @@ var Notifier = function(params) {
       switch(event.data){
 	case '200':
 	  console.log("RELOAD is NEEDED status: " + event.data); 
-	  disableFormOnSubmit('<img src="/images/warning-red.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	  disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	  
 	  self.location = window.location.href;
 	  break
 
@@ -73,7 +74,7 @@ var AJAXcall = function(params) {
     switch(data){
       case '200':
 	console.log("RELOAD is NEEDED status: " + data); 
-	disableFormOnSubmit('<img src="/images/warning-red.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
 	self.location = window.location.href;
 	break
 

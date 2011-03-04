@@ -96,10 +96,10 @@
 
     <div id="unsavedChangesDialog"> 
       <div>
-	<img src='/images/warning-red.png'/>
+	<img src='/images/warning-big.png'/>
 	<label>Do you want to save your changes?</label>
       </div>
-	<hr style="border: 0px; width:93%; border-top:solid 1px #ccc; border-bottom:transparent;">
+      <hr style="border: 0px; width:93%; border-top:solid 1px #ccc; border-bottom:transparent;">
       <div>
 	<input type="button" id="yes" class="unsaved_changes" value="Yes" /> 
 	<input type="button" id="no" class="unsaved_changes" value="No" /> 
@@ -108,7 +108,7 @@
     </div> 
 
     <div class="nav-buttons">
-	<%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
+      <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
     </div>
     <% end %>
   </div>
