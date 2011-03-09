@@ -21,12 +21,6 @@
 
 <% disabled = !@permissions[:write] %>
 
-<%= javascript_include_tag "jquery.activity", "notifier" %>
-<script type="text/javascript">
-  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
-  startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 6000);
-</script>
-
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
 <div class="plugin-content">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
@@ -60,6 +54,7 @@
       <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
       <a id="off" class="btn rightBtn selected">OFF</a>
     <% end %>
+    <span id="questionMark">?</span>
   </div>
 
   <div class="clearfix"></div>
@@ -114,7 +109,9 @@
   </div>
 </div>
 
-<% javascript_tag do -%>
+<%= javascript_include_tag "jquery.activity", "notifier" %>
+<!-- <#%# javascript_tag do -#%#> -->
+<script type="text/javascript">
   $(document).ready(function(){
     $("#blocked_services span").filter( function(index) {
       return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
@@ -152,5 +149,9 @@
     disableFormOnSubmit(message);  
     return true;
   }
-<% end -%>
+
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+  startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
+// <#%# end -#%#>
+</script>
 

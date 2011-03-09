@@ -34,7 +34,7 @@ function startNotifier(params, interval, inactive) {
 var Notifier = function(params) {
   if(typeof(Worker) == 'undefined') {
     console.info("DEBUG: AJAX call in MAIN THREAD");
-    setInterval(AJAXcall, 3000, params);
+    setInterval(AJAXcall, 5000, params);
   } else {
     console.info("DEBUG: AJAX call in WORKER THREAD");
     worker = new Worker("/javascripts/notifier.workers.js");
@@ -45,7 +45,7 @@ var Notifier = function(params) {
       switch(event.data){
 	case '200':
 	  console.log("RELOAD is NEEDED status: " + event.data); 
-	  disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	  disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px; color:#555> Cache is out-of-date</span>');  
 	  
 	  self.location = window.location.href;
 	  break
@@ -74,7 +74,7 @@ var AJAXcall = function(params) {
     switch(data){
       case '200':
 	console.log("RELOAD is NEEDED status: " + data); 
-	disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px;> Cache is out-of-date</span>');  
+	disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px; color:#555> Cache is out-of-date</span>');  
 	self.location = window.location.href;
 	break
 
@@ -90,16 +90,19 @@ var AJAXcall = function(params) {
 }
 
 var killWorker = function(worker) {
-  if(typeof(Worker) != 'undefined') {
+  if(worker && typeof(Worker) != 'undefined') {
     console.info("Terminate all running workers!");
     worker.terminate();
   }
 }
 
 var killWorkerOnReload = function(worker, intervalID) {
-  $(document).ready(function() {
+//   $(document).ready(function() {
+  $(function(){
     window.onbeforeunload = function(){
-      if(typeof(Worker) != 'undefined') {
+      console.log("Worker")
+      console.log(worker)
+      if(worker && typeof(Worker) != 'undefined') {
 	console.info("Terminate all running workers!");
 	worker.terminate();
       }

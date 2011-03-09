@@ -19,6 +19,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :hosts
   map.resources :notifier
+  map.resources :onlinehelp
   
   map.connect '/validate_uri', :controller => 'hosts', :action => 'validate_uri'
   

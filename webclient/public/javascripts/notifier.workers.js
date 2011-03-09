@@ -21,9 +21,9 @@ function XHRrequest(module, id, auth_token) {
 	if (xhr.status == 200) {
 	  postMessage(xhr.responseText);
 	  if(self.id !='#') {
-	    setTimeout(XHRrequest, 3000, self.module, self.id, self.auth_token);
+	    setTimeout(XHRrequest, 5000, self.module, self.id, self.auth_token);
 	  } else {
-	    setTimeout(XHRrequest, 3000, self.module, self.auth_token);
+	    setTimeout(XHRrequest, 5000, self.module, self.auth_token);
 	  }
 	} else {
 	  postMessage(xhr.status);

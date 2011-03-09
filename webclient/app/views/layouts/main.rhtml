@@ -25,7 +25,7 @@
     <%= stylesheet_link_tag "ie/ie_fixes" %>
   <![endif]--> 
    
-  <% if JSMIN == false %>
+  <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
@@ -47,17 +47,20 @@
 				"jquery.quicksearch"
    %>
   <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
-  <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper"%>
+  <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper", "slidernav", "online-help" %>
+  
 
   <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-  <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav" %>
-  <%= javascript_include_tag "jquery.activity", "notifier" %>
+  <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "online-help" %>
+  
   <% end %>
 
   <title><%= _("WebYaST") %></title>
  
   <script type="text/javascript">
     $(document).ready(function() {
+      $('div.overview a.controlpanel-shortcut').tipsy({gravity: 'n', delayIn: 800, opacity: 0.8 });
+
       <% if session[:expires] !=nil && session[:expires].class == Time %>
 	// get current time from back end and check if time zone set to UTC (client) bnc#631763
 	var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";

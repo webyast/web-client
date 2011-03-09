@@ -302,32 +302,30 @@ table.patches td {
 
 /* USERS & GROUPS */
 #search-userbar, #softwarebar, #systembar {
-  padding:3px 3px 2px 3px;
-  margin-left:12px;
-  margin-top:12px;
-  margin-bottom:5px;
-  float: left;
-  border:1px solid #ccc;
+  border:1px solid #bbb;
   border-radius: 3px;
   -moz-border-radius: 3px;
   -khtml-border-radius: 3px;
-  -webkit-border-radius:3px; 
-  width:928px;
+  -webkit-border-radius:3px;
+  height:23px;
   background:url('../images/gradient40-60.png') repeat-x #f5f5f5; 
+  margin: 10px 1em 5px 1em;
+  padding: 3px;
 }
 
 #search-userbar label, #softwarebar label, #systembar label {
-  font-weight:bold; 
+  font-weight:bold; /*margin-top:-1px;*/
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-#home-container, #search-container, #link-container { float:left; padding:0; }
+#home-container, #search-container, #link-container { float:left;   }
 #filter-container {float:right; padding:0;}
 
 #home { 
   width:18px; 	
   height:18px; 
   padding:2px; 
+  margin-top:-1px;
   vertical-align:middle;
 
   border-radius: 50%;
@@ -345,24 +343,39 @@ table.patches td {
 #home a {text-decoration:none; border:none;}
 #home_image {width:18px; height:18px; }
 
-.action_links {
-  float:left;
-  margin-left:5px; 
-  border:1px solid black;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);
-  padding:2px 5px;
+
+.action_links label { float:left; height:23px; display:inline-block; margin:3px 0px 3px 3px; color:#999;}
+.action_links a { 
+  float:left; 
+  vertical-align:50%; 
+  font-size: 12px;
   border:1px solid #999; 
+  padding:3px 5px; 
+  margin-left:5px;  
   border-radius: 3px;
   -moz-border-radius: 3px;
   -khtml-border-radius: 3px;
   -webkit-border-radius:3px;
-  
-  background:url('../images/gradientx40.png') repeat-x #eee;
+   color: #333;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+   float:left;
 }
 
-.action_links label { float:left; margin:0px 5px; color:#999;}
-.action_links a {float:left; margin-top:2px; vertical-align:middle; border:0px; }
-.action_links a:hover {color:#1E90FF; border:0px;}
+.action_links a:hover {
+  background:url('/images/gradientx40.png') repeat-x #3494f2;
+  color: #f2f2f2;
+  text-shadow: 0px -1px 1px #222222; 
+ }
+ 
+.action_links a:active { 
+  color:#fff; 
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2); 
+  background: url("../images/gradientx60.png") repeat-x #2966FF; 
+}
+
+/*.action_links label {
+  line-height:  height:23px;
+}*/
 
 .icons {float:left; width:16px; height:16px; margin-right:5px; vertical-align:text-bottom;}
 .ui-accordion .ui-accordion-header .ui-icon { position:inherit; margin-top:0px; float:left;}
@@ -660,10 +673,10 @@ span.roles_warning {
   -webkit-border-radius:3px;
   -moz-box-shadow:0 0 5px #ccc;
   -webkit-box-shadow:0 0 5px #888888;
-  color:#333;
+  color:#444;
   font-size:11px;
   font-weight:bold;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 1); 
+  text-shadow: 0 1px 0px rgba(255, 255, 255, 1); 
   vertical-align:middle;
   line-height:22px;
 }
