@@ -1,7 +1,7 @@
 function startNotifier(params, interval, inactive) {
   killWorkerOnReload(Notifier(params));
    
-  $(document).ready(function() {
+  window.onload = function(){
     jQuery(function($){
       $.activity.init({
   	interval: interval, 
@@ -26,19 +26,18 @@ function startNotifier(params, interval, inactive) {
 	  $.activity.reActivate();
 	}
       });
-    });
-  });
+    }); 
+  }
 }
 
 // var Notifier = function(worker, params) {
 var Notifier = function(params) {
   if(typeof(Worker) == 'undefined') {
-    console.info("DEBUG: AJAX call in MAIN THREAD");
+//     console.info("DEBUG: AJAX call in MAIN THREAD");
     setInterval(AJAXcall, 5000, params);
   } else {
-    console.info("DEBUG: AJAX call in WORKER THREAD");
+//     console.info("DEBUG: AJAX call in WORKER THREAD");
     worker = new Worker("/javascripts/notifier.workers.js");
-    
     worker.postMessage(params);
     
     worker.onmessage = function(event) {
