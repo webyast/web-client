@@ -93,7 +93,7 @@
     </noscript>
   
     <div id="header">
-      <% appliance_label = ControlPanelConfig.read 'appliance_label', _("My Appliance") %>
+      <% appliance_label = ControlPanelConfig.read 'appliance_label', _("WebYaST caching") %>
       <% appliance_label = appliance_label.strip %>
       <% if appliance_label =~ /^_\(\"/ && appliance_label =~ /\"\)$/ %>
 	<% appliance_label = _(appliance_label[3..appliance_label.length-3]) %>
