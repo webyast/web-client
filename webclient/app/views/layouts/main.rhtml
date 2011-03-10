@@ -115,20 +115,22 @@
       <% else -%>
 	
 	<span id="userbar">
-	  <span class="userbar-icon home-icon">
-	    <%= link_to _("Home"), '/controlpanel'%>
-	  </span>
-	  <span class="userbar-icon user-icon">
-	    <%= h user -%>
-	  </span>
-	  <span class="userbar-icon" style=" text-align:center;">
-	    <span class="language-icon">
-	      <%= language_code(current_locale_name).upcase  %>
+	  <span id="userbar-container">
+	    <span class="userbar-icon home-icon">
+	      <%= link_to _("Home"), '/controlpanel'%>
 	    </span>
-	    <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
-	  </span>
-	  <span class="userbar-icon logout-icon">
-	    <%= link_to _("Logout"), '/logout' %>
+	    <span class="userbar-icon user-icon">
+	      <%=link_to(user, :controller => :users) %>
+	    </span> 
+	    <span class="userbar-icon" style=" text-align:center;">
+	      <span class="language-icon">
+		<%= language_code(current_locale_name).upcase  %>
+	      </span>
+	      <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
+	    </span>
+	    <span class="userbar-icon logout-icon">
+	      <%= link_to _("Logout"), '/logout' %>
+	    </span>
 	  </span>
 	</span>
       <% end -%>

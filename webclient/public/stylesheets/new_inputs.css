@@ -802,12 +802,17 @@ input.computed { opacity: 0.5; }
 /* END */
 
 /* CONTROL PANEL USERBAR ICONS */
-#userbar { color:#777; line-height: 45px; position: absolute; right: 0; z-index: 100; margin-right:0px; }
-#userbar span.userbar-icon { display: inline-block; font-weight:bold; font-size:11px; cursor:default; margin-right:10px;  z-index:2;}
+#userbar a { border-bottom: 1px dotted #555; color:#444; text-shadow: 0 1px 1px #e5e5e5; }
+#userbar a:hover { border-bottom: 1px solid #555; color:#fff; text-shadow: 0 -1px 0px #444; }
+
+#userbar { line-height: 45px; position: absolute; right: 0; z-index: 100; margin: 0 5px; }
+#userbar-container { background-color:#aaa; padding:2px 0px 7px 3px; border:1px solid #a0a0a0; -moz-border-radius:2px; -webkit-border-radius:2px; -moz-box-shadow:-1px -1px 1px #666; -webkit-box-shadow:-1px -1px 1px #888; }
+
+#userbar span.userbar-icon { display: inline-block; color:#444; font-weight:bold; font-size:11px; cursor:default; margin-right:10px;  z-index:2;}
 #userbar span.userbar-icon:before { vertical-align:-50%; line-height:10px; padding-right:1px; }
 #userbar span.home-icon:before { content:url(../images/control-panel-home.png); }
 #userbar span.user-icon:before { content:url(../images/control-panel-user.png); }
-#userbar span.language-icon {border:1px solid #8a8a8a; color:#eee; -moz-border-radius:3px; -webkit-border-radius:3px; padding:1px 2px 1px 6px; text-align:center; margin-right:4px; background-color:#999; text-shadow: 0 -1px 1px #222; }
+#userbar span.language-icon {border:1px solid #888; color:#e9e9e9; -moz-border-radius:2px; -webkit-border-radius:2px; padding:2px 3px 2px 6px; text-align:center; margin-right:4px; background-color:#7f7f7f; text-shadow: 0 -1px 1px #444; }
 #userbar span.logout-icon:before { content:url(../images/control-panel-logout.png); }
 
 span.plugin-shortcut { display:inline-block; background: url(../icons/plugin-icons.png) no-repeat top left;  width: 48px; height: 48px; }
