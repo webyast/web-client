@@ -175,6 +175,7 @@ input[type="radio"], input[type="checkbox"] { border: none; background: none; ve
   z-index:3000;
 }
 
+#updates_panel { margin:10px 1em; padding:0px; float:left; clear:both; }
 #updates_panel button[type="submit"] {
   display:block;
   float:left;
@@ -272,9 +273,8 @@ input[type="radio"], input[type="checkbox"] { border: none; background: none; ve
 .patches { width:100%; }
 .patches a {border:0px;}
 
-#patchesd {
-  background-color:#eee;
-}
+#patchesd { background-color:#eee; }
+#patchesd h3 { font-weight:22px; text-align:center; margin:4px 0px 0px 0px; padding:0px; color:#555; text-shadow: 0px 2px 0px #fff; }
 
 #first_row {
   color:#333;
@@ -283,14 +283,32 @@ input[type="radio"], input[type="checkbox"] { border: none; background: none; ve
   text-align:middle;
 }
 
+
+th.first span {
+  display:inline-block; 
+  margin:0px 5px 0px 3px; 
+  -moz-box-shadow: inset 0px 0px 25px #246b8f; 
+  -webkit-box-shadow: inset 0px 0px 25px #246b8f; 
+  -webkit-border-radius:3px; 
+  -moz-border-radius:3px; 
+  width:17px; 
+  height:17px; 
+  padding:1px; 
+  line-height:16px; 
+  border:1px solid  #DFDFDF;
+}
+
+th.first input[type="checkbox"] { margin:2px 0 0 2px;  display:inline-block; border:none; background-color:#eee; }
+
 table.patches {
+  text-align:left;
   margin:0px;
   border-spacing: 0;
   border-collapse: collapse;
   background-color: white;
 }
 
-table.patches th { padding-bottom:5px; text-align:middle;}
+table.patches th { padding-bottom:5px; }
 
 table.patches td {
   margin: 0;
@@ -320,6 +338,7 @@ table.patches td {
 
 #home-container, #search-container, #link-container { float:left;   }
 #filter-container {float:right; padding:0;}
+#filter { line-height:24px; height:24px; }
 
 #home { 
   width:18px; 	
@@ -349,6 +368,7 @@ table.patches td {
   float:left; 
   vertical-align:50%; 
   font-size: 12px;
+  line-height:16px;
   border:1px solid #999; 
   padding:3px 5px; 
   margin-left:5px;  
@@ -362,7 +382,11 @@ table.patches td {
 }
 
 .action_links a:hover {
-  background:url('/images/gradientx40.png') repeat-x #3494f2;
+/*   background:url('/images/gradientx40.png') repeat-x #3494f2; */
+  cursor:pointer;
+  background: #888;
+  background: -moz-linear-gradient(center top , #bbb 10%, #aaa 30%, #999 51%,  #888 100%) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.10, #bbb), color-stop(0.30, #aaa), color-stop(0.51, #999), color-stop(1.00, #888));
   color: #f2f2f2;
   text-shadow: 0px -1px 1px #222222; 
  }
@@ -370,14 +394,12 @@ table.patches td {
 .action_links a:active { 
   color:#fff; 
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2); 
-  background: url("../images/gradientx60.png") repeat-x #2966FF; 
+  background: #0D72C0;
+  background: -moz-linear-gradient(center top , #2EA1FF 10%, #1E90FF 30%, #1E90FF 50%, #0D72C0 100%) repeat scroll 0 0 transparent!important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.10, #2EA1FF), color-stop(0.30, #1E90FF), color-stop(0.51, #1E90FF), color-stop(1.00, #0D72C0))!important;
 }
 
-/*.action_links label {
-  line-height:  height:23px;
-}*/
-
-.icons {float:left; width:16px; height:16px; margin-right:5px; vertical-align:text-bottom;}
+.icons {float:left; width:17px; height:17px; margin-top:-1px; margin-right:5px; vertical-align:baseline;}
 .ui-accordion .ui-accordion-header .ui-icon { position:inherit; margin-top:0px; float:left;}
 
 /* FIREWALL */
@@ -780,8 +802,8 @@ input.computed { opacity: 0.5; }
 /* END */
 
 /* CONTROL PANEL USERBAR ICONS */
-#userbar { color:#777; line-height: 45px; position: absolute; right: 0; z-index: 2; margin-right:0px; }
-#userbar span.userbar-icon { display: inline-block; font-weight:bold; font-size:11px; cursor:default; margin-right:10px;}
+#userbar { color:#777; line-height: 45px; position: absolute; right: 0; z-index: 100; margin-right:0px; }
+#userbar span.userbar-icon { display: inline-block; font-weight:bold; font-size:11px; cursor:default; margin-right:10px;  z-index:2;}
 #userbar span.userbar-icon:before { vertical-align:-50%; line-height:10px; padding-right:1px; }
 #userbar span.home-icon:before { content:url(../images/control-panel-home.png); }
 #userbar span.user-icon:before { content:url(../images/control-panel-user.png); }

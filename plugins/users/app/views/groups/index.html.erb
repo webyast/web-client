@@ -124,7 +124,7 @@
    <div id="link-container">
     <div id="action_links" class="action_links">	
       <% if @permissions[:groupadd] %>
-	<%=link_to image_tag("/icons/yast-groups_16.png", :class=>"icons") + _("Add New Group"), :action => :new %>
+	<%=link_to image_tag("/icons/yast-groups_16.png", :class=>"icons") + _("New Group"), :action => :new %>
 	<label>|</label>
       <% end %>
       <%=link_to image_tag("/icons/yast-users_16.png", :class=>"icons") + _("Manage Users"), "controller" => "users" %>

@@ -205,7 +205,7 @@
    <div id="link-container">
     <div id="action_links" class="action_links">	
       <% if @permissions[:useradd] %>
-	<%=link_to image_tag("/icons/yast-users.png", :class=>"icons") +  _("Add New User"), :action => :new %>
+	<%=link_to image_tag("/icons/yast-users.png", :class=>"icons") +  _("New User"), :action => :new %>
 	<label>|</label>
       <% end %>      
       <%=link_to image_tag("/icons/yast-groups.png", :class=>"icons") +  _("Manage Groups"), :controller => "groups" %>

@@ -1,7 +1,7 @@
 function startNotifier(params, interval, inactive) {
   killWorkerOnReload(Notifier(params));
    
-  window.onload = function(){
+  $(document).ready(function() {
     jQuery(function($){
       $.activity.init({
   	interval: interval, 
@@ -27,10 +27,9 @@ function startNotifier(params, interval, inactive) {
 	}
       });
     }); 
-  }
+  })
 }
 
-// var Notifier = function(worker, params) {
 var Notifier = function(params) {
   if(typeof(Worker) == 'undefined') {
     setInterval(AJAXcall, 5000, params);
@@ -60,7 +59,7 @@ var Notifier = function(params) {
     worker.onerror = function(error) {
       console.error(error);
     };
-    
+
     return worker;
   }
 }
@@ -104,11 +103,6 @@ var killWorkerOnReload = function(worker, intervalID) {
 	
 	worker.terminate();
 	if (typeof(console) != 'undefined' && typeof(console.info) == 'function'){ console.info("Unbind activity check!"); }
-	
-// 	console.log($.activity.destroy)
-// 	jQuery(function($){ $.activity( "destroy" ) })
-// 	$.activity({ function() { return false; } })
-// 	$(document).unbind($.activity);
       }
     }
   });

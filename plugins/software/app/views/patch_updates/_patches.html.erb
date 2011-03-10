@@ -34,22 +34,19 @@ You may need to reload the page after applying the patch.") -%></p>
 
 <%# no patch or all patches are installed %>
 <% if @patch_updates.empty? || @patch_updates.all?{|p| p.installed} %>
-  <h4 style="margin:4px 0px 0px 0px; padding:0px; text-shadow: 0pt -1px 0pt rgba(0, 0, 0, 0.2), 0pt 1px 0pt rgba(250, 250, 250, 0.9);" ><%= _("No patches available") -%></h4>
+  <h3><%= _("No patches available") -%></h3>
 <% else %>
 <table summary="" class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr id="first_row">
-    <th class="first checkbox" width=8% >
-      <input type="checkbox" name="All" onclick="check_all()" id="All" style="float: left;"/>
-      <div style="margin-top:1px;"><%=_("Check")%></div>
-    </th>
+    <th class="first checkbox" width=5% ><span><input type="checkbox" name="All" onclick="check_all()" id="All"/></span></th>
     <th width=5%><%=_("Kind")%></th>
-    <th width=15%><%=_("Name")%></th>
-    <th width="100"><%=_("Summary")%></th>
+    <th width=20%><%=_("Name")%></th>
+    <th width="50%"><%=_("Summary")%></th>
     <% if @permissions[:install] %>
-      <th width=25%><%=_("Source")%></th>
+      <th width=15%><%=_("Source")%></th>
       <th class="last" width=5%><%=_("Install")%></th>
     <% else %>
-      <th class="last" width=15%><%=_("Source")%></th>
+      <th class="last" width=20%><%=_("Source")%></th>
     <% end %>
   </tr>
   <%

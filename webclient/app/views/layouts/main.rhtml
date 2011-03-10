@@ -45,6 +45,7 @@
 				"digitalspaghetti.password",
 				"browser_fixes",
 				"jquery.quicksearch"
+
    %>
   <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
   <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper", "slidernav", "online-help" %>
@@ -167,9 +168,9 @@
         <% end %>
       </div> <!-- flash messages -->
       
-      <div id="progress" style="display: none;">
-        <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
-      </div>
+      <!--<div id="progress" style="display: none;">
+        <% image_tag("/images/working.gif") %><%=_("...Wait...")%>
+      </div>-->
   
       <!-- debug info session tieout -->
       <!-- <fieldset class="example"><div class="timer_logpanel">dd</div><div class="time_left"></div></fieldset> -->

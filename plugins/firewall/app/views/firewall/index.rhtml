@@ -21,7 +21,8 @@
 
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
+<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%><span id="questionMark">?</span></div>
+<!-- <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div> -->
 <div class="plugin-content">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container', :onsubmit => "return validateNeededServices()" } do %>
@@ -54,7 +55,7 @@
       <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
       <a id="off" class="btn rightBtn selected">OFF</a>
     <% end %>
-    <span id="questionMark">?</span>
+<!--     <span id="questionMark">?</span> -->
   </div>
 
   <div class="clearfix"></div>
