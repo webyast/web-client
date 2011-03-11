@@ -806,7 +806,7 @@ input.computed { opacity: 0.5; }
 #userbar a:hover { border-bottom: 1px solid #555; color:#fff; text-shadow: 0 -1px 0px #444; }
 
 #userbar { line-height: 45px; position: absolute; right: 0; z-index: 100; margin: 0 5px; }
-#userbar-container { background-color:#aaa; padding:2px 0px 7px 3px; border:1px solid #a0a0a0; -moz-border-radius:2px; -webkit-border-radius:2px; -moz-box-shadow:-1px -1px 1px #666; -webkit-box-shadow:-1px -1px 1px #888; }
+#userbar-container { background-color:#aaa; padding:2px 0px 7px 3px; border:1px solid #a0a0a0; -moz-border-radius:2px; -webkit-border-radius:2px; }
 
 #userbar span.userbar-icon { display: inline-block; color:#444; font-weight:bold; font-size:11px; cursor:default; margin-right:10px;  z-index:2;}
 #userbar span.userbar-icon:before { vertical-align:-50%; line-height:10px; padding-right:1px; }
@@ -832,3 +832,27 @@ span.icon-yast-sw_source{ background-position: 0 -1176px; }
 span.icon-yast-system-user{ background-position: 0 -1274px; } 
 span.icon-yast-system{ background-position: 0 -1372px; } 
 span.icon-yast-users{ background-position: 0 -1470px; } 
+
+/* CACHE WARNING MODAL DIALOG */
+#warningModal {
+  position:absolute; 
+  top:38%; 
+  left:25%; 
+  z-index:1001;
+  width:50%; 
+
+  text-align:center; 
+  border: 5px solid #555;
+  background-color:#f3f3f3;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  color:#555;
+  text-shadow: 0 1px 1px #fff;
+  font-weight:bold;
+  vertical-align:middle;
+  font-size:22px;
+  line-height:80px;
+}
+
+#warningModal img { display:inline; vertical-align:middle; height:64px; width:64px; margin-right:15px; }
+#warningModalShade { background: url("../images/stripes-bg.png") repeat scroll 0 0 transparent; height: 100%; overflow: hidden; position:absolute; width: 100%; top:0; left:0; z-index: 1000; }

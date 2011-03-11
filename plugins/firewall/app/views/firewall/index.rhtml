@@ -55,7 +55,8 @@
       <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
       <a id="off" class="btn rightBtn selected">OFF</a>
     <% end %>
-<!--     <span id="questionMark">?</span> -->
+    <!-- JUST FOR TEST -> REMOVE LATER! -->
+    <!--     <span><a hre="#" id="testModal">Modal</a></span>  -->
   </div>
 
   <div class="clearfix"></div>
@@ -80,7 +81,6 @@
       <% if @firewall.use_firewall %>
 	<div id="blocked_services" class="services round10">
       <% else %>
-	<!--<script type="text/javascript">jQuery(function($){ disableFirewallForm() })</script>-->
 	<div id="blocked_services" class="services round10 firewallForm_disabled">
       <% end %>
 	<% @firewall.fw_services.each do |service| %>
@@ -114,6 +114,11 @@
 <!-- <#%# javascript_tag do -#%#> -->
 <script type="text/javascript">
   $(document).ready(function(){
+    //JUST FOR TEST -> REMOVE LATER!
+    //$('#testModal').click(function() {
+    //$('body').append('<div id="warningModalShade"/>').append('<div id="warningModal"><img src="/images/cache-warning.png" style="">Cash is out-of-date!</div>');
+    //})
+
     $("#blocked_services span").filter( function(index) {
       return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
     }).hide();

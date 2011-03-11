@@ -1,6 +1,24 @@
+var log = function(message) { 
+  if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log(message); } else { return false }
+}
+
+function pageRefresh() { self.location = window.location.href; }
+
+//TODO: call twice???
+function stopNotifierPlugin(worker) {
+  var stop = { stop: function() { return this.timer }};
+  var activityTimer = jQuery.extend($.activity, stop);
+
+  if(activityTimer && worker) { 
+    worker.terminate();
+    clearInterval($.activity.stop()); 
+    log("Stop JQuery activity check & terminate running worker!")
+  } 
+}
+
 function startNotifier(params, interval, inactive) {
   killWorkerOnReload(Notifier(params));
-   
+
   $(document).ready(function() {
     jQuery(function($){
       $.activity.init({
@@ -8,10 +26,10 @@ function startNotifier(params, interval, inactive) {
   	inactive: inactive, 
 	
 	intervalFn: function(){
-	  if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec'); }
+	  log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
 	},
 	inactiveFn: function(){
-	  if (typeof(console) != 'undefined' && typeof(console.warn) == 'function'){ console.warn("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec'); }
+	  log("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
 	  killWorker(worker);
 	  $.activity.update();
 	}
@@ -21,12 +39,12 @@ function startNotifier(params, interval, inactive) {
 	if($.activity.isActive()) {
 	  $.activity.update();
 	} else {
-	  if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("User active start worker and reactivate activity check!"); }
+	  log("User active start worker and reactivate activity check!");
 	  Notifier(params);
 	  $.activity.reActivate();
 	}
       });
-    }); 
+    });
   })
 }
 
@@ -40,18 +58,18 @@ var Notifier = function(params) {
     worker.onmessage = function(event) {
       switch(event.data){
 	case '200':
-	  if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("RELOAD is NEEDED status: " + event.data); }
-	  disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px; color:#555> Cache is out-of-date</span>');  
-	  
-	  self.location = window.location.href;
+	  log("RELOAD is NEEDED: " + event.data);
+	  stopNotifierPlugin(this);
+	  $('body').append('<div id="warningModalShade"/>').append('<div id="warningModal"><img src="/images/cache-warning.png" style="">Cash is out-of-date!</div>');
+	  worker.terminate();
+	  setTimeout('pageRefresh()', 2000)
 	  break
-
 	case '304':
-	  if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("CACHE is UP-TO-DATE status: " + event.data); }
+	  log("CACHE is UP-TO-DATE: " + event.data); 
 	  break
 	  
 	default : 
-	  if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("ERROR: unknown http status " + status); }
+	  log("ERROR: unknown HTTP status: " + event.data);
 	  break
       }
     };
@@ -69,17 +87,16 @@ var AJAXcall = function(params) {
     data.NaN? data = data : data = data.toString();
     switch(data){
       case '200':
-	if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("RELOAD is NEEDED status: " + data); }
-	disableFormOnSubmit('<img src="/images/warning-big.png" style="display:inline; vertical-align:middle; height:28px; width:28px;"><span style="font-size:18px; color:#555> Cache is out-of-date</span>');  
-	self.location = window.location.href;
+	log("RELOAD is NEEDED: " + data);
+	stopNotifierPlugin(worker);
+	$('body').append('<div id="warningModalShade"/>').append('<div id="warningModal"><img src="/images/cache-warning.png" style="">Cash is out-of-date!</div>');
+	setTimeout('pageRefresh()', 2000)
 	break
-
       case '304':
-	if (typeof(console) != 'undefined' && typeof(console.log) == 'function'){ console.log("CACHE is UP-TO-DATE status: " + data); }
+	log("CACHE is UP-TO-DATE: " + data); 
 	break
-	
       default : 
-	if (typeof(console) != 'undefined' && typeof(console.log) == 'function') { console.log("ERROR: unknown http status " + data + typeof(data)); }
+	log("ERROR: unknown HTTP status: " + data + typeof(data));
 	break
     }
   })
@@ -87,22 +104,15 @@ var AJAXcall = function(params) {
 
 var killWorker = function(worker) {
   if(worker && typeof(Worker) != 'undefined') {
-    if (typeof(console) != 'undefined' && typeof(console.info) == 'function'){ console.info("Kill running worker!"); }
-    if (typeof(console) != 'undefined' && typeof(console.info) == 'function'){ console.info("Terminate activity check!"); }
-    worker.terminate();
-    $(document).unbind($.activity);
+     stopNotifierPlugin(worker);
   }
 }
 
 var killWorkerOnReload = function(worker, intervalID) {
-//   $(document).ready(function() {
   $(function(){
     window.onbeforeunload = function(){
       if(worker && typeof(Worker) != 'undefined') {
-	if (typeof(console) != 'undefined' && typeof(console.info) == 'function'){ console.info("Terminate all running workers!"); }
-	
-	worker.terminate();
-	if (typeof(console) != 'undefined' && typeof(console.info) == 'function'){ console.info("Unbind activity check!"); }
+	stopNotifierPlugin(worker);
       }
     }
   });
