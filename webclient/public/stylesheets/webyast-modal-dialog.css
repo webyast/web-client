@@ -1,0 +1,74 @@
+#modalWindow {
+  position:absolute; 
+  z-index:1001;
+  border: 2px solid #666;
+  background-color:#fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-box-shadow: 0px 0px 10px #777;
+  vertical-align:middle;
+  padding:10px 20px;
+}
+
+#modalWindowShade { 
+/*   background: url("../images/stripes-bg.png") repeat scroll 0 0 transparent; */
+  background-color: #eee; 
+  opacity:0.5;
+  height: 100%; 
+  width: 100%; 
+  overflow: hidden; 
+  position:absolute; 
+  -moz-box-shadow: inset 0px 0px 300px #222;
+  top:0; 
+  left:0; 
+  z-index:1000; 
+}
+
+#modalWindowClose { 
+  position: absolute; 
+  width:22px; 
+  height:22px; 
+  top:-12px; 
+  right:-22px; 
+}
+
+/* Popup */
+div.mpopup { font-weight:bold; font-size:20px; }
+
+div.mpopup, div.mdialog {
+  color:#555;
+  text-shadow: 0 1px 1px #fff;
+  vertical-align:middle;
+  padding:0;
+  margin:0;
+}
+div.mpopup img { 
+  height:48px; 
+  width:48px; 
+  margin-right:10px; 
+  vertical-align:middle; 
+  display:inline-block; 
+}
+
+/* Dialog */
+div.mdialog { width:20%; border:1px solid grey;  font-weight:bold; font-size:18px; }
+div.mdialog img { height:64px; width:64px; margin-right:10px; vertical-align:middle; }
+div.mdialog input[type="button"]{ min-width:50px; width:25%; float:right; display:inline-block; margin-left:2px; }
+
+div.mleftcontainer { float:left; min-height:60px; width:20%; text-align:center; }
+div.mrightcontainer { float:right; min-height:60px; width:80%; text-align:center; border:0px solid grey; clear:right; overflow:hidden; }
+div.mrightcontainer div { text-align:center; vertical-align:middle; display:block; width:100%; }
+div.mrightcontainer hr { color:#eee; }
+div.mdevider { color:#888; }
+
+b.mwarning { color:#bb4d4d; /*text-decoration: blink;*/ }
+b.minfo { color:#999; /*text-decoration: blink;*/ }
+b.mwait { text-decoration: blink; }
+
+/* div.mform { padding:10px; color:grey; } */
+
+
+
+
+
+

@@ -20,59 +20,71 @@
 
 //TRACK THE FORM CHANGES
 var formChanged = false;
-function init() {
+
+function initChagesTrack(message) {
+  console.log("init")
   $("#on").click(formWasChanged);
   $("#off").click(formWasChanged);
   
   $('#firewallForm .firewall-service').bind('click', formWasChanged);
 
-  $("#firewall-wrapper .action-link").click(
-    function(event) {
+   $("#firewall-wrapper .action-link").click(function(event) {
+     event.stopPropagation();
+     event.preventDefault();
+     console.log("init")
       if (formChanged == true) {
-	event.stopPropagation();
-	event.preventDefault();
-      
-	$.blockUI.defaults.applyPlatformOpacityRules = false;
-	$.blockUI({
-	  message: $('#unsavedChangesDialog'), 
-	  showOverlay: true, 
-	  css: { 
-	    padding:        10, 
-	    margin:         '0 auto', 
-	    width:          '280px',
-	    left:           '40%', 
-	    textAlign:      'center', 
-	    color:          '#333', 
-	    border:         '5px solid #aaa', 
-	    backgroundColor:'#fff',
-	    cursor:         'wait',
-	    '-webkit-border-radius': '5px', 
-	    '-moz-border-radius': '5px',
-	    '-webkit-box-shadow': '0 0 2em #222',
-	    '-moz-box-shadow': '0 0 2em #222',
-	    '-webkit-box-shadow': 'inset 0 0 4px #222',
-	    '-moz-box-shadow': 'inset 0 0 4px #222'
-	  }
-	});   
-
-      $('#yes').click(function() { 
-	$.unblockUI(); 
-	$('#firewallSubmitButton').click();
-      }); 
-
-      $('#no').click(function() { 
-	$.unblockUI(); 
+	$.modalDialog.dialog({message:message, form: 'firewallForm'});
+      } else {
 	document.location = event.target.href;
-	return true; 
-      }); 
-
-      $('#cancel').click(function() { 
-	$.unblockUI(); 
-	return false; 
-      }); 
-    }
-   }
-  );
+      }
+    });
+//   $("#firewall-wrapper .action-link").click(
+//     function(event) {
+//       if (formChanged == true) {
+// 	event.stopPropagation();
+// 	event.preventDefault();
+//       
+// 	$.blockUI.defaults.applyPlatformOpacityRules = false;
+// 	$.blockUI({
+// 	  message: $('#unsavedChangesDialog'), 
+// 	  showOverlay: true, 
+// 	  css: { 
+// 	    padding:        10, 
+// 	    margin:         '0 auto', 
+// 	    width:          '280px',
+// 	    left:           '40%', 
+// 	    textAlign:      'center', 
+// 	    color:          '#333', 
+// 	    border:         '5px solid #aaa', 
+// 	    backgroundColor:'#fff',
+// 	    cursor:         'wait',
+// 	    '-webkit-border-radius': '5px', 
+// 	    '-moz-border-radius': '5px',
+// 	    '-webkit-box-shadow': '0 0 2em #222',
+// 	    '-moz-box-shadow': '0 0 2em #222',
+// 	    '-webkit-box-shadow': 'inset 0 0 4px #222',
+// 	    '-moz-box-shadow': 'inset 0 0 4px #222'
+// 	  }
+// 	});   
+// 
+//       $('#yes').click(function() { 
+// 	$.unblockUI(); 
+// 	$('#firewallSubmitButton').click();
+//       }); 
+// 
+//       $('#no').click(function() { 
+// 	$.unblockUI(); 
+// 	document.location = event.target.href;
+// 	return true; 
+//       }); 
+// 
+//       $('#cancel').click(function() { 
+// 	$.unblockUI(); 
+// 	return false; 
+//       }); 
+//     }
+//    }
+//   );
 }
 
 function formWasChanged() {
@@ -80,7 +92,7 @@ function formWasChanged() {
   $('#firewallForm .firewall-service').unbind('click', formWasChanged);
 }
 
-$(document).ready(init);
+// $(document).ready(init);
 
 jQuery(function($){
   //SORT SERVICES LIST
@@ -143,6 +155,7 @@ function enableFirewallForm() {
   //Description Tooltip
   /*gravity: $.fn.tipsy.autoNS,*/ 
   $('span.firewall-service').tipsy({gravity: 's', delayIn: 500 })
+//   $('span.firewall-service').removeClass('firewall_disabled');
   $('span.firewall-service').removeClass('firewall_disabled').addClass('firewallForm_enabled');
 
   //Change color on hover
@@ -184,6 +197,7 @@ function enableFirewallForm() {
 
 function disableFirewallForm() {
   $elements = $('span.firewall-service');
+//   $elements.addClass('firewall_disabled');
   $elements.removeClass('firewallForm_enabled').addClass('firewall_disabled');
   $elements.unbind('click').unbind('mouseenter mouseleave');
 }

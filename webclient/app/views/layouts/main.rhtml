@@ -25,41 +25,59 @@
     <%= stylesheet_link_tag "ie/ie_fixes" %>
   <![endif]--> 
    
-  <% if JSMIN == true %>
+  <% if JSMIN != true %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
+    <%= javascript_include_tag 	  "jquery-1.4.2",
+				  "jquery.query", #FIXME write reason
+				  "jquery.timers",
+				  "jquery.ui.custom",
+				  "jquery.validate",
+				  "validation.js",
+				  "jqbrowser-compressed", #our browser detection extension
+				  "jquery.badbrowser", #original browser detection plugin
+				  "yast.widgets",
+				  "yast.helpers",
+				  "digitalspaghetti.password",
+				  "browser_fixes",
+				  "jquery.quicksearch"
 
-  <%= javascript_include_tag 	"jquery-1.4.2",
-				"jquery.query", #FIXME write reason
-				"jquery.timers",
-				"jquery.ui.custom",
-				"jquery.validate",
-				"validation.js",
-				"jqbrowser-compressed", #our browser detection extension
-				"jquery.badbrowser", #original browser detection plugin
-				"yast.widgets",
-				"yast.helpers",
-				"digitalspaghetti.password",
-				"browser_fixes",
-				"jquery.quicksearch"
+    %>
+    <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
+    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper", "slidernav", "online-help" %>
 
-   %>
-  <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
-  <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper", "slidernav", "online-help" %>
-  
-
-  <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-  <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "online-help" %>
-  
+    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "online-help" %>
+    
+    <%= yield :before_script %>
+      <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
+    %>
+    <%= yield :head %>
+    
   <% end %>
+
+  <%= javascript_include_tag "webyast-modal-dialog" %>
+  <%= stylesheet_link_tag "webyast-modal-dialog" %>
 
   <title><%= _("WebYaST") %></title>
  
   <script type="text/javascript">
     $(document).ready(function() {
+//       $('#modal').click(function() {
+// 	jQuery(function($){
+// 	  $.modalDialog.warning( {message: 'You will lost you changed! Do you want to procced?', simple: true});
+// 	  $.modalDialog.info( {message: 'Data have been changed!'});
+// 	  $.modalDialog.wait();
+
+// 	  $.modalDialog.form( {form: 'test'});
+// 	  $.modalDialog.destroy({timeout:5000});
+// 	})
+//       });
+
+
       $('div.overview a.controlpanel-shortcut').tipsy({gravity: 'n', delayIn: 800, opacity: 0.8 });
 
       <% if session[:expires] !=nil && session[:expires].class == Time %>
@@ -131,6 +149,27 @@
 	    <span class="userbar-icon logout-icon">
 	      <%= link_to _("Logout"), '/logout' %>
 	    </span>
+
+	    <span class="userbar-icon logout-icon">
+	      <a href="#" id="modal">Modal Dialog</a>
+	    </span>
+
+	    <form id="test" style="display:none;">
+	      <div style="display:inline-block; width:100%; background-color:#c5c5c5; color:#222; text-align:center; font-weight:bold; font-size:16px;">Add new user</div>
+	      <p>
+		<label style="display:inline-block; min-width:25%;">User:</label>
+		<input id="name" type="text" value="User" style="display:inline-block; width:70%; float:right"/>
+	      </p>
+	      <p>
+		<label style="display:inline-block; min-width:25%;">Password:</label>
+		<input id="name" type="text" value="********" style="display:inline-block; width:70%; float:right"/>
+	      </p>
+	      <p>
+		<input type="button" value="Submit" style="width:48%; display:inline-block; float:left;" />
+		<span style="width:2%; display:inline-block; float:left; text-align:center; color:#a0a0a0">&nbsp;</span>
+		<input type="button" value="Cancel" style="width:48%; display:inline-block; float:right;" />
+	      </p>
+	    </form>
 	  </span>
 	</span>
       <% end -%>
@@ -170,9 +209,9 @@
         <% end %>
       </div> <!-- flash messages -->
       
-      <!--<div id="progress" style="display: none;">
-        <% image_tag("/images/working.gif") %><%=_("...Wait...")%>
-      </div>-->
+      <div id="progress" style="display: none;">
+        <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+      </div>
   
       <!-- debug info session tieout -->
       <!-- <fieldset class="example"><div class="timer_logpanel">dd</div><div class="time_left"></div></fieldset> -->

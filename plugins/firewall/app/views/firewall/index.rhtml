@@ -22,7 +22,7 @@
 <% disabled = !@permissions[:write] %>
 
 <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%><span id="questionMark">?</span></div>
-<!-- <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div> -->
+
 <div class="plugin-content">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container', :onsubmit => "return validateNeededServices()" } do %>
@@ -36,10 +36,10 @@
              />
     <% end %>
   </div>
-  <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
-      <%=  "checked=\"checked\"" if @firewall.use_firewall %> 
-      <%=  "disabled=\"disabled\"" if disabled %> 
-      /> 
+  <input type="checkbox" name="use_firewall" id="use_firewall" value="true" 
+      <%=  "checked=\"checked\"" if @firewall.use_firewall %>   
+      <%=  "disabled=\"disabled\"" if disabled %>  
+  /> 
     
   <div id="firewall" class="border">
     <% if @firewall.use_firewall %>
@@ -55,8 +55,6 @@
       <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
       <a id="off" class="btn rightBtn selected">OFF</a>
     <% end %>
-    <!-- JUST FOR TEST -> REMOVE LATER! -->
-    <!--     <span><a hre="#" id="testModal">Modal</a></span>  -->
   </div>
 
   <div class="clearfix"></div>
@@ -88,20 +86,8 @@
 	<% end %>
       </div>
     </div>
-    <div class="clearfix"></div>
 
-    <div id="unsavedChangesDialog"> 
-      <div>
-	<img src='/images/warning-big.png'/>
-	<label>Do you want to save your changes?</label>
-      </div>
-      <hr style="border: 0px; width:93%; border-top:solid 1px #ccc; border-bottom:transparent;">
-      <div>
-	<input type="button" id="yes" class="unsaved_changes" value="Yes" /> 
-	<input type="button" id="no" class="unsaved_changes" value="No" /> 
-	<input type="button" id="cancel" class="unsaved_changes" value="&nbsp;Cancel" /> 	
-      </div> 
-    </div> 
+    <div class="clearfix"></div>
 
     <div class="nav-buttons">
       <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
@@ -111,14 +97,9 @@
 </div>
 
 <%= javascript_include_tag "jquery.activity", "notifier" %>
-<!-- <#%# javascript_tag do -#%#> -->
-<script type="text/javascript">
-  $(document).ready(function(){
-    //JUST FOR TEST -> REMOVE LATER!
-    //$('#testModal').click(function() {
-    //$('body').append('<div id="warningModalShade"/>').append('<div id="warningModal"><img src="/images/cache-warning.png" style="">Cash is out-of-date!</div>');
-    //})
+<script>
 
+  $(document).ready(function(){
     $("#blocked_services span").filter( function(index) {
       return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
     }).hide();
@@ -142,7 +123,7 @@
       return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
     }
 
-    var message = <%= jss _("Please wait") -%>;
+//     var message = <%= jss _("Please wait") -%>;
 
     if ( $("#use_firewall")[0].checked ) {
       if ( needed_services.some( isBlockedAndWasAllowed ) ) {
@@ -152,12 +133,13 @@
       } 
     }
     
-    disableFormOnSubmit(message);  
+    var message = <%= jss _("Please wait") -%>;
+    $.modalDialog.wait( {message: message});
     return true;
   }
 
   var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
   startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
-// <#%# end -#%#>
-</script>
 
+  $(document).ready(initChagesTrack(<%= jss _("You have unsaved changed. Do you want to save your changes?") -%>)); /*{*/
+</script>

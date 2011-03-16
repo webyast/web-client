@@ -92,12 +92,12 @@
     <% if @shortcuts.empty? %>
       <!-- image from: http://www.clker.com/disclaimer.html under creative common public domain license -->
       <h4 id="warning_message_text">
-	<%= image_tag("/images/warning-big.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
+	<%= image_tag("/images/dialog-warning.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
 	<%= _("WebYaST modules are not installed on your system!") %>
       </h4>
     <% elsif  !@shortcuts.empty? && @count == @shortcuts.count %>
       <h4 id="warning_message_text">
-	<%= image_tag("/images/warning-big.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
+	<%= image_tag("/images/dialog-warning.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
 	<%= _("You have no permissions to see or change the modules, please contact the administrator to set up permissions first!") %>
       </h4>
     <% else %>

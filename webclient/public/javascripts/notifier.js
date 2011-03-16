@@ -24,7 +24,6 @@ function startNotifier(params, interval, inactive) {
       $.activity.init({
   	interval: interval, 
   	inactive: inactive, 
-	
 	intervalFn: function(){
 	  log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
 	},
@@ -60,9 +59,8 @@ var Notifier = function(params) {
 	case '200':
 	  log("RELOAD is NEEDED: " + event.data);
 	  stopNotifierPlugin(this);
-	  $('body').append('<div id="warningModalShade"/>').append('<div id="warningModal"><img src="/images/cache-warning.png" style="">Cash is out-of-date!</div>');
-	  worker.terminate();
-	  setTimeout('pageRefresh()', 2000)
+	  $.modalDialog.info( {message: 'Data have been changed!'});
+	  setTimeout('pageRefresh()', 1000)
 	  break
 	case '304':
 	  log("CACHE is UP-TO-DATE: " + event.data); 
@@ -89,8 +87,8 @@ var AJAXcall = function(params) {
       case '200':
 	log("RELOAD is NEEDED: " + data);
 	stopNotifierPlugin(worker);
-	$('body').append('<div id="warningModalShade"/>').append('<div id="warningModal"><img src="/images/cache-warning.png" style="">Cash is out-of-date!</div>');
-	setTimeout('pageRefresh()', 2000)
+	$.modalDialog.info( {message: 'Data have been changed!'});
+	setTimeout('pageRefresh()', 1000)
 	break
       case '304':
 	log("CACHE is UP-TO-DATE: " + data); 
