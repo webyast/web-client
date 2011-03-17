@@ -19,10 +19,6 @@
 # you may find current contact information at www.novell.com
 -->
 
-<style type="text/css">
-  
-</style>
-
 <% content_for :head do %>
   <%= javascript_include_tag "jquery.activity", "notifier" %>
   <%= javascript_include_tag "validation.js" %>
@@ -53,53 +49,46 @@
 	  $.modalDialog.wait( {message: message});
 	}
       });
-     
     });
   </script>
-
 <% end %>
 
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='../icons/yast-samba-client.png'/> <%= _("Active Directory") %></div>
+<div class='plugin-icon'><img src='../icons/yast-samba-client.png'/> <%= _("Active Directory") %><span id="questionMark">?</span></div>
 <div class='plugin-content'>
-<!--$('#progress').show() && disable_forms ()-->
-
-<%= render :partial => 'shared/missing_write_permissions' if disabled %>
-    <% form_for(:activedirectory, @activedirectory, :url => { :action => 'update' }, :html => { :method => :put, :id => 'activedirectoryForm', :autocomplete => :off }
-    ) do |f| %>
-	<fieldset>
-	    <p>
-	      <%= check_box 'activedirectory', :enabled, {:disabled => disabled, :checked => @activedirectory.enabled}, true,false -%>
-	      <%= _("Enable Authentication of AD users") %>
-	    </p>
-            <p>
-              <%= label_tag :activedirectory_domain, _("Active Directory Domain") %>
-              <%= text_field :activedirectory, :domain, :disabled => disabled, :class => 'required'  %>
-            </p>
-	</fieldset>
-      
-	<% if @activedirectory.respond_to? :administrator %>
-	<fieldset>
-            <p>
-              <%= label_tag :activedirectory_administrator, _("Adminstrator User Name") %>
-              <%= text_field :activedirectory, :administrator, :disabled => disabled, :class => 'required'  %>
-            </p>
-            <p>
-              <%= label_tag :activedirectory_password, _("Password") %>
-              <%= password_field :activedirectory, :password, :disabled => disabled, :class => 'required'  %>
-            </p>
-            <p>
-              <%= label_tag :activedirectory_machine, _("Machine Account") %>
-              <%= text_field :activedirectory, :machine, :disabled => disabled  %>
-            </p>
-	</fieldset>
-	<% end %>
-	<div class="nav-buttons">
-<!-- 	     var message = ; -->
-	    <%= form_send_buttons :disabled => disabled %>
-	</div>
+  <%= render :partial => 'shared/missing_write_permissions' if disabled %>
+    <% form_for(:activedirectory, @activedirectory, :url => { :action => 'update' }, :html => { :method => :put, :id => 'activedirectoryForm', :autocomplete => :off }) do |f| %>
+      <fieldset>
+	<p>
+	  <%= check_box 'activedirectory', :enabled, {:disabled => disabled, :checked => @activedirectory.enabled}, true,false -%>
+	  <%= _("Enable Authentication of AD users") %>
+	</p>
+	<p>
+	  <%= label_tag :activedirectory_domain, _("Active Directory Domain") %>
+	  <%= text_field :activedirectory, :domain, :disabled => disabled, :class => 'required'  %>
+	</p>
+      </fieldset>
+    
+      <% if @activedirectory.respond_to? :administrator %>
+      <fieldset>
+	<p>
+	  <%= label_tag :activedirectory_administrator, _("Adminstrator User Name") %>
+	  <%= text_field :activedirectory, :administrator, :disabled => disabled, :class => 'required'  %>
+	</p>
+	<p>
+	  <%= label_tag :activedirectory_password, _("Password") %>
+	  <%= password_field :activedirectory, :password, :disabled => disabled, :class => 'required'  %>
+	</p>
+	<p>
+	  <%= label_tag :activedirectory_machine, _("Machine Account") %>
+	  <%= text_field :activedirectory, :machine, :disabled => disabled  %>
+	</p>
+      </fieldset>
     <% end %>
-
+    <div class="nav-buttons">
+      <%= form_send_buttons :disabled => disabled %>
+    </div>
+  <% end %>
   </div>
 

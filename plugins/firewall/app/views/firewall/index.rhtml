@@ -124,8 +124,6 @@
       return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
     }
 
-//     var message = <%= jss _("Please wait") -%>;
-
     if ( $("#use_firewall")[0].checked ) {
       if ( needed_services.some( isBlockedAndWasAllowed ) ) {
 	if (!confirm( confirm_text.replace("%s", blockedNames(needed_services).join(", ")) ) ){
