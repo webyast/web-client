@@ -19,34 +19,41 @@
 # you may find current contact information at www.novell.com
 -->
 
-<% content_for :head do %>
+<style type="text/css">
+  
+</style>
 
+<% content_for :head do %>
+  <%= javascript_include_tag "jquery.activity", "notifier" %>
   <%= javascript_include_tag "validation.js" %>
   <script type="text/javascript">
-  
     $(document).ready(function() {
+      var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+      startNotifier({'module':'activedirectory', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
 
       $("#activedirectoryForm").validate();
       // make the error message translatable - override the default messsage
-      $.extend($.validator.messages, {
-	    required: <%= jss _("This field is required.") -%>,
-      });
-    });
-    $(document).ready(function() {
-
+      $.extend($.validator.messages, { required: <%= jss _("This field is required.") -%> });
+    
       if ($("#activedirectory_enabled:checked").length == 0) {
         $("#activedirectory_domain").attr("disabled","disabled");
-      };
+      }
 
       $("#activedirectory_enabled").click(function () {
 	if ($("#activedirectory_enabled:checked").length == 0) {
-	    $("#activedirectory_domain").attr("disabled","disabled");
-	}
-	else {
-	    $("#activedirectory_domain", "#activedirectoryForm").removeAttr("disabled");
+	  $("#activedirectory_domain").attr("disabled","disabled");
+	} else {
+	  $("#activedirectory_domain", "#activedirectoryForm").removeAttr("disabled");
 	}
       });
 
+      $('#activedirectoryForm input[type="submit"]').click(function() {
+	if ($('#activedirectoryForm').valid()) {
+	  var message = <%= jss _("Please wait") -%>;
+	  $.modalDialog.wait( {message: message});
+	}
+      });
+     
     });
   </script>
 
@@ -56,13 +63,11 @@
 
 <div class='plugin-icon'><img src='../icons/yast-samba-client.png'/> <%= _("Active Directory") %></div>
 <div class='plugin-content'>
+<!--$('#progress').show() && disable_forms ()-->
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
-
-    <% form_for(:activedirectory, @activedirectory, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'activedirectoryForm', :onsubmit => "if ($('#activedirectoryForm').valid()) $('#progress').show() && disable_forms ()", :autocomplete => :off }
+    <% form_for(:activedirectory, @activedirectory, :url => { :action => 'update' }, :html => { :method => :put, :id => 'activedirectoryForm', :autocomplete => :off }
     ) do |f| %>
-
 	<fieldset>
 	    <p>
 	      <%= check_box 'activedirectory', :enabled, {:disabled => disabled, :checked => @activedirectory.enabled}, true,false -%>
@@ -73,6 +78,7 @@
               <%= text_field :activedirectory, :domain, :disabled => disabled, :class => 'required'  %>
             </p>
 	</fieldset>
+      
 	<% if @activedirectory.respond_to? :administrator %>
 	<fieldset>
             <p>
@@ -90,8 +96,10 @@
 	</fieldset>
 	<% end %>
 	<div class="nav-buttons">
-	    <%= form_send_buttons :disabled => disabled, :onclick=>"Element.show('progress')"%>
+<!-- 	     var message = ; -->
+	    <%= form_send_buttons :disabled => disabled %>
 	</div>
     <% end %>
 
   </div>
+

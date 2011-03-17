@@ -68,8 +68,9 @@
       <% else %>
 	<div id="allowed_services" class="services round10 firewallForm_disabled">
       <% end %>
+	
 	<% @firewall.fw_services.each do |service| %>
-	    <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description %>"><%= service.name %></span>
+	  <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
 	<% end %>
       </div>
     </div> 
@@ -82,7 +83,7 @@
 	<div id="blocked_services" class="services round10 firewallForm_disabled">
       <% end %>
 	<% @firewall.fw_services.each do |service| %>
-	    <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description %>"><%= service.name %></span>
+	  <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
 	<% end %>
       </div>
     </div>
@@ -141,5 +142,5 @@
   var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
   startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
 
-  $(document).ready(initChagesTrack(<%= jss _("You have unsaved changed. Do you want to save your changes?") -%>)); /*{*/
+  $(document).ready(initChagesTrack(<%= jss _("You have unsaved changes. Do you want to save your changes?") -%>)); /*{*/
 </script>
