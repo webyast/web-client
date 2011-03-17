@@ -20,7 +20,7 @@
 -->
 <% content_for :head do %>
   <% if JSMIN == true %>
-    <%= javascript_include_tag "users-min"-%>
+    <%= javascript_include_tag "min/users-min" -%>
   <% else %>
     <%= javascript_include_tag "users.js" %>
     <%= javascript_include_tag "select_dialog.js" %>
@@ -69,7 +69,6 @@ function def_group_validation(which){ return true; }
   </style>
 
 <script language='javascript'>
-
   function select_groups_dialog() {
     var open_dialog = select_many_dialog({
       kind : 'groups',
@@ -126,7 +125,6 @@ function def_group_validation(which){ return true; }
   };
 
   $(document).ready(function(){
-
     select_groups_open = select_groups_dialog();
     select_default_group_open = select_default_group_dialog();
     select_roles_open = select_roles_dialog();
