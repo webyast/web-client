@@ -14,13 +14,13 @@ Recommends:     WebYaST(org.opensuse.yast.modules.yapi.groups)
 Provides:       yast2-webclient-users = %{version}
 Obsoletes:      yast2-webclient-users < %{version}
 # updated jQuery quicksearch plugin
-PreReq:         yast2-webclient >= 0.1.17
+PreReq:         webyast-base-ui >= 0.2.0
 PreReq:         webyast-users-ws >= 0.1.6
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.9
+Version:        0.2.10
 Release:        0
 Summary:        WebYaST - users management UI
 Source:         www.tar.bz2
