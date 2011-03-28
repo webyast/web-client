@@ -106,9 +106,11 @@
 	$(document).ready(function() {
 	  validateIPv4("ip");
 	  validateSubnetMask("netmask"); //accept prefixlen and common subnet mask format e.g. 255.255.255.0
+	  validateHostName("name");
 	  validateDefaultRoute("default_route");
 	  validateDomainNameWithAndWithoutTLD("domain");
-	  validateIPv4("nameservers");
+// 	  validateIPv4("nameservers");
+	  validateNameservers("nameservers");
 	  validateDomainNameWithAndWithoutTLD("searchdomains");
 
 		$("#dnsForm").validate({ 
@@ -127,9 +129,10 @@
 				default_route: true,
 				required:true
 			 },
-			 name: { 
-				required: true,
-			 },
+			name: { 
+			  required: true,
+			  name:true
+			},
 			 domain: {
 				domain: true,
 				required:true
@@ -158,7 +161,10 @@
 				default_route:<%= jss _("Enter a valid IP address") -%>
 			 },
 
-			 name:{ required: <%= jss _("This field is required") -%> },
+			 name:{ 
+			  required: <%= jss _("This field is required") -%>,
+			  name: <%= jss _("Enter a valid hostname") -%> 
+			},
 
 			 domain:{
 				required: <%= jss _("This field is required") -%>,
@@ -180,97 +186,9 @@
                   },
 		  success: "valid"  
 		});
-		
-		// FIXME: find better solution for starting the validation with document on load
-		// TODO: remove commented lines after test (is not needed anymore because of jquery.validate version update)
-		//$("#ip").keyup( function() {$("#dnsForm").valid();}); 
-		//$("#netmask").keyup( function() {$("#dnsForm").valid();});
-		//$("#default_route").keyup( function() {$("#dnsForm").valid();});
-		//$("#domain").keyup( function() {$("#dnsForm").valid();});
-		//$("#nameservers").keyup( function() {$("#dnsForm").valid();});
-		//$("#searchdomains").keyup( function() {$("#dnsForm").valid();});
 		hide_static_config();
 	 });
 	 </script>
-
-   <% javascript_tag do -%>
-   //TODO move this validations to separate js library
-      function validHostname(hostname){
-        //not empty
-        if (hostname.match(/^\s*$/))
-            return false;
-        return true; //FIXME better check
-      }
-
-      //RFC 952 [a-zA-Z0-9'-']
-      //cann't have any spaces
-      //cann't start with a hyphen '-'
-      //cann't start with a digit
-      //no periodic hyphen '-'
-      //must not end with a hyphen '-'
-
-      //vgorobets@suse.de TODO:
-      //upgrade to RFC1123
-
-      var valChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-0123456789";
-
-      function hostValidation(t,v){
-          var valhostname = "";
-          for (i=0; i < t.value.length; i++) {
-          x = t.value.charAt(i);
-             if (v.indexOf(x,0) != -1 && t.value !='-' && isNaN(t.value)) {
-                if(t.value[t.value.length-1] == t.value[t.value.length-2] && t.value[t.value.length-1] == "-") {
-						t.value = t.value.substring(0,t.value.length-1);
-                  addWarning("periodic");
-                }
-                valhostname += x;
-              } else {
-                addWarning(x); // put warning if character is invalid
-              }
-          }
-          t.value = valhostname;
-      }
-
-      function clearWarning(){
-			$("#dns").find("label[for='name']").filter('[class=error]').text("");
-      }
-
-      function addWarning(message){
-         if(message == " ") {
-            message += <%= jss _("whitespace - invalid character.") %>
-         } else if (isNaN(message) == false) {
-            message += <%= jss _(" - can not start with a digit.") %>
-         } else if (message == "periodic") { 
-            message = <%= jss _("periodic '-' is not allowed.") %>
-         } else if (message == "endWithHyphen") { 
-				message = <%= jss _("can not end with (-) hyphen.") %>
-         } else {
-            if(message == '-') {
-               message = <%= jss _("can not start with (-) hyphen.") %>
-            } else {
-               message += <%= jss _(" - is invalid character for hostname.") %>
-            }
-         }
-			
-			$("#dns").find("label[for='name']").filter('[class=error valid]').removeClass("valid").addClass("error");
-			$("#dns").find("label[for='name']").filter('[class=error]').text(message);
-		}
-
-      function endWithHyphen(t) {
-         if(t.value[t.value.length-1] == "-") {
-            t.value = t.value.substring(0,t.value.length-1);
-            focus_field("name");
-            addWarning("endWithHyphen");
-			}        
-      }
-
-      function validDomain(domain){
-        //not empty, suse doesn't support it
-        if (domain.match(/^\s*$/))
-            return false;
-        return true; //FIXME better check
-      }
-    <% end %>
 <% end %>
 <% content_for :before_script do %>
   <% javascript_tag do %>
@@ -333,8 +251,7 @@
       <div>
         <p>
           <label for="<%= :name %>"><%=_("Hostname")%></label>
-          <%=text_field_tag(:name, @name, :onblur=>"endWithHyphen(this);clearWarning();", :onkeyup=>"hostValidation(this,valChar);", :onkeydown=>"clearWarning();", :disabled => write_disabled) %>
-<!--           <span id="warning" style="font-weight:bold; margin-left:20px; color:#c00000">&nbsp;</span> -->
+          <%=text_field_tag(:name, @name, :disabled => write_disabled) %>
 	    <label class="error" for="name" generated="true">&nbsp;</label>
 	    <div style="clear:both"></div>
         </p>

@@ -19,6 +19,17 @@
 # you may find current contact information at www.novell.com
 #++
 
+require 'socket'
+def getCurrentIP
+  ip, orig, Socket.do_not_reverse_lookup = "", Socket.do_not_reverse_lookup, true  # turn off reverse DNS resolution temporarily
+  UDPSocket.open do |s|
+    s.connect '64.233.187.99', 1
+    ip = s.addr.last
+  end
+  ensure Socket.do_not_reverse_lookup = orig
+  return ip
+end
+
 class NetworkController < ApplicationController
 
   before_filter :login_required
@@ -39,10 +50,21 @@ class NetworkController < ApplicationController
   # GET /network
   def index
     @ifcs = Interface.find :all
-    @iface = params[:interface]
-    unless @iface
-      ifc = @ifcs.find {|i| i.try(:bootproto)!=nil} || @ifcs[0]
-      @iface = ifc.id
+    
+    unless @ifcs.nil? || @ifcs.empty?
+      unless @ifcs.length == 1
+	logger.debug "***** More than one interface is attached-> #{ @ifcs.length } *****"
+	ifc = @ifcs.find do |i| 
+	  next unless i.attributes.has_key?("bootproto")
+	  logger.error "***** Interface #{i.attributes['id']} has key BOOTPROTO -> #{i.attributes.has_key?("bootproto") } *****"
+	end
+	@iface = ifc.id
+      else
+	ifc = @ifcs.find {|i| i.try(:bootproto)!=nil} || @ifcs[0]
+	@iface = ifc.id
+      end
+    else
+      logger.error "***ERROR: No network interface found!"
     end
 
     ifc = Interface.find @iface
@@ -68,11 +90,13 @@ class NetworkController < ApplicationController
 
     @conf_mode = ifc.bootproto
     @conf_mode = STATIC_BOOT_ID if @conf_mode.blank?
+
     if @conf_mode == STATIC_BOOT_ID
       ipaddr = ifc.ipaddr
     else
       ipaddr = "/"
     end
+    
     @ip, @netmask = ipaddr.split "/"
     # when detect PREFIXLEN with leading "/"
     if ifc.bootproto == STATIC_BOOT_ID && NETMASK_RANGE.include?(@netmask.to_i)
@@ -81,6 +105,7 @@ class NetworkController < ApplicationController
  
     @name = hn.name
     @domain = hn.domain
+    @dhcp_ip = getCurrentIP;
     @dhcp_hostname_enabled = hn.attributes.include?("dhcp_hostname")
     @dhcp_hostname = @dhcp_hostname_enabled && hn.dhcp_hostname=="1" 
     @nameservers = dns.nameservers
@@ -88,7 +113,6 @@ class NetworkController < ApplicationController
     @default_route = rt.via
     @conf_modes = {_("Manual")=>STATIC_BOOT_ID, _("Automatic")=>"dhcp"}
     @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
-    
   end
 
 
@@ -156,10 +180,11 @@ class NetworkController < ApplicationController
         hn.save
         # write interfaces (and therefore restart network) only when interface settings changed (bnc#579044)
 	if dirty_ifc
-          ifc.save
+	  ifc.save
 	end
       end
-#write to avoid confusion, with another string
+
+      #write to avoid confusion, with another string
       flash[:notice] = _('Network settings have been written.')
     rescue ActiveResource::ServerError => e
       response = Hash.from_xml(e.response.body)
