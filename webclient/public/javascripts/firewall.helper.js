@@ -31,6 +31,7 @@ function initChagesTrack(message) {
    $("#firewall-wrapper .action-link").click(function(event) {
      event.stopPropagation();
      event.preventDefault();
+     
      console.log("init")
       if (formChanged == true) {
 	$.modalDialog.dialog({message:message, form: 'firewallForm'});
@@ -206,30 +207,82 @@ function disableFirewallForm() {
 $(document).ready(function(){
   var $on = $('#on');
   var $off = $('#off');
-
-  $on.click(function () {
-    if($(this).hasClass('selected') == false) {
-      $(this).addClass('selected darkShadow');
-      $('#indicator').attr('src', 'images/firewall-on-led.png');
-      $off.removeClass('selected darkShadow');
+  
+  function enableAuto() {
+    $('#dnsForm').find('div.auto').hide();
+    $('#ip-container').hide();
+    $('#ip_sticker').show();
+    $('div.auto input').attr('disabled', 'disabled');
+  }
+  
+  function enableStatic() {
+    $('div.auto input').removeAttr('disabled');
+    $('#ip-container').show();
+    $('#ip_sticker').hide();
+    $('#dnsForm').find('div.auto').show();
+  }
+  
+  function toggleMode($id) {
+    if($id.val() == "on") {
+      $on.addClass('active');
+      $off.removeClass('active');
+      
       $('#allowed_services').removeClass('firewallForm_disabled');
       $('#blocked_services').removeClass('firewallForm_disabled');
 
       enableFirewallForm();
       $('#use_firewall').click();
-    } 
-  });
-
-  $off.click(function () {
-    if($(this).hasClass('selected') == false) {
-      $(this).addClass('selected darkShadow');
-      $('#indicator').attr('src', 'images/firewall-off-grey.png');
-      $on.removeClass('selected darkShadow');
+    } else {
+      $off.addClass('active');
+      $on.removeClass('active');
+      
       $('#allowed_services').addClass('firewallForm_disabled');
       $('#blocked_services').addClass('firewallForm_disabled');
 
       disableFirewallForm();
       $('#use_firewall').click();
     }
-  });  
+  }
+
+  $on.click(function(event) {
+    event.preventDefault();
+    toggleMode($(this));
+    return false;
+  });
+  
+  $off.click(function(event) {
+    event.preventDefault();
+    toggleMode($(this));
+    return false;
+  });
+
+//   $on.click(function (event) {
+//     event.preventDefault();
+//     
+//     if($(this).hasClass('selected') == false) {
+//       $(this).addClass('selected darkShadow');
+//       $('#indicator').attr('src', 'images/firewall-on-led.png');
+//       $off.removeClass('selected darkShadow');
+//       $('#allowed_services').removeClass('firewallForm_disabled');
+//       $('#blocked_services').removeClass('firewallForm_disabled');
+// 
+//       enableFirewallForm();
+//       $('#use_firewall').click();
+//     } 
+//   });
+// 
+//   $off.click(function(event) {
+//     event.preventDefault();
+//     
+//     if($(this).hasClass('selected') == false) {
+//       $(this).addClass('selected darkShadow');
+//       $('#indicator').attr('src', 'images/firewall-off-grey.png');
+//       $on.removeClass('selected darkShadow');
+//       $('#allowed_services').addClass('firewallForm_disabled');
+//       $('#blocked_services').addClass('firewallForm_disabled');
+// 
+//       disableFirewallForm();
+//       $('#use_firewall').click();
+//     }
+//   });  
 });

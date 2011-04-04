@@ -414,7 +414,7 @@ table.patches td {
 
 .firewallForm_enabled { cursor: pointer;}
 .firewallForm_disabled { background-color:#fff; color:#ccc; cursor: default;}
-.label-image { width:14px; height:14px; vertical-align:baseline; }
+.label-image { width:16px; height:16px; vertical-align:middle; }
 
 #firewall label { float:none; display:inline;}
 #use_firewall { visibility:hidden; }
@@ -443,8 +443,8 @@ table.patches td {
   text-transform: uppercase;
   margin-left:2px;
   margin-right:10px;
-  font-size:20px;
-  line-height:20px;
+  font-size:16px;
+  line-height:16px;
   font-weight:bold;
   width:16px;
   vertical-align:bottom;
@@ -457,12 +457,13 @@ table.patches td {
 #allowedContainer, #rolesContainer { float:left; }
 #blockedContainer, #usersContainer { float:right; }
 #allowed_services, #blocked_services { padding:0px 5px 0px 3px; }
-#allowedContainer label, #blockedContainer label { font-size:18px; margin-bottom:8px; vertical-align:bottom; line-height:18px; display:inline-block;}
+#allowedContainer label, #blockedContainer label { font-size:18px; font-weight:bold; color:#333; margin:10px 0px; vertical-align:middle; line-height:18px; display:inline-block;}
 
 #allowedContainer span.icon-border, #blockedContainer span.icon-border {
   -moz-border-radius:20px;
   -webkit-border-radius:20px;
-  background-position:-5px -5px;
+/*   background-position:-5px -5px; */
+  padding:2px;
   display:inline-block;
   text-align:center;
   height:20px;
@@ -476,7 +477,7 @@ table.patches td {
 #allowed_services p:hover, #blocked_services p:hover { background-color: #fff; }
 #allowed_services span, #blocked_services span {
 /*   cursor:pointer;  */
-  font-weight:bolder; 
+   /*font-weight:bold;  */
   -moz-border-radius:10px; 
   -webkit-border-radius:10px; 
   padding:0px 3px 0px 5px; 
@@ -834,4 +835,73 @@ span.icon-yast-sw_source{ background-position: 0 -1176px; }
 span.icon-yast-system-user{ background-position: 0 -1274px; } 
 span.icon-yast-system{ background-position: 0 -1372px; } 
 span.icon-yast-users{ background-position: 0 -1470px; } 
+
+/* LAYOUT CORRECTION */
+#header { background: -moz-linear-gradient(center bottom, #b0b0b0 0%, #bfbfbf 100%); border-bottom:5px solid #666; }
+#header h1 { color:#333; text-shadow: 0px 1px 0px #e5e5e5; }
+#userbar-container {  -moz-box-shadow: 0px 0px 0px #000 inset; background: #ccc }
+
+
+.plugin-header {
+  position:relative; 
+  border:1px solid  #333; 
+  background: url("/images/gradientx40.png") repeat-x scroll 0 0 #474747; 
+  background: -moz-linear-gradient(center bottom, #474747 0%, #5f5f5f 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#5f5f5f));
+  
+  padding:4px; 
+  vertical-align:middle;  
+  
+  -moz-box-shadow: 0px 0px 1px #222 inset;
+  -webkit-box-shadow: 0px 0px 1px #222 inset; 
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+}
+
+.plugin-icon-container {
+  display:inline-block; 
+  position:absolute; 
+  top:-7px; 
+  height:48px; 
+  margin-left:-2px; 
+  width:48px; 
+  font-size:20px; 
+  line-height:48px; 
+  color:#ddd; 
+  vertical-align:middle; 
+  border:1px solid #f5f5f5; 
+  
+  -moz-border-radius:100%;
+  -webkit-border-radius:100%;
+  
+  -moz-box-shadow:inset 0px 0px 2px #000;
+  -webkit-box-shadow:inset 0px 0px 2px #000; 
+  text-align:center; 
+  
+/*   background: #e0e0e0; */
+  background: -moz-linear-gradient(top, #e0e0e0 0%, #ccc 100%); 
+  background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ccc));
+  
+  text-shadow: 0px -1px 0px #000; 
+  font-weight:bold; 
+  vertical-align:middle;
+}
+
+.plugin-icon-container img {
+   display:inline-block;
+   height:38px; 
+   width:38px;
+   vertical-align:middle; 
+   margin:-6px 0 0 0;
+   float:none;
+}
+
+.plugin-name { vertical-align:middle; font-size:20px; line-height:28px; font-weight:bold; color:#fff; text-shadow: 0px -1px 0px #000; margin-left:60px;}
+
+#content { overflow: visible; }
+#content form { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+div.plugin-border { -moz-border-radius:0px; border:1px solid  #D7D8DF; margin:30px 0; padding:10px;  overflow:visble; clear:both; background: -moz-linear-gradient(top, #f5f5f5 0%, #f8f8f8 10%, #fafafa 11%, #fff 100%); }
+
+#questionMark { margin:0px 5px; float:none; background: none repeat scroll 0 0 #757575; }
+
 

@@ -25,7 +25,7 @@
     <%= stylesheet_link_tag "ie/ie_fixes" %>
   <![endif]--> 
    
-  <% if JSMIN != true %>
+  <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>

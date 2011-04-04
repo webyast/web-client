@@ -19,13 +19,36 @@
 # you may find current contact information at www.novell.com
 -->
 
+<%= stylesheet_link_tag "webyast" %>
+<%= stylesheet_link_tag "webyast-firewall" %>
+
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%><span id="questionMark">?</span></div>
+<!-- <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%><span id="questionMark">?</span></div> -->
 
-<div class="plugin-content">
+<div class="plugin-content plugin-border">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container', :onsubmit => "return validateNeededServices()" } do %>
+
+  <div class="plugin-header">
+    <div class="left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/firewall.png"></label>
+      <label class="plugin-name">Firewall</label><span id="questionMark">?</span>
+    </div>
+
+    <div class="right" >
+	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; ">
+	  <% if @firewall.use_firewall %>
+	    <button id="on" class="active" value="on"><%=_("Enabled")%></button>
+	    <button id="off" value="off"><%=_("Disabled")%></button>
+	  <% else %>
+	    <button id="on" value="on"><%=_("Enabled")%></button>
+	    <button id="off" class="active" value="off"><%=_("Disabled")%></button>
+	  <% end %>
+	  </span>
+	</div>
+	<div class="clearfix"></div>
+  </div>
   
   <div id="fw_services_values">
     <% @firewall.fw_services.each do |service| %>
@@ -41,7 +64,7 @@
       <%=  "disabled=\"disabled\"" if disabled %>  
   /> 
     
-  <div id="firewall" class="border">
+<!--  <div id="firewall" class="border">
     <% if @firewall.use_firewall %>
       <img id="indicator" src="images/firewall-on-led.png">
     <% else %>
@@ -55,7 +78,7 @@
       <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
       <a id="off" class="btn rightBtn selected">OFF</a>
     <% end %>
-  </div>
+  </div>-->
 
   <div class="clearfix"></div>
 
