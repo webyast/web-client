@@ -88,7 +88,7 @@
 <%
  disabled = ! ((@permissions[:groupadd] && @adding) || (@permissions[:groupmodify] && !@adding)) %>
 <div class='plugin-icon'><img alt="yast-groups" src='/icons/yast-groups.png' alt="groups module"/>
-  <%=_("Groups") + header_spacer %>
+  <%=_("Groups") + header_spacer %><span id="questionMark">?</span>
   <%= _("Add new group") %>
 </div>
 

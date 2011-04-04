@@ -155,7 +155,7 @@
 	}
       });
 
-      select_users_open = select_users_dialog();
+//       select_users_open = select_users_dialog();
       $(".permissions-group-header .permission-field input").click( function() {
 	groupHeaderClicked($(this));
       });
@@ -261,25 +261,25 @@
     function collapseAll() {
       $('.list-fieldset-header').next().hide();
     };
-    function select_users_dialog() {
-      var open_dialog = select_many_dialog({
-        kind : 'users',
-        title : <%= jss _('Assign Users') %>,
-        selected_title : <%= jss _('Selected Users') %>,
-        unselected_title : <%= jss _('Available Users') %>,
-        tooltip : <%= jss _('Click user names to assign/remove users') %>,
-        loadItems : function (dialogId) {
-          return $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value.split(",")
-        },
-        storeItems : function (dialogId, items) {
-          $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value = items.join(",");
-        },
-        allItems : function (dialogId) {
-          return $('#all_users_string')[0].value.split(",")
-        }
-      });
-      return open_dialog;
-    };
+//     function select_users_dialog() {
+//       var open_dialog = select_many_dialog({
+//         kind : 'users',
+//         title : <%= jss _('Assign Users') %>,
+//         selected_title : <%= jss _('Selected Users') %>,
+//         unselected_title : <%= jss _('Available Users') %>,
+//         tooltip : <%= jss _('Click user names to assign/remove users') %>,
+//         loadItems : function (dialogId) {
+//           return $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value.split(",")
+//         },
+//         storeItems : function (dialogId, items) {
+//           $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value = items.join(",");
+//         },
+//         allItems : function (dialogId) {
+//           return $('#all_users_string')[0].value.split(",")
+//         }
+//       });
+//       return open_dialog;
+//     };
   </script>
 
   <% content_for :head do %>
