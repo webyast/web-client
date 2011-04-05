@@ -47,10 +47,10 @@
 
     %>
     <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
-    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper", "slidernav", "online-help" %>
+    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "slidernav", "webyast-online-help" %>
 
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "online-help" %>
+    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-online-help" %>
     
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
@@ -59,25 +59,10 @@
     
   <% end %>
 
-  <%= javascript_include_tag "webyast-modal-dialog" %>
-  <%= stylesheet_link_tag "webyast-modal-dialog" %>
-
   <title><%= _("WebYaST") %></title>
  
   <script type="text/javascript">
     $(document).ready(function() {
-//       $('#modal').click(function() {
-// 	jQuery(function($){
-// 	  $.modalDialog.warning( {message: 'You will lost you changed! Do you want to procced?', simple: true});
-// 	  $.modalDialog.info( {message: 'Data have been changed!'});
-// 	  $.modalDialog.wait();
-
-// 	  $.modalDialog.form( {form: 'test'});
-// 	  $.modalDialog.destroy({timeout:5000});
-// 	})
-//       });
-
-
       $('div.overview a.controlpanel-shortcut').tipsy({gravity: 'n', delayIn: 800, opacity: 0.8 });
 
       <% if session[:expires] !=nil && session[:expires].class == Time %>

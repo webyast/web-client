@@ -1,7 +1,9 @@
+<% unless JSMIN == true %>  
 <%= javascript_include_tag "webyast-network" %>
 <%= javascript_include_tag "customInput.jquery" %>
 <%= stylesheet_link_tag "customInput" %>
 <%= stylesheet_link_tag "webyast-network" %>
+<% end %>
 
 <% content_for :head do %> 
 <script type="text/javascript">
@@ -81,8 +83,10 @@ $(document).ready(function() {
 	    }
     },
     submitHandler: function(form) {
+// 	  var message = <%= jss _("Please wait") -%>;
+// 	  disableFormOnSubmit(message);
 	  var message = <%= jss _("Please wait") -%>;
-	  disableFormOnSubmit(message);
+	  $.modalDialog.wait( {message: message});
 	  form.submit();
     },
     success: "valid"  
@@ -214,7 +218,7 @@ $(document).ready(function() {
 
       <div class="clearfix"></div>
 
-      <div id="dns-container" style="margin:10px auto; position:relative; float:none; width:96%;">
+      <div style="margin:10px auto; position:relative; float:none; width:96%;">
 	<div style="height:1px; border-bottom:0px dotted #ddd; margin:5px 0px;  background: -moz-linear-gradient(left, #ccc 0%, #fafafa 100%);  padding:0px;">&nbsp;</div>
 	<div class="nav-buttons" style="margin:0px 0px; padding:10px 0;">
 	  <%= form_send_buttons :disabled => write_disabled %>

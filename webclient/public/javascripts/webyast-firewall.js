@@ -22,7 +22,6 @@
 var formChanged = false;
 
 function initChagesTrack(message) {
-  console.log("init")
   $("#on").click(formWasChanged);
   $("#off").click(formWasChanged);
   
@@ -32,12 +31,11 @@ function initChagesTrack(message) {
      event.stopPropagation();
      event.preventDefault();
      
-     console.log("init")
-      if (formChanged == true) {
-	$.modalDialog.dialog({message:message, form: 'firewallForm'});
-      } else {
-	document.location = event.target.href;
-      }
+    if (formChanged == true) {
+      $.modalDialog.dialog({message:message, form: 'firewallForm'});
+    } else {
+      document.location = event.target.href;
+    }
     });
 //   $("#firewall-wrapper .action-link").click(
 //     function(event) {
@@ -207,20 +205,6 @@ function disableFirewallForm() {
 $(document).ready(function(){
   var $on = $('#on');
   var $off = $('#off');
-  
-  function enableAuto() {
-    $('#dnsForm').find('div.auto').hide();
-    $('#ip-container').hide();
-    $('#ip_sticker').show();
-    $('div.auto input').attr('disabled', 'disabled');
-  }
-  
-  function enableStatic() {
-    $('div.auto input').removeAttr('disabled');
-    $('#ip-container').show();
-    $('#ip_sticker').hide();
-    $('#dnsForm').find('div.auto').show();
-  }
   
   function toggleMode($id) {
     if($id.val() == "on") {

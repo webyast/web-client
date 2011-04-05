@@ -19,8 +19,10 @@
 # you may find current contact information at www.novell.com
 -->
 
-<%= stylesheet_link_tag "webyast" %>
-<%= stylesheet_link_tag "webyast-firewall" %>
+<% unless JSMIN == true %>  
+  <%= javascript_include_tag "webyast-firewall" %>
+  <%= stylesheet_link_tag "webyast-firewall" %>
+<% end %>
 
 <% disabled = !@permissions[:write] %>
 
@@ -33,11 +35,11 @@
   <div class="plugin-header">
     <div class="left">
       <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/firewall.png"></label>
-      <label class="plugin-name">Firewall</label><span id="questionMark">?</span>
+      <label class="plugin-name">Firewall</label><span id="questionMark" style="margin:0px 15px; float:none;">?</span>
     </div>
 
     <div class="right" >
-	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; ">
+	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; -webkit-border-radius:1px;">
 	  <% if @firewall.use_firewall %>
 	    <button id="on" class="active" value="on"><%=_("Enabled")%></button>
 	    <button id="off" value="off"><%=_("Disabled")%></button>
@@ -120,9 +122,7 @@
   </div>
 </div>
 
-<%= javascript_include_tag "jquery.activity", "notifier" %>
 <script>
-
   $(document).ready(function(){
     $("#blocked_services span").filter( function(index) {
       return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
@@ -163,5 +163,5 @@
   var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
   startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
 
-  $(document).ready(initChagesTrack(<%= jss _("You have unsaved changes. Do you want to save your changes?") -%>)); /*{*/
+  $(document).ready(initChagesTrack(<%= jss _("You have unsaved changes. Do you want to save your changes?") -%>));
 </script>
