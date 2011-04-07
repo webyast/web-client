@@ -1,100 +1,155 @@
 <firewall>
-    <use_firewall type="boolean">true</use_firewall>
-    <fw_services type="array">
-        <fw_services>
-            <name>dnsmasq</name>
-            <id>service:dnsmasq-dns</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>dnsmasq</name>
-            <id>service:dnsmasq-dhcp</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>WebYaST UI</name>
-            <id>service:webyast-ui</id>
-            <allowed type="boolean">true</allowed>
-        </fw_services>
-        <fw_services>
-            <name>lighttpd</name>
-            <id>service:lighttpd-ssl</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>xdmcp</name>
-            <id>service:xdmcp</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>Netbios Server</name>
-            <id>service:netbios-server</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>NIS Client</name>
-            <id>service:ypbind</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>Samba Client</name>
-            <id>service:samba-client</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>VNC mini-HTTP server</name>
-            <id>service:vnc-httpd</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>lighttpd</name>
-            <id>service:lighttpd</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>SMTP with Postfix</name>
-            <id>service:postfix</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>VNC</name>
-            <id>service:vnc-server</id>
-            <allowed type="boolean">true</allowed>
-        </fw_services>
-        <fw_services>
-            <name>xntp Server</name>
-            <id>service:ntp</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>Squid Service</name>
-            <id>service:squid</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>NFS Client</name>
-            <id>service:nfs-client</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>Samba Server</name>
-            <id>service:samba-server</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>VNC Server</name>
-            <id>service:xorg-x11-server</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>Secure Shell Server</name>
-            <id>service:sshd</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
-        <fw_services>
-            <name>cups</name>
-            <id>service:cups</id>
-            <allowed type="boolean">false</allowed>
-        </fw_services>
+  <use_firewall type="boolean">true</use_firewall>
+  <fw_services type="array">
+    <fw_services>
+      <name>MySQL server</name>
+      <id>service:mysql</id>
+      <description>opens ports for MySQL in order to allow other hosts connect to it</description>
+      <allowed type="boolean">true</allowed>
     </fw_services>
+    <fw_services>
+      <name>dnsmasq</name>
+      <id>service:dnsmasq-dns</id>
+      <description>Open ports for the dnsmasq DNS/DHCP server</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>dnsmasq</name>
+      <id>service:dnsmasq-dhcp</id>
+      <description>Open ports for the dnsmasq DNS/DHCP server</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>svnserve</name>
+      <id>service:svnserve</id>
+      <description>Open ports for svnserve</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>lighttpd</name>
+      <id>service:lighttpd-ssl</id>
+      <description>Open the https port for lighttpd.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>WebYaST UI</name>
+      <id>service:webyast-ui</id>
+      <description>WebYaST UI</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>xdmcp</name>
+      <id>service:xdmcp</id>
+      <description>Allow other hosts to access your display manager via XDMCP</description>
+      <allowed type="boolean">false</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Netbios Server</name>
+      <id>service:netbios-server</id>
+      <description>Opens ports for Samba Netbios Server with broadcast allowed.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>HTTP Server</name>
+      <id>service:apache2</id>
+      <description>Opens ports for Apache Web Server.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>NIS Client</name>
+      <id>service:ypbind</id>
+      <description>The ypbind daemon binds NIS clients to an NIS domain</description>
+      <allowed type="boolean">false</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Samba Client</name>
+      <id>service:samba-client</id>
+      <description>Enables browsing of SMB shares</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>HTTPS Server</name>
+      <id>service:apache2-ssl</id>
+      <description>Opens ports for Apache Web Server.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>VNC mini-HTTP server</name>
+      <id>service:vnc-httpd</id>
+      <description>Opens the VNC HTTP ports so that browsers can connect.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>lighttpd</name>
+      <id>service:lighttpd</id>
+      <description>Open the http port for lighttpd.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Service: iscsitarget</name>
+      <id>service:iscsitarget</id>
+      <description/>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>VNC</name>
+      <id>service:vnc-server</id>
+      <description>Opens VNC server ports so that viewers can connect.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>SMTP with Postfix</name>
+      <id>service:postfix</id>
+      <description>Firewall Configuration file for postfix</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Rsync server</name>
+      <id>service:rsync-server</id>
+      <description>Opens port for rsync server in order to allow remote synchronization</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>xntp Server</name>
+      <id>service:ntp</id>
+      <description>Opens ports for xntp.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>DHCPv4 Server</name>
+      <id>service:dhcp-server</id>
+      <description>Opens ports for ISC DHCPv4 4.x Server.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Zeroconf/Bonjour Multicast DNS</name>
+      <id>service:avahi</id>
+      <description>Zeroconf/Bonjour Multicast DNS (mDNS) ports for Service Discovery (DNS-SD)</description>
+      <allowed type="boolean">false</allowed>
+    </fw_services>
+    <fw_services>
+      <name>NFS Client</name>
+      <id>service:nfs-client</id>
+      <description>Opens ports for NFS client to allow connection to an NFS server.</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Samba Server</name>
+      <id>service:samba-server</id>
+      <description>Opens ports for Samba Server.</description>
+      <allowed type="boolean">false</allowed>
+    </fw_services>
+    <fw_services>
+      <name>VNC Server</name>
+      <id>service:xorg-x11-server</id>
+      <description>Opens ports for VNC Server</description>
+      <allowed type="boolean">false</allowed>
+    </fw_services>
+    <fw_services>
+      <name>Secure Shell Server</name>
+      <id>service:sshd</id>
+      <description>Open ports for Secure Shell Server</description>
+      <allowed type="boolean">true</allowed>
+    </fw_services>
+  </fw_services>
 </firewall>
