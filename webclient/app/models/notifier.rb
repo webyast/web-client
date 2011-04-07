@@ -36,5 +36,5 @@
 require 'yast/service_resource'
 
 class Notifier < YaST::ServiceResource::Base
-  self.site = "http://0.0.0.0:4984"
+
 end

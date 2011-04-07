@@ -26,13 +26,17 @@ class NotifierController < ApplicationController
   layout nil
   
   def index
+    #is needed cause logout is derived from base only
+    Notifier.set_web_service_auth(YaST::ServiceResource::Session.auth_token)
+    Notifier.init_service_url(YaST::ServiceResource::Session.site)
+
     if params[:id]
       @response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
     else 
       @response = Notifier.post(:status, :plugin => params[:plugin])
     end
     
-    logger.error(" HTTP STATUS #{@response.code.to_s} *********")
+    logger.debug(" return HTTP STATUS #{@response.code.to_s}")
     render :nothing=>true, :text=>@response.code.to_s and return
   end
 end

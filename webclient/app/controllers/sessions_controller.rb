@@ -77,7 +77,8 @@ class SessionsController < ApplicationController
       begin
         self.current_account, auth_token, expires_date = Account.authenticate(params[:login], 
                                                             params[:password],
-                                                            host.url)
+                                                            host.url,
+                                                            request.remote_ip)
 	# error handling when login to the service is pretty
         # important to get meaningful error messages to the user
       rescue Errno::ECONNREFUSED => e
@@ -129,6 +130,9 @@ class SessionsController < ApplicationController
     end
 
     if logged_in?
+      #is needed cause logout is derived from base only
+      YaST::ServiceResource::Logout.set_web_service_auth(YaST::ServiceResource::Session.auth_token)
+
       ret = YaST::ServiceResource::Logout.create rescue nil
       if (ret and ret.attributes["logout"])
 	logger.debug "Logout: #{ret.attributes["logout"]}"

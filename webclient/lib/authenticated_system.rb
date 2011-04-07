@@ -112,7 +112,7 @@ module AuthenticatedSystem
     def login_from_basic_auth
       authenticate_with_http_basic do |username, password|
         return false if session[:host].blank?
-        self.current_account = Account.authenticate(username, password, session[:host])
+        self.current_account = Account.authenticate(username, password, session[:host], request.remote_ip)
       end
     end
 

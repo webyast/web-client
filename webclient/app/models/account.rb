@@ -43,7 +43,7 @@ class Account < ActiveRecord::Base
   # Will raise unless uri is a valid uri or if target host is blocked by
   # failed attempt to login
   #
-  def self.authenticate(login, passwd, uri_s)
+  def self.authenticate(login, passwd, uri_s, remote_ip)
     # host is just a hostname, and we want to set the
     # HTTP client REST proxy URL to that host, so we need
     # to add http
@@ -68,7 +68,7 @@ class Account < ActiveRecord::Base
     # the above will obsolete this
     YaST::ServiceResource::Base.site = uri
     # create a login resource
-    ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true)
+    ret = YaST::ServiceResource::Login.create(:login => login, :password =>passwd, :remember_me => true, :ip => remote_ip)
 
     # this would log the password!
     # logger.debug ret.inspect

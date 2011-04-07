@@ -313,7 +313,6 @@ module YaST
       end
       rsrc.instance_variable_set(:@singular, resource.singular?)
       rsrc.password = Session.auth_token if not Session.auth_token.blank?
-      
       return rsrc
     end
 

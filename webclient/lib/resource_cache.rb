@@ -39,6 +39,8 @@ class ResourceCache
         reload_permissions
         str = Rails.cache.read "permissions|#{user}|#{site}"
     end
+    YastModel::Permission.site = site
+    YastModel::Permission.password = token
     str.split(",").collect{ |s| YastModel::Permission.load_from_string s }
   end
 
