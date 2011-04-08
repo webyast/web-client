@@ -37,9 +37,9 @@ class SessionsControllerTest < ActionController::TestCase
     @host = Host.find(1)
     current_account = Account.new
     auth_token = "abcdef"
-    Account.stubs(:authenticate).with("quentin","test",@host.url).returns([current_account, auth_token])
-    Account.stubs(:authenticate).with("quentin","bad password",@host.url).returns([nil,nil])
-    Account.stubs(:authenticate).with("quentin","bad host",@host.url).raises(Errno::ECONNREFUSED)
+    Account.stubs(:authenticate).with("quentin","test",@host.url,"0.0.0.0").returns([current_account, auth_token])
+    Account.stubs(:authenticate).with("quentin","bad password",@host.url, "0.0.0.0").returns([nil,nil])
+    Account.stubs(:authenticate).with("quentin","bad host",@host.url, "0.0.0.0").raises(Errno::ECONNREFUSED)
     YaST::ServiceResource::Session.site = @host.url
     ActiveResource::Base.site = @host.url
   end
