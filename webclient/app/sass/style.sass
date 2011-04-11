@@ -178,13 +178,17 @@ ul li
 
 #header
   width: 100%
-  background: !c_header url('images/bg-head-gradient.png') repeat-x scroll 0 0
-  border-bottom: 1px solid mix(!c_black, !c_header, 40%)
+  /*background: !c_header url('images/bg-head-gradient.png') repeat-x scroll 0 0
+  /*border-bottom: 1px solid mix(!c_black, !c_header, 40%)
+  background-color: #C5C5C5
   height: 50px
+  vartical-align: middle
   text-align: center
   position: relative
   *
-    color: !c_text
+    /*color: !c_text
+    color: #444
+    text-shadow: 0 1px 0 #fff
   h1
     margin: 0
     padding-top: 13px
@@ -300,6 +304,7 @@ ul li
 
 #login_button
   float: right
+  width: 100%
 
 #login-dialogue
   form
@@ -522,11 +527,13 @@ fieldset fieldset
 
 .plugin-icon
   float: left
-  margin: 1em
+  display: block
+  width: 101%
+  margin: 0px 5px 10px 0px
   font-size: 1.5em
   img
     vertical-align: middle
-    margin: 0.5em
+    margin-right: 10px
 
 img.small-working-icon
   width: 20px
@@ -538,10 +545,10 @@ img.small-working-icon
 
 td
   &.icon, &.checkbox
-    text-align: center
+    text-align: left
 
 th.checkbox
-  text-align: center
+  text-align: left
 
 tr
   &.odd

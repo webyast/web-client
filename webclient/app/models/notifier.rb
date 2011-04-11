@@ -1,4 +1,3 @@
-<%#
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
 # 
@@ -19,21 +18,23 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
-%>
-<!-- <div class="status_status"> -->
-  <div class="statusbar_row">
-    <div style="float: left;">
-      <%= image_tag("/images/working.gif", :height=>"22", :width=>"22", :class=>"small-working-icon") %>
-     </div>
-     <div style="float: left; padding-left: 1em; padding-top:10px">
-	<%= _("Checking system status") -%> <!-- RORSCAN_ITL -->
-     </div>
-   </div>
 
-  <%= progress_bar(progress) -%>
+# require 'yast/service_resource'
+# 
+# class Notifier < ActiveResource::Base
+# #   extend YastModel::Base
+# #   model_interface :"org.opensuse.yast.modules.yapi.notifier"
+#   def self.site
+#     YaST::ServiceResource::Session.site = "http://0.0.0.0:4984"
+#   end
+#   
+# #   self.site = "http://0.0.0.0:4984"
+# #   self.element_name = "notifier"
+# end
 
-  <!-- refresh the status again after 5 seconds -->
-  <% javascript_tag do -%>
-    setTimeout(function() { <%= remote_function(:update => "statusbar_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %> }, 5000);
-  <% end -%>
-<!-- </div> -->
+
+require 'yast/service_resource'
+
+class Notifier < YaST::ServiceResource::Base
+
+end

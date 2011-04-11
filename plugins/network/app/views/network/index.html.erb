@@ -18,268 +18,240 @@
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
+<% unless JSMIN == true %>  
+<%= javascript_include_tag "webyast-network" %>
+<%= javascript_include_tag "customInput.jquery" %>
+<%= stylesheet_link_tag "customInput" %>
+<%= stylesheet_link_tag "webyast-network" %>
+<% end %>
 
-<%
-  write_disabled = ! @permissions[:write]
-%>
+<% content_for :head do %> 
+<script type="text/javascript">
+$(document).ready(function() {
+  validateIPv4("ip");
+  validateSubnetMask("netmask"); //accept prefixlen and common subnet mask format e.g. 255.255.255.0
+  validateHostName("hostname");
+  validateDefaultRoute("default_route");
+  validateDomainNameWithAndWithoutTLD("domain");
+  validateNameservers("nameservers");
+  validateDomainNameWithAndWithoutTLD("searchdomains");
 
-<% content_for :head do %>
-<!--    <%= javascript_include_tag :defaults %> -->
-<!-- added to webyast-base-min.js -->
-<!-- 	<%= javascript_include_tag "validation.js" %> -->
-
-   <% javascript_tag do -%>
-      // Slide and focus the field with error if accordion/tab section  is closed 
-      // (prevent the slideDown of opened tab)
-      function focus_field(field_id) {
-        var fragment_id = $("#"+ field_id).parents('fieldset').attr("id");
-        if ($("#"+fragment_id+" legend").attr('aria-expanded') != 'true') {
-           $(".fieldset-group.ui-accordion").accordion('activate', "#"+fragment_id+" legend");
-        };
-        $(".fieldset-group.ui-tabs").tabs('select',"#"+fragment_id);
-        $("#"+field_id).focus();
-      };
-   <% end %>
-
-   <% javascript_tag do -%>
-      function hide_static_config() {
-	    var input = $(".fieldset-group .static");
-	    if ($("#conf_mode").val() != "static") input.attr('disabled', 'disabled');
-		else input.removeAttr('disabled');
+  $("#dnsForm").validate({ 
+    onkeyup: function(element) { this.element(element); }, 
+    onblur: true,
+    rules:{
+      ip: {
+	ip: true,
+	required:true
+      },
+      netmask:{
+	netmask: true,
+	required:true
+      },
+      default_route: {
+	    default_route: true,
+	    required:true
+      },
+      hostname: { 
+	required: true,
+	hostname:true
+      },
+      domain: {
+	    domain: true,
+	    required:true
+      },
+      nameservers: {
+	    nameservers: true,
+	    required:true
+      },
+      searchdomains: {
+	    searchdomains: true,
+	    required:true
       }
-   <% end -%>
+    },
 
-<!-- 	TODO move all stylesheets to public css file -->
-	<style type="text/css">
-	 /* TODO move to style.css fix for validation */
-	 .ui-accordion .ui-accordion-content {padding:1em 0px;}
-	 label.error {
-		float:none;
-		display:inline;
-		font-weight:bold;
-		color:#990000;
-		padding-left:.5em;
-		vertical-align:middle;
-	 }
-	 label.valid { 
-		background: url('../images/checked.gif') no-repeat;
-		padding:0px 0px 0px 18px;
-		vertical-align:middle; 
-		margin-left:5px;
-	 }
-	</style>
+    messages: {
+	    ip: {
+		  required: <%= jss _("This field is required") -%>,
+		  ip: <%= jss _("Enter a valid IP address") -%>
+	    },
+	    netmask: {
+		  required: <%= jss _("This field is required") -%>,
+		  netmask: <%= jss _("Enter a valid subnet mask or prefix") -%>
+	    },
+	    default_route: {
+		  required: <%= jss _("This field is required") -%>,
+		  default_route:<%= jss _("Enter a valid IP address") -%>
+	    },
 
-	<script type="text/javascript">
-		function switchFieldsetGroupTab()
-		{
-	  		var dnsValid = getElementsByClass("error valid", "dns", "label");
-		  	var dnsErrors = getElementsByClass("error", "dns", "label");
-      if ($("#conf_mode").val() == "static"){
-			  var ipValid = getElementsByClass("error valid", "ip-address", "label");
-  			var ipErrors = getElementsByClass("error", "ip-address", "label");
+	    hostname:{ 
+	      required: <%= jss _("This field is required") -%>,
+	      hostname: <%= jss _("Enter a valid hostname") -%> 
+	    },
 
-  			if(dnsValid.length != dnsErrors.length && ipValid.length == ipErrors.length) {
-	  			focus_field("name");
-				  return false;
-		  	} else if(ipValid.length != ipErrors.length && dnsValid.length == dnsErrors.length) {
-			  	focus_field("ip");
-				  return false;
-  			} else if(ipValid.length != ipErrors.length && dnsValid.length != dnsErrors.length) {
-	  			focus_field("ip");
-				  return false;
-		  	}
-        } else {
-           if(dnsValid.length != dnsErrors.length) {
-              focus_field("name");
-              return false;
-           }
-        }
-
-
-      disable_forms();
-		 	$('#progress').show();
-		  return true;
-		}
-	</script>
-
-	<script type="text/javascript">
-	$(document).ready(function() {
-	  validateIPv4("ip");
-	  validateSubnetMask("netmask"); //accept prefixlen and common subnet mask format e.g. 255.255.255.0
-	  validateHostName("name");
-	  validateDefaultRoute("default_route");
-	  validateDomainNameWithAndWithoutTLD("domain");
-// 	  validateIPv4("nameservers");
-	  validateNameservers("nameservers");
-	  validateDomainNameWithAndWithoutTLD("searchdomains");
-
-		$("#dnsForm").validate({ 
-		  onkeyup: function(element) { this.element(element); }, 
-		  onblur: true,
-		  rules:{
-			 ip: {
-				ip: true,
-				required:true
-			 },
-			 netmask:{
-				netmask: true,
-				required:true
-			 },
-			 default_route: {
-				default_route: true,
-				required:true
-			 },
-			name: { 
-			  required: true,
-			  name:true
-			},
-			 domain: {
-				domain: true,
-				required:true
-			 },
-			 nameservers: {
-				nameservers: true,
-				required:true
-			 },
-			 searchdomains: {
-				searchdomains: true,
-				required:true
-			 }
-		  },
-
-		  messages: {
-			 ip: {
-				required: <%= jss _("This field is required") -%>,
-				ip: <%= jss _("Enter a valid IP address") -%>
-			 },
-			 netmask: {
-				required: <%= jss _("This field is required") -%>,
-				netmask: <%= jss _("Enter a valid subnet mask or prefix") -%>
-			 },
-			 default_route: {
-				required: <%= jss _("This field is required") -%>,
-				default_route:<%= jss _("Enter a valid IP address") -%>
-			 },
-
-			 name:{ 
-			  required: <%= jss _("This field is required") -%>,
-			  name: <%= jss _("Enter a valid hostname") -%> 
-			},
-
-			 domain:{
-				required: <%= jss _("This field is required") -%>,
-				domain: <%= jss _("Enter a valid domain name") -%> 
-			 },
-			 nameservers: {
-				required: <%= jss _("This field is required") -%>,
-				nameservers: <%= jss _("Enter a valid IP address") -%>
-			 },
-			 searchdomains: {
-				required: <%= jss _("This field is required")  -%>,
-				searchdomains: <%= jss _("Enter a valid domain name") -%> 
-			 }
-		  },
-		  submitHandler: function(form) {
-			var message = <%= jss _("Please wait") -%>;
-			disableFormOnSubmit(message);
-                        form.submit();
-                  },
-		  success: "valid"  
-		});
-		hide_static_config();
-	 });
-	 </script>
+	    domain:{
+		  required: <%= jss _("This field is required") -%>,
+		  domain: <%= jss _("Enter a valid domain name") -%> 
+	    },
+	    nameservers: {
+		  required: <%= jss _("This field is required") -%>,
+		  nameservers: <%= jss _("Enter a valid IP address") -%>
+	    },
+	    searchdomains: {
+		  required: <%= jss _("This field is required")  -%>,
+		  searchdomains: <%= jss _("Enter a valid domain name") -%> 
+	    }
+    },
+    submitHandler: function(form) {
+// 	  var message = <%= jss _("Please wait") -%>;
+// 	  disableFormOnSubmit(message);
+	  var message = <%= jss _("Please wait") -%>;
+	  $.modalDialog.wait( {message: message});
+	  form.submit();
+    },
+    success: "valid"  
+  });
+  });
+  </script>
 <% end %>
-<% content_for :before_script do %>
-  <% javascript_tag do %>
-    $(document).ready(function(){
-/*
-      // commenting/uncommenting these few lines is all it takes to switch from tebs to accordion
-      $(".fieldset-group").accordion({
-        autoHeight : false,
-        navigation : true,
-        header     : 'fieldset legend',
-        collapsible: true,
-        animated   : false
-      });
-*/
-      addTabsNavigation(".fieldset-group", "span");
-      $(".fieldset-group").tabs();
-    });
 
-  <% end %>
-<% end %>
-<div class='plugin-icon'><img src='/icons/yast-network.png' alt=''/><%=_("Network")%></div>
-<div class='plugin-content'>
-
-<%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
-
-<% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return switchFieldsetGroupTab();"} do |n| %>
-<%= n.error_messages %>
   
-  <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
-  <fieldset id="general-settings">
-    <legend><span><%= _("General settings")%></span></legend>
-    <p>
-      <label for="<%= :conf_mode %>"><%=_("Configuration mode")%></label>
-      <%= select_tag(:conf_mode, options_for_select(@conf_modes, @conf_mode), :disabled => write_disabled, :onchange => "hide_static_config();")%>
-    </p>
-  </fieldset>
-  <div class="fieldset-group">
-    <fieldset id="ip-address">
-      <legend id="ip-tab"><span><%= _("IP Address")%></span></legend>
-      <div>
-        <p>
-          <label for="<%= :ip %>"><%=_("IP address")%></label>
-          <%=text_field_tag :ip, @ip, :class=>"static", :disabled => write_disabled %>
-	  <div style="clear:both"></div>
-        </p>
-        <p>
-          <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
-          <%=text_field_tag :netmask, @netmask, :class=>"static", :disabled => write_disabled %>
-	  <div style="clear:both"></div>
-        </p>
-        <p>
-          <label for="<%= :default_route %>"><%=_("Default route")%></label>
-          <%=text_field_tag :default_route, @default_route, :class=>"static", :disabled => write_disabled %>
-	  <div style="clear:both"></div>
-        </p>
+<% write_disabled = ! @permissions[:write] %>
+  <div class='plugin-content plugin-border'>
+    <%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
+
+    <% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return submitValidForm();"} do |n| %>
+      <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
+      <div class="plugin-header">
+	<div class="left">
+	  <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/network.png"></label>
+	  <label class="plugin-name">Network</label><span id="questionMark" style="margin:0px 15px; float:none;">?</span>
+	  <%=text_field_tag :conf_mode, @conf_mode, :type=>"hidden", :disabled => write_disabled %>
+	</div>
+	
+	<div class="right" >
+	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; ">
+	  <% if(@conf_mode != 'static') %>
+	    <button id="autoMode" class="active" value="dhcp"><%=_("Automatic")%></button>
+	    <button id="manualMode" value="static"><%=_("Manual")%></button>
+	  <% else %>
+	    <button id="autoMode" value="dhcp"><%=_("Automatic")%></button>
+	    <button id="manualMode" class="active" value="static"><%=_("Manual")%></button>
+	  <% end %>
+	  </span>
+
+	</div>
+	<div class="clearfix"></div>
       </div>
-    </fieldset>
-    <fieldset id="dns">
-      <legend id="dns-tab"><span><%= _("DNS")%></span></legend>
-      <div>
-        <p>
-          <label for="<%= :name %>"><%=_("Hostname")%></label>
-          <%=text_field_tag(:name, @name, :disabled => write_disabled) %>
-	    <label class="error" for="name" generated="true">&nbsp;</label>
-	    <div style="clear:both"></div>
-        </p>
-        <p>
-          <label for="<%= :domain %>"><%=_("Domain")%></label>
-          <%=text_field_tag :domain, @domain, :disabled => write_disabled %>
-	  <div style="clear:both"></div>
-        </p>
-        <p>
-          <label for="<%= :dhcp_hostname %>"><%=_("Change hostname by DHCP")%></label>
-	 <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :disabled=>!@dhcp_hostname_enabled %>
-	 <input type="hidden" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
-	</p>
-        <p>
-          <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
-          <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers static", :disabled => write_disabled %>
-	  <div style="clear:both"></div>
-        </p>
-        <p>
-          <label for="<%= :searchdomains %>"><%=_("Search domains")%></label>
-          <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"static", :disabled => write_disabled %>
-	  <div style="clear:both"></div>
-        </p>
+
+      <div class="clearfix">&nbsp;</div>
+
+      <div id="dns-container" style="margin:10px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px; ">
+	<div style=" line-height:30px; vertical-align:middle; color:#444; background: -moz-linear-gradient(top, #e0e0e0 0%, #ccc 100%);  vertical-align:middle; 
+	    -moz-border-radius-bottomleft:5px; -moz-border-radius:2px; border-bottom: 1px solid #d8d8d8;  -moz-border-radius:0px;
+	    background: -moz-linear-gradient(center bottom , #e4e4e4, #ededed) repeat scroll 0 0 transparent; color:#555555; -moz-border-radius-bottomright:0px; -moz-border-radius-bottomleft:0px; padding:0px;" >
+	  
+	   <span style="float:none; margin-left:5px; -moz-border-radius:0px; padding:0px 5px; text-shadow: 1px 1px #fdfdfd; display:inline-block;">
+	    <b ><%= _("DNS configuration")%></b>
+	    <span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(manual)</span>
+	  </span>
+	</div>
+
+	<div style="padding:10px 10px 0px 10px; border:0px solid #d0d0d0; background:#fafafa; background: -moz-linear-gradient(top, #fafafa 0%, #fcfcfc 100%); ">
+	  <div class="row manual">
+	    <label for="<%= :hostname %>"><%=_("Hostname")%></label>
+	    <%=text_field_tag(:hostname, @name, :class=>"hostname", :disabled => write_disabled) %>
+	  </div>
+	  <div class="row manual">
+	    <label for="<%= :domain %>"><%=_("Domain")%></label>
+	    <%=text_field_tag :domain, @domain, :class=>"domain", :disabled => write_disabled %>
+	  </div>
+	  
+	  <div class="row auto">
+	    <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
+	    <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
+	  </div>
+
+	  <div class="row auto">
+	    <label for="<%= :searchdomains %>">
+	      <%=_("Search domains")%>
+	
+	    </label>
+	    <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"searchdomains", :disabled => write_disabled %>
+	  </div>
+
+	  <div id="ip_sticker" class="right" style="border:1px solid #ebebeb; color:#666; position:absolute; top:31%; height:30%; right:2%; text-align:center; padding:0px; -moz-border-radius:3px; ">
+	    <span>
+	      <span style="display:block; background:#eee; padding:2px 3px; font-size:11px;"><%=_("Current IP address (DHCP)")%></span>
+	      <span style="font-size:20px;"><%= @dhcp_ip %></span>
+	    </span>
+	  </div>
+
+<!-- 	  <div style="height:1px; margin:10px 0; background: -moz-linear-gradient(left, #f2f2f2 0%, #ddd 25%, #ddd 75%, #f2f2f2 100%);  padding:0px;">&nbsp;</div> -->
+	  <div style="height:1px; margin:10px 0; background: -moz-linear-gradient(left, #ddd 0%, #f2f2f2 100%);  padding:0px;">&nbsp;</div>
+
+	  <div class="row manual dhcp">
+	    <label><%=_("Change hostname by DHCP")%></label>
+	    <label id="label_dhcp_hostname" style="width:1px;" for="<%= :dhcp_hostname %>">&nbsp;</label>
+	    <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :disabled=>@dhcp_hostname_enabled %>
+	  
+	    <!-- DON'T FORGET TO SET IT WITH JQUERY!!!!! -->
+	    <input type="hidden" for="dhcp_hostname" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
+	  </div>
+	</div>
       </div>
-    </fieldset>
-  </div>
-  <div class="nav-buttons">
-    <%= form_send_buttons :disabled => write_disabled %>
-  </div>
-<% end %>
-</div>
+<!-- <label for="ip" generated="true" class="error">Enter a valid IP address</label> -->
+<!--       <div class="clearfix">&nbsp;</div> -->
+
+      <div id="ip-container" style="margin:10px auto; position:relative;  float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px; ">
+	<div style=" line-height:30px; vertical-align:middle; color:#444; background: -moz-linear-gradient(top, #e0e0e0 0%, #ccc 100%);  vertical-align:middle; 
+	    -moz-border-radius-bottomleft:5px; -moz-border-radius:2px; border-bottom: 1px solid #d8d8d8;  -moz-border-radius:0px;
+	    background: -moz-linear-gradient(center bottom , #e4e4e4, #ededed) repeat scroll 0 0 transparent; color:#555555; -moz-border-radius-bottomright:0px; -moz-border-radius-bottomleft:0px; padding:0px;" >
+	  
+	  <span style="float:none; margin-left:5px; -moz-border-radius:0px; padding:0px 5px; text-shadow: 1px 1px #f8f8f8; display:inline-block;">
+	    <b style="text-shadow: 1px 1px #fdfdfd;"><%= _("IP configuration")%></b>
+	    <span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(via DHCP server)</span>
+<!-- 	  <span style="float:none; color:#555; font-size:10px; margin-left:2px;"></span></span> -->
+	  </span>
+	</div>
+
+	<div id="ip-content" style="padding:10px;">
+	  <!--<div class="row dhcp">
+	    <label for="<%= :ip %>"><%=_("Current IP address")%></label>
+	    <%= @dhcp_ip %>
+	  </div>-->
+	  
+	  <div class="row auto">
+	    <label for="<%= :ip %>"><%=_("IP address")%></label>
+	    <%=text_field_tag :ip, @ip, :class=>"ip static", :disabled => write_disabled %>
+	  </div>
+	  <div class="row auto">
+	    <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
+	    <%=text_field_tag :netmask, @netmask, :class=>"netmask", :disabled => write_disabled %>
+	  </div>
+	  <div class="row auto">
+	    <label for="<%= :default_route %>"><%=_("Default route")%></label>
+	    <%=text_field_tag :default_route, @default_route, :class=>"default_route", :disabled => write_disabled %>
+	  </div>
+	</div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div style="margin:10px auto; position:relative; float:none; width:96%;">
+	<div style="height:1px; border-bottom:0px dotted #ddd; margin:5px 0px;  background: -moz-linear-gradient(left, #ccc 0%, #fafafa 100%);  padding:0px;">&nbsp;</div>
+	<div class="nav-buttons" style="margin:0px 0px; padding:10px 0;">
+	  <%= form_send_buttons :disabled => write_disabled %>
+	</div>
+      </div>
+  <% end %>
+  <!--<div class="right" style="padding: 10px; font-size:11px; color:#555; width:30%; border: 1px solid #d8d8d8; -moz-border-radius:3px; ">
+	  <b>DNS confuguration examples:</b>
+	  <ul>
+	    <li>Hostname: webyast</li>
+	    <li>Domain: suse.de</li>
+	    <li>Name servers: 192.168.0.1</li>
+	    <li>Search domains: suse.de</li>	
+	  </ul>
+	</div>-->
+

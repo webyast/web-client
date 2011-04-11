@@ -56,10 +56,8 @@
 <% if @permissions and @patch_updates %>
 <%= javascript_include_tag :defaults %>
 
-<div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %></div>
+<div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %><span id="questionMark">?</span></div>
   <div class='plugin-content'>
-    <div class="loading"></div>
-<!--     <#%#@patch_updates = []#%#> -->
     <% if @patch_updates.empty? %>
     <h3 class="module_header"><%=_("Your system is up to date.") unless @error%></h3> <!-- RORSCAN_ITL -->
     <div class="nav-buttons">
@@ -86,9 +84,7 @@
 	<div id="wait"><%= image_tag("/images/wait.gif", :style => "vertical-align:middle;") %><%=_("Please wait ...") %></div>
       </div>
 
-      <fieldset id="updates_fieldset" style="margin:1em; padding:5px;">
-      <legend id="updates_legend"><span><%=_("Updates available") %></span></legend>
-      <div id="updates_panel" style="margin:0px; padding:0px; float:left">
+      <div id="updates_panel">
 	  <button type="submit" id="comment" class="left active" value="all" 
 	     onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
 	     :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
@@ -113,10 +109,11 @@
 	    :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
 	    <img src='/icons/kupdateapplet_optional.png'/><%=_("Optional") %>&nbsp;<span>(<%=@hash["optional"] + @hash["low"] %>)</span>
 	  </button>
-      </div>	
-      </fieldset>
+      </div>
     </form>
-  
+
+    <div style="clear:both;"/>
+
     <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
       <fieldset>
 	<div id="patchesd"><%= render :partial => "patches"%></div>

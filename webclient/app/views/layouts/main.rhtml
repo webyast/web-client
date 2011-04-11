@@ -21,41 +21,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<!--[if IE]>
-  <%= stylesheet_link_tag "ie/ie_fixes" %>
-<![endif]--> 
-
+  <!--[if IE]>
+    <%= stylesheet_link_tag "ie/ie_fixes" %>
+  <![endif]--> 
+   
   <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
+    <%= javascript_include_tag 	  "jquery-1.4.2",
+				  "jquery.query", #FIXME write reason
+				  "jquery.timers",
+				  "jquery.ui.custom",
+				  "jquery.validate",
+				  "validation.js",
+				  "jqbrowser-compressed", #our browser detection extension
+				  "jquery.badbrowser", #original browser detection plugin
+				  "yast.widgets",
+				  "yast.helpers",
+				  "digitalspaghetti.password",
+				  "browser_fixes",
+				  "jquery.quicksearch"
 
-  <%= javascript_include_tag 	"jquery-1.4.2",
-				"jquery.query", #FIXME write reason
-				"jquery.timers",
-				"jquery.ui.custom",
-				"jquery.validate",
-				"validation.js",
-				"jqbrowser-compressed", #our browser detection extension
-				"jquery.badbrowser", #original browser detection plugin
-				"yast.widgets",
-				"yast.helpers",
-				"digitalspaghetti.password",
-				"browser_fixes",
-				"jquery.quicksearch"
-   %>
+    %>
     <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
-    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "firewall.helper"%>
+    <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "slidernav", "webyast-online-help", "webyast-modal-dialog", "jquery.activity", "notifier" %>
 
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav" %>
-
+    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-modal-dialog", "webyast-online-help" %>
+    
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
-      %>
-
+    %>
     <%= yield :head %>
   <% end %>
 
@@ -63,27 +62,24 @@
  
   <script type="text/javascript">
     $(document).ready(function() {
-        <% if session[:expires] !=nil && session[:expires].class == Time %>
-	   // get current time from back end and check if time zone set to UTC (client) bnc#631763
-	   var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
-	   <% if session[:expires].utc? == false %>
-	      //if time zone is not UTC convert it
-	      var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
-	      sessionTimeout(current_utc_time, expiration_date);
-	   <% else %>
-	      var expiration_date = "<%=session[:expires].to_time.to_i %>";
-	      sessionTimeout(current_utc_time, expiration_date);
-	   <% end %>
+      $('div.overview a.controlpanel-shortcut').tipsy({gravity: 'n', delayIn: 800, opacity: 0.8 });
 
-	  //<DEBUG>
-	  //var left = (expiration_date - current_utc_time)-300;
-	  //$("div.timer_logpanel").text("Current UTC time: " + current_utc_time + " Expires in UTC time " + expiration_date + " LEFT: " + left); 
-	  //<END>
-	<%end%>
+      <% if session[:expires] !=nil && session[:expires].class == Time %>
+	// get current time from back end and check if time zone set to UTC (client) bnc#631763
+	var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
+	<% if session[:expires].utc? == false %>
+	  //if time zone is not UTC convert it
+	  var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
+	  sessionTimeout(current_utc_time, expiration_date);
+	<% else %>
+	  var expiration_date = "<%=session[:expires].to_time.to_i %>";
+	  sessionTimeout(current_utc_time, expiration_date);
+	<% end %>
+      <%end%>
     });
   </script>
 </head>
-  <body id="shell" onload="">
+  <body id="shell">
     <div id='browserWarning' style="display: none">
       <%= ( _("You are using an unsupported browser. Please switch to %sFireFox 3.5 or better%s or %sInternet Explorer 8%s. Thanks! [%sclose%s]") %
             ["<a href='http://getfirefox.com'>","</a>",
@@ -121,25 +117,44 @@
       <% else -%>
 	
 	<span id="userbar">
-	  <span class="userbar-icon home-icon">
-	    <%= link_to _("Home"), '/controlpanel'%>
-	  </span>
-	  <span class="userbar-icon user-icon">
-	    <%= h user -%>
-	  </span>
-	  <span class="userbar-icon" style=" text-align:center;">
-	    <span class="language-icon">
-	      <%= language_code(current_locale_name).upcase  %>
+	  <span id="userbar-container">
+	    <span class="userbar-icon home-icon">
+	      <%= link_to _("Home"), '/controlpanel'%>
 	    </span>
-	    <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
-	  </span>
-	  <span class="userbar-icon logout-icon">
-	    <%= link_to _("Logout"), '/logout' %>
+	    <span class="userbar-icon user-icon">
+	      <%=link_to(user, :controller => :users) %>
+	    </span> 
+	    <span class="userbar-icon" style=" text-align:center;">
+	      <span class="language-icon">
+		<%= language_code(current_locale_name).upcase  %>
+	      </span>
+	      <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
+	    </span>
+	    <span class="userbar-icon logout-icon">
+	      <%= link_to _("Logout"), '/logout' %>
+	    </span>
+
+	    <form id="test" style="display:none;">
+	      <div style="display:inline-block; width:100%; background-color:#c5c5c5; color:#222; text-align:center; font-weight:bold; font-size:16px;">Add new user</div>
+	      <p>
+		<label style="display:inline-block; min-width:25%;">User:</label>
+		<input id="name" type="text" value="User" style="display:inline-block; width:70%; float:right"/>
+	      </p>
+	      <p>
+		<label style="display:inline-block; min-width:25%;">Password:</label>
+		<input id="name" type="text" value="********" style="display:inline-block; width:70%; float:right"/>
+	      </p>
+	      <p>
+		<input type="button" value="Submit" style="width:48%; display:inline-block; float:left;" />
+		<span style="width:2%; display:inline-block; float:left; text-align:center; color:#a0a0a0">&nbsp;</span>
+		<input type="button" value="Cancel" style="width:48%; display:inline-block; float:right;" />
+	      </p>
+	    </form>
 	  </span>
 	</span>
       <% end -%>
 
-      <h1 style="text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(225, 225, 225, 0.9);"><%= appliance_label %></h1>
+      <h1><%= appliance_label %></h1>
     </div>
 
     <div id="timeoutMessage">
@@ -183,9 +198,10 @@
       <%= yield %>
     </div>
 
-    <div id="footer">
+    <div id="footer" style="clear:both; overflow:hidden;">
       <div class="copy">&copy; 2009,2010 Novell, Inc.</div>
     </div>
 
   </body>
 </html>
+

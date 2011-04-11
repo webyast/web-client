@@ -20,59 +20,70 @@
 
 //TRACK THE FORM CHANGES
 var formChanged = false;
-function init() {
+
+function initChagesTrack(message) {
   $("#on").click(formWasChanged);
   $("#off").click(formWasChanged);
   
   $('#firewallForm .firewall-service').bind('click', formWasChanged);
 
-  $("#firewall-wrapper .action-link").click(
-    function(event) {
-      if (formChanged == true) {
-	event.stopPropagation();
-	event.preventDefault();
-      
-	$.blockUI.defaults.applyPlatformOpacityRules = false;
-	$.blockUI({
-	  message: $('#unsavedChangesDialog'), 
-	  showOverlay: true, 
-	  css: { 
-	    padding:        10, 
-	    margin:         '0 auto', 
-	    width:          '280px',
-	    left:           '40%', 
-	    textAlign:      'center', 
-	    color:          '#333', 
-	    border:         '5px solid #aaa', 
-	    backgroundColor:'#fff',
-	    cursor:         'wait',
-	    '-webkit-border-radius': '5px', 
-	    '-moz-border-radius': '5px',
-	    '-webkit-box-shadow': '0 0 2em #222',
-	    '-moz-box-shadow': '0 0 2em #222',
-	    '-webkit-box-shadow': 'inset 0 0 4px #222',
-	    '-moz-box-shadow': 'inset 0 0 4px #222'
-	  }
-	});   
-
-      $('#yes').click(function() { 
-	$.unblockUI(); 
-	$('#firewallSubmitButton').click();
-      }); 
-
-      $('#no').click(function() { 
-	$.unblockUI(); 
-	document.location = event.target.href;
-	return true; 
-      }); 
-
-      $('#cancel').click(function() { 
-	$.unblockUI(); 
-	return false; 
-      }); 
+   $("#firewall-wrapper .action-link").click(function(event) {
+     event.stopPropagation();
+     event.preventDefault();
+     
+    if (formChanged == true) {
+      $.modalDialog.dialog({message:message, form: 'firewallForm'});
+    } else {
+      document.location = event.target.href;
     }
-   }
-  );
+    });
+//   $("#firewall-wrapper .action-link").click(
+//     function(event) {
+//       if (formChanged == true) {
+// 	event.stopPropagation();
+// 	event.preventDefault();
+//       
+// 	$.blockUI.defaults.applyPlatformOpacityRules = false;
+// 	$.blockUI({
+// 	  message: $('#unsavedChangesDialog'), 
+// 	  showOverlay: true, 
+// 	  css: { 
+// 	    padding:        10, 
+// 	    margin:         '0 auto', 
+// 	    width:          '280px',
+// 	    left:           '40%', 
+// 	    textAlign:      'center', 
+// 	    color:          '#333', 
+// 	    border:         '5px solid #aaa', 
+// 	    backgroundColor:'#fff',
+// 	    cursor:         'wait',
+// 	    '-webkit-border-radius': '5px', 
+// 	    '-moz-border-radius': '5px',
+// 	    '-webkit-box-shadow': '0 0 2em #222',
+// 	    '-moz-box-shadow': '0 0 2em #222',
+// 	    '-webkit-box-shadow': 'inset 0 0 4px #222',
+// 	    '-moz-box-shadow': 'inset 0 0 4px #222'
+// 	  }
+// 	});   
+// 
+//       $('#yes').click(function() { 
+// 	$.unblockUI(); 
+// 	$('#firewallSubmitButton').click();
+//       }); 
+// 
+//       $('#no').click(function() { 
+// 	$.unblockUI(); 
+// 	document.location = event.target.href;
+// 	return true; 
+//       }); 
+// 
+//       $('#cancel').click(function() { 
+// 	$.unblockUI(); 
+// 	return false; 
+//       }); 
+//     }
+//    }
+//   );
 }
 
 function formWasChanged() {
@@ -80,7 +91,7 @@ function formWasChanged() {
   $('#firewallForm .firewall-service').unbind('click', formWasChanged);
 }
 
-$(document).ready(init);
+// $(document).ready(init);
 
 jQuery(function($){
   //SORT SERVICES LIST
@@ -194,30 +205,68 @@ function disableFirewallForm() {
 $(document).ready(function(){
   var $on = $('#on');
   var $off = $('#off');
-
-  $on.click(function () {
-    if($(this).hasClass('selected') == false) {
-      $(this).addClass('selected darkShadow');
-      $('#indicator').attr('src', 'images/firewall-on-led.png');
-      $off.removeClass('selected darkShadow');
+  
+  function toggleMode($id) {
+    if($id.val() == "on") {
+      $on.addClass('active');
+      $off.removeClass('active');
+      
       $('#allowed_services').removeClass('firewallForm_disabled');
       $('#blocked_services').removeClass('firewallForm_disabled');
 
       enableFirewallForm();
       $('#use_firewall').click();
-    } 
-  });
-
-  $off.click(function () {
-    if($(this).hasClass('selected') == false) {
-      $(this).addClass('selected darkShadow');
-      $('#indicator').attr('src', 'images/firewall-off-grey.png');
-      $on.removeClass('selected darkShadow');
+    } else {
+      $off.addClass('active');
+      $on.removeClass('active');
+      
       $('#allowed_services').addClass('firewallForm_disabled');
       $('#blocked_services').addClass('firewallForm_disabled');
 
       disableFirewallForm();
       $('#use_firewall').click();
     }
-  });  
+  }
+
+  $on.click(function(event) {
+    event.preventDefault();
+    toggleMode($(this));
+    return false;
+  });
+  
+  $off.click(function(event) {
+    event.preventDefault();
+    toggleMode($(this));
+    return false;
+  });
+
+//   $on.click(function (event) {
+//     event.preventDefault();
+//     
+//     if($(this).hasClass('selected') == false) {
+//       $(this).addClass('selected darkShadow');
+//       $('#indicator').attr('src', 'images/firewall-on-led.png');
+//       $off.removeClass('selected darkShadow');
+//       $('#allowed_services').removeClass('firewallForm_disabled');
+//       $('#blocked_services').removeClass('firewallForm_disabled');
+// 
+//       enableFirewallForm();
+//       $('#use_firewall').click();
+//     } 
+//   });
+// 
+//   $off.click(function(event) {
+//     event.preventDefault();
+//     
+//     if($(this).hasClass('selected') == false) {
+//       $(this).addClass('selected darkShadow');
+//       $('#indicator').attr('src', 'images/firewall-off-grey.png');
+//       $on.removeClass('selected darkShadow');
+//       $('#allowed_services').addClass('firewallForm_disabled');
+//       $('#blocked_services').addClass('firewallForm_disabled');
+// 
+//       disableFirewallForm();
+//       $('#use_firewall').click();
+//     }
+//   });  
 });

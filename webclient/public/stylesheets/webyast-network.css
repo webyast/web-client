@@ -1,0 +1,76 @@
+/*#--
+ *# Webyast Webservice framework
+ *#
+ *# Copyright (C) 2009, 2010 Novell, Inc. 
+ *#   This library is free software; you can redistribute it and/or modify
+ *# it only under the terms of version 2.1 of the GNU Lesser General Public
+ *# License as published by the Free Software Foundation. 
+ *#
+ *#   This library is distributed in the hope that it will be useful, but WITHOUT
+ *# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+ *# details.
+ *#
+ *#   You should have received a copy of the GNU Lesser General Public
+ *# License along with this library; if not, write to the Free Software 
+ *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *#++ */
+
+/* #content { overflow: visible; } */
+/* #content form { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; } */
+/* div.plugin-border { -moz-border-radius:0px; border:1px solid  #D7D8DF; margin:0; padding:10px;  overflow:visble; clear:both; background: -moz-linear-gradient(top, #f5f5f5 0%, #f8f8f8 10%, #fafafa 11%, #fff 100%); } */
+/* #firewallForm #onlineHelpContent {width:80%; left:10%;} */
+/* #dnsForm span#onlineHelpContent {width:80%; left:10%;} */
+#dnsForm div.clearfix { clear:both; overflow:hidden; }
+#dnsForm div.row, #dnsForm div.dhcp { display: block; vertical-align: middle; min-height:32px; }
+#dnsForm div.row label, div.dhcp label { vertical-align: middle;/* min-width:100px; max-width:200px; */width:200px; display:inline-block; float:none;}
+#dnsForm div.row label.error {  vertical-align: middle; color: #d70000; display:inline; float:none; width:auto; margin-left:20px; font-size:11px;}
+#dnsForm div.dhcp label { width:195px; } 
+#dhcp_hostname { vertical-align: middle; }
+
+#dnsForm input[type=text].error, #dnsForm input[type=text].valid { float:none; vertical-align:middle; }
+#dnsForm input[type=text].error { border-color: #d70000 #f3b2b2 #f3b2b2 #d70000; }
+#dnsForm input[type=text] { width:200px; height:18px; -moz-box-shadow:inset 0px 0px 0px #eee; border-color: #C4C4C4 #E9E9E9 #E9E9E9 #C4C4C4; border-style: solid; border-width: 1px; }
+#dnsForm input[type="text"] { vertical-align:middle; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; padding:3px; -moz-border-radius:0px; font-size:12px; color:#555; font-weight:normal; }
+#dnsForm .left { float:left; overflow:hidden;}
+#dnsForm .right { float:right; overflow:hidden; }
+
+#dns-container {
+  margin:10px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px; 
+}
+
+#autoMode, #manualMode { 
+  padding:2px 5px; 
+  border:1px solid #a0a0a0; 
+  vertical-align:middle; 
+  background: url("/images/gradientx40.png") repeat-x scroll 0 0 #fff;
+  color: #222;
+  cursor: pointer;
+  text-shadow: 0px 1px 0px #fff;
+  min-width:80px; 
+  font-family: Arial;
+  -moz-box-shadow: 0px 0px 1px #666;
+}
+
+#autoMode.active, #manualMode.active { 
+  border-right:0;
+  color:#efefef;
+  text-shadow: 0 -1px 0px #333;
+  font-weight:bold;
+
+  background:#39A33A;
+  background: -moz-linear-gradient(center bottom, #39A33A 0%, #71D048 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#71D048), to(#39A33A));
+
+  -moz-box-shadow: inset 0px 0px 1px #000; 
+  -webkit-box-shadow: inset 0px 0px 1px #000; 
+}
+
+#autoMode:hover,  #manualMode:hover { background: url("/images/gradientx40.png") repeat-x scroll 0 0 #eee;  }
+#autoMode.active:hover, #manualMode.active:hover {
+  font-weight:bold;
+  background: -moz-linear-gradient(center bottom, #39A33A 0%, #71D048 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#71D048), to(#39A33A));
+}
+
+#manualMode { border-left:0px; margin-left:-5px; }

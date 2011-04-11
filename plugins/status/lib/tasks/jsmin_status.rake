@@ -22,24 +22,16 @@
 require "tempfile"
 JSCOMPRESSOR = File.join(RAILS_ROOT, '/script/javascript/jsmin.rb')
 
-def minify(list, output)
-   tmp = Tempfile.open('all')
-   list.each {|file| open(file) {|f| tmp.write(f.read) } }
-   tmp.rewind 
-   sh "ruby #{JSCOMPRESSOR} < #{tmp.path} > #{output}"
-end
-
 namespace :js do
   javascripts = ['jqplot.categoryAxisRenderer.js', "jqplot.dateAxisRenderer.js", "jqplot.canvasTextRenderer.js", "jqplot.cursor.js"]
-  
+
   Dir.chdir(File.join(RAILS_ROOT, 'public', 'javascripts', 'plugin')) do    
-    
     javascripts.map! {|f| File.join(Dir.pwd, f)}
     javascripts.unshift(File.join(RAILS_ROOT, 'public', 'javascripts', 'jquery.jqplot.js'))
     file 'status-min.js' => javascripts do | f |
-      
-      output_file = File.join(File.dirname(__FILE__), '..','..','public', 'javascripts', 'min', '/') + f.name
-      minify(f.prerequisites, output_file)
+      $dir = File.join(File.dirname(__FILE__), '/../../public/javascripts/min/')
+      mkpath($dir);
+      minify(f.prerequisites, $dir + f.name)
     end
   end
 
@@ -47,4 +39,11 @@ namespace :js do
   task :"status" => ['status-min.js']  do
      puts "Done"
   end
+end
+
+def minify(list, output)
+   tmp = Tempfile.open('all')
+   list.each {|file| open(file) {|f| tmp.write(f.read) } }
+   tmp.rewind 
+   sh "ruby #{JSCOMPRESSOR} < #{tmp.path} > #{output}"
 end

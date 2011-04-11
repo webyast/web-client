@@ -19,12 +19,39 @@
 # you may find current contact information at www.novell.com
 -->
 
+<% unless JSMIN == true %>  
+  <%= javascript_include_tag "webyast-firewall" %>
+  <%= stylesheet_link_tag "webyast-firewall" %>
+<% end %>
+
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%></div>
-<div class="plugin-content">
+<!-- <div class='plugin-icon'><img src='/icons/yast-firewall.png' alt="firewall module"/><%=_("Firewall")%><span id="questionMark">?</span></div> -->
+
+<div class="plugin-content plugin-border">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
   <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container', :onsubmit => "return validateNeededServices()" } do %>
+
+  <div id="firewallbar" class="plugin-header">
+    <div class="left" style="float:left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/firewall.png"></label>
+      <label class="plugin-name">Firewall</label><span id="questionMark" style="margin:0px 15px; float:none;">?</span>
+    </div>
+
+    <div class="right" >
+      <span class="right" style="padding:2px; background:#f5f5f5; -moz-border-radius:2px; -webkit-border-radius:2px;">
+	<% if @firewall.use_firewall %>
+	  <button id="on" class="active" value="on"><%=_("Enabled")%></button>
+	  <button id="off" value="off"><%=_("Disabled")%></button>
+	<% else %>
+	  <button id="on" value="on"><%=_("Enabled")%></button>
+	  <button id="off" class="active" value="off"><%=_("Disabled")%></button>
+	<% end %>
+     </span>
+    </div>
+    <div class="clearfix"></div>    
+  </div>
+  
   
   <div id="fw_services_values">
     <% @firewall.fw_services.each do |service| %>
@@ -35,12 +62,10 @@
              />
     <% end %>
   </div>
-  <input type="checkbox" name="use_firewall" id="use_firewall" value="true"
-      <%=  "checked=\"checked\"" if @firewall.use_firewall %> 
-      <%=  "disabled=\"disabled\"" if disabled %> 
-      /> 
+
+  <input type="checkbox" name="use_firewall" id="use_firewall" value="true" <%=  "checked=\"checked\"" if @firewall.use_firewall %> <%=  "disabled=\"disabled\"" if disabled %> /> 
     
-  <div id="firewall" class="border">
+<!--  <div id="firewall" class="border">
     <% if @firewall.use_firewall %>
       <img id="indicator" src="images/firewall-on-led.png">
     <% else %>
@@ -54,7 +79,7 @@
       <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
       <a id="off" class="btn rightBtn selected">OFF</a>
     <% end %>
-  </div>
+  </div>-->
 
   <div class="clearfix"></div>
 
@@ -67,8 +92,9 @@
       <% else %>
 	<div id="allowed_services" class="services round10 firewallForm_disabled">
       <% end %>
+	
 	<% @firewall.fw_services.each do |service| %>
-	    <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description %>"><%= service.name %></span>
+	  <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
 	<% end %>
       </div>
     </div> 
@@ -78,37 +104,24 @@
       <% if @firewall.use_firewall %>
 	<div id="blocked_services" class="services round10">
       <% else %>
-	<!--<script type="text/javascript">jQuery(function($){ disableFirewallForm() })</script>-->
 	<div id="blocked_services" class="services round10 firewallForm_disabled">
       <% end %>
 	<% @firewall.fw_services.each do |service| %>
-	    <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description %>"><%= service.name %></span>
+	  <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
 	<% end %>
       </div>
     </div>
+
     <div class="clearfix"></div>
 
-    <div id="unsavedChangesDialog"> 
-      <div>
-	<img src='/images/warning-red.png'/>
-	<label>Do you want to save your changes?</label>
-      </div>
-	<hr style="border: 0px; width:93%; border-top:solid 1px #ccc; border-bottom:transparent;">
-      <div>
-	<input type="button" id="yes" class="unsaved_changes" value="Yes" /> 
-	<input type="button" id="no" class="unsaved_changes" value="No" /> 
-	<input type="button" id="cancel" class="unsaved_changes" value="&nbsp;Cancel" /> 	
-      </div> 
-    </div> 
-
     <div class="nav-buttons">
-	<%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
+      <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
     </div>
     <% end %>
   </div>
 </div>
 
-<% javascript_tag do -%>
+<script>
   $(document).ready(function(){
     $("#blocked_services span").filter( function(index) {
       return $("#fw_services_values input."+$(this).attr("value")).attr("value") == "true";
@@ -133,8 +146,6 @@
       return services.filter( isBlockedAndWasAllowed ).map( function(s) { return s.name });
     }
 
-    var message = <%= jss _("Please wait") -%>;
-
     if ( $("#use_firewall")[0].checked ) {
       if ( needed_services.some( isBlockedAndWasAllowed ) ) {
 	if (!confirm( confirm_text.replace("%s", blockedNames(needed_services).join(", ")) ) ){
@@ -143,8 +154,13 @@
       } 
     }
     
-    disableFormOnSubmit(message);  
+    var message = <%= jss _("Please wait") -%>;
+    $.modalDialog.wait( {message: message});
     return true;
   }
-<% end -%>
 
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+  startNotifier({'module':'firewall', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
+
+  $(document).ready(initChagesTrack(<%= jss _("You have unsaved changes. Do you want to save your changes?") -%>));
+</script>

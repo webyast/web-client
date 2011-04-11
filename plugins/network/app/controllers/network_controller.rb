@@ -46,6 +46,7 @@ class NetworkController < ApplicationController
   
   NETMASK_RANGE = 0..32
   STATIC_BOOT_ID = "static"
+  
 
   # GET /network
   def index
@@ -55,6 +56,9 @@ class NetworkController < ApplicationController
       unless @ifcs.length == 1
 	logger.debug "***** More than one interface is attached-> #{ @ifcs.length } *****"
 	ifc = @ifcs.find do |i| 
+	  
+	  logger.info("\n=== INTERFACES: #{i.inspect}  ===\n")
+	  
 	  next unless i.attributes.has_key?("bootproto")
 	  logger.error "***** Interface #{i.attributes['id']} has key BOOTPROTO -> #{i.attributes.has_key?("bootproto") } *****"
 	end
@@ -103,9 +107,14 @@ class NetworkController < ApplicationController
       @netmask = "/"+@netmask
     end    
  
+    
+    
+    
     @name = hn.name
     @domain = hn.domain
+    
     @dhcp_ip = getCurrentIP;
+    
     @dhcp_hostname_enabled = hn.attributes.include?("dhcp_hostname")
     @dhcp_hostname = @dhcp_hostname_enabled && hn.dhcp_hostname=="1" 
     @nameservers = dns.nameservers
@@ -159,10 +168,14 @@ class NetworkController < ApplicationController
 
     ifc = Interface.find params["interface"]
     return false unless ifc
+    
     dirty_ifc = true unless (ifc.bootproto == params["conf_mode"])
     logger.info "dirty after interface config: #{dirty}"
+    
     ifc.bootproto=params["conf_mode"]
+    
     if ifc.bootproto==STATIC_BOOT_ID
+      
       #ip addr is returned in another state then given, but restart of static address is not problem
       if ((ifc.ipaddr||"").delete("/")!=params["ip"]+(params["netmask"]||"").delete("/"))
         dirty_ifc = true
@@ -170,6 +183,8 @@ class NetworkController < ApplicationController
       end
     end
    
+    
+    
     begin
       # this is not transaction!
       # if any *.save failed, the previous will be applied
@@ -180,10 +195,9 @@ class NetworkController < ApplicationController
         hn.save
         # write interfaces (and therefore restart network) only when interface settings changed (bnc#579044)
 	if dirty_ifc
-	  ifc.save
+          ifc.save
 	end
       end
-
       #write to avoid confusion, with another string
       flash[:notice] = _('Network settings have been written.')
     rescue ActiveResource::ServerError => e
