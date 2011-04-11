@@ -20,22 +20,20 @@
 # you may find current contact information at www.novell.com
 #++
 %>
-<div class="status_status">
-  <div style="float: left;">
-    <%= image_tag("/images/working.gif", :height=>"32", :width=>"32", :class=>"small-working-icon") %>
-  </div>
-
-  <div style="float: left; padding-left: 1em; padding-top:10px">
-    <%= _("Checking system status") -%> <!-- RORSCAN_ITL -->
-  </div>
+<!-- <div class="status_status"> -->
+  <div class="statusbar_row">
+    <div style="float: left;">
+      <%= image_tag("/images/working.gif", :height=>"22", :width=>"22", :class=>"small-working-icon") %>
+     </div>
+     <div style="float: left; padding-left: 1em; padding-top:10px">
+	<%= _("Checking system status") -%> <!-- RORSCAN_ITL -->
+     </div>
+   </div>
 
   <%= progress_bar(progress) -%>
 
   <!-- refresh the status again after 5 seconds -->
   <% javascript_tag do -%>
-    setTimeout(function() {
-      <%= remote_function(:update => "status_status",
-	:url => { :controller => :status, :action => :show_summary, :background => true }) %>
-    }, 5000);
+    setTimeout(function() { <%= remote_function(:update => "statusbar_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %> }, 5000);
   <% end -%>
-</div>
+<!-- </div> -->

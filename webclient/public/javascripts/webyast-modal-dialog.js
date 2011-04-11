@@ -77,6 +77,11 @@ function preloader() {
       dialog(options.message, options.form);
     },
  
+    confirm_dialog: function(options){
+      var options = $.extend(this.defaults, options);  
+      confirm_dialog(options.message, options.action);
+    },
+ 
     bind: function(options) {
       var close = '#' + this.defaults.mclose;  
       $(function(){
@@ -151,6 +156,49 @@ dialog = function(message, form) {
     $.modalDialog.destroy();
     $.modalDialog.wait({message: 'Please wait'});
     window.location = window.location.protocol + '//' + window.location.host;
+  }); 
+      
+//   $('body').find('#'+defaults.mshade).css('height', $(document.body).height()+'px');
+  self.centering(defaults.mwindow);
+}
+
+confirm_dialog = function(message, $action) {
+  var defaults = $.modalDialog.defaults;  
+//   imageObj = new Image();
+//   imageObj.src=defaults.warning;
+  console.log(action)
+  $.modalDialog.destroy();
+  
+  if(message.split('.').length > 1) {
+    question = message.split('.')[0] + '<br/>' + message.split('.')[1];
+  }
+  
+  $('body').append('<div id="' + defaults.mshade + '">&nbsp;</div>');
+  
+  $dialog = '<div id="' + defaults.mwindow + '" class="mdialog">';
+    $dialog += '<div class="mleftcontainer">' + defaults.warning + '</div>';
+    $dialog += '<div class="mrightcontainer">';
+      $dialog += '<div>' + message + '</div>';
+      $dialog += '<div  class="mdevider">&nbsp;</div>';
+      $dialog += '<div><input type="button" id="no" value="No" /><input type="button" id="yes" value="Yes" /></div>';
+    $dialog += '</div>';
+  $dialog += '</div>';
+  
+  var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', 'images/close-g.png');
+  $('body').before($dialog);
+  $('#'+defaults.mwindow).append($mclose);
+  $.modalDialog.bind(defaults.mclose);
+  
+  $('#yes').live('click', function(){
+    $.modalDialog.destroy();
+//     $('#'+form).submit();
+//     $action.click();
+  }); 
+
+  $('#no').live('click', function(){
+    $.modalDialog.destroy();
+//     $.modalDialog.wait({message: 'Please wait'});
+//     window.location = window.location.protocol + '//' + window.location.host;
   }); 
       
 //   $('body').find('#'+defaults.mshade).css('height', $(document.body).height()+'px');
