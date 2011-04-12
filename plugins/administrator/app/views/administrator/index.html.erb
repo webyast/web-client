@@ -38,6 +38,8 @@
   </style>
 
   <script type="text/javascript">
+    var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+    startNotifier({'module':'administrator', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
     // define custom validation function
     // alias is actually a list of email aliases
     jQuery.validator.addMethod("emails", function(value, element) {
