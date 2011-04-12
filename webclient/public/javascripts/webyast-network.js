@@ -19,8 +19,6 @@
 */
 
 $(function(){
-  $('#dhcp_hostname').customInput();
-  
   $('#label_dhcp_hostname').click(function(){
     $('#dhcp_hostname').val() == '1'? $('#dhcp_hostname').val() == 0 : $('#dhcp_hostname').val() == 1; 
   })

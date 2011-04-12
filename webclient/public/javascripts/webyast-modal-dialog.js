@@ -35,9 +35,12 @@ function preloader() {
   }
 } 
 
+$(document).ready(function() {
+   preloader();
+});
+
+
 (function($, undefined){
-  preloader();
-   
   $.modalDialog = {
     defaults: {
       mshade: 'modalWindowShade',
@@ -109,8 +112,9 @@ function preloader() {
 
 popup = function(image, message) {
   var defaults = $.modalDialog.defaults;  
-//   imageObj = new Image();
-//   imageObj.src=image;
+  
+  imageObj = new Image();
+  imageObj.src=image;
   
   $.modalDialog.destroy();
   
@@ -122,8 +126,9 @@ popup = function(image, message) {
 //TODO: form.find('input type=submit') ? else ???
 dialog = function(message, form) {
   var defaults = $.modalDialog.defaults;  
-//   imageObj = new Image();
-//   imageObj.src=defaults.warning;
+  
+  imageObj = new Image();
+  imageObj.src=defaults.warning;
   
   $.modalDialog.destroy();
   
@@ -136,7 +141,7 @@ dialog = function(message, form) {
   $dialog = '<div id="' + defaults.mwindow + '" class="mdialog">';
     $dialog += '<div class="mleftcontainer">' + defaults.warning + '</div>';
     $dialog += '<div class="mrightcontainer">';
-      $dialog += '<div>' + message + '</div>';
+      $dialog += '<div>' + question + '</div>';
       $dialog += '<div  class="mdevider">&nbsp;</div>';
       $dialog += '<div><input type="button" id="no" value="No" /><input type="button" id="yes" value="Yes" /></div>';
     $dialog += '</div>';
@@ -158,15 +163,14 @@ dialog = function(message, form) {
     window.location = window.location.protocol + '//' + window.location.host;
   }); 
       
-//   $('body').find('#'+defaults.mshade).css('height', $(document.body).height()+'px');
   self.centering(defaults.mwindow);
 }
 
 confirm_dialog = function(message, $action) {
   var defaults = $.modalDialog.defaults;  
-//   imageObj = new Image();
-//   imageObj.src=defaults.warning;
-  console.log(action)
+  imageObj = new Image();
+  imageObj.src=defaults.warning;
+  
   $.modalDialog.destroy();
   
   if(message.split('.').length > 1) {
@@ -178,7 +182,7 @@ confirm_dialog = function(message, $action) {
   $dialog = '<div id="' + defaults.mwindow + '" class="mdialog">';
     $dialog += '<div class="mleftcontainer">' + defaults.warning + '</div>';
     $dialog += '<div class="mrightcontainer">';
-      $dialog += '<div>' + message + '</div>';
+      $dialog += '<div>' + question + '</div>';
       $dialog += '<div  class="mdevider">&nbsp;</div>';
       $dialog += '<div><input type="button" id="no" value="No" /><input type="button" id="yes" value="Yes" /></div>';
     $dialog += '</div>';
@@ -191,17 +195,12 @@ confirm_dialog = function(message, $action) {
   
   $('#yes').live('click', function(){
     $.modalDialog.destroy();
-//     $('#'+form).submit();
-//     $action.click();
   }); 
 
   $('#no').live('click', function(){
     $.modalDialog.destroy();
-//     $.modalDialog.wait({message: 'Please wait'});
-//     window.location = window.location.protocol + '//' + window.location.host;
   }); 
       
-//   $('body').find('#'+defaults.mshade).css('height', $(document.body).height()+'px');
   self.centering(defaults.mwindow);
 }
 

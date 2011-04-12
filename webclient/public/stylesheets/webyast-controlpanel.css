@@ -93,10 +93,31 @@ div.statusbar_row span.status_warning {
   height:12px; 
   padding:4px; 
   border:none; 
+  text-align:center;
   vertical-align:middle;
   -moz-border-radius:100%;  
   line-height:12px; 
-  background: -moz-linear-gradient(center bottom , #b43434, #ea5656) repeat scroll 0 0 transparent;  
+  background: -moz-linear-gradient(center bottom , #b43434, #ea5656) repeat scroll 0 0 transparent;
+  background: -moz-radial-gradient(center center 45deg, circle closest-side, #ea5656 0%, #b43434 100%) repeat scroll 0 0 transparent;
+  font-size:18px; 
+  font-weight:bolder; 
+  color:white; 
+  text-shadow: 0px -1px 0px #474747;
+}
+
+div.statusbar_row span.status_ok {
+  margin-right:5px;
+  display:inline-block; 
+  width:12px; 
+  height:12px; 
+  padding:4px; 
+  border:none; 
+  vertical-align:middle;
+  -moz-border-radius:100%;  
+  line-height:12px; 
+  background: -moz-linear-gradient(center bottom , #25712e, #59c766) repeat scroll 0 0 transparent;   
+  background: -moz-radial-gradient(center center 45deg, circle closest-side, #59c766 0%, #25712e 100%) repeat scroll 0 0 transparent;
+  
   font-size:18px; 
   font-weight:bold; 
   color:white; 

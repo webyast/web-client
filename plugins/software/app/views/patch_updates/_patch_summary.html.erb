@@ -75,8 +75,9 @@
       <% elsif patch[:optional] > 0%>
 	<img src="/icons/kupdateapplet_optional.png">
       <% else %>
-	<% javascript_tag do -%>jQuery(function($){ $('#status-eye').addClass('eye_healthy'); });<% end -%>
-	<span class="status-icon ok">&nbsp;</span>
+	<% javascript_tag do -%>jQuery(function($){ if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); } });<% end -%>
+<!-- 	<span class="status-icon ok">&nbsp;</span> -->
+	<span class="status_ok"></span>
       <% end %>
 
       <% link_to "patch_updates" do %>

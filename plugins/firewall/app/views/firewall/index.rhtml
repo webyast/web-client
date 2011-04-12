@@ -19,9 +19,11 @@
 # you may find current contact information at www.novell.com
 -->
 
-<% unless JSMIN == true %>  
-  <%= javascript_include_tag "webyast-firewall" %>
-  <%= stylesheet_link_tag "webyast-firewall" %>
+<% content_for :head do %>
+  <% unless JSMIN == true %>  
+    <%= javascript_include_tag "webyast-firewall" %>
+    <%= stylesheet_link_tag "webyast-firewall" %>
+  <% end %>
 <% end %>
 
 <% disabled = !@permissions[:write] %>
@@ -51,7 +53,6 @@
     </div>
     <div class="clearfix"></div>    
   </div>
-  
   
   <div id="fw_services_values">
     <% @firewall.fw_services.each do |service| %>
