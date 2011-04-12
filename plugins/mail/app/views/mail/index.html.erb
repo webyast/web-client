@@ -33,7 +33,9 @@
 
 <%= javascript_include_tag "validation.js" %>
 <script type="text/javascript">
-  
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+  startNotifier({'module':'mail', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
+
     $(document).ready(function() {
       validateDomainNameWithPortNumber("smtp_server");
       $("#mailForm").validate({
@@ -65,7 +67,7 @@
 
 <% end %>
 
-<div class='plugin-icon'><img alt="yast-mail-server" src='/icons/yast-mail-server.png'/><%=_("Mail Settings")%></div>
+<div class='plugin-icon'><img alt="yast-mail-server" src='/icons/yast-mail-server.png'/><%=_("Mail Settings")%><span id="questionMark">?</span></div>
 
 <div class='plugin-content'>
 

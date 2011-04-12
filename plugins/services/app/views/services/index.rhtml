@@ -26,6 +26,8 @@
 <% end %>
 
 <% javascript_tag do %>
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+  startNotifier({'module':'services', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
 $(document).ready(function() {
 
     $("#services div.list-fieldset").each (function(index) {

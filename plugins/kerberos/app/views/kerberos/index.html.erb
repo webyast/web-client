@@ -23,6 +23,8 @@
 
   <%= javascript_include_tag "validation.js" %>
   <script type="text/javascript">
+    var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+    startNotifier({'module':'kerberos', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
   
     $(document).ready(function() {
       validateDomainName("kdc");
@@ -61,7 +63,7 @@
 
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='../icons/yast-kerberos.png'/> <%= _("Kerberos client") %></div>
+<div class='plugin-icon'><img src='../icons/yast-kerberos.png'/> <%= _("Kerberos client") %><span id="questionMark">?</span></div>
 <div class='plugin-content'>
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>

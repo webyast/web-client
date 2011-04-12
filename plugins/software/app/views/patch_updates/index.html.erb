@@ -20,6 +20,9 @@
 -->
 
 <script type="text/javascript">
+  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+  startNotifier({'module':'patches', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
+
   $(document).ready(function() {
     $(":button").click(function() {
       $("button[type=submit].active").removeClass('active')
