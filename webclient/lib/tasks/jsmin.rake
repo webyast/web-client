@@ -40,7 +40,7 @@ namespace :js do
 		 "jquerytimer.js","jquerySessionTimeout.js", "jquery.blockUI.js", "jqueryDisableOnSubmit.js",
 		"jquery-effects.min.js", "jquery.tinysort.js", "jquery.tipsy.js", "webyast-firewall.js", "webyast-network.js",
 		"jquery.event.drag-2.0.min.js", "jquery.event.drop-2.0.min.js", "jquery.qsearch.js", "roles.helper.js", "slidernav.js", 
-		"webyast-modal-dialog.js", "customInput.jquery.js", "webyast-online-help.js"]
+		"webyast-modal-dialog.js", "webyast-online-help.js"]
 
   Dir.chdir(JAVASCRIPTS_PATH) do
     javascripts.map! {|f| File.join(Dir.pwd, f)}
