@@ -85,9 +85,13 @@ var Notifier = function(params) {
 	case '304':
 	  log("CACHE is UP-TO-DATE: " + event.data); 
 	  break
-	  
+	case '306':
+	  log("CACHE is not available: " + event.data); 
+	  stopNotifierPlugin(worker);
+	  break
 	default : 
 	  log("ERROR: unknown HTTP status: " + event.data);
+	  stopNotifierPlugin(worker);
 	  break
       }
     };
@@ -112,6 +116,9 @@ var AJAXcall = function(params) {
 	break
       case '304':
 	log("CACHE is UP-TO-DATE: " + data); 
+	break
+      case '306':
+	log("CACHE is not available: " + event.data); 
 	break
       default : 
 	log("ERROR: unknown HTTP status: " + data + typeof(data));

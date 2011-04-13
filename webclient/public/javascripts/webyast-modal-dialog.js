@@ -26,9 +26,9 @@ function preloader() {
   var i = 0;
   imageObj = new Image();
   images = new Array();
-  images[0]="/images/dialog-warning.png"
-  images[1]="/images/loading.gif"
-  images[2]="/images/info.png"
+  images[0]="../images/dialog-warning.png"
+  images[1]="../images/loading.gif"
+  images[2]="../images/info.png"
 
   for(i=0; i<3; i++) {
     imageObj.src=images[i];
@@ -47,9 +47,9 @@ $(document).ready(function() {
       mwindow: 'modalWindow',
       mclose: 'modalWindowClose',
       
-      warning:  '<img src="/images/dialog-warning.png">',
-      loading: '<img src="/images/loading.gif">',
-      info:  '<img src="/images/info.png">',
+      warning:  '<img src="../images/dialog-warning.png">',
+      loading: 	'<img src="../images/loading.gif">',
+      info:  	'<img src="../images/info.png">',
  
       message: 'Please wait',
       simple: false,
@@ -147,7 +147,7 @@ dialog = function(message, form) {
     $dialog += '</div>';
   $dialog += '</div>';
   
-  var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', 'images/close-g.png');
+  var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', '../images/close-g.png');
   $('body').before($dialog);
   $('#'+defaults.mwindow).append($mclose);
   $.modalDialog.bind(defaults.mclose);

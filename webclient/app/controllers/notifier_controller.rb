@@ -30,13 +30,33 @@ class NotifierController < ApplicationController
     Notifier.set_web_service_auth(YaST::ServiceResource::Session.auth_token)
     Notifier.init_service_url(YaST::ServiceResource::Session.site)
 
-    if params[:id]
-      @response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
+    if params[:plugin] == "network"
+      modules = ['dns', 'hostname', 'interfaces', 'routes'];
+      status = "500"
+      
+      modules.each do | m |
+	http_code = Notifier.post(:status, :plugin => m).code.to_s
+	
+	if http_code != "304"
+	  Rails.logger.error "WARNING: HTTP CODE #{http_code}"
+	  render :nothing=>true, :text=>http_code and return
+	else 
+	  logger.debug("INFO: HTTP CODE #{http_code}")
+	  status = http_code
+	end
+      end      
+
+      render :nothing=>true, :text=>status and return
+      
     else 
-      @response = Notifier.post(:status, :plugin => params[:plugin])
+      if params[:id]
+	@response = Notifier.post(:status, :plugin => params[:plugin], :id=>params[:id])
+      else 
+	@response = Notifier.post(:status, :plugin => params[:plugin])
+      end
+      
+      logger.debug(" return HTTP STATUS #{@response.code.to_s}")
+      render :nothing=>true, :text=>@response.code.to_s and return
     end
-    
-    logger.debug(" return HTTP STATUS #{@response.code.to_s}")
-    render :nothing=>true, :text=>@response.code.to_s and return
   end
 end

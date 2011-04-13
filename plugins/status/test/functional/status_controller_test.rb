@@ -129,7 +129,7 @@ end
     assert_response :success
     assert_valid_markup
     assert_tag :tag =>"span",
-               :attributes => { :class => "status-icon warning" }
+               :attributes => { :class => "status_warning" }
     assert_tag "Registration is missing; Mail configuration test not confirmed"
   end
 
@@ -150,8 +150,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"span",
-               :attributes => { :class => "status-icon warning" }
+    assert_tag :tag =>"span", :attributes => { :class => "status_warning" }
     assert_tag "Cannot read system status - you have been logged out."
   end
 
