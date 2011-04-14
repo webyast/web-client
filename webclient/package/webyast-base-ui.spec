@@ -36,7 +36,7 @@ Requires:       sysvinit > 2.86-215.2
 # 11.1 or SLES11
 Requires:       sysvinit > 2.86-195.3.1
 %endif
-Requires:       nginx-passenger, rubygem-nokogiri
+Requires:       nginx, rubygem-passenger-nginx, rubygem-nokogiri
 
 License:        LGPL v2.1;ASLv2.0
 Group:          Productivity/Networking/Web/Utilities
@@ -59,7 +59,7 @@ BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-s
 BuildRequires:  tidy, rubygem-haml, rubygem-nokogiri
 BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
-BuildRequires:  nginx-passenger
+BuildRequires:  nginx, rubygem-passenger-nginx
 #
 
 %description
