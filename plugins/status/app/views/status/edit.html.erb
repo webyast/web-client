@@ -1,20 +1,20 @@
 <!--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
@@ -50,7 +50,7 @@
                 alert (say_bad);
                 return false;
               }
-            <% end %>           
+            <% end %>
           <% end %>
         <% end %>
         $('#progress').show();
@@ -72,7 +72,7 @@
   <% end %>
 <% end %>
 
-<div class='plugin-icon'><img alt="monitoring" src='/images/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%></div>
+<div class='plugin-icon'><img alt="monitoring" src='/icons/monitoring.png'/><%=_("Status") + header_spacer + _("Settings")%><span id="questionMark">?</span></div>
 <div class="plugin-content">
 <% form_tag( {:action => :save} , { :onsubmit => "return validateLimits();"} ) do %>
   <div class="accordion">
@@ -85,7 +85,7 @@
           <label>Alarm, if <%= group_name %></label>
           <fieldset class="small-labels">
           <% single_graph.lines.each do |line| %>
-            <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}" 
+            <% limit_key = "#{group.id}/#{single_graph.headline}/#{line.label}"
                measurements = {_("undercuts") => "min", _("exceeds") => "max"}
                if line.limits.max.to_i > 0
                  val = line.limits.max.to_i
@@ -118,3 +118,4 @@
   </div>
 <% end %>
 </div>
+

@@ -1,21 +1,21 @@
 <%#
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
@@ -23,7 +23,7 @@
 <%
   error_type = error ? :unknown : :none
   if error.class == ClientException &&
-      error.backend_exception_type == "PACKAGEKIT_INSTALL"
+    error.backend_exception_type == "PACKAGEKIT_INSTALL"
     error_type = :install
   end
   error_type = :unauthorized if error.class == ActiveResource::UnauthorizedAccess
@@ -33,85 +33,111 @@
     unsigned_repo = $1
     error_type = :unsigned unless unsigned_repo.blank?
   end
-
 -%>
+
+
 <%= report_error(error, error_string) if error_type == :unknown %>
 
-<!-- <div class="status_patches"> -->
-  <% unless patch %>
-      <% javascript_tag do -%>jQuery(function($){ $('#status-eye').addClass('eye_warning'); });<% end -%>
-      <div class="statusbar_row">
-	<img src="/images/status-warning.png">
-<!-- 	<div class="status-icon warning"></div> -->
-	<% case error_type 
-	    when :unauthorized then %>
-		<% link_to "controlpanel" do %>
-	    <%= _("Cannot read patch updates - you have been logged out.") %>
-		<% end %>
-	<% when :unknown %>
-		<%= _("No information about patches available") %>
-	      <% when :unsigned %>
-		<%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
-	      <% when :install %>
-	    <%= error.message %>
-	    <% javascript_tag do -%>
-	      setTimeout(function() {
-		$('#statusbar-patches').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>')
-		<%= remote_function(:update => "statusbar_patches",
-		  :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
-		}, 15000);
-	    <% end -%>
-	<% end %>
-      </div>
+<% unless patch %>
+  <% javascript_tag do -%>jQuery(function($){ $('#status-eye').addClass('eye_warning'); });<% end -%>
+
+  <div class="statusbar_row">
+   	<img src="/images/status-warning.png">
+
+	  <% case error_type when :unauthorized then %>
+		    <% link_to "controlpanel" do %>
+	        <%= _("Cannot read patch updates - you have been logged out.") %>
+		    <% end %>
+	  <% when :unknown %>
+		  <%= _("No information about patches available") %>
+
+	  <% when :unsigned %>
+		  <%= _("Cannot read patch updates: GPG key for repository <em>%s</em> is not trusted.") % unsigned_repo %>
+
+	   <% when :install %>
+	      <%= error.message %>
+	      <% javascript_tag do -%>
+	        setTimeout(function() {
+            $('#statusbar-patches').html('<%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %>')
+      		  <%= remote_function(:update => "statusbar_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+    		  }, 15000);
+	      <% end -%>
+	  <% end %>
+  </div>
+
+<% else %>
+  <% label = [] %>
+  <% update = false %>
+
+  <% if patch[:security]+patch[:important] > 0 %>
+    <!-- Set status yey to RED -->
+    <!-- IMPORTNAT: set also patch warning icon to RED !!! -->
+    <% javascript_tag do -%>
+      jQuery(function($){ $('#status-eye').addClass('eye_warning'); });
+      $('#patches_indicator').addClass("status_warning");
+    <% end -%>
   <% else %>
-    <% label = [] %>
-    
-    <div class="statusbar_row">
-      <% if patch[:security]+patch[:important] > 0 %>
-	<% javascript_tag do -%>jQuery(function($){ $('#status-eye').addClass('eye_warning'); });<% end -%>
-	<img src="/images/warning.png">
-      <% elsif patch[:important] > 0%>
-	<img src="/icons/kupdateapplet_yellow.png">
-      <% elsif patch[:optional] > 0%>
-	<img src="/icons/kupdateapplet_optional.png">
-      <% else %>
-	<% javascript_tag do -%>jQuery(function($){ if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); } });<% end -%>
-<!-- 	<span class="status-icon ok">&nbsp;</span> -->
-	<span class="status_ok"></span>
-      <% end %>
+    <!-- Set status yey to GREEN -->
+    <!-- IMPORTNAT: set also patch warning icon to GREEN !!! -->
+    <% javascript_tag do -%>
+      jQuery(function($){
+        if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); }
+        $('#patches_indicator').addClass("status_ok");
+      });
+    <% end -%>
+  <% end %>
 
-      <% link_to "patch_updates" do %>
-	<% if patch[:security] > 0 %>
-	  <% label << _("Security Updates: %d") % patch[:security]%>
-	<% end %>
-	<% if patch[:important] > 0 %>
-	  <% label << _("Important Updates: %d") % patch[:important] %>
-	<% end %>
-	<% if patch[:optional] > 0 %>
-	  <% label << _("Optional Updates: %d") % patch[:optional] %>
-	<% end %>
-	<% if label.empty? %>
-	  <% label << _("Your system is up to date.") %> <!-- RORSCAN_ITL -->
-	<% end %>
-	<span><%= label.join(", ") %></span>
-      <% end %>
-      <% if patch[:security] > 0 or patch[:important] > 0 or patch[:optional] > 0%>
-	<span class="update_button">
-	  <%= link_to_remote _("Install all"), :update =>"statusbar_patches", :class=>"update_all", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
-	</span>
-      <% end %>
+  <div class="statusbar_row">
+    <% if patch[:security] > 0 %>
+      <% update = true %>
 
-    </div>
+      <img src="/images/warning.png" style="display:inline;">
+      <% link_to "patch_updates", :class=>"warning_message" do %>
+        <%= _("Security Updates: %d") % patch[:security]%>
+      <% end %>
+    <% end %>
+
+    <% if patch[:important] > 0 %>
+      <% update = true %>
+
+      <img src="/icons/kupdateapplet_yellow.png">
+      <% link_to "patch_updates", :class=>"warning_message" do %>
+        <%= _("Important Updates: %d") % patch[:important] %>
+      <% end %>
+    <% end %>
+
+    <% if patch[:optional] > 0 %>
+      <% update = true %>
+
+      <img src="/icons/kupdateapplet_optional.png">
+      <% link_to "patch_updates", :class=>"warning_message" do %>
+        <%= _("Optional Updates: %d") % patch[:optional] %>
+      <% end %>
+    <% end %>
+
+    <% if update == false %>
+      <%= _("Your system is up to date.") %> <!-- RORSCAN_ITL -->
+    <% end %>
+
+    <% if patch[:security] > 0 or patch[:important] > 0 or patch[:optional] > 0%>
+<!--      <span class="update_button">-->
+
+      <div class="update_all">
+        <% link_to_remote _("Install all"), :update =>"statusbar_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
+      </div>
+<!--      </span>-->
+    <% end %>
+  </div>
 
   <% if refresh_timeout.to_i > 0 -%>
     <!-- refresh the status again after a timeout -->
     <% javascript_tag do -%>
       setTimeout(function() {
-	$('#statusbar_patches').html('<div class="statusbar_row"><%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %></div>')
-	<%= remote_function(:update => "statusbar_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+        $('#statusbar_patches').html('<div class="statusbar_row"><%= image_tag("/images/working.gif", :class => "small-working-icon") %> <%= _("Loading patch information") %></div>')
+        <%= remote_function(:update => "statusbar_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
       }, <%= refresh_timeout.to_i * 1000 -%>);
     <% end -%>
   <% end -%>
 
-  <% end %>
-<!-- </div> -->
+<% end %> <!-- if else-->
+

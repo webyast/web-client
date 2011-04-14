@@ -1,20 +1,20 @@
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
@@ -128,9 +128,10 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"span",
-               :attributes => { :class => "status_warning" }
+    assert_tag :tag =>"a",
+               :attributes => { :class => "warning_message" }
     assert_tag "Registration is missing; Mail configuration test not confirmed"
+    #assert_tag "Registration is missing"
   end
 
   #testing show summary AJAX call; Host is not available
@@ -139,8 +140,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"span",
-               :attributes => { :class => "status-icon error" }
+    assert_tag :tag =>"a", :attributes => { :class=>"warning_message" }
     assert_tag "Can't connect to host"
   end
 
@@ -150,7 +150,7 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"span", :attributes => { :class => "status_warning" }
+    assert_tag :tag =>"a", :attributes => { :class=>"warning_message" }
     assert_tag "Cannot read system status - you have been logged out."
   end
 
@@ -174,8 +174,8 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"span",
-               :attributes => { :class => "status-icon error" }
+    assert_tag :tag =>"a",
+               :attributes => {  :class=>"warning_message" }
     assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Disk/root/free; Registration is missing; Mail configuration test not confirmed"
   end
 
@@ -301,7 +301,7 @@ end
   #testing evaluate_values AJAX call
   def test_show_evaluate_values_1
     Time.stubs(:now).returns(Time.at(1264006620))
-    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory", :minutes => "5" } 
+    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory", :minutes => "5" }
     assert_response :success
     assert_valid_markup
     assert_tag :tag =>"script",
@@ -326,7 +326,7 @@ end
       mock.get   "/plugins.xml", @header, @response_plugins, 200
       mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
-    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory", :minutes => "5" } 
+    get :evaluate_values,  { :group_id => "Memory", :graph_id => "Memory", :minutes => "5" }
     assert_response :success
     assert_valid_markup
   end
@@ -335,7 +335,7 @@ end
   #testing evaluate_values AJAX call
   def test_show_evaluate_values_with_other_id
     Time.stubs(:now).returns(Time.at(1264006620))
-    get :evaluate_values,  { :group_id => "Disk", :graph_id => "root" } 
+    get :evaluate_values,  { :group_id => "Disk", :graph_id => "root" }
     assert_response :success
     assert_valid_markup
     assert_tag :tag =>"script",
@@ -361,34 +361,34 @@ end
       mock.get   "/metrics.xml", @header, @response_metrics, 200
     end
 
-    get :evaluate_values,  { :group_id => "not_found", :graph_id => "not_found" } 
+    get :evaluate_values,  { :group_id => "not_found", :graph_id => "not_found" }
     assert_response :success
     assert_valid_markup
   end
 
   #testing confirming status
   def test_confirm_status
-    post :confirm_status, { :param=>"Test mail received", :url=>"/mail/state", } 
+    post :confirm_status, { :param=>"Test mail received", :url=>"/mail/state", }
     assert_response :redirect
   end
 
   #testing confirming status without param
   def test_confirm_status_without_param
-    post :confirm_status, { } 
+    post :confirm_status, { }
     assert_response 500
   end
 
   #testing  call ajax_log_custom
   def test_show_ajax_log_custom
-    get :ajax_log_custom, { :id => "system", :lines => "50" } 
+    get :ajax_log_custom, { :id => "system", :lines => "50" }
     assert_response :success
     assert_valid_markup
     assert_tag "\nJan 28 12:04:27 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\nJan 28 12:04:28 f95 avahi-daemon[9245]: Received response from host 10.10.4.228 with invalid source port 33184 on interface 'eth0.0'\n\n"
   end
 
-  #testing  call ajax_log_custom 
+  #testing  call ajax_log_custom
   def test_show_ajax_log_custom_without_params
-    get :ajax_log_custom, { } 
+    get :ajax_log_custom, { }
     assert_response 500
   end
 
@@ -403,7 +403,7 @@ end
       mock.get "/logs/system.xml?lines=50&pos_begin=0", @header, response_logs, 503
     end
 
-    get :ajax_log_custom, { :id => "system", :lines => "50" } 
+    get :ajax_log_custom, { :id => "system", :lines => "50" }
     assert_response :success
     assert_valid_markup
     assert_tag "You have no permissions"
@@ -420,7 +420,7 @@ end
       mock.get "/logs/system.xml?lines=50&pos_begin=0", @header, response_logs, 503
     end
 
-    get :ajax_log_custom, { :id => "system", :lines => "50" } 
+    get :ajax_log_custom, { :id => "system", :lines => "50" }
     assert_response 500
   end
 
@@ -559,3 +559,4 @@ end
 
 
 end
+

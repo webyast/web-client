@@ -2,18 +2,18 @@
 #-- RORSCAN_ICF
 # Webyast Webclient framework
 #
-# Copyright (C) 2009, 2010 Novell, Inc. 
+# Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
 # it only under the terms of version 2.1 of the GNU Lesser General Public
-# License as published by the Free Software Foundation. 
+# License as published by the Free Software Foundation.
 #
 #   This library is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
-# details. 
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 #
 #   You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software 
+# License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 %>
@@ -36,7 +36,7 @@
 <% if ActionController::Routing.possible_controllers.include?("status") && display_status %>
   <% javascript_tag do -%>
     $(document).ready( function() {
-      <%= remote_function(:update => "statusbar_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %> 
+      <%= remote_function(:update => "statusbar_status", :url => { :controller => :status, :action => :show_summary, :background => true }) %>
     });
   <% end -%>
 <% end %>
@@ -47,54 +47,56 @@
     <div id="status-eye">
   <!-- 	<img src="/images/loading.gif" style="display:inline-block; background:#eeeeee; -moz-border-radius:100%; margin:0px 32px; height:48px; width:48px;vertical-align:middle;" > -->
     </div>
-    
+
     <div id="statusbar_status_container">
       <div class="statusbar_header">
-	<label><%= _("System status") %></label> 
+        <span id="status_indicator"></span>
+      	<label><%= _("System status") %></label>
       </div>
       <div id="statusbar_status">
-	<% if ActionController::Routing.possible_controllers.include?("status") %>
-	  <% if display_status %>
-	    <div class="statusbar_row">
-	      <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
-	      <label><%= _("Loading system information") %></label> <!-- RORSCAN_ITL -->
-	    </div>
-	  <% else %>
-	    <div class="statusbar_row">
-	      <div class="status-icon optional"></div>
-	      <span><%= _("System status summary is disabled in the config file.") %></span> <!-- RORSCAN_ITL -->
-	    </div>
-	  <% end %>
-	<% else %>
-	    <div class="statusbar_row">
-	    <%= _("Status plugin is not installed.") %>
-	  </div>
-	<% end %>
+	      <% if ActionController::Routing.possible_controllers.include?("status") %>
+	        <% if display_status %>
+	          <div class="statusbar_row">
+	            <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
+	            <label><%= _("Loading system information") %></label> <!-- RORSCAN_ITL -->
+	          </div>
+	        <% else %>
+	          <div class="statusbar_row">
+	            <div class="status-icon optional"></div>
+	            <span><%= _("System status summary is disabled in the config file.") %></span> <!-- RORSCAN_ITL -->
+	          </div>
+	        <% end %>
+	      <% else %>
+	          <div class="statusbar_row">
+	          <%= _("Status plugin is not installed.") %>
+	        </div>
+	      <% end %>
       </div>
     </div>
 
     <div id="statusbar_patches_container">
       <div class="statusbar_header">
-	<label><%= _("System updates") %></label> 
+        <span id="patches_indicator"></span>
+      	<label><%= _("System updates") %></label>
       </div>
       <div id="statusbar_patches">
-	<% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-	  <% if display_patches %>
-	    <div class="statusbar_row">
-	      <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
-	      <label><%= _("Loading patch information") %></label>
-	    </div>
-	  <% else %>
-	    <div class="statusbar_row">
-	      <div class="status-icon optional"></div>
-	      <span><%= _("Patch status summary is disabled in the config file.") %></span>
-	    </div>
-	  <% end %>
-	<% else %>
-	  <div class="statusbar_row">
-	    <%= _("Patch plugin is not installed.") %>
-	  </div>
-	<% end %>
+	    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+	      <% if display_patches %>
+	        <div class="statusbar_row">
+	          <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
+	          <label><%= _("Loading patch information") %></label>
+	        </div>
+	      <% else %>
+	        <div class="statusbar_row">
+	          <div class="status-icon optional"></div>
+	          <span><%= _("Patch status summary is disabled in the config file.") %></span>
+	        </div>
+	      <% end %>
+	    <% else %>
+	      <div class="statusbar_row">
+	        <%= _("Patch plugin is not installed.") %>
+	      </div>
+	    <% end %>
       </div>
     </div>
 
@@ -112,7 +114,7 @@
     </div>
 
 <!--     <div class="clearfix">&nbsp;</div> -->
-  </div> 
+  </div>
 
   <!--CONFIGURATION-->
   <h3 style="vertical-align: middle;"><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0", :style=>'vertical-align: bottom;') %> <%= _("Configuration") %></h3>
@@ -143,5 +145,4 @@
       <div style="clear:both;"></div>
     </div><!--overview-->
   </div><!--favorites-->
-
 
