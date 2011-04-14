@@ -128,10 +128,8 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"a",
-               :attributes => { :class => "warning_message" }
+    assert_tag :tag =>"a", :attributes => { :class => "warning_message" }
     assert_tag "Registration is missing; Mail configuration test not confirmed"
-    #assert_tag "Registration is missing"
   end
 
   #testing show summary AJAX call; Host is not available

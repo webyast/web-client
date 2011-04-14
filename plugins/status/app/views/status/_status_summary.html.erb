@@ -24,30 +24,29 @@
 <% unauthorized = error.class == ActiveResource::UnauthorizedAccess -%>
 <%if error && !unauthorized %>
   <div class="statusbar_row">
-    <a href="status">
+    <a href="status" class="warning_message">
       <%= report_error(error, _("An problem occured when loading status information.")) %>
     </a>
   </div>
 <% end %>
 
 <% unless status.blank? %>
-  <div class="statusbar_row">
-    <% link_to "status", :class=>"warning_message" do %>
-      <%= status %>
-    <% end %>
-  </div>
-
   <% javascript_tag do -%>
     jQuery(function($){ $('#status-eye').addClass('eye_warning'); });
     $('#status_indicator').addClass("status_warning");
   <% end -%>
 
+  <div class="statusbar_row">
+    <a href="status" class="warning_message">
+      <span><%= status %></span>
+    </a>
+  </div>
 <% else %>
   <% if unauthorized -%>
     <div class="statusbar_row">
-      <% link_to "status", :class=>"warning_message" do %>
+      <a href="status" class="warning_message">
         <span><%= _("Cannot read system status - you have been logged out.") %></span> <!-- RORSCAN_ITL -->
-      <% end %>
+      </a>
     </div>
   <% elsif !error %>
     <% javascript_tag do -%>jQuery(function($){
