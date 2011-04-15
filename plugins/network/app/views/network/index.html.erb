@@ -1,26 +1,26 @@
 <!--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
 
-<% content_for :head do %> 
-  <% unless JSMIN == true %>  
+<% content_for :head do %>
+  <% unless JSMIN == true %>
     <%= javascript_include_tag "webyast-network" %>
     <%= stylesheet_link_tag "webyast-network" %>
   <% end %>
@@ -38,8 +38,8 @@
     validateNameservers("nameservers");
     validateDomainNameWithAndWithoutTLD("searchdomains");
 
-    $("#dnsForm").validate({ 
-      onkeyup: function(element) { this.element(element); }, 
+    $("#dnsForm").validate({
+      onkeyup: function(element) { this.element(element); },
       onblur: true,
       rules:{
 	ip: {
@@ -54,7 +54,7 @@
 	      default_route: true,
 	      required:true
 	},
-	hostname: { 
+	hostname: {
 	  required: true,
 	  hostname:true
 	},
@@ -86,14 +86,14 @@
 		    default_route:<%= jss _("Enter a valid IP address") -%>
 	      },
 
-	      hostname:{ 
+	      hostname:{
 		required: <%= jss _("This field is required") -%>,
-		hostname: <%= jss _("Enter a valid hostname") -%> 
+		hostname: <%= jss _("Enter a valid hostname") -%>
 	      },
 
 	      domain:{
 		    required: <%= jss _("This field is required") -%>,
-		    domain: <%= jss _("Enter a valid domain name") -%> 
+		    domain: <%= jss _("Enter a valid domain name") -%>
 	      },
 	      nameservers: {
 		    required: <%= jss _("This field is required") -%>,
@@ -101,7 +101,7 @@
 	      },
 	      searchdomains: {
 		    required: <%= jss _("This field is required")  -%>,
-		    searchdomains: <%= jss _("Enter a valid domain name") -%> 
+		    searchdomains: <%= jss _("Enter a valid domain name") -%>
 	      }
       },
       submitHandler: function(form) {
@@ -109,13 +109,13 @@
 	$.modalDialog.wait( {message: message});
 	form.submit();
       },
-      success: "valid"  
+      success: "valid"
     });
   });
   </script>
 <% end %>
 
-  
+
 <% write_disabled = ! @permissions[:write] %>
   <div class='plugin-content plugin-border'>
     <%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
@@ -128,9 +128,9 @@
 	  <label class="plugin-name">Network</label><span id="questionMark" style="margin:0px 15px; float:none;">?</span>
 	  <%=text_field_tag :conf_mode, @conf_mode, :type=>"hidden", :disabled => write_disabled %>
 	</div>
-	
+
 	<div class="right" >
-	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; ">
+	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; -webkit-border-radius:2px;">
 	  <% if(@conf_mode != 'static') %>
 	    <button id="autoMode" class="active" value="dhcp"><%=_("Automatic")%></button>
 	    <button id="manualMode" value="static"><%=_("Manual")%></button>
@@ -163,7 +163,7 @@
 	    <label for="<%= :domain %>"><%=_("Domain")%></label>
 	    <%=text_field_tag :domain, @domain, :class=>"domain", :disabled => write_disabled %>
 	  </div>
-	  
+
 	  <div class="row auto">
 	    <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
 	    <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
@@ -172,7 +172,7 @@
 	  <div class="row auto">
 	    <label for="<%= :searchdomains %>">
 	      <%=_("Search domains")%>
-	
+
 	    </label>
 	    <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"searchdomains", :disabled => write_disabled %>
 	  </div>
@@ -194,7 +194,7 @@
 
       <div id="ip-container">
 	<div id="ip-container-header" >
-	  <span style="float:none; margin-left:5px; -moz-border-radius:0px; padding:0px 5px; text-shadow: 1px 1px #f8f8f8; display:inline-block;">
+	  <span style="float:none; margin-left:5px; -webkit-border-radius:0px; -moz-border-radius:0px; padding:0px 5px; text-shadow: 1px 1px #f8f8f8; display:inline-block;">
 	    <b style="text-shadow: 1px 1px #fdfdfd;"><%= _("IP configuration")%></b>
 	    <span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(via DHCP server)</span>
 	  </span>
@@ -224,4 +224,5 @@
 	  <%= form_send_buttons :disabled => write_disabled %>
 	</div>
       </div>
-  <% end %>  
+  <% end %>
+

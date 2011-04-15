@@ -1,18 +1,18 @@
 /*#--
  *# Webyast Webservice framework
  *#
- *# Copyright (C) 2009, 2010 Novell, Inc. 
+ *# Copyright (C) 2009, 2010 Novell, Inc.
  *#   This library is free software; you can redistribute it and/or modify
  *# it only under the terms of version 2.1 of the GNU Lesser General Public
- *# License as published by the Free Software Foundation. 
+ *# License as published by the Free Software Foundation.
  *#
  *#   This library is distributed in the hope that it will be useful, but WITHOUT
  *# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- *# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+ *# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  *# details.
  *#
  *#   You should have received a copy of the GNU Lesser General Public
- *# License along with this library; if not, write to the Free Software 
+ *# License along with this library; if not, write to the Free Software
  *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *#++ */
 
@@ -32,48 +32,62 @@
 #dnsForm .right { float:right; overflow:hidden; }
 
 #dns-container, #ip-container {
-  margin:10px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px; 
+  margin:10px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px;
 }
 
 #dns-container-header, #ip-container-header {
-   line-height:30px; 
-   vertical-align:middle; 
-   color:#444; 
-   background: -moz-linear-gradient(top, #e0e0e0 0%, #ccc 100%);  
-   vertical-align:middle; 
-   border-bottom: 1px solid #d8d8d8;  
-   background: -moz-linear-gradient(center bottom , #e4e4e4, #ededed) repeat scroll 0 0 transparent; 
-   color:#555555; 
-   -moz-border-radius-bottomright:0px; 
-   -moz-border-radius-bottomleft:0px; 
+   line-height:30px;
+   vertical-align:middle;
+
+   color:#555555;
+
+   vertical-align:middle;
+   border-bottom: 1px solid #d8d8d8;
+
+   background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ccc));
+   background: -moz-linear-gradient(center bottom , #e4e4e4, #ededed) repeat scroll 0 0 transparent;
+
+
+   -moz-border-radius-bottomright:0px;
+   -moz-border-radius-bottomleft:0px;
+
+	 -webkit-border-bottom-right-radius: 0px;
+	 -webkit-border-bottom-left-radius: 0px;
+
+   border-bottom-right-radius: 0px;
+	 border-bottom-left-radius: 0px;
+
    padding:0px;
 }
 
-#autoMode, #manualMode { 
-  padding:2px 5px; 
-  border:1px solid #a0a0a0; 
-  vertical-align:middle; 
+#autoMode, #manualMode {
+  padding:2px 5px;
+  border:1px solid #a0a0a0;
   background: url("/images/gradientx40.png") repeat-x scroll 0 0 #fff;
+  vertical-align:middle;
+
   color: #222;
   cursor: pointer;
   text-shadow: 0px 1px 0px #fff;
-  min-width:80px; 
+  min-width:80px;
+
   font-family: Arial;
   -moz-box-shadow: 0px 0px 1px #666;
+  -webkit-box-shadow: 0px 0px 1px #666;
 }
 
-#autoMode.active, #manualMode.active { 
+#autoMode.active, #manualMode.active {
   border-right:0;
   color:#efefef;
   text-shadow: 0 -1px 0px #333;
   font-weight:bold;
 
-  background:#39A33A;
+  background: #39A33A;
   background: -moz-linear-gradient(center bottom, #39A33A 0%, #71D048 100%);
   background: -webkit-gradient(linear, left top, left bottom, from(#71D048), to(#39A33A));
 
-  -moz-box-shadow: inset 0px 0px 1px #000; 
-  -webkit-box-shadow: inset 0px 0px 1px #000; 
+  -moz-box-shadow: inset 0px 0px 1px #000;
+  -webkit-box-shadow: inset 0px 0px 1px #000;
 }
 
 #autoMode:hover,  #manualMode:hover { background: url("/images/gradientx40.png") repeat-x scroll 0 0 #eee;  }
@@ -86,12 +100,14 @@
 #manualMode { border-left:0px; margin-left:-5px; }
 
 #ip_sticker {
-  border:1px solid #ebebeb; 
-  color:#666; 
-  position:absolute; 
-  top:43%; 
-  right:2%; 
-  text-align:center; 
-  padding:0px; 
-  -moz-border-radius:3px; 
+  border:1px solid #ebebeb;
+  color:#666;
+  position:absolute;
+  top:43%;
+  right:2%;
+  text-align:center;
+  padding:0px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
 }
+
