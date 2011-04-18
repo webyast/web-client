@@ -70,15 +70,11 @@
   <% update = false %>
 
   <% if patch[:security]+patch[:important] > 0 %>
-    <!-- Set status yey to RED -->
-    <!-- IMPORTNAT: set also patch warning icon to RED !!! -->
     <% javascript_tag do -%>
       jQuery(function($){ $('#status-eye').addClass('eye_warning'); });
       $('#patches_indicator').addClass("status_warning");
     <% end -%>
   <% else %>
-    <!-- Set status yey to GREEN -->
-    <!-- IMPORTNAT: set also patch warning icon to GREEN !!! -->
     <% javascript_tag do -%>
       jQuery(function($){
         if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); }
@@ -90,42 +86,42 @@
   <div class="statusbar_row">
     <% if patch[:security] > 0 %>
       <% update = true %>
-
-      <img src="/images/warning.png" style="display:inline;">
-      <% link_to "patch_updates", :class=>"warning_message" do %>
-        <%= _("Security Updates: %d") % patch[:security]%>
-      <% end %>
+      <div class="statusbar_row">
+        <img src="/images/warning.png" style="display:inline;">
+        <% link_to "patch_updates", :class=>"warning_message" do %>
+          <%= _("Security Updates: %d") % patch[:security]%>
+        <% end %>
+      </div>
     <% end %>
 
     <% if patch[:important] > 0 %>
       <% update = true %>
-
-      <img src="/icons/kupdateapplet_yellow.png">
-      <% link_to "patch_updates", :class=>"warning_message" do %>
-        <%= _("Important Updates: %d") % patch[:important] %>
-      <% end %>
+      <div class="statusbar_row">
+        <img src="/icons/kupdateapplet_yellow.png">
+        <% link_to "patch_updates", :class=>"warning_message" do %>
+          <%= _("Important Updates: %d") % patch[:important] %>
+        <% end %>
+      </div>
     <% end %>
-
     <% if patch[:optional] > 0 %>
       <% update = true %>
-
-      <img src="/icons/kupdateapplet_optional.png">
-      <% link_to "patch_updates", :class=>"warning_message" do %>
-        <%= _("Optional Updates: %d") % patch[:optional] %>
-      <% end %>
+      <div class="statusbar_row">
+        <img src="/icons/kupdateapplet_optional.png">
+        <% link_to "patch_updates", :class=>"warning_message" do %>
+          <%= _("Optional Updates: %d") % patch[:optional] %>
+        <% end %>
+      </div>
     <% end %>
-
     <% if update == false %>
-      <%= _("Your system is up to date.") %> <!-- RORSCAN_ITL -->
+      <div class="statusbar_row">
+       <b> <%= _("Your system is up to date.") %> <!-- RORSCAN_ITL --></b>
+      </div>
     <% end %>
 
     <% if patch[:security] > 0 or patch[:important] > 0 or patch[:optional] > 0%>
-<!--      <span class="update_button">-->
-
       <div class="update_all">
         <% link_to_remote _("Install all"), :update =>"statusbar_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
       </div>
-<!--      </span>-->
     <% end %>
   </div>
 
