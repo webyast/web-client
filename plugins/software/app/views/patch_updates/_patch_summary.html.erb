@@ -25,6 +25,10 @@
   if error.class == ClientException &&
     error.backend_exception_type == "PACKAGEKIT_INSTALL"
     error_type = :install
+  if error.class == ClientException
+    case error.backend_exception_type
+    when "PACKAGEKIT_INSTALL" then error_type = :install
+    when "PACKAGEKIT_LICENSE" then error_type = :license
   end
   error_type = :unauthorized if error.class == ActiveResource::UnauthorizedAccess
   unsigned_repo = nil
@@ -62,6 +66,10 @@
       		  <%= remote_function(:update => "statusbar_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
     		  }, 15000);
 	      <% end -%>
+          <% when :license %>
+              <% link_to :controller => "patch_updates", :action => "license" do %>
+                <%= _("Update needs EULA license confirmation. Please follow to patch module to decide about license.") %>
+            <% end %>
 	  <% end %>
   </div>
 

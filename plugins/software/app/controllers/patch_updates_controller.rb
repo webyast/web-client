@@ -61,6 +61,8 @@ public
         @patch_updates = []
         @error = true
         @reload = true
+      elsif ce.backend_exception_type == "PACKAGEKIT_LICENSE"
+        redirect_to :action => "license" #move to page for license confirmation
       else
         raise e
       end
@@ -96,7 +98,7 @@ public
 
     if patch_updates
       # is it a background progress?
-      if patch_updates.size == 1 && patch_updates.first.respond_to?(:status)
+      if patch_updates.first.respond_to?(:status)
         bg_stat = patch_updates.first
 
         patches_status = {:status => bg_stat.status, :progress => bg_stat.progress, :subprogress => bg_stat.subprogress}
@@ -172,6 +174,28 @@ public
     Patch.install_patches_by_id update_array
 
     redirect_to :action => "index"
+  end
+
+  def license
+   if params[:accept].present? || params[:reject].present?
+     begin
+       patch = params[:accept].present? ? Patch.create(:accept_license => 1) : Patch.create(:reject_license => 1)
+       rescue ActiveResource::ServerError => e
+         #ignore as it is probably continuing installation
+         # FIXME better check
+     end
+     redirect_to "/"
+     return
+   end
+   @permissions = Patch.permissions
+   @license = Patch.find(:all, :params => {:license => 1}).first
+   @text = @license.text
+   if @text =~ /DT:Rich/ #text is richtext for packager
+     #rid of html tags
+     @text.gsub!(/&lt;.*&gt;/,'')
+     # unescape all ampersands
+     @text.gsub!(/&amp;([a-zA-Z0-9]+;)/,"&\\1")
+   end
   end
 
   private
