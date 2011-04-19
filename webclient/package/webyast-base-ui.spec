@@ -18,9 +18,11 @@ Obsoletes:      yast2-webclient < %{version}
 Requires:       ruby-fcgi, sqlite, syslog-ng, check-create-certificate
 Requires: 	webyast-branding
 PreReq:         rubygem-rake, rubygem-sqlite3
-PreReq:         rubygem-rails-2_3 >= 2.3.4
+PreReq:         rubygem-rails-2_3 >= 2.3.8
 PreReq:         rubygem-gettext_rails
 PreReq:         yast2-runlevel
+Provides:       webyast-language-ui = 0.1.2
+Obsoletes:      webyast-language-ui <= 0.1.2
 
 %if 0%{?suse_version} == 0 || %suse_version > 1110
 # 11.2 or newer
@@ -54,7 +56,7 @@ Source7:        nginx.conf
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
-BuildRequires:  rubygem-rails-2_3 >= 2.3.4
+BuildRequires:  rubygem-rails-2_3 >= 2.3.8
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
 BuildRequires:  tidy, rubygem-haml, rubygem-nokogiri
 BuildArch:      noarch
