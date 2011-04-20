@@ -15,7 +15,7 @@ Recommends:     WebYaST(org.opensuse.yast.system.patches)
 Provides:       yast2-webclient-patch_updates = %{version}
 Obsoletes:      yast2-webclient-patch_updates < %{version}
 # updated jQuery quicksearch plugin
-PreReq:         yast2-webclient >= 0.1.17
+PreReq:         yast2-webclient >= 0.2.27
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
 License:	GPL v2 only
 Group:          Productivity/Networking/Web/Utilities
