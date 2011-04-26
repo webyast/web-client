@@ -2,18 +2,18 @@
 #--
 # Webyast Webservice framework
 #
-# Copyright (C) 2009, 2010 Novell, Inc. 
+# Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
 # it only under the terms of version 2.1 of the GNU Lesser General Public
-# License as published by the Free Software Foundation. 
+# License as published by the Free Software Foundation.
 #
 #   This library is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
-# details. 
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 #
 #   You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software 
+# License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 */
@@ -22,7 +22,7 @@
 //TODO: MODAL: window on resize -> recenter modalWindow!!!
 //TODO: DIALOG: autodetect submit button -> $form.find('input type=submit')? else ???
 
-function preloader() {
+/*function preloader() {
   var i = 0;
   imageObj = new Image();
   images = new Array();
@@ -33,11 +33,11 @@ function preloader() {
   for(i=0; i<3; i++) {
     imageObj.src=images[i];
   }
-} 
+}
 
 $(document).ready(function() {
    preloader();
-});
+});*/
 
 
 (function($, undefined){
@@ -46,47 +46,47 @@ $(document).ready(function() {
       mshade: 'modalWindowShade',
       mwindow: 'modalWindow',
       mclose: 'modalWindowClose',
-      
+
       warning:  '<img src="../images/dialog-warning.png">',
-      loading: 	'<img src="../images/loading.gif">',
+      loading:  '<img src="../images/loading.gif">',
       info:  	'<img src="../images/info.png">',
- 
+
       message: 'Please wait',
       simple: false,
       timeout: 0,
     },
- 
+
     warning: function(options){
       var options = $.extend(this.defaults, options);
-      if(!options.simple) { options.message = '<b class="mwarning">Warning:</b> ' + options.message; } 
+      if(!options.simple) { options.message = '<b class="mwarning">Warning:</b> ' + options.message; }
       popup(options.warning, options.message);
     },
-    
+
     info: function(options){
-      var options = $.extend(this.defaults, options);  
-      if(!options.simple) { options.message = '<b class="minfo">Info:</b> ' + options.message; } 
+      var options = $.extend(this.defaults, options);
+      if(!options.simple) { options.message = '<b class="minfo">Info:</b> ' + options.message; }
       popup(options.info, options.message);
     },
- 
+
     wait: function(options){
-      var options = $.extend(this.defaults, options);  
-      if(!options.simple) { options.message = options.message + ' <b class="mwait">...</b>'; } 
+      var options = $.extend(this.defaults, options);
+      if(!options.simple) { options.message = options.message + ' <b class="mwait">...</b>'; }
       popup(options.loading, options.message);
     },
- 
- 
+
+
     dialog: function(options){
-      var options = $.extend(this.defaults, options);  
+      var options = $.extend(this.defaults, options);
       dialog(options.message, options.form);
     },
- 
+
     confirm_dialog: function(options){
-      var options = $.extend(this.defaults, options);  
+      var options = $.extend(this.defaults, options);
       confirm_dialog(options.message, options.action);
     },
- 
+
     bind: function(options) {
-      var close = '#' + this.defaults.mclose;  
+      var close = '#' + this.defaults.mclose;
       $(function(){
 	$(close).live('click', function(){
 	  $.modalDialog.destroy({ timeout: 0});
@@ -95,15 +95,15 @@ $(document).ready(function() {
 	$(close).live('mouseenter', function(){
 	  $(this).attr('src' , 'images/close.png');
 	});
-	
+
 	$(close).live('mouseleave', function(){
 	  $(this).attr('src' , 'images/close-g.png');
 	});
       })
     },
- 
+
     destroy: function() {
-      var options = $.extend(this.defaults, options);  
+      var options = $.extend(this.defaults, options);
       $('#'+options.mshade).remove();
       $('#'+options.mwindow).remove();
     }
@@ -111,13 +111,15 @@ $(document).ready(function() {
 })(jQuery);
 
 popup = function(image, message) {
-  var defaults = $.modalDialog.defaults;  
-  
+  var defaults = $.modalDialog.defaults;
+
   imageObj = new Image();
   imageObj.src=image;
-  
-  $.modalDialog.destroy();
-  
+
+  console.log(imageObj);
+
+  //$.modalDialog.destroy();
+
   $('body').append('<div id="' + defaults.mshade + '">&nbsp;</div>');
   $('body').after('<div id="' + defaults.mwindow + '" class="mpopup">' + image + '<span class="mmessage">' + message + '</span>' + '</div>');
   self.centering(defaults.mwindow);
@@ -125,19 +127,19 @@ popup = function(image, message) {
 
 //TODO: form.find('input type=submit') ? else ???
 dialog = function(message, form) {
-  var defaults = $.modalDialog.defaults;  
-  
+  var defaults = $.modalDialog.defaults;
+
   imageObj = new Image();
   imageObj.src=defaults.warning;
-  
+
   $.modalDialog.destroy();
-  
+
   if(message.split('.').length > 1) {
     question = message.split('.')[0] + '<br/>' + message.split('.')[1];
   }
-  
+
   $('body').append('<div id="' + defaults.mshade + '">&nbsp;</div>');
-  
+
   $dialog = '<div id="' + defaults.mwindow + '" class="mdialog">';
     $dialog += '<div class="mleftcontainer">' + defaults.warning + '</div>';
     $dialog += '<div class="mrightcontainer">';
@@ -146,39 +148,39 @@ dialog = function(message, form) {
       $dialog += '<div><input type="button" id="no" value="No" /><input type="button" id="yes" value="Yes" /></div>';
     $dialog += '</div>';
   $dialog += '</div>';
-  
+
   var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', '../images/close-g.png');
   $('body').before($dialog);
   $('#'+defaults.mwindow).append($mclose);
   $.modalDialog.bind(defaults.mclose);
-  
+
   $('#yes').live('click', function(){
     $.modalDialog.destroy();
     $('#'+form).submit();
-  }); 
+  });
 
   $('#no').live('click', function(){
     $.modalDialog.destroy();
     $.modalDialog.wait({message: 'Please wait'});
     window.location = window.location.protocol + '//' + window.location.host;
-  }); 
-      
+  });
+
   self.centering(defaults.mwindow);
 }
 
 confirm_dialog = function(message, $action) {
-  var defaults = $.modalDialog.defaults;  
+  var defaults = $.modalDialog.defaults;
   imageObj = new Image();
   imageObj.src=defaults.warning;
-  
+
   $.modalDialog.destroy();
-  
+
   if(message.split('.').length > 1) {
     question = message.split('.')[0] + '<br/>' + message.split('.')[1];
   }
-  
+
   $('body').append('<div id="' + defaults.mshade + '">&nbsp;</div>');
-  
+
   $dialog = '<div id="' + defaults.mwindow + '" class="mdialog">';
     $dialog += '<div class="mleftcontainer">' + defaults.warning + '</div>';
     $dialog += '<div class="mrightcontainer">';
@@ -187,20 +189,20 @@ confirm_dialog = function(message, $action) {
       $dialog += '<div><input type="button" id="no" value="No" /><input type="button" id="yes" value="Yes" /></div>';
     $dialog += '</div>';
   $dialog += '</div>';
-  
+
   var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', 'images/close-g.png');
   $('body').before($dialog);
   $('#'+defaults.mwindow).append($mclose);
   $.modalDialog.bind(defaults.mclose);
-  
+
   $('#yes').live('click', function(){
     $.modalDialog.destroy();
-  }); 
+  });
 
   $('#no').live('click', function(){
     $.modalDialog.destroy();
-  }); 
-      
+  });
+
   self.centering(defaults.mwindow);
 }
 

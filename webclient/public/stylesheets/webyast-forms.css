@@ -1,0 +1,102 @@
+/*#--
+ *# Webyast Webservice framework
+ *#
+ *# Copyright (C) 2009, 2010 Novell, Inc.
+ *#   This library is free software; you can redistribute it and/or modify
+ *# it only under the terms of version 2.1 of the GNU Lesser General Public
+ *# License as published by the Free Software Foundation.
+ *#
+ *#   This library is distributed in the hope that it will be useful, but WITHOUT
+ *# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ *# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ *# details.
+ *#
+ *#   You should have received a copy of the GNU Lesser General Public
+ *# License along with this library; if not, write to the Free Software
+ *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *#++ */
+
+.webyast_form { padding: 0 10px 10px; }
+.webyast_form .left { float:left; overflow:hidden; }
+.webyast_form .right { float:right; overflow:hidden; }
+
+.fieldset_body div.clearfix { clear:both; overflow:hidden; }
+.fieldset_body div.row { display: block; vertical-align: middle; min-height:32px; }
+.fieldset_body div.row label { vertical-align: middle; width:200px; display:inline-block; float:none;}
+.fieldset_body div.row label.error {  vertical-align: middle; color: #d70000; display:inline; float:none; width:auto; margin-left:20px; font-size:11px;}
+
+
+.fieldset_body input[type="text"].error, .fieldset_body input[type="password"].error { float:none; vertical-align:middle; }
+.fieldset_body input[type="text"].error, .fieldset_body input[type="password"].valid { float:none; vertical-align:middle; }
+
+.fieldset_body input[type="text"].error { border-color: #d70000 #f3b2b2 #f3b2b2 #d70000; }
+
+.fieldset_body input[type="text"], .fieldset_body input[type="password"] {
+	width:200px;
+	height:18px;
+	-moz-box-shadow:inset 0px 0px 0px #eee;
+	border-color: #C4C4C4 #E9E9E9 #E9E9E9 #C4C4C4;
+	border-style: solid;
+	border-width: 1px;
+	vertical-align:middle;
+	background-color:#fefefe;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+	color:#555;
+	font-weight:normal;
+}
+
+
+
+.fieldset_body input[type="text"]:focus, .fieldset_body input[type="password"]:focus { border-color: #aaaaaa #bbbbbb #bbbbbb #aaaaaa; }
+/*border-color: #1E90FF;*/
+
+
+.fieldset_body .left { float:left; overflow:hidden;}
+.fieldset_body .right { float:right; overflow:hidden; }
+
+
+.webyast_fieldset { margin:15px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px; }
+
+.fieldset_header {
+   line-height:30px;
+   vertical-align:middle;
+
+   color:#555555;
+
+   vertical-align:middle;
+   border-bottom: 1px solid #d8d8d8;
+
+   background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#e4e4e4));
+   background: -moz-linear-gradient(center bottom, #e4e4e4, #ededed) repeat scroll 0 0 transparent;
+
+
+   -moz-border-radius-bottomright:0px;
+   -moz-border-radius-bottomleft:0px;
+
+	 -webkit-border-bottom-right-radius: 0px;
+	 -webkit-border-bottom-left-radius: 0px;
+
+   border-bottom-right-radius: 0px;
+	 border-bottom-left-radius: 0px;
+
+   padding:0px;
+}
+
+.fieldset_header_title {
+	float:none;
+	margin-left:5px;
+	font-weight:bold;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+	padding:0px 5px;
+	text-shadow: 1px 1px #fdfdfd;
+	display:inline-block;
+}
+.fieldset_body { padding:10px 10px 0px 10px; border:0px solid #d0d0d0; background:#fafafa; background: -moz-linear-gradient(top, #fafafa 0%, #fcfcfc 100%); }
+.fieldset_body label { text-align:left; margin:0; }
+
+
+.webyast_form .button_container { margin:5px auto; position:relative; float:none; width:96%; }
+.webyast_form .hr { height:1px; border-bottom:0px dotted #ddd; margin:5px 0px;  background: -moz-linear-gradient(left, #d0d0d0 0%, #fafafa 100%);  padding:0px; }
+

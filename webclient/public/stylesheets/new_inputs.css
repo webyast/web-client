@@ -27,6 +27,9 @@
   /*@media screen and (-webkit-min-device-pixel-ratio:0) { a.button{ padding:3px 6px 3px 6px; }} */
 /* CSS Hacks END */
 
+.fieldset-group.ui-tabs {
+  font-family: Tahoma, Trebuchet MS, Helvetica, Arial, Verdana, sans-serif;
+}
 button[type="submit"]::-moz-focus-inner, input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner { border: 0; }
 input[type="text"], input[type="password"], select { margin:0px; padding:0px;}
 
@@ -50,10 +53,11 @@ input[type="text"]:focus, input[type="password"]:focus { border-color: #1E90FF; 
 
 input[type="submit"], input[type="button"], button[type="submit"], a.button {-moz-box-sizing:border-box; box-sizing:border-box; margin:0; padding:0;}
 input[type="submit"], input[type="button"], button[type="submit"], a.button {
-  color: #333;
+  color: #444;
   cursor: pointer;
   background: url("/images/gradientx40.png") repeat-x white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9);
+/*  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9);*/
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   text-decoration:none;
   padding:3px 6px 3px 6px;
 }
@@ -76,6 +80,7 @@ input[type="submit"]:active, input[type="button"]:active, button[type="submit"]:
 input[disabled] { background-color:#eee; }
 input[type="submit"][disabled], input[type="button"][disabled], button[type="submit"][disabled], a.button[disabled] {
   color: #aaa;
+/*  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9); */
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.9);
   background: url("../images/gradientx40.png") repeat-x #fff;
 }
@@ -104,26 +109,24 @@ input[type="text"].without_border_right {
 /*  SOFTWARE REPOSITORIES */
 #repository_name, #repository_url { width:70%; }
 
-/*  MAIL/ADMINISTRATOR SETTINGS AND   */
-#mailForm input[type="text"], #adminForm input[type="password"], #group_cn {width:300px;}
-#mail_test_mail_address, #mail_submit, #administrator_aliases, #administrator_submit { float: left; vertical-align:middle; }
-
+#mailForm input[type="text"], #group_cn { width:300px; }
+#mail_test_mail_address, #mail_submit  { float: left; vertical-align:middle; }
 #mail_test_mail_address {width:225px!important;}
-#administrator_aliases { width:190px; }
 #group_members_string { width:166px; }
 
-#mail_test_mail_address, #administrator_aliases {
+#mail_test_mail_address {
   border-radius:3px 0px 0px 3px;
   -moz-border-radius: 3px 0px 0px 3px;
   -webkit-border-radius:3px 0px 0px 3px;
 }
 
-#mail_submit, #administrator_submit {
+#mail_submit {
    border-left-width: 0px;
    border-radius:0px 3px 3px 0px;
   -moz-border-radius:0px 3px 3px 0px;
   -webkit-border-radius:0px 3px 3px 0px;
 }
+
 
 #group_members_string, #manage_members { float:left; font-size:12px; }
 #manage_members { margin-left:5px;}
@@ -181,8 +184,8 @@ input[type="radio"], input[type="checkbox"] { border: none; background: none; ve
   display:block;
   float:left;
   border:1px solid #999;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-   font-family: Trebuchet MS, Helvetica, sans-serif;
+/*  font-family: Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+   font-family: Tahoma, Trebuchet MS, Helvetica, sans-serif;
 /*  font-family:Tahoma, Arial, Verdana, sans-serif; */
   font-size:12px;
   line-height:130%;
@@ -197,9 +200,10 @@ input[type="radio"], input[type="checkbox"] { border: none; background: none; ve
   -khtml-border-radius: 3px;
   -webkit-border-radius: 3px;
 
-  color:#333;
+  color:#444;
   background:url('/images/gradientx40.png') repeat-x #fff;
-  text-shadow:0 -1px 0 rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.9);
+/*  text-shadow:0 -1px 0 rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.9); */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.9);
 }
 
 #updates_panel button[type=submit]{
@@ -738,11 +742,7 @@ span.icon-yast-users{ background-position: 0 -1470px; }
 .plugin-name { vertical-align:middle; font-size:20px; line-height:28px; font-weight:bold; color:#fff; text-shadow: 0px -1px 0px #000; margin-left:60px;}
 
 #content { overflow: visible; }
-#content form { font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;  font-family: Trebuchet MS, Helvetica, sans-serif; }
+/* #content form { font-family: Tahoma, Trebuchet MS, Helvetica, sans-serif; } */
 div.plugin-border { -moz-border-radius:0px; border:1px solid  #D7D8DF; margin:30px 0; padding:10px 0px;  overflow:hidden; clear:both; background: -moz-linear-gradient(top, #f5f5f5 0%, #f8f8f8 10%, #fafafa 11%, #fff 100%); }
 #questionMark { margin:0px 5px; float:none; background: none repeat scroll 0 0 #757575; }
-
-
-/*@font faces*/
-body { font: Helvetica, Trebuchet MS, Verdana, Arial, sans-serif; }
 

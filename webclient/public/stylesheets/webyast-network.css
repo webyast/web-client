@@ -16,49 +16,7 @@
  *# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *#++ */
 
-#dnsForm div.clearfix { clear:both; overflow:hidden; }
-#dnsForm div.row { display: block; vertical-align: middle; min-height:32px; }
-#dnsForm div.row label { vertical-align: middle; width:200px; display:inline-block; float:none;}
-#dnsForm div.row label.error {  vertical-align: middle; color: #d70000; display:inline; float:none; width:auto; margin-left:20px; font-size:11px;}
-
-#dnsForm { padding: 0 10px 10px; }
 #dhcp_hostname { vertical-align: middle; padding:0; margin:0;}
-
-#dnsForm input[type=text].error, #dnsForm input[type=text].valid { float:none; vertical-align:middle; }
-#dnsForm input[type=text].error { border-color: #d70000 #f3b2b2 #f3b2b2 #d70000; }
-#dnsForm input[type=text] { width:200px; height:18px; -moz-box-shadow:inset 0px 0px 0px #eee; border-color: #C4C4C4 #E9E9E9 #E9E9E9 #C4C4C4; border-style: solid; border-width: 1px; }
-#dnsForm input[type="text"] { vertical-align:middle; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; padding:2px 3px; -moz-border-radius:0px; font-size:12px; color:#555; font-weight:normal; }
-#dnsForm .left { float:left; overflow:hidden;}
-#dnsForm .right { float:right; overflow:hidden; }
-
-#dns-container, #ip-container {
-  margin:10px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px;
-}
-
-#dns-container-header, #ip-container-header {
-   line-height:30px;
-   vertical-align:middle;
-
-   color:#555555;
-
-   vertical-align:middle;
-   border-bottom: 1px solid #d8d8d8;
-
-   background: -webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ccc));
-   background: -moz-linear-gradient(center bottom , #e4e4e4, #ededed) repeat scroll 0 0 transparent;
-
-
-   -moz-border-radius-bottomright:0px;
-   -moz-border-radius-bottomleft:0px;
-
-	 -webkit-border-bottom-right-radius: 0px;
-	 -webkit-border-bottom-left-radius: 0px;
-
-   border-bottom-right-radius: 0px;
-	 border-bottom-left-radius: 0px;
-
-   padding:0px;
-}
 
 #autoMode, #manualMode {
   padding:2px 5px;
@@ -71,7 +29,7 @@
   text-shadow: 0px 1px 0px #fff;
   min-width:80px;
 
-  font-family: Arial;
+/*  font-family: Arial; */
   -moz-box-shadow: 0px 0px 1px #666;
   -webkit-box-shadow: 0px 0px 1px #666;
 }

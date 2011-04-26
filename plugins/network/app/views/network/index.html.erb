@@ -116,113 +116,117 @@
 <% end %>
 
 
-<% write_disabled = ! @permissions[:write] %>
-  <div class='plugin-content plugin-border'>
+  <div class="plugin-content plugin-border">
+    <% write_disabled = ! @permissions[:write] %>
     <%= render :partial => 'shared/missing_write_permissions' if write_disabled %>
 
-    <% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :method => :put, :onsubmit => "return submitValidForm();"} do |n| %>
+    <% form_for :network, @network, :url => { :action => "update" }, :html => {:id=>"dnsForm", :class=>"webyast_form", :method => :put, :onsubmit => "return submitValidForm();"} do |n| %>
       <input type="hidden" id="interface" name="interface" value="<%= @iface %>"/>
       <div class="plugin-header">
-	<div class="left">
-	  <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/network.png"></label>
-	  <label class="plugin-name">Network</label><span id="questionMark" style="margin:0px 15px; float:none;">?</span>
-	  <%=text_field_tag :conf_mode, @conf_mode, :type=>"hidden", :disabled => write_disabled %>
-	</div>
+      	<div class="left">
+      	  <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/network.png"></label>
+      	  <label class="plugin-name"><%=_("Network")%></label><span id="questionMark" style="margin:0px 15px; float:none;">?</span>
+      	  <%=text_field_tag :conf_mode, @conf_mode, :type=>"hidden", :disabled => write_disabled %>
+      	</div>
 
-	<div class="right" >
-	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; -webkit-border-radius:2px;">
-	  <% if(@conf_mode != 'static') %>
-	    <button id="autoMode" class="active" value="dhcp"><%=_("Automatic")%></button>
-	    <button id="manualMode" value="static"><%=_("Manual")%></button>
-	  <% else %>
-	    <button id="autoMode" value="dhcp"><%=_("Automatic")%></button>
-	    <button id="manualMode" class="active" value="static"><%=_("Manual")%></button>
-	  <% end %>
-	  </span>
+        <div class="right" >
+      	  <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; -webkit-border-radius:2px;">
+	        <% if(@conf_mode != 'static') %>
+	          <button id="autoMode" class="active" value="dhcp"><%=_("Automatic")%></button>
+	          <button id="manualMode" value="static"><%=_("Manual")%></button>
+	        <% else %>
+	          <button id="autoMode" value="dhcp"><%=_("Automatic")%></button>
+	          <button id="manualMode" class="active" value="static"><%=_("Manual")%></button>
+	        <% end %>
+    	    </span>
+        </div>
 
-	</div>
-	<div class="clearfix"></div>
+    	<div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix">&nbsp;</div>
+
+    <!--<div id="dns-container">-->
+    <fieldset id="dns-container" class="webyast_fieldset">
+	    <div id="dns-container-header" class="fieldset_header">
+	       <span class="fieldset_header_title" >
+	        <%= _("DNS configuration")%>
+	        <!--<span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(manual)</span>-->
+	      </span>
+	    </div>
+
+	    <div class="fieldset_body">
+	      <div class="row manual">
+	        <label for="<%= :hostname %>"><%=_("Hostname")%></label>
+	        <%=text_field_tag(:hostname, @name, :class=>"hostname", :disabled => write_disabled) %>
+	      </div>
+	      <div class="row manual">
+	        <label for="<%= :domain %>"><%=_("Domain")%></label>
+	        <%=text_field_tag :domain, @domain, :class=>"domain", :disabled => write_disabled %>
+	      </div>
+
+	      <div class="row auto">
+	        <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
+	        <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
+	      </div>
+
+	      <div class="row auto">
+	        <label for="<%= :searchdomains %>">
+	          <%=_("Search domains")%>
+
+	        </label>
+	        <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"searchdomains", :disabled => write_disabled %>
+	      </div>
+
+	      <div id="ip_sticker" class="right">
+	        <span>
+	          <span style="display:block; background:#eee; padding:2px 3px; font-size:11px;"><%=_("Current IP address (DHCP)")%></span>
+	          <span style="font-size:20px; padding:5px 0px;"><%= @dhcp_ip %></span>
+	        </span>
+	      </div>
+
+	      <div class="row manual">
+	        <label><%=_("Change hostname by DHCP")%></label>
+	        <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :disabled=>@dhcp_hostname_enabled %>
+	        <input type="hidden" for="dhcp_hostname" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
+	      </div>
+  	  </div>
+  	  </fieldset>
+    <!--</div>-->
+
+    <fieldset id="ip-container" class="webyast_fieldset">
+      <div id="ip-container-header" class="fieldset_header">
+	      <span class="fieldset_header_title" >
+ 	        <b><%= _("IP configuration")%></b>
+          <!--<span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(via DHCP server)</span>-->
+        </span>
       </div>
 
-      <div class="clearfix">&nbsp;</div>
+<!--      <div id="ip-content" style="padding:10px;">-->
+ 	    <div class="fieldset_body">
+        <div class="row auto">
+          <label for="<%= :ip %>"><%=_("IP address")%></label>
+          <%=text_field_tag :ip, @ip, :class=>"ip static", :disabled => write_disabled %>
+        </div>
+        <div class="row auto">
+	        <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
+	        <%=text_field_tag :netmask, @netmask, :class=>"netmask", :disabled => write_disabled %>
+	      </div>
+	      <div class="row auto">
+	        <label for="<%= :default_route %>"><%=_("Default route")%></label>
+	        <%=text_field_tag :default_route, @default_route, :class=>"default_route", :disabled => write_disabled %>
+	      </div>
+	    </div>
+    </fieldset>
+<!--        </div>-->
 
-      <div id="dns-container">
-	<div id="dns-container-header" >
-	   <span style="float:none; margin-left:5px; -moz-border-radius:0px; padding:0px 5px; text-shadow: 1px 1px #fdfdfd; display:inline-block;">
-	    <b ><%= _("DNS configuration")%></b>
-	    <span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(manual)</span>
-	  </span>
-	</div>
+    <div class="clearfix"></div>
 
-	<div style="padding:10px 10px 0px 10px; border:0px solid #d0d0d0; background:#fafafa; background: -moz-linear-gradient(top, #fafafa 0%, #fcfcfc 100%); ">
-	  <div class="row manual">
-	    <label for="<%= :hostname %>"><%=_("Hostname")%></label>
-	    <%=text_field_tag(:hostname, @name, :class=>"hostname", :disabled => write_disabled) %>
-	  </div>
-	  <div class="row manual">
-	    <label for="<%= :domain %>"><%=_("Domain")%></label>
-	    <%=text_field_tag :domain, @domain, :class=>"domain", :disabled => write_disabled %>
-	  </div>
-
-	  <div class="row auto">
-	    <label for="<%= :nameservers %>"><%=_("Name servers")%></label>
-	    <%=text_field_tag :nameservers, @nameservers.join(" "), :class=>"nameservers", :disabled => write_disabled %>
-	  </div>
-
-	  <div class="row auto">
-	    <label for="<%= :searchdomains %>">
-	      <%=_("Search domains")%>
-
-	    </label>
-	    <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"searchdomains", :disabled => write_disabled %>
-	  </div>
-
-	  <div id="ip_sticker" class="right">
-	    <span>
-	      <span style="display:block; background:#eee; padding:2px 3px; font-size:11px;"><%=_("Current IP address (DHCP)")%></span>
-	      <span style="font-size:20px; padding:5px 0px;"><%= @dhcp_ip %></span>
-	    </span>
-	  </div>
-
-	  <div class="row manual">
-	    <label><%=_("Change hostname by DHCP")%></label>
-	    <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :disabled=>@dhcp_hostname_enabled %>
-	    <input type="hidden" for="dhcp_hostname" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
-	  </div>
-	</div>
-      </div>
-
-      <div id="ip-container">
-	<div id="ip-container-header" >
-	  <span style="float:none; margin-left:5px; -webkit-border-radius:0px; -moz-border-radius:0px; padding:0px 5px; text-shadow: 1px 1px #f8f8f8; display:inline-block;">
-	    <b style="text-shadow: 1px 1px #fdfdfd;"><%= _("IP configuration")%></b>
-	    <span style="float:none; color:#777777; font-size:10px; margin-left:2px;">(via DHCP server)</span>
-	  </span>
-	</div>
-
-	<div id="ip-content" style="padding:10px;">
-	  <div class="row auto">
-	    <label for="<%= :ip %>"><%=_("IP address")%></label>
-	    <%=text_field_tag :ip, @ip, :class=>"ip static", :disabled => write_disabled %>
-	  </div>
-	  <div class="row auto">
-	    <label for="<%= :netmask %>"><%=_("Subnet mask/Prefixlen")%></label>
-	    <%=text_field_tag :netmask, @netmask, :class=>"netmask", :disabled => write_disabled %>
-	  </div>
-	  <div class="row auto">
-	    <label for="<%= :default_route %>"><%=_("Default route")%></label>
-	    <%=text_field_tag :default_route, @default_route, :class=>"default_route", :disabled => write_disabled %>
-	  </div>
-	</div>
-      </div>
-
-      <div class="clearfix"></div>
-
-      <div style="margin:10px auto; position:relative; float:none; width:96%;">
-	<div style="height:1px; border-bottom:0px dotted #ddd; margin:5px 0px;  background: -moz-linear-gradient(left, #ccc 0%, #fafafa 100%);  padding:0px;">&nbsp;</div>
-	<div class="nav-buttons" style="margin:0px 0px; padding:10px 0;">
-	  <%= form_send_buttons :disabled => write_disabled %>
-	</div>
-      </div>
+    <div class="button_container">
+ 	    <div class="hr">&nbsp;</div>
+	    <div class="nav-buttons" style="margin:0px 0px; padding:10px 0;">
+	      <%= form_send_buttons :disabled => write_disabled %>
+	    </div>
+    </div>
   <% end %>
 

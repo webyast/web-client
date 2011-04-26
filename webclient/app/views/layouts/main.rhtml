@@ -3,18 +3,18 @@
 <!--
 # Webyast Webclient framework
 #
-# Copyright (C) 2009, 2010 Novell, Inc. 
+# Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
 # it only under the terms of version 2.1 of the GNU Lesser General Public
-# License as published by the Free Software Foundation. 
+# License as published by the Free Software Foundation.
 #
 #   This library is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
-# details. 
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 #
 #   You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software 
+# License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #-->
 
@@ -23,8 +23,8 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <!--[if IE]>
     <%= stylesheet_link_tag "ie/ie_fixes" %>
-  <![endif]--> 
-   
+  <![endif]-->
+
   <% if JSMIN == true %>
     <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
@@ -50,8 +50,8 @@
     <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "slidernav", "webyast-online-help", "webyast-modal-dialog", "jquery.activity", "notifier" %>
 
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-modal-dialog", "webyast-online-help" %>
-    
+    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-modal-dialog", "webyast-online-help", "webyast-controlpanel" %>
+
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
     %>
@@ -59,7 +59,7 @@
   <% end %>
 
   <title><%= _("WebYaST") %></title>
- 
+
   <script type="text/javascript">
     $(document).ready(function() {
       $('div.overview a.controlpanel-shortcut').tipsy({gravity: 'n', delayIn: 800, opacity: 0.8 });
@@ -69,7 +69,7 @@
 	var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
 	<% if session[:expires].utc? == false %>
 	  //if time zone is not UTC convert it
-	  var expiration_date = "<%= session[:expires].utc.to_time.to_i %>"; 
+	  var expiration_date = "<%= session[:expires].utc.to_time.to_i %>";
 	  sessionTimeout(current_utc_time, expiration_date);
 	<% else %>
 	  var expiration_date = "<%=session[:expires].to_time.to_i %>";
@@ -93,7 +93,7 @@
              "<a href='http://www.microsoft.com/windows/downloads/ie/getitnow.mspx'>", "</a>"] ) %>
       </div>
     </noscript>
-  
+
     <div id="header">
       <% appliance_label = ControlPanelConfig.read 'appliance_label', _("My Appliance") %>
       <% appliance_label = appliance_label.strip %>
@@ -115,7 +115,7 @@
 	  </span>
 	</span>
       <% else -%>
-	
+
 	<span id="userbar">
 	  <span id="userbar-container">
 	    <span class="userbar-icon home-icon">
@@ -123,7 +123,7 @@
 	    </span>
 	    <span class="userbar-icon user-icon">
 	      <%=link_to(user, :controller => :users) %>
-	    </span> 
+	    </span>
 	    <span class="userbar-icon" style=" text-align:center;">
 	      <span class="language-icon">
 		<%= language_code(current_locale_name).upcase  %>
@@ -161,7 +161,7 @@
       <img src="/images/webyast-logo.png?1280237271"  width="130" height="42" alt="webyast">
       <%= _("You will be logged off in")-%><span id="counter"><!-- countdown place holder --></span><%= _("seconds due to session timeout. ")-%>
     </div>
-   
+
     <div id="content">
       <!-- here both flash and dynamic notifications should be added -->
       <div id="flash-messages" class="alpha">
@@ -181,18 +181,18 @@
               else "ui-state-highlight"
             end
           %>
-        
+
           <div class="flash-message <%= flash_style %> ui-corner-all">
             <p><span class="ui-icon <%= flash_icon %>"></span><strong><%= message %></strong></p>
           </div>
           <% flash.delete flash_type -%>
         <% end %>
       </div> <!-- flash messages -->
-      
+
       <div id="progress" style="display: none;">
         <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
       </div>
-  
+
       <!-- debug info session tieout -->
       <!-- <fieldset class="example"><div class="timer_logpanel">dd</div><div class="time_left"></div></fieldset> -->
       <%= yield %>
