@@ -1,20 +1,20 @@
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
@@ -93,7 +93,7 @@ public
       error_string = error.message if error.backend_exception_type =~  /PACKAGEKIT_.*/
       refresh = true if error.backend_exception_type == "PACKAGEKIT_INSTALL" #refresh state of installation
       patch_updates = nil
-    end    
+    end
     patches_summary = nil
 
     if patch_updates
@@ -130,7 +130,7 @@ public
     respond_to do |format|
       format.html { render :partial => "patch_summary", :locals => { :patch => patches_summary, :error => error, :error_string => error_string, :refresh_timeout => ref_timeout } }
       format.json  { render :json => patches_summary }
-    end    
+    end
   end
 
   def load_filtered
@@ -159,9 +159,9 @@ public
   end
 
   # POST /patch_updates/install
-  # Installing one or more patches which has given via param 
+  # Installing one or more patches which has given via param
 
-  def install    
+  def install
     update_array = []
 
     #search for patches and collect the ids
@@ -170,10 +170,11 @@ public
         update_array << value
       end
     }
-    
+
     Patch.install_patches_by_id update_array
 
-    redirect_to :action => "index"
+    #redirect_to :action => "index"
+    redirect_success
   end
 
   def license
@@ -214,3 +215,4 @@ public
   end
 
 end
+

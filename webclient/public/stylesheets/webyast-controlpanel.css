@@ -64,7 +64,7 @@
 div.statusbar_header {
   border-bottom:0px dotted #ddd;
   height:20px;
-  padding:0px 5px 0px 0px;
+  padding:0px 0px 0px 2px;
   vertical-align:middle;
   margin: 0 0 5px 0;
 }
@@ -126,27 +126,24 @@ div.statusbar_row a.warning_message {
 div.update_all input{ width:100%; }
 
 div.statusbar_row img.small-working-icon { vertical-align: middle; }
-div.statusbar_row img { display:inline-block; height:22px; width:22px; margin-right:5px; vertical-align:middle; }
+div.statusbar_row img { display:inline-block; height:22px; width:22px; margin-right:0px; vertical-align:middle; }
 div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 
 .status_ok, .status_warning {
-  margin-right:5px;
+  margin:0 5px 0 0;
   display:inline-block;
 
-  width:22px;
-  height:22px;
+  width:18px;
+  height:18px;
   padding:0px;
+
   text-align:center;
   vertical-align:middle;
 
   -moz-border-radius:100%;
   -webkit-border-radius:20px;
 
-  line-height:12px;
-  font-size:18px;
-  font-weight:bolder;
-  color:white;
-  text-shadow: 0px -1px 0px #474747;
+  line-height:18px;
 }
 
 .status_warning {
