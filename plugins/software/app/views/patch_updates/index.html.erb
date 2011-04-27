@@ -59,77 +59,124 @@
 <% if @permissions and @patch_updates %>
 <%= javascript_include_tag :defaults %>
 
-<div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %><span id="questionMark">?</span></div>
-  <div class='plugin-content'>
-    <% if @patch_updates.empty? %>
-    <h3 class="module_header"><%=_("Your system is up to date.") unless @error%></h3> <!-- RORSCAN_ITL -->
+<!-- <div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %><span id="questionMark">?</span></div> -->
 
-    <div class="nav-buttons">
-      <% unless Basesystem.new.load_from_session(session).completed? %>
-        <%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :action => 'install' %>
-      <% else %>
-        <%= form_back_button %>
-      <% end %>
-    </div>
-    <% else %>
-      <% @hash = Hash.new(0)
-	counter=0
-	@patch_updates.each do |p|
-	  # don't count installed patches
-	  unless p.installed
-	    if @hash.has_key?(p.kind)
-	      @hash[p.kind]= @hash[p.kind]+1
-	      counter = counter+1
-	    else
-	      @hash[p.kind]=1
-	      counter = counter+1
-	    end
-	  end
-      end %>
-    <form id="form1" style="z-index:0" method="post">
-      <div id="parent">
-	<div id="shade"></div>
-	<div id="wait"><%= image_tag("/images/wait.gif", :style => "vertical-align:middle;") %><%=_("Please wait ...") %></div>
+  <div class="plugin-content plugin-border">
+     <% if @patch_updates.empty? %>
+     <div class="webyast_form">
+      <div class="plugin-header">
+        <div class="left">
+          <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/updates.png"></label>
+          <label class="plugin-name"><%=_("Updates") %></label>
+       	</div>
+
+        <div class="right" >
+          <span id="questionMark" style="margin:2px 5px; float:none;">?</span>
+        </div>
+       	<div class="clearfix"></div>
       </div>
 
+      <div class="clearfix">&nbsp;</div>
+
+      <h3 class="module_header" id="system_uptodate">
+        <img src='/images/checkmark.gif'/>
+        <%=_("Your system is up to date.") unless @error%>
+      </h3> <!-- RORSCAN_ITL -->
+
+
+      <div class="clearfix"></div>
+
+      <div class="button_container">
+   	    <div class="hr">&nbsp;</div>
+
+	      <div class="nav-buttons">
+          <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
+           <% if Basesystem.new.load_from_session(session).completed? %>
+             <%= form_back_button %>
+           <% else %>
+             <%= form_send_buttons %>
+           <% end %>
+          <% end %>
+	      </div>
+      </div>
+    </div>
+
+    <% else %>
+      <% @hash = Hash.new(0)
+         counter=0
+      	@patch_updates.each do |p|
+      	  # don't count installed patches
+	        unless p.installed
+	          if @hash.has_key?(p.kind)
+	            @hash[p.kind]= @hash[p.kind]+1
+	            counter = counter+1
+	          else
+	            @hash[p.kind]=1
+	            counter = counter+1
+	          end
+	        end
+      end %>
+
+    <div id="parent">
+     	<div id="shade"></div>
+    	<div id="wait"><%= image_tag("/images/wait.gif", :style => "vertical-align:middle;") %><%=_("Please wait ...") %></div>
+    </div>
+
+    <form id="form1" class="webyast_form" style="z-index:0" method="post">
+      <div class="plugin-header">
+        <div class="left">
+          <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/updates.png"></label>
+          <label class="plugin-name"><%=_("Updates") %></label>
+       	</div>
+
+        <div class="right" >
+          <span id="questionMark" style="margin:2px 5px; float:none;">?</span>
+        </div>
+       	<div class="clearfix"></div>
+      </div>
+
+      <div class="clearfix">&nbsp;</div>
+
       <div id="updates_panel">
-	  <button type="submit" id="comment" class="left active" value="all"
-	     onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
-	     :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	     <img src='/icons/yast-online_update.png'/><%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span>
-	  </button>
-	  <button type="submit" class="middle" value="security"
-	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
-	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	      <img src='/icons/kupdateapplet_red.png'/><%=_("Security") %>&nbsp;<span>(<%=@hash["security"]%>)</span></button>
-	  <button type="submit" class="middle" value="important"
-	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
-	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	    <img src='/icons/kupdateapplet_yellow.png'/><%=_("Important") %>&nbsp;<span>(<%=@hash["important"]%>)</span>
-	  </button>
-	  <button type="submit" class="middle" value="green"
-	      onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
-	      :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	      <img src='/icons/kupdateapplet_green.png'/><%=_("Recommended") %>&nbsp;<span>(<%=@hash["green"]%>)</span>
-	  </button>
-	  <button type="submit" class="right" value="optional"
-	    onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
-	    :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
-	    <img src='/icons/kupdateapplet_optional.png'/><%=_("Optional") %>&nbsp;<span>(<%=@hash["optional"] + @hash["low"] %>)</span>
-	  </button>
+	      <button type="submit" id="comment" class="left active" value="all"
+	         onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	         :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	         <img src='/icons/yast-online_update.png'/><%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span>
+	      </button>
+	      <button type="submit" class="middle" value="security"
+	          onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	          :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	          <img src='/icons/kupdateapplet_red.png'/><%=_("Security") %>&nbsp;<span>(<%=@hash["security"]%>)</span></button>
+	      <button type="submit" class="middle" value="important"
+	          onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	          :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	        <img src='/icons/kupdateapplet_yellow.png'/><%=_("Important") %>&nbsp;<span>(<%=@hash["important"]%>)</span>
+	      </button>
+	      <button type="submit" class="middle" value="green"
+	          onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	          :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	          <img src='/icons/kupdateapplet_green.png'/><%=_("Recommended") %>&nbsp;<span>(<%=@hash["green"]%>)</span>
+	      </button>
+	      <button type="submit" class="right" value="optional"
+	        onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
+	        :loading =>visual_effect(:appear, 'parent', :duration =>1), :complete => visual_effect(:fade, 'parent', :duration => 1)) %>">
+	        <img src='/icons/kupdateapplet_optional.png'/><%=_("Optional") %>&nbsp;<span>(<%=@hash["optional"] + @hash["low"] %>)</span>
+	      </button>
       </div>
     </form>
 
-    <div style="clear:both;"/>
+    <div class="clearfix" style="height:10px;">&nbsp;</div>
 
     <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
-      <fieldset>
+      <fieldset  class="webyast_fieldset" style="margin:0px auto;">
       	<div id="patchesd"><%= render :partial => "patches"%></div>
       </fieldset>
+
       <div class="buttons" style="padding:10px; vertical-align:middle; ">
       	<%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :action => 'install' %>
       	<br style="clear:both" />
       </div>
+
     <% end %>
   <% end %>
 </div>

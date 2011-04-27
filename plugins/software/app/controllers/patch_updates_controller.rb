@@ -176,6 +176,7 @@ public
 
     #redirect_to :action => "index"
     #redirect_success
+    logger.debug "*** Check before redirect: basesystem setup compleate -> #{Basesystem.new.load_from_session(session).completed?}"
     if Basesystem.new.load_from_session(session).completed?
       redirect_to :controller => "controlpanel", :action => "index"
     else

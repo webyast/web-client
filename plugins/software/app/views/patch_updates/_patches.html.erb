@@ -1,28 +1,28 @@
 <%#
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
 %>
   <% javascript_tag do -%>
     function check_all() {
-        $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));      
+        $("INPUT[type='checkbox']").attr('checked', $('#All').is(':checked'));
     };
   <% end %>
 
@@ -37,11 +37,11 @@ You may need to reload the page after applying the patch.") -%></p>
   <h3><%= _("No patches available") -%></h3>
 <% else %>
 <table summary="" class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
-  <tr id="first_row">
+  <tr class="fieldset_header">
     <th class="first checkbox" width=5% ><span><input type="checkbox" name="All" onclick="check_all()" id="All"/></span></th>
     <th width=5%><%=_("Kind")%></th>
-    <th width=20%><%=_("Name")%></th>
-    <th width="50%"><%=_("Summary")%></th>
+    <th width=15%><%=_("Name")%></th>
+    <th width=55%><%=_("Summary")%></th>
     <% if @permissions[:install] %>
       <th width=15%><%=_("Source")%></th>
       <th class="last" width=5%><%=_("Install")%></th>
@@ -72,7 +72,7 @@ You may need to reload the page after applying the patch.") -%></p>
       <td class="label"><%=h patch_update.summary %></td>
       <td class="icon"><%=h patch_update.repo %></td>
       <% if @permissions[:install] %>
-        <td class="icon"><%= link_to image_tag("/icons/system-software-install.png"\
+        <td class="install"><%= link_to image_tag("/images/install.png"\
               , :alt =>  "install", :onclick=>"disableForm();", :class=>"icon", :style=>"width:24px; height:24px;", :border => "0"),\
             :controller => 'patch_updates', :id => patch_update.resolvable_id,\
             :onclick=>"$('#progress').show()", :method => :post, :action => "install" %></td>
@@ -82,3 +82,4 @@ You may need to reload the page after applying the patch.") -%></p>
   <% end %>
 </table>
 <% end %>
+
