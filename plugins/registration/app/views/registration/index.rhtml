@@ -1,20 +1,20 @@
 <!--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
@@ -70,64 +70,105 @@
   <% end %>
 <% end %>
 
-<div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="<%= _("register plugin") %>"/><%=_("Registration")%><span id="questionMark">?</span></div>
+<!--<div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="<%= _("register plugin") %>"/><%=_("Registration")%><span id="questionMark">?</span></div>-->
 
-<div class='plugin-content' style="padding-top: 8px">
+
+
+<div class="plugin-content plugin-border">
 
   <% form_target_save = '/registration/' + (@nexttarget.kind_of?(String) ? @nexttarget : 'skip') %>
+    <div class="plugin-header" style="margin:0px 10px;">
+      <div class="left">
+        <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/registration.png"></label>
+        <label class="plugin-name"><%=_("Registration")%></label>
+        <span id="questionMark" style="margin:2px 0px; float:right; clear:right;">?</span>
+     	</div>
+    </div>
+
+    <div class="clearfix">&nbsp;</div>
+
 
   <% if @showstatus then %>
-     <fieldset>
-       <legend><%= _("Registration Information") %></legend>
-       <p><strong><%= _("This system is registered") %></strong></p> <!-- RORSCAN_ITL -->
-       <p><small><%= _("System number (GUID)") + ":" %> <%= @guid %></small></p> <!-- RORSCAN_ITL -->
-       <p><%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"show_progress();", :class => "button" %></p>
-     </fieldset>
+    <div class="webyast_form">
+      <fieldset class="webyast_fieldset">
+        <div class="fieldset_header">
+          <span class="fieldset_header_title" ><%= _("Registration Information") %></span>
+   	    </div>
 
-     <div class="nav-buttons">
-       <%= form_back_button %>
-       <%= if basesystem_in_process? then
-             ret = form_str_spacer
-             ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
-           end
-       %>
-     </div>
+        <div class="fieldset_body">
+          <div class="row">
+            <img src="/images/checkmark.gif" style="vertical-align:middle; width:24px; height:24px;">
+            <strong><%= _("This system is registered") %></strong> <!-- RORSCAN_ITL -->
+           </div>
+           <div class="row">
+            <small><%= _("System number (GUID)") + ":" %> <%= @guid %></small> <!-- RORSCAN_ITL -->
+           </div>
+          <div class="row">
+            <%= link_to _('Register again'), {:controller => :registration, :action => :reregister}, :onclick=>"show_progress();", :class => "button" %>
+          </div>
+        </div>
+       </fieldset>
+
+      <div class="clearfix"></div>
+
+      <div class="button_container">
+   	    <div class="hr">&nbsp;</div>
+        <div class="nav-buttons">
+          <%= form_back_button %>
+          <%= if basesystem_in_process? then
+               ret = form_str_spacer
+               ret += link_to _("Next"), {:controller => :controlpanel, :action => :nextstep}, :class => "button"
+             end
+          %>
+        </div>
+      </div>
+    </div>
+
   <% else %>
-
-    <% form_tag form_target_save, { :id => "registrationform" } do -%>
+    <% form_tag form_target_save, { :id => "registrationform", :class=>"webyast_form" } do -%>
 
       <% if !@arguments_mandatory.blank? then %>
-      <fieldset>
-        <legend><%= _("Mandatory Information") %></legend>
+       <fieldset class="webyast_fieldset">
+        <div class="fieldset_header">
+  	      <span class="fieldset_header_title" ><%= _("Mandatory Information") %></span>
+  	    </div>
+
+  	    <div class="fieldset_body">
         <% for argument in @arguments_mandatory %>
-          <p>
+  	      <div class="row">
             <label for="<%= 'registration_arg_'+argument['name'] %>"  <%= argument["error"] ? 'style="color: red"' : ''  %>  >
               <%= argument['description'] %>
             </label>
             <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
-          </p>
+          </div>
         <% end %>
+        </div>
       </fieldset>
       <% end %>
 
       <% if !@arguments_detail.blank? then %>
-        <div class="accordion">
-          <fieldset id="argumentdetail">
-            <legend><%= _("Details") %></legend>
-            <div style="display: none;">
-              <% for argument in @arguments_detail %>
-                <p>
-                  <label for="<%= 'registration_arg_'+argument['name'] %>" >
-                    <%= argument['description'] %>
-                  </label>
-                  <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
-                </p>
-              <% end %>
-            </div>
-          </fieldset>
-        </div>
+      <div class="accordion">
+        <fieldset id="argumentdetail" class="webyast_fieldset">
+          <div class="fieldset_header">
+    	      <span class="fieldset_header_title" ><%= _("Details") %></span>
+    	    </div>
+
+    	    <div class="fieldset_body">
+            <% for argument in @arguments_detail %>
+         	    <div class="row">
+                <label for="<%= 'registration_arg_'+argument['name'] %>" ><%= argument['description'] %></label>
+                <%= text_field_tag "registration_arg_"+argument["name"], argument["value"]  %>
+              </div>
+            <% end %>
+          </div>
+       </fieldset>
+      </div> <!-- accordion -->
       <% end %>
 
+     <div class="clearfix"></div>
+
+     <div class="button_container">
+ 	    <div class="hr">&nbsp;</div>
       <div class="nav-buttons">
         <% if @arguments_mandatory.kind_of?(Array) && !@arguments_mandatory.select{ |p|  p["name"]=="email" }.empty?
              onclick_action = "return $('#registrationform').validate().element('#registration_arg_email');"
@@ -136,11 +177,13 @@
            end
         %>
         <%= form_send_buttons :onclick => onclick_action %>
-          <%= if basesystem_in_process? then
+        <%= if basesystem_in_process? then
                 postpone_msg = _('Postpone')
                 form_str_spacer + link_to(postpone_msg, {:controller => :registration, :action =>:skip})
-              end %>
+        end %>
       </div>
+     </div>
     <% end  %>
   <% end -%>
 </div>
+
