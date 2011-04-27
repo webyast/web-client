@@ -173,9 +173,14 @@ public
 
     Patch.install_patches_by_id update_array
 
+
     #redirect_to :action => "index"
     #redirect_success
-    redirect_to :controller => "controlpanel", :action => "index"
+    if Basesystem.new.load_from_session(session).completed?
+      redirect_to :controller => "controlpanel", :action => "index"
+    else
+      redirect_to :controller => "controlpanel", :action => "nextstep"
+    end
   end
 
   def license
