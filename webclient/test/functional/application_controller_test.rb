@@ -139,7 +139,7 @@ class TestControllerTest < ActionController::TestCase
     assert @response.body.match /keep_packages/
   end
 
-  DETAILS_PREFIX = '<br><a href="#" onClick="$(\'.details\',this.parentNode.parentNode.parentNode).show();"><small>details</small></a><pre class="details" style="display:none">'
+  DETAILS_PREFIX = '<br><a href="#" onClick="$(\'.details\',this.parentNode.parentNode.parentNode).toggle();"><small>details</small></a><pre class="details" style="display:none">'
   DETAILS_SUFFIX = '</pre>'
   TEST_DETAILS_STR = "my wonderfull details <br>&nbsp;"
   TEST_DETAILS_RESULT = DETAILS_PREFIX+'my wonderfull details &lt;br&gt;&amp;nbsp;'+DETAILS_SUFFIX

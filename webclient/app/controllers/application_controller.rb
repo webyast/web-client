@@ -55,7 +55,7 @@ protected
   # === usage ===
   # flash[:error] = "Fatal error."+details("really interesting details")
   def details(message, options={})
-    ret = "<br><a href=\"#\" onClick=\"$('.details',this.parentNode.parentNode.parentNode).show();\"><small>#{_('details')}</small></a>
+    ret = "<br><a href=\"#\" onClick=\"$('.details',this.parentNode.parentNode.parentNode).toggle();\"><small>#{_('details')}</small></a>
             <pre class=\"details\" style=\"display:none\"> #{CGI.escapeHTML message } </pre>"
     ret
   end
