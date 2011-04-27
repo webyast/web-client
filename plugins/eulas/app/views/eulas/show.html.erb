@@ -1,61 +1,82 @@
 <!--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 -->
 <% disabled = ! @permissions[:accept] %>
 
-<div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="eula module"/>
+<!--<div class='plugin-icon'><img src='/icons/yast-product-registration.png' alt="eula module"/>
   <%=_("Licence Agreement")-%> - <%= @eula.name -%>
-</div>
+</div> -->
 
-<div class="plugin-content" id="eula">
-<% form_for(:eula, 
-            :url => { :action => :update, :id => @eula_id }, 
-            :html=> { :method => :put} 
-           ) do |f|  -%>
-<fieldset>
-  <div class="eula-text-area">
-    <%= @eula.text.gsub(%r{^[\n\n$]}, '<p class="eula_paragraph">').gsub(%r{[\n]}, ' ')%>
+<div id="eula" class="plugin-content plugin-border">
+
+<% form_for(:eula, :url => { :action => :update, :id => @eula_id }, :html=> { :method => :put, :class=>"webyast_form"}) do |f|  -%>
+
+  <div class="plugin-header">
+    <div class="left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/registration.png"></label>
+      <label class="plugin-name"><%=_("Licence Agreement")-%> - <%= @eula.name -%></label>
+   	</div>
+
+   	<div class="clearfix"></div>
   </div>
-  
-  <% if @eula.only_show %>
-  <%=  hidden_field_tag :accepted, "true" %>
-  <% else %>
-  <p>
-  <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => disabled, :disabled => disabled %>
-  <%=  _("Yes, I agree to the license agreement.") %>
-  <p></p>
-  <%=  f.radio_button :accepted, :false, :checked => (! @eula.accepted), :readonly => disabled, :disabled => disabled %>
-  <%=  _("No, I do not agree.") %>
-  </p>
-  <% end -%>
-  <% unless @eula.text_lang == 'en' then %>
-  <%= f.hidden_field :text_lang %>
-  <% end %>
-</fieldset>
-<div class="nav-buttons">
-  <%= form_next_button :disabled => disabled %>
-  <%= if @first_eula
-        @first_basesystem_step ? "" : (form_str_spacer + form_back_button )
-      else
-        form_str_spacer + (link_to _("Back"), :action => :show, :id => @prev_id)
-      end %>
-</div>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <fieldset class="webyast_fieldset eula_fieldset">
+    <div class="eula-text-area">
+      <%= @eula.text.gsub(%r{^[\n\n$]}, '<p class="eula_paragraph">').gsub(%r{[\n]}, ' ')%>
+    </div>
+
+    <div class="clearfix">&nbsp;</div>
+
+    <% if @eula.only_show %>
+      <%=  hidden_field_tag :accepted, "true" %>
+    <% else %>
+	    <div class="fieldset_body eula_fieldset_body">
+	      <div class="row">
+          <%=  f.radio_button :accepted, :true, :checked => @eula.accepted, :readonly => disabled, :disabled => disabled %>
+          <%=  _("Yes, I agree to the license agreement.") %>
+        </div>
+        <div class="row">
+          <%=  f.radio_button :accepted, :false, :checked => (! @eula.accepted), :readonly => disabled, :disabled => disabled %>
+          <%=  _("No, I do not agree.") %>
+        </div>
+      <% end -%>
+      <% unless @eula.text_lang == 'en' then %>
+      <%= f.hidden_field :text_lang %>
+    <% end %>
+  </fieldset>
+
+  <div class="clearfix"></div>
+
+  <div class="button_container">
+ 	  <div class="hr">&nbsp;</div>
+	  <div class="nav-buttons">
+     <%= form_next_button :disabled => disabled %>
+     <%= if @first_eula
+           @first_basesystem_step ? "" : (form_str_spacer + form_back_button )
+         else
+          form_str_spacer + (link_to _("Back"), :action => :show, :id => @prev_id)
+         end %>
+    </div>
+  </div>
 <% end -%>
 </div>
+
