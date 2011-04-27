@@ -167,7 +167,7 @@
 
     <div class="button_container">
  	    <div class="hr">&nbsp;</div>
-      <div class="nav-buttons" style="margin:0px 0px; padding:10px 0;">
+      <div class="nav-buttons">
         <%= form_send_buttons :onclick=>"password_validation_enabled = true; alias_valid = $('#adminForm').validate().element('#administrator_aliases'); return $('#adminForm').validate().element('#administrator_confirm_password') && alias_valid;", :id => "default_submit", :disabled => disabled %>
       </div>
     </div>
