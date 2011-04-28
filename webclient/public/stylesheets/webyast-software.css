@@ -1,0 +1,175 @@
+/* UPDATES */
+#parent {
+  display: none;
+  top:0; left:0;
+  position: absolute;
+  width:100%;
+  margin: auto; /* Div centered */
+  min-height: 100%; /* min height for modern browser */
+  height:auto !important; /* Important rule for modern browser */
+  height:100%; /* min height for IE */
+  overflow: hidden !important; /* hide FF scroll bar */
+  z-index:2000;
+}
+
+#shade {
+  z-index:1000;
+  top:0; left:0;
+  position: absolute;
+  width:100%;
+  margin: auto; /* Div centered */
+  min-height: 100%; /* min height for modern browser */
+  height:auto !important; /* Important rule for modern browser */
+  height:100%; /* min height for IE */
+  overflow: hidden !important; /* hide FF scroll bar */
+  background-color: rgba(100, 100, 100, 0.5);
+  z-index:2001;
+}
+
+#wait {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius:3px;
+  position: relative;
+  background-color: #fff;
+  border: 5px solid grey;
+  font-size:20px;
+  color:#1C94C4;
+  margin-left: auto;
+  margin-right: auto;
+  width:auto;
+  padding:10px;
+  text-align:center;
+  z-index:3000;
+}
+
+#updates_panel { margin:10px 8px; padding:0px; float:left; clear:both; }
+
+#updates_panel button[type="submit"] {
+  display:block;
+  float:left;
+  border:1px solid #999;
+  font-family: Tahoma, Trebuchet MS, Helvetica, sans-serif;
+  font-size:12px;
+
+  text-decoration:none;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  color:#222;
+  background:url('/images/gradientx40.png') repeat-x #fff;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+#updates_panel button[type=submit]{
+  width:auto;
+  overflow:visible;
+  padding:3px 10px 1px 7px; /* IE6 */
+}
+
+#updates_panel button[type=submit] {
+  padding:4px 10px 4px 7px; /* Firefox */
+  line-height:18px; /* Safari */
+}
+
+*:first-child+html button[type]{
+  padding:3px 10px 1px 7px; /* IE7 */
+}
+
+#updates_panel button img, #updates_panel a img{
+  margin:0 3px -3px 0 !important;
+  padding:0;
+  border:none;
+  width:16px;
+  height:16px;
+}
+
+#updates_panel button.left {
+  border-right-width:1px;
+  border-radius: 3px 0px 0px 3px;
+  -khtml-border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0px 0px 3px;
+  border-left:1px solid #a0a0a0;
+}
+
+#updates_panel button.left:hover, #updates_panel button.middle:hover, #updates_panel button.right:hover{
+  background: url("/images/gradientx40.png") #eee;
+}
+
+#updates_panel button.middle {
+  border-right:1px solid #a0a0a0;
+  border-left:0px;
+
+  border-right-width:1px;
+  border-radius: 0px;
+  -khtml-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+}
+
+#updates_panel button.right {
+  border-left:0px;
+  border-right:1px solid #a0a0a0;
+
+  border-radius: 0px 3px 3px 0px;
+  -khtml-border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0px 3px 3px 0px;
+}
+
+#updates_panel button.active {
+  color:#222;
+  box-shadow: 0 0 3px #666 inset;
+}
+
+.patches { width:100%; }
+.patches a {border:0px;}
+
+#patchesd { background-color:#fff; }
+#patchesd h3 { font-weight:22px; line-height:22px; vertical-align:middle; text-align:center; margin:10px; padding:2px; color:#444; }
+
+th.first span {
+  display:inline-block;
+  margin:0px 5px 0px 3px;
+  width:17px;
+  height:17px;
+  padding:1px;
+  line-height:16px;
+}
+
+th.first input[type="checkbox"] { margin:2px 0 0 2px;  display:inline-block; border:none; background-color:#eee; }
+
+table.patches {
+  text-align:left;
+  margin:0px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+table.patches td {
+  margin: 0;
+  font-size:12px;
+  padding: 3px;
+  border: 1px dotted #ccc;
+  border-width:0px 0px 1px 0px;
+}
+
+td.icon { width:18px; }
+
+#patches-form th {
+  text-shadow: 0 1px 0 #fff;
+}
+
+#patches-form .webyast_fieldset { padding:0px; background-color:#fff; }
+
+
+td.install { text-align:center; }
+td.install img.icon { margin:0px auto; }
+
+#system_uptodate { padding:10px 0px; }
+#system_uptodate img { height:30px; width:30px; margin:0px 10px 0px 4px; vertical-align:middle; }
+
