@@ -27,22 +27,26 @@
   -moz-box-shadow: 0px 0px 10px #777;
   vertical-align:middle;
   padding:10px 20px;
-  display:block;
 }
 
 #modalWindowShade {
-/*   background: url("../images/stripes-bg.png") repeat scroll 0 0 transparent; */
-  background-color: #eee;
-  position:absolute;
-  width: 100%;
-  height:100%;
-
+  -moz-box-shadow: inset 0px 0px 300px #111;
+  -webkit-box-shadow: inset 0px 0px 300px #111;
+  /*background: url("../images/stripes-bg.png") repeat scroll 0 0 transparent;*/
+	background-color:#eee;
   opacity:0.5;
   -moz-opacity:0.5;
-  display:block;
-   top:0; left:0;
-  -moz-box-shadow: inset 0px 0px 300px #222;
-  z-index:1000;
+
+  border: medium none;
+  cursor: wait;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 #modalWindowClose {

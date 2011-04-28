@@ -22,23 +22,21 @@
 //TODO: MODAL: window on resize -> recenter modalWindow!!!
 //TODO: DIALOG: autodetect submit button -> $form.find('input type=submit')? else ???
 
-/*function preloader() {
-  var i = 0;
-  imageObj = new Image();
-  images = new Array();
-  images[0]="../images/dialog-warning.png"
-  images[1]="../images/loading.gif"
-  images[2]="../images/info.png"
 
-  for(i=0; i<3; i++) {
-    imageObj.src=images[i];
+(function($) {
+  var cache = [];
+  // Arguments are image paths relative to the current page.
+  $.preLoadImages = function() {
+    var args_len = arguments.length;
+    for (var i = args_len; i--;) {
+      var cacheImage = document.createElement('img');
+      cacheImage.src = arguments[i];
+      cache.push(cacheImage);
+    }
   }
-}
+})(jQuery)
 
-$(document).ready(function() {
-   preloader();
-});*/
-
+jQuery.preLoadImages("../images/loading.gif", "../images/dialog-warning.png", "../images/info.png", "../images/close.png");
 
 (function($, undefined){
   $.modalDialog = {
@@ -48,7 +46,7 @@ $(document).ready(function() {
       mclose: 'modalWindowClose',
 
       warning:  '<img src="../images/dialog-warning.png">',
-      loading:  '<img src="../images/loading.gif">',
+      loading:  '<img id="modal_loading" src="../images/loading.gif">',
       info:  	'<img src="../images/info.png">',
 
       message: 'Please wait',
@@ -88,18 +86,22 @@ $(document).ready(function() {
     bind: function(options) {
       var close = '#' + this.defaults.mclose;
       $(function(){
-	$(close).live('click', function(){
-	  $.modalDialog.destroy({ timeout: 0});
-	});
+	      $(close).live('click', function(){
+	        $.modalDialog.destroy({ timeout: 0});
+	      });
 
-	$(close).live('mouseenter', function(){
-	  $(this).attr('src' , 'images/close.png');
-	});
+	      $(close).live('mouseenter', function(){
+	        $(this).attr('src' , 'images/close.png');
+	      });
 
-	$(close).live('mouseleave', function(){
-	  $(this).attr('src' , 'images/close-g.png');
-	});
+	      $(close).live('mouseleave', function(){
+	        $(this).attr('src' , 'images/close-g.png');
+	      });
       })
+    },
+
+    redirect: function(options) {
+       window.location = window.location.protocol + '//' + window.location.host;
     },
 
     destroy: function() {
@@ -113,15 +115,10 @@ $(document).ready(function() {
 popup = function(image, message) {
   var defaults = $.modalDialog.defaults;
 
-  imageObj = new Image();
-  imageObj.src=image;
-
-  console.log(imageObj);
-
-  //$.modalDialog.destroy();
-
   $('body').append('<div id="' + defaults.mshade + '">&nbsp;</div>');
-  $('body').after('<div id="' + defaults.mwindow + '" class="mpopup">' + image + '<span class="mmessage">' + message + '</span>' + '</div>');
+  $('body').after('<div id="' + defaults.mwindow + '" class="mpopup">' + '</div>');
+  $('#' + defaults.mwindow).wrapInner(image + '<span class="mmessage">' + message + '</span>');
+
   self.centering(defaults.mwindow);
 }
 
@@ -129,10 +126,6 @@ popup = function(image, message) {
 dialog = function(message, form) {
   var defaults = $.modalDialog.defaults;
 
-  imageObj = new Image();
-  imageObj.src=defaults.warning;
-
-  $.modalDialog.destroy();
 
   if(message.split('.').length > 1) {
     question = message.split('.')[0] + '<br/>' + message.split('.')[1];
@@ -150,6 +143,7 @@ dialog = function(message, form) {
   $dialog += '</div>';
 
   var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', '../images/close-g.png');
+
   $('body').before($dialog);
   $('#'+defaults.mwindow).append($mclose);
   $.modalDialog.bind(defaults.mclose);
@@ -162,45 +156,7 @@ dialog = function(message, form) {
   $('#no').live('click', function(){
     $.modalDialog.destroy();
     $.modalDialog.wait({message: 'Please wait'});
-    window.location = window.location.protocol + '//' + window.location.host;
-  });
-
-  self.centering(defaults.mwindow);
-}
-
-confirm_dialog = function(message, $action) {
-  var defaults = $.modalDialog.defaults;
-  imageObj = new Image();
-  imageObj.src=defaults.warning;
-
-  $.modalDialog.destroy();
-
-  if(message.split('.').length > 1) {
-    question = message.split('.')[0] + '<br/>' + message.split('.')[1];
-  }
-
-  $('body').append('<div id="' + defaults.mshade + '">&nbsp;</div>');
-
-  $dialog = '<div id="' + defaults.mwindow + '" class="mdialog">';
-    $dialog += '<div class="mleftcontainer">' + defaults.warning + '</div>';
-    $dialog += '<div class="mrightcontainer">';
-      $dialog += '<div>' + question + '</div>';
-      $dialog += '<div  class="mdevider">&nbsp;</div>';
-      $dialog += '<div><input type="button" id="no" value="No" /><input type="button" id="yes" value="Yes" /></div>';
-    $dialog += '</div>';
-  $dialog += '</div>';
-
-  var $mclose = $('<img id="' + defaults.mclose +'"/>').attr('src', 'images/close-g.png');
-  $('body').before($dialog);
-  $('#'+defaults.mwindow).append($mclose);
-  $.modalDialog.bind(defaults.mclose);
-
-  $('#yes').live('click', function(){
-    $.modalDialog.destroy();
-  });
-
-  $('#no').live('click', function(){
-    $.modalDialog.destroy();
+    setTimeout('$.modalDialog.redirect()', 500);
   });
 
   self.centering(defaults.mwindow);
