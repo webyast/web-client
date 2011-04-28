@@ -51,6 +51,7 @@
 
     <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
     <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-modal-dialog", "webyast-online-help", "webyast-controlpanel" %>
+    <%= stylesheet_link_tag "webyast-forms" %>
 
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
@@ -192,6 +193,8 @@
       <div id="progress" style="display: none;">
         <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
       </div>
+
+
 
       <!-- debug info session tieout -->
       <!-- <fieldset class="example"><div class="timer_logpanel">dd</div><div class="time_left"></div></fieldset> -->

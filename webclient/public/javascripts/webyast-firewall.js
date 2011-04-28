@@ -2,18 +2,18 @@
 #--
 # Webyast Webservice framework
 #
-# Copyright (C) 2009, 2010 Novell, Inc. 
+# Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
 # it only under the terms of version 2.1 of the GNU Lesser General Public
-# License as published by the Free Software Foundation. 
+# License as published by the Free Software Foundation.
 #
 #   This library is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
-# details. 
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 #
 #   You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software 
+# License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 */
@@ -24,74 +24,25 @@ var formChanged = false;
 function initChagesTrack(message) {
   $("#on").click(formWasChanged);
   $("#off").click(formWasChanged);
-  
+
   $('#firewallForm .firewall-service').bind('click', formWasChanged);
 
    $("#firewall-wrapper .action-link").click(function(event) {
      event.stopPropagation();
      event.preventDefault();
-     
-    if (formChanged == true) {
-      $.modalDialog.dialog({message:message, form: 'firewallForm'});
-    } else {
+
+     if (formChanged == true) {
+       $.modalDialog.dialog({message:message, form: 'firewallForm'});
+     } else {
       document.location = event.target.href;
-    }
-    });
-//   $("#firewall-wrapper .action-link").click(
-//     function(event) {
-//       if (formChanged == true) {
-// 	event.stopPropagation();
-// 	event.preventDefault();
-//       
-// 	$.blockUI.defaults.applyPlatformOpacityRules = false;
-// 	$.blockUI({
-// 	  message: $('#unsavedChangesDialog'), 
-// 	  showOverlay: true, 
-// 	  css: { 
-// 	    padding:        10, 
-// 	    margin:         '0 auto', 
-// 	    width:          '280px',
-// 	    left:           '40%', 
-// 	    textAlign:      'center', 
-// 	    color:          '#333', 
-// 	    border:         '5px solid #aaa', 
-// 	    backgroundColor:'#fff',
-// 	    cursor:         'wait',
-// 	    '-webkit-border-radius': '5px', 
-// 	    '-moz-border-radius': '5px',
-// 	    '-webkit-box-shadow': '0 0 2em #222',
-// 	    '-moz-box-shadow': '0 0 2em #222',
-// 	    '-webkit-box-shadow': 'inset 0 0 4px #222',
-// 	    '-moz-box-shadow': 'inset 0 0 4px #222'
-// 	  }
-// 	});   
-// 
-//       $('#yes').click(function() { 
-// 	$.unblockUI(); 
-// 	$('#firewallSubmitButton').click();
-//       }); 
-// 
-//       $('#no').click(function() { 
-// 	$.unblockUI(); 
-// 	document.location = event.target.href;
-// 	return true; 
-//       }); 
-// 
-//       $('#cancel').click(function() { 
-// 	$.unblockUI(); 
-// 	return false; 
-//       }); 
-//     }
-//    }
-//   );
+     }
+   });
 }
 
 function formWasChanged() {
   formChanged = true;
   $('#firewallForm .firewall-service').unbind('click', formWasChanged);
 }
-
-// $(document).ready(init);
 
 jQuery(function($){
   //SORT SERVICES LIST
@@ -101,10 +52,10 @@ jQuery(function($){
   var array = new Array();
   $list = $list.tsort()
 
-  $.each($list, function(i, l){	
+  $.each($list, function(i, l){
     if (jQuery.inArray($(l).text().substr(0, 1).toLowerCase(), array) == -1) {
       array.push($(l).text().substr(0, 1).toLowerCase())
-    } 
+    }
   });
 
   var category = -1;
@@ -128,10 +79,10 @@ jQuery(function($){
   var array = new Array();
   $list = $list.tsort()
 
-  $.each($list, function(i, l){	
+  $.each($list, function(i, l){
     if (jQuery.inArray($(l).text().substr(0, 1).toLowerCase(), array) == -1) {
       array.push($(l).text().substr(0, 1).toLowerCase())
-    } 
+    }
   });
 
   var category = -1;
@@ -152,7 +103,7 @@ jQuery(function($){
 
 function enableFirewallForm() {
   //Description Tooltip
-  /*gravity: $.fn.tipsy.autoNS,*/ 
+  /*gravity: $.fn.tipsy.autoNS,*/
   $('span.firewall-service').tipsy({gravity: 's', delayIn: 500 })
 //   $('span.firewall-service').removeClass('firewall_disabled');
   $('span.firewall-service').removeClass('firewall_disabled').addClass('firewallForm_enabled');
@@ -166,7 +117,7 @@ function enableFirewallForm() {
       $(this).css('color', '');
     }
   );
-  
+
   $('#allowed_services span.firewall-service').bind({
     click: function(event){
       $(this).fadeOut(200);
@@ -174,7 +125,7 @@ function enableFirewallForm() {
       $("#blocked_services span[value='"+$(this).attr("value")+"']").fadeIn(50).effect("highlight", {color:'#ff6440'}, 300);
     }
   });
-  
+
   //Change color on hover
   $('#blocked_services span.firewall-service').hover(
     function () {
@@ -205,12 +156,12 @@ function disableFirewallForm() {
 $(document).ready(function(){
   var $on = $('#on');
   var $off = $('#off');
-  
+
   function toggleMode($id) {
     if($id.val() == "on") {
       $on.addClass('active');
       $off.removeClass('active');
-      
+
       $('#allowed_services').removeClass('firewallForm_disabled');
       $('#blocked_services').removeClass('firewallForm_disabled');
 
@@ -219,7 +170,7 @@ $(document).ready(function(){
     } else {
       $off.addClass('active');
       $on.removeClass('active');
-      
+
       $('#allowed_services').addClass('firewallForm_disabled');
       $('#blocked_services').addClass('firewallForm_disabled');
 
@@ -233,40 +184,11 @@ $(document).ready(function(){
     toggleMode($(this));
     return false;
   });
-  
+
   $off.click(function(event) {
     event.preventDefault();
     toggleMode($(this));
     return false;
   });
-
-//   $on.click(function (event) {
-//     event.preventDefault();
-//     
-//     if($(this).hasClass('selected') == false) {
-//       $(this).addClass('selected darkShadow');
-//       $('#indicator').attr('src', 'images/firewall-on-led.png');
-//       $off.removeClass('selected darkShadow');
-//       $('#allowed_services').removeClass('firewallForm_disabled');
-//       $('#blocked_services').removeClass('firewallForm_disabled');
-// 
-//       enableFirewallForm();
-//       $('#use_firewall').click();
-//     } 
-//   });
-// 
-//   $off.click(function(event) {
-//     event.preventDefault();
-//     
-//     if($(this).hasClass('selected') == false) {
-//       $(this).addClass('selected darkShadow');
-//       $('#indicator').attr('src', 'images/firewall-off-grey.png');
-//       $on.removeClass('selected darkShadow');
-//       $('#allowed_services').addClass('firewallForm_disabled');
-//       $('#blocked_services').addClass('firewallForm_disabled');
-// 
-//       disableFirewallForm();
-//       $('#use_firewall').click();
-//     }
-//   });  
 });
+
