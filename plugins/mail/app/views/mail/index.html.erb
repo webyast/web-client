@@ -20,51 +20,41 @@
 -->
 
 <% content_for :head do %>
-  <!--<%= javascript_include_tag :defaults %>--> <!-- is not needed -->
-<!-- Move to style.css -->
-<style type="text/css">
-  label.error {
-    font-weight:bold;
-    color:#990000;
-    padding-left:.5em;
-    vertical-align:middle;
-  }
-</style>
+	<%= javascript_include_tag "validation.js" %>
 
-<%= javascript_include_tag "validation.js" %>
-<script type="text/javascript">
-  var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
-  startNotifier({'module':'mail', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
+	<script type="text/javascript">
+		var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
+		startNotifier({'module':'mail', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
 
-    $(document).ready(function() {
-      validateDomainNameWithPortNumber("smtp_server");
-      $("#mailForm").validate({
-	onkeyup: function(element) { this.element(element); },
-	submitHandler: function(form) {
-	  var message = <%= jss _("Please wait") -%>;
-	  disableFormOnSubmit(message);
-	  form.submit();
-	}
-      });
-       // make the error message translatable - override the default messsage
-       $.extend($.validator.messages, {
-		  equalTo: <%= jss _("The passwords do not match.") -%>,
-		  email: <%= jss _("Enter a valid e-mail address.") -%>,
-		  smtp_server: <%= jss _("Enter a valid domain name or an IP address.") -%>
-       });
-    });
+			$(document).ready(function() {
+				validateDomainNameWithPortNumber("smtp_server");
+				$("#mailForm").validate({
+		onkeyup: function(element) { this.element(element); },
+		submitHandler: function(form) {
+			var message = <%= jss _("Please wait") -%>;
+			//disableFormOnSubmit(message);
+			$.modalDialog.wait( {message: message});
+			form.submit();
+		}
+				});
+				 // make the error message translatable - override the default messsage
+				 $.extend($.validator.messages, {
+				equalTo: <%= jss _("The passwords do not match.") -%>,
+				email: <%= jss _("Enter a valid e-mail address.") -%>,
+				smtp_server: <%= jss _("Enter a valid domain name or an IP address.") -%>
+				 });
+			});
 
-    $(document).ready(function() {
-      if ($("#mail_test_mail_address", "#mailForm").val() == "") {
-        $("#mail_submit").attr("disabled","disabled");
-      }
-      $("#mail_test_mail_address").keyup(function () {
-	if ($("#mail_test_mail_address", "#mailForm").val() == "") $("#mail_submit").attr("disabled","disabled");
-	else $("#mail_submit", "#mailForm").removeAttr("disabled");
-      });
-    });
-</script>
-
+			$(document).ready(function() {
+				if ($("#mail_test_mail_address", "#mailForm").val() == "") {
+					$("#mail_submit").attr("disabled","disabled");
+				}
+				$("#mail_test_mail_address").keyup(function () {
+		if ($("#mail_test_mail_address", "#mailForm").val() == "") $("#mail_submit").attr("disabled","disabled");
+		else $("#mail_submit", "#mailForm").removeAttr("disabled");
+				});
+			});
+	</script>
 <% end %>
 
 <!--<div class='plugin-icon'><img alt="yast-mail-server" src='/icons/yast-mail-server.png'/><%=_("Mail Settings")%><span id="questionMark">?</span></div> -->
@@ -75,7 +65,7 @@
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
 
-  <% form_for(:mail, @mail, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :class=>"webyast_form", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()) $('#progress').show() && disable_forms ()" } ) do |f| %>
+  <% form_for(:mail, @mail, :url => { :action => "update" }, :html => { :method => :put, :id => "mailForm", :class=>"webyast_form", :autocomplete => :off, :onsubmit => "if ($('#mailForm').valid()); disable_forms ()" } ) do |f| %>
   <%= f.error_messages %>
 
   <div class="plugin-header">
