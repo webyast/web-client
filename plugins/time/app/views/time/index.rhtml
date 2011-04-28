@@ -70,10 +70,11 @@
 			 }
 		  },
 		  submitHandler: function(form) {
-			var message = <%= jss _("Please wait") -%>;
-			disableFormOnSubmit(message);
-                        form.submit();
-                  },
+  			var message = <%= jss _("Please wait") -%>;
+	  		//disableFormOnSubmit(message);
+		    $.modalDialog.wait( {message: message});
+        form.submit();
+      },
 		  success: "valid",
 		  messages: {
 			 ntp_server: {
@@ -86,10 +87,6 @@
 			 }
 		  }
 		});
-
-		//is not needed anymore, because of jquery.validate plugin update (TODO: remove commented out lines after test )
-		//$("#ntp_server").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
-		//$("#currenttime").keyup( function() {$("#timeForm").valid();}); //avoid problems with validation when element change*/
 
 		// allows to switch between radio buttons and disable validation if #timeconfig_manual is checked
 		$('#timeconfig_manual').click(function() {
@@ -119,7 +116,7 @@
   <% javascript_tag do -%>
     function submitTime() {
 		if($("#timeForm").valid() ) {
-		  $('#progress').show();
+		  //$('#progress').show();
       disable_forms();
 		  return true;
 		}

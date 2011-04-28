@@ -43,7 +43,8 @@
   function show_progress()
   {
     var message = <%= jss _("Please wait") -%>;
-    disableFormOnSubmit(message);
+    $.modalDialog.wait( {message: message});
+    //disableFormOnSubmit(message);
   };
 
   $(document).ready(function(){
@@ -55,11 +56,12 @@
         }
       },
       submitHandler:
-	function(form) {
-	  var message = <%= jss _("Please wait") -%>;
-	  disableFormOnSubmit(message);
-          form.submit();
-	},
+	    function(form) {
+	      var message = <%= jss _("Please wait") -%>;
+        $.modalDialog.wait( {message: message});
+        //disableFormOnSubmit(message);
+        form.submit();
+	    },
       messages: {
        registration_arg_email: {
          required: "<%= _("Please enter a valid Email address.") %>",

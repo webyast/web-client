@@ -34,7 +34,8 @@
     //block whole form onsubmit
     var message = "<%= _("Please wait") -%>";
     $("#update_submit_button").click(function() {
-      disableFormOnSubmit(message);
+      //disableFormOnSubmit(message);
+      $.modalDialog.wait( {message: message});
     });
 
 
@@ -42,16 +43,19 @@
   function disableForm(){
     $(document).ready(function() {
       var message = <%= jss _("Please wait") -%>;
-      disableFormOnSubmit(message);
+      //disableFormOnSubmit(message);
+      $.modalDialog.wait( {message: message});
     });
   }
 
   <% if @reload %>
   // reload the page after 15 seconds
-  setTimeout(function() {
-    $('#progress').show();
-    window.location.reload();
-  } , 15000);
+    setTimeout(function() {
+      //$('#progress').show();
+      var message = <%= jss _("Please wait") -%>;
+      $.modalDialog.wait( {message: message});
+      window.location.reload();
+    } , 15000);
   <% end %>
 
 </script>
@@ -167,14 +171,18 @@
 
     <div class="clearfix" style="height:10px;">&nbsp;</div>
 
-    <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form"} do |form| %>
+    <% form_for :patch_updates, :url => { :action => "install" }, :html => {:id => "patches-form", :class=>"webyast_form" } do |form| %>
       <fieldset  class="webyast_fieldset" style="margin:0px auto;">
       	<div id="patchesd"><%= render :partial => "patches"%></div>
       </fieldset>
 
-      <div class="buttons" style="padding:10px; vertical-align:middle; ">
-      	<%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :action => 'install' %>
-      	<br style="clear:both" />
+    <div class="clearfix" style="height:10px;">&nbsp;</div>
+
+      <div class="button_container">
+   	    <div class="hr">&nbsp;</div>
+        <div class="nav-buttons">
+         	<%= form_send_buttons :label => _("Update"), :id=>"update_submit_button", :action => 'install' %>
+        </div>
       </div>
 
     <% end %>
