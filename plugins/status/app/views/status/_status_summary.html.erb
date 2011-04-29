@@ -36,11 +36,20 @@
     $('#status_indicator').addClass("status_warning");
   <% end -%>
 
-  <div class="statusbar_row">
+  <% status.split(';').each do | message | %>
+    <div class="statusbar_row">
+     	<img src="/images/status-warning2.png">
+ 	    <a href="status" class="warning_message">
+        <%= message %>
+      </a>
+    </div>
+  <% end %>
+
+<!--  <div class="statusbar_row">
     <a href="status" class="warning_message">
       <span><%= status %></span>
     </a>
-  </div>
+  </div> -->
 <% else %>
   <% if unauthorized -%>
     <div class="statusbar_row">

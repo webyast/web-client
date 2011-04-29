@@ -1,20 +1,20 @@
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
@@ -24,7 +24,7 @@ require 'client_exception'
 require 'open-uri' # RORSCAN_ITL
 
 class StatusController < ApplicationController
-  
+
   before_filter :login_required
   layout "main"
 
@@ -45,7 +45,7 @@ class StatusController < ApplicationController
     group.single_graphs.each do |single_graph|
       single_graph.lines.each do |line|
         if line.limits.reached == "true"
-          label = group.id 
+          label = group.id
           label += "/" + single_graph.headline if group.single_graphs.size > 1
           label += "/" + line.label unless line.label.blank?
           if status.empty?
@@ -53,8 +53,8 @@ class StatusController < ApplicationController
           else
             status += "; " + label
           end
-        end 
-      end    
+        end
+      end
     end
     return status
   end
@@ -121,11 +121,11 @@ class StatusController < ApplicationController
     end
     lines = params[:lines].to_i || DEFAULT_LINES
     pos_begin = params[:pos_begin].to_i || 0
-    begin 
+    begin
       log = Logs.find(params[:id], :params => { :pos_begin => pos_begin, :lines => lines })
       content = log.content.value if log
       position = log.content.position.to_i if log
-      render(:partial => 'status_log', 
+      render(:partial => 'status_log',
              :locals => { :content => content, :position => position, :lines => lines, :id => params[:id] }) and return
     rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
@@ -137,7 +137,7 @@ class StatusController < ApplicationController
 	end
     end
   end
-  
+
   def index
     client_permissions
     @logs = Logs.find(:all)
@@ -145,13 +145,13 @@ class StatusController < ApplicationController
     begin
       @graphs = Graphs.find(:all, :params => { :checklimits => true })
       #sorting graphs via id
-      @graphs.sort! {|x,y| y.id <=> x.id } 
+      @graphs.sort! {|x,y| y.id <=> x.id }
       flash[:notice] = _("No data found for showing system status.") if @graphs.blank? # RORSCAN_ITL
       rescue ActiveResource::ServerError => error
 	error_hash = Hash.from_xml error.response.body
 	logger.warn error_hash.inspect
-	if error_hash["error"] && 
-          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
+	if error_hash["error"] &&
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" ||
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            if error_hash["error"]["type"] == "SERVICE_NOT_RUNNING"
              flash[:error] = _("Status not available.")
@@ -176,8 +176,8 @@ class StatusController < ApplicationController
       status = _("Can't connect to host")
       host = Host.find(session[:host]) rescue nil
       status = _("Can't connect to host %s.") % host.name if host #this string is already translated int webclient
-      render(:partial => "status_summary", 
-             :locals => { :status => status, :level => 'error', :error => nil, 
+      render(:partial => "status_summary",
+             :locals => { :status => status, :level => 'error', :error => nil,
                           :refresh_timeout =>  refresh_timeout })
       return
     rescue ActiveResource::UnauthorizedAccess => error
@@ -232,8 +232,8 @@ class StatusController < ApplicationController
         level = "error"
         refresh = false
 	logger.warn error_hash.inspect
-	if error_hash["error"] && 
-          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" || 
+	if error_hash["error"] &&
+          (error_hash["error"]["type"] == "SERVICE_NOT_RUNNING" ||
            error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR")
            if error_hash["error"]["type"] == "COLLECTD_SYNC_ERROR"
              level = "warning"  #it is a warning only
@@ -255,7 +255,7 @@ class StatusController < ApplicationController
             status = plugin.short_description
           else
             status += "; " + plugin.short_description
-          end        
+          end
         }
       rescue Exception => error
 	logger.warn error.inspect
@@ -272,8 +272,8 @@ class StatusController < ApplicationController
       end
     end #benchmark
 
-    render(:partial => "status_summary", 
-           :locals => { :status => status, :level => level, :error => ret_error, 
+    render(:partial => "status_summary",
+           :locals => { :status => status, :level => level, :error => ret_error,
                         :refresh_timeout => (refresh ? refresh_timeout : nil) })
   end
 
@@ -287,12 +287,12 @@ class StatusController < ApplicationController
     till = Time.now
     data = Hash.new
     if  params.has_key? "minutes"
-      data[:minutes] = params[:minutes].to_i 
+      data[:minutes] = params[:minutes].to_i
     else
       data[:minutes] = 5 #default last 5 minutes
     end
     from = till -  data[:minutes]*60
-    
+
     begin
       ActionController::Base.benchmark("Graphs data read from the server") do
         graph = Graphs.find(group_id)
@@ -314,7 +314,7 @@ class StatusController < ApplicationController
           graph_description.lines.each do |line|
             original_metrics = available_metrics.select{|me| me.id[(me.host.size+1)..(me.id.size-1)] == line.metric_id}
             unless original_metrics.empty?
-              logger.warn "More than one metrics with the same id found: #{line.metric_id}. --> taking first" if original_metrics.size > 1              
+              logger.warn "More than one metrics with the same id found: #{line.metric_id}. --> taking first" if original_metrics.size > 1
               original_metric = original_metrics.first
               single_line = Hash.new
               single_line[:label] = line.label
@@ -363,7 +363,7 @@ class StatusController < ApplicationController
         #strip to the same length
         while line[:values].size > count
           line[:values].pop
-        end  
+        end
       end
 
       logger.debug "Rendering #{data.inspect}"
@@ -382,11 +382,11 @@ class StatusController < ApplicationController
         @graphs = Graphs.find(:all)
       end
       #sorting graphs via id
-      @graphs.sort! {|x,y| y.id <=> x.id } 
+      @graphs.sort! {|x,y| y.id <=> x.id }
     rescue Exception => error
       logger.warn error.inspect
       flash[:error] = YaST::ServiceResource.error(error)
-      redirect_to :controller=>"status", :action=>"index" and return 
+      redirect_to :controller=>"status", :action=>"index" and return
     end
   end
 
@@ -399,7 +399,7 @@ class StatusController < ApplicationController
     rescue Exception => error
       logger.warn error.inspect
       flash[:error] = YaST::ServiceResource.error(error)
-      redirect_to :controller=>"status", :action=>"index" and return 
+      redirect_to :controller=>"status", :action=>"index" and return
     end
 
     @graphs.each do |graph|
@@ -461,3 +461,4 @@ class StatusController < ApplicationController
   end
 
 end
+
