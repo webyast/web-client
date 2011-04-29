@@ -105,7 +105,7 @@
     <% if patch[:security] > 0 %>
       <% update = true %>
       <div class="statusbar_row">
-        <img src="/images/warning.png" style="display:inline;">
+        <img src="/icons/kupdateapplet_red.png" style="display:inline;">
         <% link_to "patch_updates", :class=>"warning_message" do %>
           <%= _("Security Updates: %d") % patch[:security] %>
         <% end %>

@@ -115,12 +115,15 @@ div.statusbar_row input { margin:5px 0; }
 
 div.statusbar_row a.button { width:100%; display:inline-block; margin:3px 0; text-align:center; line-height:18px; }
 
-
 div.statusbar_row a.warning_message {
   font-weight: normal;
   font-size: 12px;
   padding-left:3px;
   border-bottom:1px dotted #666;
+}
+
+div.statusbar_row a.warning_message:hover {
+	border-bottom: 1px solid #555555;
 }
 
 div.update_all input{ width:100%; }
@@ -130,11 +133,13 @@ div.statusbar_row img { display:inline-block; height:22px; width:22px; margin-ri
 div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 
 .status_ok, .status_warning {
-  margin:0 5px 0 0;
+  margin:0 5px 0 -2px;
   display:inline-block;
 
-  width:18px;
-  height:18px;
+  /*width:18px;
+  height:18px;*/
+  width:22px;
+  height:22px;
   padding:0px;
 
   text-align:center;
