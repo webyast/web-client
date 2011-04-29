@@ -168,31 +168,30 @@
 
     $(document).ready(function(){
       function validateRoleName(name) {
-	jQuery.validator.addMethod(name, function(value, element) {
-	  var regExp = new RegExp("^[a-zA-Z0-9\\_\\-\\. ]+$");
-	  return this.optional(element) || regExp.test(value);
-	});
+	      jQuery.validator.addMethod(name, function(value, element) {
+	        var regExp = new RegExp("^[a-zA-Z0-9\\_\\-\\. ]+$");
+	        return this.optional(element) || regExp.test(value);
+	      });
       }
       validateRoleName("role_name");
       $("#rolesForm").validate({
-	onkeyup: function(element) { this.element(element); },
-	rules:{ role_name: { required:true, role_name: true } },
-	messages: {
-	  role_name: { required: <%= jss _("This field is required") -%>, role_name: <%= jss _("Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") -%> }
-	}
+      	onkeyup: function(element) { this.element(element); },
+      	rules:{ role_name: { required:true, role_name: true } },
+      	messages: {
+      	  role_name: { required: <%= jss _("This field is required") -%>, role_name: <%= jss _("Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") -%> }
+      	}
       });
 
-//       select_users_open = select_users_dialog();
       $(".permissions-group-header .permission-field input").click( function() {
-	groupHeaderClicked($(this));
+      	groupHeaderClicked($(this));
       });
       $(".permissions-group-content .permission-field input").click( function() {
-	groupFieldClicked( $(this) );
+      	groupFieldClicked( $(this) );
       });
       $(".permissions-group-header .permission-field").map( function() { refreshComputed( this.getAttribute('group-role-id') ) });
       $('.list-fieldset-header .permission-label').click(function() {
-	$(this).parent().next().toggle();
-	return false;
+      	$(this).parent().next().toggle();
+      	return false;
       });
       $('.permissions-header .permission-label').click( collapseAll );
       addTabsNavigation("div#jqueryTab", "span");
@@ -201,13 +200,12 @@
       create_role_dialog();
 
       $("#create_role_link").click( function (e) {
-	e.preventDefault();
-	$("#create_role_dialog").dialog('open');
+      	e.preventDefault();
+	      $("#create_role_dialog").dialog('open');
       });
 
       $("#roles_submit_button").click( function () { blockForm(); });
       $("img.deleteRole").click( function () { blockForm(); });
-
       $('#usersContent').sliderNav({items:[<%= @alpha %>], arrows:false });
     });
 
@@ -221,19 +219,19 @@
         autoOpen: false,
         width: 400,
         modal: true,
-	close: clearForm,
+	      close: clearForm,
         buttons: {
-	  'Create Role': function() {
-	    if ($("#rolesForm").validate().form() == true) {
-	      $(this).children("form").first().submit();
-	      $(this).dialog('close');
-	      blockForm();
-	    }
-	  },
-	  Cancel: function() {
-	    $(this).dialog('close');
-	  }
-	}
+	       'Create Role': function() {
+	       if ($("#rolesForm").validate().form() == true) {
+	         $(this).children("form").first().submit();
+	         $(this).dialog('close');
+	         blockForm();
+	       }
+  	     },
+	      Cancel: function() {
+	        $(this).dialog('close');
+  	      }
+	      }
       });
     };
 
@@ -247,6 +245,7 @@
       var field_checks = $(".permissions-group-content .permission-field[group-role-id='"+group_role_id+"'] input").get();
       return { header : header_check, fields : field_checks };
     };
+
     function all(items, cond) {
       items_length = items.length;
       for (var i=0;i<items_length;i++) {
@@ -289,28 +288,10 @@
       $('.list-fieldset-header').next().hide();
     };
 
-    //Info tooltip
-    $(function() {
-      var $dialog = $('#roles_tipsy_tooltip');
-      var width = $dialog.outerWidth();
-      var height = $dialog.outerHeight();
-      hideTooltip = function () { $dialog.fadeOut(); }
-
-      $('#roles_tipsy_tooltip').attr({"style": 'display:block'});
-      $('#roles_tipsy_tooltip').animate({
-       opacity: 0.85,
-        top: height
-      }, 3000, function() {
-        setTimeout(hideTooltip, 3000);
-      });
-
-      $('#dont_show').bind('click', function() {
-         //console.log("Remember me")
-      })
-    });
   </script>
 
   <% content_for :head do %>
+  	<%= javascript_include_tag "webyast-localstorage" %>
     <% if JSMIN != true %>
      	<%= javascript_include_tag "select_dialog", "jquery.event.drag-2.0.min", "jquery.event.drop-2.0.min", "jquery.qsearch", "roles.helper", "slidernav" %>
      <% end %>
