@@ -1,21 +1,21 @@
 <%#
 #--
 # Copyright (c) 2009-2010 Novell, Inc.
-# 
+#
 # All Rights Reserved.
-# 
+#
 # This program is free software; you can redistribute it and/or modify it
 # under the terms of version 2 of the GNU General Public License
 # as published by the Free Software Foundation.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, contact Novell, Inc.
-# 
+#
 # To contact Novell about this file by physical or electronic mail,
 # you may find current contact information at www.novell.com
 #++
@@ -50,7 +50,7 @@
 		    <%= link_to image_tag("../images/delete-user.png", :border=>0, :class=>"deleteRole"), {:action => 'destroy', :id => ERB::Util.html_escape( role.name ) }, { :style=>"border:0px;"} %>
 		  </span>
 		  <span class="roleBody drop">
-		    <span class="roles_warning" style="display:none; float:left;"> user already assigned to this role</span>
+		    <span class="roles_warning" style="display:none; float:left;"><%= _("User already assigned to this role") %></span>
 		    <%=hidden_field_tag(RolesController.users_role_id(role.name), role.users.join(",") ) %>
 		    <% role.users.each do |user| %>
 		      <span class="user assigned" alt="<%=RolesController.users_role_id(role.name)%>"><%=user%></span>
@@ -59,9 +59,33 @@
 		</div>
   	      <% end %>
 	    </div>
-	  </div> 
+	  </div>
 
-	 <div id="usersContainer">	
+
+    <div id="roles_tipsy_tooltip" style="display:none;">
+      <div style="float:left; width:70px;">
+        <span id="infoMark">!</span>
+      </div>
+      <div style="float:right; min-width:200px; width:300px;">
+        <label class="info_text"> <%= _("In order to assign the user to roles,")%></label>
+        <label class="info_text"> <%= _("Drag and Drop the user labels into Role containers") %></label>
+        <label class="info_text"><a id="dont_show" href=""><%= _("Don't show this again") %></a></label>
+      </div>
+      <span class="clearfix"></span>
+    </div>
+
+
+	 <div id="usersContainer"
+	    original-title='<div id="roles_tipsy_tooltip">
+	      <div style="float:left; width:70px;">
+  	      <span id="infoMark">!</span>
+	      </div>
+ 	      <div style="float:right; min-width:200px; width:300px;">
+	        <label class="info_text"> <%= _("In order to assign the user to roles,")%></label>
+	        <label class="info_text"> <%= _("Drag and Drop the user labels into Role containers") %></label>
+	      </div>
+ 	      <span class="clearfix"></span>
+        </div>'>
 	  <div id="usersContent" class="users round5b">
 	    <div class="slider-content">
 	      <ol>
@@ -82,9 +106,9 @@
 		  <% end %>
 		<% end %>
 	      </ol>
-	    </div> 
-	  </div> 
-	</div> 
+	    </div>
+	  </div>
+	</div>
       </fieldset>
 
       <fieldset id="assign-permissions">
@@ -151,8 +175,8 @@
       }
       validateRoleName("role_name");
       $("#rolesForm").validate({
-	onkeyup: function(element) { this.element(element); }, 
-	rules:{ role_name: { required:true, role_name: true } },  
+	onkeyup: function(element) { this.element(element); },
+	rules:{ role_name: { required:true, role_name: true } },
 	messages: {
 	  role_name: { required: <%= jss _("This field is required") -%>, role_name: <%= jss _("Allowed is combination of a-z, A-Z, numbers, space, dash and underscore only.") -%> }
 	}
@@ -186,7 +210,7 @@
 
       $('#usersContent').sliderNav({items:[<%= @alpha %>], arrows:false });
     });
-    
+
     function clearForm() {
       $("#role_name").val('');
       $("#rolesForm label.error").val('').css("display", "none");
@@ -198,13 +222,13 @@
         width: 400,
         modal: true,
 	close: clearForm,
-        buttons: { 
+        buttons: {
 	  'Create Role': function() {
 	    if ($("#rolesForm").validate().form() == true) {
 	      $(this).children("form").first().submit();
 	      $(this).dialog('close');
 	      blockForm();
-	    }	
+	    }
 	  },
 	  Cancel: function() {
 	    $(this).dialog('close');
@@ -212,7 +236,7 @@
 	}
       });
     };
-    
+
     function blockForm() {
       var message = "<%= _("Please wait") -%>";
       disableFormOnSubmit(message);
@@ -264,32 +288,32 @@
     function collapseAll() {
       $('.list-fieldset-header').next().hide();
     };
-//     function select_users_dialog() {
-//       var open_dialog = select_many_dialog({
-//         kind : 'users',
-//         title : <%= jss _('Assign Users') %>,
-//         selected_title : <%= jss _('Selected Users') %>,
-//         unselected_title : <%= jss _('Available Users') %>,
-//         tooltip : <%= jss _('Click user names to assign/remove users') %>,
-//         loadItems : function (dialogId) {
-//           return $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value.split(",")
-//         },
-//         storeItems : function (dialogId, items) {
-//           $('#users_of_'+dialogId.replace(/ /g,"\\."))[0].value = items.join(",");
-//         },
-//         allItems : function (dialogId) {
-//           return $('#all_users_string')[0].value.split(",")
-//         }
-//       });
-//       return open_dialog;
-//     };
+
+    //Info tooltip
+    $(function() {
+      var $dialog = $('#roles_tipsy_tooltip');
+      var width = $dialog.outerWidth();
+      var height = $dialog.outerHeight();
+      hideTooltip = function () { $dialog.fadeOut(); }
+
+      $('#roles_tipsy_tooltip').attr({"style": 'display:block'});
+      $('#roles_tipsy_tooltip').animate({
+       opacity: 0.85,
+        top: height
+      }, 3000, function() {
+        setTimeout(hideTooltip, 3000);
+      });
+
+      $('#dont_show').bind('click', function() {
+         //console.log("Remember me")
+      })
+    });
   </script>
 
   <% content_for :head do %>
-    <% if JSMIN == true %>  
-	<%= javascript_include_tag "users-min.js"-%>
-     <% else %>
-	<%= javascript_include_tag "select_dialog", "jquery.event.drag-2.0.min", "jquery.event.drop-2.0.min", "jquery.qsearch", "roles.helper", "slidernav" %>
+    <% if JSMIN != true %>
+     	<%= javascript_include_tag "select_dialog", "jquery.event.drag-2.0.min", "jquery.event.drop-2.0.min", "jquery.qsearch", "roles.helper", "slidernav" %>
      <% end %>
   <% end%>
 </div>
+
