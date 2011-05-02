@@ -39,7 +39,7 @@ class MailController < ApplicationController
     @mail.test_mail_address	= params["email"] if params.has_key? "email"
 
     #remove square brackets from smtp_server string
-    @mail.smtp_server = @mail.smtp_server.gsub(/^(\[)|(\])/, '')
+    @mail.smtp_server = @mail.smtp_server.gsub(/^(\[)|(\])/, '') unless @mail.smtp_server.nil?
   end
 
   # PUT
@@ -102,3 +102,4 @@ Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration.") % ['<a href=
 end
 
 # vim: ft=ruby
+
