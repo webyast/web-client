@@ -1,3 +1,5 @@
+// Copyright (c) 2007  Firas Kassem (phiras@gmail.com)
+// Creative Commons Attribution 3.0 Unported License
 // Password strength meter
 // This jQuery plugin is written by Firas Kassem [2007.04.05] and modified by Amin Rajaee [2009.07.26]
 // Firas Kassem  phiras.wordpress.com || phiras at gmail {dot} com
