@@ -128,8 +128,8 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"a", :attributes => { :class => "warning_message" }
-    assert_tag "Registration is missing; Mail configuration test not confirmed"
+    assert_tag :tag => "a", :attributes => { :class => "warning_message" }, :parent => { :tag => "div"}
+    assert_tag "Registration is missing"
   end
 
   #testing show summary AJAX call; Host is not available
@@ -138,7 +138,8 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"a", :attributes => { :class=>"warning_message" }
+    #assert_tag :tag =>"a", :attributes => { :class=>"warning_message" }, :child => "Can't connect to host"
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}
     assert_tag "Can't connect to host"
   end
 
@@ -148,7 +149,8 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"a", :attributes => { :class=>"warning_message" }
+    #assert_tag :tag =>"a", :attributes => { :class=>"warning_message" }
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}
     assert_tag "Cannot read system status - you have been logged out."
   end
 
@@ -172,9 +174,13 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag :tag =>"a",
-               :attributes => {  :class=>"warning_message" }
-    assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Disk/root/free; Registration is missing; Mail configuration test not confirmed"
+    #assert_tag "Limits exceeded for CPU/CPU-0/user; CPU/CPU-1/user; Disk/root/free; Registration is missing; Mail configuration test not confirmed"
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=> /Limits exceeded for CPU\/CPU-0\/user/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/CPU\/CPU-0\/user/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/CPU\/CPU-1\/user/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/Disk\/root\/free/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/Registration is missing/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/Mail configuration test not confirmed/
   end
 
   #testing show summary AJAX call; progress
@@ -242,7 +248,10 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag "Collectd is out of sync. Status information can be expected at Wed Jan 20 22:34:38 2010.; Registration is missing; Mail configuration test not confirmed"
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message" }, :parent => { :tag => "div"}
+    assert_tag "Collectd is out of sync. Status information can be expected at Wed Jan 20 22:34:38 2010."
+    #; Registration is missing; Mail configuration test not confirmed"
+    #assert_tag "Collectd is out of sync. Status information can be expected at Wed Jan 20 22:34:38 2010.; Registration is missing; Mail configuration test not confirmed"
   end
 
   #testing show summary AJAX call; Server Error
@@ -268,7 +277,10 @@ end
     get :show_summary
     assert_response :success
     assert_valid_markup
-    assert_tag "Status not available; Registration is missing; Mail configuration test not confirmed"
+
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/Registration is missing/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/Status not available/
+    assert_tag :tag=>"a", :attributes => { :class => "warning_message"}, :parent => { :tag => "div"}, :content=>/Mail configuration test not confirmed/
   end
 
   #testing show summary AJAX call; Server Error with no information
