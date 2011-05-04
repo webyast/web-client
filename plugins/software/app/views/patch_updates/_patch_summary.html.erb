@@ -101,7 +101,6 @@
     <% end -%>
   <% end %>
 
- <!-- <div class="statusbar_row"> -->
     <% if patch[:security] > 0 %>
       <% update = true %>
       <div class="statusbar_row">
@@ -144,18 +143,13 @@
         <% link_to_remote _("Install all"), :update =>"statusbar_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
       </div>
     <% end %>
-  <!--</div> -->
 
   <% if refresh_timeout.to_i > 0 -%>
     <!-- refresh the status again after a timeout -->
     <% javascript_tag do -%>
       setTimeout(function() {
-        $('#statusbar_patches').html(
-          '<div class="statusbar_row">
-            <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
-            <%= _("Loading patch information") %>
-          </div>')
-          <%= remote_function(:update => "statusbar_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
+        $('#statusbar_patches').html('<div class="statusbar_row"><%= image_tag("/images/working.gif", :class => "small-working-icon") %><%= _("Loading patch information") %></div>')
+        <%= remote_function(:update => "statusbar_patches", :url => { :controller => :patch_updates, :action => :show_summary, :background => true }) %>
       }, <%= refresh_timeout.to_i * 1000 -%>);
     <% end -%>
   <% end -%>
