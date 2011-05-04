@@ -19,7 +19,10 @@
 %>
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery.easing.1.3" %>
+  <%= javascript_include_tag "jquery.quicksand" %>
 <% end %>
+
 
 <% display_patches = ControlPanelConfig.read 'display_patch_status', true %>
 <% display_status = ControlPanelConfig.read 'display_system_status', true %>
@@ -40,36 +43,36 @@
   <% end -%>
 <% end %>
 
-<h3 style="vertical-align: middle;"><%= image_tag("/icons/monitoring.png", :height=>"21", :width=>"21", :border=>"0", :style=>'vertical-align: middle;') %> <%= _("Status") %></h3>
+<!-- <h3 style="vertical-align: middle;"><%= image_tag("/icons/monitoring.png", :height=>"21", :width=>"21", :border=>"0", :style=>'vertical-align: middle;') %> <%= _("Status") %></h3> -->
 
   <div id="status-panel" class="plugin-content" style="">
     <div id="status-eye">
-  <!-- 	<img src="/images/loading.gif" style="display:inline-block; background:#eeeeee; -moz-border-radius:100%; margin:0px 32px; height:48px; width:48px;vertical-align:middle;" > -->
+  <!--  <img src="/images/loading.gif" style="display:inline-block; background:#eeeeee; -moz-border-radius:100%; margin:0px 32px; height:48px; width:48px;vertical-align:middle;" > -->
     </div>
 
     <div id="statusbar_status_container">
       <div class="statusbar_header">
         <span id="status_indicator"></span>
-      	<label><%= _("System status") %></label>
+        <label><%= _("System status") %></label>
       </div>
       <div id="statusbar_status">
-	      <% if ActionController::Routing.possible_controllers.include?("status") %>
-	        <% if display_status %>
-	          <div class="statusbar_row">
-	            <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
-	            <label><%= _("Loading system information") %></label> <!-- RORSCAN_ITL -->
-	          </div>
-	        <% else %>
-	          <div class="statusbar_row">
-	            <div class="status-icon optional"></div>
-	            <span><%= _("System status summary is disabled in the config file.") %></span> <!-- RORSCAN_ITL -->
-	          </div>
-	        <% end %>
-	      <% else %>
-	          <div class="statusbar_row">
-	          <%= _("Status plugin is not installed.") %>
-	        </div>
-	      <% end %>
+        <% if ActionController::Routing.possible_controllers.include?("status") %>
+          <% if display_status %>
+            <div class="statusbar_row">
+              <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
+              <label><%= _("Loading system information") %></label> <!-- RORSCAN_ITL -->
+            </div>
+          <% else %>
+            <div class="statusbar_row">
+              <div class="status-icon optional"></div>
+              <span><%= _("System status summary is disabled in the config file.") %></span> <!-- RORSCAN_ITL -->
+            </div>
+          <% end %>
+        <% else %>
+          <div class="statusbar_row">
+            <%= _("Status plugin is not installed.") %>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -79,68 +82,88 @@
       	<label><%= _("System updates") %></label>
       </div>
       <div id="statusbar_patches">
-	    <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
-	      <% if display_patches %>
-	        <div class="statusbar_row">
-	          <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
-	          <label><%= _("Loading patch information") %></label>
-	        </div>
-	      <% else %>
-	        <div class="statusbar_row">
-	          <div class="status-icon optional"></div>
-	          <span><%= _("Patch status summary is disabled in the config file.") %></span>
-	        </div>
-	      <% end %>
-	    <% else %>
-	      <div class="statusbar_row">
-	        <%= _("Patch plugin is not installed.") %>
-	      </div>
-	    <% end %>
+        <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
+          <% if display_patches %>
+          <div class="statusbar_row">
+            <%= image_tag("/images/working.gif", :class => "small-working-icon") %>
+            <label><%= _("Loading patch information") %></label>
+          </div>
+          <% else %>
+          <div class="statusbar_row">
+            <div class="status-icon optional"></div>
+            <span><%= _("Patch status summary is disabled in the config file.") %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="statusbar_row">
+          <%= _("Patch plugin is not installed.") %>
+        </div>
+      <% end %>
       </div>
     </div>
 
     <div id="statusbar-actions">
       <% if ActionController::Routing.possible_controllers.include?("system") %>
-	<% host = Host.find(session[:host]) rescue nil %>
-	<% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
-	<div class="statusbar_row">
-	  <%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'}, :confirm => _("Really reboot %s?") % host_name, :method => :put, :class => 'button' %>
-	</div>
-	<div class="statusbar_row">
-	  <%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'}, :confirm => _("Really shutdown %s?") % host_name, :method => :put, :class => 'button' %>
-	</div>
+        <% host = Host.find(session[:host]) rescue nil %>
+        <% host_name = host.nil? ? 'the machine' : "'#{host.name}'" %>
+        <div class="statusbar_row">
+          <%= link_to _('Reboot'), {:controller => 'system', :action => 'reboot'}, :confirm => _("Really reboot %s?") % host_name, :method => :put, :class => 'button' %>
+        </div>
+        <div class="statusbar_row">
+          <%= link_to _('Shutdown'), {:controller => 'system', :action => 'shutdown'}, :confirm => _("Really shutdown %s?") % host_name, :method => :put, :class => 'button' %>
+        </div>
       <% end %>
     </div>
-
-<!--     <div class="clearfix">&nbsp;</div> -->
   </div>
 
   <!--CONFIGURATION-->
-  <h3 style="vertical-align: middle;"><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0", :style=>'vertical-align: middle;') %> <%= _("Configuration") %></h3>
+<!--  <h3 style="vertical-align: middle;"><%= image_tag("/images/yast-config.png", :height=>"23", :width=>"23", :border=>"0", :style=>'vertical-align: middle;') %> <%= _("Configuration") %></h3> -->
   <div id="favorites" class="plugin-content">
-    <div class="overview">
+    <div class="overview" style="padding: 0px 0px 20px 0px; border: 1px solid #CACACA; position:relative;">
+       <div id="filter">
+          <span id="filter_recent" id="visible_filters">
+            <span value="Recently used" style="font-size:14px;"><%= _("Recently used modules") %></span>
+          </span>
+          <label id="filter_all" value="All" class="quicksand_button quicksand_button_right" value="All" style="float:right"><%= _("All") %></label>
+          <span id="hidden_filters">     
+            <% @shortcuts.values.reject {|d| d['disabled']}.index_by {|r| r['groups']}.values.each_with_index do | shortcut, i | %>
+              <% array = Array['quicksand_button_left', 'quicksand_button_center', 'quicksand_button_right'] %>
+              <label value="<%= shortcut['groups'] %>" class="quicksand_button <%= array[i] %>" ><%= _(shortcut['groups'].to_s) %></label>
+            <% end %>
+          </span>
+      </div>
+
       <% if @shortcuts.empty? %>
-	<h4 id="warning_message_text">
-	  <%= image_tag("/images/dialog-warning.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
-	  <%= _("WebYaST modules are not installed on your system!") %>
-	</h4>
+	      <h4 id="warning_message_text">
+	        <%= image_tag("/images/dialog-warning.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
+	        <%= _("WebYaST modules are not installed on your system!") %>
+	      </h4>
       <% elsif  !@shortcuts.empty? && @count == @shortcuts.count %>
-	<h4 id="warning_message_text">
-	  <%= image_tag("/images/dialog-warning.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
-	  <%= _("You have no permissions to see or change the modules, please contact the administrator to set up permissions first!") %>
-	</h4>
+	      <h4 id="warning_message_text">
+	        <%= image_tag("/images/dialog-warning.png", :style=>"vertical-align:middle;", :height=>"40", :width=>"42", :border=>"0") %>
+	        <%= _("You have no permissions to see or change the modules, please contact the administrator to set up permissions first!") %>
+	      </h4>
       <% else %>
-	<% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
-	  <%
-	    html_map = {:class => "controlpanel-shortcut"}
-	    html_map[:title] = data["description"] unless data["description"].blank?
-	  %>
-	  <% link_to(data['url'], html_map) do %>
-	    <span class="plugin-shortcut icon-<%=data['icon'].split('/')[2].split('.')[0]%>"></span><br />
-	    <%= data['title'] %>
-	  <% end %>
-	<% end %>
+
+        <div style="margin:0 auto; position:relative;">
+          <ul id="webyast_plugins" class="image-grid" style="clear:both;">
+	          <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
+	            <% if data['main'] %>
+              <li id="<%= data["url"].gsub(/\//, '') %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="main">
+              <% else %>
+	          
+              <li id="<%= data["url"].gsub(/\//, '') %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="<%= data['groups'] %>">
+              <% end %>
+                <a href="<%= data['url'] %>" class="plugin_link" original-title="<%= _(data['description']) %>">
+                  <%= image_tag(data['icon'] ) %>
+                  <strong><%= _(data['title']) %></strong>
+                </a>
+              </li>
+	          <% end %>
+	        </ul>
+	      </div>
       <% end %>
+
       <div style="clear:both;"></div>
     </div><!--overview-->
   </div><!--favorites-->
