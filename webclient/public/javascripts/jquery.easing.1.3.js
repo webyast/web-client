@@ -1,15 +1,15 @@
 /*
 jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
 
-Uses the built in easing capabilities added In jQuery 1.1
-to offer multiple easing options
-
 TERMS OF USE - jQuery Easing
-
 Open source under the BSD License. 
 
 Copyright © 2008 George McGinley Smith
+
 All rights reserved.
+
+Uses the built in easing capabilities added In jQuery 1.1
+to offer multiple easing options
  
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
