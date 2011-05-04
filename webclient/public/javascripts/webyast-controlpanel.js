@@ -128,11 +128,11 @@ $(function() {
       if($(this).attr('id') in localStorage) {
         var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
         localStorage.setItem($(this).attr('id'), value);
-        e.preventDefault
-        return false;
+//        e.preventDefault
+//        return false;
       } else {
         localStorage.setItem($(this).attr('id'), 1);
-        return false;
+//        return false;
       }
     });
     
@@ -148,11 +148,11 @@ $(function() {
         if($(this).attr('id') in localStorage) {
           var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
           localStorage.setItem($(this).attr('id'), value);
-          e.preventDefault
-          return false;
+//          e.preventDefault
+//          return false;
         } else {
           localStorage.setItem($(this).attr('id'), 1);
-          return false;
+//          return false;
         }
       });
     }

@@ -39,7 +39,7 @@ namespace :js do
 		 "browser_fixes.js", "jquery.quicksearch.js", "digitalspaghetti.password.js", "script.js",
 		 "jquerytimer.js","jquerySessionTimeout.js", "jquery.blockUI.js", "jqueryDisableOnSubmit.js",
 		"jquery-effects.min.js", "jquery.tinysort.js", "jquery.tipsy.js", "webyast-firewall.js", "webyast-network.js",
-		"jquery.event.drag-2.0.min.js", "jquery.event.drop-2.0.min.js", "jquery.qsearch.js", "webyast-roles.js", "slidernav.js",
+		"jquery.event.drag-2.0.min.js", "jquery.event.drop-2.0.min.js", "jquery.qsearch.js", "webyast-roles.js", "slidernav.js", "jquery.quicksand.js",
 		"webyast-modal-dialog.js", "webyast-online-help.js", "webyast-controlpanel.js", "webyast-localstorage.js", "passwordStrengthMeter.js"]
 
   Dir.chdir(JAVASCRIPTS_PATH) do
