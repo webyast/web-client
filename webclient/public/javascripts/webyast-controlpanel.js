@@ -111,7 +111,8 @@ $(function() {
     }
     
     var $plugins = $('#webyast_plugins');
-    quicksort($plugins, $sorted)
+    $plugins.html($sorted);
+//    quicksort($plugins, $sorted)
 
     
     $('#webyast_plugins li').live('click', function(e) {
