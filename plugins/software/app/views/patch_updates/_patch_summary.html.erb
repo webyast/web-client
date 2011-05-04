@@ -140,7 +140,7 @@
 
     <% if patch[:security] > 0 or patch[:important] > 0 or patch[:optional] > 0 %>
       <div class="update_all">
-        <%= link_to_remote _("Install all"), :update =>"statusbar_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
+        <% link_to_remote _("Install all"), :update =>"statusbar_patches", :url => { :controller => :patch_updates, :action => :start_install_all}, :confirm => _("Updating all. Are you sure?") %>
       </div>
     <% end %>
 
