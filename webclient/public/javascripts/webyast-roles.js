@@ -21,12 +21,12 @@
 (function($){
   $.fn.extend({
     center: function (element) {
-      return this.each(function() {
-	var elemTop= $(element).position().top;
-	var elemHeight = ($(this).outerHeight(true));
-	var top = (elemTop + (elemHeight/2)) - ($(this).height()/2)+2;
-	var left = $(element).position().left + ($(element).outerWidth()/2) - ($(this).outerWidth()/2);
-	$(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
+        return this.each(function() {
+        var elemTop= $(element).position().top;
+        var elemHeight = ($(this).outerHeight(true));
+        var top = (elemTop + (elemHeight/2)) - ($(this).height()/2)+2;
+        var left = $(element).position().left + ($(element).outerWidth()/2) - ($(this).outerWidth()/2);
+        $(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
       });
     },
 
@@ -154,15 +154,15 @@ jQuery(function($){
     'onAfter': function () {
       var $find = $('#find_user');
       if($find.val() && $find.val().substr(0,1).length !=0 ) {
-	var slider = $('div#usersContent.users'); $(slider).addClass('slider');
-	target = '#' + $('#find_user').val().substr(0,1);
-	var cOffset = $('.slider-content', slider).offset().top;
-	var tOffset = $('.slider-content '+target, slider).offset().top;
-	var height = $('.slider-nav', slider).height();
-	var pScroll = (tOffset - cOffset) - height/8;
-	$('.slider-content li', slider).removeClass('selected');
-	$(target).addClass('selected');
-	$('.slider-content', slider).stop().animate({scrollTop: '+=' + pScroll + 'px'});
+        var slider = $('div#usersContent.users'); $(slider).addClass('slider');
+        target = '#' + $('#find_user').val().substr(0,1);
+        var cOffset = $('.slider-content', slider).offset().top;
+        var tOffset = $('.slider-content '+target, slider).offset().top;
+        var height = $('.slider-nav', slider).height();
+        var pScroll = (tOffset - cOffset) - height/8;
+        $('.slider-content li', slider).removeClass('selected');
+        $(target).addClass('selected');
+        $('.slider-content', slider).stop().animate({scrollTop: '+=' + pScroll + 'px'});
       }
     }
   });
