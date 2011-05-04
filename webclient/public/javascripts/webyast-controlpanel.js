@@ -3,31 +3,6 @@ $(document).ready(function() {
   $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
 });
 
-//Quick Sand ???????????
-(function($) {
-  $.fn.sorted = function(customOptions) {
-    var options = {
-      reversed: true,
-      by: function(a) { return a.text(); }
-    };
-    $.extend(options, customOptions);
-    $data = $(this);
-    arr = $data.get();
-    arr.sort(function(a, b) {
-      var valA = options.by($(a));
-      var valB = options.by($(b));
-      if (options.reversed) {
-        return (valA < valB) ? 1 : (valA > valB) ? -1 : 0;
-      } else {
-        return (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
-      }
-    });
-    
-    return $(arr);
-  };
-})(jQuery);
-
-
 $(function() {
   var $plugins = $('#webyast_plugins');
   var $data = $plugins.clone();
@@ -42,12 +17,6 @@ $(function() {
         $sortedData = $data.find('li');
      } else {
         $sortedData = $data.find('li[data-type=' + $(this).attr('value') + ']');
-        
-        $sortedData = $sortedData.sorted({
-        by: function(v) {
-          return parseFloat($(v).find('li[data-type=' + $(this).attr('value') + ']'));
-        }
-      });
      }
 
      quicksort($plugins, $sortedData)
@@ -74,7 +43,8 @@ $(function() {
 
 var quicksort = function ($plugins, $data) {
    $plugins.quicksand($data, {
-      easing: "swing"
+      duration: 800,
+ 	    easing: 'easeInOutQuad'
    });
 }
 

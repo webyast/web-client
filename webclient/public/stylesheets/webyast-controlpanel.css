@@ -176,8 +176,9 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 
 #filter {
   border-bottom: 1px solid #CCCCCC;
-  background: -moz-linear-gradient(center bottom , #E4E4E4, #EDEDED) repeat scroll 0 0 transparent;
+/*  background: -moz-linear-gradient(center bottom , #E4E4E4, #EDEDED) repeat scroll 0 0 transparent;*/
   background: -moz-linear-gradient(center bottom, #E1E1E1, #F0F0F0) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#E1E1E1));
   line-height:32px;
   height: 32px;
   padding: 0 6px;
@@ -201,6 +202,7 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 /*  background: url("/images/gradientx40.png") repeat-x scroll 0 0 white;*/
   
   background: -moz-linear-gradient(center bottom , #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CCCCCC));
   line-height:24px;
 /*  -moz-border-radius:2px;*/
   min-width:80px;
@@ -227,9 +229,8 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 
 
 label.quicksand_button_active, filter_all:active {
-/*  background-color:#BFBFBF;*/
-/*  background: -moz-linear-gradient(center bottom , #B3B3B3 , #C8C8C8) repeat scroll 0 0 transparent!important;*/
-  -moz-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset; 
+  -moz-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;
+  -webkit-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;    
 
   color:#444;
   text-shadow: 0px 1px 0 #eee!important;

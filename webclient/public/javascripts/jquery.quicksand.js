@@ -62,8 +62,8 @@ Github site: http://github.com/razorjack/quicksand
             // Replace the collection and quit if IE6
 
 
-/*            if ($.browser.msie && $.browser.version.substr(0,1)<7) { */
-            if ($.browser.msie && $.browser.version.number()< 7) {
+            if($.browser.msie && parseInt($.browser.version) == 7) {
+//            if ($.browser.msie && $.browser.version.number()< 7) {
                 $sourceParent.html('').append($collection);
                 return;
             }
