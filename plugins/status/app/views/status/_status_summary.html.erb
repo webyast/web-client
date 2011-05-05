@@ -59,8 +59,9 @@
     <% end -%>
 
     <div class="statusbar_row">
+      <img src="/images/checkmark.gif" class="checked_health">
       <% link_to "status", :class=>"warning_message" do %>
-        <span><%= _("Your system is healthy.") %></span> <!-- RORSCAN_ITL -->
+      <span><%= _("Your system is healthy.") %></span> <!-- RORSCAN_ITL -->
     <% end %>
     </div>
   <% end %>
