@@ -19,9 +19,9 @@
 */
 
 //Tipsy tooltip 
-$(document).ready(function() {
-  $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
-});
+//$(document).ready(function() {
+//  $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
+//});
 
 $(function() {
   var $plugins = $('#webyast_plugins');
@@ -57,16 +57,26 @@ $(function() {
         $('#hidden_filters').fadeIn();
         $('#filter_recent').hide();
         $(this).addClass('quicksand_button_active');
-        setTimeout(hideFilters, 6000)
+        //setTimeout(hideFilters, 5000);
     })
 });
 
+//var quicksort = function ($plugins, $data) {
+//   $plugins.quicksand($data, {
+//      duration: 800,
+// 	    easing: 'easeInOutQuad'
+//   });
+//}
+
 var quicksort = function ($plugins, $data) {
-   $plugins.quicksand($data, {
-      duration: 800,
- 	    easing: 'easeInOutQuad'
-   });
+ $plugins.quicksand($data, {
+    duration: 500,
+    }, function() { 
+       $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
+    }
+  ); 
 }
+        
 
 
 function sortCallbackFunc(a,b){

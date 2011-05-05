@@ -149,10 +149,10 @@
           <ul id="webyast_plugins" class="image-grid" style="clear:both;">
 	          <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
 	            <% if data['main'] %>
-              <li id="<%= data["url"].gsub(/\//, '') %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="main">
+              <li id="module<%= index %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="main">
               <% else %>
 	          
-              <li id="<%= data["url"].gsub(/\//, '') %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="<%= data['groups'] %>">
+              <li id="module<%= index %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="<%= data['groups'] %>">
               <% end %>
                 <a href="<%= data['url'] %>" class="plugin_link" original-title="<%= _(data['description']) %>">
                   <%= image_tag(data['icon'] ) %>
