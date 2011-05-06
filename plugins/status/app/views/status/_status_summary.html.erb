@@ -23,11 +23,7 @@
 
 <% unauthorized = error.class == ActiveResource::UnauthorizedAccess -%>
 <%if error && !unauthorized %>
-  <div class="statusbar_row">
-    <a href="status" class="warning_message">
-      <%= report_error(error, _("An problem occured when loading status information.")) %>
-    </a>
-  </div>
+  <%= report_error(error, _("An problem occured when loading status information.")) %>
 <% end %>
 
 <% unless status.blank? %>
