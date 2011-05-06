@@ -242,7 +242,6 @@ module YaST
       # dynamically create an anonymous class for
       # this resource
       path = resource.href
-
       name = File.basename(path)
       base_path = File.dirname(path)
 
@@ -320,8 +319,7 @@ module YaST
     # querying the remote resource registry
     # (the resources resource)
     def self.resource_for_interface(interface_name)
-      res_resource = OpenStruct.new(:href => '/resources', :singular => false)
-
+      res_resource = OpenStruct.new(:href => '/resources', :singular => false, :interface => 'org.opensuse.yast.webservice.resources')
       proxy = self.class_for_resource(res_resource)
       resources = proxy.find(:all)
       resources.each do |resource|
