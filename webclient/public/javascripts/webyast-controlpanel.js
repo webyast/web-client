@@ -57,20 +57,23 @@ $(function() {
         $('#hidden_filters').fadeIn();
         $('#filter_recent').hide();
         $(this).addClass('quicksand_button_active');
-        //setTimeout(hideFilters, 5000);
     })
 });
 
 initTipsyTooltip = function() {
-  $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
+  $('#webyast_plugins').find('li').unbind('mouseenter mouseleave');
+  $('#webyast_plugins').find('a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
 }
 
 var quicksort = function ($plugins, $data) {
+ $plugins.find('li').unbind('mouseenter mouseleave');
+ 
  $plugins.quicksand($data, {
     duration: 500,
-    adjustHeight: 	'auto'
+ 	  adjustHeight: 'dynamic',
+    easing: 'easeInOutQuad'
     }, function() { 
-      setTimeout(initTipsyTooltip, 500);
+//      setTimeout(initTipsyTooltip, 500);
     }
   ); 
 }

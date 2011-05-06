@@ -180,60 +180,47 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 /*  background: -moz-linear-gradient(center bottom , #E4E4E4, #EDEDED) repeat scroll 0 0 transparent;*/
   background: -moz-linear-gradient(center bottom, #E1E1E1, #F0F0F0) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#E1E1E1));
-  line-height:32px;
-  height: 32px;
-  padding: 0 6px;
+
+  line-height:30px;
+  height: 30px;
+  padding: 4px 6px;
   color: #666; 
 }
 
-#filter label {
+#filter label, #filter_recent {
   border-color: #CCCCCC #EEEEEE #EEEEEE #CCCCCC;
   border-style: solid;
   border-width: 1px;
   padding:0px;
 
-  margin-top: 4px;
-  margin-bottom: 4px;
-
   display: inline-block;
   text-align:center;
   vertical-align:middle;
   font-weight: bold;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
-/*  background: url("/images/gradientx40.png") repeat-x scroll 0 0 white;*/
   
   background: -moz-linear-gradient(center bottom , #CCCCCC, #FFFFFF) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CCCCCC));
-  line-height:24px;
-/*  -moz-border-radius:2px;*/
-  min-width:80px;
-
+  min-width:120px;
 }
 
 #filter_recent {
-  border-color: #CCCCCC #EEEEEE #EEEEEE #CCCCCC;
-  border-style: solid;
-  border-width: 1px;
   padding:0px 18px;
-
-  margin-top: 4px;
-  margin-bottom: 4px;
-
-  display: inline-block;
-  text-align:center;
-  vertical-align:middle;
-  font-weight: bold;
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
-  
-  line-height:24px;
+  background: none transparent;
 }
 
+#filter_all { float:right; }
 
-label.quicksand_button_active, filter_all:active {
+label.quicksand_button_active {
   -moz-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;
   -webkit-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;    
   color:#444;
   text-shadow: 0px 1px 0 #eee!important;
+}
+
+#filter label:hover {
+  background: -moz-linear-gradient(center bottom , #D5D5D5, #FFFFFF) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EEEEEE));
 }
 
 label.quicksand_button_left {
@@ -308,10 +295,9 @@ div.overview li {
   padding: 5px;     
   border: 2px solid #ccc; 
   background-color: #f5f5f5;
-  background: -moz-linear-gradient(center top, #FFF, #EEE) repeat scroll 0 0 transparent;
-  background: -moz-linear-gradient(center 270deg , #FFF, #E5E5E5) repeat scroll 0 0 transparent;
+  text-decoration: none;
 
-     
+  background: -moz-linear-gradient(center 270deg , #FFF, #E5E5E5) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F0F0F0));
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -319,19 +305,11 @@ div.overview li {
   -khtml-border-radius: 4px;
   -moz-box-shadow: none;
   border-radius: 4px; 
-
 }
     
 div.overview li:hover {
-  background-color: #f5f5f5;
-  text-decoration: none;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-background-clip: border;
-  -khtml-border-radius: 4px;
-  -moz-box-shadow: none;
-  border-radius: 4px; 
+  -moz-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;
+  -webkit-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;    
   border: 2px solid #5f5f5f;
-    padding: 5px;
 }
 
