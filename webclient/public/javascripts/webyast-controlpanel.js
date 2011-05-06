@@ -61,24 +61,20 @@ $(function() {
     })
 });
 
-//var quicksort = function ($plugins, $data) {
-//   $plugins.quicksand($data, {
-//      duration: 800,
-// 	    easing: 'easeInOutQuad'
-//   });
-//}
+initTipsyTooltip = function() {
+  $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
+}
 
 var quicksort = function ($plugins, $data) {
  $plugins.quicksand($data, {
     duration: 500,
+    adjustHeight: 	'auto'
     }, function() { 
-       $('div.overview a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
+      setTimeout(initTipsyTooltip, 500);
     }
   ); 
 }
         
-
-
 function sortCallbackFunc(a,b){
   if(a.value == b.value){
     if(a.value == b.value){
@@ -91,8 +87,8 @@ function sortCallbackFunc(a,b){
 
 //Track recently used modules
 $(function() {
-  //localStorage.clear()
   //console.time('tracker');
+  //localStorage.clear()
   if(localstorage_supported() && localStorage.length != 0) { 
     var $list =  $('#webyast_plugins').find('li');
     var array = [];
@@ -119,48 +115,31 @@ $(function() {
         }
       }
     }
-    
-    var $plugins = $('#webyast_plugins');
-    $plugins.html($sorted);
-//    quicksort($plugins, $sorted)
 
-    
-    $('#webyast_plugins li').live('click', function(e) {
-      if($(this).attr('id') in localStorage) {
-        var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
-        localStorage.setItem($(this).attr('id'), value);
-//        e.preventDefault
-//        return false;
-      } else {
-        localStorage.setItem($(this).attr('id'), 1);
-//        return false;
-      }
-    });
-    
+    //INFO: insert elements without quick sand animation    
+    $('#webyast_plugins').html($sorted);
+    trackRecent();
 
   } else {
     var $data = $('#webyast_plugins').clone();
     $data = $data.find('li.main');
     
     quicksort($('#webyast_plugins'), $data)
-    
-    if(localstorage_supported()) {
-      $('#webyast_plugins li').live('click', function(e) {
-        if($(this).attr('id') in localStorage) {
-          var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
-          localStorage.setItem($(this).attr('id'), value);
-//          e.preventDefault
-//          return false;
-        } else {
-          localStorage.setItem($(this).attr('id'), 1);
-//          return false;
-        }
-      });
-    }
- 
+    trackRecent();
   }
 //  console.timeEnd('tracker');
 })
 
-
+function trackRecent() {
+  if(localstorage_supported()) {
+   $('#webyast_plugins li').live('click', function(e) {
+      if($(this).attr('id') in localStorage) {
+        var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
+        localStorage.setItem($(this).attr('id'), value);
+      } else {
+        localStorage.setItem($(this).attr('id'), 1);
+      }
+    });
+  }
+}
 
