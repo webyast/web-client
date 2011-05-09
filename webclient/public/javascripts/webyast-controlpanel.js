@@ -38,7 +38,6 @@ $(function() {
      } else {
         $sortedData = $data.find('li[data-type=' + $(this).attr('value') + ']');
      }
-
      quicksort($plugins, $sortedData)
    })
 });
@@ -89,8 +88,9 @@ function sortCallbackFunc(a,b){
 }
 
 //Track recently used modules
+//TODO: improve modules tracking, use LIFO (Last In – First Out)
 $(function() {
-  //console.time('tracker');
+  //console.time('modules_tracking');
   //localStorage.clear()
   if(localstorage_supported() && localStorage.length != 0) { 
     var $list =  $('#webyast_plugins').find('li');
@@ -100,6 +100,7 @@ $(function() {
     $list.each(function(index, element) { 
       if($(element).attr('id') in localStorage) {
         array.push({name: $(element).attr('id'), value: localStorage.getItem($(element).attr('id'))})
+        //console.log($(element).find('strong').text() + ' ' + localStorage.getItem($(element).attr('id')))
         $collection.push(element)
       }
     });
@@ -107,6 +108,8 @@ $(function() {
 
     if(array.length > 5) {
       array = array.sort(sortCallbackFunc).splice(0, 5);
+    } else {
+      array = array.sort(sortCallbackFunc);
     }
     
     var $sorted = [];
@@ -119,7 +122,7 @@ $(function() {
       }
     }
 
-    //INFO: insert elements without quick sand animation    
+    //INFO: Control panel index page - insert elements without quick sand animation
     $('#webyast_plugins').html($sorted);
     trackRecent();
 
@@ -130,7 +133,7 @@ $(function() {
     quicksort($('#webyast_plugins'), $data)
     trackRecent();
   }
-//  console.timeEnd('tracker');
+  //console.timeEnd('modules_tracking');
 })
 
 function trackRecent() {

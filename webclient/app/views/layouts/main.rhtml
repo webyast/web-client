@@ -64,18 +64,17 @@
   <script type="text/javascript">
     $(document).ready(function() {
       //$('div.overview a.controlpanel-shortcut').tipsy({gravity: 'n', delayIn: 800, opacity: 0.8 });
-
       <% if session[:expires] !=nil && session[:expires].class == Time %>
-	// get current time from back end and check if time zone set to UTC (client) bnc#631763
-	var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
-	<% if session[:expires].utc? == false %>
-	  //if time zone is not UTC convert it
-	  var expiration_date = "<%= session[:expires].utc.to_time.to_i %>";
-	  sessionTimeout(current_utc_time, expiration_date);
-	<% else %>
-	  var expiration_date = "<%=session[:expires].to_time.to_i %>";
-	  sessionTimeout(current_utc_time, expiration_date);
-	<% end %>
+        // get current time from back end and check if time zone set to UTC (client) bnc#631763
+        var current_utc_time = "<%=Time.now.to_time.utc.to_time.to_i%>";
+        <% if session[:expires].utc? == false %>
+          //if time zone is not UTC convert it
+          var expiration_date = "<%= session[:expires].utc.to_time.to_i %>";
+          sessionTimeout(current_utc_time, expiration_date);
+        <% else %>
+          var expiration_date = "<%=session[:expires].to_time.to_i %>";
+          sessionTimeout(current_utc_time, expiration_date);
+        <% end %>
       <%end%>
     });
   </script>
@@ -99,7 +98,7 @@
       <% appliance_label = ControlPanelConfig.read 'appliance_label', _("My Appliance") %>
       <% appliance_label = appliance_label.strip %>
       <% if appliance_label =~ /^_\(\"/ && appliance_label =~ /\"\)$/ %>
-	<% appliance_label = _(appliance_label[3..appliance_label.length-3]) %>
+        <% appliance_label = _(appliance_label[3..appliance_label.length-3]) %>
       <% end %>
 
       <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :alt =>"webyast"),"/" )%>
@@ -107,54 +106,52 @@
       <% user = session[:user] %>
 
       <% if host.blank? || user.blank? %>
-	<span id="userbar">
-	  <span class="userbar-icon" style=" text-align:center;">
-	    <span class="language-icon">
-	      <%= language_code(current_locale_name).upcase  %>
-	    </span>
-	    <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
-	  </span>
-	</span>
+        <span id="userbar">
+          <span class="userbar-icon" style=" text-align:center;">
+            <span class="language-icon">
+              <%= language_code(current_locale_name).upcase  %>
+            </span>
+            <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
+          </span>
+        </span>
       <% else -%>
+        <span id="userbar">
+          <span id="userbar-container">
+            <span class="userbar-icon home-icon">
+              <%= link_to _("Home"), '/controlpanel'%>
+            </span>
+            <span class="userbar-icon user-icon">
+              <%=link_to(user, :controller => :users) %>
+            </span>
+            <span class="userbar-icon" style=" text-align:center;">
+              <span class="language-icon">
+                <%= language_code(current_locale_name).upcase  %>
+              </span>
+              <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
+            </span>
+            <span class="userbar-icon logout-icon">
+              <%= link_to _("Logout"), '/logout' %>
+            </span>
 
-	<span id="userbar">
-	  <span id="userbar-container">
-	    <span class="userbar-icon home-icon">
-	      <%= link_to _("Home"), '/controlpanel'%>
-	    </span>
-	    <span class="userbar-icon user-icon">
-	      <%=link_to(user, :controller => :users) %>
-	    </span>
-	    <span class="userbar-icon" style=" text-align:center;">
-	      <span class="language-icon">
-		<%= language_code(current_locale_name).upcase  %>
-	      </span>
-	      <%= link_to_remote(current_locale_name, :update =>"language_selection", :url => { :controller => :main, :action => :select_language} ) %>
-	    </span>
-	    <span class="userbar-icon logout-icon">
-	      <%= link_to _("Logout"), '/logout' %>
-	    </span>
-
-	    <form id="test" style="display:none;">
-	      <div style="display:inline-block; width:100%; background-color:#c5c5c5; color:#222; text-align:center; font-weight:bold; font-size:16px;">Add new user</div>
-	      <p>
-		<label style="display:inline-block; min-width:25%;">User:</label>
-		<input id="name" type="text" value="User" style="display:inline-block; width:70%; float:right"/>
-	      </p>
-	      <p>
-		<label style="display:inline-block; min-width:25%;">Password:</label>
-		<input id="name" type="text" value="********" style="display:inline-block; width:70%; float:right"/>
-	      </p>
-	      <p>
-		<input type="button" value="Submit" style="width:48%; display:inline-block; float:left;" />
-		<span style="width:2%; display:inline-block; float:left; text-align:center; color:#a0a0a0">&nbsp;</span>
-		<input type="button" value="Cancel" style="width:48%; display:inline-block; float:right;" />
-	      </p>
-	    </form>
-	  </span>
-	</span>
+            <form id="test" style="display:none;">
+              <div style="display:inline-block; width:100%; background-color:#c5c5c5; color:#222; text-align:center; font-weight:bold; font-size:16px;">Add new user</div>
+              <p>
+                <label style="display:inline-block; min-width:25%;">User:</label>
+                <input id="name" type="text" value="User" style="display:inline-block; width:70%; float:right"/>
+              </p>
+              <p>
+                <label style="display:inline-block; min-width:25%;">Password:</label>
+                <input id="name" type="text" value="********" style="display:inline-block; width:70%; float:right"/>
+              </p>
+              <p>
+                <input type="button" value="Submit" style="width:48%; display:inline-block; float:left;" />
+                <span style="width:2%; display:inline-block; float:left; text-align:center; color:#a0a0a0">&nbsp;</span>
+                <input type="button" value="Cancel" style="width:48%; display:inline-block; float:right;" />
+              </p>
+            </form>
+          </span>
+        </span>
       <% end -%>
-
       <h1><%= appliance_label %></h1>
     </div>
 
