@@ -61,18 +61,18 @@ $(function() {
 
 initTipsyTooltip = function() {
   $('#webyast_plugins').find('li').unbind('mouseenter mouseleave');
-  $('#webyast_plugins').find('a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:true, opacity: 0.8 });
+  $('#webyast_plugins').find('a.plugin_link').tipsy({gravity: 'n', delayIn: 500, live:false, opacity: 0.8 });
 }
 
 var quicksort = function ($plugins, $data) {
- $plugins.find('li').unbind('mouseenter mouseleave');
+ $plugins.find('a').unbind();
  
  $plugins.quicksand($data, {
-    duration: 500,
+    duration: 400,
  	  adjustHeight: 'dynamic',
     easing: 'easeInOutQuad'
     }, function() { 
-      setTimeout(initTipsyTooltip, 500);
+      setTimeout(initTipsyTooltip, 100);
     }
   ); 
 }
