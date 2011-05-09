@@ -73,7 +73,7 @@ var quicksort = function ($plugins, $data) {
  	  adjustHeight: 'dynamic',
     easing: 'easeInOutQuad'
     }, function() { 
-//      setTimeout(initTipsyTooltip, 500);
+      setTimeout(initTipsyTooltip, 500);
     }
   ); 
 }
