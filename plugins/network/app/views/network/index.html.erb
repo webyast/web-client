@@ -27,7 +27,7 @@
 
   <script type="text/javascript">
   var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
-  startNotifier({'module':'network', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
+  //startNotifier({'module':'network', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
 
   $(document).ready(function() {
     validateIPv4("ip");
@@ -104,7 +104,9 @@
       },
       submitHandler: function(form) {
         var message = <%= jss _("Please wait") -%>;
-        $.modalDialog.wait( {message: message});
+             // var message = <%= jss _("Please wait") -%>;
+      disableFormOnSubmit(message);
+//        $.modalDialog.wait( {message: message});
         form.submit();
       },
       success: "valid"
@@ -182,8 +184,9 @@
 
         <div class="row manual">
           <label><%=_("Change hostname by DHCP")%></label>
-          <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :value=>@dhcp_hostname_enabled %>
-          <input type="hidden" for="dhcp_hostname" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
+          <!-- From WebYaST SP1 -->
+          <%= check_box_tag :dhcp_hostname, "1", @dhcp_hostname , :disabled=>!@dhcp_hostname_enabled %>
+          <input type="hidden" name="dhcp_hostname_enabled" value="<%= @dhcp_hostname_enabled %>"/>
         </div>
       </div>
     </fieldset>

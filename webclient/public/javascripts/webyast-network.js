@@ -19,8 +19,13 @@
 */
 
 $(function(){
-  $('#label_dhcp_hostname').click(function(){
-    $('#dhcp_hostname').val() == '1'? $('#dhcp_hostname').val() == 0 : $('#dhcp_hostname').val() == 1; 
+  var $dhcp_hostname = $('#dhcp_hostname');
+  $dhcp_hostname.click(function(){
+    if($dhcp_hostname.is(':checked')) {
+      $dhcp_hostname.attr('checked','checked')
+    } else {
+      $dhcp_hostname.removeAttr('checked')
+    }
   })
   
   var $auto = $('#autoMode');

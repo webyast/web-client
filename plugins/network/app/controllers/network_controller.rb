@@ -156,12 +156,14 @@ class NetworkController < ApplicationController
     dns.searches    = params["searchdomains"]#.split
 
     hn = Hostname.find :one
+    
     return false unless hn
-    dirty = true unless (hn.name == params["name"] && hn.domain == params["domain"])
-    logger.info "dirty after  hostname: #{dirty}"
-    hn.name   = params["name"]
+    dirty = true unless (hn.name == params["hostname"] && hn.domain == params["domain"])
+    logger.info "dirty after hostname: #{dirty}"
+    hn.name   = params["hostname"]
     hn.domain = params["domain"]
-    if params["dhcp_hostname_enabled"]=="true"
+
+    if params["dhcp_hostname_enabled"]== "true"
 #      params["dhcp_hostname"]==nil ? params["dhcp_hostname"]="0" : pass
       hn.dhcp_hostname = params["dhcp_hostname"] || "0"
     end
@@ -175,7 +177,6 @@ class NetworkController < ApplicationController
     ifc.bootproto=params["conf_mode"]
     
     if ifc.bootproto==STATIC_BOOT_ID
-      
       #ip addr is returned in another state then given, but restart of static address is not problem
       if ((ifc.ipaddr||"").delete("/")!=params["ip"]+(params["netmask"]||"").delete("/"))
         dirty_ifc = true
@@ -194,20 +195,20 @@ class NetworkController < ApplicationController
         dns.save
         hn.save
         # write interfaces (and therefore restart network) only when interface settings changed (bnc#579044)
-	if dirty_ifc
+        if dirty_ifc
           ifc.save
-	end
+        end
       end
       #write to avoid confusion, with another string
       flash[:notice] = _('Network settings have been written.')
-    rescue ActiveResource::ServerError => e
-      response = Hash.from_xml(e.response.body)
-      if ( response["error"] && response["error"]["type"]=="NETWORK_ROUTE_ERROR")
-	flash[:error] = response["error"]["description"]
-	logger.warn e
-      else
-        raise
-      end
+      rescue ActiveResource::ServerError => e
+        response = Hash.from_xml(e.response.body)
+        if ( response["error"] && response["error"]["type"]=="NETWORK_ROUTE_ERROR")
+          flash[:error] = response["error"]["description"]
+          logger.warn e
+        else
+          raise
+        end
     end
 
     redirect_success
