@@ -72,3 +72,26 @@ function disableFormOnSubmit(message) {
 	}
     });          
 }
+
+function pleaseWaitForUpdates(message) {
+  $.blockUI.defaults.message = "<p><h1 id='message'><img id='waitAnimation' style='height:32px; width:32px; margin-right:20px; vertical-align:middle' src='/images/loading.gif'/>" + message + " ...</h1></p>";
+  // fix - enable transparent overlay on FF/Linux 
+  $.blockUI.defaults.applyPlatformOpacityRules = false;
+
+  $.blockUI({
+    showOverlay: true, 
+    css: { 
+      padding:                    0, 
+      margin:                     0, 
+      width:                      '100%', 
+      top:                        '0%', 
+      left:                       '0%', 
+      textAlign:                  'center', 
+      color:                      '#444444', 
+      border:                     '0px solid #666', 
+      backgroundColor:            '#f5f5f5', 
+      cursor:                     'wait'
+    }
+  });
+}
+
