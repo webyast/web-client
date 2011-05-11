@@ -55,7 +55,7 @@
 
     <div id="statusbar_status_container">
       <div class="statusbar_header">
-        <span id="status_indicator"></span>
+        <!-- <span id="status_indicator"></span> -->
         <label><%= _("System status") %></label>
       </div>
       <div id="statusbar_status">
@@ -81,8 +81,8 @@
 
     <div id="statusbar_patches_container">
       <div class="statusbar_header">
-        <span id="patches_indicator"></span>
-      	<label><%= _("System updates") %></label>
+        <!-- <span id="patches_indicator"></span> -->
+        <label><%= _("System updates") %></label>
       </div>
       <div id="statusbar_patches">
         <% if ActionController::Routing.possible_controllers.include?("patch_updates") %>
@@ -151,7 +151,7 @@
       <% else %>
 
         <div style="margin:0 auto; position:relative;">
-          <ul id="webyast_plugins" class="image-grid" style="clear:both;">
+          <ul id="webyast_plugins" class="image-grid">
 	          <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
 	            <% if data['main'] %>
               <li id="module<%= index %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="main">

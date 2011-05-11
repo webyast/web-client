@@ -128,7 +128,7 @@ div.statusbar_row a.warning_message:hover {
 div.update_all input{ width:100%; }
 
 div.statusbar_row img.small-working-icon { vertical-align: middle; }
-div.statusbar_row img { display:inline-block; height:19px; width:19px; margin:2px 1px 1px 2px; vertical-align:middle; }
+div.statusbar_row img { display:inline-block; height:19px; width:19px; vertical-align:middle; }
 div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 
 .status_ok, .status_warning {
@@ -150,16 +150,12 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 .status_warning {
   background: -moz-radial-gradient(center center 45deg, circle closest-side, #ea5656 0%, #7b3232 100%) repeat scroll 0 0 transparent;
   background: -webkit-gradient(radial, 50% 50%, 2, 50% 50%, 10, from(#ea5656), to(#7b3232));
- /*  background: -moz-linear-gradient(center bottom , #b43434, #ea5656) repeat scroll 0 0 transparent;*/
- /*  background-image: -webkit-radial-gradient(circle, #ea5656, #7b3232);*/
-
 }
 
 .status_ok {
-  background: -moz-linear-gradient(center bottom , #25712e, #59c766) repeat scroll 0 0 transparent;
+  background: -moz-radial-gradient(center center 45deg, circle closest-side, #59c766 0%, #25712e 100%) repeat scroll 0 0 transparent;
   background: -webkit-gradient(radial, 50% 50%, 2, 50% 50%, 10, from(#59c766), to(#25712e));
-  /*  background: -moz-radial-gradient(center center 45deg, circle closest-side, #59c766 0%, #25712e 100%) repeat scroll 0 0 transparent;*/
-  /*  background-image: -webkit-radial-gradient(circle, #59c766, #25712e);*/
+  /*  background: -moz-linear-gradient(center bottom , #25712e, #59c766) repeat scroll 0 0 transparent;*/
 }
 
 #favorites { border-color: #eee; }
@@ -167,14 +163,17 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 .checked_health {
   height:19px!important;
   width:19px!important;
-  padding-right:6px;
-  margin:2px 1px 1px 2px;
+/*  padding-right:6px;*/
+/*  margin:2px 1px 1px 2px;*/
   vertical-align:middle;
 }
 
 
 
 /* Quick sand  */
+#webyast_plugins {
+  clear:both;
+}
 
 #filter {
   border-bottom: 1px solid #CCCCCC;
