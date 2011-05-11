@@ -33,6 +33,7 @@ class ActivedirectoryController < ApplicationController
 
 
   def index
+    @poll_for_updates = true
     begin
       @activedirectory = Activedirectory.find :one
       Rails.logger.debug "ad: #{@activedirectory.inspect}"
@@ -42,12 +43,12 @@ class ActivedirectoryController < ApplicationController
       @permissions	= {}
       render :index and return
     end
-
     return unless @activedirectory
     logger.debug "permissions: #{@permissions.inspect}"
   end
 
   def update
+    @poll_for_updates = false
     begin
       params[:activedirectory][:enabled] = params[:activedirectory][:enabled] == "true"
       @activedirectory = Activedirectory.new(params[:activedirectory])
