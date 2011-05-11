@@ -38,7 +38,7 @@
 
   <% javascript_tag do -%>
     jQuery(function($){ $('#status-eye').addClass('eye_warning'); });
-    $('#status_indicator').addClass("status_warning");
+    //$('#status_indicator').addClass("status_warning");
   <% end -%>
 
 <% else %>
@@ -51,14 +51,14 @@
   <% elsif !error %>
     <% javascript_tag do -%>jQuery(function($){
       if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); } });
-      $('#status_indicator').addClass("status_ok");
+      //$('#status_indicator').addClass("status_ok");
     <% end -%>
 
     <div class="statusbar_row">
       <img src="/images/checkmark.gif" class="checked_health">
-      <% link_to "status", :class=>"warning_message" do %>
       <span><%= _("Your system is healthy.") %></span> <!-- RORSCAN_ITL -->
-    <% end %>
+      <!-- #<#% link_to "status", :class=>"warning_message" do #%#> -->
+      <!-- #<#% end #%#> -->
     </div>
   <% end %>
 <% end %> <!- if else -->
