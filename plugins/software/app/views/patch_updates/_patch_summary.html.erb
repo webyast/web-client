@@ -90,13 +90,13 @@
   <% if patch[:security] + patch[:important] > 0 %>
     <% javascript_tag do -%>
       jQuery(function($){ $('#status-eye').addClass('eye_warning'); });
-      $('#patches_indicator').addClass("status_warning");
+      //$('#patches_indicator').addClass("status_warning");
     <% end -%>
   <% else %>
     <% javascript_tag do -%>
       jQuery(function($){
         if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); }
-        $('#patches_indicator').addClass("status_ok");
+        //$('#patches_indicator').addClass("status_ok");
       });
     <% end -%>
   <% end %>

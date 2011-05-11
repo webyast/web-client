@@ -38,15 +38,15 @@ You may need to reload the page after applying the patch.") -%></p>
 <% else %>
 <table summary="" class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr class="fieldset_header">
-    <th class="first checkbox" width=5% ><span><input type="checkbox" name="All" onclick="check_all()" id="All"/></span></th>
-    <th width=5%><%=_("Kind")%></th>
-    <th width=15%><%=_("Name")%></th>
-    <th width=55%><%=_("Summary")%></th>
+    <th class="first checkbox" width=4% ><span><input type="checkbox" name="All" onclick="check_all()" id="All"/></span></th>
+    <th width=4%><%=_("Kind")%></th>
+    <th width=14%><%=_("Name")%></th>
+    <th width=43%><%=_("Summary")%></th>
     <% if @permissions[:install] %>
-      <th width=15%><%=_("Source")%></th>
+      <th width=30%><%=_("Source")%></th>
       <th class="last" width=5%><%=_("Install")%></th>
     <% else %>
-      <th class="last" width=20%><%=_("Source")%></th>
+      <th class="last" width=30%><%=_("Source")%></th>
     <% end %>
   </tr>
   <%
