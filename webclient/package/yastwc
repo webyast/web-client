@@ -208,16 +208,16 @@ case "$1" in
 	rc_status -v
 
        # print the URL of the server
-#        if test "$?" -eq 0; then
-#            IFC=`LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8`
-#            IP=`LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
-#            PORT=`LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3`
-#            if [ -n "$IP" ]; then
-#                echo -e "\t${done}The WebYaST client service is running at https://$IP:$PORT/${norm}\n"
-#            else
-#                echo -e "\t${warn}WebYaST could not determine the IP address for $IFC${norm}\n"
-#            fi
-#        fi
+        if test "$?" -eq 0; then
+            IFC=`LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8`
+            IP=`LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1`
+            PORT=`LC_ALL=C grep "listen" $NGINX_CONFIG|cut -d ";" -f 1|tr -s " "|cut -d " " -f 3`
+            if [ -n "$IP" ]; then
+                echo -e "\t${done}The WebYaST client service is running at https://$IP:$PORT/${norm}\n"
+            else
+                echo -e "\t${warn}WebYaST could not determine the IP address for $IFC${norm}\n"
+            fi
+        fi
 
 	;;
     stop)
