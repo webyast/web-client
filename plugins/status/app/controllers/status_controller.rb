@@ -358,7 +358,8 @@ class StatusController < ApplicationController
 
       #flatten the data of all lines to the same amount of entries
       min_hash = data[:lines].min {|a,b| a[:values].size <=> b[:values].size }
-      count = min_hash[:values].size
+      count = 0
+      count = min_hash[:values].size unless min_hash.blank?
       data[:lines].each do |line|
         #strip to the same length
         while line[:values].size > count
