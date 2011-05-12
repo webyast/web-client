@@ -38,15 +38,14 @@ You may need to reload the page after applying the patch.") -%></p>
 <% else %>
 <table summary="" class="patches" <%= @patch_updates.empty? ? "style=\"visibility: hidden;\"" : "" %> >
   <tr class="fieldset_header">
-    <th class="first checkbox" width=4% ><span><input type="checkbox" name="All" onclick="check_all()" id="All"/></span></th>
-    <th width=4%><%=_("Kind")%></th>
-    <th width=14%><%=_("Name")%></th>
-    <th width=43%><%=_("Summary")%></th>
+    <th class="first checkbox" width=3% ><span><input type="checkbox" name="All" onclick="check_all()" id="All"/></span></th>
+    <th class="kind" width=5%><%=_("Kind")%></th>
+    <th width=50%><%=_("Name")%></th>
     <% if @permissions[:install] %>
-      <th width=30%><%=_("Source")%></th>
-      <th class="last" width=5%><%=_("Install")%></th>
+      <th width=38%><%=_("Source")%></th>
+      <th class="last" width=4%><%=_("Install")%></th>
     <% else %>
-      <th class="last" width=30%><%=_("Source")%></th>
+      <th class="last" width=42%><%=_("Source")%></th>
     <% end %>
   </tr>
   <%
@@ -55,24 +54,26 @@ You may need to reload the page after applying the patch.") -%></p>
     "important" => '/icons/kupdateapplet_yellow.png',
     "green" => '/icons/kupdateapplet_green.png',
     "optional" => '/icons/kupdateapplet_optional.png',
-    "low" => '/icons/kupdateapplet_optional.png' }
-%>
+    "low" => '/icons/kupdateapplet_optional.png',
+    "enhancement" => '/icons/kupdateapplet_green.png'
+    }
+  %>
+
   <% @patch_updates.each do |patch_update| %>
     <% unless patch_update.installed %>
     <tr>
       <td class="checkbox"><input type="checkbox" id=<%= "patch_#{patch_update.resolvable_id}" %> name=<%="patch_#{patch_update.resolvable_id}" %> value=<%=patch_update.resolvable_id%> /></td>
 
       <% if kinds.has_key?(patch_update.kind) %>
-        <td class="icon" ><%= image_tag(kinds[patch_update.kind]) %> </td>
+        <td class="icon kind" ><%= image_tag(kinds[patch_update.kind]) %> </td>
       <% else %>
         <td><%=h patch_update.kind %></td>
       <% end %>
 
-      <td class="label"><%=h patch_update.name %></td>
-      <td class="label"><%=h patch_update.summary %></td>
+      <td class="label"><div style="font-size:13px;"><strong><%=h patch_update.name %></strong></div><div style="color:#777777; font-size:11px;"><%=h patch_update.summary %></div></td>
       <td class="icon"><%=h patch_update.repo %></td>
       <% if @permissions[:install] %>
-        <td class="install"><%= link_to image_tag("/images/install.png"\
+        <td class="install"><%= link_to image_tag("/images/update.png"\
               , :alt =>  "install", :onclick=>"disableForm();", :class=>"icon", :style=>"width:24px; height:24px;", :border => "0"),\
             :controller => 'patch_updates', :id => patch_update.resolvable_id,\
             :onclick=>"$('#progress').show()", :method => :post, :action => "install" %></td>

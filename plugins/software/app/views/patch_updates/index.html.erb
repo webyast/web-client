@@ -31,24 +31,20 @@
     });
     $("form#form1").submit(function () { return false; }); // so it won't submit
 
-    //block whole form onsubmit
     var message = "<%= _("Please wait") -%>";
     $("#update_submit_button").click(function() {
-      //disableFormOnSubmit(message);
       $.modalDialog.wait( {message: message});
     });
-
-
   });
+  
   function disableForm(){
     $(document).ready(function() {
       var message = <%= jss _("Please wait") -%>;
-      //disableFormOnSubmit(message);
       $.modalDialog.wait( {message: message});
     });
   }
 
-  <% if @reload %>
+/*  <#%# if @reload #%#>
   // reload the page after 15 seconds
     setTimeout(function() {
       //$('#progress').show();
@@ -56,14 +52,12 @@
       $.modalDialog.wait( {message: message});
       window.location.reload();
     } , 15000);
-  <% end %>
+  <#%# end #%#> */
 
 </script>
 
 <% if @permissions and @patch_updates %>
-<%= javascript_include_tag :defaults %>
-
-<!-- <div class='plugin-icon'><img alt="yast-online_update" src='/icons/yast-online_update.png'/><%=_("Updates") %><span id="questionMark">?</span></div> -->
+  <%= javascript_include_tag :defaults %>
 
   <div class="plugin-content plugin-border">
      <% if @patch_updates.empty? %>
