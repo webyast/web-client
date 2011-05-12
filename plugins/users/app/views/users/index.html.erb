@@ -21,7 +21,7 @@
 
 <% content_for :head do %>
  <% if JSMIN == true %>  
-    <%= javascript_include_tag "/min/users-min.js"-%>
+    <%= javascript_include_tag "min/users-min.js"-%>
     <%= javascript_include_tag "select_dialog.js" %>
   <% else %>
     <%= javascript_include_tag "select_dialog.js" %>

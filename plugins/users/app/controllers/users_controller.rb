@@ -287,8 +287,8 @@ end
 
     # :id was not changed, so it can be used for find even after renaming
     @user = User.find(params[:user][:id])
-    @user.id = @user.uid
     @user.uid	= params["user"]["uid"] # 'uid' may have been changed
+    @user.id = @user.uid
     @user.groupname = params["user"]["groupname"]
 
     @user.grouplist = []
