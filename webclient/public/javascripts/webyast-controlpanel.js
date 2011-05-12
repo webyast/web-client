@@ -50,13 +50,13 @@ hideFilters = function() {
 //TODO Save timeout ID and reset if all button is clicked
 //TODO Stop timeout if user mouseovered buttons
 $(function() {
-    var $all = $('#filter_all');
-    var $recent = $('#filter_recent');
-    $all.click(function() {
-        $('#hidden_filters').fadeIn();
-        $('#filter_recent').hide();
-        $(this).addClass('quicksand_button_active');
-    })
+  var $all = $('#filter_all');
+  var $recent = $('#filter_recent');
+  $all.click(function() {
+    $('#hidden_filters').fadeIn();
+    $('#filter_recent').hide();
+    $(this).addClass('quicksand_button_active');
+  })
 });
 
 initTipsyTooltip = function() {
@@ -85,6 +85,11 @@ function sortCallbackFunc(a,b){
     return (a.value > b.value) ? -1 : 1;
   }
   return (a.value > b.value) ? -1 : 1;
+}
+
+
+function sortAlphabetically(a,b){
+  return $(a).find('strong').innerHTML > $(b).find('strong').innerHTML ? 1 : -1; 
 }
 
 //Track recently used modules
@@ -129,7 +134,9 @@ $(function() {
   } else {
     var $data = $('#webyast_plugins').clone();
     $data = $data.find('li.main');
-    
+    if($data.length > 5) { 
+      $data = $data.sort(sortAlphabetically).splice(0, 5); 
+    }
     quicksort($('#webyast_plugins'), $data)
     trackRecent();
   }
