@@ -175,12 +175,14 @@ function roles_validation(which){
 
 function user_exists_validation(){
  var valid = true;
- var this_user = $("#form_ #user_uid")[0].value;
+// var this_user = $("#form_ #user_uid")[0].value;
+
+ var this_user = $("#user_uid")[0].value;
    users_list = $("#all_users_string")[0].value.split(",");
    for (var i=0; i< users_list.length; i++){
-    if (users_list[i] == $("#form_ #user_uid")[0].value){
-	 valid=false;
-	 break;
+    if (users_list[i] == $("#user_uid").value){
+    valid=false;
+    break;
     }
    }
   $("#user_name-error")[0].style.display= (valid) ? "none" : "block";
