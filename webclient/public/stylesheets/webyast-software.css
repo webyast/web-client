@@ -85,7 +85,7 @@
   display:block;
   float:left;
   border:1px solid #999;
-  font-family: Tahoma, Trebuchet MS, Helvetica, sans-serif;
+/*  font-family: Tahoma, Trebuchet MS, Helvetica, sans-serif;*/
   font-size:12px;
 
   text-decoration:none;
@@ -93,7 +93,7 @@
 
   cursor:pointer;
 
-  color:#222;
+  color:#444;
   background:url('/images/gradientx40.png') repeat-x #fff;
   text-shadow: 0 1px 0 rgba(255,255,255,0.7);
 }
@@ -169,18 +169,31 @@
 #patchesd { background-color:#fff; }
 #patchesd h3 { font-size:20px; line-height:20px; vertical-align:middle; text-align:center; margin:10px; padding:2px; color:#aaaaaa; }
 
-th.first span {
+table.patches th { font-size:13px; padding:0 3px; }
+table.patches td img { vertical-align:middle; }
+table.patches th.checkbox { border-right:1px solid #ccc; }
+table.patches td.checkbox {
+  border-right:1px solid #ccc;
+  background-color:#fafafa;
+  text-align:center;
+}
+
+table.patches .kind { text-align:center; }
+
+table.patches th span {
   display:inline-block;
-  margin:0px 5px 0px 3px;
   width:17px;
   height:17px;
   padding:1px;
+  text-align:center;
   line-height:16px;
 }
 
 th.first input[type="checkbox"] { margin:2px 0 0 2px;  display:inline-block; border:none; background-color:#eee; }
 
 table.patches {
+  font-size:12px;
+  color:#555;
   text-align:left;
   margin:0px;
   border-spacing: 0;
@@ -190,9 +203,8 @@ table.patches {
 
 table.patches td {
   margin: 0;
-  font-size:12px;
-  padding: 3px;
-  border: 1px dotted #ccc;
+  padding: 0px 2px;
+  border: 1px solid #f0f0f0;
   border-width:0px 0px 1px 0px;
 }
 
@@ -207,6 +219,7 @@ td.icon { width:18px; }
 
 td.install { text-align:center; }
 td.install img.icon { margin:0px auto; }
+td.install img.icon:hover { background-color:#f5f5f5; border-radius:100%; border:1px solid #888; }
 
 #system_uptodate { padding:10px 0px; }
 #system_uptodate img { height:30px; width:30px; margin:0px 10px 0px 4px; vertical-align:middle; }
