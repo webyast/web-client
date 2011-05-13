@@ -57,7 +57,8 @@ public
       elsif ce.backend_exception_type == "PACKAGEKIT_INSTALL"
         # patch update installation in progress
         # display the message and reload after a while
-        flash[:info] = ce.message
+        #flash[:info] = ce.message
+        @flash_message = ce.message
         @patch_updates = []
         @error = true
         @reload = true

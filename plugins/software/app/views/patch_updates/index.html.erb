@@ -44,7 +44,7 @@
     });
   }
 
-/*  <#%# if @reload #%#>
+  <% if @reload %>
   // reload the page after 15 seconds
     setTimeout(function() {
       //$('#progress').show();
@@ -52,7 +52,7 @@
       $.modalDialog.wait( {message: message});
       window.location.reload();
     } , 15000);
-  <#%# end #%#> */
+  <% end %> 
 
 </script>
 
@@ -77,8 +77,12 @@
       <div class="clearfix">&nbsp;</div>
 
       <h3 class="module_header" id="system_uptodate">
-        <img src='/images/checkmark.gif'/>
-        <%=_("Your system is up to date.") unless @error%>
+        <% unless @error %>
+          <img src='/images/checkmark.gif'/>
+        <%=_("Your system is up to date.")%>
+        <% else %>
+         <%= @flash_message unless @flash_message.nil? %>
+        <% end %>
       </h3> <!-- RORSCAN_ITL -->
 
 
