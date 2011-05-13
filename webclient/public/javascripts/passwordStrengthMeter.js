@@ -10,8 +10,8 @@
 
 
 /*var shortPass = 'Too Short Password'*/
-var badPass = 'Week: Use letters and numbers'
-var goodPass = 'Medium: Use special charecters'
+var badPass = 'Weak: Use letters and numbers'
+var goodPass = 'Medium: Use special characters'
 var strongPass = 'Strong Password'
 var sameAsUsername = 'Password is the same as username.'
 

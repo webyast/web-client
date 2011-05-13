@@ -21,7 +21,7 @@
 (function($){
   $.fn.extend({
     center: function (element) {
-        return this.each(function() {
+      return this.each(function() {
         var elemTop= $(element).position().top;
         var elemHeight = ($(this).outerHeight(true));
         var top = (elemTop + (elemHeight/2)) - ($(this).height()/2)+2;
@@ -32,15 +32,64 @@
 
     right: function (element) {
       return this.each(function() {
-	var elemTop= $(element).position().top;
-	var elemHeight = ($(this).outerHeight(true));
-	var top = (elemTop + (elemHeight/2)) - ($(this).height()/2);
-	var left = ($(element).outerWidth()-$(this).width());
-	$(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
+        var elemTop= $(element).position().top;
+        var elemHeight = ($(this).outerHeight(true));
+        var top = (elemTop + (elemHeight/2)) - ($(this).height()/2);
+        var left = ($(element).outerWidth()-$(this).width());
+        $(this).css({position:'absolute', margin:0, top: (top > 0 ? top : 0)+'px', left: (left > 0 ? left : 0)+'px'});
       });
     }
   });
 })(jQuery);
+
+
+//Info tooltip
+hideTooltip = function() { 
+  var $tooltip = $('#roles_tipsy_tooltip');
+  $tooltip.fadeOut(); 
+  $($tooltip).attr({"style": 'display:none'});
+}
+
+showTooltip = function(message) {
+  var $tooltip = $('#roles_tipsy_tooltip');
+  var height = $tooltip.outerHeight();
+  var timeout1 = 2000;
+  var timeout2 = 4000;
+  $($tooltip).attr({"style": 'display:inline-block'});
+
+  if(message) { 
+    $('#infoMark').removeClass('info').addClass('warning');
+    $tooltip.find('#tooltip_message_container').css('padding', '0px').html(message);
+    timeout1 = 1000;
+    timeout2 = 2000;
+  }
+  
+  if($tooltip.is(":visible")) {
+    $($tooltip).animate({
+      opacity: 0.85,
+      top: height
+    }, timeout1, function() {
+      setTimeout(hideTooltip, timeout2, $tooltip);
+    });
+  }
+}
+
+$(function() {
+   //localStorage.clear()
+   if(!localstorage_supported()) { $('#dont_show').remove(); }
+   if(!("RolesUI-showtooltip" in localStorage) || localStorage.getItem('RolesUI-showtooltip') == 'yes') {
+      showTooltip();
+
+      $('#dont_show').bind('click', function() {
+         if(localstorage_supported()) {
+            localStorage.setItem('RolesUI-showtooltip', 'no');
+            hideTooltip();
+            return false;
+         }
+      })
+   }
+});
+
 
 function checkUsername($user, $role) {
   var array = new Array();
@@ -57,24 +106,16 @@ function checkUsername($user, $role) {
   }
 }
 
-function showWarning(id) {
-  $warning = $(id).find('span.roles_warning');
-  $warning.queue(function(){
-    setTimeout(function(){
-      $warning.dequeue();
-    }, 400 );
-  });
+function showWarning(element) {
+  var $warning = $(element).parent().find('.user-warning-message');
+  var $warnings = $('#rolesContent').find('.user-warning-message');
 
-  $warning.center(id).fadeIn(500);
-  $warning.fadeIn(500);
-
-  $warning.queue(function(){
-    setTimeout(function(){
-      $warning.dequeue();
-    }, 500 );
-  });
-
-  $warning.hide('fast');
+  $warnings.each(function() {$(this).hide(); });
+  $warning.show();
+  
+  setTimeout(function(){
+    $warning.hide();
+  }, 2000 );
 }
 
 function assignUserToRole($user, $role) {
@@ -170,69 +211,46 @@ jQuery(function($){
   //DRAG n DROP
   $('.drag')
     .drag("start",function(ev, dd){
-	$( dd.available ).addClass('drop-available');
-	return $( this ).clone()
-	  .addClass('drag-active')
-	  .appendTo( document.body);
-      })
+      $( dd.available ).addClass('drop-available');
+      return $( this ).clone().addClass('drag-active').appendTo( document.body);
+    })
 
     .drag(function( ev, dd ){
       $( dd.proxy ).css({
-	top: dd.offsetY,
-	left: dd.offsetX
+        top: dd.offsetY,
+        left: dd.offsetX
       });
     })
 
     .drag("end",function( ev, dd ){
       $( dd.available ).removeClass('drop-available');
-	if($(dd.drop).hasClass('drop')) {
-	  $(dd.proxy).removeClass('drag-active').removeClass('drag');
-	} else {
-	  $( dd.proxy ).remove();
-	}
+      if($(dd.drop).hasClass('drop')) {
+        $(dd.proxy).removeClass('drag-active').removeClass('drag');
+      } else {
+        $( dd.proxy ).remove();
+      }
     });
 
   $('span.drop')
     .live("drop",function( ev, dd ){
       if(checkUsername($(ev.target), $(this))) {
-	showWarning($(this));
-	$(this).effect("highlight", {color:'#fbb'}, 400);
-	if($(ev.target).hasClass('drag')) { $(ev.target).remove(); }
+        showWarning($(this));
+//        var message = "User already assigned to this role";
+//        showTooltip(message);
+        $(this).effect("highlight", {color:'#fbb'}, 400);
+        if($(ev.target).hasClass('drag')) { $(ev.target).remove(); }
       } else {
-	$(ev.target).removeClass('drag').addClass('assigned'); //user
-	$(this).append(ev.target).effect("highlight", {color:'#AEE6A8'}, 400);
-	assignUserToRole($(ev.target), $(this));
+        //console.log(ev.target)
+        //console.log(ev.target.parentNode.tagName);
+        $(ev.target).removeClass('drag').addClass('assigned'); //user
+        //Fix for Node cannot be inserted at the specified point in the hierarchy
+        if(ev.target.parentNode.tagName == "BODY") {
+          $(this).append(ev.target).effect("highlight", {color:'#AEE6A8'}, 400);
+        }
+        //console.log(ev.target.parentNode.tagName);
+        assignUserToRole($(ev.target), $(this));
       }
   })
 });
 
-//Info tooltip
-$(function() {
-   //localStorage.clear()
-
-   if(!localstorage_supported()) { $('#dont_show').remove(); }
-
-   if(!("RolesUI-showtooltip" in localStorage) || localStorage.getItem('RolesUI-showtooltip') == 'yes') {
-      var $dialog = $('#roles_tipsy_tooltip');
-      var width = $dialog.outerWidth();
-      var height = $dialog.outerHeight();
-      hideTooltip = function () { $dialog.fadeOut(); }
-
-      $('#roles_tipsy_tooltip').attr({"style": 'display:block'});
-      $('#roles_tipsy_tooltip').animate({
-         opacity: 0.85,
-         top: height
-      }, 3000, function() {
-         setTimeout(hideTooltip, 3000);
-      });
-
-      $('#dont_show').bind('click', function() {
-         if(localstorage_supported()) {
-            localStorage.setItem('RolesUI-showtooltip', 'no');
-            hideTooltip();
-            return false;
-         }
-      })
-   }
-});
 
