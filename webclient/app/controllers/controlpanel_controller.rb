@@ -51,9 +51,9 @@ class ControlpanelController < ApplicationController
     count = 0
     unless shortcuts.empty? 
       shortcuts.values.each do |data|
-	if data['disabled'] != false
-	  count += 1
-	end
+        if data['disabled'] != false
+          count += 1
+        end
       end
     end 
     return count
@@ -105,9 +105,12 @@ class ControlpanelController < ApplicationController
     #logger.debug Rails.configuration.load_paths
     YaST::LOADED_PLUGINS.each do |plugin|
       logger.debug "looking into #{plugin.directory}"
-      shortcuts.merge!(plugin_shortcuts(plugin))
+      #Skip obsolete permissions module
+      unless plugin.name == "permissions"
+        shortcuts.merge!(plugin_shortcuts(plugin))
+      end
     end
-    logger.debug shortcuts.inspect
+    #logger.debug shortcuts.inspect
     shortcuts
   end
   
@@ -140,13 +143,13 @@ class ControlpanelController < ApplicationController
     shortcuts = {}
     shortcuts_fn = File.join(plugin.directory, 'shortcuts.yml')
     if File.exists?(shortcuts_fn)
-      logger.debug "Shortcuts at #{plugin.directory}"
+      #logger.debug "Shortcuts at #{plugin.directory}"
       shortcutsdata = YAML::load(File.open(shortcuts_fn))
       #loading translations 
       mo_files = Dir.glob(File.join(plugin.directory, "**", "*.mo"))
       if mo_files.size > 0
         locale_path = File.dirname(File.dirname(File.dirname(mo_files.first))) 
-        logger.info "Loading textdomain #{File.basename(mo_files.first, '.mo')} from #{locale_path} for shortcuts"
+        #logger.info "Loading textdomain #{File.basename(mo_files.first, '.mo')} from #{locale_path} for shortcuts"
         opt = {:locale_path => locale_path}
         ActionController::Base.init_gettext(File.basename(mo_files.first, ".mo"), opt)
       else
