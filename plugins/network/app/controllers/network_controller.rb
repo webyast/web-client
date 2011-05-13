@@ -163,8 +163,11 @@ class NetworkController < ApplicationController
     hn.name   = params["hostname"]
     hn.domain = params["domain"]
 
-    if params["dhcp_hostname_enabled"]== "true"
-#      params["dhcp_hostname"]==nil ? params["dhcp_hostname"]="0" : pass
+    if params["dhcp_hostname_enabled"] == "true"
+      #params["dhcp_hostname"]==nil ? params["dhcp_hostname"]="0" : pass
+      #Set dirty to true (bnc#692594)
+      dirty = true 
+      logger.debug "dirty after dhcp_hostname: #{dirty}"
       hn.dhcp_hostname = params["dhcp_hostname"] || "0"
     end
 
