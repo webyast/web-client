@@ -77,11 +77,8 @@
 <!--<div class='plugin-icon'><img src='../icons/yast-kerberos.png'/> <%= _("Kerberos client") %><span id="questionMark">?</span></div>
 <div class='plugin-content'>-->
 <div class="plugin-content plugin-border">
-
-<%= render :partial => 'shared/missing_write_permissions' if disabled %>
-    <% form_for(:kerberos, @kerberos, :url => { :action => 'update' }, 
-      :html => { :method => :put, :id => 'kerberosForm', :class=>"webyast_form"}
-    ) do |f| %>
+  <%= render :partial => 'shared/missing_write_permissions' if disabled %>
+    <% form_for(:kerberos, @kerberos, :url => { :action => 'update' }, :html => { :method => :put, :id => 'kerberosForm', :class=>"webyast_form"}) do |f| %>
       <div class="plugin-header">
         <div class="left">
           <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/kerberos.png"></label>

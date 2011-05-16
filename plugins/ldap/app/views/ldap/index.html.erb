@@ -68,6 +68,15 @@
 	}
       });
 
+
+      $('#ldapForm input[type="submit"]').click(function() {
+        if ($('#ldapForm').valid()) {
+          disable_forms();
+          var message = <%= jss _("Please wait") -%>;
+          $.modalDialog.wait( {message: message});
+        }
+      });
+
     });
    
   </script>
@@ -76,54 +85,64 @@
 
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='../icons/yast-ldap.png'/> <%= _("LDAP client") %><span id="questionMark">?</span></div>
-<div class='plugin-content'>
-
+<!--<div class='plugin-icon'><img src='../icons/yast-ldap.png'/> <%= _("LDAP client") %><span id="questionMark">?</span></div>
+<div class='plugin-content'> -->
+<div class="plugin-content plugin-border">
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
+    <% form_for(:ldap, @ldap, :url => { :action => 'update' }, :html => { :method => :put, :id => 'ldapForm', :class=>"webyast_form" }) do |f| %>
+      <div class="plugin-header">
+        <div class="left">
+          <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/ldap.png"></label>
+          <label class="plugin-name"> <%= _("LDAP client") %></label>
+        </div>
+        <div class="right" >
+          <span id="questionMark" style="margin:2px 5px; float:none;">?</span>
+        </div>
+        <div class="clearfix"></div>
+      </div>
 
-    <% form_for(:ldap, @ldap, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'ldapForm', :onsubmit => "if ($('#ldapForm').valid()) $('#progress').show() && disable_forms ()" }
-    ) do |f| %>
+      <div class="clearfix">&nbsp;</div>
+      <fieldset class="webyast_fieldset">
+        <div class="fieldset_header">
+          <span class="fieldset_header_title" >
+            <%= _("Enable LDAP Authentication") %>
+            <%= check_box 'ldap', :enabled, {:disabled => disabled, :checked => @ldap.enabled}, true,false -%>
+          </span>
+        </div>
 
-	<fieldset>
-	    <p>
-	      <%= check_box 'ldap', :enabled, {:disabled => disabled, :checked => @ldap.enabled}, true,false -%>
-	      <%= _("Enable LDAP Authentication") %>
-	    </p>
-            <p>
-              <%= label_tag :ldap_server, _("LDAP Server Address") %>
-              <%= text_field :ldap, :server, :disabled => disabled, :class => "server required" %>
-            </p>
-            <p>
-              <%= label_tag :ldap_base_dn, _("Base DN") %>
-              <%= text_field :ldap, :base_dn, :disabled => disabled, :class => "required" %>
-	      <%=
-		link_to_remote _("Fetch DN"),
-		    :url	=> {
-			:controller	=> :ldap,
-			:action		=> :fetch_dn
-		    },
-		    :loading	=> "$('#ldap_base_dn').attr('disabled', 'disabled'); $('#fetch_progress').show();",
-		    :complete	=> "$('#fetch_progress').hide(); $('#ldap_base_dn').removeAttr('disabled')",
-		    :with 	=> "'server=' + $('#ldap_server').val()",
-		    :html	=> {
-			:class		=> "button",
-			:id		=> "fetch_dn",
-			:disabled	=> disabled
-		    }
-	      %>
-	      <img src="/images/working.gif" class="small-working-icon" id="fetch_progress" style="display: none; margin-bottom: -3pt" alt='working...'/>
-
-            </p>
-       	    <p>
-	      <%= check_box 'ldap', :tls, {:disabled => disabled, :checked => @ldap.tls}, true,false -%>
-	      <%= _("Secure Connection") %>
-	    </p>
-
-	</fieldset>
-	<div class="nav-buttons">
-	    <%= form_send_buttons :disabled => disabled, :onclick=>"Element.show('progress')"%>
-	</div>
+        <div class="fieldset_body">
+          <div class="row">
+            <%= label_tag :ldap_server, _("LDAP Server Address") %>
+            <%= text_field :ldap, :server, :disabled => disabled, :class => "server required" %>
+          </div>
+          
+          <div class="row">
+            <%= label_tag :ldap_base_dn, _("Base DN") %>
+            <%= text_field :ldap, :base_dn, :disabled => disabled, :class => "required" %>
+            <%= link_to_remote _("Fetch DN"),
+                :url	=> { :controller=> :ldap, :action=> :fetch_dn },
+                :loading	=> "$('#ldap_base_dn').attr('disabled', 'disabled'); $('#fetch_progress').show();",
+                :complete	=> "$('#fetch_progress').hide(); $('#ldap_base_dn').removeAttr('disabled')",
+                :with 	=> "'server=' + $('#ldap_server').val()",
+                :html	=> { :class=> "button", :id=> "fetch_dn", :style=>"vertical-align:middle;", :disabled=>disabled }
+            %>
+            <img src="/images/working.gif" class="small-working-icon" id="fetch_progress" style="display:none; vertical-align:middle;" alt='working...'/>
+          </div>
+          <div class="row">
+            <label><%= _("Secure Connection") %></label>
+            <%= check_box 'ldap', :tls, {:disabled => disabled, :checked => @ldap.tls, :style=>"margin-left:-1px;" }, true,false -%>
+          </div>
+        </div>
+      </fieldset>
+      
+      <div class="clearfix"></div>
+      
+      <div class="button_container">
+        <div class="hr">&nbsp;</div>
+        <div class="nav-buttons">
+          <%= form_send_buttons :disabled => disabled %>
+        </div>
+      </div>      
 
     <% end %>
 
