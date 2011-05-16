@@ -26,6 +26,8 @@
     var AUTH_TOKEN = 'authenticity_token=' + encodeURIComponent("<%= escape_javascript form_authenticity_token %>");
     startNotifier({'module':'kerberos', 'AUTH_TOKEN':AUTH_TOKEN}, 1000, 11000);
   
+
+      
     $(document).ready(function() {
       validateDomainName("kdc");
 
@@ -56,6 +58,15 @@
 	    $("#kerberos_kdc", "#kerberosForm").removeAttr("disabled");
 	}
       });
+    
+    $('#kerberosForm input[type="submit"]').click(function() {
+        if ($('#kerberosForm').valid()) {
+        disable_forms();
+          var message = <%= jss _("Please wait") -%>;
+          $.modalDialog.wait( {message: message});
+        }
+      });
+
     });
   </script>
 
@@ -63,36 +74,60 @@
 
 <% disabled = !@permissions[:write] %>
 
-<div class='plugin-icon'><img src='../icons/yast-kerberos.png'/> <%= _("Kerberos client") %><span id="questionMark">?</span></div>
-<div class='plugin-content'>
+<!--<div class='plugin-icon'><img src='../icons/yast-kerberos.png'/> <%= _("Kerberos client") %><span id="questionMark">?</span></div>
+<div class='plugin-content'>-->
+<div class="plugin-content plugin-border">
 
 <%= render :partial => 'shared/missing_write_permissions' if disabled %>
-
-    <% form_for(:kerberos, @kerberos, :url => { :action => 'update' },
-      :html => { :method => :put, :id => 'kerberosForm', :onsubmit => "if ($('#kerberosForm').valid()) $('#progress').show() && disable_forms ()" }
+    <% form_for(:kerberos, @kerberos, :url => { :action => 'update' }, 
+      :html => { :method => :put, :id => 'kerberosForm', :class=>"webyast_form"}
     ) do |f| %>
+      <div class="plugin-header">
+        <div class="left">
+          <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/kerberos.png"></label>
+          <label class="plugin-name"><%= _("Kerberos client") %></label>
+        </div>
+        <div class="right" >
+          <span id="questionMark" style="margin:2px 5px; float:none;">?</span>
+        </div>
+        <div class="clearfix"></div>
+      </div>
 
-	<fieldset>
-	    <p>
-	      <%= check_box 'kerberos', :enabled, {:disabled => disabled, :checked => @kerberos.enabled}, true,false -%>
-	      <%= _("Enable Kerberos Authentication") %>
-	    </p>
-            <p>
-              <%= label_tag :kerberos_default_domain, _("Default Domain") %>
-              <%= text_field :kerberos, :default_domain, :disabled => disabled, :class => "required" %>
-            </p>
-            <p>
-              <%= label_tag :kerberos_default_realm, _("Default Realm") %>
-              <%= text_field :kerberos, :default_realm, :disabled => disabled, :class => "required" %>
-            </p>
-            <p>
-              <%= label_tag :kerberos_kdc, _("KDC Server Address") %>
-              <%= text_field :kerberos, :kdc, :disabled => disabled, :class => "kdc required" %>
-            </p>
-	</fieldset>
-	<div class="nav-buttons">
-	    <%= form_send_buttons :disabled => disabled, :onclick=>"Element.show('progress')"%>
-	</div>
+      <div class="clearfix">&nbsp;</div>
+      <fieldset class="webyast_fieldset">
+        <div class="fieldset_header">
+          <span class="fieldset_header_title" >
+            <%= _("Enable Kerberos Authentication") %>
+            <%= check_box 'kerberos', :enabled, {:disabled => disabled, :checked => @kerberos.enabled}, true,false -%>
+          </span>
+        </div>
+
+        <div class="fieldset_body">
+          <div class="row">
+            <%= label_tag :kerberos_default_domain, _("Default Domain") %>
+            <%= text_field :kerberos, :default_domain, :disabled => disabled, :class => "required" %>
+          </div>
+          
+          <div class="row">
+            <%= label_tag :kerberos_default_realm, _("Default Realm") %>
+            <%= text_field :kerberos, :default_realm, :disabled => disabled, :class => "required" %>
+          </div>
+          
+          <div class="row">
+            <%= label_tag :kerberos_kdc, _("KDC Server Address") %>
+            <%= text_field :kerberos, :kdc, :disabled => disabled, :class => "kdc required" %>
+          </div>
+        </div>
+      </fieldset>
+      
+      <div class="clearfix"></div>
+      
+      <div class="button_container">
+        <div class="hr">&nbsp;</div>
+        <div class="nav-buttons">
+          <%= form_send_buttons :disabled => disabled %>
+        </div>
+      </div>
 
     <% end %>
 

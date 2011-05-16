@@ -12,11 +12,11 @@
 Name:           webyast-kerberos-ui
 Recommends:     WebYaST(org.opensuse.yast.modules.yapi.kerberos)
 PreReq:         webyast-base-ui
-License:	GPL v2 only
+License:	GPL-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.6
+Version:        0.2.7
 Release:        0
 Summary:        WebYaST - Kerberos Client UI
 Source:         www.tar.bz2
