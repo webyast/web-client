@@ -32,7 +32,7 @@
 
 <div class="plugin-content plugin-border">
   <%= render :partial => 'shared/missing_write_permissions' if disabled %>
-  <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container', :onsubmit => "return validateNeededServices()" } do %>
+  <% form_tag '/firewall/update', {:id=>'firewallForm', :class => 'container, webyast_form', :onsubmit => "return validateNeededServices()" } do %>
 
   <div id="firewallbar" class="plugin-header">
     <div class="left" style="float:left">
@@ -42,13 +42,13 @@
 
     <div class="right" >
       <span class="right" style="padding:2px; background:#f5f5f5; -moz-border-radius:2px; -webkit-border-radius:2px;">
-	<% if @firewall.use_firewall %>
-	  <button id="on" class="active" value="on"><%=_("Enabled")%></button>
-	  <button id="off" value="off"><%=_("Disabled")%></button>
-	<% else %>
-	  <button id="on" value="on"><%=_("Enabled")%></button>
-	  <button id="off" class="active" value="off"><%=_("Disabled")%></button>
-	<% end %>
+      <% if @firewall.use_firewall %>
+        <button id="on" class="active" value="on"><%=_("Enabled")%></button>
+        <button id="off" value="off"><%=_("Disabled")%></button>
+      <% else %>
+        <button id="on" value="on"><%=_("Enabled")%></button>
+        <button id="off" class="active" value="off"><%=_("Disabled")%></button>
+      <% end %>
      </span>
     </div>
     <div class="clearfix"></div>    
@@ -65,22 +65,6 @@
   </div>
 
   <input type="checkbox" name="use_firewall" id="use_firewall" value="true" <%=  "checked=\"checked\"" if @firewall.use_firewall %> <%=  "disabled=\"disabled\"" if disabled %> /> 
-    
-<!--  <div id="firewall" class="border">
-    <% if @firewall.use_firewall %>
-      <img id="indicator" src="images/firewall-on-led.png">
-    <% else %>
-      <img id="indicator" src="images/firewall-off-grey.png">
-    <% end %>
-    <label id="indicatorLabel" for="use_firewall"><%=_("Use Firewall")%></label>
-    <% if @firewall.use_firewall %>
-      <a id="on" class="btn leftBtn selected">&nbsp;ON&nbsp;</a>	
-      <a id="off" class="btn rightBtn">OFF</a>
-    <% else %>
-      <a id="on" class="btn leftBtn">&nbsp;ON&nbsp;</a>	
-      <a id="off" class="btn rightBtn selected">OFF</a>
-    <% end %>
-  </div>-->
 
   <div class="clearfix"></div>
 
@@ -88,35 +72,37 @@
     <div id="allowedContainer">
       <label><span class="icon-border"><img class="label-image" src="images/locko.png"></span><%= _("Allowed services") %></label>
       <% if @firewall.use_firewall %>
-	  <script type="text/javascript">jQuery(function($){ enableFirewallForm() })</script>
-	  <div id="allowed_services" class="services round10">
+        <script type="text/javascript">jQuery(function($){ enableFirewallForm() })</script>
+        <div id="allowed_services" class="services round5">
       <% else %>
-	<div id="allowed_services" class="services round10 firewallForm_disabled">
+        <div id="allowed_services" class="services round5 firewallForm_disabled">
       <% end %>
-	
-	<% @firewall.fw_services.each do |service| %>
-	  <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
-	<% end %>
+      <% @firewall.fw_services.each do |service| %>
+        <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
+      <% end %>
       </div>
     </div> 
 
     <div id="blockedContainer">
       <label><span class="icon-border"><img class="label-image" src="images/lock.png"></span><%= _("Blocked services") %></label>
       <% if @firewall.use_firewall %>
-	<div id="blocked_services" class="services round10">
+        <div id="blocked_services" class="services round5">
       <% else %>
-	<div id="blocked_services" class="services round10 firewallForm_disabled">
+        <div id="blocked_services" class="services round5 firewallForm_disabled">
       <% end %>
-	<% @firewall.fw_services.each do |service| %>
-	  <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
-	<% end %>
+
+      <% @firewall.fw_services.each do |service| %>
+        <span value="<%= service.css_class %>" class="firewall-service" original-title="<%= service.description if service.respond_to? :description %>"><%= service.name %></span>
+      <% end %>
       </div>
     </div>
 
     <div class="clearfix"></div>
-
-    <div class="nav-buttons">
-      <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
+    <div class="button_container" style="margin:0;">
+      <div class="hr">&nbsp;</div>
+      <div class="nav-buttons">
+        <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
+      </div>
     </div>
     <% end %>
   </div>
