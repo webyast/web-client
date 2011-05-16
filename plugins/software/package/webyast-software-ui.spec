@@ -17,11 +17,11 @@ Obsoletes:      yast2-webclient-patch_updates < %{version}
 # updated jQuery quicksearch plugin
 PreReq:         yast2-webclient >= 0.2.27
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/patch_updates_controller.rb
-License:	GPL v2 only
+License:	GPL-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.3.9
+Version:        0.3.10
 Release:        0
 Summary:        WebYaST - Software and Repository Management UI
 Source:         www.tar.bz2

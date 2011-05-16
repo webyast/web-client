@@ -144,7 +144,9 @@
         <button type="submit" id="comment" class="left active" value="all"
            onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
            :loading => "pleaseWaitForUpdates(message)", :complete => "$.unblockUI()") %>">
-           <img src='/images/install.png'/><%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span>
+            <!-- <img src='/images/install.png'/>-->
+            <span style="display:inline-block; vertical-align:sub; height:20px; width:1px;"></span>
+            <%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span> 
         </button>
         <button type="submit" class="middle" value="security"
             onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
