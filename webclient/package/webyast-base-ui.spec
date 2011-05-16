@@ -40,11 +40,11 @@ Requires:       sysvinit > 2.86-195.3.1
 %endif
 Requires:       nginx, rubygem-passenger-nginx, rubygem-nokogiri
 
-License:        LGPL v2.1;ASLv2.0
+License:        LGPL-2.1; Apache-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.40
+Version:        0.2.41
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2

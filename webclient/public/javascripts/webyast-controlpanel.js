@@ -61,7 +61,7 @@ $(function() {
 
 initTipsyTooltip = function() {
   $('#webyast_plugins').find('li').unbind('mouseenter mouseleave');
-  $('#webyast_plugins').find('a.plugin_link').tipsy({gravity: 'n', offset: 15, delayIn: 500, live:false, opacity: 0.8 });
+  $('#webyast_plugins').find('a.plugin_link').tipsy({gravity: 'n', offset: 17, delayIn: 500, live:false, opacity: 0.7 });
 }
 
 var quicksort = function ($plugins, $data) {

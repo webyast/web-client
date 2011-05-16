@@ -32,8 +32,6 @@
 }
 
 #shade {
-
-
   width:100%;
   margin: auto; /* Div centered */
   min-height: 100%; /* min height for modern browser */
@@ -86,7 +84,7 @@
   float:left;
   border:1px solid #999;
 /*  font-family: Tahoma, Trebuchet MS, Helvetica, sans-serif;*/
-  font-size:12px;
+/*  font-size:12px;*/
 
   text-decoration:none;
   font-weight:bold;
@@ -105,8 +103,9 @@
 }
 
 #updates_panel button[type=submit] {
-  padding:6px 10px 6px 7px; /* Firefox */
+  padding:6px 10px 5px 7px; /* Firefox */
   line-height:18px; /* Safari */
+  vertical-align:bottom;
 }
 
 *:first-child+html button[type]{
@@ -114,11 +113,12 @@
 }
 
 #updates_panel button img, #updates_panel a img{
-  margin:0 3px -3px 0 !important;
+  margin:0px 5px 0px 0px !important;
   padding:0;
+  vertical-align:sub;
   border:none;
-  width:16px;
-  height:16px;
+  width:20px;
+  height:20px;
 }
 
 #updates_panel button.left {
