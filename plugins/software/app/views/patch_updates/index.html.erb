@@ -145,7 +145,7 @@
            onclick ="<%= remote_function(:update => :patchesd, :url => { :action => :load_filtered }, :with => "'value=' + value",
            :loading => "pleaseWaitForUpdates(message)", :complete => "$.unblockUI()") %>">
             <!-- <img src='/images/install.png'/>-->
-            <span style="display:inline-block; vertical-align:sub; height:20px; width:1px;"></span>
+            <span style="display:inline-block; vertical-align: inherit; height:18px; width:1px;"></span>
             <%=_("All updates") %>&nbsp;<span>(<%=counter%>)</span> 
         </button>
         <button type="submit" class="middle" value="security"
