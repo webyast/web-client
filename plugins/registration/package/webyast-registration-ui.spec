@@ -14,11 +14,11 @@ Recommends:     WebYaST(org.opensuse.yast.modules.registration.registration)
 Provides:       yast2-webclient-registration = %{version}
 Obsoletes:      yast2-webclient-registration < %{version}
 PreReq:         yast2-webclient
-License:        GPL v2 only
+License:        GPL-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.7
+Version:        0.2.8
 Release:        0
 Summary:        WebYaST - Registration UI
 Source:         www.tar.bz2
