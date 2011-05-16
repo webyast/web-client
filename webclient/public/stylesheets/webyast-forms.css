@@ -20,6 +20,10 @@
 .webyast_form .left { float:left; overflow:hidden; }
 .webyast_form .right { float:right; overflow:hidden; }
 
+.fieldset_header input[type="checkbox"] {
+  vertical-align:middle;
+}
+
 .fieldset_body div.clearfix { clear:both; overflow:hidden; }
 .fieldset_body div.row { display: block; vertical-align: middle; min-height:32px; }
 .fieldset_body div.row label { vertical-align: middle; width:200px; display:inline-block; float:none;}
@@ -61,8 +65,15 @@
 }
 
 .fieldset_body input[type="text"]:focus, .fieldset_body input[type="password"]:focus { border-color: #aaaaaa #bbbbbb #bbbbbb #aaaaaa; }
+.fieldset_body input[disabled] {
+  background-color: #EEEEEE;
+  color:#BBB;
+}
+
+
 .fieldset_body .left { float:left; overflow:hidden;}
 .fieldset_body .right { float:right; overflow:hidden; }
+
 
 .webyast_fieldset { margin:15px auto; position:relative; float:none; width:96%; padding:0px; border: 1px solid #d8d8d8; -moz-border-radius:3px; background: none repeat scroll 0 0 transparent; }
 
