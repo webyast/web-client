@@ -253,17 +253,20 @@ label.quicksand_button_right {
   height: 142px;
   margin: 10px 10px;
   float: left;
-
   text-align: center;
 /*  line-height: 20px;*/
-  color: #686f74;
+/*  color: #686f74;*/
 
   list-style: none;
   overflow: hidden;
+  -moz-box-shadow: 1px 1px 5px #ccc;
 }
 
 .image-grid a.plugin_link {
   color: #686f74;
+  display: inline-block;
+  height: 142px;
+  max-height: 142px;
   border-bottom: 0px dotted #1E90FF;
 }
 
@@ -286,31 +289,34 @@ label.quicksand_button_right {
 
 .image-grid li strong {
   color: #686f74;
-  font-size:12px;
+  font-size:11px;
   width:100%;
+  text-transform: uppercase;
   word-wrap: break-word;
+  height: 32px;
   text-shadow: 1px 1px 0 #f5f5f5;
 }
 
 div.overview li {
   padding: 5px;     
-  border: 2px solid #ccc; 
+  border: 1px solid #ccc; 
   background-color: #f5f5f5;
   text-decoration: none;
 
+/*  -moz-box-shadow: none;*/
+  
   background: -moz-linear-gradient(center 270deg , #FFF, #E5E5E5) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F0F0F0));
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-background-clip: border;
   -khtml-border-radius: 4px;
-  -moz-box-shadow: none;
-  border-radius: 4px; 
+   border-radius: 4px; 
 }
     
 div.overview li:hover {
   -moz-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;
   -webkit-box-shadow: 0px 0px 30px #a0a0a0 inset, 0px 0px 2px #333 inset;    
-  border: 2px solid #5f5f5f;
+/*  border: 1px solid #5f5f5f;*/
 }
 
