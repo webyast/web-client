@@ -30,8 +30,9 @@ class NotifierController < ApplicationController
     Notifier.set_web_service_auth(YaST::ServiceResource::Session.auth_token)
     Notifier.init_service_url(YaST::ServiceResource::Session.site)
 
-    if params[:plugin] == "network"
-      modules = ['dns', 'hostname', 'interfaces', 'routes'];
+    if params[:plugin].include? "," 
+      #there are more values that have to be checked for changes
+      modules = params[:plugin].split ","
       status = "500"
 
       modules.each do | m |
