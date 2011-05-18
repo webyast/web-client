@@ -15,11 +15,11 @@ Recommends:     WebYaST(org.opensuse.yast.modules.yapi.ntp)
 Provides:       yast2-webclient-systemtime = %{version}
 Obsoletes:      yast2-webclient-systemtime < %{version}
 Requires(pre):  yast2-webclient >= 0.0.2
-License:	GPL v2 only
+License:        GPL-2.0	
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.7
+Version:        0.2.8
 Release:        0
 Summary:        WebYaST - time management UI
 Source:         www.tar.bz2
