@@ -34,7 +34,10 @@
     validateSubnetMask("netmask"); //accept prefixlen and common subnet mask format e.g. 255.255.255.0
     validateHostName("hostname");
     validateDefaultRoute("default_route");
-    validateDomainNameWithAndWithoutTLD("domain");
+    //Devel build 9.32 has messed networking configuration in webyast (bnc#694283)
+    //validateDomainNameWithAndWithoutTLD("domain");
+    //accept only one domain name!!!
+    validateDomainName("domain");
     validateNameservers("nameservers");
     validateDomainNameWithAndWithoutTLD("searchdomains");
 
