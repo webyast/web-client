@@ -18,11 +18,11 @@ Obsoletes:      yast2-webclient-custom-services < %{version}
 # updated jQuery quicksearch plugin
 PreReq:         yast2-webclient >= 0.1.17
 Provides:       yast2-webclient:/srv/www/yast/app/controllers/services_controller.rb
-License:	GPL v2 only
+License:        GPL-2.0	
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.7
+Version:        0.2.8
 Release:        0
 Summary:        WebYaST - system services management UI
 Source:         www.tar.bz2
