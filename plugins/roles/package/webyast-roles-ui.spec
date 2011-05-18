@@ -15,11 +15,11 @@ Provides:       yast2-webclient-permissions = %{version}
 Obsoletes:      yast2-webclient-permissions < %{version}
 Provides:       webyast-permissions-ui = %{version}
 Obsoletes:      webyast-permissions-ui < %{version}
-License:	GPL v2 only
+License:        GPL-2.0	
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.11
+Version:        0.2.12
 Release:        0
 Summary:        WebYaST - Roles management UI
 Source:         www.tar.bz2
