@@ -16,11 +16,11 @@ Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.hostname)
 Recommends:     WebYaST(org.opensuse.yast.modules.yapi.network.dns)
 Provides:       yast2-webclient-network = %{version}
 Obsoletes:      yast2-webclient-network < %{version}
-License:	GPL v2 only
+License:        GPL-2.0	
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.12
+Version:        0.2.13
 Release:        0
 Summary:        WebYaST - network UI
 Source:         www.tar.bz2
