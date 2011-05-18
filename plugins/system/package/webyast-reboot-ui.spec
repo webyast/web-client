@@ -14,11 +14,11 @@ Recommends:     WebYaST(org.opensuse.yast.system.system)
 Provides:       yast2-webclient-system = %{version}
 Obsoletes:      yast2-webclient-system < %{version}
 PreReq:         yast2-webclient >= 0.0.2
-License:	GPL v2 only
+License:        GPL-2.0	
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.2
+Version:        0.2.3
 Release:        0
 Summary:        WebYaST - reboot/shutdown UI
 Source:         www.tar.bz2
