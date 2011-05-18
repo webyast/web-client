@@ -27,11 +27,15 @@
   <![endif]-->
 
   <% if JSMIN == true %>
-    <%= javascript_include_tag "min/base-min" %>
     <%= stylesheet_link_tag "css-min", :title=>"default", :charset=>"utf-8" %>
+    <%= javascript_include_tag "min/base-min" %>
     <%= yield :before_script %>
     <%= yield :head %>
   <% else %>
+    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
+    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-modal-dialog", "webyast-online-help", "webyast-controlpanel" %>
+    <%= stylesheet_link_tag "webyast-forms" %>
+    
     <%= javascript_include_tag 	  "jquery-1.4.2",
           "jquery.query", #FIXME write reason
           "jquery.timers",
@@ -43,17 +47,12 @@
           "yast.widgets",
           "yast.helpers",
           "digitalspaghetti.password",
-          "browser_fixes",
-          "jquery.quicksearch",
-          "jquery.quicksand"
+          "browser_fixes"
     %>
 
     <%= javascript_include_tag "jquerytimer", "jquerySessionTimeout", "jquery.blockUI", "jqueryDisableOnSubmit" %>
     <%= javascript_include_tag "jquery.tipsy", "jquery-effects.min", "jquery.tinysort", "slidernav", "webyast-online-help", "webyast-modal-dialog", "jquery.activity", "notifier" %>
     <%= javascript_include_tag "webyast-localstorage", "webyast-controlpanel" %> 
-    <%= stylesheet_link_tag "yast","grid","style","jquery.jqplot.css", "jquery-ui-1.7.2.custom.css", "jquery-ui-1.7.2.custom-accordion.css", "jquery-ui-1.7.2.custom-tabs.css", :title=>"default", :charset=>"utf-8" %>
-    <%= stylesheet_link_tag "new_inputs", "tipsy", "slidernav", "webyast-modal-dialog", "webyast-online-help", "webyast-controlpanel" %>
-    <%= stylesheet_link_tag "webyast-forms" %>
 
     <%= yield :before_script %>
       <%= javascript_include_tag "script", "application" #FIXME it can be problem if plugin also have own application specific js
@@ -190,7 +189,7 @@
       </div> <!-- flash messages -->
 
       <div id="progress" style="display: none;">
-        <%= image_tag("/images/working.gif") %><%=_("...Wait...")%>
+        <%= image_tag("/images/working.gif", :class => "small-working-icon" ) %><%=_("...Wait...")%>
       </div>
 
 

@@ -70,14 +70,15 @@ var quicksort = function ($plugins, $data) {
  
  $plugins.quicksand($data, {
     duration: 400,
- 	  adjustHeight: 'dynamic',
+    adjustHeight: 'dynamic',
+    attribute: 'id',
     easing: 'easeInOutQuad'
     }, function() { 
       setTimeout(initTipsyTooltip, 100);
     }
   ); 
 }
-        
+
 function sortCallbackFunc(a,b){
   if(a.value == b.value){
     if(a.value == b.value){
@@ -93,24 +94,65 @@ function sortAlphabetically(a,b){
   return $(a).find('strong').innerHTML > $(b).find('strong').innerHTML ? 1 : -1; 
 }
 
-//Track recently used modules
-//TODO: improve modules tracking, use LIFO (Last In – First Out)
+//Reset usage statistic in 10 days
+function resetUsageStatistic() {
+  var expiresIn = 864000;
+  var today = getUnixTimestamp();
+  var lastUsage = parseInt(localStorage.getItem('last_reset'));
+  var expired = today - lastUsage;
+
+//  expiresIn = 10;
+
+  if(expired > expiresIn ) {
+//    console.info("EXPIRED " + expired + " IN " + expiresIn);
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function resetModuleUsage(array) {
+  for(i=0; i< array.length; i++) {
+    var new_value = parseInt((array[i].value/2)+1);
+    console.log("# "+ array[i].name + " " + " Old value: "+ array[i].value + " New value " + new_value);
+    localStorage.setItem(array[i].name, new_value);
+  }
+  
+  //update last_reset !!!
+  localStorage.setItem('last_reset', getUnixTimestamp());
+}
+
+//Track frequenly used modules
 $(function() {
-  //console.time('modules_tracking');
+//  console.time('modules_tracking');
   //localStorage.clear()
-  if(localstorage_supported() && localStorage.length != 0) { 
-    var $list =  $('#webyast_plugins').find('li');
+  if(localstorage_supported() && 'last_reset' in localStorage) {    
+//    console.log("Sorted by usage")
+    var $plugins = $('#webyast_plugins');
+    var $list =  $plugins.find('li');
     var array = [];
     var $collection = [];
     
-    $list.each(function(index, element) { 
-      if($(element).attr('id') in localStorage) {
-        array.push({name: $(element).attr('id'), value: localStorage.getItem($(element).attr('id'))})
-        //console.log($(element).find('strong').text() + ' ' + localStorage.getItem($(element).attr('id')))
-        $collection.push(element)
-      }
-    });
-    
+    //check date of first usage
+    //divide nubmer of used modules every 10 days?
+    if(resetUsageStatistic()) {
+      $list.each(function(index, element) { 
+        if($(element).attr('id') in localStorage) {
+          array.push({name: $(element).attr('id'), value: localStorage.getItem($(element).attr('id'))})
+          $collection.push(element)
+        }
+      });
+      
+      resetModuleUsage(array);
+      
+    } else {
+      $list.each(function(index, element) { 
+        if($(element).attr('id') in localStorage) {
+          array.push({name: $(element).attr('id'), value: localStorage.getItem($(element).attr('id'))})
+          $collection.push(element)
+        }
+      });
+    }
 
     if(array.length > 5) {
       array = array.sort(sortCallbackFunc).splice(0, 5);
@@ -129,24 +171,33 @@ $(function() {
     }
 
     //INFO: Control panel index page - insert elements without quick sand animation
-    $('#webyast_plugins').html($sorted);
+    //console.info("Localstorage is not empty")
+    $plugins.html($sorted);
     trackRecent();
 
   } else {
-    var $data = $('#webyast_plugins').clone();
+//    console.log("Sorted by name");
+    var $plugins = $('#webyast_plugins');
+    var $data = $plugins.clone();
     $data = $data.find('li.main');
+
     if($data.length > 5) { 
       $data = $data.sort(sortAlphabetically).splice(0, 5); 
     }
-    quicksort($('#webyast_plugins'), $data)
+
+    //INFO: Control panel index page - insert elements without quick sand animation
+    //console.info("Localstorage empty")
+    $plugins.html($data);
     trackRecent();
   }
-  //console.timeEnd('modules_tracking');
+//  console.timeEnd('modules_tracking');
 })
 
 function trackRecent() {
   if(localstorage_supported()) {
    $('#webyast_plugins li').live('click', function(e) {
+      if('last_reset' in localStorage != true) { lastReset(getUnixTimestamp()); }
+      console.log($(this).attr('id'))
       if($(this).attr('id') in localStorage) {
         var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
         localStorage.setItem($(this).attr('id'), value);
@@ -155,5 +206,16 @@ function trackRecent() {
       }
     });
   }
+}
+
+function lastReset(timestamp) {
+  if(localstorage_supported()) {
+    localStorage.setItem("last_reset", timestamp);
+  }
+}
+
+function getUnixTimestamp() {
+  timestamp = Math.round((new Date()).getTime() / 1000);
+  return timestamp;
 }
 

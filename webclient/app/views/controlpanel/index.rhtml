@@ -17,12 +17,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 %>
+
+
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "jquery.easing.1.3" %>
-  <% javascript_include_tag "jquery-css-transform" %>
-  <% javascript_include_tag "jquery-animate-css-rotate-scale" %>
-  <%= javascript_include_tag "jquery.quicksand" %>
+  <% if JSMIN != true %>
+    <%= javascript_include_tag "jquery.easing.1.3" %>
+    <%= javascript_include_tag "jquery.quicksand" %>
+  <% end %>
 <% end %>
 
 

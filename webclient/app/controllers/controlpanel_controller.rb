@@ -106,9 +106,9 @@ class ControlpanelController < ApplicationController
     YaST::LOADED_PLUGINS.each do |plugin|
       logger.debug "looking into #{plugin.directory}"
       #Skip obsolete permissions module
-      unless plugin.name == "permissions"
-        shortcuts.merge!(plugin_shortcuts(plugin))
-      end
+      #unless plugin.name == "permissions"
+      shortcuts.merge!(plugin_shortcuts(plugin))
+      #end
     end
     #logger.debug shortcuts.inspect
     shortcuts
