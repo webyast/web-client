@@ -14,11 +14,11 @@ Recommends:     WebYaST(org.opensuse.yast.modules.eulas)
 Provides:       yast2-webclient-eulas = %{version}
 Obsoletes:      yast2-webclient-eulas < %{version}
 PreReq:         yast2-webclient >= 0.0.2
-License:        GPL v2 only
+License:        GPL-2.0 
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.4
+Version:        0.2.5
 Release:        0
 Summary:        WebYaST - license management UI
 Source:         www.tar.bz2
