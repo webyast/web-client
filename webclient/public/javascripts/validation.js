@@ -113,10 +113,7 @@ function validateDefaultRoute(ip) {
 
 //Devel build 9.32 has messed networking configuration in webyast (bnc#694283)
 //RFC-952 and RFC-1123.
-
-//var host = "([a-zA-Z0-9](([\\.\\-]?[a-zA-Z0-9]+){0,61}[a-zA-Z0-9]))+[a-zA-Z0-9]*";
-var rfc = "([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))*";
-
+var rfc = "([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])*";
 
 function validateHostName(hostname) {
   jQuery.validator.addMethod(hostname, function(value, element) {
