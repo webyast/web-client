@@ -120,6 +120,10 @@ popup = function(image, message) {
   $('#' + defaults.mwindow).wrapInner(image + '<span class="mmessage">' + message + '</span>');
 
   self.centering(defaults.mwindow);
+  
+  if($(image).attr('id') == 'modal_loading') {
+    setTimeout("$('#modal_loading').attr('src', '../images/loading.gif');",100);
+  }
 }
 
 //TODO: form.find('input type=submit') ? else ???

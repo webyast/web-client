@@ -114,7 +114,7 @@ function resetUsageStatistic() {
 function resetModuleUsage(array) {
   for(i=0; i< array.length; i++) {
     var new_value = parseInt((array[i].value/2)+1);
-    console.log("# "+ array[i].name + " " + " Old value: "+ array[i].value + " New value " + new_value);
+//    console.log("# "+ array[i].name + " " + " Old value: "+ array[i].value + " New value " + new_value);
     localStorage.setItem(array[i].name, new_value);
   }
   
@@ -197,7 +197,7 @@ function trackRecent() {
   if(localstorage_supported()) {
    $('#webyast_plugins li').live('click', function(e) {
       if('last_reset' in localStorage != true) { lastReset(getUnixTimestamp()); }
-      console.log($(this).attr('id'))
+      //console.log($(this).attr('id'))
       if($(this).attr('id') in localStorage) {
         var value = parseInt(localStorage.getItem($(this).attr('id'))) + 1;
         localStorage.setItem($(this).attr('id'), value);

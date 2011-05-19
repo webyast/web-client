@@ -44,7 +44,7 @@ License:        LGPL-2.1; Apache-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.45
+Version:        0.2.46
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
