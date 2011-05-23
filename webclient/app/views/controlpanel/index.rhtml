@@ -22,6 +22,7 @@
 <% content_for :head do %>
   <%= javascript_include_tag :defaults %>
   <% if JSMIN != true %>
+    <%= javascript_include_tag "webyast-controlpanel", "webyast-localstorage"%> 
     <%= javascript_include_tag "jquery.easing.1.3" %>
     <%= javascript_include_tag "jquery.quicksand" %>
   <% end %>

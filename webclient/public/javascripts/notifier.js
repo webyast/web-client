@@ -49,19 +49,19 @@ function startNotifier(params, interval, inactive) {
 	},
 	inactiveFn: function(){
 	  log("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
-	  killWorker(worker);
+	  if(typeof(Worker) == 'defined') { killWorker(worker); }
 	  $.activity.update();
 	}
       });
       
     $(document).bind('click mousemove', function(){
-	if($.activity.isActive()) {
-	  $.activity.update();
-	} else {
-	  log("User active start worker and reactivate activity check!");
-	  Notifier(params);
-	  $.activity.reActivate();
-	}
+      if($.activity.isActive()) {
+        $.activity.update();
+      } else {
+        log("User active start worker and reactivate activity check!");
+        Notifier(params);
+        $.activity.reActivate();
+      }
       });
     });
   })
@@ -69,30 +69,31 @@ function startNotifier(params, interval, inactive) {
 
 var Notifier = function(params) {
   if(typeof(Worker) == 'undefined') {
-    setInterval(AJAXcall, 5000, params);
+    console.log("Web worker is not supported")
+    window.setInterval(function() { AJAXcall(params); },5000);
   } else {
     worker = new Worker("/javascripts/notifier.workers.js");
     worker.postMessage(params);
     
     worker.onmessage = function(event) {
       switch(event.data){
-	case '200':
-	  log("RELOAD is NEEDED: " + event.data);
-	  stopNotifierPlugin(this);
-	  $.modalDialog.info( {message: 'Data have been changed!'});
-	  setTimeout('pageRefresh()', 1000)
-	  break
-	case '304':
-	  log("CACHE is UP-TO-DATE: " + event.data); 
-	  break
-	case '306':
-	  log("CACHE is not available: " + event.data); 
-	  stopNotifierPlugin(worker);
-	  break
-	default : 
-	  log("ERROR: unknown HTTP status: " + event.data);
-	  stopNotifierPlugin(worker);
-	  break
+        case '200':
+          log("RELOAD is NEEDED: " + event.data);
+          stopNotifierPlugin(this);
+          $.modalDialog.info( {message: 'Data have been changed!'});
+          setTimeout('pageRefresh()', 1000)
+        break
+        case '304':
+          log("CACHE is UP-TO-DATE: " + event.data); 
+        break
+        case '306':
+          log("CACHE is not available: " + event.data); 
+          stopNotifierPlugin(worker);
+        break
+        default : 
+          log("ERROR: unknown HTTP status: " + event.data);
+          stopNotifierPlugin(worker);
+        break
       }
     };
 
@@ -105,24 +106,24 @@ var Notifier = function(params) {
 }
 
 var AJAXcall = function(params) {
-  $.getJSON("/notifier?plugin="+params.module+"&id="+params.id, function(data, status, jqXHR) {
+  $.getJSON("/notifier?plugin="+params.module, function(data, status, jqXHR) {
     data.NaN? data = data : data = data.toString();
     switch(data){
       case '200':
-	log("RELOAD is NEEDED: " + data);
-	stopNotifierPlugin(worker);
-	$.modalDialog.info( {message: 'Data have been changed!'});
-	setTimeout('pageRefresh()', 1000)
-	break
+        log("RELOAD is NEEDED: " + data);
+        stopNotifierPlugin(worker);
+        $.modalDialog.info( {message: 'Data have been changed!'});
+        setTimeout('pageRefresh()', 1000)
+      break
       case '304':
-	log("CACHE is UP-TO-DATE: " + data); 
-	break
+        log("CACHE is UP-TO-DATE: " + data); 
+        break
       case '306':
-	log("CACHE is not available: " + event.data); 
-	break
+        log("CACHE is not available: " + event.data); 
+        break
       default : 
-	log("ERROR: unknown HTTP status: " + data + typeof(data));
-	break
+        log("ERROR: unknown HTTP status: " + data + typeof(data));
+      break
     }
   })
 }
@@ -137,7 +138,7 @@ var killWorkerOnReload = function(worker, intervalID) {
   $(function(){
     window.onbeforeunload = function(){
       if(worker && typeof(Worker) != 'undefined') {
-	stopNotifierPlugin(worker);
+        stopNotifierPlugin(worker);
       }
     }
   });
