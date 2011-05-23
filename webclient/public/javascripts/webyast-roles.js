@@ -131,6 +131,7 @@ function assignUserToRole($user, $role) {
   }
 }
 
+
 function trim(string) { return string.replace (/^\s+/, '').replace (/\s+$/, ''); }
 
 jQuery(function($){
@@ -144,8 +145,9 @@ jQuery(function($){
   });
 
   //EVENT DELIGATION FOR "DYNAMIC" ADDED USERS
-  $('img.deleteUser').live('click', function() {
-    var $parentNode = $(this).parent();
+//  $('img.deleteUser')
+  $('#removeUserFromRole').live('click', function() {
+    var $parentNode = $(this).parent().parent();
     var array = $('#' + $parentNode.attr('alt')).val().split(",");
     var result = new Array;
     var subString = $parentNode.text();
@@ -155,15 +157,32 @@ jQuery(function($){
   });
 
   //EVENT DELIGATION FOR "DYNAMIC" ADDED USERS
-  $('span.assigned').live('hover', function(event){
-    if (event.type =='mouseover'){
-      $(this).append('<img class="deleteUser" src="../images/delete-user.png">')
-      return false;
-    }else {
-      $(this).find('img').remove();
-      return false;
-    }
+//  $('span.assigned').live('hover', function(event){
+//    if (event.type =='mouseover'){
+
+////      $(this).wrapInner('<span class="delete-image-wrapper"><img class="deleteUser" src="../images/delete-user.png"></span>')
+//      $(this).append('<img id="temp_user_del" class="deleteUser" src="../images/delete-user.png">');
+//      $(this).css("position", "relative")
+//      return false;
+//    }else {
+//        $(this).css("position", "")
+//        $('#temp_user_del').remove();
+////      $(this).find('span.delete-image-wrapper').remove();
+//      return false;
+//    }
+//  });
+  
+  $('span.assigned').live('mouseenter', function(event){
+    $(this).append('<span id="tmpSpanWarapper" class="delete-image-wrapper"><img id="removeUserFromRole" class="deleteUser" src="../images/delete-user.png"></span>');
+    return false;
   });
+  
+  $('span.assigned').live('mouseleave', function(event){
+   $('#tmpSpanWarapper').remove();
+   return false;
+    
+  });
+
 
   //QUICK SEARCH
   $('#find_user').focus(function(event) {
@@ -209,39 +228,42 @@ jQuery(function($){
   });
 
   //DRAG n DROP
-  $('.drag')
-    .drag("start",function(ev, dd){
+  $('span.drag').drag("start",function(ev, dd){
+//      console.log('DRAG START')
       $( dd.available ).addClass('drop-available');
-      return $( this ).clone().addClass('drag-active').appendTo( document.body);
+      return $(this).clone().addClass('drag-active').appendTo( document.body);
+//      return $( this ).clone().addClass('drag-active').appendTo( document.body);
     })
 
-    .drag(function( ev, dd ){
+  $('span.drag').drag(function( ev, dd ){
       $( dd.proxy ).css({
         top: dd.offsetY,
         left: dd.offsetX
       });
     })
 
-    .drag("end",function( ev, dd ){
+   $('span.drag').drag("end",function( ev, dd ){
+//      console.log('DRAG END')
+//      console.log(ev.target)
       $( dd.available ).removeClass('drop-available');
+      
       if($(dd.drop).hasClass('drop')) {
-        $(dd.proxy).removeClass('drag-active').removeClass('drag');
+        $(dd.proxy).css('color', '#626466').removeClass('drag-active').removeClass('drag');
       } else {
         $( dd.proxy ).remove();
       }
     });
 
-  $('span.drop')
+  $('.drop')
     .live("drop",function( ev, dd ){
+//      console.log('DROP')
       if(checkUsername($(ev.target), $(this))) {
         showWarning($(this));
-//        var message = "User already assigned to this role";
-//        showTooltip(message);
         $(this).effect("highlight", {color:'#fbb'}, 400);
         if($(ev.target).hasClass('drag')) { $(ev.target).remove(); }
       } else {
-        //console.log(ev.target)
-        //console.log(ev.target.parentNode.tagName);
+//        console.log(ev.target)
+//        console.log(ev.target.parentNode.tagName);
         $(ev.target).removeClass('drag').addClass('assigned'); //user
         //Fix for Node cannot be inserted at the specified point in the hierarchy
         if(ev.target.parentNode.tagName == "BODY") {
