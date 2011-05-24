@@ -38,13 +38,14 @@ Requires:       sysvinit > 2.86-215.2
 # 11.1 or SLES11
 Requires:       sysvinit > 2.86-195.3.1
 %endif
-Requires:       nginx, rubygem-passenger-nginx, rubygem-nokogiri
+Requires:       rubygem-passenger-nginx, rubygem-nokogiri
+Requires:       nginx >= 1.0
 
 License:        LGPL-2.1; Apache-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.46
+Version:        0.2.47
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -61,7 +62,8 @@ BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-s
 BuildRequires:  tidy, rubygem-haml, rubygem-nokogiri
 BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
-BuildRequires:  nginx, rubygem-passenger-nginx
+BuildRequires:  nginx >= 1.0
+BuildRequires:  rubygem-passenger-nginx
 #
 
 %description
