@@ -24,6 +24,8 @@
     <%= javascript_include_tag "min/users-min.js"-%>
     <%= javascript_include_tag "select_dialog.js" %>
   <% else %>
+    <%= stylesheet_link_tag "webyast-users" %>
+    <%= stylesheet_link_tag "webyast-plugin-toolbar" %>
     <%= javascript_include_tag "select_dialog.js" %>
     <%= javascript_include_tag "jquery.quicksearch.js"-%>
     <%= javascript_include_tag "users.js" %>
@@ -38,25 +40,7 @@
 <% end %>       
 
  <style type="text/css">
-    .pad1_2em {
-/* 	padding: 1em 2em; */
-    }
-    tr {
-	border: solid 1px #ddd;
-    }
-    label, .qs_input {
-	width: auto !important;
-    }
-    .label {
-        min-width: 10em;
-        float: left;
-        margin-left: 1em
-    }
-    #password-strength {
-	left: 0em;
-    }
-  
-/*     .nav-buttons {padding:0; margin:0px;} */
+
  </style>
 
  <% javascript_tag do %>
@@ -149,7 +133,7 @@
     },
     submitHandler: function(form) {
       var message = <%= jss _("Please wait") -%>;
-      disableFormOnSubmit(message);
+      $.modalDialog.wait( {message: message});
       form.submit();
     }
    });
@@ -189,77 +173,77 @@
 <% end %>
 
 <% end %>
-<div class='plugin-icon'><img alt="yast-users" src='/icons/yast-users.png'/><%=_("Users")%><span id="questionMark">?</span></div>
-<div class="plugin-content">
+<!-- <div class='plugin-icon'><img alt="yast-users" src='/icons/yast-users.png'/>
+  <%_("Users")%><span id="questionMark">?</span>
+  </div>
+<div class="plugin-content"> -->
 
-<div id="search-userbar">
-  <div id="home-container">
-    <div id="home">		
-      <%=link_to image_tag("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
+<div id="users_index" class="plugin-content plugin-border">
+
+  <div class="plugin-header">
+    <div class="left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/users.png"></label>
+      <label class="plugin-name"><%= _("Users")%></label>
+      <span id="questionMark" class="right" style="margin:0px 5px;">?</span>
     </div>
   </div>
-  <span style="clear:both; overflow:hidden;"></span>
-  <div id="search-container">
+
+  <div class="clearfix">&nbsp;</div>
+
+  <div id="webyast-toolbar-container">
+    <%=link_to image_tag("home.png", :class=>"home-icon"), :controller=>"controlpanel", :action => :index %>
+
     <form action="#" id="quicksearch">
       <label><%= _("Filter:") %></label>
       <input type="text" id="users_search"/>
     </form>
-   </div>
-   <span style="clear:both; overflow:hidden;"></span>
-   <div id="link-container">
-    <div id="action_links" class="action_links">	
+
+    <span id="action_link_container">
       <% if @permissions[:useradd] %>
-	<%=link_to image_tag("/icons/yast-users.png", :class=>"icons") +  _("New User"), :action => :new %>
-	<label>|</label>
-      <% end %>      
-      <%=link_to image_tag("/icons/yast-groups.png", :class=>"icons") +  _("Manage Groups"), :controller => "groups" %>
-    </div>
+        <%=link_to image_tag("/icons/users.png", :class=>"action_link_icon") +  _("New User"), :action => :new %>
+      <% end %>
+        <%=link_to image_tag("/icons/groups.png", :class=>"action_link_icon") +  _("Manage Groups"), :controller => "groups" %>
+    </span>
   </div>
-</div>
 
-<div style="clear:both; overflow:hidden;"></div>
+  <div style="clear:both; overflow:hidden;"></div>
 
-<div class='pad1_2em'>
-<% if @permissions[:useradd] %>
-<!-- <%= link_to _("Add New User"), :action => :new -%> -->
-<% end %>
+  <div id="users" class="accordion">
+    <% disabled = ! @permissions[:usermodify] %>
+    <% for user in @users %>
+      <div class="list-fieldset">
+        <div class="list-fieldset-header">
+          <span class="quicksearch_content">
+            <%= h user.uid -%> (<%= h user.cn || "-none-" -%>)
+          </span>
+        </div>
 
- <div id="users" class="accordion">
- <% disabled = ! @permissions[:usermodify] %>
-  <% for user in @users %>
-   <div class="list-fieldset">
-
-    <div class="list-fieldset-header">
-     <span class="quicksearch_content">
-      <%= h user.uid -%> (<%= h user.cn || "-none-" -%>)
-     </span>
-    </div>
-
-    <div class='user-content' style="display:none">
-     <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "form_handler('#{user.uid}')", :autocomplete => :off } ) do |f| %>
-      <%= f.error_messages %>
-
-<%= render :partial => "user_form", :locals =>{ :f => f, :disabled => disabled, :user => user, :new => false } %>
-
-<script language="javascript">
-   addTabsNavigation(".tabs_<%= user.uid %>", "span");
-   $(".tabs_<%= user.uid %>").tabs();
-</script>
-
+        <div class='user-content' style="display:none">
+          <% form_for(user, :url => { :action => "update" }, :html => { :method => :put, :id => "form_"+user.uid, :onsubmit => "form_handler('#{user.uid}')", :autocomplete => :off } ) do |f| %>
+            <%= f.error_messages %>
+            <%= render :partial => "user_form", :locals =>{ :f => f, :disabled => disabled, :user => user, :new => false } %>
+            <script language="javascript">
+               addTabsNavigation(".tabs_<%= user.uid %>", "span");
+               $(".tabs_<%= user.uid %>").tabs();
+            </script>
+          <% end %>
+        </div>
+     </div>
     <% end %>
-    </div> 
-   </div>
-  <% end %>
- </div>
-
-
-  <div class="nav-buttons">
-    <%= form_back_button -%>
-    <%= form_str_spacer %>
-    <%= link_to _("Manage Groups"), "controller" => "groups" %>
   </div>
-</div>
-            <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
-            <div><input type="hidden" id="all_roles_string" value="<%= @all_roles_string %>" /></div>
+
+  <div><input type="hidden" id="all_grps_string" value="<%= @all_grps_string %>" /></div>
+  <div><input type="hidden" id="all_roles_string" value="<%= @all_roles_string %>" /></div>
+  
+ 
+  
+  <div class="button_container">
+    <div class="nav-buttons">
+        <div class="hr">&nbsp;</div>
+      <p><%= link_to _("Manage Groups"), "controller" => "groups" %></p>
+      <%= form_back_button -%>
+    </div>
+  </div>
+
 </div>
 
