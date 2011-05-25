@@ -23,6 +23,9 @@
   <% if JSMIN == true %>
     <%= javascript_include_tag "min/users-min.js"-%>
   <% else %>
+    <%= stylesheet_link_tag "webyast-users" %>
+    <%= stylesheet_link_tag "webyast-plugin-toolbar" %>
+
     <%= javascript_include_tag "jquery.quicksearch.js"-%>
     <%= javascript_include_tag "select_dialog.js" %>
     <%= javascript_include_tag "users.js" %>
@@ -41,14 +44,10 @@
     tr {
 	border: solid 1px #ddd;
     }
-    label, .qs_input {
+    .qs_input {
 	width: auto !important;
     }
-    .label { 
-	min-width: 10em;
-	float: left;
-	margin-left: 1em
-    }
+
     label.error {display: none; float:left; color: #990000; font-weight:bold; margin-left:10px;}
  </style>
 
@@ -107,108 +106,104 @@
 <% end %>
 <% end %>
 
-<div class='plugin-icon'><img alt="yast-groups" src='/icons/yast-groups.png' width="48px" height="48px"><%=_("Groups")%><span id="questionMark">?</span></div>
-<div class="plugin-content">
+<!--<div class='plugin-icon'><img alt="yast-groups" src='/icons/yast-groups.png' width="48px" height="48px"><%=_("Groups")%><span id="questionMark">?</span></div>
+<div class="plugin-content">-->
 
-<div id="search-userbar">
-  <div id="home-container">
-    <div id="home">		
-      <%=link_to image_tag("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
+<div id="groups_index" class="plugin-content plugin-border">
+  <div class="plugin-header">
+    <div class="left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/groups.png"></label>
+      <label class="plugin-name"><%=_("Groups")%></label>
+      <span id="questionMark" class="right" style="float:right; margin:0px 5px;">?</span>
     </div>
   </div>
-  <span style="clear:both; overflow:hidden;"></span>
-  <div id="search-container">
-    <form action="#" id="quicksearch"  >
+
+  <div class="clearfix">&nbsp;</div>
+
+  <div id="webyast-toolbar-container">
+    <%=link_to image_tag("home.png", :class=>"home-icon"), :controller=>"controlpanel", :action => :index %>
+
+    <form action="#" id="quicksearch">
       <label><%= _("Filter:") %></label>
-      <input type="text" id="groups_search" style="padding:3px;"/>
+      <input type="text" id="groups_search"/>
     </form>
-   </div>
-   <span style="clear:both; overflow:hidden;"></span>
-   <div id="link-container">
-    <div id="action_links" class="action_links">	
+
+    <span id="action_link_container">
       <% if @permissions[:groupadd] %>
-	<%=link_to image_tag("/icons/yast-groups_16.png", :class=>"icons") + _("New Group"), :action => :new %>
-	<label>|</label>
+        <%=link_to image_tag("/icons/groups.png", :class=>"action_link_icon") + _("New Group"), :action => :new %>
       <% end %>
-      <%=link_to image_tag("/icons/yast-users_16.png", :class=>"icons") + _("Manage Users"), "controller" => "users" %>
+        <%=link_to image_tag("/icons/users.png", :class=>"action_link_icon") +  _("Manage Users"), :controller => "users" %>
+    </span>
+  </div>
+
+  <div style="clear:both; overflow:hidden;"></div>
+
+  <div class='pad1_2em'>
+    <div id="groups" class="accordion">
+      <% for group in @groups %>
+        <div class="list-fieldset">
+          <div class="list-fieldset-header">
+            <span class="quicksearch_content">
+              <%= h group.cn || "-none-" %>
+            </span>
+          </div>
+          <div class='group-content' style="display:none">
+          <% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "form_"+group.old_cn, :autocomplete => :off, :onsubmit => "form_handler('#{group.old_cn}')"}  do |f| %>
+            <%= f.error_messages %>
+            <%= f.hidden_field :old_cn %>
+            <p>
+              <div class="label"><%=_("Group Name")%></div>
+              <%= f.text_field :cn, :disabled => false, :class => "required" %>
+            </p>
+            <p>
+              <div class="label"><%=_("Group ID")%></div>
+              <%= f.text_field :gid, :disabled => false %>
+            </p>
+            <p>
+              <div class="label"><%=_("Members")%></div>
+              <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);", :class => "members-string"%>
+              <% if @permissions[:usersget] == true %>
+                <a href="#" id="manage_members" class="button" onClick="select_users_open('<%= group.old_cn %>');return false;"><%= _("Manage Members") %></a>
+              <% end %>
+              <%= f.hidden_field :group_type %><label id="users-error" class="error"></label>
+            </p>
+    
+            <div class="nav-buttons">
+              <div class="hr">&nbsp;</div>
+              <div id="progress_<%= group.cn -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
+                <% message = _('Please wait')%>
+                <%= submit_tag _("Save"), 
+                    :onclick=>"return $('#form_" + group.old_cn + "').validate({
+                      submitHandler: function(form) {
+                        var message = '#{message}'; 
+                        disableFormOnSubmit(message); 
+                        form.submit();
+                      }
+                });" %>
+
+                <% if @permissions[:groupdelete] %>
+                  <span onclick="delete_handler(this, '#progress_<%= group.cn -%>', '<%= _("Please wait") -%>');">
+                    <%= link_to _("Delete"),
+                        {:action => 'destroy', :id => group.cn},
+                        {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %>
+                  </span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-</div>
+  <div><input type="hidden" id="all_users_string" value="<%= @all_users_string %>" /></div>
+  <div><input type="hidden" id="system_users_string" value="<%= @all_sys_users_string %>" /></div>
 
-<div style="clear:both; overflow:hidden;"></div>
-
-<div class='pad1_2em'>
-   <!--<% if @permissions[:groupadd] %>
-     <%= link_to _("Add New Group"), :action => :new -%>
-   <% end %>-->
- <div id="groups" class="accordion">
-
-  <% for group in @groups %>
-   <div class="list-fieldset">
-    <div class="list-fieldset-header">
-     <span class="quicksearch_content">
-       <%= h group.cn || "-none-" %>
-     </span>
-    </div>
-    <div class='group-content' style="display:none">
-<% form_for group, :url => { :action => @adding ? "create" : "update"}, :html => { :id => "form_"+group.old_cn, :autocomplete => :off, :onsubmit => "form_handler('#{group.old_cn}')"}  do |f| %>
-  <%= f.error_messages %>
-  <%= f.hidden_field :old_cn %>
-    <p>
-      <div class="label"><%=_("Group Name")%></div>
-      <%= f.text_field :cn, :disabled => false, :class => "required" %>
-    </p>
-    <p>
-      <div class="label"><%=_("Group ID")%></div>
-      <%= f.text_field :gid, :disabled => false %>
-    </p>
-    <p>
-      <div class="label"><%=_("Members")%></div>
-      <%= f.text_field :members_string, :disabled => false, :onkeyup => "members_validation(this);", :class => "members-string"%>
-      <% if @permissions[:usersget] == true %>
-        <a href="#" id="manage_members" class="button" onClick="select_users_open('<%= group.old_cn %>');return false;"><%= _("Manage Members") %></a>
-      <% end %>
-    </p>
-    <p><%= f.hidden_field :group_type %><label id="users-error" class="error"></label></p>
-    
+  <div class="button_container">
     <div class="nav-buttons">
-    <div id="progress_<%= group.cn -%>" style="display: none; margin-bottom: 10px"><img src="/images/working.gif" alt="Working"/><span style="vertical-align: 50%; margin-left: 5px">...Wait...</span></div>
-      <% message = _('Please wait')%>
-      <%= submit_tag _("Save"), 
-      :onclick=>"return $('#form_" + group.old_cn + "').validate({
-	submitHandler: function(form) {
-	var message = '#{message}'; 
-	disableFormOnSubmit(message); 
-	form.submit();
-      }
-
-      });" %>
-    
-      
-
-
-      <% if @permissions[:groupdelete] %>
-      <span onclick="delete_handler(this, '#progress_<%= group.cn -%>', '<%= _("Please wait") -%>');">
-        <%= link_to _("Delete"),
-                    {:action => 'destroy', :id => group.cn},
-                    {:confirm => _("Are you sure to delete group '%s'?") % group.cn, :method => :destroy, :class => :button} %>
-      </span>
-      <% end %>
+      <div class="hr">&nbsp;</div>
+      <p><%= link_to _("Manage Users"), "controller" => "users" %></p>
+      <%= form_back_button -%>
     </div>
-    <% end %>
-    </div>
-   </div>
-  <% end %>
-
- </div>
-</div>
-    <div><input type="hidden" id="all_users_string" value="<%= @all_users_string %>" /></div>
-    <div><input type="hidden" id="system_users_string" value="<%= @all_sys_users_string %>" /></div>
-
-  <div class="nav-buttons">
-    <%= form_back_button -%>
-    <%= form_str_spacer %>
-    <%= link_to _("Manage Users"), "controller" => "users" %>
   </div>
 </div>
 
