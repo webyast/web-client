@@ -42,16 +42,16 @@ function startNotifier(params, interval, inactive) {
   $(document).ready(function() {
     jQuery(function($){
       $.activity.init({
-  	interval: interval, 
-  	inactive: inactive, 
-	intervalFn: function(){
-	  log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
-	},
-	inactiveFn: function(){
-	  log("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
-	  if(typeof(Worker) == 'defined') { killWorker(worker); }
-	  $.activity.update();
-	}
+        interval: interval, 
+        inactive: inactive, 
+        intervalFn: function(){
+          //log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
+        },
+        inactiveFn: function(){
+          log("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
+          if(typeof(Worker) != 'defined') { killWorker(worker); }
+          $.activity.update();
+        }
       });
       
     $(document).bind('click mousemove', function(){
@@ -72,6 +72,7 @@ var Notifier = function(params) {
     console.log("Web worker is not supported")
     window.setInterval(function() { AJAXcall(params); },5000);
   } else {
+    console.log("Web worker is supported")
     worker = new Worker("/javascripts/notifier.workers.js");
     worker.postMessage(params);
     

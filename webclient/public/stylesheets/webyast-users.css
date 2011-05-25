@@ -68,15 +68,23 @@
 #users .list-fieldset-header, #groups .list-fieldset-header {
   border-radius: 0px 0px 0px 0px;
   padding:3px 0px;
+  background: #e4e4e4;
   background: -moz-linear-gradient(center bottom , #E4E4E4, #efefef) repeat scroll 0 0 transparent !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#e4e4e4));
   border: 1px solid #D8D8D8;
   margin:0;
 }
 
-#users .user-content, #groups .group-content {
+#users .user-content {
   border: 1px solid #d8d8d8;
   border-radius: 0px 0px 0px 0px;
   background-color:#fff;
+}
+
+#groups .group-content {
+  border: 1px solid #d8d8d8;
+  border-radius: 0px 0px 0px 0px;
+  background-color:#fafafa;
 }
 
 #users form, #new_user form, #groups form { border:0px; }
@@ -165,7 +173,8 @@
   font-family: Tahoma,Trebuchet MS,Helvetica,sans-serif; 
 }
 
-#new_group label.error {   display:inline-block!important; }
+#new_group label.error,  #groups label.error {   display:inline-block!important; }
+
 
 #users_index .button_container, #groups_index .button_container {
   padding:0px 27px;
