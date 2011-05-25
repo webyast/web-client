@@ -20,30 +20,9 @@
 -->
 <% content_for :head do %>
 <!--   <%= javascript_include_tag :defaults %> -->
-
-  <style type="text/css">
-	 /* TODO temporary solution please see the comment in style.css*/
-	 input.error {
-		float: none;
-	 }
-
-    label.error { 
-		float: none; 
-		color:#990000;
-      font-weight:bold;
-		padding-left: .5em; 
-		vertical-align:baseline; 
-		width: 100%; 
-		text-align: left 
-	 }
-
-	 label.valid { 
-		background: url('../images/checked.gif') no-repeat;
-		padding:0px 10px 0px 18px;
-		vertical-align:middle; 
-		margin-left:5px;
-	 }
-  </style>
+  <% if JSMIN == false %>
+    <%= stylesheet_link_tag "webyast-repositories" %>
+  <% end %>
 
   <script type="text/javascript">
      $(document).ready(function(){
@@ -69,7 +48,8 @@
 	  success: "valid",
 	  submitHandler: function(form) {
 	    var message = <%= jss _("Please wait") -%>;
-	    disableFormOnSubmit(message);
+      $.modalDialog.wait( {message: message});
+      //disableFormOnSubmit(message);
 	    form.submit();
 	  }
 	});
@@ -149,51 +129,74 @@
 
 
 <% disabled = ! @permissions[:write] %>
-<div class='plugin-icon'><img src='/icons/yast-online_update.png'/>
-  <%= _("Software Repositories") %>
-  <%= header_spacer %>
-  <%= _("Add a new repository") %>
-</div>
 
-<div class='plugin-content'>
 
-<% form_for(:repository, @repo, :url => { :action => 'create', :id => @repo.id }, :html => { :method => :post, :id => 'repositoryForm',
-    :onsubmit => "return submit_handler();" } ) do |f| %>
-  <fieldset>
-    <div id="status_icon" class="status-icon <%= @repo.enabled ? 'ok' : 'unused' %>"></div>
-    <span style="padding-bottom: 8px; vertical-align: 50%; font-weight: bold"><%= _("New Repository") %></span>
-
-    <p><div style="min-width: 6em; float: left;">Alias: </div>
-    <%= f.text_field :id, :disabled => disabled, :class => 'repo_alias required' -%></p>
-
-    <p><div style="min-width: 6em; float: left;">Name: </div>
-    <%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
-
-    <p><div style="min-width: 6em; float: left;">URL: </div>
-    <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%></p>
-
-    <p onclick="update_icon();"><%= hidden_field_with_toggle_link f, :enabled, @repo.enabled,
-	_("Repository will be %s.") % "<i>#{bool_status(true)}</i>",
-	_("Repository will be %s.") % "<i>#{bool_status(false)}</i>" -%>
-    </p>
-
-    <p><%= hidden_field_with_toggle_link f, :autorefresh, @repo.autorefresh,
-	_("Autorefresh will be %s.")% "<i>#{bool_status(true)}</i>",
-	_("Autorefresh will be %s.")% "<i>#{bool_status(false)}</i>" -%>
-    </p>
-
-    <p><%= hidden_field_with_toggle_link f, :keep_packages, @repo.keep_packages,
-	_("Keep packages option will be %s.")% "<i>#{bool_status(true)}</i>",
-	_("Keep packages option will be %s.")% "<i>#{bool_status(false)}</i>" -%>
-    </p>
-  </fieldset>
-
-  <div class="nav-buttons">
-    <%= form_back_button :action => :index, :onclick=>"$('#progress').show()"%>
-    <% if !disabled -%>
-      <%= form_str_spacer %>
-      <%= submit_tag _("Save") %>
-    <% end -%>
+<div class="plugin-content plugin-border">
+  <div class="plugin-header">
+    <div class="left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/repositories.png"></label>
+      <label class="plugin-name">
+         <%= _("Software Repositories") %>
+         <%= header_spacer %>
+         <%= _("Add a new repository") %>
+      </label>
+    </div>
   </div>
-<% end %>
+
+  <div class="clearfix">&nbsp;</div>
+
+<!-- <div class='plugin-content'> -->
+
+  <% form_for(:repository, @repo, :url => { :action => 'create', :id => @repo.id }, :html => { :method => :post, :id => 'repositoryForm', :class=>"webyast_form", :onsubmit => "return submit_handler();" } ) do |f| %>
+    <fieldset class="webyast_fieldset">
+      <div class="fieldset_header">
+        <span class="fieldset_header_title" >
+          <span id="status_icon" class="status-icon <%= @repo.enabled ? 'ok' : 'unused' %>"></span>
+          <%= _("Add a new repository") %>
+        </span>
+      </div>
+
+      <div class="fieldset_body">
+        <div class="row">
+          <label><%= _("Alias")%>: </label>
+          <%= f.text_field :id, :disabled => disabled, :class => 'repo_alias required' -%>
+        </div>
+        <div class="row">
+          <label><%= _("Name")%>: </label>
+          <%= f.text_field :name, :disabled => disabled, :class => 'required' -%>
+        </div>
+        <div class="row">
+          <label><%= _("URL")%>: </label>
+          <%= f.text_field :url, :disabled => disabled, :class => 'repo_url required' -%>
+        </div>
+        <div class="hr-row">
+          <div id="repo_hr">&nbsp;</div>
+        </div>
+        <div class="row">
+          <p onclick="update_icon();">
+            <%= hidden_field_with_toggle_link f, :enabled, @repo.enabled, _("Repository will be %s.") % "<i>#{bool_status(true)}</i>", _("Repository will be %s.") % "<i>#{bool_status(false)}</i>" -%>
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            <%= hidden_field_with_toggle_link f, :autorefresh, @repo.autorefresh, _("Autorefresh will be %s.")% "<i>#{bool_status(true)}</i>", _("Autorefresh will be %s.")% "<i>#{bool_status(false)}</i>" -%>
+          </p>
+        </div>
+        <div class="row">
+          <p>
+            <%= hidden_field_with_toggle_link f, :keep_packages, @repo.keep_packages, _("Keep packages option will be %s.")% "<i>#{bool_status(true)}</i>", _("Keep packages option will be %s.")% "<i>#{bool_status(false)}</i>" -%>
+          </p>
+        </div>
+      </div>
+    </fieldset>
+    
+    <div class="button_container webyast_form">
+      <div class="hr">&nbsp;</div>
+        <div class="nav-buttons">
+          <% if !disabled -%>
+            <%= form_send_buttons :disabled => disabled, :class => "button", :id=>"firewallSubmitButton" %>
+          <% end -%>
+        </div>
+    </div>
+  <% end %>
 </div>

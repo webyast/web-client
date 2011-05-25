@@ -22,68 +22,56 @@
 <% @repos.sort! {|x,y| x.priority == y.priority ? x.name.upcase <=> y.name.upcase : x.priority <=> y.priority} -%>
 
 <%= javascript_include_tag :defaults %>
-<%= javascript_include_tag "jquery.activity", "notifier" %>
+<% javascript_include_tag "jquery.activity", "notifier" %>
 
 <% if JSMIN == false %>
+  <%= stylesheet_link_tag "webyast-repositories" %>
+  <%= stylesheet_link_tag "webyast-plugin-toolbar" %>
   <%= javascript_include_tag "jquery.quicksearch.js"-%>
 <% end %>
 
-<% content_for :head do %>
-  <style type="text/css">
-    label.error { float: none; color: red; padding-left: 6.5em; vertical-align: top; width: 70%; text-align: left }
-    span.repo_status { font-style: italic }
-    span.repo_status_enabled { color: rgb(0,255,0) }
-    span.repo_status_disabled { color: rgb(255,0,0) }
-    div.option_name { min-width: 6em; float: left; margin-left: 1em }
-  </style>
-<% end %>
-
-<div class='plugin-icon' style="display:block; width:101%; padding:0;"><img src='/icons/yast-online_update.png'/><%=_("Software Repositories") %><span id="questionMark" style="vertical-align:middle; float:right; margin:15px 0px 0px 0px;">?</span></div>
-<div class='plugin-content'>
-  <div class="loading"></div>
-  <% disabled = !@permissions[:write] %>
-
-<!--   <h3 style="margin-left:12px;"><%=_("Configured software repositories") %><span id="questionMark" style="float:right; margin: 2px 12px;">?</span></h3> -->
-  
-
-  <div id="softwarebar">
-    <div id="home-container">
-      <div id="home">		
-	<%=  link_to image_tag("home.png", :id=>"home_image"), :controller=>"controlpanel", :action => :index %>
-      </div>
-    </div>
-    <span style="clear:both; overflow:hidden;"></span>
-    <div id="search-container">
-      <form action="#" id="quicksearch">
-	  <label><%= _("Quick Search") %></label>
-	  <input type="text" id="repo_search"/>
-      </form>
-    </div>
-    <span style="clear:both; overflow:hidden;"></span>
-    <div id="link-container">
-	<% if !disabled %>
-	  <div id="action_links" class="action_links">	
-	    <%= link_to image_tag("/icons/yast-online_update.png", :class=>"icons button") +  (_("New Repository") ), {:action => 'add'}, :onclick=>"$('#progress').show()" %>
-	  </div>
-	<% end %>
-    </div>
-    <div id="filter-container">
-      <label for="filter">
-	<%=  _("Filter repositories") %>
-	<%= image_tag("/images/filter.png", :style=>"vertical-align:text-top; margin-top:2px; margin-right:3px;width:16px; height:14px;")%>
-      </label>
-      <%= select_tag "filter", options_for_select([
-	[ _("All"), "all"],
-	[ _("Enabled"), "enabled"],
-	[ _("Disabled"), "disabled"]
-      ])
-      %>
-      <%= observe_field("filter", :function => "select_repositories(value)") %>
+<!-- <div class='plugin-icon' style="display:block; width:101%; padding:0;"><img src='/icons/yast-online_update.png'/><%=_("Software Repositories") %>
+<span id="questionMark" style="vertical-align:middle; float:right; margin:15px 0px 0px 0px;">?</span></div>
+<div class='plugin-content'> -->
+<div class="plugin-content plugin-border">
+  <div class="plugin-header">
+    <div class="left">
+      <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/repositories.png"></label>
+      <label class="plugin-name"><%=_("Software Repositories") %></label>
+      <span id="questionMark" style="margin:0px 5px; float:right;">?</span>
     </div>
   </div>
-  <div style="clear:both; overflow:hidden;"></div>
 
-  <div id="repositories" class="accordion">
+  <div class="clearfix">&nbsp;</div>
+  
+<!--  <div class="loading"></div> -->
+  <% disabled = !@permissions[:write] %>
+  
+  <div id="webyast-toolbar-container">
+    <%=link_to image_tag("home.png", :class=>"home-icon"), :controller=>"controlpanel", :action => :index %>
+
+    <form action="#" id="quicksearch">
+      <label><%= _("Quick Search") %></label>
+      <input type="text" id="repo_search"/>
+    </form>
+    
+    <label for="filter">
+      <%=  _("Filter repositories") %>
+      <% image_tag("/images/filter.png", :style=>"")%>
+    </label>
+    <%= select_tag "filter_repos", options_for_select([[ _("All"), "all"], [ _("Enabled"), "enabled"], [ _("Disabled"), "disabled"]]) %>
+    <%= observe_field("filter_repos", :function => "select_repositories(value)") %>
+
+    <span id="action_link_container">
+      <% if !disabled %>
+        <%= link_to image_tag("/icons/repositories.png", :class=>"action_link_icon") +  (_("New Repository") ), {:action => 'add'} %>
+      <% end %>
+    </span>
+  </div>
+
+  <div style="clear:both; overflow:hidden;"></div>
+  
+  <div id="repositories" class="accordion" style="margin:0 13px;">
     <% @repos.each do |r| %>
       <% sid = safe_id(r.id) %>
       <div class="list-fieldset  <%= r.enabled ? 'repository-enabled' : 'repository-disabled' %>">
@@ -113,8 +101,9 @@
 		</script>
 	      <% end %>
 
-	      <p><div class="option_name">Alias: </div><i><%= h r.id %></i></p>
-
+	      <p><div class="option_name">Alias: </div><%= h r.id %></p>
+<!--	      <p><div class="option_name">Alias: </div><i><% h r.id %></i></p> -->
+	      
 	      <p><div class="option_name">Name: </div>
 		<%= f.text_field :name, :disabled => disabled, :class => 'required' -%></p>
 
@@ -158,8 +147,13 @@
     <% end %>
   </div>
 
-  <div class="nav-buttons">
-    <%= form_back_button %>
+  <div class="clearfix">&nbsp;</div>
+  
+  <div class="button_container webyast_form" style="margin:5px 15px">
+    <div class="hr">&nbsp;</div>
+      <div class="nav-buttons">
+        <%= form_back_button %>
+      </div>
   </div>
 </div>
 
