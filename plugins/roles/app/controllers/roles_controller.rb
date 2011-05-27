@@ -52,9 +52,13 @@ class RolesController < ApplicationController
     all_permissions = all_permissions.collect {|p| PrefixedPermission.new(p.id, p.description)}
     # create an [[key,value]] array of prefixed permissions, where key is the prefix
     @prefixed_permissions = PrefixedPermissions.new(all_permissions).sort
-    #@all_users_string = (User.find(:all,:params => {:getent => "1"}).collect {|user| user.login}).sort
-    #@all_users = User.find(:all,:params => {:getent => "1"}).collect {|u| u.full_name}
-    @users = User.find(:all, :params => {:getent => "1"}).collect {|u| [u.login, u.full_name]}.sort
+    @users = User.find(:all, :params => {:getent => "1"}).collect {|u|
+      if u.respond_to?('full_name')
+        [u.login, u.full_name ]
+      else
+        [u.login, "" ]
+      end
+    }.sort
   end
 
   # Update time handler. Sets to backend new timezone and time.
