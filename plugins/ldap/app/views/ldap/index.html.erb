@@ -68,12 +68,11 @@
 	}
       });
 
-
       $('#ldapForm input[type="submit"]').click(function() {
         if ($('#ldapForm').valid()) {
-          disable_forms();
           var message = <%= jss _("Please wait") -%>;
           $.modalDialog.wait( {message: message});
+          $('#ldapForm').submit();
         }
       });
 
