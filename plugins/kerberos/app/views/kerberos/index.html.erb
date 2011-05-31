@@ -64,6 +64,7 @@
         disable_forms();
           var message = <%= jss _("Please wait") -%>;
           $.modalDialog.wait( {message: message});
+          $('#kerberosForm').submit();
         }
       });
 
