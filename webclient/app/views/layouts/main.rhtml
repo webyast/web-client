@@ -157,7 +157,7 @@
     </div>
 
     <div id="timeoutMessage">
-      <img src="/images/webyast-logo.png?1280237271"  width="130" height="42" alt="webyast">
+      <%= link_to(image_tag("/images/webyast-logo.png", :width=>"130", :height=>"42", :style=>"margin-top:4px;", :alt =>"webyast"),"/" )%>
       <%= _("You will be logged off in")-%><span id="counter"><!-- countdown place holder --></span><%= _("seconds due to session timeout. ")-%>
     </div>
 
