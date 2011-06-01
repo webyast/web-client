@@ -171,9 +171,12 @@ public
         update_array << value
       end
     }
-
-    Patch.install_patches_by_id update_array
-
+    begin
+      Patch.install_patches_by_id update_array
+    rescue ActiveResource::ResourceNotFound => e
+      ce = ClientException.new e
+      Rails.logger.info "Some patches are not needed in #{update_array.inspect} anymore: #{ce.message}"
+    end
 
     #redirect_to :action => "index"
     #redirect_success
