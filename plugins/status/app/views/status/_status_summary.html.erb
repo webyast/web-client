@@ -37,8 +37,11 @@
   <% end %>
 
   <% javascript_tag do -%>
-    jQuery(function($){ $('#status-eye').addClass('eye_warning'); });
-    //$('#status_indicator').addClass("status_warning");
+    if($.browser.msie() && $.browser.version.number() == 8 ) {
+      $('#status-eye').css("background", "url(/images/circle-red.png)").addClass('eye_warning');
+    } else {
+      $('#status-eye').addClass('eye_warning');
+    }
   <% end -%>
 
 <% else %>
@@ -49,9 +52,13 @@
       </a>
     </div>
   <% elsif !error %>
-    <% javascript_tag do -%>jQuery(function($){
-      if($('#status-eye').hasClass("eye_warning") == false) { $('#status-eye').addClass('eye_healthy'); } });
-      //$('#status_indicator').addClass("status_ok");
+    <% javascript_tag do -%>
+      if($('#status-eye').hasClass("eye_warning") == false) { 
+        $('#status-eye').addClass('eye_healthy'); 
+        if($.browser.msie() && $.browser.version.number() == 8 ) {
+          $('#status-eye').css("background", "url(/images/circle-green.png)");  
+        }
+      }
     <% end -%>
 
     <div class="statusbar_row">

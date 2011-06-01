@@ -19,19 +19,20 @@
   <% form_tag( :action => 'create' ) do  %>
 
     <h2 id="content_title"><%= _("Login") %></h2>
-
-    <p><%= _("Enter login credentials for host %s.") % h(@host.name) %></p>
-
+    <p id="content_title_details">&nbsp;<%= _("Enter login credentials for host %s.") % h(@host.name) %></p>
     <%= hidden_field_tag 'hostid', @host.id %>
 
-    <p><label for="login"><%= _("Username:") %></label>
-    <%= text_field_tag 'login', @user %></p>
+    <div id="login_image_wrapper">
+      <p><%= image_tag("/icons/yast-users.png", :alt =>"user") %></p>
+    </div>  
+    <div id="login_credentials_wrapper">
+      <p><label for="login"><%= _("Username:") %></label>
+      <%= text_field_tag 'login', @user, :style=>"border-radius:0px;" %></p>
 
-    <p><label for="password"><%= _("Password:") %></label>
-    <%= password_field_tag 'password', @password %></p>
-    <p>
-    <%= submit_tag(_('Login'), :class => "button", :id => "login_button") %>
-    </p>
+      <p><label for="password"><%= _("Password:") %></label>
+      <%= password_field_tag 'password', @password %></p>
+      </div>
+            <p><%= submit_tag(_('Login'), :class => "button", :id => "login_button") %></p>
   <% end %>
   
 </div>

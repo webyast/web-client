@@ -124,6 +124,11 @@ if(index.test(currentURL)) {
   //Track frequenly used modules
   //$(function() {
   $(document).ready(function() {
+  
+     if($.browser.msie() && $.browser.version.number() == 8 ) {
+       $('#status-eye').css("background", "url(/images/circle-gray.png)");  
+     }
+  
   //  console.time('modules_tracking');
     //localStorage.clear()
     if(localstorage_supported() && 'last_reset' in localStorage) {    
