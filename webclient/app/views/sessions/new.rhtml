@@ -22,9 +22,9 @@
     <p id="content_title_details">&nbsp;<%= _("Enter login credentials for host %s.") % h(@host.name) %></p>
     <%= hidden_field_tag 'hostid', @host.id %>
 
-    <div id="login_image_wrapper">
-      <p><%= image_tag("/icons/yast-users.png", :alt =>"user") %></p>
-    </div>  
+    <!--<div id="login_image_wrapper">
+      <p>< image_tag("/icons/yast-users.png", :alt =>"user") ></p>
+    </div-->
     <div id="login_credentials_wrapper">
       <p><label for="login"><%= _("Username:") %></label>
       <%= text_field_tag 'login', @user, :style=>"border-radius:0px;" %></p>
