@@ -185,66 +185,65 @@
         </div>
         <% end %>
       </div>
+      <div class="clearfix">&nbsp;</div>
     </fieldset>
 
+    <% if @stime.hwclock %>
+      <fieldset class="webyast_fieldset">
+        <div class="fieldset_header">
+          <span class="fieldset_header_title" ><%= _("Time")%></span>
+        </div>
 
-    <fieldset class="webyast_fieldset">
-      <div class="fieldset_header">
-	      <span class="fieldset_header_title" ><%= _("Time")%></span>
-	    </div>
-
-      <div class="fieldset_body">
-        <% if @stime.hwclock %>
+        <div class="fieldset_body">
           <fieldset class="time_filedset" >
             <legend>
               <input type="radio" name="timeconfig" value="manual" onclick="enable();" id="timeconfig_manual"
-                <%= "disabled=\"disabled\"" if disabled%>
-                <%= "checked=\"checked\"" unless ntp_available %>/>
-                <%=_("Manually configure time")%>
+              <%= "disabled=\"disabled\"" if disabled%>
+              <%= "checked=\"checked\"" unless ntp_available %>/>
+              <%=_("Manually configure time")%>
             </legend>
 
-           <div class="row">
-             <label for="date_date"><%= _("Date") %></label>
-             <%= text_field "date","date", :disabled=> ntp_available ? true :false , :value => @stime.date %>
-           </div>
+            <div class="row">
+              <label for="date_date"><%= _("Date") %></label>
+              <%= text_field "date","date", :disabled=> ntp_available ? true :false , :value => @stime.date %>
+            </div>
 
-           <div class="row">
-            <label for="currenttime"><%= _("Time") %></label>
-            <%= text_field_tag "currenttime", @stime.time, :disabled=> ntp_available ? true :false %>
-           </div>
+            <div class="row">
+              <label for="currenttime"><%= _("Time") %></label>
+              <%= text_field_tag "currenttime", @stime.time, :disabled=> ntp_available ? true :false %>
+            </div>
           </fieldset>
-      <% end %>
 
-      <fieldset class="time_filedset" >
-        <legend>
-          <input id="ntp_sync" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
-          <%=  "disabled=\"disabled\"" if disabled || !ntp_available %>
-          <%=  "checked=\"checked\"" if ntp_available %> />
-          <%=_("Synchronize via Network Time Protocol (NTP)")%>
-        </legend>
+          <fieldset class="time_filedset" >
+            <legend>
+              <input id="ntp_sync" type="radio" name="timeconfig" value="ntp_sync" onclick="disable();"
+              <%=  "disabled=\"disabled\"" if disabled || !ntp_available %>
+              <%=  "checked=\"checked\"" if ntp_available %> />
+              <%=_("Synchronize via Network Time Protocol (NTP)")%>
+            </legend>
 
-        <% if ntp_available %>
-         <div class="row">
-          <label for="ntp_server"><%= _("NTP server") %></label>
-            <%= options = {}
-                options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
-                text_field_tag("ntp_server", @ntp.actions.ntp_server || "", options={:class=>"ntp_server"})  %>
-         </div>
-        <% end %>
+            <% if ntp_available %>
+             <div class="row">
+              <label for="ntp_server"><%= _("NTP server") %></label>
+                <%= options = {}
+                    options[:disabled] = "disabled" unless Ntp.permissions[:setserver]
+                    text_field_tag("ntp_server", @ntp.actions.ntp_server || "", options={:class=>"ntp_server"})  %>
+             </div>
+            <% end %>
+          </fieldset>
+          <div class="clearfix"></div>
+        </div>
       </fieldset>
-      <div class="clearfix"></div>
-     </div>
-    </fieldset>
+    <% end %>
 
     <div class="clearfix"></div>
 
     <div class="button_container">
- 	    <div class="hr">&nbsp;</div>
+      <div class="hr">&nbsp;</div>
       <div class="nav-buttons" style="">
         <%= form_send_buttons :id=>"timeSubmit", :disabled => disabled, :class => "button" %>
       </div>
     </div>
-
   <% end %>
 </div>
 
