@@ -21,7 +21,7 @@ License:        GPL-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.13
+Version:        0.2.14
 Release:        0
 Summary:        WebYaST - system status UI
 Source:         www.tar.bz2
