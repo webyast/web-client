@@ -1,85 +1,90 @@
+# Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
+# Jiri Srain <jsrain@suse.cz>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: webyast-time-ui 1.0.0\n"
+"Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 09:18+0200\n"
-"PO-Revision-Date: 2005-07-31 14:37+0200\n"
-"Last-Translator: Klara Cihlarova <koty@seznam.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"POT-Creation-Date: 2011-05-30 16:16+0200\n"
+"PO-Revision-Date: 2011-06-02 16:09+0200\n"
+"Last-Translator: Jiri Srain <jsrain@suse.cz>\n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/time_controller.rb:99
-#: app/controllers/time_controller.rb:103
-#: app/controllers/time_controller.rb:99
-#: app/controllers/time_controller.rb:103
-#, fuzzy
-msgid "Time settings have been written."
-msgstr "Konfigurační soubor byl zapsán."
-
 #: app/models/systemtime.rb:29 app/models/systemtime.rb:29
-#, fuzzy
 msgid "Unknown timezone %s on host"
-msgstr "Neznámá možnost"
+msgstr "Neznámá časová zóna %s na hostiteli"
 
-#: app/views/time/index.rhtml:73 app/views/time/index.rhtml:77
-#: app/views/time/index.rhtml:102 app/views/time/index.rhtml:73
-#: app/views/time/index.rhtml:77 app/views/time/index.rhtml:102
+#: app/controllers/time_controller.rb:99
+#: app/controllers/time_controller.rb:103
+#: app/controllers/time_controller.rb:99
+#: app/controllers/time_controller.rb:103
+msgid "Time settings have been written."
+msgstr "Nastavení času bylo zapsáno."
+
+#: app/views/time/index.rhtml:73 app/views/time/index.rhtml:73
+#| msgid "Please wait..."
+msgid "Please wait"
+msgstr "Čekejte prosím"
+
+# 50168 AttribValues/delnotify
+#: app/views/time/index.rhtml:81 app/views/time/index.rhtml:85
+#: app/views/time/index.rhtml:106 app/views/time/index.rhtml:81
+#: app/views/time/index.rhtml:85 app/views/time/index.rhtml:106
 msgid "This field is required"
-msgstr ""
+msgstr "Toto pole je vyžadováno"
 
-#: app/views/time/index.rhtml:74 app/views/time/index.rhtml:103
-#: app/views/time/index.rhtml:74 app/views/time/index.rhtml:103
+#: app/views/time/index.rhtml:82 app/views/time/index.rhtml:107
+#: app/views/time/index.rhtml:82 app/views/time/index.rhtml:107
 msgid "Enter a valid domain name or an IP address"
-msgstr ""
+msgstr "Zadejte platné jméno domény nebo IP adresu"
 
-#: app/views/time/index.rhtml:78 app/views/time/index.rhtml:78
+#: app/views/time/index.rhtml:86 app/views/time/index.rhtml:86
 msgid "Invalid time format. Correct one is hh:mm:ss"
-msgstr ""
+msgstr "Neplatný formát času. Správný je hh:mm:ss"
 
-#: app/views/time/index.rhtml:137 app/views/time/index.rhtml:171
-#: app/views/time/index.rhtml:185 app/views/time/index.rhtml:137
-#: app/views/time/index.rhtml:171 app/views/time/index.rhtml:185
+#: app/views/time/index.rhtml:141 app/views/time/index.rhtml:150
+#: app/views/time/index.rhtml:193 app/views/time/index.rhtml:213
+#: app/views/time/index.rhtml:141 app/views/time/index.rhtml:150
+#: app/views/time/index.rhtml:193 app/views/time/index.rhtml:213
 #: shortcuts.yml:6
 msgid "Time"
-msgstr ""
+msgstr "Čas"
 
-#: app/views/time/index.rhtml:145 app/views/time/index.rhtml:152
-#: app/views/time/index.rhtml:145 app/views/time/index.rhtml:152
+#: app/views/time/index.rhtml:163 app/views/time/index.rhtml:173
+#: app/views/time/index.rhtml:163 app/views/time/index.rhtml:173
 msgid "Timezone"
-msgstr ""
+msgstr "Časová zóna"
 
-#: app/views/time/index.rhtml:147 app/views/time/index.rhtml:147
+#: app/views/time/index.rhtml:168 app/views/time/index.rhtml:168
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
-#: app/views/time/index.rhtml:162 app/views/time/index.rhtml:162
+#: app/views/time/index.rhtml:182 app/views/time/index.rhtml:182
 msgid "Hardware clock is set to UTC"
-msgstr ""
+msgstr "Hardwarové hodiny jsou nastaveny na UTC"
 
-#: app/views/time/index.rhtml:176 app/views/time/index.rhtml:176
-#, fuzzy
+#: app/views/time/index.rhtml:202 app/views/time/index.rhtml:202
 msgid "Manually configure time"
-msgstr "Ruční nastavení IP"
+msgstr "Ruční nastavení času"
 
-#: app/views/time/index.rhtml:181 app/views/time/index.rhtml:181
-#, fuzzy
+#: app/views/time/index.rhtml:208 app/views/time/index.rhtml:208
 msgid "Date"
-msgstr "Datum: %1"
+msgstr "Datum"
 
-#: app/views/time/index.rhtml:192 app/views/time/index.rhtml:192
-#, fuzzy
+#: app/views/time/index.rhtml:223 app/views/time/index.rhtml:223
 msgid "Synchronize via Network Time Protocol (NTP)"
-msgstr "NTP démon"
+msgstr "Synchronizace pomocí síťového časového protokolu (NTP)"
 
-#: app/views/time/index.rhtml:196 app/views/time/index.rhtml:196
-#, fuzzy
+#: app/views/time/index.rhtml:228 app/views/time/index.rhtml:228
 msgid "NTP server"
-msgstr "NFS server"
+msgstr "NTP server"
 
 #: shortcuts.yml:7
 msgid "Set the clock"
-msgstr ""
+msgstr "Nastavit hodiny"
+

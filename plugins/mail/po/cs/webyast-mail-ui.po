@@ -1,109 +1,119 @@
+# Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>, 2010.
+# Jiri Srain <jsrain@suse.cz>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: webyast-mail-ui 1.0.0\n"
+"Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-02 09:18+0200\n"
-"PO-Revision-Date: 2005-07-31 14:37+0200\n"
-"Last-Translator: Klara Cihlarova <koty@seznam.cz>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"POT-Creation-Date: 2011-05-30 16:17+0200\n"
+"PO-Revision-Date: 2011-06-02 17:01+0200\n"
+"Last-Translator: Jiri Srain <jsrain@suse.cz>\n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.1\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: app/controllers/mail_controller.rb:50 app/controllers/mail_controller.rb:50
+#: app/controllers/mail_controller.rb:53 app/controllers/mail_controller.rb:53
 msgid "Passwords do not match."
 msgstr "Hesla se neshodují."
 
-#: app/controllers/mail_controller.rb:57 app/controllers/mail_controller.rb:57
+#: app/controllers/mail_controller.rb:60 app/controllers/mail_controller.rb:60
 msgid "Mail settings have been written."
-msgstr ""
+msgstr "Nastavení mailu bylo zapsáno."
 
-#: app/controllers/mail_controller.rb:59 app/controllers/mail_controller.rb:59
+#: app/controllers/mail_controller.rb:62 app/controllers/mail_controller.rb:62
 msgid "Test mail was sent to %s."
-msgstr ""
+msgstr "Testovací mail byl poslán na %s."
 
-#: app/controllers/mail_controller.rb:71 app/controllers/mail_controller.rb:71
-#, fuzzy
+#: app/controllers/mail_controller.rb:74 app/controllers/mail_controller.rb:74
 msgid "Error while saving mail settings: %s"
-msgstr "Chyba při zavírání starého opasswd souboru: %s"
+msgstr "Chyba při ukládání nastavení mailu: %s"
 
-#: app/controllers/mail_controller.rb:88 app/controllers/mail_controller.rb:88
+#: app/controllers/mail_controller.rb:91 app/controllers/mail_controller.rb:91
 msgid ""
-"No outgoing mail server is set, but administrator has mail forwarders "
-"defined.\n"
+"No outgoing mail server is set, but administrator has mail forwarders defined.\n"
 "Change %s<i>administrator</i>%s or %s<i>mail</i>%s configuration."
 msgstr ""
+"Není nastaven žádný server odchozí pošty, ale správci mají nastaveno přeposílání mailů.\n"
+"V nastavení změňte %s<i>administrator</i>%s nebo %s<i>mail</i>%s."
 
-#: app/views/mail/index.html.erb:44 app/views/mail/index.html.erb:44
-#, fuzzy
+#: app/views/mail/index.html.erb:34 app/views/mail/index.html.erb:34
+#| msgid "Please wait..."
+msgid "Please wait"
+msgstr "Čekejte prosím"
+
+#: app/views/mail/index.html.erb:42 app/views/mail/index.html.erb:42
 msgid "The passwords do not match."
 msgstr "Hesla se neshodují."
 
-#: app/views/mail/index.html.erb:45 app/views/mail/index.html.erb:45
-#, fuzzy
+#: app/views/mail/index.html.erb:43 app/views/mail/index.html.erb:43
 msgid "Enter a valid e-mail address."
-msgstr "'%s' není platná IP adresa."
+msgstr "Zadejte platnou e-mailovou adresu."
 
-#: app/views/mail/index.html.erb:46 app/views/mail/index.html.erb:46
-#, fuzzy
+#: app/views/mail/index.html.erb:44 app/views/mail/index.html.erb:44
 msgid "Enter a valid domain name or an IP address."
-msgstr "Zadejte vaši IP adresu"
+msgstr "Zadejte platné jméno domény nebo IP adresu."
 
-#: app/views/mail/index.html.erb:63 app/views/mail/index.html.erb:63
+#: app/views/mail/index.html.erb:60 app/views/mail/index.html.erb:74
+#: app/views/mail/index.html.erb:60 app/views/mail/index.html.erb:74
 #: shortcuts.yml:6
-#, fuzzy
 msgid "Mail Settings"
-msgstr "Ruční nastavení"
+msgstr "Nastavení mailu"
 
-#: app/views/mail/index.html.erb:75 app/views/mail/index.html.erb:75
+#: app/views/mail/index.html.erb:87 app/views/mail/index.html.erb:87
+#| msgid "Outgoing mail server"
+msgid "Outgoing mail server settings"
+msgstr "Nastavení serveru odchozí pošty"
+
+#: app/views/mail/index.html.erb:92 app/views/mail/index.html.erb:92
 msgid "Outgoing mail server"
-msgstr ""
+msgstr "Server odchozí pošty"
 
-#: app/views/mail/index.html.erb:80 app/views/mail/index.html.erb:80
+#: app/views/mail/index.html.erb:97 app/views/mail/index.html.erb:97
 msgid "Use secure connection (TLS)"
-msgstr ""
+msgstr "Použít bezpečné spojení (TLS)"
 
-#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
+#: app/views/mail/index.html.erb:98 app/views/mail/index.html.erb:98
 msgid "Never"
 msgstr "Nikdy"
 
-#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
-#, fuzzy
+#: app/views/mail/index.html.erb:98 app/views/mail/index.html.erb:98
 msgid "If available"
-msgstr "(%1 dostupné)"
+msgstr "Je-li dostupné"
 
-#: app/views/mail/index.html.erb:81 app/views/mail/index.html.erb:81
-#, fuzzy
+#: app/views/mail/index.html.erb:98 app/views/mail/index.html.erb:98
 msgid "Always"
-msgstr "Vžd&y"
+msgstr "Vždy"
 
-#: app/views/mail/index.html.erb:84 app/views/mail/index.html.erb:84
-#, fuzzy
+#: app/views/mail/index.html.erb:102 app/views/mail/index.html.erb:102
 msgid "User name"
-msgstr "Uživatelské jméno: "
+msgstr "Uživatelské jméno"
 
 # password dialog title
-#: app/views/mail/index.html.erb:88 app/views/mail/index.html.erb:88
+#: app/views/mail/index.html.erb:107 app/views/mail/index.html.erb:107
 msgid "Password"
 msgstr "Heslo"
 
-#: app/views/mail/index.html.erb:92 app/views/mail/index.html.erb:92
-#, fuzzy
+#: app/views/mail/index.html.erb:112 app/views/mail/index.html.erb:112
 msgid "Confirm password"
-msgstr "_Potvrďte heslo:"
+msgstr "Potvrďte heslo"
 
-#: app/views/mail/index.html.erb:100 app/views/mail/index.html.erb:100
-#, fuzzy
+#: app/views/mail/index.html.erb:120 app/views/mail/index.html.erb:120
+#| msgid "X Server settings"
+msgid "Check mail server settings"
+msgstr "Zkontrolujte nastavení poštovního serveru"
+
+#: app/views/mail/index.html.erb:124 app/views/mail/index.html.erb:124
 msgid "Send test mail to"
-msgstr "Poslat e-mail na %1"
+msgstr "Poslat testovací mail na"
 
-#: app/views/mail/index.html.erb:102 app/views/mail/index.html.erb:102
-#, fuzzy
+#: app/views/mail/index.html.erb:126 app/views/mail/index.html.erb:126
 msgid "Send Mail"
-msgstr "Uspání selhalo"
+msgstr "Poslat mail"
 
 #: shortcuts.yml:7
 msgid "Manage outgoing mail settings"
-msgstr ""
+msgstr "Spravovat nastavení odchozích mailů"
+
