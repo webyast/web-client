@@ -81,7 +81,7 @@ var Notifier = function(params) {
         case '200':
           log("RELOAD is NEEDED: " + event.data);
           stopNotifierPlugin(this);
-          $.modalDialog.info( {message: 'Data have been changed!'});
+          $.modalDialog.info( {message: 'Data has been changed!'});
           setTimeout('pageRefresh()', 1000)
         break
         case '304':
@@ -113,7 +113,7 @@ var AJAXcall = function(params) {
       case '200':
         log("RELOAD is NEEDED: " + data);
         stopNotifierPlugin(worker);
-        $.modalDialog.info( {message: 'Data have been changed!'});
+        $.modalDialog.info( {message: 'Data has been changed!'});
         setTimeout('pageRefresh()', 1000)
       break
       case '304':
