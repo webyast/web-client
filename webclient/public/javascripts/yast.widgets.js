@@ -28,7 +28,7 @@
     $(':checkbox', list).live('click.check', function(){
       $row = $(this).parents('tr').eq(0);
       // Show when a checkbox is clicked
-      console.log('Clicked: ',$row);
+      //console.log('Clicked: ',$row);
     });
 
     $('a,input,button,select', list).live('focus', function(e, s, o){
@@ -62,7 +62,7 @@
         break;
 
         default:
-          console.info("pressed " + e.keyCode);
+          //console.info("pressed " + e.keyCode);
       }
 
     });

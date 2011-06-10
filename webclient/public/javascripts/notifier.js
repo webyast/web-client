@@ -32,7 +32,7 @@ function stopNotifierPlugin(worker) {
   if(activityTimer && worker) { 
     worker.terminate();
     clearInterval($.activity.stop()); 
-    log("Stop JQuery activity check & terminate running worker!")
+    //log("Stop JQuery activity check & terminate running worker!")
   } 
 }
 
@@ -48,7 +48,7 @@ function startNotifier(params, interval, inactive) {
           //log("User is idle: " + Math.round((this.now() - this.defaults.lastActive)/1000) + ' sec');
         },
         inactiveFn: function(){
-          log("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
+          //log("User is inactive: " + Math.round((this.now() - this.defaults.lastActive)/1000)  + ' sec');
           if(typeof(Worker) != 'defined') { killWorker(worker); }
           $.activity.update();
         }
@@ -58,7 +58,7 @@ function startNotifier(params, interval, inactive) {
       if($.activity.isActive()) {
         $.activity.update();
       } else {
-        log("User active start worker and reactivate activity check!");
+        //log("User active start worker and reactivate activity check!");
         Notifier(params);
         $.activity.reActivate();
       }
@@ -69,37 +69,37 @@ function startNotifier(params, interval, inactive) {
 
 var Notifier = function(params) {
   if(typeof(Worker) == 'undefined') {
-    console.log("Web worker is not supported")
+    //console.log("Web worker is not supported")
     window.setInterval(function() { AJAXcall(params); },5000);
   } else {
-    console.log("Web worker is supported")
+    //console.log("Web worker is supported")
     worker = new Worker("/javascripts/notifier.workers.js");
     worker.postMessage(params);
     
     worker.onmessage = function(event) {
       switch(event.data){
         case '200':
-          log("RELOAD is NEEDED: " + event.data);
+          //log("RELOAD is NEEDED: " + event.data);
           stopNotifierPlugin(this);
           $.modalDialog.info( {message: 'Data has been changed!'});
           setTimeout('pageRefresh()', 1000)
         break
         case '304':
-          log("CACHE is UP-TO-DATE: " + event.data); 
+          //log("CACHE is UP-TO-DATE: " + event.data); 
         break
         case '306':
-          log("CACHE is not available: " + event.data); 
+          //log("CACHE is not available: " + event.data); 
           stopNotifierPlugin(worker);
         break
         default : 
-          log("ERROR: unknown HTTP status: " + event.data);
+          //log("ERROR: unknown HTTP status: " + event.data);
           stopNotifierPlugin(worker);
         break
       }
     };
 
     worker.onerror = function(error) {
-      log(error);
+      //log(error);
     };
 
     return worker;
@@ -111,19 +111,19 @@ var AJAXcall = function(params) {
     data.NaN? data = data : data = data.toString();
     switch(data){
       case '200':
-        log("RELOAD is NEEDED: " + data);
+        //log("RELOAD is NEEDED: " + data);
         stopNotifierPlugin(worker);
         $.modalDialog.info( {message: 'Data has been changed!'});
         setTimeout('pageRefresh()', 1000)
       break
       case '304':
-        log("CACHE is UP-TO-DATE: " + data); 
+        //log("CACHE is UP-TO-DATE: " + data); 
         break
       case '306':
-        log("CACHE is not available: " + event.data); 
+        //log("CACHE is not available: " + event.data); 
         break
       default : 
-        log("ERROR: unknown HTTP status: " + data + typeof(data));
+        //log("ERROR: unknown HTTP status: " + data + typeof(data));
       break
     }
   })

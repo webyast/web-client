@@ -126,7 +126,7 @@ digitalspaghetti.password = {
 	},
 	'debugOutput': function (element) {
 		if (typeof console.log === 'function') {
-			console.log(digitalspaghetti.password);	
+			//console.log(digitalspaghetti.password);	
 		} else {
 			alert(digitalspaghetti.password);
 		}
