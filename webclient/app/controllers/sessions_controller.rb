@@ -90,7 +90,7 @@ class SessionsController < ApplicationController
       rescue Account::BlockedService => e
         session[:user] = session[:host] = nil
         #show warning that user %s cannot log to host. He can try it at first at %s (time of target machine)
-        flash[:warning] = _("Host has blocked user %s. It cannot login until  %s") % [params[:login], e.time.to_s]
+        flash[:warning] = _("Host has blocked user %s. It cannot login until  %s") % ["",e.time.to_s] #FIXME remove user at all, not removed to not break translation
         redirect_to :action => "new", :hostid => host.id
         return
       end
