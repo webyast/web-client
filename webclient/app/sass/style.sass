@@ -24,11 +24,11 @@
 
 /* == Basic setup  ========================================================
 
-!border_outset_base_color = !c_button_border
+$border_outset_base_color = $c_button_border
 =button
   +round-corners
-  /*background: !c_button url(images/button-bg-rollover-gradient.png) repeat-x scroll center top
-  /*color: !c_text
+  /*background: $c_button url(images/button-bg-rollover-gradient.png) repeat-x scroll center top
+  /*color: $c_text
   font-size: 13px
   /*font-family: Trebuchet MS, Helvetica, sans-serif
   /*font-weight: bold
@@ -38,17 +38,17 @@
   /*cursor: pointer
   /*padding: 2px 10px
   /*text-decoration: none
-  /*text-shadow: 0 -1px 0 !c_text_shadow
+  /*text-shadow: 0 -1px 0 $c_text_shadow
   width: auto
   vertical-align: baseline
   &:hover
-    /*background-color: mix(!c_black, !c_button, 30%)
+    /*background-color: mix($c_black, $c_button, 30%)
     /*background-position: 0 -22px
-    /*color: !c_inverse_text
-    /*text-shadow: 0 -1px 0 !c_hower_text_shadow
+    /*color: $c_inverse_text
+    /*text-shadow: 0 -1px 0 $c_hower_text_shadow
   &[disabled]
-    /*color: !c_disabled_text
-    /*text-shadow: 0 -1px 0 !c_disabled_text
+    /*color: $c_disabled_text
+    /*text-shadow: 0 -1px 0 $c_disabled_text
     &:hover
       /*background-position: 0 0px
 /* html,
@@ -56,9 +56,9 @@
 /* unnecessary property, causes inheritance
 
 body
-  background-color: !c_background
+  background-color: $c_background
   /* BG Grey: #fcfcfc is taken see example above
-  color: !c_text
+  color: $c_text
   /*font-family: Trebuchet MS, Helvetica, sans-serif
   /*font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif
   font-family: Helvetica, "Trebuchet MS", Verdana, Arial, sans-serif
@@ -85,19 +85,19 @@ h4, h5
   font-size: 1em
 
 a
-  color: !c_anchor
+  color: $c_anchor
   font-weight: bold
   text-decoration: none
   font-size: 11px
   /*border-bottom:1px dotted #8e908b;
-  border-bottom: 1px dotted !c_anchor_underline
+  border-bottom: 1px dotted $c_anchor_underline
   &:hover
-    color: !c_anchor
+    color: $c_anchor
     /*font-size: 11px
     /*   text-decoration: underline;
-    border-bottom: 2px solid !c_anchor_underline
+    border-bottom: 2px solid $c_anchor_underline
   &.action-link
-    color: !c_anchor
+    color: $c_anchor
     /*  color:#8e908b;
     font-size: 13px
     font-weight: bold
@@ -105,20 +105,20 @@ a
     /*  border-bottom:2px solid #666;
     &:hover
       /*  color:#1e90ff;
-      /* color: !c_anchor
+      /* color: $c_anchor
       font-size: 13px
       /*  color:#a0a0a0;
       font-weight: bold
       /*  border-bottom:3px solid #1C94C4;
       /*  border-bottom:2px dotted #D84630;
-      /* border-bottom: 2px solid !c_anchor_underline
+      /* border-bottom: 2px solid $c_anchor_underline
       /*  Studio: #8e908b
       /*  text-shadow:0px 0px 8px rgba(160,160,160,1), 0px 0px 15px rgba(28,148,169,0.5), 0px 0px 20px rgba(120,120,120,0.2);
   &.button
     /*+button
     /* CSS Hack for IE8
     /*padding: 2px 10px\9
-    /*color: !c_text \9 !important
+    /*color: $c_text \9 $important
     /* end of hack
 
 /* CSS properties for all input elements
@@ -132,20 +132,20 @@ html a.button:only-of-type
   padding: 3px 10px
 
 input
-  /*border: 1px solid !c_button_border
+  /*border: 1px solid $c_button_border
   /*padding: 3px
-  /*color: !c_text
+  /*color: $c_text
   /*font-size: 1em
-  /*background: !c_inverse_text
+  /*background: $c_inverse_text
 
 select
-  /*border: 1px solid !c_button_border
+  /*border: 1px solid $c_button_border
   /*padding: 2px
-  /*color: !c_text
+  /*color: $c_text
   font-size: 1em
-  /*background: !c_inverse_text
+  /*background: $c_inverse_text
   &:focus
-    border: 1px solid !c_focused_input
+    border: 1px solid $c_focused_input
 
 /* select for available Updates in software module with image before text
 /* TODO find the solution for IE and Chrome, the images are not rendered before text
@@ -160,13 +160,13 @@ select
 /*input
 /*  &[type="text"],&[type="password"]
 /*    width: 300px
-/*    border-color: !c_input_border
+/*    border-color: $c_input_border
 /*    &:focus
 /*      width: 300px
-/*      border: 1px solid !c_focused_input
-/*      color: !c_text
+/*      border: 1px solid $c_focused_input
+/*      color: $c_text
 /*  &[disabled]
-/*    /*background-color: !c_button
+/*    /*background-color: $c_button
 /*    background-color: #ddd
 /*    color: #999
 
@@ -180,15 +180,15 @@ ul li
 
 #header
   width: 100%
-  /*background: !c_header url('images/bg-head-gradient.png') repeat-x scroll 0 0
-  /*border-bottom: 1px solid mix(!c_black, !c_header, 40%)
+  /*background: $c_header url('images/bg-head-gradient.png') repeat-x scroll 0 0
+  /*border-bottom: 1px solid mix($c_black, $c_header, 40%)
   background-color: #C5C5C5
   height: 50px
   vartical-align: middle
   text-align: center
   position: relative
   *
-    /*color: !c_text
+    /*color: $c_text
     color: #444
     text-shadow: 0 1px 0 #fff
   h1
@@ -242,7 +242,7 @@ ul li
 #content
   h3
     font-size: 1.7em
-    color: !c_text
+    color: $c_text
     margin-bottom: 0.5em
     clear: both
   h2
@@ -270,7 +270,7 @@ ul li
   padding: 0 10px 0
   width: 97%
   padding: 2em 0
-  color: mix(!c_text, !c_background, 50%)
+  color: mix($c_text, $c_background, 50%)
 
 #login-wrapper
   position: absolute
@@ -292,10 +292,10 @@ ul li
 
 #login-dialogue
   width: 24em
-  background: !c_button
+  background: $c_button
   margin: 100px auto
   overflow: hidden
-  color: !c_text
+  color: $c_text
   border: 6px solid #CCCCCC
   border-radius: 3px
   -moz-border-radius: 3px
@@ -383,9 +383,9 @@ ul li
     margin: 10px 10px 0
     display: block
 
-!border_inset_base_color = !c_background
+$border_inset_base_color = $c_background
 .plugin-content
-  background-color: !c_inverse_text
+  background-color: $c_inverse_text
   /*background-color:
   /*+border-inset
   +border-inset-5
@@ -418,16 +418,16 @@ div.overview
     text-align: center
     word-wrap: break-word
     &:hover
-      border-color: !c_button_border
-      background: !c_background
+      border-color: $c_button_border
+      background: $c_background
       text-decoration: none
       +round-corners
 
 /* == Form Styles =======================================================
 
-!border_outset_base_color = !c_fieldset
+$border_outset_base_color = $c_fieldset
 fieldset
-  background-color: !c_fieldset
+  background-color: $c_fieldset
   border: none
   margin: 1em
   /*+border-outset
@@ -657,11 +657,11 @@ tr
 
 /* List accordion styles
 
-!border_outset_base_color = !c_fieldset
+$border_outset_base_color = $c_fieldset
 .list-fieldset
   /*+border-outset
   border: 2px solid #dfdfdf
-  background-color: !c_fieldset
+  background-color: $c_fieldset
   +round-corners
   /*padding: 0 0.5em
   padding: 3px
@@ -678,13 +678,13 @@ tr
 
 p.missing-permissions
   margin-left: 1em
-  color: !c_error
+  color: $c_error
 
 div#browserWarning
-  background-color: !c_inverse_text
+  background-color: $c_inverse_text
   width: 100%
-  border-top: solid 1px !c_error
-  border-bottom: solid 1px !c_error
+  border-top: solid 1px $c_error
+  border-bottom: solid 1px $c_error
   text-align: center
   padding: 5px 0px 5px 0px
 
