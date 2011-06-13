@@ -45,7 +45,7 @@ License:        LGPL-2.1; Apache-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.58
+Version:        0.2.59
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -59,7 +59,7 @@ BuildRequires:  ruby
 BuildRequires:  sqlite rubygem-sqlite3
 BuildRequires:  rubygem-rails-2_3 >= 2.3.8
 BuildRequires:  rubygem-gettext_rails, rubygem-yast2-webservice-tasks, rubygem-selenium-client
-BuildRequires:  tidy, rubygem-haml, rubygem-nokogiri
+BuildRequires:  tidy, rubygem-haml, rubygem-nokogiri, rubygem-sass
 BuildArch:      noarch
 BuildRequires:  rubygem-test-unit rubygem-mocha
 BuildRequires:  nginx >= 1.0
