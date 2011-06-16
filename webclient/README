@@ -1,47 +1,63 @@
 YaST-Webservice-Client
 ========================
-After you have installed the package you can start the lighthttp with the
+After you have installed the package you can start the nginx server with the
 command line:
 
-rcyastwebc start
+rcyastwc start
 
 
 You can connect to the local server which can be started with the command:
 
-rcyastwebs start
+rcyastws start
 
-(package yast2-webservice)
+(packages webyast-*-ws)
 
 
-HTTPS Protocol
-================
+HTTPS Protocol and SSL Certificates
+=====================================
 
-SSL
------
+   An SSL certificate is needed to encrypt the connection between the users
+   browser and the YaST2 Webclient. This SSL certificate is created
+   automatically on the first &wyservice; startup (if it does not already
+   exist).
 
-Before we start configuring lighttpd for the YaST-webclient, we’ve got to get an SSL certificate. If you’re creating your own, 
-you can follow the instructions from the lighttpd web site:
+   You may want to use your own certificate or a certificate signed by your
+   company. If the certificate files already exist, they are not changed in
+   any way. Custom certificates can be either placed manually, or can be
+   put into the appliance when it is created (with SUSE Studio, SUSE Studio
+   Onsite or Kiwi).
+   The certificate files are located in the 
+     /etc/lighttpd/certs/
+   directory. The name of the certificate file is 
+     webyast.pem .
+   The name of the certificate's key file is 
+     webyast.key .
+
+   The file permissions should be set to 0600 for the webyast.key
+   file. For the webyast.pem file, the permissions should be set to
+   0644. The user and user group for both of these files should be set to 
+   nginx.
+
+   To change the certificate, you can either place your own certificate
+   files in the /etc/lighttpd/certs/ directory, or configure WebYaST to use 
+   a different certificate directory.
+
+   To configure a different certificate directory, edit the ssl_certificate
+   and ssl_certificate_key options in the /etc/yastwc/nginx.conf configuration
+   file and restart the WebYaST server with the 
+     rcyastwc restart
+   command.
+
+
+
+APPENDIX:
+
+Generating a SSL certification
+--------------------------------
+
+If you’re creating your own SSL certification you can use following
+command:
 
 openssl req -new -x509 -keyout host.pem -out host.pem -days 365 -nodes
 
-If you already have a certificate that’s a .crt and a .key file, you have to make them snuggle up into a single .pem file:
-
-cat host.key host.crt > host.pem
-
-Both of these methods result in a single .pem file, usually named ΄host.pem‘ where ΄host‘ is the name of the server you’re using 
-the certificate for. This file can be stored anywhere you want on your system, since the lighttpd configuration takes an explicit path to it.
-Normally certificates are stored in /etc/ssl/certs.
-
-Configure lighttpd
---------------------
-
-Add these two entries to /srv/www/yast/config/lighttpd.conf
-
-ssl.engine         = "enable"
-ssl.pemfile        = "/etc/ssl/certs/host.pem"
-
-and restart the server with
-
-rcyastwc restart
-
-Now you can login with HTTPS protocol.
+Split this file (host.pem) into a *.key and .pem file.
