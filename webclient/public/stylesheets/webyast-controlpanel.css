@@ -159,7 +159,8 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
   background: -webkit-gradient(radial, 50% 50%, 2, 50% 50%, 10, from(#59c766), to(#25712e));
 }
 
-#favorites { border-color: #eee; }
+#favorites { border-color: #eee; border:none;}
+
 
 .checked_health {
   height:19px!important;
@@ -177,7 +178,7 @@ div.statusbar_row label { margin-left: 5px; vertical-align: middle; }
 }
 
 #filter {
-  border-bottom: 1px solid #CCCCCC;
+/*  border-bottom: 1px solid #CCCCCC;*/
   background: #E1E1E1;
   background: -moz-linear-gradient(center bottom, #E1E1E1, #F0F0F0) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#F0F0F0), to(#E1E1E1));
@@ -260,7 +261,7 @@ label.quicksand_button_right {
 
   list-style: none;
   overflow: hidden;
-  -moz-box-shadow: 1px 1px 5px #ccc;
+/*  -moz-box-shadow: 1px 1px 5px #ccc;*/
 }
 
 .image-grid a.plugin_link {
@@ -279,9 +280,9 @@ label.quicksand_button_right {
 .image-grid img {
 /*  width: 100px;*/
 /*  height: 100px;*/
-  width:  90px;
-  height: 90px;
-  margin: 10px 10px;
+  width:  94px;
+  height: 94px;
+  margin: 6px 10px;
 }
 
 .image-grid li img, .image-grid li strong {
@@ -300,14 +301,13 @@ label.quicksand_button_right {
 
 div.overview li {
   padding: 5px;     
-  border: 1px solid #ccc; 
+  border: 1px solid #CCCCCC; 
   background-color: #f5f5f5;
   text-decoration: none;
 
-/*  -moz-box-shadow: none;*/
-  
-  background: -moz-linear-gradient(center 270deg , #FFF, #E5E5E5) repeat scroll 0 0 transparent;
+  background: -moz-linear-gradient(center center 270deg, #FFFFFF, #F0F0F0) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F0F0F0));
+  
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-background-clip: border;
