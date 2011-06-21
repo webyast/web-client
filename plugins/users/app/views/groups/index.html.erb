@@ -68,11 +68,14 @@
       tooltip : <%= jss _('Click user names to select/unselect members') %>,
       loadItems : function (dialogId) { 
         var members = $('#form_'+dialogId+' .members-string')[0].value.split(",");
-	this.system_users = arrays_complement($('#form_'+dialogId+' .members-string')[0].value.split(","), $("#all_users_string")[0].value.split(","));
+      	this.system_users = arrays_complement($('#form_'+dialogId+' .members-string')[0].value.split(","), $("#all_users_string")[0].value.split(","));
         return members;
       },
       storeItems : function (dialogId, items) { 
-        $('#form_'+dialogId+' .members-string')[0].value = this.system_users.concat(items).join(",");
+        //$('#form_'+dialogId+' .members-string')[0].value = $group_members.value.join(",");
+        //bnc#700904
+        $group_members = $('#form_'+dialogId+' .members-string')[0]
+        $group_members.value.length > 0 ? $group_members.value = this.system_users.concat(items).join(",") : $group_members.value = items
       },
       allItems : function (dialogId) { 
         return $('#all_users_string')[0].value.split(",") 
