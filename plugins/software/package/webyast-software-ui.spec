@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{webyast_ui_dir}/vendor
 %dir %{webyast_ui_dir}/vendor/plugins
 %dir %{plugin_dir}
-%dir %{plugin_dir}/locale
+%{plugin_dir}/locale
 %{plugin_dir}/README
 %{plugin_dir}/Rakefile
 %{plugin_dir}/init.rb

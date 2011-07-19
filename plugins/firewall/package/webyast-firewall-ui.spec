@@ -94,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %{plugin_dir}/app
 %{plugin_dir}/lib
 %{plugin_dir}/config
-
+%{plugin_dir}/locale
 %doc COPYING
 
 %files testsuite
