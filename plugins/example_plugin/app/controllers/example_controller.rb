@@ -15,7 +15,7 @@ public
   # GET /example
   # GET /example.xml
   def index
-    @example = Example.find (:one)
+    @example = Example.find(:one)
   end
 
 end
