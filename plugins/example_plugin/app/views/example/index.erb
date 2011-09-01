@@ -21,13 +21,8 @@
 
         <div class="fieldset_body">
           <div class="row">
-            <%=_("content of /var/log/YaST2/example_file")%>
+            <%= text_area(:example, :content, :cols => 125, :rows => 10) %>
           </div>
-          
-          <div class="row">
-            <%= text_area(:example, :content, :cols => 100, :rows => 10) %>
-          </div>
-          
           <br>
         </div>
       </fieldset>
@@ -44,24 +39,3 @@
   
   
   
-<!-- <div class='plugin-icon'><img src='/icons/status.png'/>
-<%=_("Example")%></div>
-<div class="plugin-content grid_12">
-
-<% form_tag '/example/update' do %>
-  <div class="row">
-    <label><%=_("content of /var/log/YaST2/example_file")%></label>
-  </div>
-  <div class="row">
-    <%= text_area(:example, :content, :cols => 100, :rows => 10) %>
-  </div>
-  <div class="button_container">
-    <div class="hr">&nbsp;</div>
-    <div class="nav-buttons">
-      <%= submit_tag _("Save"), :onclick=>"$('#progress').show()",
-                     :disabled => !@permissions[:write], :class => 'button' -%>
-      <a href="/" class="button"><%=_("Back")%></a>
-    </div>
-  </div>
-<% end %>
-</div> -->
