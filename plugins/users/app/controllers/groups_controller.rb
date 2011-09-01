@@ -136,7 +136,7 @@ public
       @groups = load_groups
       @groups.sort! { |a,b| a.cn <=> b.cn }
       @groups.each do |group|
-       group.members_string = group.members.join(",")
+        group.members_string = group.members.join(",")
       end
     @all_users_string = ""
     @all_sys_users_string = ""
@@ -146,20 +146,20 @@ public
       @users = User.find(:all, :params => { :attributes => "uid"})
       @sys_users = User.find( :all, :params=> { "attributes"=>"cn,uidNumber,uid", "type"=>"system", "index"=>["s", "uid"]} )
     end
-        @users.each do |user|
-       if @all_users_string.blank?
-          @all_users_string = user.uid
-       else
-          @all_users_string += ",#{user.uid}"
-       end
+    @users.each do |user|
+      if @all_users_string.blank?
+        @all_users_string = user.uid
+      else
+        @all_users_string += ",#{user.uid}"
+      end
     end
 
-        @sys_users.each do |user|
-       if @all_sys_users_string.blank?
-          @all_sys_users_string = user.uid
-       else
-          @all_sys_users_string += ",#{user.uid}"
-       end
+    @sys_users.each do |user|
+      if @all_sys_users_string.blank?
+        @all_sys_users_string = user.uid
+      else
+        @all_sys_users_string += ",#{user.uid}"
+      end
     end
 
     rescue ActiveResource::ResourceNotFound => e
