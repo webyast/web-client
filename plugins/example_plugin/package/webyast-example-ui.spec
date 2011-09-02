@@ -83,12 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{webyast_ui_dir}/vendor/plugins
 %dir %{plugin_dir}
 %dir %{plugin_dir}/config
-%dir %{plugin_dir}/doc
 %{plugin_dir}/locale
 %{plugin_dir}/Rakefile
 %{plugin_dir}/shortcuts.yml
 %{plugin_dir}/app
-%{plugin_dir}/lib
 %{plugin_dir}/config/rails_parent.rb
 %doc COPYING
 
