@@ -21,8 +21,8 @@ Summary:        WebYaST - example UI plugin
 Source:         www.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
-BuildRequires:  rubygem-webyast-rake-tasks
-BuildRequires:  ruby
+BuildRequires:  rubygem-webyast-rake-tasks webyast-base-ui-testsuite rubygem-mocha rubygem-test-unit
+BuildRequires:  ruby tidy
 BuildRequires:  yast2-webclient
 
 #
