@@ -12,6 +12,9 @@ private
 
 public
 
+  # Initialize GetText and Content-Type.
+  init_gettext "webyast-example-ui"
+
   # GET /example
   def index
     @example = Example.find(:one)
