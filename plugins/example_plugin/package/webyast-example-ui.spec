@@ -87,6 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %{plugin_dir}/Rakefile
 %{plugin_dir}/shortcuts.yml
 %{plugin_dir}/app
+%{plugin_dir}/public
 %{plugin_dir}/config/rails_parent.rb
 %doc COPYING
 
