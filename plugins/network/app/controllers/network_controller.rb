@@ -19,17 +19,6 @@
 # you may find current contact information at www.novell.com
 #++
 
-require 'socket'
-def getCurrentIP
-  ip, orig, Socket.do_not_reverse_lookup = "", Socket.do_not_reverse_lookup, true  # turn off reverse DNS resolution temporarily
-  UDPSocket.open do |s|
-    s.connect '64.233.187.99', 1
-    ip = s.addr.last
-  end
-  ensure Socket.do_not_reverse_lookup = orig
-  return ip
-end
-
 class NetworkController < ApplicationController
 
   before_filter :login_required
@@ -95,7 +84,7 @@ class NetworkController < ApplicationController
     @bootproto = ifc.bootproto
     @bootproto = STATIC_BOOT_ID if @bootproto.blank?
 
-    if @bootproto == STATIC_BOOT_ID
+    if [STATIC_BOOT_ID, 'dhcp'].include?(@bootproto)
       ipaddr = ifc.ipaddr
     else
       ipaddr = "/"
@@ -112,8 +101,6 @@ class NetworkController < ApplicationController
     
     @name = hn.name
     @domain = hn.domain
-    
-    @dhcp_ip = getCurrentIP;
     
     @dhcp_hostname_enabled = hn.attributes.include?("dhcp_hostname")
     @dhcp_hostname = @dhcp_hostname_enabled && hn.dhcp_hostname=="1" 
