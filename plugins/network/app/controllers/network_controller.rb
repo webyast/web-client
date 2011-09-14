@@ -92,10 +92,10 @@ class NetworkController < ApplicationController
 
     # FIXME tests for YSRB
 
-    @conf_mode = ifc.bootproto
-    @conf_mode = STATIC_BOOT_ID if @conf_mode.blank?
+    @bootproto = ifc.bootproto
+    @bootproto = STATIC_BOOT_ID if @bootproto.blank?
 
-    if @conf_mode == STATIC_BOOT_ID
+    if @bootproto == STATIC_BOOT_ID
       ipaddr = ifc.ipaddr
     else
       ipaddr = "/"
@@ -120,8 +120,8 @@ class NetworkController < ApplicationController
     @nameservers = dns.nameservers
     @searchdomains = dns.searches
     @default_route = rt.via
-    @conf_modes = {_("Manual")=>STATIC_BOOT_ID, _("Automatic")=>"dhcp"}
-    @conf_modes[@conf_mode] =@conf_mode unless @conf_modes.has_value? @conf_mode
+    @bootprotos = {_("Manual")=>STATIC_BOOT_ID, _("Automatic")=>"dhcp"}
+    @bootprotos[@bootproto] =@bootproto unless @bootprotos.has_value? @bootproto
   end
 
 
@@ -174,10 +174,10 @@ class NetworkController < ApplicationController
     ifc = Interface.find params["interface"]
     return false unless ifc
     
-    dirty_ifc = true unless (ifc.bootproto == params["conf_mode"])
+    dirty_ifc = true unless (ifc.bootproto == params["bootproto"])
     logger.info "dirty after interface config: #{dirty}"
     
-    ifc.bootproto=params["conf_mode"]
+    ifc.bootproto=params["bootproto"]
     
     if ifc.bootproto==STATIC_BOOT_ID
       #ip addr is returned in another state then given, but restart of static address is not problem

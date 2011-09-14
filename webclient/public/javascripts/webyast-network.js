@@ -31,7 +31,7 @@ $(function(){
   var $auto = $('#autoMode');
   var $manual = $('#manualMode');
       
-  $("#conf_mode").val() == "dhcp"? enableAuto(): enableStatic();
+  $("#bootproto").val() == "dhcp"? enableAuto(): enableStatic();
   
   function enableAuto() {
     $('#dnsForm').find('div.auto').hide();
@@ -51,12 +51,12 @@ $(function(){
     if($id.val() == "dhcp") {
       $auto.addClass('active');
       $manual.removeClass('active');
-      $('#conf_mode').val($auto.val());
+      $('#bootproto').val($auto.val());
       enableAuto();
     } else {
       $manual.addClass('active');
       $auto.removeClass('active');
-      $('#conf_mode').val($manual.val());
+      $('#bootproto').val($manual.val());
       enableStatic()
     }
   }
