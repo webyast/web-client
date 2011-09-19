@@ -127,12 +127,12 @@
         <div class="left">
           <label class="plugin-icon-container"><img class="plugin-icon" src="/icons/network.png"></label>
           <label class="plugin-name"><%=_("Network")%></label><span id="questionMark" style="margin:2px 15px; float:none;">?</span>
-          <%=text_field_tag :conf_mode, @conf_mode, :type=>"hidden", :disabled => write_disabled %>
+          <%=text_field_tag :bootproto, @bootproto, :type=>"hidden", :disabled => write_disabled %>
         </div>
 
         <div class="right" >
           <span class="right" style="padding:2px; background:#fff; -moz-border-radius:2px; -webkit-border-radius:2px;">
-          <% if(@conf_mode != 'static') %>
+          <% if(@bootproto != 'static') %>
             <button id="autoMode" class="active" value="dhcp"><%=_("Automatic")%></button>
             <button id="manualMode" value="static"><%=_("Manual")%></button>
           <% else %>
