@@ -85,7 +85,7 @@ class NetworkControllerTest < ActionController::TestCase
   end
 
   def test_dhcp_without_change
-    put :update, { :interface => "eth2", :conf_mode => "dhcp", :default_route => "192.168.1.1", :nameservers => "192.168.1.2 192.168.1.42", :searchdomains => "labs.example.com example.com", :hostname => "arthur", :domain => "britons" }
+    put :update, { :interface => "eth2", :bootproto => "dhcp", :default_route => "192.168.1.1", :nameservers => "192.168.1.2 192.168.1.42", :searchdomains => "labs.example.com example.com", :hostname => "arthur", :domain => "britons" }
     assert_response :redirect
     assert_redirected_to :controller => "controlpanel", :action => "index"
   end
