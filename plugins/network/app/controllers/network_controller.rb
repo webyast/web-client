@@ -84,7 +84,7 @@ class NetworkController < ApplicationController
     @bootproto = ifc.bootproto
     @bootproto = STATIC_BOOT_ID if @bootproto.blank?
 
-    @ip, @netmask = @bootproto == STATIC_BOOT_ID ? ifc.ipaddr.split("/"): nil
+    @ip, @netmask = @bootproto == STATIC_BOOT_ID ? ifc.ipaddr.split("/"): ["", ""]
     # when detect PREFIXLEN with leading "/"
     if ifc.bootproto == STATIC_BOOT_ID && NETMASK_RANGE.include?(@netmask.to_i)
       @netmask = "/"+@netmask
