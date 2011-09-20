@@ -176,12 +176,14 @@
           <%=text_field_tag :searchdomains, @searchdomains.join(" "), :class=>"searchdomains", :disabled => write_disabled %>
         </div>
 
-        <div id="ip_sticker" class="right">
-          <span>
-            <span style="display:block; background:#eee; padding:2px 3px; font-size:11px;"><%=_("Current IP address (DHCP)")%></span>
-            <span style="font-size:20px; padding:5px 0px;"><%= @actual_ip %></span>
-          </span>
-        </div>
+	<% if @actual_ip %>
+          <div id="ip_sticker" class="right">
+            <span>
+              <span style="display:block; background:#eee; padding:2px 3px; font-size:11px;"><%=_("Current IP address (DHCP)")%></span>
+              <span style="font-size:20px; padding:5px 0px;"><%= @actual_ip %></span>
+            </span>
+          </div>
+	<% end %>
 
         <div class="row manual">
           <label><%=_("Change hostname by DHCP")%></label>
