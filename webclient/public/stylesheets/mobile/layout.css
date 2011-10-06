@@ -1,16 +1,48 @@
+#header h1 { }
+
 #logo {
   display:inline-block;
   float:left;
   border-radius:40px;
   width:40px;
   height:40px;
+  margin-left:10px;
 }
 
-#loginButton a {
-  width:100%;
+#loginButton a { width:100%; }
+input[type="password"] {  border-radius:0; }
+
+#modulesList img { width:64px; height:64px; margin-left:5px; }
+#modulesList p.ui-li-desc { margin:5px 0px; }
+#modulesList .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb { min-height: 32px; }
+
+
+#panel {
+  border:0px solid grey;
+  display:block;
+  padding:0px;
+  text-align:left;
 }
 
-input[type="password"] {
-  border-radius:0;
+#panel p {
+  vertical-align:middle;
 }
+
+#panel img {
+  width:24px;
+  height:24px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-top:-3px;
+}
+
+#panel .container {
+/*  float:left;*/
+  margin-left:-8px;
+  display:block;
+  clear: both;
+  line-height:32px;
+}
+
+#footer { text-align:center; }
 

@@ -48,9 +48,7 @@
 
 
           <% if logged_in? %>
-            <a href="/logout" data-icon="forward" class="ui-btn-right">
-              Logout
-            </a>
+            <a href="/logout" data-icon="forward" class="ui-btn-right">Logout</a>
           <% else %>
             <a href="index.html" data-icon="gear" class="ui-btn-right">
               <%= language_code(current_locale_name).upcase  %>
@@ -62,7 +60,7 @@
         <%= yield %>
       </div>
 
-      <div data-role="footer" data-position="fixed">
+      <div id="footer" data-role="footer" data-position="fixed">
         <b>© 2009-2011 Novell, Inc.</b>
       </div>
 

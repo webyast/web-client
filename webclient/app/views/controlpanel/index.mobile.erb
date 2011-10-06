@@ -1,0 +1,46 @@
+<%#
+#-- RORSCAN_ICF
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc.
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation.
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#++
+%>
+
+<ul id="modulesList" data-role="listview" data-theme="d" data-counttheme="b">
+  <li>
+    <!--<div id="panel">
+    <span id="status">
+      STATUS:
+    <span>
+    <span id="status">UPDATES:<span>
+    </div> -->
+
+    <div id="panel" class="ui-grid-a">
+      <div class="container"><%= image_tag("/images/mobile/healthy2.png") %> System: system is healthy</div>
+      <div class="container"><%= image_tag("/images/mobile/attention.png") %> Updates: 2 available updates</div>
+    </div>
+  </li>
+  <% @shortcuts.values.reject{|v| v['disabled']}.sort_by {|v| v['title']}.each_with_index do |data, index| %>
+    <% html_map = {:class => "plugin_link"} %>
+    <li id="module<%= index %>" data-id="id-<%= index%>" data-type="<%= data['groups'] %>" class="main">
+      <% link_to(data['url'], html_map) do %>
+        <%= image_tag(data['icon'] ) %>
+        <strong><%= _(data['title']) %></strong>
+        <p><%= data['description'] unless data["description"].blank? %></p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
