@@ -1,18 +1,18 @@
 #--
 # Webyast Webclient framework
 #
-# Copyright (C) 2009, 2010 Novell, Inc. 
+# Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
 # it only under the terms of version 2.1 of the GNU Lesser General Public
-# License as published by the Free Software Foundation. 
+# License as published by the Free Software Foundation.
 #
 #   This library is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
-# details. 
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 #
 #   You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software 
+# License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 
@@ -23,8 +23,10 @@ require 'client_exception'
 require 'action_controller/base'
 require 'url_rewriter' #monkey patch for url_for with port
 
+
 class ApplicationController < ActionController::Base
-  layout 'main'  
+  layout 'main'
+
 
 protected
   def redirect_success
@@ -59,7 +61,7 @@ protected
             <pre class=\"details\" style=\"display:none\"> #{CGI.escapeHTML message } </pre>"
     ret
   end
-  
+
   include AuthenticatedSystem
   include ErrorConstructor
 #hide actions because our routing table has automatic action mapping
@@ -76,6 +78,8 @@ protected
   end
 
   before_filter :set_session_login
+  before_filter :prepare_for_mobile
+
 private
   # The information is kept in YaST::ServiceResource::Session, a module
   # that is shared between all connected clients, leading to bnc#542143.
@@ -89,13 +93,29 @@ private
     end
   end
 
+  def mobile_device?
+    if session[:mobile_param]
+      session[:mobile_param] == "1"
+    else
+      request.user_agent =~ /iPhone|Mobile|webOS/
+    end
+  end
+  helper_method :mobile_device?
+
+  def prepare_for_mobile
+    Rails.logger.error "DETECT MOBILE DEVICE"
+    session[:mobile_param] = params[:mobile] if params[:mobile]
+    request.format = :mobile if mobile_device?
+  end
+
+
   def exception_trap(error)
     logger.error "***" + error.to_s
     logger.error error.backtrace.join "\n"
 
     e = ClientException.new(error)
     logger.error "Exception started at the server side" if e.backend_exception?
-    
+
 #handle insufficient permissions, especially useful for read permissions,
 #because you cannot open module for which you don't have read permissions.
 # if it appear during save, then it is module bug, as it cannot allow it
@@ -109,7 +129,7 @@ private
       end
       return
     end
-    
+
     # for ajax request render a different template, much less verbose
     if request.xhr?
       logger.error "Error during ajax request"
@@ -126,7 +146,7 @@ private
 
     return
   end
-  
+
   def self.bug_url
     begin
       VendorSetting.site = YaST::ServiceResource::Session.site.to_s
@@ -178,7 +198,7 @@ protected
         if mo_files.size > 0
           locale_path = File.dirname(File.dirname(File.dirname(mo_files.first)))
         else
-          # trying plugin directory in the git 
+          # trying plugin directory in the git
           mo_files = Dir.glob(File.join(RAILS_ROOT, "..", "**", "#{domainname}.mo"))
           locale_path = File.dirname(File.dirname(File.dirname(mo_files.first))) if mo_files.size > 0
         end
@@ -276,3 +296,4 @@ protected
     "<p>#{ERB::Util.html_escape header}</p><ul>#{ret}</ul>"
   end
 end
+

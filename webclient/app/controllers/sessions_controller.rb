@@ -1,18 +1,18 @@
 #--
 # Webyast Webclient framework
 #
-# Copyright (C) 2009, 2010 Novell, Inc. 
+# Copyright (C) 2009, 2010 Novell, Inc.
 #   This library is free software; you can redistribute it and/or modify
 # it only under the terms of version 2.1 of the GNU Lesser General Public
-# License as published by the Free Software Foundation. 
+# License as published by the Free Software Foundation.
 #
 #   This library is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
-# details. 
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
 #
 #   You should have received a copy of the GNU Lesser General Public
-# License along with this library; if not, write to the Free Software 
+# License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #++
 
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   # and the inverse
   #before_filter :ensure_login, :only => :destroy
   #before_filter :ensure_logout, :only => [:new, :create]
-  
+
   def index
     redirect_to "/"
   end
@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
 
     # render login screen, asking for username/password
   end
-  
+
   # create session
   #  this is called from login form and expects to have username and password set
   #
@@ -62,6 +62,7 @@ class SessionsController < ApplicationController
   def create
     host = Host.find_by_id_or_name(params[:hostid])
     logger.debug "Host(#{params[:hostid]}): #{host.inspect}"
+
     # if the user or password is not there, then render the login form
     if host.nil?
       flash[:warning] = _("You need to specify the host")
@@ -75,7 +76,7 @@ class SessionsController < ApplicationController
     else
       # otherwise, we have all the data, try to login
       begin
-        self.current_account, auth_token, expires_date = Account.authenticate(params[:login], 
+        self.current_account, auth_token, expires_date = Account.authenticate(params[:login],
                                                             params[:password],
                                                             host.url,
                                                             request.remote_ip)
@@ -94,25 +95,30 @@ class SessionsController < ApplicationController
         redirect_to :action => "new", :hostid => host.id
         return
       end
-      
+
       # Now check if the authentication was successful
-    
+
       if logged_in?
         session[:auth_token] = auth_token
         session[:user] = params[:login]
         session[:host] = host.id
-	session[:expires] = expires_date
+        session[:expires] = expires_date
 
         #reset resource cache after login to refresh permissions and modules (bnc#621579)
         ResourceCache.instance.reset_cache params[:login], host.url
 
         # evaluate available service resources here or not?
         # @modules = Yast.find(:all)
-  
+
         @short_host_name = host.name
 
         # success, go to the main controller
         logger.info "Login success."
+        respond_to do |format|
+          format.html { }   # Regular stuff
+          format.mobile { } # other stuff
+        end
+
         redirect_back_or_default("/")
       else
         session[:user] = session[:host] = nil
@@ -122,7 +128,7 @@ class SessionsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     # remove session data
     [:user, :host].each do |k|
@@ -139,10 +145,10 @@ class SessionsController < ApplicationController
       else
 	logger.debug "Logout: Error"
       end
-      self.current_account.forget_me 
+      self.current_account.forget_me
       session[:auth_token] = nil
     end
-    
+
     cookies.delete :auth_token
 
     # reset_session clears all flash messages, make a backup before the call
@@ -158,3 +164,4 @@ class SessionsController < ApplicationController
     redirect_to :controller => "session", :action => "new", :hostid => "localhost"
   end
 end
+

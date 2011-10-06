@@ -1,0 +1,65 @@
+<!--
+# Webyast Webclient framework
+#
+# Copyright (C) 2009, 2010 Novell, Inc.
+#   This library is free software; you can redistribute it and/or modify
+# it only under the terms of version 2.1 of the GNU Lesser General Public
+# License as published by the Free Software Foundation.
+#
+#   This library is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+#   You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cleartype" content="on" >
+    <meta http-equiv="imagetoolbar" content="false" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="Author" content="Vladislav Lewin" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
+
+    <title><%= "WebYaST" %></title>
+    <%= stylesheet_link_tag "mobile/jquery.mobile-1.0rc1.min" %>
+    <%= stylesheet_link_tag "mobile/jquery-mobile-fluid960" %>
+    <%= stylesheet_link_tag "mobile/layout" %>
+
+    <%= javascript_include_tag "mobile/jquery-1.6.4.min", "mobile/jquery.mobile-1.0rc1.min" %>
+
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div data-role="page" id="firstpage">
+      <div data-role="header">
+        <img id="logo" src="/images/mobile/webyast-logo-mobile.png"/>
+
+        <h1>WebYaST</h1>
+        <a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>
+      </div>
+
+      <div data-role="content">
+        <%= yield %>
+      </div>
+
+      <div data-role="footer" data-position="fixed">
+        <b>© 2009-2011 Novell, Inc.</b>
+      </div>
+    </div>
+
+
+    </div>
+
+
+  </body>
+</html>
+
