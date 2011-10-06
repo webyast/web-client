@@ -28,6 +28,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
+    <link rel="apple-touch-icon" href="images/webyast-iphone-icon.png" />
 
     <title><%= "WebYaST" %></title>
     <%= stylesheet_link_tag "mobile/jquery.mobile-1.0rc1.min" %>
@@ -44,7 +45,17 @@
         <img id="logo" src="/images/mobile/webyast-logo-mobile.png"/>
 
         <h1>WebYaST</h1>
-        <a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>
+
+
+          <% if logged_in? %>
+            <a href="/logout" data-icon="forward" class="ui-btn-right">
+              Logout
+            </a>
+          <% else %>
+            <a href="index.html" data-icon="gear" class="ui-btn-right">
+              <%= language_code(current_locale_name).upcase  %>
+            </a>
+          <% end %>
       </div>
 
       <div data-role="content">
@@ -54,8 +65,6 @@
       <div data-role="footer" data-position="fixed">
         <b>© 2009-2011 Novell, Inc.</b>
       </div>
-    </div>
-
 
     </div>
 
