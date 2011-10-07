@@ -24,23 +24,19 @@
   <% form_for(:administrator, @administrator, :url => { :action => "update" }, :html => { :method => :put, :id => "adminForm", :class=>"webyast_form", :onsubmit => "disable_forms ()", :autocomplete => :off } ) do |f| %>
     <div class="module-form">
 
-      <div class="fieldcontain" data-role="fieldcontain">
          <label>New Password</label>
          <%= f.password_field :password %>
          <label>Confirm Password</label>
          <%= f.password_field :confirm_password, :equalTo => "#administrator_password", :class => "required" %>
-      </div>
 
       <p class="form-divider">&nbsp;</p>
 
-      <div class="fieldcontain" data-role="fieldcontain">
         <label>Forward mail to</label>
         <%= f.text_field :aliases, :class => "emails" %>
-      </div>
+
+      <p class="form-spacer">&nbsp;</p>
 
       <input type="submit" value="submit">
-
-
 </div><!-- /grid-a -->
 
 

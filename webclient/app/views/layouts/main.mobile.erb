@@ -42,7 +42,6 @@
   <body>
     <div data-role="page">
       <div id="header" data-role="header">
-
         <% if logged_in? && request.request_uri == "/controlpanel" %>
           <img id="logo" src="/images/mobile/webyast-logo-mobile.png"/>
           <h1>WebYaST</h1>
@@ -51,7 +50,9 @@
           <a href="index.html" data-rel="back" data-icon="arrow-l" class="ui-btn-left">back</a>
           <h1>WebYaST</h1>
         <% else %>
-          <a href="index.html" data-icon="gear" class="ui-btn-left">
+          <img id="logo" src="/images/mobile/webyast-logo-mobile.png"/>
+          <h1>WebYaST</h1>
+          <a href="index.html" data-icon="gear" class="ui-btn-right">
             <%= language_code(current_locale_name).upcase  %>
           </a>
         <% end %>
