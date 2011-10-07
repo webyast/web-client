@@ -20,40 +20,41 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;" charset="utf-8" />
     <meta http-equiv="cleartype" content="on" >
-    <meta http-equiv="imagetoolbar" content="false" />
     <meta http-equiv="Content-Language" content="en" />
     <meta name="Author" content="Vladislav Lewin" />
+
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
-    <link rel="apple-touch-icon" href="images/webyast-iphone-icon.png" />
+
+    <link rel="apple-touch-startup-image" href="/images/mobile/startup.png" />
+    <link rel="apple-touch-icon-precomposed" href="/images/webyast-iphone-icon.png"/>
 
     <title><%= "WebYaST" %></title>
     <%= stylesheet_link_tag "mobile/jquery.mobile-1.0rc1.min" %>
     <%= stylesheet_link_tag "mobile/jquery-mobile-fluid960" %>
     <%= stylesheet_link_tag "mobile/layout" %>
-
     <%= javascript_include_tag "mobile/jquery-1.6.4.min", "mobile/jquery.mobile-1.0rc1.min" %>
 
     <%= yield(:head) %>
   </head>
   <body>
-    <div data-role="page" id="firstpage">
-      <div data-role="header">
-        <img id="logo" src="/images/mobile/webyast-logo-mobile.png"/>
+    <div data-role="page">
+      <div id="header" data-role="header">
 
-        <h1>WebYaST</h1>
-
-
-          <% if logged_in? %>
-            <a href="/logout" data-icon="forward" class="ui-btn-right">Logout</a>
-          <% else %>
-            <a href="index.html" data-icon="gear" class="ui-btn-right">
-              <%= language_code(current_locale_name).upcase  %>
-            </a>
-          <% end %>
+        <% if logged_in? && request.request_uri == "/controlpanel" %>
+          <img id="logo" src="/images/mobile/webyast-logo-mobile.png"/>
+          <h1>WebYaST</h1>
+          <a href="/logout" data-icon="forward" class="ui-btn-right">logout</a>
+        <% elsif logged_in? && request.request_uri != "/controlpanel"  %>
+          <a href="index.html" data-rel="back" data-icon="arrow-l" class="ui-btn-left">back</a>
+          <h1>WebYaST</h1>
+        <% else %>
+          <a href="index.html" data-icon="gear" class="ui-btn-left">
+            <%= language_code(current_locale_name).upcase  %>
+          </a>
+        <% end %>
       </div>
 
       <div data-role="content">
@@ -63,10 +64,7 @@
       <div id="footer" data-role="footer" data-position="fixed">
         <b>© 2009-2011 Novell, Inc.</b>
       </div>
-
     </div>
-
-
   </body>
 </html>
 
