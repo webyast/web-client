@@ -19,5 +19,18 @@
 # you may find current contact information at www.novell.com
 -->
 
-<img src="/images/mobile/comingsoon.png"/>
 
+<ul data-role="listview" data-filter="true" >
+<% @services.each do |service| %>
+    <li>
+      <a class="service-link">
+        <img src="/images/firewall-off-grey.png" class="service-icon" />
+        <p><b><%= service.name %></b></p>
+        <p class="service-summary">
+          <%= service.summary.nil? ? "summary is not available" : service.summary %>
+        </p>
+      </a>
+    </li>
+  
+<% end %>
+</ul>
