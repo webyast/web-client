@@ -288,7 +288,7 @@ chmod 600 db/*.sqlite* log/*
 #logrotate configuration file
 %config(noreplace) /etc/logrotate.d/webyast-ui.lr.conf
 
-### exclude css, icons and images 
+### exclude css, icons and images
 %exclude %{webyast_ui_dir}/public/stylesheets
 %exclude %{webyast_ui_dir}/public/icons
 %exclude %{webyast_ui_dir}/public/images
@@ -301,10 +301,11 @@ chmod 600 db/*.sqlite* log/*
 
 %files branding-default
 %defattr(-,root,root)
-### include css, icons and images 
+### include css, icons and images
 %{webyast_ui_dir}/public/stylesheets
 %{webyast_ui_dir}/public/icons
 %{webyast_ui_dir}/public/images
 
 
 %changelog
+
