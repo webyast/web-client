@@ -95,8 +95,8 @@ init = Rails::Initializer.run do |config|
 
   # add extra plugin path - needed during RPM build
   # (webyast-base-ui is already installed in /srv/www/... but plugins are
-  # located in /usr/src/packages/... during build)
-  config.plugin_paths << '/usr/src/packages/BUILD' unless ENV['ADD_BUILD_PATH'].nil?
+  # located in /usr/src/packages/... (RPM_BUILD_DIR) during build)
+  config.plugin_paths << ENV['RPM_BUILD_DIR'] unless ENV['ADD_BUILD_PATH'].nil?
 
   # In order to overwrite,exchange images, stylesheets,.... for special vendors there
   # is the directory "vendor" in the "public" directory. Each file in the public
