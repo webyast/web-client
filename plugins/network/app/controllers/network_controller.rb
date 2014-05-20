@@ -19,17 +19,6 @@
 # you may find current contact information at www.novell.com
 #++
 
-require 'socket'
-def getCurrentIP
-  ip, orig, Socket.do_not_reverse_lookup = "", Socket.do_not_reverse_lookup, true  # turn off reverse DNS resolution temporarily
-  UDPSocket.open do |s|
-    s.connect '64.233.187.99', 1
-    ip = s.addr.last
-  end
-  ensure Socket.do_not_reverse_lookup = orig
-  return ip
-end
-
 class NetworkController < ApplicationController
 
   before_filter :login_required
@@ -95,13 +84,7 @@ class NetworkController < ApplicationController
     @bootproto = ifc.bootproto
     @bootproto = STATIC_BOOT_ID if @bootproto.blank?
 
-    if @bootproto == STATIC_BOOT_ID
-      ipaddr = ifc.ipaddr
-    else
-      ipaddr = "/"
-    end
-    
-    @ip, @netmask = ipaddr.split "/"
+    @ip, @netmask = @bootproto == STATIC_BOOT_ID ? ifc.ipaddr.split("/"): ["", ""]
     # when detect PREFIXLEN with leading "/"
     if ifc.bootproto == STATIC_BOOT_ID && NETMASK_RANGE.include?(@netmask.to_i)
       @netmask = "/"+@netmask
@@ -113,8 +96,9 @@ class NetworkController < ApplicationController
     @name = hn.name
     @domain = hn.domain
     
-    @dhcp_ip = getCurrentIP;
-    
+    if @bootproto == "dhcp"
+      @actual_ip, @actual_netmask = ifc.actual_ipaddr.split("/")
+    end
     @dhcp_hostname_enabled = hn.attributes.include?("dhcp_hostname")
     @dhcp_hostname = @dhcp_hostname_enabled && hn.dhcp_hostname=="1" 
     @nameservers = dns.nameservers
