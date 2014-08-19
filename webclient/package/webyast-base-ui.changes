@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Wed Nov 27 12:54:05 UTC 2013 - lslezak@suse.cz
+
+- fixed CVE-2013-3709: make the secret token file
+  (session_store.rb) readable only for the webyast user to avoid
+  forging the session cookie (bnc#851116)
+- 0.2.64
+
+-------------------------------------------------------------------
 Mon Dec 10 09:08:31 UTC 2012 - lslezak@suse.cz
 
 - removed controller for /hosts path (was accessible for

@@ -147,8 +147,7 @@ def test_specified_policy
 end
 
 TEST_ARRAY = [ "a","b",["bc","g"]]
-TEST_HASH = { :e => :symbol }
-RESULT_HASH = { "e" => :symbol } #stupid hash key doesn't survive as symbol and it is always string
+TEST_HASH = { "e" => "string" }
 def test_save_complex_xml
   begin
     test = TestModel.find :one
@@ -165,7 +164,7 @@ def test_save_complex_xml
     assert rq.body
     result = Hash.from_xml(rq.body)["test"]["arg1"]
     assert_equal TEST_ARRAY, result["array"]
-    assert_equal RESULT_HASH, result["hash"]
+    assert_equal TEST_HASH, result["hash"]
   ensure
     Rails.logger.debug ActiveResource::HttpMock.requests.inspect
   end

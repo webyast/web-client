@@ -45,7 +45,7 @@ License:        LGPL-2.1; Apache-2.0
 Group:          Productivity/Networking/Web/Utilities
 URL:            http://en.opensuse.org/Portal:WebYaST
 Autoreqprov:    on
-Version:        0.2.63
+Version:        0.2.64
 Release:        0
 Summary:        WebYaST - base UI for system management
 Source:         www.tar.bz2
@@ -256,7 +256,7 @@ chmod 600 db/*.sqlite* log/*
 %{webyast_ui_dir}/INSTALL
 %{webyast_ui_dir}/script
 %{webyast_ui_dir}/config
-%config %{webyast_ui_dir}/config/initializers/session_store.rb
+%config %attr(400,%{webyast_ui_user},root) %{webyast_ui_dir}/config/initializers/session_store.rb
 %{webyast_ui_dir}/start.sh
 %doc README* COPYING
 %attr(-,%{webyast_ui_user},%{webyast_ui_user}) %{webyast_ui_dir}/log
